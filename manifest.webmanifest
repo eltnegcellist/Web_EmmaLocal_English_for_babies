@@ -1,0 +1,13 @@
+{
+  "name": "Emma — Local English for Babies",
+  "short_name": "Emma",
+  "description": "親子の自然な時間に、ローカル処理の英語話者Emmaを加えるWebアプリ",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffafc",
+  "theme_color": "#f7eef9",
+  "icons": [
+    {"src":"./icons/emma.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
