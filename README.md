@@ -39,6 +39,10 @@ python3 -m http.server 8080
 
 開発用テキスト入力は `?debug=1` をURL末尾へ付けると表示されます。
 
+## Deployment
+
+`main` への更新は GitHub Actions でテスト後、GitHub Pages へ公開する構成です。
+
 ## Android edition
 
 Android版:
