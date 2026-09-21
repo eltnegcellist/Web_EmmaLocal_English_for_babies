@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f7eef9" />
+  <meta name="description" content="親の自然な日本語育児に、もう一人の英語話者 Emma を加えるローカルWebアプリ" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icons/emma.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Emma Web</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">LOCAL • BABY MODE</div>
+        <h1>Emma</h1>
+      </div>
+      <button id="aboutButton" class="icon-button" aria-label="Emmaとは？">?</button>
+    </header>
+
+    <section class="hero" aria-live="polite">
+      <div id="avatar" class="avatar state-idle" aria-hidden="true">
+        <div class="listening-ring"></div>
+        <div class="face">
+          <div class="eyes"><span class="eye left"></span><span class="eye right"></span></div>
+          <div class="cheeks"><span></span><span></span></div>
+          <div id="mouth" class="mouth"></div>
+        </div>
+        <div class="thinking-dots"><span></span><span></span><span></span></div>
+      </div>
+      <h2 id="statusTitle">Emmaはおやすみ中</h2>
+      <p id="statusDetail">「Emmaを始める」を押すと、この端末だけで会話を始めます。</p>
+      <div id="progressWrap" class="progress-wrap hidden" aria-hidden="true">
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        <div id="progressText" class="progress-text"></div>
+      </div>
+    </section>
+
+    <section class="conversation" aria-label="最近の会話">
+      <article class="bubble parent-bubble">
+        <div class="bubble-label">あなた</div>
+        <p id="transcript">まだ話しかけていません。</p>
+      </article>
+      <article class="bubble emma-bubble">
+        <div class="bubble-label">Emma</div>
+        <p id="reply">Hello, little one!</p>
+      </article>
+    </section>
+
+    <section class="controls">
+      <button id="mainButton" class="primary-button">Emmaを始める</button>
+      <button id="stopButton" class="secondary-button hidden">終了する</button>
+      <p class="privacy-note">会話音声・認識・返答・音声合成はブラウザ内で処理します。初回だけモデル取得に通信します。</p>
+    </section>
+
+    <details class="settings">
+      <summary>設定</summary>
+      <label>
+        赤ちゃんの呼び名
+        <input id="babyName" maxlength="40" autocomplete="off" placeholder="例: Mayu" />
+      </label>
+      <label class="toggle-row">
+        <input id="keepAwake" type="checkbox" checked />
+        <span>Emma利用中は画面をスリープさせない</span>
+      </label>
+      <div class="runtime-info">
+        <span id="runtimeBackend">推論: 未初期化</span>
+        <span id="storageInfo">モデル保存: ブラウザキャッシュ</span>
+      </div>
+    </details>
+
+    <details id="debugPanel" class="settings debug-panel">
+      <summary>開発用テスト</summary>
+      <label>
+        日本語テキストでLite返答を確認
+        <textarea id="debugInput" rows="3" placeholder="お風呂入ろうね"></textarea>
+      </label>
+      <button id="debugReplyButton" class="secondary-button">この内容でEmmaに話してもらう</button>
+    </details>
+  </main>
+
+  <dialog id="aboutDialog">
+    <div class="dialog-body">
+      <button id="closeAbout" class="dialog-close" aria-label="閉じる">×</button>
+      <h2>Emmaとは？</h2>
+      <p>Emmaは翻訳機ではありません。親が普段どおり日本語で赤ちゃんへ話しかけ、その場面に英語話者のEmmaが参加することを目指しています。</p>
+      <p>乳児期の言語学習で社会的な相互作用が重要である可能性を示す研究を着想源にしています。ただし、AIキャラクターのEmmaが人間との対面交流と同じ学習効果を生むことは証明されていません。</p>
+      <p class="small">Web版Liteは、Whisperによる日本語音声認識、ルールベースの場面判定、Kokoroの英語音声をすべて端末内で実行します。</p>
+    </div>
+  </dialog>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
