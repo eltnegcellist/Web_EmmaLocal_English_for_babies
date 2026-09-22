@@ -48,4 +48,4 @@ GitHub Pages source: **Deploy from a branch** (`chore/trigger-pages`, root)
 ## Android edition
 
 Android版:
-https://github.com/eltnegcellist/EmmaLocal_English_for_babies
+https://github.com/eltnegcellist/Android_English_character_for_baby
