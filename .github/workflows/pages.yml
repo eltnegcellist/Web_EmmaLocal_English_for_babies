@@ -27,3 +27,4 @@ jobs:
           node --check src/asr-worker.js
           node --check src/tts-worker.js
           node --check src/lite-response-engine.js
+          node --check src/name-pronunciation.js
