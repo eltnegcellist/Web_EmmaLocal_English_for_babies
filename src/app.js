@@ -193,6 +193,8 @@ async function prepareFirstRun() {
     await initAudioContext();
     localStorage.setItem(STORAGE.onboarded,'true');
     showOnboardingProgress(false);
+    showProgress(false);
+    setBusy(false);
     showScreen('home');
     setState('idle','準備できました','「Emmaと話す」を押すと会話を始められます。');
   } catch(error) {
@@ -465,6 +467,7 @@ function showConversation(parentText,emmaText) {
   if(parentText){
     ui.parentBubble.classList.remove('hidden');
     ui.transcript.textContent=parentText;
+    if(!emmaText) ui.emmaBubble.classList.add('hidden');
   }
   if(emmaText){
     ui.emmaBubble.classList.remove('hidden');
