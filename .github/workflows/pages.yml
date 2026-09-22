@@ -1,4 +1,4 @@
-name: Emma Web
+name: Emma Web CI
 
 on:
   workflow_dispatch:
@@ -10,12 +10,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
   test:
@@ -33,23 +27,3 @@ jobs:
           node --check src/asr-worker.js
           node --check src/tts-worker.js
           node --check src/lite-response-engine.js
-
-  deploy:
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
-    needs: test
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
