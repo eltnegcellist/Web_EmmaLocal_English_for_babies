@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#f7eef9" />
+  <meta name="theme-color" content="#fffbff" />
   <meta name="description" content="親の自然な日本語育児に、もう一人の英語話者 Emma を加えるローカルWebアプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/emma.svg" type="image/svg+xml" />
@@ -12,84 +12,317 @@
 </head>
 <body>
   <main class="app-shell">
-    <header class="topbar">
-      <div>
-        <div class="eyebrow">LOCAL • BABY MODE</div>
-        <h1>Emma</h1>
-      </div>
-      <button id="aboutButton" class="icon-button" aria-label="Emmaとは？">?</button>
-    </header>
+    <section id="onboardingScreen" class="screen hidden">
+      <div class="screen-content onboarding-content">
+        <h1>はじめまして、Emmaです</h1>
+        <p class="lead">親がいつもの日本語で話しかけると、Emmaがその場面を受け取り、赤ちゃんへやさしい英語で直接話しかけます。</p>
+        <p class="muted">単なる日本語→英語の翻訳ではありません。お風呂、ミルク、ねんね、遊びなど、今この瞬間に合う短くリズミカルな英語を返します。</p>
 
-    <section class="hero" aria-live="polite">
-      <div id="avatar" class="avatar state-idle" aria-hidden="true">
-        <div class="listening-ring"></div>
-        <div class="face">
-          <div class="eyes"><span class="eye left"></span><span class="eye right"></span></div>
-          <div class="cheeks"><span></span><span></span></div>
-          <div id="mouth" class="mouth"></div>
+        <button id="onboardingAboutButton" class="outline-button">なぜこの設計？ Emmaとは？</button>
+
+        <article class="card">
+          <h2>Emmaのしくみ</h2>
+          <p>① 親の日本語を聞き取る</p>
+          <p>② その場面に合う赤ちゃん向け英語を選ぶ</p>
+          <p>③ Emmaの温かい声で話す</p>
+          <p class="small muted">準備後の聞き取り・返答選択・音声生成はブラウザ内で行います。</p>
+        </article>
+
+        <h2 class="section-title">赤ちゃんの設定（任意）</h2>
+        <article class="card family-card">
+          <label>名前（任意）
+            <input id="onboardingBabyName" maxlength="30" autocomplete="off" placeholder="例：まゆ / Mayu" />
+          </label>
+          <div class="field-title">性別</div>
+          <div class="segmented" data-gender-group="onboarding">
+            <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
+            <button data-gender="GIRL" class="segment-button">女の子</button>
+            <button data-gender="BOY" class="segment-button">男の子</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>初回だけ準備します</h2>
+          <p>日本語の聞き取りとEmmaの音声に必要なデータをブラウザへ取得します。</p>
+          <p class="small muted">通信量が大きいためWi-Fiでの初回準備をおすすめします。取得後はブラウザのキャッシュを利用します。</p>
+        </article>
+
+        <button id="prepareEmmaButton" class="primary-button">Emmaを準備する</button>
+        <div id="onboardingProgress" class="progress-wrap hidden">
+          <div class="progress-track"><div id="onboardingProgressBar" class="progress-bar"></div></div>
+          <div id="onboardingProgressText" class="progress-text"></div>
         </div>
-        <div class="thinking-dots"><span></span><span></span><span></span></div>
-      </div>
-      <h2 id="statusTitle">Emmaはおやすみ中</h2>
-      <p id="statusDetail">「Emmaを始める」を押すと、この端末だけで会話を始めます。</p>
-      <div id="progressWrap" class="progress-wrap hidden" aria-hidden="true">
-        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
-        <div id="progressText" class="progress-text"></div>
       </div>
     </section>
 
-    <section class="conversation" aria-label="最近の会話">
-      <article class="bubble parent-bubble">
-        <div class="bubble-label">あなた</div>
-        <p id="transcript">まだ話しかけていません。</p>
-      </article>
-      <article class="bubble emma-bubble">
-        <div class="bubble-label">Emma</div>
-        <p id="reply">Hello, little one!</p>
-      </article>
-    </section>
+    <section id="homeScreen" class="screen hidden">
+      <div class="screen-content home-content">
+        <header class="topbar">
+          <div>
+            <h1>Emma</h1>
+            <p>おうちの英語パートナー</p>
+          </div>
+          <nav>
+            <button id="aboutButton" class="text-button">Emmaとは？</button>
+            <button id="settingsButton" class="text-button">設定</button>
+          </nav>
+        </header>
 
-    <section class="controls">
-      <button id="mainButton" class="primary-button">Emmaを始める</button>
-      <button id="stopButton" class="secondary-button hidden">終了する</button>
-      <p class="privacy-note">会話音声・認識・返答・音声合成はブラウザ内で処理します。初回だけモデル取得に通信します。</p>
-    </section>
+        <article class="privacy-card">
+          <div>
+            <strong>端末内で処理</strong>
+            <span>会話は外部へ送信しません</span>
+          </div>
+          <span class="privacy-dot">●</span>
+        </article>
 
-    <details class="settings">
-      <summary>設定</summary>
-      <label>
-        赤ちゃんの呼び名
-        <input id="babyName" maxlength="40" autocomplete="off" placeholder="例: Mayu" />
-      </label>
-      <label class="toggle-row">
-        <input id="keepAwake" type="checkbox" checked />
-        <span>Emma利用中は画面をスリープさせない</span>
-      </label>
-      <div class="runtime-info">
-        <span id="runtimeBackend">推論: 未初期化</span>
-        <span id="storageInfo">モデル保存: ブラウザキャッシュ</span>
+        <section class="audience-card">
+          <div class="segmented audience-segmented">
+            <button class="segment-button selected" data-audience="BABY">赤ちゃんへ</button>
+            <button id="parentAudienceButton" class="segment-button" data-audience="PARENT">親へ</button>
+          </div>
+          <p id="audienceDescription" class="small muted">現在のWeb標準モードは「赤ちゃんへ」専用です。親との自由会話や、より柔軟な応答はFullで利用できます。</p>
+        </section>
+
+        <section class="avatar-wrap">
+          <div id="avatar" class="avatar state-idle" aria-hidden="true">
+            <div class="listening-ring"></div>
+            <svg class="emma-face" viewBox="0 0 320 320" role="img" aria-label="Emma">
+              <circle class="face-fill" cx="160" cy="160" r="142"></circle>
+              <circle class="face-outline" cx="160" cy="160" r="142"></circle>
+              <path class="head-accent" d="M 65 102 Q 160 36 255 102"></path>
+              <g class="normal-eyes">
+                <g class="eye-group eye-left">
+                  <ellipse class="eye-white" cx="112" cy="136" rx="34" ry="39"></ellipse>
+                  <ellipse class="eye-outline" cx="112" cy="136" rx="34" ry="39"></ellipse>
+                  <circle class="pupil" cx="112" cy="136" r="16"></circle>
+                  <circle class="eye-shine" cx="106" cy="129" r="5"></circle>
+                </g>
+                <g class="eye-group eye-right">
+                  <ellipse class="eye-white" cx="208" cy="136" rx="34" ry="39"></ellipse>
+                  <ellipse class="eye-outline" cx="208" cy="136" rx="34" ry="39"></ellipse>
+                  <circle class="pupil" cx="208" cy="136" r="16"></circle>
+                  <circle class="eye-shine" cx="202" cy="129" r="5"></circle>
+                </g>
+              </g>
+              <g class="happy-eyes">
+                <path d="M 82 142 Q 112 116 142 142"></path>
+                <path d="M 178 142 Q 208 116 238 142"></path>
+              </g>
+              <ellipse class="cheek cheek-left" cx="78" cy="190" rx="22" ry="15"></ellipse>
+              <ellipse class="cheek cheek-right" cx="242" cy="190" rx="22" ry="15"></ellipse>
+              <path class="idle-mouth" d="M 112 210 Q 160 246 208 210"></path>
+              <path class="error-mouth" d="M 116 236 Q 160 202 204 236"></path>
+              <ellipse class="speaking-mouth" cx="160" cy="224" rx="42" ry="18"></ellipse>
+              <ellipse class="tongue" cx="160" cy="237" rx="24" ry="7"></ellipse>
+            </svg>
+            <div class="thinking-dots"><span></span><span></span><span></span></div>
+          </div>
+        </section>
+
+        <section class="status-section" aria-live="polite">
+          <div class="status-row">
+            <span id="statusTitle" class="status-chip status-idle">Emmaはおやすみ中</span>
+            <span id="busySpinner" class="mini-spinner hidden"></span>
+          </div>
+          <p id="statusDetail" class="muted">「Emmaと話す」を押すと、この端末だけで会話を始めます。</p>
+          <div id="progressWrap" class="progress-wrap hidden" aria-hidden="true">
+            <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+            <div id="progressText" class="progress-text"></div>
+          </div>
+        </section>
+
+        <section id="conversation" class="conversation hidden" aria-label="最近の会話">
+          <article id="parentBubble" class="bubble parent-bubble hidden">
+            <div class="bubble-label">あなた</div>
+            <p id="transcript"></p>
+          </article>
+          <article id="emmaBubble" class="bubble emma-bubble hidden">
+            <div class="bubble-label">Emma</div>
+            <p id="reply"></p>
+          </article>
+        </section>
+
+        <article class="auto-reply-card">
+          <div>
+            <strong>自動で返事</strong>
+            <span>話し終わりを検出してEmmaが返します</span>
+          </div>
+          <label class="switch">
+            <input id="autoRespond" type="checkbox" checked />
+            <span></span>
+          </label>
+        </article>
+
+        <section id="debugPanel" class="card debug-panel">
+          <h2>開発用テスト</h2>
+          <label>日本語テキストでLite返答を確認
+            <textarea id="debugInput" rows="3" placeholder="お風呂入ろうね"></textarea>
+          </label>
+          <button id="debugReplyButton" class="outline-button">この内容でEmmaに話してもらう</button>
+        </section>
       </div>
-    </details>
 
-    <details id="debugPanel" class="settings debug-panel">
-      <summary>開発用テスト</summary>
-      <label>
-        日本語テキストでLite返答を確認
-        <textarea id="debugInput" rows="3" placeholder="お風呂入ろうね"></textarea>
-      </label>
-      <button id="debugReplyButton" class="secondary-button">この内容でEmmaに話してもらう</button>
-    </details>
+      <footer class="bottom-bar">
+        <button id="manualReplyButton" class="outline-button hidden">今返事して</button>
+        <button id="mainButton" class="primary-button">Emmaと話す</button>
+        <button id="stopButton" class="outline-button hidden">セッションを終了</button>
+      </footer>
+    </section>
+
+    <section id="settingsScreen" class="screen hidden">
+      <div class="screen-content settings-content">
+        <header class="subpage-header">
+          <button id="settingsBackButton" class="text-button">← 戻る</button>
+          <div>
+            <h1>設定</h1>
+            <p>家族とEmmaの設定</p>
+          </div>
+          <button id="settingsAboutButton" class="text-button">Emmaとは？</button>
+        </header>
+
+        <article class="card">
+          <h2>赤ちゃん</h2>
+          <label>名前（任意）
+            <input id="babyName" maxlength="30" autocomplete="off" placeholder="例：まゆ / Mayu" />
+          </label>
+          <div class="field-title">性別</div>
+          <div class="segmented" data-gender-group="settings">
+            <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
+            <button data-gender="GIRL" class="segment-button">女の子</button>
+            <button data-gender="BOY" class="segment-button">男の子</button>
+          </div>
+          <p id="genderHelp" class="small muted"></p>
+          <button id="pronunciationToggle" class="text-button inline-button">名前の読み方を調整</button>
+          <div id="pronunciationPanel" class="hidden">
+            <label>英語で呼ぶ名前
+              <input id="spokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Mayu" />
+            </label>
+            <p id="spokenNamePreview" class="small muted"></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>見た目</h2>
+          <label>Emmaの色
+            <select id="colorMode">
+              <option value="soft">やさしい色</option>
+              <option value="vivid">はっきり色</option>
+              <option value="mono_red">白黒＋赤</option>
+              <option value="color_shift">カラーチェンジ</option>
+            </select>
+          </label>
+          <label id="vividPaletteRow" class="hidden">はっきり色の配色
+            <select id="vividPalette">
+              <option value="sunshine">サンシャイン</option>
+              <option value="ocean">オーシャン</option>
+              <option value="candy">キャンディ</option>
+              <option value="forest">フォレスト</option>
+            </select>
+          </label>
+          <p id="colorModeDescription" class="small muted"></p>
+        </article>
+
+        <article class="card">
+          <h2>Emmaの話し方</h2>
+          <button class="primary-button compact-button" disabled>標準のEmma</button>
+          <p class="small muted">赤ちゃん向けの短い英語をすばやく選んで話します。現在のWeb版で利用できます。</p>
+          <button id="fullModeButton" class="outline-button compact-button">Emma Full</button>
+          <p class="small muted">より自由に、会話の流れに合わせてAIがその場で言葉を考えるモードです。Web版は今後対応予定です。</p>
+        </article>
+
+        <article class="card">
+          <h2>Web版の動作</h2>
+          <label class="toggle-line">
+            <span>Emma利用中は画面をスリープさせない</span>
+            <span class="switch"><input id="keepAwake" type="checkbox" checked /><span></span></span>
+          </label>
+          <div class="runtime-info">
+            <span id="runtimeBackend">推論: 未初期化</span>
+            <span>モデル保存: ブラウザキャッシュ</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="aboutScreen" class="screen hidden">
+      <div class="screen-content about-content">
+        <header class="subpage-header simple-header">
+          <button id="aboutBackButton" class="text-button">← 戻る</button>
+        </header>
+        <h1>Emmaとは？</h1>
+        <p class="lead">親子のいつもの会話の中に、英語の話し手をもう一人加えることを目指したアプリです。</p>
+
+        <article class="card">
+          <h2>赤ちゃんの耳は、まだ一つの言語だけに決まっていない</h2>
+          <p>乳児期の早い段階では、赤ちゃんは母語にはない外国語の音の違いにも高い感度を持っています。研究では、生後6〜12か月ごろにかけて、普段聞く言語の音へ知覚が徐々に最適化され、非母語の音声対立を聞き分ける能力が低下していくことが示されています。これは単純に能力を失うというより、脳が身の回りの言語へ効率よく適応していく発達の一部と考えられています。</p>
+        </article>
+
+        <article class="card">
+          <h2>ただ英語を流すだけとは違う</h2>
+          <p>Kuhl、Tsao、Liuらの2003年の研究では、9か月の英語環境の乳児が、中国語の母語話者と12回の対面セッションを経験しました。その後、乳児は中国語特有の音の違いをよりよく識別しました。一方、同じ外国語刺激を映像や音声を通して経験した条件では、同じような音韻学習は確認されませんでした。少なくともこの研究は、外国語の音を聞く量だけでなく、社会的で相互作用のある経験が重要である可能性を示しています。</p>
+        </article>
+
+        <article class="card">
+          <h2>Emmaの設計思想</h2>
+          <p>理想を言えば、英語話者が毎日の親子の時間に入り、赤ちゃんや親の様子に合わせて、その瞬間に合う英語を話してくれる環境です。しかし、それを家庭でいつも実現するのは簡単ではありません。そこでEmmaは、親が普段どおり日本語で赤ちゃんに話しかけ、その内容を手がかりに、Emmaが赤ちゃんへ英語で反応する仕組みにしました。</p>
+        </article>
+
+        <article class="card example-card">
+          <h2>たとえば</h2>
+          <p>親：「お風呂入ろうね」</p>
+          <p><strong>Emma： “Bath time!” “Splash, splash!” “Here we go!”</strong></p>
+          <p class="muted">“Let’s take a bath.” と翻訳することが目的ではありません。今が「お風呂の時間」だと受け取り、その場にいる英語話者のように赤ちゃんへ直接話しかけます。</p>
+        </article>
+
+        <article class="card">
+          <h2>もっと自由に話すFull版もあります</h2>
+          <p>通常のEmmaは、赤ちゃんへ短く分かりやすい英語をすばやく返すことを大切にしています。さらに、より自由に、あなたの話や直前の会話の流れに合わせてAIがその場で言葉を考えて話すFull版も用意しています。Web版のFullは今後対応予定です。</p>
+        </article>
+
+        <article class="card">
+          <h2>なぜEmmaには顔があるの？</h2>
+          <p>新生児が、スクランブルされた配置や空白の刺激よりも、顔らしく配置された刺激をより長く追視することを示した研究があります。Emmaは単なる音声プレーヤーではなく、「誰かがこちらに話しかけている」感覚へ少しでも近づけるため、顔・口の動き・まばたき・表情を持つキャラクターとして設計しています。長時間画面を見せること自体を目的としているわけではありません。</p>
+        </article>
+
+        <article class="card emphasis-card">
+          <h2>研究が証明していることと、Emmaが目指していること</h2>
+          <p>Kuhlらの研究が調べたのは、生身の人間との社会的な外国語経験です。AIキャラクターのEmmaが同じ学習効果を生むことは、現時点で直接証明されていません。</p>
+          <p><strong>Emmaは、「ただ音を流すだけでなく、相互作用のある言語経験が重要かもしれない」という示唆を、家庭でできる形へ近づけようとする試みです。</strong></p>
+        </article>
+
+        <h2 class="section-title">参考研究</h2>
+        <article class="card reference-card">
+          <h3>Kuhl, Tsao & Liu (2003)</h3>
+          <p>Foreign-language experience in infancy: Effects of short-term exposure and social interaction on phonetic learning. PNAS 100(15), 9096–9101.</p>
+          <a class="outline-button link-button" href="https://doi.org/10.1073/pnas.1532872100" target="_blank" rel="noopener">論文を開く</a>
+        </article>
+        <article class="card reference-card">
+          <h3>Werker & Tees (1984)</h3>
+          <p>Cross-language speech perception: Evidence for perceptual reorganization during the first year of life. Infant Behavior and Development 7(1), 49–63.</p>
+          <a class="outline-button link-button" href="https://doi.org/10.1016/S0163-6383(84)80022-3" target="_blank" rel="noopener">論文を開く</a>
+        </article>
+        <article class="card reference-card">
+          <h3>Kuhl (2007)</h3>
+          <p>Is speech learning ‘gated’ by the social brain? Developmental Science 10(1), 110–120.</p>
+          <a class="outline-button link-button" href="https://doi.org/10.1111/j.1467-7687.2007.00572.x" target="_blank" rel="noopener">論文を開く</a>
+        </article>
+        <article class="card reference-card">
+          <h3>Johnson et al. (1991)</h3>
+          <p>Newborns' preferential tracking of face-like stimuli and its subsequent decline. Cognition 40(1–2), 1–19.</p>
+          <a class="outline-button link-button" href="https://doi.org/10.1016/0010-0277(91)90045-6" target="_blank" rel="noopener">論文を開く</a>
+        </article>
+      </div>
+    </section>
+
+    <dialog id="noticeDialog">
+      <div class="dialog-body">
+        <button id="noticeCloseButton" class="dialog-close" aria-label="閉じる">×</button>
+        <h2 id="noticeTitle"></h2>
+        <p id="noticeBody"></p>
+      </div>
+    </dialog>
   </main>
-
-  <dialog id="aboutDialog">
-    <div class="dialog-body">
-      <button id="closeAbout" class="dialog-close" aria-label="閉じる">×</button>
-      <h2>Emmaとは？</h2>
-      <p>Emmaは翻訳機ではありません。親が普段どおり日本語で赤ちゃんへ話しかけ、その場面に英語話者のEmmaが参加することを目指しています。</p>
-      <p>乳児期の言語学習で社会的な相互作用が重要である可能性を示す研究を着想源にしています。ただし、AIキャラクターのEmmaが人間との対面交流と同じ学習効果を生むことは証明されていません。</p>
-      <p class="small">Web版Liteは、Whisperによる日本語音声認識、ルールベースの場面判定、Kokoroの英語音声をすべて端末内で実行します。</p>
-    </div>
-  </dialog>
 
   <script type="module" src="./src/app.js"></script>
 </body>
