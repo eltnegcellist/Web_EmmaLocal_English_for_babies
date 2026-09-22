@@ -1,5 +1,5 @@
 name: Temporary Gemma canonical generation
-# validation-fixed-v2
+# docker-server-v1
 
 on:
   push:
@@ -20,19 +20,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Build llama.cpp
-        shell: bash
-        run: |
-          set -euo pipefail
-          git clone --depth 1 https://github.com/ggml-org/llama.cpp.git /tmp/llama.cpp
-          cmake -S /tmp/llama.cpp -B /tmp/llama.cpp/build -DCMAKE_BUILD_TYPE=Release
-          cmake --build /tmp/llama.cpp/build --config Release -j2 --target llama-server
-
       - name: Start Gemma
         shell: bash
         run: |
           set -euo pipefail
-          /tmp/llama.cpp/build/bin/llama-server -hf ggml-org/gemma-4-E2B-it-GGUF:Q4_0 --reasoning off --host 127.0.0.1 --port 8080 --ctx-size 4096 --threads 4 >/tmp/gemma.log 2>&1 &
+          docker run --rm --name emma-gemma-canonical -p 8080:8080 \
+            ghcr.io/ggml-org/llama.cpp:server \
+            -hf ggml-org/gemma-4-E2B-it-GGUF:Q4_0 \
+            --reasoning off --host 0.0.0.0 --port 8080 --ctx-size 4096 --threads 4 \
+            >/tmp/gemma.log 2>&1 &
           echo $! > /tmp/gemma.pid
           for i in $(seq 1 180); do
             if curl -fsS http://127.0.0.1:8080/health >/dev/null; then
@@ -50,6 +46,7 @@ jobs:
         if: always()
         shell: bash
         run: |
+          docker stop emma-gemma-canonical 2>/dev/null || true
           if [ -f /tmp/gemma.pid ]; then
             kill "$(cat /tmp/gemma.pid)" 2>/dev/null || true
           fi
