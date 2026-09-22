@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+import os
 import re
 import urllib.request
 
@@ -265,8 +266,11 @@ def candidate_items(raw):
 
     return flat
 
+scene_filter = [x.strip() for x in os.environ.get("SCENE_FILTER", "").split(",") if x.strip()]
+selected_scenes = {k: v for k, v in SCENES.items() if not scene_filter or k in scene_filter}
+
 result = {}
-for scene, context in SCENES.items():
+for scene, context in selected_scenes.items():
     accepted = []
     seen = set()
     for attempt in range(1, 9):
