@@ -49,6 +49,29 @@ SCENES = {
 }
 
 
+SAFE_IDEAS = {
+    "bath": "bath time, water, splash, bath is starting, here we go, playful fun",
+    "milk": "milk time, milk, sip, drink, here we go",
+    "sleep": "sleepy, sleep time, rest, quiet, shh, night-night",
+    "wake": "good morning, hello, awake, waking up, here we are",
+    "diaper": "diaper time, diaper change, change, here we go",
+    "clothes": "getting dressed, clothes on, dressing, here we go",
+    "hug": "hug, cuddle, hold, snuggle, here we go",
+    "hands": "hands, little hands, fingers, looking at hands",
+    "feet": "feet, toes, moving feet, kick, wiggle",
+    "smile": "smile, smiling, seeing the smile",
+    "cry": "hearing the baby, voice, sound, crying, listening",
+    "voice": "hearing the baby, voice, sound, ahh/ooh sounds, listening",
+    "tummy": "little tummy, tummy, after feeding, taking time, gentle attention; do not state fullness or a burp happened",
+    "play": "play time, play, here we go, playful fun",
+    "outside": "outside, going out, walk, walking, look around, listen",
+    "rain": "rain, rain falling, rain sound, pitter-patter, drip-drop, listen",
+    "sun": "bright day, sunshine, sun, light, bright",
+    "food": "meal time, time to eat, food time, little bite, here we go",
+    "book": "book time, book, read, page, turn the page, story time",
+    "music": "music time, music, sound, listen, rhythm",
+}
+
 ANCHORS = {
     "bath": ("bath", "water", "splash"),
     "milk": ("milk", "sip", "drink"),
@@ -74,25 +97,25 @@ ANCHORS = {
 
 BANNED = {
     "bath": ("warm", "bubble", "clean", "dirty", "happy", "love"),
-    "milk": ("yummy", "warm", "full", "hungry", "all", "more milk", "good drink", "happy"),
-    "sleep": ("music", "song", "happy", "needs", "need to", "must"),
-    "wake": ("sun", "weather", "happy", "smile"),
-    "diaper": ("dirty", "wet", "clean", "fresh", "comfy", "comfortable", "inside", "legs", "bright"),
-    "clothes": ("strong", "walking", "shoes", "fit well", "pretty", "color"),
-    "hug": ("love", "safe", "happy"),
-    "hands": ("clap", "wave", "happy"),
-    "feet": ("happy",),
-    "smile": ("happy", "because"),
-    "cry": ("okay", "all right", "happy", "peace", "love", "need", "hungry", "sleepy", "hurt"),
-    "voice": ("happy", "funny", "means", "need", "hungry", "sleepy", "spoke", "talked"),
-    "tummy": ("full", "happy", "nice", "good burp", "big tummy", "rest now", "comfortable", "sick"),
+    "milk": ("yummy", "yum", "tastes", "taste", "warm", "full", "hungry", "all", "more milk", "more for", "good drink", "happy", "mouth", "job"),
+    "sleep": ("music", "song", "happy", "needs", "need to", "must", "eyes are closing", "breath"),
+    "wake": ("sun", "weather", "happy", "smile", "play", "love"),
+    "diaper": ("dirty", "wet", "clean", "fresh", "comfy", "comfortable", "inside", "legs", "bright", "new stuff", "all done"),
+    "clothes": ("strong", "walking", "walk", "shoes", "fit well", "pretty", "color", "long", "happy", "cozy", "play"),
+    "hug": ("love", "safe", "happy", "warm", "feels good", "feels nice", "good feeling", "i like"),
+    "hands": ("clap", "wave", "happy", "cute", "sweet", "pretty", "busy", "air", "love", "squeeze", "wiggle"),
+    "feet": ("happy", "strong", "energy", "dance", "zoom"),
+    "smile": ("happy", "because", "sunny", "love", "job"),
+    "cry": ("okay", "all right", "happy", "peace", "love", "need", "hungry", "sleepy", "hurt", "calm", "sweet", "nice", "good"),
+    "voice": ("happy", "funny", "means", "need", "hungry", "sleepy", "spoke", "talked", "cute", "good", "like"),
+    "tummy": ("full", "happy", "nice", "good", "burp happened", "big tummy", "big belly", "rest now", "comfortable", "sick", "wiggle", "toes", "rumble", "cozy"),
     "play": ("you like", "favorite", "happy"),
     "outside": ("sun", "rain", "warm", "cold", "park", "tree", "car", "happy"),
-    "rain": ("feel the rain", "wet outside", "wash", "happy"),
-    "sun": ("warm", "hot", "happy", "love"),
-    "food": ("yummy", "delicious", "hungry", "full", "good eating", "eat it up", "chew"),
-    "book": ("picture", "bright", "pretty", "animal", "color"),
-    "music": ("happy", "instrument", "close your eyes", "dance", "wiggle"),
+    "rain": ("feel the rain", "wet outside", "wash", "happy", "warm", "pretty", "stay dry", "watch"),
+    "sun": ("warm", "hot", "happy", "love", "good day", "weather is good"),
+    "food": ("yummy", "yum", "delicious", "hungry", "full", "good eating", "eat it up", "chew", "happy", "enjoy"),
+    "book": ("picture", "bright", "pretty", "animal", "color", "what happens", "good book", "good looking", "fun here"),
+    "music": ("happy", "instrument", "close your eyes", "dance", "wiggle", "sing", "sway", "sweet", "good music", "nice sound"),
 }
 
 WORD_RE = re.compile(r"[A-Za-z]+(?:['’][A-Za-z]+)?")
@@ -103,10 +126,41 @@ def complete(scene, context):
         "model": "Gemma-4-E2B-it-Q4_0",
         "temperature": 0.8,
         "top_p": 0.9,
-        "max_tokens": 768,
+        "max_tokens": 1024,
+        "response_format": {
+            "type": "json_schema",
+            "json_schema": {
+                "name": "emma_replies",
+                "strict": True,
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "replies": {
+                            "type": "array",
+                            "minItems": 10,
+                            "maxItems": 10,
+                            "items": {
+                                "type": "array",
+                                "minItems": 3,
+                                "maxItems": 5,
+                                "items": {"type": "string"}
+                            }
+                        }
+                    },
+                    "required": ["replies"],
+                    "additionalProperties": False
+                }
+            }
+        },
         "messages": [
             {"role": "system", "content": SYSTEM},
-            {"role": "user", "content": f"Scene id: {scene}\\nSupported context: {context}\\nCreate 8 different canonical Emma replies. EACH reply must be an inner JSON array of 3 to 5 short sentences and must stay under 18 words total."},
+            {"role": "user", "content": f"""Scene id: {scene}
+Supported context: {context}
+ALLOWED IDEAS ONLY: {SAFE_IDEAS[scene]}
+Create 10 different canonical Emma replies.
+Each reply must contain 3 to 5 very short sentences and stay under 18 words total.
+Do not introduce any concrete object, action, property, emotion, cause, need, result, or body state outside ALLOWED IDEAS.
+When variety is difficult, vary rhythm and repetition instead of inventing details."""},
         ],
     }
     req = urllib.request.Request(
@@ -127,7 +181,10 @@ def complete(scene, context):
         if raw.lower().startswith("json"):
             raw = raw[4:].strip()
     try:
-        return json.loads(raw)
+        parsed = json.loads(raw)
+        if isinstance(parsed, dict) and isinstance(parsed.get("replies"), list):
+            return parsed["replies"]
+        return parsed
     except json.JSONDecodeError as exc:
         print(f"JSON decode retry: {exc}; raw={raw[:300]!r}", flush=True)
         return None
