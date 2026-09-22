@@ -21,7 +21,9 @@ STYLE RULES:
 - Do not use the baby's name.
 - Avoid generic padding.
 - Make candidates meaningfully varied while keeping the same Emma personality.
-Return ONLY a JSON array of strings. No markdown and no commentary."""
+Return ONLY a JSON array of arrays. Each inner array is ONE reply and contains 3 to 5 complete sentence strings.
+Example shape only: [["Bath time!", "Splash, splash!", "Here we go!"], ["Time for a bath!", "Water, water!", "Let's go!"]]
+No markdown and no commentary."""
 
 SCENES = {
     "bath": "Parent says: お風呂入ろうね. Scene: bath time is starting. React to bath time, water, or splashing only; do not invent water temperature or claim the baby enjoys it.",
@@ -57,7 +59,7 @@ def complete(scene, context):
         "max_tokens": 768,
         "messages": [
             {"role": "system", "content": SYSTEM},
-            {"role": "user", "content": f"Scene id: {scene}\\nSupported context: {context}\\nCreate 8 different canonical Emma candidates. Keep EACH candidate under 18 words total."},
+            {"role": "user", "content": f"Scene id: {scene}\\nSupported context: {context}\\nCreate 8 different canonical Emma replies. EACH reply must be an inner JSON array of 3 to 5 short sentences and must stay under 18 words total."},
         ],
     }
     req = urllib.request.Request(
@@ -110,14 +112,42 @@ def normalize_candidate(item):
     return normalized
 
 def candidate_items(raw):
-    if isinstance(raw, list):
-        return raw
     if isinstance(raw, dict):
         for key in ("candidates", "responses", "items", "phrases"):
             value = raw.get(key)
             if isinstance(value, list):
-                return value
-    return []
+                raw = value
+                break
+
+    if not isinstance(raw, list):
+        return []
+
+    # Preferred format: [["Sentence.", "Sentence.", "Sentence."], ...]
+    nested = []
+    for item in raw:
+        if isinstance(item, list):
+            parts = [str(x).strip() for x in item if isinstance(x, str) and str(x).strip()]
+            if parts:
+                nested.append(" ".join(parts))
+        elif isinstance(item, dict):
+            value = item.get("sentences") or item.get("lines")
+            if isinstance(value, list):
+                parts = [str(x).strip() for x in value if isinstance(x, str) and str(x).strip()]
+                if parts:
+                    nested.append(" ".join(parts))
+    if nested:
+        return nested
+
+    # Gemma sometimes returns one micro-sentence per array element despite the
+    # nested-array instruction. Group those model-written lines in threes.
+    flat = [x.strip() for x in raw if isinstance(x, str) and x.strip()]
+    if flat and all(len(SENT_RE.split(x)) < 3 for x in flat):
+        grouped = []
+        for i in range(0, len(flat) - 2, 3):
+            grouped.append(" ".join(flat[i:i + 3]))
+        return grouped
+
+    return flat
 
 result = {}
 for scene, context in SCENES.items():
