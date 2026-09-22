@@ -95,20 +95,25 @@ def valid(text):
 
 result = {}
 for scene, context in SCENES.items():
-    raw = complete(scene, context)
     accepted = []
     seen = set()
-    for item in raw:
-        if not isinstance(item, str):
-            continue
-        text = " ".join(item.strip().split())
-        key = text.casefold()
-        if key in seen or not valid(text):
-            continue
-        seen.add(key)
-        accepted.append(text)
-    result[scene] = accepted
-    print(f"{scene}: {len(accepted)} valid candidates", flush=True)
+    for attempt in range(1, 4):
+        raw = complete(scene, context)
+        for item in raw:
+            if not isinstance(item, str):
+                continue
+            text = " ".join(item.strip().split())
+            key = text.casefold()
+            if key in seen or not valid(text):
+                continue
+            seen.add(key)
+            accepted.append(text)
+        print(f"{scene}: attempt={attempt} valid={len(accepted)}", flush=True)
+        if len(accepted) >= 5:
+            break
+    if len(accepted) < 5:
+        raise SystemExit(f"{scene}: only {len(accepted)} valid candidates")
+    result[scene] = accepted[:5]
 
 print("===GEMMA_CANONICAL_JSON_BEGIN===")
 print(json.dumps(result, ensure_ascii=False, indent=2))
