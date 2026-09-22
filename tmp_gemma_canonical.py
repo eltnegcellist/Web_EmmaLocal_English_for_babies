@@ -48,6 +48,53 @@ SCENES = {
     "music": "Parent says: 音楽聴こうね / 歌を聴こうね. Scene: parent and baby are listening to music. Do not invent a specific song or instrument."
 }
 
+
+ANCHORS = {
+    "bath": ("bath", "water", "splash"),
+    "milk": ("milk", "sip", "drink"),
+    "sleep": ("sleep", "sleepy", "rest", "night-night"),
+    "wake": ("morning", "awake", "wake", "hello"),
+    "diaper": ("diaper", "change"),
+    "clothes": ("dress", "clothes", "sock"),
+    "hug": ("hug", "hold", "cuddle", "snuggle"),
+    "hands": ("hand", "finger"),
+    "feet": ("feet", "foot", "toe", "kick", "wiggle"),
+    "smile": ("smile",),
+    "cry": ("hear", "voice", "sound", "cry"),
+    "voice": ("voice", "sound", "hear"),
+    "tummy": ("tummy", "belly", "burp"),
+    "play": ("play", "toy"),
+    "outside": ("outside", "walk", "out"),
+    "rain": ("rain", "pitter", "drop"),
+    "sun": ("sun", "sunshine", "bright", "light"),
+    "food": ("food", "eat", "meal", "bite"),
+    "book": ("book", "read", "page", "story"),
+    "music": ("music", "song", "sound", "listen"),
+}
+
+BANNED = {
+    "bath": ("warm", "bubble", "clean", "dirty", "happy", "love"),
+    "milk": ("yummy", "warm", "full", "hungry", "all", "more milk", "good drink", "happy"),
+    "sleep": ("music", "song", "happy", "needs", "need to", "must"),
+    "wake": ("sun", "weather", "happy", "smile"),
+    "diaper": ("dirty", "wet", "clean", "fresh", "comfy", "comfortable", "inside", "legs", "bright"),
+    "clothes": ("strong", "walking", "shoes", "fit well", "pretty", "color"),
+    "hug": ("love", "safe", "happy"),
+    "hands": ("clap", "wave", "happy"),
+    "feet": ("happy",),
+    "smile": ("happy", "because"),
+    "cry": ("okay", "all right", "happy", "peace", "love", "need", "hungry", "sleepy", "hurt"),
+    "voice": ("happy", "funny", "means", "need", "hungry", "sleepy", "spoke", "talked"),
+    "tummy": ("full", "happy", "nice", "good burp", "big tummy", "rest now", "comfortable", "sick"),
+    "play": ("you like", "favorite", "happy"),
+    "outside": ("sun", "rain", "warm", "cold", "park", "tree", "car", "happy"),
+    "rain": ("feel the rain", "wet outside", "wash", "happy"),
+    "sun": ("warm", "hot", "happy", "love"),
+    "food": ("yummy", "delicious", "hungry", "full", "good eating", "eat it up", "chew"),
+    "book": ("picture", "bright", "pretty", "animal", "color"),
+    "music": ("happy", "instrument", "close your eyes", "dance", "wiggle"),
+}
+
 WORD_RE = re.compile(r"[A-Za-z]+(?:['’][A-Za-z]+)?")
 SENT_RE = re.compile(r"(?<=[.!?])\s+")
 
@@ -115,6 +162,14 @@ def normalize_candidate(item):
         return None
     return normalized
 
+def scene_safe(scene, text):
+    low = text.casefold()
+    if not any(anchor in low for anchor in ANCHORS[scene]):
+        return False
+    if any(term in low for term in BANNED[scene]):
+        return False
+    return True
+
 def candidate_items(raw):
     if isinstance(raw, dict):
         for key in ("candidates", "responses", "items", "phrases"):
@@ -157,7 +212,7 @@ result = {}
 for scene, context in SCENES.items():
     accepted = []
     seen = set()
-    for attempt in range(1, 5):
+    for attempt in range(1, 9):
         raw = complete(scene, context)
         if raw is None:
             print(f"{scene}: attempt={attempt} malformed JSON, retrying", flush=True)
@@ -166,7 +221,7 @@ for scene, context in SCENES.items():
         print(f"{scene}: attempt={attempt} raw_type={type(raw).__name__} items={len(items)}", flush=True)
         for item in items:
             text = normalize_candidate(item)
-            if not text:
+            if not text or not scene_safe(scene, text):
                 continue
             key = text.casefold()
             if key in seen:
