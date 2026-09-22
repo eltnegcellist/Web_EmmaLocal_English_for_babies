@@ -79,7 +79,11 @@ def complete(scene, context):
         raw = "\n".join(lines).strip()
         if raw.lower().startswith("json"):
             raw = raw[4:].strip()
-    return json.loads(raw)
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError as exc:
+        print(f"JSON decode retry: {exc}; raw={raw[:300]!r}", flush=True)
+        return None
 
 def normalize_candidate(item):
     if isinstance(item, dict):
@@ -155,6 +159,9 @@ for scene, context in SCENES.items():
     seen = set()
     for attempt in range(1, 5):
         raw = complete(scene, context)
+        if raw is None:
+            print(f"{scene}: attempt={attempt} malformed JSON, retrying", flush=True)
+            continue
         items = candidate_items(raw)
         print(f"{scene}: attempt={attempt} raw_type={type(raw).__name__} items={len(items)}", flush=True)
         for item in items:
@@ -173,6 +180,9 @@ for scene, context in SCENES.items():
         print(f"{scene}: raw={json.dumps(raw, ensure_ascii=False)}", flush=True)
         raise SystemExit(f"{scene}: only {len(accepted)} usable candidates")
     result[scene] = accepted[:5]
+    print("===SCENE_RESULT_BEGIN===" + scene)
+    print(json.dumps(result[scene], ensure_ascii=False))
+    print("===SCENE_RESULT_END===" + scene)
 
 print("===GEMMA_CANONICAL_JSON_BEGIN===")
 print(json.dumps(result, ensure_ascii=False, indent=2))
