@@ -346,7 +346,11 @@ function handleTtsMessage(event,readyResolve,readyReject) {
   } else if(m.type==='audio') enqueueAudio(m);
   else if(m.type==='complete') {
     const q=audioQueues.get(m.requestId);
-    if(q){q.generationDone=true;pumpAudio(m.requestId);}
+    if(q){
+      if(Number.isInteger(m.total)) q.total=Math.max(q.total,m.total);
+      q.generationDone=true;
+      pumpAudio(m.requestId);
+    }
   }
 }
 
@@ -394,7 +398,7 @@ function enqueueAudio(m) {
   const q=audioQueues.get(m.requestId);
   if(!q)return;
   q.items.set(m.index,m.blob);
-  q.total=m.total;
+  q.total=Math.max(q.total,m.index+1);
   pumpAudio(m.requestId);
 }
 
@@ -427,7 +431,7 @@ async function playBlob(blob) {
   const buffer=await blob.arrayBuffer();
   const decoded=await audioContext.decodeAudioData(buffer.slice(0));
   const source=audioContext.createBufferSource();
-  source.buffer=decoded;
+  source.buffer=trimAudioSilence(decoded);
   const analyser=audioContext.createAnalyser();
   analyser.fftSize=256;
   source.connect(analyser).connect(audioContext.destination);
