@@ -1,0 +1,125 @@
+name: Temporary Gemma canonical generation
+
+on:
+  push:
+    branches:
+      - tmp/gemma-canonical-20260922
+    paths:
+      - '.github/workflows/tmp-gemma-canonical.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Build llama.cpp
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/ggml-org/llama.cpp.git /tmp/llama.cpp
+          cmake -S /tmp/llama.cpp -B /tmp/llama.cpp/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/llama.cpp/build --config Release -j2 --target llama-server
+
+      - name: Start Gemma 4 E2B Q4
+        shell: bash
+        run: |
+          set -euo pipefail
+          /tmp/llama.cpp/build/bin/llama-server \
+            -hf ggml-org/gemma-4-E2B-it-GGUF:Q4_0 \
+            --reasoning off \
+            --host 127.0.0.1 --port 8080 \
+            --ctx-size 4096 --threads 4 \
+            >/tmp/gemma.log 2>&1 &
+          echo $! > /tmp/gemma.pid
+          for i in $(seq 1 180); do
+            if curl -fsS http://127.0.0.1:8080/health >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat /tmp/gemma.log
+          exit 1
+
+      - name: Generate missing scenes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, urllib.request
+
+          system = """You write canonical baby-directed lines for Emma, an English-speaking character who joins a Japanese-speaking parent and baby in an ordinary family moment.
+These lines are generated during app development and later stored as fixed offline data. They are NOT translations. Emma speaks directly to the baby and reacts to the supported moment only.
+
+STYLE RULES:
+- Output English only.
+- Each candidate is 3 to 5 very short complete sentences.
+- Aim for about 10 to 20 spoken words total. A naturally complete reply under 10 words is allowed.
+- Never add filler merely to reach a word count.
+- Usually 2 to 6 words per sentence.
+- Use very common, concrete, easy-to-hear words.
+- Prefer rhythm, repetition, playful sound words, invitations, and warm reactions over explanations.
+- At most one question; usually use no question.
+- Do not invent colors, objects, actions, feelings, causes, needs, or facts not supported by the scene.
+- Do not diagnose, reassure about safety, or give medical advice.
+- Do not use the baby's name.
+- Avoid generic padding.
+- Make candidates meaningfully varied while keeping the same Emma personality.
+Return ONLY a JSON array of strings. No markdown and no commentary."""
+
+          scenes = {
+            "tummy": "Parent says: お腹いっぱいかな / げっぷ出るかな. Scene: after feeding, attention is on the baby's tummy or a gentle burp. Do not claim the baby is full, comfortable, sick, or needs anything.",
+            "sun": "Parent says: 今日は晴れてるね / 明るいね. Scene: a bright sunny day. React only to brightness, sunshine, or the day being bright; do not invent temperature.",
+            "food": "Parent says: ごはん食べようね / 離乳食の時間だよ. Scene: meal time is beginning. Do not claim taste, hunger, fullness, or successful eating.",
+            "book": "Parent says: 絵本読もうね. Scene: parent and baby are about to look at a picture book together. Do not invent anything shown in the book.",
+            "music": "Parent says: 音楽聴こうね / 歌を聴こうね. Scene: parent and baby are listening to music. Do not invent a specific song or instrument.",
+            "cry": "Parent says: 泣いてるね. Scene: the baby is crying. React warmly to hearing the baby's voice without guessing why the baby is crying, what the baby feels, or what the baby needs."
+          }
+
+          result = {}
+          fence = chr(96) * 3
+          for scene, context in scenes.items():
+            body = {
+              "model":"Gemma-4-E2B-it-Q4_0",
+              "temperature":0.8,
+              "top_p":0.9,
+              "max_tokens":512,
+              "messages":[
+                {"role":"system","content":system},
+                {"role":"user","content":f"Scene id: {scene}\nSupported context: {context}\nCreate 12 different canonical Emma candidates."}
+              ]
+            }
+            req=urllib.request.Request(
+              "http://127.0.0.1:8080/v1/chat/completions",
+              data=json.dumps(body).encode(),
+              headers={"Content-Type":"application/json"},
+              method="POST"
+            )
+            with urllib.request.urlopen(req, timeout=300) as resp:
+              payload=json.load(resp)
+            raw=payload["choices"][0]["message"]["content"].strip()
+            if raw.startswith(fence):
+              lines=raw.splitlines()
+              lines=lines[1:]
+              if lines and lines[-1].strip().startswith(fence):
+                lines=lines[:-1]
+              raw="\n".join(lines).strip()
+              if raw.lower().startswith("json"):
+                raw=raw[4:].strip()
+            result[scene]=json.loads(raw)
+            print(scene, len(result[scene]), flush=True)
+
+          print("===GEMMA_CANONICAL_JSON_BEGIN===")
+          print(json.dumps(result, ensure_ascii=False, indent=2))
+          print("===GEMMA_CANONICAL_JSON_END===")
+          PY
+
+      - name: Stop Gemma
+        if: always()
+        shell: bash
+        run: |
+          if [ -f /tmp/gemma.pid ]; then
+            kill "$(cat /tmp/gemma.pid)" 2>/dev/null || true
+          fi
