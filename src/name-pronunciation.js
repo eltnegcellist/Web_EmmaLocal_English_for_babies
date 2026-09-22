@@ -99,3 +99,11 @@ function romanizeKana(value) {
   }
   return out.trim() || null;
 }
+
+
+export function withChanSuffix(spokenName, enabled = true) {
+  const base = String(spokenName || '').trim();
+  if (!base || !enabled) return base;
+  if (/(?:-|\s)?chan$/i.test(base)) return base;
+  return `${base}-chan`.slice(0,45);
+}
