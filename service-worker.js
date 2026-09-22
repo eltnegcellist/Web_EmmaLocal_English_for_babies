@@ -1,4 +1,4 @@
-const CACHE='emma-web-shell-v2';
+const CACHE='emma-web-shell-v3';
 const SHELL=['./','./index.html','./styles.css','./manifest.webmanifest','./icons/emma.svg','./src/app.js','./src/audio-capture.js','./src/lite-response-engine.js','./src/name-pronunciation.js','./src/asr-worker.js','./src/tts-worker.js','./worklets/pcm-capture-worklet.js'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('emma-web-shell-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

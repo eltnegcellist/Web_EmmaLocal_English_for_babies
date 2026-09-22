@@ -19,7 +19,7 @@ const ui = {
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
   keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
-  noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeCloseButton:$('noticeCloseButton')
+  noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const STORAGE = {
@@ -88,11 +88,15 @@ function bindEvents() {
 
   ui.parentAudienceButton.addEventListener('click',()=>showNotice(
     '親へ話すモード',
-    '「親へ」はEmma Fullの機能です。現在のWeb版は、Android版の標準Emmaと同じ「赤ちゃんへ」Liteモードを提供しています。'
+    '「親へ」はEmma Fullの機能です。現在のWeb版は「赤ちゃんへ」の標準Emmaに対応しています。Full版はAndroid版Emmaで利用できます。',
+    'https://github.com/eltnegcellist/EmmaLocal_English_for_babies',
+    'Android版EmmaをGitHubで見る'
   ));
   ui.fullModeButton.addEventListener('click',()=>showNotice(
     'Emma Full',
-    'Web版Fullは今後対応予定です。現在はブラウザで安定して動く標準のEmmaを優先しています。'
+    'Web版Fullは今後対応予定です。現在Full版を試す場合はAndroid版Emmaを利用できます。',
+    'https://github.com/eltnegcellist/EmmaLocal_English_for_babies',
+    'Android版EmmaをGitHubで見る'
   ));
   ui.noticeCloseButton.addEventListener('click',()=>ui.noticeDialog.close());
 
@@ -178,9 +182,12 @@ function openAbout(from) {
   showScreen('about');
 }
 
-function showNotice(title,body) {
+function showNotice(title,body,linkUrl='',linkLabel='') {
   ui.noticeTitle.textContent=title;
   ui.noticeBody.textContent=body;
+  ui.noticeLink.classList.toggle('hidden',!linkUrl);
+  ui.noticeLink.href=linkUrl || '#';
+  ui.noticeLink.textContent=linkLabel || '詳しく見る';
   ui.noticeDialog.showModal();
 }
 
@@ -539,7 +546,7 @@ function applyAppearance() {
   ui.vividPalette.value=vivid;
   if(mode==='color_shift'){
     const update=()=>{
-      const hue=((Date.now()/30000*360)%360+360)%360;
+      const hue=((Date.now()/120000*360)%360+360)%360;
       setPalette({
         face:`hsl(${hue} 88% 67%)`,
         accent:`hsl(${(hue+155)%360} 92% 46%)`,
