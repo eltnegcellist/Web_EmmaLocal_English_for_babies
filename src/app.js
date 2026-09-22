@@ -1,6 +1,6 @@
 import { EmmaMicrophone } from './audio-capture.js';
-import { LiteResponseEngine, splitSentences } from './lite-response-engine.js';
-import { toSpokenEnglish } from './name-pronunciation.js';
+import { LiteResponseEngine } from './lite-response-engine.js';
+import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -14,7 +14,7 @@ const ui = {
   autoRespond:$('autoRespond'), aboutButton:$('aboutButton'), settingsButton:$('settingsButton'),
   parentAudienceButton:$('parentAudienceButton'), settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
   aboutBackButton:$('aboutBackButton'), onboardingAboutButton:$('onboardingAboutButton'),
-  babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), genderHelp:$('genderHelp'),
+  babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
   keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
@@ -30,7 +30,8 @@ const STORAGE = {
   colorMode:'emma_color_mode',
   vivid:'emma_vivid_palette',
   keepAwake:'emma_keep_awake',
-  autoRespond:'emma_auto_respond'
+  autoRespond:'emma_auto_respond',
+  useChanSuffix:'emma_use_chan_suffix'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -47,7 +48,6 @@ let pendingUtterance=null;
 let previousScreen='home';
 let appearanceTimer=null;
 const audioQueues = new Map();
-const SENTENCE_GAP_MS = 250;
 
 initUi();
 
@@ -60,6 +60,7 @@ function initUi() {
   ui.vividPalette.value = localStorage.getItem(STORAGE.vivid) || 'sunshine';
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
+  ui.useChanSuffix.checked = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
 
   bindEvents();
   updateGenderUi();
@@ -119,6 +120,10 @@ function bindEvents() {
     const value=String(ui.spokenBabyName.value).replace(/[^\p{L}'’\- ]/gu,'').slice(0,40);
     ui.spokenBabyName.value=value;
     localStorage.setItem(STORAGE.spokenName,value);
+    updateSpokenNamePreview();
+  });
+  ui.useChanSuffix.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.useChanSuffix,String(ui.useChanSuffix.checked));
     updateSpokenNamePreview();
   });
   ui.pronunciationToggle.addEventListener('click',()=>{
@@ -378,8 +383,7 @@ async function speakResponse(text) {
   audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
   const done=new Promise(resolve=>audioQueues.get(requestId).resolve=resolve);
   setState('speaking','Emmaがお話ししています',text);
-  const sentences=splitSentences(text).slice(0,7);
-  ttsWorker.postMessage({type:'speak',requestId,sentences});
+  ttsWorker.postMessage({type:'speak',requestId,text});
   await done;
   speaking=false;
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
@@ -410,7 +414,6 @@ async function pumpAudio(requestId) {
   try{await playBlob(blob);}catch(e){console.error(e);}
   q.next++;
   q.playing=false;
-  if(q.next<q.total)await delay(SENTENCE_GAP_MS);
   pumpAudio(requestId);
 }
 
@@ -446,6 +449,34 @@ async function playBlob(blob) {
   cancelAnimationFrame(raf);
   ui.avatar.style.setProperty('--mouth-scale','0');
   ui.avatar.classList.remove('mouth-wide');
+}
+
+function trimAudioSilence(buffer) {
+  const threshold=0.004;
+  const channels=Array.from({length:buffer.numberOfChannels},(_,i)=>buffer.getChannelData(i));
+  let start=0;
+  let end=buffer.length;
+
+  const peakAt=(index)=>{
+    let peak=0;
+    for(const channel of channels) peak=Math.max(peak,Math.abs(channel[index]||0));
+    return peak;
+  };
+
+  while(start<end && peakAt(start)<threshold) start++;
+  while(end>start && peakAt(end-1)<threshold) end--;
+
+  const leadPad=Math.floor(buffer.sampleRate*0.015);
+  const tailPad=Math.floor(buffer.sampleRate*0.045);
+  start=Math.max(0,start-leadPad);
+  end=Math.min(buffer.length,end+tailPad);
+
+  if(start===0 && end===buffer.length) return buffer;
+  if(end-start < Math.floor(buffer.sampleRate*0.08)) return buffer;
+
+  const trimmed=audioContext.createBuffer(buffer.numberOfChannels,end-start,buffer.sampleRate);
+  channels.forEach((channel,i)=>trimmed.copyToChannel(channel.subarray(start,end),i));
+  return trimmed;
 }
 
 function setState(state,title,detail) {
@@ -523,10 +554,12 @@ function updateSpokenNamePreview() {
 }
 
 function getSpokenBabyName() {
-  return toSpokenEnglish(
+  const base=toSpokenEnglish(
     localStorage.getItem(STORAGE.babyName)||'',
     localStorage.getItem(STORAGE.spokenName)||''
   );
+  const useChan=localStorage.getItem(STORAGE.useChanSuffix)!=='false';
+  return withChanSuffix(base,useChan);
 }
 
 function updateAppearanceSettings() {
