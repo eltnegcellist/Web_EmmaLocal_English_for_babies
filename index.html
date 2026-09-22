@@ -319,14 +319,14 @@
       </div>
     </section>
 
-    <dialog id="noticeDialog">
-      <div class="dialog-body">
+    <div id="noticeDialog" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="noticeTitle">
+      <div class="modal-card">
         <button id="noticeCloseButton" class="dialog-close" aria-label="閉じる">×</button>
         <h2 id="noticeTitle"></h2>
         <p id="noticeBody"></p>
         <a id="noticeLink" class="outline-button link-button hidden" target="_blank" rel="noopener"></a>
       </div>
-    </dialog>
+    </div>
   </main>
 
   <script type="module" src="./src/app.js"></script>
