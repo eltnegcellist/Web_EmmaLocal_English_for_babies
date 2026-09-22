@@ -1,5 +1,5 @@
 name: Temporary Gemma canonical generation
-# validation-fixed
+# validation-fixed-v2
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
       - "tmp/gemma-canonical-20260922"
     paths:
       - ".github/workflows/tmp-gemma-canonical.yml"
+      - "tmp_gemma_canonical.py"
 
 permissions:
   contents: read
