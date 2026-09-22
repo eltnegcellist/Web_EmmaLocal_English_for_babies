@@ -1,0 +1,66 @@
+name: Temporary Gemma canonical generation
+
+on:
+  push:
+    branches:
+      - temp/gemma-canonical-generation-20260922
+    paths:
+      - 'tools/temp_gemma_canonical/**'
+      - '.github/workflows/temp-gemma-canonical.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Build llama.cpp
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/ggml-org/llama.cpp.git /tmp/llama.cpp
+          cmake -S /tmp/llama.cpp -B /tmp/llama.cpp/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build /tmp/llama.cpp/build --config Release -j2 --target llama-server
+          echo "/tmp/llama.cpp/build/bin" >> "$GITHUB_PATH"
+
+      - name: Start Gemma 4 E2B Q4
+        shell: bash
+        run: |
+          set -euo pipefail
+          llama-server \
+            -hf ggml-org/gemma-4-E2B-it-GGUF:Q4_0 \
+            --reasoning off \
+            --host 127.0.0.1 --port 8080 \
+            --ctx-size 4096 --threads 4 \
+            >/tmp/gemma.log 2>&1 &
+          echo $! >/tmp/gemma.pid
+          for i in $(seq 1 180); do
+            if curl -fsS http://127.0.0.1:8080/health >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat /tmp/gemma.log
+          exit 1
+
+      - name: Generate 100 phrases
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/temp_gemma_canonical/generate.py
+
+      - name: Stop Gemma
+        if: always()
+        shell: bash
+        run: |
+          if [ -f /tmp/gemma.pid ]; then
+            kill "$(cat /tmp/gemma.pid)" 2>/dev/null || true
+          fi
+          if [ -f /tmp/gemma.log ]; then
+            tail -n 100 /tmp/gemma.log || true
+          fi
