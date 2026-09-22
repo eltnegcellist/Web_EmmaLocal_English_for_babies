@@ -16,12 +16,17 @@ self.addEventListener('fetch',event=>{
   const url=new URL(event.request.url);
   if(url.origin!==self.location.origin) return;
 
-  if(event.request.mode==='navigate'){
+  const isAppCode =
+    event.request.mode==='navigate' ||
+    ['document','script','style'].includes(event.request.destination) ||
+    /\.(?:html|js|css)$/.test(url.pathname);
+
+  if(isAppCode){
     event.respondWith(
       fetch(event.request)
         .then(response=>{
           const copy=response.clone();
-          caches.open(CACHE).then(c=>c.put('./index.html',copy));
+          caches.open(CACHE).then(c=>c.put(event.request,copy));
           return response;
         })
         .catch(()=>caches.match(event.request).then(r=>r||caches.match('./index.html')))
