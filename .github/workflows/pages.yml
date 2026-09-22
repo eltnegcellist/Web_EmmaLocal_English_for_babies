@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: [ main ]
+  pull_request_target:
+    branches: [ main ]
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: read
@@ -16,10 +19,17 @@ concurrency:
 
 jobs:
   test:
+    if: github.event_name != 'pull_request_target' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout main/push revision
+        if: github.event_name != 'pull_request_target'
         uses: actions/checkout@v6
+      - name: Checkout same-repository PR revision
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Smoke test LiteResponseEngine
         run: node test-lite.mjs
       - name: Syntax check
@@ -31,14 +41,21 @@ jobs:
           node --check src/lite-response-engine.js
 
   deploy:
+    if: github.event_name != 'pull_request_target' || github.event.pull_request.head.repo.full_name == github.repository
     needs: test
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout main/push revision
+        if: github.event_name != 'pull_request_target'
         uses: actions/checkout@v6
+      - name: Checkout same-repository PR revision
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
