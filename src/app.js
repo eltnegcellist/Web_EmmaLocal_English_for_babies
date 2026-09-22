@@ -44,6 +44,7 @@ let asrWorker, ttsWorker, mic, wakeLock;
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
 let audioContext=null;
+let activeAudioSource=null;
 let pendingUtterance=null;
 let previousScreen='home';
 let appearanceTimer=null;
@@ -83,8 +84,8 @@ function bindEvents() {
   ui.onboardingAboutButton.addEventListener('click',()=>openAbout('onboarding'));
   ui.aboutBackButton.addEventListener('click',()=>showScreen(previousScreen));
   ui.settingsBackButton.addEventListener('click',()=>showScreen('home'));
-  ui.settingsButton.addEventListener('click',()=>{
-    if (running) return showNotice('会話中です','設定を変更するには、先にセッションを終了してください。');
+  ui.settingsButton.addEventListener('click',async()=>{
+    if (running || speaking || processing) await stopEmma();
     showScreen('settings');
   });
 
@@ -260,6 +261,12 @@ async function stopEmma() {
   processing=false;
   speaking=false;
   pendingUtterance=null;
+  for(const q of audioQueues.values()) q.resolve?.();
+  audioQueues.clear();
+  if(activeAudioSource){
+    try{activeAudioSource.stop();}catch{}
+    activeAudioSource=null;
+  }
   await mic?.stop().catch(()=>{});
   mic=null;
   wakeLock?.release?.().catch(()=>{});
@@ -431,6 +438,7 @@ async function playBlob(blob) {
   const buffer=await blob.arrayBuffer();
   const decoded=await audioContext.decodeAudioData(buffer.slice(0));
   const source=audioContext.createBufferSource();
+  activeAudioSource=source;
   source.buffer=trimAudioSilence(decoded);
   const analyser=audioContext.createAnalyser();
   analyser.fftSize=256;
@@ -450,6 +458,7 @@ async function playBlob(blob) {
   source.start();
   animate();
   await new Promise(resolve=>source.onended=resolve);
+  if(activeAudioSource===source) activeAudioSource=null;
   cancelAnimationFrame(raf);
   ui.avatar.style.setProperty('--mouth-scale','0');
   ui.avatar.classList.remove('mouth-wide');
