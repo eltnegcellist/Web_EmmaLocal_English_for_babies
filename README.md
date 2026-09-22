@@ -51,6 +51,8 @@ Initial Pages bootstrap: enabled.
 
 CI-to-Pages deployment chain: enabled.
 
+Dedicated Pages environment: emma-pages.
+
 ## Android edition
 
 Android版:
