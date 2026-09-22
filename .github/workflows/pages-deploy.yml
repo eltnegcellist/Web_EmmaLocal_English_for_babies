@@ -24,7 +24,7 @@ jobs:
         github.event.workflow_run.head_repository.full_name == github.repository
       )
     environment:
-      name: github-pages
+      name: emma-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
