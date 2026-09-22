@@ -47,7 +47,7 @@ SCENES = {
 }
 
 WORD_RE = re.compile(r"[A-Za-z]+(?:['’][A-Za-z]+)?")
-SENT_RE = re.compile(r"(?<=[.!?])\\s+")
+SENT_RE = re.compile(r"(?<=[.!?])\s+")
 
 def complete(scene, context):
     body = {
