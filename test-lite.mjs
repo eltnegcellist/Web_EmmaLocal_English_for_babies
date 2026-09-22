@@ -1,5 +1,5 @@
 import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.js';
-import { toSpokenEnglish } from './src/name-pronunciation.js';
+import { toSpokenEnglish, withChanSuffix } from './src/name-pronunciation.js';
 
 const cases=[
   ['お風呂入ろうね','bath'],
@@ -50,3 +50,17 @@ for(const [saved,override,expected] of names){
 }
 
 console.log('Android-aligned LiteResponseEngine + BabyNamePronunciation smoke test OK');
+
+
+const chanNames=[
+  ['Hana',true,'Hana-chan'],
+  ['Hana',false,'Hana'],
+  ['Hana-chan',true,'Hana-chan'],
+  ['',true,'']
+];
+for(const [name,enabled,expected] of chanNames){
+  const actual=withChanSuffix(name,enabled);
+  if(actual!==expected) throw new Error(`chan suffix ${name}/${enabled}: expected ${expected}, got ${actual}`);
+}
+
+console.log('Chan suffix tests OK');

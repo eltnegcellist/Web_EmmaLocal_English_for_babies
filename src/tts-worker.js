@@ -12,24 +12,45 @@ self.onmessage = async (event) => {
         device: 'wasm',
         progress_callback: (x) => {
           if (x?.status === 'progress' && Number.isFinite(x.progress)) {
-            self.postMessage({ type: 'status', progress: Math.max(0, Math.min(100, x.progress)), message: 'Emmaの声を取得しています…' });
+            self.postMessage({
+              type: 'status',
+              progress: Math.max(0, Math.min(100, x.progress)),
+              message: 'Emmaの声を取得しています…'
+            });
           }
         },
       });
       self.postMessage({ type: 'ready', device: 'wasm-q8' });
       return;
     }
+
     if (type === 'speak') {
       if (!tts) throw new Error('Kokoro is not initialized');
-      for (let i = 0; i < event.data.sentences.length; i++) {
-        const sentence = event.data.sentences[i];
-        const raw = await tts.generate(sentence, { voice: 'af_heart', speed: 0.94 });
-        const blob = raw.toBlob();
-        self.postMessage({ type: 'audio', requestId: event.data.requestId, index: i, total: event.data.sentences.length, sentence, blob });
-      }
+      const text = String(
+        event.data.text ||
+        (Array.isArray(event.data.sentences) ? event.data.sentences.join(' ') : '')
+      ).trim();
+      if (!text) throw new Error('No text to speak');
+
+      // Generate the whole short Lite reply at once.
+      // This avoids generation stalls and duplicated silence between sentences.
+      const raw = await tts.generate(text, { voice: 'af_heart', speed: 0.94 });
+      const blob = raw.toBlob();
+      self.postMessage({
+        type: 'audio',
+        requestId: event.data.requestId,
+        index: 0,
+        total: 1,
+        sentence: text,
+        blob
+      });
       self.postMessage({ type: 'complete', requestId: event.data.requestId });
     }
   } catch (error) {
-    self.postMessage({ type: 'error', requestId: event.data?.requestId, message: error?.message || String(error) });
+    self.postMessage({
+      type: 'error',
+      requestId: event.data?.requestId,
+      message: error?.message || String(error)
+    });
   }
 };
