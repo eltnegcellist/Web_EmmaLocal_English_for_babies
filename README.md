@@ -47,6 +47,8 @@ GitHub Pages source: **GitHub Actions**
 
 Production deployment is verified through the repository workflow.
 
+Initial Pages bootstrap: enabled.
+
 ## Android edition
 
 Android版:
