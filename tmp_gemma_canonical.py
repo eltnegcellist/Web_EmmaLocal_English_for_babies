@@ -57,7 +57,7 @@ def complete(scene, context):
         "max_tokens": 768,
         "messages": [
             {"role": "system", "content": SYSTEM},
-            {"role": "user", "content": f"Scene id: {scene}\\nSupported context: {context}\\nCreate 12 different canonical Emma candidates."},
+            {"role": "user", "content": f"Scene id: {scene}\\nSupported context: {context}\\nCreate 8 different canonical Emma candidates. Keep EACH candidate under 18 words total."},
         ],
     }
     req = urllib.request.Request(
@@ -79,40 +79,69 @@ def complete(scene, context):
             raw = raw[4:].strip()
     return json.loads(raw)
 
-def valid(text):
-    text = " ".join(text.strip().split())
-    sentences = [x for x in SENT_RE.split(text) if x.strip()]
-    words = WORD_RE.findall(text)
-    if not 3 <= len(sentences) <= 5:
-        return False
-    if len(words) > 20:
-        return False
+def normalize_candidate(item):
+    if isinstance(item, dict):
+        item = item.get("text") or item.get("response") or item.get("content") or ""
+    if not isinstance(item, str):
+        return None
+    text = " ".join(item.strip().split())
+    if not text or re.search(r"[ぁ-んァ-ン一-龥]", text):
+        return None
     if text.count("?") > 1:
-        return False
-    if re.search(r"[ぁ-んァ-ン一-龥]", text):
-        return False
-    return True
+        return None
+
+    sentences = [x.strip() for x in SENT_RE.split(text) if x.strip()]
+    if len(sentences) < 3:
+        return None
+
+    selected = []
+    for sentence in sentences[:5]:
+        proposed = " ".join(selected + [sentence])
+        if selected and len(WORD_RE.findall(proposed)) > 20:
+            break
+        selected.append(sentence)
+
+    while len(WORD_RE.findall(" ".join(selected))) > 20 and len(selected) > 3:
+        selected.pop()
+
+    normalized = " ".join(selected).strip()
+    if len(selected) < 3 or len(WORD_RE.findall(normalized)) > 20:
+        return None
+    return normalized
+
+def candidate_items(raw):
+    if isinstance(raw, list):
+        return raw
+    if isinstance(raw, dict):
+        for key in ("candidates", "responses", "items", "phrases"):
+            value = raw.get(key)
+            if isinstance(value, list):
+                return value
+    return []
 
 result = {}
 for scene, context in SCENES.items():
     accepted = []
     seen = set()
-    for attempt in range(1, 4):
+    for attempt in range(1, 5):
         raw = complete(scene, context)
-        for item in raw:
-            if not isinstance(item, str):
+        items = candidate_items(raw)
+        print(f"{scene}: attempt={attempt} raw_type={type(raw).__name__} items={len(items)}", flush=True)
+        for item in items:
+            text = normalize_candidate(item)
+            if not text:
                 continue
-            text = " ".join(item.strip().split())
             key = text.casefold()
-            if key in seen or not valid(text):
+            if key in seen:
                 continue
             seen.add(key)
             accepted.append(text)
-        print(f"{scene}: attempt={attempt} valid={len(accepted)}", flush=True)
+        print(f"{scene}: attempt={attempt} accepted={len(accepted)}", flush=True)
         if len(accepted) >= 5:
             break
     if len(accepted) < 5:
-        raise SystemExit(f"{scene}: only {len(accepted)} valid candidates")
+        print(f"{scene}: raw={json.dumps(raw, ensure_ascii=False)}", flush=True)
+        raise SystemExit(f"{scene}: only {len(accepted)} usable candidates")
     result[scene] = accepted[:5]
 
 print("===GEMMA_CANONICAL_JSON_BEGIN===")
