@@ -24,12 +24,26 @@ STYLE RULES:
 Return ONLY a JSON array of strings. No markdown and no commentary."""
 
 SCENES = {
+    "bath": "Parent says: お風呂入ろうね. Scene: bath time is starting. React to bath time, water, or splashing only; do not invent water temperature or claim the baby enjoys it.",
+    "milk": "Parent says: ミルク飲もうね / ミルク飲んだね. Scene: milk feeding. React to milk, drinking, or sipping only; do not claim hunger, fullness, taste, amount, or successful feeding.",
+    "sleep": "Parent says: 眠そうだね / ねんねしよう. Scene: the baby seems sleepy or sleep time is starting. Do not claim the baby is asleep or tell the parent what the baby needs.",
+    "wake": "Parent says: おはよう / 起きたね. Scene: the baby has woken up. React to waking and greeting only; do not invent weather or time beyond morning when explicitly supported.",
+    "diaper": "Parent says: おむつ替えようね. Scene: diaper change is starting. React to the change itself; do not claim the diaper is dirty, wet, clean, fresh, or comfortable.",
+    "clothes": "Parent says: お着替えしようね / 靴下はこうね. Scene: getting dressed. React to dressing, clothes, arms, legs, or socks only when supported; do not invent colors or textures.",
+    "hug": "Parent says: 抱っこしようね / ぎゅっとしようね. Scene: the baby is being held or cuddled. React to being held or a hug; do not claim emotions or safety.",
+    "hands": "Parent says: おててぎゅっとしたね / おてて見つけたね. Scene: attention is on the baby's hands or fingers. Do not invent an action unless supported.",
+    "feet": "Parent says: 足をバタバタしてるね / あんよ動いてるね. Scene: the baby's feet or legs are moving. React to feet, toes, kicking, or wiggling only when supported.",
+    "smile": "Parent says: にこにこしてるね / 笑ったね. Scene: the baby is smiling. React to the visible smile only; do not infer a broader emotion or cause.",
+    "cry": "Parent says: 泣いてるね. Scene: the baby is crying. React warmly to hearing the baby's voice without guessing why the baby is crying, what the baby feels, or what the baby needs.",
+    "voice": "Parent says: あーって声が出たね / 赤ちゃんが声を出している. Scene: the baby is making a nonverbal sound. React to hearing the voice without interpreting meaning, emotion, or need.",
     "tummy": "Parent says: お腹いっぱいかな / げっぷ出るかな. Scene: after feeding, attention is on the baby's tummy or a gentle burp. Do not claim the baby is full, comfortable, sick, or needs anything.",
+    "play": "Parent says: 遊ぼうね / おもちゃ見てるね. Scene: play time. React only to play and, if explicitly mentioned, the toy; do not invent a specific toy, color, or action.",
+    "outside": "Parent says: お散歩行こうね / お外に行こうね. Scene: going outside or for a walk. React to going out, walking, looking, or listening; do not invent weather, objects, or destination.",
+    "rain": "Parent says: 雨が降ってるね. Scene: rain is falling. React to rain or its sound; do not claim the baby can see or feel it unless supported.",
     "sun": "Parent says: 今日は晴れてるね / 明るいね. Scene: a bright sunny day. React only to brightness, sunshine, or the day being bright; do not invent temperature.",
     "food": "Parent says: ごはん食べようね / 離乳食の時間だよ. Scene: meal time is beginning. Do not claim taste, hunger, fullness, or successful eating.",
     "book": "Parent says: 絵本読もうね. Scene: parent and baby are about to look at a picture book together. Do not invent anything shown in the book.",
-    "music": "Parent says: 音楽聴こうね / 歌を聴こうね. Scene: parent and baby are listening to music. Do not invent a specific song or instrument.",
-    "cry": "Parent says: 泣いてるね. Scene: the baby is crying. React warmly to hearing the baby's voice without guessing why the baby is crying, what the baby feels, or what the baby needs.",
+    "music": "Parent says: 音楽聴こうね / 歌を聴こうね. Scene: parent and baby are listening to music. Do not invent a specific song or instrument."
 }
 
 WORD_RE = re.compile(r"[A-Za-z]+(?:['’][A-Za-z]+)?")
