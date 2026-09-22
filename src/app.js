@@ -47,6 +47,7 @@ let pendingUtterance=null;
 let previousScreen='home';
 let appearanceTimer=null;
 const audioQueues = new Map();
+const SENTENCE_GAP_MS = 250;
 
 initUi();
 
@@ -185,9 +186,11 @@ function openAbout(from) {
 function showNotice(title,body,linkUrl='',linkLabel='') {
   ui.noticeTitle.textContent=title;
   ui.noticeBody.textContent=body;
-  ui.noticeLink.classList.toggle('hidden',!linkUrl);
-  ui.noticeLink.href=linkUrl || '#';
-  ui.noticeLink.textContent=linkLabel || '詳しく見る';
+  if (ui.noticeLink) {
+    ui.noticeLink.classList.toggle('hidden',!linkUrl);
+    ui.noticeLink.href=linkUrl || '#';
+    ui.noticeLink.textContent=linkLabel || '詳しく見る';
+  }
   ui.noticeDialog.showModal();
 }
 
@@ -407,7 +410,7 @@ async function pumpAudio(requestId) {
   try{await playBlob(blob);}catch(e){console.error(e);}
   q.next++;
   q.playing=false;
-  if(q.next<q.total)await delay(780);
+  if(q.next<q.total)await delay(SENTENCE_GAP_MS);
   pumpAudio(requestId);
 }
 
