@@ -1,148 +1,109 @@
-// Generated from the Android LiteResponseEngine/BabySpeechStyle snapshot at implementation time.
-// Keep behavior aligned with app/src/main/java/com/eltnegcellist/emma/ai when changing Lite.
+// AUTO-SYNCED from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
+// Android source commit: 9ac27cb1d8cb57be5d20fb57e46bc8aff5eb0ab6
+// Do not hand-edit the reply bank independently from Android.
 const STYLE = {
-  MIN_WORDS: 20,
-  MAX_WORDS: 32,
-  MIN_SENTENCES: 5,
-  MAX_SENTENCES: 7,
-  NAME_REPEAT_WINDOW: 2,
+  "MIN_WORDS": 6,
+  "MAX_WORDS": 12,
+  "MIN_SENTENCES": 3,
+  "MAX_SENTENCES": 3,
+  "MAX_WORDS_PER_SENTENCE": 4,
+  "NAME_REPEAT_WINDOW": 2
 };
 const GENERIC_REPLIES = [
-  "Hi, little one! I'm right here. Hello, hello! Let's enjoy this moment together.",
-  "Hello, little one! I hear you. Here we are! Nice and easy. One little moment.",
-  "Hi there! Emma is here. Hello, hello! Look, look! Listen with me.",
-  "Hey, little one! I'm with you. So nice! Here we go! Nice and easy.",
-  "Hello! I'm right here with you. Hi, hi! Stay with me. Nice and easy."
+  "Hello, little one! Emma is here. Hello, hello!",
+  "Hi there, little one! I'm right here. Hello, hello!",
+  "Hello, hello! Emma is here. Look with me.",
+  "Hi, little one! I'm right here. Nice and easy.",
+  "Hello there! Stay with me. Here we go!"
 ];
 const NEUTRAL_CLOSERS = [
-  "Look right here with me.",
-  "Listen right here with me.",
-  "Here we go together now.",
-  "Nice and easy, little one.",
-  "Emma is right here now.",
-  "Hello, hello, little one, hello!",
-  "Stay right here with me."
+  "Here we go!",
+  "Nice and easy.",
+  "I'm right here.",
+  "Hello, hello!",
+  "Look with me.",
+  "Listen with me."
 ];
 const SCENE_FILLERS = {
   "bath": [
-    "Bath time together.",
     "Splash, splash!",
+    "Here we go!"
+  ],
+  "milk": [
+    "Sip, sip!",
+    "Nice and slow."
+  ],
+  "sleep": [
+    "Night-night.",
+    "Rest, rest."
+  ],
+  "wake": [
+    "Hello, hello!",
+    "Good morning!"
+  ],
+  "diaper": [
     "Here we go!",
     "Nice and easy."
   ],
-  "milk": [
-    "Milk time together.",
-    "Sip, sip!",
-    "Nice and slow.",
-    "Mmm, yummy!"
-  ],
-  "sleep": [
-    "Sleepy, sleepy.",
-    "Night-night.",
-    "Rest, rest.",
-    "Nice and quiet."
-  ],
-  "wake": [
-    "You're awake!",
-    "Hello, hello!",
-    "Good morning!",
-    "Here we go!"
-  ],
-  "diaper": [
-    "Diaper time together.",
-    "Here we go!",
-    "Nice and easy.",
-    "All nice and comfy."
-  ],
   "clothes": [
-    "Clothes time together.",
     "Here we go!",
-    "Nice and easy.",
-    "One little step."
+    "All ready."
   ],
   "hug": [
-    "Cuddle time together.",
-    "Up, up!",
-    "Nice and close.",
-    "Big cuddle!"
+    "Big cuddle!",
+    "Nice and close."
   ],
   "hands": [
-    "Tiny little hands.",
     "Squeeze, squeeze!",
-    "Wiggle, wiggle!",
-    "Little fingers."
+    "Wiggle, wiggle!"
   ],
   "feet": [
-    "Little tiny feet.",
     "Kick, kick!",
-    "Wiggle, wiggle!",
-    "Tiny toes."
+    "Wiggle, wiggle!"
   ],
   "smile": [
     "Smile, smile!",
-    "Hello, happy face!",
-    "Hi, little one!",
-    "So nice to see."
+    "Hello, hello!"
   ],
   "cry": [
-    "I hear you.",
     "I'm right here.",
-    "Nice and gentle.",
-    "Here with you."
+    "Nice and gentle."
   ],
   "voice": [
-    "I hear you.",
-    "Hello, hello!",
     "Ooh, ahh!",
     "I'm listening."
   ],
   "tummy": [
-    "Little tummy.",
     "Nice and easy.",
-    "Take your time.",
-    "Here we go."
+    "Take your time."
   ],
   "play": [
-    "Play time together.",
     "Look, look!",
-    "Here we go!",
-    "Let's play!"
+    "Here we go!"
   ],
   "outside": [
-    "Outside time together.",
     "Look around!",
-    "Here we go!",
-    "Out we go!"
+    "Here we go!"
   ],
   "rain": [
-    "Rain, rain!",
     "Pitter-patter!",
-    "Listen, listen!",
-    "Drip, drop!"
+    "Listen, listen!"
   ],
   "sun": [
     "Bright, bright!",
-    "Look at the light.",
-    "Hello, sunshine!",
     "Look, look!"
   ],
   "food": [
-    "Food time together.",
     "Yum, yum!",
-    "Little bite.",
     "Nice and slow."
   ],
   "book": [
-    "Book time together.",
     "Look, look!",
-    "Turn the page.",
-    "Let's see!"
+    "Turn the page."
   ],
   "music": [
-    "Music time together.",
     "La-la-la!",
-    "Listen, listen!",
-    "Hear the music!"
+    "Listen, listen!"
   ]
 };
 const SCENES = [
@@ -158,11 +119,11 @@ const SCENES = [
       "あったかいお湯"
     ],
     "replies": [
-      "Bath time! Let's go! Splash, splash! So much fun!",
-      "Time for a bath! Splash, splash! Warm water feels nice. Let's enjoy bath time!",
-      "Bath time, little one! In we go! Splash, splash! Nice warm water!",
-      "Warm bath! Here we go! Splash, splash! Wash, wash! All nice and clean!",
-      "{name}, bath time! Warm water. Splash, splash! Here we go! So nice!"
+      "Bath time! Splash, splash! Here we go!",
+      "Warm bath! Splash, splash! Nice and easy.",
+      "Bath time! Wash, wash! All clean.",
+      "Here we go! Bath time! Splash, splash!",
+      "{name}, bath time! Splash, splash! Here we go!"
     ]
   },
   {
@@ -178,11 +139,11 @@ const SCENES = [
       "授乳"
     ],
     "replies": [
-      "Yummy milk! Big drink! Mmm, yummy! All done!",
-      "Yummy milk! Drink, drink! Nice and easy. Sip, sip! All cozy.",
-      "Time for milk! Little sips. Mmm, yummy! Nice and slow, little one.",
-      "Milk, milk! Sip, sip! Take your time. Yummy, yummy! There you go!",
-      "{name}, milk time! Sip, sip! Nice and slow. Yummy milk!"
+      "Milk time! Sip, sip! Nice and slow.",
+      "Yummy milk! Sip, sip! Mmm, yummy!",
+      "Milk, milk! Little sips. Nice and easy.",
+      "Time for milk! Sip, sip! All done.",
+      "{name}, milk time! Sip, sip! Nice and slow."
     ]
   },
   {
@@ -198,11 +159,11 @@ const SCENES = [
       "眠く"
     ],
     "replies": [
-      "So sleepy. Soft eyes. Night-night. Rest, little one.",
-      "Sleepy time. Nice and quiet. Night-night! Rest your little eyes. So cozy.",
-      "Time to sleep. Soft and quiet. Night-night, little one. Rest, rest.",
-      "Sleepy eyes! Let's rest. Nice and cozy. Night-night! Sweet dreams.",
-      "{name}, night-night. So sleepy. Rest your eyes. Nice and cozy. Sweet dreams!"
+      "So sleepy. Night-night. Rest, little one.",
+      "Sleepy time. Nice and quiet. Night-night.",
+      "Time to sleep. Rest, rest. Nice and cozy.",
+      "Sleepy eyes. Night-night. Rest, little one.",
+      "{name}, sleepy time. Night-night. Rest nice and easy."
     ]
   },
   {
@@ -216,11 +177,11 @@ const SCENES = [
       "朝だ"
     ],
     "replies": [
-      "Good morning! You're awake! Hello, hello! A new moment! Hello, hello!",
-      "Hi, sleepyhead! You're awake. Good morning! Hello, hello! Here we go!",
-      "Good morning, little one! Eyes open! Hi there! Nice to see you.",
-      "You're awake! Hello! Good morning. Stretch, stretch! Here we go!",
-      "{name}, good morning! You're awake! Hello, hello! Nice to see you!"
+      "Good morning! You're awake! Hello, hello!",
+      "You're awake! Hello, hello! Good morning!",
+      "Morning, little one! Eyes open. Hello, hello!",
+      "Hello there! You're awake! Here we go!",
+      "{name}, good morning! You're awake! Hello, hello!"
     ]
   },
   {
@@ -235,11 +196,11 @@ const SCENES = [
       "お尻"
     ],
     "replies": [
-      "Diaper time! Here we go. Nice and clean. Fresh and comfy! All done soon.",
-      "Let's change your diaper! Nice and easy. Clean and fresh. There we go!",
-      "Diaper change! Lift, lift! Wipe, wipe! Nice and clean. All comfy!",
-      "Fresh diaper time! Nice and easy. Clean, clean! There you go, little one.",
-      "{name}, diaper time! Nice and easy. Clean and fresh. All comfy!"
+      "Diaper time! Nice and easy. Here we go!",
+      "Fresh diaper! Here we go! Nice and easy.",
+      "Diaper change! Wipe, wipe! All clean.",
+      "Here we go! Diaper time! Nice and clean.",
+      "{name}, diaper time! Nice and easy. Here we go!"
     ]
   },
   {
@@ -254,11 +215,11 @@ const SCENES = [
       "帽子"
     ],
     "replies": [
-      "Let's get dressed! One arm, then the other. Here we go! All cozy!",
-      "Clothes on! Arm in, arm out. Nice and easy. Looking comfy!",
-      "Time to get dressed! Here we go. One little arm. Then the other!",
-      "Let's change clothes! Nice and easy. Pull, pull! All ready!",
-      "{name}, let's get dressed! Here we go. Nice and easy. All ready!"
+      "Clothes on! Here we go! Nice and easy.",
+      "Time to dress! One little arm. Here we go!",
+      "Getting dressed! Nice and easy. All ready.",
+      "Clothes time! Here we go! All cozy.",
+      "{name}, clothes on! Nice and easy. All ready."
     ]
   },
   {
@@ -272,11 +233,11 @@ const SCENES = [
       "腕の中"
     ],
     "replies": [
-      "Up we go! Big cuddle! Snuggle, snuggle. Nice and close. So cozy!",
-      "Cuddle time! Up, up! Nice and close. Warm hug! There we go.",
-      "Big hug! Snuggle in. Nice and cozy. Up, up! I'm right here.",
-      "Up in your arms! Cuddle, cuddle. Nice and close. So warm and cozy.",
-      "{name}, cuddle time! Up, up! Big hug. Nice and close. So cozy!"
+      "Big cuddle! Up, up! Nice and close.",
+      "Cuddle time! Nice and close. Here we go!",
+      "Up we go! Big hug. So cozy.",
+      "Big hug! Nice and close. I'm right here.",
+      "{name}, cuddle time! Big hug. Nice and close."
     ]
   },
   {
@@ -291,11 +252,11 @@ const SCENES = [
       "つかん"
     ],
     "replies": [
-      "Tiny hands! Squeeze, squeeze! Hold tight! Little hands!",
-      "Look at those hands! Open, close. Wiggle, wiggle! Tiny little fingers.",
-      "Little hands! Grip, grip! Open and close. Wiggle those tiny fingers!",
-      "Tiny fingers! One, two, three! Squeeze, squeeze. Little hands at work!",
-      "{name}, tiny hands! Squeeze, squeeze! Wiggle, wiggle! So busy!"
+      "Tiny hands! Squeeze, squeeze! Wiggle, wiggle!",
+      "Little hands! Open, close. Wiggle, wiggle!",
+      "Tiny fingers! Squeeze, squeeze! Little hands!",
+      "Hands, hands! Open and close. Wiggle, wiggle!",
+      "{name}, tiny hands! Squeeze, squeeze! Wiggle, wiggle!"
     ]
   },
   {
@@ -309,11 +270,11 @@ const SCENES = [
       "足バタ"
     ],
     "replies": [
-      "Little feet! Kick, kick! Wiggle, wiggle! Those tiny toes are moving!",
-      "Kick those feet! Kick, kick! Little toes. Wiggle, wiggle! So busy!",
-      "Tiny feet! Up, down! Kick, kick! Wiggle those little toes.",
-      "Look at those feet! Kick, kick! Toes, toes! So much movement!",
-      "{name}, little feet! Kick, kick! Wiggle those tiny toes!"
+      "Little feet! Kick, kick! Wiggle, wiggle!",
+      "Tiny feet! Kick, kick! Little toes!",
+      "Feet, feet! Up and down. Kick, kick!",
+      "Little toes! Wiggle, wiggle! Kick, kick!",
+      "{name}, little feet! Kick, kick! Wiggle, wiggle!"
     ]
   },
   {
@@ -327,11 +288,11 @@ const SCENES = [
       "微笑"
     ],
     "replies": [
-      "What a smile! Hello, happy face! Smile, smile! So lovely to see.",
-      "Big smile! I see it! Hello, little one. Smile, smile! So sweet.",
-      "Look at that smile! Hi there! Such a bright little face. Hello!",
-      "Smile, smile! There it is! Hi, little one. So nice to see.",
-      "{name}, what a smile! Hello, hello! Smile, smile! So sweet!"
+      "Big smile! Smile, smile! Hello, little one!",
+      "What a smile! Hello, hello! Smile, smile!",
+      "Smile, smile! There it is! Hello there!",
+      "Happy smile! Hello, little one! So sweet.",
+      "{name}, big smile! Hello, hello! Smile, smile!"
     ]
   },
   {
@@ -346,11 +307,11 @@ const SCENES = [
       "ぐずぐず"
     ],
     "replies": [
-      "I hear you, little one. I'm right here. Nice and close. You're not alone.",
-      "I hear your voice. I'm here with you. Nice and gentle. One moment at a time.",
-      "Hello, little one. I hear you. I'm right here. Nice and close.",
-      "I hear you. Here we are together. Soft and gentle. I'm right here.",
-      "{name}, I hear you. I'm right here with you. Nice and close."
+      "I hear you. I'm right here. Nice and gentle.",
+      "I hear you. Here with you. Nice and close.",
+      "Hello, little one. I hear you. I'm right here.",
+      "I hear your voice. Nice and gentle. I'm right here.",
+      "{name}, I hear you. I'm right here. Nice and gentle."
     ]
   },
   {
@@ -365,11 +326,11 @@ const SCENES = [
       "あうあう"
     ],
     "replies": [
-      "Hi, little one! I hear your voice! Hello, hello! I'm listening!",
-      "What a voice! Ahh, ahh! I hear you. Hello there! Talk, talk!",
-      "Hi, little one! I hear your voice. Ooh, ahh! I'm listening!",
-      "You're talking! Hello, hello! I hear you. Ahh, ooh! So many sounds!",
-      "{name}, I hear your voice! Hello, hello! Ahh, ooh! I'm listening!"
+      "I hear you! Hello, hello! I'm listening.",
+      "What a voice! Ooh, ahh! I hear you.",
+      "Hello, little one! I hear you. Ooh, ahh!",
+      "You're talking! Hello, hello! I'm listening.",
+      "{name}, I hear you! Ooh, ahh! I'm listening."
     ]
   },
   {
@@ -384,11 +345,11 @@ const SCENES = [
       "吐き戻"
     ],
     "replies": [
-      "Little tummy! Nice and gentle. Pat, pat. Take your time. There we go.",
-      "Little tummy. Time to rest. Nice and easy. Pat, pat. All gentle.",
-      "Nice and slow. Little tummy. Pat, pat! Take your time, little one.",
-      "There we go. Gentle pats. Nice and easy. Little tummy, little rest.",
-      "{name}, nice and easy. Gentle pat, pat. Take your time, little one."
+      "Little tummy. Nice and easy. Take your time.",
+      "Little tummy. Nice and gentle. Here we go.",
+      "Nice and slow. Little tummy. Take your time.",
+      "Easy, easy. Little tummy. I'm right here.",
+      "{name}, little tummy. Nice and easy. Take your time."
     ]
   },
   {
@@ -403,11 +364,11 @@ const SCENES = [
       "ボール"
     ],
     "replies": [
-      "Play time! Look, look! Let's play. Shake, shake! So much to see!",
-      "Let's play! Look over here. Shake, shake! Fun little sounds. Here we go!",
-      "Play time, little one! Look and listen. Shake, shake! Let's have fun!",
-      "Here we go! Time to play. Look, look! Shake, shake! So much fun!",
-      "{name}, play time! Look, look! Shake, shake! Let's have fun!"
+      "Play time! Look, look! Here we go!",
+      "Let's play! Look with me. Here we go!",
+      "Play, play! Look, look! So much fun!",
+      "Time to play! Hello, hello! Let's play!",
+      "{name}, play time! Look, look! Here we go!"
     ]
   },
   {
@@ -422,11 +383,11 @@ const SCENES = [
       "出かけ"
     ],
     "replies": [
-      "Let's go outside! Here we go. Look around! So much to see! Listen, listen!",
-      "Outside time! Look, look! Fresh air. Here we go, little one!",
-      "Let's take a walk! Out we go. Look around! So many things to see.",
-      "Here we go outside! Look and listen. A little walk together!",
-      "{name}, let's go outside! Look around. Here we go! So much to see!"
+      "Outside time! Look around! Here we go!",
+      "Out we go! Look, look! Listen with me.",
+      "Outside, outside! Look around! Here we go!",
+      "Time outside! Look with me. Listen, listen!",
+      "{name}, outside time! Look around! Here we go!"
     ]
   },
   {
@@ -439,11 +400,11 @@ const SCENES = [
       "傘"
     ],
     "replies": [
-      "Rain, rain! Pitter-patter! Listen, listen! Rain outside!",
-      "It's raining! Pitter-patter. Listen to the rain. Tap, tap, tap!",
-      "Rain outside! Drip, drop! Listen, little one. Pitter-patter!",
-      "Pitter-patter! Rain, rain. Listen to that sound. Drip, drop!",
-      "{name}, listen! Rain outside. Pitter-patter! Drip, drop, drip!"
+      "Rain, rain! Pitter-patter! Listen, listen!",
+      "Rain outside! Drip, drop! Listen with me.",
+      "Pitter-patter! Rain, rain! Drip, drop!",
+      "Listen, listen! Rain outside! Pitter-patter!",
+      "{name}, rain outside! Pitter-patter! Listen, listen!"
     ]
   },
   {
@@ -457,11 +418,11 @@ const SCENES = [
       "ぽかぽか"
     ],
     "replies": [
-      "Bright day! Look at the light. Hello, sunshine! Nice and warm.",
-      "What a bright day! Light all around. Hello, hello! Nice and warm.",
-      "Sunshine! Bright, bright! Look at the light. Such a nice day!",
-      "A bright day! Hello, sunshine. Warm and light. Look, look!",
-      "{name}, bright day! Hello, sunshine! Look at the light. So warm!"
+      "Bright day! Hello, sunshine! Look, look!",
+      "Sunshine! Bright, bright! Look with me.",
+      "Hello, sunshine! Bright day! Look, look!",
+      "Bright, bright! Sunshine! Here we go!",
+      "{name}, bright day! Hello, sunshine! Look, look!"
     ]
   },
   {
@@ -476,11 +437,11 @@ const SCENES = [
       "スプーン"
     ],
     "replies": [
-      "Yummy food! Open wide. Mmm, yummy! Little bite. Nice and slow!",
-      "Time to eat! Little bite. Mmm, yummy! Nice and slow. Here we go!",
-      "Yum, yum! Food time. Open wide! Little bite. There you go!",
-      "Let's eat! Mmm, yummy! One little bite. Nice and easy!",
-      "{name}, yummy food! Little bite. Mmm, yummy! Nice and slow!"
+      "Food time! Yum, yum! Nice and slow.",
+      "Yummy food! Little bite. Nice and easy.",
+      "Time to eat! Yum, yum! Here we go!",
+      "Food, food! Little bite. Yum, yum!",
+      "{name}, food time! Yum, yum! Nice and slow."
     ]
   },
   {
@@ -494,11 +455,11 @@ const SCENES = [
       "めく"
     ],
     "replies": [
-      "Book time! Look, look! Turn the page. What's next? Let's see!",
-      "Let's read! Page by page. Look at this! Turn, turn. Here we go!",
-      "Story time! Look and listen. Turn the page. Let's see what comes next!",
-      "A book! Look, look! Page turn. Here we go! So much to see.",
-      "{name}, book time! Look, look! Turn the page. Let's see!"
+      "Book time! Look, look! Turn the page.",
+      "Let's read! Look with me. Turn the page.",
+      "Book, book! Look, look! Here we go!",
+      "Story time! Turn the page. Let's see!",
+      "{name}, book time! Look, look! Turn the page."
     ]
   },
   {
@@ -513,11 +474,11 @@ const SCENES = [
       "曲"
     ],
     "replies": [
-      "Music time! La-la-la! Listen to the beat. Tap, tap! Here we go!",
-      "Let's sing! La-la-la! Music, music. Tap the beat! So much fun!",
-      "I hear music! La-la-la! Tap, tap. Listen to the rhythm!",
-      "Song time! La-la-la! Listen, listen. Tap the beat! Here we go!",
-      "{name}, music time! La-la-la! Tap, tap! Listen to the beat!"
+      "Music time! La-la-la! Listen, listen!",
+      "Let's sing! La-la-la! Listen with me.",
+      "Music, music! Tap, tap! Here we go!",
+      "Song time! La-la-la! Listen, listen!",
+      "{name}, music time! La-la-la! Listen, listen!"
     ]
   }
 ];
@@ -551,7 +512,7 @@ export class LiteResponseEngine {
     const styled = this.alignToBabyStyle(named, normalized, scene?.id);
 
     this.remember(raw, styled);
-    this.turnsSinceName = safeName && styled.toLowerCase().includes(safeName.toLowerCase())
+    this.turnsSinceName = safeName && containsName(styled, safeName)
       ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
     return { english: styled, scene: scene?.id || "generic", score: sceneScore };
@@ -562,14 +523,16 @@ export class LiteResponseEngine {
       : suppressName ? replies.filter(x => !x.includes("{name}")) : replies;
     if (!eligible.length) eligible = replies;
     if (eligible.length === 1) return eligible[0];
-    const start = positiveIndex(hashCode(transcript) + this.turnCounter, eligible.length);
+
+    const rawIndex = hashCode(transcript) + this.turnCounter;
+    const start = Math.abs(rawIndex) % eligible.length;
     for (let offset = 0; offset < eligible.length; offset++) {
-      const c = eligible[(start + offset) % eligible.length];
-      if (!this.recentReplies.includes(c) && !this.recentOpeners.includes(openerKey(c))) return c;
+      const candidate = eligible[(start + offset) % eligible.length];
+      if (!this.recentReplies.includes(candidate) && !this.recentOpeners.includes(openerKey(candidate))) return candidate;
     }
     for (let offset = 0; offset < eligible.length; offset++) {
-      const c = eligible[(start + offset) % eligible.length];
-      if (!this.recentReplies.includes(c)) return c;
+      const candidate = eligible[(start + offset) % eligible.length];
+      if (!this.recentReplies.includes(candidate)) return candidate;
     }
     return eligible[start];
   }
@@ -578,13 +541,18 @@ export class LiteResponseEngine {
     const sentences = splitSentences(reply);
     const closers = [...new Set([...NEUTRAL_CLOSERS, ...(SCENE_FILLERS[sceneId] || [])])];
     let offset = positiveIndex(hashCode(transcript) + this.turnCounter, closers.length);
+
+    while (sentences.length > STYLE.MAX_SENTENCES) sentences.pop();
+
     while ((sentences.length < STYLE.MIN_SENTENCES || wordCount(sentences.join(" ")) < STYLE.MIN_WORDS)
       && sentences.length < STYLE.MAX_SENTENCES) {
       const candidate = closers[offset % closers.length];
       offset++;
-      if (wordCount([...sentences, candidate].join(" ")) <= STYLE.MAX_WORDS) sentences.push(candidate);
+      const proposed = [...sentences, candidate];
+      if (wordCount(proposed.join(" ")) <= STYLE.MAX_WORDS) sentences.push(candidate);
       else break;
     }
+
     while (wordCount(sentences.join(" ")) > STYLE.MAX_WORDS && sentences.length > STYLE.MIN_SENTENCES) {
       sentences.pop();
     }
@@ -631,6 +599,9 @@ function wordCount(text) {
 function openerKey(text) {
   const first = splitSentences(text)[0] || "";
   return first.replaceAll("{name}", "").toLowerCase().replace(/[^a-z]+/g, " ").trim().split(/\s+/).slice(0, 3).join(" ");
+}
+function containsName(text, safeName) {
+  return !!safeName && String(text).toLowerCase().includes(String(safeName).toLowerCase());
 }
 function positiveIndex(value, size) {
   if (!size) return 0;
