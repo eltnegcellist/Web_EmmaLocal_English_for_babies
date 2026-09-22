@@ -67,7 +67,43 @@ FILLER = (
     "here we go together now",
 )
 
-def validate(text: str) -> list[str]:
+ANCHORS = {
+    "bath": ("bath", "water", "splash"),
+    "milk": ("milk", "drink", "sip"),
+    "sleep": ("sleep", "sleepy", "night-night", "rest", "shh"),
+    "wake": ("morning", "awake", "wake"),
+    "diaper": ("diaper", "change", "clean"),
+    "clothes": ("dress", "dressed", "clothes"),
+    "hug": ("hug", "cuddle", "hold", "arms"),
+    "hands": ("hand", "hands", "finger", "fingers", "squeeze"),
+    "feet": ("feet", "foot", "toes", "kick"),
+    "smile": ("smile", "smiling"),
+    "cry": ("cry", "crying", "hear you", "your voice"),
+    "voice": ("voice", "sound", "hear you"),
+    "tummy": ("burp", "tummy", "pat", "back"),
+    "play": ("play",),
+    "outside": ("outside", "walk", "out we go"),
+    "rain": ("rain", "pitter", "drip"),
+    "sun": ("light", "bright", "sun"),
+    "food": ("food", "eat", "meal"),
+    "book": ("book", "read", "page"),
+    "music": ("music", "listen", "sound"),
+}
+
+FORBIDDEN = {
+    "bath": ("bubble",),
+    "clothes": ("sock", "shirt", "pants", "hat",),
+    "cry": ("sad", "hurt", "hungry", "tired", "scared", "need "),
+    "voice": ("happy", "sad", "want ", "need "),
+    "play": ("toy", "rattle", "ball",),
+    "outside": ("park", "sun", "rain", "tree", "car",),
+    "sun": ("hot", "warm", "cold",),
+    "food": ("yummy", "delicious", "sweet", "spoon",),
+    "book": ("red", "blue", "green", "yellow",),
+    "music": ("piano", "guitar", "drum", "song",),
+}
+
+def validate(scene: str, text: str) -> list[str]:
     reasons=[]
     text=" ".join(text.strip().split())
     words=WORD_RE.findall(text)
@@ -79,6 +115,10 @@ def validate(text: str) -> list[str]:
     if text.count("?") > 1: reasons.append("questions")
     low=text.lower()
     if any(x in low for x in FILLER): reasons.append("filler")
+    if not any(anchor in low for anchor in ANCHORS[scene]):
+        reasons.append("missing_scene_anchor")
+    if any(term in low for term in FORBIDDEN.get(scene, ())):
+        reasons.append("unsupported_detail")
     return reasons
 
 def call(scene: str, context: str, count: int, temperature: float) -> list[str]:
@@ -100,13 +140,28 @@ def call(scene: str, context: str, count: int, temperature: float) -> list[str]:
     with urllib.request.urlopen(req,timeout=240) as resp:
         payload=json.loads(resp.read().decode())
     raw=payload["choices"][0]["message"]["content"].strip()
-    raw=re.sub(r"^\x60\x60\x60(?:json)?\s*|\s*\x60\x60\x60$", "", raw, flags=re.I|re.S)
-    left,right=raw.find("["),raw.rfind("]")
-    if left >= 0 and right > left:
-        raw=raw[left:right+1]
-    parsed=json.loads(raw)
-    if not isinstance(parsed,list) or not all(isinstance(x,str) for x in parsed):
-        raise ValueError("not a JSON string array")
+    raw=re.sub(r"^\\x60\\x60\\x60(?:json)?\\s*|\\s*\\x60\\x60\\x60$", "", raw, flags=re.I|re.S)
+
+    # Gemma occasionally emits multiple JSON arrays separated by newlines.
+    # Decode every valid array instead of rejecting the whole response as
+    # "Extra data".
+    decoder=json.JSONDecoder()
+    parsed=[]
+    pos=0
+    while True:
+        start=raw.find("[",pos)
+        if start < 0:
+            break
+        try:
+            obj,end=decoder.raw_decode(raw[start:])
+        except json.JSONDecodeError:
+            pos=start+1
+            continue
+        if isinstance(obj,list):
+            parsed.extend(x for x in obj if isinstance(x,str))
+        pos=start+end
+    if not parsed:
+        raise ValueError("no JSON string array found")
     return parsed
 
 def main() -> int:
@@ -133,7 +188,7 @@ def main() -> int:
                 key=text.casefold()
                 if key in seen: continue
                 seen.add(key)
-                reasons=validate(text)
+                reasons=validate(scene,text)
                 if reasons:
                     rejected.append({"text":text,"reasons":reasons})
                 else:
