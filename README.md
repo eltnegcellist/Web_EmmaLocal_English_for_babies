@@ -43,6 +43,8 @@ python3 -m http.server 8080
 
 `main` への更新は GitHub Actions でテスト後、GitHub Pages へ公開する構成です。
 
+GitHub Pages source: **GitHub Actions**
+
 ## Android edition
 
 Android版:
