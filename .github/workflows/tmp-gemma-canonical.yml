@@ -41,7 +41,7 @@ jobs:
           cat /tmp/gemma.log
           exit 1
 
-      - name: Generate six missing scenes
+      - name: Generate all twenty scenes
         run: python3 tmp_gemma_canonical.py
 
       - name: Stop Gemma
