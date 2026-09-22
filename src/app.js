@@ -261,6 +261,7 @@ async function stopEmma() {
   processing=false;
   speaking=false;
   pendingUtterance=null;
+  for(const q of audioQueues.values()) q.resolve?.();
   audioQueues.clear();
   if(activeAudioSource){
     try{activeAudioSource.stop();}catch{}
