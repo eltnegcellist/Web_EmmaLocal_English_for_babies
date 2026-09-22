@@ -45,6 +45,8 @@ python3 -m http.server 8080
 
 GitHub Pages source: **GitHub Actions**
 
+Production deployment is verified through the repository workflow.
+
 ## Android edition
 
 Android版:
