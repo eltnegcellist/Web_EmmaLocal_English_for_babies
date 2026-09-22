@@ -101,7 +101,13 @@ function bindEvents() {
     'https://github.com/eltnegcellist/Android_English_character_for_baby',
     'Android版EmmaをGitHubで見る'
   ));
-  ui.noticeCloseButton.addEventListener('click',()=>ui.noticeDialog.close());
+  ui.noticeCloseButton.addEventListener('click',closeNotice);
+  ui.noticeDialog.addEventListener('click',(event)=>{
+    if(event.target===ui.noticeDialog) closeNotice();
+  });
+  document.addEventListener('keydown',(event)=>{
+    if(event.key==='Escape'&&!ui.noticeDialog.classList.contains('hidden')) closeNotice();
+  });
 
   ui.babyName.addEventListener('input',()=>{
     const value=sanitizePlainName(ui.babyName.value,30);
@@ -197,7 +203,16 @@ function showNotice(title,body,linkUrl='',linkLabel='') {
     ui.noticeLink.href=linkUrl || '#';
     ui.noticeLink.textContent=linkLabel || '詳しく見る';
   }
-  ui.noticeDialog.showModal();
+  ui.noticeDialog.classList.remove('hidden');
+  ui.noticeDialog.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  requestAnimationFrame(()=>ui.noticeCloseButton.focus({preventScroll:true}));
+}
+
+function closeNotice() {
+  ui.noticeDialog.classList.add('hidden');
+  ui.noticeDialog.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
 }
 
 async function prepareFirstRun() {

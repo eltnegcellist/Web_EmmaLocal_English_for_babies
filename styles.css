@@ -180,9 +180,31 @@ p{line-height:1.58}
 .emphasis-card{background:rgba(255,217,229,.32)}
 .debug-panel{display:none}
 body.debug .debug-panel{display:block}
-.dialog-body{padding:26px;position:relative;max-width:100%;overflow-wrap:anywhere}
-dialog{border:0;border-radius:28px;padding:0;width:calc(100vw - 32px);max-width:520px;max-height:80dvh;overflow:auto;box-sizing:border-box;box-shadow:0 24px 70px rgba(33,26,36,.26)}
-dialog::backdrop{background:rgba(30,24,32,.35);backdrop-filter:blur(3px)}
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:grid;
+  place-items:center;
+  padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));
+  background:rgba(30,24,32,.38);
+  backdrop-filter:blur(3px);
+  overflow:auto;
+}
+.modal-card{
+  position:relative;
+  width:min(100%,480px);
+  max-height:min(78dvh,620px);
+  overflow:auto;
+  border-radius:28px;
+  background:#fff;
+  padding:28px 22px 22px;
+  box-shadow:0 24px 70px rgba(33,26,36,.26);
+  overflow-wrap:anywhere;
+}
+.modal-card h2{padding-right:44px}
+.modal-card .link-button{margin-top:16px}
+.modal-open{overflow:hidden}
 .dialog-close{position:absolute;right:14px;top:14px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(124,116,127,.28);background:#fff;font-size:1.2rem}
 @keyframes blink{0%,84%,90%,100%{transform:scaleY(1)}87%{transform:scaleY(.08)}}
 @keyframes avatarBob{0%,100%{transform:translateY(-2px)}50%{transform:translateY(4px)}}
@@ -194,9 +216,9 @@ dialog::backdrop{background:rgba(30,24,32,.35);backdrop-filter:blur(3px)}
   .avatar{width:430px}
 }
 @media(max-width:430px){
-  dialog{width:calc(100vw - 24px);max-width:none;margin:auto}
-  .dialog-body{padding:22px 18px}
-  .screen-content{padding-left:16px;padding-right:16px}
+  .modal-overlay{padding:12px}
+  .modal-card{width:100%;max-height:calc(100dvh - 24px);border-radius:24px;padding:24px 18px 18px}
+      .screen-content{padding-left:16px;padding-right:16px}
   .topbar nav{gap:0}
   .text-button{font-size:.82rem;padding:9px 6px}
   .segmented{gap:5px}
