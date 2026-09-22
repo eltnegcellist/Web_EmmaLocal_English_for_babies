@@ -170,7 +170,7 @@ function showScreen(name) {
   for (const key of ['onboarding','home','settings','about']) {
     ui[key+'Screen'].classList.toggle('hidden',key!==name);
   }
-  window.scrollTo({top:0,behavior:'instant'});
+  window.scrollTo({top:0,behavior:'auto'});
 }
 
 function openAbout(from) {
@@ -423,7 +423,7 @@ async function playBlob(blob) {
     let sum=0;
     for(const x of data){const v=(x-128)/128;sum+=v*v;}
     const rms=Math.sqrt(sum/data.length);
-    const level=rms<0.025?0:rms<0.075?.55:1;
+    const level=rms<0.025 ? 0 : rms<0.075 ? 0.55 : 1;
     ui.avatar.style.setProperty('--mouth-scale',String(level));
     ui.avatar.classList.toggle('mouth-wide',level>.5);
     raf=requestAnimationFrame(animate);
