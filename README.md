@@ -49,6 +49,8 @@ Production deployment is verified through the repository workflow.
 
 Initial Pages bootstrap: enabled.
 
+CI-to-Pages deployment chain: enabled.
+
 ## Android edition
 
 Android版:
