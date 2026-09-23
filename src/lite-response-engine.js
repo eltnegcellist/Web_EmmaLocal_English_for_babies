@@ -1,5 +1,7 @@
+import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
+
 // AUTO-SYNCED from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
-// Android source commit: 9ac27cb1d8cb57be5d20fb57e46bc8aff5eb0ab6
+// Android source commit: c8e3eea90d9ab975652064d25a9907ed1822def4
 // Do not hand-edit the reply bank independently from Android.
 const STYLE = {
   "MIN_WORDS": 6,
@@ -591,8 +593,18 @@ export class LiteResponseEngine {
       .sort((a, b) => b[1] - a[1]);
     const best = ranked[0];
     const selected = best && best[1] >= 3 ? best : null;
-    const scene = selected?.[0] || null;
-    const sceneScore = selected?.[1] || 0;
+    const rescued = selected ? null : matchPhoneticScene(
+      transcript,
+      Object.fromEntries(SCENES.map(scene => [
+        scene.id,
+        [...scene.keywords, ...(SCENE_HINTS[scene.id] || [])],
+      ])),
+      SCENE_EXCLUSIONS,
+    );
+    const scene = selected?.[0]
+      || (rescued ? SCENES.find(candidate => candidate.id === rescued.sceneId) : null)
+      || null;
+    const sceneScore = selected?.[1] || rescued?.score || 0;
     const replies = scene?.replies || GENERIC_REPLIES;
     const safeName = sanitizeName(spokenBabyName);
     const forceName = !!safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW;
