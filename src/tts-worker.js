@@ -59,6 +59,9 @@ async function ensureKitten() {
     transport: 'direct',
     defaultVoice: 'Luna',
     numThreads: 1,
+    ortModuleUrls: {
+      wasm: 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/ort.wasm.min.mjs'
+    },
     onProgress: (event) => {
       self.postMessage({
         type: 'status',
