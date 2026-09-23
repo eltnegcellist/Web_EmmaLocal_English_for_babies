@@ -20,6 +20,7 @@ const ui = {
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
   keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
+  developerUnlockTrigger:$('developerUnlockTrigger'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
@@ -57,6 +58,8 @@ let activeAudioSource=null;
 let pendingUtterance=null;
 let previousScreen='home';
 let appearanceTimer=null;
+let developerTapCount=0;
+let developerTapTimer=null;
 const audioQueues = new Map();
 
 initUi();
@@ -193,6 +196,24 @@ function bindEvents() {
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
     if (ui.autoRespond.checked && pendingUtterance && !processing && !speaking) respondToPendingUtterance();
+  });
+
+  ui.developerUnlockTrigger?.addEventListener('click',()=>{
+    developerTapCount+=1;
+    clearTimeout(developerTapTimer);
+    developerTapTimer=setTimeout(()=>{developerTapCount=0;},4000);
+    if(developerTapCount>=5){
+      developerTapCount=0;
+      clearTimeout(developerTapTimer);
+      ui.developerTools?.classList.remove('hidden');
+    }
+  });
+
+  ui.fullResetButton?.addEventListener('click',()=>{
+    const confirmed=window.confirm(
+      'Emmaを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、Moonshine / Kittenのモデルキャッシュを削除します。次回はモデルの再取得が必要です。\n\n実行しますか？'
+    );
+    if(confirmed) location.href='./reset.html?full=1';
   });
 
   ui.debugReplyButton.addEventListener('click',async()=>{
