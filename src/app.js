@@ -18,8 +18,7 @@ const ui = {
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
   keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), ttsTiming:$('ttsTiming'), fullModeButton:$('fullModeButton'),
-  ttsEngine:$('ttsEngine'), supertonicVoice:$('supertonicVoice'), supertonicVoiceRow:$('supertonicVoiceRow'),
-  kittenVoice:$('kittenVoice'), kittenVoiceRow:$('kittenVoiceRow'),
+  supertonicVoice:$('supertonicVoice'),
   voicePreviewButton:$('voicePreviewButton'), ttsEngineDescription:$('ttsEngineDescription'), voicePreviewText:$('voicePreviewText'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
@@ -35,9 +34,7 @@ const STORAGE = {
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
   useChanSuffix:'emma_use_chan_suffix',
-  ttsEngine:'emma_tts_engine_compare',
-  supertonicVoice:'emma_supertonic_voice',
-  kittenVoice:'emma_kitten_voice_compare'
+  supertonicVoice:'emma_supertonic_voice'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -70,9 +67,9 @@ function initUi() {
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   ui.useChanSuffix.checked = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
   if (!localStorage.getItem(STORAGE.supertonicVoice)) localStorage.setItem(STORAGE.supertonicVoice,'F3');
-  ui.ttsEngine.value = localStorage.getItem(STORAGE.ttsEngine) === 'kitten' ? 'kitten' : 'supertonic';
+  localStorage.removeItem('emma_tts_engine_compare');
+  localStorage.removeItem('emma_kitten_voice_compare');
   ui.supertonicVoice.value = localStorage.getItem(STORAGE.supertonicVoice) || 'F3';
-  ui.kittenVoice.value = localStorage.getItem(STORAGE.kittenVoice) || 'Luna';
 
   bindEvents();
   updateGenderUi();
@@ -179,19 +176,8 @@ function bindEvents() {
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
     if (ui.autoRespond.checked && pendingUtterance && !processing && !speaking) respondToPendingUtterance();
   });
-  ui.ttsEngine.addEventListener('change',()=>{
-    localStorage.setItem(STORAGE.ttsEngine,ui.ttsEngine.value);
-    resetTtsWorker();
-    updateTtsSettings();
-    updateRuntimeBackend();
-  });
   ui.supertonicVoice.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.supertonicVoice,ui.supertonicVoice.value);
-    updateTtsSettings();
-    updateRuntimeBackend();
-  });
-  ui.kittenVoice.addEventListener('change',()=>{
-    localStorage.setItem(STORAGE.kittenVoice,ui.kittenVoice.value);
     updateTtsSettings();
     updateRuntimeBackend();
   });
@@ -369,8 +355,7 @@ async function initWorkers() {
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({
         type:'init',
-        engine:getTtsEngine(),
-        voice:getSelectedTtsVoice()
+        voice:getSupertonicVoice()
       });
     });
   }
@@ -463,7 +448,7 @@ async function speakResponse(text) {
   audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
   const done=new Promise(resolve=>audioQueues.get(requestId).resolve=resolve);
   setState('speaking','Emmaがお話ししています',text);
-  ttsWorker.postMessage({type:'speak',requestId,text,engine:getTtsEngine(),voice:getSelectedTtsVoice()});
+  ttsWorker.postMessage({type:'speak',requestId,text,voice:getSupertonicVoice()});
   await done;
   speaking=false;
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
@@ -644,35 +629,13 @@ function getSpokenBabyName() {
   return withChanSuffix(base,useChan);
 }
 
-function getTtsEngine() {
-  return localStorage.getItem(STORAGE.ttsEngine)==='kitten' ? 'kitten' : 'supertonic';
-}
-
 function getSupertonicVoice() {
   const value=localStorage.getItem(STORAGE.supertonicVoice) || 'F3';
   return /^([FM][1-5])$/.test(value) ? value : 'F3';
 }
 
-function getKittenVoice() {
-  const value=localStorage.getItem(STORAGE.kittenVoice) || 'Luna';
-  return ['Luna','Bella','Rosie','Kiki'].includes(value) ? value : 'Luna';
-}
-
-function getSelectedTtsVoice() {
-  return getTtsEngine()==='kitten' ? getKittenVoice() : getSupertonicVoice();
-}
-
 function getTtsSignature() {
-  return getTtsEngine()==='kitten' ? 'kitten-nano-int8-wasm' : 'supertonic-wasm';
-}
-
-function resetTtsWorker() {
-  ttsWorker?.terminate();
-  ttsWorker=null;
-  ttsInfoCache=null;
-  ttsWorkerSignature='';
-  workersReady=false;
-  ui.ttsTiming.textContent='音声生成: 未計測';
+  return 'supertonic-wasm';
 }
 
 function updateRuntimeBackend() {
@@ -680,19 +643,11 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  const ttsName=ttsInfoCache.engine==='kitten'
-    ? `Kitten Nano ${getKittenVoice()} ${ttsInfoCache.device}`
-    : `Supertonic 3 ${getSupertonicVoice()} ${ttsInfoCache.device}`;
-  ui.runtimeBackend.textContent=`推論: Whisper ${asrInfoCache.device} / ${ttsName}`;
+  ui.runtimeBackend.textContent=`推論: Whisper ${asrInfoCache.device} / Supertonic 3 ${getSupertonicVoice()} ${ttsInfoCache.device}`;
 }
 
 function updateTtsSettings() {
-  const kitten=getTtsEngine()==='kitten';
-  ui.supertonicVoiceRow.classList.toggle('hidden',kitten);
-  ui.kittenVoiceRow.classList.toggle('hidden',!kitten);
-  ui.ttsEngineDescription.textContent=kitten
-    ? 'Kitten Nano INT8（15M・約28MB）をCPU（WebAssembly）で動かす比較モードです。Supertonic 3もCPU/WASMなので、同じ条件で実測速度を比べられます。'
-    : 'Supertonic 3をCPU（WebAssembly）で実行します。標準音声はF3です。GPUは使用しません。';
+  ui.ttsEngineDescription.textContent='Supertonic 3をCPU（WebAssembly）で実行します。標準音声はF3です。GPUは使用しません。';
   ui.voicePreviewText.textContent='試聴文：Hi, Hana-chan! Bath time! Splash, splash! Here we go!';
 }
 
@@ -702,7 +657,7 @@ async function previewSelectedVoice() {
   const text='Hi, Hana-chan! Bath time! Splash, splash! Here we go!';
   try{
     setBusy(true);
-    showProgress(true,0,getTtsEngine()==='kitten'?'Kitten Nanoを準備しています…':'Supertonic 3を準備しています…');
+    showProgress(true,0,'Supertonic 3を準備しています…');
     await initWorkers();
     showProgress(false);
     setBusy(false);
