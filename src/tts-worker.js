@@ -53,15 +53,17 @@ async function ensureKitten() {
     throw new Error('Kitten Nano WASMの読み込みに失敗しました。');
   }
 
+  const ortModuleLoader = async () => import(
+    'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/ort.wasm.min.mjs'
+  );
+
   kittenTts = await module.KittenTTS.create({
     model: 'nano-int8',
     executionMode: 'wasm',
     transport: 'direct',
     defaultVoice: 'Luna',
     numThreads: 1,
-    ortModuleUrls: {
-      wasm: 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/ort.wasm.min.mjs'
-    },
+    ortModuleLoader,
     onProgress: (event) => {
       self.postMessage({
         type: 'status',
