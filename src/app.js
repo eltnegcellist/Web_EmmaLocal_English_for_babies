@@ -24,7 +24,7 @@ const ui = {
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
-const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v6';
+const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v7';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -45,9 +45,7 @@ if (new URLSearchParams(location.search).has('debug')) document.body.classList.a
 
 const engine = new LiteResponseEngine();
 const MOONSHINE_MODULE_URL = 'https://cdn.jsdelivr.net/npm/@moonshine-ai/moonshine-wasm@0.1.5/dist/index.js';
-const MOONSHINE_TRANSCRIBER_ID = 'emma-ja-tiny';
-
-let moonshineHost, moonshineModule, ttsWorker, mic, wakeLock;
+let moonshineTranscriber, moonshineModule, ttsWorker, mic, wakeLock;
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
@@ -254,10 +252,6 @@ async function clearObsoleteModelCaches() {
   try {
     const cacheNames=await caches.keys();
     await Promise.all(cacheNames.map(async cacheName=>{
-      if(cacheName==='moonshine-models-v1') {
-        await caches.delete(cacheName);
-        return;
-      }
       const cache=await caches.open(cacheName);
       const requests=await cache.keys();
       await Promise.all(requests.map(request=>{
@@ -409,48 +403,40 @@ async function initWorkers() {
 }
 
 async function initMoonshine() {
-  if(moonshineHost && asrInfoCache?.kind==='moonshine') return asrInfoCache;
+  if(moonshineTranscriber && asrInfoCache?.kind==='moonshine') return asrInfoCache;
 
   showMoonshineProgress(0,'Moonshineの実行エンジンを準備しています…');
   if(!moonshineModule){
     moonshineModule=await import(MOONSHINE_MODULE_URL);
   }
-  const { SttWorkerHost, ModelArch }=moonshineModule;
-  if(typeof SttWorkerHost!=='function') {
-    throw new Error('Moonshineの公式WorkerHostを読み込めませんでした。');
+  const { Transcriber, ModelArch }=moonshineModule;
+  if(typeof Transcriber?.load!=='function') {
+    throw new Error('Moonshineの公式Transcriberを読み込めませんでした。');
   }
 
-  const nextHost=new SttWorkerHost();
-  nextHost.onProgress=(_transcriberId,loaded,total,file)=>{
-    const safeLoaded=Number(loaded)||0;
-    const safeTotal=Number(total)||0;
-    const fraction=safeTotal>0 ? safeLoaded/safeTotal : 0;
-    const progress=safeTotal>0 ? Math.max(1,Math.min(96,Math.round(fraction*96))) : 1;
-    const mbLoaded=safeLoaded/1_000_000;
-    const sizeText=safeTotal>0
-      ? `${mbLoaded.toFixed(1)} / ${(safeTotal/1_000_000).toFixed(1)} MB`
-      : `${mbLoaded.toFixed(1)} MB`;
-    const fileName=String(file||'').split('/').pop();
-    showMoonshineProgress(
-      progress,
-      `Moonshine 日本語 Tinyを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
-    );
-  };
+  const nextTranscriber=await Transcriber.load({
+    language:'ja',
+    modelArch:ModelArch.TinyStreaming,
+    options:{max_tokens_per_second:'13.0'},
+    onProgress:(loaded,total,file)=>{
+      const safeLoaded=Number(loaded)||0;
+      const safeTotal=Number(total)||0;
+      const fraction=safeTotal>0 ? safeLoaded/safeTotal : 0;
+      const progress=safeTotal>0 ? Math.max(1,Math.min(96,Math.round(fraction*96))) : 1;
+      const mbLoaded=safeLoaded/1_000_000;
+      const sizeText=safeTotal>0
+        ? `${mbLoaded.toFixed(1)} / ${(safeTotal/1_000_000).toFixed(1)} MB`
+        : `${mbLoaded.toFixed(1)} MB`;
+      const fileName=String(file||'').split('/').pop();
+      showMoonshineProgress(
+        progress,
+        `Moonshine 日本語 Tinyを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
+      );
+    }
+  });
 
-  try {
-    await nextHost.loadTranscriber({
-      transcriberId:MOONSHINE_TRANSCRIBER_ID,
-      modelArch:ModelArch.TinyStreaming,
-      options:{max_tokens_per_second:'13.0'},
-      source:{kind:'catalog',language:'ja'}
-    });
-  } catch(error) {
-    nextHost.close();
-    throw error;
-  }
-
-  moonshineHost?.close?.();
-  moonshineHost=nextHost;
+  moonshineTranscriber?.close?.();
+  moonshineTranscriber=nextTranscriber;
   showMoonshineProgress(100,'Moonshine 日本語音声認識を準備できました');
 
   return {
@@ -460,7 +446,7 @@ async function initMoonshine() {
     architecture:'tiny_streaming',
     license:'MIT',
     device:'wasm-cpu',
-    worker:'official-stt-worker-host'
+    worker:'none-batch-transcriber'
   };
 }
 
@@ -502,41 +488,25 @@ function handleTtsMessage(event,readyResolve,readyReject) {
 }
 
 async function transcribeUtterance(audio) {
-  if(!running||processing||speaking||!moonshineHost)return;
+  if(!running||processing||speaking||!moonshineTranscriber)return;
   processing=true;
   setBusy(true);
   setState('thinking','聞き取っています…','Moonshineで音声を端末内処理しています。');
 
-  const streamId=`emma-utterance-${++requestSeq}`;
-  const completed=[];
-  let latest='';
-  let streamError=null;
-
-  moonshineHost.setListener(streamId,{
-    onLineTextChanged:(event)=>{
-      latest=String(event?.line?.text||'').trim();
-    },
-    onLineCompleted:(event)=>{
-      const text=String(event?.line?.text||'').trim();
-      if(text) completed.push(text);
-    },
-    onError:(event)=>{
-      streamError=event?.error instanceof Error ? event.error : new Error(String(event?.error||'Moonshine transcription failed'));
-    }
-  });
-
   try {
-    await moonshineHost.createStream(MOONSHINE_TRANSCRIBER_ID,streamId);
-    await moonshineHost.start(streamId);
-    moonshineHost.addAudio(streamId,audio,16000,{transcribe:false});
-    await moonshineHost.stop(streamId);
-    if(streamError) throw streamError;
-
-    const text=(completed.join(' ')||latest).replace(/\s+/g,' ').trim();
-    await moonshineHost.closeStream(streamId).catch(()=>{});
+    // Paint the thinking state before synchronous WASM inference starts.
+    await new Promise(resolve=>requestAnimationFrame(()=>resolve()));
+    const result=moonshineTranscriber.transcribe(audio,{sampleRate:16000});
+    const text=Array.isArray(result?.lines)
+      ? result.lines
+          .map(line=>String(line?.text||'').trim())
+          .filter(Boolean)
+          .join(' ')
+          .replace(/\s+/g,' ')
+          .trim()
+      : '';
     await processTranscript(text);
   } catch(error) {
-    await moonshineHost.closeStream(streamId).catch(()=>{});
     processing=false;
     setBusy(false);
     console.error(error);
