@@ -236,6 +236,27 @@
         </article>
 
         <article class="card">
+          <h2>音声（実験）</h2>
+          <label>会話で使う音声
+            <select id="ttsEngine">
+              <option value="kokoro">Kokoro（現在の標準）</option>
+              <option value="kitten">KittenTTS Nano（軽量・WebGPU）</option>
+            </select>
+          </label>
+          <label id="kittenVoiceRow" class="hidden">Kittenの女性声
+            <select id="kittenVoice">
+              <option value="Luna">Luna</option>
+              <option value="Bella">Bella</option>
+              <option value="Rosie">Rosie</option>
+              <option value="Kiki">Kiki</option>
+            </select>
+          </label>
+          <button id="voicePreviewButton" class="outline-button compact-button">この声を同じ例文で試す</button>
+          <p id="ttsEngineDescription" class="small muted"></p>
+          <p id="voicePreviewText" class="small muted">試聴文は、どの音声でも同じ文章を使います。</p>
+        </article>
+
+        <article class="card">
           <h2>Web版の動作</h2>
           <label class="toggle-line">
             <span>Emma利用中は画面をスリープさせない</span>
