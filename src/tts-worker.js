@@ -1,6 +1,6 @@
 import { KittenTTS } from './vendor/kitten/index.js';
 
-const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-int8';
+const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8';
 const KITTEN_VOICE = 'Kiki';
 const KITTEN_SPEED = 1.0;
 
@@ -18,12 +18,12 @@ async function ensureKitten() {
   self.postMessage({
     type: 'status',
     progress: 5,
-    message: 'Kitten TTS Nano INT8を取得しています…'
+    message: 'Kitten TTS Nanoを取得しています…'
   });
 
   const stageMessages = {
     config: [5, 'Kitten TTSの設定を確認しています…'],
-    download: [8, 'Kitten TTS Nano INT8をダウンロードしています…'],
+    download: [8, 'Kitten TTS Nanoをダウンロードしています…'],
     'download-complete': [82, 'Kitten TTSのダウンロードが完了しました'],
     runtime: [86, '音声エンジンを準備しています…'],
     'onnx-session': [90, 'Kitten TTSを初期化しています…'],
@@ -54,7 +54,7 @@ async function ensureKitten() {
         self.postMessage({
           type: 'status',
           progress,
-          message: `Kitten TTS Nano INT8をダウンロードしています… ${sizeText}`
+          message: `Kitten TTS Nanoをダウンロードしています… ${sizeText}`
         });
       }
     }),
