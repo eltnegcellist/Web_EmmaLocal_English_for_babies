@@ -646,14 +646,13 @@ function updateRuntimeBackend() {
 
 function updateTtsSettings() {
   ui.ttsEngineDescription.textContent='Supertonic 3をCPU（WebAssembly）で実行します。標準音声はF3です。GPUは使用しません。';
-  const name=getSpokenBabyName() || 'Hana-chan';
-  ui.voicePreviewText.textContent=`試聴文：Hi, ${name}! Bath time! Splash, splash! Here we go!`;
+  ui.voicePreviewText.textContent='試聴文：Hi, Hana-chan! Bath time! Splash, splash! Here we go!';
 }
 
 async function previewSelectedVoice() {
   if(speaking || processing) return;
   ui.voicePreviewButton.disabled=true;
-  const text=`Hi, ${getSpokenBabyName() || 'Hana-chan'}! Bath time! Splash, splash! Here we go!`;
+  const text='Hi, Hana-chan! Bath time! Splash, splash! Here we go!';
   try{
     setBusy(true);
     showProgress(true,0,'Supertonic 3を準備しています…');
