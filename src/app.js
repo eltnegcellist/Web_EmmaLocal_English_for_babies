@@ -40,7 +40,8 @@ const STORAGE = {
   kokoroVoice:'emma_kokoro_voice',
   kittenModel:'emma_kitten_model',
   kittenVoice:'emma_kitten_voice',
-  supertonicVoice:'emma_supertonic_voice'
+  supertonicVoice:'emma_supertonic_voice',
+  supertonicF3DefaultApplied:'emma_supertonic_f3_default_applied'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -72,7 +73,12 @@ function initUi() {
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   ui.useChanSuffix.checked = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
-  ui.ttsEngine.value = ['kokoro','kitten','supertonic'].includes(localStorage.getItem(STORAGE.ttsEngine)) ? localStorage.getItem(STORAGE.ttsEngine) : 'kokoro';
+  if (localStorage.getItem(STORAGE.supertonicF3DefaultApplied) !== 'true') {
+    localStorage.setItem(STORAGE.ttsEngine,'supertonic');
+    localStorage.setItem(STORAGE.supertonicVoice,'F3');
+    localStorage.setItem(STORAGE.supertonicF3DefaultApplied,'true');
+  }
+  ui.ttsEngine.value = ['kokoro','kitten','supertonic'].includes(localStorage.getItem(STORAGE.ttsEngine)) ? localStorage.getItem(STORAGE.ttsEngine) : 'supertonic';
   ui.kokoroVoice.value = localStorage.getItem(STORAGE.kokoroVoice) || 'af_heart';
   ui.kittenModel.value = localStorage.getItem(STORAGE.kittenModel) || 'nano';
   ui.kittenVoice.value = localStorage.getItem(STORAGE.kittenVoice) || 'Luna';
@@ -660,7 +666,7 @@ function getSpokenBabyName() {
 
 function getTtsEngine() {
   const value=localStorage.getItem(STORAGE.ttsEngine);
-  return ['kokoro','kitten','supertonic'].includes(value) ? value : 'kokoro';
+  return ['kokoro','kitten','supertonic'].includes(value) ? value : 'supertonic';
 }
 
 function getKittenModel() {
