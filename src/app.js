@@ -424,7 +424,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     ui.ttsEngine.value='kokoro';
     ttsWorkerSignature='kokoro';
     updateTtsSettings();
-    ui.runtimeBackend.textContent='KittenTTSを利用できなかったためKokoroへ戻しました。';
+    ui.runtimeBackend.textContent='選択した実験音声を利用できなかったためKokoroへ戻しました。';
   }
   else if(m.type==='error') {
     readyReject?.(new Error(m.message));
