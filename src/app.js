@@ -249,7 +249,7 @@ async function startEmma() {
     await initAudioContext();
 
     running=true;
-    await startWhisperCapture();
+    await startMoonshineCapture();
 
     ui.mainButton.classList.add('hidden');
     ui.stopButton.classList.remove('hidden');
@@ -310,7 +310,7 @@ function respondToPendingUtterance() {
   if(pending.kind==='audio') transcribeUtterance(pending.audio);
 }
 
-async function startWhisperCapture() {
+async function startMoonshineCapture() {
   if(mic) return;
   mic=new EmmaMicrophone({
     onState:(state)=>{
