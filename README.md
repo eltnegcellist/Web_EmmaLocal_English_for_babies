@@ -24,7 +24,8 @@ Emma avatar + PCM-linked lip sync
 
 - 会話処理はブラウザ内ローカル実行を基本とします
 - 初回はWhisper/Supertonic 3等のモデル取得に通信を使います
-- TTSはSupertonic 3に一本化し、CPU/WASMで実行します（WebGPUはTTSでは使用しません）
+- 標準TTSはSupertonic 3 / F3をCPU/WASMで実行します
+- 速度比較用にKitten Nano（WebGPU）を一時的に選択でき、同じ例文で生成速度を比較できます
 - Android版Emmaとは別repositoryとして開発します
 - Full Gemma modeは今後追加予定です
 
