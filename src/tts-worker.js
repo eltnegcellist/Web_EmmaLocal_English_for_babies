@@ -1,127 +1,109 @@
-let supertonicPipeline = null;
-const supertonicEmbeddings = new Map();
+const KITTEN_MODULE_URL = 'https://esm.sh/kitten-tts-js@0.1.2?bundle';
+const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-int8';
+const KITTEN_VOICE = 'Luna';
+const KITTEN_SPEED = 1.0;
 
-const SUPERTONIC_VOICE_BASE =
-  'https://raw.githubusercontent.com/activated-intelligence/voice-chat/7484f9b4383590b8248b268ba2f2ee551b07c334/public/voices';
+let kittenTts = null;
 
-async function ensureSupertonic() {
-  if (supertonicPipeline) return supertonicPipeline;
+async function ensureKitten() {
+  if (kittenTts) return kittenTts;
 
-  self.postMessage({ type: 'status', progress: 0, message: 'Supertonic 3をCPUで準備しています…' });
-  const { env, pipeline } = await withTimeout(
-    import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0/+esm'),
-    30000,
-    'Supertonic 3の実行モジュールを取得できませんでした。通信状態を確認して、もう一度お試しください。'
+  self.postMessage({
+    type: 'status',
+    progress: 0,
+    message: 'Kitten TTS Nanoを準備しています…'
+  });
+
+  const { KittenTTS } = await withTimeout(
+    import(KITTEN_MODULE_URL),
+    60000,
+    'Kitten TTSの実行モジュールを取得できませんでした。通信状態を確認してください。'
   );
-  env.allowLocalModels = false;
-  env.useBrowserCache = true;
 
-  if (env.backends?.onnx?.wasm) {
-    env.backends.onnx.wasm.numThreads = self.crossOriginIsolated
-      ? Math.max(1, Math.min(4, self.navigator?.hardwareConcurrency || 1))
-      : 1;
+  self.postMessage({
+    type: 'status',
+    progress: 5,
+    message: 'Kitten TTS Nano INT8を取得しています…（約28MB）'
+  });
+
+  kittenTts = await withTimeout(
+    KittenTTS.from_pretrained(KITTEN_MODEL),
+    300000,
+    'Kitten TTS Nanoの準備に時間がかかりすぎています。通信状態を確認して、もう一度お試しください。'
+  );
+
+  const voices = kittenTts.list_voices?.() || [];
+  if (voices.length && !voices.includes(KITTEN_VOICE)) {
+    throw new Error(`Kitten TTSの女性声 ${KITTEN_VOICE} を読み込めませんでした。`);
   }
 
-  let visibleProgress = 0;
-  const fileProgress = new Map();
-
-  supertonicPipeline = await withTimeout(
-    pipeline(
-      'text-to-speech',
-      'onnx-community/Supertonic-TTS-ONNX',
-      {
-        device: 'wasm',
-        progress_callback: (x) => {
-          if (x?.status === 'progress') {
-            const key=String(x.file || x.name || x.url || 'model');
-            const loaded=Number(x.loaded);
-            const total=Number(x.total);
-            const perFile=Number(x.progress);
-
-            if(Number.isFinite(loaded) && Number.isFinite(total) && total>0){
-              fileProgress.set(key,{loaded,total});
-              let loadedSum=0;
-              let totalSum=0;
-              for(const item of fileProgress.values()){
-                loadedSum+=item.loaded;
-                totalSum+=item.total;
-              }
-              if(totalSum>0) visibleProgress=Math.max(visibleProgress,Math.min(88,(loadedSum/totalSum)*88));
-            }else if(Number.isFinite(perFile)){
-              // x.progress belongs to one asset, not the whole model.
-              // Never show 100% until every ONNX session is actually ready.
-              visibleProgress=Math.max(visibleProgress,Math.min(88,perFile*0.88));
-            }
-
-            self.postMessage({
-              type: 'status',
-              progress: Math.round(visibleProgress),
-              message: 'Supertonic 3のデータを取得しています…'
-            });
-          } else if (x?.status === 'done') {
-            visibleProgress=Math.max(visibleProgress,88);
-            self.postMessage({
-              type: 'status',
-              progress: 90,
-              message: 'Supertonic 3を初期化しています…'
-            });
-          }
-        }
-      }
-    ),
-    300000,
-    'Supertonic 3の初期化に時間がかかりすぎています。通信状態を確認して、もう一度お試しください。'
-  );
-
-  self.postMessage({ type: 'status', progress: 94, message: 'F3の声を準備しています…' });
-  await getSupertonicEmbedding();
-  self.postMessage({ type: 'status', progress: 100, message: 'Emmaの声を準備できました' });
-  return supertonicPipeline;
-}
-
-async function getSupertonicEmbedding() {
-  if (supertonicEmbeddings.has('F3')) return supertonicEmbeddings.get('F3');
-
-  const response = await fetchWithTimeout(
-    `${SUPERTONIC_VOICE_BASE}/F3.bin`,
-    30000,
-    'Supertonic voice F3 の取得に時間がかかりすぎています。'
-  );
-  if (!response.ok) throw new Error('Supertonic voice F3 の取得に失敗しました。');
-  const embedding = new Float32Array(await response.arrayBuffer());
-  supertonicEmbeddings.set('F3', embedding);
-  return embedding;
+  self.postMessage({
+    type: 'status',
+    progress: 100,
+    message: 'Emmaの声を準備できました'
+  });
+  return kittenTts;
 }
 
 async function synthesize(text, requestId) {
-  const tts = await ensureSupertonic();
-  const embedding = await getSupertonicEmbedding();
+  const tts = await ensureKitten();
+  let index = 0;
 
-  const output = await tts(text, {
-    speaker_embeddings: embedding,
-    num_inference_steps: 5,
-    speed: 1.0
-  });
+  // The JS port streams sentence-by-sentence. Emma's audio queue already
+  // supports multiple chunks, so playback can start without waiting for the
+  // full reply to finish synthesizing.
+  if (typeof tts.stream === 'function') {
+    for await (const chunk of tts.stream(text, {
+      voice: KITTEN_VOICE,
+      speed: KITTEN_SPEED,
+      clean: true
+    })) {
+      const audio = chunk?.audio;
+      const samples = audio?.data;
+      const sampleRate = audio?.sampling_rate || 24000;
+      if (!samples?.length) continue;
 
-  const audio = output?.audio;
-  const sampleRate = output?.sampling_rate || 24000;
-  if (!audio || !audio.length) throw new Error('Supertonic 3の音声生成に失敗しました。');
+      self.postMessage({
+        type: 'audio',
+        requestId,
+        index,
+        sentence: String(chunk?.text || ''),
+        blob: float32ToWav(samples, sampleRate),
+        engine: 'kitten-tts',
+        voice: KITTEN_VOICE
+      });
+      index++;
+    }
+  } else {
+    const audio = await tts.generate(text, {
+      voice: KITTEN_VOICE,
+      speed: KITTEN_SPEED,
+      clean: true
+    });
+    const samples = audio?.data;
+    const sampleRate = audio?.sampling_rate || 24000;
+    if (!samples?.length) throw new Error('Kitten TTS Nanoの音声生成に失敗しました。');
 
-  const blob = float32ToWav(audio, sampleRate);
+    self.postMessage({
+      type: 'audio',
+      requestId,
+      index: 0,
+      sentence: text,
+      blob: float32ToWav(samples, sampleRate),
+      engine: 'kitten-tts',
+      voice: KITTEN_VOICE
+    });
+    index = 1;
+  }
 
-  self.postMessage({
-    type: 'audio',
-    requestId,
-    index: 0,
-    sentence: text,
-    blob,
-    engine: 'supertonic'
-  });
+  if (!index) throw new Error('Kitten TTS Nanoの音声生成に失敗しました。');
+
   self.postMessage({
     type: 'complete',
     requestId,
-    total: 1,
-    engine: 'supertonic'
+    total: index,
+    engine: 'kitten-tts',
+    voice: KITTEN_VOICE
   });
 }
 
@@ -129,8 +111,15 @@ self.onmessage = async (event) => {
   const { type } = event.data;
   try {
     if (type === 'init') {
-      await ensureSupertonic();
-      self.postMessage({ type: 'ready', device: 'wasm-cpu', engine: 'supertonic' });
+      await ensureKitten();
+      self.postMessage({
+        type: 'ready',
+        device: 'wasm-cpu',
+        engine: 'kitten-tts',
+        model: KITTEN_MODEL,
+        voice: KITTEN_VOICE,
+        license: 'Apache-2.0'
+      });
       return;
     }
 
@@ -185,24 +174,10 @@ function writeAscii(view, offset, text) {
   }
 }
 
-
 function withTimeout(promise, ms, message) {
   let timer;
   const timeout = new Promise((_, reject) => {
     timer = setTimeout(() => reject(new Error(message)), ms);
   });
   return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
-}
-
-async function fetchWithTimeout(url, ms, message) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), ms);
-  try {
-    return await fetch(url, { signal: controller.signal });
-  } catch (error) {
-    if (error?.name === 'AbortError') throw new Error(message);
-    throw error;
-  } finally {
-    clearTimeout(timer);
-  }
 }
