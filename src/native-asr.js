@@ -1,4 +1,20 @@
 const DEFAULT_LANG = 'ja-JP';
+const AVAILABILITY_TIMEOUT_MS = 8000;
+const INSTALL_TIMEOUT_MS = 30000;
+const DOWNLOADING_WAIT_MS = 12000;
+const DOWNLOAD_POLL_MS = 1000;
+
+function withTimeout(promise, ms, message) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(message)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 function getLocalSpeechRecognition() {
   const Recognition = globalThis.SpeechRecognition;
@@ -17,14 +33,22 @@ function getLocalSpeechRecognition() {
 async function queryAvailability(Recognition, lang, quality) {
   const options = { langs: [lang], processLocally: true };
   if (quality) options.quality = quality;
-  return Recognition.available(options);
+  return withTimeout(
+    Recognition.available(options),
+    AVAILABILITY_TIMEOUT_MS,
+    'On-device speech availability check timed out.'
+  );
 }
 
 async function installLanguagePack(Recognition, lang, quality) {
   if (typeof Recognition.install !== 'function') return false;
   const options = { langs: [lang], processLocally: true };
   if (quality) options.quality = quality;
-  return Recognition.install(options);
+  return withTimeout(
+    Recognition.install(options),
+    INSTALL_TIMEOUT_MS,
+    'On-device Japanese speech pack installation timed out.'
+  );
 }
 
 async function prepareQuality(Recognition, lang, quality, onStatus) {
@@ -32,13 +56,33 @@ async function prepareQuality(Recognition, lang, quality, onStatus) {
   if (availability === 'available') return true;
   if (availability === 'unavailable') return false;
 
-  if (availability === 'downloadable' || availability === 'downloading') {
+  // Some Chromium builds can leave available() at "downloading" for a long
+  // time while install() never resolves. Give the browser a short chance to
+  // finish an already-running download, then fall back to local Whisper for
+  // this session instead of blocking Emma forever.
+  if (availability === 'downloading') {
+    onStatus?.('端末内の日本語音声認識データをダウンロード中です…');
+    const deadline = Date.now() + DOWNLOADING_WAIT_MS;
+    while (Date.now() < deadline) {
+      await delay(DOWNLOAD_POLL_MS);
+      availability = await queryAvailability(Recognition, lang, quality);
+      if (availability === 'available') return true;
+      if (availability === 'unavailable') return false;
+      if (availability === 'downloadable') break;
+    }
+    if (availability === 'downloading') {
+      throw new Error('On-device Japanese speech pack is still downloading.');
+    }
+  }
+
+  if (availability === 'downloadable') {
     onStatus?.('端末内の日本語音声認識データを準備しています…');
     const installed = await installLanguagePack(Recognition, lang, quality);
     if (!installed) return false;
     availability = await queryAvailability(Recognition, lang, quality);
     return availability === 'available';
   }
+
   return false;
 }
 
