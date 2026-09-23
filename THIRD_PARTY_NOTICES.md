@@ -2,11 +2,11 @@
 
 ## Moonshine Voice / Japanese Small Streaming STT
 
-Emma Web uses the Moonshine Voice WebAssembly runtime and the Japanese Small
+Emma Web uses the Moonshine Voice WebAssembly runtime and the Japanese Tiny
 Streaming speech-to-text model from Moonshine AI.
 
 - Runtime: `@moonshine-ai/moonshine-wasm`
-- Model: Japanese Small Streaming
+- Model: Japanese Tiny Streaming
 - License: MIT
 - Upstream: https://github.com/moonshine-ai/moonshine
 
