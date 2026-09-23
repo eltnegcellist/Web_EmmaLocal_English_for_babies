@@ -17,7 +17,7 @@ const ui = {
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
-  keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
+  keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), ttsTiming:$('ttsTiming'), fullModeButton:$('fullModeButton'),
   supertonicVoice:$('supertonicVoice'),
   voicePreviewButton:$('voicePreviewButton'), ttsEngineDescription:$('ttsEngineDescription'), voicePreviewText:$('voicePreviewText'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
@@ -400,6 +400,10 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     if(workersReady) onRuntimeError(m.message);
   } else if(m.type==='audio') enqueueAudio(m);
   else if(m.type==='complete') {
+    if(Number.isFinite(m.generationMs) && Number.isFinite(m.audioMs) && m.generationMs>0){
+      const ratio=(m.audioMs/m.generationMs).toFixed(1);
+      ui.ttsTiming.textContent=`音声生成: ${(m.generationMs/1000).toFixed(2)}秒 / 音声${(m.audioMs/1000).toFixed(2)}秒（${ratio}×リアルタイム）`;
+    }
     const q=audioQueues.get(m.requestId);
     if(q){
       if(Number.isInteger(m.total)) q.total=Math.max(q.total,m.total);
