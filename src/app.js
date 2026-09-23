@@ -723,7 +723,7 @@ function getSelectedTtsVoice() {
 }
 
 function getTtsSignature() {
-  return getTtsEngine()==='kitten' ? 'kitten-nano-webgpu' : 'supertonic-wasm';
+  return getTtsEngine()==='kitten' ? 'kitten-nano-int8-wasm' : 'supertonic-wasm';
 }
 
 function resetTtsWorker() {
@@ -754,7 +754,7 @@ function updateTtsSettings() {
   ui.supertonicVoiceRow.classList.toggle('hidden',kitten);
   ui.kittenVoiceRow.classList.toggle('hidden',!kitten);
   ui.ttsEngineDescription.textContent=kitten
-    ? 'Kitten Nano（15M級）をWebGPUで動かす比較モードです。Supertonic CPUとの実測速度を同じ例文で比べられます。'
+    ? 'Kitten Nano INT8（15M・約28MB）をCPU（WebAssembly）で動かす比較モードです。Supertonic 3もCPU/WASMなので、同じ条件で実測速度を比べられます。'
     : 'Supertonic 3をCPU（WebAssembly）で実行します。標準音声はF3です。GPUは使用しません。';
   ui.voicePreviewText.textContent='試聴文：Hi, Hana-chan! Bath time! Splash, splash! Here we go!';
 }
