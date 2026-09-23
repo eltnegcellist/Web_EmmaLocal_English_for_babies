@@ -24,7 +24,7 @@ const ui = {
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
-const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v8';
+const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v9';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -54,6 +54,12 @@ const MOONSHINE_MODEL_FILES = [
   'frontend.model.ort',
   'frontend.weights.ort',
   'streaming_config.json',
+  'tokenizer.bin'
+];
+const MOONSHINE_LEGACY_TINY_BASE = 'https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/';
+const MOONSHINE_LEGACY_TINY_FILES = [
+  'encoder_model.ort',
+  'decoder_model_merged.ort',
   'tokenizer.bin'
 ];
 let moonshineTranscriber, moonshineModule, ttsWorker, mic, wakeLock;
@@ -403,7 +409,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-moonshine-direct-2',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-moonshine-compat-3',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -427,8 +433,12 @@ async function initMoonshine() {
     throw new Error('Moonshineの公式Transcriberを読み込めませんでした。');
   }
 
-  const onProgress=(loaded,total,file)=>{
-    moonshineStage='download';
+  let loadedVariant='tiny-streaming-ja';
+  let loadedArchitecture='tiny_streaming';
+  let loadedLicense='MIT';
+
+  const makeProgress=(label)=>(loaded,total,file)=>{
+    moonshineStage=label==='互換Tiny' ? 'legacy-download' : 'download';
     const safeLoaded=Number(loaded)||0;
     const safeTotal=Number(total)||0;
     const fraction=safeTotal>0 ? safeLoaded/safeTotal : 0;
@@ -440,13 +450,32 @@ async function initMoonshine() {
     const fileName=String(file||'').split('/').pop();
     showMoonshineProgress(
       progress,
-      `Moonshine 日本語 Tinyを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
+      `Moonshine 日本語 ${label}を取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
     );
   };
-  const common={
+
+  const streamingCommon={
     modelArch:ModelArch.TinyStreaming,
     options:{max_tokens_per_second:'13.0'},
-    onProgress
+    onProgress:makeProgress('Tiny')
+  };
+
+  const loadLegacyTiny=async(reason)=>{
+    console.warn('Moonshine Tiny Streaming is incompatible with this WASM build; using legacy Japanese Tiny.',reason);
+    moonshineStage='legacy-download';
+    showMoonshineProgress(1,'Moonshine 日本語互換Tinyへ切り替えています…');
+    const files=Object.fromEntries(
+      MOONSHINE_LEGACY_TINY_FILES.map(name=>[name,MOONSHINE_LEGACY_TINY_BASE+name])
+    );
+    const transcriber=await Transcriber.loadFromUrls(files,{
+      modelArch:ModelArch.Tiny,
+      options:{max_tokens_per_second:'13.0'},
+      onProgress:makeProgress('互換Tiny')
+    });
+    loadedVariant='tiny-ja-legacy';
+    loadedArchitecture='tiny';
+    loadedLicense='Moonshine Community License';
+    return transcriber;
   };
 
   let nextTranscriber;
@@ -454,38 +483,57 @@ async function initMoonshine() {
     moonshineStage='catalog';
     nextTranscriber=await Transcriber.load({
       language:'ja',
-      ...common
+      ...streamingCommon
     });
   } catch(firstError) {
-    console.warn('Moonshine catalog load failed; retrying with direct model URLs.',firstError);
-    moonshineStage='direct-download';
-    showMoonshineProgress(1,'Moonshineのモデル一覧取得を迂回して再試行しています…');
-    const files=Object.fromEntries(
-      MOONSHINE_MODEL_FILES.map(name=>[name,MOONSHINE_MODEL_BASE+name])
-    );
-    try {
-      nextTranscriber=await Transcriber.loadFromUrls(files,common);
-    } catch(secondError) {
-      moonshineStage='model-build';
-      secondError.moonshineFirstError=firstError;
-      throw secondError;
+    if(isMoonshineInvalidArgument(firstError)){
+      nextTranscriber=await loadLegacyTiny(firstError);
+    } else {
+      console.warn('Moonshine catalog load failed; retrying with direct streaming model URLs.',firstError);
+      moonshineStage='direct-download';
+      showMoonshineProgress(1,'Moonshineのモデル一覧取得を迂回して再試行しています…');
+      const files=Object.fromEntries(
+        MOONSHINE_MODEL_FILES.map(name=>[name,MOONSHINE_MODEL_BASE+name])
+      );
+      try {
+        nextTranscriber=await Transcriber.loadFromUrls(files,streamingCommon);
+      } catch(secondError) {
+        if(isMoonshineInvalidArgument(secondError)){
+          nextTranscriber=await loadLegacyTiny(secondError);
+        } else {
+          moonshineStage='model-build';
+          secondError.moonshineFirstError=firstError;
+          throw secondError;
+        }
+      }
     }
   }
 
   moonshineStage='ready';
   moonshineTranscriber?.close?.();
   moonshineTranscriber=nextTranscriber;
-  showMoonshineProgress(100,'Moonshine 日本語音声認識を準備できました');
+  showMoonshineProgress(
+    100,
+    loadedArchitecture==='tiny_streaming'
+      ? 'Moonshine 日本語音声認識を準備できました'
+      : 'Moonshine 日本語音声認識を互換モードで準備できました'
+  );
 
   return {
     kind:'moonshine',
     engine:'moonshine',
-    model:'tiny-streaming-ja',
-    architecture:'tiny_streaming',
-    license:'MIT',
+    model:loadedVariant,
+    architecture:loadedArchitecture,
+    license:loadedLicense,
     device:'wasm-cpu',
     worker:'none-batch-transcriber'
   };
+}
+
+function isMoonshineInvalidArgument(error) {
+  return error?.code===-3 ||
+    error?.name==='MoonshineInvalidArgumentError' ||
+    /^invalid argument$/i.test(String(error?.message||error||'').trim());
 }
 
 function showMoonshineProgress(progress,message) {
@@ -735,6 +783,7 @@ function friendlyError(error) {
       catalog:'モデル一覧取得',
       download:'モデル取得',
       'direct-download':'モデル直接取得',
+      'legacy-download':'互換Tinyモデル取得',
       'model-build':'モデル構築',
       ready:'準備完了後'
     };
@@ -787,7 +836,10 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent='ASR: Moonshine Japanese Tiny Streaming / 端末内WASM ・ 音声: Kitten TTS Nano Kiki / 端末内';
+  const asrLabel=asrInfoCache.architecture==='tiny_streaming'
+    ? 'Moonshine Japanese Tiny Streaming'
+    : 'Moonshine Japanese Tiny（互換モード）';
+  ui.runtimeBackend.textContent=`ASR: ${asrLabel} / 端末内WASM ・ 音声: Kitten TTS Nano Kiki / 端末内`;
 }
 
 function updateAppearanceSettings() {
@@ -865,7 +917,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260923-moonshine-direct-2',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260923-moonshine-compat-3',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
