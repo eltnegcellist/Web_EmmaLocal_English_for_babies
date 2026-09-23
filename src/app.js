@@ -574,6 +574,7 @@ function showConversation(parentText,emmaText) {
 }
 
 function onRuntimeError(message) {
+  nativeAsr?.pause();
   processing=false;
   speaking=false;
   setBusy(false);
@@ -633,7 +634,7 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent=`ASR: 端末内Web Speech (${asrInfoCache.language}) / TTS: Supertonic 3 ${getSupertonicVoice()} ${ttsInfoCache.device}`;
+  ui.runtimeBackend.textContent=`ASR: 端末内Web Speech (${asrInfoCache.language}, ${asrInfoCache.quality}) / TTS: Supertonic 3 ${getSupertonicVoice()} ${ttsInfoCache.device}`;
 }
 
 function updateTtsSettings() {
