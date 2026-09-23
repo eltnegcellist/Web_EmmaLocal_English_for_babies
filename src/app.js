@@ -104,13 +104,13 @@ function bindEvents() {
 
   ui.parentAudienceButton.addEventListener('click',()=>showNotice(
     '親へ話すモード',
-    'Web版はEmma Liteのみで、「赤ちゃんへ」に対応しています。Android版には Lite / Standard / Full があり、親との会話やより柔軟な応答はStandard / Fullで利用できます。',
+    'Web版はEmma Liteのみで、「赤ちゃんへ」に対応しています。Android版には Lite / Full があり、親との会話やより柔軟な応答はFullで利用できます。',
     'https://github.com/eltnegcellist/Android_English_character_for_baby',
     'Android版EmmaをGitHubで見る'
   ));
   ui.fullModeButton.addEventListener('click',()=>showNotice(
     'Emma Full',
-    'Web版はEmma Liteのみです。Android版には Lite / Standard / Full の3つがあり、Standard / FullはAndroid版で利用できます。',
+    'Web版はEmma Liteのみです。Android版には Lite / Full の2つがあり、FullはAndroid版で利用できます。',
     'https://github.com/eltnegcellist/Android_English_character_for_baby',
     'Android版EmmaをGitHubで見る'
   ));
@@ -837,7 +837,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260923-int8-streaming',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260923-lite-full',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;

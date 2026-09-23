@@ -10,7 +10,7 @@ Web版は **Emma Liteのみ** です。
 
 エディション構成は次のとおりです。
 
-- **Android版:** Lite / Standard / Full
+- **Android版:** Lite / Full
 - **Web版:** Lite
 
 ```text
@@ -34,7 +34,7 @@ Emma avatar + PCM-linked lip sync
 - Kittenのブラウザ実行コードはEmma側に固定したブラウザ専用ランタイムを使用し、Node.js用の`fs`処理は含みません
 - FP32モデルへの自動切替は行いません。INT8の読み込みに失敗した場合はエラーを表示します
 - Android版Emmaとは別repositoryとして開発します
-- Web版はLiteのみです。Standard / FullはAndroid版で提供します
+- Web版はLiteのみです。FullはAndroid版で提供します
 
 ## Local development
 
