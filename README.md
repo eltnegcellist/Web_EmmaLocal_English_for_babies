@@ -11,9 +11,9 @@ Emma Web is the APK-free browser/PWA edition of Emma.
 ```text
 Microphone
 ↓
-AudioWorklet + adaptive endpoint detection
-↓
-Whisper tiny (browser-local ASR)
+Native on-device Web Speech (processLocally=true)
+↓ unavailable
+Whisper tiny (browser-local WASM fallback)
 ↓
 LiteResponseEngine
 ↓
@@ -22,8 +22,10 @@ Supertonic 3 / F3 (browser-local CPU/WASM TTS)
 Emma avatar + PCM-linked lip sync
 ```
 
-- 会話処理はブラウザ内ローカル実行を基本とします
-- 初回はWhisper/Supertonic 3等のモデル取得に通信を使います
+- 音声認識は端末内Web Speechを優先し、利用できない環境だけWhisper tinyのブラウザ内WASMへFallbackします
+- Web Speechは `processLocally=true` を明示できる実装だけを使用し、クラウドASRへはFallbackしません
+- 初回は端末内SpeechRecognition言語パック、Whisper、Supertonic 3等のモデル取得に通信を使う場合があります
+- 認識・返答選択・音声生成の推論は端末内で実行します
 - 標準TTSはSupertonic 3 / F3をCPU/WASMで実行します
 - Android版Emmaとは別repositoryとして開発します
 - Full Gemma modeは今後追加予定です

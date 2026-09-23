@@ -1,4 +1,5 @@
 import { EmmaMicrophone } from './audio-capture.js';
+import { NativeLocalAsr, prepareNativeLocalAsr } from './native-asr.js';
 import { LiteResponseEngine } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 
@@ -40,8 +41,9 @@ if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyNam
 if (new URLSearchParams(location.search).has('debug')) document.body.classList.add('debug');
 
 const engine = new LiteResponseEngine();
-let asrWorker, ttsWorker, mic, wakeLock;
+let asrWorker, ttsWorker, mic, nativeAsr, wakeLock;
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
+let switchingAsrBackend=false;
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
 let audioContext=null;
@@ -239,24 +241,17 @@ async function prepareFirstRun() {
 async function startEmma() {
   ui.mainButton.disabled=true;
   try {
-    setState('thinking','Emmaを準備しています','初回はモデルの読み込みに時間がかかることがあります。');
+    setState('thinking','Emmaを準備しています','初回は端末内の音声認識やモデルの読み込みに時間がかかることがあります。');
     setBusy(true);
-    showProgress(true,0,'モデルを準備しています…');
+    showProgress(true,0,'端末内の音声認識を準備しています…');
     await navigator.storage?.persist?.().catch(()=>false);
     await initWorkers();
     await initAudioContext();
 
-    mic = new EmmaMicrophone({
-      onState:(state)=>{
-        if(processing||speaking)return;
-        if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
-        else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
-      },
-      onUtterance:handleCapturedUtterance,
-      shouldIgnore:()=>processing||speaking
-    });
-    await mic.start();
     running=true;
+    if(asrInfoCache?.kind==='native') startNativeAsrSession();
+    else await startWhisperCapture();
+
     ui.mainButton.classList.add('hidden');
     ui.stopButton.classList.remove('hidden');
     setBusy(false);
@@ -265,6 +260,11 @@ async function startEmma() {
     setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   } catch(error) {
     console.error(error);
+    running=false;
+    nativeAsr?.stop();
+    nativeAsr=null;
+    await mic?.stop().catch(()=>{});
+    mic=null;
     setBusy(false);
     showProgress(false);
     setState('error','開始できませんでした',friendlyError(error));
@@ -277,6 +277,8 @@ async function stopEmma() {
   processing=false;
   speaking=false;
   pendingUtterance=null;
+  nativeAsr?.stop();
+  nativeAsr=null;
   for(const q of audioQueues.values()) q.resolve?.();
   audioQueues.clear();
   if(activeAudioSource){
@@ -299,34 +301,108 @@ function handleCapturedUtterance(audio) {
   if(!running||processing||speaking)return;
   if(ui.autoRespond.checked) transcribeUtterance(audio);
   else {
-    pendingUtterance=audio;
+    pendingUtterance={kind:'audio',audio};
     ui.manualReplyButton.classList.remove('hidden');
     setState('understood','話し終わりを検出しました','「今返事して」を押すとEmmaが返事します。');
   }
 }
 
+function handleNativeTranscript(text) {
+  if(!running||processing||speaking)return;
+  const clean=String(text||'').replace(/\s+/g,' ').trim();
+  if(!clean){
+    nativeAsr?.resume();
+    return;
+  }
+  if(ui.autoRespond.checked) processTranscript(clean);
+  else {
+    pendingUtterance={kind:'text',text:clean};
+    ui.manualReplyButton.classList.remove('hidden');
+    setState('understood','聞き取りました','「今返事して」を押すとEmmaが返事します。');
+  }
+}
+
 function respondToPendingUtterance() {
   if(!pendingUtterance||processing||speaking)return;
-  const audio=pendingUtterance;
+  const pending=pendingUtterance;
   pendingUtterance=null;
   ui.manualReplyButton.classList.add('hidden');
-  transcribeUtterance(audio);
+  if(pending.kind==='text') processTranscript(pending.text);
+  else if(pending.kind==='audio') transcribeUtterance(pending.audio);
+}
+
+function startNativeAsrSession() {
+  nativeAsr?.stop();
+  nativeAsr=new NativeLocalAsr({
+    lang:asrInfoCache?.lang || 'ja-JP',
+    quality:asrInfoCache?.quality || 'default',
+    onTranscript:handleNativeTranscript,
+    onState:(state)=>{
+      if(!running||processing||speaking)return;
+      if(state==='speechstart') setState('endpoint','聞いています…','そのまま日本語で話してください。');
+      else if(state==='speechend') setState('thinking','聞き取りを確認しています…','端末内で音声を文字にしています。');
+      else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+    },
+    onError:handleNativeAsrError
+  });
+  nativeAsr.start();
+}
+
+async function startWhisperCapture() {
+  if(mic) return;
+  mic=new EmmaMicrophone({
+    onState:(state)=>{
+      if(processing||speaking)return;
+      if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
+      else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+    },
+    onUtterance:handleCapturedUtterance,
+    shouldIgnore:()=>processing||speaking
+  });
+  await mic.start();
+}
+
+async function handleNativeAsrError(error) {
+  if(!running) return;
+  const code=error?.code || 'unknown';
+  console.warn('Native local ASR error:',code,error);
+  if(code==='not-allowed' || code==='audio-capture'){
+    onRuntimeError('マイクを利用できません。ブラウザのマイク権限を確認してください。');
+    return;
+  }
+  await switchToWhisperFallback(code);
+}
+
+async function switchToWhisperFallback(reason='native-error') {
+  if(switchingAsrBackend || asrInfoCache?.kind==='whisper') return;
+  switchingAsrBackend=true;
+  nativeAsr?.stop();
+  nativeAsr=null;
+  showProgress(true,0,'端末内Fallback音声認識を準備しています…');
+  try {
+    asrInfoCache=null;
+    const info=await initWhisperFallback();
+    asrInfoCache=info;
+    updateRuntimeBackend();
+    if(running) await startWhisperCapture();
+    showProgress(false);
+    setState('listening','Emmaが聞いています','端末内Fallbackで日本語を聞き取ります。');
+    console.info('Switched to local Whisper fallback:',reason);
+  } catch(error) {
+    console.error(error);
+    showProgress(false);
+    onRuntimeError(error?.message || String(error));
+  } finally {
+    switchingAsrBackend=false;
+  }
 }
 
 async function initWorkers() {
   const signature=getTtsSignature();
 
-  let asrReady;
-  if(asrWorker && asrInfoCache){
-    asrReady=Promise.resolve(asrInfoCache);
-  }else{
-    asrReady=new Promise((resolve,reject)=>{
-      asrWorker=new Worker(new URL('./asr-worker.js',import.meta.url),{type:'module'});
-      asrWorker.onmessage=(event)=>handleAsrMessage(event,resolve,reject);
-      asrWorker.onerror=reject;
-      asrWorker.postMessage({type:'init',preferWebGpu:false});
-    });
-  }
+  const asrReady=asrInfoCache
+    ? Promise.resolve(asrInfoCache)
+    : initLocalAsrBackend();
 
   let ttsReady;
   if(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature){
@@ -348,6 +424,33 @@ async function initWorkers() {
   ttsInfoCache=ttsInfo;
   workersReady=true;
   updateRuntimeBackend();
+}
+
+async function initLocalAsrBackend() {
+  try {
+    return await prepareNativeLocalAsr({
+      lang:'ja-JP',
+      onStatus:(message)=>{
+        showProgress(true,0,message);
+        showOnboardingProgress(true,0,message);
+      }
+    });
+  } catch(error) {
+    console.info('Native local ASR unavailable; using local Whisper fallback.',error);
+    return initWhisperFallback();
+  }
+}
+
+function initWhisperFallback() {
+  if(asrWorker && asrInfoCache?.kind==='whisper') return Promise.resolve(asrInfoCache);
+  asrWorker?.terminate();
+  asrWorker=null;
+  return new Promise((resolve,reject)=>{
+    asrWorker=new Worker(new URL('./asr-worker.js',import.meta.url),{type:'module'});
+    asrWorker.onmessage=(event)=>handleAsrMessage(event,(info)=>resolve({...info,kind:'whisper'}),reject);
+    asrWorker.onerror=reject;
+    asrWorker.postMessage({type:'init',preferWebGpu:false});
+  });
 }
 
 async function ensureWorkersForDebug() {
@@ -395,19 +498,27 @@ function handleTtsMessage(event,readyResolve,readyReject) {
 }
 
 function transcribeUtterance(audio) {
-  if(!running||processing||speaking)return;
+  if(!running||processing||speaking||!asrWorker)return;
   processing=true;
   setBusy(true);
-  setState('thinking','聞き取っています…','音声はこのブラウザ内のWhisperで処理しています。');
+  setState('thinking','聞き取っています…','音声はEmma内蔵の認識機能で端末内処理しています。');
   const id=++requestSeq;
   asrWorker.postMessage({type:'transcribe',id,audio:audio.buffer},[audio.buffer]);
 }
 
 async function onTranscript({text}) {
-  const clean=(text||'').replace(/\s+/g,' ').trim();
+  await processTranscript(text);
+}
+
+async function processTranscript(text) {
+  if(!running||speaking)return;
+  processing=true;
+  setBusy(true);
+  const clean=String(text||'').replace(/\s+/g,' ').trim();
   if(!clean){
     processing=false;
     setBusy(false);
+    if(asrInfoCache?.kind==='native') nativeAsr?.resume();
     setState('listening','Emmaが聞いています','うまく聞き取れませんでした。もう一度そのまま話してください。');
     return;
   }
@@ -422,14 +533,19 @@ async function onTranscript({text}) {
 
 async function speakResponse(text) {
   if(!ttsWorker) throw new Error('Emmaの声がまだ準備されていません');
+  if(asrInfoCache?.kind==='native') nativeAsr?.pause();
   speaking=true;
   const requestId=++requestSeq;
   audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
   const done=new Promise(resolve=>audioQueues.get(requestId).resolve=resolve);
   setState('speaking','Emmaがお話ししています',text);
-  ttsWorker.postMessage({type:'speak',requestId,text});
-  await done;
-  speaking=false;
+  try {
+    ttsWorker.postMessage({type:'speak',requestId,text});
+    await done;
+  } finally {
+    speaking=false;
+    if(running && asrInfoCache?.kind==='native') nativeAsr?.resume();
+  }
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   else setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
 }
@@ -617,7 +733,10 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent=`推論: Whisper ${asrInfoCache.device} / Supertonic 3 F3 ${ttsInfoCache.device}`;
+  const asrLabel=asrInfoCache.kind==='native'
+    ? 'ASR: 端末内Web Speech / ja-JP'
+    : 'ASR: Whisper / 端末内Fallback';
+  ui.runtimeBackend.textContent=`${asrLabel} ・ 音声: Supertonic 3 F3 / 端末内`;
 }
 
 function updateAppearanceSettings() {
