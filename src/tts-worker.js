@@ -8,7 +8,11 @@ async function ensureSupertonic() {
   if (supertonicPipeline) return supertonicPipeline;
 
   self.postMessage({ type: 'status', progress: 0, message: 'Supertonic 3をCPUで準備しています…' });
-  const { env, pipeline } = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0/+esm');
+  const { env, pipeline } = await withTimeout(
+    import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0/+esm'),
+    30000,
+    'Supertonic 3の実行モジュールを取得できませんでした。通信状態を確認して、もう一度お試しください。'
+  );
   env.allowLocalModels = false;
   env.useBrowserCache = true;
 
@@ -78,7 +82,11 @@ async function ensureSupertonic() {
 async function getSupertonicEmbedding() {
   if (supertonicEmbeddings.has('F3')) return supertonicEmbeddings.get('F3');
 
-  const response = await fetch(`${SUPERTONIC_VOICE_BASE}/F3.bin`);
+  const response = await fetchWithTimeout(
+    `${SUPERTONIC_VOICE_BASE}/F3.bin`,
+    30000,
+    'Supertonic voice F3 の取得に時間がかかりすぎています。'
+  );
   if (!response.ok) throw new Error('Supertonic voice F3 の取得に失敗しました。');
   const embedding = new Float32Array(await response.arrayBuffer());
   supertonicEmbeddings.set('F3', embedding);
@@ -184,4 +192,17 @@ function withTimeout(promise, ms, message) {
     timer = setTimeout(() => reject(new Error(message)), ms);
   });
   return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+}
+
+async function fetchWithTimeout(url, ms, message) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  try {
+    return await fetch(url, { signal: controller.signal });
+  } catch (error) {
+    if (error?.name === 'AbortError') throw new Error(message);
+    throw error;
+  } finally {
+    clearTimeout(timer);
+  }
 }
