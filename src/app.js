@@ -1,4 +1,5 @@
 import { EmmaMicrophone } from './audio-capture.js';
+import { NativeLocalAsr, prepareNativeAsr } from './native-asr.js';
 import { LiteResponseEngine } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 
@@ -46,7 +47,7 @@ if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyNam
 if (new URLSearchParams(location.search).has('debug')) document.body.classList.add('debug');
 
 const engine = new LiteResponseEngine();
-let asrWorker, ttsWorker, mic, wakeLock;
+let asrWorker, nativeAsr, ttsWorker, mic, wakeLock;
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
@@ -274,17 +275,33 @@ async function startEmma() {
     await initWorkers();
     await initAudioContext();
 
-    mic = new EmmaMicrophone({
-      onState:(state)=>{
-        if(processing||speaking)return;
-        if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
-        else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
-      },
-      onUtterance:handleCapturedUtterance,
-      shouldIgnore:()=>processing||speaking
-    });
-    await mic.start();
-    running=true;
+    if(asrInfoCache?.kind==='native'){
+      running=true;
+      nativeAsr = new NativeLocalAsr({
+        onState:(state)=>{
+          if(processing||speaking)return;
+          if(state==='endpoint') setState('endpoint','聞き取り中です…','日本語の音声認識は端末内で処理しています。');
+          else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+        },
+        onTranscript:handleNativeTranscript,
+        onError:(message)=>{
+          if(running) onRuntimeError(message);
+        }
+      });
+      nativeAsr.start();
+    }else{
+      mic = new EmmaMicrophone({
+        onState:(state)=>{
+          if(processing||speaking)return;
+          if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
+          else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+        },
+        onUtterance:handleCapturedUtterance,
+        shouldIgnore:()=>processing||speaking
+      });
+      await mic.start();
+      running=true;
+    }
     ui.mainButton.classList.add('hidden');
     ui.stopButton.classList.remove('hidden');
     setBusy(false);
@@ -311,6 +328,8 @@ async function stopEmma() {
     try{activeAudioSource.stop();}catch{}
     activeAudioSource=null;
   }
+  nativeAsr?.stop();
+  nativeAsr=null;
   await mic?.stop().catch(()=>{});
   mic=null;
   wakeLock?.release?.().catch(()=>{});
@@ -323,11 +342,25 @@ async function stopEmma() {
   setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
 }
 
+function handleNativeTranscript(text) {
+  if(!running||processing||speaking)return;
+  const clean=(text||'').replace(/\s+/g,' ').trim();
+  if(!clean)return;
+  nativeAsr?.pause();
+  if(ui.autoRespond.checked) {
+    processTranscript(clean);
+  } else {
+    pendingUtterance={kind:'text',text:clean};
+    ui.manualReplyButton.classList.remove('hidden');
+    setState('understood','聞き取りました','「今返事して」を押すとEmmaが返事します。');
+  }
+}
+
 function handleCapturedUtterance(audio) {
   if(!running||processing||speaking)return;
   if(ui.autoRespond.checked) transcribeUtterance(audio);
   else {
-    pendingUtterance=audio;
+    pendingUtterance={kind:'audio',audio};
     ui.manualReplyButton.classList.remove('hidden');
     setState('understood','話し終わりを検出しました','「今返事して」を押すとEmmaが返事します。');
   }
@@ -335,26 +368,19 @@ function handleCapturedUtterance(audio) {
 
 function respondToPendingUtterance() {
   if(!pendingUtterance||processing||speaking)return;
-  const audio=pendingUtterance;
+  const pending=pendingUtterance;
   pendingUtterance=null;
   ui.manualReplyButton.classList.add('hidden');
-  transcribeUtterance(audio);
+  if(pending.kind==='text') processTranscript(pending.text);
+  else transcribeUtterance(pending.audio);
 }
 
 async function initWorkers() {
   const signature=getTtsSignature();
 
-  let asrReady;
-  if(asrWorker && asrInfoCache){
-    asrReady=Promise.resolve(asrInfoCache);
-  }else{
-    asrReady=new Promise((resolve,reject)=>{
-      asrWorker=new Worker(new URL('./asr-worker.js',import.meta.url),{type:'module'});
-      asrWorker.onmessage=(event)=>handleAsrMessage(event,resolve,reject);
-      asrWorker.onerror=reject;
-      asrWorker.postMessage({type:'init',preferWebGpu:false});
-    });
-  }
+  const asrReady = asrInfoCache
+    ? Promise.resolve(asrInfoCache)
+    : initLocalAsrBackend();
 
   let ttsReady;
   if(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature){
@@ -380,6 +406,27 @@ async function initWorkers() {
   ttsInfoCache=ttsInfo;
   workersReady=true;
   updateRuntimeBackend();
+}
+
+async function initLocalAsrBackend() {
+  try {
+    const info=await prepareNativeAsr(({progress,message})=>{
+      showProgress(true,progress??0,message||'端末内の日本語音声認識を確認しています…');
+      showOnboardingProgress(true,progress??0,message||'端末内の日本語音声認識を確認しています…');
+    });
+    return {...info,kind:'native'};
+  } catch(nativeError) {
+    const reason=nativeError?.message||String(nativeError);
+    showProgress(true,0,'この環境ではWhisperを端末内で使います…');
+    showOnboardingProgress(true,0,'この環境ではWhisperを端末内で使います…');
+    const info=await new Promise((resolve,reject)=>{
+      asrWorker=new Worker(new URL('./asr-worker.js',import.meta.url),{type:'module'});
+      asrWorker.onmessage=(event)=>handleAsrMessage(event,resolve,reject);
+      asrWorker.onerror=reject;
+      asrWorker.postMessage({type:'init',preferWebGpu:false});
+    });
+    return {...info,kind:'whisper',fallbackReason:reason};
+  }
 }
 
 async function ensureWorkersForDebug() {
@@ -430,6 +477,14 @@ function handleTtsMessage(event,readyResolve,readyReject) {
   }
 }
 
+async function processTranscript(text) {
+  if(!running||processing||speaking)return;
+  processing=true;
+  setBusy(true);
+  setState('thinking','聞き取れました','音声認識は端末内で完了しました。Emmaが返事を選んでいます。');
+  await onTranscript({text});
+}
+
 function transcribeUtterance(audio) {
   if(!running||processing||speaking)return;
   processing=true;
@@ -445,6 +500,7 @@ async function onTranscript({text}) {
     processing=false;
     setBusy(false);
     setState('listening','Emmaが聞いています','うまく聞き取れませんでした。もう一度そのまま話してください。');
+    if(asrInfoCache?.kind==='native') nativeAsr?.resume();
     return;
   }
   showConversation(clean,'');
@@ -466,7 +522,10 @@ async function speakResponse(text) {
   ttsWorker.postMessage({type:'speak',requestId,text,engine:getTtsEngine(),voice:getSelectedTtsVoice()});
   await done;
   speaking=false;
-  if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+  if(running) {
+    if(asrInfoCache?.kind==='native') nativeAsr?.resume();
+    setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+  }
   else setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
 }
 
@@ -599,6 +658,7 @@ function showConversation(parentText,emmaText) {
 }
 
 function onRuntimeError(message) {
+  nativeAsr?.pause();
   processing=false;
   speaking=false;
   setBusy(false);
@@ -683,7 +743,10 @@ function updateRuntimeBackend() {
   const ttsName=ttsInfoCache.engine==='kitten'
     ? `Kitten Nano ${getKittenVoice()} ${ttsInfoCache.device}`
     : `Supertonic 3 ${getSupertonicVoice()} ${ttsInfoCache.device}`;
-  ui.runtimeBackend.textContent=`推論: Whisper ${asrInfoCache.device} / ${ttsName}`;
+  const asrName=asrInfoCache.kind==='native'
+    ? `端末内Web Speech ${asrInfoCache.language} ${asrInfoCache.quality}`
+    : `Whisper ${asrInfoCache.device}（端末内Fallback）`;
+  ui.runtimeBackend.textContent=`ASR: ${asrName} / TTS: ${ttsName}`;
 }
 
 function updateTtsSettings() {
