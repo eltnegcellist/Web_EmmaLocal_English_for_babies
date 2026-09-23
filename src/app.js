@@ -348,7 +348,7 @@ async function initWorkers() {
   const signature=getTtsSignature();
 
   // Keep the two large browser-local models serialized on mobile.
-  // Supertonic is initialized first, then Moonshine.
+  // Kitten TTS is initialized first, then Moonshine. Keep large model loads serialized on mobile.
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
     ttsWorker?.terminate();
     ttsInfoCache=null;
@@ -654,7 +654,7 @@ function getSpokenBabyName() {
 }
 
 function getTtsSignature() {
-  return 'supertonic-f3-wasm';
+  return 'kitten-nano-int8-luna-wasm';
 }
 
 function updateRuntimeBackend() {
@@ -662,7 +662,7 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent='ASR: Moonshine Japanese Small Streaming / 端末内WASM ・ 音声: Supertonic 3 F3 / 端末内';
+  ui.runtimeBackend.textContent='ASR: Moonshine Japanese Tiny Streaming / 端末内WASM ・ 音声: Kitten TTS Nano INT8 Luna / 端末内';
 }
 
 function updateAppearanceSettings() {
