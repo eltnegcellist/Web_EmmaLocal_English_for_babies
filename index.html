@@ -237,14 +237,8 @@
 
         <article class="card">
           <h2>Emmaの声</h2>
-          <label>音声エンジン
-            <select id="ttsEngine">
-              <option value="supertonic">Supertonic 3（標準・CPU/WASM）</option>
-              <option value="kitten">Kitten Nano INT8（比較用・CPU/WASM）</option>
-            </select>
-          </label>
-
-          <label id="supertonicVoiceRow">Supertonicの声
+          <p class="small muted">Web版はSupertonic 3をCPU（WebAssembly）で動かします。GPUは使いません。</p>
+          <label>声
             <select id="supertonicVoice">
               <optgroup label="Female">
                 <option value="F1">F1</option>
@@ -262,19 +256,9 @@
               </optgroup>
             </select>
           </label>
-
-          <label id="kittenVoiceRow" class="hidden">Kittenの声
-            <select id="kittenVoice">
-              <option value="Luna">Luna（比較用）</option>
-              <option value="Bella">Bella</option>
-              <option value="Rosie">Rosie</option>
-              <option value="Kiki">Kiki</option>
-            </select>
-          </label>
-
-          <button id="voicePreviewButton" class="outline-button compact-button">同じ例文で速度を比較</button>
-          <p id="ttsEngineDescription" class="small muted"></p>
-          <p id="voicePreviewText" class="small muted">試聴文は、どの音声でも同じ文章を使います。</p>
+          <button id="voicePreviewButton" class="outline-button compact-button">この声を試す</button>
+          <p id="ttsEngineDescription" class="small muted">Supertonic 3 / F3を標準音声として使用します。</p>
+          <p id="voicePreviewText" class="small muted">試聴文は、どの声でも同じ文章を使います。</p>
         </article>
 
         <article class="card">
