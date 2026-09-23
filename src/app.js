@@ -1,5 +1,4 @@
 import { EmmaMicrophone } from './audio-capture.js';
-import { NativeLocalAsr, prepareNativeLocalAsr } from './native-asr.js';
 import { LiteResponseEngine } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 
@@ -41,9 +40,8 @@ if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyNam
 if (new URLSearchParams(location.search).has('debug')) document.body.classList.add('debug');
 
 const engine = new LiteResponseEngine();
-let asrWorker, ttsWorker, mic, nativeAsr, wakeLock;
+let asrWorker, ttsWorker, mic, wakeLock;
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
-let switchingAsrBackend=false;
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
 let audioContext=null;
@@ -241,16 +239,15 @@ async function prepareFirstRun() {
 async function startEmma() {
   ui.mainButton.disabled=true;
   try {
-    setState('thinking','Emmaを準備しています','初回は端末内の音声認識やモデルの読み込みに時間がかかることがあります。');
+    setState('thinking','Emmaを準備しています','初回はWhisperと音声モデルの読み込みに時間がかかることがあります。');
     setBusy(true);
-    showProgress(true,0,'端末内の音声認識を準備しています…');
+    showProgress(true,0,'Whisperを準備しています…');
     await navigator.storage?.persist?.().catch(()=>false);
     await initWorkers();
     await initAudioContext();
 
     running=true;
-    if(asrInfoCache?.kind==='native') startNativeAsrSession();
-    else await startWhisperCapture();
+    await startWhisperCapture();
 
     ui.mainButton.classList.add('hidden');
     ui.stopButton.classList.remove('hidden');
@@ -261,8 +258,6 @@ async function startEmma() {
   } catch(error) {
     console.error(error);
     running=false;
-    nativeAsr?.stop();
-    nativeAsr=null;
     await mic?.stop().catch(()=>{});
     mic=null;
     setBusy(false);
@@ -277,8 +272,6 @@ async function stopEmma() {
   processing=false;
   speaking=false;
   pendingUtterance=null;
-  nativeAsr?.stop();
-  nativeAsr=null;
   for(const q of audioQueues.values()) q.resolve?.();
   audioQueues.clear();
   if(activeAudioSource){
@@ -307,45 +300,12 @@ function handleCapturedUtterance(audio) {
   }
 }
 
-function handleNativeTranscript(text) {
-  if(!running||processing||speaking)return;
-  const clean=String(text||'').replace(/\s+/g,' ').trim();
-  if(!clean){
-    nativeAsr?.resume();
-    return;
-  }
-  if(ui.autoRespond.checked) processTranscript(clean);
-  else {
-    pendingUtterance={kind:'text',text:clean};
-    ui.manualReplyButton.classList.remove('hidden');
-    setState('understood','聞き取りました','「今返事して」を押すとEmmaが返事します。');
-  }
-}
-
 function respondToPendingUtterance() {
   if(!pendingUtterance||processing||speaking)return;
   const pending=pendingUtterance;
   pendingUtterance=null;
   ui.manualReplyButton.classList.add('hidden');
-  if(pending.kind==='text') processTranscript(pending.text);
-  else if(pending.kind==='audio') transcribeUtterance(pending.audio);
-}
-
-function startNativeAsrSession() {
-  nativeAsr?.stop();
-  nativeAsr=new NativeLocalAsr({
-    lang:asrInfoCache?.lang || 'ja-JP',
-    quality:asrInfoCache?.quality || 'default',
-    onTranscript:handleNativeTranscript,
-    onState:(state)=>{
-      if(!running||processing||speaking)return;
-      if(state==='speechstart') setState('endpoint','聞いています…','そのまま日本語で話してください。');
-      else if(state==='speechend') setState('thinking','聞き取りを確認しています…','端末内で音声を文字にしています。');
-      else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
-    },
-    onError:handleNativeAsrError
-  });
-  nativeAsr.start();
+  if(pending.kind==='audio') transcribeUtterance(pending.audio);
 }
 
 async function startWhisperCapture() {
@@ -362,47 +322,11 @@ async function startWhisperCapture() {
   await mic.start();
 }
 
-async function handleNativeAsrError(error) {
-  if(!running) return;
-  const code=error?.code || 'unknown';
-  console.warn('Native local ASR error:',code,error);
-  if(code==='not-allowed' || code==='audio-capture'){
-    onRuntimeError('マイクを利用できません。ブラウザのマイク権限を確認してください。');
-    return;
-  }
-  await switchToWhisperFallback(code);
-}
-
-async function switchToWhisperFallback(reason='native-error') {
-  if(switchingAsrBackend || asrInfoCache?.kind==='whisper') return;
-  switchingAsrBackend=true;
-  nativeAsr?.stop();
-  nativeAsr=null;
-  showProgress(true,0,'端末内Fallback音声認識を準備しています…');
-  try {
-    asrInfoCache=null;
-    const info=await initWhisperFallback();
-    asrInfoCache=info;
-    updateRuntimeBackend();
-    if(running) await startWhisperCapture();
-    showProgress(false);
-    setState('listening','Emmaが聞いています','端末内Fallbackで日本語を聞き取ります。');
-    console.info('Switched to local Whisper fallback:',reason);
-  } catch(error) {
-    console.error(error);
-    showProgress(false);
-    onRuntimeError(error?.message || String(error));
-  } finally {
-    switchingAsrBackend=false;
-  }
-}
-
 async function initWorkers() {
   const signature=getTtsSignature();
 
-  // Load Supertonic first and by itself. This is the heaviest first-run model
-  // and must not compete with Whisper for WASM memory or network bandwidth.
-  // Native Web Speech preparation happens only after TTS is fully ready.
+  // Keep the two large browser-local models serialized on mobile.
+  // Supertonic is initialized first, then Whisper.
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
     ttsWorker?.terminate();
     ttsInfoCache=null;
@@ -415,40 +339,17 @@ async function initWorkers() {
     });
   }
 
-  let nativeUnavailable=false;
   if(!asrInfoCache){
-    try {
-      asrInfoCache=await prepareNativeLocalAsr({
-        lang:'ja-JP',
-        onStatus:(message)=>{
-          showProgress(true,0,message);
-          showOnboardingProgress(true,0,message);
-        }
-      });
-    } catch(error) {
-      nativeUnavailable=true;
-      console.info('Native local ASR unavailable or timed out; Whisper fallback will be used.',error);
-    }
-  }
-
-  // Only after TTS is fully ready do we allocate the local Whisper fallback.
-  if(!asrInfoCache && nativeUnavailable){
-    showProgress(true,0,'端末内Fallback音声認識を準備しています…');
-    showOnboardingProgress(true,0,'端末内Fallback音声認識を準備しています…');
-    asrInfoCache=await initWhisperFallback();
-  }
-
-  if(!asrInfoCache){
-    // Defensive fallback if the native probe did not produce a backend for any
-    // reason. Still local-only.
-    asrInfoCache=await initWhisperFallback();
+    showProgress(true,0,'Whisperを準備しています…');
+    showOnboardingProgress(true,0,'Whisperを準備しています…');
+    asrInfoCache=await initWhisper();
   }
 
   workersReady=true;
   updateRuntimeBackend();
 }
 
-function initWhisperFallback() {
+function initWhisper() {
   if(asrWorker && asrInfoCache?.kind==='whisper') return Promise.resolve(asrInfoCache);
   asrWorker?.terminate();
   asrWorker=null;
@@ -508,7 +409,7 @@ function transcribeUtterance(audio) {
   if(!running||processing||speaking||!asrWorker)return;
   processing=true;
   setBusy(true);
-  setState('thinking','聞き取っています…','音声はEmma内蔵の認識機能で端末内処理しています。');
+  setState('thinking','聞き取っています…','Whisperで音声を端末内処理しています。');
   const id=++requestSeq;
   asrWorker.postMessage({type:'transcribe',id,audio:audio.buffer},[audio.buffer]);
 }
@@ -525,7 +426,6 @@ async function processTranscript(text) {
   if(!clean){
     processing=false;
     setBusy(false);
-    if(asrInfoCache?.kind==='native') nativeAsr?.resume();
     setState('listening','Emmaが聞いています','うまく聞き取れませんでした。もう一度そのまま話してください。');
     return;
   }
@@ -540,7 +440,6 @@ async function processTranscript(text) {
 
 async function speakResponse(text) {
   if(!ttsWorker) throw new Error('Emmaの声がまだ準備されていません');
-  if(asrInfoCache?.kind==='native') nativeAsr?.pause();
   speaking=true;
   const requestId=++requestSeq;
   audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
@@ -551,7 +450,6 @@ async function speakResponse(text) {
     await done;
   } finally {
     speaking=false;
-    if(running && asrInfoCache?.kind==='native') nativeAsr?.resume();
   }
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   else setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
@@ -740,10 +638,7 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  const asrLabel=asrInfoCache.kind==='native'
-    ? 'ASR: 端末内Web Speech / ja-JP'
-    : 'ASR: Whisper / 端末内Fallback';
-  ui.runtimeBackend.textContent=`${asrLabel} ・ 音声: Supertonic 3 F3 / 端末内`;
+  ui.runtimeBackend.textContent='ASR: Whisper tiny / 端末内WASM ・ 音声: Supertonic 3 F3 / 端末内';
 }
 
 function updateAppearanceSettings() {
