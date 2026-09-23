@@ -18,7 +18,9 @@ const ui = {
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
   keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
-  ttsEngine:$('ttsEngine'), kittenVoice:$('kittenVoice'), kittenVoiceRow:$('kittenVoiceRow'),
+  ttsEngine:$('ttsEngine'), kokoroVoice:$('kokoroVoice'), kokoroVoiceRow:$('kokoroVoiceRow'),
+  kittenModel:$('kittenModel'), kittenModelRow:$('kittenModelRow'), kittenVoice:$('kittenVoice'), kittenVoiceRow:$('kittenVoiceRow'),
+  supertonicVoice:$('supertonicVoice'), supertonicVoiceRow:$('supertonicVoiceRow'),
   voicePreviewButton:$('voicePreviewButton'), ttsEngineDescription:$('ttsEngineDescription'), voicePreviewText:$('voicePreviewText'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
@@ -35,7 +37,10 @@ const STORAGE = {
   autoRespond:'emma_auto_respond',
   useChanSuffix:'emma_use_chan_suffix',
   ttsEngine:'emma_tts_engine',
-  kittenVoice:'emma_kitten_voice'
+  kokoroVoice:'emma_kokoro_voice',
+  kittenModel:'emma_kitten_model',
+  kittenVoice:'emma_kitten_voice',
+  supertonicVoice:'emma_supertonic_voice'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -67,8 +72,11 @@ function initUi() {
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   ui.useChanSuffix.checked = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
-  ui.ttsEngine.value = localStorage.getItem(STORAGE.ttsEngine) || 'kokoro';
+  ui.ttsEngine.value = ['kokoro','kitten','supertonic'].includes(localStorage.getItem(STORAGE.ttsEngine)) ? localStorage.getItem(STORAGE.ttsEngine) : 'kokoro';
+  ui.kokoroVoice.value = localStorage.getItem(STORAGE.kokoroVoice) || 'af_heart';
+  ui.kittenModel.value = localStorage.getItem(STORAGE.kittenModel) || 'nano';
   ui.kittenVoice.value = localStorage.getItem(STORAGE.kittenVoice) || 'Luna';
+  ui.supertonicVoice.value = localStorage.getItem(STORAGE.supertonicVoice) || 'F3';
 
   bindEvents();
   updateGenderUi();
@@ -180,8 +188,21 @@ function bindEvents() {
     resetTtsWorker();
     updateTtsSettings();
   });
+  ui.kokoroVoice.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.kokoroVoice,ui.kokoroVoice.value);
+    updateTtsSettings();
+  });
+  ui.kittenModel.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.kittenModel,ui.kittenModel.value);
+    resetTtsWorker();
+    updateTtsSettings();
+  });
   ui.kittenVoice.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.kittenVoice,ui.kittenVoice.value);
+    updateTtsSettings();
+  });
+  ui.supertonicVoice.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.supertonicVoice,ui.supertonicVoice.value);
     updateTtsSettings();
   });
   ui.voicePreviewButton.addEventListener('click',previewSelectedVoice);
@@ -359,7 +380,8 @@ async function initWorkers() {
       ttsWorker.postMessage({
         type:'init',
         engine:getTtsEngine(),
-        voice:getKittenVoice()
+        model:getKittenModel(),
+        voice:getSelectedTtsVoice()
       });
     });
   }
@@ -402,7 +424,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     ui.ttsEngine.value='kokoro';
     ttsWorkerSignature='kokoro';
     updateTtsSettings();
-    ui.runtimeBackend.textContent='KittenTTSを利用できなかったためKokoroへ戻しました。';
+    ui.runtimeBackend.textContent='選択した実験音声を利用できなかったためKokoroへ戻しました。';
   }
   else if(m.type==='error') {
     readyReject?.(new Error(m.message));
@@ -455,7 +477,7 @@ async function speakResponse(text) {
   audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
   const done=new Promise(resolve=>audioQueues.get(requestId).resolve=resolve);
   setState('speaking','Emmaがお話ししています',text);
-  ttsWorker.postMessage({type:'speak',requestId,text,voice:getKittenVoice()});
+  ttsWorker.postMessage({type:'speak',requestId,text,engine:getTtsEngine(),model:getKittenModel(),voice:getSelectedTtsVoice()});
   await done;
   speaking=false;
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
@@ -637,15 +659,25 @@ function getSpokenBabyName() {
 }
 
 function getTtsEngine() {
-  return localStorage.getItem(STORAGE.ttsEngine)==='kitten' ? 'kitten' : 'kokoro';
+  const value=localStorage.getItem(STORAGE.ttsEngine);
+  return ['kokoro','kitten','supertonic'].includes(value) ? value : 'kokoro';
 }
 
-function getKittenVoice() {
-  return localStorage.getItem(STORAGE.kittenVoice) || 'Luna';
+function getKittenModel() {
+  const value=localStorage.getItem(STORAGE.kittenModel);
+  return ['nano','micro','mini'].includes(value) ? value : 'nano';
+}
+
+function getSelectedTtsVoice() {
+  const engine=getTtsEngine();
+  if(engine==='kitten') return localStorage.getItem(STORAGE.kittenVoice) || 'Luna';
+  if(engine==='supertonic') return localStorage.getItem(STORAGE.supertonicVoice) || 'F3';
+  return localStorage.getItem(STORAGE.kokoroVoice) || 'af_heart';
 }
 
 function getTtsSignature() {
-  return getTtsEngine();
+  const engine=getTtsEngine();
+  return engine==='kitten' ? `${engine}:${getKittenModel()}` : engine;
 }
 
 function resetTtsWorker() {
@@ -661,21 +693,46 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  const ttsName=ttsInfoCache.engine==='kitten'
-    ? `Kitten Nano ${getKittenVoice()} ${ttsInfoCache.device}`
-    : `Kokoro ${ttsInfoCache.device}`;
+  let ttsName;
+  if(ttsInfoCache.engine==='kitten') {
+    ttsName=`Kitten ${getKittenModel()} / ${getSelectedTtsVoice()} / ${ttsInfoCache.device}`;
+  } else if(ttsInfoCache.engine==='supertonic') {
+    ttsName=`Supertonic 3 / ${getSelectedTtsVoice()} / ${ttsInfoCache.device}`;
+  } else {
+    ttsName=`Kokoro / ${getSelectedTtsVoice()} / ${ttsInfoCache.device}`;
+  }
   ui.runtimeBackend.textContent=`推論: Whisper ${asrInfoCache.device} / ${ttsName}`;
 }
 
 function updateTtsSettings() {
-  const isKitten=ui.ttsEngine.value==='kitten';
+  const engine=ui.ttsEngine.value;
+  const isKokoro=engine==='kokoro';
+  const isKitten=engine==='kitten';
+  const isSupertonic=engine==='supertonic';
+
+  ui.kokoroVoiceRow.classList.toggle('hidden',!isKokoro);
+  ui.kittenModelRow.classList.toggle('hidden',!isKitten);
   ui.kittenVoiceRow.classList.toggle('hidden',!isKitten);
+  ui.supertonicVoiceRow.classList.toggle('hidden',!isSupertonic);
+
   const webGpuAvailable=!!navigator.gpu;
-  ui.ttsEngineDescription.textContent=isKitten
-    ? webGpuAvailable
-      ? 'KittenTTS Nano（約26MB）の実験モードです。初回だけモデルを取得します。Kokoroより軽く、WebGPUで高速化を狙います。'
-      : 'このブラウザではWebGPUが見つかりません。選択してもKokoroへ自動的に戻ります。'
-    : 'Kokoro af_heartを使います。現在の標準音声です。';
+  if(isKitten){
+    const modelInfo={
+      nano:'Nano 15M・約26MB',
+      micro:'Micro 40M・約43MB',
+      mini:'Mini 80M・約78MB'
+    }[ui.kittenModel.value] || 'Nano 15M・約26MB';
+    ui.ttsEngineDescription.textContent=webGpuAvailable
+      ? `KittenTTS ${modelInfo}。8種類の声を選べます。モデルを変えると初回だけ追加データを取得します。`
+      : 'KittenTTSはWebGPUが必要です。このブラウザで使えない場合はKokoroへ自動的に戻ります。';
+  } else if(isSupertonic){
+    ui.ttsEngineDescription.textContent=webGpuAvailable
+      ? 'Supertonic 3のWebGPU実験モードです。女性5声・男性5声を比較できます。初回はモデルの取得に時間がかかります。'
+      : 'Supertonic 3はWebGPUが必要です。このブラウザで使えない場合はKokoroへ自動的に戻ります。';
+  } else {
+    ui.ttsEngineDescription.textContent='Kokoro 82M。英語プリセット声をすべて選べます。文と文の長い間は固定休止ではなく、次の文の生成待ちが主因です。';
+  }
+
   const name=getSpokenBabyName() || 'Hana-chan';
   ui.voicePreviewText.textContent=`試聴文：Hi, ${name}! Bath time! Splash, splash! Here we go!`;
 }
