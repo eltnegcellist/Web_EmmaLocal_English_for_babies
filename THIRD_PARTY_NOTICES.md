@@ -33,13 +33,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-## Kitten TTS Nano 0.8
+## Kitten TTS Nano 0.8 INT8
 
-Emma Web uses the Kitten TTS Nano 0.8 speech-synthesis model from
+Emma Web uses the Kitten TTS Nano 0.8 INT8 speech-synthesis model from
 KittenML / Stellon Labs and the browser JavaScript port `kitten-tts-js`.
 
-- Model: `KittenML/kitten-tts-nano-0.8`
-- Browser runtime integration: `kitten-tts-js` 0.1.2
+- Model: `KittenML/kitten-tts-nano-0.8-int8`
+- Browser runtime integration: browser-only adapted subset of `kitten-tts-js` 0.1.2
+- Upstream runtime commit: `222cb5586764fa51f4e73d469d6b1e5d92a56f21`
+- The adapted subset removes Node.js-only `fs`, `path`, and `os` code paths
 - Model/runtime integration license: Apache License 2.0
 - Model upstream: https://github.com/KittenML/KittenTTS
 - JavaScript port attribution: Copyright 2026 Algiras
