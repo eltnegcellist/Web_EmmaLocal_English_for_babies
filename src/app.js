@@ -220,6 +220,7 @@ async function prepareFirstRun() {
   ui.prepareEmmaButton.disabled=true;
   showOnboardingProgress(true,0,'Emmaを準備しています…');
   try {
+    if(!(await ensureMoonshineIsolation())) return;
     await navigator.storage?.persist?.().catch(()=>false);
     await initWorkers();
     await initAudioContext();
@@ -239,9 +240,10 @@ async function prepareFirstRun() {
 async function startEmma() {
   ui.mainButton.disabled=true;
   try {
-    setState('thinking','Emmaを準備しています','初回はWhisperと音声モデルの読み込みに時間がかかることがあります。');
+    if(!(await ensureMoonshineIsolation())) return;
+    setState('thinking','Emmaを準備しています','初回はMoonshineと音声モデルの読み込みに時間がかかることがあります。');
     setBusy(true);
-    showProgress(true,0,'Whisperを準備しています…');
+    showProgress(true,0,'Moonshineを準備しています…');
     await navigator.storage?.persist?.().catch(()=>false);
     await initWorkers();
     await initAudioContext();
@@ -326,7 +328,7 @@ async function initWorkers() {
   const signature=getTtsSignature();
 
   // Keep the two large browser-local models serialized on mobile.
-  // Supertonic is initialized first, then Whisper.
+  // Supertonic is initialized first, then Moonshine.
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
     ttsWorker?.terminate();
     ttsInfoCache=null;
@@ -340,22 +342,22 @@ async function initWorkers() {
   }
 
   if(!asrInfoCache){
-    showProgress(true,0,'Whisperを準備しています…');
-    showOnboardingProgress(true,0,'Whisperを準備しています…');
-    asrInfoCache=await initWhisper();
+    showProgress(true,0,'Moonshineを準備しています…');
+    showOnboardingProgress(true,0,'Moonshineを準備しています…');
+    asrInfoCache=await initMoonshine();
   }
 
   workersReady=true;
   updateRuntimeBackend();
 }
 
-function initWhisper() {
-  if(asrWorker && asrInfoCache?.kind==='whisper') return Promise.resolve(asrInfoCache);
+function initMoonshine() {
+  if(asrWorker && asrInfoCache?.kind==='moonshine') return Promise.resolve(asrInfoCache);
   asrWorker?.terminate();
   asrWorker=null;
   return new Promise((resolve,reject)=>{
     asrWorker=new Worker(new URL('./asr-worker.js',import.meta.url),{type:'module'});
-    asrWorker.onmessage=(event)=>handleAsrMessage(event,(info)=>resolve({...info,kind:'whisper'}),reject);
+    asrWorker.onmessage=(event)=>handleAsrMessage(event,(info)=>resolve({...info,kind:'moonshine'}),reject);
     asrWorker.onerror=reject;
     asrWorker.postMessage({type:'init',preferWebGpu:false});
   });
@@ -372,8 +374,8 @@ async function ensureWorkersForDebug() {
 function handleAsrMessage(event,readyResolve,readyReject) {
   const m=event.data;
   if(m.type==='status') {
-    showProgress(true,m.progress??0,m.message||'Whisperを準備しています…');
-    showOnboardingProgress(true,m.progress??0,m.message||'Whisperを準備しています…');
+    showProgress(true,m.progress??0,m.message||'Moonshineを準備しています…');
+    showOnboardingProgress(true,m.progress??0,m.message||'Moonshineを準備しています…');
   } else if(m.type==='ready') readyResolve?.(m);
   else if(m.type==='error') {
     readyReject?.(new Error(m.message));
@@ -409,7 +411,7 @@ function transcribeUtterance(audio) {
   if(!running||processing||speaking||!asrWorker)return;
   processing=true;
   setBusy(true);
-  setState('thinking','聞き取っています…','Whisperで音声を端末内処理しています。');
+  setState('thinking','聞き取っています…','Moonshineで音声を端末内処理しています。');
   const id=++requestSeq;
   asrWorker.postMessage({type:'transcribe',id,audio:audio.buffer},[audio.buffer]);
 }
@@ -638,7 +640,7 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent='ASR: Whisper tiny / 端末内WASM ・ 音声: Supertonic 3 F3 / 端末内';
+  ui.runtimeBackend.textContent='ASR: Moonshine Japanese Small Streaming / 端末内WASM ・ 音声: Supertonic 3 F3 / 端末内';
 }
 
 function updateAppearanceSettings() {
@@ -703,6 +705,49 @@ function sanitizePlainName(value,max) {
 
 function delay(ms){return new Promise(r=>setTimeout(r,ms));}
 
+async function ensureMoonshineIsolation() {
+  if(window.crossOriginIsolated && typeof SharedArrayBuffer === 'function') {
+    sessionStorage.removeItem('emma_coi_reload_count');
+    return true;
+  }
+  if(!('serviceWorker' in navigator)) {
+    throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
+  }
+
+  const registration=await navigator.serviceWorker.register('./service-worker.js');
+  await registration.update().catch(()=>{});
+
+  const candidate=registration.installing || registration.waiting;
+  if(candidate && candidate.state!=='activated') {
+    await Promise.race([
+      new Promise(resolve=>{
+        const onState=()=>{
+          if(candidate.state==='activated' || candidate.state==='redundant'){
+            candidate.removeEventListener('statechange',onState);
+            resolve();
+          }
+        };
+        candidate.addEventListener('statechange',onState);
+        onState();
+      }),
+      delay(5000)
+    ]);
+  }
+
+  if(window.crossOriginIsolated && typeof SharedArrayBuffer === 'function') return true;
+
+  const reloadCount=Number(sessionStorage.getItem('emma_coi_reload_count')||'0');
+  if(reloadCount<2) {
+    sessionStorage.setItem('emma_coi_reload_count',String(reloadCount+1));
+    location.reload();
+    return false;
+  }
+
+  throw new Error('Moonshineに必要なブラウザ分離を有効にできませんでした。通常のブラウザタブで開き直してください。');
+}
+
 if('serviceWorker' in navigator) {
-  window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(console.warn));
+  window.addEventListener('load',()=>{
+    ensureMoonshineIsolation().catch(error=>console.warn('Moonshine isolation setup:',error));
+  });
 }
