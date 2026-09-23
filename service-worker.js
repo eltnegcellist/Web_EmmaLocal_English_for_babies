@@ -44,7 +44,7 @@ self.addEventListener('fetch',event=>{
           return isolated;
         })
         .catch(()=>caches.match(event.request).then(response=>
-          withIsolationHeaders(response || null)
+          response ? withIsolationHeaders(response) : Response.error()
         ))
     );
     return;
@@ -57,7 +57,7 @@ self.addEventListener('fetch',event=>{
         const copy=isolated.clone();
         caches.open(CACHE).then(c=>c.put(event.request,copy));
         return isolated;
-      }).catch(()=>cached ? withIsolationHeaders(cached) : undefined);
+      }).catch(()=>cached ? withIsolationHeaders(cached) : Response.error());
       return cached ? withIsolationHeaders(cached) : network;
     })
   );
