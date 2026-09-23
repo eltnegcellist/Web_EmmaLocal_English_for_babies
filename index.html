@@ -235,31 +235,6 @@
           <p class="small muted">より自由に、会話の流れに合わせてAIがその場で言葉を考えるモードです。Web版は今後対応予定です。</p>
         </article>
 
-        <article class="card">
-          <h2>Emmaの声</h2>
-          <p class="small muted">Web版はSupertonic 3をCPU（WebAssembly）で動かします。GPUは使いません。</p>
-          <label>声
-            <select id="supertonicVoice">
-              <optgroup label="Female">
-                <option value="F1">F1</option>
-                <option value="F2">F2</option>
-                <option value="F3">F3（標準）</option>
-                <option value="F4">F4</option>
-                <option value="F5">F5</option>
-              </optgroup>
-              <optgroup label="Male">
-                <option value="M1">M1</option>
-                <option value="M2">M2</option>
-                <option value="M3">M3</option>
-                <option value="M4">M4</option>
-                <option value="M5">M5</option>
-              </optgroup>
-            </select>
-          </label>
-          <button id="voicePreviewButton" class="outline-button compact-button">この声を試す</button>
-          <p id="ttsEngineDescription" class="small muted">Supertonic 3 / F3を標準音声として使用します。</p>
-          <p id="voicePreviewText" class="small muted">試聴文は、どの声でも同じ文章を使います。</p>
-        </article>
 
         <article class="card">
           <h2>Web版の動作</h2>
@@ -269,7 +244,6 @@
           </label>
           <div class="runtime-info">
             <span id="runtimeBackend">推論: 未初期化</span>
-            <span id="ttsTiming">音声生成: 未計測</span>
             <span>モデル保存: ブラウザキャッシュ</span>
           </div>
         </article>
