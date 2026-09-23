@@ -24,7 +24,7 @@ const ui = {
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
-const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v5';
+const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v6';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -44,7 +44,10 @@ if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyNam
 if (new URLSearchParams(location.search).has('debug')) document.body.classList.add('debug');
 
 const engine = new LiteResponseEngine();
-let asrWorker, ttsWorker, mic, wakeLock;
+const MOONSHINE_MODULE_URL = 'https://cdn.jsdelivr.net/npm/@moonshine-ai/moonshine-wasm@0.1.5/dist/index.js';
+const MOONSHINE_TRANSCRIBER_ID = 'emma-ja-tiny';
+
+let moonshineHost, moonshineModule, ttsWorker, mic, wakeLock;
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
@@ -251,6 +254,10 @@ async function clearObsoleteModelCaches() {
   try {
     const cacheNames=await caches.keys();
     await Promise.all(cacheNames.map(async cacheName=>{
+      if(cacheName==='moonshine-models-v1') {
+        await caches.delete(cacheName);
+        return;
+      }
       const cache=await caches.open(cacheName);
       const requests=await cache.keys();
       await Promise.all(requests.map(request=>{
@@ -378,13 +385,13 @@ async function initWorkers() {
   const signature=getTtsSignature();
 
   // Keep the two large browser-local models serialized on mobile.
-  // Kitten TTS is initialized first, then Moonshine. Keep large model loads serialized on mobile.
+  // Kitten TTS is initialized first, then Moonshine.
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
     ttsWorker?.terminate();
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-kitten-fp32-1',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-moonshine-host-1',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -401,16 +408,65 @@ async function initWorkers() {
   updateRuntimeBackend();
 }
 
-function initMoonshine() {
-  if(asrWorker && asrInfoCache?.kind==='moonshine') return Promise.resolve(asrInfoCache);
-  asrWorker?.terminate();
-  asrWorker=null;
-  return new Promise((resolve,reject)=>{
-    asrWorker=new Worker(new URL('./asr-worker.js?v=20260923-kitten-fp32-1',import.meta.url),{type:'module'});
-    asrWorker.onmessage=(event)=>handleAsrMessage(event,(info)=>resolve({...info,kind:'moonshine'}),reject);
-    asrWorker.onerror=reject;
-    asrWorker.postMessage({type:'init',preferWebGpu:false});
-  });
+async function initMoonshine() {
+  if(moonshineHost && asrInfoCache?.kind==='moonshine') return asrInfoCache;
+
+  showMoonshineProgress(0,'Moonshineの実行エンジンを準備しています…');
+  if(!moonshineModule){
+    moonshineModule=await import(MOONSHINE_MODULE_URL);
+  }
+  const { SttWorkerHost, ModelArch }=moonshineModule;
+  if(typeof SttWorkerHost!=='function') {
+    throw new Error('Moonshineの公式WorkerHostを読み込めませんでした。');
+  }
+
+  const nextHost=new SttWorkerHost();
+  nextHost.onProgress=(_transcriberId,loaded,total,file)=>{
+    const safeLoaded=Number(loaded)||0;
+    const safeTotal=Number(total)||0;
+    const fraction=safeTotal>0 ? safeLoaded/safeTotal : 0;
+    const progress=safeTotal>0 ? Math.max(1,Math.min(96,Math.round(fraction*96))) : 1;
+    const mbLoaded=safeLoaded/1_000_000;
+    const sizeText=safeTotal>0
+      ? `${mbLoaded.toFixed(1)} / ${(safeTotal/1_000_000).toFixed(1)} MB`
+      : `${mbLoaded.toFixed(1)} MB`;
+    const fileName=String(file||'').split('/').pop();
+    showMoonshineProgress(
+      progress,
+      `Moonshine 日本語 Tinyを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
+    );
+  };
+
+  try {
+    await nextHost.loadTranscriber({
+      transcriberId:MOONSHINE_TRANSCRIBER_ID,
+      modelArch:ModelArch.TinyStreaming,
+      options:{max_tokens_per_second:'13.0'},
+      source:{kind:'catalog',language:'ja'}
+    });
+  } catch(error) {
+    nextHost.close();
+    throw error;
+  }
+
+  moonshineHost?.close?.();
+  moonshineHost=nextHost;
+  showMoonshineProgress(100,'Moonshine 日本語音声認識を準備できました');
+
+  return {
+    kind:'moonshine',
+    engine:'moonshine',
+    model:'tiny-streaming-ja',
+    architecture:'tiny_streaming',
+    license:'MIT',
+    device:'wasm-cpu',
+    worker:'official-stt-worker-host'
+  };
+}
+
+function showMoonshineProgress(progress,message) {
+  showProgress(true,progress,message);
+  showOnboardingProgress(true,progress,message);
 }
 
 async function ensureWorkersForDebug() {
@@ -419,18 +475,6 @@ async function ensureWorkersForDebug() {
   await initWorkers();
   setBusy(false);
   showProgress(false);
-}
-
-function handleAsrMessage(event,readyResolve,readyReject) {
-  const m=event.data;
-  if(m.type==='status') {
-    showProgress(true,m.progress??0,m.message||'Moonshineを準備しています…');
-    showOnboardingProgress(true,m.progress??0,m.message||'Moonshineを準備しています…');
-  } else if(m.type==='ready') readyResolve?.(m);
-  else if(m.type==='error') {
-    readyReject?.(new Error(m.message));
-    if(workersReady) onRuntimeError(m.message);
-  } else if(m.type==='transcript') onTranscript(m);
 }
 
 function handleTtsMessage(event,readyResolve,readyReject) {
@@ -457,17 +501,47 @@ function handleTtsMessage(event,readyResolve,readyReject) {
   }
 }
 
-function transcribeUtterance(audio) {
-  if(!running||processing||speaking||!asrWorker)return;
+async function transcribeUtterance(audio) {
+  if(!running||processing||speaking||!moonshineHost)return;
   processing=true;
   setBusy(true);
   setState('thinking','聞き取っています…','Moonshineで音声を端末内処理しています。');
-  const id=++requestSeq;
-  asrWorker.postMessage({type:'transcribe',id,audio:audio.buffer},[audio.buffer]);
-}
 
-async function onTranscript({text}) {
-  await processTranscript(text);
+  const streamId=`emma-utterance-${++requestSeq}`;
+  const completed=[];
+  let latest='';
+  let streamError=null;
+
+  moonshineHost.setListener(streamId,{
+    onLineTextChanged:(event)=>{
+      latest=String(event?.line?.text||'').trim();
+    },
+    onLineCompleted:(event)=>{
+      const text=String(event?.line?.text||'').trim();
+      if(text) completed.push(text);
+    },
+    onError:(event)=>{
+      streamError=event?.error instanceof Error ? event.error : new Error(String(event?.error||'Moonshine transcription failed'));
+    }
+  });
+
+  try {
+    await moonshineHost.createStream(MOONSHINE_TRANSCRIBER_ID,streamId);
+    await moonshineHost.start(streamId);
+    moonshineHost.addAudio(streamId,audio,16000,{transcribe:false});
+    await moonshineHost.stop(streamId);
+    if(streamError) throw streamError;
+
+    const text=(completed.join(' ')||latest).replace(/\s+/g,' ').trim();
+    await moonshineHost.closeStream(streamId).catch(()=>{});
+    await processTranscript(text);
+  } catch(error) {
+    await moonshineHost.closeStream(streamId).catch(()=>{});
+    processing=false;
+    setBusy(false);
+    console.error(error);
+    setState('error','音声認識でエラーが発生しました',friendlyError(error));
+  }
 }
 
 async function processTranscript(text) {
