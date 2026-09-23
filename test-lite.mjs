@@ -10,6 +10,14 @@ const cases=[
   ['寝たね','sleep'],
   ['寝かしつけよう','sleep'],
   ['睡眠の時間だよ','sleep'],
+  ['寝ようか','sleep'],
+  ['寝よっか','sleep'],
+  ['ねようか','sleep'],
+  ['ねよっか','sleep'],
+  ['もう寝よ','sleep'],
+  ['ねんねしよっか','sleep'],
+  ['眠ろうか','sleep'],
+  ['眠る時間だよ','sleep'],
   ['おはよう、起きたね','wake'],
   ['おむつ替えよう','diaper'],
   ['お洋服だね','clothes'],
@@ -69,3 +77,9 @@ for(const [name,enabled,expected] of chanNames){
 }
 
 console.log('Chan suffix tests OK');
+
+
+const sleepNegative = new LiteResponseEngine().respond('寝返りしたね');
+if (sleepNegative.scene === 'sleep') throw new Error('寝返り should not be classified as sleep');
+
+console.log('Sleep phrase coverage tests OK');
