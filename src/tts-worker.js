@@ -1,11 +1,8 @@
-let engine = 'supertonic';
 let supertonicPipeline = null;
-let kittenTts = null;
 let selectedVoice = 'F3';
 const supertonicEmbeddings = new Map();
 
 const SUPERTONIC_VOICES = new Set(['F1','F2','F3','F4','F5','M1','M2','M3','M4','M5']);
-const KITTEN_VOICES = new Set(['Luna','Bella','Rosie','Kiki']);
 const SUPERTONIC_VOICE_BASE =
   'https://raw.githubusercontent.com/activated-intelligence/voice-chat/7484f9b4383590b8248b268ba2f2ee551b07c334/public/voices';
 
@@ -42,39 +39,6 @@ async function ensureSupertonic() {
   return supertonicPipeline;
 }
 
-async function ensureKitten() {
-  if (kittenTts) return kittenTts;
-
-  self.postMessage({ type: 'status', progress: 0, message: 'Kitten NanoをCPUで準備しています…' });
-  const module = await import(
-    'https://esm.sh/@biwills/kittentts@1.0.0?bundle&target=es2022&conditions=browser&deps=onnxruntime-web@1.27.0'
-  );
-  if (!module?.KittenTTS?.create) {
-    throw new Error('Kitten Nano WASMの読み込みに失敗しました。');
-  }
-
-  const ortModuleLoader = async () => import(
-    'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/ort.wasm.min.mjs'
-  );
-
-  kittenTts = await module.KittenTTS.create({
-    model: 'nano-int8',
-    executionMode: 'wasm',
-    transport: 'direct',
-    defaultVoice: 'Luna',
-    numThreads: 1,
-    ortModuleLoader,
-    onProgress: (event) => {
-      self.postMessage({
-        type: 'status',
-        progress: Number.isFinite(event?.progress) ? Math.round(event.progress * 100) : 0,
-        message: 'Kitten Nano: ' + String(event?.phase || '準備しています…')
-      });
-    }
-  });
-  return kittenTts;
-}
-
 async function getSupertonicEmbedding(voice) {
   const id = SUPERTONIC_VOICES.has(voice) ? voice : 'F3';
   if (supertonicEmbeddings.has(id)) return supertonicEmbeddings.get(id);
@@ -86,7 +50,7 @@ async function getSupertonicEmbedding(voice) {
   return embedding;
 }
 
-async function synthesizeSupertonic(text, requestId, voice) {
+async function synthesize(text, requestId, voice) {
   const tts = await ensureSupertonic();
   const embedding = await getSupertonicEmbedding(voice);
   const startedAt = performance.now();
@@ -105,27 +69,6 @@ async function synthesizeSupertonic(text, requestId, voice) {
   const audioMs = Math.round((audio.length / sampleRate) * 1000);
   const blob = float32ToWav(audio, sampleRate);
 
-  postAudioResult(requestId, text, blob, generationMs, audioMs, 'supertonic');
-}
-
-async function synthesizeKitten(text, requestId, voice) {
-  const tts = await ensureKitten();
-  const chosenVoice = KITTEN_VOICES.has(voice) ? voice : 'Luna';
-  const startedAt = performance.now();
-
-  const result = await tts.generate(text, {
-    voice: chosenVoice,
-    speed: 1.0,
-    cleanText: true
-  });
-
-  const generationMs = Math.round(performance.now() - startedAt);
-  const audioMs = Math.round(result.durationSeconds * 1000);
-  const blob = new Blob([result.wavData()], { type: 'audio/wav' });
-  postAudioResult(requestId, text, blob, generationMs, audioMs, 'kitten');
-}
-
-function postAudioResult(requestId, text, blob, generationMs, audioMs, resultEngine) {
   self.postMessage({
     type: 'audio',
     requestId,
@@ -134,7 +77,7 @@ function postAudioResult(requestId, text, blob, generationMs, audioMs, resultEng
     blob,
     generationMs,
     audioMs,
-    engine: resultEngine
+    engine: 'supertonic'
   });
   self.postMessage({
     type: 'complete',
@@ -142,7 +85,7 @@ function postAudioResult(requestId, text, blob, generationMs, audioMs, resultEng
     total: 1,
     generationMs,
     audioMs,
-    engine: resultEngine
+    engine: 'supertonic'
   });
 }
 
@@ -150,16 +93,9 @@ self.onmessage = async (event) => {
   const { type } = event.data;
   try {
     if (type === 'init') {
-      engine = event.data.engine === 'kitten' ? 'kitten' : 'supertonic';
-      selectedVoice = event.data.voice || (engine === 'kitten' ? 'Luna' : 'F3');
-
-      if (engine === 'kitten') {
-        await ensureKitten();
-        self.postMessage({ type: 'ready', device: 'wasm-cpu', engine: 'kitten' });
-      } else {
-        await ensureSupertonic();
-        self.postMessage({ type: 'ready', device: 'wasm-cpu', engine: 'supertonic' });
-      }
+      selectedVoice = SUPERTONIC_VOICES.has(event.data.voice) ? event.data.voice : 'F3';
+      await ensureSupertonic();
+      self.postMessage({ type: 'ready', device: 'wasm-cpu', engine: 'supertonic' });
       return;
     }
 
@@ -170,13 +106,10 @@ self.onmessage = async (event) => {
       ).trim();
       if (!text) throw new Error('No text to speak');
 
-      if (engine === 'kitten') {
-        const voice = KITTEN_VOICES.has(event.data.voice) ? event.data.voice : selectedVoice;
-        await synthesizeKitten(text, event.data.requestId, voice);
-      } else {
-        const voice = SUPERTONIC_VOICES.has(event.data.voice) ? event.data.voice : selectedVoice;
-        await synthesizeSupertonic(text, event.data.requestId, voice);
-      }
+      const voice = SUPERTONIC_VOICES.has(event.data.voice)
+        ? event.data.voice
+        : selectedVoice;
+      await synthesize(text, event.data.requestId, voice);
     }
   } catch (error) {
     self.postMessage({
