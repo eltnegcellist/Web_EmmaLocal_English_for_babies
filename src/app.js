@@ -17,9 +17,7 @@ const ui = {
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
-  keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), ttsTiming:$('ttsTiming'), fullModeButton:$('fullModeButton'),
-  supertonicVoice:$('supertonicVoice'),
-  voicePreviewButton:$('voicePreviewButton'), ttsEngineDescription:$('ttsEngineDescription'), voicePreviewText:$('voicePreviewText'),
+  keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
@@ -33,8 +31,7 @@ const STORAGE = {
   vivid:'emma_vivid_palette',
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
-  useChanSuffix:'emma_use_chan_suffix',
-  supertonicVoice:'emma_supertonic_voice'
+  useChanSuffix:'emma_use_chan_suffix'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -66,16 +63,12 @@ function initUi() {
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   ui.useChanSuffix.checked = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
-  if (!localStorage.getItem(STORAGE.supertonicVoice)) localStorage.setItem(STORAGE.supertonicVoice,'F3');
-  localStorage.removeItem('emma_tts_engine_compare');
-  ui.supertonicVoice.value = localStorage.getItem(STORAGE.supertonicVoice) || 'F3';
 
   bindEvents();
   updateGenderUi();
   updateSpokenNamePreview();
   applyAppearance();
   updateAppearanceSettings();
-  updateTtsSettings();
 
   if (localStorage.getItem(STORAGE.onboarded) === 'true') showScreen('home');
   else showScreen('onboarding');
@@ -175,12 +168,6 @@ function bindEvents() {
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
     if (ui.autoRespond.checked && pendingUtterance && !processing && !speaking) respondToPendingUtterance();
   });
-  ui.supertonicVoice.addEventListener('change',()=>{
-    localStorage.setItem(STORAGE.supertonicVoice,ui.supertonicVoice.value);
-    updateTtsSettings();
-    updateRuntimeBackend();
-  });
-  ui.voicePreviewButton.addEventListener('click',previewSelectedVoice);
 
   ui.debugReplyButton.addEventListener('click',async()=>{
     const text=ui.debugInput.value.trim();
@@ -352,10 +339,7 @@ async function initWorkers() {
       ttsWorker=new Worker(new URL('./tts-worker.js',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
-      ttsWorker.postMessage({
-        type:'init',
-        voice:getSupertonicVoice()
-      });
+      ttsWorker.postMessage({ type:'init' });
     });
   }
 
@@ -401,10 +385,6 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     if(workersReady) onRuntimeError(m.message);
   } else if(m.type==='audio') enqueueAudio(m);
   else if(m.type==='complete') {
-    if(Number.isFinite(m.generationMs) && Number.isFinite(m.audioMs) && m.generationMs>0){
-      const ratio=(m.audioMs/m.generationMs).toFixed(1);
-      ui.ttsTiming.textContent=`音声生成: ${(m.generationMs/1000).toFixed(2)}秒 / 音声${(m.audioMs/1000).toFixed(2)}秒（${ratio}×リアルタイム）`;
-    }
     const q=audioQueues.get(m.requestId);
     if(q){
       if(Number.isInteger(m.total)) q.total=Math.max(q.total,m.total);
@@ -447,7 +427,7 @@ async function speakResponse(text) {
   audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
   const done=new Promise(resolve=>audioQueues.get(requestId).resolve=resolve);
   setState('speaking','Emmaがお話ししています',text);
-  ttsWorker.postMessage({type:'speak',requestId,text,voice:getSupertonicVoice()});
+  ttsWorker.postMessage({type:'speak',requestId,text});
   await done;
   speaking=false;
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
@@ -628,13 +608,8 @@ function getSpokenBabyName() {
   return withChanSuffix(base,useChan);
 }
 
-function getSupertonicVoice() {
-  const value=localStorage.getItem(STORAGE.supertonicVoice) || 'F3';
-  return /^([FM][1-5])$/.test(value) ? value : 'F3';
-}
-
 function getTtsSignature() {
-  return 'supertonic-wasm';
+  return 'supertonic-f3-wasm';
 }
 
 function updateRuntimeBackend() {
@@ -642,33 +617,7 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent=`推論: Whisper ${asrInfoCache.device} / Supertonic 3 ${getSupertonicVoice()} ${ttsInfoCache.device}`;
-}
-
-function updateTtsSettings() {
-  ui.ttsEngineDescription.textContent='Supertonic 3をCPU（WebAssembly）で実行します。標準音声はF3です。GPUは使用しません。';
-  ui.voicePreviewText.textContent='試聴文：Hi, Hana-chan! Bath time! Splash, splash! Here we go!';
-}
-
-async function previewSelectedVoice() {
-  if(speaking || processing) return;
-  ui.voicePreviewButton.disabled=true;
-  const text='Hi, Hana-chan! Bath time! Splash, splash! Here we go!';
-  try{
-    setBusy(true);
-    showProgress(true,0,'Supertonic 3を準備しています…');
-    await initWorkers();
-    showProgress(false);
-    setBusy(false);
-    await speakResponse(text);
-  }catch(error){
-    console.error(error);
-    setBusy(false);
-    showProgress(false);
-    showNotice('音声を試せませんでした',friendlyError(error));
-  }finally{
-    ui.voicePreviewButton.disabled=false;
-  }
+  ui.runtimeBackend.textContent=`推論: Whisper ${asrInfoCache.device} / Supertonic 3 F3 ${ttsInfoCache.device}`;
 }
 
 function updateAppearanceSettings() {
