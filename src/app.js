@@ -654,7 +654,7 @@ function getSpokenBabyName() {
 }
 
 function getTtsSignature() {
-  return 'kitten-nano-int8-luna-wasm';
+  return 'kitten-nano-int8-kiki-wasm';
 }
 
 function updateRuntimeBackend() {
@@ -662,7 +662,7 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent='ASR: Moonshine Japanese Tiny Streaming / 端末内WASM ・ 音声: Kitten TTS Nano INT8 Luna / 端末内';
+  ui.runtimeBackend.textContent='ASR: Moonshine Japanese Tiny Streaming / 端末内WASM ・ 音声: Kitten TTS Nano INT8 Kiki / 端末内';
 }
 
 function updateAppearanceSettings() {

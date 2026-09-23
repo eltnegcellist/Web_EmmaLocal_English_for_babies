@@ -15,7 +15,7 @@ Moonshine Japanese Tiny Streaming (browser-local WASM)
 ↓
 LiteResponseEngine
 ↓
-Kitten TTS Nano INT8 / Luna (browser-local WASM TTS)
+Kitten TTS Nano INT8 / Kiki (browser-local WASM TTS)
 ↓
 Emma avatar + PCM-linked lip sync
 ```
@@ -24,7 +24,7 @@ Emma avatar + PCM-linked lip sync
 - ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
 - 初回はMoonshine Tiny（量子化モデル約32.3MB）とKitten TTS Nano INT8（モデル一式約27.7MB）の取得に通信を使う場合があります
 - 認識・返答選択・音声生成の推論は端末内で実行します
-- 標準TTSはKitten TTS Nano 0.8 INT8 / LunaをWASMで実行します
+- 標準TTSはKitten TTS Nano 0.8 INT8 / KikiをWASMで実行します
 - Android版Emmaとは別repositoryとして開発します
 - Full Gemma modeは今後追加予定です
 
