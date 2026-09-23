@@ -106,6 +106,30 @@ const SCENE_FILLERS = {
     "Listen, listen!"
   ]
 };
+const SCENE_HINTS = {
+  sleep: [
+    "寝よ",
+    "寝る",
+    "寝ます",
+    "寝て",
+    "寝た",
+    "寝かし",
+    "寝かせ",
+    "眠ろ",
+    "眠る",
+    "眠い",
+    "眠そう",
+    "眠く",
+    "ねんね",
+    "おねんね",
+    "おやすみ",
+    "昼寝",
+    "お昼寝",
+    "睡眠",
+    "就寝"
+  ]
+};
+
 const SCENES = [
   {
     "id": "bath",
@@ -593,6 +617,14 @@ function score(scene, transcript) {
       ) total += 1;
     }
   }
+
+  if (scene.id === "sleep" && !transcript.includes("寝返り")) {
+    const hintMatched = (SCENE_HINTS.sleep || [])
+      .map(normalize)
+      .filter(Boolean)
+      .some(x => transcript.includes(x));
+    if (hintMatched) total = Math.max(total, 4);
+  }
   return total;
 }
 function sanitizeName(name) {
@@ -608,7 +640,13 @@ function normalize(text) {
   return String(text || "").toLowerCase()
     .replace(/[\s、。！？!?,.・「」『』（）()ー〜~]/g, "")
     .replaceAll("おふろ", "お風呂")
-    .replaceAll("お風呂", "風呂");
+    .replaceAll("お風呂", "風呂")
+    .replaceAll("ねよっか", "寝よっか")
+    .replaceAll("ねよう", "寝よう")
+    .replaceAll("ねる", "寝る")
+    .replaceAll("ねます", "寝ます")
+    .replaceAll("ねて", "寝て")
+    .replaceAll("ねた", "寝た");
 }
 function wordCount(text) {
   return (String(text).match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || []).length;
