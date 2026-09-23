@@ -25,9 +25,10 @@ Kitten TTS Nano / Kiki (browser-local WASM TTS)
 Emma avatar + PCM-linked lip sync
 ```
 
-- 音声認識は全環境でMITライセンスのMoonshine Japanese Tiny Streaming（34M）のブラウザ内WASMを使用します
+- 音声認識は原則としてMITライセンスのMoonshine Japanese Tiny Streaming（34M）のブラウザ内WASMを使用します
+- 一部のMoonshine 0.1.5 WASM環境でTiny Streamingが`Invalid argument`になる場合は、互換性のため旧来のJapanese Tinyへ自動フォールバックします。この旧モデルはMoonshine Community License（非商用）です
 - ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
-- 初回はMoonshine Tiny（量子化モデル約32.3MB）とKitten TTS Nano（モデル一式約60MB）の取得に通信を使う場合があります
+- 初回はMoonshine Tiny Streaming（量子化モデル約32.3MB）とKitten TTS Nano（モデル一式約60MB）の取得に通信を使う場合があります。互換Tinyへフォールバックした環境ではMoonshine側の追加取得量が増えます
 - 認識・返答選択・音声生成の推論は端末内で実行します
 - 標準TTSはKitten TTS Nano 0.8 / KikiをWASMで実行します
 - Kittenのブラウザ実行コードはEmma側に固定したブラウザ専用ランタイムを使用し、Node.js用の`fs`処理は含みません
