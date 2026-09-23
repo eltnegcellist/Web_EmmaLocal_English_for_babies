@@ -24,7 +24,7 @@ const ui = {
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
-const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v1';
+const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -244,7 +244,8 @@ async function clearObsoleteModelCaches() {
     'onnx-community/whisper-tiny',
     'onnx-community/Supertonic-TTS-ONNX',
     '/small-streaming-ja/',
-    '/voices/F3.bin'
+    '/voices/F3.bin',
+    'kitten-tts-nano-0.8-int8'
   ];
 
   try {
@@ -383,7 +384,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-kitten-loader-2',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-kitten-nano-supported-1',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -405,7 +406,7 @@ function initMoonshine() {
   asrWorker?.terminate();
   asrWorker=null;
   return new Promise((resolve,reject)=>{
-    asrWorker=new Worker(new URL('./asr-worker.js?v=20260923-kitten-loader-2',import.meta.url),{type:'module'});
+    asrWorker=new Worker(new URL('./asr-worker.js?v=20260923-kitten-nano-supported-1',import.meta.url),{type:'module'});
     asrWorker.onmessage=(event)=>handleAsrMessage(event,(info)=>resolve({...info,kind:'moonshine'}),reject);
     asrWorker.onerror=reject;
     asrWorker.postMessage({type:'init',preferWebGpu:false});
@@ -683,7 +684,7 @@ function getSpokenBabyName() {
 }
 
 function getTtsSignature() {
-  return 'kitten-nano-int8-kiki-wasm';
+  return 'kitten-nano-kiki-wasm';
 }
 
 function updateRuntimeBackend() {
@@ -691,7 +692,7 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent='ASR: Moonshine Japanese Tiny Streaming / 端末内WASM ・ 音声: Kitten TTS Nano INT8 Kiki / 端末内';
+  ui.runtimeBackend.textContent='ASR: Moonshine Japanese Tiny Streaming / 端末内WASM ・ 音声: Kitten TTS Nano Kiki / 端末内';
 }
 
 function updateAppearanceSettings() {
