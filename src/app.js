@@ -385,7 +385,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-moonshine-host-1',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-moonshine-direct-1',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -690,7 +690,11 @@ function friendlyError(error) {
   const msg=error?.message||String(error);
   if(error?.name==='NotAllowedError') return 'マイクの使用を許可してください。';
   if(!window.isSecureContext) return 'マイクを使うにはHTTPSで開く必要があります。';
-  return msg;
+  const trimmed=String(msg||'').trim();
+  if(/^[-+]?\d+(?:\s+[-+]?\d+)*$/.test(trimmed)) {
+    return `Moonshineの初期化でエラーが発生しました（内部コード: ${trimmed}）。ページを再読み込みしてもう一度お試しください。`;
+  }
+  return trimmed || '処理中に不明なエラーが発生しました。';
 }
 
 async function requestWakeLock() {
@@ -814,7 +818,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260923-sw-reset-1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260923-moonshine-direct-1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
