@@ -1,4 +1,4 @@
-import { EmmaMicrophone } from './audio-capture.js';
+import { NativeLocalAsr, prepareNativeAsr } from './native-asr.js';
 import { LiteResponseEngine } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 
@@ -43,7 +43,7 @@ if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyNam
 if (new URLSearchParams(location.search).has('debug')) document.body.classList.add('debug');
 
 const engine = new LiteResponseEngine();
-let asrWorker, ttsWorker, mic, wakeLock;
+let nativeAsr, ttsWorker, wakeLock;
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
@@ -258,17 +258,19 @@ async function startEmma() {
     await initWorkers();
     await initAudioContext();
 
-    mic = new EmmaMicrophone({
+    running=true;
+    nativeAsr = new NativeLocalAsr({
       onState:(state)=>{
         if(processing||speaking)return;
-        if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
+        if(state==='endpoint') setState('endpoint','聞き取り中です…','日本語の音声認識は端末内で処理しています。');
         else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
       },
-      onUtterance:handleCapturedUtterance,
-      shouldIgnore:()=>processing||speaking
+      onTranscript:handleNativeTranscript,
+      onError:(message)=>{
+        if(running) onRuntimeError(message);
+      }
     });
-    await mic.start();
-    running=true;
+    nativeAsr.start();
     ui.mainButton.classList.add('hidden');
     ui.stopButton.classList.remove('hidden');
     setBusy(false);
@@ -295,8 +297,8 @@ async function stopEmma() {
     try{activeAudioSource.stop();}catch{}
     activeAudioSource=null;
   }
-  await mic?.stop().catch(()=>{});
-  mic=null;
+  nativeAsr?.stop();
+  nativeAsr=null;
   wakeLock?.release?.().catch(()=>{});
   wakeLock=null;
   ui.manualReplyButton.classList.add('hidden');
@@ -307,38 +309,37 @@ async function stopEmma() {
   setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
 }
 
-function handleCapturedUtterance(audio) {
+function handleNativeTranscript(text) {
   if(!running||processing||speaking)return;
-  if(ui.autoRespond.checked) transcribeUtterance(audio);
-  else {
-    pendingUtterance=audio;
+  const clean=(text||'').replace(/\s+/g,' ').trim();
+  if(!clean)return;
+  nativeAsr?.pause();
+  if(ui.autoRespond.checked) {
+    processTranscript(clean);
+  } else {
+    pendingUtterance=clean;
     ui.manualReplyButton.classList.remove('hidden');
-    setState('understood','話し終わりを検出しました','「今返事して」を押すとEmmaが返事します。');
+    setState('understood','聞き取りました','「今返事して」を押すとEmmaが返事します。');
   }
 }
 
 function respondToPendingUtterance() {
   if(!pendingUtterance||processing||speaking)return;
-  const audio=pendingUtterance;
+  const text=pendingUtterance;
   pendingUtterance=null;
   ui.manualReplyButton.classList.add('hidden');
-  transcribeUtterance(audio);
+  processTranscript(text);
 }
 
 async function initWorkers() {
   const signature=getTtsSignature();
 
-  let asrReady;
-  if(asrWorker && asrInfoCache){
-    asrReady=Promise.resolve(asrInfoCache);
-  }else{
-    asrReady=new Promise((resolve,reject)=>{
-      asrWorker=new Worker(new URL('./asr-worker.js',import.meta.url),{type:'module'});
-      asrWorker.onmessage=(event)=>handleAsrMessage(event,resolve,reject);
-      asrWorker.onerror=reject;
-      asrWorker.postMessage({type:'init',preferWebGpu:false});
-    });
-  }
+  const asrReady = asrInfoCache
+    ? Promise.resolve(asrInfoCache)
+    : prepareNativeAsr(({progress,message})=>{
+        showProgress(true,progress??0,message||'端末内の日本語音声認識を準備しています…');
+        showOnboardingProgress(true,progress??0,message||'端末内の日本語音声認識を準備しています…');
+      });
 
   let ttsReady;
   if(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature){
@@ -373,18 +374,6 @@ async function ensureWorkersForDebug() {
   showProgress(false);
 }
 
-function handleAsrMessage(event,readyResolve,readyReject) {
-  const m=event.data;
-  if(m.type==='status') {
-    showProgress(true,m.progress??0,m.message||'Whisperを準備しています…');
-    showOnboardingProgress(true,m.progress??0,m.message||'Whisperを準備しています…');
-  } else if(m.type==='ready') readyResolve?.(m);
-  else if(m.type==='error') {
-    readyReject?.(new Error(m.message));
-    if(workersReady) onRuntimeError(m.message);
-  } else if(m.type==='transcript') onTranscript(m);
-}
-
 function handleTtsMessage(event,readyResolve,readyReject) {
   const m=event.data;
   if(m.type==='status') {
@@ -413,13 +402,12 @@ function handleTtsMessage(event,readyResolve,readyReject) {
   }
 }
 
-function transcribeUtterance(audio) {
+async function processTranscript(text) {
   if(!running||processing||speaking)return;
   processing=true;
   setBusy(true);
-  setState('thinking','聞き取っています…','音声はこのブラウザ内のWhisperで処理しています。');
-  const id=++requestSeq;
-  asrWorker.postMessage({type:'transcribe',id,audio:audio.buffer},[audio.buffer]);
+  setState('thinking','聞き取れました','音声認識は端末内で完了しました。Emmaが返事を選んでいます。');
+  await onTranscript({text});
 }
 
 async function onTranscript({text}) {
@@ -428,6 +416,7 @@ async function onTranscript({text}) {
     processing=false;
     setBusy(false);
     setState('listening','Emmaが聞いています','うまく聞き取れませんでした。もう一度そのまま話してください。');
+    nativeAsr?.resume();
     return;
   }
   showConversation(clean,'');
@@ -449,7 +438,10 @@ async function speakResponse(text) {
   ttsWorker.postMessage({type:'speak',requestId,text,voice:getSupertonicVoice()});
   await done;
   speaking=false;
-  if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+  if(running) {
+    nativeAsr?.resume();
+    setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+  }
   else setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
 }
 
@@ -641,7 +633,7 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent=`推論: Whisper ${asrInfoCache.device} / Supertonic 3 ${getSupertonicVoice()} ${ttsInfoCache.device}`;
+  ui.runtimeBackend.textContent=`ASR: 端末内Web Speech (${asrInfoCache.language}) / TTS: Supertonic 3 ${getSupertonicVoice()} ${ttsInfoCache.device}`;
 }
 
 function updateTtsSettings() {
