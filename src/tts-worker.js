@@ -18,11 +18,46 @@ async function ensureKitten() {
   self.postMessage({
     type: 'status',
     progress: 5,
-    message: 'Kitten TTS Nano INT8を取得しています…（約28MB）'
+    message: 'Kitten TTS Nano INT8を取得しています…'
   });
 
+  const stageMessages = {
+    config: [5, 'Kitten TTSの設定を確認しています…'],
+    download: [8, 'Kitten TTS Nano INT8をダウンロードしています…'],
+    'download-complete': [82, 'Kitten TTSのダウンロードが完了しました'],
+    runtime: [86, '音声エンジンを準備しています…'],
+    'onnx-session': [90, 'Kitten TTSを初期化しています…'],
+    voices: [96, 'Kikiの声を読み込んでいます…'],
+    ready: [99, 'Kitten TTSの初期化が完了しました']
+  };
+
   kittenTts = await withTimeout(
-    KittenTTS.from_pretrained(KITTEN_MODEL),
+    KittenTTS.from_pretrained(KITTEN_MODEL, {
+      onStage: (stage) => {
+        const [progress, message] = stageMessages[stage] || [8, 'Kitten TTSを準備しています…'];
+        self.postMessage({ type: 'status', progress, message });
+      },
+      onProgress: (info) => {
+        const modelLoaded = Number(info.modelLoaded || 0);
+        const modelTotal = Number(info.modelTotal || 0);
+        const voicesLoaded = Number(info.voicesLoaded || 0);
+        const voicesTotal = Number(info.voicesTotal || 0);
+        const knownTotal = modelTotal + voicesTotal;
+        const knownLoaded = modelLoaded + voicesLoaded;
+        const fraction = knownTotal > 0 ? knownLoaded / knownTotal : 0;
+        const progress = Math.max(8, Math.min(80, Math.round(8 + fraction * 72)));
+        const mbLoaded = knownLoaded / 1_000_000;
+        const mbTotal = knownTotal / 1_000_000;
+        const sizeText = knownTotal > 0
+          ? `${mbLoaded.toFixed(1)} / ${mbTotal.toFixed(1)} MB`
+          : `${mbLoaded.toFixed(1)} MB`;
+        self.postMessage({
+          type: 'status',
+          progress,
+          message: `Kitten TTS Nano INT8をダウンロードしています… ${sizeText}`
+        });
+      }
+    }),
     300000,
     'Kitten TTS Nanoの準備に時間がかかりすぎています。通信状態を確認して、もう一度お試しください。'
   );

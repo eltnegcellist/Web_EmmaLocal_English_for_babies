@@ -75,11 +75,15 @@ export class KittenTTS {
   static async from_pretrained(modelId = 'KittenML/kitten-tts-nano-0.8', opts = {}) {
     const { modelBuffer, voicesBuffer, config } = await downloadModel(modelId, opts);
 
+    opts.onStage?.('runtime');
     // Browser-only runtime: never probe Node.js or import fs/path/os.
     const ort = await getOrtRuntime();
     const sessionOptions = { executionProviders: ['wasm'] };
+    opts.onStage?.('onnx-session');
     const session = await ort.InferenceSession.create(modelBuffer, sessionOptions);
+    opts.onStage?.('voices');
     const voices = await loadNpz(voicesBuffer);
+    opts.onStage?.('ready');
 
     return new KittenTTS(session, voices, config);
   }
