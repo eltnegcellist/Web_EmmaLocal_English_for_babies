@@ -43,8 +43,8 @@
 
         <article class="card">
           <h2>初回だけ準備します</h2>
-          <p>日本語の聞き取りとEmmaの音声に必要なデータをブラウザへ取得します。</p>
-          <p class="small muted">通信量が大きいためWi-Fiでの初回準備をおすすめします。取得後はブラウザのキャッシュを利用します。</p>
+          <p>日本語のオンデバイス音声認識とEmmaの音声に必要なデータを準備します。</p>
+          <p class="small muted">初回はブラウザが日本語の音声認識データを取得する場合があります。Emmaは音声を外部の認識サービスへ送らず、クラウドASRへの切り替えも行いません。</p>
         </article>
 
         <button id="prepareEmmaButton" class="primary-button">Emmaを準備する</button>
@@ -286,7 +286,7 @@
           <div class="runtime-info">
             <span id="runtimeBackend">推論: 未初期化</span>
             <span id="ttsTiming">音声生成: 未計測</span>
-            <span>モデル保存: ブラウザキャッシュ</span>
+            <span>ASR: 端末内のみ / 音声モデル: ブラウザキャッシュ</span>
           </div>
         </article>
       </div>
