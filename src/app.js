@@ -68,7 +68,6 @@ function initUi() {
   ui.useChanSuffix.checked = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
   if (!localStorage.getItem(STORAGE.supertonicVoice)) localStorage.setItem(STORAGE.supertonicVoice,'F3');
   localStorage.removeItem('emma_tts_engine_compare');
-  localStorage.removeItem('emma_kitten_voice_compare');
   ui.supertonicVoice.value = localStorage.getItem(STORAGE.supertonicVoice) || 'F3';
 
   bindEvents();
