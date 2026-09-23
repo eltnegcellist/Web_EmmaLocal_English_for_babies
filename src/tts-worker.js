@@ -1,6 +1,6 @@
 const KITTEN_MODULE_URL = 'https://esm.sh/kitten-tts-js@0.1.2?bundle';
 const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-int8';
-const KITTEN_VOICE = 'Luna';
+const KITTEN_VOICE = 'Kiki';
 const KITTEN_SPEED = 1.0;
 
 let kittenTts = null;
