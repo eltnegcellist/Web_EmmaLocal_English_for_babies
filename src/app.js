@@ -24,7 +24,7 @@ const ui = {
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
-const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v7';
+const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v8';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -45,7 +45,19 @@ if (new URLSearchParams(location.search).has('debug')) document.body.classList.a
 
 const engine = new LiteResponseEngine();
 const MOONSHINE_MODULE_URL = 'https://cdn.jsdelivr.net/npm/@moonshine-ai/moonshine-wasm@0.1.5/dist/index.js';
+const MOONSHINE_MODEL_BASE = 'https://download.moonshine.ai/model/tiny-streaming-ja/quantized_26_08_23/';
+const MOONSHINE_MODEL_FILES = [
+  'adapter.ort',
+  'cross_kv.ort',
+  'decoder_kv.ort',
+  'encoder.ort',
+  'frontend.model.ort',
+  'frontend.weights.ort',
+  'streaming_config.json',
+  'tokenizer.bin'
+];
 let moonshineTranscriber, moonshineModule, ttsWorker, mic, wakeLock;
+let moonshineStage='idle';
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
@@ -378,24 +390,24 @@ async function startMoonshineCapture() {
 async function initWorkers() {
   const signature=getTtsSignature();
 
-  // Keep the two large browser-local models serialized on mobile.
-  // Kitten TTS is initialized first, then Moonshine.
+  // Moonshine is initialized first. Its threaded WASM/ONNX runtime has the
+  // stricter startup requirements, so reserve its memory before Kitten TTS.
+  if(!asrInfoCache){
+    showProgress(true,0,'Moonshineを準備しています…');
+    showOnboardingProgress(true,0,'Moonshineを準備しています…');
+    asrInfoCache=await initMoonshine();
+  }
+
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
     ttsWorker?.terminate();
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-moonshine-direct-1',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-moonshine-direct-2',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
     });
-  }
-
-  if(!asrInfoCache){
-    showProgress(true,0,'Moonshineを準備しています…');
-    showOnboardingProgress(true,0,'Moonshineを準備しています…');
-    asrInfoCache=await initMoonshine();
   }
 
   workersReady=true;
@@ -405,36 +417,62 @@ async function initWorkers() {
 async function initMoonshine() {
   if(moonshineTranscriber && asrInfoCache?.kind==='moonshine') return asrInfoCache;
 
+  moonshineStage='runtime';
   showMoonshineProgress(0,'Moonshineの実行エンジンを準備しています…');
   if(!moonshineModule){
     moonshineModule=await import(MOONSHINE_MODULE_URL);
   }
   const { Transcriber, ModelArch }=moonshineModule;
-  if(typeof Transcriber?.load!=='function') {
+  if(typeof Transcriber?.load!=='function' || typeof Transcriber?.loadFromUrls!=='function') {
     throw new Error('Moonshineの公式Transcriberを読み込めませんでした。');
   }
 
-  const nextTranscriber=await Transcriber.load({
-    language:'ja',
+  const onProgress=(loaded,total,file)=>{
+    moonshineStage='download';
+    const safeLoaded=Number(loaded)||0;
+    const safeTotal=Number(total)||0;
+    const fraction=safeTotal>0 ? safeLoaded/safeTotal : 0;
+    const progress=safeTotal>0 ? Math.max(1,Math.min(96,Math.round(fraction*96))) : 1;
+    const mbLoaded=safeLoaded/1_000_000;
+    const sizeText=safeTotal>0
+      ? `${mbLoaded.toFixed(1)} / ${(safeTotal/1_000_000).toFixed(1)} MB`
+      : `${mbLoaded.toFixed(1)} MB`;
+    const fileName=String(file||'').split('/').pop();
+    showMoonshineProgress(
+      progress,
+      `Moonshine 日本語 Tinyを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
+    );
+  };
+  const common={
     modelArch:ModelArch.TinyStreaming,
     options:{max_tokens_per_second:'13.0'},
-    onProgress:(loaded,total,file)=>{
-      const safeLoaded=Number(loaded)||0;
-      const safeTotal=Number(total)||0;
-      const fraction=safeTotal>0 ? safeLoaded/safeTotal : 0;
-      const progress=safeTotal>0 ? Math.max(1,Math.min(96,Math.round(fraction*96))) : 1;
-      const mbLoaded=safeLoaded/1_000_000;
-      const sizeText=safeTotal>0
-        ? `${mbLoaded.toFixed(1)} / ${(safeTotal/1_000_000).toFixed(1)} MB`
-        : `${mbLoaded.toFixed(1)} MB`;
-      const fileName=String(file||'').split('/').pop();
-      showMoonshineProgress(
-        progress,
-        `Moonshine 日本語 Tinyを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
-      );
-    }
-  });
+    onProgress
+  };
 
+  let nextTranscriber;
+  try {
+    moonshineStage='catalog';
+    nextTranscriber=await Transcriber.load({
+      language:'ja',
+      ...common
+    });
+  } catch(firstError) {
+    console.warn('Moonshine catalog load failed; retrying with direct model URLs.',firstError);
+    moonshineStage='direct-download';
+    showMoonshineProgress(1,'Moonshineのモデル一覧取得を迂回して再試行しています…');
+    const files=Object.fromEntries(
+      MOONSHINE_MODEL_FILES.map(name=>[name,MOONSHINE_MODEL_BASE+name])
+    );
+    try {
+      nextTranscriber=await Transcriber.loadFromUrls(files,common);
+    } catch(secondError) {
+      moonshineStage='model-build';
+      secondError.moonshineFirstError=firstError;
+      throw secondError;
+    }
+  }
+
+  moonshineStage='ready';
   moonshineTranscriber?.close?.();
   moonshineTranscriber=nextTranscriber;
   showMoonshineProgress(100,'Moonshine 日本語音声認識を準備できました');
@@ -692,7 +730,16 @@ function friendlyError(error) {
   if(!window.isSecureContext) return 'マイクを使うにはHTTPSで開く必要があります。';
   const trimmed=String(msg||'').trim();
   if(/^[-+]?\d+(?:\s+[-+]?\d+)*$/.test(trimmed)) {
-    return `Moonshineの初期化でエラーが発生しました（内部コード: ${trimmed}）。ページを再読み込みしてもう一度お試しください。`;
+    const stageLabels={
+      runtime:'実行エンジン起動',
+      catalog:'モデル一覧取得',
+      download:'モデル取得',
+      'direct-download':'モデル直接取得',
+      'model-build':'モデル構築',
+      ready:'準備完了後'
+    };
+    const stage=stageLabels[moonshineStage]||moonshineStage;
+    return `Moonshineの${stage}でネイティブエラーが発生しました（内部アドレス: ${trimmed}）。`;
   }
   return trimmed || '処理中に不明なエラーが発生しました。';
 }
@@ -818,7 +865,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260923-moonshine-direct-1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260923-moonshine-direct-2',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
