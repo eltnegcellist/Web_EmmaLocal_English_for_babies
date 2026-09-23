@@ -400,9 +400,21 @@ async function switchToWhisperFallback(reason='native-error') {
 async function initWorkers() {
   const signature=getTtsSignature();
 
-  // First, only probe/prepare the lightweight native-local ASR path.
-  // Do not start Whisper yet: on mobile, loading Whisper and TTS together
-  // causes large concurrent WASM/model allocations and can stall the page.
+  // Load Supertonic first and by itself. This is the heaviest first-run model
+  // and must not compete with Whisper for WASM memory or network bandwidth.
+  // Native Web Speech preparation happens only after TTS is fully ready.
+  if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
+    ttsWorker?.terminate();
+    ttsInfoCache=null;
+    ttsWorkerSignature=signature;
+    ttsInfoCache=await new Promise((resolve,reject)=>{
+      ttsWorker=new Worker(new URL('./tts-worker.js',import.meta.url),{type:'module'});
+      ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
+      ttsWorker.onerror=reject;
+      ttsWorker.postMessage({ type:'init' });
+    });
+  }
+
   let nativeUnavailable=false;
   if(!asrInfoCache){
     try {
@@ -415,22 +427,8 @@ async function initWorkers() {
       });
     } catch(error) {
       nativeUnavailable=true;
-      console.info('Native local ASR unavailable; Whisper fallback will load after TTS.',error);
+      console.info('Native local ASR unavailable or timed out; Whisper fallback will be used.',error);
     }
-  }
-
-  // Load the TTS model on its own. This avoids competing with Whisper for
-  // network bandwidth, memory and WASM session initialization.
-  if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
-    ttsWorker?.terminate();
-    ttsInfoCache=null;
-    ttsWorkerSignature=signature;
-    ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js',import.meta.url),{type:'module'});
-      ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
-      ttsWorker.onerror=reject;
-      ttsWorker.postMessage({ type:'init' });
-    });
   }
 
   // Only after TTS is fully ready do we allocate the local Whisper fallback.
