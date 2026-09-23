@@ -253,7 +253,12 @@
           </label>
           <div class="runtime-info">
             <span id="runtimeBackend">推論: 未初期化</span>
-            <span>モデル保存: ブラウザキャッシュ</span>
+            <span id="developerUnlockTrigger">モデル保存: ブラウザキャッシュ</span>
+          </div>
+          <div id="developerTools" class="hidden">
+            <p class="small muted">開発者向け</p>
+            <button id="fullResetButton" class="outline-button compact-button">Emmaを初期状態に戻す</button>
+            <p class="small muted">設定・初回準備情報・Emmaのモデルキャッシュを削除し、初回画面へ戻します。</p>
           </div>
         </article>
       </div>
@@ -339,6 +344,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260923-lite-full"></script>
+  <script type="module" src="./src/app.js?v=20260923-hidden-reset"></script>
 </body>
 </html>
