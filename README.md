@@ -1,12 +1,17 @@
 # Emma Web ― Local English for Babies
 
-Emma Web is the APK-free browser/PWA edition of Emma.
+Emma Web is the APK-free browser/PWA edition of **Emma Lite**.
 
 親が普段どおり日本語で赤ちゃんへ話しかけると、Emmaがその場面に合った短い英語で赤ちゃんへ参加することを目指します。単純な日本語→英語翻訳ではありません。
 
 ## Current scope
 
-現在の初版は **Lite / Baby mode** です。
+Web版は **Emma Liteのみ** です。
+
+エディション構成は次のとおりです。
+
+- **Android版:** Lite / Standard / Full
+- **Web版:** Lite
 
 ```text
 Microphone
@@ -26,7 +31,7 @@ Emma avatar + PCM-linked lip sync
 - 認識・返答選択・音声生成の推論は端末内で実行します
 - 標準TTSはKitten TTS Nano 0.8 INT8 / KikiをWASMで実行します
 - Android版Emmaとは別repositoryとして開発します
-- Full Gemma modeは今後追加予定です
+- Web版はLiteのみです。Standard / FullはAndroid版で提供します
 
 ## Local development
 

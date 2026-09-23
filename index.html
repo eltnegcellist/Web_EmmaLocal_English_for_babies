@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#fffbff" />
-  <meta name="description" content="親の自然な日本語育児に、もう一人の英語話者 Emma を加えるローカルWebアプリ" />
+  <meta name="description" content="Emma Web Lite — 親の自然な日本語育児に、もう一人の英語話者 Emma を加えるローカルWebアプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/emma.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./styles.css" />
-  <title>Emma Web</title>
+  <title>Emma Web Lite</title>
 </head>
 <body>
   <main class="app-shell">
@@ -16,6 +16,7 @@
       <div class="screen-content onboarding-content">
         <h1>はじめまして、Emmaです</h1>
         <p class="lead">親がいつもの日本語で話しかけると、Emmaがその場面を受け取り、赤ちゃんへやさしい英語で直接話しかけます。</p>
+        <p class="small muted"><strong>このWeb版は Emma Lite です。</strong> Android版には Lite / Standard / Full の3つがあります。</p>
         <p class="muted">単なる日本語→英語の翻訳ではありません。お風呂、ミルク、ねんね、遊びなど、今この瞬間に合う短くリズミカルな英語を返します。</p>
 
         <button id="onboardingAboutButton" class="outline-button">なぜこの設計？ Emmaとは？</button>
@@ -51,7 +52,7 @@
 
         <article class="card">
           <h2>初回だけ準備します</h2>
-          <p>日本語の聞き取りは端末内の音声認識を優先します。対応していない環境では、Emma内蔵の音声認識を端末内で使用します。</p>
+          <p>日本語の聞き取りは、Moonshine Japanese Tiny Streaming をブラウザ内で実行します。</p>
           <p class="small muted">初回は音声認識やEmmaの声に必要なデータを取得する場合があります。認識中の音声をクラウド音声認識へ送信することはありません。</p>
         </article>
 
@@ -89,7 +90,7 @@
             <button class="segment-button selected" data-audience="BABY">赤ちゃんへ</button>
             <button id="parentAudienceButton" class="segment-button" data-audience="PARENT">親へ</button>
           </div>
-          <p id="audienceDescription" class="small muted">現在のWeb標準モードは「赤ちゃんへ」専用です。親との自由会話や、より柔軟な応答はFullで利用できます。</p>
+          <p id="audienceDescription" class="small muted"><strong>Web版はLiteのみです。</strong> 「赤ちゃんへ」の短い英語応答に特化しています。Standard / Full はAndroid版で利用できます。</p>
         </section>
 
         <section class="avatar-wrap">
@@ -237,10 +238,10 @@
 
         <article class="card">
           <h2>Emmaの話し方</h2>
-          <button class="primary-button compact-button" disabled>標準のEmma</button>
-          <p class="small muted">赤ちゃん向けの短い英語をすばやく選んで話します。現在のWeb版で利用できます。</p>
-          <button id="fullModeButton" class="outline-button compact-button">Emma Full</button>
-          <p class="small muted">より自由に、会話の流れに合わせてAIがその場で言葉を考えるモードです。Web版は今後対応予定です。</p>
+          <button class="primary-button compact-button" disabled>Emma Lite（Web版）</button>
+          <p class="small muted">Web版で利用できるのはLiteのみです。赤ちゃん向けの短い英語をすばやく選んで話します。</p>
+          <button id="fullModeButton" class="outline-button compact-button">Android版を見る</button>
+          <p class="small muted">Android版には Lite / Standard / Full の3つがあります。より柔軟な会話はStandard / Fullで利用できます。</p>
         </article>
 
 
@@ -289,8 +290,8 @@
         </article>
 
         <article class="card">
-          <h2>もっと自由に話すFull版もあります</h2>
-          <p>通常のEmmaは、赤ちゃんへ短く分かりやすい英語をすばやく返すことを大切にしています。さらに、より自由に、あなたの話や直前の会話の流れに合わせてAIがその場で言葉を考えて話すFull版も用意しています。Web版のFullは今後対応予定です。</p>
+          <h2>Emmaには3つのAndroid版があります</h2>
+          <p><strong>このWeb版はLiteのみです。</strong> Android版には Lite / Standard / Full があり、Standard / Fullではより柔軟に、会話の流れに合わせて応答できます。</p>
         </article>
 
         <article class="card">

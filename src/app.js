@@ -100,13 +100,13 @@ function bindEvents() {
 
   ui.parentAudienceButton.addEventListener('click',()=>showNotice(
     '親へ話すモード',
-    '「親へ」はEmma Fullの機能です。現在のWeb版は「赤ちゃんへ」の標準Emmaに対応しています。Full版はAndroid版Emmaで利用できます。',
+    'Web版はEmma Liteのみで、「赤ちゃんへ」に対応しています。Android版には Lite / Standard / Full があり、親との会話やより柔軟な応答はStandard / Fullで利用できます。',
     'https://github.com/eltnegcellist/Android_English_character_for_baby',
     'Android版EmmaをGitHubで見る'
   ));
   ui.fullModeButton.addEventListener('click',()=>showNotice(
     'Emma Full',
-    'Web版Fullは今後対応予定です。現在Full版を試す場合はAndroid版Emmaを利用できます。',
+    'Web版はEmma Liteのみです。Android版には Lite / Standard / Full の3つがあり、Standard / FullはAndroid版で利用できます。',
     'https://github.com/eltnegcellist/Android_English_character_for_baby',
     'Android版EmmaをGitHubで見る'
   ));
