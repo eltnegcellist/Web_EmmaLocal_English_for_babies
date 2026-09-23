@@ -37,7 +37,7 @@ self.onmessage = async (event) => {
       transcriber = await withTimeout(
         Transcriber.load({
           language: 'ja',
-          modelArch: ModelArch.SmallStreaming,
+          modelArch: ModelArch.TinyStreaming,
           options: {
             max_tokens_per_second: '13.0'
           },
@@ -55,7 +55,7 @@ self.onmessage = async (event) => {
               type: 'status',
               stage: 'asr-download',
               progress,
-              message: `Moonshine 日本語 Smallを取得しています… ${sizeText}`,
+              message: `Moonshine 日本語 Tinyを取得しています… ${sizeText}`,
               file
             });
           }
@@ -66,8 +66,8 @@ self.onmessage = async (event) => {
 
       modelInfo = {
         engine: 'moonshine',
-        model: 'small-streaming-ja',
-        architecture: 'small_streaming',
+        model: 'tiny-streaming-ja',
+        architecture: 'tiny_streaming',
         license: 'MIT',
         device: 'wasm-cpu'
       };
