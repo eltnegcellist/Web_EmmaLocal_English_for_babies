@@ -2,41 +2,40 @@ import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.j
 import { toSpokenEnglish, withChanSuffix } from './src/name-pronunciation.js';
 
 const cases=[
-  ['お風呂入ろうね','bath'],
-  ['ミルク飲もうね','milk'],
-  ['おやすみ、ねんねしよう','sleep'],
+  ['お風呂入ろっか','bath'],
+  ['ミルク飲もっか','milk'],
+  ['寝よっか','sleep'],
+  ['そろそろ起きよっか','wake'],
+  ['おむつ替えよっか','diaper'],
+  ['着替えよっか','clothes'],
+  ['抱っこする？','hug'],
+  ['おてて握ってるね','hands'],
+  ['あんよバタバタだね','feet'],
+  ['にこって笑ったね','smile'],
+  ['泣いてるね','cry'],
+  ['いっぱいおしゃべりしてるね','voice'],
+  ['げっぷ出たね','tummy'],
+  ['一緒に遊ぼっか','play'],
+  ['お散歩行こっか','outside'],
+  ['雨だね','rain'],
+  ['今日は晴れてるね','sun'],
+  ['ごはん食べよっか','food'],
+  ['絵本読もっか','book'],
+  ['歌おっか','music'],
   ['寝る','sleep'],
   ['もう寝るよ','sleep'],
   ['寝たね','sleep'],
   ['寝かしつけよう','sleep'],
   ['睡眠の時間だよ','sleep'],
   ['寝ようか','sleep'],
-  ['寝よっか','sleep'],
   ['ねようか','sleep'],
   ['ねよっか','sleep'],
   ['もう寝よ','sleep'],
   ['ねんねしよっか','sleep'],
   ['眠ろうか','sleep'],
   ['眠る時間だよ','sleep'],
-  ['おはよう、起きたね','wake'],
-  ['おむつ替えよう','diaper'],
-  ['お洋服だね','clothes'],
-  ['抱っこしようね','hug'],
-  ['おてて握ってるね','hands'],
-  ['あんよキックしてるね','feet'],
-  ['ニコニコだね','smile'],
-  ['泣いちゃったね','cry'],
-  ['クーイングしてるね','voice'],
-  ['げっぷ出たね','tummy'],
-  ['おもちゃで遊ぼう','play'],
-  ['お散歩に行こう','outside'],
-  ['雨が降ってきたね','rain'],
-  ['今日はいい天気だね','sun'],
-  ['離乳食食べよう','food'],
-  ['ページめくろうね','book'],
-  ['歌おうね','music'],
   ['今日はゆっくりしようね','generic']
-];
+]
 
 for(const [input,expected] of cases){
   const engine=new LiteResponseEngine();
@@ -79,7 +78,20 @@ for(const [name,enabled,expected] of chanNames){
 console.log('Chan suffix tests OK');
 
 
-const sleepNegative = new LiteResponseEngine().respond('寝返りしたね');
-if (sleepNegative.scene === 'sleep') throw new Error('寝返り should not be classified as sleep');
+const negativeCases = [
+  ['寝返りしたね','sleep'],
+  ['手伝ってね','hands'],
+  ['足りないね','feet'],
+  ['風呂敷だね','bath'],
+  ['声優さんだね','voice'],
+  ['歌舞伎だね','music']
+];
+for (const [input,forbidden] of negativeCases) {
+  const out = new LiteResponseEngine().respond(input);
+  if (out.scene === forbidden) throw new Error(`${input}: should not be classified as ${forbidden}`);
+}
 
-console.log('Sleep phrase coverage tests OK');
+const hunger = new LiteResponseEngine().respond('お腹すいたね');
+if (hunger.scene !== 'food') throw new Error(`お腹すいたね: expected food, got ${hunger.scene}`);
+
+console.log('Natural phrase + exclusion coverage tests OK');
