@@ -12,6 +12,19 @@ Streaming speech-to-text model from Moonshine AI.
 
 Copyright (c) 2025 Useful Sensors, Inc. (dba Moonshine AI)
 
+### Compatibility fallback
+
+Emma Web normally uses Japanese Tiny Streaming under the MIT License. If the
+Moonshine 0.1.5 WASM runtime rejects the streaming model with
+`Invalid argument`, Emma can automatically fall back to the legacy
+non-streaming Japanese Tiny model.
+
+- Fallback model: Japanese Tiny (legacy non-streaming)
+- License: Moonshine Community License
+- Upstream describes this legacy Japanese Tiny model as non-commercial
+- The fallback model is downloaded at runtime and is not bundled in this repository
+
+
 MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
