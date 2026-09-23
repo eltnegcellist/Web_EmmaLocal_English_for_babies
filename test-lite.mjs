@@ -34,7 +34,11 @@ const cases=[
   ['ねんねしよっか','sleep'],
   ['眠ろうか','sleep'],
   ['眠る時間だよ','sleep'],
-  ['今日はゆっくりしようね','generic']
+  ['お袋入ろうね','bath'],
+  ['年々使用か','sleep'],
+  ['おむづ変えようか','diaper'],
+  ['今日はゆっくりしようね','generic'],
+  ['今日は会社で会議だったよ','generic']
 ]
 
 for(const [input,expected] of cases){
@@ -84,7 +88,8 @@ const negativeCases = [
   ['足りないね','feet'],
   ['風呂敷だね','bath'],
   ['声優さんだね','voice'],
-  ['歌舞伎だね','music']
+  ['歌舞伎だね','music'],
+  ['風呂敷を包もうね','bath']
 ];
 for (const [input,forbidden] of negativeCases) {
   const out = new LiteResponseEngine().respond(input);
@@ -94,4 +99,4 @@ for (const [input,forbidden] of negativeCases) {
 const hunger = new LiteResponseEngine().respond('お腹すいたね');
 if (hunger.scene !== 'food') throw new Error(`お腹すいたね: expected food, got ${hunger.scene}`);
 
-console.log('Natural phrase + exclusion coverage tests OK');
+console.log('Natural phrase + phonetic rescue + exclusion coverage tests OK');
