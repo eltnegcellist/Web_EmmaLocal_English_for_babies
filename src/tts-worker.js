@@ -211,7 +211,7 @@ self.onmessage = async (event) => {
         }
       }
 
-      await synthesizeKokoro(text, event.data.requestId, engine === 'kokoro' ? voice : 'af_heart');
+      await synthesizeKokoro(text, event.data.requestId, selectedVoice || 'af_heart');
     }
   } catch (error) {
     self.postMessage({
