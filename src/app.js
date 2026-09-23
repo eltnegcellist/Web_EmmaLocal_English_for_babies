@@ -32,7 +32,6 @@ const STORAGE = {
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
   useChanSuffix:'emma_use_chan_suffix'
-
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -64,8 +63,6 @@ function initUi() {
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   ui.useChanSuffix.checked = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
-  localStorage.removeItem('emma_tts_engine_compare');
-  localStorage.removeItem('emma_supertonic_voice');
 
   bindEvents();
   updateGenderUi();
