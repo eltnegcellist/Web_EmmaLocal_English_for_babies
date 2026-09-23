@@ -385,13 +385,6 @@ function handleAsrMessage(event,readyResolve,readyReject) {
     showProgress(true,m.progress??0,m.message||'Whisperを準備しています…');
     showOnboardingProgress(true,m.progress??0,m.message||'Whisperを準備しています…');
   } else if(m.type==='ready') readyResolve?.(m);
-  else if(m.type==='fallback') {
-    localStorage.setItem(STORAGE.ttsEngine,'kokoro');
-    ui.ttsEngine.value='kokoro';
-    ttsWorkerSignature='kokoro';
-    updateTtsSettings();
-    ui.runtimeBackend.textContent='KittenTTSを利用できなかったためKokoroへ戻しました。';
-  }
   else if(m.type==='error') {
     readyReject?.(new Error(m.message));
     if(workersReady) onRuntimeError(m.message);
@@ -404,6 +397,13 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     showProgress(true,m.progress??0,m.message||'Emmaの声を準備しています…');
     showOnboardingProgress(true,m.progress??0,m.message||'Emmaの声を準備しています…');
   } else if(m.type==='ready') readyResolve?.(m);
+  else if(m.type==='fallback') {
+    localStorage.setItem(STORAGE.ttsEngine,'kokoro');
+    ui.ttsEngine.value='kokoro';
+    ttsWorkerSignature='kokoro';
+    updateTtsSettings();
+    ui.runtimeBackend.textContent='KittenTTSを利用できなかったためKokoroへ戻しました。';
+  }
   else if(m.type==='error') {
     readyReject?.(new Error(m.message));
     if(m.requestId){
