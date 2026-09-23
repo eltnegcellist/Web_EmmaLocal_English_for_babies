@@ -1,6 +1,6 @@
 let engine = 'supertonic';
 let supertonicPipeline = null;
-let kittenTextToSpeech = null;
+let kittenTts = null;
 let selectedVoice = 'F3';
 const supertonicEmbeddings = new Map();
 
@@ -43,16 +43,31 @@ async function ensureSupertonic() {
 }
 
 async function ensureKitten() {
-  if (kittenTextToSpeech) return kittenTextToSpeech;
-  if (!self.navigator?.gpu) throw new Error('Kitten Nanoの比較にはWebGPUが必要です。');
+  if (kittenTts) return kittenTts;
 
-  self.postMessage({ type: 'status', progress: 0, message: 'Kitten Nanoを準備しています…' });
-  const module = await import('https://cdn.jsdelivr.net/npm/@anudit/kitten-tts-webgpu@0.2.1/+esm');
-  if (typeof module.textToSpeech !== 'function') {
-    throw new Error('Kitten Nanoの読み込みに失敗しました。');
+  self.postMessage({ type: 'status', progress: 0, message: 'Kitten NanoをCPUで準備しています…' });
+  const module = await import(
+    'https://esm.sh/@biwills/kittentts@1.0.0?bundle&target=es2022&conditions=browser&deps=onnxruntime-web@1.27.0'
+  );
+  if (!module?.KittenTTS?.create) {
+    throw new Error('Kitten Nano WASMの読み込みに失敗しました。');
   }
-  kittenTextToSpeech = module.textToSpeech;
-  return kittenTextToSpeech;
+
+  kittenTts = await module.KittenTTS.create({
+    model: 'nano-int8',
+    executionMode: 'wasm',
+    transport: 'direct',
+    defaultVoice: 'Luna',
+    numThreads: 1,
+    onProgress: (event) => {
+      self.postMessage({
+        type: 'status',
+        progress: Number.isFinite(event?.progress) ? Math.round(event.progress * 100) : 0,
+        message: 'Kitten Nano: ' + String(event?.phase || '準備しています…')
+      });
+    }
+  });
+  return kittenTts;
 }
 
 async function getSupertonicEmbedding(voice) {
@@ -89,25 +104,19 @@ async function synthesizeSupertonic(text, requestId, voice) {
 }
 
 async function synthesizeKitten(text, requestId, voice) {
-  const textToSpeech = await ensureKitten();
+  const tts = await ensureKitten();
   const chosenVoice = KITTEN_VOICES.has(voice) ? voice : 'Luna';
   const startedAt = performance.now();
 
-  const blob = await textToSpeech(text, {
+  const result = await tts.generate(text, {
     voice: chosenVoice,
     speed: 1.0,
-    model: 'nano',
-    onProgress: (stage) => {
-      self.postMessage({
-        type: 'status',
-        progress: 0,
-        message: 'Kitten Nano: ' + String(stage || '音声を生成しています…')
-      });
-    }
+    cleanText: true
   });
 
   const generationMs = Math.round(performance.now() - startedAt);
-  const audioMs = await readWavDurationMs(blob);
+  const audioMs = Math.round(result.durationSeconds * 1000);
+  const blob = new Blob([result.wavData()], { type: 'audio/wav' });
   postAudioResult(requestId, text, blob, generationMs, audioMs, 'kitten');
 }
 
@@ -141,7 +150,7 @@ self.onmessage = async (event) => {
 
       if (engine === 'kitten') {
         await ensureKitten();
-        self.postMessage({ type: 'ready', device: 'webgpu', engine: 'kitten' });
+        self.postMessage({ type: 'ready', device: 'wasm-cpu', engine: 'kitten' });
       } else {
         await ensureSupertonic();
         self.postMessage({ type: 'ready', device: 'wasm-cpu', engine: 'supertonic' });
@@ -172,20 +181,6 @@ self.onmessage = async (event) => {
     });
   }
 };
-
-async function readWavDurationMs(blob) {
-  try {
-    const buffer = await blob.arrayBuffer();
-    const view = new DataView(buffer);
-    if (view.byteLength < 44) return 0;
-    const sampleRate = view.getUint32(24, true);
-    const byteRate = view.getUint32(28, true);
-    const dataSize = view.getUint32(40, true);
-    if (byteRate > 0) return Math.round((dataSize / byteRate) * 1000);
-    if (sampleRate > 0) return 0;
-  } catch {}
-  return 0;
-}
 
 function float32ToWav(samples, sampleRate) {
   const input = samples instanceof Float32Array ? samples : new Float32Array(samples);
