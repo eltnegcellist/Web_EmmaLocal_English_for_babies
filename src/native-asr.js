@@ -1,4 +1,5 @@
 const LANGUAGE = 'ja-JP';
+const PREFERRED_QUALITY = 'dictation';
 
 function getSpeechRecognition() {
   const Recognition = window.SpeechRecognition;
@@ -21,14 +22,18 @@ export async function prepareNativeAsr(onStatus = () => {}) {
   const Recognition = getSpeechRecognition();
   onStatus({ progress: 10, message: '端末内の日本語音声認識を確認しています…' });
 
-  let availability = await Recognition.available({
+  const supportsQuality = 'quality' in Recognition.prototype;
+  const recognitionOptions = {
     langs: [LANGUAGE],
     processLocally: true,
-  });
+    ...(supportsQuality ? { quality: PREFERRED_QUALITY } : {}),
+  };
+
+  let availability = await Recognition.available(recognitionOptions);
 
   if (availability === 'available') {
     onStatus({ progress: 100, message: '端末内の日本語音声認識を利用できます。' });
-    return { device: 'on-device', language: LANGUAGE };
+    return { device: 'on-device', language: LANGUAGE, quality: supportsQuality ? PREFERRED_QUALITY : 'default' };
   }
 
   if (availability === 'unavailable') {
@@ -42,20 +47,14 @@ export async function prepareNativeAsr(onStatus = () => {}) {
     message: '日本語のオンデバイス音声認識データを準備しています…',
   });
 
-  const installed = await Recognition.install({
-    langs: [LANGUAGE],
-    processLocally: true,
-  });
+  const installed = await Recognition.install(recognitionOptions);
   if (!installed) {
     throw new Error(
       '日本語のオンデバイス音声認識データを準備できませんでした。ブラウザを更新して、もう一度お試しください。'
     );
   }
 
-  availability = await Recognition.available({
-    langs: [LANGUAGE],
-    processLocally: true,
-  });
+  availability = await Recognition.available(recognitionOptions);
   if (availability !== 'available') {
     throw new Error(
       '日本語のオンデバイス音声認識を開始できません。Emmaはクラウド音声認識へは切り替えません。'
@@ -63,7 +62,7 @@ export async function prepareNativeAsr(onStatus = () => {}) {
   }
 
   onStatus({ progress: 100, message: '端末内の日本語音声認識を利用できます。' });
-  return { device: 'on-device', language: LANGUAGE };
+  return { device: 'on-device', language: LANGUAGE, quality: supportsQuality ? PREFERRED_QUALITY : 'default' };
 }
 
 export class NativeLocalAsr {
@@ -119,6 +118,7 @@ export class NativeLocalAsr {
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
     recognition.processLocally = true;
+    if ('quality' in recognition) recognition.quality = PREFERRED_QUALITY;
 
     recognition.onstart = () => this.onState?.('listening');
     recognition.onspeechstart = () => this.onState?.('speech');
