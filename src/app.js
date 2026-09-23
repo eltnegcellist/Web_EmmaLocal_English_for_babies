@@ -24,8 +24,10 @@ const ui = {
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
+const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v1';
+
 const STORAGE = {
-  onboarded:'emma_web_onboarded_v2',
+  setupRevision:'emma_web_setup_revision',
   babyName:'emma_baby_name',
   spokenName:'emma_baby_spoken_name',
   gender:'emma_baby_gender',
@@ -76,7 +78,7 @@ function initUi() {
   applyAppearance();
   updateAppearanceSettings();
 
-  if (localStorage.getItem(STORAGE.onboarded) === 'true') showScreen('home');
+  if (localStorage.getItem(STORAGE.setupRevision) === CURRENT_SETUP_REVISION) showScreen('home');
   else showScreen('onboarding');
 }
 
@@ -236,15 +238,42 @@ function closeNotice() {
   document.body.classList.remove('modal-open');
 }
 
+async function clearObsoleteModelCaches() {
+  if(typeof caches==='undefined') return;
+  const obsoletePatterns=[
+    'onnx-community/whisper-tiny',
+    'onnx-community/Supertonic-TTS-ONNX',
+    '/small-streaming-ja/',
+    '/voices/F3.bin'
+  ];
+
+  try {
+    const cacheNames=await caches.keys();
+    await Promise.all(cacheNames.map(async cacheName=>{
+      const cache=await caches.open(cacheName);
+      const requests=await cache.keys();
+      await Promise.all(requests.map(request=>{
+        const url=request.url;
+        return obsoletePatterns.some(pattern=>url.includes(pattern))
+          ? cache.delete(request)
+          : Promise.resolve(false);
+      }));
+    }));
+  } catch(error) {
+    console.warn('旧モデルキャッシュの整理をスキップしました',error);
+  }
+}
+
 async function prepareFirstRun() {
   ui.prepareEmmaButton.disabled=true;
   showOnboardingProgress(true,0,'Emmaを準備しています…');
   try {
     if(!(await ensureMoonshineIsolation())) return;
     await navigator.storage?.persist?.().catch(()=>false);
+    await clearObsoleteModelCaches();
     await initWorkers();
     await initAudioContext();
-    localStorage.setItem(STORAGE.onboarded,'true');
+    localStorage.setItem(STORAGE.setupRevision,CURRENT_SETUP_REVISION);
     showOnboardingProgress(false);
     showProgress(false);
     setBusy(false);
