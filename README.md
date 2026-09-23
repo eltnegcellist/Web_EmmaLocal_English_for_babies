@@ -13,7 +13,7 @@ Microphone
 ↓
 AudioWorklet + adaptive endpoint detection
 ↓
-Whisper tiny (browser-local ASR)
+端末内Web Speech ASR（対応時） / Whisper tiny（完全ローカルFallback）
 ↓
 LiteResponseEngine
 ↓
@@ -22,8 +22,8 @@ Supertonic 3 / F3 (browser-local CPU/WASM TTS)
 Emma avatar + PCM-linked lip sync
 ```
 
-- 会話処理はブラウザ内ローカル実行を基本とします
-- 初回はWhisper/Supertonic 3等のモデル取得に通信を使います
+- 日本語ASRは端末内処理のみ。対応ブラウザでは `SpeechRecognition.processLocally = true` を優先し、非対応環境だけWhisperをブラウザ内で使います
+- 初回はオンデバイス音声認識データ、またはFallback用WhisperとTTSモデルの取得に通信を使う場合があります
 - 標準TTSはSupertonic 3 / F3をCPU/WASMで実行します
 - 速度比較用にKitten Nano INT8（CPU/WASM）を一時的に選択でき、同じ例文で生成速度を比較できます
 - Android版Emmaとは別repositoryとして開発します
@@ -51,3 +51,14 @@ GitHub Pages source: **Deploy from a branch** (`chore/trigger-pages`, root)
 
 Android版:
 https://github.com/eltnegcellist/Android_English_character_for_baby
+
+
+## ASRの方針
+
+Web版は完全ローカルを維持します。
+
+1. ブラウザがオンデバイスWeb Speech APIに対応し、日本語を端末内で認識できる場合はそれを優先します。
+2. 対応しないブラウザ（Safari / iOS Safariなど）では、Whisper tinyをブラウザ内で実行します。
+3. クラウド音声認識にはフォールバックしません。
+
+WebページからiOS / macOS / Windows / AndroidのネイティブOS音声認識APIを直接呼ぶことはできないため、この構成でクロスプラットフォーム性と完全ローカルを両立します。
