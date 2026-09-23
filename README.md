@@ -11,20 +11,20 @@ Emma Web is the APK-free browser/PWA edition of Emma.
 ```text
 Microphone
 ↓
-Moonshine Japanese Small Streaming (browser-local WASM)
+Moonshine Japanese Tiny Streaming (browser-local WASM)
 ↓
 LiteResponseEngine
 ↓
-Supertonic 3 / F3 (browser-local CPU/WASM TTS)
+Kitten TTS Nano INT8 / Luna (browser-local WASM TTS)
 ↓
 Emma avatar + PCM-linked lip sync
 ```
 
-- 音声認識は全環境でMITライセンスのMoonshine Japanese Small Streaming（123M）のブラウザ内WASMを使用します
+- 音声認識は全環境でMITライセンスのMoonshine Japanese Tiny Streaming（34M）のブラウザ内WASMを使用します
 - ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
-- 初回はMoonshine（量子化モデル約121.8MB）、Supertonic 3等のモデル取得に通信を使う場合があります
+- 初回はMoonshine Tiny（量子化モデル約32.3MB）とKitten TTS Nano INT8（モデル一式約27.7MB）の取得に通信を使う場合があります
 - 認識・返答選択・音声生成の推論は端末内で実行します
-- 標準TTSはSupertonic 3 / F3をCPU/WASMで実行します
+- 標準TTSはKitten TTS Nano 0.8 INT8 / LunaをWASMで実行します
 - Android版Emmaとは別repositoryとして開発します
 - Full Gemma modeは今後追加予定です
 
