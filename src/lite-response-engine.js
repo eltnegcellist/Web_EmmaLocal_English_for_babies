@@ -107,27 +107,82 @@ const SCENE_FILLERS = {
   ]
 };
 const SCENE_HINTS = {
+  bath: [
+    "お風呂入", "風呂入", "おふろはい", "シャワー浴", "体洗", "洗お", "湯船入"
+  ],
+  milk: [
+    "ミルク飲", "みるく飲", "おっぱい飲", "授乳", "哺乳瓶", "ミルクにし", "おっぱいにし"
+  ],
   sleep: [
-    "寝よ",
-    "寝る",
-    "寝ます",
-    "寝て",
-    "寝た",
-    "寝かし",
-    "寝かせ",
-    "眠ろ",
-    "眠る",
-    "眠い",
-    "眠そう",
-    "眠く",
-    "ねんね",
-    "おねんね",
-    "おやすみ",
-    "昼寝",
-    "お昼寝",
-    "睡眠",
-    "就寝"
+    "寝よ", "寝る", "寝ます", "寝て", "寝た", "寝かし", "寝かせ", "眠ろ", "眠る",
+    "眠い", "眠そう", "眠く", "ねんね", "おねんね", "おやすみ", "昼寝", "お昼寝", "睡眠", "就寝"
+  ],
+  wake: [
+    "起きよ", "起きる", "起きて", "起きた", "目覚め", "おはよう", "朝だ"
+  ],
+  diaper: [
+    "おむつ替", "オムツ替", "おむつかえ", "うんち出", "うんちした", "おしっこ出",
+    "おしっこした", "お尻拭", "おしり拭"
+  ],
+  clothes: [
+    "着替えよ", "着替えよう", "着替えよっか", "服着", "服脱", "着せよ", "脱ご",
+    "パジャマ着", "靴下はこ"
+  ],
+  hug: [
+    "抱っこし", "だっこし", "抱っこする", "だっこする", "ぎゅー", "ぎゅっ", "抱きしめ"
+  ],
+  hands: [
+    "おてて", "手握", "手にぎ", "指つか", "指握", "手バタ"
+  ],
+  feet: [
+    "あんよ", "足バタ", "足けり", "足蹴", "キック", "つま先", "足動"
+  ],
+  smile: [
+    "にこにこ", "ニコニコ", "笑った", "笑って", "笑顔", "微笑", "にやっ", "にこっ"
+  ],
+  cry: [
+    "泣い", "泣く", "泣き", "涙", "えーん", "ぐず", "ぐずぐず", "ぐずって"
+  ],
+  voice: [
+    "声出", "おしゃべり", "喃語", "クーイング", "あーって", "うーって", "あうあう",
+    "話してる", "しゃべって"
+  ],
+  tummy: [
+    "げっぷ", "ゲップ", "お腹いっぱい", "おなかいっぱい", "満腹", "吐き戻", "吐いた",
+    "お腹苦", "おなか苦"
+  ],
+  play: [
+    "遊ぼ", "あそぼ", "遊ぶ", "おもちゃ", "ガラガラ", "ぬいぐるみ", "メリー", "ボールで遊"
+  ],
+  outside: [
+    "散歩行", "お散歩行", "さんぽ行", "外行", "お外行", "出かけ", "ベビーカー乗", "公園行"
+  ],
+  rain: [
+    "雨降", "雨だ", "あめ降", "雨音", "傘さ"
+  ],
+  sun: [
+    "晴れ", "晴れた", "晴れてる", "いい天気", "お日様", "太陽", "ぽかぽか"
+  ],
+  food: [
+    "ごはん食", "ご飯食", "離乳食", "食べよ", "たべよ", "食べる", "食べた",
+    "いただきます", "スプーン", "お腹すい", "おなかすい", "お腹減", "おなか減"
+  ],
+  book: [
+    "絵本読", "えほん読", "本読", "読も", "よもっか", "ページめく", "絵本見", "本見"
+  ],
+  music: [
+    "歌お", "うたお", "歌う", "うたう", "音楽聞", "曲聞", "踊ろ", "リズム", "歌って"
   ]
+};
+
+const SCENE_EXCLUSIONS = {
+  bath: ["風呂敷"],
+  sleep: ["寝返り"],
+  hands: ["手伝", "手続", "手紙", "手数"],
+  feet: ["足り", "足す", "足し"],
+  tummy: ["お腹すい", "おなかすい", "お腹減", "おなか減"],
+  voice: ["声優"],
+  music: ["歌舞伎"]
 };
 
 const SCENES = [
@@ -603,6 +658,13 @@ export class LiteResponseEngine {
 }
 
 function score(scene, transcript) {
+  const hints = (SCENE_HINTS[scene.id] || []).map(normalize).filter(Boolean);
+  const exclusions = (SCENE_EXCLUSIONS[scene.id] || []).map(normalize).filter(Boolean);
+  const hintMatched = hints.some(x => transcript.includes(x));
+  const excluded = exclusions.some(x => transcript.includes(x));
+
+  if (excluded && !hintMatched) return 0;
+
   let total = 0;
   for (const keyword of scene.keywords) {
     const k = normalize(keyword);
@@ -618,13 +680,7 @@ function score(scene, transcript) {
     }
   }
 
-  if (scene.id === "sleep" && !transcript.includes("寝返り")) {
-    const hintMatched = (SCENE_HINTS.sleep || [])
-      .map(normalize)
-      .filter(Boolean)
-      .some(x => transcript.includes(x));
-    if (hintMatched) total = Math.max(total, 4);
-  }
+  if (hintMatched) total = Math.max(total, 4);
   return total;
 }
 function sanitizeName(name) {
