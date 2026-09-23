@@ -17,13 +17,14 @@ Whisper tiny (browser-local ASR)
 ↓
 LiteResponseEngine
 ↓
-Kokoro / af_heart
+Supertonic 3 / F3 (browser-local CPU/WASM TTS)
 ↓
 Emma avatar + PCM-linked lip sync
 ```
 
 - 会話処理はブラウザ内ローカル実行を基本とします
-- 初回はWhisper/Kokoro等のモデル取得に通信を使います
+- 初回はWhisper/Supertonic 3等のモデル取得に通信を使います
+- TTSはSupertonic 3に一本化し、CPU/WASMで実行します（WebGPUはTTSでは使用しません）
 - Android版Emmaとは別repositoryとして開発します
 - Full Gemma modeは今後追加予定です
 
