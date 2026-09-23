@@ -18,6 +18,8 @@ const ui = {
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
   keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
+  ttsEngine:$('ttsEngine'), kittenVoice:$('kittenVoice'), kittenVoiceRow:$('kittenVoiceRow'),
+  voicePreviewButton:$('voicePreviewButton'), ttsEngineDescription:$('ttsEngineDescription'), voicePreviewText:$('voicePreviewText'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
@@ -31,7 +33,9 @@ const STORAGE = {
   vivid:'emma_vivid_palette',
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
-  useChanSuffix:'emma_use_chan_suffix'
+  useChanSuffix:'emma_use_chan_suffix',
+  ttsEngine:'emma_tts_engine',
+  kittenVoice:'emma_kitten_voice'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -41,6 +45,7 @@ if (new URLSearchParams(location.search).has('debug')) document.body.classList.a
 
 const engine = new LiteResponseEngine();
 let asrWorker, ttsWorker, mic, wakeLock;
+let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
 let audioContext=null;
@@ -62,12 +67,15 @@ function initUi() {
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   ui.useChanSuffix.checked = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
+  ui.ttsEngine.value = localStorage.getItem(STORAGE.ttsEngine) || 'kokoro';
+  ui.kittenVoice.value = localStorage.getItem(STORAGE.kittenVoice) || 'Luna';
 
   bindEvents();
   updateGenderUi();
   updateSpokenNamePreview();
   applyAppearance();
   updateAppearanceSettings();
+  updateTtsSettings();
 
   if (localStorage.getItem(STORAGE.onboarded) === 'true') showScreen('home');
   else showScreen('onboarding');
@@ -167,6 +175,16 @@ function bindEvents() {
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
     if (ui.autoRespond.checked && pendingUtterance && !processing && !speaking) respondToPendingUtterance();
   });
+  ui.ttsEngine.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.ttsEngine,ui.ttsEngine.value);
+    resetTtsWorker();
+    updateTtsSettings();
+  });
+  ui.kittenVoice.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.kittenVoice,ui.kittenVoice.value);
+    updateTtsSettings();
+  });
+  ui.voicePreviewButton.addEventListener('click',previewSelectedVoice);
 
   ui.debugReplyButton.addEventListener('click',async()=>{
     const text=ui.debugInput.value.trim();
@@ -313,26 +331,47 @@ function respondToPendingUtterance() {
 }
 
 async function initWorkers() {
-  if(workersReady)return;
-  const asrReady=new Promise((resolve,reject)=>{
-    asrWorker=new Worker(new URL('./asr-worker.js',import.meta.url),{type:'module'});
-    asrWorker.onmessage=(event)=>handleAsrMessage(event,resolve,reject);
-    asrWorker.onerror=reject;
-  });
-  const ttsReady=new Promise((resolve,reject)=>{
-    ttsWorker=new Worker(new URL('./tts-worker.js',import.meta.url),{type:'module'});
-    ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
-    ttsWorker.onerror=reject;
-  });
-  asrWorker.postMessage({type:'init',preferWebGpu:false});
-  ttsWorker.postMessage({type:'init'});
+  const signature=getTtsSignature();
+
+  let asrReady;
+  if(asrWorker && asrInfoCache){
+    asrReady=Promise.resolve(asrInfoCache);
+  }else{
+    asrReady=new Promise((resolve,reject)=>{
+      asrWorker=new Worker(new URL('./asr-worker.js',import.meta.url),{type:'module'});
+      asrWorker.onmessage=(event)=>handleAsrMessage(event,resolve,reject);
+      asrWorker.onerror=reject;
+      asrWorker.postMessage({type:'init',preferWebGpu:false});
+    });
+  }
+
+  let ttsReady;
+  if(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature){
+    ttsReady=Promise.resolve(ttsInfoCache);
+  }else{
+    ttsWorker?.terminate();
+    ttsInfoCache=null;
+    ttsWorkerSignature=signature;
+    ttsReady=new Promise((resolve,reject)=>{
+      ttsWorker=new Worker(new URL('./tts-worker.js',import.meta.url),{type:'module'});
+      ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
+      ttsWorker.onerror=reject;
+      ttsWorker.postMessage({
+        type:'init',
+        engine:getTtsEngine(),
+        voice:getKittenVoice()
+      });
+    });
+  }
+
   const [asrInfo,ttsInfo]=await Promise.all([asrReady,ttsReady]);
+  asrInfoCache=asrInfo;
+  ttsInfoCache=ttsInfo;
   workersReady=true;
-  ui.runtimeBackend.textContent=`推論: Whisper ${asrInfo.device} / Kokoro ${ttsInfo.device}`;
+  updateRuntimeBackend();
 }
 
 async function ensureWorkersForDebug() {
-  if(workersReady)return;
   setBusy(true);
   showProgress(true,0,'Emmaの声を準備しています…');
   await initWorkers();
@@ -346,6 +385,13 @@ function handleAsrMessage(event,readyResolve,readyReject) {
     showProgress(true,m.progress??0,m.message||'Whisperを準備しています…');
     showOnboardingProgress(true,m.progress??0,m.message||'Whisperを準備しています…');
   } else if(m.type==='ready') readyResolve?.(m);
+  else if(m.type==='fallback') {
+    localStorage.setItem(STORAGE.ttsEngine,'kokoro');
+    ui.ttsEngine.value='kokoro';
+    ttsWorkerSignature='kokoro';
+    updateTtsSettings();
+    ui.runtimeBackend.textContent='KittenTTSを利用できなかったためKokoroへ戻しました。';
+  }
   else if(m.type==='error') {
     readyReject?.(new Error(m.message));
     if(workersReady) onRuntimeError(m.message);
@@ -409,7 +455,7 @@ async function speakResponse(text) {
   audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
   const done=new Promise(resolve=>audioQueues.get(requestId).resolve=resolve);
   setState('speaking','Emmaがお話ししています',text);
-  ttsWorker.postMessage({type:'speak',requestId,text});
+  ttsWorker.postMessage({type:'speak',requestId,text,voice:getKittenVoice()});
   await done;
   speaking=false;
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
@@ -588,6 +634,71 @@ function getSpokenBabyName() {
   );
   const useChan=localStorage.getItem(STORAGE.useChanSuffix)!=='false';
   return withChanSuffix(base,useChan);
+}
+
+function getTtsEngine() {
+  return localStorage.getItem(STORAGE.ttsEngine)==='kitten' ? 'kitten' : 'kokoro';
+}
+
+function getKittenVoice() {
+  return localStorage.getItem(STORAGE.kittenVoice) || 'Luna';
+}
+
+function getTtsSignature() {
+  return getTtsEngine();
+}
+
+function resetTtsWorker() {
+  ttsWorker?.terminate();
+  ttsWorker=null;
+  ttsInfoCache=null;
+  ttsWorkerSignature='';
+  workersReady=false;
+}
+
+function updateRuntimeBackend() {
+  if(!asrInfoCache || !ttsInfoCache){
+    ui.runtimeBackend.textContent='推論: 未初期化';
+    return;
+  }
+  const ttsName=ttsInfoCache.engine==='kitten'
+    ? `Kitten Nano ${getKittenVoice()} ${ttsInfoCache.device}`
+    : `Kokoro ${ttsInfoCache.device}`;
+  ui.runtimeBackend.textContent=`推論: Whisper ${asrInfoCache.device} / ${ttsName}`;
+}
+
+function updateTtsSettings() {
+  const isKitten=ui.ttsEngine.value==='kitten';
+  ui.kittenVoiceRow.classList.toggle('hidden',!isKitten);
+  const webGpuAvailable=!!navigator.gpu;
+  ui.ttsEngineDescription.textContent=isKitten
+    ? webGpuAvailable
+      ? 'KittenTTS Nano（約26MB）の実験モードです。初回だけモデルを取得します。Kokoroより軽く、WebGPUで高速化を狙います。'
+      : 'このブラウザではWebGPUが見つかりません。選択してもKokoroへ自動的に戻ります。'
+    : 'Kokoro af_heartを使います。現在の標準音声です。';
+  const name=getSpokenBabyName() || 'Hana-chan';
+  ui.voicePreviewText.textContent=`試聴文：Hi, ${name}! Bath time! Splash, splash! Here we go!`;
+}
+
+async function previewSelectedVoice() {
+  if(speaking || processing) return;
+  ui.voicePreviewButton.disabled=true;
+  const text=`Hi, ${getSpokenBabyName() || 'Hana-chan'}! Bath time! Splash, splash! Here we go!`;
+  try{
+    setBusy(true);
+    showProgress(true,0,'試聴する声を準備しています…');
+    await initWorkers();
+    showProgress(false);
+    setBusy(false);
+    await speakResponse(text);
+  }catch(error){
+    console.error(error);
+    setBusy(false);
+    showProgress(false);
+    showNotice('音声を試せませんでした',friendlyError(error));
+  }finally{
+    ui.voicePreviewButton.disabled=false;
+  }
 }
 
 function updateAppearanceSettings() {
