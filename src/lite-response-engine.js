@@ -151,11 +151,22 @@ const SCENES = [
     "keywords": [
       "眠い",
       "眠そう",
+      "ねむい",
+      "ねむそう",
       "ねんね",
       "寝よう",
       "寝る",
+      "寝るよ",
+      "寝ます",
+      "寝て",
+      "寝た",
+      "寝かせ",
+      "寝かしつけ",
       "おやすみ",
       "昼寝",
+      "お昼寝",
+      "睡眠",
+      "就寝",
       "眠く"
     ],
     "replies": [
@@ -574,6 +585,12 @@ function score(scene, transcript) {
     if (k && transcript.includes(k)) {
       total += Math.max(2, k.length);
       if (k.length >= 4) total += 2;
+      if (k.length >= 2 && transcript === k) total += 2;
+      else if (
+        k.length === 2 &&
+        transcript.length <= k.length + 3 &&
+        (transcript.startsWith(k) || transcript.endsWith(k))
+      ) total += 1;
     }
   }
   return total;
