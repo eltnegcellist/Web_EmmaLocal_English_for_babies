@@ -1,9 +1,33 @@
-const KITTEN_MODULE_URL = 'https://esm.sh/kitten-tts-js@0.1.2?bundle';
+const KITTEN_MODULE_URLS = [
+  'https://esm.sh/kitten-tts-js@0.1.2',
+  'https://cdn.jsdelivr.net/npm/kitten-tts-js@0.1.2/+esm'
+];
 const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-int8';
 const KITTEN_VOICE = 'Kiki';
 const KITTEN_SPEED = 1.0;
 
 let kittenTts = null;
+
+async function loadKittenModule() {
+  const errors = [];
+  for (const url of KITTEN_MODULE_URLS) {
+    try {
+      const mod = await withTimeout(
+        import(url),
+        60000,
+        'Kitten TTSの実行モジュール取得がタイムアウトしました。'
+      );
+      if (typeof mod?.KittenTTS === 'function') return mod;
+      throw new Error('KittenTTS export not found');
+    } catch (error) {
+      errors.push(`${url}: ${error?.message || String(error)}`);
+    }
+  }
+  throw new Error(
+    'Kitten TTSの実行モジュールを取得できませんでした。ページを再読み込みしてください。' +
+    (errors.length ? ` (${errors.join(' / ')})` : '')
+  );
+}
 
 async function ensureKitten() {
   if (kittenTts) return kittenTts;
@@ -14,11 +38,7 @@ async function ensureKitten() {
     message: 'Kitten TTS Nanoを準備しています…'
   });
 
-  const { KittenTTS } = await withTimeout(
-    import(KITTEN_MODULE_URL),
-    60000,
-    'Kitten TTSの実行モジュールを取得できませんでした。通信状態を確認してください。'
-  );
+  const { KittenTTS } = await loadKittenModule();
 
   self.postMessage({
     type: 'status',
