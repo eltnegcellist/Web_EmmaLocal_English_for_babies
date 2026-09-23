@@ -400,18 +400,32 @@ async function switchToWhisperFallback(reason='native-error') {
 async function initWorkers() {
   const signature=getTtsSignature();
 
-  const asrReady=asrInfoCache
-    ? Promise.resolve(asrInfoCache)
-    : initLocalAsrBackend();
+  // First, only probe/prepare the lightweight native-local ASR path.
+  // Do not start Whisper yet: on mobile, loading Whisper and TTS together
+  // causes large concurrent WASM/model allocations and can stall the page.
+  let nativeUnavailable=false;
+  if(!asrInfoCache){
+    try {
+      asrInfoCache=await prepareNativeLocalAsr({
+        lang:'ja-JP',
+        onStatus:(message)=>{
+          showProgress(true,0,message);
+          showOnboardingProgress(true,0,message);
+        }
+      });
+    } catch(error) {
+      nativeUnavailable=true;
+      console.info('Native local ASR unavailable; Whisper fallback will load after TTS.',error);
+    }
+  }
 
-  let ttsReady;
-  if(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature){
-    ttsReady=Promise.resolve(ttsInfoCache);
-  }else{
+  // Load the TTS model on its own. This avoids competing with Whisper for
+  // network bandwidth, memory and WASM session initialization.
+  if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
     ttsWorker?.terminate();
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
-    ttsReady=new Promise((resolve,reject)=>{
+    ttsInfoCache=await new Promise((resolve,reject)=>{
       ttsWorker=new Worker(new URL('./tts-worker.js',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
@@ -419,26 +433,21 @@ async function initWorkers() {
     });
   }
 
-  const [asrInfo,ttsInfo]=await Promise.all([asrReady,ttsReady]);
-  asrInfoCache=asrInfo;
-  ttsInfoCache=ttsInfo;
+  // Only after TTS is fully ready do we allocate the local Whisper fallback.
+  if(!asrInfoCache && nativeUnavailable){
+    showProgress(true,0,'端末内Fallback音声認識を準備しています…');
+    showOnboardingProgress(true,0,'端末内Fallback音声認識を準備しています…');
+    asrInfoCache=await initWhisperFallback();
+  }
+
+  if(!asrInfoCache){
+    // Defensive fallback if the native probe did not produce a backend for any
+    // reason. Still local-only.
+    asrInfoCache=await initWhisperFallback();
+  }
+
   workersReady=true;
   updateRuntimeBackend();
-}
-
-async function initLocalAsrBackend() {
-  try {
-    return await prepareNativeLocalAsr({
-      lang:'ja-JP',
-      onStatus:(message)=>{
-        showProgress(true,0,message);
-        showOnboardingProgress(true,0,message);
-      }
-    });
-  } catch(error) {
-    console.info('Native local ASR unavailable; using local Whisper fallback.',error);
-    return initWhisperFallback();
-  }
 }
 
 function initWhisperFallback() {

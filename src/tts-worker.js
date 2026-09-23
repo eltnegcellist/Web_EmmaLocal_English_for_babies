@@ -18,22 +18,60 @@ async function ensureSupertonic() {
       : 1;
   }
 
-  supertonicPipeline = await pipeline(
-    'text-to-speech',
-    'onnx-community/Supertonic-TTS-ONNX',
-    {
-      device: 'wasm',
-      progress_callback: (x) => {
-        if (x?.status === 'progress' && Number.isFinite(x.progress)) {
-          self.postMessage({
-            type: 'status',
-            progress: Math.max(0, Math.min(100, x.progress)),
-            message: 'Supertonic 3を取得しています…'
-          });
+  let visibleProgress = 0;
+  const fileProgress = new Map();
+
+  supertonicPipeline = await withTimeout(
+    pipeline(
+      'text-to-speech',
+      'onnx-community/Supertonic-TTS-ONNX',
+      {
+        device: 'wasm',
+        progress_callback: (x) => {
+          if (x?.status === 'progress') {
+            const key=String(x.file || x.name || x.url || 'model');
+            const loaded=Number(x.loaded);
+            const total=Number(x.total);
+            const perFile=Number(x.progress);
+
+            if(Number.isFinite(loaded) && Number.isFinite(total) && total>0){
+              fileProgress.set(key,{loaded,total});
+              let loadedSum=0;
+              let totalSum=0;
+              for(const item of fileProgress.values()){
+                loadedSum+=item.loaded;
+                totalSum+=item.total;
+              }
+              if(totalSum>0) visibleProgress=Math.max(visibleProgress,Math.min(88,(loadedSum/totalSum)*88));
+            }else if(Number.isFinite(perFile)){
+              // x.progress belongs to one asset, not the whole model.
+              // Never show 100% until every ONNX session is actually ready.
+              visibleProgress=Math.max(visibleProgress,Math.min(88,perFile*0.88));
+            }
+
+            self.postMessage({
+              type: 'status',
+              progress: Math.round(visibleProgress),
+              message: 'Supertonic 3のデータを取得しています…'
+            });
+          } else if (x?.status === 'done') {
+            visibleProgress=Math.max(visibleProgress,88);
+            self.postMessage({
+              type: 'status',
+              progress: 90,
+              message: 'Supertonic 3を初期化しています…'
+            });
+          }
         }
       }
-    }
+    ),
+    300000,
+    'Supertonic 3の初期化に時間がかかりすぎています。通信状態を確認して、もう一度お試しください。'
   );
+
+  self.postMessage({ type: 'status', progress: 94, message: 'F3の声を準備しています…' });
+  await getSupertonicEmbedding();
+  self.postMessage({ type: 'status', progress: 100, message: 'Emmaの声を準備できました' });
   return supertonicPipeline;
 }
 
@@ -137,4 +175,13 @@ function writeAscii(view, offset, text) {
   for (let i = 0; i < text.length; i++) {
     view.setUint8(offset + i, text.charCodeAt(i));
   }
+}
+
+
+function withTimeout(promise, ms, message) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(message)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
 }
