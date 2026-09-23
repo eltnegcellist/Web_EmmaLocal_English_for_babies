@@ -1,5 +1,5 @@
-const CACHE='emma-web-shell-v25';
-const SHELL=['./','./index.html','./styles.css','./manifest.webmanifest','./icons/emma.svg','./src/app.js','./src/audio-capture.js','./src/native-asr.js','./src/lite-response-engine.js','./src/name-pronunciation.js','./src/asr-worker.js','./src/tts-worker.js','./worklets/pcm-capture-worklet.js'];
+const CACHE='emma-web-shell-v26';
+const SHELL=['./','./index.html','./styles.css','./manifest.webmanifest','./icons/emma.svg','./src/app.js','./src/audio-capture.js','./src/lite-response-engine.js','./src/name-pronunciation.js','./src/asr-worker.js','./src/tts-worker.js','./worklets/pcm-capture-worklet.js'];
 
 self.addEventListener('install',event=>event.waitUntil(
   caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())
