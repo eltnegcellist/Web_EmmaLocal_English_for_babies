@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <title>Emma Web 更新</title>
+  <style>
+    body{font-family:system-ui,-apple-system,sans-serif;margin:0;min-height:100vh;display:grid;place-items:center;background:#fbf8ff;color:#332b3d}
+    main{max-width:640px;padding:32px;text-align:center}
+    h1{font-size:1.6rem}
+    p{line-height:1.7}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Emma Webを最新版に更新しています</h1>
+    <p id="status">古いアプリキャッシュを整理しています…</p>
+  </main>
+  <script>
+    (async()=>{
+      const status=document.getElementById('status');
+      try{
+        if('serviceWorker' in navigator){
+          const regs=await navigator.serviceWorker.getRegistrations();
+          const targetPath='/Web_EmmaLocal_English_for_babies/';
+          await Promise.all(regs
+            .filter(reg=>new URL(reg.scope).pathname.startsWith(targetPath))
+            .map(reg=>reg.unregister()));
+        }
+        if('caches' in window){
+          const keys=await caches.keys();
+          await Promise.all(keys
+            .filter(key=>key.startsWith('emma-web-shell-'))
+            .map(key=>caches.delete(key)));
+        }
+        sessionStorage.removeItem('emma_coi_reload_count');
+        status.textContent='更新できました。最新版を開きます…';
+      }catch(error){
+        console.warn('Emma reset:',error);
+        status.textContent='更新処理を続けます…';
+      }
+      location.replace('./?build=20260923-sw-reset-1');
+    })();
+  </script>
+</body>
+</html>
