@@ -621,10 +621,13 @@ async function playBlob(blob) {
   const decoded=await audioContext.decodeAudioData(buffer.slice(0));
   const source=audioContext.createBufferSource();
   activeAudioSource=source;
-  source.buffer=trimAudioSilence(decoded);
+  const playbackBuffer=trimAudioSilence(decoded);
+  source.buffer=playbackBuffer;
+  const gainNode=audioContext.createGain();
+  gainNode.gain.value=calculatePlaybackGain(playbackBuffer);
   const analyser=audioContext.createAnalyser();
   analyser.fftSize=256;
-  source.connect(analyser).connect(audioContext.destination);
+  source.connect(gainNode).connect(analyser).connect(audioContext.destination);
   const data=new Uint8Array(analyser.frequencyBinCount);
   let raf;
   const animate=()=>{
@@ -644,6 +647,16 @@ async function playBlob(blob) {
   cancelAnimationFrame(raf);
   ui.avatar.style.setProperty('--mouth-scale','0');
   ui.avatar.classList.remove('mouth-wide');
+}
+
+function calculatePlaybackGain(buffer) {
+  let peak=0;
+  for(let channelIndex=0;channelIndex<buffer.numberOfChannels;channelIndex++){
+    const channel=buffer.getChannelData(channelIndex);
+    for(let i=0;i<channel.length;i++) peak=Math.max(peak,Math.abs(channel[i]));
+  }
+  if(!(peak>0)) return 1;
+  return Math.max(1,Math.min(1.8,0.92/peak));
 }
 
 function trimAudioSilence(buffer) {
