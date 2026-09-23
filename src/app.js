@@ -24,7 +24,7 @@ const ui = {
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
-const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v3';
+const CURRENT_SETUP_REVISION = 'moonshine-tiny-kitten-kiki-v4';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -384,7 +384,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-kitten-browser-vendor-1',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-kitten-progress-1',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -406,7 +406,7 @@ function initMoonshine() {
   asrWorker?.terminate();
   asrWorker=null;
   return new Promise((resolve,reject)=>{
-    asrWorker=new Worker(new URL('./asr-worker.js?v=20260923-kitten-browser-vendor-1',import.meta.url),{type:'module'});
+    asrWorker=new Worker(new URL('./asr-worker.js?v=20260923-kitten-progress-1',import.meta.url),{type:'module'});
     asrWorker.onmessage=(event)=>handleAsrMessage(event,(info)=>resolve({...info,kind:'moonshine'}),reject);
     asrWorker.onerror=reject;
     asrWorker.postMessage({type:'init',preferWebGpu:false});
