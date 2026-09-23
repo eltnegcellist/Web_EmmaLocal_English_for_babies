@@ -2,7 +2,7 @@ const KITTEN_MODULE_URLS = [
   'https://esm.sh/kitten-tts-js@0.1.2',
   'https://cdn.jsdelivr.net/npm/kitten-tts-js@0.1.2/+esm'
 ];
-const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-int8';
+const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8';
 const KITTEN_VOICE = 'Kiki';
 const KITTEN_SPEED = 1.0;
 
@@ -43,7 +43,7 @@ async function ensureKitten() {
   self.postMessage({
     type: 'status',
     progress: 5,
-    message: 'Kitten TTS Nano INT8を取得しています…（約28MB）'
+    message: 'Kitten TTS Nanoを取得しています…（約60MB）'
   });
 
   kittenTts = await withTimeout(
