@@ -25,7 +25,7 @@ Emma avatar + PCM-linked lip sync
 - 日本語ASRは端末内処理のみ。対応ブラウザでは `SpeechRecognition.processLocally = true` を優先し、非対応環境だけWhisperをブラウザ内で使います
 - 初回はオンデバイス音声認識データ、またはFallback用WhisperとTTSモデルの取得に通信を使う場合があります
 - 標準TTSはSupertonic 3 / F3をCPU/WASMで実行します
-- 速度比較用にKitten Nano（WebGPU）を一時的に選択でき、同じ例文で生成速度を比較できます
+- 速度比較用にKitten Nano INT8（CPU/WASM）を一時的に選択でき、同じ例文で生成速度を比較できます
 - Android版Emmaとは別repositoryとして開発します
 - Full Gemma modeは今後追加予定です
 
