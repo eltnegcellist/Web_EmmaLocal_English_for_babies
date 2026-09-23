@@ -1,8 +1,6 @@
 let supertonicPipeline = null;
-let selectedVoice = 'F3';
 const supertonicEmbeddings = new Map();
 
-const SUPERTONIC_VOICES = new Set(['F1','F2','F3','F4','F5','M1','M2','M3','M4','M5']);
 const SUPERTONIC_VOICE_BASE =
   'https://raw.githubusercontent.com/activated-intelligence/voice-chat/7484f9b4383590b8248b268ba2f2ee551b07c334/public/voices';
 
@@ -39,21 +37,19 @@ async function ensureSupertonic() {
   return supertonicPipeline;
 }
 
-async function getSupertonicEmbedding(voice) {
-  const id = SUPERTONIC_VOICES.has(voice) ? voice : 'F3';
-  if (supertonicEmbeddings.has(id)) return supertonicEmbeddings.get(id);
+async function getSupertonicEmbedding() {
+  if (supertonicEmbeddings.has('F3')) return supertonicEmbeddings.get('F3');
 
-  const response = await fetch(`${SUPERTONIC_VOICE_BASE}/${id}.bin`);
-  if (!response.ok) throw new Error(`Supertonic voice ${id} の取得に失敗しました。`);
+  const response = await fetch(`${SUPERTONIC_VOICE_BASE}/F3.bin`);
+  if (!response.ok) throw new Error('Supertonic voice F3 の取得に失敗しました。');
   const embedding = new Float32Array(await response.arrayBuffer());
-  supertonicEmbeddings.set(id, embedding);
+  supertonicEmbeddings.set('F3', embedding);
   return embedding;
 }
 
-async function synthesize(text, requestId, voice) {
+async function synthesize(text, requestId) {
   const tts = await ensureSupertonic();
-  const embedding = await getSupertonicEmbedding(voice);
-  const startedAt = performance.now();
+  const embedding = await getSupertonicEmbedding();
 
   const output = await tts(text, {
     speaker_embeddings: embedding,
@@ -65,8 +61,6 @@ async function synthesize(text, requestId, voice) {
   const sampleRate = output?.sampling_rate || 24000;
   if (!audio || !audio.length) throw new Error('Supertonic 3の音声生成に失敗しました。');
 
-  const generationMs = Math.round(performance.now() - startedAt);
-  const audioMs = Math.round((audio.length / sampleRate) * 1000);
   const blob = float32ToWav(audio, sampleRate);
 
   self.postMessage({
@@ -75,16 +69,12 @@ async function synthesize(text, requestId, voice) {
     index: 0,
     sentence: text,
     blob,
-    generationMs,
-    audioMs,
     engine: 'supertonic'
   });
   self.postMessage({
     type: 'complete',
     requestId,
     total: 1,
-    generationMs,
-    audioMs,
     engine: 'supertonic'
   });
 }
@@ -93,7 +83,6 @@ self.onmessage = async (event) => {
   const { type } = event.data;
   try {
     if (type === 'init') {
-      selectedVoice = SUPERTONIC_VOICES.has(event.data.voice) ? event.data.voice : 'F3';
       await ensureSupertonic();
       self.postMessage({ type: 'ready', device: 'wasm-cpu', engine: 'supertonic' });
       return;
@@ -106,10 +95,7 @@ self.onmessage = async (event) => {
       ).trim();
       if (!text) throw new Error('No text to speak');
 
-      const voice = SUPERTONIC_VOICES.has(event.data.voice)
-        ? event.data.voice
-        : selectedVoice;
-      await synthesize(text, event.data.requestId, voice);
+      await synthesize(text, event.data.requestId);
     }
   } catch (error) {
     self.postMessage({
