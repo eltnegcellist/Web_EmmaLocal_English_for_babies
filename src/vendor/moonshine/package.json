@@ -1,0 +1,9 @@
+{
+  "name": "@moonshine-ai/moonshine-wasm",
+  "version": "0.1.5",
+  "type": "module",
+  "license": "MIT",
+  "source": "https://github.com/moonshine-ai/moonshine/releases/download/v0.1.5/moonshine-voice-wasm.tar.gz",
+  "wasm_sha256": "22fca4a5b2dc50fe36dc68e4d25fab73b0250b71f744d9fea511c3a308b2420a",
+  "gzip_sha256": "24248fa434466dcc529836684ba5085448ade5da45a60e5510da13eac9e7a870"
+}

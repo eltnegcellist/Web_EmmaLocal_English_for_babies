@@ -20,19 +20,19 @@ Moonshine Japanese Tiny Streaming (browser-local WASM)
 ↓
 LiteResponseEngine
 ↓
-Kitten TTS Nano / Kiki (browser-local WASM TTS)
+Kitten TTS Nano 0.8 INT8 / Kiki (browser-local WASM TTS)
 ↓
 Emma avatar + PCM-linked lip sync
 ```
 
-- 音声認識は原則としてMITライセンスのMoonshine Japanese Tiny Streaming（34M）のブラウザ内WASMを使用します
-- 一部のMoonshine 0.1.5 WASM環境でTiny Streamingが`Invalid argument`になる場合は、互換性のため旧来のJapanese Tinyへ自動フォールバックします。この旧モデルはMoonshine Community License（非商用）です
+- 音声認識はMITライセンスのMoonshine Japanese Tiny Streaming（約32.3MB）のブラウザ内WASMを使用します。非商用の旧Tinyへの切替は行いません
+- Moonshine 0.1.5の公式リリースアーカイブのJSとWASMを`src/vendor/moonshine/`に固定しています。WASMはgzipで配信し、ブラウザで展開後にSHA-256を照合して読み込みます。同じ0.1.5のnpm版WASMにはStreaming版のsplit frontend対応が欠けています
 - ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
-- 初回はMoonshine Tiny Streaming（量子化モデル約32.3MB）とKitten TTS Nano（モデル一式約60MB）の取得に通信を使う場合があります。互換Tinyへフォールバックした環境ではMoonshine側の追加取得量が増えます
+- 初回はMoonshine Tiny Streaming（約32.3MB）とKitten TTS Nano INT8（モデル・音声データ約27.6MB）、合計約60MBの取得に通信を使います。推論用WASM本体（Moonshine圧縮時約6.4MB）とKittenのブラウザ用実行コードも別途取得します
 - 認識・返答選択・音声生成の推論は端末内で実行します
-- 標準TTSはKitten TTS Nano 0.8 / KikiをWASMで実行します
+- 標準TTSはKitten TTS Nano 0.8 INT8 / KikiをWASMで実行します
 - Kittenのブラウザ実行コードはEmma側に固定したブラウザ専用ランタイムを使用し、Node.js用の`fs`処理は含みません
-- INT8版では一部環境で問題報告があるため、Web版は安定性優先でNano FP32モデルを使用します
+- FP32モデルへの自動切替は行いません。INT8の読み込みに失敗した場合はエラーを表示します
 - Android版Emmaとは別repositoryとして開発します
 - Web版はLiteのみです。Standard / FullはAndroid版で提供します
 

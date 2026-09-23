@@ -1,5 +1,4 @@
-const MOONSHINE_MODULE_URL =
-  'https://cdn.jsdelivr.net/npm/@moonshine-ai/moonshine-wasm@0.1.5/dist/index.js';
+const MOONSHINE_MODULE_URL = new URL('./moonshine-module.js', import.meta.url).href;
 
 let transcriber = null;
 let modelInfo = null;
@@ -21,7 +20,7 @@ self.onmessage = async (event) => {
         message: 'Moonshineの実行エンジンを準備しています…'
       });
 
-      const { Transcriber, ModelArch } = await withTimeout(
+      const { Transcriber, ModelArch, loadEmmaMoonshineModule } = await withTimeout(
         import(MOONSHINE_MODULE_URL),
         60000,
         'Moonshineの実行モジュールを取得できませんでした。通信状態を確認してください。'
@@ -34,8 +33,10 @@ self.onmessage = async (event) => {
         message: '日本語音声認識モデルを準備しています…'
       });
 
+      const module = await loadEmmaMoonshineModule();
       transcriber = await withTimeout(
         Transcriber.load({
+          module,
           language: 'ja',
           modelArch: ModelArch.TinyStreaming,
           options: {

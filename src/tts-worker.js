@@ -1,6 +1,6 @@
 import { KittenTTS } from './vendor/kitten/index.js';
 
-const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8';
+const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-int8';
 const KITTEN_VOICE = 'Kiki';
 const KITTEN_SPEED = 1.0;
 

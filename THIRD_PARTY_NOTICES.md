@@ -5,24 +5,15 @@
 Emma Web uses the Moonshine Voice WebAssembly runtime and the Japanese Tiny
 Streaming speech-to-text model from Moonshine AI.
 
-- Runtime: `@moonshine-ai/moonshine-wasm`
+- Runtime: `@moonshine-ai/moonshine-wasm` 0.1.5 (official GitHub release archive, hosted under `src/vendor/moonshine/`)
 - Model: Japanese Tiny Streaming
 - License: MIT
 - Upstream: https://github.com/moonshine-ai/moonshine
 
 Copyright (c) 2025 Useful Sensors, Inc. (dba Moonshine AI)
 
-### Compatibility fallback
-
-Emma Web normally uses Japanese Tiny Streaming under the MIT License. If the
-Moonshine 0.1.5 WASM runtime rejects the streaming model with
-`Invalid argument`, Emma can automatically fall back to the legacy
-non-streaming Japanese Tiny model.
-
-- Fallback model: Japanese Tiny (legacy non-streaming)
-- License: Moonshine Community License
-- Upstream describes this legacy Japanese Tiny model as non-commercial
-- The fallback model is downloaded at runtime and is not bundled in this repository
+The runtime's upstream MIT license is included in `src/vendor/moonshine/LICENSE`.
+No legacy non-commercial model is used.
 
 
 MIT License
@@ -51,7 +42,7 @@ SOFTWARE.
 Emma Web uses the Kitten TTS Nano 0.8 speech-synthesis model from
 KittenML / Stellon Labs and the browser JavaScript port `kitten-tts-js`.
 
-- Model: `KittenML/kitten-tts-nano-0.8`
+- Model: `KittenML/kitten-tts-nano-0.8-int8`
 - Browser runtime integration: browser-only adapted subset of `kitten-tts-js` 0.1.2
 - Upstream runtime commit: `222cb5586764fa51f4e73d469d6b1e5d92a56f21`
 - The adapted subset removes Node.js-only `fs`, `path`, and `os` code paths
