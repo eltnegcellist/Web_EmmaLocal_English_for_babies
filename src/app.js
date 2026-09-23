@@ -5,7 +5,9 @@ import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 const $ = (id) => document.getElementById(id);
 const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
-  onboardingBabyName:$('onboardingBabyName'), prepareEmmaButton:$('prepareEmmaButton'),
+  onboardingBabyName:$('onboardingBabyName'), onboardingSpokenBabyName:$('onboardingSpokenBabyName'),
+  onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
+  prepareEmmaButton:$('prepareEmmaButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'),
   progressWrap:$('progressWrap'), progressBar:$('progressBar'), progressText:$('progressText'),
@@ -57,12 +59,16 @@ function initUi() {
   const babyName = localStorage.getItem(STORAGE.babyName) || '';
   ui.babyName.value = babyName;
   ui.onboardingBabyName.value = babyName;
-  ui.spokenBabyName.value = localStorage.getItem(STORAGE.spokenName) || '';
+  const spokenName = localStorage.getItem(STORAGE.spokenName) || '';
+  ui.spokenBabyName.value = spokenName;
+  ui.onboardingSpokenBabyName.value = spokenName;
   ui.colorMode.value = localStorage.getItem(STORAGE.colorMode) || 'color_shift';
   ui.vividPalette.value = localStorage.getItem(STORAGE.vivid) || 'sunshine';
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
-  ui.useChanSuffix.checked = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
+  const useChanSuffix = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
+  ui.useChanSuffix.checked = useChanSuffix;
+  ui.onboardingUseChanSuffix.checked = useChanSuffix;
 
   bindEvents();
   updateGenderUi();
@@ -125,13 +131,27 @@ function bindEvents() {
     updateSpokenNamePreview();
   });
   ui.spokenBabyName.addEventListener('input',()=>{
-    const value=String(ui.spokenBabyName.value).replace(/[^\p{L}'’\- ]/gu,'').slice(0,40);
+    const value=sanitizeSpokenName(ui.spokenBabyName.value);
+    ui.spokenBabyName.value=value;
+    ui.onboardingSpokenBabyName.value=value;
+    localStorage.setItem(STORAGE.spokenName,value);
+    updateSpokenNamePreview();
+  });
+  ui.onboardingSpokenBabyName.addEventListener('input',()=>{
+    const value=sanitizeSpokenName(ui.onboardingSpokenBabyName.value);
+    ui.onboardingSpokenBabyName.value=value;
     ui.spokenBabyName.value=value;
     localStorage.setItem(STORAGE.spokenName,value);
     updateSpokenNamePreview();
   });
   ui.useChanSuffix.addEventListener('change',()=>{
+    ui.onboardingUseChanSuffix.checked=ui.useChanSuffix.checked;
     localStorage.setItem(STORAGE.useChanSuffix,String(ui.useChanSuffix.checked));
+    updateSpokenNamePreview();
+  });
+  ui.onboardingUseChanSuffix.addEventListener('change',()=>{
+    ui.useChanSuffix.checked=ui.onboardingUseChanSuffix.checked;
+    localStorage.setItem(STORAGE.useChanSuffix,String(ui.onboardingUseChanSuffix.checked));
     updateSpokenNamePreview();
   });
   ui.pronunciationToggle.addEventListener('click',()=>{
@@ -615,11 +635,13 @@ function updateGenderUi() {
 function updateSpokenNamePreview() {
   const spoken=getSpokenBabyName();
   const base=localStorage.getItem(STORAGE.babyName)||'';
-  ui.spokenNamePreview.textContent=!base
+  const message=!base
     ? '名前は未設定です。'
     : spoken
       ? `Emmaが呼ぶ名前：${spoken}`
       : '必要な場合だけ、英字で読み方を指定してください。';
+  ui.spokenNamePreview.textContent=message;
+  ui.onboardingSpokenNamePreview.textContent=message;
 }
 
 function getSpokenBabyName() {
@@ -701,6 +723,10 @@ function setPalette(palette) {
 
 function sanitizePlainName(value,max) {
   return String(value||'').replace(/[\n\r\t]/g,'').slice(0,max);
+}
+
+function sanitizeSpokenName(value) {
+  return String(value||'').replace(/[^\p{L}'’\- ]/gu,'').slice(0,40);
 }
 
 function delay(ms){return new Promise(r=>setTimeout(r,ms));}

@@ -33,6 +33,14 @@
           <label>名前（任意）
             <input id="onboardingBabyName" maxlength="30" autocomplete="off" placeholder="例：はな / Hana" />
           </label>
+          <label>英語で呼ぶ名前（必要な場合だけ）
+            <input id="onboardingSpokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Hana" />
+          </label>
+          <label class="toggle-line">
+            <span>名前に「-chan」を付ける</span>
+            <span class="switch"><input id="onboardingUseChanSuffix" type="checkbox" checked /><span></span></span>
+          </label>
+          <p id="onboardingSpokenNamePreview" class="small muted"></p>
           <div class="field-title">性別</div>
           <div class="segmented" data-gender-group="onboarding">
             <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
