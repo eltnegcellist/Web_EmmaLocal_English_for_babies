@@ -177,6 +177,47 @@ const SCENE_HINTS = {
   ]
 };
 
+// Longer, natural parent phrases are used only by the phonetic rescue path.
+const SCENE_RESCUE_PHRASES = {
+  bath: [
+    "お風呂入りますか", "お風呂入ろうか", "お風呂入ろうね", "お風呂に入ろうか"
+  ],
+  milk: [
+    "ミルク飲みますか", "ミルク飲む", "ミルク飲もうか", "ミルク飲もうね",
+    "ミルクにしようか", "ミルクの時間だよ"
+  ],
+  sleep: [
+    "そろそろ寝ようか", "ねんねしようか", "もう寝ようね", "眠くなってきたね"
+  ],
+  wake: [
+    "そろそろ起きようか", "起きる時間だよ", "おはよう起きたね"
+  ],
+  diaper: [
+    "おむつ替えようか", "おむつ替えようね", "おむつ替えますか"
+  ],
+  clothes: [
+    "着替えようか", "お着替えしようか", "着替えようね"
+  ],
+  hug: [
+    "抱っこしようか", "抱っこする", "抱っこしようね"
+  ],
+  play: [
+    "一緒に遊ぼうか", "遊ぼうね", "おもちゃで遊ぼうか"
+  ],
+  outside: [
+    "お散歩行こうか", "お外行こうか", "散歩に行こうね"
+  ],
+  food: [
+    "ごはん食べようか", "ごはん食べますか", "ごはんにしようか"
+  ],
+  book: [
+    "絵本読もうか", "絵本読もうね", "絵本を読みますか"
+  ],
+  music: [
+    "歌を歌おうか", "お歌歌おうか", "音楽聞こうか"
+  ]
+};
+
 const SCENE_EXCLUSIONS = {
   bath: ["風呂敷"],
   sleep: ["寝返り"],
@@ -597,7 +638,11 @@ export class LiteResponseEngine {
       transcript,
       Object.fromEntries(SCENES.map(scene => [
         scene.id,
-        [...scene.keywords, ...(SCENE_HINTS[scene.id] || [])],
+        [
+          ...scene.keywords,
+          ...(SCENE_HINTS[scene.id] || []),
+          ...(SCENE_RESCUE_PHRASES[scene.id] || []),
+        ],
       ])),
       SCENE_EXCLUSIONS,
     );
