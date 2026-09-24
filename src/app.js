@@ -399,6 +399,8 @@ async function startEmma({ auto = false } = {}) {
     // and this ordering also ensures the microphone permission prompt is not
     // hidden behind a suspended AudioContext.resume() promise.
     running=true;
+    setState('thinking','マイクを起動しています','ブラウザのマイク入力を開始しています。');
+    showProgress(true,100,'Emmaの声は準備済みです。マイクを開始しています…');
     await startMoonshineCapture();
     await initAudioContext();
 
