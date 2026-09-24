@@ -365,34 +365,28 @@ async function startEmma({ auto = false } = {}) {
   if(running || processing || speaking || ui.mainButton.disabled) return;
   ui.mainButton.disabled=true;
   try {
-    // Permissions API can report "prompt" or be unsupported even when the
-    // microphone was already granted on Android. Do not use it to block
-    // automatic startup. On subsequent opens, try the real microphone capture
-    // directly; the capture path has its own timeout and error handling.
-    if(!auto){
-      const micPermission=await getMicrophonePermissionState();
-      if(micPermission!=='granted'){
-        setState('thinking','マイクの許可を確認しています','表示された許可画面でマイクを許可してください。');
-        setBusy(true);
-        await requestMicrophonePermission();
-      }
-    }
-
     if(!(await ensureMoonshineIsolation())) return;
-    setState('thinking','Emmaを準備しています','初回はMoonshineと音声モデルの読み込みに時間がかかることがあります。');
+
+    // Always try the real microphone first. Do not gate startup on the
+    // Permissions API: Android/Brave/Chrome may report "prompt" even when the
+    // actual capture path can proceed, and one-time permission must be allowed
+    // to show its browser prompt on every new launch.
+    running=true;
     setBusy(true);
+    setState('thinking','マイクを起動しています','必要なら表示される許可画面でマイクを許可してください。');
+    showProgress(true,0,'マイクを開始しています…');
+    await startMoonshineCapture();
+
+    // Only after real capture is active do we prepare the local ASR/TTS models.
+    // This prevents model startup from blocking the microphone permission UI.
+    setState('thinking','Emmaを準備しています','マイクは起動済みです。Moonshineと音声モデルを準備しています。');
     showProgress(true,0,'Moonshineを準備しています…');
     await navigator.storage?.persist?.().catch(()=>false);
-    await initWorkers();
-
-    // Request microphone access before resuming the playback AudioContext.
-    // Chrome allows Web Audio autoplay while an active capture session exists,
-    // and this ordering also ensures the microphone permission prompt is not
-    // hidden behind a suspended AudioContext.resume() promise.
-    running=true;
-    setState('thinking','マイクを起動しています','ブラウザのマイク入力を開始しています。');
-    showProgress(true,100,'Emmaの声は準備済みです。マイクを開始しています…');
-    await startMoonshineCapture();
+    await withTimeout(
+      initWorkers(),
+      330000,
+      'Emmaの準備が完了しませんでした。ページを再読み込みして、もう一度お試しください。'
+    );
     await initAudioContext();
 
     ui.mainButton.classList.add('hidden');
@@ -409,7 +403,7 @@ async function startEmma({ auto = false } = {}) {
     setBusy(false);
     showProgress(false);
     if(auto) {
-      setState('idle','自動開始できませんでした','ブラウザのマイク・音声再生の許可を確認し、「Emmaと話す」を押してください。');
+      setState('idle','自動開始できませんでした',friendlyError(error));
     } else {
       setState('error','開始できませんでした',friendlyError(error));
     }
@@ -462,7 +456,7 @@ async function startMoonshineCapture() {
   if(mic) return;
   mic=new EmmaMicrophone({
     onState:(state)=>{
-      if(processing||speaking)return;
+      if(!workersReady||processing||speaking)return;
       if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
       else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
     },
@@ -944,7 +938,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-auto-restart-r2',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-mic-first-r3',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
