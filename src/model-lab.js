@@ -343,16 +343,30 @@ async function runTtsComparison() {
       const sampleRate = audio?.sampling_rate || audio?.sampleRate || 24000;
       if (!samples?.length) throw new Error('音声データが生成されませんでした。');
 
-      const blob = float32ToWav(samples, sampleRate);
-      const objectUrl = URL.createObjectURL(blob);
-      ttsObjectUrls.push(objectUrl);
-      card.setAudio(objectUrl);
+      const stats = analyzeAudio(samples);
+      const legacyBlob = float32ToWav(samples, sampleRate);
+      const safeResult = float32ToClipSafeWav(samples, sampleRate);
+      const legacyUrl = URL.createObjectURL(legacyBlob);
+      const safeUrl = URL.createObjectURL(safeResult.blob);
+      ttsObjectUrls.push(legacyUrl, safeUrl);
+      card.setAudio(legacyUrl, '従来版：16bit WAV（±1でハードクリップ）');
+      card.setAudio(
+        safeUrl,
+        stats.clippedSamples > 0
+          ? `クリップ回避版：全体を ${safeResult.gain.toFixed(4)}倍して波形を保持`
+          : 'クリップ回避版：ピーク超過なし（従来版とほぼ同一のはず）'
+      );
       card.addMetric(`準備 ${formatMs(initMs)}`);
       card.addMetric(`生成 ${formatMs(genMs)}`);
       card.addMetric(`音声 ${(samples.length / sampleRate).toFixed(2)}秒`);
       card.addMetric(`speed ${speed.toFixed(2)}`);
+      card.addMetric(`peak ${stats.peak.toFixed(4)}`);
+      card.addMetric(`RMS ${stats.rms.toFixed(4)}`);
+      card.addMetric(`±1超過 ${stats.clippedSamples} sample`);
+      card.addMetric(`clip率 ${(stats.clipRate * 100).toFixed(5)}%`);
+      if (stats.clippedSamples > 0) card.addMetric(`clip-safe gain ${safeResult.gain.toFixed(4)}x`);
       if (maxBytes > 0) card.addMetric(`モデル取得量 ${formatBytes(maxBytes)}`);
-      card.setStatus('完了');
+      card.setStatus(stats.clippedSamples > 0 ? '完了 · クリップを検出' : '完了 · クリップなし');
     } catch (error) {
       card.setStatus('エラー: ' + friendlyError(error));
     } finally {
@@ -406,12 +420,22 @@ function createResultCard(title, note) {
       metrics.appendChild(el);
     },
     setTranscript(text) { transcript.textContent = text; },
-    setAudio(src) {
+    setAudio(src, label = '') {
+      const row = document.createElement('div');
+      row.style.marginTop = '10px';
+      if (label) {
+        const caption = document.createElement('div');
+        caption.className = 'small';
+        caption.textContent = label;
+        caption.style.marginBottom = '4px';
+        row.appendChild(caption);
+      }
       const audio = document.createElement('audio');
       audio.controls = true;
       audio.preload = 'metadata';
       audio.src = src;
-      audioWrap.appendChild(audio);
+      row.appendChild(audio);
+      audioWrap.appendChild(row);
     },
   };
 }
@@ -495,6 +519,41 @@ function resampleLinear(input, sourceRate, targetRate) {
     output[i] = input[left] * (1 - fraction) + input[right] * fraction;
   }
   return output;
+}
+
+function analyzeAudio(samples) {
+  const input = samples instanceof Float32Array ? samples : new Float32Array(samples);
+  let peak = 0;
+  let sumSquares = 0;
+  let clippedSamples = 0;
+  for (let i = 0; i < input.length; i++) {
+    const value = Number(input[i]) || 0;
+    const abs = Math.abs(value);
+    peak = Math.max(peak, abs);
+    sumSquares += value * value;
+    if (abs > 1) clippedSamples++;
+  }
+  return {
+    peak,
+    rms: input.length ? Math.sqrt(sumSquares / input.length) : 0,
+    clippedSamples,
+    clipRate: input.length ? clippedSamples / input.length : 0,
+  };
+}
+
+function float32ToClipSafeWav(samples, sampleRate, targetPeak = 0.98) {
+  const input = samples instanceof Float32Array ? samples : new Float32Array(samples);
+  let peak = 0;
+  for (let i = 0; i < input.length; i++) {
+    peak = Math.max(peak, Math.abs(Number(input[i]) || 0));
+  }
+  const gain = peak > targetPeak ? targetPeak / peak : 1;
+  if (gain === 1) {
+    return { blob: float32ToWav(input, sampleRate), gain, peak };
+  }
+  const safe = new Float32Array(input.length);
+  for (let i = 0; i < input.length; i++) safe[i] = input[i] * gain;
+  return { blob: float32ToWav(safe, sampleRate), gain, peak };
 }
 
 function float32ToWav(samples, sampleRate) {
