@@ -62,26 +62,31 @@
   </header>
 
   <section class="card">
-    <h2>1. Moonshine ASR 比較</h2>
-    <p class="small">同じ1回の録音を選択した全モデルへ順番に入力します。正解文を入れると、日本語向けに空白・句読点を除いたCER（文字誤り率）も計算します。</p>
+    <h2>1. Moonshine ASR 実用比較</h2>
+    <p class="notice"><strong>Streaming / 育児語彙検証 v1</strong>：同じ録音で、現在の一括認識・真のStreaming・Tiny＋育児語彙・Small Streamingを比較します。本番EmmaのASR設定はまだ変更しません。</p>
+    <p class="small">Streaming方式は録音を0.5秒ずつ実時間に合わせて流し、発話終了後に最終結果が出るまでの待ち時間も測ります。正解文を入れるとCER（文字誤り率）も計算します。</p>
     <div class="grid">
       <label class="model-option">
-        <input class="asr-model" type="checkbox" value="tiny_streaming" checked>
-        <span><span class="model-title">Tiny Streaming</span><br><span class="small">現在のEmma Webで使用。最小・高速。</span></span>
+        <input class="asr-model" type="checkbox" value="tiny_batch" checked>
+        <span><span class="model-title">Tiny / 現状方式</span><br><span class="small">Streamingモデルだが、発話終了後に一括認識。現在のEmma Web相当。</span></span>
       </label>
       <label class="model-option">
-        <input class="asr-model" type="checkbox" value="small_streaming" checked>
-        <span><span class="model-title">Small Streaming</span><br><span class="small">日本語Streamingで現在選べる大型側。Tinyより大きい。</span></span>
+        <input class="asr-model" type="checkbox" value="tiny_live" checked>
+        <span><span class="model-title">Tiny / 真のStreaming</span><br><span class="small">話している最中に0.5秒ごとに処理。追加ダウンロードなし。</span></span>
       </label>
       <label class="model-option">
-        <input class="asr-model" type="checkbox" value="tiny">
-        <span><span class="model-title">Tiny（旧・非Streaming）</span><br><span class="small">旧アーキテクチャとの比較用。</span></span>
+        <input class="asr-model" type="checkbox" value="tiny_live_keyterms" checked>
+        <span><span class="model-title">Tiny / Streaming＋育児語彙</span><br><span class="small">TinyのままEmma向け語彙を優先。追加ダウンロードなし。</span></span>
       </label>
       <label class="model-option">
-        <input class="asr-model" type="checkbox" value="base">
-        <span><span class="model-title">Base（旧・非Streaming）</span><br><span class="small">旧日本語モデルの大きい側との比較用。</span></span>
+        <input class="asr-model" type="checkbox" value="small_live" checked>
+        <span><span class="model-title">Small / 真のStreaming</span><br><span class="small">高精度候補。初回ダウンロード量と端末負荷も比較。</span></span>
       </label>
     </div>
+
+    <label class="block" for="asrKeyterms">Tiny＋育児語彙で優先する言葉</label>
+    <textarea id="asrKeyterms">ミルク、母乳、おっぱい、哺乳瓶、授乳、寝る、寝よう、ねんね、眠い、おやすみ、おむつ、うんち、おしっこ、抱っこ、お風呂、沐浴、泣く、泣いた、笑う、笑った、げっぷ、よだれ、手、足、お腹、絵本、遊ぶ、外、雨、太陽、ごはん、音楽</textarea>
+    <p class="small">この欄はTiny＋育児語彙だけに使います。語彙を増やしてもモデルサイズや初回ダウンロード量は増えません。</p>
 
     <label class="block" for="referenceText">正解文（任意）</label>
     <textarea id="referenceText" placeholder="例：そろそろミルクを飲もうか。今日はよく眠れたね。"></textarea>
@@ -143,6 +148,6 @@
     <p><a href="./">Emma Webへ戻る</a></p>
   </section>
 </main>
-<script type="module" src="./src/model-lab.js?v=audio-path-v2-27c2e1c"></script>
+<script type="module" src="./src/model-lab.js?v=asr-stream-keyterms-v1-6cbafa0"></script>
 </body>
 </html>
