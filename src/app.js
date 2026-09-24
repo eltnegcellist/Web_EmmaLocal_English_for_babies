@@ -929,6 +929,14 @@ function sanitizeSpokenName(value) {
 
 function delay(ms){return new Promise(r=>setTimeout(r,ms));}
 
+function withTimeout(promise,ms,message){
+  let timer;
+  const timeout=new Promise((_,reject)=>{
+    timer=setTimeout(()=>reject(new Error(message)),ms);
+  });
+  return Promise.race([promise,timeout]).finally(()=>clearTimeout(timer));
+}
+
 async function ensureMoonshineIsolation() {
   if(window.crossOriginIsolated && typeof SharedArrayBuffer === 'function') {
     sessionStorage.removeItem('emma_coi_reload_count');
