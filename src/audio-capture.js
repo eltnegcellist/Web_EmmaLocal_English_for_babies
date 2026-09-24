@@ -15,6 +15,9 @@ export class EmmaMicrophone {
       video: false,
     });
     this.context = new AudioContext({ latencyHint: 'interactive' });
+    if (this.context.state === 'suspended') {
+      await this.context.resume();
+    }
     await this.context.audioWorklet.addModule(new URL('../worklets/pcm-capture-worklet.js', import.meta.url));
     const source = this.context.createMediaStreamSource(this.stream);
     this.node = new AudioWorkletNode(this.context, 'emma-pcm-capture');
