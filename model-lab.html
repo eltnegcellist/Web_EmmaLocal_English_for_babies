@@ -97,7 +97,8 @@
   </section>
 
   <section class="card">
-    <h2>2. Kitten TTS 比較</h2>
+    <h2>2. Kitten TTS 比較 ＋ クリップ検証</h2>
+    <p class="notice"><strong>クリップ検証モード v1</strong>：各モデルで同じ音声から「従来の16bit WAV版」と「クリップ回避版」を2本生成します。peak / RMS / ±1超過sample数 / clip率も表示します。</p>
     <p class="small">同じ英文・同じKiki音声で比較します。モデルは一つずつロードして生成後に解放するため、スマホでもメモリを使い過ぎにくい構成です。</p>
     <div class="grid">
       <label class="model-option">
@@ -142,6 +143,6 @@
     <p><a href="./">Emma Webへ戻る</a></p>
   </section>
 </main>
-<script type="module" src="./src/model-lab.js"></script>
+<script type="module" src="./src/model-lab.js?v=cliptest-ce9fd93"></script>
 </body>
 </html>
