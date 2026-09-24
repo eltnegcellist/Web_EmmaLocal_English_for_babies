@@ -162,6 +162,37 @@ const SCENE_FILLERS = {
     "Listen, listen!"
   ]
 };
+const SCENE_CHILDCARE_ANCHORS = {
+  bath: ["沐浴", "お風呂", "風呂", "湯船", "シャワー"],
+  milk: ["ミルク", "みるく", "みのく", "母乳", "おっぱい", "哺乳瓶", "授乳"],
+  sleep: ["ねんね", "おねんね", "おやすみ", "昼寝", "お昼寝", "寝る", "寝よう", "眠い", "眠そう"],
+  wake: ["おはよう", "起きた", "起きよう", "目覚め"],
+  diaper: ["おむつ", "オムツ", "おむづ", "うんち", "おしっこ"],
+  clothes: ["着替え", "お着替え", "パジャマ"],
+  hug: ["抱っこ", "だっこ", "ぎゅー", "抱きしめ"],
+  hands: ["おてて", "指つか", "指握", "手バタ"],
+  feet: ["あんよ", "足バタ", "キック", "つま先"],
+  smile: ["にこにこ", "ニコニコ", "笑顔", "笑った", "笑う", "にこっ"],
+  cry: ["泣く", "泣い", "泣き", "ぐず", "ぐずぐず", "えーん"],
+  voice: ["喃語", "クーイング", "おしゃべり", "あーって", "うーって", "あうあう"],
+  tummy: ["げっぷ", "ゲップ", "吐き戻", "お腹いっぱい", "おなかいっぱい"],
+  play: ["遊ぼ", "あそぼ", "おもちゃ", "ガラガラ", "ぬいぐるみ", "メリー"],
+  outside: ["散歩", "お散歩", "ベビーカー", "公園", "お外"],
+  rain: ["雨", "雨音"],
+  sun: ["お日様", "太陽", "晴れ", "ぽかぽか"],
+  food: ["離乳食", "ごはん", "ご飯", "いただきます", "スプーン"],
+  book: ["絵本", "ページめく"],
+  music: ["音楽", "歌お", "うたお", "リズム"],
+};
+
+export const CHILDCARE_ASR_KEYTERMS = [
+  "沐浴", "お風呂", "ミルク", "母乳", "おっぱい", "哺乳瓶", "授乳",
+  "ねんね", "おやすみ", "昼寝", "おむつ", "うんち", "おしっこ",
+  "着替え", "抱っこ", "おてて", "あんよ", "にこにこ", "泣く",
+  "ぐずぐず", "喃語", "クーイング", "げっぷ", "吐き戻し", "おもちゃ",
+  "お散歩", "ベビーカー", "離乳食", "絵本", "音楽",
+];
+
 const SCENE_HINTS = {
   bath: [
     "お風呂入", "風呂入", "おふろはい", "シャワー浴", "体洗", "洗お", "湯船入"
@@ -694,6 +725,7 @@ export class LiteResponseEngine {
         scene.id,
         [
           ...scene.keywords,
+          ...(SCENE_CHILDCARE_ANCHORS[scene.id] || []),
           ...(SCENE_HINTS[scene.id] || []),
           ...(SCENE_RESCUE_PHRASES[scene.id] || []),
         ],
@@ -769,8 +801,10 @@ export class LiteResponseEngine {
 }
 
 function score(scene, transcript) {
+  const anchors = (SCENE_CHILDCARE_ANCHORS[scene.id] || []).map(normalize).filter(Boolean);
   const hints = (SCENE_HINTS[scene.id] || []).map(normalize).filter(Boolean);
   const exclusions = (SCENE_EXCLUSIONS[scene.id] || []).map(normalize).filter(Boolean);
+  const anchorMatches = anchors.filter(x => transcript.includes(x)).length;
   const hintMatched = hints.some(x => transcript.includes(x));
   const excluded = exclusions.some(x => transcript.includes(x));
 
@@ -791,6 +825,7 @@ function score(scene, transcript) {
     }
   }
 
+  if (anchorMatches > 0) total = Math.max(total, 6 + Math.min(2, anchorMatches - 1));
   if (hintMatched) total = Math.max(total, 4);
   return total;
 }
