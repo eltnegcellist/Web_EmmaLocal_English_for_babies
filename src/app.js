@@ -236,6 +236,14 @@ function showScreen(name) {
     ui[key+'Screen'].classList.toggle('hidden',key!==name);
   }
   window.scrollTo({top:0,behavior:'auto'});
+
+  if(name==='home' && localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION) {
+    queueMicrotask(()=>{
+      if(!running && !processing && !speaking && !ui.mainButton.disabled) {
+        startEmma({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
+      }
+    });
+  }
 }
 
 function openAbout(from) {
@@ -305,7 +313,6 @@ async function prepareFirstRun() {
     setBusy(false);
     showScreen('home');
     setState('thinking','準備できました','Emmaとの会話を自動で開始します。');
-    await startEmma({ auto: true });
   } catch(error) {
     console.error(error);
     showOnboardingProgress(true,0,friendlyError(error));
@@ -877,7 +884,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260924-setup-transition',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260924-auto-every-home',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
