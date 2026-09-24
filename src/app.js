@@ -365,26 +365,17 @@ async function startEmma({ auto = false } = {}) {
   if(running || processing || speaking || ui.mainButton.disabled) return;
   ui.mainButton.disabled=true;
   try {
-    const micPermission=await getMicrophonePermissionState();
-
-    // Never leave automatic startup waiting on a permission prompt that the
-    // browser may suppress. Existing users who have not granted microphone
-    // access get an explicit button instead.
-    if(auto && micPermission!=='granted'){
-      ui.mainButton.disabled=false;
-      ui.mainButton.classList.remove('hidden');
-      setBusy(false);
-      showProgress(false);
-      setState('idle','マイクの許可が必要です','「Emmaと話す」を押して、マイクの使用を許可してください。');
-      return;
-    }
-
-    // On a real user tap, request permission before any model/storage awaits so
-    // Android Chrome can display the permission UI reliably.
-    if(!auto && micPermission!=='granted'){
-      setState('thinking','マイクの許可を確認しています','表示された許可画面でマイクを許可してください。');
-      setBusy(true);
-      await requestMicrophonePermission();
+    // Permissions API can report "prompt" or be unsupported even when the
+    // microphone was already granted on Android. Do not use it to block
+    // automatic startup. On subsequent opens, try the real microphone capture
+    // directly; the capture path has its own timeout and error handling.
+    if(!auto){
+      const micPermission=await getMicrophonePermissionState();
+      if(micPermission!=='granted'){
+        setState('thinking','マイクの許可を確認しています','表示された許可画面でマイクを許可してください。');
+        setBusy(true);
+        await requestMicrophonePermission();
+      }
     }
 
     if(!(await ensureMoonshineIsolation())) return;
