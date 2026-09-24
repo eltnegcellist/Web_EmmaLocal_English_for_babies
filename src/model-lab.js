@@ -344,29 +344,31 @@ async function runTtsComparison() {
       if (!samples?.length) throw new Error('音声データが生成されませんでした。');
 
       const stats = analyzeAudio(samples);
-      const legacyBlob = float32ToWav(samples, sampleRate);
-      const safeResult = float32ToClipSafeWav(samples, sampleRate);
-      const legacyUrl = URL.createObjectURL(legacyBlob);
-      const safeUrl = URL.createObjectURL(safeResult.blob);
-      ttsObjectUrls.push(legacyUrl, safeUrl);
-      card.setAudio(legacyUrl, '従来版：16bit WAV（±1でハードクリップ）');
-      card.setAudio(
-        safeUrl,
-        stats.clippedSamples > 0
-          ? `クリップ回避版：全体を ${safeResult.gain.toFixed(4)}倍して波形を保持`
-          : 'クリップ回避版：ピーク超過なし（従来版とほぼ同一のはず）'
+      const pcm16Blob = float32ToWav(samples, sampleRate);
+      const float32Blob = float32ToFloatWav(samples, sampleRate);
+      const pcm16Url = URL.createObjectURL(pcm16Blob);
+      const float32Url = URL.createObjectURL(float32Blob);
+      ttsObjectUrls.push(pcm16Url, float32Url);
+
+      card.setAudio(pcm16Url, 'A：16bit PCM WAV（現在のWeb Emmaと同系統の変換）');
+      card.setAudio(float32Url, 'B：32bit Float WAV（16bit量子化をしない）');
+      card.setDirectAudio(
+        samples instanceof Float32Array ? samples.slice() : new Float32Array(samples),
+        sampleRate,
+        'C：Float32をAudioBufferへ直接再生（WAV化を完全に通さない）'
       );
+
       card.addMetric(`準備 ${formatMs(initMs)}`);
       card.addMetric(`生成 ${formatMs(genMs)}`);
       card.addMetric(`音声 ${(samples.length / sampleRate).toFixed(2)}秒`);
+      card.addMetric(`sample rate ${sampleRate} Hz`);
       card.addMetric(`speed ${speed.toFixed(2)}`);
       card.addMetric(`peak ${stats.peak.toFixed(4)}`);
       card.addMetric(`RMS ${stats.rms.toFixed(4)}`);
       card.addMetric(`±1超過 ${stats.clippedSamples} sample`);
       card.addMetric(`clip率 ${(stats.clipRate * 100).toFixed(5)}%`);
-      if (stats.clippedSamples > 0) card.addMetric(`clip-safe gain ${safeResult.gain.toFixed(4)}x`);
       if (maxBytes > 0) card.addMetric(`モデル取得量 ${formatBytes(maxBytes)}`);
-      card.setStatus(stats.clippedSamples > 0 ? '完了 · クリップを検出' : '完了 · クリップなし');
+      card.setStatus('完了 · A/B/Cを同じ音源で比較');
     } catch (error) {
       card.setStatus('エラー: ' + friendlyError(error));
     } finally {
@@ -435,6 +437,48 @@ function createResultCard(title, note) {
       audio.preload = 'metadata';
       audio.src = src;
       row.appendChild(audio);
+      audioWrap.appendChild(row);
+    },
+    setDirectAudio(samples, sampleRate, label = '') {
+      const row = document.createElement('div');
+      row.style.marginTop = '10px';
+      if (label) {
+        const caption = document.createElement('div');
+        caption.className = 'small';
+        caption.textContent = label;
+        caption.style.marginBottom = '4px';
+        row.appendChild(caption);
+      }
+      const button = document.createElement('button');
+      button.className = 'secondary';
+      button.type = 'button';
+      button.textContent = 'Cを直接再生';
+      const statusText = document.createElement('span');
+      statusText.className = 'small';
+      statusText.style.marginLeft = '8px';
+      button.addEventListener('click', async () => {
+        button.disabled = true;
+        statusText.textContent = '再生中…';
+        let context = null;
+        try {
+          context = new AudioContext({ sampleRate, latencyHint: 'interactive' });
+          if (context.state === 'suspended') await context.resume();
+          const buffer = context.createBuffer(1, samples.length, sampleRate);
+          buffer.copyToChannel(samples, 0);
+          const source = context.createBufferSource();
+          source.buffer = buffer;
+          source.connect(context.destination);
+          source.start();
+          await new Promise((resolve) => { source.onended = resolve; });
+          statusText.textContent = '再生完了';
+        } catch (error) {
+          statusText.textContent = '再生エラー: ' + friendlyError(error);
+        } finally {
+          try { await context?.close(); } catch {}
+          button.disabled = false;
+        }
+      });
+      row.append(button, statusText);
       audioWrap.appendChild(row);
     },
   };
@@ -541,19 +585,31 @@ function analyzeAudio(samples) {
   };
 }
 
-function float32ToClipSafeWav(samples, sampleRate, targetPeak = 0.98) {
+function float32ToFloatWav(samples, sampleRate) {
   const input = samples instanceof Float32Array ? samples : new Float32Array(samples);
-  let peak = 0;
-  for (let i = 0; i < input.length; i++) {
-    peak = Math.max(peak, Math.abs(Number(input[i]) || 0));
+  const bytesPerSample = 4;
+  const buffer = new ArrayBuffer(44 + input.length * bytesPerSample);
+  const view = new DataView(buffer);
+
+  writeAscii(view, 0, 'RIFF');
+  view.setUint32(4, 36 + input.length * bytesPerSample, true);
+  writeAscii(view, 8, 'WAVE');
+  writeAscii(view, 12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 3, true); // IEEE float
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * bytesPerSample, true);
+  view.setUint16(32, bytesPerSample, true);
+  view.setUint16(34, 32, true);
+  writeAscii(view, 36, 'data');
+  view.setUint32(40, input.length * bytesPerSample, true);
+
+  let offset = 44;
+  for (let i = 0; i < input.length; i++, offset += bytesPerSample) {
+    view.setFloat32(offset, Number(input[i]) || 0, true);
   }
-  const gain = peak > targetPeak ? targetPeak / peak : 1;
-  if (gain === 1) {
-    return { blob: float32ToWav(input, sampleRate), gain, peak };
-  }
-  const safe = new Float32Array(input.length);
-  for (let i = 0; i < input.length; i++) safe[i] = input[i] * gain;
-  return { blob: float32ToWav(safe, sampleRate), gain, peak };
+  return new Blob([buffer], { type: 'audio/wav' });
 }
 
 function float32ToWav(samples, sampleRate) {
