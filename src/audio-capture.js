@@ -46,6 +46,16 @@ export class EmmaMicrophone {
     }
   }
 
+  resetDetector() {
+    this.vad.reset();
+  }
+
+  async ensureActive() {
+    if (this.context && this.context.state === 'suspended') {
+      await this.context.resume();
+    }
+  }
+
   async stop() {
     this.node?.disconnect();
     this.stream?.getTracks().forEach((t) => t.stop());
