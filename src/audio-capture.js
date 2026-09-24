@@ -10,10 +10,14 @@ export class EmmaMicrophone {
   }
 
   async start() {
-    this.stream = await navigator.mediaDevices.getUserMedia({
-      audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
-      video: false,
-    });
+    this.stream = await withTimeout(
+      navigator.mediaDevices.getUserMedia({
+        audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+        video: false,
+      }),
+      15000,
+      'マイクの開始が完了しませんでした。ブラウザのサイト設定でマイクを許可してから、もう一度お試しください。'
+    );
     this.context = new AudioContext({ latencyHint: 'interactive' });
     if (this.context.state === 'suspended') {
       await this.context.resume();
@@ -149,4 +153,13 @@ function resampleLinear(input, sourceRate, targetRate) {
     out[i] = input[a] * (1 - t) + input[b] * t;
   }
   return out;
+}
+
+
+function withTimeout(promise, ms, message) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(message)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
 }
