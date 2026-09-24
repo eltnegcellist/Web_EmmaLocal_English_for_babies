@@ -1,5 +1,5 @@
 import { EmmaMicrophone } from './audio-capture.js';
-import { LiteResponseEngine } from './lite-response-engine.js';
+import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 
 const $ = (id) => document.getElementById(id);
@@ -19,7 +19,7 @@ const ui = {
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
-  keepAwake:$('keepAwake'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
+  keepAwake:$('keepAwake'), asrModel:$('asrModel'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
   developerUnlockTrigger:$('developerUnlockTrigger'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
@@ -36,7 +36,8 @@ const STORAGE = {
   vivid:'emma_vivid_palette',
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
-  useChanSuffix:'emma_use_chan_suffix'
+  useChanSuffix:'emma_use_chan_suffix',
+  asrModel:'emma_asr_model'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -75,6 +76,7 @@ function initUi() {
   ui.vividPalette.value = localStorage.getItem(STORAGE.vivid) || 'sunshine';
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
+  if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'tiny';
   const useChanSuffix = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
   ui.useChanSuffix.checked = useChanSuffix;
   ui.onboardingUseChanSuffix.checked = useChanSuffix;
@@ -192,6 +194,16 @@ function bindEvents() {
       wakeLock?.release?.().catch(()=>{});
       wakeLock=null;
     } else if (running) requestWakeLock();
+  });
+
+  ui.asrModel?.addEventListener('change',()=>{
+    const next=ui.asrModel.value==='small' ? 'small' : 'tiny';
+    localStorage.setItem(STORAGE.asrModel,next);
+    moonshineTranscriber?.close?.();
+    moonshineTranscriber=null;
+    asrInfoCache=null;
+    workersReady=false;
+    updateRuntimeBackend();
   });
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
@@ -313,7 +325,6 @@ async function clearObsoleteModelCaches() {
   const obsoletePatterns=[
     'onnx-community/whisper-tiny',
     'onnx-community/Supertonic-TTS-ONNX',
-    '/small-streaming-ja/',
     '/voices/F3.bin',
     'KittenML__kitten-tts-nano-0.8__'
   ];
@@ -525,30 +536,38 @@ async function initMoonshine() {
     const fileName=String(file||'').split('/').pop();
     showMoonshineProgress(
       progress,
-      `Moonshine 日本語 Tiny Streamingを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
+      `Moonshine 日本語${localStorage.getItem(STORAGE.asrModel)==='small' ? 'Small' : 'Tiny'} Streamingを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
     );
   };
 
   const module=await loadEmmaMoonshineModule();
   moonshineStage='catalog';
+  const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='small' ? 'small' : 'tiny';
+  const modelArch=selectedAsr==='small' ? ModelArch.SmallStreaming : ModelArch.TinyStreaming;
+  const modelLabel=selectedAsr==='small' ? 'Small' : 'Tiny';
   const nextTranscriber=await Transcriber.load({
     module,
     language:'ja',
-    modelArch:ModelArch.TinyStreaming,
+    modelArch,
     options:{max_tokens_per_second:'13.0'},
     onProgress
   });
+  try {
+    nextTranscriber.setKeyterms(CHILDCARE_ASR_KEYTERMS);
+  } catch(error) {
+    console.warn('Moonshine育児語バイアスを適用できませんでした',error);
+  }
 
   moonshineStage='ready';
   moonshineTranscriber?.close?.();
   moonshineTranscriber=nextTranscriber;
-  showMoonshineProgress(100,'Moonshine 日本語音声認識を準備できました');
+  showMoonshineProgress(100,`Moonshine 日本語${modelLabel}を準備できました`);
 
   return {
     kind:'moonshine',
     engine:'moonshine',
-    model:'tiny-streaming-ja',
-    architecture:'tiny_streaming',
+    model:selectedAsr+'-streaming-ja',
+    architecture:selectedAsr+'_streaming',
     license:'MIT',
     device:'wasm-cpu',
     worker:'none-batch-transcriber'
@@ -866,7 +885,8 @@ function updateRuntimeBackend() {
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
   }
-  ui.runtimeBackend.textContent='ASR: Moonshine Japanese Tiny Streaming / 端末内WASM ・ 音声: Kitten TTS Nano INT8 / Kiki / 端末内';
+  const asrLabel=asrInfoCache?.architecture==='small_streaming' ? 'Small' : 'Tiny';
+  ui.runtimeBackend.textContent=`ASR: Moonshine Japanese ${asrLabel} Streaming / 端末内WASM ・ 音声: Kitten TTS Nano INT8 / Kiki / 端末内`;
 }
 
 function updateAppearanceSettings() {
