@@ -1,4 +1,4 @@
-const CACHE='emma-web-shell-v46';
+const CACHE='emma-web-shell-v47';
 const SHELL=['./','./index.html','./reset.html','./styles.css','./manifest.webmanifest','./icons/emma.svg','./src/app.js','./src/moonshine-module.js','./src/audio-capture.js','./src/lite-response-engine.js','./src/lite-phonetic-scene-matcher.js','./src/name-pronunciation.js','./src/tts-worker.js','./worklets/pcm-capture-worklet.js','./src/vendor/kitten/index.js','./src/vendor/kitten/kitten-tts.js','./src/vendor/kitten/model-loader.js','./src/vendor/kitten/npz-loader.js','./src/vendor/kitten/phonemizer.js','./src/vendor/kitten/audio.js','./src/vendor/kitten/preprocess.js','./src/vendor/kitten/text-cleaner.js'];
 
 self.addEventListener('install',event=>event.waitUntil(
