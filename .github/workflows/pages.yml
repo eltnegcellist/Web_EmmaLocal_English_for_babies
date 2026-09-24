@@ -1,4 +1,4 @@
-name: Emma Web
+name: Emma Web CI
 
 on:
   workflow_dispatch:
@@ -9,13 +9,11 @@ on:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: emma-web-ci
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -35,22 +33,14 @@ jobs:
           node --check src/name-pronunciation.js
           node --check src/model-lab.js
 
-  deploy:
-    if: github.event_name != 'pull_request'
+  publish:
+    if: github.event_name == 'push'
     needs: test
     runs-on: ubuntu-latest
-    environment:
-      name: emma-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
+      - name: Checkout main
         uses: actions/checkout@v6
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
         with:
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          fetch-depth: 0
+      - name: Fast-forward Pages source branch
+        run: git push origin HEAD:chore/trigger-pages
