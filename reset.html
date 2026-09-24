@@ -114,7 +114,7 @@
 
       const suffix=fullReset
         ? `?reset=${Date.now()}`
-        : '?build=20260923-hidden-reset';
+        : `?refresh=${Date.now()}`;
       location.replace('./'+suffix);
     })();
   </script>
