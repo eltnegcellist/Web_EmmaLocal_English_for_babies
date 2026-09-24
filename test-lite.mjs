@@ -102,3 +102,21 @@ const hunger = new LiteResponseEngine().respond('お腹すいたね');
 if (hunger.scene !== 'food') throw new Error(`お腹すいたね: expected food, got ${hunger.scene}`);
 
 console.log('Natural phrase + phonetic rescue + exclusion coverage tests OK');
+
+const genericEngine = new LiteResponseEngine();
+const genericOutputs = Array.from({ length: 24 }, () => {
+  const out = genericEngine.respond('これは分類できない普通の話だよ');
+  if (out.scene !== 'generic') throw new Error(`generic fallback expected generic, got ${out.scene}`);
+  return out.english;
+});
+const uniqueGeneric = new Set(genericOutputs);
+if (uniqueGeneric.size < 20) {
+  throw new Error(`generic fallback variety too small: ${uniqueGeneric.size}/24 unique`);
+}
+for (let i = 1; i < genericOutputs.length; i++) {
+  if (genericOutputs[i] === genericOutputs[i - 1]) {
+    throw new Error(`generic fallback repeated immediately at turn ${i}`);
+  }
+}
+console.log('Generic fallback variety test OK:', uniqueGeneric.size, 'unique / 24');
+
