@@ -306,7 +306,10 @@ async function prepareFirstRun() {
     await navigator.storage?.persist?.().catch(()=>false);
     await clearObsoleteModelCaches();
     await initWorkers();
-    await initAudioContext();
+    // Do not resume the playback AudioContext here. Model preparation can take
+    // long enough that the original button gesture is no longer considered
+    // active by mobile browsers. The conversation start below requests the
+    // microphone first, then resumes playback while capture is active.
     localStorage.setItem(STORAGE.setupRevision,CURRENT_SETUP_REVISION);
     showOnboardingProgress(false);
     showProgress(false);
@@ -330,10 +333,14 @@ async function startEmma({ auto = false } = {}) {
     showProgress(true,0,'Moonshineを準備しています…');
     await navigator.storage?.persist?.().catch(()=>false);
     await initWorkers();
-    await initAudioContext();
 
+    // Request microphone access before resuming the playback AudioContext.
+    // Chrome allows Web Audio autoplay while an active capture session exists,
+    // and this ordering also ensures the microphone permission prompt is not
+    // hidden behind a suspended AudioContext.resume() promise.
     running=true;
     await startMoonshineCapture();
+    await initAudioContext();
 
     ui.mainButton.classList.add('hidden');
     ui.stopButton.classList.remove('hidden');
