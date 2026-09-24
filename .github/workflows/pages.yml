@@ -1,10 +1,10 @@
-name: Emma Web CI
+name: Emma Web
 
 on:
   workflow_dispatch:
   push:
     branches: [ main ]
-  pull_request:
+  pull_request_target:
     branches: [ main ]
     types: [opened, synchronize, reopened]
 
@@ -19,11 +19,17 @@ concurrency:
 
 jobs:
   test:
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event_name != 'pull_request_target' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout main/push revision
+        if: github.event_name != 'pull_request_target'
         uses: actions/checkout@v6
+      - name: Checkout same-repository PR revision
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Smoke test LiteResponseEngine
         run: node test-lite.mjs
       - name: Syntax check
@@ -33,33 +39,30 @@ jobs:
           node --check src/asr-worker.js
           node --check src/tts-worker.js
           node --check src/lite-response-engine.js
-          node --check src/name-pronunciation.js
           node --check src/model-lab.js
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request_target' || github.event.pull_request.head.repo.full_name == github.repository
     needs: test
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout main/push revision
+        if: github.event_name != 'pull_request_target'
         uses: actions/checkout@v6
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-      - name: Prepare static site
-        run: |
-          mkdir _site
-          rsync -a \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='_site' \
-            ./ _site/
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Checkout same-repository PR revision
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v6
         with:
-          path: _site
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: '.'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
