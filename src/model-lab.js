@@ -4,6 +4,7 @@ import { KittenTTS } from './vendor/kitten/index.js';
 const $ = (id) => document.getElementById(id);
 const ui = {
   referenceText: $('referenceText'),
+  asrKeyterms: $('asrKeyterms'),
   recordButton: $('recordButton'),
   stopRecordButton: $('stopRecordButton'),
   runAsrButton: $('runAsrButton'),
@@ -19,29 +20,34 @@ const ui = {
 };
 
 const ASR_MODELS = {
-  tiny_streaming: {
-    label: 'Tiny Streaming',
+  tiny_batch: {
+    label: 'Tiny Streaming / 現状方式',
     arch: ModelArch.TinyStreaming,
-    note: 'Emma Web 現行',
+    note: '発話終了後に一括認識。現在のEmma Webと同じ方式。',
+    mode: 'batch',
     options: { max_tokens_per_second: '13.0' },
   },
-  small_streaming: {
-    label: 'Small Streaming',
+  tiny_live: {
+    label: 'Tiny Streaming / 真のStreaming',
+    arch: ModelArch.TinyStreaming,
+    note: '0.5秒ごとに逐次処理。追加モデルなし。',
+    mode: 'stream',
+    options: { max_tokens_per_second: '13.0' },
+  },
+  tiny_live_keyterms: {
+    label: 'Tiny Streaming + 育児語彙',
+    arch: ModelArch.TinyStreaming,
+    note: '真のStreaming + 育児語彙バイアス。追加DLなし。',
+    mode: 'stream',
+    keyterms: true,
+    options: { max_tokens_per_second: '13.0' },
+  },
+  small_live: {
+    label: 'Small Streaming / 真のStreaming',
     arch: ModelArch.SmallStreaming,
-    note: '日本語Streaming大型側',
+    note: '高精度候補。モデル容量と端末負荷を比較。',
+    mode: 'stream',
     options: { max_tokens_per_second: '13.0' },
-  },
-  tiny: {
-    label: 'Tiny (non-streaming)',
-    arch: ModelArch.Tiny,
-    note: '旧アーキテクチャ',
-    options: undefined,
-  },
-  base: {
-    label: 'Base (non-streaming)',
-    arch: ModelArch.Base,
-    note: '旧アーキテクチャ大型側',
-    options: undefined,
   },
 };
 
@@ -207,7 +213,7 @@ async function runAsrComparison() {
   if (!recorded16k?.length) return;
   const selected = [...document.querySelectorAll('.asr-model:checked')].map((el) => el.value);
   if (!selected.length) {
-    ui.recordStatus.textContent = '比較するMoonshineモデルを1つ以上選んでください。';
+    ui.recordStatus.textContent = '比較するASR方式を1つ以上選んでください。';
     return;
   }
   if (!window.crossOriginIsolated || typeof SharedArrayBuffer !== 'function') {
@@ -220,6 +226,8 @@ async function runAsrComparison() {
   ui.recordButton.disabled = true;
   ui.asrResults.textContent = '';
   const reference = ui.referenceText.value.trim();
+  const keyterms = parseKeyterms(ui.asrKeyterms?.value || '');
+  const audioSeconds = recorded16k.length / 16000;
 
   try {
     if (!moonshineModulePromise) moonshineModulePromise = loadEmmaMoonshineModule();
@@ -227,6 +235,7 @@ async function runAsrComparison() {
 
     for (const key of selected) {
       const meta = ASR_MODELS[key];
+      if (!meta) continue;
       const card = createResultCard(meta.label, meta.note);
       ui.asrResults.appendChild(card.root);
       let transcriber = null;
@@ -254,25 +263,51 @@ async function runAsrComparison() {
         });
         const initMs = performance.now() - initStart;
 
-        card.setStatus('同じ録音を認識しています…');
-        card.setProgress(100);
-        const inferStart = performance.now();
-        const result = transcriber.transcribe(recorded16k, { sampleRate: 16000 });
-        const inferMs = performance.now() - inferStart;
-        const transcript = transcriptText(result);
+        if (meta.keyterms && keyterms.length) {
+          transcriber.setKeyterms(keyterms);
+        }
 
-        card.setTranscript(transcript || '（文字起こし結果なし）');
+        card.setProgress(100);
+        let result;
+        if (meta.mode === 'stream') {
+          card.setStatus('実時間Streamingを再現しています…');
+          result = await runStreamingReplay(transcriber, recorded16k, 16000, (snapshot, progress) => {
+            card.setTranscript(transcriptText(snapshot) || '（認識中…）');
+            card.setProgress(progress * 100);
+          });
+          card.addMetric(`発話 ${audioSeconds.toFixed(2)}秒`);
+          card.addMetric(`Streaming計算 ${formatMs(result.computeMs)}`);
+          card.addMetric(`処理負荷 ${(result.computeMs / (audioSeconds * 1000)).toFixed(2)}x`);
+          card.addMetric(`発話終了→確定 ${formatMs(result.postSpeechMs)}`);
+          if (result.firstTextMs != null) card.addMetric(`最初の文字 ${formatMs(result.firstTextMs)}`);
+          if (meta.keyterms) card.addMetric(`育児語彙 ${keyterms.length}語`);
+        } else {
+          card.setStatus('発話終了後に一括認識しています…');
+          const inferStart = performance.now();
+          const snapshot = transcriber.transcribe(recorded16k, { sampleRate: 16000 });
+          const inferMs = performance.now() - inferStart;
+          result = {
+            transcript: transcriptText(snapshot),
+            computeMs: inferMs,
+            postSpeechMs: inferMs,
+          };
+          card.addMetric(`発話 ${audioSeconds.toFixed(2)}秒`);
+          card.addMetric(`一括推論 ${formatMs(inferMs)}`);
+          card.addMetric(`処理負荷 ${(inferMs / (audioSeconds * 1000)).toFixed(2)}x`);
+          card.addMetric(`発話終了→確定 ${formatMs(inferMs)}`);
+        }
+
+        card.setTranscript(result.transcript || '（文字起こし結果なし）');
         card.addMetric(`準備 ${formatMs(initMs)}`);
-        card.addMetric(`推論 ${formatMs(inferMs)}`);
         if (maxBytes > 0) card.addMetric(`モデル取得量 ${formatBytes(maxBytes)}`);
         if (reference) {
-          const cer = characterErrorRate(reference, transcript);
+          const cer = characterErrorRate(reference, result.transcript);
           card.addMetric(`CER ${(cer * 100).toFixed(1)}%`);
         }
         card.setStatus('完了');
       } catch (error) {
         card.setStatus('エラー: ' + friendlyError(error));
-        card.setTranscript('このモデルは現在の日本語Webランタイムでは読み込めない可能性があります。');
+        card.setTranscript('この方式は現在のブラウザ／Moonshineランタイムでは実行できない可能性があります。');
       } finally {
         try { transcriber?.close(); } catch {}
       }
@@ -284,6 +319,63 @@ async function runAsrComparison() {
     ui.runAsrButton.disabled = false;
     ui.recordButton.disabled = false;
   }
+}
+
+async function runStreamingReplay(transcriber, audio, sampleRate, onUpdate) {
+  const stream = transcriber.createStream({ updateInterval: 0.5 });
+  const chunkSamples = Math.max(1, Math.round(sampleRate * 0.5));
+  const started = performance.now();
+  let computeMs = 0;
+  let firstTextMs = null;
+  let snapshot = { lines: [] };
+  stream.start();
+
+  try {
+    let offset = 0;
+    while (offset < audio.length) {
+      const end = Math.min(audio.length, offset + chunkSamples);
+      const chunk = audio.subarray(offset, end);
+      stream.addAudio(chunk, sampleRate);
+
+      const passStart = performance.now();
+      snapshot = stream.transcribe();
+      computeMs += performance.now() - passStart;
+
+      const text = transcriptText(snapshot);
+      if (firstTextMs == null && text) firstTextMs = performance.now() - started;
+      offset = end;
+      onUpdate?.(snapshot, offset / audio.length);
+
+      const targetTime = started + (offset / sampleRate) * 1000;
+      const remaining = targetTime - performance.now();
+      if (remaining > 0) await delay(remaining);
+    }
+
+    const speechEndAt = started + (audio.length / sampleRate) * 1000;
+    const flushStart = performance.now();
+    stream.stop();
+    computeMs += performance.now() - flushStart;
+    snapshot = stream.latest || snapshot;
+    const postSpeechMs = Math.max(0, performance.now() - speechEndAt);
+
+    return {
+      transcript: transcriptText(snapshot),
+      computeMs,
+      firstTextMs,
+      postSpeechMs,
+    };
+  } finally {
+    try { stream.close(); } catch {}
+  }
+}
+
+function parseKeyterms(value) {
+  return [...new Set(
+    String(value || '')
+      .split(/[、,\n]/)
+      .map((term) => term.trim())
+      .filter(Boolean)
+  )].slice(0, 80);
 }
 
 async function runTtsComparison() {
