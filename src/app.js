@@ -90,7 +90,7 @@ function initUi() {
 }
 
 function bindEvents() {
-  ui.mainButton.addEventListener('click', startEmma);
+  ui.mainButton.addEventListener('click',()=>startEmma());
   ui.stopButton.addEventListener('click', stopEmma);
   ui.manualReplyButton.addEventListener('click', respondToPendingUtterance);
   ui.prepareEmmaButton.addEventListener('click', prepareFirstRun);
@@ -304,7 +304,8 @@ async function prepareFirstRun() {
     showProgress(false);
     setBusy(false);
     showScreen('home');
-    setState('idle','準備できました','「Emmaと話す」を押すと会話を始められます。');
+    setState('thinking','準備できました','Emmaとの会話を自動で開始します。');
+    await startEmma({ auto: true });
   } catch(error) {
     console.error(error);
     showOnboardingProgress(true,0,friendlyError(error));
@@ -312,7 +313,8 @@ async function prepareFirstRun() {
   }
 }
 
-async function startEmma() {
+async function startEmma({ auto = false } = {}) {
+  if(running || processing || speaking || ui.mainButton.disabled) return;
   ui.mainButton.disabled=true;
   try {
     if(!(await ensureMoonshineIsolation())) return;
@@ -339,7 +341,11 @@ async function startEmma() {
     mic=null;
     setBusy(false);
     showProgress(false);
-    setState('error','開始できませんでした',friendlyError(error));
+    if(auto) {
+      setState('idle','自動開始できませんでした','ブラウザのマイク・音声再生の許可を確認し、「Emmaと話す」を押してください。');
+    } else {
+      setState('error','開始できませんでした',friendlyError(error));
+    }
     ui.mainButton.disabled=false;
   }
 }
@@ -871,7 +877,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260923-lite-full',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260924-auto-start',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -903,8 +909,11 @@ async function ensureMoonshineIsolation() {
   throw new Error('Moonshineに必要なブラウザ分離を有効にできませんでした。通常のブラウザタブで開き直してください。');
 }
 
-if('serviceWorker' in navigator) {
-  window.addEventListener('load',()=>{
+window.addEventListener('load',()=>{
+  const setupComplete=localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION;
+  if(setupComplete) {
+    startEmma({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
+  } else if('serviceWorker' in navigator) {
     ensureMoonshineIsolation().catch(error=>console.warn('Moonshine isolation setup:',error));
-  });
-}
+  }
+});
