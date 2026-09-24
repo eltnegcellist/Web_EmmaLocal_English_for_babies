@@ -8,7 +8,7 @@ const CACHE_DIR_NAME = 'kitten-tts';
 
 export const MODELS = {
   'KittenML/kitten-tts-nano-0.8-int8': { label: 'nano int8 (~25 MB)' },
-  'KittenML/kitten-tts-nano-0.8': { label: 'nano fp32 (~56 MB)' },
+  'KittenML/kitten-tts-nano-0.8-fp32': { label: 'nano fp32 (~60 MB)' },
   'KittenML/kitten-tts-micro-0.8': { label: 'micro (~41 MB)' },
   'KittenML/kitten-tts-mini-0.8': { label: 'mini (~80 MB)' },
 };
