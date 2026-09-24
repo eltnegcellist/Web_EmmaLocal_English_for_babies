@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f7fb" />
+  <title>Emma Model Lab</title>
+  <style>
+    :root{
+      color-scheme:light dark;
+      --bg:#f7f7fb;--panel:#fff;--text:#191a22;--muted:#666b7a;--line:#dfe1e8;
+      --accent:#5d55d6;--accent2:#7c75e8;--soft:#efeffb;--ok:#157f4d;--warn:#a56a00;
+    }
+    @media(prefers-color-scheme:dark){
+      :root{--bg:#111217;--panel:#191b22;--text:#f2f3f7;--muted:#a8acb8;--line:#303440;--soft:#242633;--accent:#9b94ff;--accent2:#b3aefc;--ok:#62d69a;--warn:#ffc45c}
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:980px;margin:0 auto;padding:20px 14px 64px}
+    h1{font-size:1.8rem;margin:.2rem 0 .35rem}
+    h2{font-size:1.25rem;margin:0 0 14px}
+    h3{font-size:1rem;margin:18px 0 8px}
+    p{line-height:1.65}
+    .lead{color:var(--muted);margin-top:0}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 4px 18px rgba(0,0,0,.04)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    @media(max-width:700px){.grid{grid-template-columns:1fr}}
+    .model-option{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:10px;align-items:flex-start}
+    .model-option input{margin-top:4px;transform:scale(1.2)}
+    .model-title{font-weight:700}
+    .small{font-size:.88rem;color:var(--muted)}
+    label.block{display:block;margin:10px 0 6px;font-weight:650}
+    input[type=text],textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);padding:11px 12px;font:inherit}
+    textarea{min-height:96px;resize:vertical}
+    button{border:0;border-radius:12px;padding:12px 16px;font:inherit;font-weight:700;cursor:pointer}
+    button.primary{background:var(--accent);color:white}
+    button.secondary{background:var(--soft);color:var(--text);border:1px solid var(--line)}
+    button:disabled{opacity:.45;cursor:not-allowed}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+    .status{min-height:1.5em;color:var(--muted);font-size:.92rem}
+    .results{display:grid;gap:10px;margin-top:14px}
+    .result{border:1px solid var(--line);border-radius:14px;padding:12px}
+    .result-head{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+    .metric{display:inline-block;background:var(--soft);border-radius:999px;padding:4px 8px;margin:3px 4px 0 0;font-size:.82rem}
+    .transcript{font-size:1.04rem;line-height:1.6;margin-top:8px;white-space:pre-wrap}
+    .bar{height:8px;background:var(--soft);border-radius:999px;overflow:hidden;margin-top:7px}
+    .bar>span{display:block;height:100%;width:0;background:var(--accent2);transition:width .18s ease}
+    .speed-row{display:flex;gap:12px;align-items:center}
+    input[type=range]{width:100%}
+    audio{width:100%;margin-top:10px}
+    .pill{font-size:.8rem;padding:4px 8px;border-radius:999px;background:var(--soft)}
+    .notice{border-left:4px solid var(--warn);padding:9px 11px;background:var(--soft);border-radius:8px}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    a{color:var(--accent)}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Emma Model Lab</h1>
+    <p class="lead">Emmaで使う軽量モデルと、より大きいモデルを同じ条件で比較する実験ページです。比較用なので本番Emmaの設定やモデルは変更しません。</p>
+  </header>
+
+  <section class="card">
+    <h2>1. Moonshine ASR 比較</h2>
+    <p class="small">同じ1回の録音を選択した全モデルへ順番に入力します。正解文を入れると、日本語向けに空白・句読点を除いたCER（文字誤り率）も計算します。</p>
+    <div class="grid">
+      <label class="model-option">
+        <input class="asr-model" type="checkbox" value="tiny_streaming" checked>
+        <span><span class="model-title">Tiny Streaming</span><br><span class="small">現在のEmma Webで使用。最小・高速。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="asr-model" type="checkbox" value="small_streaming" checked>
+        <span><span class="model-title">Small Streaming</span><br><span class="small">日本語Streamingで現在選べる大型側。Tinyより大きい。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="asr-model" type="checkbox" value="tiny">
+        <span><span class="model-title">Tiny（旧・非Streaming）</span><br><span class="small">旧アーキテクチャとの比較用。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="asr-model" type="checkbox" value="base">
+        <span><span class="model-title">Base（旧・非Streaming）</span><br><span class="small">旧日本語モデルの大きい側との比較用。</span></span>
+      </label>
+    </div>
+
+    <label class="block" for="referenceText">正解文（任意）</label>
+    <textarea id="referenceText" placeholder="例：そろそろミルクを飲もうか。今日はよく眠れたね。"></textarea>
+
+    <div class="actions">
+      <button id="recordButton" class="primary">録音開始</button>
+      <button id="stopRecordButton" class="secondary" disabled>録音停止</button>
+      <button id="runAsrButton" class="secondary" disabled>この録音で比較</button>
+    </div>
+    <div id="recordStatus" class="status">まだ録音していません。</div>
+    <audio id="recordingPreview" controls hidden></audio>
+    <div id="asrResults" class="results"></div>
+  </section>
+
+  <section class="card">
+    <h2>2. Kitten TTS 比較</h2>
+    <p class="small">同じ英文・同じKiki音声で比較します。モデルは一つずつロードして生成後に解放するため、スマホでもメモリを使い過ぎにくい構成です。</p>
+    <div class="grid">
+      <label class="model-option">
+        <input class="tts-model" type="checkbox" value="KittenML/kitten-tts-nano-0.8-int8" checked>
+        <span><span class="model-title">Nano INT8</span><br><span class="small">現在のEmma Web。最軽量。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="tts-model" type="checkbox" value="KittenML/kitten-tts-nano-0.8-fp32">
+        <span><span class="model-title">Nano FP32</span><br><span class="small">同じNanoの非量子化版。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="tts-model" type="checkbox" value="KittenML/kitten-tts-micro-0.8" checked>
+        <span><span class="model-title">Micro 40M</span><br><span class="small">約40M parameters / 約40MB。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="tts-model" type="checkbox" value="KittenML/kitten-tts-mini-0.8" checked>
+        <span><span class="model-title">Mini 80M</span><br><span class="small">0.8系最大。約80M parameters / 約79MB。</span></span>
+      </label>
+    </div>
+
+    <label class="block" for="ttsText">読み上げる英文</label>
+    <textarea id="ttsText">Hello, Hana-chan. You are safe and warm. Let's have some milk, and then we can rest together.</textarea>
+
+    <label class="block" for="speedRange">発話速度係数</label>
+    <div class="speed-row">
+      <input id="speedRange" type="range" min="0.60" max="1.40" step="0.05" value="1.00">
+      <strong id="speedValue">1.00</strong>
+    </div>
+    <p class="small">Emma本番と同じKittenの <code>speed</code> パラメータをそのまま変更します。まず1.00を基準に、0.8 / 1.0 / 1.2などを聴き比べるのがおすすめです。</p>
+
+    <div class="actions">
+      <button id="runTtsButton" class="primary">選択モデルで音声生成</button>
+    </div>
+    <div id="ttsStatus" class="status"></div>
+    <div id="ttsResults" class="results"></div>
+  </section>
+
+  <section class="card">
+    <h2>見るべきポイント</h2>
+    <p class="notice">大きいモデルが常にEmma向きとは限りません。ASRは認識改善量と待ち時間、TTSは声の自然さと生成速度・初回DL量を一緒に比べると、モデルサイズを増やす価値が判断しやすくなります。</p>
+    <p class="small">初回だけ各モデルをダウンロードします。モデルはブラウザのCache Storageに保存されるため、2回目以降は速くなる場合があります。</p>
+    <p><a href="./">Emma Webへ戻る</a></p>
+  </section>
+</main>
+<script type="module" src="./src/model-lab.js"></script>
+</body>
+</html>
