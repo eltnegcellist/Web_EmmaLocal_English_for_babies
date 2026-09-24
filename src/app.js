@@ -387,6 +387,12 @@ async function startEmma({ auto = false } = {}) {
       330000,
       'Emmaの準備が完了しませんでした。ページを再読み込みして、もう一度お試しください。'
     );
+
+    // The microphone has been open while the models initialize. Discard any
+    // partial VAD state gathered during startup, then confirm the capture
+    // AudioContext is active before entering listening mode.
+    mic?.resetDetector?.();
+    await mic?.ensureActive?.();
     await initAudioContext();
 
     ui.mainButton.classList.add('hidden');
@@ -461,7 +467,7 @@ async function startMoonshineCapture() {
       else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
     },
     onUtterance:handleCapturedUtterance,
-    shouldIgnore:()=>processing||speaking
+    shouldIgnore:()=>!workersReady||processing||speaking
   });
   await mic.start();
 }
@@ -946,7 +952,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-mic-first-r3',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-listen-fix-r4',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
