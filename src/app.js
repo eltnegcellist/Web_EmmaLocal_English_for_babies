@@ -271,6 +271,43 @@ function closeNotice() {
   document.body.classList.remove('modal-open');
 }
 
+async function getMicrophonePermissionState() {
+  try {
+    if(!navigator.permissions?.query) return 'unknown';
+    const status=await navigator.permissions.query({name:'microphone'});
+    return status?.state || 'unknown';
+  } catch {
+    return 'unknown';
+  }
+}
+
+async function requestMicrophonePermission(timeoutMs=30000) {
+  if(!navigator.mediaDevices?.getUserMedia) {
+    throw new Error('このブラウザではマイクを利用できません。');
+  }
+
+  let timer;
+  let stream;
+  try {
+    stream=await Promise.race([
+      navigator.mediaDevices.getUserMedia({
+        audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true},
+        video:false
+      }),
+      new Promise((_,reject)=>{
+        timer=setTimeout(
+          ()=>reject(new Error('マイクの許可確認が完了しませんでした。ブラウザのサイト設定でマイクを許可してから、もう一度お試しください。')),
+          timeoutMs
+        );
+      })
+    ]);
+    return true;
+  } finally {
+    clearTimeout(timer);
+    stream?.getTracks?.().forEach(track=>track.stop());
+  }
+}
+
 async function clearObsoleteModelCaches() {
   if(typeof caches==='undefined') return;
   const obsoletePatterns=[
@@ -300,16 +337,17 @@ async function clearObsoleteModelCaches() {
 
 async function prepareFirstRun() {
   ui.prepareEmmaButton.disabled=true;
-  showOnboardingProgress(true,0,'Emmaを準備しています…');
+  showOnboardingProgress(true,0,'マイクの使用許可を確認しています…');
   try {
+    // Ask for microphone permission immediately while the user's tap is still
+    // active. Model preparation can take a long time, after which mobile
+    // browsers may no longer show the permission prompt automatically.
+    await requestMicrophonePermission();
     if(!(await ensureMoonshineIsolation())) return;
     await navigator.storage?.persist?.().catch(()=>false);
     await clearObsoleteModelCaches();
     await initWorkers();
-    // Do not resume the playback AudioContext here. Model preparation can take
-    // long enough that the original button gesture is no longer considered
-    // active by mobile browsers. The conversation start below requests the
-    // microphone first, then resumes playback while capture is active.
+    // Playback AudioContext is resumed after microphone capture starts.
     localStorage.setItem(STORAGE.setupRevision,CURRENT_SETUP_REVISION);
     showOnboardingProgress(false);
     showProgress(false);
@@ -327,6 +365,28 @@ async function startEmma({ auto = false } = {}) {
   if(running || processing || speaking || ui.mainButton.disabled) return;
   ui.mainButton.disabled=true;
   try {
+    const micPermission=await getMicrophonePermissionState();
+
+    // Never leave automatic startup waiting on a permission prompt that the
+    // browser may suppress. Existing users who have not granted microphone
+    // access get an explicit button instead.
+    if(auto && micPermission!=='granted'){
+      ui.mainButton.disabled=false;
+      ui.mainButton.classList.remove('hidden');
+      setBusy(false);
+      showProgress(false);
+      setState('idle','マイクの許可が必要です','「Emmaと話す」を押して、マイクの使用を許可してください。');
+      return;
+    }
+
+    // On a real user tap, request permission before any model/storage awaits so
+    // Android Chrome can display the permission UI reliably.
+    if(!auto && micPermission!=='granted'){
+      setState('thinking','マイクの許可を確認しています','表示された許可画面でマイクを許可してください。');
+      setBusy(true);
+      await requestMicrophonePermission();
+    }
+
     if(!(await ensureMoonshineIsolation())) return;
     setState('thinking','Emmaを準備しています','初回はMoonshineと音声モデルの読み込みに時間がかかることがあります。');
     setBusy(true);
