@@ -1,7 +1,7 @@
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
 
 // AUTO-SYNCED from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
-// Android source commit: c8e3eea90d9ab975652064d25a9907ed1822def4
+// Android source commit: 012dcde56a2386e0df6b79b892ab293e5f50073e
 // Do not hand-edit the reply bank independently from Android.
 const STYLE = {
   "MIN_WORDS": 6,
@@ -11,12 +11,74 @@ const STYLE = {
   "MAX_WORDS_PER_SENTENCE": 4,
   "NAME_REPEAT_WINDOW": 2
 };
+// Generic is a deliberate fallback experience, not an error message.
+// Keep it scene-neutral while rotating across greeting, presence, looking,
+// listening, curiosity, encouragement, connection, and gentle sound/rhythm.
 const GENERIC_REPLIES = [
-  "Hello, little one! Emma is here. Hello, hello!",
-  "Hi there, little one! I'm right here. Hello, hello!",
-  "Hello, hello! Emma is here. Look with me.",
-  "Hi, little one! I'm right here. Nice and easy.",
-  "Hello there! Stay with me. Here we go!"
+  "Hello, little one! Emma is here. Hi, hi!",
+  "I'm right here. We are together. Nice and easy.",
+  "Look, look! So much around us. What do you see?",
+  "Listen, listen! So many little sounds. What can you hear?",
+  "Ooh, what's this? Let's wonder together. Take a look.",
+  "You're doing great. Keep noticing things. Here we go!",
+  "Hello, sweet one! I'm here with you. Nice and close.",
+  "Tap, tap! Little sounds everywhere. Listen with me.",
+  "Hi there, little one! Emma says hello. Hello, hello!",
+  "Here I am. Stay here with me. We are together.",
+  "Look this way! Near and far. So much to see.",
+  "Listen with me. Quiet or loud? What do you hear?",
+  "Ooh, look around! Something feels new. Let's see together.",
+  "Nice and easy. Take your time. Emma is here.",
+  "Hello there! I'm right beside you. Here we are.",
+  "Tap, tap, tap! Hear that rhythm? Listen, listen!",
+  "Hey there, little one! Hi from Emma. Hi there!",
+  "I'm here with you. One little moment. Here we go.",
+  "Take a look! What is nearby? Look with me.",
+  "Listen closely! So many sounds. Here we go.",
+  "Ooh, I wonder! What comes next? Let's find out.",
+  "Keep looking around. So much to notice. Nice and easy.",
+  "Hi, sweet one! Emma is right here. Hello again!",
+  "Soft little sounds. Tap and pause. Listen with me.",
+  "Hello again, little one! Emma is here. Hi, hi!",
+  "Right here together. No rush at all. Nice and easy.",
+  "Look around slowly. Near, far, everywhere. What do you see?",
+  "Listen, little one! Sounds come and go. Hear them?",
+  "Ooh, how interesting! Let's look together. Here we go.",
+  "Take your time. Little moments matter. Emma is here.",
+  "Hello, hello! I'm staying with you. Nice and close.",
+  "Tap, pause, tap! Little rhythms happen. Listen, listen!",
+  "Hi, little one! Good to see you. Hello there!",
+  "Emma is here. We have this moment. Here we go.",
+  "Look over here! Then look around. So much nearby.",
+  "Listen over here. Then listen around. So many sounds.",
+  "Ooh, what's nearby? Let's be curious. Take a look.",
+  "Nice job noticing. Keep looking gently. Here we go.",
+  "Hello, sweet one! We're here together. Hi there!",
+  "Little beat, little pause. Tap, tap! Listen with me.",
+  "Hello there, little one! Hi from Emma. Hello, hello!",
+  "I'm right here. This moment is ours. Nice and easy.",
+  "Look with me. What catches your eye? Take a look.",
+  "Listen with me. What sounds are here? Listen, listen!",
+  "Ooh, let's see! So much can happen. Here we go.",
+  "You're doing nicely. Keep taking it in. No rush.",
+  "Hi, sweet one! I'm here beside you. Hello there!",
+  "Tap, tap! Pause, pause. Hear the little rhythm?",
+  "Hi again, little one! Emma is here. Hi there!",
+  "Here we are. One moment together. Nice and easy.",
+  "Look around you. So much to notice. Look, look!",
+  "Listen around you. So much to hear. Listen, listen!",
+  "Ooh, what now? Let's wonder a little. Here we go.",
+  "Take it slowly. Keep noticing around you. Emma is here.",
+  "Hello, sweet one! Right here with you. Hi, hi!",
+  "Tap and listen. Pause and listen. Here we go.",
+  "{name}, hello there! Emma is here. Hi, hi!",
+  "{name}, I'm right here. We are together. Nice and easy.",
+  "{name}, look with me! So much around us. Take a look.",
+  "{name}, listen with me! So many sounds. Listen, listen!",
+  "{name}, let's wonder! What is around us? Here we go.",
+  "{name}, nice and easy. Take your time. Emma is here.",
+  "{name}, hello, sweet one! I'm here with you. Hi there!",
+  "{name}, tap, tap! Little sounds everywhere. Listen with me."
 ];
 const NEUTRAL_CLOSERS = [
   "Here we go!",
