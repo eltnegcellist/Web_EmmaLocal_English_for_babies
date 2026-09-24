@@ -877,7 +877,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260924-auto-start',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260924-setup-transition',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -910,10 +910,7 @@ async function ensureMoonshineIsolation() {
 }
 
 window.addEventListener('load',()=>{
-  const setupComplete=localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION;
-  if(setupComplete) {
-    startEmma({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
-  } else if('serviceWorker' in navigator) {
+  if('serviceWorker' in navigator) {
     ensureMoonshineIsolation().catch(error=>console.warn('Moonshine isolation setup:',error));
   }
 });
