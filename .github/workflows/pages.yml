@@ -43,4 +43,8 @@ jobs:
         with:
           fetch-depth: 0
       - name: Fast-forward Pages source branch
-        run: git push origin HEAD:chore/trigger-pages
+        run: |
+          set -euo pipefail
+          git push origin HEAD:chore/trigger-pages
+          remote_sha="$(git ls-remote origin refs/heads/chore/trigger-pages | cut -f1)"
+          test "$remote_sha" = "$GITHUB_SHA"
