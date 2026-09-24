@@ -84,6 +84,26 @@ for(const [name,enabled,expected] of chanNames){
 console.log('Chan suffix tests OK');
 
 
+const childcareAnchorCases = [
+  ['沐浴しようか','bath'],
+  ['授乳の時間だね','milk'],
+  ['母乳にしようか','milk'],
+  ['ねんねしようね','sleep'],
+  ['オムツだね','diaper'],
+  ['抱っこしよう','hug'],
+  ['クーイングしてるね','voice'],
+  ['吐き戻しちゃったね','tummy'],
+  ['離乳食だよ','food'],
+  ['絵本見ようか','book'],
+  ['ベビーカーで行こう','outside']
+];
+for (const [input,expected] of childcareAnchorCases) {
+  const out = new LiteResponseEngine().respond(input);
+  if (out.scene !== expected) throw new Error(`${input}: expected childcare anchor ${expected}, got ${out.scene}`);
+  if (out.score < 6) throw new Error(`${input}: childcare anchor score ${out.score}, expected >= 6`);
+}
+console.log('Strong childcare scene anchors OK');
+
 const negativeCases = [
   ['寝返りしたね','sleep'],
   ['手伝ってね','hands'],
