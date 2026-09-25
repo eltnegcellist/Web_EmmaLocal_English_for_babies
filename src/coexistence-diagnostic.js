@@ -1,4 +1,5 @@
 import { Transcriber, ModelArch, loadEmmaMoonshineModule } from './moonshine-module.js';
+import { EmmaMicrophone } from './audio-capture.js';
 
 const logEl=document.getElementById('log');
 const resultEl=document.getElementById('result');
@@ -7,6 +8,7 @@ const buttons=[...document.querySelectorAll('button')];
 let audioContext=null;
 let worker=null;
 let transcriber=null;
+let mic=null;
 let seq=0;
 
 function log(message,data){
@@ -35,7 +37,7 @@ async function ensureIsolation(){
   log('Isolation check',{crossOriginIsolated:window.crossOriginIsolated,sharedArrayBuffer:typeof SharedArrayBuffer});
   if(window.crossOriginIsolated && typeof SharedArrayBuffer==='function') return;
   if(!('serviceWorker' in navigator)) throw new Error('Service Worker unavailable');
-  const reg=await navigator.serviceWorker.register('./service-worker.js?v=20260925-coexistence-r1',{updateViaCache:'none'});
+  const reg=await navigator.serviceWorker.register('./service-worker.js?v=20260925-coexistence-r3',{updateViaCache:'none'});
   await reg.update().catch(()=>{});
   log('Service Worker updated; reload may be required');
   if(!window.crossOriginIsolated){
@@ -112,6 +114,121 @@ async function ttsTest(label){
   log(`${label}: success`,memoryInfo());
 }
 
+async function generateChunks(label){
+  await initTtsWorker();
+  const requestId=++seq;
+  const chunks=[];
+  log(`${label}: speak request`,{requestId,memory:memoryInfo()});
+  await new Promise((resolve,reject)=>{
+    const timer=setTimeout(()=>reject(new Error('TTS generation timeout')),120000);
+    worker.onmessage=e=>{
+      const m=e.data||{};
+      if(m.type==='status') log('TTS status',{progress:m.progress,message:m.message});
+      else if(m.type==='audio'&&m.requestId===requestId){
+        chunks[m.index]=m.blob;
+        log(`${label}: audio chunk`,{index:m.index,size:m.blob?.size});
+      }else if(m.type==='complete'&&m.requestId===requestId){
+        clearTimeout(timer); resolve();
+      }else if(m.type==='error'&&m.requestId===requestId){
+        clearTimeout(timer); reject(new Error(m.message||'TTS generation error'));
+      }
+    };
+    worker.postMessage({type:'speak',requestId,text:'Hello. Emma voice coexistence test.'});
+  });
+  const ready=chunks.filter(Boolean);
+  if(!ready.length) throw new Error('No audio chunks received');
+  return ready;
+}
+
+function calculatePlaybackGain(buffer){
+  let peak=0;
+  for(let channelIndex=0;channelIndex<buffer.numberOfChannels;channelIndex++){
+    const channel=buffer.getChannelData(channelIndex);
+    for(let i=0;i<channel.length;i++) peak=Math.max(peak,Math.abs(channel[i]));
+  }
+  if(!(peak>0)) return 1;
+  return Math.max(1,Math.min(1.8,0.92/peak));
+}
+
+function trimAudioSilence(buffer){
+  const threshold=0.004;
+  const channels=Array.from({length:buffer.numberOfChannels},(_,i)=>buffer.getChannelData(i));
+  let start=0;
+  let end=buffer.length;
+  const peakAt=index=>{
+    let peak=0;
+    for(const channel of channels) peak=Math.max(peak,Math.abs(channel[index]||0));
+    return peak;
+  };
+  while(start<end && peakAt(start)<threshold) start++;
+  while(end>start && peakAt(end-1)<threshold) end--;
+  const leadPad=Math.floor(buffer.sampleRate*0.015);
+  const tailPad=Math.floor(buffer.sampleRate*0.045);
+  start=Math.max(0,start-leadPad);
+  end=Math.min(buffer.length,end+tailPad);
+  if(start===0 && end===buffer.length) return buffer;
+  if(end-start < Math.floor(buffer.sampleRate*0.08)) return buffer;
+  const trimmed=audioContext.createBuffer(buffer.numberOfChannels,end-start,buffer.sampleRate);
+  channels.forEach((channel,i)=>trimmed.copyToChannel(channel.subarray(start,end),i));
+  return trimmed;
+}
+
+async function appPlaybackTest(label){
+  await ensureAudio();
+  const chunks=await generateChunks(label);
+  for(let i=0;i<chunks.length;i++){
+    const blob=chunks[i];
+    const bytes=await blob.arrayBuffer();
+    const decoded=await audioContext.decodeAudioData(bytes.slice(0));
+    const playbackBuffer=trimAudioSilence(decoded);
+    const gainValue=calculatePlaybackGain(playbackBuffer);
+    log(`${label}: processed`,{
+      index:i,
+      inputDuration:decoded.duration,
+      outputDuration:playbackBuffer.duration,
+      gain:gainValue,
+      sampleRate:playbackBuffer.sampleRate
+    });
+    const source=audioContext.createBufferSource();
+    const gain=audioContext.createGain();
+    const analyser=audioContext.createAnalyser();
+    analyser.fftSize=256;
+    gain.gain.value=gainValue;
+    source.buffer=playbackBuffer;
+    source.connect(gain).connect(analyser).connect(audioContext.destination);
+    source.start();
+    log(`${label}: app-style playback started`,{index:i,state:audioContext.state});
+    await new Promise(resolve=>source.onended=resolve);
+    log(`${label}: app-style playback ended`,{index:i});
+  }
+  setResult(`${label}: 本体と同じ再生経路で成功`);
+  log(`${label}: success`,memoryInfo());
+}
+
+async function startMic(){
+  if(mic) return;
+  mic=new EmmaMicrophone({
+    onState:state=>log('Mic state',state),
+    onUtterance:()=>{},
+    shouldIgnore:()=>true
+  });
+  await mic.start();
+  log('Microphone started',{
+    contextState:mic.context?.state,
+    sampleRate:mic.context?.sampleRate,
+    tracks:mic.stream?.getAudioTracks?.().map(t=>({label:t.label,enabled:t.enabled,readyState:t.readyState}))
+  });
+  setResult('マイクを開始しました。続けて8または9を試してください。');
+}
+
+async function stopMic(){
+  if(!mic) return;
+  await mic.stop();
+  mic=null;
+  log('Microphone stopped');
+  setResult('マイクを停止しました。');
+}
+
 async function loadAsr(kind){
   if(transcriber){
     transcriber.close();
@@ -165,6 +282,19 @@ document.getElementById('ttsFreshAfterAsr').addEventListener('click',async()=>{
     setResult(e.message,false);
   }
 });
+document.getElementById('startMic').addEventListener('click',async()=>{
+  try{await startMic();}catch(e){log('ERROR mic start',e.message);setResult(e.message,false);}
+});
+document.getElementById('ttsWithMic').addEventListener('click',async()=>{
+  try{await ttsTest('TTS with mic ON');}catch(e){log('ERROR TTS with mic',e.message);setResult(e.message,false);}
+});
+document.getElementById('appPlaybackWithMic').addEventListener('click',async()=>{
+  try{await appPlaybackTest('App playback with mic ON');}catch(e){log('ERROR app playback with mic',e.message);setResult(e.message,false);}
+});
+document.getElementById('stopMic').addEventListener('click',async()=>{
+  try{await stopMic();}catch(e){log('ERROR mic stop',e.message);setResult(e.message,false);}
+});
+
 document.getElementById('closeAsr').addEventListener('click',()=>{
   try{transcriber?.close();}catch{}
   transcriber=null;
