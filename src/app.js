@@ -561,10 +561,10 @@ async function initMoonshine() {
       ? `${mbLoaded.toFixed(1)} / ${(safeTotal/1_000_000).toFixed(1)} MB`
       : `${mbLoaded.toFixed(1)} MB`;
     const fileName=String(file||'').split('/').pop();
-    showMoonshineProgress(
-      progress,
-      `Moonshine 日本語${localStorage.getItem(STORAGE.asrModel)==='small' ? 'Small' : 'Tiny'} Streamingを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`
-    );
+    const selectedLabel=localStorage.getItem(STORAGE.asrModel)==='small' ? 'Small' : 'Tiny';
+    const progressMessage=`Moonshine 日本語${selectedLabel} Streamingを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`;
+    showMoonshineProgress(progress,progressMessage);
+    if(ui.asrModelStatus) ui.asrModelStatus.textContent=progressMessage;
   };
 
   const module=await loadEmmaMoonshineModule();
@@ -589,6 +589,7 @@ async function initMoonshine() {
   moonshineTranscriber?.close?.();
   moonshineTranscriber=nextTranscriber;
   showMoonshineProgress(100,`Moonshine 日本語${modelLabel}を準備できました`);
+  if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${modelLabel}。準備完了。取得済みモデルはブラウザキャッシュを再利用します。`;
 
   return {
     kind:'moonshine',
@@ -624,7 +625,10 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     readyReject?.(new Error(m.message));
     if(m.requestId){
       const q=audioQueues.get(m.requestId);
-      if(q){q.resolve?.();audioQueues.delete(m.requestId);}
+      if(q){
+        q.reject?.(new Error(m.message || 'Kitten TTSの音声生成に失敗しました。'));
+        audioQueues.delete(m.requestId);
+      }
     }
     if(workersReady) onRuntimeError(m.message);
   } else if(m.type==='audio') enqueueAudio(m);
@@ -686,17 +690,26 @@ async function processTranscript(text) {
 }
 
 async function speakResponse(text) {
+  if(!ttsWorker || !ttsInfoCache) await initWorkers();
   if(!ttsWorker) throw new Error('Emmaの声がまだ準備されていません');
   speaking=true;
   const requestId=++requestSeq;
-  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
-  const done=new Promise(resolve=>audioQueues.get(requestId).resolve=resolve);
+  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null});
+  const done=new Promise((resolve,reject)=>{
+    const q=audioQueues.get(requestId);
+    q.resolve=resolve;
+    q.reject=reject;
+  });
   setState('speaking','Emmaがお話ししています',text);
   try {
     ttsWorker.postMessage({type:'speak',requestId,text});
-    await done;
+    await withTimeout(done,90000,'Emmaの声の生成が完了しませんでした。音声エンジンを再準備します。');
+  } catch(error) {
+    invalidateTtsWorker(error?.message || String(error));
+    throw error;
   } finally {
     speaking=false;
+    audioQueues.delete(requestId);
   }
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   else setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
@@ -905,6 +918,55 @@ function getSpokenBabyName() {
 
 function getTtsSignature() {
   return 'kitten-nano-int8-kiki-browser-wasm';
+}
+
+function invalidateTtsWorker(reason='') {
+  try{ttsWorker?.terminate?.();}catch{}
+  ttsWorker=null;
+  ttsInfoCache=null;
+  ttsWorkerSignature='';
+  workersReady=false;
+  for(const [requestId,q] of audioQueues.entries()){
+    q.reject?.(new Error(reason || 'Emmaの音声エンジンを再準備します。'));
+    audioQueues.delete(requestId);
+  }
+}
+
+async function switchAsrModel(next) {
+  const label=next==='small' ? 'Small' : 'Tiny';
+  setBusy(true);
+  if(ui.asrModel) ui.asrModel.disabled=true;
+  if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}を準備しています…`;
+
+  try {
+    moonshineTranscriber?.close?.();
+    moonshineTranscriber=null;
+    asrInfoCache=null;
+
+    // Release TTS before loading the new ASR. This lowers peak memory during
+    // Tiny/Small switching and prevents a crashed Worker from being reused.
+    invalidateTtsWorker();
+    await initWorkers();
+
+    if(ui.asrModelStatus) {
+      ui.asrModelStatus.textContent=`現在：${label}。準備完了。取得済みモデルはブラウザキャッシュを再利用します。`;
+    }
+  } catch(error) {
+    console.error(error);
+    if(ui.asrModelStatus) ui.asrModelStatus.textContent=`${label}の準備に失敗しました：${friendlyError(error)}`;
+    setState('error','音声認識モデルの切り替えに失敗しました',friendlyError(error));
+  } finally {
+    setBusy(false);
+    showProgress(false);
+    if(ui.asrModel) ui.asrModel.disabled=false;
+    updateRuntimeBackend();
+  }
+}
+
+function updateAsrModelStatus() {
+  if(!ui.asrModelStatus) return;
+  const selected=localStorage.getItem(STORAGE.asrModel)==='small' ? 'Small' : 'Tiny';
+  ui.asrModelStatus.textContent=`現在：${selected}。モデルはブラウザ内に保存されます。`;
 }
 
 function updateRuntimeBackend() {
