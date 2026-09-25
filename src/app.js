@@ -495,7 +495,7 @@ async function initWorkers() {
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
     invalidateTtsWorker();
     ttsWorkerSignature=signature;
-    const worker=new Worker(new URL('./tts-worker.js?v=20260923-int8-streaming',import.meta.url),{type:'module'});
+    const worker=new Worker(new URL('./tts-worker.js?v=20260925-asr-switch-probe-r1',import.meta.url),{type:'module'});
     ttsWorker=worker;
     ttsInfoCache=await new Promise((resolve,reject)=>{
       let settled=false;
