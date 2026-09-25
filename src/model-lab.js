@@ -17,6 +17,9 @@ const ui = {
   runTtsButton: $('runTtsButton'),
   ttsStatus: $('ttsStatus'),
   ttsResults: $('ttsResults'),
+  runAltTtsButton: $('runAltTtsButton'),
+  altTtsStatus: $('altTtsStatus'),
+  altTtsResults: $('altTtsResults'),
 };
 
 const ASR_MODELS = {
@@ -58,11 +61,32 @@ const TTS_MODELS = {
   'KittenML/kitten-tts-mini-0.8': { label: 'Mini 80M', note: '0.8系最大' },
 };
 
+const ALT_TTS_MODELS = {
+  'kokoro:af_heart': { engine: 'kokoro', voice: 'af_heart', label: 'Kokoro · af_heart', note: '82M / q8 / 女性' },
+  'kokoro:af_bella': { engine: 'kokoro', voice: 'af_bella', label: 'Kokoro · af_bella', note: '82M / q8 / 女性' },
+  'kokoro:af_nova': { engine: 'kokoro', voice: 'af_nova', label: 'Kokoro · af_nova', note: '82M / q8 / 女性' },
+  'supertonic:F1': { engine: 'supertonic', voice: 'F1', label: 'Supertonic · Mina (F1)', note: '44.1kHz / 女性 / 重量級' },
+  'supertonic:F2': { engine: 'supertonic', voice: 'F2', label: 'Supertonic · Sora (F2)', note: '44.1kHz / 女性 / 重量級' },
+  'supertonic:F3': { engine: 'supertonic', voice: 'F3', label: 'Supertonic · Yuna (F3)', note: '44.1kHz / 女性 / 重量級' },
+  'piper:en_US-hfc_female-medium': { engine: 'piper', voice: 'en_US-hfc_female-medium', label: 'Piper · HFC Female Medium', note: '軽量ローカルTTS' },
+};
+
+const KOKORO_MODULE_URL = 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm';
+const PIPER_MODULE_URL = 'https://cdn.jsdelivr.net/npm/@mintplex-labs/piper-tts-web@1.0.5/+esm';
+const ORT_MODULE_URL = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/+esm';
+const ORT_WASM_BASE = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/dist/';
+const SUPERTONIC_HELPER_URL = 'https://cdn.jsdelivr.net/gh/cskwork/supertonic-tts@d62ef527733bf0b692f92c8cb376452a62a1eec7/app/helper.js';
+const SUPERTONIC_ASSET_BASE = 'https://huggingface.co/Supertone/supertonic-3/resolve/main';
+
 let capture = null;
 let recorded16k = null;
 let recordingObjectUrl = null;
 let ttsObjectUrls = [];
+let altTtsObjectUrls = [];
 let moonshineModulePromise = null;
+let kokoroTtsPromise = null;
+let piperModulePromise = null;
+let supertonicRuntimePromise = null;
 
 ui.speedRange.addEventListener('input', () => {
   ui.speedValue.textContent = Number(ui.speedRange.value).toFixed(2);
@@ -71,6 +95,7 @@ ui.recordButton.addEventListener('click', startRecording);
 ui.stopRecordButton.addEventListener('click', stopRecording);
 ui.runAsrButton.addEventListener('click', runAsrComparison);
 ui.runTtsButton.addEventListener('click', runTtsComparison);
+ui.runAltTtsButton?.addEventListener('click', runAltTtsComparison);
 
 boot();
 
@@ -133,9 +158,9 @@ async function startRecording() {
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: {
         channelCount: 1,
-        echoCancellation: true,
-        noiseSuppression: true,
-        autoGainControl: true,
+        echoCancellation: false,
+        noiseSuppression: false,
+        autoGainControl: false,
       },
       video: false,
     });
@@ -471,6 +496,240 @@ async function runTtsComparison() {
 
   ui.ttsStatus.textContent = '比較生成が完了しました。各モデルを再生して聴き比べてください。';
   ui.runTtsButton.disabled = false;
+}
+
+
+async function runAltTtsComparison() {
+  const selected = [...document.querySelectorAll('.alt-tts-model:checked')].map((el) => el.value);
+  const text = ui.ttsText.value.trim();
+
+  if (!selected.length) {
+    ui.altTtsStatus.textContent = '比較する他TTSを1つ以上選んでください。';
+    return;
+  }
+  if (!text) {
+    ui.altTtsStatus.textContent = '上の「読み上げる英文」に比較用の英文を入力してください。';
+    return;
+  }
+
+  ui.runAltTtsButton.disabled = true;
+  ui.altTtsResults.textContent = '';
+  ui.altTtsStatus.textContent = selected.length + '件を順番に生成します。初回はモデル取得に時間がかかります。';
+
+  for (const url of altTtsObjectUrls) URL.revokeObjectURL(url);
+  altTtsObjectUrls = [];
+
+  try {
+    for (const key of selected) {
+      const meta = ALT_TTS_MODELS[key];
+      if (!meta) continue;
+      const card = createResultCard(meta.label, meta.note);
+      ui.altTtsResults.appendChild(card.root);
+
+      try {
+        card.setStatus('準備しています…');
+        const started = performance.now();
+        let output;
+
+        if (meta.engine === 'kokoro') {
+          output = await generateKokoro(text, meta.voice, card);
+        } else if (meta.engine === 'supertonic') {
+          output = await generateSupertonic(text, meta.voice, card);
+        } else if (meta.engine === 'piper') {
+          output = await generatePiper(text, meta.voice, card);
+        } else {
+          throw new Error('未対応のTTSエンジンです。');
+        }
+
+        const totalMs = performance.now() - started;
+        const url = URL.createObjectURL(output.blob);
+        altTtsObjectUrls.push(url);
+        card.setAudio(url, output.audioLabel || '生成音声');
+        card.addMetric('生成+準備 ' + formatMs(totalMs));
+        if (output.generationMs != null) card.addMetric('生成 ' + formatMs(output.generationMs));
+        if (output.duration != null) card.addMetric('音声 ' + output.duration.toFixed(2) + '秒');
+        if (output.sampleRate) card.addMetric('sample rate ' + output.sampleRate + ' Hz');
+        if (output.backend) card.addMetric(output.backend);
+        if (output.extra) card.addMetric(output.extra);
+        card.setStatus('完了');
+      } catch (error) {
+        card.setStatus('エラー: ' + friendlyError(error));
+        card.setTranscript('このエンジンは現在のブラウザまたは端末で読み込めない可能性があります。');
+      }
+
+      await delay(120);
+    }
+  } finally {
+    ui.runAltTtsButton.disabled = false;
+    ui.altTtsStatus.textContent = '生成処理が完了しました。各音声を同じ文章で聴き比べてください。';
+  }
+}
+
+async function getKokoroTts() {
+  if (!kokoroTtsPromise) {
+    kokoroTtsPromise = (async () => {
+      const mod = await import(KOKORO_MODULE_URL);
+      if (!mod?.KokoroTTS) throw new Error('kokoro-jsを読み込めませんでした。');
+      return mod.KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX', {
+        dtype: 'q8',
+        device: 'wasm',
+      });
+    })().catch((error) => {
+      kokoroTtsPromise = null;
+      throw error;
+    });
+  }
+  return kokoroTtsPromise;
+}
+
+async function generateKokoro(text, voice, card) {
+  card.setStatus('Kokoro 82M q8を準備しています…');
+  const tts = await getKokoroTts();
+  card.setProgress(70);
+
+  const generationStart = performance.now();
+  const audio = await tts.generate(text, { voice });
+  const generationMs = performance.now() - generationStart;
+  if (!audio?.toBlob) throw new Error('Kokoroが音声Blobを返しませんでした。');
+
+  const blob = audio.toBlob();
+  const decoded = await inspectAudioBlob(blob);
+  card.setProgress(100);
+  return {
+    blob,
+    generationMs,
+    duration: decoded.duration,
+    sampleRate: decoded.sampleRate,
+    backend: 'Kokoro q8 / WASM',
+    audioLabel: voice + ' · Kokoro 82M',
+  };
+}
+
+async function getPiperModule() {
+  if (!piperModulePromise) {
+    piperModulePromise = import(PIPER_MODULE_URL).catch((error) => {
+      piperModulePromise = null;
+      throw error;
+    });
+  }
+  return piperModulePromise;
+}
+
+async function generatePiper(text, voice, card) {
+  card.setStatus('Piperモデルを準備しています…');
+  const piper = await getPiperModule();
+
+  const generationStart = performance.now();
+  const blob = await piper.predict(
+    { text, voiceId: voice },
+    (progress) => {
+      const total = Number(progress?.total) || 0;
+      const loaded = Number(progress?.loaded) || 0;
+      if (total > 0) card.setProgress(Math.min(95, loaded / total * 95));
+      if (progress?.url) card.setStatus('Piper取得中: ' + String(progress.url).split('/').pop());
+    }
+  );
+  const generationMs = performance.now() - generationStart;
+  if (!(blob instanceof Blob)) throw new Error('Piperが音声Blobを返しませんでした。');
+
+  const decoded = await inspectAudioBlob(blob);
+  card.setProgress(100);
+  return {
+    blob,
+    generationMs,
+    duration: decoded.duration,
+    sampleRate: decoded.sampleRate,
+    backend: 'Piper / browser WASM',
+    audioLabel: voice,
+  };
+}
+
+async function getSupertonicRuntime(card) {
+  if (!supertonicRuntimePromise) {
+    supertonicRuntimePromise = (async () => {
+      card?.setStatus('Supertonic用ONNX Runtimeを準備しています…');
+      const [ort, helper] = await Promise.all([
+        import(ORT_MODULE_URL),
+        import(SUPERTONIC_HELPER_URL),
+      ]);
+
+      const runtime = ort.default || ort;
+      if (runtime?.env?.wasm) runtime.env.wasm.wasmPaths = ORT_WASM_BASE;
+      helper.configureOrt(runtime);
+
+      card?.setStatus('Supertonic 3モデルを読み込んでいます（約380MB）…');
+      const result = await helper.loadTextToSpeech(
+        SUPERTONIC_ASSET_BASE + '/onnx',
+        { executionProviders: ['wasm'], graphOptimizationLevel: 'all' },
+        (name, current, total) => {
+          const fraction = total > 0 ? current / total : 0;
+          card?.setProgress(Math.min(80, fraction * 80));
+          card?.setStatus('Supertonicモデル ' + current + '/' + total + ': ' + name);
+        }
+      );
+
+      return { helper, tts: result.textToSpeech, styles: new Map() };
+    })().catch((error) => {
+      supertonicRuntimePromise = null;
+      throw error;
+    });
+  }
+  return supertonicRuntimePromise;
+}
+
+async function generateSupertonic(text, voice, card) {
+  const runtime = await getSupertonicRuntime(card);
+  let style = runtime.styles.get(voice);
+  if (!style) {
+    card.setStatus('Supertonic ' + voice + ' 音声スタイルを読み込んでいます…');
+    style = await runtime.helper.loadVoiceStyle([
+      SUPERTONIC_ASSET_BASE + '/voice_styles/' + voice + '.json'
+    ], false);
+    runtime.styles.set(voice, style);
+  }
+
+  card.setStatus('Supertonic 3で生成しています…');
+  const generationStart = performance.now();
+  const result = await runtime.tts.call(
+    text,
+    'en',
+    style,
+    8,
+    1.0,
+    0.3,
+    (step, total) => {
+      card.setProgress(80 + (step / Math.max(1, total)) * 20);
+      card.setStatus('Supertonic生成中 ' + step + '/' + total);
+    }
+  );
+  const generationMs = performance.now() - generationStart;
+  const wavLen = Math.floor(runtime.tts.sampleRate * result.duration[0]);
+  const wav = result.wav.slice(0, wavLen);
+  const wavBuffer = runtime.helper.writeWavFile(wav, runtime.tts.sampleRate);
+  const blob = new Blob([wavBuffer], { type: 'audio/wav' });
+  card.setProgress(100);
+
+  return {
+    blob,
+    generationMs,
+    duration: Number(result.duration?.[0]) || null,
+    sampleRate: runtime.tts.sampleRate,
+    backend: 'Supertonic 3 / WASM',
+    extra: '8 steps',
+    audioLabel: 'Supertonic ' + voice,
+  };
+}
+
+async function inspectAudioBlob(blob) {
+  let context = null;
+  try {
+    context = new AudioContext({ latencyHint: 'interactive' });
+    const bytes = await blob.arrayBuffer();
+    const decoded = await context.decodeAudioData(bytes.slice(0));
+    return { duration: decoded.duration, sampleRate: decoded.sampleRate };
+  } finally {
+    try { await context?.close(); } catch {}
+  }
 }
 
 function createResultCard(title, note) {
