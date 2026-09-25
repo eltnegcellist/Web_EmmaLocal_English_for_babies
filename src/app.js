@@ -20,12 +20,13 @@ const ui = {
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
-  developerUnlockTrigger:$('developerUnlockTrigger'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
+  developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
+const WEB_BUILD = '20260925-stable-tts-r9';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -67,6 +68,7 @@ initUi();
 
 function initUi() {
   const babyName = localStorage.getItem(STORAGE.babyName) || '';
+  if(ui.webBuild) ui.webBuild.textContent=`Web build: ${WEB_BUILD}`;
   ui.babyName.value = babyName;
   ui.onboardingBabyName.value = babyName;
   const spokenName = localStorage.getItem(STORAGE.spokenName) || '';
@@ -1029,7 +1031,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-listen-fix-r4',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-stable-tts-r9',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
