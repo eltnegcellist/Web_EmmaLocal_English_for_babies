@@ -354,7 +354,8 @@ async function clearObsoleteModelCaches() {
     'onnx-community/whisper-tiny',
     'onnx-community/Supertonic-TTS-ONNX',
     '/voices/F3.bin',
-    'KittenML__kitten-tts-nano-0.8__'
+    'KittenML__kitten-tts-nano-0.8__',
+    'KittenML__kitten-tts-nano-0.8-int8__'
   ];
 
   try {
