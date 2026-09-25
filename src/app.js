@@ -51,7 +51,7 @@ const engine = new LiteResponseEngine();
 const MOONSHINE_MODULE_URL = new URL('./moonshine-module.js', import.meta.url).href;
 let moonshineTranscriber, moonshineModule, ttsWorker, mic, wakeLock;
 let moonshineStage='idle';
-let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
+let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='', ttsHealthVerified=false;
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
 let audioContext=null;
@@ -534,6 +534,12 @@ async function initWorkers() {
     });
   }
 
+  const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='small' ? 'small' : 'tiny';
+  if(selectedAsr==='small' && !ttsHealthVerified){
+    await verifyTtsWorker();
+    ttsHealthVerified=true;
+  }
+
   workersReady=true;
   updateRuntimeBackend();
 }
@@ -939,6 +945,7 @@ function invalidateTtsWorker(reason='') {
   ttsWorker=null;
   ttsInfoCache=null;
   ttsWorkerSignature='';
+  ttsHealthVerified=false;
   workersReady=false;
   for(const [requestId,q] of audioQueues.entries()){
     q.reject?.(new Error(reason || 'Emmaの音声エンジンを再準備します。'));
@@ -996,8 +1003,33 @@ async function switchAsrModel(next) {
     }
   } catch(error) {
     console.error(error);
-    if(ui.asrModelStatus) ui.asrModelStatus.textContent=`${label}の準備に失敗しました：${friendlyError(error)}`;
-    setState('error','音声認識モデルの切り替えに失敗しました',friendlyError(error));
+    if(next==='small'){
+      try {
+        localStorage.setItem(STORAGE.asrModel,'tiny');
+        if(ui.asrModel) ui.asrModel.value='tiny';
+        if(ui.asrModelStatus) ui.asrModelStatus.textContent='SmallとEmmaの声を同時に維持できなかったため、Tinyへ戻しています…';
+
+        moonshineTranscriber?.close?.();
+        moonshineTranscriber=null;
+        asrInfoCache=null;
+        invalidateTtsWorker(error?.message || String(error));
+        await initWorkers();
+        await verifyTtsWorker();
+        ttsHealthVerified=true;
+
+        if(ui.asrModelStatus) {
+          ui.asrModelStatus.textContent='現在：Tiny。Smallでは音声エンジンが安定しなかったため、自動的にTinyへ戻しました。';
+        }
+        setState('idle','Tinyへ戻しました','Emmaの声を優先して、軽量モデルで続けます。');
+      } catch(fallbackError) {
+        console.error(fallbackError);
+        if(ui.asrModelStatus) ui.asrModelStatus.textContent=`Small/Tinyの再準備に失敗しました：${friendlyError(fallbackError)}`;
+        setState('error','音声認識モデルの切り替えに失敗しました',friendlyError(fallbackError));
+      }
+    } else {
+      if(ui.asrModelStatus) ui.asrModelStatus.textContent=`${label}の準備に失敗しました：${friendlyError(error)}`;
+      setState('error','音声認識モデルの切り替えに失敗しました',friendlyError(error));
+    }
   } finally {
     setBusy(false);
     showProgress(false);
