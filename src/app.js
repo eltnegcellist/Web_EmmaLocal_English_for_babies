@@ -12,7 +12,7 @@ const ui = {
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'),
   progressWrap:$('progressWrap'), progressBar:$('progressBar'), progressText:$('progressText'),
   conversation:$('conversation'), parentBubble:$('parentBubble'), emmaBubble:$('emmaBubble'), transcript:$('transcript'), reply:$('reply'),
-  mainButton:$('mainButton'), stopButton:$('stopButton'), manualReplyButton:$('manualReplyButton'),
+  mainButton:$('mainButton'), stopButton:$('stopButton'), manualReplyButton:$('manualReplyButton'), enableAudioButton:$('enableAudioButton'),
   autoRespond:$('autoRespond'), aboutButton:$('aboutButton'), settingsButton:$('settingsButton'),
   parentAudienceButton:$('parentAudienceButton'), settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
   aboutBackButton:$('aboutBackButton'), onboardingAboutButton:$('onboardingAboutButton'),
@@ -26,7 +26,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260925-stable-tts-r9';
+const WEB_BUILD = '20260925-audio-unlock-r10';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -57,6 +57,8 @@ let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
 let audioContext=null;
 let activeAudioSource=null;
+let audioUnlocked=false;
+const audioUnlockWaiters=[];
 let pendingUtterance=null;
 let previousScreen='home';
 let appearanceTimer=null;
@@ -89,16 +91,19 @@ function initUi() {
   updateSpokenNamePreview();
   applyAppearance();
   updateAppearanceSettings();
+  updateAudioUnlockUi();
 
   if (localStorage.getItem(STORAGE.setupRevision) === CURRENT_SETUP_REVISION) showScreen('home');
   else showScreen('onboarding');
 }
 
 function bindEvents() {
-  ui.mainButton.addEventListener('click',()=>startEmma());
+  ui.mainButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); startEmma(); });
   ui.stopButton.addEventListener('click', stopEmma);
   ui.manualReplyButton.addEventListener('click', respondToPendingUtterance);
-  ui.prepareEmmaButton.addEventListener('click', prepareFirstRun);
+  ui.enableAudioButton?.addEventListener('click',unlockPlaybackAudioFromGesture);
+  document.addEventListener('pointerdown',()=>{ if(!audioUnlocked) unlockPlaybackAudioFromGesture(); },{capture:true,passive:true});
+  ui.prepareEmmaButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); prepareFirstRun(); });
 
   ui.aboutButton.addEventListener('click',()=>openAbout('home'));
   ui.settingsAboutButton.addEventListener('click',()=>openAbout('settings'));
@@ -398,11 +403,12 @@ async function startEmma({ auto = false } = {}) {
     );
 
     // The microphone has been open while the models initialize. Discard any
-    // partial VAD state gathered during startup, then confirm the capture
-    // AudioContext is active before entering listening mode.
+    // partial VAD state gathered during startup. Playback is unlocked only by a
+    // real user gesture so mobile browser autoplay policy cannot leave Emma mute.
     mic?.resetDetector?.();
     await mic?.ensureActive?.();
-    await initAudioContext();
+    ensureAudioContextCreated();
+    updateAudioUnlockUi();
 
     ui.mainButton.classList.add('hidden');
     ui.stopButton.classList.remove('hidden');
@@ -699,13 +705,62 @@ async function pumpAudio(requestId) {
   pumpAudio(requestId);
 }
 
-async function initAudioContext() {
-  if(!audioContext||audioContext.state==='closed') audioContext=new AudioContext({latencyHint:'interactive'});
-  if(audioContext.state==='suspended') await audioContext.resume();
+function ensureAudioContextCreated() {
+  if(!audioContext||audioContext.state==='closed') {
+    audioContext=new AudioContext({latencyHint:'interactive'});
+    audioContext.addEventListener?.('statechange',()=>{
+      if(audioContext?.state==='running') markAudioUnlocked();
+      else updateAudioUnlockUi();
+    });
+  }
+  if(audioContext.state==='running') markAudioUnlocked();
+  return audioContext;
+}
+
+function markAudioUnlocked() {
+  audioUnlocked=true;
+  updateAudioUnlockUi();
+  while(audioUnlockWaiters.length) audioUnlockWaiters.shift()?.();
+}
+
+function updateAudioUnlockUi() {
+  if(!ui.enableAudioButton) return;
+  ui.enableAudioButton.classList.toggle('hidden',audioUnlocked);
+}
+
+function unlockPlaybackAudioFromGesture() {
+  const ctx=ensureAudioContextCreated();
+  const finish=()=>{
+    if(ctx.state==='running') markAudioUnlocked();
+    else updateAudioUnlockUi();
+  };
+  try {
+    const resumed=ctx.state==='suspended' ? ctx.resume() : Promise.resolve();
+    Promise.resolve(resumed).then(finish).catch(error=>{
+      console.warn('AudioContext resume failed.',error);
+      updateAudioUnlockUi();
+    });
+  } catch(error) {
+    console.warn('AudioContext unlock failed.',error);
+    updateAudioUnlockUi();
+  }
+}
+
+async function waitForPlaybackAudio() {
+  const ctx=ensureAudioContextCreated();
+  if(ctx.state==='running'){
+    markAudioUnlocked();
+    return;
+  }
+
+  audioUnlocked=false;
+  updateAudioUnlockUi();
+  setState('speaking','Emmaの声を有効にしてください','画面下の「Emmaの声を有効にする」を一度タップしてください。');
+  await new Promise(resolve=>audioUnlockWaiters.push(resolve));
 }
 
 async function playBlob(blob) {
-  await initAudioContext();
+  await waitForPlaybackAudio();
   const buffer=await blob.arrayBuffer();
   const decoded=await audioContext.decodeAudioData(buffer.slice(0));
   const source=audioContext.createBufferSource();
@@ -1031,7 +1086,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-stable-tts-r9',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-audio-unlock-r10',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
