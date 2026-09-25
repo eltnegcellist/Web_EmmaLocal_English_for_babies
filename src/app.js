@@ -200,7 +200,6 @@ function bindEvents() {
 
   ui.asrModel?.addEventListener('change',async()=>{
     const next=ui.asrModel.value==='small' ? 'small' : 'tiny';
-    localStorage.setItem(STORAGE.asrModel,next);
     await switchAsrModel(next);
   });
   ui.autoRespond.addEventListener('change',()=>{
@@ -1001,70 +1000,75 @@ async function verifyTtsWorkerAlive() {
 }
 
 async function switchAsrModel(next) {
+  const previous=localStorage.getItem(STORAGE.asrModel)==='small' ? 'small' : 'tiny';
   const label=next==='small' ? 'Small' : 'Tiny';
+  const previousLabel=previous==='small' ? 'Small' : 'Tiny';
+  if(next===previous){
+    updateAsrModelStatus();
+    return;
+  }
 
-  // The model selector change is a direct user gesture. Resume/create the
-  // playback AudioContext here, before model loading takes long enough for
-  // mobile browsers to lose transient user activation.
+  // The selector change is a direct user gesture. Keep playback unlocked, but
+  // do not restart Kitten TTS merely because the ASR model changed.
   try { await initAudioContext(); } catch(error) {
     console.warn('AudioContext unlock before ASR switch failed.',error);
   }
 
+  localStorage.setItem(STORAGE.asrModel,next);
   setBusy(true);
   if(ui.asrModel) ui.asrModel.disabled=true;
   if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}を準備しています…`;
 
   try {
+    // ASR-only replacement. Kitten TTS Worker and AudioContext are deliberately
+    // left untouched so Tiny <-> Small switching cannot silence Emma.
     moonshineTranscriber?.close?.();
     moonshineTranscriber=null;
     asrInfoCache=null;
+    workersReady=false;
 
-    // Release TTS before loading the new ASR. This lowers peak memory during
-    // Tiny/Small switching and prevents a crashed Worker from being reused.
-    invalidateTtsWorker();
-    await initWorkers();
+    asrInfoCache=await initMoonshine();
 
-    try {
-      if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}。Emmaの声を確認しています…`;
-      await verifyTtsWorker();
-    } catch(firstError) {
-      console.warn('TTS self-test failed after ASR switch; rebuilding TTS once.',firstError);
-      invalidateTtsWorker(firstError?.message || String(firstError));
+    // Normally TTS is already alive. Only rebuild it if it was absent or is
+    // actually unresponsive; never rebuild it just because ASR changed.
+    if(!ttsWorker || !ttsInfoCache){
       await initWorkers();
-      await verifyTtsWorker();
+    } else {
+      try {
+        await verifyTtsWorkerAlive();
+      } catch(error) {
+        console.warn('Existing TTS worker was not responsive; rebuilding only TTS.',error);
+        invalidateTtsWorker(error?.message || String(error));
+        await initWorkers();
+      }
     }
 
+    workersReady=Boolean(asrInfoCache && ttsWorker && ttsInfoCache);
     if(ui.asrModelStatus) {
-      ui.asrModelStatus.textContent=`現在：${label}。音声認識・Emmaの声とも準備完了です。`;
+      ui.asrModelStatus.textContent=`現在：${label}。音声認識を切り替えました。Emmaの声はそのまま維持しています。`;
     }
   } catch(error) {
     console.error(error);
-    if(next==='small'){
-      try {
-        localStorage.setItem(STORAGE.asrModel,'tiny');
-        if(ui.asrModel) ui.asrModel.value='tiny';
-        if(ui.asrModelStatus) ui.asrModelStatus.textContent='SmallとEmmaの声を同時に維持できなかったため、Tinyへ戻しています…';
 
-        moonshineTranscriber?.close?.();
-        moonshineTranscriber=null;
-        asrInfoCache=null;
-        invalidateTtsWorker(error?.message || String(error));
-        await initWorkers();
-        await verifyTtsWorker();
-        ttsHealthVerified=true;
+    // Roll the ASR setting back without touching the current TTS engine.
+    localStorage.setItem(STORAGE.asrModel,previous);
+    if(ui.asrModel) ui.asrModel.value=previous;
+    if(ui.asrModelStatus) ui.asrModelStatus.textContent=`${label}の準備に失敗したため、${previousLabel}へ戻しています…`;
 
-        if(ui.asrModelStatus) {
-          ui.asrModelStatus.textContent='現在：Tiny。Smallでは音声エンジンが安定しなかったため、自動的にTinyへ戻しました。';
-        }
-        setState('idle','Tinyへ戻しました','Emmaの声を優先して、軽量モデルで続けます。');
-      } catch(fallbackError) {
-        console.error(fallbackError);
-        if(ui.asrModelStatus) ui.asrModelStatus.textContent=`Small/Tinyの再準備に失敗しました：${friendlyError(fallbackError)}`;
-        setState('error','音声認識モデルの切り替えに失敗しました',friendlyError(fallbackError));
+    try {
+      moonshineTranscriber?.close?.();
+      moonshineTranscriber=null;
+      asrInfoCache=null;
+      asrInfoCache=await initMoonshine();
+      workersReady=Boolean(asrInfoCache && ttsWorker && ttsInfoCache);
+      if(ui.asrModelStatus) {
+        ui.asrModelStatus.textContent=`現在：${previousLabel}。ASRだけ元に戻しました。Emmaの声は維持しています。`;
       }
-    } else {
-      if(ui.asrModelStatus) ui.asrModelStatus.textContent=`${label}の準備に失敗しました：${friendlyError(error)}`;
-      setState('error','音声認識モデルの切り替えに失敗しました',friendlyError(error));
+      setState('idle',`${previousLabel}へ戻しました`,'Emmaの声はそのまま使えます。');
+    } catch(rollbackError) {
+      console.error(rollbackError);
+      if(ui.asrModelStatus) ui.asrModelStatus.textContent=`ASRの復旧に失敗しました：${friendlyError(rollbackError)}`;
+      setState('error','音声認識モデルの切り替えに失敗しました',friendlyError(rollbackError));
     }
   } finally {
     setBusy(false);
