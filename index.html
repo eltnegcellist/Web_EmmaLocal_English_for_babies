@@ -246,7 +246,7 @@
             </select>
           </label>
           <p id="asrModelStatus" class="small muted">現在：Tiny。モデルはブラウザ内に保存されます。</p>
-          <p class="small muted">Web版はEmma Liteのみです。初期値はTinyです。Smallを選ぶと、その場で高精度モデルを準備します。Model Labなどで取得済みならブラウザキャッシュを再利用するため、再ダウンロードされない場合があります。</p>
+          <p class="small muted">Web版はEmma Liteのみです。初期値はTinyです。Tiny / Smallを変更すると、設定を保存してEmmaを一度再読み込みします。実行中のモデルを差し替えず、ASRと音声をクリーンな状態から起動します。取得済みモデルはブラウザキャッシュを再利用します。</p>
           <p class="small muted">どちらも端末内で処理します。Smallでも認識を誤ることはあり、必ずTinyより正確になるとは限りません。</p>
         </article>
 
@@ -359,6 +359,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260925-audio-unlock-r10"></script>
+  <script type="module" src="./src/app.js?v=20260925-asr-reload-r11"></script>
 </body>
 </html>
