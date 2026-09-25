@@ -26,7 +26,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260925-audio-unlock-r10';
+const WEB_BUILD = '20260925-asr-reload-r11';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -38,7 +38,8 @@ const STORAGE = {
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
   useChanSuffix:'emma_use_chan_suffix',
-  asrModel:'emma_asr_model'
+  asrModel:'emma_asr_model',
+  asrReload:'emma_asr_reload'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -93,8 +94,18 @@ function initUi() {
   updateAppearanceSettings();
   updateAudioUnlockUi();
 
-  if (localStorage.getItem(STORAGE.setupRevision) === CURRENT_SETUP_REVISION) showScreen('home');
-  else showScreen('onboarding');
+  const reloadedAsr=sessionStorage.getItem(STORAGE.asrReload);
+  if (localStorage.getItem(STORAGE.setupRevision) === CURRENT_SETUP_REVISION) {
+    if(reloadedAsr){
+      sessionStorage.removeItem(STORAGE.asrReload);
+      showScreen('home',{autoStart:false});
+      const label=reloadedAsr==='small' ? 'Small' : 'Tiny';
+      setState('idle',`音声認識を${label}に変更しました`,'「Emmaと話す」を押して会話を再開してください。');
+      if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}。再読み込みして安全に切り替えました。`;
+    } else {
+      showScreen('home');
+    }
+  } else showScreen('onboarding');
 }
 
 function bindEvents() {
@@ -204,9 +215,23 @@ function bindEvents() {
     } else if (running) requestWakeLock();
   });
 
-  ui.asrModel?.addEventListener('change',async()=>{
+  ui.asrModel?.addEventListener('change',()=>{
     const next=ui.asrModel.value==='small' ? 'small' : 'tiny';
-    await switchAsrModel(next);
+    const current=localStorage.getItem(STORAGE.asrModel)==='small' ? 'small' : 'tiny';
+    if(next===current) return;
+
+    localStorage.setItem(STORAGE.asrModel,next);
+    sessionStorage.setItem(STORAGE.asrReload,next);
+
+    if(ui.asrModelStatus) {
+      const label=next==='small' ? 'Small' : 'Tiny';
+      ui.asrModelStatus.textContent=`${label}へ切り替えるためEmmaを再読み込みします…`;
+    }
+
+    const url=new URL(location.href);
+    url.searchParams.set('v',WEB_BUILD);
+    url.searchParams.set('asr',next);
+    location.replace(url.href);
   });
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
@@ -246,13 +271,13 @@ function bindEvents() {
   });
 }
 
-function showScreen(name) {
+function showScreen(name,{autoStart=true}={}) {
   for (const key of ['onboarding','home','settings','about']) {
     ui[key+'Screen'].classList.toggle('hidden',key!==name);
   }
   window.scrollTo({top:0,behavior:'auto'});
 
-  if(name==='home' && localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION) {
+  if(autoStart && name==='home' && localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION) {
     queueMicrotask(()=>{
       if(!running && !processing && !speaking && !ui.mainButton.disabled) {
         startEmma({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
@@ -932,62 +957,6 @@ function getTtsSignature() {
   return 'kitten-nano-int8-kiki-browser-wasm';
 }
 
-async function switchAsrModel(next) {
-  const previous=localStorage.getItem(STORAGE.asrModel)==='small' ? 'small' : 'tiny';
-  const label=next==='small' ? 'Small' : 'Tiny';
-  const previousLabel=previous==='small' ? 'Small' : 'Tiny';
-  if(next===previous){
-    updateAsrModelStatus();
-    return;
-  }
-
-  localStorage.setItem(STORAGE.asrModel,next);
-  setBusy(true);
-  if(ui.asrModel) ui.asrModel.disabled=true;
-  if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}を準備しています…`;
-
-  try {
-    // Change Moonshine only. Do not terminate, probe, rebuild, or otherwise
-    // touch Kitten TTS or the playback AudioContext.
-    moonshineTranscriber?.close?.();
-    moonshineTranscriber=null;
-    asrInfoCache=null;
-    workersReady=false;
-
-    asrInfoCache=await initMoonshine();
-    workersReady=Boolean(asrInfoCache && ttsWorker && ttsInfoCache);
-
-    if(ui.asrModelStatus) {
-      ui.asrModelStatus.textContent=`現在：${label}。ASRだけ切り替えました。Emmaの声は変更していません。`;
-    }
-  } catch(error) {
-    console.error(error);
-    localStorage.setItem(STORAGE.asrModel,previous);
-    if(ui.asrModel) ui.asrModel.value=previous;
-    if(ui.asrModelStatus) ui.asrModelStatus.textContent=`${label}の準備に失敗したため、${previousLabel}へ戻しています…`;
-
-    try {
-      moonshineTranscriber?.close?.();
-      moonshineTranscriber=null;
-      asrInfoCache=null;
-      asrInfoCache=await initMoonshine();
-      workersReady=Boolean(asrInfoCache && ttsWorker && ttsInfoCache);
-      if(ui.asrModelStatus) {
-        ui.asrModelStatus.textContent=`現在：${previousLabel}。ASRだけ元に戻しました。`;
-      }
-    } catch(rollbackError) {
-      console.error(rollbackError);
-      if(ui.asrModelStatus) ui.asrModelStatus.textContent=`ASRの復旧に失敗しました：${friendlyError(rollbackError)}`;
-      setState('error','音声認識モデルの切り替えに失敗しました',friendlyError(rollbackError));
-    }
-  } finally {
-    setBusy(false);
-    showProgress(false);
-    if(ui.asrModel) ui.asrModel.disabled=false;
-    updateRuntimeBackend();
-  }
-}
-
 function updateAsrModelStatus() {
   if(!ui.asrModelStatus) return;
   const selected=localStorage.getItem(STORAGE.asrModel)==='small' ? 'Small' : 'Tiny';
@@ -1086,7 +1055,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-audio-unlock-r10',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-asr-reload-r11',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
