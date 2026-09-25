@@ -26,7 +26,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260925-asr-reload-r11';
+const WEB_BUILD = '20260925-voice-diagnostics-r12';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -622,12 +622,13 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     showOnboardingProgress(true,m.progress??0,m.message||'Emmaの声を準備しています…');
   } else if(m.type==='ready') readyResolve?.(m);
   else if(m.type==='error') {
-    readyReject?.(new Error(m.message));
+    const error=new Error(m.message || 'Kitten TTSでエラーが発生しました。');
+    readyReject?.(error);
     if(m.requestId){
       const q=audioQueues.get(m.requestId);
-      if(q){q.resolve?.();audioQueues.delete(m.requestId);}
+      if(q) q.reject?.(error);
     }
-    if(workersReady) onRuntimeError(m.message);
+    if(workersReady) onRuntimeError(error.message);
   } else if(m.type==='audio') enqueueAudio(m);
   else if(m.type==='complete') {
     const q=audioQueues.get(m.requestId);
@@ -690,14 +691,23 @@ async function speakResponse(text) {
   if(!ttsWorker) throw new Error('Emmaの声がまだ準備されていません');
   speaking=true;
   const requestId=++requestSeq;
-  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
-  const done=new Promise(resolve=>audioQueues.get(requestId).resolve=resolve);
+  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null});
+  const done=new Promise((resolve,reject)=>{
+    const q=audioQueues.get(requestId);
+    q.resolve=resolve;
+    q.reject=reject;
+  });
   setState('speaking','Emmaがお話ししています',text);
   try {
     ttsWorker.postMessage({type:'speak',requestId,text});
     await done;
+  } catch(error) {
+    console.error('Emma TTS playback failed',error);
+    setState('error','Emmaの声でエラーが発生しました',friendlyError(error));
+    throw error;
   } finally {
     speaking=false;
+    audioQueues.delete(requestId);
   }
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   else setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
@@ -724,10 +734,16 @@ async function pumpAudio(requestId) {
   }
   q.playing=true;
   q.items.delete(q.next);
-  try{await playBlob(blob);}catch(e){console.error(e);}
-  q.next++;
-  q.playing=false;
-  pumpAudio(requestId);
+  try {
+    await playBlob(blob);
+    q.next++;
+    q.playing=false;
+    pumpAudio(requestId);
+  } catch(error) {
+    console.error('Emma audio playback failed',error);
+    q.playing=false;
+    q.reject?.(new Error(`音声再生に失敗しました: ${error?.message || error}`));
+  }
 }
 
 function ensureAudioContextCreated() {
@@ -1055,7 +1071,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-asr-reload-r11',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-voice-diagnostics-r12',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
