@@ -12,7 +12,7 @@ export class EmmaMicrophone {
   async start() {
     this.stream = await withTimeout(
       navigator.mediaDevices.getUserMedia({
-        audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+        audio: { channelCount: 1, echoCancellation: false, noiseSuppression: false, autoGainControl: false },
         video: false,
       }),
       15000,
