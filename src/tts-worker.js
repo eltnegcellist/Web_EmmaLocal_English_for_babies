@@ -153,6 +153,24 @@ self.onmessage = async (event) => {
       return;
     }
 
+    if (type === 'probe') {
+      const tts = await ensureKitten();
+      const audio = await tts.generate('Hello.', {
+        voice: KITTEN_VOICE,
+        speed: KITTEN_SPEED,
+        clean: true
+      });
+      const samples = audio?.data;
+      if (!samples?.length) throw new Error('Kitten TTS Nanoの自己テスト音声を生成できませんでした。');
+      self.postMessage({
+        type: 'probe-ready',
+        probeId: event.data.probeId,
+        sampleRate: audio?.sampling_rate || 24000,
+        sampleCount: samples.length
+      });
+      return;
+    }
+
     if (type === 'speak') {
       const text = String(
         event.data.text ||
