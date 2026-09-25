@@ -244,7 +244,8 @@
               <option value="small">高精度（Small）</option>
             </select>
           </label>
-          <p class="small muted">Web版はEmma Liteのみです。初期値はTinyです。Smallを選ぶと、次回の会話開始時に高精度モデルを追加取得します。</p>
+          <p id="asrModelStatus" class="small muted">現在：Tiny。モデルはブラウザ内に保存されます。</p>
+          <p class="small muted">Web版はEmma Liteのみです。初期値はTinyです。Smallを選ぶと、その場で高精度モデルを準備します。Model Labなどで取得済みならブラウザキャッシュを再利用するため、再ダウンロードされない場合があります。</p>
           <p class="small muted">どちらも端末内で処理します。Smallでも認識を誤ることはあり、必ずTinyより正確になるとは限りません。</p>
         </article>
 
@@ -356,6 +357,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260925-asr-select-r1"></script>
+  <script type="module" src="./src/app.js?v=20260925-asr-switch-r2"></script>
 </body>
 </html>
