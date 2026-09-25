@@ -31,22 +31,25 @@
 
         <h2 class="section-title">赤ちゃんの設定（任意）</h2>
         <article class="card family-card">
-          <label>名前（任意）
-            <input id="onboardingBabyName" maxlength="30" autocomplete="off" placeholder="例：はな / Hana" />
+          <label>名前（任意・日本語）
+            <input id="onboardingBabyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
           </label>
-          <label>英語で呼ぶ名前（必要な場合だけ）
-            <input id="onboardingSpokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Hana" />
-          </label>
-          <label class="toggle-line">
-            <span>名前に「-chan」を付ける</span>
-            <span class="switch"><input id="onboardingUseChanSuffix" type="checkbox" checked /><span></span></span>
-          </label>
-          <p id="onboardingSpokenNamePreview" class="small muted"></p>
           <div class="field-title">性別</div>
           <div class="segmented" data-gender-group="onboarding">
             <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
             <button data-gender="GIRL" class="segment-button">女の子</button>
             <button data-gender="BOY" class="segment-button">男の子</button>
+          </div>
+          <button id="onboardingPronunciationToggle" type="button" class="text-button inline-button">名前の読み方を調整</button>
+          <div id="onboardingPronunciationPanel" class="hidden">
+            <label>英語で呼ぶ名前
+              <input id="onboardingSpokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Hana" />
+            </label>
+            <label class="toggle-line">
+              <span>名前に「-chan」を付ける</span>
+              <span class="switch"><input id="onboardingUseChanSuffix" type="checkbox" checked /><span></span></span>
+            </label>
+            <p id="onboardingSpokenNamePreview" class="small muted"></p>
           </div>
         </article>
 
@@ -194,8 +197,8 @@
 
         <article class="card">
           <h2>赤ちゃん</h2>
-          <label>名前（任意）
-            <input id="babyName" maxlength="30" autocomplete="off" placeholder="例：はな / Hana" />
+          <label>名前（任意・日本語）
+            <input id="babyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
           </label>
           <div class="field-title">性別</div>
           <div class="segmented" data-gender-group="settings">
