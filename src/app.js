@@ -62,6 +62,7 @@ let appearanceTimer=null;
 let developerTapCount=0;
 let developerTapTimer=null;
 const audioQueues = new Map();
+const ttsProbeWaiters = new Map();
 
 initUi();
 
@@ -621,8 +622,21 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     showProgress(true,m.progress??0,m.message||'Emmaの声を準備しています…');
     showOnboardingProgress(true,m.progress??0,m.message||'Emmaの声を準備しています…');
   } else if(m.type==='ready') readyResolve?.(m);
-  else if(m.type==='error') {
+  else if(m.type==='probe-ready') {
+    const waiter=ttsProbeWaiters.get(m.probeId);
+    if(waiter){
+      waiter.resolve(m);
+      ttsProbeWaiters.delete(m.probeId);
+    }
+  } else if(m.type==='error') {
     readyReject?.(new Error(m.message));
+    if(m.probeId){
+      const waiter=ttsProbeWaiters.get(m.probeId);
+      if(waiter){
+        waiter.reject(new Error(m.message || 'Kitten TTSの自己テストに失敗しました。'));
+        ttsProbeWaiters.delete(m.probeId);
+      }
+    }
     if(m.requestId){
       const q=audioQueues.get(m.requestId);
       if(q){
@@ -930,6 +944,25 @@ function invalidateTtsWorker(reason='') {
     q.reject?.(new Error(reason || 'Emmaの音声エンジンを再準備します。'));
     audioQueues.delete(requestId);
   }
+  for(const [probeId,waiter] of ttsProbeWaiters.entries()){
+    waiter.reject?.(new Error(reason || 'Emmaの音声エンジンを再準備します。'));
+    ttsProbeWaiters.delete(probeId);
+  }
+}
+
+async function verifyTtsWorker() {
+  if(!ttsWorker || !ttsInfoCache) throw new Error('Emmaの声がまだ準備されていません。');
+  const probeId='probe-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+  const probe=new Promise((resolve,reject)=>{
+    ttsProbeWaiters.set(probeId,{resolve,reject});
+  });
+  ttsWorker.postMessage({type:'probe',probeId});
+  try {
+    await withTimeout(probe,30000,'Kitten TTSの自己テストが完了しませんでした。');
+    return true;
+  } finally {
+    ttsProbeWaiters.delete(probeId);
+  }
 }
 
 async function switchAsrModel(next) {
@@ -948,8 +981,18 @@ async function switchAsrModel(next) {
     invalidateTtsWorker();
     await initWorkers();
 
+    try {
+      if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}。Emmaの声を確認しています…`;
+      await verifyTtsWorker();
+    } catch(firstError) {
+      console.warn('TTS self-test failed after ASR switch; rebuilding TTS once.',firstError);
+      invalidateTtsWorker(firstError?.message || String(firstError));
+      await initWorkers();
+      await verifyTtsWorker();
+    }
+
     if(ui.asrModelStatus) {
-      ui.asrModelStatus.textContent=`現在：${label}。準備完了。取得済みモデルはブラウザキャッシュを再利用します。`;
+      ui.asrModelStatus.textContent=`現在：${label}。音声認識・Emmaの声とも準備完了です。`;
     }
   } catch(error) {
     console.error(error);
