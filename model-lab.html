@@ -142,12 +142,65 @@
   </section>
 
   <section class="card">
-    <h2>見るべきポイント</h2>
+    <h2>3. 他のローカルAI TTSを比較</h2>
+    <p class="notice"><strong>同じ英文で耳比較</strong>：Kittenとは別系統のローカルAI音声を同じ文章で生成します。モデルは選んだものだけ読み込みます。</p>
+    <p class="small">Kokoroは82Mモデルをブラウザ内で実行します。Supertonic 3は高音質ですが初回モデル取得が約380MBと重いため、必要なときだけ選んでください。Piperは軽量なローカルTTSの比較基準です。</p>
+
+    <h3>Kokoro 82M / q8</h3>
+    <div class="grid">
+      <label class="model-option">
+        <input class="alt-tts-model" type="checkbox" value="kokoro:af_heart" checked>
+        <span><span class="model-title">Kokoro · af_heart</span><br><span class="small">女性 / 明るく自然。Kiki代替の第一候補。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="alt-tts-model" type="checkbox" value="kokoro:af_bella" checked>
+        <span><span class="model-title">Kokoro · af_bella</span><br><span class="small">女性 / 表現が強めで存在感のある声。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="alt-tts-model" type="checkbox" value="kokoro:af_nova" checked>
+        <span><span class="model-title">Kokoro · af_nova</span><br><span class="small">女性 / 比較的明るく軽い声。</span></span>
+      </label>
+    </div>
+
+    <h3>Supertonic 3 / 44.1kHz</h3>
+    <div class="grid">
+      <label class="model-option">
+        <input class="alt-tts-model" type="checkbox" value="supertonic:F1">
+        <span><span class="model-title">Supertonic · Mina (F1)</span><br><span class="small">明るく澄んだ女性声。初回モデル取得 約380MB。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="alt-tts-model" type="checkbox" value="supertonic:F2">
+        <span><span class="model-title">Supertonic · Sora (F2)</span><br><span class="small">温かく穏やかな女性声。</span></span>
+      </label>
+      <label class="model-option">
+        <input class="alt-tts-model" type="checkbox" value="supertonic:F3">
+        <span><span class="model-title">Supertonic · Yuna (F3)</span><br><span class="small">自然で親しみやすい女性声。</span></span>
+      </label>
+    </div>
+
+    <h3>Piper / 軽量比較基準</h3>
+    <div class="grid">
+      <label class="model-option">
+        <input class="alt-tts-model" type="checkbox" value="piper:en_US-hfc_female-medium">
+        <span><span class="model-title">Piper · HFC Female Medium</span><br><span class="small">軽量ローカルTTS。最新AI音声との差を耳で確認する基準。</span></span>
+      </label>
+    </div>
+
+    <p class="small">英文は上の「読み上げる英文」を共通利用します。各エンジン固有の速度指定の意味が異なるため、この比較ではまず各エンジンの標準速度を使い、音質・声質を優先して聴き比べます。</p>
+    <div class="actions">
+      <button id="runAltTtsButton" class="primary">選択した他TTSを生成</button>
+    </div>
+    <div id="altTtsStatus" class="status"></div>
+    <div id="altTtsResults" class="results"></div>
+  </section>
+
+  <section class="card">
+    <h2>4. 見るべきポイント</h2>
     <p class="notice">大きいモデルが常にEmma向きとは限りません。ASRは認識改善量と待ち時間、TTSは声の自然さと生成速度・初回DL量を一緒に比べると、モデルサイズを増やす価値が判断しやすくなります。</p>
     <p class="small">初回だけ各モデルをダウンロードします。モデルはブラウザのCache Storageに保存されるため、2回目以降は速くなる場合があります。</p>
     <p><a href="./">Emma Webへ戻る</a></p>
   </section>
 </main>
-<script type="module" src="./src/model-lab.js?v=asr-stream-keyterms-v1-6cbafa0"></script>
+<script type="module" src="./src/model-lab.js?v=tts-engine-comparison-v1"></script>
 </body>
 </html>
