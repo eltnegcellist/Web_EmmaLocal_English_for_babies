@@ -26,7 +26,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260925-media-playback-r13';
+const WEB_BUILD = '20260925-media-volume-r14';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -331,7 +331,7 @@ async function requestMicrophonePermission(timeoutMs=30000) {
   try {
     stream=await Promise.race([
       navigator.mediaDevices.getUserMedia({
-        audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true},
+        audio:{channelCount:1,echoCancellation:false,noiseSuppression:false,autoGainControl:false},
         video:false
       }),
       new Promise((_,reject)=>{
@@ -1118,7 +1118,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-media-playback-r13',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-media-volume-r14',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
