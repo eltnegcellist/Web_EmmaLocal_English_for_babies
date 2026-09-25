@@ -26,7 +26,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260925-voice-diagnostics-r12';
+const WEB_BUILD = '20260925-media-playback-r13';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -687,8 +687,45 @@ async function processTranscript(text) {
   await speakResponse(response.english);
 }
 
+async function releaseMicrophoneForEmmaVoice() {
+  if(!mic) return false;
+  const activeMic=mic;
+  mic=null;
+  try {
+    await activeMic.stop();
+  } catch(error) {
+    console.warn('Microphone release before TTS failed.',error);
+  }
+
+  // Chrome on Android can keep the communication audio route briefly after
+  // getUserMedia is released. Give the platform one short turn to restore the
+  // normal media route before starting Emma's playback.
+  await new Promise(resolve=>setTimeout(resolve,180));
+  return true;
+}
+
+async function restoreMicrophoneAfterEmmaVoice() {
+  if(!running || mic) return;
+  try {
+    await startMoonshineCapture();
+    mic?.resetDetector?.();
+    await mic?.ensureActive?.();
+  } catch(error) {
+    console.error('Microphone restart after TTS failed.',error);
+    setState('error','マイクの再開に失敗しました',friendlyError(error));
+    throw error;
+  }
+}
+
 async function speakResponse(text) {
   if(!ttsWorker) throw new Error('Emmaの声がまだ準備されていません');
+
+  const shouldRestoreMic=running && Boolean(mic);
+  if(shouldRestoreMic){
+    setState('thinking','Emmaが話す準備をしています','マイクを一時停止してスピーカー音量へ切り替えています。');
+    await releaseMicrophoneForEmmaVoice();
+  }
+
   speaking=true;
   const requestId=++requestSeq;
   audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null});
@@ -697,6 +734,7 @@ async function speakResponse(text) {
     q.resolve=resolve;
     q.reject=reject;
   });
+
   setState('speaking','Emmaがお話ししています',text);
   try {
     ttsWorker.postMessage({type:'speak',requestId,text});
@@ -708,7 +746,16 @@ async function speakResponse(text) {
   } finally {
     speaking=false;
     audioQueues.delete(requestId);
+
+    if(shouldRestoreMic && running){
+      try {
+        await restoreMicrophoneAfterEmmaVoice();
+      } catch {
+        return;
+      }
+    }
   }
+
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   else setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
 }
@@ -1071,7 +1118,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-voice-diagnostics-r12',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-media-playback-r13',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
