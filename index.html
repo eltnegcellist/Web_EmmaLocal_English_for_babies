@@ -52,7 +52,7 @@
 
         <article class="card">
           <h2>初回だけ準備します</h2>
-          <p>日本語の聞き取りは、Moonshine Japanese Tiny Streaming をブラウザ内で実行します。</p>
+          <p>日本語の聞き取りは、標準ではMoonshine Japanese Tiny Streamingをブラウザ内で実行します。設定からSmall Streamingも選べます。</p>
           <p class="small muted">初回は音声認識やEmmaの声に必要なデータを取得する場合があります。認識中の音声をクラウド音声認識へ送信することはありません。</p>
         </article>
 
@@ -234,6 +234,18 @@
             </select>
           </label>
           <p id="colorModeDescription" class="small muted"></p>
+        </article>
+
+        <article class="card">
+          <h2>音声認識</h2>
+          <label>Moonshineモデル
+            <select id="asrModel">
+              <option value="tiny">軽量・標準（Tiny）</option>
+              <option value="small">高精度（Small）</option>
+            </select>
+          </label>
+          <p class="small muted">Web版はEmma Liteのみです。初期値はTinyです。Smallを選ぶと、次回の会話開始時に高精度モデルを追加取得します。</p>
+          <p class="small muted">どちらも端末内で処理します。Smallでも認識を誤ることはあり、必ずTinyより正確になるとは限りません。</p>
         </article>
 
         <article class="card">
