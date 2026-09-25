@@ -750,8 +750,8 @@ async function speakResponse(text) {
     if(shouldRestoreMic && running){
       try {
         await restoreMicrophoneAfterEmmaVoice();
-      } catch {
-        return;
+      } catch(error) {
+        console.error('Microphone restore failed after Emma voice.',error);
       }
     }
   }
