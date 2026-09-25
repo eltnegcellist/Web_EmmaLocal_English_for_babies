@@ -51,7 +51,7 @@ const engine = new LiteResponseEngine();
 const MOONSHINE_MODULE_URL = new URL('./moonshine-module.js', import.meta.url).href;
 let moonshineTranscriber, moonshineModule, ttsWorker, mic, wakeLock;
 let moonshineStage='idle';
-let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='', ttsHealthVerified=false;
+let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
 let requestSeq=0;
 let audioContext=null;
@@ -62,7 +62,6 @@ let appearanceTimer=null;
 let developerTapCount=0;
 let developerTapTimer=null;
 const audioQueues = new Map();
-const ttsProbeWaiters = new Map();
 
 initUi();
 
@@ -483,8 +482,6 @@ async function startMoonshineCapture() {
 async function initWorkers() {
   const signature=getTtsSignature();
 
-  // Moonshine is initialized first. Its threaded WASM/ONNX runtime has the
-  // stricter startup requirements, so reserve its memory before Kitten TTS.
   if(!asrInfoCache){
     showProgress(true,0,'Moonshineを準備しています…');
     showOnboardingProgress(true,0,'Moonshineを準備しています…');
@@ -492,51 +489,15 @@ async function initWorkers() {
   }
 
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
-    invalidateTtsWorker();
+    ttsWorker?.terminate();
+    ttsInfoCache=null;
     ttsWorkerSignature=signature;
-    const worker=new Worker(new URL('./tts-worker.js?v=20260925-asr-switch-probe-r2',import.meta.url),{type:'module'});
-    ttsWorker=worker;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      let settled=false;
-      const fail=(error)=>{
-        const normalized=error instanceof Error ? error : new Error(error?.message || String(error || 'Kitten TTS Worker error'));
-        if(ttsWorker===worker) invalidateTtsWorker(normalized.message);
-        if(!settled){
-          settled=true;
-          reject(normalized);
-        } else {
-          onRuntimeError(normalized.message);
-        }
-      };
-
-      worker.onmessage=(event)=>{
-        const type=event.data?.type;
-        if(type==='ready' && !settled){
-          settled=true;
-          handleTtsMessage(event,resolve,reject);
-          return;
-        }
-        if(type==='error' && !settled){
-          settled=true;
-          handleTtsMessage(event,resolve,reject);
-          invalidateTtsWorker(event.data?.message || 'Kitten TTS Worker error');
-          return;
-        }
-        handleTtsMessage(event);
-      };
-      worker.onerror=(event)=>{
-        event.preventDefault?.();
-        fail(event.error || new Error(event.message || 'Kitten TTS Workerが停止しました。'));
-      };
-      worker.onmessageerror=()=>fail(new Error('Kitten TTS Workerとの通信に失敗しました。'));
-      worker.postMessage({ type:'init' });
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260925-stable-tts-r1',import.meta.url),{type:'module'});
+      ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
+      ttsWorker.onerror=reject;
+      ttsWorker.postMessage({ type:'init' });
     });
-  }
-
-  const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='small' ? 'small' : 'tiny';
-  if(selectedAsr==='small' && !ttsHealthVerified){
-    await verifyTtsWorker();
-    ttsHealthVerified=true;
   }
 
   workersReady=true;
@@ -627,27 +588,11 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     showProgress(true,m.progress??0,m.message||'Emmaの声を準備しています…');
     showOnboardingProgress(true,m.progress??0,m.message||'Emmaの声を準備しています…');
   } else if(m.type==='ready') readyResolve?.(m);
-  else if(m.type==='probe-ready') {
-    const waiter=ttsProbeWaiters.get(m.probeId);
-    if(waiter){
-      waiter.resolve(m);
-      ttsProbeWaiters.delete(m.probeId);
-    }
-  } else if(m.type==='error') {
+  else if(m.type==='error') {
     readyReject?.(new Error(m.message));
-    if(m.probeId){
-      const waiter=ttsProbeWaiters.get(m.probeId);
-      if(waiter){
-        waiter.reject(new Error(m.message || 'Kitten TTSの自己テストに失敗しました。'));
-        ttsProbeWaiters.delete(m.probeId);
-      }
-    }
     if(m.requestId){
       const q=audioQueues.get(m.requestId);
-      if(q){
-        q.reject?.(new Error(m.message || 'Kitten TTSの音声生成に失敗しました。'));
-        audioQueues.delete(m.requestId);
-      }
+      if(q){q.resolve?.();audioQueues.delete(m.requestId);}
     }
     if(workersReady) onRuntimeError(m.message);
   } else if(m.type==='audio') enqueueAudio(m);
@@ -709,39 +654,17 @@ async function processTranscript(text) {
 }
 
 async function speakResponse(text) {
-  if(!ttsWorker || !ttsInfoCache) await initWorkers();
-
-  // Small ASR can create a short peak in memory/CPU during transcription.
-  // Check that the TTS worker survived that inference before sending speech.
-  if(localStorage.getItem(STORAGE.asrModel)==='small'){
-    try {
-      await verifyTtsWorkerAlive();
-    } catch(error) {
-      console.warn('TTS worker did not survive Small ASR inference; rebuilding.',error);
-      invalidateTtsWorker(error?.message || String(error));
-      await initWorkers();
-    }
-  }
-
   if(!ttsWorker) throw new Error('Emmaの声がまだ準備されていません');
   speaking=true;
   const requestId=++requestSeq;
-  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null});
-  const done=new Promise((resolve,reject)=>{
-    const q=audioQueues.get(requestId);
-    q.resolve=resolve;
-    q.reject=reject;
-  });
+  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null});
+  const done=new Promise(resolve=>audioQueues.get(requestId).resolve=resolve);
   setState('speaking','Emmaがお話ししています',text);
   try {
     ttsWorker.postMessage({type:'speak',requestId,text});
-    await withTimeout(done,90000,'Emmaの声の生成が完了しませんでした。音声エンジンを再準備します。');
-  } catch(error) {
-    invalidateTtsWorker(error?.message || String(error));
-    throw error;
+    await done;
   } finally {
     speaking=false;
-    audioQueues.delete(requestId);
   }
   if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   else setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
@@ -952,53 +875,6 @@ function getTtsSignature() {
   return 'kitten-nano-int8-kiki-browser-wasm';
 }
 
-function invalidateTtsWorker(reason='') {
-  try{ttsWorker?.terminate?.();}catch{}
-  ttsWorker=null;
-  ttsInfoCache=null;
-  ttsWorkerSignature='';
-  ttsHealthVerified=false;
-  workersReady=false;
-  for(const [requestId,q] of audioQueues.entries()){
-    q.reject?.(new Error(reason || 'Emmaの音声エンジンを再準備します。'));
-    audioQueues.delete(requestId);
-  }
-  for(const [probeId,waiter] of ttsProbeWaiters.entries()){
-    waiter.reject?.(new Error(reason || 'Emmaの音声エンジンを再準備します。'));
-    ttsProbeWaiters.delete(probeId);
-  }
-}
-
-async function verifyTtsWorker() {
-  if(!ttsWorker || !ttsInfoCache) throw new Error('Emmaの声がまだ準備されていません。');
-  const probeId='probe-'+Date.now()+'-'+Math.random().toString(36).slice(2);
-  const probe=new Promise((resolve,reject)=>{
-    ttsProbeWaiters.set(probeId,{resolve,reject});
-  });
-  ttsWorker.postMessage({type:'probe',probeId});
-  try {
-    await withTimeout(probe,30000,'Kitten TTSの自己テストが完了しませんでした。');
-    return true;
-  } finally {
-    ttsProbeWaiters.delete(probeId);
-  }
-}
-
-async function verifyTtsWorkerAlive() {
-  if(!ttsWorker || !ttsInfoCache) throw new Error('Emmaの声がまだ準備されていません。');
-  const probeId='ping-'+Date.now()+'-'+Math.random().toString(36).slice(2);
-  const pong=new Promise((resolve,reject)=>{
-    ttsProbeWaiters.set(probeId,{resolve,reject});
-  });
-  ttsWorker.postMessage({type:'ping',probeId});
-  try {
-    await withTimeout(pong,3000,'Kitten TTS Workerが応答しませんでした。');
-    return true;
-  } finally {
-    ttsProbeWaiters.delete(probeId);
-  }
-}
-
 async function switchAsrModel(next) {
   const previous=localStorage.getItem(STORAGE.asrModel)==='small' ? 'small' : 'tiny';
   const label=next==='small' ? 'Small' : 'Tiny';
@@ -1008,49 +884,27 @@ async function switchAsrModel(next) {
     return;
   }
 
-  // The selector change is a direct user gesture. Keep playback unlocked, but
-  // do not restart Kitten TTS merely because the ASR model changed.
-  try { await initAudioContext(); } catch(error) {
-    console.warn('AudioContext unlock before ASR switch failed.',error);
-  }
-
   localStorage.setItem(STORAGE.asrModel,next);
   setBusy(true);
   if(ui.asrModel) ui.asrModel.disabled=true;
   if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}を準備しています…`;
 
   try {
-    // ASR-only replacement. Kitten TTS Worker and AudioContext are deliberately
-    // left untouched so Tiny <-> Small switching cannot silence Emma.
+    // Change Moonshine only. Do not terminate, probe, rebuild, or otherwise
+    // touch Kitten TTS or the playback AudioContext.
     moonshineTranscriber?.close?.();
     moonshineTranscriber=null;
     asrInfoCache=null;
     workersReady=false;
 
     asrInfoCache=await initMoonshine();
-
-    // Normally TTS is already alive. Only rebuild it if it was absent or is
-    // actually unresponsive; never rebuild it just because ASR changed.
-    if(!ttsWorker || !ttsInfoCache){
-      await initWorkers();
-    } else {
-      try {
-        await verifyTtsWorkerAlive();
-      } catch(error) {
-        console.warn('Existing TTS worker was not responsive; rebuilding only TTS.',error);
-        invalidateTtsWorker(error?.message || String(error));
-        await initWorkers();
-      }
-    }
-
     workersReady=Boolean(asrInfoCache && ttsWorker && ttsInfoCache);
+
     if(ui.asrModelStatus) {
-      ui.asrModelStatus.textContent=`現在：${label}。音声認識を切り替えました。Emmaの声はそのまま維持しています。`;
+      ui.asrModelStatus.textContent=`現在：${label}。ASRだけ切り替えました。Emmaの声は変更していません。`;
     }
   } catch(error) {
     console.error(error);
-
-    // Roll the ASR setting back without touching the current TTS engine.
     localStorage.setItem(STORAGE.asrModel,previous);
     if(ui.asrModel) ui.asrModel.value=previous;
     if(ui.asrModelStatus) ui.asrModelStatus.textContent=`${label}の準備に失敗したため、${previousLabel}へ戻しています…`;
@@ -1062,9 +916,8 @@ async function switchAsrModel(next) {
       asrInfoCache=await initMoonshine();
       workersReady=Boolean(asrInfoCache && ttsWorker && ttsInfoCache);
       if(ui.asrModelStatus) {
-        ui.asrModelStatus.textContent=`現在：${previousLabel}。ASRだけ元に戻しました。Emmaの声は維持しています。`;
+        ui.asrModelStatus.textContent=`現在：${previousLabel}。ASRだけ元に戻しました。`;
       }
-      setState('idle',`${previousLabel}へ戻しました`,'Emmaの声はそのまま使えます。');
     } catch(rollbackError) {
       console.error(rollbackError);
       if(ui.asrModelStatus) ui.asrModelStatus.textContent=`ASRの復旧に失敗しました：${friendlyError(rollbackError)}`;
