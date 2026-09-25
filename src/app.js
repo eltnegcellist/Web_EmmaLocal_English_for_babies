@@ -974,6 +974,14 @@ async function verifyTtsWorker() {
 
 async function switchAsrModel(next) {
   const label=next==='small' ? 'Small' : 'Tiny';
+
+  // The model selector change is a direct user gesture. Resume/create the
+  // playback AudioContext here, before model loading takes long enough for
+  // mobile browsers to lose transient user activation.
+  try { await initAudioContext(); } catch(error) {
+    console.warn('AudioContext unlock before ASR switch failed.',error);
+  }
+
   setBusy(true);
   if(ui.asrModel) ui.asrModel.disabled=true;
   if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}を準備しています…`;
