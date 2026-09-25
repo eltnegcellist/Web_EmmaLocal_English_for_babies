@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emma Voice Diagnostic</title>
+  <style>
+    body{font-family:system-ui,-apple-system,sans-serif;max-width:760px;margin:0 auto;padding:24px;line-height:1.6}
+    button{font:inherit;padding:12px 18px;margin:6px 6px 6px 0}
+    pre{white-space:pre-wrap;background:#111;color:#eee;padding:14px;border-radius:10px;min-height:220px}
+    .ok{color:#16803a}.bad{color:#b42318}
+  </style>
+</head>
+<body>
+  <h1>Emma 音声診断</h1>
+  <p>Moonshine ASRを読み込まず、Kitten TTSだけをテストします。</p>
+  <p><strong>Build:</strong> 20260925-voice-diagnostic-r1</p>
+  <button id="test">Emmaの声をテスト</button>
+  <button id="clear">ログを消す</button>
+  <p id="result"></p>
+  <pre id="log"></pre>
+  <script type="module" src="./src/voice-diagnostic.js?v=20260925-voice-diagnostic-r1"></script>
+</body>
+</html>
