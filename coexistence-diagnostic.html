@@ -14,16 +14,18 @@
 <body>
   <h1>Emma ASR + TTS 共存診断</h1>
   <p>MoonshineとKitten TTSを同じページで動かし、どの時点で音声が壊れるか確認します。</p>
-  <p><strong>Build:</strong> 20260925-coexistence-r1</p>
+  <p><strong>Build:</strong> 20260925-coexistence-r2</p>
   <p class="note">順番に「1 → 2 → 3」を押してください。その後、ページを再読み込みして「1 → 4 → 3」も試せます。</p>
   <button id="ttsBefore">1. TTSだけテスト</button>
   <button id="loadTiny">2. Tinyをロード</button>
   <button id="ttsAfter">3. ASRロード後にTTSテスト</button>
   <button id="loadSmall">4. Smallをロード</button>
+  <button id="resetTts">5. TTSを終了</button>
+  <button id="ttsFreshAfterAsr">6. ASR後にTTSを新規起動</button>
   <button id="closeAsr">ASRを閉じる</button>
   <button id="clear">ログを消す</button>
   <p id="result"></p>
   <pre id="log"></pre>
-  <script type="module" src="./src/coexistence-diagnostic.js?v=20260925-coexistence-r1"></script>
+  <script type="module" src="./src/coexistence-diagnostic.js?v=20260925-coexistence-r2"></script>
 </body>
 </html>
