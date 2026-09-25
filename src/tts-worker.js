@@ -1,6 +1,6 @@
 import { KittenTTS } from './vendor/kitten/index.js';
 
-const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-int8';
+const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-fp32';
 const KITTEN_VOICE = 'Kiki';
 const KITTEN_SPEED = 0.8;
 
@@ -12,18 +12,18 @@ async function ensureKitten() {
   self.postMessage({
     type: 'status',
     progress: 0,
-    message: 'Kitten TTS Nanoを準備しています…'
+    message: 'Kitten TTS Nano FP32を準備しています…'
   });
 
   self.postMessage({
     type: 'status',
     progress: 5,
-    message: 'Kitten TTS Nanoを取得しています…'
+    message: 'Kitten TTS Nano FP32を取得しています…'
   });
 
   const stageMessages = {
     config: [5, 'Kitten TTSの設定を確認しています…'],
-    download: [8, 'Kitten TTS Nanoをダウンロードしています…'],
+    download: [8, 'Kitten TTS Nano FP32をダウンロードしています…'],
     'download-complete': [82, 'Kitten TTSのダウンロードが完了しました'],
     runtime: [86, '音声エンジンを準備しています…'],
     'onnx-session': [90, 'Kitten TTSを初期化しています…'],
@@ -54,12 +54,12 @@ async function ensureKitten() {
         self.postMessage({
           type: 'status',
           progress,
-          message: `Kitten TTS Nanoをダウンロードしています… ${sizeText}`
+          message: `Kitten TTS Nano FP32をダウンロードしています… ${sizeText}`
         });
       }
     }),
     300000,
-    'Kitten TTS Nanoの準備に時間がかかりすぎています。通信状態を確認して、もう一度お試しください。'
+    'Kitten TTS Nano FP32の準備に時間がかかりすぎています。通信状態を確認して、もう一度お試しください。'
   );
 
   const voices = kittenTts.list_voices?.() || [];
@@ -112,7 +112,7 @@ async function synthesize(text, requestId) {
     });
     const samples = audio?.data;
     const sampleRate = audio?.sampling_rate || 24000;
-    if (!samples?.length) throw new Error('Kitten TTS Nanoの音声生成に失敗しました。');
+    if (!samples?.length) throw new Error('Kitten TTS Nano FP32の音声生成に失敗しました。');
 
     self.postMessage({
       type: 'audio',
@@ -126,7 +126,7 @@ async function synthesize(text, requestId) {
     index = 1;
   }
 
-  if (!index) throw new Error('Kitten TTS Nanoの音声生成に失敗しました。');
+  if (!index) throw new Error('Kitten TTS Nano FP32の音声生成に失敗しました。');
 
   self.postMessage({
     type: 'complete',
