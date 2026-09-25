@@ -184,6 +184,7 @@ self.onmessage = async (event) => {
     self.postMessage({
       type: 'error',
       requestId: event.data?.requestId,
+      probeId: event.data?.probeId,
       message: error?.message || String(error)
     });
   }
