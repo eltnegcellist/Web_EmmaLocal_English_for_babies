@@ -495,7 +495,7 @@ async function initWorkers() {
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
     invalidateTtsWorker();
     ttsWorkerSignature=signature;
-    const worker=new Worker(new URL('./tts-worker.js?v=20260925-asr-switch-probe-r1',import.meta.url),{type:'module'});
+    const worker=new Worker(new URL('./tts-worker.js?v=20260925-asr-switch-probe-r2',import.meta.url),{type:'module'});
     ttsWorker=worker;
     ttsInfoCache=await new Promise((resolve,reject)=>{
       let settled=false;
@@ -711,6 +711,19 @@ async function processTranscript(text) {
 
 async function speakResponse(text) {
   if(!ttsWorker || !ttsInfoCache) await initWorkers();
+
+  // Small ASR can create a short peak in memory/CPU during transcription.
+  // Check that the TTS worker survived that inference before sending speech.
+  if(localStorage.getItem(STORAGE.asrModel)==='small'){
+    try {
+      await verifyTtsWorkerAlive();
+    } catch(error) {
+      console.warn('TTS worker did not survive Small ASR inference; rebuilding.',error);
+      invalidateTtsWorker(error?.message || String(error));
+      await initWorkers();
+    }
+  }
+
   if(!ttsWorker) throw new Error('Emmaの声がまだ準備されていません');
   speaking=true;
   const requestId=++requestSeq;
@@ -966,6 +979,21 @@ async function verifyTtsWorker() {
   ttsWorker.postMessage({type:'probe',probeId});
   try {
     await withTimeout(probe,30000,'Kitten TTSの自己テストが完了しませんでした。');
+    return true;
+  } finally {
+    ttsProbeWaiters.delete(probeId);
+  }
+}
+
+async function verifyTtsWorkerAlive() {
+  if(!ttsWorker || !ttsInfoCache) throw new Error('Emmaの声がまだ準備されていません。');
+  const probeId='ping-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+  const pong=new Promise((resolve,reject)=>{
+    ttsProbeWaiters.set(probeId,{resolve,reject});
+  });
+  ttsWorker.postMessage({type:'ping',probeId});
+  try {
+    await withTimeout(pong,3000,'Kitten TTS Workerが応答しませんでした。');
     return true;
   } finally {
     ttsProbeWaiters.delete(probeId);
