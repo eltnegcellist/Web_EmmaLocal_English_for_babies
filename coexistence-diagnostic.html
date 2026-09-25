@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emma ASR + TTS 共存診断</title>
+  <style>
+    body{font-family:system-ui,-apple-system,sans-serif;max-width:820px;margin:0 auto;padding:24px;line-height:1.6}
+    button{font:inherit;padding:12px 18px;margin:6px 6px 6px 0}
+    pre{white-space:pre-wrap;background:#111;color:#eee;padding:14px;border-radius:10px;min-height:280px}
+    .ok{color:#16803a}.bad{color:#b42318}.note{background:#f5f5f5;padding:12px;border-radius:8px}
+  </style>
+</head>
+<body>
+  <h1>Emma ASR + TTS 共存診断</h1>
+  <p>MoonshineとKitten TTSを同じページで動かし、どの時点で音声が壊れるか確認します。</p>
+  <p><strong>Build:</strong> 20260925-coexistence-r1</p>
+  <p class="note">順番に「1 → 2 → 3」を押してください。その後、ページを再読み込みして「1 → 4 → 3」も試せます。</p>
+  <button id="ttsBefore">1. TTSだけテスト</button>
+  <button id="loadTiny">2. Tinyをロード</button>
+  <button id="ttsAfter">3. ASRロード後にTTSテスト</button>
+  <button id="loadSmall">4. Smallをロード</button>
+  <button id="closeAsr">ASRを閉じる</button>
+  <button id="clear">ログを消す</button>
+  <p id="result"></p>
+  <pre id="log"></pre>
+  <script type="module" src="./src/coexistence-diagnostic.js?v=20260925-coexistence-r1"></script>
+</body>
+</html>
