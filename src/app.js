@@ -7,6 +7,7 @@ const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
   onboardingBabyName:$('onboardingBabyName'), onboardingSpokenBabyName:$('onboardingSpokenBabyName'),
   onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
+  onboardingPronunciationToggle:$('onboardingPronunciationToggle'), onboardingPronunciationPanel:$('onboardingPronunciationPanel'),
   prepareEmmaButton:$('prepareEmmaButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'),
@@ -26,7 +27,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260925-kitten-fp32-r15';
+const WEB_BUILD = '20260925-name-ui-r16';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -188,6 +189,11 @@ function bindEvents() {
     const opening=ui.pronunciationPanel.classList.contains('hidden');
     ui.pronunciationPanel.classList.toggle('hidden',!opening);
     ui.pronunciationToggle.textContent=opening?'名前の読み方設定を閉じる':'名前の読み方を調整';
+  });
+  ui.onboardingPronunciationToggle.addEventListener('click',()=>{
+    const opening=ui.onboardingPronunciationPanel.classList.contains('hidden');
+    ui.onboardingPronunciationPanel.classList.toggle('hidden',!opening);
+    ui.onboardingPronunciationToggle.textContent=opening?'名前の読み方設定を閉じる':'名前の読み方を調整';
   });
 
   document.querySelectorAll('[data-gender]').forEach(button=>{
@@ -1119,7 +1125,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-kitten-fp32-r15',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-name-ui-r16',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
