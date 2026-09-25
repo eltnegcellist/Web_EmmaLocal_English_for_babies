@@ -9,6 +9,8 @@ let audioContext=null;
 let worker=null;
 let transcriber=null;
 let mic=null;
+let latestUtterance=null;
+let captureArmed=false;
 let seq=0;
 
 function log(message,data){
@@ -37,7 +39,7 @@ async function ensureIsolation(){
   log('Isolation check',{crossOriginIsolated:window.crossOriginIsolated,sharedArrayBuffer:typeof SharedArrayBuffer});
   if(window.crossOriginIsolated && typeof SharedArrayBuffer==='function') return;
   if(!('serviceWorker' in navigator)) throw new Error('Service Worker unavailable');
-  const reg=await navigator.serviceWorker.register('./service-worker.js?v=20260925-coexistence-r3',{updateViaCache:'none'});
+  const reg=await navigator.serviceWorker.register('./service-worker.js?v=20260925-coexistence-r4',{updateViaCache:'none'});
   await reg.update().catch(()=>{});
   log('Service Worker updated; reload may be required');
   if(!window.crossOriginIsolated){
@@ -209,8 +211,14 @@ async function startMic(){
   if(mic) return;
   mic=new EmmaMicrophone({
     onState:state=>log('Mic state',state),
-    onUtterance:()=>{},
-    shouldIgnore:()=>true
+    onUtterance:audio=>{
+      if(!captureArmed) return;
+      latestUtterance=audio.slice();
+      captureArmed=false;
+      log('Utterance captured',{samples:latestUtterance.length,seconds:latestUtterance.length/16000});
+      setResult('1発話を取得しました。続けて「12. ASR推論→TTS再生」を押してください。');
+    },
+    shouldIgnore:()=>!captureArmed
   });
   await mic.start();
   log('Microphone started',{
@@ -218,7 +226,7 @@ async function startMic(){
     sampleRate:mic.context?.sampleRate,
     tracks:mic.stream?.getAudioTracks?.().map(t=>({label:t.label,enabled:t.enabled,readyState:t.readyState}))
   });
-  setResult('マイクを開始しました。続けて8または9を試してください。');
+  setResult('マイクを開始しました。8/9のTTSテスト、または11で1発話を録音できます。');
 }
 
 async function stopMic(){
@@ -252,6 +260,25 @@ async function loadAsr(kind){
   });
   log(`Moonshine ${kind} ready`,memoryInfo());
   setResult(`Moonshine ${kind}ロード成功。続けて「3. ASRロード後にTTSテスト」を押してください。`);
+}
+
+async function transcribeThenSpeak(){
+  if(!transcriber) throw new Error('先にTinyまたはSmallをロードしてください。');
+  if(!latestUtterance?.length) throw new Error('先に「11. 1発話を録音」で日本語を話してください。');
+
+  log('ASR inference start',{samples:latestUtterance.length,memory:memoryInfo()});
+  const started=performance.now();
+  const result=transcriber.transcribe(latestUtterance,{sampleRate:16000});
+  const elapsed=Math.round(performance.now()-started);
+  const text=Array.isArray(result?.lines)
+    ? result.lines.map(line=>String(line?.text||'').trim()).filter(Boolean).join(' ').replace(/\s+/g,' ').trim()
+    : '';
+  log('ASR inference complete',{elapsedMs:elapsed,text,memory:memoryInfo()});
+
+  if(!text) throw new Error('ASR結果が空でした。もう一度録音してください。');
+
+  await appPlaybackTest('TTS after real ASR inference');
+  setResult(`ASR推論→TTS再生まで成功: ${text}`);
 }
 
 document.getElementById('ttsBefore').addEventListener('click',async()=>{
@@ -293,6 +320,23 @@ document.getElementById('appPlaybackWithMic').addEventListener('click',async()=>
 });
 document.getElementById('stopMic').addEventListener('click',async()=>{
   try{await stopMic();}catch(e){log('ERROR mic stop',e.message);setResult(e.message,false);}
+});
+
+document.getElementById('captureUtterance').addEventListener('click',async()=>{
+  try{
+    if(!mic) await startMic();
+    latestUtterance=null;
+    captureArmed=true;
+    mic?.resetDetector?.();
+    log('Utterance capture armed');
+    setResult('録音待ちです。普通に日本語で1文話して、その後黙ってください。');
+  }catch(e){
+    log('ERROR capture arm',e.message);
+    setResult(e.message,false);
+  }
+});
+document.getElementById('transcribeThenSpeak').addEventListener('click',async()=>{
+  try{await transcribeThenSpeak();}catch(e){log('ERROR ASR inference -> TTS',e.message);setResult(e.message,false);}
 });
 
 document.getElementById('closeAsr').addEventListener('click',()=>{
