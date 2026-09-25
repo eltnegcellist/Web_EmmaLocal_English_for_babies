@@ -55,8 +55,8 @@ const ASR_MODELS = {
 };
 
 const TTS_MODELS = {
-  'KittenML/kitten-tts-nano-0.8-int8': { label: 'Nano INT8', note: 'Emma Web 現行' },
-  'KittenML/kitten-tts-nano-0.8-fp32': { label: 'Nano FP32', note: 'Nano 非量子化' },
+  'KittenML/kitten-tts-nano-0.8-int8': { label: 'Nano INT8', note: '旧Emma Web' },
+  'KittenML/kitten-tts-nano-0.8-fp32': { label: 'Nano FP32', note: 'Emma Web 現行・非量子化' },
   'KittenML/kitten-tts-micro-0.8': { label: 'Micro 40M', note: '約40M parameters' },
   'KittenML/kitten-tts-mini-0.8': { label: 'Mini 80M', note: '0.8系最大' },
 };
