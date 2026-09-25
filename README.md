@@ -28,7 +28,7 @@ Emma avatar + PCM-linked lip sync
 - 音声認識はMITライセンスのMoonshineをブラウザ内WASMで使用します。標準はJapanese Tiny Streaming（約32.3MB）で、設定からSmall Streamingを高精度オプションとして追加できます。Web版そのものはLiteのみです
 - Moonshine 0.1.5の公式リリースアーカイブのJSとWASMを`src/vendor/moonshine/`に固定しています。WASMはgzipで配信し、ブラウザで展開後にSHA-256を照合して読み込みます。同じ0.1.5のnpm版WASMにはStreaming版のsplit frontend対応が欠けています
 - ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
-- 初回は標準のMoonshine Tiny Streaming（約32.3MB）とKitten TTS Nano INT8（モデル・音声データ約60MB）、合計約90〜95MBの取得に通信を使います。Smallは初回には取得せず、設定で選んだ場合だけ追加取得します。推論用WASM本体（Moonshine圧縮時約6.4MB）とKittenのブラウザ用実行コードも別途取得します
+- 初回は標準のMoonshine Tiny Streaming（約32.3MB）とKitten TTS Nano FP32（モデル・音声データ約60MB）、合計約90〜95MBの取得に通信を使います。Smallは初回には取得せず、設定で選んだ場合だけ追加取得します。推論用WASM本体（Moonshine圧縮時約6.4MB）とKittenのブラウザ用実行コードも別途取得します
 - 認識・返答選択・音声生成の推論は端末内で実行します
 - 標準TTSはKitten TTS Nano 0.8 FP32 / KikiをWASMで実行します
 - Kittenのブラウザ実行コードはEmma側に固定したブラウザ専用ランタイムを使用し、Node.js用の`fs`処理は含みません
