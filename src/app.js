@@ -26,7 +26,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260925-media-volume-r14';
+const WEB_BUILD = '20260925-kitten-fp32-r15';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -526,7 +526,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260925-stable-tts-r1',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260925-kitten-fp32-r1',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -1017,7 +1017,7 @@ function getSpokenBabyName() {
 }
 
 function getTtsSignature() {
-  return 'kitten-nano-int8-kiki-browser-wasm';
+  return 'kitten-nano-fp32-kiki-browser-wasm';
 }
 
 function updateAsrModelStatus() {
@@ -1032,7 +1032,7 @@ function updateRuntimeBackend() {
     return;
   }
   const asrLabel=asrInfoCache?.architecture==='small_streaming' ? 'Small' : 'Tiny';
-  ui.runtimeBackend.textContent=`ASR: Moonshine Japanese ${asrLabel} Streaming / 端末内WASM ・ 音声: Kitten TTS Nano INT8 / Kiki / 端末内`;
+  ui.runtimeBackend.textContent=`ASR: Moonshine Japanese ${asrLabel} Streaming / 端末内WASM ・ 音声: Kitten TTS Nano FP32 / Kiki / 端末内`;
 }
 
 function updateAppearanceSettings() {
@@ -1118,7 +1118,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-media-volume-r14',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260925-kitten-fp32-r15',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
