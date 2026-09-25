@@ -153,6 +153,14 @@ self.onmessage = async (event) => {
       return;
     }
 
+    if (type === 'ping') {
+      self.postMessage({
+        type: 'pong',
+        probeId: event.data.probeId
+      });
+      return;
+    }
+
     if (type === 'probe') {
       const tts = await ensureKitten();
       const audio = await tts.generate('Hello.', {
