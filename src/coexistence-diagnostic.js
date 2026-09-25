@@ -149,6 +149,22 @@ document.getElementById('loadSmall').addEventListener('click',async()=>{
 document.getElementById('ttsAfter').addEventListener('click',async()=>{
   try{await ttsTest('TTS after ASR');}catch(e){log('ERROR TTS after ASR',e.message);setResult(e.message,false);}
 });
+document.getElementById('resetTts').addEventListener('click',()=>{
+  try{worker?.terminate();}catch{}
+  worker=null;
+  log('TTS Worker terminated',memoryInfo());
+  setResult('TTS Workerを終了しました。ASRはそのままです。');
+});
+document.getElementById('ttsFreshAfterAsr').addEventListener('click',async()=>{
+  try{
+    await ensureAudio();
+    await initTtsWorker();
+    await ttsTest('Fresh TTS after ASR');
+  }catch(e){
+    log('ERROR fresh TTS after ASR',e.message);
+    setResult(e.message,false);
+  }
+});
 document.getElementById('closeAsr').addEventListener('click',()=>{
   try{transcriber?.close();}catch{}
   transcriber=null;
