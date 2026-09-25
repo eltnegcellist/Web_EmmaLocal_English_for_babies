@@ -19,7 +19,7 @@ const ui = {
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
-  keepAwake:$('keepAwake'), asrModel:$('asrModel'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
+  keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
   developerUnlockTrigger:$('developerUnlockTrigger'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
@@ -77,6 +77,7 @@ function initUi() {
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'tiny';
+  updateAsrModelStatus();
   const useChanSuffix = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
   ui.useChanSuffix.checked = useChanSuffix;
   ui.onboardingUseChanSuffix.checked = useChanSuffix;
@@ -196,14 +197,10 @@ function bindEvents() {
     } else if (running) requestWakeLock();
   });
 
-  ui.asrModel?.addEventListener('change',()=>{
+  ui.asrModel?.addEventListener('change',async()=>{
     const next=ui.asrModel.value==='small' ? 'small' : 'tiny';
     localStorage.setItem(STORAGE.asrModel,next);
-    moonshineTranscriber?.close?.();
-    moonshineTranscriber=null;
-    asrInfoCache=null;
-    workersReady=false;
-    updateRuntimeBackend();
+    await switchAsrModel(next);
   });
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
@@ -495,14 +492,44 @@ async function initWorkers() {
   }
 
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
-    ttsWorker?.terminate();
-    ttsInfoCache=null;
+    invalidateTtsWorker();
     ttsWorkerSignature=signature;
+    const worker=new Worker(new URL('./tts-worker.js?v=20260923-int8-streaming',import.meta.url),{type:'module'});
+    ttsWorker=worker;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260923-int8-streaming',import.meta.url),{type:'module'});
-      ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
-      ttsWorker.onerror=reject;
-      ttsWorker.postMessage({ type:'init' });
+      let settled=false;
+      const fail=(error)=>{
+        const normalized=error instanceof Error ? error : new Error(error?.message || String(error || 'Kitten TTS Worker error'));
+        if(ttsWorker===worker) invalidateTtsWorker(normalized.message);
+        if(!settled){
+          settled=true;
+          reject(normalized);
+        } else {
+          onRuntimeError(normalized.message);
+        }
+      };
+
+      worker.onmessage=(event)=>{
+        const type=event.data?.type;
+        if(type==='ready' && !settled){
+          settled=true;
+          handleTtsMessage(event,resolve,reject);
+          return;
+        }
+        if(type==='error' && !settled){
+          settled=true;
+          handleTtsMessage(event,resolve,reject);
+          invalidateTtsWorker(event.data?.message || 'Kitten TTS Worker error');
+          return;
+        }
+        handleTtsMessage(event);
+      };
+      worker.onerror=(event)=>{
+        event.preventDefault?.();
+        fail(event.error || new Error(event.message || 'Kitten TTS Workerが停止しました。'));
+      };
+      worker.onmessageerror=()=>fail(new Error('Kitten TTS Workerとの通信に失敗しました。'));
+      worker.postMessage({ type:'init' });
     });
   }
 
