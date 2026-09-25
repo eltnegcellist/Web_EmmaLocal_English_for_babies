@@ -1,60 +1,125 @@
-# Emma Web ― Local English for Babies
+# Emma Web — Local English for Babies
 
-Emma Web is the APK-free browser/PWA edition of **Emma Lite**.
+Emma Web is the browser/PWA edition of **Emma Lite**. It runs without installing an APK.
 
-親が普段どおり日本語で赤ちゃんへ話しかけると、Emmaがその場面に合った短い英語で赤ちゃんへ参加することを目指します。単純な日本語→英語翻訳ではありません。
+**Open the current Web edition:**  
+https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
 
-## Current scope
+親が普段どおり日本語で赤ちゃんに話しかけると、Emmaがその場面に合った短くやさしい英語で赤ちゃんに参加することを目指します。単純な日本語→英語翻訳ではありません。
 
-Web版は **Emma Liteのみ** です。
+## Stable project baseline
 
-エディション構成は次のとおりです。
+The current Web `main` is the browser-side stable companion to **Emma Android v1.5.0**.
 
-- **Android版:** Lite / Full
-- **Web版:** Lite
+- Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/emma-v1.5.0
+- Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
+
+Web版は **Liteのみ** です。
+
+| Platform | Editions |
+| --- | --- |
+| **Web** | Lite |
+| **Android** | Lite / Full |
+
+## Architecture
 
 ```text
 Microphone
 ↓
-Moonshine Japanese Tiny Streaming (default) / Small Streaming (optional, browser-local WASM)
+Moonshine Japanese Tiny Streaming
+  └─ Small Streaming is optional
 ↓
 LiteResponseEngine
 ↓
-Kitten TTS Nano 0.8 FP32 / Kiki (browser-local WASM TTS)
+Kitten TTS Nano 0.8 / Kiki
 ↓
 Emma avatar + PCM-linked lip sync
 ```
 
-- 音声認識はMITライセンスのMoonshineをブラウザ内WASMで使用します。標準はJapanese Tiny Streaming（約32.3MB）で、設定からSmall Streamingを高精度オプションとして追加できます。Web版そのものはLiteのみです
-- Moonshine 0.1.5の公式リリースアーカイブのJSとWASMを`src/vendor/moonshine/`に固定しています。WASMはgzipで配信し、ブラウザで展開後にSHA-256を照合して読み込みます。同じ0.1.5のnpm版WASMにはStreaming版のsplit frontend対応が欠けています
-- ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
-- 初回は標準のMoonshine Tiny Streaming（約32.3MB）とKitten TTS Nano FP32（モデル・音声データ約60MB）、合計約90〜95MBの取得に通信を使います。Smallは初回には取得せず、設定で選んだ場合だけ追加取得します。推論用WASM本体（Moonshine圧縮時約6.4MB）とKittenのブラウザ用実行コードも別途取得します
-- 認識・返答選択・音声生成の推論は端末内で実行します
-- 標準TTSはKitten TTS Nano 0.8 FP32 / KikiをWASMで実行します
-- Kittenのブラウザ実行コードはEmma側に固定したブラウザ専用ランタイムを使用し、Node.js用の`fs`処理は含みません
-- 標準TTSはFP32モデルを固定使用し、INT8へ自動フォールバックしません
-- Android版Emmaとは別repositoryとして開発します
-- Web版はLiteのみです。FullはAndroid版で提供します
+### ASR
+
+- Moonshine runs locally in browser WASM.
+- Japanese Tiny Streaming is the default model.
+- Small Streaming can be added as a higher-accuracy option.
+- The browser Web Speech / SpeechRecognition API is not used.
+- Moonshine 0.1.5 browser assets are pinned in `src/vendor/moonshine/`.
+
+### TTS
+
+- Kitten TTS Nano 0.8 / Kiki runs locally in the browser.
+- The Web edition uses the browser-specific runtime bundled/pinned by Emma.
+- Node.js `fs`-dependent behavior is not required in the browser path.
+
+### Model download
+
+The first launch downloads the models required by the selected configuration.
+
+The default configuration uses Moonshine Tiny Streaming plus Kitten TTS Nano. Small Streaming is downloaded only when selected.
+
+After model setup, recognition, response selection, and speech synthesis are designed to run locally in the browser.
+
+## Why Lite only?
+
+The Web edition is intentionally focused on the lightweight Emma experience:
+
+- no APK installation
+- browser/PWA access
+- local ASR
+- local response selection
+- local TTS
+- simple deployment through GitHub Pages
+
+The generative **Full** edition is provided by the Android application.
+
+## Local processing and privacy
+
+Emma Web is designed around local inference.
+
+- microphone audio is processed locally for speech recognition
+- response selection runs locally
+- speech synthesis runs locally
+- a cloud AI API is not required for normal conversation
+- network access is used for loading the app and downloading required model/runtime files
+
+## First-run behavior
+
+On first use, Emma guides the user through initial setup, including the baby's name and the required model preparation. After setup, the saved configuration is reused on later launches.
 
 ## Local development
 
-HTTPSまたはlocalhostで開いてください。Moonshine WASMはSharedArrayBufferを使うため、GitHub PagesではService WorkerがCOOP/COEPを付与して初回に自動再読み込みします。
+Use HTTPS or localhost.
+
+Moonshine WASM uses browser features that require cross-origin isolation. On GitHub Pages, the app uses its Service Worker setup to provide the required environment and may reload automatically during first initialization.
 
 ```bash
 python3 -m http.server 8080
 ```
 
-その後、`http://localhost:8080` を開きます。
+Then open:
 
-開発用テキスト入力は `?debug=1` をURL末尾へ付けると表示されます。
+```text
+http://localhost:8080
+```
+
+For development-only text input, append:
+
+```text
+?debug=1
+```
 
 ## Deployment
 
-`main` への更新は GitHub Actions でテスト後、GitHub Pages へ公開する構成です。
+Updates to `main` are tested and then deployed to GitHub Pages.
 
-GitHub Pages source: **Deploy from a branch** (`chore/trigger-pages`, root)
+Current public URL:
+
+https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
+
+GitHub Pages deployment is based on the repository's Pages branch/workflow configuration.
 
 ## Android edition
 
-Android版:
+For Lite + Full and the stable Android APK:
+
 https://github.com/eltnegcellist/Android_English_character_for_baby
