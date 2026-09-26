@@ -18,7 +18,7 @@ const ui = {
   parentAudienceButton:$('parentAudienceButton'), settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
   aboutBackButton:$('aboutBackButton'), onboardingAboutButton:$('onboardingAboutButton'),
   aiCharacterName:$('aiCharacterName'), aiNamePreview:$('aiNamePreview'), aiBubbleLabel:$('aiBubbleLabel'), aiNameBadge:$('aiNameBadge'),
-  aiAvatarFace:$('aiAvatarFace'), onboardingAiIcon:$('onboardingAiIcon'), onboardingAiLabel:$('onboardingAiLabel'),
+  aiAvatarFace:$('aiAvatarFace'), onboardingAiIntro:$('onboardingAiIntro'),
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
@@ -29,7 +29,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260926-emma-name-force-reply-r1';
+const WEB_BUILD = '20260927-onboarding-r2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -1055,8 +1055,12 @@ function updateAiNameUi() {
   if(ui.aiBubbleLabel) ui.aiBubbleLabel.textContent=name;
   if(ui.aiNameBadge) ui.aiNameBadge.textContent=name;
   if(ui.aiAvatarFace) ui.aiAvatarFace.setAttribute('aria-label',`${name}（みつことば AI）`);
-  if(ui.onboardingAiIcon) ui.onboardingAiIcon.textContent=name;
-  if(ui.onboardingAiLabel) ui.onboardingAiLabel.textContent=`${name}が理解`;
+  if(ui.onboardingAiIntro) {
+    ui.onboardingAiIntro.innerHTML =
+      '<span class="ai-intro-label">AIキャラクター</span>' +
+      '<span class="ai-intro-copy">名前は <strong>' + name +
+      '</strong>。会話を始めると最初に自己紹介します。</span>';
+  }
 }
 
 function updateGenderUi() {
