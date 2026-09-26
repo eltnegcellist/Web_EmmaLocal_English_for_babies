@@ -44,8 +44,8 @@
             </div>
             <div class="flow-arrow" aria-hidden="true">→</div>
             <div class="flow-item">
-              <div class="flow-icon ai">AI</div>
-              <div class="flow-text"><strong>場面を理解</strong><span>直訳しません</span></div>
+              <div id="onboardingAiIcon" class="flow-icon ai">Emma</div>
+              <div class="flow-text"><strong id="onboardingAiLabel">Emmaが理解</strong><span>直訳しません</span></div>
             </div>
             <div class="flow-arrow" aria-hidden="true">→</div>
             <div class="flow-item">
@@ -150,7 +150,7 @@
         <section class="avatar-wrap">
           <div id="avatar" class="avatar state-idle" aria-hidden="true">
             <div class="listening-ring"></div>
-            <svg class="emma-face" viewBox="0 0 320 320" role="img" aria-label="みつことば AI">
+            <svg id="aiAvatarFace" class="emma-face" viewBox="0 0 320 320" role="img" aria-label="Emma（みつことば AI）">
               <circle class="face-fill" cx="160" cy="160" r="142"></circle>
               <circle class="face-outline" cx="160" cy="160" r="142"></circle>
               <path class="head-accent" d="M 52 36 Q 160 -24 268 36"></path>
@@ -201,7 +201,7 @@
             <p id="transcript"></p>
           </article>
           <article id="emmaBubble" class="bubble emma-bubble hidden">
-            <div class="bubble-label">みつことば AI</div>
+            <div id="aiBubbleLabel" class="bubble-label">Emma</div>
             <p id="reply"></p>
           </article>
         </section>
@@ -228,7 +228,7 @@
       </div>
 
       <footer class="bottom-bar">
-        <button id="manualReplyButton" class="outline-button hidden">今返事して</button>
+        <button id="manualReplyButton" class="outline-button hidden">ここで返事して</button>
         <button id="enableAudioButton" class="primary-button">みつことばの声を有効にする</button>
         <button id="mainButton" class="primary-button">3人で話す</button>
         <button id="stopButton" class="outline-button hidden">セッションを終了</button>
@@ -245,6 +245,16 @@
           </div>
           <button id="settingsAboutButton" class="text-button">みつことばとは？</button>
         </header>
+
+        <article class="card">
+          <h2>AIキャラクター</h2>
+          <p class="small muted">初期の名前はEmmaです。ぬいぐるみなど別のキャラクターとして使う場合は、好きな名前に変えられます。</p>
+          <label>AIの名前
+            <input id="aiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
+          </label>
+          <p id="aiNamePreview" class="small muted">最初の返答で「Hi, I'm Emma.」と名乗ります。</p>
+          <p class="small muted">英語音声で自然に読めるよう、英字の名前をおすすめします。空欄ならEmmaになります。</p>
+        </article>
 
         <article class="card">
           <h2>赤ちゃん</h2>
@@ -368,6 +378,12 @@
           <h2>画面を見るかより、3人でどう使うか</h2>
           <p>みつことばは、赤ちゃんに画面を見せ続けるためのアプリではありません。一方で、AIの顔を見ることを避けるよう求めるものでもありません。赤ちゃんがAIの顔を見るか、親の顔を見るか、目の前のおもちゃやお風呂を見るかは、それぞれの家庭と、その瞬間に委ねます。</p>
           <p><strong>大切にしているのは、スマホを赤ちゃんに渡して終わりにしないことです。</strong> 親も同じ場に参加し、AIの英語をきっかけに赤ちゃんへ話しかけ、赤ちゃんの反応にまた応える。親・赤ちゃん・AIの3人が同じ時間を共有する使い方を想定しています。</p>
+        </article>
+
+        <article class="card">
+          <h2>画面を見せたくない家庭では</h2>
+          <p>画面を見ることは必須ではありません。たとえばスマートフォンをぬいぐるみの後ろなどに置き、Emmaの声だけがそこから聞こえるようにして、親・赤ちゃん・AIの3者のやり取りを作る使い方もできます。AIの名前もぬいぐるみに合わせて変更できます。</p>
+          <p class="muted">安全のため、端末は布やぬいぐるみで覆わず放熱できる場所に置いてください。充電中の端末をぬいぐるみの下へ入れたり、赤ちゃんの寝床や手の届く場所へ置いたりしないでください。</p>
         </article>
 
         <article class="card">
