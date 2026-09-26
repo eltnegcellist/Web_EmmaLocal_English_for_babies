@@ -86,7 +86,7 @@ async function runSpeak(){
         reject(new Error(m.message||'TTS generation error'));
       }
     };
-    worker.postMessage({type:'speak',requestId,text:'Hello. I am Emma. Can you hear my voice?'});
+    worker.postMessage({type:'speak',requestId,text:'Hello. Can you hear my voice?'});
     log('Speak request sent',{requestId});
   });
 }
