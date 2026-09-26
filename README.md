@@ -65,10 +65,10 @@ Kuhl、Tsao、Liuらの2003年の研究では、9か月の英語環境の乳児�
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、Android v1.5.0を基準にしたブラウザ版です。Android v1.5.0自体は改名前の「Emma」表記で公開されています。
+現在のWeb版 `main` は、Android v1.6.0を基準にしたブラウザ版です。Android v1.6.0自体は改名前の「Emma」表記で公開されています。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/emma-v1.5.0
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.6.0
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版は **Liteのみ** です。
@@ -244,10 +244,10 @@ Mitsukotoba is an attempt to bring one implication of this research into an ever
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.5.0**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.6.0**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/emma-v1.5.0
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.6.0
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition is **Lite-only**.
