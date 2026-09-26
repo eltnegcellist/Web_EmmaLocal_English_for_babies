@@ -7,7 +7,7 @@
   <meta name="description" content="みつことば Web — 親と赤ちゃんとAI、3人でつくるローカル英語アプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/mitsukotoba.png?v=20260927-logo2" type="image/png" />
-  <link rel="stylesheet" href="./styles.css?v=20260927-inline-images-r5" />
+  <link rel="stylesheet" href="./styles.css?v=20260927-small-context-r6" />
   <title>みつことば Web Lite</title>
 </head>
 <body>
@@ -98,6 +98,17 @@
               <button data-gender="GIRL" class="segment-button">女の子</button>
               <button data-gender="BOY" class="segment-button">男の子</button>
             </div>
+            <details class="advanced-setup-disclosure">
+              <summary>詳細設定</summary>
+              <label class="toggle-line">
+                <span>
+                  <strong>Tinyで始める</strong>
+                  <small>オフ（推奨）では高精度なSmallを使います。モデルサイズを優先する場合だけオンにしてください。</small>
+                </span>
+                <span class="switch"><input id="onboardingStartTiny" type="checkbox" /><span></span></span>
+              </label>
+            </details>
+
             <button id="onboardingPronunciationToggle" type="button" class="text-button inline-button">名前の読み方を調整</button>
             <div id="onboardingPronunciationPanel" class="hidden">
               <label>英語で呼ぶ名前
@@ -312,12 +323,12 @@
           <h2>音声認識</h2>
           <label>Moonshineモデル
             <select id="asrModel">
-              <option value="tiny">軽量・標準（Tiny）</option>
-              <option value="small">高精度（Small）</option>
+              <option value="tiny">軽量（Tiny）</option>
+              <option value="small">高精度・標準（Small）</option>
             </select>
           </label>
-          <p id="asrModelStatus" class="small muted">現在：Tiny。モデルはブラウザ内に保存されます。</p>
-          <p class="small muted">Web版はみつことば Liteのみです。初期値はTinyです。Tiny / Smallを変更すると、設定を保存してみつことばを一度再読み込みします。実行中のモデルを差し替えず、ASRと音声をクリーンな状態から起動します。取得済みモデルはブラウザキャッシュを再利用します。</p>
+          <p id="asrModelStatus" class="small muted">現在：Small。モデルはブラウザ内に保存されます。</p>
+          <p class="small muted">Web版はみつことば Liteのみです。初期値はSmallです。Tiny / Smallを変更すると、設定を保存してみつことばを一度再読み込みします。実行中のモデルを差し替えず、ASRと音声をクリーンな状態から起動します。取得済みモデルはブラウザキャッシュを再利用します。</p>
           <p class="small muted">どちらも端末内で処理します。Smallでも認識を誤ることはあり、必ずTinyより正確になるとは限りません。</p>
         </article>
 
@@ -467,6 +478,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260927-inline-images-r5"></script>
+  <script type="module" src="./src/app.js?v=20260927-small-context-r6"></script>
 </body>
 </html>
