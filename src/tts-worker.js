@@ -1,4 +1,5 @@
 import { KittenTTS } from './vendor/kitten/index.js';
+import { ensurePhonemizerReady } from './vendor/kitten/phonemizer.js';
 
 const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-fp32';
 const KITTEN_VOICE = 'Kiki';
@@ -69,13 +70,20 @@ async function ensureKitten() {
 
   self.postMessage({
     type: 'status',
+    progress: 97,
+    message: '英語の発音辞書を準備しています…'
+  });
+  await ensurePhonemizerReady();
+
+  self.postMessage({
+    type: 'status',
     progress: 100,
     message: 'Emmaの声を準備できました'
   });
   return kittenTts;
 }
 
-async function synthesize(text, requestId) {
+async function synthesize(text, requestId, nameHints = []) {
   const tts = await ensureKitten();
   let index = 0;
 
@@ -86,7 +94,8 @@ async function synthesize(text, requestId) {
     for await (const chunk of tts.stream(text, {
       voice: KITTEN_VOICE,
       speed: KITTEN_SPEED,
-      clean: true
+      clean: true,
+      nameHints
     })) {
       const audio = chunk?.audio;
       const samples = audio?.data;
@@ -108,7 +117,8 @@ async function synthesize(text, requestId) {
     const audio = await tts.generate(text, {
       voice: KITTEN_VOICE,
       speed: KITTEN_SPEED,
-      clean: true
+      clean: true,
+      nameHints
     });
     const samples = audio?.data;
     const sampleRate = audio?.sampling_rate || 24000;
@@ -148,7 +158,7 @@ self.onmessage = async (event) => {
         engine: 'kitten-tts',
         model: KITTEN_MODEL,
         voice: KITTEN_VOICE,
-        license: 'Apache-2.0'
+        license: 'Apache-2.0 + CMUDict BSD-style'
       });
       return;
     }
@@ -160,7 +170,10 @@ self.onmessage = async (event) => {
       ).trim();
       if (!text) throw new Error('No text to speak');
 
-      await synthesize(text, event.data.requestId);
+      const nameHints = Array.isArray(event.data.nameHints)
+        ? event.data.nameHints.map((x) => String(x || '').trim()).filter(Boolean).slice(0, 4)
+        : [];
+      await synthesize(text, event.data.requestId, nameHints);
     }
   } catch (error) {
     self.postMessage({
