@@ -7,7 +7,7 @@
   <meta name="description" content="みつことば Web — 親と赤ちゃんとAI、3人でつくるローカル英語アプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/mitsukotoba.png?v=20260927-logo2" type="image/png" />
-  <link rel="stylesheet" href="./styles.css?v=20260927-onboarding-r2" />
+  <link rel="stylesheet" href="./styles.css?v=20260927-modes-r3" />
   <title>みつことば Web Lite</title>
 </head>
 <body>
@@ -146,10 +146,10 @@
 
         <section class="audience-card">
           <div class="segmented audience-segmented">
-            <button class="segment-button selected" data-audience="BABY">赤ちゃんへ</button>
-            <button id="parentAudienceButton" class="segment-button" data-audience="PARENT">親へ</button>
+            <button class="segment-button selected" data-audience="BABY">呼びかけ</button>
+            <button id="parentAudienceButton" class="segment-button" data-audience="PARENT">会話</button>
           </div>
-          <p id="audienceDescription" class="small muted"><strong>Web版はLiteのみです。</strong> 「赤ちゃんへ」の短い英語応答に特化しています。Full はAndroid版で利用できます。</p>
+          <p id="audienceDescription" class="small muted"><strong>Web版はLiteのみです。</strong> 「呼びかけ」で、親子の今の場面にAIが短い英語を差し込みます。「会話」はAndroid Fullで利用できます。</p>
         </section>
 
         <section class="avatar-wrap">
@@ -467,6 +467,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260927-onboarding-r2"></script>
+  <script type="module" src="./src/app.js?v=20260927-modes-r3"></script>
 </body>
 </html>
