@@ -241,7 +241,7 @@ function bindEvents() {
 
   ui.asrModel?.addEventListener('change',()=>{
     const next=ui.asrModel.value==='small' ? 'small' : 'tiny';
-    const current=localStorage.getItem(STORAGE.asrModel)==='small' ? 'small' : 'tiny';
+    const current=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'tiny' : 'small';
     if(next===current) return;
 
     localStorage.setItem(STORAGE.asrModel,next);
@@ -616,7 +616,7 @@ async function initMoonshine() {
       ? `${mbLoaded.toFixed(1)} / ${(safeTotal/1_000_000).toFixed(1)} MB`
       : `${mbLoaded.toFixed(1)} MB`;
     const fileName=String(file||'').split('/').pop();
-    const selectedLabel=localStorage.getItem(STORAGE.asrModel)==='small' ? 'Small' : 'Tiny';
+    const selectedLabel=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'Tiny' : 'Small';
     const progressMessage=`Moonshine 日本語${selectedLabel} Streamingを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`;
     showMoonshineProgress(progress,progressMessage);
     if(ui.asrModelStatus) ui.asrModelStatus.textContent=progressMessage;
@@ -624,7 +624,7 @@ async function initMoonshine() {
 
   const module=await loadEmmaMoonshineModule();
   moonshineStage='catalog';
-  const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='small' ? 'small' : 'tiny';
+  const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'tiny' : 'small';
   const modelArch=selectedAsr==='small' ? ModelArch.SmallStreaming : ModelArch.TinyStreaming;
   const modelLabel=selectedAsr==='small' ? 'Small' : 'Tiny';
   const nextTranscriber=await Transcriber.load({
