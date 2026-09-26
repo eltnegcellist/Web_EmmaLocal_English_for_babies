@@ -408,7 +408,7 @@ body{
 }
 .flow-item{
   min-width:0;
-  padding:12px 9px;
+  padding:12px 7px;
   border-radius:22px;
   background:rgba(255,255,255,.78);
   border:1px solid rgba(124,116,127,.12);
@@ -619,6 +619,10 @@ body{
   .flow-arrow{display:none}
   .flow-item{padding:10px 5px;border-radius:18px}
   .flow-icon{width:40px;height:40px}
+  .flow-character{width:50px;height:50px;background-size:156px 156px}
+  .parent-character{background-position:-25px -30px}
+  .ai-character{background-position:-79px -30px}
+  .baby-character{background-position:-53px -57px}
   .flow-text strong{font-size:.75rem}
   .flow-text span{font-size:.6rem}
   .hero-copy{font-size:.92rem}
@@ -669,4 +673,121 @@ body{
   border-radius:28px;
   object-fit:cover;
   box-shadow:0 12px 30px rgba(76,47,126,.10);
+}
+
+
+/* 2026-09-27 onboarding clarity + citation polish */
+.research-cta{
+  position:relative;
+  z-index:1;
+  width:100%;
+  margin:0 0 14px;
+  padding:14px 48px 14px 16px;
+  border:1px solid rgba(111,77,176,.18);
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(111,77,176,.12),rgba(255,217,229,.60));
+  color:#4e3479;
+  text-align:left;
+  box-shadow:0 10px 28px rgba(76,47,126,.10);
+  cursor:pointer;
+}
+.research-cta-kicker{
+  display:block;
+  margin-bottom:2px;
+  color:#8b5bb5;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.06em;
+}
+.research-cta-title{
+  display:block;
+  font-size:.94rem;
+  font-weight:900;
+  line-height:1.35;
+}
+.research-cta-arrow{
+  position:absolute;
+  right:17px;
+  top:50%;
+  transform:translateY(-50%);
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.76);
+  font-weight:900;
+}
+.research-cta:active{transform:translateY(1px)}
+
+.flow-character{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background-image:url('./icons/mitsukotoba.png?v=20260927-logo2');
+  background-repeat:no-repeat;
+  background-size:180px 180px;
+  box-shadow:0 7px 20px rgba(48,41,64,.10);
+  border:3px solid rgba(255,255,255,.92);
+}
+.parent-character{
+  background-color:#f7f2f7;
+  background-position:-29px -34px;
+}
+.ai-character{
+  background-color:#e9ddff;
+  background-position:-91px -34px;
+}
+.baby-character{
+  background-color:#ffe1eb;
+  background-position:-61px -66px;
+}
+.ai-intro{
+  margin:-4px 0 16px;
+  padding:10px 12px;
+  border-radius:16px;
+  background:rgba(237,226,255,.48);
+  border:1px solid rgba(111,77,176,.09);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:6px;
+  font-size:.76rem;
+  text-align:center;
+}
+.ai-intro-label{
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(111,77,176,.10);
+  color:#5b3796;
+  font-weight:900;
+}
+.ai-intro-copy{color:#4e4653}
+.citation-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:28px;
+  height:24px;
+  margin-left:3px;
+  padding:0 6px;
+  border-radius:999px;
+  background:rgba(111,77,176,.10);
+  color:#5b3796;
+  font-size:.74rem;
+  font-weight:900;
+  text-decoration:none;
+  vertical-align:baseline;
+}
+.citation-number{
+  color:#6f4db0;
+  font-weight:900;
+}
+.guideline-card{
+  border-left-color:rgba(54,162,105,.58)!important;
+}
+.reference-card:target{
+  outline:3px solid rgba(111,77,176,.20);
+  outline-offset:3px;
 }
