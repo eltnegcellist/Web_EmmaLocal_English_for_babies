@@ -29,7 +29,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260927-onboarding-r2';
+const WEB_BUILD = '20260927-modes-r3';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -134,8 +134,8 @@ function bindEvents() {
   });
 
   ui.parentAudienceButton.addEventListener('click',()=>showNotice(
-    '親へ話すモード',
-    'Web版はみつことば Liteのみで、「赤ちゃんへ」に対応しています。Android版には Lite / Full があり、親との会話やより柔軟な応答はFullで利用できます。',
+    '「会話」はAndroid Fullで使えます',
+    'Web版Liteでは「呼びかけ」を利用できます。「会話」では、親の発話や直前の流れを踏まえ、AIも親・赤ちゃんとの3者のやり取りに継続して参加します。',
     'https://github.com/eltnegcellist/Android_English_character_for_baby',
     'Android版みつことばをGitHubで見る'
   ));
@@ -1205,7 +1205,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260927-onboarding-r2',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260927-modes-r3',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
