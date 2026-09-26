@@ -8,7 +8,7 @@ const ui = {
   onboardingBabyName:$('onboardingBabyName'), onboardingSpokenBabyName:$('onboardingSpokenBabyName'),
   onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
   onboardingPronunciationToggle:$('onboardingPronunciationToggle'), onboardingPronunciationPanel:$('onboardingPronunciationPanel'),
-  prepareEmmaButton:$('prepareみつことばButton'),
+  prepareEmmaButton:$('prepareEmmaButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'),
   progressWrap:$('progressWrap'), progressBar:$('progressBar'), progressText:$('progressText'),
@@ -101,7 +101,7 @@ function initUi() {
       sessionStorage.removeItem(STORAGE.asrReload);
       showScreen('home',{autoStart:false});
       const label=reloadedAsr==='small' ? 'Small' : 'Tiny';
-      setState('idle',`音声認識を${label}に変更しました`,'「Emmaと話す」を押して会話を再開してください。');
+      setState('idle',`音声認識を${label}に変更しました`,'「3人で話す」を押して会話を再開してください。');
       if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}。再読み込みして安全に切り替えました。`;
     } else {
       showScreen('home');
@@ -110,12 +110,12 @@ function initUi() {
 }
 
 function bindEvents() {
-  ui.mainButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); startみつことば(); });
-  ui.stopButton.addEventListener('click', stopみつことば);
+  ui.mainButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); startEmma(); });
+  ui.stopButton.addEventListener('click', stopEmma);
   ui.manualReplyButton.addEventListener('click', respondToPendingUtterance);
   ui.enableAudioButton?.addEventListener('click',unlockPlaybackAudioFromGesture);
   document.addEventListener('pointerdown',()=>{ if(!audioUnlocked) unlockPlaybackAudioFromGesture(); },{capture:true,passive:true});
-  ui.prepareみつことばButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); prepareFirstRun(); });
+  ui.prepareEmmaButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); prepareFirstRun(); });
 
   ui.aboutButton.addEventListener('click',()=>openAbout('home'));
   ui.settingsAboutButton.addEventListener('click',()=>openAbout('settings'));
@@ -123,21 +123,21 @@ function bindEvents() {
   ui.aboutBackButton.addEventListener('click',()=>showScreen(previousScreen));
   ui.settingsBackButton.addEventListener('click',()=>showScreen('home'));
   ui.settingsButton.addEventListener('click',async()=>{
-    if (running || speaking || processing) await stopみつことば();
+    if (running || speaking || processing) await stopEmma();
     showScreen('settings');
   });
 
   ui.parentAudienceButton.addEventListener('click',()=>showNotice(
     '親へ話すモード',
-    'Web版はEmma Liteのみで、「赤ちゃんへ」に対応しています。Android版には Lite / Full があり、親との会話やより柔軟な応答はFullで利用できます。',
+    'Web版はみつことば Liteのみで、「赤ちゃんへ」に対応しています。Android版には Lite / Full があり、親との会話やより柔軟な応答はFullで利用できます。',
     'https://github.com/eltnegcellist/Android_English_character_for_baby',
-    'Android版EmmaをGitHubで見る'
+    'Android版みつことばをGitHubで見る'
   ));
   ui.fullModeButton.addEventListener('click',()=>showNotice(
-    'Emma Full',
-    'Web版はEmma Liteのみです。Android版には Lite / Full の2つがあり、FullはAndroid版で利用できます。',
+    'みつことば Full',
+    'Web版はみつことば Liteのみです。Android版には Lite / Full の2つがあり、FullはAndroid版で利用できます。',
     'https://github.com/eltnegcellist/Android_English_character_for_baby',
-    'Android版EmmaをGitHubで見る'
+    'Android版みつことばをGitHubで見る'
   ));
   ui.noticeCloseButton.addEventListener('click',closeNotice);
   ui.noticeDialog.addEventListener('click',(event)=>{
@@ -231,7 +231,7 @@ function bindEvents() {
 
     if(ui.asrModelStatus) {
       const label=next==='small' ? 'Small' : 'Tiny';
-      ui.asrModelStatus.textContent=`${label}へ切り替えるためみつことばを再読み込みします…`;
+      ui.asrModelStatus.textContent=`${label}へ切り替えるためEmmaを再読み込みします…`;
     }
 
     const url=new URL(location.href);
@@ -257,7 +257,7 @@ function bindEvents() {
 
   ui.fullResetButton?.addEventListener('click',()=>{
     const confirmed=window.confirm(
-      'Emmaを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、Moonshine / Kittenのモデルキャッシュを削除します。次回はモデルの再取得が必要です。\n\n実行しますか？'
+      'みつことばを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、Moonshine / Kittenのモデルキャッシュを削除します。次回はモデルの再取得が必要です。\n\n実行しますか？'
     );
     if(confirmed) location.href='./reset.html?full=1';
   });
@@ -286,7 +286,7 @@ function showScreen(name,{autoStart=true}={}) {
   if(autoStart && name==='home' && localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION) {
     queueMicrotask(()=>{
       if(!running && !processing && !speaking && !ui.mainButton.disabled) {
-        startみつことば({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
+        startEmma({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
       }
     });
   }
@@ -382,7 +382,7 @@ async function clearObsoleteModelCaches() {
 }
 
 async function prepareFirstRun() {
-  ui.prepareみつことばButton.disabled=true;
+  ui.prepareEmmaButton.disabled=true;
   showOnboardingProgress(true,0,'マイクの使用許可を確認しています…');
   try {
     // Ask for microphone permission immediately while the user's tap is still
@@ -399,7 +399,7 @@ async function prepareFirstRun() {
     showProgress(false);
     setBusy(false);
     showScreen('home');
-    setState('thinking','準備できました','みつことばとの会話を自動で開始します。');
+    setState('thinking','準備できました','3人の会話を自動で開始します。');
   } catch(error) {
     console.error(error);
     showOnboardingProgress(true,0,friendlyError(error));
@@ -711,7 +711,7 @@ async function releaseMicrophoneForEmmaVoice() {
   return true;
 }
 
-async function restoreMicrophoneAfterみつことばVoice() {
+async function restoreMicrophoneAfterEmmaVoice() {
   if(!running || mic) return;
   try {
     await startMoonshineCapture();
@@ -725,12 +725,12 @@ async function restoreMicrophoneAfterみつことばVoice() {
 }
 
 async function speakResponse(text) {
-  if(!ttsWorker) throw new Error('Emmaの声がまだ準備されていません');
+  if(!ttsWorker) throw new Error('AIの声がまだ準備されていません');
 
   const shouldRestoreMic=running && Boolean(mic);
   if(shouldRestoreMic){
-    setState('thinking','Emmaが話す準備をしています','マイクを一時停止してスピーカー音量へ切り替えています。');
-    await releaseMicrophoneForみつことばVoice();
+    setState('thinking','AIが話す準備をしています','マイクを一時停止してスピーカー音量へ切り替えています。');
+    await releaseMicrophoneForEmmaVoice();
   }
 
   speaking=true;
@@ -742,13 +742,13 @@ async function speakResponse(text) {
     q.reject=reject;
   });
 
-  setState('speaking','Emmaがお話ししています',text);
+  setState('speaking','AIが話しています',text);
   try {
     ttsWorker.postMessage({type:'speak',requestId,text});
     await done;
   } catch(error) {
     console.error('Emma TTS playback failed',error);
-    setState('error','Emmaの声でエラーが発生しました',friendlyError(error));
+    setState('error','AIの声でエラーが発生しました',friendlyError(error));
     throw error;
   } finally {
     speaking=false;
@@ -756,15 +756,15 @@ async function speakResponse(text) {
 
     if(shouldRestoreMic && running){
       try {
-        await restoreMicrophoneAfterみつことばVoice();
+        await restoreMicrophoneAfterEmmaVoice();
       } catch(error) {
         console.error('Microphone restore failed after Emma voice.',error);
       }
     }
   }
 
-  if(running) setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
-  else setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
+  if(running) setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+  else setState('idle','みつことばはおやすみ中','「3人で話す」を押すと、また会話できます。');
 }
 
 function enqueueAudio(m) {
@@ -850,7 +850,7 @@ async function waitForPlaybackAudio() {
 
   audioUnlocked=false;
   updateAudioUnlockUi();
-  setState('speaking','Emmaの声を有効にしてください','画面下の「Emmaの声を有効にする」を一度タップしてください。');
+  setState('speaking','AIの声を有効にしてください','画面下の「Emmaの声を有効にする」を一度タップしてください。');
   await new Promise(resolve=>audioUnlockWaiters.push(resolve));
 }
 
@@ -998,7 +998,7 @@ function updateGenderUi() {
   const gender=localStorage.getItem(STORAGE.gender)||'UNSPECIFIED';
   document.querySelectorAll('[data-gender]').forEach(button=>button.classList.toggle('selected',button.dataset.gender===gender));
   ui.genderHelp.textContent=gender==='UNSPECIFIED'
-    ? '未指定の場合、Emmaは名前などから性別を推測しません。'
+    ? '未指定の場合、AIは名前などから性別を推測しません。'
     : '親へ話す機能を追加した場合も、この設定に合わせて呼び方を選びます。';
 }
 
@@ -1008,7 +1008,7 @@ function updateSpokenNamePreview() {
   const message=!base
     ? '名前は未設定です。'
     : spoken
-      ? `みつことばが呼ぶ名前：${spoken}`
+      ? `AIが呼ぶ名前：${spoken}`
       : '必要な場合だけ、英字で読み方を指定してください。';
   ui.spokenNamePreview.textContent=message;
   ui.onboardingSpokenNamePreview.textContent=message;
@@ -1046,7 +1046,7 @@ function updateAppearanceSettings() {
   const mode=ui.colorMode.value;
   ui.vividPaletteRow.classList.toggle('hidden',mode!=='vivid');
   const descriptions={
-    soft:'今までのEmmaの淡い配色です。',
+    soft:'やさしい淡い配色です。',
     vivid:'原色寄りの複数色で、顔のコントラストを強くします。',
     mono_red:'白い顔、黒い目と輪郭、赤いアクセントの固定配色です。',
     color_shift:'会話状態とは無関係に、時間経過で配色がゆっくり変わります。'
