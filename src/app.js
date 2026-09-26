@@ -29,7 +29,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260926-emma-name-force-reply-r1';
+const WEB_BUILD = '20260926-non-gpl-phonemizer-exp1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -568,7 +568,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260925-kitten-fp32-r1',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260926-kitten-cmudict-r1',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -781,7 +781,7 @@ async function speakResponse(text) {
 
   setState('speaking','AIが話しています',text);
   try {
-    ttsWorker.postMessage({type:'speak',requestId,text});
+    ttsWorker.postMessage({type:'speak',requestId,text,nameHints:getTtsNameHints()});
     await done;
   } catch(error) {
     console.error('Emma TTS playback failed',error);
@@ -1088,8 +1088,19 @@ function getSpokenBabyName() {
   return withChanSuffix(base,useChan);
 }
 
+function getTtsNameHints() {
+  const saved=localStorage.getItem(STORAGE.babyName)||'';
+  const override=localStorage.getItem(STORAGE.spokenName)||'';
+  const base=toSpokenEnglish(saved,override);
+  if(!base) return [];
+  // Only route names originating from Japanese script through the Japanese-name G2P.
+  // Plain ASCII names continue to use CMUDict so English names keep their normal reading.
+  const isJapaneseSource=/[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/u.test(saved);
+  return isJapaneseSource ? [base] : [];
+}
+
 function getTtsSignature() {
-  return 'kitten-nano-fp32-kiki-browser-wasm';
+  return 'kitten-nano-fp32-kiki-cmudict-v1';
 }
 
 function updateAsrModelStatus() {
