@@ -776,10 +776,13 @@ export class LiteResponseEngine {
       || (rescued ? SCENES.find(candidate => candidate.id === rescued.sceneId) : null)
       || null;
     const candidateScore = selected?.[1] || rescued?.score || 0;
+    const candidateHasStrongTopicEvidence = !!candidateScene && (
+      !!rescued || hasStrongTopicEvidence(candidateScene, normalized)
+    );
     const explicitScene = !candidateScene ? null
       : !this.activeSceneId ? candidateScene
         : candidateScene.id === this.activeSceneId ? candidateScene
-          : candidateScore >= 6 ? candidateScene
+          : candidateHasStrongTopicEvidence ? candidateScene
             : null;
     const explicitScore = explicitScene ? candidateScore : 0;
     const contextualScene = !explicitScene && this.activeSceneTurnsRemaining > 0
@@ -863,6 +866,17 @@ export class LiteResponseEngine {
     this.recentOpeners.push(openerKey(reply));
     while (this.recentOpeners.length > 3) this.recentOpeners.shift();
   }
+}
+
+function hasStrongTopicEvidence(scene, transcript) {
+  const strongPhrases=[
+    ...(SCENE_CHILDCARE_ANCHORS[scene.id] || []),
+    ...(SCENE_HINTS[scene.id] || []),
+  ];
+  return strongPhrases
+    .map(normalize)
+    .filter(Boolean)
+    .some(phrase=>transcript.includes(phrase));
 }
 
 function score(scene, transcript) {
