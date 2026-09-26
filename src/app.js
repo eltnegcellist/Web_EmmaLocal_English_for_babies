@@ -17,7 +17,7 @@ const ui = {
   autoRespond:$('autoRespond'), aboutButton:$('aboutButton'), settingsButton:$('settingsButton'),
   parentAudienceButton:$('parentAudienceButton'), settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
   aboutBackButton:$('aboutBackButton'), onboardingAboutButton:$('onboardingAboutButton'),
-  aiCharacterName:$('aiCharacterName'), aiNamePreview:$('aiNamePreview'), aiBubbleLabel:$('aiBubbleLabel'),
+  aiCharacterName:$('aiCharacterName'), aiNamePreview:$('aiNamePreview'), aiBubbleLabel:$('aiBubbleLabel'), aiNameBadge:$('aiNameBadge'),
   aiAvatarFace:$('aiAvatarFace'), onboardingAiIcon:$('onboardingAiIcon'), onboardingAiLabel:$('onboardingAiLabel'),
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
@@ -1053,6 +1053,7 @@ function updateAiNameUi() {
   const name=getAiName();
   if(ui.aiNamePreview) ui.aiNamePreview.textContent=`最初の返答で「Hi, I'm ${name}.」と名乗ります。`;
   if(ui.aiBubbleLabel) ui.aiBubbleLabel.textContent=name;
+  if(ui.aiNameBadge) ui.aiNameBadge.textContent=name;
   if(ui.aiAvatarFace) ui.aiAvatarFace.setAttribute('aria-label',`${name}（みつことば AI）`);
   if(ui.onboardingAiIcon) ui.onboardingAiIcon.textContent=name;
   if(ui.onboardingAiLabel) ui.onboardingAiLabel.textContent=`${name}が理解`;
