@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#fffbff" />
   <meta name="description" content="みつことば Web — 親と赤ちゃんとAI、3人でつくるローカル英語アプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="icon" href="./icons/mitsukotoba.png" type="image/png" />
-  <link rel="stylesheet" href="./styles.css?v=20260926-app-first-r1" />
+  <link rel="icon" href="./icons/mitsukotoba.png?v=20260927-logo2" type="image/png" />
+  <link rel="stylesheet" href="./styles.css?v=20260927-onboarding-r2" />
   <title>みつことば Web Lite</title>
 </head>
 <body>
@@ -19,14 +19,18 @@
 
         <header class="brand-row">
           <div class="brand-lockup">
-            <img class="brand-logo-img" src="./icons/mitsukotoba.png" alt="" aria-hidden="true" />
+            <img class="brand-logo-img" src="./icons/mitsukotoba.png?v=20260927-logo2" alt="" aria-hidden="true" />
             <div>
               <div class="brand-name">みつことば</div>
               <div class="brand-subtitle">親と赤ちゃんとAIの英語時間</div>
             </div>
           </div>
-          <button id="onboardingAboutButton" class="quiet-button">詳しく知る</button>
         </header>
+        <button id="onboardingAboutButton" class="research-cta">
+          <span class="research-cta-kicker">研究から知る</span>
+          <span class="research-cta-title">みつことばが英語学習に使える理由</span>
+          <span class="research-cta-arrow" aria-hidden="true">→</span>
+        </button>
 
         <section class="welcome-hero">
           <div class="hero-kicker">LOCAL ENGLISH FOR BABIES</div>
@@ -35,24 +39,29 @@
 
           <div class="interaction-flow" aria-label="みつことばの使い方">
             <div class="flow-item">
-              <div class="flow-icon parent">親</div>
-              <div class="flow-text"><strong>日本語で話す</strong><span>いつも通りでOK</span></div>
+              <div class="flow-character parent-character" aria-label="親"></div>
+              <div class="flow-text"><strong>親</strong><span>日本語で話す</span></div>
             </div>
             <div class="flow-arrow" aria-hidden="true">→</div>
             <div class="flow-item">
-              <div id="onboardingAiIcon" class="flow-icon ai">Emma</div>
-              <div class="flow-text"><strong id="onboardingAiLabel">Emmaが理解</strong><span>直訳しません</span></div>
+              <div class="flow-character ai-character" aria-label="AI"></div>
+              <div class="flow-text"><strong>AI</strong><span>場面を理解する</span></div>
             </div>
             <div class="flow-arrow" aria-hidden="true">→</div>
             <div class="flow-item">
-              <div class="flow-icon baby">赤</div>
-              <div class="flow-text"><strong>英語で話す</strong><span>短く、やさしく</span></div>
+              <div class="flow-character baby-character" aria-label="赤ちゃん"></div>
+              <div class="flow-text"><strong>赤ちゃん</strong><span>短い英語を聞く</span></div>
             </div>
+          </div>
+
+          <div id="onboardingAiIntro" class="ai-intro">
+            <span class="ai-intro-label">AIキャラクター</span>
+            <span class="ai-intro-copy">名前は <strong>Emma</strong>。会話を始めると最初に自己紹介します。</span>
           </div>
 
           <div class="hero-example">
             <span class="example-parent">「お風呂入ろうね」</span>
-            <span class="example-reply">“Bath time! Splash, splash!”</span>
+            <span class="example-reply">AI → “Bath time! Splash, splash!”</span>
           </div>
         </section>
 
@@ -115,7 +124,7 @@
       <div class="screen-content home-content">
         <header class="topbar app-topbar">
           <div class="home-brand">
-            <img class="home-logo-img" src="./icons/mitsukotoba.png" alt="" aria-hidden="true" />
+            <img class="home-logo-img" src="./icons/mitsukotoba.png?v=20260927-logo2" alt="" aria-hidden="true" />
             <div>
               <h1>みつことば</h1>
               <p>親・赤ちゃん・AIの英語時間</p>
@@ -346,59 +355,59 @@
         <header class="subpage-header simple-header">
           <button id="aboutBackButton" class="text-button">← 戻る</button>
         </header>
-        <div class="about-logo-wrap"><img class="about-logo" src="./icons/mitsukotoba.png" alt="みつことば ロゴ" /></div>
-        <h1>みつことばとは？</h1>
-        <p class="lead">英語を聞かせるだけではなく、親・赤ちゃん・AIの3人で、英語が生まれる時間をつくるためのアプリです。</p>
+        <div class="about-logo-wrap"><img class="about-logo" src="./icons/mitsukotoba.png?v=20260927-logo2" alt="みつことば ロゴ" /></div>
+        <h1>みつことばが英語学習に使える理由</h1>
+        <p class="lead">みつことばは、英語を一方的に聞かせるのではなく、親・赤ちゃん・AIの3人で反応し合う時間をつくることを目指しています。ここでは、その設計の背景にある研究とガイドラインを分けて紹介します。</p>
 
         <article class="card">
-          <h2>なぜ乳児期に英語の音？</h2>
-          <p>乳児期の早い段階では、赤ちゃんは母語にはない外国語の音の違いにも高い感度を持っています。研究では、生後6〜12か月ごろにかけて、普段聞く言語の音へ知覚が徐々に最適化され、いくつかの非母語の音声対立への感度が低下していくことが示されています。これは能力を単純に失うというより、脳が身の回りの言語へ効率よく適応していく発達の一部と考えられています。</p>
+          <h2>1. 乳児期は、ことばの音への感度が大きく変わる</h2>
+          <p>乳児は早い時期には母語にない外国語の音の違いにも感度を持ちますが、生後6〜12か月ごろにかけて、普段聞く言語の音へ知覚が最適化され、一部の非母語の音声対立への感度が低下していくことが報告されています。これは単純な「能力の消失」というより、周囲の言語環境への知覚の再編成と考えられます。<a class="citation-link" href="#ref-1">[1]</a></p>
         </article>
 
         <article class="card">
-          <h2>ただ聞かせるだけでは足りないかもしれない</h2>
-          <p>Kuhl、Tsao、Liuらの2003年の研究では、9か月児が中国語の母語話者と12回の対面セッションを経験すると、中国語の音の違いを識別する学習が確認されました。一方、同じ話者・同じ内容を映像や音声で提示した条件では、同じような学習は確認されませんでした。この結果は、外国語の音の量だけでなく、社会的な相互作用が重要である可能性を示しています。</p>
+          <h2>2. ただ聞かせるだけでは、同じではない</h2>
+          <p>Kuhl、Tsao、Liuらの2003年の研究では、9か月児が中国語の母語話者と12回の対面セッションを経験すると、中国語の音の違いを識別する学習が確認されました。一方、同じ話者・同じ内容を映像や音声で提示した条件では、同じような学習は確認されませんでした。外国語の音の量だけでなく、社会的な相互作用が重要である可能性を示した研究です。<a class="citation-link" href="#ref-2">[2]</a></p>
         </article>
 
         <article class="card">
-          <h2>スクリーンでも、相互作用があると違う</h2>
-          <p>Lytle、Garcia-Sierra、Kuhlらの2018年の研究では、9か月児自身のタッチに反応して外国語動画が再生される環境を使い、1人で体験する条件と、別の乳児と一緒に体験する条件を比較しました。社会的な相手と一緒に体験した乳児では、外国語音韻に対するより成熟した脳反応が見られました。</p>
-          <p class="muted">これは「スクリーンなら学べない」「画面を見せれば学べる」という二択ではなく、能動的な参加や社会的な相手の存在によって、スクリーンからの学習のあり方も変わり得ることを示唆しています。研究の社会的な相手はAIではなく別の乳児であり、みつことばの効果を直接証明するものではありません。</p>
+          <h2>3. スクリーンでも、相互作用があると学習は変わり得る</h2>
+          <p>Lytle、Garcia-Sierra、Kuhlらの2018年の研究では、9か月児自身のタッチに反応して外国語動画が再生される環境を使い、1人で体験する条件と、別の乳児と一緒に体験する条件を比較しました。社会的な相手と一緒に体験した乳児では、外国語音韻に対するより成熟した脳反応が見られました。<a class="citation-link" href="#ref-3">[3]</a></p>
+          <p class="muted">これは「スクリーンなら学べない」「画面を見せれば学べる」という二択を意味しません。能動的な参加や社会的な相手の存在によって、スクリーンを介した外国語経験のあり方も変わり得る、という示唆です。なお、この研究の社会的な相手はAIではなく別の乳児であり、みつことば自体の効果を直接証明したものではありません。</p>
         </article>
 
         <article class="card">
-          <h2>スクリーンタイムをどう考える？</h2>
-          <p>WHOの2019年ガイドラインは、1歳未満の乳児についてスクリーンタイムを推奨していません。これは身体活動・座位行動・睡眠を24時間全体で捉える公衆衛生ガイドラインです。</p>
-          <p>一方、米国小児科学会（AAP）は2026年のPolicy Statementで、子どものデジタル体験をスクリーン時間だけで評価するのではなく、内容、発達段階、親との共同利用、何を置き換えているか、デザインが子どもの発達を支えるものか、といった文脈も含めて考えるべきだとしています。AAPは、乳児が画面から現実世界へ学習を移しにくいことにも注意を促しつつ、親子で一緒に関わる joint media engagement が学習や関係形成に関わり得るとしています。</p>
+          <h2>4. なぜAIには顔があるの？</h2>
+          <p>新生児が、スクランブルされた配置や空白の刺激よりも、顔らしく配置された刺激をより長く追視したとする研究があります。<a class="citation-link" href="#ref-4">[4]</a> みつことばのAIには、顔・口の動き・まばたき・表情があります。これは長時間画面へ注意を引きつけるためではなく、短いやり取りの中で「誰かがこちらに話しかけている」ことを示す視覚的な手がかりとして設計しています。</p>
         </article>
 
         <article class="card">
-          <h2>画面を見るかより、3人でどう使うか</h2>
+          <h2>5. スクリーンタイムをどう考える？</h2>
+          <p>WHOの2019年ガイドラインは、1歳未満の乳児についてスクリーンタイムを推奨していません。これは身体活動・座位行動・睡眠を24時間全体で捉える公衆衛生ガイドラインです。<a class="citation-link" href="#ref-5">[5]</a></p>
+          <p>一方、米国小児科学会（AAP）は2026年のPolicy Statementで、子どものデジタル体験をスクリーン時間だけで評価するのではなく、内容、発達段階、親との共同利用、何を置き換えているか、デザインが子どもの発達を支えるものか、といった文脈も含めて考えるべきだとしています。乳児が画面から現実世界へ学習を移しにくいことにも注意を促す一方、共同利用などの文脈を重視しています。<a class="citation-link" href="#ref-6">[6]</a></p>
+        </article>
+
+        <article class="card">
+          <h2>6. だから、画面を見ることより「3人でどう使うか」</h2>
           <p>みつことばは、赤ちゃんに画面を見せ続けるためのアプリではありません。一方で、AIの顔を見ることを避けるよう求めるものでもありません。赤ちゃんがAIの顔を見るか、親の顔を見るか、目の前のおもちゃやお風呂を見るかは、それぞれの家庭と、その瞬間に委ねます。</p>
           <p><strong>大切にしているのは、スマホを赤ちゃんに渡して終わりにしないことです。</strong> 親も同じ場に参加し、AIの英語をきっかけに赤ちゃんへ話しかけ、赤ちゃんの反応にまた応える。親・赤ちゃん・AIの3人が同じ時間を共有する使い方を想定しています。</p>
         </article>
 
         <article class="card">
-          <h2>画面を見せたくない家庭では</h2>
-          <p>画面を見ることは必須ではありません。たとえばスマートフォンをぬいぐるみの後ろなどに置き、Emmaの声だけがそこから聞こえるようにして、親・赤ちゃん・AIの3者のやり取りを作る使い方もできます。AIの名前もぬいぐるみに合わせて変更できます。</p>
+          <h2>7. 画面を見せたくない家庭では</h2>
+          <p>画面を見ることは必須ではありません。たとえばスマートフォンをぬいぐるみの後ろなどに置き、AIキャラクターの声だけがそこから聞こえるようにして、親・赤ちゃん・AIの3者のやり取りを作る使い方もできます。AIの初期名はEmmaですが、ぬいぐるみに合わせて設定から変更できます。</p>
           <p class="muted">安全のため、端末は布やぬいぐるみで覆わず放熱できる場所に置いてください。充電中の端末をぬいぐるみの下へ入れたり、赤ちゃんの寝床や手の届く場所へ置いたりしないでください。</p>
         </article>
 
         <article class="card">
-          <h2>なぜ「みつことば」？</h2>
+          <h2>8. なぜ「みつことば」？</h2>
           <p>名前の由来は、親・赤ちゃん・AIの3人です。親が普段どおり日本語で話し、AIが今の場面を受け取って赤ちゃんへ短い英語で返す。赤ちゃんが声や表情で反応し、それを親やAIがまた受け取る。目指しているのは、親 → AI → 赤ちゃんという一方向の再生ではなく、親 ↔ 赤ちゃん ↔ AIの三角形です。</p>
         </article>
 
         <article class="card example-card">
           <h2>たとえば、お風呂なら</h2>
           <p>親：「お風呂入ろうね」</p>
-          <p><strong>みつことば AI： “Bath time!” “Splash, splash!” “Here we go!”</strong></p>
+          <p><strong>AI： “Bath time!” “Splash, splash!” “Here we go!”</strong></p>
           <p class="muted">そこで親がお湯をぱしゃぱしゃしたり、赤ちゃんへ「Splash splashだね」と返したりする。AIの英語を画面の中だけで終わらせず、目の前の親子の時間へつなげることを想定しています。</p>
-        </article>
-
-        <article class="card">
-          <h2>なぜAIには顔があるの？</h2>
-          <p>新生児が、スクランブルされた配置や空白の刺激よりも、顔らしく配置された刺激をより長く追視することを示した研究があります。みつことばのAIには、顔・口の動き・まばたき・表情があります。これは長時間画面へ注意を引きつけるためではなく、短いやり取りの中で「誰かがこちらに話しかけている」ことを示す視覚的な手がかりとして設計しています。</p>
         </article>
 
         <article class="card">
@@ -408,45 +417,42 @@
 
         <article class="card emphasis-card">
           <h2>研究が示していることと、まだ分からないこと</h2>
-          <p>2003年の研究は生身の話者との交流を、2018年の研究は乳児同士の社会的な相手がいるタッチスクリーン環境を調べたものです。どちらもAIとの3者交流そのものを検証した研究ではありません。</p>
-          <p><strong>したがって、みつことばに同じ言語学習効果があるとは現時点では言えません。みつことばは、「ただ聞く・ただ見るだけでなく、能動性や社会的な相互作用が重要かもしれない」という研究上の示唆を、親・赤ちゃん・AIの3人で家庭の日常へ近づけようとする試みです。</strong></p>
+          <p>対面での外国語学習を扱った研究<a class="citation-link" href="#ref-2">[2]</a>や、社会的な相手がいるタッチスクリーン環境を扱った研究<a class="citation-link" href="#ref-3">[3]</a>は、AIとの3者交流そのものを検証したものではありません。</p>
+          <p><strong>したがって、みつことばに同じ言語学習効果があるとは現時点では言えません。</strong> みつことばは、「ただ聞く・ただ見るだけでなく、能動性や社会的な相互作用が重要かもしれない」という研究上の示唆を、親・赤ちゃん・AIの3人で家庭の日常へ近づけようとする試みです。</p>
         </article>
 
-        <h2 class="section-title">参考研究・ガイドライン</h2>
-        <article class="card reference-card">
-          <h3>Kuhl, Tsao & Liu (2003)</h3>
-          <p>Foreign-language experience in infancy: Effects of short-term exposure and social interaction on phonetic learning. PNAS 100(15), 9096–9101.</p>
-          <a class="outline-button link-button" href="https://doi.org/10.1073/pnas.1532872100" target="_blank" rel="noopener">資料を開く</a>
+        <h2 class="section-title">引用した論文</h2>
+        <article id="ref-1" class="card reference-card">
+          <h3><span class="citation-number">[1]</span> Werker & Tees (1984)</h3>
+          <p>Cross-language speech perception: Evidence for perceptual reorganization during the first year of life. <em>Infant Behavior and Development</em> 7(1), 49–63.</p>
+          <a class="outline-button link-button" href="https://doi.org/10.1016/S0163-6383(84)80022-3" target="_blank" rel="noopener">論文を開く</a>
         </article>
-        <article class="card reference-card">
-          <h3>Lytle, Garcia-Sierra & Kuhl (2018)</h3>
-          <p>Two are better than one: Infant language learning from video improves in the presence of peers. PNAS 115(40), 9859–9866.</p>
-          <a class="outline-button link-button" href="https://doi.org/10.1073/pnas.1611621115" target="_blank" rel="noopener">資料を開く</a>
+        <article id="ref-2" class="card reference-card">
+          <h3><span class="citation-number">[2]</span> Kuhl, Tsao & Liu (2003)</h3>
+          <p>Foreign-language experience in infancy: Effects of short-term exposure and social interaction on phonetic learning. <em>PNAS</em> 100(15), 9096–9101.</p>
+          <a class="outline-button link-button" href="https://doi.org/10.1073/pnas.1532872100" target="_blank" rel="noopener">論文を開く</a>
         </article>
-        <article class="card reference-card">
-          <h3>Werker & Tees (1984)</h3>
-          <p>Cross-language speech perception: Evidence for perceptual reorganization during the first year of life. Infant Behavior and Development 7(1), 49–63.</p>
-          <a class="outline-button link-button" href="https://doi.org/10.1016/S0163-6383(84)80022-3" target="_blank" rel="noopener">資料を開く</a>
+        <article id="ref-3" class="card reference-card">
+          <h3><span class="citation-number">[3]</span> Lytle, Garcia-Sierra & Kuhl (2018)</h3>
+          <p>Two are better than one: Infant language learning from video improves in the presence of peers. <em>PNAS</em> 115(40), 9859–9866.</p>
+          <a class="outline-button link-button" href="https://doi.org/10.1073/pnas.1611621115" target="_blank" rel="noopener">論文を開く</a>
         </article>
-        <article class="card reference-card">
-          <h3>Kuhl (2007)</h3>
-          <p>Is speech learning ‘gated’ by the social brain? Developmental Science 10(1), 110–120.</p>
-          <a class="outline-button link-button" href="https://doi.org/10.1111/j.1467-7687.2007.00572.x" target="_blank" rel="noopener">資料を開く</a>
+        <article id="ref-4" class="card reference-card">
+          <h3><span class="citation-number">[4]</span> Johnson et al. (1991)</h3>
+          <p>Newborns' preferential tracking of face-like stimuli and its subsequent decline. <em>Cognition</em> 40(1–2), 1–19.</p>
+          <a class="outline-button link-button" href="https://doi.org/10.1016/0010-0277(91)90045-6" target="_blank" rel="noopener">論文を開く</a>
         </article>
-        <article class="card reference-card">
-          <h3>American Academy of Pediatrics (2026)</h3>
-          <p>Digital Ecosystems, Children, and Adolescents: Policy Statement. Pediatrics 157(2), e2025075320.</p>
-          <a class="outline-button link-button" href="https://doi.org/10.1542/peds.2025-075320" target="_blank" rel="noopener">資料を開く</a>
+
+        <h2 class="section-title">引用したガイドライン／政策声明</h2>
+        <article id="ref-5" class="card reference-card guideline-card">
+          <h3><span class="citation-number">[5]</span> World Health Organization (2019)</h3>
+          <p><em>Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age.</em></p>
+          <a class="outline-button link-button" href="https://www.who.int/publications/i/item/9789241550536" target="_blank" rel="noopener">ガイドラインを開く</a>
         </article>
-        <article class="card reference-card">
-          <h3>World Health Organization (2019)</h3>
-          <p>Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age.</p>
-          <a class="outline-button link-button" href="https://www.who.int/publications/i/item/9789241550536" target="_blank" rel="noopener">資料を開く</a>
-        </article>
-        <article class="card reference-card">
-          <h3>Johnson et al. (1991)</h3>
-          <p>Newborns' preferential tracking of face-like stimuli and its subsequent decline. Cognition 40(1–2), 1–19.</p>
-          <a class="outline-button link-button" href="https://doi.org/10.1016/0010-0277(91)90045-6" target="_blank" rel="noopener">資料を開く</a>
+        <article id="ref-6" class="card reference-card guideline-card">
+          <h3><span class="citation-number">[6]</span> American Academy of Pediatrics (2026)</h3>
+          <p><em>Digital Ecosystems, Children, and Adolescents: Policy Statement.</em> Pediatrics 157(2), e2025075320.</p>
+          <a class="outline-button link-button" href="https://doi.org/10.1542/peds.2025-075320" target="_blank" rel="noopener">政策声明を開く</a>
         </article>
       </div>
     </section>
@@ -461,6 +467,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260926-emma-name-force-reply-r1"></script>
+  <script type="module" src="./src/app.js?v=20260927-onboarding-r2"></script>
 </body>
 </html>
