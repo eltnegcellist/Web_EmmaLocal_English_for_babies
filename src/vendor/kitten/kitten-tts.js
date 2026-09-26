@@ -104,12 +104,12 @@ export class KittenTTS {
    * @returns {Promise<RawAudio>}
    */
   async generate(text, opts = {}) {
-    const { voice = DEFAULT_VOICE, speed = 1.0, clean = true } = opts;
+    const { voice = DEFAULT_VOICE, speed = 1.0, clean = true, nameHints = [] } = opts;
     const chunks = this._chunkText(text);
 
     const audioChunks = [];
     for (const chunk of chunks) {
-      const inputs = await this._prepareInputs(chunk, voice, speed, clean);
+      const inputs = await this._prepareInputs(chunk, voice, speed, clean, nameHints);
       const chunkAudio = await this._runInference(inputs);
       audioChunks.push(chunkAudio);
     }
@@ -134,11 +134,11 @@ export class KittenTTS {
    * @yields {{ text: string, audio: RawAudio }}
    */
   async *stream(text, opts = {}) {
-    const { voice = DEFAULT_VOICE, speed = 1.0, clean = true } = opts;
+    const { voice = DEFAULT_VOICE, speed = 1.0, clean = true, nameHints = [] } = opts;
     const chunks = this._chunkText(text);
 
     for (const chunk of chunks) {
-      const inputs = await this._prepareInputs(chunk, voice, speed, clean);
+      const inputs = await this._prepareInputs(chunk, voice, speed, clean, nameHints);
       const chunkAudio = await this._runInference(inputs);
       yield { text: chunk, audio: new RawAudio(chunkAudio, SAMPLE_RATE) };
     }
@@ -220,12 +220,12 @@ export class KittenTTS {
    * Preprocess text, phonemize, and build ONNX input tensors.
    * @private
    */
-  async _prepareInputs(chunk, voiceName, speed, clean) {
+  async _prepareInputs(chunk, voiceName, speed, clean, nameHints = []) {
     // 1. Preprocess
     const processedText = clean ? this._preprocessor.process(chunk) : chunk;
 
     // 2. Phonemize
-    let phonemes = await phonemize(processedText);
+    let phonemes = await phonemize(processedText, { nameHints });
 
     // 3. Tokenize → IDs with padding
     phonemes = basic_english_tokenize(phonemes).join(' ');
