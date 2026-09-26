@@ -1,12 +1,12 @@
 import { EmmaMicrophone } from './audio-capture.js';
-import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS } from './lite-response-engine.js';
+import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
   onboardingBabyName:$('onboardingBabyName'), onboardingSpokenBabyName:$('onboardingSpokenBabyName'),
-  onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
+  onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingStartTiny:$('onboardingStartTiny'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
   onboardingPronunciationToggle:$('onboardingPronunciationToggle'), onboardingPronunciationPanel:$('onboardingPronunciationPanel'),
   prepareEmmaButton:$('prepareEmmaButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
@@ -29,7 +29,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260927-inline-images-r5';
+const WEB_BUILD = '20260927-small-context-r6';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -43,6 +43,7 @@ const STORAGE = {
   autoRespond:'emma_auto_respond',
   useChanSuffix:'emma_use_chan_suffix',
   asrModel:'emma_asr_model',
+  startTiny:'emma_first_run_start_tiny',
   asrReload:'emma_asr_reload'
 };
 
@@ -87,7 +88,10 @@ function initUi() {
   ui.vividPalette.value = localStorage.getItem(STORAGE.vivid) || 'sunshine';
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
-  if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'tiny';
+  if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'small';
+  if (ui.onboardingStartTiny) {
+    ui.onboardingStartTiny.checked = localStorage.getItem(STORAGE.startTiny) === 'true';
+  }
   updateAsrModelStatus();
   const useChanSuffix = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
   ui.useChanSuffix.checked = useChanSuffix;
@@ -253,6 +257,9 @@ function bindEvents() {
     url.searchParams.set('asr',next);
     location.replace(url.href);
   });
+  ui.onboardingStartTiny?.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.startTiny,String(ui.onboardingStartTiny.checked));
+  });
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
     if (ui.autoRespond.checked && pendingUtterance && !processing && !speaking) respondToPendingUtterance();
@@ -404,6 +411,11 @@ async function prepareFirstRun() {
     // active. Model preparation can take a long time, after which mobile
     // browsers may no longer show the permission prompt automatically.
     await requestMicrophonePermission();
+    const firstRunAsr = ui.onboardingStartTiny?.checked ? 'tiny' : 'small';
+    localStorage.setItem(STORAGE.asrModel,firstRunAsr);
+    localStorage.setItem(STORAGE.startTiny,String(firstRunAsr==='tiny'));
+    if(ui.asrModel) ui.asrModel.value=firstRunAsr;
+    updateAsrModelStatus();
     if(!(await ensureMoonshineIsolation())) return;
     await navigator.storage?.persist?.().catch(()=>false);
     await clearObsoleteModelCaches();
@@ -434,6 +446,7 @@ async function startEmma({ auto = false } = {}) {
     // to show its browser prompt on every new launch.
     running=true;
     aiIntroducedThisSession=false;
+    engine.resetConversationContext();
     setBusy(true);
     setState('thinking','マイクを起動しています','必要なら表示される許可画面でマイクを許可してください。');
     showProgress(true,0,'マイクを開始しています…');
@@ -714,10 +727,10 @@ async function processTranscript(text) {
   processing=true;
   setBusy(true);
   const clean=String(text||'').replace(/\s+/g,' ').trim();
-  if(!clean){
+  if(!isMeaningfulUtterance(clean)){
     processing=false;
     setBusy(false);
-    setState('listening',`${getAiName()}が聞いています`,'うまく聞き取れませんでした。もう一度そのまま話してください。');
+    setState('listening',`${getAiName()}が聞いています`,'意味のあることばを待っています。');
     return;
   }
   showConversation(clean,'');
@@ -1109,7 +1122,7 @@ function getTtsSignature() {
 
 function updateAsrModelStatus() {
   if(!ui.asrModelStatus) return;
-  const selected=localStorage.getItem(STORAGE.asrModel)==='small' ? 'Small' : 'Tiny';
+  const selected=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'Tiny' : 'Small';
   ui.asrModelStatus.textContent=`現在：${selected}。モデルはブラウザ内に保存されます。`;
 }
 
@@ -1205,7 +1218,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260927-inline-images-r5',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260927-small-context-r6',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
