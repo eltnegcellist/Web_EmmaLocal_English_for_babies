@@ -95,7 +95,7 @@ async function ttsTest(label){
         clearTimeout(timer); reject(new Error(m.message||'TTS generation error'));
       }
     };
-    worker.postMessage({type:'speak',requestId,text:'Hello. Emma voice coexistence test.'});
+    worker.postMessage({type:'speak',requestId,text:'Hello. This is a voice coexistence test.'});
   });
   if(!chunks.filter(Boolean).length) throw new Error('No audio chunks received');
   for(let i=0;i<chunks.length;i++){
@@ -135,7 +135,7 @@ async function generateChunks(label){
         clearTimeout(timer); reject(new Error(m.message||'TTS generation error'));
       }
     };
-    worker.postMessage({type:'speak',requestId,text:'Hello. Emma voice coexistence test.'});
+    worker.postMessage({type:'speak',requestId,text:'Hello. This is a voice coexistence test.'});
   });
   const ready=chunks.filter(Boolean);
   if(!ready.length) throw new Error('No audio chunks received');
