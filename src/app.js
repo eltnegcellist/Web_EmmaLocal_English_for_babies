@@ -231,7 +231,7 @@ function bindEvents() {
 
     if(ui.asrModelStatus) {
       const label=next==='small' ? 'Small' : 'Tiny';
-      ui.asrModelStatus.textContent=`${label}へ切り替えるためEmmaを再読み込みします…`;
+      ui.asrModelStatus.textContent=`${label}へ切り替えるためみつことばを再読み込みします…`;
     }
 
     const url=new URL(location.href);
@@ -850,7 +850,7 @@ async function waitForPlaybackAudio() {
 
   audioUnlocked=false;
   updateAudioUnlockUi();
-  setState('speaking','AIの声を有効にしてください','画面下の「Emmaの声を有効にする」を一度タップしてください。');
+  setState('speaking','AIの声を有効にしてください','画面下の「みつことばの声を有効にする」を一度タップしてください。');
   await new Promise(resolve=>audioUnlockWaiters.push(resolve));
 }
 
