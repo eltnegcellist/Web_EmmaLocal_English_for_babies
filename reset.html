@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
-  <title>Emma Web リセット</title>
+  <title>みつことば Web リセット</title>
   <style>
     body{font-family:system-ui,-apple-system,sans-serif;margin:0;min-height:100vh;display:grid;place-items:center;background:#fbf8ff;color:#332b3d}
     main{max-width:640px;padding:32px;text-align:center}
@@ -15,7 +15,7 @@
 </head>
 <body>
   <main>
-    <h1 id="title">Emma Webを最新版に更新しています</h1>
+    <h1 id="title">みつことば Webを最新版に更新しています</h1>
     <p id="status">古いアプリキャッシュを整理しています…</p>
   </main>
   <script>
@@ -26,7 +26,7 @@
       const targetPath='/Web_EmmaLocal_English_for_babies/';
 
       if(fullReset){
-        title.textContent='Emma Webを初期状態に戻しています';
+        title.textContent='みつことば Webを初期状態に戻しています';
         status.textContent='設定とモデルキャッシュを整理しています…';
       }
 
@@ -106,7 +106,7 @@
           status.textContent='更新できました。最新版を開きます…';
         }
       }catch(error){
-        console.warn('Emma reset:',error);
+        console.warn('Mitsukotoba reset:',error);
         status.textContent=fullReset
           ? '初期化処理を続けます…'
           : '更新処理を続けます…';
