@@ -790,7 +790,7 @@ export class LiteResponseEngine {
 
     if (explicitScene) {
       this.activeSceneId = explicitScene.id;
-      this.activeSceneTurnsRemaining = 3;
+      this.activeSceneTurnsRemaining = 5;
     } else if (contextualScene) {
       this.activeSceneTurnsRemaining -= 1;
       if (this.activeSceneTurnsRemaining <= 0) this.activeSceneId = null;
