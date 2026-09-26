@@ -154,7 +154,7 @@ console.log('Meaningful utterance gate tests OK');
 
 const stickyEngine=new LiteResponseEngine();
 if(stickyEngine.respond('ミルク飲もうね').scene!=='milk') throw new Error('sticky topic seed should be milk');
-for(const input of ['どうかな','おいしいね','いっぱい飲んだね','まだいけるかな','よかったね']){
+for(const input of ['どうかな','おいしいね','いい感じだね','そのままでいいよ','よかったね']){
   const out=stickyEngine.respond(input);
   if(out.scene!=='milk') throw new Error(`sticky topic should remain milk for ${input}, got ${out.scene}`);
 }
