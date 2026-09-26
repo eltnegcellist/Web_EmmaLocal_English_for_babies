@@ -7,7 +7,7 @@
 **Web版を開く**  
 https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
 
-みつことばは、**赤ちゃんに英語を聞かせるだけではなく、親・赤ちゃん・AIの3人で英語が生まれる時間をつくる**ためのアプリです。
+みつことばは、**赤ちゃんに英語を聞かせるだけではなく、親・赤ちゃん・AIの3人で英語が生まれる時間をつくる**ためのアプリです。親・赤ちゃん・AIの3者を表す正式ロゴを、Web/PWAとAndroidで共通ブランドとして使用しています。
 
 親が普段どおり日本語で話すと、AIキャラクターの **Emma** がその場面を文脈として受け取り、赤ちゃんへ短い英語で返します。Emmaという名前は設定で変更でき、ぬいぐるみなど別のキャラクターとして使うこともできます。乳児の外国語学習研究では、受動的な音声・映像だけの場合と、社会的な相手と関わりながら経験する場合では学習が異なる可能性が示されています。
 
@@ -92,10 +92,10 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.7.0** と対応するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.7.1** と対応するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.7.0
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.7.1
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版は **Liteのみ** です。
@@ -294,10 +294,10 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.7.0**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.7.1**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.7.0
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.7.1
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition is **Lite-only**.
