@@ -92,10 +92,10 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.6.1** と対応するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.7.0** と対応するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.6.1
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.7.0
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版は **Liteのみ** です。
@@ -294,10 +294,10 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.6.1**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.7.0**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.6.1
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.7.0
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition is **Lite-only**.
