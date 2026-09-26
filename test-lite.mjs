@@ -154,15 +154,15 @@ console.log('Meaningful utterance gate tests OK');
 
 const stickyEngine=new LiteResponseEngine();
 if(stickyEngine.respond('ミルク飲もうね').scene!=='milk') throw new Error('sticky topic seed should be milk');
-for(const input of ['どうかな','おいしいね','いい感じだね','そのままでいいよ','よかったね']){
+for(const input of ['どうかな','おいしいね','いい感じだね','そのままでいいよ','よかったね','ゆっくりでいいよ']){
   const out=stickyEngine.respond(input);
   if(out.scene!=='milk') throw new Error(`sticky topic should remain milk for ${input}, got ${out.scene}`);
 }
-if(stickyEngine.respond('かわいいね').scene!=='generic') throw new Error('sticky topic should expire after five follow-ups');
+if(stickyEngine.respond('かわいいね').scene!=='generic') throw new Error('sticky topic should expire after six follow-ups');
 
 const switchEngine=new LiteResponseEngine();
 if(switchEngine.respond('ミルク飲もうね').scene!=='milk') throw new Error('topic switch seed should be milk');
 if(switchEngine.respond('どうかな').scene!=='milk') throw new Error('topic should still be milk');
 if(switchEngine.respond('お風呂入ろうね').scene!=='bath') throw new Error('explicit bath should override milk immediately');
 if(switchEngine.respond('気持ちいいね').scene!=='bath') throw new Error('bath context should persist');
-console.log('Five-turn topic memory tests OK');
+console.log('Six-turn topic memory tests OK');
