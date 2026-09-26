@@ -95,6 +95,8 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 
 Web Liteでは「呼びかけ」を利用できます。「会話」はAndroid Fullで利用できます。
 
+Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして使います。genericは話題として保存せず、過去6ターン内の具体的な育児トピックだけをGemmaへ参考情報として渡します。
+
 ### 会話を自分で区切る
 
 通常は発話終了を自動検出して返答します。終了検出がうまくいかない場合や、ここまでで返してほしい場合は、会話中の **「ここで返事して」** を押してください。その時点までVADが保持している音声を強制確定し、Moonshineへ渡して返答します。自動返答をONにしたままでも使えます。
@@ -120,7 +122,7 @@ Web版は **Liteのみ** です。
 マイク
 ↓
 Moonshine Japanese Tiny Streaming
-  └─ Small Streamingは任意
+  └─ Tiny Streamingは軽量オプション
 ↓
 LiteResponseEngine
 ↓
@@ -133,7 +135,7 @@ Kitten TTS Nano 0.8 / Kiki
 
 - Moonshineをブラウザ内WASMでローカル実行します
 - 既定はJapanese Tiny Streamingです
-- Small Streamingを高精度オプションとして追加できます
+- 標準はSmall Streaming。Tiny Streamingは初回の詳細設定または設定画面から軽量オプションとして選べます
 - ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
 - Moonshine 0.1.5のブラウザ用アセットを `src/vendor/moonshine/` に固定しています
 
@@ -147,7 +149,7 @@ Kitten TTS Nano 0.8 / Kiki
 
 初回起動時に、選択した構成に必要なモデルを取得します。
 
-標準構成はMoonshine Tiny Streaming + Kitten TTS Nanoです。Small Streamingは設定で選択した場合のみ追加取得します。
+標準構成はMoonshine Small Streaming + Kitten TTS Nanoです。Tiny Streamingはモデルサイズを優先したい場合に選べる軽量オプションです。Liteの具体的な育児トピックは最大6ターン保持し、明確な別話題が出れば即時に切り替えます。
 
 モデル準備後、音声認識・応答選択・音声合成はブラウザ内でローカル実行する設計です。
 
@@ -322,7 +324,7 @@ The Web edition is **Lite-only**.
 Microphone
 ↓
 Moonshine Japanese Tiny Streaming
-  └─ Small Streaming is optional
+  └─ Tiny Streaming is the lightweight option
 ↓
 LiteResponseEngine
 ↓
@@ -335,7 +337,7 @@ Mitsukotoba avatar + PCM-linked lip sync
 
 - Moonshine runs locally in browser WASM
 - Japanese Tiny Streaming is the default model
-- Small Streaming can be added as a higher-accuracy option
+- Small Streaming is the default; Tiny Streaming is available as a lightweight option from first-run advanced settings or Settings
 - The browser Web Speech / SpeechRecognition API is not used
 - Moonshine 0.1.5 browser assets are pinned in `src/vendor/moonshine/`
 
@@ -349,7 +351,7 @@ Mitsukotoba avatar + PCM-linked lip sync
 
 The first launch downloads the models required by the selected configuration.
 
-The default configuration uses Moonshine Tiny Streaming plus Kitten TTS Nano. Small Streaming is downloaded only when selected.
+The default configuration uses Moonshine Small Streaming plus Kitten TTS Nano. Tiny Streaming is an optional lightweight alternative. Lite keeps a concrete childcare topic for up to six follow-up turns unless a new explicit topic appears.
 
 After model setup, recognition, response selection, and speech synthesis are designed to run locally in the browser.
 
