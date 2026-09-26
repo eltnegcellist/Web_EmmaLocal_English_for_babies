@@ -1,7 +1,7 @@
 {
-  "name": "Emma — Local English for Babies",
-  "short_name": "Emma",
-  "description": "親子の自然な時間に、ローカル処理の英語話者Emmaを加えるWebアプリ",
+  "name": "みつことば — 親と赤ちゃんとAIの英語時間",
+  "short_name": "みつことば",
+  "description": "親と赤ちゃんとAI、3人でつくるローカル英語Webアプリ",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
