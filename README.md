@@ -86,10 +86,10 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.6.0** と対応するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.6.1** と対応するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.6.0
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.6.1
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版は **Liteのみ** です。
@@ -284,10 +284,10 @@ It is an attempt to turn one research theme into a practical home design: **lang
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.6.0**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.6.1**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.6.0
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.6.1
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition is **Lite-only**.
