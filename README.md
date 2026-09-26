@@ -9,7 +9,7 @@ https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
 
 みつことばは、**赤ちゃんに英語を聞かせるだけではなく、親・赤ちゃん・AIの3人で英語が生まれる時間をつくる**ためのアプリです。
 
-親が普段どおり日本語で話すと、AIがその場面を文脈として受け取り、赤ちゃんへ短い英語で返します。乳児の外国語学習研究では、受動的な音声・映像だけの場合と、社会的な相手と関わりながら経験する場合では学習が異なる可能性が示されています。
+親が普段どおり日本語で話すと、AIキャラクターの **Emma** がその場面を文脈として受け取り、赤ちゃんへ短い英語で返します。Emmaという名前は設定で変更でき、ぬいぐるみなど別のキャラクターとして使うこともできます。乳児の外国語学習研究では、受動的な音声・映像だけの場合と、社会的な相手と関わりながら経験する場合では学習が異なる可能性が示されています。
 
 みつことばは、スマホを赤ちゃんに渡して終わりにするのではなく、**親も一緒に参加する3者の相互作用**を家庭につくることを目指しています。
 
@@ -60,6 +60,8 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 
 大切にしているのは、**スマホを渡して終わりにしないこと**です。親・赤ちゃん・AIの3人が同じ時間に参加する使い方を想定しています。
 
+画面を見せたくない場合は、端末をぬいぐるみの後ろなど、赤ちゃんの手が届かず放熱できる場所に置き、Emmaの声だけを聞かせる使い方もできます。AIの名前はぬいぐるみに合わせて変更できます。端末を布で覆ったり、充電中の端末をぬいぐるみの下や赤ちゃんの寝床へ置いたりしないでください。
+
 #### なぜAIには顔があるのか
 
 新生児が、スクランブルされた配置や空白の刺激よりも、顔らしく配置された刺激をより長く追視することを示した研究があります。
@@ -83,6 +85,10 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 - [American Academy of Pediatrics (2026)](https://doi.org/10.1542/peds.2025-075320) — *Digital Ecosystems, Children, and Adolescents: Policy Statement*. Pediatrics 157(2), e2025075320.
 - [World Health Organization (2019)](https://www.who.int/publications/i/item/9789241550536) — *Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age*.
 - [Johnson et al. (1991)](https://doi.org/10.1016/0010-0277(91)90045-6) — *Newborns' preferential tracking of face-like stimuli and its subsequent decline*. Cognition 40(1–2), 1–19.
+
+### 会話を自分で区切る
+
+通常は発話終了を自動検出して返答します。終了検出がうまくいかない場合や、ここまでで返してほしい場合は、会話中の **「ここで返事して」** を押してください。その時点までVADが保持している音声を強制確定し、Moonshineへ渡して返答します。自動返答をONにしたままでも使えます。
 
 ### 安定版の位置づけ
 
@@ -211,7 +217,7 @@ https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
 
 Mitsukotoba is designed not simply to play English to a baby, but to create **a three-way interaction among parent, baby, and AI**.
 
-The parent speaks naturally in Japanese, and the AI responds to the baby in short English that fits the current situation. Research on infant foreign-language learning suggests that passive audio/video exposure may not be equivalent to socially interactive experience.
+The parent speaks naturally in Japanese, and the default AI character, **Emma**, responds to the baby in short English that fits the current situation. The character name can be changed in Settings, including for use with a favorite toy or plush character. Research on infant foreign-language learning suggests that passive audio/video exposure may not be equivalent to socially interactive experience.
 
 The intended use is not to hand a phone to a baby and disengage, but to keep the caregiver inside the interaction.
 
@@ -281,6 +287,10 @@ It is an attempt to turn one research theme into a practical home design: **lang
 - [American Academy of Pediatrics (2026)](https://doi.org/10.1542/peds.2025-075320) — *Digital Ecosystems, Children, and Adolescents: Policy Statement*. Pediatrics 157(2), e2025075320.
 - [World Health Organization (2019)](https://www.who.int/publications/i/item/9789241550536) — *Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age*.
 - [Johnson et al. (1991)](https://doi.org/10.1016/0010-0277(91)90045-6) — *Newborns' preferential tracking of face-like stimuli and its subsequent decline*. Cognition 40(1–2), 1–19.
+
+### Manually End a Turn
+
+Mitsukotoba normally detects the end of speech automatically. If endpoint detection is slow or you want a reply immediately, tap **“Reply now”**. The Web app forces the current VAD-held utterance to end and processes the audio collected so far. This works even while automatic response is enabled.
 
 ### Stable Project Baseline
 
