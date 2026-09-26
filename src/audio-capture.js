@@ -50,6 +50,16 @@ export class EmmaMicrophone {
     this.vad.reset();
   }
 
+  forceUtterance() {
+    if (!this.context) return null;
+    const audio = this.vad.forceCurrentUtterance();
+    if (!audio || !audio.length) return null;
+    const downsampled = resampleLinear(audio, this.context.sampleRate, 16000);
+    if (downsampled.length < 16000 * 0.32) return null;
+    this.onState?.('listening');
+    return downsampled;
+  }
+
   async ensureActive() {
     if (this.context && this.context.state === 'suspended') {
       await this.context.resume();
@@ -85,6 +95,12 @@ class AdaptiveEndpointDetector {
     this.aboveSince = 0;
     this.preRoll = [];
     this.preRollSamples = 0;
+  }
+  forceCurrentUtterance() {
+    const chunks = this.inSpeech ? this.frames : this.preRoll;
+    const audio = chunks.length ? concatFloat32(chunks) : null;
+    this.resetSpeechOnly();
+    return audio;
   }
   push(frame, sampleRate, now) {
     const rms = rootMeanSquare(frame);
