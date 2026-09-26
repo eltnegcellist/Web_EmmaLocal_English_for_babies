@@ -13,70 +13,121 @@
 <body>
   <main class="app-shell">
     <section id="onboardingScreen" class="screen hidden">
-      <div class="screen-content onboarding-content">
-        <h1>はじめまして。みつことばです</h1>
-        <p class="lead">親と赤ちゃんとAI、3人でつくる英語の時間。親がいつもの日本語で話すと、AIがその場面を受け取り、赤ちゃんへやさしい英語で直接話しかけます。</p>
-        <p class="small muted"><strong>このWeb版は みつことば Lite です。</strong> Android版には Lite / Full の2つがあります。</p>
-        <p class="muted">単なる日本語→英語の翻訳ではありません。お風呂、ミルク、ねんね、遊びなど、今この瞬間に合う短くリズミカルな英語を返します。</p>
+      <div class="screen-content onboarding-content onboarding-app">
+        <div class="onboarding-glow glow-a" aria-hidden="true"></div>
+        <div class="onboarding-glow glow-b" aria-hidden="true"></div>
 
-        <button id="onboardingAboutButton" class="outline-button">なぜ3人で話すの？ みつことばとは？</button>
-
-        <article class="card">
-          <h2>3人でつくる、みつことばのしくみ</h2>
-          <p>① 親の日本語を聞き取る</p>
-          <p>② その場面に合う赤ちゃん向け英語を選ぶ</p>
-          <p>③ AIが赤ちゃんへ英語で話す</p>
-          <p class="small muted">音声認識・返答選択・音声生成は端末内で行います。クラウド音声認識へ音声を送りません。</p>
-        </article>
-
-        <h2 class="section-title">赤ちゃんの設定（任意）</h2>
-        <article class="card family-card">
-          <label>名前（任意・日本語）
-            <input id="onboardingBabyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
-          </label>
-          <div class="field-title">性別</div>
-          <div class="segmented" data-gender-group="onboarding">
-            <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
-            <button data-gender="GIRL" class="segment-button">女の子</button>
-            <button data-gender="BOY" class="segment-button">男の子</button>
+        <header class="brand-row">
+          <div class="brand-lockup">
+            <div class="brand-orbit" aria-hidden="true">
+              <span class="orbit-dot parent-dot">親</span>
+              <span class="orbit-dot baby-dot">赤</span>
+              <span class="orbit-dot ai-dot">AI</span>
+            </div>
+            <div>
+              <div class="brand-name">みつことば</div>
+              <div class="brand-subtitle">親と赤ちゃんとAIの英語時間</div>
+            </div>
           </div>
-          <button id="onboardingPronunciationToggle" type="button" class="text-button inline-button">名前の読み方を調整</button>
-          <div id="onboardingPronunciationPanel" class="hidden">
-            <label>英語で呼ぶ名前
-              <input id="onboardingSpokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Hana" />
-            </label>
-            <label class="toggle-line">
-              <span>名前に「-chan」を付ける</span>
-              <span class="switch"><input id="onboardingUseChanSuffix" type="checkbox" checked /><span></span></span>
-            </label>
-            <p id="onboardingSpokenNamePreview" class="small muted"></p>
+          <button id="onboardingAboutButton" class="quiet-button">詳しく知る</button>
+        </header>
+
+        <section class="welcome-hero">
+          <div class="hero-kicker">LOCAL ENGLISH FOR BABIES</div>
+          <h1>いつもの日本語から、<br><span>赤ちゃんへの英語が生まれる。</span></h1>
+          <p class="hero-copy">親が話すと、AIがその場に合う短い英語を赤ちゃんへ返します。翻訳ではなく、<strong>3人で同じ時間を共有する</strong>ためのアプリです。</p>
+
+          <div class="interaction-flow" aria-label="みつことばの使い方">
+            <div class="flow-item">
+              <div class="flow-icon parent">親</div>
+              <div class="flow-text"><strong>日本語で話す</strong><span>いつも通りでOK</span></div>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-item">
+              <div class="flow-icon ai">AI</div>
+              <div class="flow-text"><strong>場面を理解</strong><span>直訳しません</span></div>
+            </div>
+            <div class="flow-arrow" aria-hidden="true">→</div>
+            <div class="flow-item">
+              <div class="flow-icon baby">赤</div>
+              <div class="flow-text"><strong>英語で話す</strong><span>短く、やさしく</span></div>
+            </div>
           </div>
-        </article>
 
-        <article class="card">
-          <h2>初回だけ準備します</h2>
-          <p>日本語の聞き取りは、標準ではMoonshine Japanese Tiny Streamingをブラウザ内で実行します。設定からSmall Streamingも選べます。</p>
-          <p class="small muted">初回は音声認識やみつことばの声に必要なデータを取得する場合があります。認識中の音声をクラウド音声認識へ送信することはありません。</p>
-        </article>
+          <div class="hero-example">
+            <span class="example-parent">「お風呂入ろうね」</span>
+            <span class="example-reply">“Bath time! Splash, splash!”</span>
+          </div>
+        </section>
 
-        <button id="prepareEmmaButton" class="primary-button">みつことばを準備する</button>
-        <div id="onboardingProgress" class="progress-wrap hidden">
-          <div class="progress-track"><div id="onboardingProgressBar" class="progress-bar"></div></div>
-          <div id="onboardingProgressText" class="progress-text"></div>
+        <section class="start-panel">
+          <button id="prepareEmmaButton" class="primary-button hero-start-button">
+            <span class="button-main">3人で話しはじめる</span>
+            <span class="button-sub">初回のみ音声モデルを準備します</span>
+          </button>
+          <div id="onboardingProgress" class="progress-wrap hidden">
+            <div class="progress-track"><div id="onboardingProgressBar" class="progress-bar"></div></div>
+            <div id="onboardingProgressText" class="progress-text"></div>
+          </div>
+          <div class="local-trust">
+            <span class="trust-dot"></span>
+            <span>会話処理は端末内。クラウドAIへ音声を送りません。</span>
+          </div>
+        </section>
+
+        <details class="setup-disclosure">
+          <summary>
+            <span>
+              <strong>赤ちゃんの設定</strong>
+              <small>名前などを登録する場合はこちら（任意）</small>
+            </span>
+            <span class="summary-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="setup-body">
+            <label>名前（任意・日本語）
+              <input id="onboardingBabyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
+            </label>
+            <div class="field-title">性別</div>
+            <div class="segmented" data-gender-group="onboarding">
+              <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
+              <button data-gender="GIRL" class="segment-button">女の子</button>
+              <button data-gender="BOY" class="segment-button">男の子</button>
+            </div>
+            <button id="onboardingPronunciationToggle" type="button" class="text-button inline-button">名前の読み方を調整</button>
+            <div id="onboardingPronunciationPanel" class="hidden">
+              <label>英語で呼ぶ名前
+                <input id="onboardingSpokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Hana" />
+              </label>
+              <label class="toggle-line">
+                <span>名前に「-chan」を付ける</span>
+                <span class="switch"><input id="onboardingUseChanSuffix" type="checkbox" checked /><span></span></span>
+              </label>
+              <p id="onboardingSpokenNamePreview" class="small muted"></p>
+            </div>
+          </div>
+        </details>
+
+        <div class="onboarding-footnote">
+          <span>Web版は <strong>みつことば Lite</strong></span>
+          <span>・</span>
+          <span>Android版には Lite / Full</span>
         </div>
       </div>
     </section>
 
     <section id="homeScreen" class="screen hidden">
       <div class="screen-content home-content">
-        <header class="topbar">
-          <div>
-            <h1>みつことば</h1>
-            <p>親と赤ちゃんとAI、3人でつくる英語の時間</p>
+        <header class="topbar app-topbar">
+          <div class="home-brand">
+            <div class="mini-brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div>
+              <h1>みつことば</h1>
+              <p>親・赤ちゃん・AIの英語時間</p>
+            </div>
           </div>
-          <nav>
-            <button id="aboutButton" class="text-button">みつことばとは？</button>
-            <button id="settingsButton" class="text-button">設定</button>
+          <nav class="app-actions">
+            <button id="aboutButton" class="icon-text-button" aria-label="みつことばについて">？<span>About</span></button>
+            <button id="settingsButton" class="icon-text-button" aria-label="設定">⚙<span>設定</span></button>
           </nav>
         </header>
 
