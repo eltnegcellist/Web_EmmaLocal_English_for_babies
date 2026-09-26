@@ -193,6 +193,44 @@ export const CHILDCARE_ASR_KEYTERMS = [
   "お散歩", "ベビーカー", "離乳食", "絵本", "音楽",
 ];
 
+const MEANINGFUL_SHORT_FORMS = [
+  "ミルク", "みるく", "みのく", "母乳", "おっぱい", "授乳", "哺乳瓶",
+  "お風呂", "風呂", "沐浴", "シャワー",
+  "寝る", "寝よう", "ねんね", "おやすみ", "昼寝", "眠い",
+  "起きた", "起きよう", "おはよう",
+  "おむつ", "オムツ", "うんち", "おしっこ",
+  "着替え", "抱っこ", "だっこ", "ぎゅー",
+  "おてて", "あんよ", "笑った", "笑顔", "泣く", "泣いて",
+  "げっぷ", "吐き戻", "お腹いっぱい",
+  "遊ぼ", "おもちゃ", "散歩", "お散歩", "ベビーカー",
+  "雨", "晴れ", "お日様", "ごはん", "離乳食", "絵本", "音楽", "歌お",
+].map(normalize);
+
+const FILLER_ONLY = new Set([
+  "あ", "ああ", "あー", "あーー",
+  "う", "うう", "うー", "うーー",
+  "え", "ええ", "えー", "えーー",
+  "お", "おお", "おー", "おーー",
+  "ん", "んん", "んー", "んーー",
+  "あう", "うあ", "あうあう", "うあうあ", "あーうー", "うーあー",
+  "えっと", "えーと", "あの", "うん", "うんうん",
+].map(normalize));
+
+export function isMeaningfulUtterance(raw) {
+  const value=normalize(String(raw||'').replaceAll('[不明]','').replaceAll('[unclear]',''));
+  if(!value || value==='不明' || value==='unclear') return false;
+  if(FILLER_ONLY.has(value)) return false;
+  if(MEANINGFUL_SHORT_FORMS.some(x=>x && value.includes(x))) return true;
+  if(/^[あいうえおんぁぃぅぇぉー〜]+$/.test(value)) return false;
+  if(/^[アイウエオンァィゥェォー〜]+$/.test(value)) return false;
+  if(value.length>=4) return true;
+  const contentChars=[...value].filter(ch=>{
+    const code=ch.codePointAt(0);
+    return (code>=0x30A1&&code<=0x30FA) || (code>=0x3400&&code<=0x4DBF) || (code>=0x4E00&&code<=0x9FFF);
+  }).length;
+  return value.length>=2 && contentChars>=1;
+}
+
 const SCENE_HINTS = {
   bath: [
     "お風呂入", "風呂入", "おふろはい", "シャワー浴", "体洗", "洗お", "湯船入"
@@ -711,6 +749,8 @@ export class LiteResponseEngine {
     this.recentOpeners = [];
     this.turnCounter = 0;
     this.turnsSinceName = STYLE.NAME_REPEAT_WINDOW;
+    this.activeSceneId = null;
+    this.activeSceneTurnsRemaining = 0;
   }
 
   respond(transcript, spokenBabyName = "") {
@@ -732,10 +772,24 @@ export class LiteResponseEngine {
       ])),
       SCENE_EXCLUSIONS,
     );
-    const scene = selected?.[0]
+    const explicitScene = selected?.[0]
       || (rescued ? SCENES.find(candidate => candidate.id === rescued.sceneId) : null)
       || null;
-    const sceneScore = selected?.[1] || rescued?.score || 0;
+    const explicitScore = selected?.[1] || rescued?.score || 0;
+    const contextualScene = !explicitScene && this.activeSceneTurnsRemaining > 0
+      ? SCENES.find(candidate => candidate.id === this.activeSceneId) || null
+      : null;
+    const scene = explicitScene || contextualScene;
+    const sceneScore = explicitScene ? explicitScore : contextualScene ? 2 : 0;
+
+    if (explicitScene) {
+      this.activeSceneId = explicitScene.id;
+      this.activeSceneTurnsRemaining = 3;
+    } else if (contextualScene) {
+      this.activeSceneTurnsRemaining -= 1;
+      if (this.activeSceneTurnsRemaining <= 0) this.activeSceneId = null;
+    }
+
     const replies = scene?.replies || GENERIC_REPLIES;
     const safeName = sanitizeName(spokenBabyName);
     const forceName = !!safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW;
@@ -749,6 +803,11 @@ export class LiteResponseEngine {
       ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
     return { english: styled, scene: scene?.id || "generic", score: sceneScore };
+  }
+
+  resetConversationContext() {
+    this.activeSceneId = null;
+    this.activeSceneTurnsRemaining = 0;
   }
 
   chooseReply(replies, transcript, forceName, suppressName) {
