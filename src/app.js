@@ -8,7 +8,7 @@ const ui = {
   onboardingBabyName:$('onboardingBabyName'), onboardingSpokenBabyName:$('onboardingSpokenBabyName'),
   onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
   onboardingPronunciationToggle:$('onboardingPronunciationToggle'), onboardingPronunciationPanel:$('onboardingPronunciationPanel'),
-  prepareEmmaButton:$('prepareEmmaButton'),
+  prepareEmmaButton:$('prepareみつことばButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'),
   progressWrap:$('progressWrap'), progressBar:$('progressBar'), progressText:$('progressText'),
@@ -110,12 +110,12 @@ function initUi() {
 }
 
 function bindEvents() {
-  ui.mainButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); startEmma(); });
-  ui.stopButton.addEventListener('click', stopEmma);
+  ui.mainButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); startみつことば(); });
+  ui.stopButton.addEventListener('click', stopみつことば);
   ui.manualReplyButton.addEventListener('click', respondToPendingUtterance);
   ui.enableAudioButton?.addEventListener('click',unlockPlaybackAudioFromGesture);
   document.addEventListener('pointerdown',()=>{ if(!audioUnlocked) unlockPlaybackAudioFromGesture(); },{capture:true,passive:true});
-  ui.prepareEmmaButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); prepareFirstRun(); });
+  ui.prepareみつことばButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); prepareFirstRun(); });
 
   ui.aboutButton.addEventListener('click',()=>openAbout('home'));
   ui.settingsAboutButton.addEventListener('click',()=>openAbout('settings'));
@@ -123,7 +123,7 @@ function bindEvents() {
   ui.aboutBackButton.addEventListener('click',()=>showScreen(previousScreen));
   ui.settingsBackButton.addEventListener('click',()=>showScreen('home'));
   ui.settingsButton.addEventListener('click',async()=>{
-    if (running || speaking || processing) await stopEmma();
+    if (running || speaking || processing) await stopみつことば();
     showScreen('settings');
   });
 
@@ -231,7 +231,7 @@ function bindEvents() {
 
     if(ui.asrModelStatus) {
       const label=next==='small' ? 'Small' : 'Tiny';
-      ui.asrModelStatus.textContent=`${label}へ切り替えるためEmmaを再読み込みします…`;
+      ui.asrModelStatus.textContent=`${label}へ切り替えるためみつことばを再読み込みします…`;
     }
 
     const url=new URL(location.href);
@@ -286,7 +286,7 @@ function showScreen(name,{autoStart=true}={}) {
   if(autoStart && name==='home' && localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION) {
     queueMicrotask(()=>{
       if(!running && !processing && !speaking && !ui.mainButton.disabled) {
-        startEmma({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
+        startみつことば({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
       }
     });
   }
@@ -382,7 +382,7 @@ async function clearObsoleteModelCaches() {
 }
 
 async function prepareFirstRun() {
-  ui.prepareEmmaButton.disabled=true;
+  ui.prepareみつことばButton.disabled=true;
   showOnboardingProgress(true,0,'マイクの使用許可を確認しています…');
   try {
     // Ask for microphone permission immediately while the user's tap is still
@@ -399,7 +399,7 @@ async function prepareFirstRun() {
     showProgress(false);
     setBusy(false);
     showScreen('home');
-    setState('thinking','準備できました','Emmaとの会話を自動で開始します。');
+    setState('thinking','準備できました','みつことばとの会話を自動で開始します。');
   } catch(error) {
     console.error(error);
     showOnboardingProgress(true,0,friendlyError(error));
@@ -425,13 +425,13 @@ async function startEmma({ auto = false } = {}) {
 
     // Only after real capture is active do we prepare the local ASR/TTS models.
     // This prevents model startup from blocking the microphone permission UI.
-    setState('thinking','Emmaを準備しています','マイクは起動済みです。Moonshineと音声モデルを準備しています。');
+    setState('thinking','みつことばを準備しています','マイクは起動済みです。Moonshineと音声モデルを準備しています。');
     showProgress(true,0,'Moonshineを準備しています…');
     await navigator.storage?.persist?.().catch(()=>false);
     await withTimeout(
       initWorkers(),
       330000,
-      'Emmaの準備が完了しませんでした。ページを再読み込みして、もう一度お試しください。'
+      'みつことばの準備が完了しませんでした。ページを再読み込みして、もう一度お試しください。'
     );
 
     // The microphone has been open while the models initialize. Discard any
@@ -447,7 +447,7 @@ async function startEmma({ auto = false } = {}) {
     setBusy(false);
     showProgress(false);
     if(ui.keepAwake.checked) await requestWakeLock();
-    setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+    setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   } catch(error) {
     console.error(error);
     running=false;
@@ -484,7 +484,7 @@ async function stopEmma() {
   ui.mainButton.classList.remove('hidden');
   ui.mainButton.disabled=false;
   setBusy(false);
-  setState('idle','Emmaはおやすみ中','「Emmaと話す」を押すと、また会話できます。');
+  setState('idle','みつことばはおやすみ中','「3人で話す」を押すと、また会話できます。');
 }
 
 function handleCapturedUtterance(audio) {
@@ -493,7 +493,7 @@ function handleCapturedUtterance(audio) {
   else {
     pendingUtterance={kind:'audio',audio};
     ui.manualReplyButton.classList.remove('hidden');
-    setState('understood','話し終わりを検出しました','「今返事して」を押すとEmmaが返事します。');
+    setState('understood','話し終わりを検出しました','「今返事して」を押すとAIが返事します。');
   }
 }
 
@@ -511,7 +511,7 @@ async function startMoonshineCapture() {
     onState:(state)=>{
       if(!workersReady||processing||speaking)return;
       if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
-      else setState('listening','Emmaが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+      else setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
     },
     onUtterance:handleCapturedUtterance,
     shouldIgnore:()=>!workersReady||processing||speaking
@@ -616,7 +616,7 @@ function showMoonshineProgress(progress,message) {
 
 async function ensureWorkersForDebug() {
   setBusy(true);
-  showProgress(true,0,'Emmaの声を準備しています…');
+  showProgress(true,0,'みつことばの声を準備しています…');
   await initWorkers();
   setBusy(false);
   showProgress(false);
@@ -625,8 +625,8 @@ async function ensureWorkersForDebug() {
 function handleTtsMessage(event,readyResolve,readyReject) {
   const m=event.data;
   if(m.type==='status') {
-    showProgress(true,m.progress??0,m.message||'Emmaの声を準備しています…');
-    showOnboardingProgress(true,m.progress??0,m.message||'Emmaの声を準備しています…');
+    showProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
+    showOnboardingProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
   } else if(m.type==='ready') readyResolve?.(m);
   else if(m.type==='error') {
     const error=new Error(m.message || 'Kitten TTSでエラーが発生しました。');
@@ -682,11 +682,11 @@ async function processTranscript(text) {
   if(!clean){
     processing=false;
     setBusy(false);
-    setState('listening','Emmaが聞いています','うまく聞き取れませんでした。もう一度そのまま話してください。');
+    setState('listening','AIが聞いています','うまく聞き取れませんでした。もう一度そのまま話してください。');
     return;
   }
   showConversation(clean,'');
-  setState('understood','わかりました','Emmaが赤ちゃんへ話しかけます。');
+  setState('understood','わかりました','AIが赤ちゃんへ話しかけます。');
   const response=engine.respond(clean,getSpokenBabyName());
   showConversation(clean,response.english);
   processing=false;
@@ -711,7 +711,7 @@ async function releaseMicrophoneForEmmaVoice() {
   return true;
 }
 
-async function restoreMicrophoneAfterEmmaVoice() {
+async function restoreMicrophoneAfterみつことばVoice() {
   if(!running || mic) return;
   try {
     await startMoonshineCapture();
@@ -730,7 +730,7 @@ async function speakResponse(text) {
   const shouldRestoreMic=running && Boolean(mic);
   if(shouldRestoreMic){
     setState('thinking','Emmaが話す準備をしています','マイクを一時停止してスピーカー音量へ切り替えています。');
-    await releaseMicrophoneForEmmaVoice();
+    await releaseMicrophoneForみつことばVoice();
   }
 
   speaking=true;
@@ -756,7 +756,7 @@ async function speakResponse(text) {
 
     if(shouldRestoreMic && running){
       try {
-        await restoreMicrophoneAfterEmmaVoice();
+        await restoreMicrophoneAfterみつことばVoice();
       } catch(error) {
         console.error('Microphone restore failed after Emma voice.',error);
       }
@@ -1008,7 +1008,7 @@ function updateSpokenNamePreview() {
   const message=!base
     ? '名前は未設定です。'
     : spoken
-      ? `Emmaが呼ぶ名前：${spoken}`
+      ? `みつことばが呼ぶ名前：${spoken}`
       : '必要な場合だけ、英字で読み方を指定してください。';
   ui.spokenNamePreview.textContent=message;
   ui.onboardingSpokenNamePreview.textContent=message;
