@@ -641,3 +641,32 @@ body{
   border:1px solid rgba(111,77,176,.10);
 }
 .flow-icon.ai{font-size:.72rem;letter-spacing:-.02em}
+
+.brand-logo-img{
+  width:50px;
+  height:50px;
+  border-radius:16px;
+  object-fit:cover;
+  flex:0 0 50px;
+  box-shadow:0 8px 24px rgba(76,47,126,.10);
+}
+.home-logo-img{
+  width:36px;
+  height:36px;
+  border-radius:12px;
+  object-fit:cover;
+  flex:0 0 36px;
+  box-shadow:0 4px 12px rgba(76,47,126,.08);
+}
+.about-logo-wrap{
+  display:flex;
+  justify-content:center;
+  margin:4px 0 12px;
+}
+.about-logo{
+  width:112px;
+  height:112px;
+  border-radius:28px;
+  object-fit:cover;
+  box-shadow:0 12px 30px rgba(76,47,126,.10);
+}
