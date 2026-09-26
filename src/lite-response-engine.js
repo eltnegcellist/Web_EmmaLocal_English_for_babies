@@ -772,10 +772,16 @@ export class LiteResponseEngine {
       ])),
       SCENE_EXCLUSIONS,
     );
-    const explicitScene = selected?.[0]
+    const candidateScene = selected?.[0]
       || (rescued ? SCENES.find(candidate => candidate.id === rescued.sceneId) : null)
       || null;
-    const explicitScore = selected?.[1] || rescued?.score || 0;
+    const candidateScore = selected?.[1] || rescued?.score || 0;
+    const explicitScene = !candidateScene ? null
+      : !this.activeSceneId ? candidateScene
+        : candidateScene.id === this.activeSceneId ? candidateScene
+          : candidateScore >= 6 ? candidateScene
+            : null;
+    const explicitScore = explicitScene ? candidateScore : 0;
     const contextualScene = !explicitScene && this.activeSceneTurnsRemaining > 0
       ? SCENES.find(candidate => candidate.id === this.activeSceneId) || null
       : null;
