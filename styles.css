@@ -791,3 +791,17 @@ body{
   outline:3px solid rgba(111,77,176,.20);
   outline-offset:3px;
 }
+
+/* Inline artwork: direct images, no external background asset dependency */
+.flow-character-img{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  box-shadow:0 7px 20px rgba(48,41,64,.10);
+  border:3px solid rgba(255,255,255,.92);
+}
+@media(max-width:560px){
+  .flow-character-img{width:50px;height:50px}
+}
