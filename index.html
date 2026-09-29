@@ -7,7 +7,7 @@
   <meta name="description" content="みつことば Web — 親と赤ちゃんとAI、3人でつくるローカル英語アプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/mitsukotoba-english.svg?v=20260929-mobile-fixes-r5" type="image/svg+xml" />
-  <link rel="stylesheet" href="./styles.css?v=20260930-ui-r6" />
+  <link rel="stylesheet" href="./styles.css?v=20260930-layout-r7" />
   <title>みつことば Web Lite</title>
 </head>
 <body>
@@ -20,9 +20,9 @@
         <header class="brand-row brand-row-centered">
           <div class="mitsukotoba-brand-mark" aria-label="みつことば — 親と赤ちゃんとAIの英語時間">
             <div class="brand-characters" aria-hidden="true">
-              <img src="./assets/mitsukotoba-parent.webp?v=20260930-ui-r6" alt="" />
-              <img src="./assets/mitsukotoba-baby.png?v=20260930-ui-r6" alt="" />
-              <img src="./assets/emma-face/emma-face-idle-open.svg?v=20260930-ui-r6" alt="" />
+              <img src="./assets/mitsukotoba-ai.png?v=20260930-layout-r7" alt="" />
+              <img src="./assets/mitsukotoba-baby.png?v=20260930-layout-r7" alt="" />
+              <img src="./assets/mitsukotoba-parent.png?v=20260930-layout-r7" alt="" />
             </div>
             <div class="brand-wordmark" aria-hidden="true">
               <span class="brand-mi">み</span><span class="brand-tsu">つ</span><span class="brand-ko">こ</span><span class="brand-to">と</span><span class="brand-ba">ば</span>
@@ -42,23 +42,23 @@
 
           <div class="interaction-flow" aria-label="みつことばの使い方">
             <div class="flow-item">
-              <img class="flow-character-img" src="./assets/mitsukotoba-parent.webp?v=20260930-ui-r6" alt="親" />
+              <img class="flow-character-img" src="./assets/mitsukotoba-ai.png?v=20260930-layout-r7" alt="親" />
               <div class="flow-text"><strong>親</strong><span>日本語で話す</span></div>
             </div>
             <div class="flow-arrow" aria-hidden="true">→</div>
             <div class="flow-item">
-              <img class="flow-character-img" src="./assets/emma-face/emma-face-idle-open.svg?v=20260930-ui-r6" alt="AI" />
+              <img class="flow-character-img" src="./assets/mitsukotoba-parent.png?v=20260930-layout-r7" alt="AI" />
               <div class="flow-text"><strong>AI</strong><span>場面を理解する</span></div>
             </div>
             <div class="flow-arrow" aria-hidden="true">→</div>
             <div class="flow-item">
-              <img class="flow-character-img" src="./assets/mitsukotoba-baby.png?v=20260930-ui-r6" alt="赤ちゃん" />
+              <img class="flow-character-img" src="./assets/mitsukotoba-baby.png?v=20260930-layout-r7" alt="赤ちゃん" />
               <div class="flow-text"><strong>赤ちゃん</strong><span>短い英語を聞く</span></div>
             </div>
           </div>
 
           <div id="onboardingAiIntro" class="ai-intro">
-            <img class="ai-intro-character" src="./assets/emma-face/emma-face-idle-open.svg?v=20260930-ui-r6" alt="" aria-hidden="true" />
+            <img class="ai-intro-character" src="./assets/emma-face/emma-face-idle-open.svg?v=20260930-layout-r7" alt="" aria-hidden="true" />
             <span class="ai-intro-label">AIキャラクター</span>
             <span class="ai-intro-copy">名前は <strong>Emma</strong>。初回チュートリアルで自己紹介します。</span>
           </div>
@@ -99,7 +99,7 @@
           <summary>
             <span>
               <strong>赤ちゃんの設定</strong>
-              <small>名前などを登録する場合はこちら（任意）</small>
+              <small>名前・性別・英語での呼び方（任意）</small>
             </span>
             <span class="summary-chevron" aria-hidden="true">⌄</span>
           </summary>
@@ -107,10 +107,6 @@
             <label>名前（任意・日本語）
               <input id="onboardingBabyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
             </label>
-            <label>AIの名前（任意）
-              <input id="onboardingAiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
-            </label>
-            <p class="small muted onboarding-ai-name-help">空欄の場合はEmmaになります。英語音声で自然に読める英字の名前をおすすめします。</p>
             <div class="field-title">性別</div>
             <div class="segmented" data-gender-group="onboarding">
               <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
@@ -128,6 +124,22 @@
               </label>
               <p id="onboardingSpokenNamePreview" class="small muted"></p>
             </div>
+          </div>
+        </details>
+
+        <details class="setup-disclosure ai-setup-disclosure">
+          <summary>
+            <span>
+              <strong>AIの設定</strong>
+              <small>AIの名前を変更する場合はこちら（任意）</small>
+            </span>
+            <span class="summary-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="setup-body">
+            <label>AIの名前（任意）
+              <input id="onboardingAiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
+            </label>
+            <p class="small muted onboarding-ai-name-help">空欄の場合はEmmaになります。英語音声で自然に読める英字の名前をおすすめします。</p>
           </div>
         </details>
 
@@ -163,18 +175,14 @@
           <span class="privacy-dot">●</span>
         </article>
 
-        <section class="audience-card">
-          <div class="segmented audience-segmented">
-            <button class="segment-button selected" data-audience="BABY">呼びかけ</button>
-            <button id="parentAudienceButton" class="segment-button" data-audience="PARENT">会話</button>
-          </div>
-          <p id="audienceDescription" class="small muted"><strong>Web版はLiteのみです。</strong> 「呼びかけ」で、親子の今の場面にAIが短い英語を差し込みます。「会話」はAndroid Fullで利用できます。</p>
+        <section class="audience-card audience-card-single" aria-label="Web版のモード">
+          <div class="audience-only-label">呼びかけ</div>
         </section>
 
         <section class="avatar-wrap">
           <div id="avatar" class="avatar state-idle" aria-hidden="true">
             <div class="listening-ring"></div>
-            <img id="aiAvatarFace" class="emma-face-frame" src="./assets/emma-face/emma-face-idle-open.svg?v=20260930-ui-r6" alt="" aria-label="Emma（みつことば AI）" />
+            <img id="aiAvatarFace" class="emma-face-frame" src="./assets/emma-face/emma-face-idle-open.svg?v=20260930-layout-r7" alt="" aria-label="Emma（みつことば AI）" />
             <div class="thinking-dots"><span></span><span></span><span></span></div>
           </div>
           <div id="aiNameBadge" class="ai-name-badge">Emma</div>
@@ -249,26 +257,15 @@
         </header>
 
         
-        <details class="card settings-disclosure" id="familySettingsDisclosure">
+        <details class="card settings-disclosure" id="babySettingsDisclosure">
           <summary>
             <span>
-              <strong>赤ちゃん・AIの名前</strong>
-              <small>必要なときだけ開いて変更します</small>
+              <strong>赤ちゃんの設定</strong>
+              <small>名前・性別・英語での呼び方</small>
             </span>
             <span class="summary-chevron" aria-hidden="true">⌄</span>
           </summary>
           <div class="settings-disclosure-body">
-            <h3>AIキャラクター</h3>
-            <p class="small muted">初期の名前はEmmaです。ぬいぐるみなど別のキャラクターとして使う場合は、好きな名前に変えられます。</p>
-            <label>AIの名前
-              <input id="aiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
-            </label>
-            <p id="aiNamePreview" class="small muted">初回チュートリアルで「Hi, I'm Emma.」と自己紹介します。通常会話では毎回名乗りません。</p>
-            <p class="small muted">英語音声で自然に読めるよう、英字の名前をおすすめします。空欄ならEmmaになります。</p>
-
-            <hr class="settings-divider" />
-
-            <h3>赤ちゃん</h3>
             <label>名前（任意・日本語）
               <input id="babyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
             </label>
@@ -290,6 +287,24 @@
               </label>
               <p id="spokenNamePreview" class="small muted"></p>
             </div>
+          </div>
+        </details>
+
+        <details class="card settings-disclosure" id="aiSettingsDisclosure">
+          <summary>
+            <span>
+              <strong>AIの設定</strong>
+              <small>AIの名前を変更します</small>
+            </span>
+            <span class="summary-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="settings-disclosure-body">
+            <p class="small muted">初期の名前はEmmaです。ぬいぐるみなど別のキャラクターとして使う場合は、好きな名前に変えられます。</p>
+            <label>AIの名前
+              <input id="aiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
+            </label>
+            <p id="aiNamePreview" class="small muted">初回チュートリアルで「Hi, I'm Emma.」と自己紹介します。通常会話では毎回名乗りません。</p>
+            <p class="small muted">英語音声で自然に読めるよう、英字の名前をおすすめします。空欄ならEmmaになります。</p>
           </div>
         </details>
 
@@ -327,8 +342,6 @@
           </label>
           <p id="asrModelStatus" class="small muted">現在：Small。モデルはブラウザ内に保存されます。</p>
           <p class="small muted">Small推奨。軽さを優先したい場合だけTinyを選べます。変更時は再読み込みして安全に切り替えます。</p>
-          <button id="fullModeButton" class="outline-button compact-button">Android版を見る</button>
-          <p class="small muted">Android版にはLite / Fullがあります。</p>
         </article>
 
 
@@ -368,6 +381,13 @@
             <p class="small muted">設定・初回準備情報・みつことばのモデルキャッシュを削除し、初回画面へ戻します。</p>
           </div>
         </article>
+
+        <article class="card android-full-card">
+          <h2>フル版の利用について</h2>
+          <p>Full版はAndroidでのみ利用できます。Android版ではLite / Fullを選べ、Fullでは赤ちゃんへの短い英語を返す「呼びかけ」に加えて、親の発話や直前の流れを踏まえてAIがやり取りに参加する「会話」も利用できます。</p>
+          <p class="small muted">Web版はLiteの「呼びかけ」に対応しています。</p>
+          <a class="outline-button link-button compact-button" href="https://github.com/eltnegcellist/Android_English_character_for_baby" target="_blank" rel="noopener">Android版を見る</a>
+        </article>
       </div>
     </section>
 
@@ -377,9 +397,9 @@
           <button id="aboutBackButton" class="text-button">← 戻る</button>
         </header>
         <div class="about-characters" aria-label="親・赤ちゃん・AI">
-          <img src="./assets/mitsukotoba-parent.webp?v=20260930-ui-r6" alt="親" />
-          <img src="./assets/mitsukotoba-baby.png?v=20260930-ui-r6" alt="赤ちゃん" />
-          <img src="./assets/emma-face/emma-face-idle-open.svg?v=20260930-ui-r6" alt="AI" />
+          <img src="./assets/mitsukotoba-ai.png?v=20260930-layout-r7" alt="親" />
+          <img src="./assets/mitsukotoba-baby.png?v=20260930-layout-r7" alt="赤ちゃん" />
+          <img src="./assets/mitsukotoba-parent.png?v=20260930-layout-r7" alt="AI" />
         </div>
         <h1>みつことばが英語学習に使える理由</h1>
         <p class="lead">みつことばは、英語を一方的に聞かせるのではなく、親・赤ちゃん・AIの3人で反応し合う時間をつくることを目指しています。ここでは、その設計の背景にある研究とガイドラインを分けて紹介します。</p>
@@ -492,6 +512,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260930-ui-r6"></script>
+  <script type="module" src="./src/app.js?v=20260930-layout-r7"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ const ui = {
   conversation:$('conversation'), parentBubble:$('parentBubble'), emmaBubble:$('emmaBubble'), transcript:$('transcript'), reply:$('reply'),
   mainButton:$('mainButton'), stopButton:$('stopButton'), manualReplyButton:$('manualReplyButton'), enableAudioButton:$('enableAudioButton'),
   autoRespond:$('autoRespond'), aboutButton:$('aboutButton'), settingsButton:$('settingsButton'),
-  parentAudienceButton:$('parentAudienceButton'), settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
+  settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
   aboutBackButton:$('aboutBackButton'), onboardingAboutButton:$('onboardingAboutButton'),
   aiCharacterName:$('aiCharacterName'), aiNamePreview:$('aiNamePreview'), aiBubbleLabel:$('aiBubbleLabel'), aiNameBadge:$('aiNameBadge'),
   aiAvatarFace:$('aiAvatarFace'), onboardingAiIntro:$('onboardingAiIntro'),
@@ -25,14 +25,14 @@ const ui = {
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
-  keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'), fullModeButton:$('fullModeButton'),
+  keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260929-mobile-fixes-r5';
+const WEB_BUILD = '20260930-layout-r7';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -165,18 +165,6 @@ function bindEvents() {
     showScreen('settings');
   });
 
-  ui.parentAudienceButton.addEventListener('click',()=>showNotice(
-    '「会話」はAndroid Fullで使えます',
-    'Web版Liteでは「呼びかけ」を利用できます。「会話」では、親の発話や直前の流れを踏まえ、AIも親・赤ちゃんとの3者のやり取りに継続して参加します。',
-    'https://github.com/eltnegcellist/Android_English_character_for_baby',
-    'Android版みつことばをGitHubで見る'
-  ));
-  ui.fullModeButton.addEventListener('click',()=>showNotice(
-    'みつことば Full',
-    'Web版はみつことば Liteのみです。Android版には Lite / Full の2つがあり、FullはAndroid版で利用できます。',
-    'https://github.com/eltnegcellist/Android_English_character_for_baby',
-    'Android版みつことばをGitHubで見る'
-  ));
   ui.noticeCloseButton.addEventListener('click',closeNotice);
   ui.noticeDialog.addEventListener('click',(event)=>{
     if(event.target===ui.noticeDialog) closeNotice();
