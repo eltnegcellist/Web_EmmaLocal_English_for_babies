@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#fffbff" />
   <meta name="description" content="みつことば Web — 親と赤ちゃんとAI、3人でつくるローカル英語アプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="icon" href="./icons/mitsukotoba.png?v=20260927-brand3" type="image/png" />
-  <link rel="stylesheet" href="./styles.css?v=20260927-brand3" />
+  <link rel="icon" href="./icons/mitsukotoba.png?v=20260929-avatar-tutorial-r1" type="image/png" />
+  <link rel="stylesheet" href="./styles.css?v=20260929-avatar-tutorial-r1" />
   <title>みつことば Web Lite</title>
 </head>
 <body>
@@ -60,7 +60,7 @@
           <div id="onboardingAiIntro" class="ai-intro">
             <img class="ai-intro-character" src="./assets/mitsukotoba-ai.png?v=20260927-brand3" alt="" aria-hidden="true" />
             <span class="ai-intro-label">AIキャラクター</span>
-            <span class="ai-intro-copy">名前は <strong>Emma</strong>。会話を始めると最初に自己紹介します。</span>
+            <span class="ai-intro-copy">名前は <strong>Emma</strong>。初回チュートリアルで自己紹介します。</span>
           </div>
 
           <div class="hero-example">
@@ -170,36 +170,9 @@
         <section class="avatar-wrap">
           <div id="avatar" class="avatar state-idle" aria-hidden="true">
             <div class="listening-ring"></div>
-            <svg id="aiAvatarFace" class="emma-face" viewBox="0 0 320 320" role="img" aria-label="Emma（みつことば AI）">
-              <circle class="face-fill" cx="160" cy="160" r="142"></circle>
-              <circle class="face-outline" cx="160" cy="160" r="142"></circle>
-              <path class="head-accent" d="M 52 36 Q 160 -24 268 36"></path>
-              <g class="normal-eyes">
-                <g class="eye-group eye-left">
-                  <ellipse class="eye-white" cx="112" cy="136" rx="34" ry="39"></ellipse>
-                  <ellipse class="eye-outline" cx="112" cy="136" rx="34" ry="39"></ellipse>
-                  <circle class="pupil" cx="112" cy="136" r="16"></circle>
-                  <circle class="eye-shine" cx="106" cy="129" r="5"></circle>
-                </g>
-                <g class="eye-group eye-right">
-                  <ellipse class="eye-white" cx="208" cy="136" rx="34" ry="39"></ellipse>
-                  <ellipse class="eye-outline" cx="208" cy="136" rx="34" ry="39"></ellipse>
-                  <circle class="pupil" cx="208" cy="136" r="16"></circle>
-                  <circle class="eye-shine" cx="202" cy="129" r="5"></circle>
-                </g>
-              </g>
-              <g class="happy-eyes">
-                <path d="M 82 142 Q 112 116 142 142"></path>
-                <path d="M 178 142 Q 208 116 238 142"></path>
-              </g>
-              <ellipse class="cheek cheek-left" cx="78" cy="190" rx="22" ry="15"></ellipse>
-              <ellipse class="cheek cheek-right" cx="242" cy="190" rx="22" ry="15"></ellipse>
-              <path class="idle-mouth" d="M 112 210 Q 160 246 208 210"></path>
-              <path class="error-mouth" d="M 116 236 Q 160 202 204 236"></path>
-              <ellipse class="speaking-mouth" cx="160" cy="224" rx="42" ry="18"></ellipse>
-              <ellipse class="tongue" cx="160" cy="237" rx="24" ry="7"></ellipse>
-            </svg>
+            <img id="aiAvatarFace" class="emma-face-frame" src="./assets/emma-face/emma-face-idle-open.svg?v=20260929-avatar1" alt="" aria-label="Emma（みつことば AI）" />
             <div class="thinking-dots"><span></span><span></span><span></span></div>
+          </div>
           </div>
           <div id="aiNameBadge" class="ai-name-badge">Emma</div>
         </section>
@@ -256,6 +229,20 @@
       </footer>
     </section>
 
+    <div id="tutorialOverlay" class="tutorial-overlay hidden" aria-hidden="true">
+      <div id="tutorialSpotlight" class="tutorial-spotlight"></div>
+      <section id="tutorialCard" class="tutorial-card" role="dialog" aria-live="polite">
+        <div id="tutorialStepLabel" class="tutorial-step-label"></div>
+        <h2 id="tutorialTitle"></h2>
+        <p id="tutorialBody"></p>
+        <div class="tutorial-actions">
+          <button id="tutorialSkipButton" class="text-button">スキップ</button>
+          <button id="tutorialPrimaryButton" class="primary-button compact-button"></button>
+          <span id="tutorialHint" class="tutorial-hint hidden"></span>
+        </div>
+      </section>
+    </div>
+
     <section id="settingsScreen" class="screen hidden">
       <div class="screen-content settings-content">
         <header class="subpage-header">
@@ -273,7 +260,7 @@
           <label>AIの名前
             <input id="aiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
           </label>
-          <p id="aiNamePreview" class="small muted">最初の返答で「Hi, I'm Emma.」と名乗ります。</p>
+          <p id="aiNamePreview" class="small muted">初回チュートリアルで「Hi, I'm Emma.」と自己紹介します。通常会話では毎回名乗りません。</p>
           <p class="small muted">英語音声で自然に読めるよう、英字の名前をおすすめします。空欄ならEmmaになります。</p>
         </article>
 
@@ -304,7 +291,7 @@
 
         <article class="card">
           <h2>見た目</h2>
-          <label>キャラクターの色
+          <label>画面アクセントの色
             <select id="colorMode">
               <option value="soft">やさしい色</option>
               <option value="vivid">はっきり色</option>
@@ -346,11 +333,18 @@
 
 
         <article class="card">
+          <h2>使い方</h2>
+          <button id="tutorialReplayButton" class="outline-button compact-button">チュートリアルを見る</button>
+          <p class="small muted">初回に表示されるスポットライト型の使い方ガイドを、もう一度表示します。</p>
+        </article>
+
+        <article class="card">
           <h2>Web版の動作</h2>
           <label class="toggle-line">
             <span>みつことば利用中は画面をスリープさせない</span>
             <span class="switch"><input id="keepAwake" type="checkbox" checked /><span></span></span>
           </label>
+          <p class="small muted">隠し設定を開くには、下の「モデル保存」を5回タップしてください。</p>
           <div class="runtime-info">
             <span id="runtimeBackend">推論: 未初期化</span>
             <span id="developerUnlockTrigger">モデル保存: ブラウザキャッシュ</span>
@@ -482,6 +476,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260927-six-turn-r8"></script>
+  <script type="module" src="./src/app.js?v=20260929-avatar-tutorial-r1"></script>
 </body>
 </html>

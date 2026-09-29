@@ -19,6 +19,9 @@ const ui = {
   aboutBackButton:$('aboutBackButton'), onboardingAboutButton:$('onboardingAboutButton'),
   aiCharacterName:$('aiCharacterName'), aiNamePreview:$('aiNamePreview'), aiBubbleLabel:$('aiBubbleLabel'), aiNameBadge:$('aiNameBadge'),
   aiAvatarFace:$('aiAvatarFace'), onboardingAiIntro:$('onboardingAiIntro'),
+  tutorialReplayButton:$('tutorialReplayButton'), tutorialOverlay:$('tutorialOverlay'), tutorialSpotlight:$('tutorialSpotlight'),
+  tutorialCard:$('tutorialCard'), tutorialStepLabel:$('tutorialStepLabel'), tutorialTitle:$('tutorialTitle'),
+  tutorialBody:$('tutorialBody'), tutorialSkipButton:$('tutorialSkipButton'), tutorialPrimaryButton:$('tutorialPrimaryButton'), tutorialHint:$('tutorialHint'),
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
@@ -29,7 +32,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260927-six-turn-r8';
+const WEB_BUILD = '20260929-avatar-tutorial-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -44,7 +47,8 @@ const STORAGE = {
   useChanSuffix:'emma_use_chan_suffix',
   asrModel:'emma_asr_model',
   startTiny:'emma_first_run_start_tiny',
-  asrReload:'emma_asr_reload'
+  asrReload:'emma_asr_reload',
+  tutorialDone:'emma_web_tutorial_completed_v1'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -67,6 +71,13 @@ let audioUnlocked=false;
 const audioUnlockWaiters=[];
 let pendingUtterance=null;
 let aiIntroducedThisSession=false;
+let avatarVisualState='idle';
+let avatarBlinkFrame='open';
+let avatarMouthLevel='small';
+let avatarBlinkTimer=null;
+let tutorialStep=null;
+let tutorialIntroPlayed=false;
+let tutorialUserSpoke=false;
 let previousScreen='home';
 let appearanceTimer=null;
 let developerTapCount=0;
@@ -105,6 +116,8 @@ function initUi() {
   updateAppearanceSettings();
   updateAudioUnlockUi();
 
+  startAvatarBlinkLoop();
+
   const reloadedAsr=sessionStorage.getItem(STORAGE.asrReload);
   if (localStorage.getItem(STORAGE.setupRevision) === CURRENT_SETUP_REVISION) {
     if(reloadedAsr){
@@ -113,14 +126,26 @@ function initUi() {
       const label=reloadedAsr==='small' ? 'Small' : 'Tiny';
       setState('idle',`音声認識を${label}に変更しました`,'「3人で話す」を押して会話を再開してください。');
       if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}。再読み込みして安全に切り替えました。`;
-    } else {
+      if(localStorage.getItem(STORAGE.tutorialDone)!=='true') queueMicrotask(()=>startTutorial());
+    } else if(localStorage.getItem(STORAGE.tutorialDone)==='true') {
       showScreen('home');
+    } else {
+      showScreen('home',{autoStart:false});
+      queueMicrotask(()=>startTutorial());
     }
   } else showScreen('onboarding');
 }
 
 function bindEvents() {
-  ui.mainButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); startEmma(); });
+  ui.mainButton.addEventListener('click',async()=>{
+    unlockPlaybackAudioFromGesture();
+    await startEmma();
+    if(tutorialStep===1 && running){
+      tutorialStep=2;
+      tutorialUserSpoke=false;
+      renderTutorial();
+    }
+  });
   ui.stopButton.addEventListener('click', stopEmma);
   ui.manualReplyButton.addEventListener('click', forceReplyNow);
   ui.enableAudioButton?.addEventListener('click',unlockPlaybackAudioFromGesture);
@@ -282,13 +307,39 @@ function bindEvents() {
     );
     if(confirmed) location.href='./reset.html?full=1';
   });
+  ui.tutorialReplayButton?.addEventListener('click',async()=>{
+    if(running || processing || speaking) await stopEmma();
+    showScreen('home',{autoStart:false});
+    startTutorial({replay:true});
+  });
+  ui.tutorialSkipButton?.addEventListener('click',finishTutorial);
+  ui.tutorialPrimaryButton?.addEventListener('click',async()=>{
+    if(tutorialStep!==0) return;
+    unlockPlaybackAudioFromGesture();
+    if(!tutorialIntroPlayed){
+      ui.tutorialPrimaryButton.disabled=true;
+      try{
+        await ensureWorkersForDebug();
+        await speakResponse(`Hi, I'm ${getAiName()}.`);
+        tutorialIntroPlayed=true;
+      }finally{
+        ui.tutorialPrimaryButton.disabled=false;
+        renderTutorial();
+      }
+      return;
+    }
+    tutorialStep=1;
+    renderTutorial();
+  });
+  window.addEventListener('resize',()=>{ if(tutorialStep!==null) positionTutorialSpotlight(); });
+  window.addEventListener('scroll',()=>{ if(tutorialStep!==null) positionTutorialSpotlight(); },{passive:true});
 
   ui.debugReplyButton.addEventListener('click',async()=>{
     const text=ui.debugInput.value.trim();
     if(!text)return;
     showConversation(text,'');
     const response=engine.respond(text,getSpokenBabyName());
-    const english=withAiIntroduction(response.english);
+    const english=stripAiSpeakerLabel(response.english);
     showConversation(text,english);
     await ensureWorkersForDebug();
     await speakResponse(english);
@@ -305,7 +356,7 @@ function showScreen(name,{autoStart=true}={}) {
   }
   window.scrollTo({top:0,behavior:'auto'});
 
-  if(autoStart && name==='home' && localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION) {
+  if(autoStart && tutorialStep===null && name==='home' && localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION) {
     queueMicrotask(()=>{
       if(!running && !processing && !speaking && !ui.mainButton.disabled) {
         startEmma({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
@@ -425,8 +476,9 @@ async function prepareFirstRun() {
     showOnboardingProgress(false);
     showProgress(false);
     setBusy(false);
-    showScreen('home');
-    setState('thinking','準備できました','3人の会話を自動で開始します。');
+    showScreen('home',{autoStart:false});
+    setState('idle','準備できました','使い方を3ステップで確認しましょう。');
+    startTutorial();
   } catch(error) {
     console.error(error);
     showOnboardingProgress(true,0,friendlyError(error));
@@ -445,7 +497,6 @@ async function startEmma({ auto = false } = {}) {
     // actual capture path can proceed, and one-time permission must be allowed
     // to show its browser prompt on every new launch.
     running=true;
-    aiIntroducedThisSession=false;
     engine.resetConversationContext();
     setBusy(true);
     setState('thinking','マイクを起動しています','必要なら表示される許可画面でマイクを許可してください。');
@@ -520,7 +571,8 @@ async function stopEmma() {
 
 function handleCapturedUtterance(audio) {
   if(!running||processing||speaking)return;
-  if(ui.autoRespond.checked) transcribeUtterance(audio);
+  if(tutorialStep===2) tutorialUserSpoke=true;
+  if(ui.autoRespond.checked || tutorialStep===2) transcribeUtterance(audio);
   else {
     pendingUtterance={kind:'audio',audio};
     ui.manualReplyButton.classList.remove('hidden');
@@ -736,12 +788,12 @@ async function processTranscript(text) {
   showConversation(clean,'');
   setState('understood','わかりました',`${getAiName()}が赤ちゃんへ話しかけます。`);
   const response=engine.respond(clean,getSpokenBabyName());
-  const english=withAiIntroduction(response.english);
+  const english=stripAiSpeakerLabel(response.english);
   showConversation(clean,english);
   processing=false;
   setBusy(false);
   await speakResponse(english);
-  aiIntroducedThisSession=true;
+  if(tutorialStep===2 && tutorialUserSpoke) finishTutorial();
 }
 
 async function releaseMicrophoneForEmmaVoice() {
@@ -924,9 +976,8 @@ async function playBlob(blob) {
     let sum=0;
     for(const x of data){const v=(x-128)/128;sum+=v*v;}
     const rms=Math.sqrt(sum/data.length);
-    const level=rms<0.025 ? 0 : rms<0.075 ? 0.55 : 1;
-    ui.avatar.style.setProperty('--mouth-scale',String(level));
-    ui.avatar.classList.toggle('mouth-wide',level>.5);
+    avatarMouthLevel=rms<0.025 ? 'small' : rms<0.075 ? 'medium' : 'large';
+    renderAvatarFrame();
     raf=requestAnimationFrame(animate);
   };
   source.start();
@@ -934,10 +985,107 @@ async function playBlob(blob) {
   await new Promise(resolve=>source.onended=resolve);
   if(activeAudioSource===source) activeAudioSource=null;
   cancelAnimationFrame(raf);
-  ui.avatar.style.setProperty('--mouth-scale','0');
-  ui.avatar.classList.remove('mouth-wide');
+  avatarMouthLevel='small';
+  renderAvatarFrame();
 }
 
+const AVATAR_BASE='./assets/emma-face/';
+function avatarFrameName() {
+  const blink=avatarBlinkFrame;
+  if(avatarVisualState==='speaking'){
+    if(blink==='half') return `emma-face-talk-${avatarMouthLevel}-half.svg`;
+    if(blink==='closed') return `emma-face-talk-${avatarMouthLevel}-closed.svg`;
+    return `emma-face-talk-${avatarMouthLevel}.svg`;
+  }
+  if(avatarVisualState==='understood') return 'emma-face-idle-closed.svg';
+  if(blink==='half') return 'emma-face-idle-half.svg';
+  if(blink==='closed') return 'emma-face-idle-closed.svg';
+  return 'emma-face-idle-open.svg';
+}
+function renderAvatarFrame(){
+  if(!ui.aiAvatarFace) return;
+  const next=AVATAR_BASE+avatarFrameName()+'?v=20260929-avatar1';
+  if(ui.aiAvatarFace.getAttribute('src')!==next) ui.aiAvatarFace.src=next;
+}
+function startAvatarBlinkLoop(){
+  clearTimeout(avatarBlinkTimer);
+  const schedule=()=>{
+    avatarBlinkTimer=setTimeout(async()=>{
+      avatarBlinkFrame='half'; renderAvatarFrame();
+      await new Promise(r=>setTimeout(r,55));
+      avatarBlinkFrame='closed'; renderAvatarFrame();
+      await new Promise(r=>setTimeout(r,75));
+      avatarBlinkFrame='half'; renderAvatarFrame();
+      await new Promise(r=>setTimeout(r,55));
+      avatarBlinkFrame='open'; renderAvatarFrame();
+      schedule();
+    },2800+Math.random()*2200);
+  };
+  renderAvatarFrame();
+  schedule();
+}
+
+function tutorialTarget(){
+  if(tutorialStep===0) return ui.avatar;
+  if(tutorialStep===1) return ui.mainButton;
+  return ui.statusTitle;
+}
+function positionTutorialSpotlight(){
+  if(tutorialStep===null || !ui.tutorialSpotlight) return;
+  const target=tutorialTarget();
+  if(!target) return;
+  const r=target.getBoundingClientRect();
+  const pad=tutorialStep===0?8:10;
+  Object.assign(ui.tutorialSpotlight.style,{
+    left:`${Math.max(4,r.left-pad)}px`,
+    top:`${Math.max(4,r.top-pad)}px`,
+    width:`${Math.max(24,r.width+pad*2)}px`,
+    height:`${Math.max(24,r.height+pad*2)}px`
+  });
+}
+function renderTutorial(){
+  const active=tutorialStep!==null;
+  ui.tutorialOverlay?.classList.toggle('hidden',!active);
+  ui.tutorialOverlay?.setAttribute('aria-hidden',String(!active));
+  if(!active) return;
+  const name=getAiName();
+  ui.tutorialStepLabel.textContent=`${tutorialStep+1} / 3`;
+  ui.tutorialHint.classList.add('hidden');
+  ui.tutorialPrimaryButton.classList.add('hidden');
+  if(tutorialStep===0){
+    ui.tutorialTitle.textContent=`${name}と会おう`;
+    ui.tutorialBody.textContent=tutorialIntroPlayed
+      ? `${name}の自己紹介が終わりました。明るく表示されている顔が、赤ちゃんへ英語で話しかけます。`
+      : `まず${name}の自己紹介を聞きます。Webではブラウザの音声再生制限があるため、下のボタンを一度押してください。`;
+    ui.tutorialPrimaryButton.textContent=tutorialIntroPlayed?'次へ':'自己紹介を聞く';
+    ui.tutorialPrimaryButton.classList.remove('hidden');
+  }else if(tutorialStep===1){
+    ui.tutorialTitle.textContent='ここから会話を始めます';
+    ui.tutorialBody.textContent='画面下で光っている「3人で話す」を実際に押してください。押すとマイクが始まり、会話を開始します。';
+    ui.tutorialHint.textContent='↓ 光っている本物のボタンを押す';
+    ui.tutorialHint.classList.remove('hidden');
+  }else{
+    ui.tutorialTitle.textContent='実際に話しかけてみよう';
+    ui.tutorialBody.textContent=`明るく表示されている「聞いています」を確認して、普段どおり日本語で赤ちゃんへ話しかけてください。声を検知して${name}が返事を最後まで話し終えると、チュートリアルは自動で完了します。`;
+    ui.tutorialHint.textContent='話しかけてみてください…';
+    ui.tutorialHint.classList.remove('hidden');
+  }
+  requestAnimationFrame(positionTutorialSpotlight);
+}
+function startTutorial({replay=false}={}){
+  tutorialStep=0;
+  tutorialIntroPlayed=false;
+  tutorialUserSpoke=false;
+  if(replay) setState('idle','チュートリアル','使い方を3ステップで確認します。');
+  renderTutorial();
+}
+function finishTutorial(){
+  localStorage.setItem(STORAGE.tutorialDone,'true');
+  tutorialStep=null;
+  tutorialIntroPlayed=false;
+  tutorialUserSpoke=false;
+  renderTutorial();
+}
 function calculatePlaybackGain(buffer) {
   let peak=0;
   for(let channelIndex=0;channelIndex<buffer.numberOfChannels;channelIndex++){
@@ -977,7 +1125,9 @@ function trimAudioSilence(buffer) {
 }
 
 function setState(state,title,detail) {
+  avatarVisualState=state;
   ui.avatar.className=`avatar state-${state}`;
+  renderAvatarFrame();
   ui.statusTitle.textContent=title;
   ui.statusDetail.textContent=detail;
   ui.statusTitle.className=`status-chip status-${state}`;
@@ -1056,15 +1206,16 @@ function getAiName() {
   return sanitizeAiName(localStorage.getItem(STORAGE.aiName)||'').trim() || 'Emma';
 }
 
-function withAiIntroduction(text) {
+function stripAiSpeakerLabel(text) {
   const clean=String(text||'').trim();
-  if(aiIntroducedThisSession) return clean;
-  return `Hi, I'm ${getAiName()}. ${clean}`.trim();
+  const name=getAiName();
+  const escaped=name.replace(/[.*+?^\${}()|[\]\\]/g,'\\$&');
+  const pattern=new RegExp('^\\s*(?:'+escaped+'|AI)\\s*[:：\\-–—]\\s*','i');
+  return clean.replace(pattern,'').trim();
 }
-
 function updateAiNameUi() {
   const name=getAiName();
-  if(ui.aiNamePreview) ui.aiNamePreview.textContent=`最初の返答で「Hi, I'm ${name}.」と名乗ります。`;
+  if(ui.aiNamePreview) ui.aiNamePreview.textContent=`初回チュートリアルで「Hi, I'm ${name}.」と自己紹介します。通常会話では毎回名乗りません。`;
   if(ui.aiBubbleLabel) ui.aiBubbleLabel.textContent=name;
   if(ui.aiNameBadge) ui.aiNameBadge.textContent=name;
   if(ui.aiAvatarFace) ui.aiAvatarFace.setAttribute('aria-label',`${name}（みつことば AI）`);
@@ -1072,7 +1223,7 @@ function updateAiNameUi() {
     ui.onboardingAiIntro.innerHTML =
       '<span class="ai-intro-label">AIキャラクター</span>' +
       '<span class="ai-intro-copy">名前は <strong>' + name +
-      '</strong>。会話を始めると最初に自己紹介します。</span>';
+      '</strong>。初回チュートリアルで自己紹介します。</span>';
   }
 }
 
@@ -1218,7 +1369,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260927-brand3',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260929-avatar-tutorial-r1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
