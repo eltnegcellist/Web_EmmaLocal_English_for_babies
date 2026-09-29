@@ -83,6 +83,8 @@ let developerTapCount=0;
 let developerTapTimer=null;
 const audioQueues = new Map();
 
+const AVATAR_BASE='./assets/emma-face/';
+
 initUi();
 
 function initUi() {
@@ -992,7 +994,6 @@ async function playBlob(blob) {
   renderAvatarFrame();
 }
 
-const AVATAR_BASE='./assets/emma-face/';
 function avatarFrameName() {
   const blink=avatarBlinkFrame;
   if(avatarVisualState==='speaking'){
@@ -1007,7 +1008,7 @@ function avatarFrameName() {
 }
 function renderAvatarFrame(){
   if(!ui.aiAvatarFace) return;
-  const next=AVATAR_BASE+avatarFrameName()+'?v=20260929-parity-r3';
+  const next=AVATAR_BASE+avatarFrameName()+'?v=20260929-parity-r4';
   if(ui.aiAvatarFace.getAttribute('src')!==next) ui.aiAvatarFace.src=next;
 }
 function startAvatarBlinkLoop(){
@@ -1391,7 +1392,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260929-parity-r3',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260929-parity-r4',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
