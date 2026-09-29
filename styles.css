@@ -994,3 +994,50 @@ body{
 }
 .tts-diagnostics strong{color:var(--on-surface)}
 .tutorial-card{top:12px}
+
+
+/* Mobile regression fixes — 20260929-mobile-fixes-r5 */
+.lite-compact-setting{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  align-items:stretch!important;
+  gap:10px!important;
+  padding:14px 16px!important;
+}
+.lite-compact-setting>div{
+  width:100%;
+  min-width:0;
+}
+.lite-compact-setting .compact-toggle{
+  width:100%!important;
+  min-width:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  flex:0 0 auto!important;
+  padding-top:8px;
+  border-top:1px solid rgba(124,116,127,.12);
+}
+.lite-compact-setting .compact-toggle>span:first-child{
+  min-width:0;
+  flex:1 1 auto;
+}
+.lite-compact-setting .compact-toggle strong{
+  font-size:.9rem;
+  line-height:1.35;
+}
+.lite-compact-setting .switch{
+  flex:0 0 auto!important;
+}
+#homeScreen .home-content{
+  padding-bottom:calc(300px + env(safe-area-inset-bottom))!important;
+}
+.tutorial-spotlight{
+  box-sizing:border-box!important;
+}
+@media(max-width:560px){
+  #homeScreen .home-content{
+    padding-bottom:calc(330px + env(safe-area-inset-bottom))!important;
+  }
+}

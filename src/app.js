@@ -32,7 +32,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260929-parity-r4';
+const WEB_BUILD = '20260929-mobile-fixes-r5';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -333,6 +333,9 @@ function bindEvents() {
   });
   window.addEventListener('resize',()=>{ if(tutorialStep!==null) positionTutorialSpotlight(); });
   window.addEventListener('scroll',()=>{ if(tutorialStep!==null) positionTutorialSpotlight(); },{passive:true});
+
+  window.addEventListener('resize',()=>{ if(tutorialStep!==null) scheduleTutorialSpotlightSync(); });
+  window.addEventListener('scroll',()=>{ if(tutorialStep!==null) scheduleTutorialSpotlightSync(); },{passive:true});
 
   ui.debugReplyButton.addEventListener('click',async()=>{
     const text=ui.debugInput.value.trim();
@@ -1008,7 +1011,7 @@ function avatarFrameName() {
 }
 function renderAvatarFrame(){
   if(!ui.aiAvatarFace) return;
-  const next=AVATAR_BASE+avatarFrameName()+'?v=20260929-parity-r4';
+  const next=AVATAR_BASE+avatarFrameName()+'?v=20260929-mobile-fixes-r5';
   if(ui.aiAvatarFace.getAttribute('src')!==next) ui.aiAvatarFace.src=next;
 }
 function startAvatarBlinkLoop(){
@@ -1039,7 +1042,7 @@ function positionTutorialSpotlight(){
   const target=tutorialTarget();
   if(!target) return;
   const r=target.getBoundingClientRect();
-  const pad=tutorialStep===0?8:10;
+  const pad=tutorialStep===0 ? 8 : tutorialStep===1 ? 8 : 4;
   const left=Math.max(4,r.left-pad);
   const top=Math.max(4,r.top-pad);
   const right=Math.min(innerWidth-4,r.right+pad);
@@ -1064,6 +1067,12 @@ function positionTutorialSpotlight(){
   else cardTop=12;
   card.style.top=`${Math.max(12,Math.min(innerHeight-cardHeight-12,cardTop))}px`;
 }
+function scheduleTutorialSpotlightSync(){
+  requestAnimationFrame(()=>requestAnimationFrame(positionTutorialSpotlight));
+  setTimeout(positionTutorialSpotlight,80);
+  setTimeout(positionTutorialSpotlight,220);
+}
+
 function renderTutorial(){
   const active=tutorialStep!==null;
   ui.tutorialOverlay?.classList.toggle('hidden',!active);
@@ -1091,8 +1100,10 @@ function renderTutorial(){
     ui.tutorialHint.textContent='話しかけてみてください…';
     ui.tutorialHint.classList.remove('hidden');
   }
-  if(tutorialStep===0) tutorialTarget()?.scrollIntoView({block:'center',behavior:'auto'});
-  requestAnimationFrame(()=>requestAnimationFrame(positionTutorialSpotlight));
+  if(tutorialStep===0 || tutorialStep===2) {
+    tutorialTarget()?.scrollIntoView({block:'center',behavior:'auto'});
+  }
+  scheduleTutorialSpotlightSync();
 }
 function startTutorial({replay=false}={}){
   tutorialStep=0;
@@ -1153,7 +1164,7 @@ function setState(state,title,detail) {
   ui.statusTitle.textContent=title;
   ui.statusDetail.textContent=detail;
   ui.statusTitle.className=`status-chip status-${state}`;
-  if(tutorialStep!==null) requestAnimationFrame(positionTutorialSpotlight);
+  if(tutorialStep!==null) scheduleTutorialSpotlightSync();
 }
 
 function setBusy(value) {
@@ -1392,7 +1403,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260929-parity-r4',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260929-mobile-fixes-r5',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
