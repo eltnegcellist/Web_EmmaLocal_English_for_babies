@@ -952,3 +952,22 @@ body{
   }
   .avatar{width:min(98vw,440px)}
 }
+
+/* --- Settings parity with Android (2026-09-29) --- */
+.settings-disclosure{padding:0;overflow:hidden}
+.settings-disclosure>summary{
+  list-style:none;display:flex;align-items:center;justify-content:space-between;
+  gap:14px;padding:16px;cursor:pointer
+}
+.settings-disclosure>summary::-webkit-details-marker{display:none}
+.settings-disclosure>summary>span:first-child{display:grid;gap:3px}
+.settings-disclosure>summary strong{font-size:1.02rem}
+.settings-disclosure>summary small{font-size:.78rem;color:var(--on-surface-variant);font-weight:500}
+.settings-disclosure[open] .summary-chevron{transform:rotate(180deg)}
+.settings-disclosure-body{padding:0 16px 16px}
+.settings-divider{border:0;border-top:1px solid rgba(124,116,127,.16);margin:18px 0}
+.developer-tools-card{
+  margin-top:12px;padding:14px;border-radius:20px;
+  background:rgba(242,236,244,.62);border:1px solid rgba(124,116,127,.14)
+}
+.developer-tools-card .link-button{margin-top:8px}

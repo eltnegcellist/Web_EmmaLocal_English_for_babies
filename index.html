@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#fffbff" />
   <meta name="description" content="みつことば Web — 親と赤ちゃんとAI、3人でつくるローカル英語アプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="icon" href="./icons/mitsukotoba.png?v=20260929-avatar-tutorial-r1" type="image/png" />
-  <link rel="stylesheet" href="./styles.css?v=20260929-avatar-tutorial-r1" />
+  <link rel="icon" href="./icons/mitsukotoba.png?v=20260929-android-parity-r2" type="image/png" />
+  <link rel="stylesheet" href="./styles.css?v=20260929-android-parity-r2" />
   <title>みつことば Web Lite</title>
 </head>
 <body>
@@ -173,11 +173,10 @@
             <img id="aiAvatarFace" class="emma-face-frame" src="./assets/emma-face/emma-face-idle-open.svg?v=20260929-avatar1" alt="" aria-label="Emma（みつことば AI）" />
             <div class="thinking-dots"><span></span><span></span><span></span></div>
           </div>
-          </div>
           <div id="aiNameBadge" class="ai-name-badge">Emma</div>
         </section>
 
-        <section class="status-section" aria-live="polite">
+        <section id="tutorialStatusTarget" class="status-section" aria-live="polite">
           <div class="status-row">
             <span id="statusTitle" class="status-chip status-idle">みつことばはおやすみ中</span>
             <span id="busySpinner" class="mini-spinner hidden"></span>
@@ -210,8 +209,6 @@
             <span></span>
           </label>
         </article>
-
-        <p class="small"><a href="./voice-diagnostic.html?v=20260925-voice-diagnostic-r1">音声だけを診断する</a></p>
         <section id="debugPanel" class="card debug-panel">
           <h2>開発用テスト</h2>
           <label>日本語テキストでLite返答を確認
@@ -254,40 +251,50 @@
           <button id="settingsAboutButton" class="text-button">英語学習に使える理由</button>
         </header>
 
-        <article class="card">
-          <h2>AIキャラクター</h2>
-          <p class="small muted">初期の名前はEmmaです。ぬいぐるみなど別のキャラクターとして使う場合は、好きな名前に変えられます。</p>
-          <label>AIの名前
-            <input id="aiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
-          </label>
-          <p id="aiNamePreview" class="small muted">初回チュートリアルで「Hi, I'm Emma.」と自己紹介します。通常会話では毎回名乗りません。</p>
-          <p class="small muted">英語音声で自然に読めるよう、英字の名前をおすすめします。空欄ならEmmaになります。</p>
-        </article>
+        
+        <details class="card settings-disclosure" id="familySettingsDisclosure">
+          <summary>
+            <span>
+              <strong>赤ちゃん・AIの名前</strong>
+              <small>必要なときだけ開いて変更します</small>
+            </span>
+            <span class="summary-chevron" aria-hidden="true">⌄</span>
+          </summary>
+          <div class="settings-disclosure-body">
+            <h3>AIキャラクター</h3>
+            <p class="small muted">初期の名前はEmmaです。ぬいぐるみなど別のキャラクターとして使う場合は、好きな名前に変えられます。</p>
+            <label>AIの名前
+              <input id="aiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
+            </label>
+            <p id="aiNamePreview" class="small muted">初回チュートリアルで「Hi, I'm Emma.」と自己紹介します。通常会話では毎回名乗りません。</p>
+            <p class="small muted">英語音声で自然に読めるよう、英字の名前をおすすめします。空欄ならEmmaになります。</p>
 
-        <article class="card">
-          <h2>赤ちゃん</h2>
-          <label>名前（任意・日本語）
-            <input id="babyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
-          </label>
-          <div class="field-title">性別</div>
-          <div class="segmented" data-gender-group="settings">
-            <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
-            <button data-gender="GIRL" class="segment-button">女の子</button>
-            <button data-gender="BOY" class="segment-button">男の子</button>
-          </div>
-          <p id="genderHelp" class="small muted"></p>
-          <button id="pronunciationToggle" class="text-button inline-button">名前の読み方を調整</button>
-          <div id="pronunciationPanel" class="hidden">
-            <label>英語で呼ぶ名前
-              <input id="spokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Hana" />
+            <hr class="settings-divider" />
+
+            <h3>赤ちゃん</h3>
+            <label>名前（任意・日本語）
+              <input id="babyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
             </label>
-            <label class="toggle-line">
-              <span>名前に「-chan」を付ける</span>
-              <span class="switch"><input id="useChanSuffix" type="checkbox" checked /><span></span></span>
-            </label>
-            <p id="spokenNamePreview" class="small muted"></p>
+            <div class="field-title">性別</div>
+            <div class="segmented" data-gender-group="settings">
+              <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
+              <button data-gender="GIRL" class="segment-button">女の子</button>
+              <button data-gender="BOY" class="segment-button">男の子</button>
+            </div>
+            <p id="genderHelp" class="small muted"></p>
+            <button id="pronunciationToggle" class="text-button inline-button">名前の読み方を調整</button>
+            <div id="pronunciationPanel" class="hidden">
+              <label>英語で呼ぶ名前
+                <input id="spokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Hana" />
+              </label>
+              <label class="toggle-line">
+                <span>名前に「-chan」を付ける</span>
+                <span class="switch"><input id="useChanSuffix" type="checkbox" checked /><span></span></span>
+              </label>
+              <p id="spokenNamePreview" class="small muted"></p>
+            </div>
           </div>
-        </article>
+        </details>
 
         <article class="card">
           <h2>見た目</h2>
@@ -310,8 +317,11 @@
           <p id="colorModeDescription" class="small muted"></p>
         </article>
 
+        
         <article class="card">
-          <h2>音声認識</h2>
+          <h2>みつことば Lite</h2>
+          <p class="small muted">Web版はLiteです。赤ちゃん向けの短い英語をすばやく選んで話します。</p>
+          <h3>音声認識</h3>
           <label>Moonshineモデル
             <select id="asrModel">
               <option value="tiny">軽量（Tiny）</option>
@@ -319,16 +329,9 @@
             </select>
           </label>
           <p id="asrModelStatus" class="small muted">現在：Small。モデルはブラウザ内に保存されます。</p>
-          <p class="small muted">初期値はSmallです。Tiny / Smallを変更すると、設定を保存してみつことばを一度再読み込みします。実行中のモデルを差し替えず、ASRと音声をクリーンな状態から起動します。取得済みモデルはブラウザキャッシュを再利用します。</p>
-          <p class="small muted">どちらも端末内で処理します。Smallでも認識を誤ることはあり、必ずTinyより正確になるとは限りません。</p>
-        </article>
-
-        <article class="card">
-          <h2>Lite / Full</h2>
-          <button class="primary-button compact-button" disabled>みつことば Lite（Web版）</button>
-          <p class="small muted">Web版で利用できるのはLiteのみです。赤ちゃん向けの短い英語をすばやく選んで話します。</p>
+          <p class="small muted">Small推奨。軽さを優先したい場合だけTinyを選べます。変更時は再読み込みして安全に切り替えます。</p>
           <button id="fullModeButton" class="outline-button compact-button">Android版を見る</button>
-          <p class="small muted">Android版には Lite / Full の2つがあります。より柔軟な会話はFullで利用できます。</p>
+          <p class="small muted">Android版にはLite / Fullがあります。</p>
         </article>
 
 
@@ -350,8 +353,9 @@
             <span id="developerUnlockTrigger">モデル保存: ブラウザキャッシュ</span>
             <span id="webBuild">Web build: loading…</span>
           </div>
-          <div id="developerTools" class="hidden">
-            <p class="small muted">開発者向け</p>
+          <div id="developerTools" class="hidden developer-tools-card">
+            <p class="small muted">開発者向け：診断・音声確認・完全リセット</p>
+            <a class="outline-button link-button compact-button" href="./voice-diagnostic.html?v=20260925-voice-diagnostic-r1">Kitten音声を診断する</a>
             <button id="fullResetButton" class="outline-button compact-button">みつことばを初期状態に戻す</button>
             <p class="small muted">設定・初回準備情報・みつことばのモデルキャッシュを削除し、初回画面へ戻します。</p>
           </div>
@@ -476,6 +480,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260929-avatar-tutorial-r1"></script>
+  <script type="module" src="./src/app.js?v=20260929-android-parity-r2"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ const ui = {
   onboardingPronunciationToggle:$('onboardingPronunciationToggle'), onboardingPronunciationPanel:$('onboardingPronunciationPanel'),
   prepareEmmaButton:$('prepareEmmaButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
-  avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'),
+  avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'), tutorialStatusTarget:$('tutorialStatusTarget'),
   progressWrap:$('progressWrap'), progressBar:$('progressBar'), progressText:$('progressText'),
   conversation:$('conversation'), parentBubble:$('parentBubble'), emmaBubble:$('emmaBubble'), transcript:$('transcript'), reply:$('reply'),
   mainButton:$('mainButton'), stopButton:$('stopButton'), manualReplyButton:$('manualReplyButton'), enableAudioButton:$('enableAudioButton'),
@@ -32,7 +32,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260929-avatar-tutorial-r1';
+const WEB_BUILD = '20260929-android-parity-r2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -70,7 +70,6 @@ let activeAudioSource=null;
 let audioUnlocked=false;
 const audioUnlockWaiters=[];
 let pendingUtterance=null;
-let aiIntroducedThisSession=false;
 let avatarVisualState='idle';
 let avatarBlinkFrame='open';
 let avatarMouthLevel='small';
@@ -186,7 +185,6 @@ function bindEvents() {
     const value=sanitizeAiName(ui.aiCharacterName.value);
     ui.aiCharacterName.value=value;
     localStorage.setItem(STORAGE.aiName,value);
-    aiIntroducedThisSession=false;
     updateAiNameUi();
   });
 
@@ -550,7 +548,6 @@ async function stopEmma() {
   processing=false;
   speaking=false;
   pendingUtterance=null;
-  aiIntroducedThisSession=false;
   for(const q of audioQueues.values()) q.resolve?.();
   audioQueues.clear();
   if(activeAudioSource){
@@ -1028,7 +1025,7 @@ function startAvatarBlinkLoop(){
 function tutorialTarget(){
   if(tutorialStep===0) return ui.avatar;
   if(tutorialStep===1) return ui.mainButton;
-  return ui.statusTitle;
+  return ui.tutorialStatusTarget || ui.statusTitle;
 }
 function positionTutorialSpotlight(){
   if(tutorialStep===null || !ui.tutorialSpotlight) return;
@@ -1131,6 +1128,7 @@ function setState(state,title,detail) {
   ui.statusTitle.textContent=title;
   ui.statusDetail.textContent=detail;
   ui.statusTitle.className=`status-chip status-${state}`;
+  if(tutorialStep!==null) requestAnimationFrame(positionTutorialSpotlight);
 }
 
 function setBusy(value) {
@@ -1369,7 +1367,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260929-avatar-tutorial-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260929-android-parity-r2',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
