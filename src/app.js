@@ -354,7 +354,13 @@ function showScreen(name,{autoStart=true}={}) {
   }
   window.scrollTo({top:0,behavior:'auto'});
 
-  if(autoStart && tutorialStep===null && name==='home' && localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION) {
+  if(
+    autoStart &&
+    tutorialStep===null &&
+    name==='home' &&
+    localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION &&
+    localStorage.getItem(STORAGE.tutorialDone)==='true'
+  ) {
     queueMicrotask(()=>{
       if(!running && !processing && !speaking && !ui.mainButton.disabled) {
         startEmma({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
@@ -1001,7 +1007,7 @@ function avatarFrameName() {
 }
 function renderAvatarFrame(){
   if(!ui.aiAvatarFace) return;
-  const next=AVATAR_BASE+avatarFrameName()+'?v=20260929-avatar1';
+  const next=AVATAR_BASE+avatarFrameName()+'?v=20260929-parity-r3';
   if(ui.aiAvatarFace.getAttribute('src')!==next) ui.aiAvatarFace.src=next;
 }
 function startAvatarBlinkLoop(){
@@ -1033,12 +1039,29 @@ function positionTutorialSpotlight(){
   if(!target) return;
   const r=target.getBoundingClientRect();
   const pad=tutorialStep===0?8:10;
+  const left=Math.max(4,r.left-pad);
+  const top=Math.max(4,r.top-pad);
+  const right=Math.min(innerWidth-4,r.right+pad);
+  const bottom=Math.min(innerHeight-4,r.bottom+pad);
+  const width=Math.max(24,right-left);
+  const height=Math.max(24,bottom-top);
   Object.assign(ui.tutorialSpotlight.style,{
-    left:`${Math.max(4,r.left-pad)}px`,
-    top:`${Math.max(4,r.top-pad)}px`,
-    width:`${Math.max(24,r.width+pad*2)}px`,
-    height:`${Math.max(24,r.height+pad*2)}px`
+    left:`${left}px`,
+    top:`${top}px`,
+    width:`${width}px`,
+    height:`${height}px`
   });
+
+  const card=ui.tutorialCard;
+  if(!card) return;
+  const cardHeight=card.getBoundingClientRect().height||180;
+  const above=top;
+  const below=innerHeight-bottom;
+  let cardTop;
+  if(above>=cardHeight+22) cardTop=top-cardHeight-16;
+  else if(below>=cardHeight+22) cardTop=bottom+16;
+  else cardTop=12;
+  card.style.top=`${Math.max(12,Math.min(innerHeight-cardHeight-12,cardTop))}px`;
 }
 function renderTutorial(){
   const active=tutorialStep!==null;
@@ -1067,7 +1090,8 @@ function renderTutorial(){
     ui.tutorialHint.textContent='話しかけてみてください…';
     ui.tutorialHint.classList.remove('hidden');
   }
-  requestAnimationFrame(positionTutorialSpotlight);
+  if(tutorialStep===0) tutorialTarget()?.scrollIntoView({block:'center',behavior:'auto'});
+  requestAnimationFrame(()=>requestAnimationFrame(positionTutorialSpotlight));
 }
 function startTutorial({replay=false}={}){
   tutorialStep=0;
@@ -1367,7 +1391,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260929-android-parity-r2',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260929-parity-r3',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;

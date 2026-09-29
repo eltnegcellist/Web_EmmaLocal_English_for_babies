@@ -971,3 +971,26 @@ body{
   background:rgba(242,236,244,.62);border:1px solid rgba(124,116,127,.14)
 }
 .developer-tools-card .link-button{margin-top:8px}
+
+
+/* Web parity polish r3 — 2026-09-29 */
+.lite-compact-setting{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:11px 14px;margin:4px 0 10px;border:1px solid rgba(124,116,127,.16);
+  border-radius:18px;background:rgba(255,255,255,.62)
+}
+.lite-compact-setting>div{display:grid;gap:2px;min-width:0}
+.lite-compact-setting small{color:var(--on-surface-variant);line-height:1.4}
+.compact-toggle{flex:0 0 auto;margin:0!important}
+.developer-test-panel{display:grid;gap:8px;margin:12px 0}
+.developer-test-panel label{display:grid;gap:7px}
+.developer-test-panel textarea{
+  width:100%;box-sizing:border-box;border-radius:14px;border:1px solid rgba(124,116,127,.35);
+  background:#fff;padding:12px 13px
+}
+.tts-diagnostics{
+  display:grid;gap:4px;padding:12px;margin:10px 0;border-radius:14px;
+  background:rgba(124,116,127,.08);font-size:.78rem;color:var(--on-surface-variant)
+}
+.tts-diagnostics strong{color:var(--on-surface)}
+.tutorial-card{top:12px}

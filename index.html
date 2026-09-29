@@ -7,7 +7,7 @@
   <meta name="description" content="みつことば Web — 親と赤ちゃんとAI、3人でつくるローカル英語アプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/mitsukotoba.png?v=20260929-android-parity-r2" type="image/png" />
-  <link rel="stylesheet" href="./styles.css?v=20260929-android-parity-r2" />
+  <link rel="stylesheet" href="./styles.css?v=20260929-parity-r3" />
   <title>みつことば Web Lite</title>
 </head>
 <body>
@@ -58,7 +58,7 @@
           </div>
 
           <div id="onboardingAiIntro" class="ai-intro">
-            <img class="ai-intro-character" src="./assets/mitsukotoba-ai.png?v=20260927-brand3" alt="" aria-hidden="true" />
+            <img class="ai-intro-character" src="./assets/emma-face/emma-face-idle-open.svg?v=20260929-parity-r3" alt="" aria-hidden="true" />
             <span class="ai-intro-label">AIキャラクター</span>
             <span class="ai-intro-copy">名前は <strong>Emma</strong>。初回チュートリアルで自己紹介します。</span>
           </div>
@@ -84,6 +84,17 @@
           </div>
         </section>
 
+        <div class="lite-compact-setting">
+          <div>
+            <strong>みつことば Lite</strong>
+            <small>音声認識はSmall推奨。軽さを優先するときだけTinyを使います。</small>
+          </div>
+          <label class="toggle-line compact-toggle">
+            <span><strong>Moonshine Tiny（軽量）</strong></span>
+            <span class="switch"><input id="onboardingStartTiny" type="checkbox" /><span></span></span>
+          </label>
+        </div>
+
         <details class="setup-disclosure">
           <summary>
             <span>
@@ -102,17 +113,6 @@
               <button data-gender="GIRL" class="segment-button">女の子</button>
               <button data-gender="BOY" class="segment-button">男の子</button>
             </div>
-            <details class="advanced-setup-disclosure">
-              <summary>詳細設定</summary>
-              <label class="toggle-line">
-                <span>
-                  <strong>Tinyで始める</strong>
-                  <small>オフ（推奨）では高精度なSmallを使います。モデルサイズを優先する場合だけオンにしてください。</small>
-                </span>
-                <span class="switch"><input id="onboardingStartTiny" type="checkbox" /><span></span></span>
-              </label>
-            </details>
-
             <button id="onboardingPronunciationToggle" type="button" class="text-button inline-button">名前の読み方を調整</button>
             <div id="onboardingPronunciationPanel" class="hidden">
               <label>英語で呼ぶ名前
@@ -170,7 +170,7 @@
         <section class="avatar-wrap">
           <div id="avatar" class="avatar state-idle" aria-hidden="true">
             <div class="listening-ring"></div>
-            <img id="aiAvatarFace" class="emma-face-frame" src="./assets/emma-face/emma-face-idle-open.svg?v=20260929-avatar1" alt="" aria-label="Emma（みつことば AI）" />
+            <img id="aiAvatarFace" class="emma-face-frame" src="./assets/emma-face/emma-face-idle-open.svg?v=20260929-parity-r3" alt="" aria-label="Emma（みつことば AI）" />
             <div class="thinking-dots"><span></span><span></span><span></span></div>
           </div>
           <div id="aiNameBadge" class="ai-name-badge">Emma</div>
@@ -209,13 +209,6 @@
             <span></span>
           </label>
         </article>
-        <section id="debugPanel" class="card debug-panel">
-          <h2>開発用テスト</h2>
-          <label>日本語テキストでLite返答を確認
-            <textarea id="debugInput" rows="3" placeholder="お風呂入ろうね"></textarea>
-          </label>
-          <button id="debugReplyButton" class="outline-button">この内容でAIに話してもらう</button>
-        </section>
       </div>
 
       <footer class="bottom-bar">
@@ -356,6 +349,17 @@
           <div id="developerTools" class="hidden developer-tools-card">
             <p class="small muted">開発者向け：診断・音声確認・完全リセット</p>
             <a class="outline-button link-button compact-button" href="./voice-diagnostic.html?v=20260925-voice-diagnostic-r1">Kitten音声を診断する</a>
+            <section id="debugPanel" class="developer-test-panel">
+              <label>日本語テキストでLite返答を確認
+                <textarea id="debugInput" rows="3" placeholder="お風呂入ろうね"></textarea>
+              </label>
+              <button id="debugReplyButton" class="outline-button compact-button">この内容でAIに話してもらう</button>
+            </section>
+            <div class="tts-diagnostics">
+              <strong>Web音声パラメータ</strong>
+              <span>Kitten TTS Nano FP32 / Kiki</span>
+              <span>Speed 0.8 / Target peak 0.92 / Max boost 1.8x</span>
+            </div>
             <button id="fullResetButton" class="outline-button compact-button">みつことばを初期状態に戻す</button>
             <p class="small muted">設定・初回準備情報・みつことばのモデルキャッシュを削除し、初回画面へ戻します。</p>
           </div>
@@ -480,6 +484,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260929-android-parity-r2"></script>
+  <script type="module" src="./src/app.js?v=20260929-parity-r3"></script>
 </body>
 </html>
