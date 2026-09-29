@@ -1041,3 +1041,59 @@ body{
     padding-bottom:calc(330px + env(safe-area-inset-bottom))!important;
   }
 }
+
+
+/* 2026-09-30: onboarding/image/tutorial corrections */
+.lite-compact-setting{
+  gap:6px!important;
+  padding:9px 12px!important;
+  border-radius:16px!important;
+}
+.lite-compact-setting>div{gap:0!important}
+.lite-compact-setting>div>strong{font-size:.92rem}
+.lite-compact-setting small{
+  font-size:.68rem!important;
+  line-height:1.25!important;
+}
+.lite-compact-setting .compact-toggle{
+  min-height:38px!important;
+  padding:3px 0 0!important;
+  gap:8px!important;
+}
+.lite-compact-setting .compact-toggle>span:first-child{
+  font-size:.82rem!important;
+  line-height:1.2!important;
+}
+.lite-compact-setting .compact-toggle .switch{
+  transform:scale(.86);
+  transform-origin:right center;
+}
+.onboarding-ai-name-help{
+  margin:-6px 0 10px;
+  line-height:1.35;
+}
+.about-characters{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:112px;
+  margin:4px auto 18px;
+}
+.about-characters img{
+  width:104px;
+  height:104px;
+  object-fit:contain;
+  display:block;
+  margin:0 -13px;
+  filter:drop-shadow(0 7px 14px rgba(91,65,105,.08));
+}
+.about-characters img:nth-child(2){
+  width:98px;
+  height:98px;
+  z-index:2;
+}
+@media(max-width:520px){
+  .about-characters{min-height:92px;margin-bottom:14px}
+  .about-characters img{width:86px;height:86px;margin:0 -11px}
+  .about-characters img:nth-child(2){width:82px;height:82px}
+}

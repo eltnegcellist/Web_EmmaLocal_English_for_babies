@@ -5,7 +5,7 @@ import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 const $ = (id) => document.getElementById(id);
 const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
-  onboardingBabyName:$('onboardingBabyName'), onboardingSpokenBabyName:$('onboardingSpokenBabyName'),
+  onboardingBabyName:$('onboardingBabyName'), onboardingAiCharacterName:$('onboardingAiCharacterName'), onboardingSpokenBabyName:$('onboardingSpokenBabyName'),
   onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingStartTiny:$('onboardingStartTiny'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
   onboardingPronunciationToggle:$('onboardingPronunciationToggle'), onboardingPronunciationPanel:$('onboardingPronunciationPanel'),
   prepareEmmaButton:$('prepareEmmaButton'),
@@ -89,8 +89,10 @@ initUi();
 
 function initUi() {
   const babyName = localStorage.getItem(STORAGE.babyName) || '';
+  const aiName = localStorage.getItem(STORAGE.aiName) || 'Emma';
   if(ui.webBuild) ui.webBuild.textContent=`Web build: ${WEB_BUILD}`;
-  if(ui.aiCharacterName) ui.aiCharacterName.value = localStorage.getItem(STORAGE.aiName) || 'Emma';
+  if(ui.aiCharacterName) ui.aiCharacterName.value = aiName;
+  if(ui.onboardingAiCharacterName) ui.onboardingAiCharacterName.value = aiName;
   ui.babyName.value = babyName;
   ui.onboardingBabyName.value = babyName;
   const spokenName = localStorage.getItem(STORAGE.spokenName) || '';
@@ -186,6 +188,14 @@ function bindEvents() {
   ui.aiCharacterName?.addEventListener('input',()=>{
     const value=sanitizeAiName(ui.aiCharacterName.value);
     ui.aiCharacterName.value=value;
+    if(ui.onboardingAiCharacterName) ui.onboardingAiCharacterName.value=value;
+    localStorage.setItem(STORAGE.aiName,value);
+    updateAiNameUi();
+  });
+  ui.onboardingAiCharacterName?.addEventListener('input',()=>{
+    const value=sanitizeAiName(ui.onboardingAiCharacterName.value);
+    ui.onboardingAiCharacterName.value=value;
+    if(ui.aiCharacterName) ui.aiCharacterName.value=value;
     localStorage.setItem(STORAGE.aiName,value);
     updateAiNameUi();
   });
@@ -331,11 +341,10 @@ function bindEvents() {
     tutorialStep=1;
     renderTutorial();
   });
-  window.addEventListener('resize',()=>{ if(tutorialStep!==null) positionTutorialSpotlight(); });
-  window.addEventListener('scroll',()=>{ if(tutorialStep!==null) positionTutorialSpotlight(); },{passive:true});
-
   window.addEventListener('resize',()=>{ if(tutorialStep!==null) scheduleTutorialSpotlightSync(); });
   window.addEventListener('scroll',()=>{ if(tutorialStep!==null) scheduleTutorialSpotlightSync(); },{passive:true});
+  window.visualViewport?.addEventListener('resize',()=>{ if(tutorialStep!==null) scheduleTutorialSpotlightSync(); });
+  window.visualViewport?.addEventListener('scroll',()=>{ if(tutorialStep!==null) scheduleTutorialSpotlightSync(); },{passive:true});
 
   ui.debugReplyButton.addEventListener('click',async()=>{
     const text=ui.debugInput.value.trim();
@@ -579,8 +588,15 @@ async function stopEmma() {
 
 function handleCapturedUtterance(audio) {
   if(!running||processing||speaking)return;
-  if(tutorialStep===2) tutorialUserSpoke=true;
-  if(ui.autoRespond.checked || tutorialStep===2) transcribeUtterance(audio);
+  if(tutorialStep===2){
+    tutorialUserSpoke=true;
+    pendingUtterance={kind:'audio',audio};
+    ui.manualReplyButton.classList.remove('hidden');
+    setState('understood','話し終わりを検出しました','画面下で光っている「ここで返事して」を押してください。');
+    scheduleTutorialSpotlightSync();
+    return;
+  }
+  if(ui.autoRespond.checked) transcribeUtterance(audio);
   else {
     pendingUtterance={kind:'audio',audio};
     ui.manualReplyButton.classList.remove('hidden');
@@ -1035,7 +1051,7 @@ function startAvatarBlinkLoop(){
 function tutorialTarget(){
   if(tutorialStep===0) return ui.avatar;
   if(tutorialStep===1) return ui.mainButton;
-  return ui.tutorialStatusTarget || ui.statusTitle;
+  return ui.manualReplyButton || ui.tutorialStatusTarget || ui.statusTitle;
 }
 function positionTutorialSpotlight(){
   if(tutorialStep===null || !ui.tutorialSpotlight) return;
@@ -1096,11 +1112,11 @@ function renderTutorial(){
     ui.tutorialHint.classList.remove('hidden');
   }else{
     ui.tutorialTitle.textContent='実際に話しかけてみよう';
-    ui.tutorialBody.textContent=`明るく表示されている「聞いています」を確認して、普段どおり日本語で赤ちゃんへ話しかけてください。声を検知して${name}が返事を最後まで話し終えると、チュートリアルは自動で完了します。`;
-    ui.tutorialHint.textContent='話しかけてみてください…';
+    ui.tutorialBody.textContent=`「聞いています」を確認して、普段どおり日本語で赤ちゃんへ話しかけてください。話し終わりを検知したら、画面下で光っている「ここで返事して」を押します。`;
+    ui.tutorialHint.textContent='↓ 話したあと「ここで返事して」を押す';
     ui.tutorialHint.classList.remove('hidden');
   }
-  if(tutorialStep===0 || tutorialStep===2) {
+  if(tutorialStep===0) {
     tutorialTarget()?.scrollIntoView({block:'center',behavior:'auto'});
   }
   scheduleTutorialSpotlightSync();
