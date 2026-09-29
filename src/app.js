@@ -32,7 +32,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260929-android-parity-r2';
+const WEB_BUILD = '20260929-parity-r4';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
