@@ -7,8 +7,8 @@
   <meta name="description" content="みつことば Web — 親と赤ちゃんとAI、3人でつくるローカル英語アプリ" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icons/mitsukotoba-english.svg?v=20260929-mobile-fixes-r5" type="image/svg+xml" />
-  <link rel="stylesheet" href="./styles.css?v=20260930-layout-r7" />
-  <title>みつことば Web Lite</title>
+  <link rel="stylesheet" href="./styles.css?v=20260930-web-r8" />
+  <title>みつことば Web</title>
 </head>
 <body>
   <main class="app-shell">
@@ -86,8 +86,8 @@
 
         <div class="lite-compact-setting">
           <div>
-            <strong>みつことば Lite</strong>
-            <small>音声認識はSmall推奨。軽さを優先するときだけTinyを使います。</small>
+            <strong>音声認識</strong>
+            <small>Small推奨。軽さを優先するときだけTinyを使います。</small>
           </div>
           <label class="toggle-line compact-toggle">
             <span><strong>Moonshine Tiny（軽量）</strong></span>
@@ -143,11 +143,6 @@
           </div>
         </details>
 
-        <div class="onboarding-footnote">
-          <span>Web版は <strong>みつことば Lite</strong></span>
-          <span>・</span>
-          <span>Android版には Lite / Full</span>
-        </div>
       </div>
     </section>
 
@@ -174,10 +169,6 @@
           </div>
           <span class="privacy-dot">●</span>
         </article>
-
-        <section class="audience-card audience-card-single" aria-label="Web版のモード">
-          <div class="audience-only-label">呼びかけ</div>
-        </section>
 
         <section class="avatar-wrap">
           <div id="avatar" class="avatar state-idle" aria-hidden="true">
@@ -331,9 +322,7 @@
 
         
         <article class="card">
-          <h2>みつことば Lite</h2>
-          <p class="small muted">Web版はLiteです。赤ちゃん向けの短い英語をすばやく選んで話します。</p>
-          <h3>音声認識</h3>
+          <h2>音声認識</h2>
           <label>Moonshineモデル
             <select id="asrModel">
               <option value="tiny">軽量（Tiny）</option>
@@ -367,7 +356,7 @@
             <p class="small muted">開発者向け：診断・音声確認・完全リセット</p>
             <a class="outline-button link-button compact-button" href="./voice-diagnostic.html?v=20260925-voice-diagnostic-r1">Kitten音声を診断する</a>
             <section id="debugPanel" class="developer-test-panel">
-              <label>日本語テキストでLite返答を確認
+              <label>日本語テキストで返答を確認
                 <textarea id="debugInput" rows="3" placeholder="お風呂入ろうね"></textarea>
               </label>
               <button id="debugReplyButton" class="outline-button compact-button">この内容でAIに話してもらう</button>
@@ -383,9 +372,9 @@
         </article>
 
         <article class="card android-full-card">
-          <h2>フル版の利用について</h2>
-          <p>Full版はAndroidでのみ利用できます。Android版ではLite / Fullを選べ、Fullでは赤ちゃんへの短い英語を返す「呼びかけ」に加えて、親の発話や直前の流れを踏まえてAIがやり取りに参加する「会話」も利用できます。</p>
-          <p class="small muted">Web版はLiteの「呼びかけ」に対応しています。</p>
+          <h2>Android版について</h2>
+          <p>Android版では、Web版と同等のLiteと、AIが親・赤ちゃんとのやり取りに継続して参加する「会話」も使えるFullを選べます。</p>
+          <p class="small muted">Fullでは、文字起こしだけでなく直前の会話なども参考にしながら、その場に合わせた英語を生成します。</p>
           <a class="outline-button link-button compact-button" href="https://github.com/eltnegcellist/Android_English_character_for_baby" target="_blank" rel="noopener">Android版を見る</a>
         </article>
       </div>
@@ -455,11 +444,6 @@
           <p class="muted">そこで親がお湯をぱしゃぱしゃしたり、赤ちゃんへ「Splash splashだね」と返したりする。AIの英語を画面の中だけで終わらせず、目の前の親子の時間へつなげることを想定しています。</p>
         </article>
 
-        <article class="card">
-          <h2>Android版にはLiteとFullがあります</h2>
-          <p><strong>このWeb版はLiteのみです。</strong> Android版には Lite / Full があり、Fullでは文字起こし、元音声の非言語情報、直前の会話も参考にしながら、その場に合わせた英語を生成します。</p>
-        </article>
-
         <article class="card emphasis-card">
           <h2>研究が示していることと、まだ分からないこと</h2>
           <p>対面での外国語学習を扱った研究<a class="citation-link" href="#ref-2">[2]</a>や、社会的な相手がいるタッチスクリーン環境を扱った研究<a class="citation-link" href="#ref-3">[3]</a>は、AIとの3者交流そのものを検証したものではありません。</p>
@@ -512,6 +496,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20260930-layout-r7"></script>
+  <script type="module" src="./src/app.js?v=20260930-web-r8"></script>
 </body>
 </html>

@@ -32,7 +32,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260930-layout-r7';
+const WEB_BUILD = '20260930-web-r8';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
