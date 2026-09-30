@@ -59,7 +59,7 @@
           await Promise.all(keys.map(async key=>{
             const isEmmaCache=
               key.startsWith('emma-web-shell-') ||
-              (fullReset && (key==='kitten-tts' || key==='moonshine-models-v1'));
+              (fullReset && (key==='kitten-tts' || key==='moonshine-models-v1' || key==='mitsukotoba-background-model-meta-v1'));
 
             if(isEmmaCache){
               await caches.delete(key);
@@ -95,7 +95,7 @@
             await Promise.all(
               databases
                 .map(db=>db?.name)
-                .filter(name=>name && /emma|moonshine|kitten/i.test(name))
+                .filter(name=>name && /emma|moonshine|kitten|mitsukotoba/i.test(name))
                 .map(deleteDatabase)
             );
           }

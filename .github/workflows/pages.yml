@@ -26,9 +26,13 @@ jobs:
       - name: Syntax check
         run: |
           node --check src/app.js
+          node --check src/resumable-download.js
           node --check src/audio-capture.js
           node --check src/asr-worker.js
           node --check src/tts-worker.js
+          node --check src/vendor/moonshine/asset-downloader.js
+          node --check src/vendor/kitten/model-loader.js
+          node --check service-worker.js
           node --check src/lite-response-engine.js
           node --check src/name-pronunciation.js
           node --check src/model-lab.js

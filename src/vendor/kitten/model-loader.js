@@ -1,3 +1,4 @@
+import { clearResumableDownload, downloadResumable } from '../../resumable-download.js';
 /**
  * Browser-only model loader for Emma Web.
  * Adapted from kitten-tts-js 0.1.2 (Apache-2.0).
@@ -13,38 +14,14 @@ export const MODELS = {
   'KittenML/kitten-tts-mini-0.8': { label: 'mini (~80 MB)' },
 };
 
-async function fetchBuffer(url, onProgress) {
-  const response = await fetch(url, { mode: 'cors', cache: 'no-store' });
-  if (!response.ok) throw new Error(`HTTP ${response.status} fetching ${url}`);
-
-  const total = Number(response.headers.get('content-length')) || 0;
-  if (!response.body?.getReader) {
-    const buffer = await response.arrayBuffer();
-    onProgress?.(buffer.byteLength, total || buffer.byteLength);
-    return buffer;
-  }
-
-  const reader = response.body.getReader();
-  const chunks = [];
-  let loaded = 0;
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    if (value?.byteLength) {
-      chunks.push(value);
-      loaded += value.byteLength;
-      onProgress?.(loaded, total);
-    }
-  }
-
-  const merged = new Uint8Array(loaded);
-  let offset = 0;
-  for (const chunk of chunks) {
-    merged.set(chunk, offset);
-    offset += chunk.byteLength;
-  }
-  onProgress?.(loaded, total || loaded);
-  return merged.buffer;
+async function fetchBuffer(url, onProgress, background) {
+  const result = await downloadResumable(url, {
+    background,
+    onProgress: (loaded, total, meta) => {
+      onProgress?.(loaded, total, !!meta?.resumed);
+    },
+  });
+  return result.buffer;
 }
 
 async function cacheGet(cacheKey) {
@@ -65,16 +42,24 @@ function hfUrl(repoId, filename) {
 }
 
 async function fetchCached(repoId, filename, onProgress) {
-  const cacheKey = `${repoId.replace('/', '__')}__${filename.replace(/\//g, '_')}`;
+  const cacheKey = `${repoId.replace('/', '__')}__${filename.replace(/\\/g, '_')}`;
+  const url = hfUrl(repoId, filename);
   const cached = await cacheGet(cacheKey);
   if (cached) {
-    onProgress?.(cached.byteLength, cached.byteLength, true);
+    await clearResumableDownload(url).catch(() => {});
+    onProgress?.(cached.byteLength, cached.byteLength, true, false);
     return cached;
   }
-  const buffer = await fetchBuffer(hfUrl(repoId, filename), (loaded, total) => {
-    onProgress?.(loaded, total, false);
-  });
+  const buffer = await fetchBuffer(
+    url,
+    (loaded, total, resumed) => onProgress?.(loaded, total, false, resumed),
+    {
+      cacheName: CACHE_DIR_NAME,
+      cacheKey: '/' + cacheKey,
+    }
+  );
   await cacheSet(cacheKey, buffer);
+  await clearResumableDownload(url).catch(() => {});
   return buffer;
 }
 
@@ -94,13 +79,14 @@ export async function downloadModel(repoId, opts = {}) {
     model: { loaded: 0, total: 0 },
     voices: { loaded: 0, total: 0 },
   };
-  const emit = (kind, loaded, total, cached) => {
+  const emit = (kind, loaded, total, cached, resumed = false) => {
     progress[kind] = { loaded, total: total || progress[kind].total || 0 };
     opts.onProgress?.({
       kind,
       loaded,
       total,
       cached: !!cached,
+      resumed: !!resumed,
       modelLoaded: progress.model.loaded,
       modelTotal: progress.model.total,
       voicesLoaded: progress.voices.loaded,
@@ -110,8 +96,8 @@ export async function downloadModel(repoId, opts = {}) {
 
   opts.onStage?.('download');
   const [modelBuffer, voicesBuffer] = await Promise.all([
-    fetchCached(repoId, modelFile, (loaded, total, cached) => emit('model', loaded, total, cached)),
-    fetchCached(repoId, voicesFile, (loaded, total, cached) => emit('voices', loaded, total, cached)),
+    fetchCached(repoId, modelFile, (loaded, total, cached, resumed) => emit('model', loaded, total, cached, resumed)),
+    fetchCached(repoId, voicesFile, (loaded, total, cached, resumed) => emit('voices', loaded, total, cached, resumed)),
   ]);
   opts.onStage?.('download-complete');
   return { modelBuffer, voicesBuffer, config };

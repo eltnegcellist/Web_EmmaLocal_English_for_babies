@@ -52,10 +52,11 @@ async function ensureKitten() {
         const sizeText = knownTotal > 0
           ? `${mbLoaded.toFixed(1)} / ${mbTotal.toFixed(1)} MB`
           : `${mbLoaded.toFixed(1)} MB`;
+        const resumeText = info.resumed ? '前回の続きから再開しています… ' : '';
         self.postMessage({
           type: 'status',
           progress,
-          message: `Kitten TTS Nano FP32をダウンロードしています… ${sizeText}`
+          message: `Kitten TTS Nano FP32をダウンロードしています… ${resumeText}${sizeText}`
         });
       }
     }),
