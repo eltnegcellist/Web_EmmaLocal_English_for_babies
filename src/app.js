@@ -32,7 +32,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20260930-web-r8';
+const WEB_BUILD = '20260930-web-r9';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -346,8 +346,10 @@ function bindEvents() {
   });
 
   document.addEventListener('visibilitychange',async()=>{
+    if(document.visibilityState==='hidden') requestBackgroundModelContinuation();
     if(running && document.visibilityState==='visible' && ui.keepAwake.checked) await requestWakeLock();
   });
+  window.addEventListener('pagehide',requestBackgroundModelContinuation,{capture:true});
 }
 
 function showScreen(name,{autoStart=true}={}) {
@@ -645,7 +647,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260926-kitten-cmudict-r1',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20260930-resumable-r1',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -721,6 +723,26 @@ async function initMoonshine() {
   };
 }
 
+function forwardBackgroundDownload(message) {
+  if(!message?.url || !message?.cacheName || !message?.cacheKey) return;
+  navigator.serviceWorker?.ready
+    ?.then(reg => (navigator.serviceWorker.controller || reg.active)?.postMessage({
+      type:'track-model-download',
+      url:message.url,
+      cacheName:message.cacheName,
+      cacheKey:message.cacheKey,
+    }))
+    .catch(()=>{});
+}
+
+function requestBackgroundModelContinuation() {
+  navigator.serviceWorker?.ready
+    ?.then(reg => (navigator.serviceWorker.controller || reg.active)?.postMessage({
+      type:'start-background-downloads',
+    }))
+    .catch(()=>{});
+}
+
 function showMoonshineProgress(progress,message) {
   showProgress(true,progress,message);
   showOnboardingProgress(true,progress,message);
@@ -736,6 +758,10 @@ async function ensureWorkersForDebug() {
 
 function handleTtsMessage(event,readyResolve,readyReject) {
   const m=event.data;
+  if(m.type==='background-download-url') {
+    forwardBackgroundDownload(m);
+    return;
+  }
   if(m.type==='status') {
     showProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
     showOnboardingProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
@@ -1407,7 +1433,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260930-icon-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260930-resumable-r1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;

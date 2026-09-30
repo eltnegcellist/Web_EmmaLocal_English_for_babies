@@ -5,6 +5,7 @@
  * Android bindings, adapted to `fetch` + the Cache API.
  */
 import { MoonshineDownloadError } from './errors.js';
+import { clearResumableDownload, downloadResumable } from '../../resumable-download.js';
 const DEFAULT_CACHE = 'moonshine-models-v1';
 /**
  * Downloads model files with transparent caching. A single instance can be
@@ -85,20 +86,32 @@ export class AssetDownloader {
             const hit = await cache.match(url);
             if (hit) {
                 const buf = await hit.arrayBuffer();
+                await clearResumableDownload(url).catch(() => {});
                 this.reportProgress(buf.byteLength, buf.byteLength, basename(url));
                 this.finishFile(buf.byteLength);
                 return new Uint8Array(buf);
             }
         }
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new MoonshineDownloadError(`Failed to download ${url}: ${response.status} ${response.statusText}`);
+        let result;
+        try {
+            result = await downloadResumable(url, {
+                background: {
+                    cacheName: this.cacheName,
+                    cacheKey: url,
+                },
+                onProgress: (loaded, total) => this.reportProgress(loaded, total, basename(url)),
+            });
         }
+        catch (error) {
+            throw new MoonshineDownloadError(
+                `Failed to download ${url}: ${error?.message || error}`
+            );
+        }
+        const buf = result.buffer;
         if (cache) {
-            // Store a clone so the body below can still be read.
-            await cache.put(url, response.clone());
+            await cache.put(url, new Response(buf));
         }
-        const buf = await this.readWithProgress(response, basename(url));
+        await clearResumableDownload(url).catch(() => {});
         this.finishFile(buf.byteLength);
         return new Uint8Array(buf);
     }
