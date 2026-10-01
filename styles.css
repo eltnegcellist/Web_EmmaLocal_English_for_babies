@@ -630,7 +630,7 @@ body{
 }
 
 .ai-name-badge{
-  margin:-8px auto 2px;
+  margin:12px auto 12px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
