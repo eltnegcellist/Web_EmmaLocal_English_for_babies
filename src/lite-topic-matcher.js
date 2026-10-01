@@ -47,10 +47,10 @@ export function hasNonMilkDrink(text) {
 const NOUN_END = '(?:$|だ|です|ね|よ|を|が|は|も|に|で|の|と|って|ちゃん)';
 const KANA_START = '(?:(?<![ぁ-ん])|この|その|あの|かわいい|ちいさな|小さな|あなたの|きみの|赤ちゃんの)';
 const NOUN_TOPICS = {
-  hands: new RegExp(`(?:(?<!\\p{Script=Han})(?:両手|手|指)|${KANA_START}ゆび|(?:^|この|その|あの|かわいい|ちいさな|小さな|あなたの|きみの|赤ちゃんの)て)${NOUN_END}`, 'u'),
+  hands: new RegExp(`(?:(?<!\\p{Script=Han})(?:両手|手|指)|${KANA_START}ゆび|(?:^|この|その|あの|かわいい|ちいさな|小さな|あなたの|きみの|赤ちゃんの)て(?!がみ))${NOUN_END}`, 'u'),
   feet: new RegExp(`(?:(?<!\\p{Script=Han})(?:両足|足)|${KANA_START}あし(?!た|ら|あと|もと|おと|ば|なみ|どり))${NOUN_END}`, 'u'),
   voice: new RegExp(`(?:(?<!\\p{Script=Han})声|${KANA_START}こえ)${NOUN_END}`, 'u'),
-  book: new RegExp(`(?:(?<!\\p{Script=Han})本|${KANA_START}ほん)${NOUN_END}`, 'u'),
+  book: new RegExp(`(?:(?<!\\p{Script=Han})本|${KANA_START}ほん(?!と|じつ|やく))${NOUN_END}`, 'u'),
   clothes: new RegExp(`(?:(?<!\\p{Script=Han})服|${KANA_START}ふく)${NOUN_END}`, 'u'),
   music: new RegExp(`(?:(?<!\\p{Script=Han})歌|${KANA_START}うた(?!がう|がっ|がい))${NOUN_END}`, 'u'),
   tummy: new RegExp(`(?:お腹|おなか)${NOUN_END}`, 'u'),

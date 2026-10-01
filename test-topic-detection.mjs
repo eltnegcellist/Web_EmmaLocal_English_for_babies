@@ -176,8 +176,8 @@ for (const [scene, texts] of Object.entries(nounCases)) {
 for (const text of [
   '足りないね', '足すよ', '足し算だね', '満足だね', '不足だね', '足場だね', '足音だね',
   'あしたね', 'あしらうよ', 'あしあとだね', 'あしもとを見て',
-  '手伝うよ', '手紙だよ', '手続きだね', '苦手だね', '指示だよ', 'ゆびわだね',
-  'なんてかわいい', 'してね', '声優だね', 'こえるよ', '本当だよ', '本日だね', 'にほんだよ',
+  '手伝うよ', '手紙だよ', 'てがみだよ', '手続きだね', '苦手だね', '指示だよ', 'ゆびわだね',
+  'なんてかわいい', 'してね', '声優だね', 'こえるよ', '本当だよ', 'ほんとだね', 'ほんとうだね', '本日だね', 'にほんだよ',
   '服用だね', 'ふくらむね', '歌舞伎だね', 'うたがうよ',
 ]) assert.equal(new LiteResponseEngine().respond(text).scene, 'generic', `Unrelated noun substring: ${text}`);
 for (const text of ['あー', 'うー', 'あ', 'う', 'えっと']) assert.equal(isMeaningfulUtterance(text), false, text);
