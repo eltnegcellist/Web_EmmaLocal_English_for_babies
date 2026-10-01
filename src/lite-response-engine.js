@@ -1,6 +1,7 @@
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
+import { detectFlexibleTopics, normalizeParentSpeech } from './lite-topic-matcher.js';
 
-// AUTO-SYNCED from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
+// Reply bank and style synced from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
 // Android source commit: dfd20958931d2767d3b54e0c9106f8cb690be93d
 // Do not hand-edit the reply bank independently from Android.
 const STYLE = {
@@ -343,7 +344,7 @@ const SCENE_RESCUE_PHRASES = {
 
 const SCENE_EXCLUSIONS = {
   bath: ["風呂敷"],
-  sleep: ["寝返り"],
+  sleep: ["寝返り", "ねがえり", "重ね", "かさね"],
   hands: ["手伝", "手続", "手紙", "手数"],
   feet: ["足り", "足す", "足し"],
   tummy: ["お腹すい", "おなかすい", "お腹減", "おなか減"],
@@ -755,18 +756,17 @@ export class LiteResponseEngine {
 
   respond(transcript, spokenBabyName = "") {
     const normalized = normalize(transcript);
-    const ranked = SCENES.map(scene => [scene, score(scene, normalized)])
+    const flexible = detectFlexibleTopics(transcript);
+    const ranked = SCENES.map(scene => [scene, Math.max(score(scene, normalized), flexible[scene.id]?.score || 0)])
       .sort((a, b) => b[1] - a[1]);
     const best = ranked[0];
     const selected = best && best[1] >= 3 ? best : null;
     const rescued = selected ? null : matchPhoneticScene(
-      transcript,
+      normalizeParentSpeech(transcript),
       Object.fromEntries(SCENES.map(scene => [
         scene.id,
         [
-          ...scene.keywords,
           ...(SCENE_CHILDCARE_ANCHORS[scene.id] || []),
-          ...(SCENE_HINTS[scene.id] || []),
           ...(SCENE_RESCUE_PHRASES[scene.id] || []),
         ],
       ])),
@@ -777,7 +777,7 @@ export class LiteResponseEngine {
       || null;
     const candidateScore = selected?.[1] || rescued?.score || 0;
     const candidateHasStrongTopicEvidence = !!candidateScene && (
-      !!rescued || hasStrongTopicEvidence(candidateScene, normalized)
+      !!rescued || !!flexible[candidateScene.id] || hasStrongTopicEvidence(candidateScene, normalized)
     );
     const explicitScene = !candidateScene ? null
       : !this.activeSceneId ? candidateScene
@@ -918,16 +918,16 @@ function applyName(reply, safeName, forceName) {
   return reply;
 }
 function normalize(text) {
-  return String(text || "").toLowerCase()
-    .replace(/[\s、。！？!?,.・「」『』（）()ー〜~]/g, "")
+  return normalizeParentSpeech(text)
+    .replace(/[\s、。！？!?,.・「」『』（）()〜~]/g, "")
     .replaceAll("おふろ", "お風呂")
     .replaceAll("お風呂", "風呂")
     .replaceAll("ねよっか", "寝よっか")
-    .replaceAll("ねよう", "寝よう")
-    .replaceAll("ねる", "寝る")
-    .replaceAll("ねます", "寝ます")
-    .replaceAll("ねて", "寝て")
-    .replaceAll("ねた", "寝た");
+    .replace(/(?<!かさ|重|たず|尋|訪|は|跳|ま|真)ねよう/g, "寝よう")
+    .replace(/(?<![ぁ-ん一-龯])ねる/g, "寝る")
+    .replace(/(?<!かさ|重|たず|尋|訪|は|跳|ま|真)ねます/g, "寝ます")
+    .replace(/(?<!かさ|重|たず|尋|訪|は|跳|ま|真)ねて/g, "寝て")
+    .replace(/(?<!かさ|重|たず|尋|訪|は|跳|ま|真)ねた/g, "寝た");
 }
 function wordCount(text) {
   return (String(text).match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || []).length;

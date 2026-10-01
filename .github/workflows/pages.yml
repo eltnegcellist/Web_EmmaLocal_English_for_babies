@@ -24,6 +24,7 @@ jobs:
       - name: Smoke test LiteResponseEngine
         run: |
           node test-lite.mjs
+          node test-topic-detection.mjs
           node test-avatar.mjs
       - name: Syntax check
         run: |
@@ -36,6 +37,8 @@ jobs:
           node --check src/vendor/kitten/model-loader.js
           node --check service-worker.js
           node --check src/lite-response-engine.js
+          node --check src/lite-topic-matcher.js
+          node --check src/lite-phonetic-scene-matcher.js
           node --check src/name-pronunciation.js
           node --check src/model-lab.js
       - name: Reject GPL/eSpeak runtime regressions

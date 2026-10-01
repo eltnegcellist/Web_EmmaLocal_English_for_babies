@@ -131,6 +131,12 @@ Kitten TTS Nano 0.8 / Kiki
 みつことばアバター + PCM連動口パク
 ```
 
+### 話題の判定
+
+Web版は20種類の育児の話題を端末内で判定します。「寝ましょう／寝よう」のような語尾、漢字・かな表記、対象と動作の間の助詞に対応しています。短い単語の音が少し崩れた場合は、関連する動作も照合して話題を推定します。判断材料が不足する発話は直前の話題を最大6ターン保持し、その後はジェネラルの返答に戻ります。
+
+`node test-topic-detection.mjs` で言い回しと模擬的な誤認識、無関係な文、話題の切り替えを検証します。この検証は実際の音声認識精度を測定したものではありません。
+
 ### 音声認識
 
 - Moonshineをブラウザ内WASMでローカル実行します
@@ -332,6 +338,12 @@ Kitten TTS Nano 0.8 / Kiki
 ↓
 Mitsukotoba avatar + PCM-linked lip sync
 ```
+
+### Topic detection
+
+The Web edition detects 20 childcare topics locally. Detection normalizes polite verb forms and kana/kanji spellings, and recognizes object-action combinations across particles. Slight phonetic errors in short topic words require a related action as supporting evidence. Ambiguous follow-ups retain the previous topic for up to six turns before returning to generic replies.
+
+Run `node test-topic-detection.mjs` for phrase variations, simulated transcript errors, unrelated sentences, and topic switching. These text fixtures are not a measurement of real-world ASR accuracy.
 
 ### ASR
 
