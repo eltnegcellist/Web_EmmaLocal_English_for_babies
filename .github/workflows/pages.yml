@@ -22,7 +22,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Smoke test LiteResponseEngine
-        run: node test-lite.mjs
+        run: |
+          node test-lite.mjs
+          node test-avatar.mjs
       - name: Syntax check
         run: |
           node --check src/app.js
