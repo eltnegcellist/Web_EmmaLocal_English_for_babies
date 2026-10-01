@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-Updated: 2026-10-01
+Updated: 2026-10-02
 
 This file summarizes third-party software, models, data, and runtime components
 used by Mitsukotoba Web. It is intended to make redistribution and attribution
@@ -18,10 +18,23 @@ eSpeak NG-based phonemization.
 
 The production Kitten path uses Mitsukotoba's local
 `src/vendor/kitten/phonemizer.js`, which is based on CMUDict plus local
-conversion/context rules and does not call eSpeak NG.
+conversion/context rules and does not call eSpeak NG. CI rejects known
+eSpeak-backed browser runtime identifiers from the deployed source tree.
 
 "GPL-free" here does not mean "permissive-only": the Moonshine WASM provenance
 also includes MPL-2.0 and CC BY 4.0 material described below.
+
+## Major dependency summary
+
+| Component | Version / model | License / terms |
+| --- | --- | --- |
+| Moonshine Voice | 0.1.5 / Japanese Streaming | MIT |
+| Kitten TTS Nano | 0.8 FP32 | Apache-2.0 |
+| CMUDict | pinned 74790861… | BSD-style |
+| ONNX Runtime Web | 1.20.0 production Kitten / 1.17.0 model-lab | MIT |
+| Eigen provenance | Moonshine / ORT dependency surface | MPL-2.0 |
+| VCTK reference clips | Moonshine WASM provenance | CC BY 4.0 |
+| Supertonic model-lab comparison | Supertone/supertonic-3 | Supertone OpenRAIL-M |
 
 ## Moonshine Voice 0.1.5 / Japanese Streaming STT
 
