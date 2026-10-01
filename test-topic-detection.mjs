@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { LiteResponseEngine, isMeaningfulUtterance, splitSentences } from './src/lite-response-engine.js';
 
 // Text fixtures, including simulated ASR errors; these are not an ASR accuracy benchmark.
@@ -152,3 +153,14 @@ for (const text of ['たのむよ', '頼みます', 'このみます', '好み�
   assert.equal(new LiteResponseEngine().respond(text).scene, 'generic', text);
 }
 console.log('Drinking actions: kana/kanji, omitted objects, milk/water context, speech gate, style and expiry OK');
+
+// Published examples must continue to agree with the actual detector and speech gate.
+const guide = readFileSync(new URL('./topic-guide.html', import.meta.url), 'utf8');
+const guideExamples = [...guide.matchAll(/class="utterance" data-scene="([^"]+)">([^<]+)<\/span>/g)];
+assert.equal(new Set(guideExamples.map(x => x[1])).size, 21);
+assert.ok(guideExamples.length >= 42);
+for (const [, scene, text] of guideExamples) {
+  assert.equal(isMeaningfulUtterance(text), true, text);
+  assert.equal(new LiteResponseEngine().respond(text).scene, scene, `Published example: ${text}`);
+}
+console.log(`Published topic guide: ${guideExamples.length} examples across 21 topics OK`);

@@ -133,6 +133,8 @@ Kitten TTS Nano 0.8 / Kiki
 
 ### 話題の判定
 
+[話題の判定方法・話題一覧・呼びかけ例](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/topic-guide.html)は、Web版の設定からも開けます。
+
 「飲むかい／飲もうか／飲みたい？」は共通の飲む動作として判定します。ミルクと明示された場合やミルクの話題が続いている場合はミルクの返答を使い、それ以外は飲む物を限定しない返答を使います。水やお茶が明示された場合もミルクとは決めつけません。短いかな表記の「のむ？」も応答対象です。
 
 Web版は20種類の育児の話題を端末内で判定します。「寝ましょう／寝よう」のような語尾、漢字・かな表記、対象と動作の間の助詞に対応しています。短い単語の音が少し崩れた場合は、関連する動作も照合して話題を推定します。判断材料が不足する発話は直前の話題を最大6ターン保持し、その後はジェネラルの返答に戻ります。
@@ -342,6 +344,8 @@ Mitsukotoba avatar + PCM-linked lip sync
 ```
 
 ### Topic detection
+
+The [topic guide and trigger examples (Japanese)](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/topic-guide.html) are also linked from Web Settings.
 
 Drinking invitations share one action detector across conjugations and kana/kanji spellings. Explicit milk references and ongoing milk context use milk replies; otherwise a Web-only neutral drinking fallback avoids guessing the beverage. Explicit water or tea also overrides prior milk context. Short kana-only prompts such as `のむ？` pass the speech gate.
 

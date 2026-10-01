@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#6f4db0" />
+  <title>話題の判定方法・話題一覧 | みつことば</title>
+  <link rel="stylesheet" href="./styles.css?v=20261002-topic-guide-r14" />
+  <style>
+    .topic-guide{max-width:860px;margin:auto;padding:24px 20px max(32px,env(safe-area-inset-bottom));line-height:1.75}
+    .topic-guide h1{font-size:clamp(1.5rem,5vw,2rem);line-height:1.5;margin:18px 0 12px}
+    .topic-guide h2{font-size:1.2rem;line-height:1.5;margin:0 0 12px}
+    .topic-guide h3{font-size:1rem;line-height:1.5}
+    .topic-guide a{color:var(--primary);text-underline-offset:3px}
+    .topic-guide a:focus-visible{outline:3px solid var(--primary);outline-offset:4px}
+    .topic-guide .card{padding:22px;margin:20px 0}
+    .guide-nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin:20px 0}
+    .topic-guide ol,.topic-guide ul{padding-left:1.5em}
+    .topic-guide li{margin:10px 0}
+    .topic-guide table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:.94rem}
+    .topic-guide th,.topic-guide td{text-align:left;vertical-align:top;padding:14px 8px;border-bottom:1px solid #e6deec;overflow-wrap:anywhere}
+    .topic-guide thead{background:var(--primary-container)}
+    .topic-guide th:first-child{width:27%}
+    .topic-guide tbody th{font-weight:800}
+    .guide-words{display:block;color:var(--on-surface-variant);font-size:.83rem;margin-bottom:8px}
+    .utterance{display:block;margin:4px 0}
+    .guide-note{border-left:4px solid var(--primary);padding:12px 16px;background:var(--primary-container);border-radius:0 12px 12px 0}
+    .topic-guide .table-card{padding:22px 12px}
+    @media(max-width:420px){.topic-guide{padding:18px 14px 32px}.topic-guide .card{padding:18px 14px}.topic-guide .table-card{padding:18px 6px}.topic-guide th,.topic-guide td{padding:12px 6px}.topic-guide table{font-size:.9rem}}
+  </style>
+</head>
+<body>
+  <main class="topic-guide">
+    <header>
+      <a href="./">← みつことばを開く</a>
+      <h1>話題の判定方法・話題一覧</h1>
+      <p>親の日本語から育児の話題を選び、赤ちゃんへ短い英語で返します。このページは、現在の<strong>Web版</strong>の動作を説明しています。</p>
+      <nav class="guide-nav" aria-label="このページの目次">
+        <a href="#logic">判定の仕組み</a><a href="#topics">話題と呼びかけ例</a><a href="#context">話題の引き継ぎ</a><a href="#tips">拾われにくいとき</a>
+      </nav>
+    </header>
+    <section class="card" id="logic">
+      <h2>どうやって話題を判定する？</h2>
+      <ol>
+        <li><strong>音声を日本語の文字にします。</strong> 判定に使うのは、実際に話した音声そのものではなく、音声認識が聞き取った文章です。</li>
+        <li><strong>話題を表す言葉と動作を探します。</strong> 「ミルク」「お風呂」などの言葉や、「寝る」「飲む」「読む」などの動作を手がかりにします。「寝よう／寝ましょう」の語尾や、助詞、漢字・かな表記の違いを吸収します。</li>
+        <li><strong>少し崩れた言葉も、音と動作を合わせて照合します。</strong> たとえば「みるこを飲もう」は、「ミルク」に近い音と「飲む」を合わせて拾います。音が似ているだけでは、ほかの話題に取り違えないよう慎重に判定します。</li>
+        <li><strong>決まった話題の英語から返答を選びます。</strong> 同じ話題にも複数の返答があります。Web版は、発話を一文ずつ自由に英訳する仕組みではありません。</li>
+      </ol>
+      <p class="guide-note">呼びかけ例をそのまま暗記する必要はありません。ただし、あらゆる言い回しや誤認識に対応できるわけではなく、聞き取り結果が別の意味になると話題を拾えないことがあります。</p>
+      <p class="small muted">モデル準備後の音声認識・話題判定・返答の音声合成は、この端末のブラウザ内で処理します。</p>
+    </section>
+    <section class="card table-card" id="topics">
+      <h2>話題と呼びかけ例</h2>
+      <p>20種類の育児の話題に加え、飲む物を限定しない「飲む」の返答があります。下の言葉は手がかりの一部で、例は現在の判定処理で確認したものです。</p>
+      <table>
+        <caption class="small muted">話題ごとの拾いやすい言葉と、日本語の呼びかけ例</caption>
+        <thead><tr><th scope="col">話題</th><th scope="col">手がかり・呼びかけ例</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">お風呂</th><td><span class="guide-words">お風呂・沐浴・シャワー・体を洗う</span><span class="utterance" data-scene="bath">お風呂入ろうね</span><span class="utterance" data-scene="bath">からだを洗いましょうね</span></td></tr>
+          <tr><th scope="row">ミルク・授乳</th><td><span class="guide-words">ミルク・母乳・おっぱい・哺乳瓶</span><span class="utterance" data-scene="milk">ミルク飲むかい</span><span class="utterance" data-scene="milk">授乳の時間だね</span></td></tr>
+          <tr><th scope="row">ねんね</th><td><span class="guide-words">寝る・眠い・ねんね・おやすみ</span><span class="utterance" data-scene="sleep">こんにちは、そろそろ寝ましょうね</span><span class="utterance" data-scene="sleep">眠くなってきたね</span></td></tr>
+          <tr><th scope="row">起きる</th><td><span class="guide-words">起きる・おはよう・目を覚ます</span><span class="utterance" data-scene="wake">そろそろ起きましょうね</span><span class="utterance" data-scene="wake">目を覚ましたね</span></td></tr>
+          <tr><th scope="row">おむつ</th><td><span class="guide-words">おむつ・うんち・おしっこ</span><span class="utterance" data-scene="diaper">おむつを取り替えましょう</span><span class="utterance" data-scene="diaper">おしっこが出ましたね</span></td></tr>
+          <tr><th scope="row">着替え</th><td><span class="guide-words">着替え・洋服・パジャマ・靴下</span><span class="utterance" data-scene="clothes">きがえましょうね</span><span class="utterance" data-scene="clothes">洋服を着ましょうね</span></td></tr>
+          <tr><th scope="row">抱っこ</th><td><span class="guide-words">抱っこ・抱きしめる・ぎゅー</span><span class="utterance" data-scene="hug">だっこしましょうね</span><span class="utterance" data-scene="hug">ぎゅっと抱きしめよう</span></td></tr>
+          <tr><th scope="row">おてて</th><td><span class="guide-words">おてて・手を握る・指をつかむ</span><span class="utterance" data-scene="hands">おててをにぎってるね</span><span class="utterance" data-scene="hands">ゆびをつかんだね</span></td></tr>
+          <tr><th scope="row">あんよ</th><td><span class="guide-words">あんよ・足を動かす・キック</span><span class="utterance" data-scene="feet">あんよがばたばたしてるね</span><span class="utterance" data-scene="feet">あしを動かしてるね</span></td></tr>
+          <tr><th scope="row">笑顔</th><td><span class="guide-words">笑う・にこにこ・笑顔</span><span class="utterance" data-scene="smile">にこにこしていますね</span><span class="utterance" data-scene="smile">かわいいえがおですね</span></td></tr>
+          <tr><th scope="row">泣く</th><td><span class="guide-words">泣く・ぐずぐず・えーん</span><span class="utterance" data-scene="cry">泣いていますね</span><span class="utterance" data-scene="cry">ぐずぐずしてるね</span></td></tr>
+          <tr><th scope="row">声・おしゃべり</th><td><span class="guide-words">声を出す・おしゃべり・喃語</span><span class="utterance" data-scene="voice">こえを出しているね</span><span class="utterance" data-scene="voice">おしゃべりしていますね</span></td></tr>
+          <tr><th scope="row">げっぷ・おなか</th><td><span class="guide-words">げっぷ・吐き戻し・おなかいっぱい</span><span class="utterance" data-scene="tummy">げっぷが出ましたね</span><span class="utterance" data-scene="tummy">おなかいっぱいですね</span></td></tr>
+          <tr><th scope="row">遊ぶ</th><td><span class="guide-words">遊ぶ・おもちゃ・ガラガラ・ぬいぐるみ</span><span class="utterance" data-scene="play">いっしょに遊びましょうね</span><span class="utterance" data-scene="play">おもちゃで遊ぼうね</span></td></tr>
+          <tr><th scope="row">お散歩・外</th><td><span class="guide-words">散歩・ベビーカー・公園・お外</span><span class="utterance" data-scene="outside">さんぽに行きましょうね</span><span class="utterance" data-scene="outside">こうえんに行こうね</span></td></tr>
+          <tr><th scope="row">雨</th><td><span class="guide-words">雨・雨音</span><span class="utterance" data-scene="rain">あめが降っていますね</span><span class="utterance" data-scene="rain">あまおとが聞こえるね</span></td></tr>
+          <tr><th scope="row">晴れ・お日様</th><td><span class="guide-words">晴れ・太陽・お日様・ぽかぽか</span><span class="utterance" data-scene="sun">はれてきましたね</span><span class="utterance" data-scene="sun">たいようが出ているね</span></td></tr>
+          <tr><th scope="row">ごはん・離乳食</th><td><span class="guide-words">ごはん・食べる・離乳食・おなかがすく</span><span class="utterance" data-scene="food">ごはんを食べましょうね</span><span class="utterance" data-scene="food">おなかがすいたね</span></td></tr>
+          <tr><th scope="row">絵本</th><td><span class="guide-words">絵本・読む・ページをめくる</span><span class="utterance" data-scene="book">えほんを読みましょうね</span><span class="utterance" data-scene="book">絵本見ようか</span></td></tr>
+          <tr><th scope="row">歌・音楽</th><td><span class="guide-words">歌う・音楽・リズム・踊る</span><span class="utterance" data-scene="music">うたを歌いましょうね</span><span class="utterance" data-scene="music">踊りましょうね</span></td></tr>
+          <tr><th scope="row">飲む</th><td><span class="guide-words">飲む・飲もう・飲みたい</span><span class="utterance" data-scene="drink">そろそろ飲むかい</span><span class="utterance" data-scene="drink">飲もうか</span><span class="utterance" data-scene="drink">のむ？</span><small>飲む物が不明なときの例です。ミルクの話の続きならミルクの返答になります。</small></td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="card" id="context">
+      <h2>直前の話題を引き継ぎます</h2>
+      <p>一度話題が決まると、話題を特定できない続きの発話でも<strong>最大6ターン</strong>は前の話題を使います。時間ではなく、返答した回数で数えます。別の話題を表す明確な言葉があれば、途中でも切り替わります。</p>
+      <ul>
+        <li>「ミルク飲もうね」→「おいしいね」：ミルクの話題を続けます。</li>
+        <li>「ミルク飲もうね」→「飲むかい？」：ミルクの返答になります。</li>
+        <li>「飲むかい？」だけ：飲む物を決めつけず、少しずつ飲む英語で返します。</li>
+        <li>「ミルク飲もうね」→「お水を飲むかい？」：ミルクと決めつけない返答に切り替わります。</li>
+        <li>「ミルク飲もうね」→「お風呂入ろうね」：お風呂の話題に切り替わります。</li>
+      </ul>
+      <h3>ジェネラルになるのは？</h3>
+      <p>今回の発話で話題を特定できず、引き継げる話題もない場合です。たとえば、新しい会話での「かわいいね」や、育児の話題に該当しない文章には、一般的な短い英語で返します。「あー」「うー」だけの発声などは、返答を控えます。</p>
+    </section>
+    <section class="card" id="tips">
+      <h2>話題が拾われにくいとき</h2>
+      <p>会話に表示された日本語を見て、聞き取りが合っているか確認してください。話題をはっきりさせたいときは、「ミルクを飲もうね」「絵本を読もうね」のように、<strong>対象と動作を一緒に</strong>伝えると拾いやすくなります。</p>
+      <p>似た言葉でも意味が違う「寝返り」「手伝う」「足りない」などを、ねんね・おてて・あんよと取り違えないようにしています。また、登録されていない話題や、複数の話題が混ざった文章では、意図と違う返答になることがあります。</p>
+    </section>
+    <footer><a href="#">ページの先頭へ</a><p class="small muted">みつことば Web · 更新日：2026年10月2日</p></footer>
+  </main>
+</body>
+</html>
