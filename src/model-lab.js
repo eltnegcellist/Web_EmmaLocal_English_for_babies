@@ -62,17 +62,11 @@ const TTS_MODELS = {
 };
 
 const ALT_TTS_MODELS = {
-  'kokoro:af_heart': { engine: 'kokoro', voice: 'af_heart', label: 'Kokoro · af_heart', note: '82M / q8 / 女性' },
-  'kokoro:af_bella': { engine: 'kokoro', voice: 'af_bella', label: 'Kokoro · af_bella', note: '82M / q8 / 女性' },
-  'kokoro:af_nova': { engine: 'kokoro', voice: 'af_nova', label: 'Kokoro · af_nova', note: '82M / q8 / 女性' },
   'supertonic:F1': { engine: 'supertonic', voice: 'F1', label: 'Supertonic · Mina (F1)', note: '44.1kHz / 女性 / 重量級' },
   'supertonic:F2': { engine: 'supertonic', voice: 'F2', label: 'Supertonic · Sora (F2)', note: '44.1kHz / 女性 / 重量級' },
   'supertonic:F3': { engine: 'supertonic', voice: 'F3', label: 'Supertonic · Yuna (F3)', note: '44.1kHz / 女性 / 重量級' },
-  'piper:en_US-hfc_female-medium': { engine: 'piper', voice: 'en_US-hfc_female-medium', label: 'Piper · HFC Female Medium', note: '軽量ローカルTTS' },
 };
 
-const KOKORO_MODULE_URL = 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm';
-const PIPER_MODULE_URL = 'https://cdn.jsdelivr.net/npm/@mintplex-labs/piper-tts-web@1.0.5/+esm';
 const ORT_MODULE_URL = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/+esm';
 const ORT_WASM_BASE = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.0/dist/';
 const SUPERTONIC_HELPER_URL = 'https://cdn.jsdelivr.net/gh/cskwork/supertonic-tts@d62ef527733bf0b692f92c8cb376452a62a1eec7/app/helper.js';
@@ -84,8 +78,6 @@ let recordingObjectUrl = null;
 let ttsObjectUrls = [];
 let altTtsObjectUrls = [];
 let moonshineModulePromise = null;
-let kokoroTtsPromise = null;
-let piperModulePromise = null;
 let supertonicRuntimePromise = null;
 
 ui.speedRange.addEventListener('input', () => {
@@ -531,12 +523,8 @@ async function runAltTtsComparison() {
         const started = performance.now();
         let output;
 
-        if (meta.engine === 'kokoro') {
-          output = await generateKokoro(text, meta.voice, card);
-        } else if (meta.engine === 'supertonic') {
+        if (meta.engine === 'supertonic') {
           output = await generateSupertonic(text, meta.voice, card);
-        } else if (meta.engine === 'piper') {
-          output = await generatePiper(text, meta.voice, card);
         } else {
           throw new Error('未対応のTTSエンジンです。');
         }
@@ -563,85 +551,6 @@ async function runAltTtsComparison() {
     ui.runAltTtsButton.disabled = false;
     ui.altTtsStatus.textContent = '生成処理が完了しました。各音声を同じ文章で聴き比べてください。';
   }
-}
-
-async function getKokoroTts() {
-  if (!kokoroTtsPromise) {
-    kokoroTtsPromise = (async () => {
-      const mod = await import(KOKORO_MODULE_URL);
-      if (!mod?.KokoroTTS) throw new Error('kokoro-jsを読み込めませんでした。');
-      return mod.KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX', {
-        dtype: 'q8',
-        device: 'wasm',
-      });
-    })().catch((error) => {
-      kokoroTtsPromise = null;
-      throw error;
-    });
-  }
-  return kokoroTtsPromise;
-}
-
-async function generateKokoro(text, voice, card) {
-  card.setStatus('Kokoro 82M q8を準備しています…');
-  const tts = await getKokoroTts();
-  card.setProgress(70);
-
-  const generationStart = performance.now();
-  const audio = await tts.generate(text, { voice });
-  const generationMs = performance.now() - generationStart;
-  if (!audio?.toBlob) throw new Error('Kokoroが音声Blobを返しませんでした。');
-
-  const blob = audio.toBlob();
-  const decoded = await inspectAudioBlob(blob);
-  card.setProgress(100);
-  return {
-    blob,
-    generationMs,
-    duration: decoded.duration,
-    sampleRate: decoded.sampleRate,
-    backend: 'Kokoro q8 / WASM',
-    audioLabel: voice + ' · Kokoro 82M',
-  };
-}
-
-async function getPiperModule() {
-  if (!piperModulePromise) {
-    piperModulePromise = import(PIPER_MODULE_URL).catch((error) => {
-      piperModulePromise = null;
-      throw error;
-    });
-  }
-  return piperModulePromise;
-}
-
-async function generatePiper(text, voice, card) {
-  card.setStatus('Piperモデルを準備しています…');
-  const piper = await getPiperModule();
-
-  const generationStart = performance.now();
-  const blob = await piper.predict(
-    { text, voiceId: voice },
-    (progress) => {
-      const total = Number(progress?.total) || 0;
-      const loaded = Number(progress?.loaded) || 0;
-      if (total > 0) card.setProgress(Math.min(95, loaded / total * 95));
-      if (progress?.url) card.setStatus('Piper取得中: ' + String(progress.url).split('/').pop());
-    }
-  );
-  const generationMs = performance.now() - generationStart;
-  if (!(blob instanceof Blob)) throw new Error('Piperが音声Blobを返しませんでした。');
-
-  const decoded = await inspectAudioBlob(blob);
-  card.setProgress(100);
-  return {
-    blob,
-    generationMs,
-    duration: decoded.duration,
-    sampleRate: decoded.sampleRate,
-    backend: 'Piper / browser WASM',
-    audioLabel: voice,
-  };
 }
 
 async function getSupertonicRuntime(card) {

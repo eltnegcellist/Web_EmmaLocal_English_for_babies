@@ -144,23 +144,7 @@
   <section class="card">
     <h2>3. 他のローカルAI TTSを比較</h2>
     <p class="notice"><strong>同じ英文で耳比較</strong>：Kittenとは別系統のローカルAI音声を同じ文章で生成します。モデルは選んだものだけ読み込みます。</p>
-    <p class="small">Kokoroは82Mモデルをブラウザ内で実行します。Supertonic 3は高音質ですが初回モデル取得が約380MBと重いため、必要なときだけ選んでください。Piperは軽量なローカルTTSの比較基準です。</p>
-
-    <h3>Kokoro 82M / q8</h3>
-    <div class="grid">
-      <label class="model-option">
-        <input class="alt-tts-model" type="checkbox" value="kokoro:af_heart" checked>
-        <span><span class="model-title">Kokoro · af_heart</span><br><span class="small">女性 / 明るく自然。Kiki代替の第一候補。</span></span>
-      </label>
-      <label class="model-option">
-        <input class="alt-tts-model" type="checkbox" value="kokoro:af_bella" checked>
-        <span><span class="model-title">Kokoro · af_bella</span><br><span class="small">女性 / 表現が強めで存在感のある声。</span></span>
-      </label>
-      <label class="model-option">
-        <input class="alt-tts-model" type="checkbox" value="kokoro:af_nova" checked>
-        <span><span class="model-title">Kokoro · af_nova</span><br><span class="small">女性 / 比較的明るく軽い声。</span></span>
-      </label>
-    </div>
+    <p class="small">Supertonic 3は高音質ですが初回モデル取得が約380MBと重いため、必要なときだけ選んでください。GPL/eSpeak NG依存を避けるため、Kokoro.jsとPiper Webの比較経路は削除しています。</p>
 
     <h3>Supertonic 3 / 44.1kHz</h3>
     <div class="grid">
@@ -175,14 +159,6 @@
       <label class="model-option">
         <input class="alt-tts-model" type="checkbox" value="supertonic:F3">
         <span><span class="model-title">Supertonic · Yuna (F3)</span><br><span class="small">自然で親しみやすい女性声。</span></span>
-      </label>
-    </div>
-
-    <h3>Piper / 軽量比較基準</h3>
-    <div class="grid">
-      <label class="model-option">
-        <input class="alt-tts-model" type="checkbox" value="piper:en_US-hfc_female-medium">
-        <span><span class="model-title">Piper · HFC Female Medium</span><br><span class="small">軽量ローカルTTS。最新AI音声との差を耳で確認する基準。</span></span>
       </label>
     </div>
 
@@ -201,6 +177,6 @@
     <p><a href="./">Emma Webへ戻る</a></p>
   </section>
 </main>
-<script type="module" src="./src/model-lab.js?v=tts-engine-comparison-v1"></script>
+<script type="module" src="./src/model-lab.js?v=tts-engine-comparison-v2"></script>
 </body>
 </html>
