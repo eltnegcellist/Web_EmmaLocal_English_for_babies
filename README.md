@@ -93,7 +93,7 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 - **呼びかけ** — 親子の今の場面を手がかりに、AIが短い英語を差し込みます。親と赤ちゃんのやり取りが主役です。
 - **会話** — 親の発話や直前の流れを踏まえ、AIも親・赤ちゃんとの3者のやり取りに継続して参加します。
 
-Web Liteでは「呼びかけ」を利用できます。「会話」はAndroid Fullで利用できます。
+Web版では「呼びかけ」を利用できます。生成型の「会話」はAndroid Fullで利用できます。
 
 Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして使います。genericは話題として保存せず、過去6ターン内の具体的な育児トピックだけをGemmaへ参考情報として渡します。
 
@@ -103,19 +103,20 @@ Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.8.0** と対応するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.9.20** と並行して提供するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.8.0
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.20
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
-Web版は **Liteのみ** です。
+Web版はブラウザ向けの軽量構成です。Android版では同系統の軽量構成に加えて、Gemmaを使うFullも利用できます。
 
-| プラットフォーム | エディション |
+| プラットフォーム | 構成 |
 | --- | --- |
-| **Web** | Lite |
-| **Android** | Lite / Full |
+| **Web** | ブラウザ向け軽量構成 |
+| **Android** | 軽量構成 / Full |
 
+### 構成
 ### 構成
 
 ```text
@@ -144,26 +145,32 @@ Web版は20種類の育児の話題を端末内で判定します。「寝まし
 ### 音声認識
 
 - Moonshineをブラウザ内WASMでローカル実行します
-- 既定はJapanese Tiny Streamingです
-- 標準はSmall Streaming。Tiny Streamingは初回の詳細設定または設定画面から軽量オプションとして選べます
+- 既定はJapanese Small Streamingです
+- Tiny Streamingは初回の詳細設定または設定画面から軽量オプションとして選べます
 - ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
 - Moonshine 0.1.5のブラウザ用アセットを `src/vendor/moonshine/` に固定しています
 
 ### 音声合成
 
-- Kitten TTS Nano 0.8 / Kikiをブラウザ内でローカル実行します
+- Kitten TTS Nano 0.8 FP32 / Kikiをブラウザ内でローカル実行します
+- 発音処理は **CMUDict + みつことば独自phonemizer** を使用します
+- eSpeak NGランタイムは使用しません
 - みつことば側で固定したブラウザ専用ランタイムを使用します
 - Node.jsの `fs` に依存しないブラウザ経路を使用します
+- 既知のeSpeak NG / GPL系TTS経路（Piper Web / kokoro-js比較）はmodel-labから削除済みです
 
+### モデル取得
 ### モデル取得
 
 初回起動時に、選択した構成に必要なモデルを取得します。
 
-標準構成はMoonshine Small Streaming + Kitten TTS Nanoです。Tiny Streamingはモデルサイズを優先したい場合に選べる軽量オプションです。Liteの具体的な育児トピックは最大6ターン保持し、明確な別話題が出れば即時に切り替えます。
+標準構成はMoonshine Small Streaming + Kitten TTS Nanoです。Tiny Streamingはモデルサイズを優先したい場合に選べる軽量オプションです。具体的な育児トピックは最大6ターン保持し、明確な別話題が出れば即時に切り替えます。
+
+Moonshine / Kittenの大きなファイルは途中データをIndexedDBへ保存し、配布元が対応する場合はHTTP Rangeで続きから再開します。Background Fetch対応ブラウザではバックグラウンド継続も試みます。非対応ブラウザでも、停止後に再度開いた際は保存済み地点からの再開を優先します。
 
 モデル準備後、音声認識・応答選択・音声合成はブラウザ内でローカル実行する設計です。
 
-### なぜWeb版はLiteのみか
+### Web版の位置づけ
 
 Web版は、軽量で導入しやすいみつことば体験に絞っています。
 
@@ -212,6 +219,25 @@ http://localhost:8080
 ?debug=1
 ```
 
+### ライセンスと監査
+
+Web版の主要な第三者依存は次のとおりです。
+
+| コンポーネント | 用途 | 主なライセンス |
+| --- | --- | --- |
+| Moonshine Voice 0.1.5 / Japanese Streaming | ブラウザASR | MIT |
+| Kitten TTS Nano 0.8 FP32 | 英語TTSモデル | Apache-2.0 |
+| CMUDict | phonemizer辞書 | BSD-style |
+| ONNX Runtime Web | TTS / model-lab推論 | MIT |
+| Eigen（Moonshine / ORT由来） | 数値計算 | MPL-2.0 |
+| VCTK由来参照音声（Moonshine WASM由来） | upstream WASM内包データ | CC BY 4.0 |
+
+現在の本番TTS経路およびmodel-labでは、既知のeSpeak NG / GPL系ランタイムを使用しません。ただし、GPLフリーはpermissive-onlyを意味せず、MPL-2.0やCC BY 4.0の義務は残ります。
+
+詳細：
+- [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+- [LICENSE_AUDIT.md](LICENSE_AUDIT.md)
+
 ### 公開
 
 `main` の更新はテスト後、GitHub Pagesへ公開します。
@@ -221,7 +247,7 @@ https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
 
 ### Android版
 
-Lite + Full、および安定版Android APKはこちらです。
+軽量構成 + Full、および安定版Android APKはこちらです。
 
 https://github.com/eltnegcellist/Android_English_character_for_baby
 
@@ -231,7 +257,7 @@ https://github.com/eltnegcellist/Android_English_character_for_baby
 
 ## English
 
-Mitsukotoba Web is the browser/PWA edition of **Mitsukotoba Lite**.
+Mitsukotoba Web is the browser/PWA edition of **Mitsukotoba**.
 
 **Open the Web app**  
 https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
@@ -315,26 +341,27 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.8.0**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.20**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.8.0
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.20
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
-The Web edition is **Lite-only**.
+The Web edition uses the lightweight browser configuration. Android provides the same lightweight style of interaction plus the Gemma-based Full mode.
 
-| Platform | Editions |
+| Platform | Configuration |
 | --- | --- |
-| **Web** | Lite |
-| **Android** | Lite / Full |
+| **Web** | Lightweight browser configuration |
+| **Android** | Lightweight configuration / Full |
 
+### Architecture
 ### Architecture
 
 ```text
 Microphone
 ↓
-Moonshine Japanese Tiny Streaming
-  └─ Tiny Streaming is the lightweight option
+Moonshine Japanese Small / Tiny Streaming
+  └─ Small is the default; Tiny is the lightweight option
 ↓
 LiteResponseEngine
 ↓
@@ -356,26 +383,32 @@ Run `node test-topic-detection.mjs` for phrase variations, simulated transcript 
 ### ASR
 
 - Moonshine runs locally in browser WASM
-- Japanese Tiny Streaming is the default model
-- Small Streaming is the default; Tiny Streaming is available as a lightweight option from first-run advanced settings or Settings
+- Japanese Small Streaming is the default model
+- Tiny Streaming is available as a lightweight option from first-run advanced settings or Settings
 - The browser Web Speech / SpeechRecognition API is not used
 - Moonshine 0.1.5 browser assets are pinned in `src/vendor/moonshine/`
 
 ### TTS
 
-- Kitten TTS Nano 0.8 / Kiki runs locally in the browser
+- Kitten TTS Nano 0.8 FP32 / Kiki runs locally in the browser
+- Pronunciation uses **CMUDict + Mitsukotoba's local phonemizer**
+- No eSpeak NG runtime is used in the production TTS path
 - The Web edition uses the browser-specific runtime bundled/pinned by Mitsukotoba
 - The browser path does not depend on Node.js `fs`
+- Known eSpeak-backed comparison paths (Piper Web / kokoro-js) were removed from model-lab
 
+### Model Download
 ### Model Download
 
 The first launch downloads the models required by the selected configuration.
 
-The default configuration uses Moonshine Small Streaming plus Kitten TTS Nano. Tiny Streaming is an optional lightweight alternative. Lite keeps a concrete childcare topic for up to six follow-up turns unless a new explicit topic appears.
+The default configuration uses Moonshine Small Streaming plus Kitten TTS Nano. Tiny Streaming is an optional lightweight alternative. Concrete childcare topics remain active for up to six follow-up turns unless a new explicit topic appears.
+
+Large Moonshine / Kitten files are checkpointed in IndexedDB. When the origin supports it, HTTP Range resumes from the saved position. Browsers with Background Fetch support can also continue tracked downloads in the background; unsupported browsers still prefer persisted resume on reopen.
 
 After model setup, recognition, response selection, and speech synthesis are designed to run locally in the browser.
 
-### Why Lite Only?
+### Why the Web edition stays lightweight
 
 The Web edition is intentionally focused on the lightweight Mitsukotoba experience.
 
@@ -424,6 +457,25 @@ For development-only text input, append:
 ?debug=1
 ```
 
+### Licenses and audit
+
+Major third-party components include:
+
+| Component | Purpose | Main license |
+| --- | --- | --- |
+| Moonshine Voice 0.1.5 / Japanese Streaming | Browser ASR | MIT |
+| Kitten TTS Nano 0.8 FP32 | English TTS model | Apache-2.0 |
+| CMUDict | Phonemizer lexicon | BSD-style |
+| ONNX Runtime Web | TTS / model-lab inference | MIT |
+| Eigen provenance (Moonshine / ORT) | Numerical routines | MPL-2.0 |
+| VCTK-derived reference clips (Moonshine WASM provenance) | Upstream WASM data | CC BY 4.0 |
+
+The production TTS path and current model-lab do not use known eSpeak NG / GPL-backed runtimes. GPL-free does not mean permissive-only; MPL-2.0 and CC BY 4.0 obligations still apply.
+
+See:
+- [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)
+- [LICENSE_AUDIT.md](LICENSE_AUDIT.md)
+
 ### Deployment
 
 Updates to `main` are tested and then deployed to GitHub Pages.
@@ -433,6 +485,6 @@ https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
 
 ### Android Edition
 
-For Lite + Full and the stable Android APK:
+For the lightweight configuration + Full and the stable Android APK:
 
 https://github.com/eltnegcellist/Android_English_character_for_baby

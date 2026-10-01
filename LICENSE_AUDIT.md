@@ -1,6 +1,6 @@
 # GPL / eSpeak Dependency Audit
 
-Audit date: 2026-10-01  
+Audit date: 2026-10-02  
 Audited baseline before remediation:
 `0fc59fd56910ae11a66642af8953bbf805ba3ebb`
 
@@ -62,9 +62,9 @@ upstream v0.1.5 source configuration. The resulting dependency set is not
 permissive-only: it contains MPL-2.0 material (Eigen) and attribution-licensed
 data such as VCTK CC BY 4.0 reference clips.
 
-## Current conclusion
+## Current stable-main conclusion
 
-After the model-lab remediation:
+After the model-lab remediation and the 2026-10-02 README/license sync:
 
 - no known eSpeak NG runtime remains in Mitsukotoba's production or model-lab
   execution paths;
