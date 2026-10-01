@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { LiteResponseEngine } from './src/lite-response-engine.js';
+import { LiteResponseEngine, isMeaningfulUtterance, splitSentences } from './src/lite-response-engine.js';
 
 // Text fixtures, including simulated ASR errors; these are not an ASR accuracy benchmark.
 export const topicCases = [
@@ -106,3 +106,49 @@ assert.equal(engine.respond('えほうを読もうね').scene, 'book');
 for (let i = 0; i < 6; i++) assert.equal(engine.respond('いい感じですね').scene, 'book');
 assert.equal(engine.respond('いい感じですね').scene, 'generic');
 console.log('Topic switch and six-turn expiry OK');
+
+const drinkingCases = [
+  '飲もうか', '飲むかい', '飲む？', '飲みたい？', '飲んだね', '飲んでみよう',
+  '飲みましょうね', 'そろそろ飲む会', 'そろそろ飲むかい？',
+  'のむ？', 'のみたい？', 'のもうか', 'そろそろのむかい', 'もうのんだね',
+  'お水を飲むかい', 'お茶を飲もうか',
+];
+for (const text of drinkingCases) {
+  assert.equal(isMeaningfulUtterance(text), true, `Short utterance must reach the engine: ${text}`);
+  const engine = new LiteResponseEngine();
+  for (const name of ['', 'Hana-chan']) {
+    const out = engine.respond(text, name);
+    assert.equal(out.scene, 'drink', text);
+    assert.doesNotMatch(out.english, /milk/i, text);
+    assert.equal(splitSentences(out.english).length, 3);
+    const words = out.english.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || [];
+    assert.ok(words.length >= 6 && words.length <= 12, out.english);
+  }
+}
+for (const text of drinkingCases.slice(0, 14)) {
+  const milkContext = new LiteResponseEngine();
+  assert.equal(milkContext.respond('ミルクの時間だよ').scene, 'milk');
+  assert.equal(milkContext.respond(text).scene, 'milk', `Milk context: ${text}`);
+}
+for (const text of ['ミルク飲むかい', 'みるくをのむ？', 'おっぱい飲みたい？']) {
+  assert.equal(new LiteResponseEngine().respond(text).scene, 'milk', text);
+}
+const waterContext = new LiteResponseEngine();
+waterContext.respond('ミルクの時間だよ');
+const water = waterContext.respond('お水を飲むかい');
+assert.equal(water.scene, 'drink');
+assert.doesNotMatch(water.english, /milk/i);
+assert.equal(waterContext.respond('ゆっくりでいいよ').scene, 'drink');
+assert.equal(waterContext.respond('ミルク飲もうね').scene, 'milk');
+const switchToDrink = new LiteResponseEngine();
+switchToDrink.respond('お風呂入ろうね');
+assert.equal(switchToDrink.respond('そろそろ飲むかい').scene, 'drink');
+for (let i = 0; i < 6; i++) assert.equal(switchToDrink.respond('いい感じですね').scene, 'drink');
+assert.equal(switchToDrink.respond('いい感じですね').scene, 'generic');
+switchToDrink.respond('飲むかい');
+switchToDrink.resetConversationContext();
+assert.equal(switchToDrink.respond('いい感じですね').scene, 'generic');
+for (const text of ['たのむよ', '頼みます', 'このみます', '好みたい', 'のみかいに行くよ', '飲み会に行くよ']) {
+  assert.equal(new LiteResponseEngine().respond(text).scene, 'generic', text);
+}
+console.log('Drinking actions: kana/kanji, omitted objects, milk/water context, speech gate, style and expiry OK');

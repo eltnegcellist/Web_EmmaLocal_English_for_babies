@@ -1,5 +1,5 @@
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
-import { detectFlexibleTopics, normalizeParentSpeech } from './lite-topic-matcher.js';
+import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink } from './lite-topic-matcher.js';
 
 // Reply bank and style synced from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
 // Android source commit: dfd20958931d2767d3b54e0c9106f8cb690be93d
@@ -221,6 +221,7 @@ export function isMeaningfulUtterance(raw) {
   const value=normalize(String(raw||'').replaceAll('[不明]','').replaceAll('[unclear]',''));
   if(!value || value==='不明' || value==='unclear') return false;
   if(FILLER_ONLY.has(value)) return false;
+  if(detectDrinkingAction(raw)) return true;
   if(MEANINGFUL_SHORT_FORMS.some(x=>x && value.includes(x))) return true;
   if(/^[あいうえおんぁぃぅぇぉー〜]+$/.test(value)) return false;
   if(/^[アイウエオンァィゥェォー〜]+$/.test(value)) return false;
@@ -744,6 +745,22 @@ export function splitSentences(text) {
   return String(text || "").trim().split(/(?<=[.!?])\s+/).map(x => x.trim()).filter(Boolean);
 }
 
+// Web-only neutral drinking fallback; the Android-synced milk reply bank is unchanged.
+const DRINK_SCENE = {
+  id: 'drink',
+  replies: [
+    'Little sips. Sip, sip! Nice and slow.',
+    "Let's drink. Little sips. Nice and slow.",
+    'Sip, sip! Take your time. Little sips.',
+    'Small sips. Nice and easy. Take your time.',
+    '{name}, little sips. Sip, sip! Nice and slow.',
+  ],
+};
+
+function findScene(id) {
+  return id === 'drink' ? DRINK_SCENE : SCENES.find(scene => scene.id === id) || null;
+}
+
 export class LiteResponseEngine {
   constructor() {
     this.recentReplies = [];
@@ -772,12 +789,22 @@ export class LiteResponseEngine {
       ])),
       SCENE_EXCLUSIONS,
     );
-    const candidateScene = selected?.[0]
+    const detectedScene = selected?.[0]
       || (rescued ? SCENES.find(candidate => candidate.id === rescued.sceneId) : null)
       || null;
-    const candidateScore = selected?.[1] || rescued?.score || 0;
+    const drinking = detectDrinkingAction(transcript);
+    const milkScene = findScene('milk');
+    const explicitMilk = !!flexible.milk || hasStrongTopicEvidence(milkScene, normalized);
+    const drinkingScene = drinking && !explicitMilk
+      ? this.activeSceneId === 'milk' && !hasNonMilkDrink(transcript) ? milkScene : DRINK_SCENE
+      : null;
+    // A bare drinking action overrides weak milk keywords, but not another explicit topic.
+    const useDrinkingScene = !!drinkingScene && (!detectedScene || detectedScene.id === 'milk'
+      || !hasStrongTopicEvidence(detectedScene, normalized));
+    const candidateScene = useDrinkingScene ? drinkingScene : detectedScene;
+    const candidateScore = useDrinkingScene ? 4 : selected?.[1] || rescued?.score || 0;
     const candidateHasStrongTopicEvidence = !!candidateScene && (
-      !!rescued || !!flexible[candidateScene.id] || hasStrongTopicEvidence(candidateScene, normalized)
+      useDrinkingScene || !!rescued || !!flexible[candidateScene.id] || hasStrongTopicEvidence(candidateScene, normalized)
     );
     const explicitScene = !candidateScene ? null
       : !this.activeSceneId ? candidateScene
@@ -786,7 +813,7 @@ export class LiteResponseEngine {
             : null;
     const explicitScore = explicitScene ? candidateScore : 0;
     const contextualScene = !explicitScene && this.activeSceneTurnsRemaining > 0
-      ? SCENES.find(candidate => candidate.id === this.activeSceneId) || null
+      ? findScene(this.activeSceneId)
       : null;
     const scene = explicitScene || contextualScene;
     const sceneScore = explicitScene ? explicitScore : contextualScene ? 2 : 0;

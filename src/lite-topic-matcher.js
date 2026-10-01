@@ -8,7 +8,8 @@ export function normalizeParentSpeech(text) {
     .replace(/[\s、。！？!?,.・「」『』（）()【】\[\]〜~]/g, '');
   for (const [stems, action] of POLITE_ACTIONS) {
     const alternatives = stems.map(stem => stem === 'ね' ? '(?<!かさ|重|たず|尋|訪|は|跳|ま|真)ね'
-      : stem === 'おき' ? '(?<!て|で)おき' : stem);
+      : stem === 'おき' ? '(?<!て|で)おき'
+        : stem === 'のみ' ? '(?<!た|こ|好|頼)のみ' : stem);
     value = value.replace(new RegExp(`(?:${alternatives.join('|')})(?:ましょう|ませんか|ました|ます)`, 'g'), action);
   }
   return value
@@ -28,6 +29,18 @@ const POLITE_ACTIONS = [
   [['遊び', 'あそび'], '遊ぼう'], [['歌い', 'うたい'], '歌おう'],
   [['踊り', 'おどり'], '踊ろう'],
 ];
+
+// Keep the object unspecified when only the action of drinking is stated.
+export function detectDrinkingAction(text) {
+  const value = normalizeParentSpeech(text);
+  if (/(?:飲み会|飲会|のみかい|飲酒|酒|ビール|びーる|服薬|薬|くすり)/.test(value)) return false;
+  return /飲(?:む|もう|みたい|みたが|んだ|んで|めた|める)/.test(value)
+    || /(?:^|そろそろ|もう|少し|すこし|いっぱい|ゆっくり|ひとくち|一口|を)(?:のむ|のもう|のみたい|のんだ|のんで|のめた|のめる)/.test(value);
+}
+
+export function hasNonMilkDrink(text) {
+  return /(?:水|みず|お茶|おちゃ|麦茶|むぎちゃ|白湯|さゆ|ジュース|じゅーす|飲み物|のみもの)/.test(normalizeParentSpeech(text));
+}
 
 // Fuzzy matches use distinctive topic words plus an independent action.
 // Invitation endings such as "しよう" are never fuzzy topic evidence themselves.

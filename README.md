@@ -133,6 +133,8 @@ Kitten TTS Nano 0.8 / Kiki
 
 ### 話題の判定
 
+「飲むかい／飲もうか／飲みたい？」は共通の飲む動作として判定します。ミルクと明示された場合やミルクの話題が続いている場合はミルクの返答を使い、それ以外は飲む物を限定しない返答を使います。水やお茶が明示された場合もミルクとは決めつけません。短いかな表記の「のむ？」も応答対象です。
+
 Web版は20種類の育児の話題を端末内で判定します。「寝ましょう／寝よう」のような語尾、漢字・かな表記、対象と動作の間の助詞に対応しています。短い単語の音が少し崩れた場合は、関連する動作も照合して話題を推定します。判断材料が不足する発話は直前の話題を最大6ターン保持し、その後はジェネラルの返答に戻ります。
 
 `node test-topic-detection.mjs` で言い回しと模擬的な誤認識、無関係な文、話題の切り替えを検証します。この検証は実際の音声認識精度を測定したものではありません。
@@ -340,6 +342,8 @@ Mitsukotoba avatar + PCM-linked lip sync
 ```
 
 ### Topic detection
+
+Drinking invitations share one action detector across conjugations and kana/kanji spellings. Explicit milk references and ongoing milk context use milk replies; otherwise a Web-only neutral drinking fallback avoids guessing the beverage. Explicit water or tea also overrides prior milk context. Short kana-only prompts such as `のむ？` pass the speech gate.
 
 The Web edition detects 20 childcare topics locally. Detection normalizes polite verb forms and kana/kanji spellings, and recognizes object-action combinations across particles. Slight phonetic errors in short topic words require a related action as supporting evidence. Ambiguous follow-ups retain the previous topic for up to six turns before returning to generic replies.
 
