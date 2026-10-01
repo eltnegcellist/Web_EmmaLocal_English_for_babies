@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 14532)
-Total output lines: 1474
-
 import { EmmaMicrophone } from './audio-capture.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
@@ -540,7 +537,294 @@ async function startEmma({ auto = false } = {}) {
     if(ui.keepAwake.checked) await requestWakeLock();
     setState('listening',`${getAiName()}が聞いています`,'いつもどおり日本語で赤ちゃんへ話しかけてください。必要なら「ここで返事して」で区切れます。');
   } catch(error) {
-    console.error(error);…2532 tokens truncated…an,getSpokenBabyName());
+    console.error(error);
+    running=false;
+    await mic?.stop().catch(()=>{});
+    mic=null;
+    setBusy(false);
+    showProgress(false);
+    if(auto) {
+      setState('idle','自動開始できませんでした',friendlyError(error));
+    } else {
+      setState('error','開始できませんでした',friendlyError(error));
+    }
+    ui.mainButton.disabled=false;
+  }
+}
+
+async function stopEmma() {
+  running=false;
+  processing=false;
+  speaking=false;
+  pendingUtterance=null;
+  for(const q of audioQueues.values()) q.resolve?.();
+  audioQueues.clear();
+  if(activeAudioSource){
+    try{activeAudioSource.stop();}catch{}
+    activeAudioSource=null;
+  }
+  await mic?.stop().catch(()=>{});
+  mic=null;
+  wakeLock?.release?.().catch(()=>{});
+  wakeLock=null;
+  ui.manualReplyButton.classList.add('hidden');
+  ui.stopButton.classList.add('hidden');
+  ui.mainButton.classList.remove('hidden');
+  ui.mainButton.disabled=false;
+  setBusy(false);
+  setState('idle','みつことばはおやすみ中','「3人で話す」を押すと、また会話できます。');
+}
+
+function handleCapturedUtterance(audio) {
+  if(!running||processing||speaking)return;
+  if(tutorialStep===2){
+    tutorialUserSpoke=true;
+    pendingUtterance={kind:'audio',audio};
+    ui.manualReplyButton.classList.remove('hidden');
+    setState('understood','話し終わりを検出しました','画面下で光っている「ここで返事して」を押してください。');
+    scheduleTutorialSpotlightSync();
+    return;
+  }
+  if(ui.autoRespond.checked) transcribeUtterance(audio);
+  else {
+    pendingUtterance={kind:'audio',audio};
+    ui.manualReplyButton.classList.remove('hidden');
+    setState('understood','話し終わりを検出しました','「ここで返事して」を押すと返事します。');
+  }
+}
+
+function respondToPendingUtterance() {
+  if(!pendingUtterance||processing||speaking)return false;
+  const pending=pendingUtterance;
+  pendingUtterance=null;
+  if(pending.kind==='audio') {
+    transcribeUtterance(pending.audio);
+    return true;
+  }
+  return false;
+}
+
+function forceReplyNow() {
+  if(!running||processing||speaking)return;
+  if(respondToPendingUtterance()) return;
+
+  const audio=mic?.forceUtterance?.();
+  if(!audio){
+    setState('listening',`${getAiName()}が聞いています`,'もう少し話してから「ここで返事して」を押してください。');
+    return;
+  }
+  pendingUtterance=null;
+  setState('understood','ここまで聞きました',`${getAiName()}が返事を考えます。`);
+  transcribeUtterance(audio);
+}
+
+async function startMoonshineCapture() {
+  if(mic) return;
+  mic=new EmmaMicrophone({
+    onState:(state)=>{
+      if(!workersReady||processing||speaking)return;
+      if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
+      else setState('listening',`${getAiName()}が聞いています`,'いつもどおり日本語で赤ちゃんへ話しかけてください。');
+    },
+    onUtterance:handleCapturedUtterance,
+    shouldIgnore:()=>!workersReady||processing||speaking
+  });
+  await mic.start();
+}
+
+async function initWorkers() {
+  const signature=getTtsSignature();
+
+  if(!asrInfoCache){
+    showProgress(true,0,'Moonshineを準備しています…');
+    showOnboardingProgress(true,0,'Moonshineを準備しています…');
+    asrInfoCache=await initMoonshine();
+  }
+
+  if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
+    ttsWorker?.terminate();
+    ttsInfoCache=null;
+    ttsWorkerSignature=signature;
+    ttsInfoCache=await new Promise((resolve,reject)=>{
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261001-avatar-colors-r10',import.meta.url),{type:'module'});
+      ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
+      ttsWorker.onerror=reject;
+      ttsWorker.postMessage({ type:'init' });
+    });
+  }
+
+  workersReady=true;
+  updateRuntimeBackend();
+}
+
+async function initMoonshine() {
+  if(moonshineTranscriber && asrInfoCache?.kind==='moonshine') return asrInfoCache;
+
+  moonshineStage='runtime';
+  showMoonshineProgress(0,'Moonshineの実行エンジンを準備しています…');
+  if(!moonshineModule){
+    moonshineModule=await import(MOONSHINE_MODULE_URL);
+  }
+  const { Transcriber, ModelArch, loadEmmaMoonshineModule }=moonshineModule;
+  if(typeof Transcriber?.load!=='function') {
+    throw new Error('Moonshineの公式Transcriberを読み込めませんでした。');
+  }
+
+  const onProgress=(loaded,total,file)=>{
+    moonshineStage='download';
+    const safeLoaded=Number(loaded)||0;
+    const safeTotal=Number(total)||0;
+    const fraction=safeTotal>0 ? safeLoaded/safeTotal : 0;
+    const progress=safeTotal>0 ? Math.max(1,Math.min(96,Math.round(fraction*96))) : 1;
+    const mbLoaded=safeLoaded/1_000_000;
+    const sizeText=safeTotal>0
+      ? `${mbLoaded.toFixed(1)} / ${(safeTotal/1_000_000).toFixed(1)} MB`
+      : `${mbLoaded.toFixed(1)} MB`;
+    const fileName=String(file||'').split('/').pop();
+    const selectedLabel=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'Tiny' : 'Small';
+    const progressMessage=`Moonshine 日本語${selectedLabel} Streamingを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`;
+    showMoonshineProgress(progress,progressMessage);
+    if(ui.asrModelStatus) ui.asrModelStatus.textContent=progressMessage;
+  };
+
+  const module=await loadEmmaMoonshineModule();
+  moonshineStage='catalog';
+  const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'tiny' : 'small';
+  const modelArch=selectedAsr==='small' ? ModelArch.SmallStreaming : ModelArch.TinyStreaming;
+  const modelLabel=selectedAsr==='small' ? 'Small' : 'Tiny';
+  const nextTranscriber=await Transcriber.load({
+    module,
+    language:'ja',
+    modelArch,
+    options:{max_tokens_per_second:'13.0'},
+    onProgress
+  });
+  try {
+    nextTranscriber.setKeyterms(CHILDCARE_ASR_KEYTERMS);
+  } catch(error) {
+    console.warn('Moonshine育児語バイアスを適用できませんでした',error);
+  }
+
+  moonshineStage='ready';
+  moonshineTranscriber?.close?.();
+  moonshineTranscriber=nextTranscriber;
+  showMoonshineProgress(100,`Moonshine 日本語${modelLabel}を準備できました`);
+  if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${modelLabel}。準備完了。取得済みモデルはブラウザキャッシュを再利用します。`;
+
+  return {
+    kind:'moonshine',
+    engine:'moonshine',
+    model:selectedAsr+'-streaming-ja',
+    architecture:selectedAsr+'_streaming',
+    license:'MIT',
+    device:'wasm-cpu',
+    worker:'none-batch-transcriber'
+  };
+}
+
+function forwardBackgroundDownload(message) {
+  if(!message?.url || !message?.cacheName || !message?.cacheKey) return;
+  navigator.serviceWorker?.ready
+    ?.then(reg => (navigator.serviceWorker.controller || reg.active)?.postMessage({
+      type:'track-model-download',
+      url:message.url,
+      cacheName:message.cacheName,
+      cacheKey:message.cacheKey,
+    }))
+    .catch(()=>{});
+}
+
+function requestBackgroundModelContinuation() {
+  navigator.serviceWorker?.ready
+    ?.then(reg => (navigator.serviceWorker.controller || reg.active)?.postMessage({
+      type:'start-background-downloads',
+    }))
+    .catch(()=>{});
+}
+
+function showMoonshineProgress(progress,message) {
+  showProgress(true,progress,message);
+  showOnboardingProgress(true,progress,message);
+}
+
+async function ensureWorkersForDebug() {
+  setBusy(true);
+  showProgress(true,0,'みつことばの声を準備しています…');
+  await initWorkers();
+  setBusy(false);
+  showProgress(false);
+}
+
+function handleTtsMessage(event,readyResolve,readyReject) {
+  const m=event.data;
+  if(m.type==='background-download-url') {
+    forwardBackgroundDownload(m);
+    return;
+  }
+  if(m.type==='status') {
+    showProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
+    showOnboardingProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
+  } else if(m.type==='ready') readyResolve?.(m);
+  else if(m.type==='error') {
+    const error=new Error(m.message || 'Kitten TTSでエラーが発生しました。');
+    readyReject?.(error);
+    if(m.requestId){
+      const q=audioQueues.get(m.requestId);
+      if(q) q.reject?.(error);
+    }
+    if(workersReady) onRuntimeError(error.message);
+  } else if(m.type==='audio') enqueueAudio(m);
+  else if(m.type==='complete') {
+    const q=audioQueues.get(m.requestId);
+    if(q){
+      if(Number.isInteger(m.total)) q.total=Math.max(q.total,m.total);
+      q.generationDone=true;
+      pumpAudio(m.requestId);
+    }
+  }
+}
+
+async function transcribeUtterance(audio) {
+  if(!running||processing||speaking||!moonshineTranscriber)return;
+  processing=true;
+  setBusy(true);
+  setState('thinking','聞き取っています…','Moonshineで音声を端末内処理しています。');
+
+  try {
+    // Paint the thinking state before synchronous WASM inference starts.
+    await new Promise(resolve=>requestAnimationFrame(()=>resolve()));
+    const result=moonshineTranscriber.transcribe(audio,{sampleRate:16000});
+    const text=Array.isArray(result?.lines)
+      ? result.lines
+          .map(line=>String(line?.text||'').trim())
+          .filter(Boolean)
+          .join(' ')
+          .replace(/\s+/g,' ')
+          .trim()
+      : '';
+    await processTranscript(text);
+  } catch(error) {
+    processing=false;
+    setBusy(false);
+    console.error(error);
+    setState('error','音声認識でエラーが発生しました',friendlyError(error));
+  }
+}
+
+async function processTranscript(text) {
+  if(!running||speaking)return;
+  processing=true;
+  setBusy(true);
+  const clean=String(text||'').replace(/\s+/g,' ').trim();
+  if(!isMeaningfulUtterance(clean)){
+    processing=false;
+    setBusy(false);
+    setState('listening',`${getAiName()}が聞いています`,'意味のあることばを待っています。');
+    return;
+  }
+  showConversation(clean,'');
+  setState('understood','わかりました',`${getAiName()}が赤ちゃんへ話しかけます。`);
+  const response=engine.respond(clean,getSpokenBabyName());
   const english=stripAiSpeakerLabel(response.english);
   showConversation(clean,english);
   processing=false;
