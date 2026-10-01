@@ -132,7 +132,9 @@ export function detectFlexibleTopics(transcript) {
       evidence[topic.scene] = { score: 6, kind: 'object-action' };
       continue;
     }
-    const supported = topic.actions.some(action => text.includes(action));
+    const supported = topic.scene === 'voice'
+      ? /(?:出|でた|して|話|はな(?:す|し|そ)|しゃべ)/.test(text)
+      : topic.actions.some(action => text.includes(action));
     for (const { word, key, fullTsu } of topic.words) {
       // Exact reading matches cover kanji/kana spellings independently of the ASR output.
       if (key.length >= 3 ? sound.includes(key) : text.includes(normalizeParentSpeech(word)) || sound === key) {
