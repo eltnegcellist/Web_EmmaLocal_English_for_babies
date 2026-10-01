@@ -42,6 +42,29 @@ export function hasNonMilkDrink(text) {
   return /(?:水|みず|お茶|おちゃ|麦茶|むぎちゃ|白湯|さゆ|ジュース|じゅーす|飲み物|のみもの)/.test(normalizeParentSpeech(text));
 }
 
+// Short topic nouns use lexical boundaries, rather than requiring an action.
+// Kana nouns need a boundary or a common pointing/possessive phrase before them.
+const NOUN_END = '(?:$|だ|です|ね|よ|を|が|は|も|に|で|の|と|って|ちゃん)';
+const KANA_START = '(?:(?<![ぁ-ん])|この|その|あの|かわいい|ちいさな|小さな|あなたの|きみの|赤ちゃんの)';
+const NOUN_TOPICS = {
+  hands: new RegExp(`(?:(?<!\\p{Script=Han})(?:両手|手|指)|${KANA_START}ゆび|(?:^|この|その|あの|かわいい|ちいさな|小さな|あなたの|きみの|赤ちゃんの)て)${NOUN_END}`, 'u'),
+  feet: new RegExp(`(?:(?<!\\p{Script=Han})(?:両足|足)|${KANA_START}あし(?!た|ら|あと|もと|おと|ば|なみ|どり))${NOUN_END}`, 'u'),
+  voice: new RegExp(`(?:(?<!\\p{Script=Han})声|${KANA_START}こえ)${NOUN_END}`, 'u'),
+  book: new RegExp(`(?:(?<!\\p{Script=Han})本|${KANA_START}ほん)${NOUN_END}`, 'u'),
+  clothes: new RegExp(`(?:(?<!\\p{Script=Han})服|${KANA_START}ふく)${NOUN_END}`, 'u'),
+  music: new RegExp(`(?:(?<!\\p{Script=Han})歌|${KANA_START}うた(?!がう|がっ|がい))${NOUN_END}`, 'u'),
+  tummy: new RegExp(`(?:お腹|おなか)${NOUN_END}`, 'u'),
+};
+
+export function detectNounTopics(text) {
+  const value = normalizeParentSpeech(text);
+  return Object.fromEntries(Object.entries(NOUN_TOPICS)
+    .filter(([scene, pattern]) => pattern.test(value)
+      // Hunger is food; a bare tummy mention must not override it.
+      && !(scene === 'tummy' && /(?:お腹|おなか)(?:が|も)?(?:すい|空い|減|へっ)/.test(value)))
+    .map(([scene]) => [scene, { score: 6, kind: 'topic-noun' }]));
+}
+
 // Fuzzy matches use distinctive topic words plus an independent action.
 // Invitation endings such as "しよう" are never fuzzy topic evidence themselves.
 const TOPICS = {
@@ -85,7 +108,7 @@ const EXCLUSIONS = {
   bath: ['風呂敷', 'ふろしき'], sleep: ['寝返り', 'ねがえり', '重ね', 'かさね'],
   hands: ['手伝', 'てつだ', '手続', 'てつづ', '手紙', 'てがみ', '手数'],
   feet: ['足り', 'たり', '足す', 'たす', '足し'],
-  voice: ['声優', 'せいゆう'], music: ['歌舞伎', 'かぶき'],
+  voice: ['声優', 'せいゆう'], music: ['歌舞伎', 'かぶき', 'うたがう', 'うたがっ', 'うたがい'],
 };
 
 const prepared = Object.entries(TOPICS).map(([scene, topic]) => ({
@@ -100,9 +123,10 @@ const prepared = Object.entries(TOPICS).map(([scene, topic]) => ({
 export function detectFlexibleTopics(transcript) {
   const text = normalizeParentSpeech(transcript);
   const sound = phoneticKey(text);
-  const evidence = {};
+  const evidence = detectNounTopics(transcript);
   const fuzzy = [];
   for (const topic of prepared) {
+    if (evidence[topic.scene]) continue;
     if (topic.exclusions.some(word => text.includes(word))) continue;
     if (ACTION_PAIRS[topic.scene]?.test(text)) {
       evidence[topic.scene] = { score: 6, kind: 'object-action' };

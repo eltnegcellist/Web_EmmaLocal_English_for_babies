@@ -154,6 +154,36 @@ for (const text of ['たのむよ', '頼みます', 'このみます', '好み�
 }
 console.log('Drinking actions: kana/kanji, omitted objects, milk/water context, speech gate, style and expiry OK');
 
+// Nouns must pass both the ASR utterance gate and topic detection.
+const nounCases = {
+  feet: ['足', 'あし', 'アシ', '足だね', '足がかわいいね', '足を見て', 'あしを見て', 'このあし', 'かわいいあし', '両足だね'],
+  hands: ['手', 'て', '指', 'ゆび', '手だね', 'てがかわいいね', '指を見て', 'このて', 'かわいいゆび', '両手だね'],
+  voice: ['声', 'こえ', '声だね', 'こえがかわいいね', 'このこえ'],
+  book: ['本', 'ほん', '本だよ', 'ほんを見て', 'このほん'],
+  clothes: ['服', 'ふく', '服だね', 'ふくを見て', 'このふく'],
+  music: ['歌', 'うた', '歌だね', 'うたを聞こう', 'このうた'],
+  tummy: ['お腹', 'おなか', 'おなかだね', 'おなかを見て'],
+};
+for (const [scene, texts] of Object.entries(nounCases)) {
+  for (const text of texts) {
+    assert.equal(isMeaningfulUtterance(text), true, `Noun gate: ${text}`);
+    assert.equal(new LiteResponseEngine().respond(text).scene, scene, text);
+    const context = new LiteResponseEngine();
+    context.respond('ミルクの時間だよ');
+    assert.equal(context.respond(text).scene, scene, `Noun switches context: ${text}`);
+  }
+}
+for (const text of [
+  '足りないね', '足すよ', '足し算だね', '満足だね', '不足だね', '足場だね', '足音だね',
+  'あしたね', 'あしらうよ', 'あしあとだね', 'あしもとを見て',
+  '手伝うよ', '手紙だよ', '手続きだね', '苦手だね', '指示だよ', 'ゆびわだね',
+  'なんてかわいい', 'してね', '声優だね', 'こえるよ', '本当だよ', '本日だね', 'にほんだよ',
+  '服用だね', 'ふくらむね', '歌舞伎だね', 'うたがうよ',
+]) assert.equal(new LiteResponseEngine().respond(text).scene, 'generic', `Unrelated noun substring: ${text}`);
+for (const text of ['あー', 'うー', 'あ', 'う', 'えっと']) assert.equal(isMeaningfulUtterance(text), false, text);
+for (const text of ['おなかがすいたね', 'お腹が減ったね']) assert.equal(new LiteResponseEngine().respond(text).scene, 'food', text);
+console.log('Short topic nouns: speech gate, seven topics, context switches and unrelated substrings OK');
+
 // Published examples must continue to agree with the actual detector and speech gate.
 const guide = readFileSync(new URL('./topic-guide.html', import.meta.url), 'utf8');
 const guideExamples = [...guide.matchAll(/class="utterance" data-scene="([^"]+)">([^<]+)<\/span>/g)];

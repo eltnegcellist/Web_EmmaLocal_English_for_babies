@@ -1,5 +1,5 @@
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
-import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink } from './lite-topic-matcher.js';
+import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink, detectNounTopics } from './lite-topic-matcher.js';
 
 // Reply bank and style synced from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
 // Android source commit: dfd20958931d2767d3b54e0c9106f8cb690be93d
@@ -222,6 +222,7 @@ export function isMeaningfulUtterance(raw) {
   if(!value || value==='不明' || value==='unclear') return false;
   if(FILLER_ONLY.has(value)) return false;
   if(detectDrinkingAction(raw)) return true;
+  if(Object.keys(detectNounTopics(raw)).length) return true;
   if(MEANINGFUL_SHORT_FORMS.some(x=>x && value.includes(x))) return true;
   if(/^[あいうえおんぁぃぅぇぉー〜]+$/.test(value)) return false;
   if(/^[アイウエオンァィゥェォー〜]+$/.test(value)) return false;
@@ -350,7 +351,7 @@ const SCENE_EXCLUSIONS = {
   feet: ["足り", "足す", "足し"],
   tummy: ["お腹すい", "おなかすい", "お腹減", "おなか減"],
   voice: ["声優"],
-  music: ["歌舞伎"]
+  music: ["歌舞伎", "うたがう", "うたがっ", "うたがい"]
 };
 
 const SCENES = [
