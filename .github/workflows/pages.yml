@@ -38,6 +38,17 @@ jobs:
           node --check src/lite-response-engine.js
           node --check src/name-pronunciation.js
           node --check src/model-lab.js
+      - name: Reject GPL/eSpeak runtime regressions
+        run: |
+          set -euo pipefail
+          # These identifiers correspond to browser runtimes known to bundle or execute eSpeak NG.
+          # Local src/vendor/kitten/phonemizer.js is allowed: it is the CMUDict-based implementation.
+          banned='@mintplex-labs/piper-tts-web|createPiperPhonemize|espeak-ng-data|kokoro-js|phonemizer@'
+          if grep -RniE "$banned" index.html model-lab.html src service-worker.js \
+              --exclude='THIRD_PARTY_NOTICES.md' --exclude='LICENSE_AUDIT.md'; then
+            echo "GPL/eSpeak runtime regression detected."
+            exit 1
+          fi
 
   publish:
     if: github.event_name == 'push'
