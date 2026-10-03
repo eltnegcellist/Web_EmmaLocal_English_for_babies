@@ -1090,7 +1090,7 @@ async function playBlob(blob,requestId) {
   const ended=new Promise(resolve=>source.onended=resolve);
   source.start();
   const q=audioQueues.get(requestId);
-  if(q && !q.started){q.started=true;if(q.entry && historyEnabled(localStorage))history.append(q.entry).catch(error=>console.warn('履歴を保存できませんでした',error));}
+  if(q && !q.started){q.started=true;if(q.entry && historyEnabled(localStorage))history.append(q.entry).catch(error=>{ console.warn('履歴を保存できませんでした',error);$('historyWarning').textContent='履歴を保存できませんでした。端末の空き容量やブラウザ設定を確認してください。'; });}
   animate();
   await ended;
   if(activeAudioSource===source) activeAudioSource=null;
@@ -1115,7 +1115,7 @@ function renderAvatarFrame(){
   if(!ui.aiAvatarFace) return;
   const next=avatarFrameName();
   // Switch complete frames; palette variables now inherit into the inline SVGs.
-  for(const frame of ui.aiAvatarFace.querySelectorAll('[data-avatar-frame]')){
+  for(const frame of document.querySelectorAll('#aiAvatarFace [data-avatar-frame], .play-avatar [data-avatar-frame]')){
     frame.classList.toggle('hidden',frame.dataset.avatarFrame!==next);
   }
 }

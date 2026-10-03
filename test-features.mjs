@@ -40,3 +40,38 @@ $('featureClose').click();await settle();assert.equal(features.isOpen(),false);a
 assert.deepEqual(await history.list(),[],'play must not create history');
 assert(!$('settingsScreen').querySelector('#playButton'),'play entry is on main');
 console.log('Features: IndexedDB retention/pruning/deletion/OFF, shared phrases, mode exit, repeated taps and no play history OK');
+
+// Exercise the actual app's decode/start boundary: cancelling during decoding must
+// prevent both sound and history, while a started response commits exactly once.
+const {runInNewContext}=await import('node:vm');
+let decodedResolve,starts=0,commits=0,lastRequest;
+const audioBuffer={length:128,sampleRate:24000,numberOfChannels:1,getChannelData:()=>new Float32Array(128).fill(.3)};
+const context={state:'running',decodeAudioData:()=>new Promise(resolve=>decodedResolve=resolve),
+  createBufferSource:()=>({connect(node){return node;},start(){starts++;queueMicrotask(()=>this.onended?.());},stop(){this.onended?.();}}),
+  createGain:()=>({gain:{value:1},connect(node){return node;}}),
+  createAnalyser:()=>({connect(){},getByteTimeDomainData(data){data.fill(128);}}),destination:{}};
+let source=readFileSync(new URL('./src/app.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replaceAll('import.meta.url',"'https://example.test/src/app.js'").replace('\ninitUi();','\n');
+source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=>{};renderAvatarFrame=()=>{};setBusy=()=>{};
+  audioContext=testAudio;ttsWorker={postMessage(message){captureRequest(message.requestId);}};
+  history.append=async()=>{commitHistory();};
+  globalThis.appTest={speakResponse,stopEmma,enqueueAudio,complete(id){const q=audioQueues.get(id);if(q){q.generationDone=true;pumpAudio(id);}}};`;
+const sandbox={document,window,localStorage:storage,location:window.location,URL,URLSearchParams,console,crypto,
+  ConversationHistory,historyEnabled,createHistoryEntry,LiteResponseEngine:class{},testAudio:context,captureRequest:id=>lastRequest=id,commitHistory:()=>commits++,
+  requestAnimationFrame:()=>1,cancelAnimationFrame:()=>{},setTimeout,clearTimeout,navigator:{},Blob,Float32Array,Uint8Array};
+runInNewContext(source,sandbox);
+storage.setItem('emma_history_enabled','true');
+const app=sandbox.appTest;
+const candidate=createHistoryEntry('test','足を見て','Hello, little feet!','feet');
+let speech=app.speakResponse(candidate.englishText,{entry:candidate});
+app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await settle();
+await app.stopEmma();decodedResolve(audioBuffer);await speech;await settle();
+assert.equal(starts,0);assert.equal(commits,0);
+speech=app.speakResponse(candidate.englishText,{entry:candidate});
+app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await settle();
+decodedResolve(audioBuffer);app.complete(lastRequest);await speech;
+assert.equal(starts,1);assert.equal(commits,1);
+// Playback without a conversation candidate (history replay or play) never saves.
+speech=app.speakResponse(candidate.englishText);
+app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await settle();decodedResolve(audioBuffer);app.complete(lastRequest);await speech;
+assert.equal(starts,2);assert.equal(commits,1);
+console.log('Playback: stop during decode prevents late audio/history; first audio saves once; replay saves nothing OK');
