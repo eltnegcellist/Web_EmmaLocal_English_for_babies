@@ -8,7 +8,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=20260930-icon-r1" />
   <link rel="icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" sizes="192x192" />
-  <link rel="stylesheet" href="./styles.css?v=20261003-vivid-gradient-r16" />
+  <link rel="stylesheet" href="./styles.css?v=20261004-filled-gradients-r17" />
   <title>みつことば Web</title>
 </head>
 <body>
@@ -633,7 +633,7 @@
             <select id="colorMode">
               <option value="soft">やさしい色</option>
               <option value="vivid">はっきり色</option>
-              <option value="color_shift">カラーチェンジ</option>
+              <option value="filled">塗りつぶし</option>
             </select>
           </label>
           <label id="softPaletteRow" class="hidden">やさしい色の配色
@@ -642,6 +642,7 @@
               <option value="mint">ミント</option>
               <option value="sky">そら</option>
               <option value="lavender">ラベンダー</option>
+              <option value="gradient">グラデーション</option>
             </select>
           </label>
           <label id="vividPaletteRow" class="hidden">はっきり色の配色
@@ -650,6 +651,16 @@
               <option value="blue">ブルー</option>
               <option value="honey">はちみつ</option>
               <option value="berry">ベリー</option>
+              <option value="gradient">グラデーション</option>
+            </select>
+          </label>
+          <label id="filledPaletteRow" class="hidden">塗りつぶしの配色
+            <select id="filledPalette">
+              <option value="coral">コーラル（赤）</option>
+              <option value="blue">ブルー</option>
+              <option value="honey">はちみつ</option>
+              <option value="berry">ベリー</option>
+              <option value="gradient">グラデーション</option>
             </select>
           </label>
           <p id="colorModeDescription" class="small muted"></p>
@@ -838,6 +849,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261003-vivid-gradient-r16"></script>
+  <script type="module" src="./src/app.js?v=20261004-filled-gradients-r17"></script>
 </body>
 </html>

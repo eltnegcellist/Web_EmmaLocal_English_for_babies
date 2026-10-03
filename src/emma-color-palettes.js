@@ -75,36 +75,84 @@ export const VIVID_PALETTES = {
     "tongue": "#f1abb8"
   }
 };
+export const FILLED_PALETTES = {
+  "coral": {
+    "label": "コーラル（赤）",
+    "face": "#ffd7da",
+    "accent": "#c52038",
+    "dark": "#3f302c",
+    "blush": "#e99ba5",
+    "mouth": "#3f302c",
+    "tongue": "#f1abb8"
+  },
+  "blue": {
+    "label": "ブルー",
+    "face": "#d4eaff",
+    "accent": "#085a96",
+    "dark": "#3f302c",
+    "blush": "#e99ba5",
+    "mouth": "#3f302c",
+    "tongue": "#f1abb8"
+  },
+  "honey": {
+    "label": "はちみつ",
+    "face": "#ffe5af",
+    "accent": "#b66e00",
+    "dark": "#3f302c",
+    "blush": "#e99ba5",
+    "mouth": "#3f302c",
+    "tongue": "#f1abb8"
+  },
+  "berry": {
+    "label": "ベリー",
+    "face": "#eed4e6",
+    "accent": "#81245f",
+    "dark": "#3f302c",
+    "blush": "#e99ba5",
+    "mouth": "#3f302c",
+    "tongue": "#f1abb8"
+  }
+};
+export function normalizeFilledPalette(value) {
+  return value === 'gradient' ? value : Object.hasOwn(FILLED_PALETTES,value) ? value : 'coral';
+}
+
 export function normalizeSoftPalette(value) {
-  return Object.hasOwn(SOFT_PALETTES, value) ? value : 'peach';
+  return value === 'gradient' ? value : Object.hasOwn(SOFT_PALETTES, value) ? value : 'peach';
 }
 
 export function normalizeVividPalette(value) {
   const legacy = {sunshine:'honey', ocean:'blue', candy:'coral', forest:'berry'};
   const current = legacy[value] || value;
-  return Object.hasOwn(VIVID_PALETTES, current) ? current : 'coral';
+  return current === 'gradient' ? current : Object.hasOwn(VIVID_PALETTES, current) ? current : 'coral';
 }
 
 // Removed mono_red is migrated to vivid coral even if another vivid color was saved.
 export function normalizeColorSettings(mode, vivid) {
   return {
-    mode: ['soft', 'vivid', 'color_shift'].includes(mode) ? mode : 'vivid',
-    vivid: mode === 'mono_red' ? 'coral' : normalizeVividPalette(vivid)
+    mode: ['soft', 'vivid', 'filled'].includes(mode) ? mode : 'vivid',
+    vivid: mode === 'mono_red' ? 'coral' : mode === 'color_shift' ? 'gradient' : normalizeVividPalette(vivid)
   };
 }
 
-// A two-minute cycle through the approved vivid accents; other paints stay fixed.
+// Each mode cycles through its own four palettes in two minutes.
 export const COLOR_SHIFT_ORDER = ['coral', 'honey', 'blue', 'berry'];
-export function shiftingPalette(hue) {
+export const SOFT_SHIFT_ORDER = ['peach', 'mint', 'sky', 'lavender'];
+export function shiftingPalette(hue, mode = 'vivid') {
+  const palettes = mode === 'soft' ? SOFT_PALETTES : mode === 'filled' ? FILLED_PALETTES : VIVID_PALETTES;
+  const order = mode === 'soft' ? SOFT_SHIFT_ORDER : COLOR_SHIFT_ORDER;
   const position = (((hue % 360) + 360) % 360) / 90;
   const index = Math.floor(position);
   const fraction = position - index;
-  const from = VIVID_PALETTES[COLOR_SHIFT_ORDER[index]].accent;
-  const to = VIVID_PALETTES[COLOR_SHIFT_ORDER[(index + 1) % 4]].accent;
-  const accent = '#' + [1, 3, 5].map(offset => {
-    const a = parseInt(from.slice(offset, offset + 2), 16);
-    const b = parseInt(to.slice(offset, offset + 2), 16);
-    return Math.round(a + (b - a) * fraction).toString(16).padStart(2, '0');
-  }).join('');
-  return {...VIVID_PALETTES.coral, accent};
+  const from = palettes[order[index]];
+  const to = palettes[order[(index + 1) % 4]];
+  const palette = {};
+  for (const paint of ['face','accent','dark','blush','mouth','tongue']) {
+    palette[paint] = '#' + [1,3,5].map(offset => {
+      const a = parseInt(from[paint].slice(offset, offset + 2),16);
+      const b = parseInt(to[paint].slice(offset, offset + 2),16);
+      return Math.round(a + (b - a) * fraction).toString(16).padStart(2,'0');
+    }).join('');
+  }
+  return palette;
 }

@@ -103,10 +103,10 @@ Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.9.26** と並行して提供するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.9.27** と並行して提供するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.26
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.27
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版はブラウザ向けの軽量構成です。Android版では同系統の軽量構成に加えて、Gemmaを使うFullも利用できます。
@@ -347,10 +347,10 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.26**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.27**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.26
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.27
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition uses the lightweight browser configuration. Android provides the same lightweight style of interaction plus the Gemma-based Full mode.
@@ -503,6 +503,6 @@ https://github.com/eltnegcellist/Android_English_character_for_baby
 
 ### キャラクター配色 / Character colors
 
-Web・Androidは同じ色コードを使用します。やさしい色はピーチ・ミント・そら・ラベンダー、はっきり色は白い顔・胴体とコーラル・ブルー・はちみつ・ベリーの飾り色です。両系統で配色を選択・保存できます。初期色ははっきり色のコーラル（赤）です。白黒＋赤は統合され、旧設定もコーラルへ引き継ぎます。カラーチェンジは白い顔と体を保ち、コーラル→はちみつ→ブルー→ベリー→コーラルを約2分で滑らかに一周します。
+Web・Androidは同じ色コードを使用します。モードは「やさしい色・はっきり色・塗りつぶし」の3つで、それぞれ4色とグラデーションを選べます。やさしい色はピーチ・ミント・そら・ラベンダー、はっきり色と塗りつぶしはコーラル（赤）・ブルー・はちみつ・ベリーです。塗りつぶしは飾り色をさらに濃くし、顔と体にも薄く色を付けます。グラデーションは各モードの4配色の間を約2分で一周します。各モードの配色は個別に保存され、旧カラーチェンジは「はっきり色のグラデーション」へ引き継ぎます。初期色ははっきり色のコーラル（赤）です。
 
-Web and Android use identical character colors. Soft mode offers Peach, Mint, Sky, and Lavender. Vivid mode keeps the face and body white with Coral, Blue, Honey, or Berry accents. Each mode saves its palette selection. Vivid Coral red is the default; the removed white/black/red mode migrates to Coral. Color shift keeps the white face and body and smoothly cycles through Coral, Honey, Blue, Berry, and Coral in two minutes.
+Web and Android use the same palettes. Soft, Vivid, and Filled each offer four fixed colors plus Gradient. Filled deepens the accents and lightly tints the face and body. Each gradient cycles through its mode's four palettes in two minutes. Choices are saved independently; the former Color Shift mode migrates to Vivid Gradient. Vivid Coral red remains the default.
