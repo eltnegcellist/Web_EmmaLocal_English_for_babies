@@ -197,6 +197,8 @@ Web版は、軽量で導入しやすいみつことば体験に絞っていま�
 
 ### 開発資料
 
+- [shared/README.md](shared/README.md) — Web・Android共通の判定例とガイドの更新手順
+
 - [BRANCH_POLICY.md](BRANCH_POLICY.md) — 現行の開発・公開元と過去の実験ブランチの扱い
 - [LICENSE_AUDIT.md](LICENSE_AUDIT.md) — 旧比較経路の削除と現行構成の監査
 - [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) — 第三者コンポーネント一覧
@@ -438,6 +440,8 @@ Mitsukotoba Web is designed around local inference.
 On first use, Mitsukotoba guides the user through initial setup, including the baby's name and required model preparation. Saved configuration is reused on later launches.
 
 ### Development Documents
+
+- [shared/README.md](shared/README.md) — shared Web/Android topic tests and guide update procedure
 
 - [BRANCH_POLICY.md](BRANCH_POLICY.md) — current development/deployment sources and historical branches
 - [LICENSE_AUDIT.md](LICENSE_AUDIT.md) — removal of former comparison paths and current-stack audit

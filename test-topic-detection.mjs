@@ -2,195 +2,45 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { LiteResponseEngine, isMeaningfulUtterance, splitSentences } from './src/lite-response-engine.js';
 
-// Text fixtures, including simulated ASR errors; these are not an ASR accuracy benchmark.
-export const topicCases = [
-  ['こんにちは そろそろ寝ましょうね', 'sleep'],
-  ['そろそろねましょうね', 'sleep'],
-  ['もう寝ちゃったね', 'sleep'],
-  ['ねむくなってきましたね', 'sleep'],
-  ['そろそろ寝ませんか', 'sleep'],
-  ['お昼寝の時間ですよ', 'sleep'],
-  ['こんにちは、おふろに入りましょう', 'bath'],
-  ['からだを洗いましょうね', 'bath'],
-  ['おふらに入ろうね', 'bath'],
-  ['ミルクを飲みましょうね', 'milk'],
-  ['みるこを飲もうね', 'milk'],
-  ['みりく飲もうか', 'milk'],
-  ['ぼにゅうにしようね', 'milk'],
-  ['ほにゅうびんだよ', 'milk'],
-  ['そろそろ起きましょうね', 'wake'],
-  ['おきましょうね', 'wake'],
-  ['目を覚ましたね', 'wake'],
-  ['おむつを取り替えましょう', 'diaper'],
-  ['おむちをかえようね', 'diaper'],
-  ['おしっこが出ましたね', 'diaper'],
-  ['きがえましょうね', 'clothes'],
-  ['洋服を着ましょうね', 'clothes'],
-  ['ぱじゃまに着替えよう', 'clothes'],
-  ['だっこしましょうね', 'hug'],
-  ['だつこしようか', 'hug'],
-  ['ぎゅっと抱きしめよう', 'hug'],
-  ['おててをにぎってるね', 'hands'],
-  ['てをにぎりましょうね', 'hands'],
-  ['ゆびをつかんだね', 'hands'],
-  ['あんよがばたばたしてるね', 'feet'],
-  ['あしを動かしてるね', 'feet'],
-  ['足を蹴っているね', 'feet'],
-  ['かわいいえがおですね', 'smile'],
-  ['にこにこしていますね', 'smile'],
-  ['わらってるね', 'smile'],
-  ['ないちゃったね', 'cry'],
-  ['ぐずぐずしてるね', 'cry'],
-  ['泣いていますね', 'cry'],
-  ['ないてるね', 'cry'],
-  ['こえを出しているね', 'voice'],
-  ['おしゃべりしていますね', 'voice'],
-  ['なんごが出たね', 'voice'],
-  ['げっぷが出ましたね', 'tummy'],
-  ['げつぷが出たね', 'tummy'],
-  ['おなかいっぱいですね', 'tummy'],
-  ['いっしょに遊びましょうね', 'play'],
-  ['あそびましょうね', 'play'],
-  ['おもちょで遊ぼうね', 'play'],
-  ['さんぽに行きましょうね', 'outside'],
-  ['べびーかーでお出かけしよう', 'outside'],
-  ['こうえんに行こうね', 'outside'],
-  ['あめが降っていますね', 'rain'],
-  ['あまおとが聞こえるね', 'rain'],
-  ['はれてきましたね', 'sun'],
-  ['たいようが出ているね', 'sun'],
-  ['ぽかぽかしていますね', 'sun'],
-  ['ごはんを食べましょうね', 'food'],
-  ['たべましょうね', 'food'],
-  ['りにゅうしょくだよ', 'food'],
-  ['おなかがすいたね', 'food'],
-  ['えほんを読みましょうね', 'book'],
-  ['えほうを読もうね', 'book'],
-  ['ほんをよみましょうね', 'book'],
-  ['うたを歌いましょうね', 'music'],
-  ['おんがき聞こうね', 'music'],
-  ['踊りましょうね', 'music'],
-];
-
-const negatives = [
-  'こんにちは、今日もよろしくね', '今日は会社で会議だったよ', '今日はなんだか不思議だね',
-  '今日はゆっくりしようね', 'かわいいね', 'いい感じですね',
-  'そろそろ帰りましょうね', 'お手紙を書きましょう', '手続きをしましょう',
-  '手伝いましょうね', '足りないですね', '明日の予定を決めましょう',
-  '風呂敷を包みましょう', 'ふろしきを包もうね', '歌舞伎を見よう',
-  'かぶきを見よう', '声優さんの話だよ', 'せいゆうさんの話だよ',
-  '寝返りしましたね', 'ねがえりしたね', '本当にそうですね',
-  '飴を買いましょう', '紙を重ねるよ', 'みるこさんに会ったよ',
-  '紙を重ねましょう', 'かさねておきましょう', '真似ましょう', '友達をたずねましょう',
-];
-
-let hits = 0;
-const misses = [];
-for (const [text, scene] of topicCases) {
-  const out = new LiteResponseEngine().respond(text);
-  if (out.scene === scene) hits++;
-  else misses.push(`${text}: ${out.scene}, expected ${scene}`);
+// Shared expected results, not generated from either detector. These are text tests, not an ASR benchmark.
+const contract = JSON.parse(readFileSync(new URL('./shared/lite-topic-contract.json', import.meta.url), 'utf8'));
+export const topicCases = contract.cases.map(c => [c.text, c.scene]);
+for (const c of contract.cases) {
+  assert.equal(isMeaningfulUtterance(c.text), c.meaningful, `Gate ${c.id}: ${c.text}`);
+  assert.equal(new LiteResponseEngine().respond(c.text).scene, c.scene, `Scene ${c.id}: ${c.text}`);
+  if (!['generic', 'drink'].includes(c.scene)) {
+    const engine = new LiteResponseEngine();
+    engine.respond('ミルクの時間だよ');
+    assert.equal(engine.respond(c.text).scene, c.scene, `Switch ${c.id}: ${c.text}`);
+  }
 }
-console.log(`Topic fixtures: ${hits}/${topicCases.length}`);
-for (const text of negatives) {
-  const out = new LiteResponseEngine().respond(text);
-  if (out.scene !== 'generic') misses.push(`${text}: ${out.scene}, expected generic`);
-}
-console.log(`Unrelated/ambiguous fixtures: ${negatives.length}`);
-assert.equal(misses.length, 0, misses.join('\n'));
-
-const engine = new LiteResponseEngine();
-assert.equal(engine.respond('ミルク飲もうね').scene, 'milk');
-assert.equal(engine.respond('こんにちは そろそろ寝ましょうね').scene, 'sleep');
-assert.equal(engine.respond('気持ちいいですね').scene, 'sleep');
-assert.equal(engine.respond('えほうを読もうね').scene, 'book');
-for (let i = 0; i < 6; i++) assert.equal(engine.respond('いい感じですね').scene, 'book');
-assert.equal(engine.respond('いい感じですね').scene, 'generic');
-console.log('Topic switch and six-turn expiry OK');
-
-const drinkingCases = [
-  '飲もうか', '飲むかい', '飲む？', '飲みたい？', '飲んだね', '飲んでみよう',
-  '飲みましょうね', 'そろそろ飲む会', 'そろそろ飲むかい？',
-  'のむ？', 'のみたい？', 'のもうか', 'そろそろのむかい', 'もうのんだね',
-  'お水を飲むかい', 'お茶を飲もうか',
-];
-for (const text of drinkingCases) {
-  assert.equal(isMeaningfulUtterance(text), true, `Short utterance must reach the engine: ${text}`);
+for (const sequence of contract.sequences) {
   const engine = new LiteResponseEngine();
+  for (const [index, step] of sequence.steps.entries()) {
+    if (step.reset) { engine.resetConversationContext(); continue; }
+    const label = `${sequence.id} turn ${index + 1}: ${step.text}`;
+    assert.equal(isMeaningfulUtterance(step.text), step.meaningful, `Gate ${label}`);
+    assert.equal(engine.respond(step.text).scene, step.scene, label);
+  }
+}
+// Retain Web-specific output style checks in addition to shared topic expectations.
+for (const c of contract.cases.filter(c => c.scene === 'drink')) {
   for (const name of ['', 'Hana-chan']) {
-    const out = engine.respond(text, name);
-    assert.equal(out.scene, 'drink', text);
-    assert.doesNotMatch(out.english, /milk/i, text);
+    const out = new LiteResponseEngine().respond(c.text, name);
+    assert.doesNotMatch(out.english, /milk/i, c.text);
     assert.equal(splitSentences(out.english).length, 3);
     const words = out.english.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || [];
     assert.ok(words.length >= 6 && words.length <= 12, out.english);
   }
 }
-for (const text of drinkingCases.slice(0, 14)) {
-  const milkContext = new LiteResponseEngine();
-  assert.equal(milkContext.respond('ミルクの時間だよ').scene, 'milk');
-  assert.equal(milkContext.respond(text).scene, 'milk', `Milk context: ${text}`);
-}
-for (const text of ['ミルク飲むかい', 'みるくをのむ？', 'おっぱい飲みたい？']) {
-  assert.equal(new LiteResponseEngine().respond(text).scene, 'milk', text);
-}
-const waterContext = new LiteResponseEngine();
-waterContext.respond('ミルクの時間だよ');
-const water = waterContext.respond('お水を飲むかい');
-assert.equal(water.scene, 'drink');
-assert.doesNotMatch(water.english, /milk/i);
-assert.equal(waterContext.respond('ゆっくりでいいよ').scene, 'drink');
-assert.equal(waterContext.respond('ミルク飲もうね').scene, 'milk');
-const switchToDrink = new LiteResponseEngine();
-switchToDrink.respond('お風呂入ろうね');
-assert.equal(switchToDrink.respond('そろそろ飲むかい').scene, 'drink');
-for (let i = 0; i < 6; i++) assert.equal(switchToDrink.respond('いい感じですね').scene, 'drink');
-assert.equal(switchToDrink.respond('いい感じですね').scene, 'generic');
-switchToDrink.respond('飲むかい');
-switchToDrink.resetConversationContext();
-assert.equal(switchToDrink.respond('いい感じですね').scene, 'generic');
-for (const text of ['たのむよ', '頼みます', 'このみます', '好みたい', 'のみかいに行くよ', '飲み会に行くよ']) {
-  assert.equal(new LiteResponseEngine().respond(text).scene, 'generic', text);
-}
-console.log('Drinking actions: kana/kanji, omitted objects, milk/water context, speech gate, style and expiry OK');
-
-// Nouns must pass both the ASR utterance gate and topic detection.
-const nounCases = {
-  feet: ['足', 'あし', 'アシ', '足だね', '足がかわいいね', '足を見て', 'あしを見て', 'このあし', 'かわいいあし', '両足だね'],
-  hands: ['手', 'て', '指', 'ゆび', '手だね', 'てがかわいいね', '指を見て', 'このて', 'かわいいゆび', '両手だね'],
-  voice: ['声', 'こえ', '声だね', 'こえがかわいいね', 'このこえ'],
-  book: ['本', 'ほん', '本だよ', 'ほんを見て', 'このほん'],
-  clothes: ['服', 'ふく', '服だね', 'ふくを見て', 'このふく'],
-  music: ['歌', 'うた', '歌だね', 'うたを聞こう', 'このうた'],
-  tummy: ['お腹', 'おなか', 'おなかだね', 'おなかを見て'],
-};
-for (const [scene, texts] of Object.entries(nounCases)) {
-  for (const text of texts) {
-    assert.equal(isMeaningfulUtterance(text), true, `Noun gate: ${text}`);
-    assert.equal(new LiteResponseEngine().respond(text).scene, scene, text);
-    const context = new LiteResponseEngine();
-    context.respond('ミルクの時間だよ');
-    assert.equal(context.respond(text).scene, scene, `Noun switches context: ${text}`);
-  }
-}
-for (const text of [
-  '足りないね', '足すよ', '足し算だね', '満足だね', '不足だね', '足場だね', '足音だね',
-  'あしたね', 'あしらうよ', 'あしあとだね', 'あしもとを見て',
-  '手伝うよ', '手紙だよ', 'てがみだよ', '手続きだね', '苦手だね', '指示だよ', 'ゆびわだね',
-  'なんてかわいい', 'してね', '声優だね', 'こえるよ', '本当だよ', 'ほんとだね', 'ほんとうだね', '本日だね', 'にほんだよ',
-  '服用だね', 'ふくらむね', '歌舞伎だね', 'うたがうよ',
-]) assert.equal(new LiteResponseEngine().respond(text).scene, 'generic', `Unrelated noun substring: ${text}`);
-for (const text of ['あー', 'うー', 'あ', 'う', 'えっと']) assert.equal(isMeaningfulUtterance(text), false, text);
-for (const text of ['おなかがすいたね', 'お腹が減ったね']) assert.equal(new LiteResponseEngine().respond(text).scene, 'food', text);
-console.log('Short topic nouns: speech gate, seven topics, context switches and unrelated substrings OK');
-
-// Published examples must continue to agree with the actual detector and speech gate.
+// Check the published HTML as well as its generating data.
 const guide = readFileSync(new URL('./topic-guide.html', import.meta.url), 'utf8');
-const guideExamples = [...guide.matchAll(/class="utterance" data-scene="([^"]+)">([^<]+)<\/span>/g)];
-assert.equal(new Set(guideExamples.map(x => x[1])).size, 21);
-assert.ok(guideExamples.length >= 42);
-for (const [, scene, text] of guideExamples) {
+const decode = text => text.replace(/&quot;/g, '"').replace(/&#x27;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+const shown = [...guide.matchAll(/class="utterance" data-scene="([^"]+)">([^<]+)<\/span>/g)].map(([, scene, text]) => [decode(scene), decode(text)]);
+const expected = contract.topics.flatMap(t => t.examples.map(text => [t.scene, text]));
+assert.deepEqual(shown, expected, 'Published guide must contain exactly the shared examples in order');
+for (const [scene, text] of shown) {
   assert.equal(isMeaningfulUtterance(text), true, text);
   assert.equal(new LiteResponseEngine().respond(text).scene, scene, `Published example: ${text}`);
 }
-console.log(`Published topic guide: ${guideExamples.length} examples across 21 topics OK`);
+console.log(`Shared contract: ${contract.cases.length} cases, ${contract.sequences.length} sequences, ${contract.topics.length} topics, ${shown.length} guide examples OK`);

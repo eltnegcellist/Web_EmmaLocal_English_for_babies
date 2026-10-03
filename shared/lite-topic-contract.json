@@ -1,0 +1,2237 @@
+{
+  "schemaVersion": 1,
+  "revision": "2026-10-03.1",
+  "rules": {
+    "contextFollowupTurns": 6
+  },
+  "guide": {
+    "intro": {
+      "web": "親の日本語から育児の話題を選び、赤ちゃんへ短い英語で返します。このページは、現在のWeb版の動作を説明しています。",
+      "android": "親の日本語から育児の話題を選び、赤ちゃんへ短い英語で返します。ここでは、Android版のLiteの判定方法と呼びかけ例を紹介します。"
+    },
+    "topicsIntro": "{childcareTopicCount}種類の育児の話題に加え、飲む物を限定しない「飲む」の返答があります。下の言葉は手がかりの一部で、例は現在の判定処理で確認したものです。",
+    "sections": {
+      "logic": {
+        "title": "どうやって話題を判定する？",
+        "paragraphs": [
+          "1. 音声を日本語の文字にします。判定に使うのは、実際に話した音声そのものではなく、音声認識が聞き取った文章です。",
+          "2. 話題を表す言葉と動作を探します。「ミルク」「お風呂」などの言葉や、「寝る」「飲む」「読む」などの動作を手がかりにします。「寝よう／寝ましょう」の語尾や、助詞、漢字・かな表記の違いを吸収します。",
+          "3. 少し崩れた言葉も、音と動作を合わせて照合します。たとえば「みるこを飲もう」は、「ミルク」に近い音と「飲む」を合わせて拾います。音が似ているだけでは、ほかの話題に取り違えないよう慎重に判定します。",
+          "4. 決まった話題の英語から返答を選びます。同じ話題にも複数の返答があります。この構成は、発話を一文ずつ自由に英訳する仕組みではありません。",
+          "呼びかけ例をそのまま暗記する必要はありません。ただし、あらゆる言い回しや誤認識に対応できるわけではなく、聞き取り結果が別の意味になると話題を拾えないことがあります。",
+          "モデル準備後の音声認識・話題判定・返答の音声合成は、{processingLocation}で処理します。"
+        ]
+      },
+      "context": {
+        "title": "直前の話題を引き継ぎます",
+        "paragraphs": [
+          "一度話題が決まると、話題を特定できない続きの発話でも最大{contextFollowupTurns}ターンは前の話題を使います。時間ではなく、返答した回数で数えます。別の話題を表す明確な言葉があれば、途中でも切り替わります。",
+          "ジェネラルになるのは？\n今回の発話で話題を特定できず、引き継げる話題もない場合です。たとえば、新しい会話での「かわいいね」や、育児の話題に該当しない文章には、一般的な短い英語で返します。「あー」「うー」だけの発声などは、返答を控えます。"
+        ]
+      },
+      "tips": {
+        "title": "話題が拾われにくいとき",
+        "paragraphs": [
+          "会話に表示された日本語を見て、聞き取りが合っているか確認してください。話題をはっきりさせたいときは、「ミルクを飲もうね」「絵本を読もうね」のように、対象と動作を一緒に伝えると拾いやすくなります。",
+          "「足・あし」「手・て」「指・ゆび」「声・こえ」「本・ほん」「服・ふく」「歌・うた」「お腹・おなか」は、単独でも話題として拾います。「足だね」「指を見て」「このほん」のような呼びかけにも対応します。「足りない」「手伝う」「本当」などの別の言葉とは区別します。お腹がすいたという発話は、食事の話題になります。",
+          "似た言葉でも意味が違う「寝返り」「手伝う」「足りない」などを、ねんね・おてて・あんよと取り違えないようにしています。また、登録されていない話題や、複数の話題が混ざった文章では、意図と違う返答になることがあります。"
+        ]
+      }
+    }
+  },
+  "topics": [
+    {
+      "scene": "bath",
+      "title": "お風呂",
+      "clues": "お風呂・沐浴・シャワー・体を洗う",
+      "examples": [
+        "お風呂入ろうね",
+        "からだを洗いましょうね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "milk",
+      "title": "ミルク・授乳",
+      "clues": "ミルク・母乳・おっぱい・哺乳瓶",
+      "examples": [
+        "ミルク飲むかい",
+        "授乳の時間だね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "sleep",
+      "title": "ねんね",
+      "clues": "寝る・眠い・ねんね・おやすみ",
+      "examples": [
+        "こんにちは、そろそろ寝ましょうね",
+        "眠くなってきたね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "wake",
+      "title": "起きる",
+      "clues": "起きる・おはよう・目を覚ます",
+      "examples": [
+        "そろそろ起きましょうね",
+        "目を覚ましたね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "diaper",
+      "title": "おむつ",
+      "clues": "おむつ・うんち・おしっこ",
+      "examples": [
+        "おむつを取り替えましょう",
+        "おしっこが出ましたね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "clothes",
+      "title": "着替え",
+      "clues": "着替え・洋服・パジャマ・靴下",
+      "examples": [
+        "きがえましょうね",
+        "洋服を着ましょうね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "hug",
+      "title": "抱っこ",
+      "clues": "抱っこ・抱きしめる・ぎゅー",
+      "examples": [
+        "だっこしましょうね",
+        "ぎゅっと抱きしめよう"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "hands",
+      "title": "おてて",
+      "clues": "おてて・手を握る・指をつかむ",
+      "examples": [
+        "おててをにぎってるね",
+        "ゆびをつかんだね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "feet",
+      "title": "あんよ",
+      "clues": "足・あし・あんよ・足を動かす・キック",
+      "examples": [
+        "あんよがばたばたしてるね",
+        "あしを動かしてるね",
+        "足",
+        "足がかわいいね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "smile",
+      "title": "笑顔",
+      "clues": "笑う・にこにこ・笑顔",
+      "examples": [
+        "にこにこしていますね",
+        "かわいいえがおですね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "cry",
+      "title": "泣く",
+      "clues": "泣く・ぐずぐず・えーん",
+      "examples": [
+        "泣いていますね",
+        "ぐずぐずしてるね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "voice",
+      "title": "声・おしゃべり",
+      "clues": "声を出す・おしゃべり・喃語",
+      "examples": [
+        "こえを出しているね",
+        "おしゃべりしていますね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "tummy",
+      "title": "げっぷ・おなか",
+      "clues": "げっぷ・吐き戻し・おなかいっぱい",
+      "examples": [
+        "げっぷが出ましたね",
+        "おなかいっぱいですね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "play",
+      "title": "遊ぶ",
+      "clues": "遊ぶ・おもちゃ・ガラガラ・ぬいぐるみ",
+      "examples": [
+        "いっしょに遊びましょうね",
+        "おもちゃで遊ぼうね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "outside",
+      "title": "お散歩・外",
+      "clues": "散歩・ベビーカー・公園・お外",
+      "examples": [
+        "さんぽに行きましょうね",
+        "こうえんに行こうね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "rain",
+      "title": "雨",
+      "clues": "雨・雨音",
+      "examples": [
+        "あめが降っていますね",
+        "あまおとが聞こえるね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "sun",
+      "title": "晴れ・お日様",
+      "clues": "晴れ・太陽・お日様・ぽかぽか",
+      "examples": [
+        "はれてきましたね",
+        "たいようが出ているね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "food",
+      "title": "ごはん・離乳食",
+      "clues": "ごはん・食べる・離乳食・おなかがすく",
+      "examples": [
+        "ごはんを食べましょうね",
+        "おなかがすいたね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "book",
+      "title": "絵本",
+      "clues": "絵本・読む・ページをめくる",
+      "examples": [
+        "えほんを読みましょうね",
+        "絵本見ようか"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "music",
+      "title": "歌・音楽",
+      "clues": "歌う・音楽・リズム・踊る",
+      "examples": [
+        "うたを歌いましょうね",
+        "踊りましょうね"
+      ],
+      "note": ""
+    },
+    {
+      "scene": "drink",
+      "title": "飲む",
+      "clues": "飲む・飲もう・飲みたい",
+      "examples": [
+        "そろそろ飲むかい",
+        "飲もうか",
+        "のむ？"
+      ],
+      "note": "飲む物が不明なときの例です。ミルクの話の続きならミルクの返答になります。"
+    }
+  ],
+  "cases": [
+    {
+      "id": "case-001",
+      "text": "てがみだよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-002",
+      "text": "ほんとだね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-003",
+      "text": "ほんとうだね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-004",
+      "text": "こんにちは そろそろ寝ましょうね",
+      "scene": "sleep",
+      "meaningful": true
+    },
+    {
+      "id": "case-005",
+      "text": "そろそろねましょうね",
+      "scene": "sleep",
+      "meaningful": true
+    },
+    {
+      "id": "case-006",
+      "text": "もう寝ちゃったね",
+      "scene": "sleep",
+      "meaningful": true
+    },
+    {
+      "id": "case-007",
+      "text": "ねむくなってきましたね",
+      "scene": "sleep",
+      "meaningful": true
+    },
+    {
+      "id": "case-008",
+      "text": "そろそろ寝ませんか",
+      "scene": "sleep",
+      "meaningful": true
+    },
+    {
+      "id": "case-009",
+      "text": "お昼寝の時間ですよ",
+      "scene": "sleep",
+      "meaningful": true
+    },
+    {
+      "id": "case-010",
+      "text": "こんにちは、おふろに入りましょう",
+      "scene": "bath",
+      "meaningful": true
+    },
+    {
+      "id": "case-011",
+      "text": "からだを洗いましょうね",
+      "scene": "bath",
+      "meaningful": true
+    },
+    {
+      "id": "case-012",
+      "text": "おふらに入ろうね",
+      "scene": "bath",
+      "meaningful": true
+    },
+    {
+      "id": "case-013",
+      "text": "ミルクを飲みましょうね",
+      "scene": "milk",
+      "meaningful": true
+    },
+    {
+      "id": "case-014",
+      "text": "みるこを飲もうね",
+      "scene": "milk",
+      "meaningful": true
+    },
+    {
+      "id": "case-015",
+      "text": "みりく飲もうか",
+      "scene": "milk",
+      "meaningful": true
+    },
+    {
+      "id": "case-016",
+      "text": "ぼにゅうにしようね",
+      "scene": "milk",
+      "meaningful": true
+    },
+    {
+      "id": "case-017",
+      "text": "ほにゅうびんだよ",
+      "scene": "milk",
+      "meaningful": true
+    },
+    {
+      "id": "case-018",
+      "text": "そろそろ起きましょうね",
+      "scene": "wake",
+      "meaningful": true
+    },
+    {
+      "id": "case-019",
+      "text": "おきましょうね",
+      "scene": "wake",
+      "meaningful": true
+    },
+    {
+      "id": "case-020",
+      "text": "目を覚ましたね",
+      "scene": "wake",
+      "meaningful": true
+    },
+    {
+      "id": "case-021",
+      "text": "おむつを取り替えましょう",
+      "scene": "diaper",
+      "meaningful": true
+    },
+    {
+      "id": "case-022",
+      "text": "おむちをかえようね",
+      "scene": "diaper",
+      "meaningful": true
+    },
+    {
+      "id": "case-023",
+      "text": "おしっこが出ましたね",
+      "scene": "diaper",
+      "meaningful": true
+    },
+    {
+      "id": "case-024",
+      "text": "きがえましょうね",
+      "scene": "clothes",
+      "meaningful": true
+    },
+    {
+      "id": "case-025",
+      "text": "洋服を着ましょうね",
+      "scene": "clothes",
+      "meaningful": true
+    },
+    {
+      "id": "case-026",
+      "text": "ぱじゃまに着替えよう",
+      "scene": "clothes",
+      "meaningful": true
+    },
+    {
+      "id": "case-027",
+      "text": "だっこしましょうね",
+      "scene": "hug",
+      "meaningful": true
+    },
+    {
+      "id": "case-028",
+      "text": "だつこしようか",
+      "scene": "hug",
+      "meaningful": true
+    },
+    {
+      "id": "case-029",
+      "text": "ぎゅっと抱きしめよう",
+      "scene": "hug",
+      "meaningful": true
+    },
+    {
+      "id": "case-030",
+      "text": "おててをにぎってるね",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-031",
+      "text": "てをにぎりましょうね",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-032",
+      "text": "ゆびをつかんだね",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-033",
+      "text": "あんよがばたばたしてるね",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-034",
+      "text": "あしを動かしてるね",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-035",
+      "text": "足を蹴っているね",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-036",
+      "text": "かわいいえがおですね",
+      "scene": "smile",
+      "meaningful": true
+    },
+    {
+      "id": "case-037",
+      "text": "にこにこしていますね",
+      "scene": "smile",
+      "meaningful": true
+    },
+    {
+      "id": "case-038",
+      "text": "わらってるね",
+      "scene": "smile",
+      "meaningful": true
+    },
+    {
+      "id": "case-039",
+      "text": "ないちゃったね",
+      "scene": "cry",
+      "meaningful": true
+    },
+    {
+      "id": "case-040",
+      "text": "ぐずぐずしてるね",
+      "scene": "cry",
+      "meaningful": true
+    },
+    {
+      "id": "case-041",
+      "text": "泣いていますね",
+      "scene": "cry",
+      "meaningful": true
+    },
+    {
+      "id": "case-042",
+      "text": "ないてるね",
+      "scene": "cry",
+      "meaningful": true
+    },
+    {
+      "id": "case-043",
+      "text": "こえを出しているね",
+      "scene": "voice",
+      "meaningful": true
+    },
+    {
+      "id": "case-044",
+      "text": "おしゃべりしていますね",
+      "scene": "voice",
+      "meaningful": true
+    },
+    {
+      "id": "case-045",
+      "text": "なんごが出たね",
+      "scene": "voice",
+      "meaningful": true
+    },
+    {
+      "id": "case-046",
+      "text": "げっぷが出ましたね",
+      "scene": "tummy",
+      "meaningful": true
+    },
+    {
+      "id": "case-047",
+      "text": "げつぷが出たね",
+      "scene": "tummy",
+      "meaningful": true
+    },
+    {
+      "id": "case-048",
+      "text": "おなかいっぱいですね",
+      "scene": "tummy",
+      "meaningful": true
+    },
+    {
+      "id": "case-049",
+      "text": "いっしょに遊びましょうね",
+      "scene": "play",
+      "meaningful": true
+    },
+    {
+      "id": "case-050",
+      "text": "あそびましょうね",
+      "scene": "play",
+      "meaningful": true
+    },
+    {
+      "id": "case-051",
+      "text": "おもちょで遊ぼうね",
+      "scene": "play",
+      "meaningful": true
+    },
+    {
+      "id": "case-052",
+      "text": "さんぽに行きましょうね",
+      "scene": "outside",
+      "meaningful": true
+    },
+    {
+      "id": "case-053",
+      "text": "べびーかーでお出かけしよう",
+      "scene": "outside",
+      "meaningful": true
+    },
+    {
+      "id": "case-054",
+      "text": "こうえんに行こうね",
+      "scene": "outside",
+      "meaningful": true
+    },
+    {
+      "id": "case-055",
+      "text": "あめが降っていますね",
+      "scene": "rain",
+      "meaningful": true
+    },
+    {
+      "id": "case-056",
+      "text": "あまおとが聞こえるね",
+      "scene": "rain",
+      "meaningful": true
+    },
+    {
+      "id": "case-057",
+      "text": "はれてきましたね",
+      "scene": "sun",
+      "meaningful": true
+    },
+    {
+      "id": "case-058",
+      "text": "たいようが出ているね",
+      "scene": "sun",
+      "meaningful": true
+    },
+    {
+      "id": "case-059",
+      "text": "ぽかぽかしていますね",
+      "scene": "sun",
+      "meaningful": true
+    },
+    {
+      "id": "case-060",
+      "text": "ごはんを食べましょうね",
+      "scene": "food",
+      "meaningful": true
+    },
+    {
+      "id": "case-061",
+      "text": "たべましょうね",
+      "scene": "food",
+      "meaningful": true
+    },
+    {
+      "id": "case-062",
+      "text": "りにゅうしょくだよ",
+      "scene": "food",
+      "meaningful": true
+    },
+    {
+      "id": "case-063",
+      "text": "おなかがすいたね",
+      "scene": "food",
+      "meaningful": true
+    },
+    {
+      "id": "case-064",
+      "text": "えほんを読みましょうね",
+      "scene": "book",
+      "meaningful": true
+    },
+    {
+      "id": "case-065",
+      "text": "えほうを読もうね",
+      "scene": "book",
+      "meaningful": true
+    },
+    {
+      "id": "case-066",
+      "text": "ほんをよみましょうね",
+      "scene": "book",
+      "meaningful": true
+    },
+    {
+      "id": "case-067",
+      "text": "うたを歌いましょうね",
+      "scene": "music",
+      "meaningful": true
+    },
+    {
+      "id": "case-068",
+      "text": "おんがき聞こうね",
+      "scene": "music",
+      "meaningful": true
+    },
+    {
+      "id": "case-069",
+      "text": "踊りましょうね",
+      "scene": "music",
+      "meaningful": true
+    },
+    {
+      "id": "case-070",
+      "text": "こんにちは、今日もよろしくね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-071",
+      "text": "今日は会社で会議だったよ",
+      "scene": "generic",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-072",
+      "text": "今日はゆっくりしようね",
+      "scene": "generic",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-073",
+      "text": "かわいいね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-074",
+      "text": "いい感じですね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-075",
+      "text": "そろそろ帰りましょうね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-076",
+      "text": "お手紙を書きましょう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-077",
+      "text": "手続きをしましょう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-078",
+      "text": "手伝いましょうね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-079",
+      "text": "足りないですね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-080",
+      "text": "明日の予定を決めましょう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-081",
+      "text": "風呂敷を包みましょう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-082",
+      "text": "ふろしきを包もうね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-083",
+      "text": "歌舞伎を見よう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-084",
+      "text": "かぶきを見よう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-085",
+      "text": "声優さんの話だよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-086",
+      "text": "せいゆうさんの話だよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-087",
+      "text": "寝返りしましたね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-088",
+      "text": "ねがえりしたね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-089",
+      "text": "本当にそうですね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-090",
+      "text": "飴を買いましょう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-091",
+      "text": "紙を重ねるよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-092",
+      "text": "みるこさんに会ったよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-093",
+      "text": "紙を重ねましょう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-094",
+      "text": "かさねておきましょう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-095",
+      "text": "真似ましょう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-096",
+      "text": "友達をたずねましょう",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-097",
+      "text": "飲もうか",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-098",
+      "text": "飲むかい",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-099",
+      "text": "飲む？",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-100",
+      "text": "飲みたい？",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-101",
+      "text": "飲んだね",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-102",
+      "text": "飲んでみよう",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-103",
+      "text": "飲みましょうね",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-104",
+      "text": "そろそろ飲む会",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-105",
+      "text": "そろそろ飲むかい？",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-106",
+      "text": "のむ？",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-107",
+      "text": "のみたい？",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-108",
+      "text": "のもうか",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-109",
+      "text": "そろそろのむかい",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-110",
+      "text": "もうのんだね",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-111",
+      "text": "お水を飲むかい",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-112",
+      "text": "お茶を飲もうか",
+      "scene": "drink",
+      "meaningful": true
+    },
+    {
+      "id": "case-113",
+      "text": "足",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-114",
+      "text": "あし",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-115",
+      "text": "アシ",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-116",
+      "text": "足だね",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-117",
+      "text": "足がかわいいね",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-118",
+      "text": "足を見て",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-119",
+      "text": "あしを見て",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-120",
+      "text": "このあし",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-121",
+      "text": "かわいいあし",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-122",
+      "text": "両足だね",
+      "scene": "feet",
+      "meaningful": true
+    },
+    {
+      "id": "case-123",
+      "text": "手",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-124",
+      "text": "て",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-125",
+      "text": "指",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-126",
+      "text": "ゆび",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-127",
+      "text": "手だね",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-128",
+      "text": "てがかわいいね",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-129",
+      "text": "指を見て",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-130",
+      "text": "このて",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-131",
+      "text": "かわいいゆび",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-132",
+      "text": "両手だね",
+      "scene": "hands",
+      "meaningful": true
+    },
+    {
+      "id": "case-133",
+      "text": "声",
+      "scene": "voice",
+      "meaningful": true
+    },
+    {
+      "id": "case-134",
+      "text": "こえ",
+      "scene": "voice",
+      "meaningful": true
+    },
+    {
+      "id": "case-135",
+      "text": "声だね",
+      "scene": "voice",
+      "meaningful": true
+    },
+    {
+      "id": "case-136",
+      "text": "こえがかわいいね",
+      "scene": "voice",
+      "meaningful": true
+    },
+    {
+      "id": "case-137",
+      "text": "このこえ",
+      "scene": "voice",
+      "meaningful": true
+    },
+    {
+      "id": "case-138",
+      "text": "本",
+      "scene": "book",
+      "meaningful": true
+    },
+    {
+      "id": "case-139",
+      "text": "ほん",
+      "scene": "book",
+      "meaningful": true
+    },
+    {
+      "id": "case-140",
+      "text": "本だよ",
+      "scene": "book",
+      "meaningful": true
+    },
+    {
+      "id": "case-141",
+      "text": "ほんを見て",
+      "scene": "book",
+      "meaningful": true
+    },
+    {
+      "id": "case-142",
+      "text": "このほん",
+      "scene": "book",
+      "meaningful": true
+    },
+    {
+      "id": "case-143",
+      "text": "服",
+      "scene": "clothes",
+      "meaningful": true
+    },
+    {
+      "id": "case-144",
+      "text": "ふく",
+      "scene": "clothes",
+      "meaningful": true
+    },
+    {
+      "id": "case-145",
+      "text": "服だね",
+      "scene": "clothes",
+      "meaningful": true
+    },
+    {
+      "id": "case-146",
+      "text": "ふくを見て",
+      "scene": "clothes",
+      "meaningful": true
+    },
+    {
+      "id": "case-147",
+      "text": "このふく",
+      "scene": "clothes",
+      "meaningful": true
+    },
+    {
+      "id": "case-148",
+      "text": "歌",
+      "scene": "music",
+      "meaningful": true
+    },
+    {
+      "id": "case-149",
+      "text": "うた",
+      "scene": "music",
+      "meaningful": true
+    },
+    {
+      "id": "case-150",
+      "text": "歌だね",
+      "scene": "music",
+      "meaningful": true
+    },
+    {
+      "id": "case-151",
+      "text": "うたを聞こう",
+      "scene": "music",
+      "meaningful": true
+    },
+    {
+      "id": "case-152",
+      "text": "このうた",
+      "scene": "music",
+      "meaningful": true
+    },
+    {
+      "id": "case-153",
+      "text": "お腹",
+      "scene": "tummy",
+      "meaningful": true
+    },
+    {
+      "id": "case-154",
+      "text": "おなか",
+      "scene": "tummy",
+      "meaningful": true
+    },
+    {
+      "id": "case-155",
+      "text": "おなかだね",
+      "scene": "tummy",
+      "meaningful": true
+    },
+    {
+      "id": "case-156",
+      "text": "おなかを見て",
+      "scene": "tummy",
+      "meaningful": true
+    },
+    {
+      "id": "case-157",
+      "text": "足りないね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-158",
+      "text": "足すよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-159",
+      "text": "足し算だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-160",
+      "text": "満足だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-161",
+      "text": "不足だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-162",
+      "text": "足場だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-163",
+      "text": "足音だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-164",
+      "text": "あしたね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-165",
+      "text": "あしらうよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-166",
+      "text": "あしあとだね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-167",
+      "text": "あしもとを見て",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-168",
+      "text": "手伝うよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-169",
+      "text": "手紙だよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-170",
+      "text": "手続きだね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-171",
+      "text": "苦手だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-172",
+      "text": "指示だよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-173",
+      "text": "ゆびわだね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-174",
+      "text": "なんてかわいい",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-175",
+      "text": "してね",
+      "scene": "generic",
+      "meaningful": false
+    },
+    {
+      "id": "case-176",
+      "text": "声優だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-177",
+      "text": "こえるよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-178",
+      "text": "本当だよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-179",
+      "text": "本日だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-180",
+      "text": "にほんだよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-181",
+      "text": "服用だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-182",
+      "text": "ふくらむね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-183",
+      "text": "歌舞伎だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-184",
+      "text": "うたがうよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-185",
+      "text": "あー",
+      "scene": "generic",
+      "meaningful": false
+    },
+    {
+      "id": "case-186",
+      "text": "うー",
+      "scene": "generic",
+      "meaningful": false
+    },
+    {
+      "id": "case-187",
+      "text": "あ",
+      "scene": "generic",
+      "meaningful": false
+    },
+    {
+      "id": "case-188",
+      "text": "う",
+      "scene": "generic",
+      "meaningful": false
+    },
+    {
+      "id": "case-189",
+      "text": "えっと",
+      "scene": "generic",
+      "meaningful": false
+    },
+    {
+      "id": "case-190",
+      "text": "お腹が減ったね",
+      "scene": "food",
+      "meaningful": true
+    },
+    {
+      "id": "case-191",
+      "text": "今日はなんだか不思議だね",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-192",
+      "text": "たのむよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-193",
+      "text": "頼みます",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-194",
+      "text": "このみます",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-195",
+      "text": "好みたい",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-196",
+      "text": "のみかいに行くよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-197",
+      "text": "飲み会に行くよ",
+      "scene": "generic",
+      "meaningful": true
+    },
+    {
+      "id": "case-198",
+      "text": "ミルク飲むかい",
+      "scene": "milk",
+      "meaningful": true
+    },
+    {
+      "id": "case-199",
+      "text": "みるくをのむ？",
+      "scene": "milk",
+      "meaningful": true
+    },
+    {
+      "id": "case-200",
+      "text": "おっぱい飲みたい？",
+      "scene": "milk",
+      "meaningful": true
+    },
+    {
+      "id": "case-201",
+      "text": "お風呂入ろっか",
+      "scene": "bath",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-202",
+      "text": "ミルク飲もっか",
+      "scene": "milk",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-203",
+      "text": "寝よっか",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-204",
+      "text": "そろそろ起きよっか",
+      "scene": "wake",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-205",
+      "text": "おむつ替えよっか",
+      "scene": "diaper",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-206",
+      "text": "着替えよっか",
+      "scene": "clothes",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-207",
+      "text": "抱っこする？",
+      "scene": "hug",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-208",
+      "text": "おてて握ってるね",
+      "scene": "hands",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-209",
+      "text": "あんよバタバタだね",
+      "scene": "feet",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-210",
+      "text": "にこって笑ったね",
+      "scene": "smile",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-211",
+      "text": "泣いてるね",
+      "scene": "cry",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-212",
+      "text": "いっぱいおしゃべりしてるね",
+      "scene": "voice",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-213",
+      "text": "げっぷ出たね",
+      "scene": "tummy",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-214",
+      "text": "一緒に遊ぼっか",
+      "scene": "play",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-215",
+      "text": "お散歩行こっか",
+      "scene": "outside",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-216",
+      "text": "雨だね",
+      "scene": "rain",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-217",
+      "text": "今日は晴れてるね",
+      "scene": "sun",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-218",
+      "text": "ごはん食べよっか",
+      "scene": "food",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-219",
+      "text": "絵本読もっか",
+      "scene": "book",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-220",
+      "text": "歌おっか",
+      "scene": "music",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-221",
+      "text": "寝る",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-222",
+      "text": "もう寝るよ",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-223",
+      "text": "寝たね",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-224",
+      "text": "寝かしつけよう",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-225",
+      "text": "睡眠の時間だよ",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-226",
+      "text": "寝ようか",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-227",
+      "text": "ねようか",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-228",
+      "text": "ねよっか",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-229",
+      "text": "もう寝よ",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-230",
+      "text": "ねんねしよっか",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-231",
+      "text": "眠ろうか",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-232",
+      "text": "眠る時間だよ",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-233",
+      "text": "お袋入ろうね",
+      "scene": "bath",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-234",
+      "text": "年々使用か",
+      "scene": "sleep",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-235",
+      "text": "おむづ変えようか",
+      "scene": "diaper",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-236",
+      "text": "みのく飲みますか",
+      "scene": "milk",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-237",
+      "text": "みのく飲もうか",
+      "scene": "milk",
+      "meaningful": true,
+      "checkWebOutputStyle": true
+    },
+    {
+      "id": "case-238",
+      "text": "お風呂入ろうね",
+      "scene": "bath",
+      "meaningful": true
+    },
+    {
+      "id": "case-239",
+      "text": "授乳の時間だね",
+      "scene": "milk",
+      "meaningful": true
+    },
+    {
+      "id": "case-240",
+      "text": "こんにちは、そろそろ寝ましょうね",
+      "scene": "sleep",
+      "meaningful": true
+    },
+    {
+      "id": "case-241",
+      "text": "眠くなってきたね",
+      "scene": "sleep",
+      "meaningful": true
+    },
+    {
+      "id": "case-242",
+      "text": "おもちゃで遊ぼうね",
+      "scene": "play",
+      "meaningful": true
+    },
+    {
+      "id": "case-243",
+      "text": "絵本見ようか",
+      "scene": "book",
+      "meaningful": true
+    },
+    {
+      "id": "case-244",
+      "text": "そろそろ飲むかい",
+      "scene": "drink",
+      "meaningful": true
+    }
+  ],
+  "sequences": [
+    {
+      "id": "milk-followup",
+      "steps": [
+        {
+          "text": "ミルク飲もうね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "おいしいね",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ],
+      "description": "「ミルク飲もうね」→「おいしいね」：ミルクの話題を続けます。"
+    },
+    {
+      "id": "milk-drinking",
+      "steps": [
+        {
+          "text": "ミルク飲もうね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "飲むかい？",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ],
+      "description": "「ミルク飲もうね」→「飲むかい？」：ミルクの返答になります。"
+    },
+    {
+      "id": "drink-new",
+      "steps": [
+        {
+          "text": "飲むかい？",
+          "scene": "drink",
+          "meaningful": true
+        }
+      ],
+      "description": "「飲むかい？」だけ：飲む物を決めつけず、少しずつ飲む英語で返します。"
+    },
+    {
+      "id": "milk-water",
+      "steps": [
+        {
+          "text": "ミルク飲もうね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "お水を飲むかい？",
+          "scene": "drink",
+          "meaningful": true
+        }
+      ],
+      "description": "「ミルク飲もうね」→「お水を飲むかい？」：ミルクと決めつけない返答に切り替わります。"
+    },
+    {
+      "id": "milk-bath",
+      "steps": [
+        {
+          "text": "ミルク飲もうね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "お風呂入ろうね",
+          "scene": "bath",
+          "meaningful": true
+        }
+      ],
+      "description": "「ミルク飲もうね」→「お風呂入ろうね」：お風呂の話題に切り替わります。"
+    },
+    {
+      "id": "book-expiry",
+      "steps": [
+        {
+          "text": "えほうを読もうね",
+          "scene": "book",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "book",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "book",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "book",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "book",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "book",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "book",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "generic",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "drink-expiry",
+      "steps": [
+        {
+          "text": "飲むかい",
+          "scene": "drink",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "drink",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "drink",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "drink",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "drink",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "drink",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "drink",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "generic",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-expiry",
+      "steps": [
+        {
+          "text": "ミルク飲もうね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "generic",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "topic-switch",
+      "steps": [
+        {
+          "text": "ミルク飲もうね",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "こんにちは そろそろ寝ましょうね",
+          "scene": "sleep",
+          "meaningful": true
+        },
+        {
+          "text": "気持ちいいですね",
+          "scene": "sleep",
+          "meaningful": true
+        },
+        {
+          "text": "えほうを読もうね",
+          "scene": "book",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "water-followup-reset",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "お水を飲むかい",
+          "scene": "drink",
+          "meaningful": true
+        },
+        {
+          "text": "ゆっくりでいいよ",
+          "scene": "drink",
+          "meaningful": true
+        },
+        {
+          "reset": true
+        },
+        {
+          "text": "いい感じですね",
+          "scene": "generic",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-10",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "飲もうか",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-11",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "飲むかい",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-12",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "飲む？",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-13",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "飲みたい？",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-14",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "飲んだね",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-15",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "飲んでみよう",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-16",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "飲みましょうね",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-17",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "そろそろ飲む会",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-18",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "そろそろ飲むかい？",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-19",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "のむ？",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-20",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "のみたい？",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-21",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "のもうか",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-22",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "そろそろのむかい",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    },
+    {
+      "id": "milk-action-23",
+      "steps": [
+        {
+          "text": "ミルクの時間だよ",
+          "scene": "milk",
+          "meaningful": true
+        },
+        {
+          "text": "もうのんだね",
+          "scene": "milk",
+          "meaningful": true
+        }
+      ]
+    }
+  ]
+}

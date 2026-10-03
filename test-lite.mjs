@@ -1,47 +1,9 @@
+import { readFileSync } from 'node:fs';
 import { LiteResponseEngine, splitSentences, isMeaningfulUtterance } from './src/lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './src/name-pronunciation.js';
 
-const cases=[
-  ['お風呂入ろっか','bath'],
-  ['ミルク飲もっか','milk'],
-  ['寝よっか','sleep'],
-  ['そろそろ起きよっか','wake'],
-  ['おむつ替えよっか','diaper'],
-  ['着替えよっか','clothes'],
-  ['抱っこする？','hug'],
-  ['おてて握ってるね','hands'],
-  ['あんよバタバタだね','feet'],
-  ['にこって笑ったね','smile'],
-  ['泣いてるね','cry'],
-  ['いっぱいおしゃべりしてるね','voice'],
-  ['げっぷ出たね','tummy'],
-  ['一緒に遊ぼっか','play'],
-  ['お散歩行こっか','outside'],
-  ['雨だね','rain'],
-  ['今日は晴れてるね','sun'],
-  ['ごはん食べよっか','food'],
-  ['絵本読もっか','book'],
-  ['歌おっか','music'],
-  ['寝る','sleep'],
-  ['もう寝るよ','sleep'],
-  ['寝たね','sleep'],
-  ['寝かしつけよう','sleep'],
-  ['睡眠の時間だよ','sleep'],
-  ['寝ようか','sleep'],
-  ['ねようか','sleep'],
-  ['ねよっか','sleep'],
-  ['もう寝よ','sleep'],
-  ['ねんねしよっか','sleep'],
-  ['眠ろうか','sleep'],
-  ['眠る時間だよ','sleep'],
-  ['お袋入ろうね','bath'],
-  ['年々使用か','sleep'],
-  ['おむづ変えようか','diaper'],
-  ['みのく飲みますか','milk'],
-  ['みのく飲もうか','milk'],
-  ['今日はゆっくりしようね','generic'],
-  ['今日は会社で会議だったよ','generic']
-]
+const contract = JSON.parse(readFileSync(new URL('./shared/lite-topic-contract.json', import.meta.url), 'utf8'));
+const cases = contract.cases.filter(c => c.checkWebOutputStyle).map(c => [c.text, c.scene]);
 
 for(const [input,expected] of cases){
   const engine=new LiteResponseEngine();

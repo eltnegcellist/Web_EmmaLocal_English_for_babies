@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#6f4db0" />
+  <title>話題の判定方法・話題一覧 | みつことば</title>
+  <link rel="stylesheet" href="./styles.css?v=20261002-topic-guide-r14" />
+  <style>
+    .topic-guide{max-width:860px;margin:auto;padding:24px 20px max(32px,env(safe-area-inset-bottom));line-height:1.75}
+    .topic-guide h1{font-size:clamp(1.5rem,5vw,2rem);line-height:1.5;margin:18px 0 12px}
+    .topic-guide h2{font-size:1.2rem;line-height:1.5;margin:0 0 12px}
+    .topic-guide h3{font-size:1rem;line-height:1.5}
+    .topic-guide a{color:var(--primary);text-underline-offset:3px}
+    .topic-guide a:focus-visible{outline:3px solid var(--primary);outline-offset:4px}
+    .topic-guide .card{padding:22px;margin:20px 0}
+    .guide-nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin:20px 0}
+    .topic-guide ol,.topic-guide ul{padding-left:1.5em}
+    .topic-guide li{margin:10px 0}
+    .topic-guide table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:.94rem}
+    .topic-guide th,.topic-guide td{text-align:left;vertical-align:top;padding:14px 8px;border-bottom:1px solid #e6deec;overflow-wrap:anywhere}
+    .topic-guide thead{background:var(--primary-container)}
+    .topic-guide th:first-child{width:27%}
+    .topic-guide tbody th{font-weight:800}
+    .guide-words{display:block;color:var(--on-surface-variant);font-size:.83rem;margin-bottom:8px}
+    .utterance{display:block;margin:4px 0}
+    .guide-note{border-left:4px solid var(--primary);padding:12px 16px;background:var(--primary-container);border-radius:0 12px 12px 0}
+    .topic-guide .table-card{padding:22px 12px}
+    @media(max-width:420px){.topic-guide{padding:18px 14px 32px}.topic-guide .card{padding:18px 14px}.topic-guide .table-card{padding:18px 6px}.topic-guide th,.topic-guide td{padding:12px 6px}.topic-guide table{font-size:.9rem}}
+  </style>
+</head>
+<body>
+  <main class="topic-guide">
+{{GUIDE_CONTENT}}
+  </main>
+</body>
+</html>
