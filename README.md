@@ -2,7 +2,7 @@
 
 ## 日本語
 
-みつことば Webは、APKをインストールせずブラウザやPWAで使える **みつことば Lite** です。
+みつことば Webは、APKをインストールせずブラウザやPWAで使える **みつことばのWeb版** です。
 
 **Web版を開く**  
 https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
@@ -117,13 +117,12 @@ Web版はブラウザ向けの軽量構成です。Android版では同系統の�
 | **Android** | 軽量構成 / Full |
 
 ### 構成
-### 構成
 
 ```text
 マイク
 ↓
-Moonshine Japanese Tiny Streaming
-  └─ Tiny Streamingは軽量オプション
+Moonshine Japanese Small / Tiny Streaming
+  └─ Smallが既定、Tinyは軽量オプション
 ↓
 LiteResponseEngine
 ↓
@@ -138,7 +137,7 @@ Kitten TTS Nano 0.8 / Kiki
 
 「飲むかい／飲もうか／飲みたい？」は共通の飲む動作として判定します。ミルクと明示された場合やミルクの話題が続いている場合はミルクの返答を使い、それ以外は飲む物を限定しない返答を使います。水やお茶が明示された場合もミルクとは決めつけません。短いかな表記の「のむ？」も応答対象です。
 
-Web版は20種類の育児の話題を端末内で判定します。「寝ましょう／寝よう」のような語尾、漢字・かな表記、対象と動作の間の助詞に対応しています。短い単語の音が少し崩れた場合は、関連する動作も照合して話題を推定します。判断材料が不足する発話は直前の話題を最大6ターン保持し、その後はジェネラルの返答に戻ります。
+Web版は21種類の育児の話題を端末内で判定します。「寝ましょう／寝よう」のような語尾、漢字・かな表記、対象と動作の間の助詞に対応しています。短い単語の音が少し崩れた場合は、関連する動作も照合して話題を推定します。判断材料が不足する発話は直前の話題を最大6ターン保持し、その後はジェネラルの返答に戻ります。
 
 `node test-topic-detection.mjs` で言い回しと模擬的な誤認識、無関係な文、話題の切り替えを検証します。この検証は実際の音声認識精度を測定したものではありません。
 
@@ -159,7 +158,6 @@ Web版は20種類の育児の話題を端末内で判定します。「寝まし
 - Node.jsの `fs` に依存しないブラウザ経路を使用します
 - 既知のeSpeak NG / GPL系TTS経路（Piper Web / kokoro-js比較）はmodel-labから削除済みです
 
-### モデル取得
 ### モデル取得
 
 初回起動時に、選択した構成に必要なモデルを取得します。
@@ -196,6 +194,12 @@ Web版は、軽量で導入しやすいみつことば体験に絞っていま�
 ### 初回起動
 
 初回利用時は、赤ちゃんの名前などの初期設定と、必要なモデル準備を案内します。設定内容は保存され、2回目以降に再利用されます。
+
+### 開発資料
+
+- [BRANCH_POLICY.md](BRANCH_POLICY.md) — 現行の開発・公開元と過去の実験ブランチの扱い
+- [LICENSE_AUDIT.md](LICENSE_AUDIT.md) — 旧比較経路の削除と現行構成の監査
+- [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) — 第三者コンポーネント一覧
 
 ### ローカル開発
 
@@ -355,7 +359,6 @@ The Web edition uses the lightweight browser configuration. Android provides the
 | **Android** | Lightweight configuration / Full |
 
 ### Architecture
-### Architecture
 
 ```text
 Microphone
@@ -374,9 +377,9 @@ Mitsukotoba avatar + PCM-linked lip sync
 
 The [topic guide and trigger examples (Japanese)](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/topic-guide.html) are also linked from Web Settings.
 
-Drinking invitations share one action detector across conjugations and kana/kanji spellings. Explicit milk references and ongoing milk context use milk replies; otherwise a Web-only neutral drinking fallback avoids guessing the beverage. Explicit water or tea also overrides prior milk context. Short kana-only prompts such as `のむ？` pass the speech gate.
+Drinking invitations share one action detector across conjugations and kana/kanji spellings. Explicit milk references and ongoing milk context use milk replies; otherwise a neutral drinking fallback shared with Android Lite avoids guessing the beverage. Explicit water or tea also overrides prior milk context. Short kana-only prompts such as `のむ？` pass the speech gate.
 
-The Web edition detects 20 childcare topics locally. Detection normalizes polite verb forms and kana/kanji spellings, and recognizes object-action combinations across particles. Slight phonetic errors in short topic words require a related action as supporting evidence. Ambiguous follow-ups retain the previous topic for up to six turns before returning to generic replies.
+The Web edition detects 21 childcare topics locally. Detection normalizes polite verb forms and kana/kanji spellings, and recognizes object-action combinations across particles. Slight phonetic errors in short topic words require a related action as supporting evidence. Ambiguous follow-ups retain the previous topic for up to six turns before returning to generic replies.
 
 Run `node test-topic-detection.mjs` for phrase variations, simulated transcript errors, unrelated sentences, and topic switching. These text fixtures are not a measurement of real-world ASR accuracy.
 
@@ -397,7 +400,6 @@ Run `node test-topic-detection.mjs` for phrase variations, simulated transcript 
 - The browser path does not depend on Node.js `fs`
 - Known eSpeak-backed comparison paths (Piper Web / kokoro-js) were removed from model-lab
 
-### Model Download
 ### Model Download
 
 The first launch downloads the models required by the selected configuration.
@@ -434,6 +436,12 @@ Mitsukotoba Web is designed around local inference.
 ### First-Run Behavior
 
 On first use, Mitsukotoba guides the user through initial setup, including the baby's name and required model preparation. Saved configuration is reused on later launches.
+
+### Development Documents
+
+- [BRANCH_POLICY.md](BRANCH_POLICY.md) — current development/deployment sources and historical branches
+- [LICENSE_AUDIT.md](LICENSE_AUDIT.md) — removal of former comparison paths and current-stack audit
+- [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) — third-party components
 
 ### Local Development
 
