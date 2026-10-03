@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
-import { SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette } from './src/emma-color-palettes.js';
+import { SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette } from './src/emma-color-palettes.js';
 
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const html = read('./index.html');
@@ -16,7 +16,9 @@ for (const [svg, name] of inline) {
   assert.match(svg, /fill="var\(--face, #ffffff\)"/);
   assert.match(svg, /stroke="var\(--dark, #080808\)" stroke-width="8" stroke-opacity="0.65"/);
 }
-assert.match(app, /ui.colorMode.value = localStorage.getItem\(STORAGE.colorMode\) \|\| 'mono_red'/);
+assert.doesNotMatch(html, /<option value="mono_red">/);
+assert.equal(normalizeColorSettings(null,null).mode,'vivid');
+assert.equal(normalizeColorSettings(null,null).vivid,'coral');
 
 const frames = assets.map(name => ({ dataset: { avatarFrame: name }, hidden: false,
   classList: { toggle(cls, hidden) { this.owner.hidden = hidden; } } }));
@@ -25,10 +27,10 @@ const rootStyle = new Map();
 const saved = new Map();
 let tick;
 const context = {
-  ui: { aiAvatarFace: { querySelectorAll: () => frames }, colorMode: {value:'mono_red'}, vividPalette:{value:'coral'}, softPalette:{value:'peach'} },
+  ui: { aiAvatarFace: { querySelectorAll: () => frames }, colorMode: {value:'vivid'}, vividPalette:{value:'coral'}, softPalette:{value:'peach'} },
   STORAGE: {colorMode:'emma_color_mode', vivid:'emma_vivid_palette', soft:'emma_soft_palette'},
-  SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette,
-  localStorage: {getItem:key => saved.get(key)},
+  SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette,
+  localStorage: {getItem:key => saved.get(key),setItem:(key,value)=>saved.set(key,value)},
   document: {documentElement:{style:{setProperty:(key,value)=>rootStyle.set(key,value)}}},
   setInterval:fn => {tick=fn;return 1;}, clearInterval:()=>{}, appearanceTimer:null,
   Date:{now:()=>0}, avatarVisualState:'idle', avatarBlinkFrame:'open', avatarMouthLevel:'small',
@@ -37,8 +39,16 @@ const frameCode=app.slice(app.indexOf('function avatarFrameName()'), app.indexOf
 const colorCode=app.slice(app.indexOf('function applyAppearance()'), app.indexOf('function sanitizePlainName('));
 runInNewContext(frameCode + colorCode + '\napplyAppearance(); renderAvatarFrame();', context);
 assert.equal(rootStyle.get('--face'), '#ffffff');
-assert.equal(rootStyle.get('--accent'), '#e00000');
-for(const mode of ['soft','mono_red','vivid','color_shift']) {
+assert.equal(rootStyle.get('--accent'), VIVID_PALETTES.coral.accent);
+saved.set('emma_color_mode','mono_red');
+saved.set('emma_vivid_palette','blue');
+runInNewContext('applyAppearance()',context);
+assert.equal(saved.get('emma_color_mode'),'vivid');
+assert.equal(saved.get('emma_vivid_palette'),'coral');
+assert.equal(rootStyle.get('--accent'),VIVID_PALETTES.coral.accent);
+runInNewContext('applyAppearance()',context);
+assert.equal(rootStyle.get('--accent'),VIVID_PALETTES.coral.accent);
+for(const mode of ['soft','vivid','color_shift']) {
   saved.set('emma_color_mode',mode);
   for(const palette of ['coral','blue','honey','berry','sunshine','ocean','candy','forest']) {
     saved.set('emma_vivid_palette',palette);
@@ -75,8 +85,18 @@ assert.equal(normalizeSoftPalette('unknown'),'peach');
 assert.equal(normalizeVividPalette('unknown'),'coral');
 saved.set('emma_color_mode','color_shift');
 runInNewContext('applyAppearance()',context);
-const firstHue=rootStyle.get('--face');context.Date.now=()=>40000;tick();
-assert.notEqual(rootStyle.get('--face'),firstHue,'time shift must change the palette');
+const firstAccent=rootStyle.get('--accent');context.Date.now=()=>40000;tick();
+assert.equal(rootStyle.get('--face'),'#ffffff');
+assert.notEqual(rootStyle.get('--accent'),firstAccent,'time shift must change only the accent');
+for (const [hue, key] of [[0,'coral'],[90,'honey'],[180,'blue'],[270,'berry'],[360,'coral'],[-90,'berry']]) {
+  assert.equal(shiftingPalette(hue).accent,VIVID_PALETTES[key].accent);
+}
+assert.equal(shiftingPalette(45).accent,'#db652d');
+for(let hue=0;hue<360;hue+=0.5) {
+  const palette=shiftingPalette(hue);
+  for(const paint of ['face','dark','blush','mouth','tongue']) assert.equal(palette[paint],VIVID_PALETTES.coral[paint]);
+}
+assert.equal(shiftingPalette(359.999).accent,shiftingPalette(0).accent,'cycle boundary must be seamless');
 for(const state of ['idle','speaking']) for(const blink of ['open','half','closed']) for(const mouth of ['small','medium','large']) {
   Object.assign(context,{avatarVisualState:state,avatarBlinkFrame:blink,avatarMouthLevel:mouth});
   runInNewContext('renderAvatarFrame()',context);

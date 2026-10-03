@@ -1,4 +1,4 @@
-import { SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette } from './emma-color-palettes.js';
+import { SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette } from './emma-color-palettes.js';
 import { EmmaMicrophone } from './audio-capture.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
@@ -33,7 +33,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261003-character-colors-r15';
+const WEB_BUILD = '20261003-vivid-gradient-r16';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -99,8 +99,9 @@ function initUi() {
   const spokenName = localStorage.getItem(STORAGE.spokenName) || '';
   ui.spokenBabyName.value = spokenName;
   ui.onboardingSpokenBabyName.value = spokenName;
-  ui.colorMode.value = localStorage.getItem(STORAGE.colorMode) || 'mono_red';
-  ui.vividPalette.value = normalizeVividPalette(localStorage.getItem(STORAGE.vivid));
+  const colors = normalizeColorSettings(localStorage.getItem(STORAGE.colorMode), localStorage.getItem(STORAGE.vivid));
+  ui.colorMode.value = colors.mode;
+  ui.vividPalette.value = colors.vivid;
   ui.softPalette.value = normalizeSoftPalette(localStorage.getItem(STORAGE.soft));
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
@@ -653,7 +654,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261003-character-colors-r15',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261003-vivid-gradient-r16',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -1366,16 +1367,19 @@ function updateAppearanceSettings() {
   const descriptions={
     soft:'明るくやさしい4種類の配色から選べます。',
     vivid:'白い顔に、耳や頭の飾りの鮮やかな色が映える配色です。',
-    mono_red:'白い顔、黒い目と輪郭、赤いアクセントの固定配色です。',
-    color_shift:'会話状態とは無関係に、時間経過で配色がゆっくり変わります。'
+    color_shift:'白い顔と体はそのまま、耳や飾りが赤・はちみつ・ブルー・ベリーへ滑らかに変わります。'
   };
   ui.colorModeDescription.textContent=descriptions[mode]||'';
 }
 
 function applyAppearance() {
   if(appearanceTimer){clearInterval(appearanceTimer);appearanceTimer=null;}
-  const mode=localStorage.getItem(STORAGE.colorMode)||ui.colorMode.value||'mono_red';
-  const vivid=normalizeVividPalette(localStorage.getItem(STORAGE.vivid)||ui.vividPalette.value);
+  const savedMode=localStorage.getItem(STORAGE.colorMode);
+  const {mode,vivid}=normalizeColorSettings(savedMode||ui.colorMode.value, localStorage.getItem(STORAGE.vivid)||ui.vividPalette.value);
+  if(savedMode==='mono_red'){
+    localStorage.setItem(STORAGE.colorMode,mode);
+    localStorage.setItem(STORAGE.vivid,vivid);
+  }
   const soft=normalizeSoftPalette(localStorage.getItem(STORAGE.soft)||ui.softPalette.value);
   ui.colorMode.value=mode;
   ui.vividPalette.value=vivid;
@@ -1383,21 +1387,13 @@ function applyAppearance() {
   if(mode==='color_shift'){
     const update=()=>{
       const hue=((Date.now()/120000*360)%360+360)%360;
-      setPalette({
-        face:`hsl(${hue} 88% 67%)`,
-        accent:`hsl(${(hue+155)%360} 92% 46%)`,
-        dark:'#121019',
-        blush:`hsl(${(hue+292)%360} 95% 58%)`,
-        mouth:'#82173a',
-        tongue:'#ff9fb7'
-      });
+      setPalette(shiftingPalette(hue));
     };
     update();
     appearanceTimer=setInterval(update,500);
     return;
   }
-  const monoRed={face:'#ffffff',accent:'#e00000',dark:'#080808',blush:'#e00000',mouth:'#080808',tongue:'#e00000'};
-  setPalette(mode==='soft' ? SOFT_PALETTES[soft] : mode==='vivid' ? VIVID_PALETTES[vivid] : monoRed);
+  setPalette(mode==='soft' ? SOFT_PALETTES[soft] : VIVID_PALETTES[vivid]);
 }
 
 function setPalette(palette) {
@@ -1438,7 +1434,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261003-character-colors-r15',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261003-vivid-gradient-r16',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;

@@ -16,11 +16,11 @@
   --outline:#7c747f;
   --error:#ba1a1a;
   --face:#ffffff;
-  --accent:#e00000;
-  --dark:#080808;
-  --blush:#e00000;
-  --mouth:#080808;
-  --tongue:#e00000;
+  --accent:#df3e50;
+  --dark:#3f302c;
+  --blush:#e99ba5;
+  --mouth:#3f302c;
+  --tongue:#f1abb8;
   --mouth-open:18px;
 }
 *{box-sizing:border-box}
