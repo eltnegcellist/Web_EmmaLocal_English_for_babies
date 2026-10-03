@@ -564,6 +564,7 @@ async function startEmma({ auto = false } = {}) {
     if(epoch!==conversationEpoch)return;
     mic?.resetDetector?.();
     await mic?.ensureActive?.();
+    if(epoch!==conversationEpoch)return;
     ensureAudioContextCreated();
     updateAudioUnlockUi();
 
@@ -1115,7 +1116,7 @@ function renderAvatarFrame(){
   if(!ui.aiAvatarFace) return;
   const next=avatarFrameName();
   // Switch complete frames; palette variables now inherit into the inline SVGs.
-  for(const frame of document.querySelectorAll('#aiAvatarFace [data-avatar-frame], .play-avatar [data-avatar-frame]')){
+  for(const frame of [...ui.aiAvatarFace.querySelectorAll('[data-avatar-frame]'), ...(document.querySelectorAll?.('.play-avatar [data-avatar-frame]') || [])]){
     frame.classList.toggle('hidden',frame.dataset.avatarFrame!==next);
   }
 }

@@ -3,6 +3,7 @@ export class EmmaMicrophone {
     this.onState = onState;
     this.onUtterance = onUtterance;
     this.shouldIgnore = shouldIgnore;
+    this.generation = 0;
     this.stream = null;
     this.context = null;
     this.node = null;
@@ -10,19 +11,24 @@ export class EmmaMicrophone {
   }
 
   async start() {
-    this.stream = await withTimeout(
-      navigator.mediaDevices.getUserMedia({
-        audio: { channelCount: 1, echoCancellation: false, noiseSuppression: false, autoGainControl: false },
-        video: false,
-      }),
-      15000,
-      'マイクの開始が完了しませんでした。ブラウザのサイト設定でマイクを許可してから、もう一度お試しください。'
-    );
-    this.context = new AudioContext({ latencyHint: 'interactive' });
+    const generation = ++this.generation;
+    const requested = navigator.mediaDevices.getUserMedia({
+      audio: { channelCount: 1, echoCancellation: false, noiseSuppression: false, autoGainControl: false }, video: false
+    });
+    requested.then(stream=>{ if(generation !== this.generation) stream.getTracks().forEach(track=>track.stop()); },()=>{});
+    let stream;
+    try { stream = await withTimeout(requested, 15000,
+      'マイクの開始が完了しませんでした。ブラウザのサイト設定でマイクを許可してから、もう一度お試しください。'); }
+    catch(error) { if(generation === this.generation) this.generation++; throw error; }
+    if(generation !== this.generation) return;
+    this.stream = stream;
+    const context = this.context = new AudioContext({ latencyHint: 'interactive' });
     if (this.context.state === 'suspended') {
       await this.context.resume();
     }
-    await this.context.audioWorklet.addModule(new URL('../worklets/pcm-capture-worklet.js', import.meta.url));
+    if(generation !== this.generation) return;
+    await context.audioWorklet.addModule(new URL('../worklets/pcm-capture-worklet.js', import.meta.url));
+    if(generation !== this.generation) return;
     const source = this.context.createMediaStreamSource(this.stream);
     this.node = new AudioWorkletNode(this.context, 'emma-pcm-capture');
     const silent = this.context.createGain();
@@ -67,6 +73,7 @@ export class EmmaMicrophone {
   }
 
   async stop() {
+    this.generation++;
     this.node?.disconnect();
     this.stream?.getTracks().forEach((t) => t.stop());
     if (this.context && this.context.state !== 'closed') await this.context.close();

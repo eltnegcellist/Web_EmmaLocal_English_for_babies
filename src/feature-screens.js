@@ -18,10 +18,10 @@ export function installFeatureScreens({stop,prepare,speak,preload,history,isSpea
   async function open(type){generation++;kind=type;await stop();body.replaceChildren();title.textContent=type==='play'?'押して聞く':'会話履歴';dialog.showModal();}
   async function showHistory(){
     body.replaceChildren(text('録音は保存しません。端末内の日本語・英語を見返せます。再生で履歴は増えません。'));
-    const token=generation;
+    const token=++generation;
     try {
       const entries=await history.list();if(token!==generation)return;
-      body.append(button('すべて削除',async()=>{if(confirm('すべての履歴を削除しますか？')){await stop();await history.delete();showHistory();}}));
+      body.append(button('すべて削除',async()=>{if(confirm('すべての履歴を削除しますか？')){try{await stop();await history.delete();showHistory();}catch(error){body.append(text(`削除できませんでした：${error.message}`));}}}));
       if(!entries.length)body.append(text('履歴はまだありません。'));
       for(const entry of entries){
         const card=document.createElement('article');card.className='card';
@@ -29,7 +29,7 @@ export function installFeatureScreens({stop,prepare,speak,preload,history,isSpea
         card.append(button('もう一度聞く',async()=>{
           if(isSpeaking())return;
           try {await prepare();if(token!==generation)return;await speak(entry.englishText);}catch(error){if(token===generation)card.append(text(`再生できませんでした：${error.message}`));}
-        }),button('停止',stop),button('削除',async()=>{if(confirm('この履歴を削除しますか？')){await stop();await history.delete(entry.id);showHistory();}}));body.append(card);
+        }),button('停止',stop),button('削除',async()=>{if(confirm('この履歴を削除しますか？')){try{await stop();await history.delete(entry.id);showHistory();}catch(error){body.append(text(`削除できませんでした：${error.message}`));}}}));body.append(card);
       }
     } catch(error){body.append(text(`履歴を開けませんでした：${error.message}`));}
   }
@@ -61,5 +61,5 @@ export function installFeatureScreens({stop,prepare,speak,preload,history,isSpea
   }
   $('playButton').addEventListener('click',async()=>{await open('play');showTopics();});
   $('historyButton').addEventListener('click',async()=>{await open('history');showHistory();});
-  return {isOpen:()=>dialog.open};
+  return {isOpen:()=>dialog.open || Boolean(kind)};
 }

@@ -75,3 +75,13 @@ speech=app.speakResponse(candidate.englishText);
 app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await settle();decodedResolve(audioBuffer);app.complete(lastRequest);await speech;
 assert.equal(starts,2);assert.equal(commits,1);
 console.log('Playback: stop during decode prevents late audio/history; first audio saves once; replay saves nothing OK');
+// An unresolved microphone permission request must not reopen capture after entry
+// into play/history (or after stopping while the browser prompt is visible).
+const {EmmaMicrophone}=await import('./src/audio-capture.js');
+let grant,trackStops=0,contexts=0;
+Object.defineProperty(globalThis,'navigator',{value:{mediaDevices:{getUserMedia:()=>new Promise(resolve=>grant=resolve)}},configurable:true});
+globalThis.AudioContext=class{constructor(){contexts++;}};
+const capture=new EmmaMicrophone({});const pendingStart=capture.start();await capture.stop();
+grant({getTracks:()=>[{stop(){trackStops++;}}]});await pendingStart;
+assert(trackStops>0);assert.equal(contexts,0);assert.equal(capture.stream,null);
+console.log('Microphone: late permission after stop cannot reopen capture OK');
