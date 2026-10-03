@@ -540,6 +540,8 @@ async function startEmma({ auto = false } = {}) {
     // actual capture path can proceed, and one-time permission must be allowed
     // to show its browser prompt on every new launch.
     running=true;
+    ui.mainButton.classList.add("hidden");
+    ui.stopButton.classList.remove("hidden");
     engine.resetConversationContext();
     setBusy(true);
     setState('thinking','マイクを起動しています','必要なら表示される許可画面でマイクを許可してください。');
@@ -579,6 +581,9 @@ async function startEmma({ auto = false } = {}) {
     if(epoch!==conversationEpoch)return;
     console.error(error);
     running=false;
+    ui.stopButton.classList.add("hidden");
+    ui.manualReplyButton.classList.add("hidden");
+    ui.mainButton.classList.remove("hidden");
     await mic?.stop().catch(()=>{});
     mic=null;
     setBusy(false);

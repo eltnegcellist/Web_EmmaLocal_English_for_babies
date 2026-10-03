@@ -587,7 +587,7 @@ body{
 }
 #homeScreen .bottom-bar .primary-button{
   border-radius:20px;
-  min-height:52px;
+  min-height:64px;
   font-size:.98rem;
   box-shadow:0 8px 20px rgba(111,77,176,.14);
 }
