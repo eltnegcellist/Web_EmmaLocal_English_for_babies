@@ -1,3 +1,5 @@
+import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
+import { installFeatureScreens } from './feature-screens.js';
 import { SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette } from './emma-color-palettes.js';
 import { EmmaMicrophone } from './audio-capture.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
@@ -33,7 +35,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261003-vivid-gradient-r16';
+const WEB_BUILD = '20261004-play-history-r17';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -84,11 +86,35 @@ let appearanceTimer=null;
 let developerTapCount=0;
 let developerTapTimer=null;
 const audioQueues = new Map();
+const history = new ConversationHistory();
+let sessionId='', conversationEpoch=0;
+const preparedAudio=new Map(), preparations=new Map();
+let featureScreens;
+async function prepareAudio(texts) {
+  const epoch=conversationEpoch;
+  for(const text of texts) {
+    if(epoch!==conversationEpoch)return;
+    if(preparedAudio.has(text)) continue;
+    const id=++requestSeq;
+    const blobs=await new Promise((resolve,reject)=>{
+      preparations.set(id,{items:[],resolve,reject});
+      ttsWorker.postMessage({type:'speak',requestId:id,text,nameHints:getTtsNameHints()});
+    });
+    preparedAudio.set(text,blobs);
+    if(preparedAudio.size>24)preparedAudio.delete(preparedAudio.keys().next().value);
+  }
+}
+
 
 
 initUi();
 
 function initUi() {
+  const historyCheckbox=$('historyEnabled');
+  historyCheckbox.checked=historyEnabled(localStorage);
+  historyCheckbox.addEventListener('change',()=>localStorage.setItem('emma_history_enabled',String(historyCheckbox.checked)));
+  featureScreens=installFeatureScreens({stop:stopEmma,prepare:initVoice,speak:speakResponse,preload:prepareAudio,history,isSpeaking:()=>speaking,
+    avatar:()=>{ const avatar=ui.avatar.cloneNode(true); avatar.removeAttribute('id'); avatar.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id')); return avatar; }});
   const babyName = localStorage.getItem(STORAGE.babyName) || '';
   const aiName = localStorage.getItem(STORAGE.aiName) || 'Emma';
   if(ui.webBuild) ui.webBuild.textContent=`Web build: ${WEB_BUILD}`;
@@ -130,7 +156,7 @@ function initUi() {
       sessionStorage.removeItem(STORAGE.asrReload);
       showScreen('home',{autoStart:false});
       const label=reloadedAsr==='small' ? 'Small' : 'Tiny';
-      setState('idle',`音声認識を${label}に変更しました`,'「3人で話す」を押して会話を再開してください。');
+      setState('idle',`音声認識を${label}に変更しました`,'「会話を始める」を押して会話を再開してください。');
       if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}。再読み込みして安全に切り替えました。`;
       if(localStorage.getItem(STORAGE.tutorialDone)!=='true') queueMicrotask(()=>startTutorial());
     } else if(localStorage.getItem(STORAGE.tutorialDone)==='true') {
@@ -482,7 +508,7 @@ async function prepareFirstRun() {
     localStorage.setItem(STORAGE.startTiny,String(firstRunAsr==='tiny'));
     if(ui.asrModel) ui.asrModel.value=firstRunAsr;
     updateAsrModelStatus();
-    if(!(await ensureMoonshineIsolation())) return;
+    if(!(await ensureMoonshineIsolation()) || epoch!==conversationEpoch) return;
     await navigator.storage?.persist?.().catch(()=>false);
     await clearObsoleteModelCaches();
     await initWorkers();
@@ -502,7 +528,9 @@ async function prepareFirstRun() {
 }
 
 async function startEmma({ auto = false } = {}) {
-  if(running || processing || speaking || ui.mainButton.disabled) return;
+  if(running || processing || speaking || featureScreens?.isOpen() || ui.mainButton.disabled) return;
+  const epoch=++conversationEpoch;
+  sessionId=crypto.randomUUID();
   ui.mainButton.disabled=true;
   try {
     if(!(await ensureMoonshineIsolation())) return;
@@ -512,11 +540,14 @@ async function startEmma({ auto = false } = {}) {
     // actual capture path can proceed, and one-time permission must be allowed
     // to show its browser prompt on every new launch.
     running=true;
+    ui.mainButton.classList.add("hidden");
+    ui.stopButton.classList.remove("hidden");
     engine.resetConversationContext();
     setBusy(true);
     setState('thinking','マイクを起動しています','必要なら表示される許可画面でマイクを許可してください。');
     showProgress(true,0,'マイクを開始しています…');
     await startMoonshineCapture();
+    if(epoch!==conversationEpoch){await mic?.stop();mic=null;return;}
 
     // Only after real capture is active do we prepare the local ASR/TTS models.
     // This prevents model startup from blocking the microphone permission UI.
@@ -532,8 +563,10 @@ async function startEmma({ auto = false } = {}) {
     // The microphone has been open while the models initialize. Discard any
     // partial VAD state gathered during startup. Playback is unlocked only by a
     // real user gesture so mobile browser autoplay policy cannot leave Emma mute.
+    if(epoch!==conversationEpoch)return;
     mic?.resetDetector?.();
     await mic?.ensureActive?.();
+    if(epoch!==conversationEpoch)return;
     ensureAudioContextCreated();
     updateAudioUnlockUi();
 
@@ -545,8 +578,12 @@ async function startEmma({ auto = false } = {}) {
     if(ui.keepAwake.checked) await requestWakeLock();
     setState('listening',`${getAiName()}が聞いています`,'いつもどおり日本語で赤ちゃんへ話しかけてください。必要なら「ここで返事して」で区切れます。');
   } catch(error) {
+    if(epoch!==conversationEpoch)return;
     console.error(error);
     running=false;
+    ui.stopButton.classList.add("hidden");
+    ui.manualReplyButton.classList.add("hidden");
+    ui.mainButton.classList.remove("hidden");
     await mic?.stop().catch(()=>{});
     mic=null;
     setBusy(false);
@@ -561,6 +598,8 @@ async function startEmma({ auto = false } = {}) {
 }
 
 async function stopEmma() {
+  conversationEpoch++;
+  while(audioUnlockWaiters.length)audioUnlockWaiters.shift()?.();
   running=false;
   processing=false;
   speaking=false;
@@ -580,7 +619,7 @@ async function stopEmma() {
   ui.mainButton.classList.remove('hidden');
   ui.mainButton.disabled=false;
   setBusy(false);
-  setState('idle','みつことばはおやすみ中','「3人で話す」を押すと、また会話できます。');
+  setState('idle','みつことばはおやすみ中','「会話を始める」を押すと、また会話できます。');
 }
 
 function handleCapturedUtterance(audio) {
@@ -628,29 +667,42 @@ function forceReplyNow() {
 
 async function startMoonshineCapture() {
   if(mic) return;
-  mic=new EmmaMicrophone({
+  const epoch=conversationEpoch;
+  const capture=new EmmaMicrophone({
     onState:(state)=>{
-      if(!workersReady||processing||speaking)return;
+      if(epoch!==conversationEpoch || !running || !workersReady||processing||speaking)return;
       if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
       else setState('listening',`${getAiName()}が聞いています`,'いつもどおり日本語で赤ちゃんへ話しかけてください。');
     },
-    onUtterance:handleCapturedUtterance,
-    shouldIgnore:()=>!workersReady||processing||speaking
+    onUtterance:(audio)=>{ if(epoch===conversationEpoch)handleCapturedUtterance(audio); },
+    shouldIgnore:()=>epoch!==conversationEpoch||!workersReady||processing||speaking
   });
-  await mic.start();
+  mic=capture;
+  await capture.start();
+  if(epoch!==conversationEpoch || !running){await capture.stop();if(mic===capture)mic=null;}
 }
 
 async function initWorkers() {
-  const signature=getTtsSignature();
-
   if(!asrInfoCache){
     showProgress(true,0,'Moonshineを準備しています…');
     showOnboardingProgress(true,0,'Moonshineを準備しています…');
     asrInfoCache=await initMoonshine();
   }
 
+  await initVoice();
+
+  workersReady=true;
+  updateRuntimeBackend();
+}
+
+let voiceInitialization;
+async function initVoice() {
+  if(voiceInitialization)return voiceInitialization;
+  voiceInitialization=(async()=>{
+    const signature=getTtsSignature();
   if(!(ttsWorker && ttsInfoCache && ttsWorkerSignature===signature)){
     ttsWorker?.terminate();
+    preparedAudio.clear();
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
@@ -661,8 +713,8 @@ async function initWorkers() {
     });
   }
 
-  workersReady=true;
-  updateRuntimeBackend();
+  })();
+  try { await voiceInitialization; } finally { voiceInitialization=null;showProgress(false); }
 }
 
 async function initMoonshine() {
@@ -765,6 +817,13 @@ async function ensureWorkersForDebug() {
 
 function handleTtsMessage(event,readyResolve,readyReject) {
   const m=event.data;
+  const preparation=preparations.get(m.requestId);
+  if(preparation){
+    if(m.type==='audio')preparation.items[m.index]=m.blob;
+    else if(m.type==='complete'){preparations.delete(m.requestId);preparation.resolve(preparation.items);}
+    else if(m.type==='error'){preparations.delete(m.requestId);preparation.reject(new Error(m.message));}
+    return;
+  }
   if(m.type==='background-download-url') {
     forwardBackgroundDownload(m);
     return;
@@ -780,7 +839,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
       const q=audioQueues.get(m.requestId);
       if(q) q.reject?.(error);
     }
-    if(workersReady) onRuntimeError(error.message);
+    if(workersReady && (!m.requestId || audioQueues.has(m.requestId))) onRuntimeError(error.message);
   } else if(m.type==='audio') enqueueAudio(m);
   else if(m.type==='complete') {
     const q=audioQueues.get(m.requestId);
@@ -793,6 +852,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
 }
 
 async function transcribeUtterance(audio) {
+  const epoch=conversationEpoch;
   if(!running||processing||speaking||!moonshineTranscriber)return;
   processing=true;
   setBusy(true);
@@ -801,6 +861,7 @@ async function transcribeUtterance(audio) {
   try {
     // Paint the thinking state before synchronous WASM inference starts.
     await new Promise(resolve=>requestAnimationFrame(()=>resolve()));
+    if(epoch!==conversationEpoch||!running)return;
     const result=moonshineTranscriber.transcribe(audio,{sampleRate:16000});
     const text=Array.isArray(result?.lines)
       ? result.lines
@@ -837,7 +898,7 @@ async function processTranscript(text) {
   showConversation(clean,english);
   processing=false;
   setBusy(false);
-  await speakResponse(english);
+  await speakResponse(english,{entry:createHistoryEntry(sessionId,clean,english,response.scene)});
   if(tutorialStep===2 && tutorialUserSpoke) finishTutorial();
 }
 
@@ -871,7 +932,8 @@ async function restoreMicrophoneAfterEmmaVoice() {
   }
 }
 
-async function speakResponse(text) {
+async function speakResponse(text,{entry=null}={}) {
+  const epoch=conversationEpoch;
   if(!ttsWorker) throw new Error('AIの声がまだ準備されていません');
 
   const shouldRestoreMic=running && Boolean(mic);
@@ -880,9 +942,10 @@ async function speakResponse(text) {
     await releaseMicrophoneForEmmaVoice();
   }
 
+  if(epoch!==conversationEpoch)return;
   speaking=true;
   const requestId=++requestSeq;
-  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null});
+  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null,entry,started:false});
   const done=new Promise((resolve,reject)=>{
     const q=audioQueues.get(requestId);
     q.resolve=resolve;
@@ -891,17 +954,20 @@ async function speakResponse(text) {
 
   setState('speaking','AIが話しています',text);
   try {
-    ttsWorker.postMessage({type:'speak',requestId,text,nameHints:getTtsNameHints()});
+    const cached=preparedAudio.get(text);
+    if(cached){const q=audioQueues.get(requestId);cached.forEach((blob,index)=>q.items.set(index,blob));q.total=cached.length;q.generationDone=true;pumpAudio(requestId);}
+    else ttsWorker.postMessage({type:'speak',requestId,text,nameHints:getTtsNameHints()});
     await done;
   } catch(error) {
     console.error('Emma TTS playback failed',error);
+    if(epoch!==conversationEpoch)return;
     setState('error','AIの声でエラーが発生しました',friendlyError(error));
     throw error;
   } finally {
-    speaking=false;
+    if(epoch===conversationEpoch)speaking=false;
     audioQueues.delete(requestId);
 
-    if(shouldRestoreMic && running){
+    if(shouldRestoreMic && running && epoch===conversationEpoch){
       try {
         await restoreMicrophoneAfterEmmaVoice();
       } catch(error) {
@@ -910,8 +976,9 @@ async function speakResponse(text) {
     }
   }
 
+  if(epoch!==conversationEpoch)return;
   if(running) setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
-  else setState('idle','みつことばはおやすみ中','「3人で話す」を押すと、また会話できます。');
+  else setState('idle','みつことばはおやすみ中','「会話を始める」を押すと、また会話できます。');
 }
 
 function enqueueAudio(m) {
@@ -936,7 +1003,7 @@ async function pumpAudio(requestId) {
   q.playing=true;
   q.items.delete(q.next);
   try {
-    await playBlob(blob);
+    await playBlob(blob,requestId);
     q.next++;
     q.playing=false;
     pumpAudio(requestId);
@@ -1001,10 +1068,11 @@ async function waitForPlaybackAudio() {
   await new Promise(resolve=>audioUnlockWaiters.push(resolve));
 }
 
-async function playBlob(blob) {
+async function playBlob(blob,requestId) {
   await waitForPlaybackAudio();
   const buffer=await blob.arrayBuffer();
   const decoded=await audioContext.decodeAudioData(buffer.slice(0));
+  if(!audioQueues.has(requestId))return;
   const source=audioContext.createBufferSource();
   activeAudioSource=source;
   const playbackBuffer=trimAudioSilence(decoded);
@@ -1025,9 +1093,12 @@ async function playBlob(blob) {
     renderAvatarFrame();
     raf=requestAnimationFrame(animate);
   };
+  const ended=new Promise(resolve=>source.onended=resolve);
   source.start();
+  const q=audioQueues.get(requestId);
+  if(q && !q.started){q.started=true;if(q.entry && historyEnabled(localStorage))history.append(q.entry).catch(error=>{ console.warn('履歴を保存できませんでした',error);$('historyWarning').textContent='履歴を保存できませんでした。端末の空き容量やブラウザ設定を確認してください。'; });}
   animate();
-  await new Promise(resolve=>source.onended=resolve);
+  await ended;
   if(activeAudioSource===source) activeAudioSource=null;
   cancelAnimationFrame(raf);
   avatarMouthLevel='small';
@@ -1050,7 +1121,7 @@ function renderAvatarFrame(){
   if(!ui.aiAvatarFace) return;
   const next=avatarFrameName();
   // Switch complete frames; palette variables now inherit into the inline SVGs.
-  for(const frame of ui.aiAvatarFace.querySelectorAll('[data-avatar-frame]')){
+  for(const frame of [...ui.aiAvatarFace.querySelectorAll('[data-avatar-frame]'), ...(document.querySelectorAll?.('.play-avatar [data-avatar-frame]') || [])]){
     frame.classList.toggle('hidden',frame.dataset.avatarFrame!==next);
   }
 }
@@ -1131,7 +1202,7 @@ function renderTutorial(){
     ui.tutorialPrimaryButton.classList.remove('hidden');
   }else if(tutorialStep===1){
     ui.tutorialTitle.textContent='ここから会話を始めます';
-    ui.tutorialBody.textContent='画面下で光っている「3人で話す」を実際に押してください。押すとマイクが始まり、会話を開始します。';
+    ui.tutorialBody.textContent='画面下で光っている「会話を始める」を実際に押してください。押すとマイクが始まり、会話を開始します。';
     ui.tutorialHint.textContent='↓ 光っている本物のボタンを押す';
     ui.tutorialHint.classList.remove('hidden');
   }else{

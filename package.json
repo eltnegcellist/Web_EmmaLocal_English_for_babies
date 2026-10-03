@@ -1,0 +1,1 @@
+{"private":true,"type":"module","scripts":{"test":"node test-lite.mjs && node test-topic-detection.mjs && node test-avatar.mjs && node test-features.mjs"},"devDependencies":{"fake-indexeddb":"6.2.5","jsdom":"30.1.1"}}

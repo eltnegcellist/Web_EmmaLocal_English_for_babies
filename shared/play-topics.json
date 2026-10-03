@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "topics": [
+    {"id":"greeting","label":"こんにちは","phrases":["Hello, hello!","Hi there!","Hello, little one!","Let's say hello!"]},
+    {"id":"hands","label":"て・おてて","phrases":["Hello, little hands!","Clap, clap, clap!","Let's wave hello!","Wave, wave!"]},
+    {"id":"feet","label":"あし・あんよ","phrases":["Hello, little feet!","Wiggle, wiggle!","Let's wiggle our toes!","Tap, tap, tap!"]},
+    {"id":"voice","label":"こえ","phrases":["La, la, la!","Let's say hello!","Hello, hello!","Let's try a little sound!"]},
+    {"id":"play","label":"いっしょにあそぼう","phrases":["Let's play together!","Peek-a-boo, hello!","One, two, three!","Let's take turns!"]},
+    {"id":"music","label":"うた・リズム","phrases":["La, la, la!","Clap, clap, clap!","Let's sing together!","Tap, tap, tap!"]}
+  ]
+}
