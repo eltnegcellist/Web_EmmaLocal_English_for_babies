@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: emma-web-ci
+  group: emma-web-ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -25,14 +25,19 @@ jobs:
         run: |
           python3 scripts/generate-lite-topic-contract.py --target web --check
           python3 scripts/test-lite-topic-contract.py
+          python3 scripts/verify-play-topics.py
       - name: Smoke test LiteResponseEngine
         run: |
           node test-lite.mjs
           node test-topic-detection.mjs
           node test-avatar.mjs
+          npm ci --ignore-scripts
+          node test-features.mjs
       - name: Syntax check
         run: |
           node --check src/app.js
+          node --check src/conversation-history.js
+          node --check src/feature-screens.js
           node --check src/resumable-download.js
           node --check src/audio-capture.js
           node --check src/asr-worker.js

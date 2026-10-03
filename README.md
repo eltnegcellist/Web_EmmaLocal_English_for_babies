@@ -506,3 +506,6 @@ https://github.com/eltnegcellist/Android_English_character_for_baby
 Web・Androidは同じ色コードを使用します。やさしい色はピーチ・ミント・そら・ラベンダー、はっきり色は白い顔・胴体とコーラル・ブルー・はちみつ・ベリーの飾り色です。両系統で配色を選択・保存できます。初期色ははっきり色のコーラル（赤）です。白黒＋赤は統合され、旧設定もコーラルへ引き継ぎます。カラーチェンジは白い顔と体を保ち、コーラル→はちみつ→ブルー→ベリー→コーラルを約2分で滑らかに一周します。
 
 Web and Android use identical character colors. Soft mode offers Peach, Mint, Sky, and Lavender. Vivid mode keeps the face and body white with Coral, Blue, Honey, or Berry accents. Each mode saves its palette selection. Vivid Coral red is the default; the removed white/black/red mode migrates to Coral. Color shift keeps the white face and body and smoothly cycles through Coral, Honey, Blue, Berry, and Coral in two minutes.
+
+
+追加機能の作業ブランチ仕様・新しい検証範囲は[FEATURES.md](FEATURES.md)に記載します。
