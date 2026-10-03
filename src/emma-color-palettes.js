@@ -41,7 +41,7 @@ export const VIVID_PALETTES = {
   "coral": {
     "label": "コーラル（赤）",
     "face": "#ffffff",
-    "accent": "#df3e50",
+    "accent": "#f23b45",
     "dark": "#3f302c",
     "blush": "#e99ba5",
     "mouth": "#3f302c",
@@ -50,7 +50,7 @@ export const VIVID_PALETTES = {
   "blue": {
     "label": "ブルー",
     "face": "#ffffff",
-    "accent": "#1474b2",
+    "accent": "#1687ef",
     "dark": "#3f302c",
     "blush": "#e99ba5",
     "mouth": "#3f302c",
@@ -59,7 +59,7 @@ export const VIVID_PALETTES = {
   "honey": {
     "label": "はちみつ",
     "face": "#ffffff",
-    "accent": "#d68c0a",
+    "accent": "#f5b400",
     "dark": "#3f302c",
     "blush": "#e99ba5",
     "mouth": "#3f302c",
@@ -68,7 +68,7 @@ export const VIVID_PALETTES = {
   "berry": {
     "label": "ベリー",
     "face": "#ffffff",
-    "accent": "#a13d7c",
+    "accent": "#d633ad",
     "dark": "#3f302c",
     "blush": "#e99ba5",
     "mouth": "#3f302c",
@@ -79,7 +79,7 @@ export const FILLED_PALETTES = {
   "coral": {
     "label": "コーラル（赤）",
     "face": "#ffd7da",
-    "accent": "#c52038",
+    "accent": "#ed1828",
     "dark": "#3f302c",
     "blush": "#e99ba5",
     "mouth": "#3f302c",
@@ -88,7 +88,7 @@ export const FILLED_PALETTES = {
   "blue": {
     "label": "ブルー",
     "face": "#d4eaff",
-    "accent": "#085a96",
+    "accent": "#0672e6",
     "dark": "#3f302c",
     "blush": "#e99ba5",
     "mouth": "#3f302c",
@@ -97,7 +97,7 @@ export const FILLED_PALETTES = {
   "honey": {
     "label": "はちみつ",
     "face": "#ffe5af",
-    "accent": "#b66e00",
+    "accent": "#efa300",
     "dark": "#3f302c",
     "blush": "#e99ba5",
     "mouth": "#3f302c",
@@ -106,7 +106,7 @@ export const FILLED_PALETTES = {
   "berry": {
     "label": "ベリー",
     "face": "#eed4e6",
-    "accent": "#81245f",
+    "accent": "#c916a0",
     "dark": "#3f302c",
     "blush": "#e99ba5",
     "mouth": "#3f302c",
@@ -135,7 +135,14 @@ export function normalizeColorSettings(mode, vivid) {
   };
 }
 
-// Each mode cycles through its own four palettes in two minutes.
+export const GRADIENT_CYCLE_MS = 60_000;
+export const GRADIENT_DESCRIPTIONS = {
+  "soft": "グラデーション：ピーチ→ミント→そら→ラベンダー→ピーチの順に、顔と飾りの色が滑らかに変わり、60秒で一周します。",
+  "vivid": "グラデーション：赤→はちみつ→ブルー→ベリー→赤の順に、耳や飾りの色が滑らかに変わり、60秒で一周します。顔と体は白いままです。",
+  "filled": "グラデーション：赤→はちみつ→ブルー→ベリー→赤の順に、顔・体と飾りの色が滑らかに変わり、60秒で一周します。"
+};
+
+// Each mode cycles through its own four palettes in 60 seconds.
 export const COLOR_SHIFT_ORDER = ['coral', 'honey', 'blue', 'berry'];
 export const SOFT_SHIFT_ORDER = ['peach', 'mint', 'sky', 'lavender'];
 export function shiftingPalette(hue, mode = 'vivid') {

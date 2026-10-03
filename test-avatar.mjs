@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
-import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette } from './src/emma-color-palettes.js';
+import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './src/emma-color-palettes.js';
 
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const html = read('./index.html');
@@ -19,6 +19,10 @@ for (const [svg, name] of inline) {
 assert.doesNotMatch(html, /<option value="mono_red">/);
 assert.doesNotMatch(html, /<option value="color_shift">/);
 assert.equal((html.match(/<option value="gradient">グラデーション<\/option>/g)||[]).length,3);
+assert.equal(GRADIENT_CYCLE_MS,60000);
+assert.match(html,/id="gradientDescription"/);
+assert.match(app,/ui.gradientDescription.textContent=GRADIENT_DESCRIPTIONS\[mode\]/);
+for(const text of Object.values(GRADIENT_DESCRIPTIONS)) assert.match(text,/60秒で一周/);
 assert.equal(normalizeColorSettings(null,null).mode,'vivid');
 assert.equal(normalizeColorSettings(null,null).vivid,'coral');
 
@@ -31,7 +35,7 @@ let tick;
 const context = {
   ui: { aiAvatarFace: { querySelectorAll: () => frames }, colorMode: {value:'vivid'}, vividPalette:{value:'coral'}, softPalette:{value:'peach'}, filledPalette:{value:'coral'} },
   STORAGE: {colorMode:'emma_color_mode', vivid:'emma_vivid_palette', soft:'emma_soft_palette',filled:'emma_filled_palette'},
-  SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette,
+  SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS,
   localStorage: {getItem:key => saved.get(key),setItem:(key,value)=>saved.set(key,value)},
   document: {documentElement:{style:{setProperty:(key,value)=>rootStyle.set(key,value)}}},
   setInterval:fn => {tick=fn;return 1;}, clearInterval:()=>{}, appearanceTimer:null,
@@ -122,6 +126,11 @@ for(const [mode,storage,palettes,order] of [
     const palette=shiftingPalette(hue,mode);
     if(mode==='vivid') assert.equal(palette.face,'#ffffff');
     else assert.notEqual(palette.face,'#ffffff');
+  }
+  for(const [time,index] of [[0,0],[15000,1],[30000,2],[45000,3],[60000,0]]) {
+    context.Date.now=()=>time;tick();
+    assert.equal(rootStyle.get('--accent'),palettes[order[index]].accent);
+    assert.equal(rootStyle.get('--face'),palettes[order[index]].face);
   }
   // Fixed choices stop animating and remain independently saved.
   saved.set(storage,order[1]);runInNewContext('applyAppearance()',context);

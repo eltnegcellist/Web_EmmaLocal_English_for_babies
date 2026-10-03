@@ -1,4 +1,4 @@
-import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette } from './emma-color-palettes.js';
+import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './emma-color-palettes.js';
 import { EmmaMicrophone } from './audio-capture.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
@@ -25,7 +25,7 @@ const ui = {
   tutorialBody:$('tutorialBody'), tutorialSkipButton:$('tutorialSkipButton'), tutorialPrimaryButton:$('tutorialPrimaryButton'), tutorialHint:$('tutorialHint'),
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
-  filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
+  filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
@@ -33,7 +33,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261004-filled-gradients-r17';
+const WEB_BUILD = '20261004-bright-colors-r18';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -660,7 +660,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261004-filled-gradients-r17',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261004-bright-colors-r18',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -1377,6 +1377,7 @@ function updateAppearanceSettings() {
     filled:'濃い飾り色と、顔や体にも薄く色を付けた配色です。グラデーションでは顔と飾りの色がゆっくり変わります。'
   };
   ui.colorModeDescription.textContent=descriptions[mode]||'';
+  ui.gradientDescription.textContent=GRADIENT_DESCRIPTIONS[mode]||'';
 }
 
 function applyAppearance() {
@@ -1396,7 +1397,7 @@ function applyAppearance() {
   const selected=mode==='soft' ? soft : mode==='filled' ? filled : vivid;
   if(selected==='gradient'){
     const update=()=>{
-      const hue=((Date.now()/120000*360)%360+360)%360;
+      const hue=((Date.now()/GRADIENT_CYCLE_MS*360)%360+360)%360;
       setPalette(shiftingPalette(hue,mode));
     };
     update();
@@ -1444,7 +1445,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261004-filled-gradients-r17',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261004-bright-colors-r18',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
