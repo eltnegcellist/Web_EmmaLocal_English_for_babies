@@ -1,3 +1,4 @@
+import { SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette } from './emma-color-palettes.js';
 import { EmmaMicrophone } from './audio-capture.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
@@ -24,7 +25,7 @@ const ui = {
   tutorialBody:$('tutorialBody'), tutorialSkipButton:$('tutorialSkipButton'), tutorialPrimaryButton:$('tutorialPrimaryButton'), tutorialHint:$('tutorialHint'),
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
-  colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
+  softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
@@ -32,7 +33,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261002-topic-guide-r14';
+const WEB_BUILD = '20261003-character-colors-r15';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -42,6 +43,7 @@ const STORAGE = {
   gender:'emma_baby_gender',
   colorMode:'emma_color_mode',
   vivid:'emma_vivid_palette',
+  soft:'emma_soft_palette',
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
   useChanSuffix:'emma_use_chan_suffix',
@@ -98,7 +100,8 @@ function initUi() {
   ui.spokenBabyName.value = spokenName;
   ui.onboardingSpokenBabyName.value = spokenName;
   ui.colorMode.value = localStorage.getItem(STORAGE.colorMode) || 'mono_red';
-  ui.vividPalette.value = localStorage.getItem(STORAGE.vivid) || 'sunshine';
+  ui.vividPalette.value = normalizeVividPalette(localStorage.getItem(STORAGE.vivid));
+  ui.softPalette.value = normalizeSoftPalette(localStorage.getItem(STORAGE.soft));
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'small';
@@ -247,6 +250,10 @@ function bindEvents() {
     localStorage.setItem(STORAGE.colorMode,ui.colorMode.value);
     applyAppearance();
     updateAppearanceSettings();
+  });
+  ui.softPalette.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.soft,ui.softPalette.value);
+    applyAppearance();
   });
   ui.vividPalette.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.vivid,ui.vividPalette.value);
@@ -646,7 +653,7 @@ async function initWorkers() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261002-topic-guide-r14',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261003-character-colors-r15',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -1355,9 +1362,10 @@ function updateRuntimeBackend() {
 function updateAppearanceSettings() {
   const mode=ui.colorMode.value;
   ui.vividPaletteRow.classList.toggle('hidden',mode!=='vivid');
+  ui.softPaletteRow.classList.toggle('hidden',mode!=='soft');
   const descriptions={
-    soft:'やさしい淡い配色です。',
-    vivid:'原色寄りの複数色で、顔のコントラストを強くします。',
+    soft:'明るくやさしい4種類の配色から選べます。',
+    vivid:'白い顔に、耳や頭の飾りの鮮やかな色が映える配色です。',
     mono_red:'白い顔、黒い目と輪郭、赤いアクセントの固定配色です。',
     color_shift:'会話状態とは無関係に、時間経過で配色がゆっくり変わります。'
   };
@@ -1367,9 +1375,11 @@ function updateAppearanceSettings() {
 function applyAppearance() {
   if(appearanceTimer){clearInterval(appearanceTimer);appearanceTimer=null;}
   const mode=localStorage.getItem(STORAGE.colorMode)||ui.colorMode.value||'mono_red';
-  const vivid=localStorage.getItem(STORAGE.vivid)||ui.vividPalette.value||'sunshine';
+  const vivid=normalizeVividPalette(localStorage.getItem(STORAGE.vivid)||ui.vividPalette.value);
+  const soft=normalizeSoftPalette(localStorage.getItem(STORAGE.soft)||ui.softPalette.value);
   ui.colorMode.value=mode;
   ui.vividPalette.value=vivid;
+  ui.softPalette.value=soft;
   if(mode==='color_shift'){
     const update=()=>{
       const hue=((Date.now()/120000*360)%360+360)%360;
@@ -1386,15 +1396,8 @@ function applyAppearance() {
     appearanceTimer=setInterval(update,500);
     return;
   }
-  const palettes={
-    soft:{face:'#f0e7ff',accent:'#7653b8',dark:'#302940',blush:'#ff8faa',mouth:'#af4269',tongue:'#ffb0c2'},
-    mono_red:{face:'#ffffff',accent:'#e00000',dark:'#080808',blush:'#e00000',mouth:'#080808',tongue:'#e00000'},
-    sunshine:{face:'#ffd600',accent:'#1e5bff',dark:'#101010',blush:'#ff3b30',mouth:'#8f153b',tongue:'#ff8ca7'},
-    ocean:{face:'#2d7fff',accent:'#ffd600',dark:'#0b1733',blush:'#ff4081',mouth:'#7a1639',tongue:'#ff9ab5'},
-    candy:{face:'#ff4fa3',accent:'#00c853',dark:'#1e1020',blush:'#ffd600',mouth:'#8a1746',tongue:'#ffb0c5'},
-    forest:{face:'#00c853',accent:'#7c4dff',dark:'#102418',blush:'#ff3b30',mouth:'#76152f',tongue:'#ff9dae'}
-  };
-  setPalette(mode==='vivid'?palettes[vivid]:palettes[mode]);
+  const monoRed={face:'#ffffff',accent:'#e00000',dark:'#080808',blush:'#e00000',mouth:'#080808',tongue:'#e00000'};
+  setPalette(mode==='soft' ? SOFT_PALETTES[soft] : mode==='vivid' ? VIVID_PALETTES[vivid] : monoRed);
 }
 
 function setPalette(palette) {
@@ -1435,7 +1438,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261002-topic-guide-r14',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261003-character-colors-r15',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;

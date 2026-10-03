@@ -8,7 +8,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=20260930-icon-r1" />
   <link rel="icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" sizes="192x192" />
-  <link rel="stylesheet" href="./styles.css?v=20261002-topic-guide-r14" />
+  <link rel="stylesheet" href="./styles.css?v=20261003-character-colors-r15" />
   <title>みつことば Web</title>
 </head>
 <body>
@@ -629,7 +629,7 @@
 
         <article class="card">
           <h2>見た目</h2>
-          <label>画面アクセントの色
+          <label>キャラクターの色
             <select id="colorMode">
               <option value="soft">やさしい色</option>
               <option value="vivid">はっきり色</option>
@@ -637,12 +637,20 @@
               <option value="color_shift">カラーチェンジ</option>
             </select>
           </label>
+          <label id="softPaletteRow" class="hidden">やさしい色の配色
+            <select id="softPalette">
+              <option value="peach">ピーチ</option>
+              <option value="mint">ミント</option>
+              <option value="sky">そら</option>
+              <option value="lavender">ラベンダー</option>
+            </select>
+          </label>
           <label id="vividPaletteRow" class="hidden">はっきり色の配色
             <select id="vividPalette">
-              <option value="sunshine">サンシャイン</option>
-              <option value="ocean">オーシャン</option>
-              <option value="candy">キャンディ</option>
-              <option value="forest">フォレスト</option>
+              <option value="coral">コーラル</option>
+              <option value="blue">ブルー</option>
+              <option value="honey">はちみつ</option>
+              <option value="berry">ベリー</option>
             </select>
           </label>
           <p id="colorModeDescription" class="small muted"></p>
@@ -831,6 +839,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261002-topic-guide-r14"></script>
+  <script type="module" src="./src/app.js?v=20261003-character-colors-r15"></script>
 </body>
 </html>

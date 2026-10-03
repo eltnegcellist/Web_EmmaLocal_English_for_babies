@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
+import { SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette } from './src/emma-color-palettes.js';
 
 const read = path => readFileSync(new URL(path, import.meta.url), 'utf8');
 const html = read('./index.html');
@@ -24,8 +25,9 @@ const rootStyle = new Map();
 const saved = new Map();
 let tick;
 const context = {
-  ui: { aiAvatarFace: { querySelectorAll: () => frames }, colorMode: {value:'mono_red'}, vividPalette:{value:'sunshine'} },
-  STORAGE: {colorMode:'emma_color_mode', vivid:'emma_vivid_palette'},
+  ui: { aiAvatarFace: { querySelectorAll: () => frames }, colorMode: {value:'mono_red'}, vividPalette:{value:'coral'}, softPalette:{value:'peach'} },
+  STORAGE: {colorMode:'emma_color_mode', vivid:'emma_vivid_palette', soft:'emma_soft_palette'},
+  SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette,
   localStorage: {getItem:key => saved.get(key)},
   document: {documentElement:{style:{setProperty:(key,value)=>rootStyle.set(key,value)}}},
   setInterval:fn => {tick=fn;return 1;}, clearInterval:()=>{}, appearanceTimer:null,
@@ -38,13 +40,41 @@ assert.equal(rootStyle.get('--face'), '#ffffff');
 assert.equal(rootStyle.get('--accent'), '#e00000');
 for(const mode of ['soft','mono_red','vivid','color_shift']) {
   saved.set('emma_color_mode',mode);
-  for(const palette of ['sunshine','ocean','candy','forest']) {
+  for(const palette of ['coral','blue','honey','berry','sunshine','ocean','candy','forest']) {
     saved.set('emma_vivid_palette',palette);
     runInNewContext('applyAppearance()',context);
     assert.equal(context.ui.colorMode.value,mode, 'saved selection must be preserved');
     assert.ok(rootStyle.get('--face'));
   }
 }
+for(const [key,palette] of Object.entries(SOFT_PALETTES)) {
+  saved.set('emma_color_mode','soft');
+  saved.set('emma_soft_palette',key);
+  runInNewContext('applyAppearance()',context);
+  assert.equal(context.ui.softPalette.value,key);
+  assert.equal(rootStyle.get('--face'),palette.face);
+  assert.equal(rootStyle.get('--accent'),palette.accent);
+  assert.match(html,new RegExp(`<option value="${key}">${palette.label}</option>`));
+}
+assert.equal(new Set(Object.values(SOFT_PALETTES).map(p=>p.accent)).size,4);
+for(const [key,palette] of Object.entries(VIVID_PALETTES)) {
+  saved.set('emma_color_mode','vivid');
+  saved.set('emma_vivid_palette',key);
+  runInNewContext('applyAppearance()',context);
+  assert.equal(rootStyle.get('--face'),'#ffffff','vivid face and body must stay white');
+  assert.equal(rootStyle.get('--accent'),palette.accent);
+  assert.match(html,new RegExp(`<option value="${key}">${palette.label}</option>`));
+}
+for(const [old,current] of Object.entries({sunshine:'honey',ocean:'blue',candy:'coral',forest:'berry'})) {
+  saved.set('emma_vivid_palette',old);
+  runInNewContext('applyAppearance()',context);
+  assert.equal(context.ui.vividPalette.value,current);
+  assert.equal(rootStyle.get('--accent'),VIVID_PALETTES[current].accent);
+}
+assert.equal(normalizeSoftPalette('unknown'),'peach');
+assert.equal(normalizeVividPalette('unknown'),'coral');
+saved.set('emma_color_mode','color_shift');
+runInNewContext('applyAppearance()',context);
 const firstHue=rootStyle.get('--face');context.Date.now=()=>40000;tick();
 assert.notEqual(rootStyle.get('--face'),firstHue,'time shift must change the palette');
 for(const state of ['idle','speaking']) for(const blink of ['open','half','closed']) for(const mouth of ['small','medium','large']) {

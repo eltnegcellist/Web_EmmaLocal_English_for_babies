@@ -103,10 +103,10 @@ Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.9.24** と並行して提供するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.9.25** と並行して提供するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.24
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.25
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版はブラウザ向けの軽量構成です。Android版では同系統の軽量構成に加えて、Gemmaを使うFullも利用できます。
@@ -347,10 +347,10 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.24**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.25**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.24
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.25
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition uses the lightweight browser configuration. Android provides the same lightweight style of interaction plus the Gemma-based Full mode.
@@ -500,3 +500,9 @@ https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
 For the lightweight configuration + Full and the stable Android APK:
 
 https://github.com/eltnegcellist/Android_English_character_for_baby
+
+### キャラクター配色 / Character colors
+
+Web・Androidは同じ色コードを使用します。やさしい色はピーチ・ミント・そら・ラベンダー、はっきり色は白い顔・胴体とコーラル・ブルー・はちみつ・ベリーの飾り色です。両系統で配色を選択・保存できます。白黒＋赤とカラーチェンジは従来どおりです。
+
+Web and Android use identical character colors. Soft mode offers Peach, Mint, Sky, and Lavender. Vivid mode keeps the face and body white with Coral, Blue, Honey, or Berry accents. Each mode saves its palette selection. White/black/red and color shift remain available.
