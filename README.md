@@ -103,10 +103,10 @@ Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.9.28** と並行して提供するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.9.29** と並行して提供するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.28
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.29
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版はブラウザ向けの軽量構成です。Android版では同系統の軽量構成に加えて、Gemmaを使うFullも利用できます。
@@ -347,10 +347,10 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.28**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.29**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.28
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.29
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition uses the lightweight browser configuration. Android provides the same lightweight style of interaction plus the Gemma-based Full mode.
@@ -506,3 +506,5 @@ https://github.com/eltnegcellist/Android_English_character_for_baby
 Web・Androidは同じ色コードを使用します。モードは「やさしい色・はっきり色・塗りつぶし」の3つで、それぞれ4色とグラデーションを選べます。やさしい色はピーチ・ミント・そら・ラベンダー、はっきり色と塗りつぶしはコーラル（赤）・ブルー・はちみつ・ベリーです。はっきり色と塗りつぶしは明るく原色に近い飾り色を使います。塗りつぶしは色をさらに濃くし、顔と体にも薄く色を付けます。各モードにグラデーションの順序・変化する部分・60秒の周期を説明します。グラデーションは各モードの4配色の間を60秒で一周します。各モードの配色は個別に保存され、旧カラーチェンジは「はっきり色のグラデーション」へ引き継ぎます。初期色ははっきり色のコーラル（赤）です。
 
 Web and Android use the same palettes. Soft, Vivid, and Filled each offer four fixed colors plus Gradient. Vivid and Filled use brighter accents closer to primary hues. Filled deepens the accents and lightly tints the face and body. Each mode explains the color sequence, changing parts and 60-second cycle. Each gradient cycles through its mode's four palettes in 60 seconds. Choices are saved independently; the former Color Shift mode migrates to Vivid Gradient. Vivid Coral red remains the default.
+
+追加機能の作業ブランチ仕様・新しい検証範囲は[FEATURES.md](FEATURES.md)に記載します。

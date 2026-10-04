@@ -8,7 +8,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=20260930-icon-r1" />
   <link rel="icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" sizes="192x192" />
-  <link rel="stylesheet" href="./styles.css?v=20261004-bright-colors-r18" />
+  <link rel="stylesheet" href="./styles.css?v=20261005-play-history-bright-r19" />
   <title>みつことば Web</title>
 </head>
 <body>
@@ -71,6 +71,7 @@
         </section>
 
         <section class="start-panel">
+          <p>初期設定では会話履歴を端末内に残します。録音は保存しません。設定でオフにできます。</p>
           <button id="prepareEmmaButton" class="primary-button hero-start-button">
             <span class="button-main">3人で話しはじめる</span>
             <span class="button-sub">初回のみ音声モデルを準備します</span>
@@ -512,7 +513,7 @@
             <span id="statusTitle" class="status-chip status-idle">みつことばはおやすみ中</span>
             <span id="busySpinner" class="mini-spinner hidden"></span>
           </div>
-          <p id="statusDetail" class="muted">「3人で話す」を押すと、この端末だけで会話を始めます。</p>
+          <p id="statusDetail" class="muted">「会話を始める」を押すと、この端末だけで会話を始めます。</p>
           <div id="progressWrap" class="progress-wrap hidden" aria-hidden="true">
             <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
             <div id="progressText" class="progress-text"></div>
@@ -543,10 +544,11 @@
       </div>
 
       <footer class="bottom-bar">
+        <button id="playButton" class="play-shortcut" aria-label="押して聞く・親子で遊ぶ"><span aria-hidden="true">☝</span><span>押して聞く</span></button>
         <button id="manualReplyButton" class="outline-button hidden">ここで返事して</button>
         <button id="enableAudioButton" class="primary-button">みつことばの声を有効にする</button>
-        <button id="mainButton" class="primary-button">3人で話す</button>
-        <button id="stopButton" class="outline-button hidden">セッションを終了</button>
+        <button id="mainButton" class="primary-button">会話を始める</button>
+        <button id="stopButton" class="primary-button hidden">会話を止める</button>
       </footer>
     </section>
 
@@ -564,8 +566,19 @@
       </section>
     </div>
 
+    <dialog id="featureDialog" class="feature-dialog">
+      <header><button id="featureClose" class="text-button">おとな用・戻る</button><h1 id="featureTitle"></h1></header>
+      <div id="featureBody"></div>
+    </dialog>
     <section id="settingsScreen" class="screen hidden">
       <div class="screen-content settings-content">
+        <article class="card">
+          <label><input id="historyEnabled" type="checkbox" checked />端末内に会話履歴を残す</label>
+          <p>音声の再生が始まった応答の日本語・英語を最大1,000件保存します。録音は保存しません。オフにしても以前の履歴は残ります。</p>
+          <p id="historyWarning" role="status"></p>
+          <button id="historyButton" class="outline-button">会話履歴を見る・聞く</button>
+          <p>Web版では、画面のロック中やバックグラウンドでの会話の継続は保証できません。</p>
+        </article>
         <header class="subpage-header">
           <button id="settingsBackButton" class="text-button">← 戻る</button>
           <div>
@@ -850,6 +863,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261004-bright-colors-r18"></script>
+  <script type="module" src="./src/app.js?v=20261005-play-history-bright-r19"></script>
 </body>
 </html>
