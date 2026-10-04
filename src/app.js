@@ -89,21 +89,10 @@ let developerTapTimer=null;
 const audioQueues = new Map();
 const history = new ConversationHistory();
 let sessionId='', conversationEpoch=0;
-const preparedAudio=new Map(), preparations=new Map();
+const preparedAudio=new Map();
 let featureScreens;
-async function prepareAudio(texts) {
-  const epoch=conversationEpoch;
-  for(const text of texts) {
-    if(epoch!==conversationEpoch)return;
-    if(preparedAudio.has(text)) continue;
-    const id=++requestSeq;
-    const blobs=await new Promise((resolve,reject)=>{
-      preparations.set(id,{items:[],resolve,reject});
-      ttsWorker.postMessage({type:'speak',requestId:id,text,nameHints:getTtsNameHints()});
-    });
-    preparedAudio.set(text,blobs);
-    if(preparedAudio.size>24)preparedAudio.delete(preparedAudio.keys().next().value);
-  }
+function audioCacheKey(text){
+  return [getTtsSignature(),...getTtsNameHints(),String(text||'')].join('|');
 }
 
 
@@ -114,7 +103,7 @@ function initUi() {
   const historyCheckbox=$('historyEnabled');
   historyCheckbox.checked=historyEnabled(localStorage);
   historyCheckbox.addEventListener('change',()=>localStorage.setItem('emma_history_enabled',String(historyCheckbox.checked)));
-  featureScreens=installFeatureScreens({stop:stopEmma,prepare:initVoice,speak:speakResponse,preload:prepareAudio,history,isSpeaking:()=>speaking,
+  featureScreens=installFeatureScreens({stop:stopEmma,prepare:initVoice,speak:speakResponse,history,isSpeaking:()=>speaking,
     avatar:()=>{ const avatar=ui.avatar.cloneNode(true); avatar.removeAttribute('id'); avatar.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id')); return avatar; }});
   const babyName = localStorage.getItem(STORAGE.babyName) || '';
   const aiName = localStorage.getItem(STORAGE.aiName) || 'Emma';
@@ -823,13 +812,6 @@ async function ensureWorkersForDebug() {
 
 function handleTtsMessage(event,readyResolve,readyReject) {
   const m=event.data;
-  const preparation=preparations.get(m.requestId);
-  if(preparation){
-    if(m.type==='audio')preparation.items[m.index]=m.blob;
-    else if(m.type==='complete'){preparations.delete(m.requestId);preparation.resolve(preparation.items);}
-    else if(m.type==='error'){preparations.delete(m.requestId);preparation.reject(new Error(m.message));}
-    return;
-  }
   if(m.type==='background-download-url') {
     forwardBackgroundDownload(m);
     return;
@@ -851,6 +833,14 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     const q=audioQueues.get(m.requestId);
     if(q){
       if(Number.isInteger(m.total)) q.total=Math.max(q.total,m.total);
+      if(q.cacheKey && q.generated?.length){
+        const cached=q.generated.slice(0,q.total||q.generated.length).filter(Boolean);
+        if(cached.length){
+          preparedAudio.delete(q.cacheKey);
+          preparedAudio.set(q.cacheKey,cached);
+          if(preparedAudio.size>24)preparedAudio.delete(preparedAudio.keys().next().value);
+        }
+      }
       q.generationDone=true;
       pumpAudio(m.requestId);
     }
@@ -951,7 +941,8 @@ async function speakResponse(text,{entry=null}={}) {
   if(epoch!==conversationEpoch)return;
   speaking=true;
   const requestId=++requestSeq;
-  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null,entry,started:false});
+  const cacheKey=audioCacheKey(text);
+  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null,entry,started:false,text,cacheKey,generated:[]});
   const done=new Promise((resolve,reject)=>{
     const q=audioQueues.get(requestId);
     q.resolve=resolve;
@@ -960,7 +951,7 @@ async function speakResponse(text,{entry=null}={}) {
 
   setState('speaking','AIが話しています',text);
   try {
-    const cached=preparedAudio.get(text);
+    const cached=preparedAudio.get(cacheKey);
     if(cached){const q=audioQueues.get(requestId);cached.forEach((blob,index)=>q.items.set(index,blob));q.total=cached.length;q.generationDone=true;pumpAudio(requestId);}
     else ttsWorker.postMessage({type:'speak',requestId,text,nameHints:getTtsNameHints()});
     await done;
@@ -991,6 +982,7 @@ function enqueueAudio(m) {
   const q=audioQueues.get(m.requestId);
   if(!q)return;
   q.items.set(m.index,m.blob);
+  q.generated[m.index]=m.blob;
   q.total=Math.max(q.total,m.index+1);
   pumpAudio(m.requestId);
 }
