@@ -1,6 +1,6 @@
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
 import { installFeatureScreens } from './feature-screens.js';
-import { SOFT_PALETTES, VIVID_PALETTES, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette } from './emma-color-palettes.js';
+import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './emma-color-palettes.js';
 import { EmmaMicrophone } from './audio-capture.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
@@ -27,7 +27,7 @@ const ui = {
   tutorialBody:$('tutorialBody'), tutorialSkipButton:$('tutorialSkipButton'), tutorialPrimaryButton:$('tutorialPrimaryButton'), tutorialHint:$('tutorialHint'),
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
-  softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'),
+  filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
@@ -35,7 +35,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261004-play-history-r17';
+const WEB_BUILD = '20261005-play-history-bright-r19';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -46,6 +46,7 @@ const STORAGE = {
   colorMode:'emma_color_mode',
   vivid:'emma_vivid_palette',
   soft:'emma_soft_palette',
+  filled:'emma_filled_palette',
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
   useChanSuffix:'emma_use_chan_suffix',
@@ -129,6 +130,7 @@ function initUi() {
   ui.colorMode.value = colors.mode;
   ui.vividPalette.value = colors.vivid;
   ui.softPalette.value = normalizeSoftPalette(localStorage.getItem(STORAGE.soft));
+  ui.filledPalette.value = normalizeFilledPalette(localStorage.getItem(STORAGE.filled));
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'small';
@@ -280,6 +282,10 @@ function bindEvents() {
   });
   ui.softPalette.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.soft,ui.softPalette.value);
+    applyAppearance();
+  });
+  ui.filledPalette.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.filled,ui.filledPalette.value);
     applyAppearance();
   });
   ui.vividPalette.addEventListener('change',()=>{
@@ -706,7 +712,7 @@ async function initVoice() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261003-vivid-gradient-r16',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261005-play-history-bright-r19',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -1435,36 +1441,41 @@ function updateAppearanceSettings() {
   const mode=ui.colorMode.value;
   ui.vividPaletteRow.classList.toggle('hidden',mode!=='vivid');
   ui.softPaletteRow.classList.toggle('hidden',mode!=='soft');
+  ui.filledPaletteRow.classList.toggle('hidden',mode!=='filled');
   const descriptions={
-    soft:'明るくやさしい4種類の配色から選べます。',
-    vivid:'白い顔に、耳や頭の飾りの鮮やかな色が映える配色です。',
-    color_shift:'白い顔と体はそのまま、耳や飾りが赤・はちみつ・ブルー・ベリーへ滑らかに変わります。'
+    soft:'明るくやさしい配色です。グラデーションでは顔と飾りの色がゆっくり変わります。',
+    vivid:'白い顔に、耳や頭の飾りの鮮やかな色が映える配色です。グラデーションでも白い部分はそのままです。',
+    filled:'濃い飾り色と、顔や体にも薄く色を付けた配色です。グラデーションでは顔と飾りの色がゆっくり変わります。'
   };
   ui.colorModeDescription.textContent=descriptions[mode]||'';
+  ui.gradientDescription.textContent=GRADIENT_DESCRIPTIONS[mode]||'';
 }
 
 function applyAppearance() {
   if(appearanceTimer){clearInterval(appearanceTimer);appearanceTimer=null;}
   const savedMode=localStorage.getItem(STORAGE.colorMode);
   const {mode,vivid}=normalizeColorSettings(savedMode||ui.colorMode.value, localStorage.getItem(STORAGE.vivid)||ui.vividPalette.value);
-  if(savedMode==='mono_red'){
+  if(savedMode==='mono_red'||savedMode==='color_shift'){
     localStorage.setItem(STORAGE.colorMode,mode);
     localStorage.setItem(STORAGE.vivid,vivid);
   }
   const soft=normalizeSoftPalette(localStorage.getItem(STORAGE.soft)||ui.softPalette.value);
+  const filled=normalizeFilledPalette(localStorage.getItem(STORAGE.filled)||ui.filledPalette.value);
+  ui.filledPalette.value=filled;
   ui.colorMode.value=mode;
   ui.vividPalette.value=vivid;
   ui.softPalette.value=soft;
-  if(mode==='color_shift'){
+  const selected=mode==='soft' ? soft : mode==='filled' ? filled : vivid;
+  if(selected==='gradient'){
     const update=()=>{
-      const hue=((Date.now()/120000*360)%360+360)%360;
-      setPalette(shiftingPalette(hue));
+      const hue=((Date.now()/GRADIENT_CYCLE_MS*360)%360+360)%360;
+      setPalette(shiftingPalette(hue,mode));
     };
     update();
     appearanceTimer=setInterval(update,500);
     return;
   }
-  setPalette(mode==='soft' ? SOFT_PALETTES[soft] : VIVID_PALETTES[vivid]);
+  setPalette(mode==='soft' ? SOFT_PALETTES[soft] : mode==='filled' ? FILLED_PALETTES[filled] : VIVID_PALETTES[vivid]);
 }
 
 function setPalette(palette) {
@@ -1505,7 +1516,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261003-vivid-gradient-r16',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261005-play-history-bright-r19',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
