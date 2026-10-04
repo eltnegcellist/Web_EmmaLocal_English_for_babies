@@ -3,13 +3,15 @@ import { readFileSync } from 'node:fs';
 import { indexedDB } from 'fake-indexeddb';
 import { JSDOM } from 'jsdom';
 import { ConversationHistory, createHistoryEntry, historyEnabled } from './src/conversation-history.js';
-import { installFeatureScreens, nextPhrase } from './src/feature-screens.js';
+import { installFeatureScreens, nextPhrase, allTopicPhrases, localHistoryStamp } from './src/feature-screens.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
 for(const topic of topics.topics){
   assert.equal(new Set(topic.phrases).size,topic.phrases.length);
   for(const phrase of topic.phrases){assert(phrase.trim().split(/\s+/).length<=8);assert(!/you are|you have|you're/i.test(phrase));}
   for(let i=0;i<30;i++)assert.notEqual(nextPhrase(topic.phrases,topic.phrases[i%topic.phrases.length]),topic.phrases[i%topic.phrases.length]);
 }
+const mixed=allTopicPhrases(topics);assert.equal(mixed.length,new Set(mixed).size);assert(mixed.length>topics.topics[0].phrases.length);
+const stamp=localHistoryStamp('2026-10-05T10:23:00+09:00');assert.match(stamp.key,/^\d{4}-\d{2}-\d{2}$/);assert.match(stamp.timeLabel,/\d{2}:\d{2}/);
 const dom=new JSDOM(readFileSync(new URL('./index.html',import.meta.url),'utf8'),{url:'https://example.test/'});
 const {window}=dom;globalThis.document=window.document;
 const storage=window.localStorage;
@@ -27,19 +29,24 @@ await assert.rejects(new ConversationHistory(null).list());
 const $=id=>document.getElementById(id);
 $('featureDialog').showModal=function(){this.open=true;};$('featureDialog').close=function(){this.open=false;};
 globalThis.confirm=()=>true;globalThis.fetch=async()=>({ok:true,json:async()=>topics});
-let stops=0,spoken=[],busy=false,finish;
-const features=installFeatureScreens({stop:async()=>{stops++;busy=false;finish?.();},prepare:async()=>{},preload:async()=>{},history,isSpeaking:()=>busy,
+let stops=0,spoken=[],busy=false,finish,preloads=0;
+const features=installFeatureScreens({stop:async()=>{stops++;busy=false;finish?.();},prepare:async()=>{},preload:async()=>{preloads++;},history,isSpeaking:()=>busy,
   speak:async text=>{spoken.push(text);busy=true;await new Promise(resolve=>finish=resolve);busy=false;},avatar:()=>document.createElement('div')});
 const settle=()=>new Promise(resolve=>setTimeout(resolve,0));
-$('playButton').click();await settle();assert(features.isOpen());assert(stops>0);
-[...$('featureBody').querySelectorAll('button')].find(el=>el.textContent==='て・おてて').click();await settle();
-const tap=$('featureBody').querySelector('.play-tap');assert.equal(tap.disabled,false);
+$('playButton').click();await settle();await settle();assert(features.isOpen());assert(stops>0);
+let tap=$('featureBody').querySelector('.play-tap');assert(tap);assert.equal(tap.disabled,false);
+assert.equal($('featureBody').querySelector('.play-topic-label').textContent,'すべての話題');
+assert.equal(preloads,0,'opening play must not synthesize every phrase');
 tap.click();tap.click();tap.click();await settle();assert.equal(spoken.length,1);assert.equal(tap.disabled,true);
 finish();await settle();tap.click();await settle();assert.equal(spoken.length,2);assert.notEqual(spoken[0],spoken[1]);
+finish();await settle();
+[...$('featureBody').querySelectorAll('button')].find(el=>el.textContent==='話題を変更').click();await settle();
+[...$('featureBody').querySelectorAll('button')].find(el=>el.textContent==='て・おてて').click();await settle();
+tap=$('featureBody').querySelector('.play-tap');assert.equal($('featureBody').querySelector('.play-topic-label').textContent,'て・おてて');assert.equal(tap.disabled,false);
 $('featureClose').click();await settle();assert.equal(features.isOpen(),false);assert(stops>=3);
 assert.deepEqual(await history.list(),[],'play must not create history');
 assert(!$('settingsScreen').querySelector('#playButton'),'play entry is on main');
-console.log('Features: IndexedDB retention/pruning/deletion/OFF, shared phrases, mode exit, repeated taps and no play history OK');
+console.log('Features: local date/time helper, all-topic direct play, no bulk preload, mode exit, repeated taps and no play history OK');
 
 // Exercise the actual app's decode/start boundary: cancelling during decoding must
 // prevent both sound and history, while a started response commits exactly once.
@@ -71,7 +78,7 @@ app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await
 decodedResolve(audioBuffer);app.complete(lastRequest);await speech;
 assert.equal(starts,1);assert.equal(commits,1);
 // Playback without a conversation candidate (history replay or play) never saves.
-speech=app.speakResponse(candidate.englishText);
+speech=app.speakResponse('History replay phrase');
 app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await settle();decodedResolve(audioBuffer);app.complete(lastRequest);await speech;
 assert.equal(starts,2);assert.equal(commits,1);
 console.log('Playback: stop during decode prevents late audio/history; first audio saves once; replay saves nothing OK');
