@@ -8,6 +8,20 @@ export function allTopicPhrases(data) {
   return [...new Set((data?.topics||[]).flatMap(topic=>topic.phrases||[]))];
 }
 
+export function singleSentencePhrases(phrases) {
+  return [...new Set(
+    (phrases||[]).flatMap(phrase =>
+      (String(phrase).match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[])
+        .map(sentence=>sentence.trim())
+        .filter(Boolean)
+    )
+  )];
+}
+
+export function phrasesForSentenceCount(phrases,sentenceCount) {
+  return Number(sentenceCount)===3 ? phrases : singleSentencePhrases(phrases);
+}
+
 export function localHistoryStamp(value) {
   const date=new Date(value);
   if(Number.isNaN(date.getTime())) return {key:'unknown',dateLabel:'日時不明',timeLabel:'--:--'};
@@ -19,7 +33,7 @@ export function localHistoryStamp(value) {
   };
 }
 
-export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,avatar}) {
+export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,avatar,playSentenceCount=()=>1}) {
   const $=id=>document.getElementById(id);
   const dialog=$('featureDialog'), body=$('featureBody'), title=$('featureTitle');
   let generation=0,kind='';
@@ -101,14 +115,21 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
     const tap=button('声を準備しています…',async()=>{
       if(tap.disabled||isSpeaking())return;
       tap.disabled=true;
-      const phrase=nextPhrase(phrases,previous);previous=phrase;
+      const candidates=phrasesForSentenceCount(phrases,playSentenceCount());
+      const phrase=nextPhrase(candidates,previous);previous=phrase;
       label.textContent=phrase;
       try{await speak(phrase);}catch(error){if(token===generation)label.textContent=`再生できませんでした：${error.message}`;}
       finally{if(token===generation)tap.disabled=false;}
     },'play-tap');
     let previous='';const label=text('声を準備しています…','span');
     const face=avatar();face.setAttribute('aria-hidden','true');face.classList.add('play-avatar');
-    tap.replaceChildren(face,text(topicLabel,'span','play-topic-label'),label,text('一緒にまねする・交互に押す','small'));
+    tap.replaceChildren(
+      face,
+      text(topicLabel,'span','play-topic-label'),
+      text(playSentenceCount()===3?'1回に3文':'1回に1文','small','play-sentence-count'),
+      label,
+      text('一緒にまねする・交互に押す','small')
+    );
     tap.disabled=true;body.append(tap);
     try{
       await prepare();if(token!==generation)return;
