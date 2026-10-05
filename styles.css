@@ -1132,15 +1132,48 @@ body{
 .feature-dialog header{display:flex;align-items:center;flex-wrap:wrap;gap:12px;}
 #featureBody{display:flex;flex-direction:column;gap:12px;min-height:80%;}
 #featureBody .card button{margin:4px;min-height:48px;}
+.play-topic-change{align-self:flex-start;}
+.play-sentence-toolbar{
+  display:flex;align-items:center;justify-content:flex-end;gap:8px;
+  width:100%;padding:0 2px;
+}
+.play-sentence-prefix{font-size:.82rem;color:var(--on-surface-variant);}
+.play-sentence-toggle{
+  display:inline-flex;align-items:center;gap:6px;
+}
+.play-sentence-option{
+  min-height:40px;padding:8px 16px;border-radius:18px;
+  border:1px solid color-mix(in srgb,var(--on-surface-variant) 35%,transparent);
+  background:#fff;color:var(--on-surface);font:inherit;font-weight:800;
+}
+.play-sentence-option.selected{
+  border-color:transparent;
+  background:color-mix(in srgb,var(--primary) 14%,white);
+  color:var(--primary);
+}
 .play-tap{
   flex:1;min-height:65dvh;border:2px solid color-mix(in srgb,var(--primary) 55%,white);
   border-radius:32px;background:#fff;color:var(--on-surface);font:inherit;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:20px;padding:40px 24px 28px;overflow:visible;
+  transition:background-color .24s ease,border-color .24s ease,box-shadow .24s ease;
 }
 .play-tap:disabled{opacity:.82;}
+.play-tap.is-speaking{
+  opacity:1;
+  background:color-mix(in srgb,var(--primary) 8%,white);
+  border-color:color-mix(in srgb,var(--primary) 62%,white);
+  box-shadow:0 14px 34px color-mix(in srgb,var(--primary) 10%,transparent);
+}
 .play-avatar{width:min(48vw,220px);height:auto;max-height:38dvh;overflow:visible;}
 .play-topic-label{font-weight:900;color:var(--primary);}
+.play-action-label{font-size:1.45rem;font-weight:850;text-align:center;}
+.play-english-text{
+  display:block;width:100%;max-width:34rem;
+  text-align:center;font-size:1.35rem;font-weight:650;line-height:1.45;
+  overflow-wrap:anywhere;
+}
+.play-help{text-align:center;}
 .history-date-heading{margin:18px 2px 4px;font-size:1.05rem;}
 .history-time{display:block;font-size:.8rem;font-weight:800;color:var(--on-surface-variant);margin-bottom:8px;}
 .history-label{display:block;font-size:.7rem;font-weight:800;color:var(--on-surface-variant);margin-bottom:2px;}
