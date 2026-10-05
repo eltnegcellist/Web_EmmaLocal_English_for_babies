@@ -42,18 +42,29 @@ await assert.rejects(new ConversationHistory(null).list());
 const $=id=>document.getElementById(id);
 $('featureDialog').showModal=function(){this.open=true;};$('featureDialog').close=function(){this.open=false;};
 globalThis.confirm=()=>true;globalThis.fetch=async()=>({ok:true,json:async()=>topics});
-let stops=0,spoken=[],busy=false,finish,preloads=0;
+let stops=0,spoken=[],busy=false,finish,preloads=0,playCount=1;
 const features=installFeatureScreens({stop:async()=>{stops++;busy=false;finish?.();},prepare:async()=>{},preload:async()=>{preloads++;},history,isSpeaking:()=>busy,
-  playSentenceCount:()=>Number($('playSentenceCount').value)===3?3:1,
+  playSentenceCount:()=>playCount,
+  setPlaySentenceCount:count=>{playCount=count;storage.setItem('emma_play_sentence_count',String(count));},
   speak:async text=>{spoken.push(text);busy=true;await new Promise(resolve=>finish=resolve);busy=false;},avatar:()=>document.createElement('div')});
 const settle=()=>new Promise(resolve=>setTimeout(resolve,0));
 $('playButton').click();await settle();await settle();assert(features.isOpen());assert(stops>0);
 let tap=$('featureBody').querySelector('.play-tap');assert(tap);assert.equal(tap.disabled,false);
 assert.equal($('featureBody').querySelector('.play-topic-label').textContent,'すべての話題');
+const sentenceToolbar=$('featureBody').querySelector('.play-sentence-toolbar');assert(sentenceToolbar);
+assert.equal(tap.contains(sentenceToolbar),false,'sentence selector must stay outside the play card');
+assert.equal($('settingsScreen').querySelector('#playSentenceCount'),null,'duplicate sentence setting must be removed from Settings');
 assert.equal(preloads,0,'opening play must not synthesize every phrase');
 tap.click();tap.click();tap.click();await settle();assert.equal(spoken.length,1);assert.equal(tap.disabled,true);
+assert(tap.classList.contains('is-speaking'),'speaking card tint class must be active');
+assert.equal(tap.querySelector('.play-action-label').textContent,'一緒に聞こう');
 assert.equal((spoken[0].match(/[.!?]+/g)||[]).length,1,'default Tap to Listen mode should play one sentence');
-finish();await settle();tap.click();await settle();assert.equal(spoken.length,2);assert.notEqual(spoken[0],spoken[1]);
+finish();await settle();
+assert.equal(tap.classList.contains('is-speaking'),false);
+assert.equal(tap.querySelector('.play-action-label').textContent,'押して聞く');
+const threeButton=[...sentenceToolbar.querySelectorAll('button')].find(el=>el.textContent==='3文');assert(threeButton);
+threeButton.click();assert.equal(playCount,3);assert.equal(storage.getItem('emma_play_sentence_count'),'3');
+tap.click();await settle();assert.equal(spoken.length,2);assert.equal((spoken[1].match(/[.!?]+/g)||[]).length,3,'3-sentence mode must play a three-sentence bundle');
 finish();await settle();
 [...$('featureBody').querySelectorAll('button')].find(el=>el.textContent==='話題を変更').click();await settle();
 [...$('featureBody').querySelectorAll('button')].find(el=>el.textContent==='て・おてて').click();await settle();
@@ -61,7 +72,7 @@ tap=$('featureBody').querySelector('.play-tap');assert.equal($('featureBody').qu
 $('featureClose').click();await settle();assert.equal(features.isOpen(),false);assert(stops>=3);
 assert.deepEqual(await history.list(),[],'play must not create history');
 assert(!$('settingsScreen').querySelector('#playButton'),'play entry is on main');
-console.log('Features: local date/time helper, all-topic direct play, no bulk preload, mode exit, repeated taps and no play history OK');
+console.log('Features: play selector outside card, 1/3 sentence switching, speaking state, topic change, history isolation OK');
 
 // Exercise the actual app's decode/start boundary: cancelling during decoding must
 // prevent both sound and history, while a started response commits exactly once.
