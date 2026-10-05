@@ -95,7 +95,7 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 
 Web版では「呼びかけ」を利用できます。生成型の「会話」はAndroid Fullで利用できます。
 
-「押して聞く」は、既存の挨拶にLiteの20育児話題と「飲む」を加えた22話題・110種類の短い英語をAndroid/Webで共通利用します。標準は1回に1文で、110個のまとまりから得られる重複なし167種類の1文候補のうち、短い一言も含めて1つだけ再生します。設定で「3文」を選ぶと、これまでの短い文をまとめて流す形式に切り替えられます。
+「押して聞く」は、既存の挨拶にLiteの20育児話題と「飲む」を加えた22話題・110種類の短い英語をAndroid/Webで共通利用します。標準は1回に1文で、110個のまとまりから得られる重複なし167種類の1文候補のうち、短い一言も含めて1つだけ再生します。再生画面のカード外にある「1回 1文｜3文」で切り替えられ、発話中は「一緒に聞こう」＋口パク＋ごく薄いテーマ色表示になります。複数行の英語も中央揃えです。
 
 Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして使います。genericは話題として保存せず、過去6ターン内の具体的な育児トピックだけをGemmaへ参考情報として渡します。
 
@@ -357,7 +357,7 @@ The current Web `main` is the browser-side stable companion to **Mitsukotoba And
 
 The Web edition uses the lightweight browser configuration. Android provides the same lightweight style of interaction plus the Gemma-based Full mode.
 
-Tap to Listen plays one sentence per tap by default from 167 unique sentence candidates, including very short natural phrases. Settings can switch to the bundled three-sentence mode, where every play pattern contains exactly three sentences.
+Tap to Listen plays one sentence per tap by default from 167 unique sentence candidates, including very short natural phrases. The 1-sentence / 3-sentence control now sits outside the tappable card on the play screen. While speaking, the card softly tints with the theme color, the action label changes to “Listen together,” and the existing avatar lip sync continues. Multi-line English is centered.
 
 | Platform | Configuration |
 | --- | --- |
