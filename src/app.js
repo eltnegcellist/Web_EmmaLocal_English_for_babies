@@ -1214,8 +1214,8 @@ function renderTutorial(){
     ui.tutorialHint.classList.remove('hidden');
   }else{
     ui.tutorialTitle.textContent='実際に話しかけてみよう';
-    ui.tutorialBody.textContent=`「聞いています」を確認して、普段どおり日本語で赤ちゃんへ話しかけてください。話し終わりを検知したら、画面下で光っている「ここで返事して」を押します。`;
-    ui.tutorialHint.textContent='↓ 話したあと「ここで返事して」を押す';
+    ui.tutorialBody.textContent='普段どおり日本語で赤ちゃんへ話しかけてください。話し終わったら、必要に応じて光っている「ここで返事して」を押すと、その時点までの言葉をもとにAIが返事します。「自動で返事」がオンなら、押さなくても話し終わりを検出して自動で返事します。';
+    ui.tutorialHint.textContent='↓ 必要なら「ここで返事して」を押す';
     ui.tutorialHint.classList.remove('hidden');
   }
   if(tutorialStep===0) {
