@@ -3,16 +3,27 @@ import { readFileSync } from 'node:fs';
 import { indexedDB } from 'fake-indexeddb';
 import { JSDOM } from 'jsdom';
 import { ConversationHistory, createHistoryEntry, historyEnabled } from './src/conversation-history.js';
-import { installFeatureScreens, nextPhrase, allTopicPhrases, localHistoryStamp } from './src/feature-screens.js';
+import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhrases, phrasesForSentenceCount, localHistoryStamp } from './src/feature-screens.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
 assert.equal(topics.topics.length,22);
 assert.equal(topics.topics.reduce((count,topic)=>count+topic.phrases.length,0),110);
 for(const topic of topics.topics){
   assert.equal(new Set(topic.phrases).size,topic.phrases.length);
-  for(const phrase of topic.phrases){assert(phrase.trim().split(/\s+/).length<=8);assert(!/you are|you have|you're/i.test(phrase));}
+  for(const phrase of topic.phrases){
+    assert(phrase.trim().split(/\s+/).length<=8);
+    assert(!/you are|you have|you're/i.test(phrase));
+    assert.equal((phrase.match(/[.!?]+/g)||[]).length,3);
+  }
   for(let i=0;i<30;i++)assert.notEqual(nextPhrase(topic.phrases,topic.phrases[i%topic.phrases.length]),topic.phrases[i%topic.phrases.length]);
 }
 const mixed=allTopicPhrases(topics);assert.equal(mixed.length,110);assert.equal(mixed.length,new Set(mixed).size);assert(mixed.length>topics.topics[0].phrases.length);
+const allSingles=singleSentencePhrases(mixed);assert.equal(allSingles.length,167);assert(allSingles.every(text=>(text.match(/[.!?]+/g)||[]).length===1));
+const sampleBundles=['Bath time! Splash, splash! Here we go!','Hi there!'];
+const sampleSingles=singleSentencePhrases(sampleBundles);
+assert.deepEqual(sampleSingles,['Bath time!','Splash, splash!','Here we go!','Hi there!']);
+assert.deepEqual(phrasesForSentenceCount(sampleBundles,1),sampleSingles);
+assert.deepEqual(phrasesForSentenceCount(sampleBundles,3),sampleBundles);
+assert(sampleSingles.some(text=>text.trim().split(/\s+/).length<=2));
 const stamp=localHistoryStamp('2026-10-05T10:23:00+09:00');assert.match(stamp.key,/^\d{4}-\d{2}-\d{2}$/);assert.match(stamp.timeLabel,/\d{2}:\d{2}/);
 const dom=new JSDOM(readFileSync(new URL('./index.html',import.meta.url),'utf8'),{url:'https://example.test/'});
 const {window}=dom;globalThis.document=window.document;
@@ -33,6 +44,7 @@ $('featureDialog').showModal=function(){this.open=true;};$('featureDialog').clos
 globalThis.confirm=()=>true;globalThis.fetch=async()=>({ok:true,json:async()=>topics});
 let stops=0,spoken=[],busy=false,finish,preloads=0;
 const features=installFeatureScreens({stop:async()=>{stops++;busy=false;finish?.();},prepare:async()=>{},preload:async()=>{preloads++;},history,isSpeaking:()=>busy,
+  playSentenceCount:()=>Number($('playSentenceCount').value)===3?3:1,
   speak:async text=>{spoken.push(text);busy=true;await new Promise(resolve=>finish=resolve);busy=false;},avatar:()=>document.createElement('div')});
 const settle=()=>new Promise(resolve=>setTimeout(resolve,0));
 $('playButton').click();await settle();await settle();assert(features.isOpen());assert(stops>0);
@@ -40,6 +52,7 @@ let tap=$('featureBody').querySelector('.play-tap');assert(tap);assert.equal(tap
 assert.equal($('featureBody').querySelector('.play-topic-label').textContent,'すべての話題');
 assert.equal(preloads,0,'opening play must not synthesize every phrase');
 tap.click();tap.click();tap.click();await settle();assert.equal(spoken.length,1);assert.equal(tap.disabled,true);
+assert.equal((spoken[0].match(/[.!?]+/g)||[]).length,1,'default Tap to Listen mode should play one sentence');
 finish();await settle();tap.click();await settle();assert.equal(spoken.length,2);assert.notEqual(spoken[0],spoken[1]);
 finish();await settle();
 [...$('featureBody').querySelectorAll('button')].find(el=>el.textContent==='話題を変更').click();await settle();

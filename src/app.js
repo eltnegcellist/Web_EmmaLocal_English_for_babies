@@ -28,14 +28,14 @@ const ui = {
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
-  keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
+  keepAwake:$('keepAwake'), playSentenceCount:$('playSentenceCount'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261005-play-history-bright-r19';
+const WEB_BUILD = '20261005-play-sentence-count-r20';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -49,6 +49,7 @@ const STORAGE = {
   filled:'emma_filled_palette',
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
+  playSentenceCount:'emma_play_sentence_count',
   useChanSuffix:'emma_use_chan_suffix',
   asrModel:'emma_asr_model',
   startTiny:'emma_first_run_start_tiny',
@@ -103,8 +104,15 @@ function initUi() {
   const historyCheckbox=$('historyEnabled');
   historyCheckbox.checked=historyEnabled(localStorage);
   historyCheckbox.addEventListener('change',()=>localStorage.setItem('emma_history_enabled',String(historyCheckbox.checked)));
-  featureScreens=installFeatureScreens({stop:stopEmma,prepare:initVoice,speak:speakResponse,history,isSpeaking:()=>speaking,
-    avatar:()=>{ const avatar=ui.avatar.cloneNode(true); avatar.removeAttribute('id'); avatar.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id')); return avatar; }});
+  featureScreens=installFeatureScreens({
+    stop:stopEmma,
+    prepare:initVoice,
+    speak:speakResponse,
+    history,
+    isSpeaking:()=>speaking,
+    playSentenceCount:()=>Number(ui.playSentenceCount?.value)===3?3:1,
+    avatar:()=>{ const avatar=ui.avatar.cloneNode(true); avatar.removeAttribute('id'); avatar.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id')); return avatar; }
+  });
   const babyName = localStorage.getItem(STORAGE.babyName) || '';
   const aiName = localStorage.getItem(STORAGE.aiName) || 'Emma';
   if(ui.webBuild) ui.webBuild.textContent=`Web build: ${WEB_BUILD}`;
@@ -121,6 +129,7 @@ function initUi() {
   ui.softPalette.value = normalizeSoftPalette(localStorage.getItem(STORAGE.soft));
   ui.filledPalette.value = normalizeFilledPalette(localStorage.getItem(STORAGE.filled));
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
+  if (ui.playSentenceCount) ui.playSentenceCount.value = localStorage.getItem(STORAGE.playSentenceCount)==='3' ? '3' : '1';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'small';
   if (ui.onboardingStartTiny) {
@@ -280,6 +289,12 @@ function bindEvents() {
   ui.vividPalette.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.vivid,ui.vividPalette.value);
     applyAppearance();
+  });
+
+  ui.playSentenceCount?.addEventListener('change',()=>{
+    const count=ui.playSentenceCount.value==='3' ? '3' : '1';
+    ui.playSentenceCount.value=count;
+    localStorage.setItem(STORAGE.playSentenceCount,count);
   });
 
   ui.keepAwake.addEventListener('change',()=>{
@@ -1508,7 +1523,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261005-play-history-bright-r19',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261005-play-sentence-count-r20',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;

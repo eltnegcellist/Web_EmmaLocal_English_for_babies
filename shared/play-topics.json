@@ -5,11 +5,11 @@
       "id": "greeting",
       "label": "こんにちは",
       "phrases": [
-        "Hello, hello!",
-        "Hi there!",
-        "Hello, little one!",
-        "Let's say hello!",
-        "Good morning, little one!"
+        "Hello, hello! Hi there! Let's say hello!",
+        "Hi there! Hello, little one! Wave hello!",
+        "Hello, little one! Hi there! Hello again!",
+        "Let's say hello! Hi there! Hello, hello!",
+        "Good morning, little one! Hello, hello! Hi there!"
       ]
     },
     {
@@ -42,7 +42,7 @@
         "Sleepy time. Nice and quiet. Night-night.",
         "Time to sleep. Rest, rest. Nice and cozy.",
         "Sleepy eyes. Night-night. Rest, rest.",
-        "Good night, little one. Nice and cozy."
+        "Good night, little one. Nice and cozy. Rest."
       ]
     },
     {
@@ -50,7 +50,7 @@
       "label": "おはよう・起きる",
       "phrases": [
         "Good morning! Eyes open. Hello, hello!",
-        "Morning, little one! Hello, hello!",
+        "Morning, little one! Hello, hello! Wake up!",
         "Wake up! Hello, hello! Here we go!",
         "Good morning! Bright eyes. Hello there!",
         "Hello there! Morning time. Eyes open."
@@ -75,7 +75,7 @@
         "Dress time! One little arm. Here we go!",
         "Getting dressed! Nice and easy. All ready.",
         "Clothes time! Here we go! All cozy.",
-        "One arm, one leg. All ready!"
+        "One arm, one leg. All ready! Ready!"
       ]
     },
     {
@@ -86,7 +86,7 @@
         "Cuddle time! Nice and close. Here we go!",
         "Up we go! Big hug. So cozy.",
         "Big hug! Nice and close. Right here.",
-        "Cuddle, cuddle! Warm and cozy."
+        "Cuddle, cuddle! Warm and cozy. Big hug!"
       ]
     },
     {
@@ -119,7 +119,7 @@
         "What a smile! Hello, hello! Smile, smile!",
         "Smile, smile! There it is! Hello there!",
         "Happy smile! Hello, little one! So sweet.",
-        "Smile for me! Big, big smile!"
+        "Smile for me! Big, big smile! So sweet!"
       ]
     },
     {
@@ -129,8 +129,8 @@
         "I hear you. Right here. Nice and gentle.",
         "I hear you. Right here. Nice and close.",
         "Hello, little one. I hear you. Right here.",
-        "I hear your voice. Nice and gentle.",
-        "Easy, easy. Right here with you."
+        "Your little voice. Nice and gentle. Right here.",
+        "Easy, easy. Right here. Nice and close."
       ]
     },
     {

@@ -573,6 +573,17 @@
     <section id="settingsScreen" class="screen hidden">
       <div class="screen-content settings-content">
         <article class="card">
+          <h2>押して聞く</h2>
+          <label>1回に流す文の数
+            <select id="playSentenceCount">
+              <option value="1">1文（標準）</option>
+              <option value="3">3文</option>
+            </select>
+          </label>
+          <p class="small muted">1文では短い一言も含めて1つだけ再生します。3文では、これまでのように短い文をまとめて再生します。</p>
+        </article>
+
+        <article class="card">
           <label><input id="historyEnabled" type="checkbox" checked />端末内に会話履歴を残す</label>
           <p>音声の再生が始まった応答の日本語・英語を最大1,000件保存します。録音は保存しません。オフにしても以前の履歴は残ります。</p>
           <p id="historyWarning" role="status"></p>
@@ -863,6 +874,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261005-play-history-bright-r19"></script>
+  <script type="module" src="./src/app.js?v=20261005-play-sentence-count-r20"></script>
 </body>
 </html>

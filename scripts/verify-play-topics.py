@@ -6,7 +6,7 @@ root=Path(__file__).resolve().parents[1]
 path=root / ("app/src/main/assets/play-topics.json" if (root/"app").exists() else "shared/play-topics.json")
 data=json.loads(path.read_text())
 assert data["schemaVersion"] == 1
-assert hashlib.sha256(path.read_bytes()).hexdigest() == "69838a53af59c880bbdaca9199302179bc3bf6202bfe9c877937027641460b4e", "Update both editions and this contract hash together"
+assert hashlib.sha256(path.read_bytes()).hexdigest() == "6f4fe0c8cb7c2251b9754490c0617638dcc784eb6e87aa03e5eeb2fb82635a54", "Update both editions and this contract hash together"
 assert len({t["id"] for t in data["topics"]}) == len(data["topics"])
 for topic in data["topics"]:
     assert len(topic["phrases"]) >= 2
@@ -17,4 +17,5 @@ expected="\n".join("| "+t["label"]+" | "+" / ".join(t["phrases"])+" |" for t in 
 assert expected in (root/"FEATURES.md").read_text(), "Phrase explanation is out of date"
 assert len(data["topics"]) == 22
 assert sum(len(t["phrases"]) for t in data["topics"]) == 110
+assert all(len(__import__("re").findall(r"[.!?]+", p)) == 3 for t in data["topics"] for p in t["phrases"])
 print("Shared play contract: 22 topics, 110 phrases and explanation OK")
