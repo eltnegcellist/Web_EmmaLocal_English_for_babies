@@ -105,10 +105,10 @@ Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.9.33** と並行して提供するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.9.34** と並行して提供するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.33
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.34
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版はブラウザ向けの軽量構成です。Android版では同系統の軽量構成に加えて、Gemmaを使うFullも利用できます。
@@ -349,13 +349,15 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.33**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.34**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.33
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.34
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition uses the lightweight browser configuration. Android provides the same lightweight style of interaction plus the Gemma-based Full mode.
+
+Tap to Listen plays one sentence per tap by default, including very short natural phrases. Settings can switch to the bundled three-sentence mode, where every play pattern contains exactly three sentences.
 
 | Platform | Configuration |
 | --- | --- |
