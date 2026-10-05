@@ -512,3 +512,6 @@ Web・Androidは同じ色コードを使用します。モードは「やさし�
 Web and Android use the same palettes. Soft, Vivid, and Filled each offer four fixed colors plus Gradient. Vivid and Filled use brighter accents closer to primary hues. Filled deepens the accents and lightly tints the face and body. Each mode explains the color sequence, changing parts and 60-second cycle. Each gradient cycles through its mode's four palettes in 60 seconds. Choices are saved independently; the former Color Shift mode migrates to Vivid Gradient. Vivid Coral red remains the default.
 
 追加機能の作業ブランチ仕様・新しい検証範囲は[FEATURES.md](FEATURES.md)に記載します。
+
+
+Web navigation: Browser/phone Back on Settings returns to the main screen, and Back on the learning-reason/About screen returns to the previous app screen instead of leaving the app immediately.
