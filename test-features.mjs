@@ -4,7 +4,16 @@ import { indexedDB } from 'fake-indexeddb';
 import { JSDOM } from 'jsdom';
 import { ConversationHistory, createHistoryEntry, historyEnabled } from './src/conversation-history.js';
 import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhrases, phrasesForSentenceCount, localHistoryStamp } from './src/feature-screens.js';
+import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './src/app-navigation.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
+
+assert.deepEqual(appHistoryState('settings'),{mitsukotobaScreen:'settings'});
+assert.equal(resolveAppPopScreen('settings','home',null),'home');
+assert.equal(resolveAppPopScreen('about','home',null),'home');
+assert.equal(resolveAppPopScreen('about','onboarding',null),'onboarding');
+assert.equal(resolveAppPopScreen('about','settings',{mitsukotobaScreen:'settings'}),'settings');
+assert.equal(shouldUseBrowserBack('settings',{mitsukotobaScreen:'settings'}),true);
+assert.equal(shouldUseBrowserBack('settings',null),false);
 assert.equal(topics.topics.length,22);
 assert.equal(topics.topics.reduce((count,topic)=>count+topic.phrases.length,0),110);
 for(const topic of topics.topics){
