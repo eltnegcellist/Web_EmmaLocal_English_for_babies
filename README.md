@@ -95,6 +95,8 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 
 Web版では「呼びかけ」を利用できます。生成型の「会話」はAndroid Fullで利用できます。
 
+「押して聞く」は、既存の挨拶にLiteの20育児話題と「飲む」を加えた22話題・110種類の短い英語をAndroid/Webで共通利用します。
+
 Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして使います。genericは話題として保存せず、過去6ターン内の具体的な育児トピックだけをGemmaへ参考情報として渡します。
 
 ### 会話を自分で区切る
@@ -103,10 +105,10 @@ Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.9.29** と並行して提供するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.9.33** と並行して提供するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.29
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.33
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版はブラウザ向けの軽量構成です。Android版では同系統の軽量構成に加えて、Gemmaを使うFullも利用できます。
@@ -347,10 +349,10 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.29**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.33**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.29
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.33
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition uses the lightweight browser configuration. Android provides the same lightweight style of interaction plus the Gemma-based Full mode.

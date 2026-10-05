@@ -1,11 +1,247 @@
 {
   "schemaVersion": 1,
   "topics": [
-    {"id":"greeting","label":"こんにちは","phrases":["Hello, hello!","Hi there!","Hello, little one!","Let's say hello!"]},
-    {"id":"hands","label":"て・おてて","phrases":["Hello, little hands!","Clap, clap, clap!","Let's wave hello!","Wave, wave!"]},
-    {"id":"feet","label":"あし・あんよ","phrases":["Hello, little feet!","Wiggle, wiggle!","Let's wiggle our toes!","Tap, tap, tap!"]},
-    {"id":"voice","label":"こえ","phrases":["La, la, la!","Let's say hello!","Hello, hello!","Let's try a little sound!"]},
-    {"id":"play","label":"いっしょにあそぼう","phrases":["Let's play together!","Peek-a-boo, hello!","One, two, three!","Let's take turns!"]},
-    {"id":"music","label":"うた・リズム","phrases":["La, la, la!","Clap, clap, clap!","Let's sing together!","Tap, tap, tap!"]}
+    {
+      "id": "greeting",
+      "label": "こんにちは",
+      "phrases": [
+        "Hello, hello!",
+        "Hi there!",
+        "Hello, little one!",
+        "Let's say hello!",
+        "Good morning, little one!"
+      ]
+    },
+    {
+      "id": "bath",
+      "label": "お風呂",
+      "phrases": [
+        "Bath time! Splash, splash! Here we go!",
+        "Warm bath! Splash, splash! Nice and easy.",
+        "Bath time! Wash, wash! All clean.",
+        "Splash, splash! Warm water. Nice and gentle.",
+        "Wash, wash! Little toes. All clean."
+      ]
+    },
+    {
+      "id": "milk",
+      "label": "ミルク・授乳",
+      "phrases": [
+        "Milk time! Sip, sip! Nice and slow.",
+        "Yummy milk! Sip, sip! Mmm, yummy!",
+        "Milk, milk! Little sips. Nice and easy.",
+        "Time for milk! Sip, sip! All done.",
+        "Little sips. Milk time! Nice and slow."
+      ]
+    },
+    {
+      "id": "sleep",
+      "label": "ねんね",
+      "phrases": [
+        "So sleepy. Night-night. Rest, little one.",
+        "Sleepy time. Nice and quiet. Night-night.",
+        "Time to sleep. Rest, rest. Nice and cozy.",
+        "Sleepy eyes. Night-night. Rest, rest.",
+        "Good night, little one. Nice and cozy."
+      ]
+    },
+    {
+      "id": "wake",
+      "label": "おはよう・起きる",
+      "phrases": [
+        "Good morning! Eyes open. Hello, hello!",
+        "Morning, little one! Hello, hello!",
+        "Wake up! Hello, hello! Here we go!",
+        "Good morning! Bright eyes. Hello there!",
+        "Hello there! Morning time. Eyes open."
+      ]
+    },
+    {
+      "id": "diaper",
+      "label": "おむつ",
+      "phrases": [
+        "Diaper time! Nice and easy. Here we go!",
+        "Fresh diaper! Here we go! Nice and easy.",
+        "Diaper change! Wipe, wipe! All clean.",
+        "Clean and fresh! Diaper time. All done.",
+        "Wipe, wipe! Fresh and clean. Here we go!"
+      ]
+    },
+    {
+      "id": "clothes",
+      "label": "着替え",
+      "phrases": [
+        "Clothes on! Here we go! Nice and easy.",
+        "Dress time! One little arm. Here we go!",
+        "Getting dressed! Nice and easy. All ready.",
+        "Clothes time! Here we go! All cozy.",
+        "One arm, one leg. All ready!"
+      ]
+    },
+    {
+      "id": "hug",
+      "label": "抱っこ・ぎゅー",
+      "phrases": [
+        "Big cuddle! Up, up! Nice and close.",
+        "Cuddle time! Nice and close. Here we go!",
+        "Up we go! Big hug. So cozy.",
+        "Big hug! Nice and close. Right here.",
+        "Cuddle, cuddle! Warm and cozy."
+      ]
+    },
+    {
+      "id": "hands",
+      "label": "て・おてて",
+      "phrases": [
+        "Tiny hands! Squeeze, squeeze! Wiggle, wiggle!",
+        "Little hands! Open, close. Wiggle, wiggle!",
+        "Tiny fingers! Squeeze, squeeze! Little hands!",
+        "Hands, hands! Open and close. Wiggle, wiggle!",
+        "Clap, clap! Wave, wave! Little hands!"
+      ]
+    },
+    {
+      "id": "feet",
+      "label": "あし・あんよ",
+      "phrases": [
+        "Little feet! Kick, kick! Wiggle, wiggle!",
+        "Tiny feet! Kick, kick! Little toes!",
+        "Feet, feet! Up and down. Kick, kick!",
+        "Little toes! Wiggle, wiggle! Kick, kick!",
+        "Tap, tap! Little feet. Kick, kick!"
+      ]
+    },
+    {
+      "id": "smile",
+      "label": "笑顔",
+      "phrases": [
+        "Big smile! Smile, smile! Hello, little one!",
+        "What a smile! Hello, hello! Smile, smile!",
+        "Smile, smile! There it is! Hello there!",
+        "Happy smile! Hello, little one! So sweet.",
+        "Smile for me! Big, big smile!"
+      ]
+    },
+    {
+      "id": "cry",
+      "label": "泣く・ぐずぐず",
+      "phrases": [
+        "I hear you. Right here. Nice and gentle.",
+        "I hear you. Right here. Nice and close.",
+        "Hello, little one. I hear you. Right here.",
+        "I hear your voice. Nice and gentle.",
+        "Easy, easy. Right here with you."
+      ]
+    },
+    {
+      "id": "voice",
+      "label": "こえ・おしゃべり",
+      "phrases": [
+        "I hear you! Hello, hello! I'm listening.",
+        "What a voice! Ooh, ahh! I hear you.",
+        "Hello, little one! Ooh, ahh! I hear you.",
+        "Talk, talk! Ooh, ahh! I'm listening.",
+        "Little voice! Hello, hello! Sing with me."
+      ]
+    },
+    {
+      "id": "tummy",
+      "label": "げっぷ・おなか",
+      "phrases": [
+        "Little tummy. Nice and easy. Take your time.",
+        "Little tummy. Nice and gentle. Here we go.",
+        "Nice and slow. Little tummy. Take your time.",
+        "Easy, easy. Little tummy. Right here.",
+        "Burp, burp! Little tummy. Nice and easy."
+      ]
+    },
+    {
+      "id": "play",
+      "label": "いっしょにあそぼう",
+      "phrases": [
+        "Play time! Look, look! Here we go!",
+        "Let's play! Look with me. Here we go!",
+        "Play, play! Look, look! So much fun!",
+        "Time to play! Hello, hello! Let's play!",
+        "Peek-a-boo! One, two, three! Let's play!"
+      ]
+    },
+    {
+      "id": "outside",
+      "label": "お散歩・外",
+      "phrases": [
+        "Outside time! Look around! Here we go!",
+        "Out we go! Look, look! Listen with me.",
+        "Outside, outside! Look around! Here we go!",
+        "Time outside! Look with me. Listen, listen!",
+        "Fresh air! Look around. Listen with me."
+      ]
+    },
+    {
+      "id": "rain",
+      "label": "雨",
+      "phrases": [
+        "Rain, rain! Pitter-patter! Listen, listen!",
+        "Rain outside! Drip, drop! Listen with me.",
+        "Pitter-patter! Rain, rain! Drip, drop!",
+        "Listen, listen! Rain outside! Pitter-patter!",
+        "Drip, drop! Rainy day. Listen closely."
+      ]
+    },
+    {
+      "id": "sun",
+      "label": "晴れ・お日様",
+      "phrases": [
+        "Bright day! Hello, sunshine! Look, look!",
+        "Sunshine! Bright, bright! Look with me.",
+        "Hello, sunshine! Bright day! Look, look!",
+        "Bright, bright! Sunshine! Here we go!",
+        "Sunny day! Warm and bright. Look around!"
+      ]
+    },
+    {
+      "id": "food",
+      "label": "ごはん・離乳食",
+      "phrases": [
+        "Food time! Yum, yum! Nice and slow.",
+        "Yummy food! Little bite. Nice and easy.",
+        "Time to eat! Yum, yum! Here we go!",
+        "Food, food! Little bite. Yum, yum!",
+        "Little bite. Chew, chew! Nice and slow."
+      ]
+    },
+    {
+      "id": "book",
+      "label": "絵本",
+      "phrases": [
+        "Book time! Look, look! Turn the page.",
+        "Let's read! Look with me. Turn the page.",
+        "Book, book! Look, look! Here we go!",
+        "Story time! Turn the page. Let's see!",
+        "Open the book. Look, look! What's next?"
+      ]
+    },
+    {
+      "id": "music",
+      "label": "うた・リズム",
+      "phrases": [
+        "Music time! La-la-la! Listen, listen!",
+        "Let's sing! La-la-la! Listen with me.",
+        "Music, music! Tap, tap! Here we go!",
+        "Song time! La-la-la! Listen, listen!",
+        "Clap, clap! Tap, tap! Sing with me."
+      ]
+    },
+    {
+      "id": "drink",
+      "label": "飲む",
+      "phrases": [
+        "Little sips. Sip, sip! Nice and slow.",
+        "Let's drink. Little sips. Nice and slow.",
+        "Sip, sip! Take your time. Little sips.",
+        "Small sips. Nice and easy. Take your time.",
+        "Drink, drink! Little sips. Nice and slow."
+      ]
+    }
   ]
 }
