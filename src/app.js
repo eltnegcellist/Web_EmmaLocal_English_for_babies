@@ -4,6 +4,7 @@ import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette,
 import { EmmaMicrophone } from './audio-capture.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
+import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -35,7 +36,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261005-play-ui-sync-r21';
+const WEB_BUILD = '20261006-subpage-back-r22';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -84,6 +85,7 @@ let tutorialStep=null;
 let tutorialIntroPlayed=false;
 let tutorialUserSpoke=false;
 let previousScreen='home';
+let currentScreen='home';
 let appearanceTimer=null;
 let developerTapCount=0;
 let developerTapTimer=null;
@@ -187,11 +189,15 @@ function bindEvents() {
   ui.aboutButton.addEventListener('click',()=>openAbout('home'));
   ui.settingsAboutButton.addEventListener('click',()=>openAbout('settings'));
   ui.onboardingAboutButton.addEventListener('click',()=>openAbout('onboarding'));
-  ui.aboutBackButton.addEventListener('click',()=>showScreen(previousScreen));
-  ui.settingsBackButton.addEventListener('click',()=>showScreen('home'));
+  ui.aboutBackButton.addEventListener('click',backFromSubpage);
+  ui.settingsBackButton.addEventListener('click',backFromSubpage);
   ui.settingsButton.addEventListener('click',async()=>{
     if (running || speaking || processing) await stopEmma();
-    showScreen('settings');
+    openSubpage('settings');
+  });
+  window.addEventListener('popstate',(event)=>{
+    const target=resolveAppPopScreen(currentScreen,previousScreen,event.state);
+    if(target) showScreen(target,{autoStart:false});
   });
 
   ui.noticeCloseButton.addEventListener('click',closeNotice);
@@ -390,6 +396,7 @@ function bindEvents() {
 }
 
 function showScreen(name,{autoStart=true}={}) {
+  currentScreen=name;
   for (const key of ['onboarding','home','settings','about']) {
     ui[key+'Screen'].classList.toggle('hidden',key!==name);
   }
@@ -410,9 +417,22 @@ function showScreen(name,{autoStart=true}={}) {
   }
 }
 
+function openSubpage(name) {
+  if(currentScreen!==name) window.history.pushState(appHistoryState(name),'',location.href);
+  showScreen(name,{autoStart:false});
+}
+
+function backFromSubpage() {
+  if(shouldUseBrowserBack(currentScreen,window.history.state)) {
+    window.history.back();
+    return;
+  }
+  showScreen(currentScreen==='about'?previousScreen:'home',{autoStart:false});
+}
+
 function openAbout(from) {
   previousScreen=from;
-  showScreen('about');
+  openSubpage('about');
 }
 
 function showNotice(title,body,linkUrl='',linkLabel='') {
@@ -1517,7 +1537,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261005-play-ui-sync-r21',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-subpage-back-r22',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
