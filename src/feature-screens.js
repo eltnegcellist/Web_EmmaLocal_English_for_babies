@@ -33,7 +33,7 @@ export function localHistoryStamp(value) {
   };
 }
 
-export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,avatar,playSentenceCount=()=>1}) {
+export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,avatar,playSentenceCount=()=>1,setPlaySentenceCount=()=>{}}) {
   const $=id=>document.getElementById(id);
   const dialog=$('featureDialog'), body=$('featureBody'), title=$('featureTitle');
   let generation=0,kind='';
@@ -111,30 +111,68 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
     const data=loadedData||await loadTopics();if(token!==generation)return;
     const phrases=topic?.phrases||allTopicPhrases(data);
     const topicLabel=topic?.label||'すべての話題';
-    body.replaceChildren(button('話題を変更',async()=>{await stop();showTopics();}));
+    const topicButton=button('話題を変更',async()=>{await stop();showTopics();});
+    topicButton.classList.add('play-topic-change');
+
+    const sentenceToolbar=document.createElement('div');
+    sentenceToolbar.className='play-sentence-toolbar';
+    sentenceToolbar.append(text('1回','span','play-sentence-prefix'));
+    const sentenceButtons=document.createElement('div');
+    sentenceButtons.className='play-sentence-toggle';
+    const oneButton=button('1文',()=>applySentenceCount(1),'play-sentence-option');
+    const threeButton=button('3文',()=>applySentenceCount(3),'play-sentence-option');
+    sentenceButtons.append(oneButton,threeButton);
+    sentenceToolbar.append(sentenceButtons);
+
+    function renderSentenceCount(){
+      const count=playSentenceCount()===3?3:1;
+      oneButton.classList.toggle('selected',count===1);
+      threeButton.classList.toggle('selected',count===3);
+      oneButton.setAttribute('aria-pressed',String(count===1));
+      threeButton.setAttribute('aria-pressed',String(count===3));
+    }
+    function applySentenceCount(count){
+      if(isSpeaking())return;
+      setPlaySentenceCount(count===3?3:1);
+      previous='';
+      renderSentenceCount();
+    }
+    renderSentenceCount();
+
     const tap=button('声を準備しています…',async()=>{
       if(tap.disabled||isSpeaking())return;
       tap.disabled=true;
       const candidates=phrasesForSentenceCount(phrases,playSentenceCount());
       const phrase=nextPhrase(candidates,previous);previous=phrase;
-      label.textContent=phrase;
-      try{await speak(phrase);}catch(error){if(token===generation)label.textContent=`再生できませんでした：${error.message}`;}
-      finally{if(token===generation)tap.disabled=false;}
+      englishText.textContent=phrase;
+      actionLabel.textContent='一緒に聞こう';
+      tap.classList.add('is-speaking');
+      try{await speak(phrase);}catch(error){if(token===generation)englishText.textContent=`再生できませんでした：${error.message}`;}
+      finally{
+        if(token===generation){
+          tap.classList.remove('is-speaking');
+          actionLabel.textContent='押して聞く';
+          tap.disabled=false;
+        }
+      }
     },'play-tap');
-    let previous='';const label=text('声を準備しています…','span');
+    let previous='';
+    const actionLabel=text('声を準備しています…','span','play-action-label');
+    const englishText=text('','span','play-english-text');
     const face=avatar();face.setAttribute('aria-hidden','true');face.classList.add('play-avatar');
     tap.replaceChildren(
       face,
       text(topicLabel,'span','play-topic-label'),
-      text(playSentenceCount()===3?'1回に3文':'1回に1文','small','play-sentence-count'),
-      label,
-      text('一緒にまねする・交互に押す','small')
+      actionLabel,
+      englishText,
+      text('親子で一緒に聞く・まねする・交互に押す','small','play-help')
     );
-    tap.disabled=true;body.append(tap);
+    tap.disabled=true;
+    body.replaceChildren(topicButton,sentenceToolbar,tap);
     try{
       await prepare();if(token!==generation)return;
-      label.textContent='押して聞く';tap.disabled=false;
-    }catch(error){if(token===generation)label.textContent=`準備できませんでした：${error.message}`;}
+      actionLabel.textContent='押して聞く';tap.disabled=false;
+    }catch(error){if(token===generation)actionLabel.textContent=`準備できませんでした：${error.message}`;}
   }
   $('playButton').addEventListener('click',async()=>{await open('play');startAllTopics();});
   $('historyButton').addEventListener('click',async()=>{await open('history');showHistory();});
