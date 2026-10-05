@@ -5,12 +5,14 @@ import { JSDOM } from 'jsdom';
 import { ConversationHistory, createHistoryEntry, historyEnabled } from './src/conversation-history.js';
 import { installFeatureScreens, nextPhrase, allTopicPhrases, localHistoryStamp } from './src/feature-screens.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
+assert.equal(topics.topics.length,22);
+assert.equal(topics.topics.reduce((count,topic)=>count+topic.phrases.length,0),110);
 for(const topic of topics.topics){
   assert.equal(new Set(topic.phrases).size,topic.phrases.length);
   for(const phrase of topic.phrases){assert(phrase.trim().split(/\s+/).length<=8);assert(!/you are|you have|you're/i.test(phrase));}
   for(let i=0;i<30;i++)assert.notEqual(nextPhrase(topic.phrases,topic.phrases[i%topic.phrases.length]),topic.phrases[i%topic.phrases.length]);
 }
-const mixed=allTopicPhrases(topics);assert.equal(mixed.length,new Set(mixed).size);assert(mixed.length>topics.topics[0].phrases.length);
+const mixed=allTopicPhrases(topics);assert.equal(mixed.length,110);assert.equal(mixed.length,new Set(mixed).size);assert(mixed.length>topics.topics[0].phrases.length);
 const stamp=localHistoryStamp('2026-10-05T10:23:00+09:00');assert.match(stamp.key,/^\d{4}-\d{2}-\d{2}$/);assert.match(stamp.timeLabel,/\d{2}:\d{2}/);
 const dom=new JSDOM(readFileSync(new URL('./index.html',import.meta.url),'utf8'),{url:'https://example.test/'});
 const {window}=dom;globalThis.document=window.document;
