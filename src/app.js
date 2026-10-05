@@ -28,14 +28,14 @@ const ui = {
   babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
-  keepAwake:$('keepAwake'), playSentenceCount:$('playSentenceCount'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
+  keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261005-play-sentence-count-r20';
+const WEB_BUILD = '20261005-play-ui-sync-r21';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -110,7 +110,8 @@ function initUi() {
     speak:speakResponse,
     history,
     isSpeaking:()=>speaking,
-    playSentenceCount:()=>Number(ui.playSentenceCount?.value)===3?3:1,
+    playSentenceCount:()=>localStorage.getItem(STORAGE.playSentenceCount)==='3'?3:1,
+    setPlaySentenceCount:count=>localStorage.setItem(STORAGE.playSentenceCount,count===3?'3':'1'),
     avatar:()=>{ const avatar=ui.avatar.cloneNode(true); avatar.removeAttribute('id'); avatar.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id')); return avatar; }
   });
   const babyName = localStorage.getItem(STORAGE.babyName) || '';
@@ -129,7 +130,6 @@ function initUi() {
   ui.softPalette.value = normalizeSoftPalette(localStorage.getItem(STORAGE.soft));
   ui.filledPalette.value = normalizeFilledPalette(localStorage.getItem(STORAGE.filled));
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
-  if (ui.playSentenceCount) ui.playSentenceCount.value = localStorage.getItem(STORAGE.playSentenceCount)==='3' ? '3' : '1';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'small';
   if (ui.onboardingStartTiny) {
@@ -289,12 +289,6 @@ function bindEvents() {
   ui.vividPalette.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.vivid,ui.vividPalette.value);
     applyAppearance();
-  });
-
-  ui.playSentenceCount?.addEventListener('change',()=>{
-    const count=ui.playSentenceCount.value==='3' ? '3' : '1';
-    ui.playSentenceCount.value=count;
-    localStorage.setItem(STORAGE.playSentenceCount,count);
   });
 
   ui.keepAwake.addEventListener('change',()=>{
@@ -1523,7 +1517,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261005-play-sentence-count-r20',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261005-play-ui-sync-r21',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
