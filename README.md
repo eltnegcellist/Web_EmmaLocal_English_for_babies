@@ -101,14 +101,14 @@ Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして
 
 ### 会話を自分で区切る
 
-通常は発話終了を自動検出して返答します。終了検出がうまくいかない場合や、ここまでで返してほしい場合は、会話中の **「ここで返事して」** を押してください。その時点までVADが保持している音声を強制確定し、Moonshineへ渡して返答します。自動返答をONにしたままでも使えます。
+通常は発話終了を自動検出して返答します。終了検出がうまくいかない場合や、ここまでで返してほしい場合は、会話中の **「今すぐAIが返事する」** を押してください。その時点までVADが保持している音声を強制確定し、Moonshineへ渡して返答します。自動返答をONにしたままでも使えます。
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.9.34** と並行して提供するブラウザ版の安定基準です。
+現在のWeb版 `main` は、**みつことば Android v1.9.39** と並行して提供するブラウザ版の安定基準です。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.34
+- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.39
 - Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 Web版はブラウザ向けの軽量構成です。Android版では同系統の軽量構成に加えて、Gemmaを使うFullも利用できます。
@@ -349,10 +349,10 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.34**.
+The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.39**.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.34
+- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.39
 - Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
 
 The Web edition uses the lightweight browser configuration. Android provides the same lightweight style of interaction plus the Gemma-based Full mode.
@@ -515,6 +515,10 @@ Web and Android use the same palettes. Soft, Vivid, and Filled each offer four f
 
 
 Web navigation: Browser/phone Back on Settings returns to the main screen, and Back on the learning-reason/About screen returns to the previous app screen instead of leaving the app immediately.
+
+### 隠し開発者設定
+
+設定画面の「モデル保存」を5回タップすると、通常利用では隠している開発者設定を開けます。Semantic / Guard / 従来Liteの比較、日本語テキストからの返答確認、Semantic単体テスト、モデルラボ、Moonshine / Kitten共存診断、Kitten音声診断、TTSの直近処理時間、診断情報のコピー・TXT保存、完全リセットを利用できます。診断TXTには個人名や会話本文を含めず、実行環境・モデル状態・設定・直近の処理時間を出力します。
 
 ### Semanticによる話題判定
 
