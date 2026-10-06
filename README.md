@@ -147,7 +147,7 @@ Web版は21種類の育児の話題を端末内で判定します。「寝まし
 
 - Moonshineをブラウザ内WASMでローカル実行します
 - 既定はJapanese Small Streamingです
-- Tiny Streamingは初回の詳細設定または設定画面から軽量オプションとして選べます
+- 初期設定では「高性能モデルを使う」をオンにするとSmall + Semantic、オフにするとTiny + 従来Lite判定を選びます。設定画面では後から個別に変更できます
 - ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
 - Moonshine 0.1.5のブラウザ用アセットを `src/vendor/moonshine/` に固定しています
 
@@ -393,7 +393,7 @@ Run `node test-topic-detection.mjs` for phrase variations, simulated transcript 
 
 - Moonshine runs locally in browser WASM
 - Japanese Small Streaming is the default model
-- Tiny Streaming is available as a lightweight option from first-run advanced settings or Settings
+- First run uses one performance preset: on selects Small + Semantic, while off selects Tiny + legacy Lite topic matching. Settings can adjust them individually later
 - The browser Web Speech / SpeechRecognition API is not used
 - Moonshine 0.1.5 browser assets are pinned in `src/vendor/moonshine/`
 
@@ -518,4 +518,4 @@ Web navigation: Browser/phone Back on Settings returns to the main screen, and B
 
 ### Semanticによる話題判定
 
-70M INT8による話題判定を標準で有効にしています。初期設定の小さなオフ項目、または通常の設定で無効にできます。明確な話題変更がない発話は直前の話題を最大6回使います。診断・比較は「モデル保存」を5回タップする隠し設定内にあります。[使い方・起動・既知の制約](docs/semantic-lite-web-test.md)を参照してください。[文字で試す](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/semantic-test.html)。
+70M INT8による話題判定を標準で有効にしています。初期設定では「高性能モデルを使う」をオフにするとTinyと同時に無効になり、通常の設定では後から個別に変更できます。明確な話題変更がない発話は直前の話題を最大6回使います。診断・比較は「モデル保存」を5回タップする隠し設定内にあります。[使い方・起動・既知の制約](docs/semantic-lite-web-test.md)を参照してください。[文字で試す](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/semantic-test.html)。
