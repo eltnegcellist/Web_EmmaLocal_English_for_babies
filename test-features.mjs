@@ -49,6 +49,11 @@ assert.equal(historyEnabled(storage),false);assert.equal((await history.list()).
 await history.delete();assert.deepEqual(await history.list(),[]);
 await assert.rejects(new ConversationHistory(null).list());
 const $=id=>document.getElementById(id);
+assert($('onboardingHighPerformance'),'first-run performance toggle must exist');
+assert.equal($('onboardingHighPerformance').checked,true,'high-performance preset should default on');
+assert.equal($('onboardingStartTiny'),null,'legacy Tiny toggle should not appear in first-run UI');
+assert.equal($('onboardingSemanticOff'),null,'legacy Semantic-off toggle should not appear in first-run UI');
+assert.match($('onboardingHighPerformance').closest('label').textContent,/高性能モデルを使う/);
 $('featureDialog').showModal=function(){this.open=true;};$('featureDialog').close=function(){this.open=false;};
 globalThis.confirm=()=>true;globalThis.fetch=async()=>({ok:true,json:async()=>topics});
 let stops=0,spoken=[],busy=false,finish,preloads=0,playCount=1;
@@ -93,6 +98,9 @@ const context={state:'running',decodeAudioData:()=>new Promise(resolve=>decodedR
   createGain:()=>({gain:{value:1},connect(node){return node;}}),
   createAnalyser:()=>({connect(){},getByteTimeDomainData(data){data.fill(128);}}),destination:{}};
 let source=readFileSync(new URL('./src/app.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replaceAll('import.meta.url',"'https://example.test/src/app.js'").replace('\ninitUi();','\n');
+assert(source.includes("const highPerformance = ui.onboardingHighPerformance?.checked !== false;"));
+assert(source.includes("const firstRunAsr = highPerformance ? 'small' : 'tiny';"));
+assert(source.includes("await semanticPanel.setEnabled(highPerformance,{prepare:false,mode:'semantic'});"));
 source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=>{};renderAvatarFrame=()=>{};setBusy=()=>{};
   audioContext=testAudio;ttsWorker={postMessage(message){captureRequest(message.requestId);}};
   history.append=async()=>{commitHistory();};
