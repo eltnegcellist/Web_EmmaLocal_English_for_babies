@@ -39,7 +39,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261006-semantic-main-r1';
+const WEB_BUILD = '20261006-semantic-main-r2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -68,6 +68,7 @@ if (new URLSearchParams(location.search).has('debug')) document.body.classList.a
 
 const engine = new LiteResponseEngine();
 let semanticPanel;
+let preparingConversation=false;
 // The official v0.1.5 release archive contains the split-frontend WASM build;
 // the v0.1.5 npm tarball's WASM does not.
 const MOONSHINE_MODULE_URL = new URL('./moonshine-module.js', import.meta.url).href;
@@ -583,6 +584,7 @@ async function startEmma({ auto = false } = {}) {
     // actual capture path can proceed, and one-time permission must be allowed
     // to show its browser prompt on every new launch.
     running=true;
+    preparingConversation=true;
     ui.mainButton.classList.add("hidden");
     ui.stopButton.classList.remove("hidden");
     engine.resetConversationContext();
@@ -618,6 +620,7 @@ async function startEmma({ auto = false } = {}) {
     ui.mainButton.classList.add('hidden');
     ui.manualReplyButton.classList.remove('hidden');
     ui.stopButton.classList.remove('hidden');
+    preparingConversation=false;
     setBusy(false);
     showProgress(false);
     if(ui.keepAwake.checked) await requestWakeLock();
@@ -626,6 +629,7 @@ async function startEmma({ auto = false } = {}) {
     if(epoch!==conversationEpoch)return;
     console.error(error);
     running=false;
+    preparingConversation=false;
     ui.stopButton.classList.add("hidden");
     ui.manualReplyButton.classList.add("hidden");
     ui.mainButton.classList.remove("hidden");
@@ -659,6 +663,7 @@ async function stopEmma() {
   semanticPanel?.cancelPending();
   while(audioUnlockWaiters.length)audioUnlockWaiters.shift()?.();
   running=false;
+  preparingConversation=false;
   processing=false;
   speaking=false;
   pendingUtterance=null;
@@ -681,7 +686,7 @@ async function stopEmma() {
 }
 
 function handleCapturedUtterance(audio) {
-  if(!running||processing||speaking)return;
+  if(!running||preparingConversation||processing||speaking)return;
   if(tutorialStep===2){
     tutorialUserSpoke=true;
     pendingUtterance={kind:'audio',audio};
@@ -728,12 +733,12 @@ async function startMoonshineCapture() {
   const epoch=conversationEpoch;
   const capture=new EmmaMicrophone({
     onState:(state)=>{
-      if(epoch!==conversationEpoch || !running || !workersReady||processing||speaking)return;
+      if(epoch!==conversationEpoch || !running || preparingConversation || !workersReady||processing||speaking)return;
       if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
       else setState('listening',`${getAiName()}が聞いています`,'いつもどおり日本語で赤ちゃんへ話しかけてください。');
     },
-    onUtterance:(audio)=>{ if(epoch===conversationEpoch)handleCapturedUtterance(audio); },
-    shouldIgnore:()=>epoch!==conversationEpoch||!workersReady||processing||speaking
+    onUtterance:(audio)=>{ if(epoch===conversationEpoch && !preparingConversation)handleCapturedUtterance(audio); },
+    shouldIgnore:()=>epoch!==conversationEpoch||preparingConversation||!workersReady||processing||speaking
   });
   mic=capture;
   await capture.start();
@@ -1573,7 +1578,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r2',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1607,6 +1612,6 @@ async function ensureMoonshineIsolation() {
 
 window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r1',{updateViaCache:'none'}).then(()=>ensureMoonshineIsolation()).catch(error=>console.warn('Moonshine isolation setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r2',{updateViaCache:'none'}).then(()=>ensureMoonshineIsolation()).catch(error=>console.warn('Moonshine isolation setup:',error));
   }
 });
