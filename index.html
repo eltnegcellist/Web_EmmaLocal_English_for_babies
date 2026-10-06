@@ -74,7 +74,7 @@
           <p>初期設定では会話履歴を端末内に残します。録音は保存しません。設定でオフにできます。</p>
           <button id="prepareEmmaButton" class="primary-button hero-start-button">
             <span class="button-main">3人で話しはじめる</span>
-            <span class="button-sub">初回のみ音声と話題判定を準備します</span>
+            <span class="button-sub">初回のみ必要なモデルを準備します</span>
           </button>
           <div id="onboardingProgress" class="progress-wrap hidden">
             <div class="progress-track"><div id="onboardingProgressBar" class="progress-bar"></div></div>
@@ -88,20 +88,15 @@
 
         <div class="lite-compact-setting">
           <div>
-            <strong>音声認識</strong>
-            <small>Small推奨。軽さを優先するときだけTinyを使います。</small>
+            <strong>モデル性能</strong>
+            <small>オンなら高精度、オフなら軽量構成で始めます。</small>
           </div>
           <label class="toggle-line compact-toggle">
-            <span><strong>Moonshine Tiny（軽量）</strong></span>
-            <span class="switch"><input id="onboardingStartTiny" type="checkbox" /><span></span></span>
-          </label>
-        </div>
-
-        <div class="lite-compact-setting semantic-compact-setting">
-          <div><strong>話題の理解</strong><small>普段の言い方から意味を理解します。標準でオンです。</small></div>
-          <label class="toggle-line compact-toggle">
-            <span><strong>意味での話題判定をオフにする</strong></span>
-            <span class="switch"><input id="onboardingSemanticOff" type="checkbox"><span></span></span>
+            <span>
+              <strong>高性能モデルを使う</strong>
+              <small>オン：Moonshine Small＋意味で話題を理解 / オフ：Tiny＋軽量判定</small>
+            </span>
+            <span class="switch"><input id="onboardingHighPerformance" type="checkbox" checked /><span></span></span>
           </label>
         </div>
 
