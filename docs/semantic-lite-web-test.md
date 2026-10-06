@@ -1,10 +1,12 @@
 # みつことば Semantic Lite Webテスト版
 
-2026-10-06。既存WebアプリにRuri v3 70M INT8の話題判定を追加したローカルテスト版です。追加の精度研究は中断し、現在のINT8候補を機能として組み込んでいます。公開サイトには反映していません。
+2026-10-06。既存WebアプリにRuri v3 70M INT8の話題判定を追加したテスト機能です。追加の精度研究は中断し、現在のINT8候補を機能として組み込んでいます。ユーザーの公開指示に従い、GitHub Pagesへ配信する構成にしています。
 
 ## 使い方
 
-実アプリは `http://127.0.0.1:8765/index.html`。設定の「Semantic Lite テスト」で「意味で話題を判定する」をオンにします。追加データ約93MBを準備すると、音声認識後の話題判定に利用できます。通常の音声会話には既存のMoonshineとKittenの準備も必要です。
+Pagesの実アプリは https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/ 。文字テストは https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/semantic-test.html です。
+
+ローカルの実アプリは `http://127.0.0.1:8765/index.html`。設定の「Semantic Lite テスト」で「意味で話題を判定する」をオンにします。追加データ約93MBを準備すると、音声認識後の話題判定に利用できます。通常の音声会話には既存のMoonshineとKittenの準備も必要です。
 
 初回画面の「Semantic Lite テスト版を文字で試す」、または `http://127.0.0.1:8765/semantic-test.html` から、音声モデルなしで話題と既存英文を試せます。文字テストで選んだ話題は通常アプリの会話文脈へ持ち越しません。判定方式の設定は同じブラウザに保存します。
 
@@ -34,7 +36,7 @@ npm run prepare:semantic -- /path/to/ruri70-int8-browser-candidate
 npm run package:semantic
 ```
 
-同梱先は `dist/semantic-lite-test/`。モデル、tokenizer、head、WASM/JS実行資産、既存アプリ、ライセンスを含みます。Git管理外のモデル資産を含むため、Git checkoutだけでは実行資産は揃いません。prepareは元モデルのSHAを固定し、packageは全Semantic資産のサイズとSHAを確認してコピーします。公開は行いません。
+同梱先は `dist/semantic-lite-test/`。モデル、tokenizer、head、WASM/JS実行資産、既存アプリ、ライセンスを含みます。Pages配信用のモデル・ランタイム資産はGitに含めています。新しいcheckoutでも、この固定資産から実行できます。prepareは元モデルのSHAを固定し、packageは全Semantic資産のサイズとSHAを確認してコピーします。packageコマンドはローカルの同梱版を作るだけで、公開処理は行いません。
 
 ## 実装と既存の測定結果
 
@@ -54,6 +56,6 @@ intent/stateはMacとWebで差があり、実用応答の条件には採用し�
 
 音声認識結果を扱う実アプリの経路には接続済みですが、この工程で実マイクの録音から発話までの実機テストは行っていません。既存ASR/TTSのテストと、新しい文字入力の接続確認を区別してください。
 
-実装ブランチは `experiment/semantic-lite-web-test`。main merge、Release、push、外部公開は行っていません。ライセンス原文・帰属は `licenses/semantic/` と `THIRD_PARTY_NOTICES.md` に保存しています。
+実装ブランチは `experiment/semantic-lite-web-test`。Pages配信はmainのCIから公開用ブランチへ同期する既存手順を利用します。GitHub Releaseは作成しません。ライセンス原文・帰属は `licenses/semantic/` と `THIRD_PARTY_NOTICES.md` に保存しています。
 
 2026-10-06の機能確認は通過しました。実画面・3方式切替・中止／再試行・資産欠落時の復帰・保存済みモデルのオフライン実行・390px幅を確認済みです。既存npm test、shared contract、構文チェック、diffチェックも通過し、npm auditは0件でした。確認記録は `semantic-lite-web-functional-checks.json` です。

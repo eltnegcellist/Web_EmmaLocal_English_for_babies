@@ -26,6 +26,8 @@ jobs:
           python3 scripts/generate-lite-topic-contract.py --target web --check
           python3 scripts/test-lite-topic-contract.py
           python3 scripts/verify-play-topics.py
+      - name: Verify pinned Semantic distribution assets
+        run: python3 scripts/verify-semantic-assets.py
       - name: Smoke test LiteResponseEngine
         run: |
           node test-lite.mjs

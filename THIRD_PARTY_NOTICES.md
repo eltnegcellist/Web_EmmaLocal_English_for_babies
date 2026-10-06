@@ -176,5 +176,6 @@ the upstream `v1.30.0` tag:
 - https://github.com/microsoft/onnxruntime/blob/v1.30.0/ThirdPartyNotices.txt
 - https://huggingface.co/cl-nagoya/ruri-v3-70m/tree/07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc
 
-Model files are prepared outside Git and must accompany a self-contained local
-test package. The test feature has not been published to the public Pages app.
+The pinned model and runtime distribution assets are included in the repository
+for the opt-in Pages test feature. Local preparation/package scripts preserve
+the same hashes and license copies.

@@ -1,0 +1,99 @@
+{
+  "input_names": [
+    "input_ids",
+    "attention_mask"
+  ],
+  "input_dtype": "int64",
+  "output_name": "sentence_embedding",
+  "dimensions": 384,
+  "prefix": "",
+  "max_length": 128,
+  "pooling_and_l2": "inside ONNX graph; do not pool twice",
+  "source_model": "cl-nagoya/ruri-v3-70m",
+  "source_revision": "07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc",
+  "graph_variant": "int8-rowwise",
+  "heads": {
+    "topic": {
+      "filename": "head-topic.f32",
+      "classes": [
+        "drink",
+        "bath",
+        "milk",
+        "sleep",
+        "wake",
+        "diaper",
+        "clothes",
+        "hug",
+        "hands",
+        "feet",
+        "smile",
+        "cry",
+        "voice",
+        "tummy",
+        "play",
+        "outside",
+        "rain",
+        "sun",
+        "food",
+        "book",
+        "music",
+        "generic"
+      ],
+      "dimensions": 384,
+      "dtype": "little-endian float32",
+      "layout": "row-major [class,385]; last column is bias",
+      "shape": [
+        22,
+        385
+      ],
+      "sha256": "1391e9595ec2b932c0f915647c7d184112dadcce281bab59e6de37cc45e2bb29"
+    },
+    "intent": {
+      "filename": "head-intent.f32",
+      "classes": [
+        "generic",
+        "invitation",
+        "observation",
+        "praise",
+        "question",
+        "reassurance",
+        "report"
+      ],
+      "dimensions": 384,
+      "dtype": "little-endian float32",
+      "layout": "row-major [class,385]; last column is bias",
+      "shape": [
+        7,
+        385
+      ],
+      "sha256": "ee92acac921d237b1af2728c44db4b8ae8c72ab8b9b1ffa8c71344e28313f899"
+    },
+    "state": {
+      "filename": "head-state.f32",
+      "classes": [
+        "completed",
+        "future",
+        "not_done",
+        "ongoing",
+        "unspecified"
+      ],
+      "dimensions": 384,
+      "dtype": "little-endian float32",
+      "layout": "row-major [class,385]; last column is bias",
+      "shape": [
+        5,
+        385
+      ],
+      "sha256": "99ba96266594dc71c6a7be5110242d02d67b0e2c3de3a74aef2f2e8686c7d35e"
+    }
+  },
+  "topic_thresholds": {
+    "threshold": 0,
+    "margin": 0.05
+  },
+  "topic_guard": "keep concrete Current Lite scene, otherwise use semantic/logistic output",
+  "intent_state_threshold": null,
+  "intent_state_status": "research_only; no valid 95-percent confidence threshold found on original validation",
+  "state_semantics": "referenced aspect/nonoccurrence, not actual event completion",
+  "runtime_included": false
+}

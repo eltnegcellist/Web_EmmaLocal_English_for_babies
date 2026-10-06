@@ -1,7 +1,9 @@
 node_modules
 __pycache__/
 
-semantic-assets/
+semantic-assets/*
+!semantic-assets/ruri70-int8-bd500193/
+!semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/
 tests/generated/
 .semantic-test-results/
 .semantic-research/

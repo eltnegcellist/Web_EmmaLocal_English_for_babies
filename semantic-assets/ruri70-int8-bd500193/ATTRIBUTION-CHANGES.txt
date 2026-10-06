@@ -1,0 +1,8 @@
+Local Ruri v3 70M ONNX INT8 review candidate (not published).
+Source: cl-nagoya/ruri-v3-70m revision 07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc.
+Ruri authors: Hayato Tsukagoshi and Ryohei Sasano, Ruri: Japanese General Text Embeddings, 2024, https://arxiv.org/abs/2409.07737.
+Base: cl-nagoya/ruri-v3-pt-70m (Apache-2.0), sbintuitions/modernbert-ja-70m (MIT).
+Tokenizer: ModernBERT-Ja uses sbintuitions/sarashina2-13b tokenizer/vocabulary (MIT). Its official license link points to the shared Sarashina2-7B LICENSE included here.
+Local changes: exported with eager attention, no optional Torch compilation, standard ONNX opset17; attention-mask mean pooling and L2 normalization are inside the graph. MatMul weights dynamically quantized per channel; token embedding table stored in symmetric INT8 independently per token row, scales gathered and multiplied after lookup. Floating-point normalization/rotary/attention softmax remain.
+Topic/intent/state classifiers are fixed local experimental LR heads, not part of original Ruri weights. No English generation or production reply routing is included.
+Browser/WASM/WebGPU and Android runtime compatibility are untested. 128-token preprocessing limit is the evaluated short-utterance policy, not a claim of full 8192-token validation.

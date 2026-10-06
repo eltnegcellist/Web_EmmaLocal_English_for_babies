@@ -1,2 +1,8 @@
 # Preserve upstream Markdown hard line breaks in the pinned model card.
 licenses/semantic/MODEL-CARD.md whitespace=-blank-at-eol
+
+# Model and browser execution assets are binary distribution files.
+*.onnx -diff
+*.wasm -diff
+*.f32 -diff
+semantic-assets/ruri70-int8-bd500193/MODEL-CARD.md whitespace=-blank-at-eol
