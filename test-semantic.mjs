@@ -92,3 +92,13 @@ assert.equal(captureOptions.shouldIgnore(),true);captureOptions.onUtterance([]);
 captureSandbox.preparingConversation=false;assert.equal(captureOptions.shouldIgnore(),false);captureOptions.onUtterance([]);assert.equal(utterances,1);
 captureSandbox.conversationEpoch=2;assert.equal(captureOptions.shouldIgnore(),true);captureOptions.onUtterance([]);assert.equal(utterances,1);
 console.log('Capture waits for Semantic startup and rejects stale session audio.');
+// Opening/editing settings only registers the cache worker. Isolation reloads
+// are reserved for ASR startup and must respect a cancelled conversation epoch.
+let onLoad,registrations=0,isolationCalls=0;
+const registrationSandbox={window:{addEventListener:(event,fn)=>onLoad=fn},navigator:{serviceWorker:{register:async()=>{registrations++;}}},ensureMoonshineIsolation:async()=>{isolationCalls++;},console};
+runInNewContext(appSource.slice(appSource.lastIndexOf("window.addEventListener('load'")),registrationSandbox);onLoad();await Promise.resolve();assert.equal(registrations,1);assert.equal(isolationCalls,0);
+let current=true,reloads=0;
+const isoSandbox={window:{crossOriginIsolated:false},navigator:{serviceWorker:{register:async()=>({update:async()=>{current=false;}})}},location:{reload(){reloads++;}},sessionStorage:{getItem:()=>null,setItem(){},removeItem(){}},delay:async()=>{},SharedArrayBuffer};
+const isolationSource=appSource.slice(appSource.indexOf('async function ensureMoonshineIsolation('),appSource.lastIndexOf("window.addEventListener('load'"));
+runInNewContext(isolationSource+'globalThis.isolate=ensureMoonshineIsolation;',isoSandbox);assert.equal(await isoSandbox.isolate({isCurrent:()=>current}),false);assert.equal(reloads,0);
+console.log('Background registration does not reload editors; cancelled ASR startup cannot reload.');

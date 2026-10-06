@@ -39,7 +39,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261006-semantic-main-r2';
+const WEB_BUILD = '20261006-semantic-main-r3';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -108,7 +108,7 @@ function audioCacheKey(text){
 initUi();
 
 function initUi() {
-  semanticPanel=createSemanticController({engine,mode:'semantic',beforeChange:async()=>{if(running||processing||speaking)await stopEmma();}});
+  semanticPanel=createSemanticController({engine,mode:'semantic',beforeChange:async()=>{if(running||preparingConversation||processing||speaking)await stopEmma();}});
   installSemanticPanel({controller:semanticPanel});
   semanticPanel.subscribe(({requested,status})=>{
     ui.onboardingSemanticOff.checked=!requested;
@@ -204,7 +204,7 @@ function bindEvents() {
   ui.aboutBackButton.addEventListener('click',backFromSubpage);
   ui.settingsBackButton.addEventListener('click',backFromSubpage);
   ui.settingsButton.addEventListener('click',async()=>{
-    if (running || speaking || processing) await stopEmma();
+    if (running || preparingConversation || speaking || processing) await stopEmma();
     openSubpage('settings');
   });
   window.addEventListener('popstate',(event)=>{
@@ -363,7 +363,7 @@ function bindEvents() {
     if(confirmed) location.href='./reset.html?full=1';
   });
   ui.tutorialReplayButton?.addEventListener('click',async()=>{
-    if(running || processing || speaking) await stopEmma();
+    if(running || preparingConversation || processing || speaking) await stopEmma();
     showScreen('home',{autoStart:false});
     startTutorial({replay:true});
   });
@@ -549,7 +549,7 @@ async function prepareFirstRun() {
     localStorage.setItem(STORAGE.startTiny,String(firstRunAsr==='tiny'));
     if(ui.asrModel) ui.asrModel.value=firstRunAsr;
     updateAsrModelStatus();
-    if(!(await ensureMoonshineIsolation()) || epoch!==conversationEpoch) return;
+    if(!(await ensureMoonshineIsolation({isCurrent:()=>epoch===conversationEpoch})) || epoch!==conversationEpoch) return;
     await navigator.storage?.persist?.().catch(()=>false);
     await clearObsoleteModelCaches();
     await initWorkers();
@@ -572,19 +572,19 @@ async function prepareFirstRun() {
 }
 
 async function startEmma({ auto = false } = {}) {
-  if(running || processing || speaking || featureScreens?.isOpen() || ui.mainButton.disabled) return;
+  if(running || preparingConversation || processing || speaking || featureScreens?.isOpen() || ui.mainButton.disabled) return;
   const epoch=++conversationEpoch;
   sessionId=crypto.randomUUID();
   ui.mainButton.disabled=true;
+  preparingConversation=true;
   try {
-    if(!(await ensureMoonshineIsolation())) return;
+    if(!(await ensureMoonshineIsolation({isCurrent:()=>epoch===conversationEpoch}))) return;
 
     // Always try the real microphone first. Do not gate startup on the
     // Permissions API: Android/Brave/Chrome may report "prompt" even when the
     // actual capture path can proceed, and one-time permission must be allowed
     // to show its browser prompt on every new launch.
     running=true;
-    preparingConversation=true;
     ui.mainButton.classList.add("hidden");
     ui.stopButton.classList.remove("hidden");
     engine.resetConversationContext();
@@ -873,7 +873,8 @@ function showMoonshineProgress(progress,message) {
 async function ensureWorkersForDebug() {
   setBusy(true);
   showProgress(true,0,'みつことばの声を準備しています…');
-  await initWorkers();
+  // Typed speech already has a transcript; it needs TTS, not the ASR runtime.
+  await initVoice();
   setBusy(false);
   showProgress(false);
 }
@@ -917,7 +918,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
 
 async function transcribeUtterance(audio) {
   const epoch=conversationEpoch;
-  if(!running||processing||speaking||!moonshineTranscriber)return;
+  if(!running||preparingConversation||processing||speaking||!moonshineTranscriber)return;
   processing=true;
   setBusy(true);
   setState('thinking','聞き取っています…','Moonshineで音声を端末内処理しています。');
@@ -1569,7 +1570,8 @@ function withTimeout(promise,ms,message){
   return Promise.race([promise,timeout]).finally(()=>clearTimeout(timer));
 }
 
-async function ensureMoonshineIsolation() {
+async function ensureMoonshineIsolation({isCurrent=()=>true}={}) {
+  if(!isCurrent())return false;
   if(window.crossOriginIsolated && typeof SharedArrayBuffer === 'function') {
     sessionStorage.removeItem('emma_coi_reload_count');
     return true;
@@ -1578,7 +1580,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r2',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r3',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1598,6 +1600,7 @@ async function ensureMoonshineIsolation() {
     ]);
   }
 
+  if(!isCurrent())return false;
   if(window.crossOriginIsolated && typeof SharedArrayBuffer === 'function') return true;
 
   const reloadCount=Number(sessionStorage.getItem('emma_coi_reload_count')||'0');
@@ -1612,6 +1615,8 @@ async function ensureMoonshineIsolation() {
 
 window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r2',{updateViaCache:'none'}).then(()=>ensureMoonshineIsolation()).catch(error=>console.warn('Moonshine isolation setup:',error));
+    // Register for offline assets now. Reload for isolation only when ASR starts,
+    // so background setup cannot discard settings or Japanese text being edited.
+    navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r3',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });
