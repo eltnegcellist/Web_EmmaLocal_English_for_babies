@@ -101,6 +101,9 @@ let lastTtsFirstChunkMillis=null;
 let lastTtsGenerationCompleteMillis=null;
 let lastTtsFirstAudioMillis=null;
 let lastTtsTotalMillis=null;
+const diagnosticNow=()=>typeof performance!=='undefined'&&typeof performance.now==='function'
+  ? performance.now()
+  : Date.now();
 const audioQueues = new Map();
 const history = new ConversationHistory();
 let sessionId='', conversationEpoch=0;
@@ -977,7 +980,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
         }
       }
       q.generationDone=true;
-      lastTtsGenerationCompleteMillis=Math.round(performance.now()-q.ttsRequestStartedAt);
+      lastTtsGenerationCompleteMillis=Math.round(diagnosticNow()-q.ttsRequestStartedAt);
       updateWebTimingDiagnostics();
       pumpAudio(m.requestId);
     }
@@ -1085,7 +1088,7 @@ async function speakResponse(text,{entry=null}={}) {
   speaking=true;
   const requestId=++requestSeq;
   const cacheKey=audioCacheKey(text);
-  const ttsRequestStartedAt=performance.now();
+  const ttsRequestStartedAt=diagnosticNow();
   audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null,entry,started:false,text,cacheKey,generated:[],ttsRequestStartedAt,firstChunkRecorded:false,firstAudioRecorded:false});
   const done=new Promise((resolve,reject)=>{
     const q=audioQueues.get(requestId);
@@ -1099,7 +1102,7 @@ async function speakResponse(text,{entry=null}={}) {
     if(cached){const q=audioQueues.get(requestId);cached.forEach((blob,index)=>q.items.set(index,blob));q.total=cached.length;q.generationDone=true;pumpAudio(requestId);}
     else ttsWorker.postMessage({type:'speak',requestId,text,nameHints:getTtsNameHints()});
     await done;
-    lastTtsTotalMillis=Math.round(performance.now()-ttsRequestStartedAt);
+    lastTtsTotalMillis=Math.round(diagnosticNow()-ttsRequestStartedAt);
     updateWebTimingDiagnostics();
   } catch(error) {
     console.error('Emma TTS playback failed',error);
@@ -1129,7 +1132,7 @@ function enqueueAudio(m) {
   if(!q)return;
   if(!q.firstChunkRecorded){
     q.firstChunkRecorded=true;
-    lastTtsFirstChunkMillis=Math.round(performance.now()-q.ttsRequestStartedAt);
+    lastTtsFirstChunkMillis=Math.round(diagnosticNow()-q.ttsRequestStartedAt);
     updateWebTimingDiagnostics();
   }
   q.items.set(m.index,m.blob);
@@ -1247,7 +1250,7 @@ async function playBlob(blob,requestId) {
   const q=audioQueues.get(requestId);
   if(q && !q.firstAudioRecorded){
     q.firstAudioRecorded=true;
-    lastTtsFirstAudioMillis=Math.round(performance.now()-q.ttsRequestStartedAt);
+    lastTtsFirstAudioMillis=Math.round(diagnosticNow()-q.ttsRequestStartedAt);
     updateWebTimingDiagnostics();
   }
   if(q && !q.started){q.started=true;if(q.entry && historyEnabled(localStorage))history.append(q.entry).catch(error=>{ console.warn('履歴を保存できませんでした',error);$('historyWarning').textContent='履歴を保存できませんでした。端末の空き容量やブラウザ設定を確認してください。'; });}
