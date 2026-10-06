@@ -708,29 +708,53 @@ function handleCapturedUtterance(audio) {
   }
 }
 
-function respondToPendingUtterance() {
+function respondToPendingUtterance({manual=false}={}) {
   if(!pendingUtterance||processing||speaking)return false;
   const pending=pendingUtterance;
   pendingUtterance=null;
   if(pending.kind==='audio') {
-    transcribeUtterance(pending.audio);
+    transcribeUtterance(pending.audio,{manual});
     return true;
   }
   return false;
 }
 
-function forceReplyNow() {
+async function respondGenericallyToManualRequest() {
+  if(!running||speaking)return;
+  processing=true;
+  setBusy(true);
+  pendingUtterance=null;
+  ui.parentBubble.classList.add('hidden');
+  setState('thinking','返事を考えています…',`${getAiName()}が今すぐ話します。`);
+
+  try {
+    const response=semanticPanel.respondGeneric(getSpokenBabyName());
+    const english=stripAiSpeakerLabel(response.english);
+    showConversation('',english);
+    processing=false;
+    setBusy(false);
+    await speakResponse(english,{entry:createHistoryEntry(sessionId,'',english,'generic')});
+    if(tutorialStep===2) finishTutorial();
+  } catch(error) {
+    processing=false;
+    setBusy(false);
+    console.error(error);
+    setState('error','返事を作れませんでした',friendlyError(error));
+  }
+}
+
+async function forceReplyNow() {
   if(!running||processing||speaking)return;
-  if(respondToPendingUtterance()) return;
+  if(respondToPendingUtterance({manual:true})) return;
 
   const audio=mic?.forceUtterance?.();
   if(!audio){
-    setState('listening',`${getAiName()}が聞いています`,'もう少し話してから「今すぐAIが返事する」を押してください。');
+    await respondGenericallyToManualRequest();
     return;
   }
   pendingUtterance=null;
   setState('understood','ここまで聞きました',`${getAiName()}が返事を考えます。`);
-  transcribeUtterance(audio);
+  transcribeUtterance(audio,{manual:true});
 }
 
 async function startMoonshineCapture() {
@@ -921,7 +945,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
   }
 }
 
-async function transcribeUtterance(audio) {
+async function transcribeUtterance(audio,{manual=false}={}) {
   const epoch=conversationEpoch;
   if(!running||preparingConversation||processing||speaking||!moonshineTranscriber)return;
   processing=true;
@@ -941,7 +965,7 @@ async function transcribeUtterance(audio) {
           .replace(/\s+/g,' ')
           .trim()
       : '';
-    await processTranscript(text);
+    await processTranscript(text,{manual});
   } catch(error) {
     processing=false;
     setBusy(false);
@@ -950,7 +974,7 @@ async function transcribeUtterance(audio) {
   }
 }
 
-async function processTranscript(text) {
+async function processTranscript(text,{manual=false}={}) {
   if(!running||speaking)return;
   processing=true;
   setBusy(true);
@@ -958,7 +982,11 @@ async function processTranscript(text) {
   if(!isMeaningfulUtterance(clean)){
     processing=false;
     setBusy(false);
-    setState('listening',`${getAiName()}が聞いています`,'意味のあることばを待っています。');
+    if(manual) {
+      await respondGenericallyToManualRequest();
+    } else {
+      setState('listening',`${getAiName()}が聞いています`,'意味のあることばを待っています。');
+    }
     return;
   }
   showConversation(clean,'');
