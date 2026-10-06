@@ -1585,7 +1585,8 @@ function updateWebTimingDiagnostics() {
 
 async function buildWebDiagnosticReport() {
   const semantic=semanticPanel?.snapshot||{};
-  const storageEstimate=await navigator.storage?.estimate?.().catch?.(()=>null) || null;
+  let storageEstimate=null;
+  try { storageEstimate=await navigator.storage?.estimate?.() || null; } catch {}
   const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny'?'Tiny':'Small';
   const lines=[
     'Mitsukotoba Web diagnostics',
