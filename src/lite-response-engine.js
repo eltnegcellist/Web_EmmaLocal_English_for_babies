@@ -822,12 +822,15 @@ export class LiteResponseEngine {
     const semanticUsed = validSemantic && (semantic.mode === 'semantic' || (semantic.mode === 'guard' && !ruleScene));
     let scene = semanticUsed ? requested : ruleScene;
     let contextUsed = !semanticUsed && !!contextualScene;
+    const plainFollowup = /^(いいね|そうだね|いい感じだね|いい感じですね|気持ちいいね|気持ちいいですね|ゆっくりでいいよ|ゆっくりね|もう少し|もうちょっと|どうかな|上手だね|かわいいね)$/.test(normalized);
+    const implicitMilkDrink = useDrinkingScene && drinkingScene?.id==='milk' && this.activeSceneId==='milk' && !explicitMilk && !hasNonMilkDrink(transcript);
+    const semanticFollowup = this.activeSceneTurnsRemaining>0 && (plainFollowup || implicitMilkDrink);
     // Clear Semantic evidence can change the topic. Generic/weak predictions
     // consume the same six follow-up turns as the existing rule matcher.
-    const semanticClear = !!requested && (
+    const semanticClear = !semanticFollowup && !!requested && (
       semantic?.probability == null || (semantic.probability >= 0.65 && semantic.margin >= 0.15)
     );
-    const ruleClear = !!explicitScene && candidateHasStrongTopicEvidence;
+    const ruleClear = !semanticFollowup && !!explicitScene && candidateHasStrongTopicEvidence;
     let clearScene = null;
     if(semanticUsed) {
       if(!this.activeSceneId || semanticClear)clearScene=requested;
