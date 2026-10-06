@@ -54,6 +54,12 @@ assert.equal($('onboardingHighPerformance').checked,true,'high-performance prese
 assert.equal($('onboardingStartTiny'),null,'legacy Tiny toggle should not appear in first-run UI');
 assert.equal($('onboardingSemanticOff'),null,'legacy Semantic-off toggle should not appear in first-run UI');
 assert.match($('onboardingHighPerformance').closest('label').textContent,/高性能モデルを使う/);
+assert($('copyDiagnosticsButton'),'hidden developer tools should expose diagnostic copy');
+assert($('downloadDiagnosticsButton'),'hidden developer tools should expose diagnostic TXT download');
+assert($('webTimingDiagnostics'),'hidden developer tools should expose TTS timing');
+for(const href of ['./semantic-test.html','./model-lab.html','./coexistence-diagnostic.html']){
+  assert($('developerTools').querySelector(`a[href="${href}"]`),`missing developer link ${href}`);
+}
 $('featureDialog').showModal=function(){this.open=true;};$('featureDialog').close=function(){this.open=false;};
 globalThis.confirm=()=>true;globalThis.fetch=async()=>({ok:true,json:async()=>topics});
 let stops=0,spoken=[],busy=false,finish,preloads=0,playCount=1;
@@ -101,6 +107,9 @@ let source=readFileSync(new URL('./src/app.js',import.meta.url),'utf8').replace(
 assert(source.includes("const highPerformance = ui.onboardingHighPerformance?.checked !== false;"));
 assert(source.includes("const firstRunAsr = highPerformance ? 'small' : 'tiny';"));
 assert(source.includes("await semanticPanel.setEnabled(highPerformance,{prepare:false,mode:'semantic'});"));
+assert(source.includes('async function buildWebDiagnosticReport()'));
+assert(source.includes('lastTtsFirstAudioMillis'));
+assert(source.includes('diagnosticNow'));
 source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=>{};renderAvatarFrame=()=>{};setBusy=()=>{};
   audioContext=testAudio;ttsWorker={postMessage(message){captureRequest(message.requestId);}};
   history.append=async()=>{commitHistory();};
