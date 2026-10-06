@@ -2,5 +2,5 @@
 import { LiteResponseEngine } from './src/lite-response-engine.js';
 import { installSemanticPanel } from './src/semantic/panel.js';
 installSemanticPanel({engine:new LiteResponseEngine(),openInput:true});
-navigator.serviceWorker?.register('./service-worker.js?v=semantic-main-r3',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker:',error));
+navigator.serviceWorker?.register('./service-worker.js?v=mic-reload-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker:',error));
 </script></body></html>
