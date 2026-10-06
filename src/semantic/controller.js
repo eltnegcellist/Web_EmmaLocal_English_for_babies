@@ -69,6 +69,9 @@ export function createSemanticController({ engine, storage = localStorage, befor
       const semantic=prediction?.topic ? {topic:prediction.topic.id, probability:prediction.topic.probability, margin:prediction.topic.margin, mode} : null;
       lastResponse=engine.respond(text,name,semantic);result=prediction;publish();return lastResponse;
     },
+    respondGeneric(name) {
+      lastResponse=engine.respondGeneric(name);result=null;publish();return lastResponse;
+    },
     async reset() {
       const token=++generation;client.cancelPending();await beforeChange();
       if(token===generation){engine.resetConversationContext();lastResponse=null;result=null;publish();}
