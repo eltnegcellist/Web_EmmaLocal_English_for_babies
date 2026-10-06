@@ -33,13 +33,15 @@ const ui = {
   filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
+  webTimingDiagnostics:$('webTimingDiagnostics'), copyDiagnosticsButton:$('copyDiagnosticsButton'),
+  downloadDiagnosticsButton:$('downloadDiagnosticsButton'), diagnosticsStatus:$('diagnosticsStatus'),
   semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261006-performance-toggle-r1';
+const WEB_BUILD = '20261007-developer-parity-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -95,6 +97,10 @@ let currentScreen='home';
 let appearanceTimer=null;
 let developerTapCount=0;
 let developerTapTimer=null;
+let lastTtsFirstChunkMillis=null;
+let lastTtsGenerationCompleteMillis=null;
+let lastTtsFirstAudioMillis=null;
+let lastTtsTotalMillis=null;
 const audioQueues = new Map();
 const history = new ConversationHistory();
 let sessionId='', conversationEpoch=0;
@@ -364,6 +370,29 @@ function bindEvents() {
       clearTimeout(developerTapTimer);
       ui.developerTools?.classList.remove('hidden');
     }
+  });
+
+  ui.copyDiagnosticsButton?.addEventListener('click',async()=>{
+    const report=await buildWebDiagnosticReport();
+    try{
+      await copyTextToClipboard(report);
+      if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent='診断情報をコピーしました。';
+    }catch(error){
+      if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent=`コピーできませんでした: ${error.message||error}`;
+    }
+  });
+  ui.downloadDiagnosticsButton?.addEventListener('click',async()=>{
+    const report=await buildWebDiagnosticReport();
+    const blob=new Blob([report],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');
+    link.href=url;
+    link.download=`mitsukotoba-web-diagnostics-${new Date().toISOString().replace(/[:.]/g,'-')}.txt`;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent='診断情報をTXTで保存しました。';
   });
 
   ui.fullResetButton?.addEventListener('click',()=>{
@@ -948,6 +977,8 @@ function handleTtsMessage(event,readyResolve,readyReject) {
         }
       }
       q.generationDone=true;
+      lastTtsGenerationCompleteMillis=Math.round(performance.now()-q.ttsRequestStartedAt);
+      updateWebTimingDiagnostics();
       pumpAudio(m.requestId);
     }
   }
@@ -1054,7 +1085,8 @@ async function speakResponse(text,{entry=null}={}) {
   speaking=true;
   const requestId=++requestSeq;
   const cacheKey=audioCacheKey(text);
-  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null,entry,started:false,text,cacheKey,generated:[]});
+  const ttsRequestStartedAt=performance.now();
+  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null,entry,started:false,text,cacheKey,generated:[],ttsRequestStartedAt,firstChunkRecorded:false,firstAudioRecorded:false});
   const done=new Promise((resolve,reject)=>{
     const q=audioQueues.get(requestId);
     q.resolve=resolve;
@@ -1067,6 +1099,8 @@ async function speakResponse(text,{entry=null}={}) {
     if(cached){const q=audioQueues.get(requestId);cached.forEach((blob,index)=>q.items.set(index,blob));q.total=cached.length;q.generationDone=true;pumpAudio(requestId);}
     else ttsWorker.postMessage({type:'speak',requestId,text,nameHints:getTtsNameHints()});
     await done;
+    lastTtsTotalMillis=Math.round(performance.now()-ttsRequestStartedAt);
+    updateWebTimingDiagnostics();
   } catch(error) {
     console.error('Emma TTS playback failed',error);
     if(epoch!==conversationEpoch)return;
@@ -1093,6 +1127,11 @@ async function speakResponse(text,{entry=null}={}) {
 function enqueueAudio(m) {
   const q=audioQueues.get(m.requestId);
   if(!q)return;
+  if(!q.firstChunkRecorded){
+    q.firstChunkRecorded=true;
+    lastTtsFirstChunkMillis=Math.round(performance.now()-q.ttsRequestStartedAt);
+    updateWebTimingDiagnostics();
+  }
   q.items.set(m.index,m.blob);
   q.generated[m.index]=m.blob;
   q.total=Math.max(q.total,m.index+1);
@@ -1206,6 +1245,11 @@ async function playBlob(blob,requestId) {
   const ended=new Promise(resolve=>source.onended=resolve);
   source.start();
   const q=audioQueues.get(requestId);
+  if(q && !q.firstAudioRecorded){
+    q.firstAudioRecorded=true;
+    lastTtsFirstAudioMillis=Math.round(performance.now()-q.ttsRequestStartedAt);
+    updateWebTimingDiagnostics();
+  }
   if(q && !q.started){q.started=true;if(q.entry && historyEnabled(localStorage))history.append(q.entry).catch(error=>{ console.warn('履歴を保存できませんでした',error);$('historyWarning').textContent='履歴を保存できませんでした。端末の空き容量やブラウザ設定を確認してください。'; });}
   animate();
   await ended;
@@ -1532,6 +1576,83 @@ function updateAsrModelStatus() {
   ui.asrModelStatus.textContent=`現在：${selected}。モデルはブラウザ内に保存されます。`;
 }
 
+function updateWebTimingDiagnostics() {
+  if(!ui.webTimingDiagnostics)return;
+  const format=value=>Number.isFinite(value)?`${value}ms`:'未計測';
+  ui.webTimingDiagnostics.textContent=
+    `直近計測: TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
+}
+
+async function buildWebDiagnosticReport() {
+  const semantic=semanticPanel?.snapshot||{};
+  const storageEstimate=await navigator.storage?.estimate?.().catch?.(()=>null) || null;
+  const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny'?'Tiny':'Small';
+  const lines=[
+    'Mitsukotoba Web diagnostics',
+    `created=${new Date().toISOString()}`,
+    `build=${WEB_BUILD}`,
+    `urlOrigin=${location.origin}`,
+    `secureContext=${window.isSecureContext}`,
+    `crossOriginIsolated=${window.crossOriginIsolated}`,
+    `visibility=${document.visibilityState}`,
+    `userAgent=${navigator.userAgent}`,
+    `language=${navigator.language}`,
+    `hardwareConcurrency=${navigator.hardwareConcurrency??'unknown'}`,
+    `deviceMemory=${navigator.deviceMemory??'unknown'}`,
+    `asr.selected=${selectedAsr}`,
+    `asr.ready=${Boolean(moonshineTranscriber)}`,
+    `asr.stage=${moonshineStage}`,
+    `tts.ready=${Boolean(ttsWorker&&ttsInfoCache)}`,
+    'tts.model=Kitten TTS Nano FP32',
+    'tts.voice=Kiki',
+    'tts.speed=0.8',
+    'tts.targetPeak=0.92',
+    'tts.maxBoost=1.8x',
+    `semantic.requested=${Boolean(semantic.requested)}`,
+    `semantic.mode=${semantic.mode||'unknown'}`,
+    `semantic.enabled=${Boolean(semantic.enabled)}`,
+    `semantic.ready=${Boolean(semantic.ready)}`,
+    `semantic.failed=${Boolean(semantic.failed)}`,
+    `semantic.status=${semantic.status?.message||'unknown'}`,
+    `history.enabled=${historyEnabled(localStorage)}`,
+    `autoRespond=${ui.autoRespond?.checked!==false}`,
+    `keepAwake=${ui.keepAwake?.checked!==false}`,
+    `playSentenceCount=${localStorage.getItem(STORAGE.playSentenceCount)==='3'?3:1}`,
+    `colorMode=${localStorage.getItem(STORAGE.colorMode)||'vivid'}`,
+    `tts.firstChunkMs=${lastTtsFirstChunkMillis??'unmeasured'}`,
+    `tts.generationCompleteMs=${lastTtsGenerationCompleteMillis??'unmeasured'}`,
+    `tts.firstAudioMs=${lastTtsFirstAudioMillis??'unmeasured'}`,
+    `tts.totalMs=${lastTtsTotalMillis??'unmeasured'}`,
+    `storage.usageBytes=${storageEstimate?.usage??'unknown'}`,
+    `storage.quotaBytes=${storageEstimate?.quota??'unknown'}`,
+  ];
+  if(semantic.result?.topic){
+    lines.push(
+      `semantic.lastTopic=${semantic.result.topic.id}`,
+      `semantic.lastProbability=${semantic.result.topic.probability}`,
+      `semantic.lastMargin=${semantic.result.topic.margin}`,
+      `semantic.lastElapsedMs=${semantic.result.elapsedMs??'unknown'}`,
+    );
+  }
+  return lines.join('\n')+'\n';
+}
+
+async function copyTextToClipboard(text) {
+  if(navigator.clipboard?.writeText){
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const area=document.createElement('textarea');
+  area.value=text;
+  area.style.position='fixed';
+  area.style.opacity='0';
+  document.body.append(area);
+  area.select();
+  const ok=document.execCommand('copy');
+  area.remove();
+  if(!ok)throw new Error('clipboard unavailable');
+}
+
 function updateRuntimeBackend() {
   if(!asrInfoCache || !ttsInfoCache){
     ui.runtimeBackend.textContent='推論: 未初期化';
@@ -1621,7 +1742,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-performance-toggle-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261007-developer-parity-r1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1659,6 +1780,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261006-performance-toggle-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261007-developer-parity-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });
