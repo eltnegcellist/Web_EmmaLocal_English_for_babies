@@ -12,7 +12,7 @@ const $ = (id) => document.getElementById(id);
 const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
   onboardingBabyName:$('onboardingBabyName'), onboardingAiCharacterName:$('onboardingAiCharacterName'), onboardingSpokenBabyName:$('onboardingSpokenBabyName'),
-  onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingStartTiny:$('onboardingStartTiny'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
+  onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingHighPerformance:$('onboardingHighPerformance'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
   onboardingPronunciationToggle:$('onboardingPronunciationToggle'), onboardingPronunciationPanel:$('onboardingPronunciationPanel'),
   prepareEmmaButton:$('prepareEmmaButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
@@ -33,13 +33,13 @@ const ui = {
   filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
-  onboardingSemanticOff:$('onboardingSemanticOff'), semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'),
+  semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261006-mic-reload-r1';
+const WEB_BUILD = '20261006-performance-toggle-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -57,6 +57,7 @@ const STORAGE = {
   useChanSuffix:'emma_use_chan_suffix',
   asrModel:'emma_asr_model',
   startTiny:'emma_first_run_start_tiny',
+  highPerformance:'emma_first_run_high_performance',
   asrReload:'emma_asr_reload',
   tutorialDone:'emma_web_tutorial_completed_v1'
 };
@@ -111,7 +112,6 @@ function initUi() {
   semanticPanel=createSemanticController({engine,mode:'semantic',beforeChange:async()=>{if(running||preparingConversation||processing||speaking)await stopEmma();}});
   installSemanticPanel({controller:semanticPanel});
   semanticPanel.subscribe(({requested,status})=>{
-    ui.onboardingSemanticOff.checked=!requested;
     ui.semanticEnabled.checked=requested;
     ui.semanticStatus.textContent=status.message;
   });
@@ -146,8 +146,14 @@ function initUi() {
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'small';
-  if (ui.onboardingStartTiny) {
-    ui.onboardingStartTiny.checked = localStorage.getItem(STORAGE.startTiny) === 'true';
+  if (ui.onboardingHighPerformance) {
+    const savedPerformance = localStorage.getItem(STORAGE.highPerformance);
+    const legacyTiny = localStorage.getItem(STORAGE.startTiny) === 'true' ||
+      localStorage.getItem(STORAGE.asrModel) === 'tiny';
+    const semanticRequested = localStorage.getItem('emma_semantic_enabled') !== 'false';
+    ui.onboardingHighPerformance.checked = savedPerformance == null
+      ? (!legacyTiny && semanticRequested)
+      : savedPerformance !== 'false';
   }
   updateAsrModelStatus();
   const useChanSuffix = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
@@ -340,10 +346,9 @@ function bindEvents() {
     url.searchParams.set('asr',next);
     location.replace(url.href);
   });
-  ui.onboardingStartTiny?.addEventListener('change',()=>{
-    localStorage.setItem(STORAGE.startTiny,String(ui.onboardingStartTiny.checked));
+  ui.onboardingHighPerformance?.addEventListener('change',()=>{
+    localStorage.setItem(STORAGE.highPerformance,String(ui.onboardingHighPerformance.checked));
   });
-  ui.onboardingSemanticOff.addEventListener('change',()=>semanticPanel.setEnabled(!ui.onboardingSemanticOff.checked));
   ui.semanticEnabled.addEventListener('change',()=>semanticPanel.setEnabled(ui.semanticEnabled.checked,{prepare:true,mode:'semantic'}));
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
@@ -549,10 +554,13 @@ async function prepareFirstRun() {
     // active. Model preparation can take a long time, after which mobile
     // browsers may no longer show the permission prompt automatically.
     await requestMicrophonePermission();
-    const firstRunAsr = ui.onboardingStartTiny?.checked ? 'tiny' : 'small';
+    const highPerformance = ui.onboardingHighPerformance?.checked !== false;
+    const firstRunAsr = highPerformance ? 'small' : 'tiny';
+    localStorage.setItem(STORAGE.highPerformance,String(highPerformance));
     localStorage.setItem(STORAGE.asrModel,firstRunAsr);
-    localStorage.setItem(STORAGE.startTiny,String(firstRunAsr==='tiny'));
+    localStorage.setItem(STORAGE.startTiny,String(!highPerformance));
     if(ui.asrModel) ui.asrModel.value=firstRunAsr;
+    await semanticPanel.setEnabled(highPerformance,{prepare:false,mode:'semantic'});
     updateAsrModelStatus();
     if(!(await ensureMoonshineIsolation({isCurrent:()=>epoch===conversationEpoch})) || epoch!==conversationEpoch) return;
     await navigator.storage?.persist?.().catch(()=>false);
@@ -1613,7 +1621,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-mic-reload-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-performance-toggle-r1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1651,6 +1659,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261006-mic-reload-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261006-performance-toggle-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });
