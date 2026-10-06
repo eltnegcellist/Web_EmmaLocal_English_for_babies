@@ -1,2 +1,8 @@
 node_modules
 __pycache__/
+
+semantic-assets/
+tests/generated/
+.semantic-test-results/
+.semantic-research/
+dist/

@@ -33,9 +33,11 @@ jobs:
           node test-avatar.mjs
           npm ci --ignore-scripts
           node test-features.mjs
+          node test-semantic.mjs
       - name: Syntax check
         run: |
           node --check src/app.js
+          for file in src/semantic/*.js; do node --check "$file"; done
           node --check src/conversation-history.js
           node --check src/feature-screens.js
           node --check src/app-navigation.js

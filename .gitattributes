@@ -1,0 +1,2 @@
+# Preserve upstream Markdown hard line breaks in the pinned model card.
+licenses/semantic/MODEL-CARD.md whitespace=-blank-at-eol

@@ -772,7 +772,7 @@ export class LiteResponseEngine {
     this.activeSceneTurnsRemaining = 0;
   }
 
-  respond(transcript, spokenBabyName = "") {
+  respond(transcript, spokenBabyName = "", semantic = null) {
     const normalized = normalize(transcript);
     const flexible = detectFlexibleTopics(transcript);
     const ranked = SCENES.map(scene => [scene, Math.max(score(scene, normalized), flexible[scene.id]?.score || 0)])
@@ -816,10 +816,17 @@ export class LiteResponseEngine {
     const contextualScene = !explicitScene && this.activeSceneTurnsRemaining > 0
       ? findScene(this.activeSceneId)
       : null;
-    const scene = explicitScene || contextualScene;
-    const sceneScore = explicitScene ? explicitScore : contextualScene ? 2 : 0;
+    const ruleScene = explicitScene || contextualScene;
+    const requested = semantic?.topic === 'generic' ? null : findScene(semantic?.topic);
+    const validSemantic = !!semantic && (semantic.topic === 'generic' || !!requested);
+    const semanticUsed = validSemantic && (semantic.mode === 'semantic' || (semantic.mode === 'guard' && !ruleScene));
+    const scene = semanticUsed ? requested : ruleScene;
+    const sceneScore = semanticUsed ? 0 : explicitScene ? explicitScore : contextualScene ? 2 : 0;
 
-    if (explicitScene) {
+    if (semanticUsed) {
+      this.activeSceneId = scene?.id || null;
+      this.activeSceneTurnsRemaining = scene ? 6 : 0;
+    } else if (explicitScene) {
       this.activeSceneId = explicitScene.id;
       this.activeSceneTurnsRemaining = 6;
     } else if (contextualScene) {
@@ -839,7 +846,7 @@ export class LiteResponseEngine {
     this.turnsSinceName = safeName && containsName(styled, safeName)
       ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
-    return { english: styled, scene: scene?.id || "generic", score: sceneScore };
+    return { english: styled, scene: scene?.id || "generic", score: sceneScore, ruleScene: ruleScene?.id || "generic", semanticUsed };
   }
 
   resetConversationContext() {

@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "modelSha": "bd500193003fdeaba8c5422a47b974b40b49a5e0c91285c76f6bd949d2205264",
+  "sourceRevision": "07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc",
+  "runtimeBase": "../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/",
+  "runtimeFiles": [
+    "runtime.mjs",
+    "ort-wasm-simd-threaded.mjs",
+    "ort-wasm-simd-threaded.wasm"
+  ],
+  "assets": {
+    "model.onnx": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/model.onnx",
+      "bytes": 71248404,
+      "sha256": "bd500193003fdeaba8c5422a47b974b40b49a5e0c91285c76f6bd949d2205264"
+    },
+    "tokenizer.json": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/tokenizer.json",
+      "bytes": 6724873,
+      "sha256": "0a94ac9a0a02c067bdef25b72ae9f4ee33f48f552e55988d444f6d25eeb1d062"
+    },
+    "tokenizer_config.json": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/tokenizer_config.json",
+      "bytes": 3779,
+      "sha256": "34004511993472f15c7202074284c57788c161fb6567de164b8e0c0266f155e4"
+    },
+    "special_tokens_map.json": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/special_tokens_map.json",
+      "bytes": 968,
+      "sha256": "30bf8256f9a1eb3287af2a9b7940465e29a38aad4a459a3e773bb3a14bd34c0f"
+    },
+    "config.json": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/config.json",
+      "bytes": 1323,
+      "sha256": "f03b934538e46fc12a36067c17cb9e214c8ef0d89375293aa68c81bdc1f937ae"
+    },
+    "heads-config.json": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/heads-config.json",
+      "bytes": 2476,
+      "sha256": "35246e7daff39d5f19b3857c0342e7b5e8278a465de330b7e4ee0d543ecaf49c"
+    },
+    "head-topic.f32": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/head-topic.f32",
+      "bytes": 33880,
+      "sha256": "1391e9595ec2b932c0f915647c7d184112dadcce281bab59e6de37cc45e2bb29"
+    },
+    "head-intent.f32": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/head-intent.f32",
+      "bytes": 10780,
+      "sha256": "ee92acac921d237b1af2728c44db4b8ae8c72ab8b9b1ffa8c71344e28313f899"
+    },
+    "head-state.f32": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/head-state.f32",
+      "bytes": 7700,
+      "sha256": "99ba96266594dc71c6a7be5110242d02d67b0e2c3de3a74aef2f2e8686c7d35e"
+    },
+    "LICENSE-APACHE-2.0.txt": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/LICENSE-APACHE-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "LICENSE-MODERNBERT-MIT.txt": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/LICENSE-MODERNBERT-MIT.txt",
+      "bytes": 1070,
+      "sha256": "284353c80e0d52c06e97af62fd40e4dd1d253fa28f5d1e756121ea1d5d441509"
+    },
+    "LICENSE-TOKENIZER-MIT.txt": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/LICENSE-TOKENIZER-MIT.txt",
+      "bytes": 1069,
+      "sha256": "96d235bef918d3caf50987cdf3c7d4963b3d1f12e18f952138aac1e973b56226"
+    },
+    "ATTRIBUTION-CHANGES.txt": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/ATTRIBUTION-CHANGES.txt",
+      "bytes": 1281,
+      "sha256": "a506a7b8217639870f7a279c6b62ea22fa04ffe35638886783f5ea4602d0d6cf"
+    },
+    "MODEL-CARD.md": {
+      "url": "../semantic-assets/ruri70-int8-bd500193/MODEL-CARD.md",
+      "bytes": 7935,
+      "sha256": "3ba99cadeda898ac568621b16f3c0a0a9164145704c09dafd5c5cd9158d0fd4a"
+    },
+    "runtime.mjs": {
+      "url": "../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/runtime.mjs",
+      "bytes": 108422,
+      "sha256": "301ec3d39bc0828e4a835ab964d15bf5c74777771f6b536ad5764b0621165f8c"
+    },
+    "ort-wasm-simd-threaded.mjs": {
+      "url": "../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/ort-wasm-simd-threaded.mjs",
+      "bytes": 24381,
+      "sha256": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b"
+    },
+    "ort-wasm-simd-threaded.wasm": {
+      "url": "../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/ort-wasm-simd-threaded.wasm",
+      "bytes": 14239897,
+      "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+    },
+    "LICENSE-ONNXRUNTIME-MIT.txt": {
+      "url": "../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/LICENSE-ONNXRUNTIME-MIT.txt",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    "ONNXRUNTIME-ThirdPartyNotices.txt": {
+      "url": "../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/ONNXRUNTIME-ThirdPartyNotices.txt",
+      "bytes": 338088,
+      "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3"
+    },
+    "LICENSE-JS-TOKENIZERS-APACHE-2.0.txt": {
+      "url": "../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/LICENSE-JS-TOKENIZERS-APACHE-2.0.txt",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    }
+  },
+  "loadBytes": 92404592,
+  "packageBytes": 92780114
+}

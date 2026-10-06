@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { JSDOM } from 'jsdom';
+import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.js';
+import { SemanticLiteClient } from './src/semantic/client.js';
+import { decodeHead, classifyEmbedding } from './src/semantic/core.js';
+import { installSemanticPanel } from './src/semantic/panel.js';
+const baseline=new LiteResponseEngine().respond('お風呂に入ろうね','Hana');
+const semantic=new LiteResponseEngine().respond('お風呂に入ろうね','Hana',{topic:'sleep',mode:'semantic'});
+assert.equal(semantic.scene,'sleep');assert.equal(semantic.ruleScene,'bath');assert.equal(semantic.semanticUsed,true);assert.equal(splitSentences(semantic.english).length,3);
+assert.equal(new LiteResponseEngine().respond('お風呂に入ろうね','Hana',{topic:'sleep',mode:'guard'}).english,baseline.english);
+assert.equal(new LiteResponseEngine().respond('あたたかくしよう','',{topic:'bath',mode:'lite'}).scene,'generic');
+assert.equal(new LiteResponseEngine().respond('分類できない普通の話だよ','',{topic:'bath',mode:'guard'}).scene,'bath');
+assert.equal(new LiteResponseEngine().respond('お風呂に入ろうね','',{topic:'generic',mode:'semantic'}).scene,'generic');
+assert.equal(new LiteResponseEngine().respond('お風呂に入ろうね','',{topic:'not-a-topic',mode:'semantic'}).scene,'bath');
+const context=new LiteResponseEngine();context.respond('普通の話だよ','',{topic:'milk',mode:'semantic'});assert.equal(context.respond('どうかな').scene,'milk');context.resetConversationContext();assert.equal(context.respond('どうかな').scene,'generic');
+const config={shape:[2,385],classes:['milk','generic']};const matrix=new Float32Array(770);matrix[384]=2;const head=decodeHead(matrix.buffer,config);assert.equal(classifyEmbedding(new Float32Array(384),{topic:head},{threshold:0,margin:.05}).topic.id,'milk');assert.throws(()=>decodeHead(new ArrayBuffer(4),config));
+let workers=[];
+class FakeWorker { constructor(){this.sent=[];this.terminated=false;workers.push(this);}postMessage(data){this.sent.push(data);}terminate(){this.terminated=true;}reply(id,result={}){this.onmessage({data:{type:'result',requestId:id,result}});} }
+const client=new SemanticLiteClient({workerFactory:()=>new FakeWorker()});const init=client.prepare();workers[0].reply(workers[0].sent[0].requestId);await init;assert.equal(client.ready,true);
+const old=client.predict('ミルク');await Promise.resolve();client.cancel();const retry=client.prepare();await assert.rejects(old);workers[1].reply(workers[1].sent[0].requestId);await retry;assert.equal(client.ready,true);client.cancel();assert.equal(client.pending.size,0);
+const dom=new JSDOM('<article id="semanticPanel"></article>',{url:'https://example.test/'});globalThis.document=dom.window.document;const storage=dom.window.localStorage;let rejectMode=false,finish;
+const engine=new LiteResponseEngine();const fake={ready:true,prepare:async()=>{},cancel(){},cancelPending(){},async predict(){if(rejectMode)throw Error('model failure');return {topic:{id:'sleep',probability:.9,margin:.8},intent:{id:'invitation'},state:{id:'future'},elapsedMs:10};}};
+const panel=installSemanticPanel({engine,storage,clientFactory:()=>fake});assert.equal(panel.enabled,false);
+document.querySelector('[data-semantic="enabled"]').checked=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'sleep');rejectMode=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'bath');assert.equal(panel.enabled,false);
+rejectMode=false;document.querySelector('[data-semantic="prepare"]').click();await new Promise(r=>setTimeout(r,0));assert.equal(panel.enabled,true);
+fake.predict=()=>new Promise(resolve=>finish=resolve);const pending=panel.respond('ミルク','',{isCurrent:()=>false});await Promise.resolve();finish({topic:{id:'milk'},intent:{id:'observation'},state:{id:'ongoing'},elapsedMs:1});assert.equal(await pending,null);
+console.log('Semantic policies, catalog rendering, invalid data, cancellation/retry, failed-model fallback and stale reply checks passed.');

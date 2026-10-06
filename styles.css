@@ -1182,3 +1182,17 @@ body{
   .play-shortcut{min-width:0;padding:6px 4px;font-size:.72rem;}
 }
 @media(max-height:560px){.bottom-bar{position:static;}#homeScreen .screen-content{padding-bottom:24px;}.play-tap{min-height:420px;}}
+
+.semantic-actions {display:flex;gap:.5rem;flex-wrap:wrap;margin:.75rem 0;}
+.semantic-result {overflow-wrap:anywhere;}
+.semantic-result p {margin:.5rem 0;}
+#semanticPanel progress {width:100%;}
+#semanticPanel details {margin-top:1rem;}
+#semanticPanel select,#semanticPanel textarea {width:100%;}
+#semanticPanel .switch {position:relative;flex-shrink:0;}
+#semanticPanel .switch input {width:100%;height:100%;inset:0;}
+
+.semantic-test-page .screen-content { width:100%;max-width:720px;min-width:0; }
+.semantic-test-page .subpage-header { align-items:flex-start;flex-direction:column; }
+.semantic-test-page .subpage-header h1 { font-size:1.5rem; }
+.semantic-test-page p { overflow-wrap:anywhere; }

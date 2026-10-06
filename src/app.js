@@ -1,3 +1,4 @@
+import { installSemanticPanel } from './semantic/panel.js';
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
 import { installFeatureScreens } from './feature-screens.js';
 import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './emma-color-palettes.js';
@@ -36,7 +37,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261006-subpage-back-r22';
+const WEB_BUILD = '20261006-semantic-test-r2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -64,6 +65,7 @@ if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyNam
 if (new URLSearchParams(location.search).has('debug')) document.body.classList.add('debug');
 
 const engine = new LiteResponseEngine();
+let semanticPanel;
 // The official v0.1.5 release archive contains the split-frontend WASM build;
 // the v0.1.5 npm tarball's WASM does not.
 const MOONSHINE_MODULE_URL = new URL('./moonshine-module.js', import.meta.url).href;
@@ -103,6 +105,7 @@ function audioCacheKey(text){
 initUi();
 
 function initUi() {
+  semanticPanel=installSemanticPanel({engine,beforeChange:async()=>{if(running||processing||speaking)await stopEmma();}});
   const historyCheckbox=$('historyEnabled');
   historyCheckbox.checked=historyEnabled(localStorage);
   historyCheckbox.addEventListener('change',()=>localStorage.setItem('emma_history_enabled',String(historyCheckbox.checked)));
@@ -381,7 +384,9 @@ function bindEvents() {
     const text=ui.debugInput.value.trim();
     if(!text)return;
     showConversation(text,'');
-    const response=engine.respond(text,getSpokenBabyName());
+    const epoch=conversationEpoch;
+    const response=await semanticPanel.respond(text,getSpokenBabyName(),{isCurrent:()=>epoch===conversationEpoch});
+    if(!response)return;
     const english=stripAiSpeakerLabel(response.english);
     showConversation(text,english);
     await ensureWorkersForDebug();
@@ -623,6 +628,7 @@ async function startEmma({ auto = false } = {}) {
 
 async function stopEmma() {
   conversationEpoch++;
+  semanticPanel?.cancelPending();
   while(audioUnlockWaiters.length)audioUnlockWaiters.shift()?.();
   running=false;
   processing=false;
@@ -918,7 +924,9 @@ async function processTranscript(text) {
   }
   showConversation(clean,'');
   setState('understood','わかりました',`${getAiName()}が赤ちゃんへ話しかけます。`);
-  const response=engine.respond(clean,getSpokenBabyName());
+  const epoch=conversationEpoch;
+  const response=await semanticPanel.respond(clean,getSpokenBabyName(),{isCurrent:()=>epoch===conversationEpoch&&running});
+  if(!response){if(epoch===conversationEpoch){processing=false;setBusy(false);}return;}
   const english=stripAiSpeakerLabel(response.english);
   showConversation(clean,english);
   processing=false;
@@ -1537,7 +1545,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-subpage-back-r22',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-test-r2',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1571,6 +1579,6 @@ async function ensureMoonshineIsolation() {
 
 window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
-    ensureMoonshineIsolation().catch(error=>console.warn('Moonshine isolation setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-test-r2',{updateViaCache:'none'}).then(()=>ensureMoonshineIsolation()).catch(error=>console.warn('Moonshine isolation setup:',error));
   }
 });

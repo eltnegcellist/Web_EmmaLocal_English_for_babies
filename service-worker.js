@@ -1,5 +1,5 @@
-const CACHE='emma-web-shell-v107';
-const SHELL=['./src/conversation-history.js','./src/feature-screens.js','./src/app-navigation.js','./shared/play-topics.json','./','./index.html','./topic-guide.html','./reset.html','./styles.css','./manifest.webmanifest','./icons/mitsukotoba-baby-abc-v2-192.png','./assets/mitsukotoba-parent.png','./assets/mitsukotoba-baby.png','./assets/mitsukotoba-ai.png','./assets/emma-face/emma-face-idle-open.svg','./assets/emma-face/emma-face-idle-half.svg','./assets/emma-face/emma-face-idle-closed.svg','./assets/emma-face/emma-face-talk-small.svg','./assets/emma-face/emma-face-talk-medium.svg','./assets/emma-face/emma-face-talk-large.svg','./assets/emma-face/emma-face-talk-small-half.svg','./assets/emma-face/emma-face-talk-small-closed.svg','./assets/emma-face/emma-face-talk-medium-half.svg','./assets/emma-face/emma-face-talk-medium-closed.svg','./assets/emma-face/emma-face-talk-large-half.svg','./assets/emma-face/emma-face-talk-large-closed.svg','./src/app.js','./src/emma-color-palettes.js','./src/resumable-download.js','./src/moonshine-module.js','./src/audio-capture.js','./src/lite-response-engine.js','./src/lite-topic-matcher.js','./src/lite-phonetic-scene-matcher.js','./src/name-pronunciation.js','./src/tts-worker.js','./worklets/pcm-capture-worklet.js','./src/vendor/kitten/index.js','./src/vendor/kitten/kitten-tts.js','./src/vendor/kitten/model-loader.js','./src/vendor/kitten/npz-loader.js','./src/vendor/kitten/phonemizer.js','./src/vendor/kitten/audio.js','./src/vendor/kitten/preprocess.js','./src/vendor/kitten/text-cleaner.js'];
+const CACHE='emma-web-shell-v109-semantic-test';
+const SHELL=['./semantic-test.html','./src/semantic/panel.js','./src/semantic/core.js','./src/semantic/client.js','./src/semantic/worker.js', './src/semantic/tokenize.js','./src/semantic-assets-manifest.json','./src/conversation-history.js','./src/feature-screens.js','./src/app-navigation.js','./shared/play-topics.json','./','./index.html','./topic-guide.html','./reset.html','./styles.css','./manifest.webmanifest','./icons/mitsukotoba-baby-abc-v2-192.png','./assets/mitsukotoba-parent.png','./assets/mitsukotoba-baby.png','./assets/mitsukotoba-ai.png','./assets/emma-face/emma-face-idle-open.svg','./assets/emma-face/emma-face-idle-half.svg','./assets/emma-face/emma-face-idle-closed.svg','./assets/emma-face/emma-face-talk-small.svg','./assets/emma-face/emma-face-talk-medium.svg','./assets/emma-face/emma-face-talk-large.svg','./assets/emma-face/emma-face-talk-small-half.svg','./assets/emma-face/emma-face-talk-small-closed.svg','./assets/emma-face/emma-face-talk-medium-half.svg','./assets/emma-face/emma-face-talk-medium-closed.svg','./assets/emma-face/emma-face-talk-large-half.svg','./assets/emma-face/emma-face-talk-large-closed.svg','./src/app.js','./src/emma-color-palettes.js','./src/resumable-download.js','./src/moonshine-module.js','./src/audio-capture.js','./src/lite-response-engine.js','./src/lite-topic-matcher.js','./src/lite-phonetic-scene-matcher.js','./src/name-pronunciation.js','./src/tts-worker.js','./worklets/pcm-capture-worklet.js','./src/vendor/kitten/index.js','./src/vendor/kitten/kitten-tts.js','./src/vendor/kitten/model-loader.js','./src/vendor/kitten/npz-loader.js','./src/vendor/kitten/phonemizer.js','./src/vendor/kitten/audio.js','./src/vendor/kitten/preprocess.js','./src/vendor/kitten/text-cleaner.js'];
 
 self.addEventListener('install',event=>event.waitUntil(
   caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())
@@ -28,6 +28,13 @@ self.addEventListener('fetch',event=>{
   if(event.request.method!=='GET') return;
   const url=new URL(event.request.url);
   if(url.origin!==self.location.origin) return;
+
+  // These are opt-in, SHA-256-verified assets cached by the semantic worker.
+  // Do not duplicate ~93 MB into the ordinary shell cache.
+  if(url.pathname.includes('/semantic-assets/')) {
+    event.respondWith(caches.match(event.request).then(cached=>cached ? withIsolationHeaders(cached) : fetch(event.request).then(withIsolationHeaders)));
+    return;
+  }
 
   const isAppCode =
     event.request.mode==='navigate' ||

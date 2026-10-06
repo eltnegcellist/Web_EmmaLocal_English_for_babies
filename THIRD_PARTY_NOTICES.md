@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-Updated: 2026-10-02
+Updated: 2026-10-06
 
 This file summarizes third-party software, models, data, and runtime components
 used by Mitsukotoba Web. It is intended to make redistribution and attribution
@@ -149,3 +149,32 @@ path and only loads when the model-lab page is opened and the user runs it.
 Unless a file or directory says otherwise, Mitsukotoba project code is governed
 by the license selected for this repository. Third-party components retain
 their own licenses and notices.
+
+## Semantic Lite test edition
+
+The optional Semantic Lite feature runs in a dedicated local browser worker.
+It uses the following pinned components:
+
+- Ruri v3 70M, `cl-nagoya/ruri-v3-70m`, revision
+  `07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc`: Apache-2.0.
+- ModernBERT model code provenance: MIT.
+- The source model tokenizer provenance: MIT; this is separate from the JS runtime.
+- `@huggingface/tokenizers` 0.2.0 JS runtime: Apache-2.0.
+- ONNX Runtime Web 1.30.0: MIT plus its accompanying third-party notices.
+
+The model was exported locally with mean pooling and L2 normalization and
+converted to rowwise INT8 token weights plus per-channel INT8 MatMul weights.
+Classification uses three frozen logistic regression heads. Project integration
+and byte fallback handling were added locally. Generated English is not used.
+
+Complete license copies, the pinned model card and conversion attribution are
+in `licenses/semantic/`; model/runtime asset preparation also retains the
+applicable copies alongside the prepared assets. ONNX Runtime notices came from
+the upstream `v1.30.0` tag:
+
+- https://github.com/microsoft/onnxruntime/blob/v1.30.0/LICENSE
+- https://github.com/microsoft/onnxruntime/blob/v1.30.0/ThirdPartyNotices.txt
+- https://huggingface.co/cl-nagoya/ruri-v3-70m/tree/07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc
+
+Model files are prepared outside Git and must accompany a self-contained local
+test package. The test feature has not been published to the public Pages app.
