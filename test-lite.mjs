@@ -85,6 +85,14 @@ if (hunger.scene !== 'food') throw new Error(`お腹すいたね: expected food,
 
 console.log('Natural phrase + phonetic rescue + exclusion coverage tests OK');
 
+const explicitGenericEngine = new LiteResponseEngine();
+if(explicitGenericEngine.respond('ミルク飲もうね').scene!=='milk') throw new Error('explicit generic setup should seed milk');
+const explicitGeneric = explicitGenericEngine.respondGeneric('Mayu');
+if(explicitGeneric.scene!=='generic') throw new Error(`explicit generic expected generic, got ${explicitGeneric.scene}`);
+if(!explicitGeneric.english) throw new Error('explicit generic should return speech');
+if(explicitGenericEngine.respond('どうかな').scene!=='milk') throw new Error('explicit generic should not consume sticky topic context');
+console.log('Explicit generic reply path OK');
+
 const genericEngine = new LiteResponseEngine();
 const genericOutputs = Array.from({ length: 24 }, () => {
   const out = genericEngine.respond('これは分類できない普通の話だよ');
