@@ -34,14 +34,15 @@ const ui = {
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   webTimingDiagnostics:$('webTimingDiagnostics'), copyDiagnosticsButton:$('copyDiagnosticsButton'),
-  downloadDiagnosticsButton:$('downloadDiagnosticsButton'), diagnosticsStatus:$('diagnosticsStatus'),
+  downloadDiagnosticsButton:$('downloadDiagnosticsButton'), clearDiagnosticsButton:$('clearDiagnosticsButton'),
+  diagnosticsStatus:$('diagnosticsStatus'),
   semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261007-developer-parity-r1';
+const WEB_BUILD = '20261007-developer-parity-r2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -101,6 +102,19 @@ let lastTtsFirstChunkMillis=null;
 let lastTtsGenerationCompleteMillis=null;
 let lastTtsFirstAudioMillis=null;
 let lastTtsTotalMillis=null;
+const runtimeDiagnosticEvents=[];
+function recordRuntimeDiagnosticEvent(kind,error){
+  const value=error instanceof Error ? error : new Error(String(error||kind));
+  runtimeDiagnosticEvents.push({
+    at:new Date().toISOString(),
+    kind,
+    name:value.name||'Error',
+    message:String(value.message||'').replace(/[\r\n]+/g,' ').slice(0,500),
+  });
+  if(runtimeDiagnosticEvents.length>30)runtimeDiagnosticEvents.splice(0,runtimeDiagnosticEvents.length-30);
+}
+window.addEventListener('error',event=>recordRuntimeDiagnosticEvent('error',event.error||event.message));
+window.addEventListener('unhandledrejection',event=>recordRuntimeDiagnosticEvent('unhandledrejection',event.reason));
 const diagnosticNow=()=>typeof performance!=='undefined'&&typeof performance.now==='function'
   ? performance.now()
   : Date.now();
@@ -396,6 +410,16 @@ function bindEvents() {
     link.remove();
     setTimeout(()=>URL.revokeObjectURL(url),1000);
     if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent='診断情報をTXTで保存しました。';
+  });
+
+  ui.clearDiagnosticsButton?.addEventListener('click',()=>{
+    runtimeDiagnosticEvents.length=0;
+    lastTtsFirstChunkMillis=null;
+    lastTtsGenerationCompleteMillis=null;
+    lastTtsFirstAudioMillis=null;
+    lastTtsTotalMillis=null;
+    updateWebTimingDiagnostics();
+    if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent='直近の診断記録をクリアしました。';
   });
 
   ui.fullResetButton?.addEventListener('click',()=>{
@@ -1630,6 +1654,13 @@ async function buildWebDiagnosticReport() {
     `storage.usageBytes=${storageEstimate?.usage??'unknown'}`,
     `storage.quotaBytes=${storageEstimate?.quota??'unknown'}`,
   ];
+  if(runtimeDiagnosticEvents.length){
+    lines.push('runtimeErrors.begin');
+    for(const event of runtimeDiagnosticEvents){
+      lines.push(`${event.at} kind=${event.kind} name=${event.name} message=${event.message}`);
+    }
+    lines.push('runtimeErrors.end');
+  }
   if(semantic.result?.topic){
     lines.push(
       `semantic.lastTopic=${semantic.result.topic.id}`,
@@ -1746,7 +1777,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261007-developer-parity-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261007-developer-parity-r2',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1784,6 +1815,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261007-developer-parity-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261007-developer-parity-r2',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });
