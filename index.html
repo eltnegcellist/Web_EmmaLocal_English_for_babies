@@ -730,8 +730,11 @@
             <span id="webBuild">Web build: loading…</span>
           </div>
           <div id="developerTools" class="hidden developer-tools-card">
-            <p class="small muted">開発者向け：診断・音声確認・完全リセット</p>
+            <p class="small muted">開発者向け：Semantic比較・モデル診断・音声確認・診断情報・完全リセット</p>
             <a class="outline-button link-button compact-button" href="./voice-diagnostic.html?v=20260925-voice-diagnostic-r1">Kitten音声を診断する</a>
+            <a class="outline-button link-button compact-button" href="./semantic-test.html">Semantic単体テストを開く</a>
+            <a class="outline-button link-button compact-button" href="./model-lab.html">モデルラボを開く</a>
+            <a class="outline-button link-button compact-button" href="./coexistence-diagnostic.html">Moonshine / Kitten共存診断を開く</a>
             <section class="card" id="semanticPanel"></section>
             <section id="debugPanel" class="developer-test-panel">
               <label>日本語テキストで返答を確認
@@ -743,6 +746,14 @@
               <strong>Web音声パラメータ</strong>
               <span>Kitten TTS Nano FP32 / Kiki</span>
               <span>Speed 0.8 / Target peak 0.92 / Max boost 1.8x</span>
+              <span id="webTimingDiagnostics">直近計測: 未計測</span>
+            </div>
+            <div class="developer-test-panel">
+              <strong>診断情報</strong>
+              <p class="small muted">個人名や会話本文は含めず、実行環境・モデル状態・設定・直近の処理時間を出力します。</p>
+              <button id="copyDiagnosticsButton" class="outline-button compact-button">診断情報をコピー</button>
+              <button id="downloadDiagnosticsButton" class="outline-button compact-button">診断情報をTXTで保存</button>
+              <p id="diagnosticsStatus" class="small muted" role="status"></p>
             </div>
             <button id="fullResetButton" class="outline-button compact-button">みつことばを初期状態に戻す</button>
             <p class="small muted">設定・初回準備情報・みつことばのモデルキャッシュを削除し、初回画面へ戻します。</p>
@@ -874,6 +885,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261006-mic-reload-r1"></script>
+  <script type="module" src="./src/app.js?v=20261007-developer-parity-r1"></script>
 </body>
 </html>
