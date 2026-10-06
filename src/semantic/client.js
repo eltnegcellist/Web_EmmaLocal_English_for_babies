@@ -15,7 +15,7 @@ export class SemanticLiteClient {
       if (data.type === 'error') request.reject(Error(data.message));
       else request.resolve(data.result);
     };
-    worker.onerror = () => this.cancel('意味判定を開始できませんでした。従来Liteで続けます。');
+    worker.onerror = () => {if(worker===this.worker)this.cancel('意味判定を開始できませんでした。従来Liteで続けます。');};
     const operation = this.request('init', {}, 600000).then(() => { if(worker!==this.worker)throw Error('意味判定を中止しました。'); this.ready = true; this.onStatus({ type: 'progress', ready: true, message: '意味で話題を判定できます。' }); }).catch(error => { if(worker===this.worker)this.cancel(error.message); throw error; }).finally(() => { if(this.preparing===operation)this.preparing=null; });
     this.preparing=operation;return operation;
   }

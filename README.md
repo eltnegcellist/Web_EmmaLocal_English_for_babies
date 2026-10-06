@@ -516,6 +516,6 @@ Web and Android use the same palettes. Soft, Vivid, and Filled each offer four f
 
 Web navigation: Browser/phone Back on Settings returns to the main screen, and Back on the learning-reason/About screen returns to the previous app screen instead of leaving the app immediately.
 
-### Semantic Lite テスト機能
+### Semanticによる話題判定
 
-70M INT8を使うテスト機能を追加しています。初期値はOFFで、通常画面の設定から有効にできます。[使い方・起動・既知の制約](docs/semantic-lite-web-test.md)を参照してください。[文字で試す](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/semantic-test.html)。
+70M INT8による話題判定を標準で有効にしています。初期設定の小さなオフ項目、または通常の設定で無効にできます。明確な話題変更がない発話は直前の話題を最大6回使います。診断・比較は「モデル保存」を5回タップする隠し設定内にあります。[使い方・起動・既知の制約](docs/semantic-lite-web-test.md)を参照してください。[文字で試す](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/semantic-test.html)。

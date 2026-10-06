@@ -1,4 +1,5 @@
 import { installSemanticPanel } from './semantic/panel.js';
+import { createSemanticController } from './semantic/controller.js';
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
 import { installFeatureScreens } from './feature-screens.js';
 import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './emma-color-palettes.js';
@@ -32,12 +33,13 @@ const ui = {
   filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
+  onboardingSemanticOff:$('onboardingSemanticOff'), semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261006-semantic-test-r3';
+const WEB_BUILD = '20261006-semantic-main-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -105,7 +107,13 @@ function audioCacheKey(text){
 initUi();
 
 function initUi() {
-  semanticPanel=installSemanticPanel({engine,beforeChange:async()=>{if(running||processing||speaking)await stopEmma();}});
+  semanticPanel=createSemanticController({engine,mode:'semantic',beforeChange:async()=>{if(running||processing||speaking)await stopEmma();}});
+  installSemanticPanel({controller:semanticPanel});
+  semanticPanel.subscribe(({requested,status})=>{
+    ui.onboardingSemanticOff.checked=!requested;
+    ui.semanticEnabled.checked=requested;
+    ui.semanticStatus.textContent=status.message;
+  });
   const historyCheckbox=$('historyEnabled');
   historyCheckbox.checked=historyEnabled(localStorage);
   historyCheckbox.addEventListener('change',()=>localStorage.setItem('emma_history_enabled',String(historyCheckbox.checked)));
@@ -329,6 +337,8 @@ function bindEvents() {
   ui.onboardingStartTiny?.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.startTiny,String(ui.onboardingStartTiny.checked));
   });
+  ui.onboardingSemanticOff.addEventListener('change',()=>semanticPanel.setEnabled(!ui.onboardingSemanticOff.checked));
+  ui.semanticEnabled.addEventListener('change',()=>semanticPanel.setEnabled(ui.semanticEnabled.checked,{prepare:true,mode:'semantic'}));
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
     if (ui.autoRespond.checked && pendingUtterance && !processing && !speaking) respondToPendingUtterance();
@@ -525,6 +535,7 @@ async function clearObsoleteModelCaches() {
 }
 
 async function prepareFirstRun() {
+  const epoch=conversationEpoch;
   ui.prepareEmmaButton.disabled=true;
   showOnboardingProgress(true,0,'マイクの使用許可を確認しています…');
   try {
@@ -541,6 +552,9 @@ async function prepareFirstRun() {
     await navigator.storage?.persist?.().catch(()=>false);
     await clearObsoleteModelCaches();
     await initWorkers();
+    if(epoch!==conversationEpoch)return;
+    await prepareSemanticForConversation();
+    if(epoch!==conversationEpoch)return;
     // Playback AudioContext is resumed after microphone capture starts.
     localStorage.setItem(STORAGE.setupRevision,CURRENT_SETUP_REVISION);
     showOnboardingProgress(false);
@@ -588,6 +602,8 @@ async function startEmma({ auto = false } = {}) {
       330000,
       'みつことばの準備が完了しませんでした。ページを再読み込みして、もう一度お試しください。'
     );
+    if(epoch!==conversationEpoch)return;
+    await prepareSemanticForConversation();
 
     // The microphone has been open while the models initialize. Discard any
     // partial VAD state gathered during startup. Playback is unlocked only by a
@@ -624,6 +640,18 @@ async function startEmma({ auto = false } = {}) {
     }
     ui.mainButton.disabled=false;
   }
+}
+
+async function prepareSemanticForConversation() {
+  if(!semanticPanel.requested)return;
+  const unsubscribe=semanticPanel.subscribe(({status})=>{
+    const progress=status.total ? Math.min(100,status.loaded/status.total*100) : 0;
+    const size=status.total ? ` ${(status.loaded/1e6).toFixed(1)} / ${(status.total/1e6).toFixed(1)} MB` : '';
+    showProgress(true,progress,status.message+size);
+    showOnboardingProgress(true,progress,status.message+size);
+  });
+  try {await semanticPanel.prepare({retry:true});}
+  finally {unsubscribe();}
 }
 
 async function stopEmma() {
@@ -1545,7 +1573,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-test-r3',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1579,6 +1607,6 @@ async function ensureMoonshineIsolation() {
 
 window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-test-r3',{updateViaCache:'none'}).then(()=>ensureMoonshineIsolation()).catch(error=>console.warn('Moonshine isolation setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-main-r1',{updateViaCache:'none'}).then(()=>ensureMoonshineIsolation()).catch(error=>console.warn('Moonshine isolation setup:',error));
   }
 });

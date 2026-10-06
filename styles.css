@@ -1196,3 +1196,9 @@ body{
 .semantic-test-page .subpage-header { align-items:flex-start;flex-direction:column; }
 .semantic-test-page .subpage-header h1 { font-size:1.5rem; }
 .semantic-test-page p { overflow-wrap:anywhere; }
+
+/* Keep switch hitboxes inside their labels and preserve text/IME interaction. */
+.switch {position:relative;}
+.switch input {inset:0;width:100%;height:100%;}
+#semanticPanel textarea {position:relative;z-index:1;pointer-events:auto;user-select:text;-webkit-user-select:text;touch-action:manipulation;min-height:110px;resize:vertical;}
+.semantic-compact-setting small {font-size:.74rem;}

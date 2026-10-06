@@ -820,12 +820,31 @@ export class LiteResponseEngine {
     const requested = semantic?.topic === 'generic' ? null : findScene(semantic?.topic);
     const validSemantic = !!semantic && (semantic.topic === 'generic' || !!requested);
     const semanticUsed = validSemantic && (semantic.mode === 'semantic' || (semantic.mode === 'guard' && !ruleScene));
-    const scene = semanticUsed ? requested : ruleScene;
-    const sceneScore = semanticUsed ? 0 : explicitScene ? explicitScore : contextualScene ? 2 : 0;
+    let scene = semanticUsed ? requested : ruleScene;
+    let contextUsed = !semanticUsed && !!contextualScene;
+    // Clear Semantic evidence can change the topic. Generic/weak predictions
+    // consume the same six follow-up turns as the existing rule matcher.
+    const semanticClear = !!requested && (
+      semantic?.probability == null || (semantic.probability >= 0.65 && semantic.margin >= 0.15)
+    );
+    const ruleClear = !!explicitScene && candidateHasStrongTopicEvidence;
+    let clearScene = null;
+    if(semanticUsed) {
+      if(!this.activeSceneId || semanticClear)clearScene=requested;
+      else if(this.activeSceneTurnsRemaining>0 && ruleClear)clearScene=explicitScene;
+    }
+    if(semanticUsed) {
+      if(clearScene)scene=clearScene;
+      else if(this.activeSceneTurnsRemaining>0){scene=findScene(this.activeSceneId);contextUsed=!!scene;}
+    }
+    const sceneScore = semanticUsed ? contextUsed ? 2 : 0 : explicitScene ? explicitScore : contextualScene ? 2 : 0;
 
     if (semanticUsed) {
-      this.activeSceneId = scene?.id || null;
-      this.activeSceneTurnsRemaining = scene ? 6 : 0;
+      if(clearScene){this.activeSceneId=clearScene.id;this.activeSceneTurnsRemaining=6;}
+      else if(contextUsed){
+        this.activeSceneTurnsRemaining-=1;
+        if(this.activeSceneTurnsRemaining<=0)this.activeSceneId=null;
+      }
     } else if (explicitScene) {
       this.activeSceneId = explicitScene.id;
       this.activeSceneTurnsRemaining = 6;
@@ -846,7 +865,7 @@ export class LiteResponseEngine {
     this.turnsSinceName = safeName && containsName(styled, safeName)
       ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
-    return { english: styled, scene: scene?.id || "generic", score: sceneScore, ruleScene: ruleScene?.id || "generic", semanticUsed };
+    return { english: styled, scene: scene?.id || "generic", score: sceneScore, ruleScene: ruleScene?.id || "generic", semanticUsed, contextUsed };
   }
 
   resetConversationContext() {

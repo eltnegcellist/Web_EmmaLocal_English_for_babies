@@ -8,7 +8,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=20260930-icon-r1" />
   <link rel="icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" sizes="192x192" />
-  <link rel="stylesheet" href="./styles.css?v=20261005-play-ui-sync-r21" />
+  <link rel="stylesheet" href="./styles.css?v=20261006-semantic-main-r1" />
   <title>みつことば Web</title>
 </head>
 <body>
@@ -71,11 +71,10 @@
         </section>
 
         <section class="start-panel">
-          <p><a class="text-button" href="./semantic-test.html">Semantic Lite テスト版を文字で試す</a></p>
           <p>初期設定では会話履歴を端末内に残します。録音は保存しません。設定でオフにできます。</p>
           <button id="prepareEmmaButton" class="primary-button hero-start-button">
             <span class="button-main">3人で話しはじめる</span>
-            <span class="button-sub">初回のみ音声モデルを準備します</span>
+            <span class="button-sub">初回のみ音声と話題判定を準備します</span>
           </button>
           <div id="onboardingProgress" class="progress-wrap hidden">
             <div class="progress-track"><div id="onboardingProgressBar" class="progress-bar"></div></div>
@@ -95,6 +94,14 @@
           <label class="toggle-line compact-toggle">
             <span><strong>Moonshine Tiny（軽量）</strong></span>
             <span class="switch"><input id="onboardingStartTiny" type="checkbox" /><span></span></span>
+          </label>
+        </div>
+
+        <div class="lite-compact-setting semantic-compact-setting">
+          <div><strong>話題の理解</strong><small>普段の言い方から意味を理解します。標準でオンです。</small></div>
+          <label class="toggle-line compact-toggle">
+            <span><strong>意味での話題判定をオフにする</strong></span>
+            <span class="switch"><input id="onboardingSemanticOff" type="checkbox"><span></span></span>
           </label>
         </div>
 
@@ -699,12 +706,13 @@
 
         <article class="card">
           <h2>返答と話題</h2>
+          <label class="toggle-line"><span>意味で話題を判定する（標準）</span><span class="switch"><input id="semanticEnabled" type="checkbox" checked><span></span></span></label>
+          <p id="semanticStatus" class="small muted"></p>
+          <p class="small muted">話題が曖昧な場合は、直前の話題を最大6回使います。明確な別の話題が来たら切り替えます。</p>
           <p class="small muted">育児の話題を日本語から選び、短い英語で返します。話題の一覧と、拾いやすい呼びかけの例を確認できます。</p>
           <a class="outline-button link-button compact-button" href="./topic-guide.html" target="_blank" rel="noopener">話題の判定方法・話題一覧を見る ↗</a>
           <p class="small muted">別のタブで開きます。</p>
         </article>
-
-        <article class="card" id="semanticPanel"></article>
 
         <article class="card">
           <h2>使い方</h2>
@@ -729,6 +737,7 @@
           <div id="developerTools" class="hidden developer-tools-card">
             <p class="small muted">開発者向け：診断・音声確認・完全リセット</p>
             <a class="outline-button link-button compact-button" href="./voice-diagnostic.html?v=20260925-voice-diagnostic-r1">Kitten音声を診断する</a>
+            <section class="card" id="semanticPanel"></section>
             <section id="debugPanel" class="developer-test-panel">
               <label>日本語テキストで返答を確認
                 <textarea id="debugInput" rows="3" placeholder="お風呂入ろうね"></textarea>
@@ -870,6 +879,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261006-semantic-test-r3"></script>
+  <script type="module" src="./src/app.js?v=20261006-semantic-main-r1"></script>
 </body>
 </html>

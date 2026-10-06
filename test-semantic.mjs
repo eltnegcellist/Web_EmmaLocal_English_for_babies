@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
+import { runInNewContext } from 'node:vm';
 import { readFileSync } from 'node:fs';
 import { JSDOM } from 'jsdom';
 import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.js';
 import { SemanticLiteClient } from './src/semantic/client.js';
 import { decodeHead, classifyEmbedding } from './src/semantic/core.js';
 import { installSemanticPanel } from './src/semantic/panel.js';
+import { createSemanticController } from './src/semantic/controller.js';
 import { downloadSemanticAsset } from './src/semantic/download.js';
 // Browser fetch decodes gzip but preserves the compressed Content-Length.
 const decoded = Uint8Array.from([1,2,3,4,5]);
@@ -25,11 +27,54 @@ const config={shape:[2,385],classes:['milk','generic']};const matrix=new Float32
 let workers=[];
 class FakeWorker { constructor(){this.sent=[];this.terminated=false;workers.push(this);}postMessage(data){this.sent.push(data);}terminate(){this.terminated=true;}reply(id,result={}){this.onmessage({data:{type:'result',requestId:id,result}});} }
 const client=new SemanticLiteClient({workerFactory:()=>new FakeWorker()});const init=client.prepare();workers[0].reply(workers[0].sent[0].requestId);await init;assert.equal(client.ready,true);
-const old=client.predict('ミルク');await Promise.resolve();client.cancel();const retry=client.prepare();await assert.rejects(old);workers[1].reply(workers[1].sent[0].requestId);await retry;assert.equal(client.ready,true);client.cancel();assert.equal(client.pending.size,0);
+const old=client.predict('ミルク');await Promise.resolve();client.cancel();const retry=client.prepare();await assert.rejects(old);workers[0].onerror();assert.equal(client.worker,workers[1]);workers[1].reply(workers[1].sent[0].requestId);await retry;assert.equal(client.ready,true);client.cancel();assert.equal(client.pending.size,0);
 const dom=new JSDOM('<article id="semanticPanel"></article>',{url:'https://example.test/'});globalThis.document=dom.window.document;const storage=dom.window.localStorage;let rejectMode=false,finish;
 const engine=new LiteResponseEngine();const fake={ready:true,prepare:async()=>{},cancel(){},cancelPending(){},async predict(){if(rejectMode)throw Error('model failure');return {topic:{id:'sleep',probability:.9,margin:.8},intent:{id:'invitation'},state:{id:'future'},elapsedMs:10};}};
-const panel=installSemanticPanel({engine,storage,clientFactory:()=>fake});assert.equal(panel.enabled,false);
+const panel=installSemanticPanel({engine,storage,clientFactory:()=>fake});assert.equal(panel.enabled,true);
 document.querySelector('[data-semantic="enabled"]').checked=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'sleep');rejectMode=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'bath');assert.equal(panel.enabled,false);
 rejectMode=false;document.querySelector('[data-semantic="prepare"]').click();await new Promise(r=>setTimeout(r,0));assert.equal(panel.enabled,true);
 fake.predict=()=>new Promise(resolve=>finish=resolve);const pending=panel.respond('ミルク','',{isCurrent:()=>false});await Promise.resolve();finish({topic:{id:'milk'},intent:{id:'observation'},state:{id:'ongoing'},elapsedMs:1});assert.equal(await pending,null);
 console.log('Semantic policies, catalog rendering, invalid data, cancellation/retry, failed-model fallback and stale reply checks passed.');
+
+// Semantic context consumes, rather than continually resets, six follow-up turns.
+const clear=(topic)=>({topic,mode:'semantic',probability:.95,margin:.8});
+const generic={topic:'generic',mode:'semantic',probability:.8,margin:.7};
+const held=new LiteResponseEngine();held.respond('ミルクを飲もうか','',clear('milk'));
+for(let i=0;i<6;i++){const r=held.respond('いいね','',generic);assert.equal(r.scene,'milk');assert.equal(r.contextUsed,true);assert.equal(held.activeSceneTurnsRemaining,5-i);}
+assert.equal(held.respond('どうかな','',generic).scene,'generic');
+held.respond('ミルクを飲もうか','',clear('milk'));
+assert.equal(held.respond('もっと？','',{topic:'book',mode:'semantic',probability:.4,margin:.1}).scene,'milk');
+assert.equal(held.activeSceneTurnsRemaining,5);
+assert.equal(held.respond('眠る時間だよ','',clear('sleep')).scene,'sleep');assert.equal(held.activeSceneTurnsRemaining,6);
+assert.equal(held.respond('お風呂入ろうね','',generic).scene,'bath');assert.equal(held.activeSceneTurnsRemaining,6);
+held.resetConversationContext();assert.equal(held.respond('どうかな','',generic).scene,'generic');
+const firstWeak=new LiteResponseEngine();assert.equal(firstWeak.respond('見てみよう','',{topic:'book',mode:'semantic',probability:.4,margin:.1}).scene,'book');assert.equal(firstWeak.activeSceneTurnsRemaining,6);
+// Default-on does not download anything until first setup, startup or explicit testing.
+const isolated=new JSDOM('',{url:'https://prefs.test/'}).window.localStorage;
+let prepares=0,predicts=0;
+const noAuto={ready:false,prepare:async()=>{prepares++;},cancel(){},cancelPending(){},predict:async()=>{predicts++;return {topic:{id:'milk',probability:.99,margin:.98}};}};
+const ctrl=createSemanticController({engine:new LiteResponseEngine(),storage:isolated,clientFactory:()=>noAuto,mode:'semantic'});
+assert.equal(ctrl.enabled,true);assert.equal(prepares,0);await ctrl.setEnabled(false);await ctrl.prepare();await ctrl.respond('ミルク');assert.equal(prepares,0);assert.equal(predicts,0);
+const persisted=createSemanticController({engine:new LiteResponseEngine(),storage:isolated,clientFactory:()=>noAuto});assert.equal(persisted.enabled,false);
+isolated.setItem('emma_semantic_enabled','true');isolated.setItem('emma_semantic_mode','lite');
+const main=createSemanticController({engine:new LiteResponseEngine(),storage:isolated,clientFactory:()=>noAuto,mode:'semantic'});assert.equal(main.enabled,true);assert.equal(main.snapshot.mode,'semantic');
+console.log('Semantic default-on/opt-out, lazy preparation, six follow-ups, weak/clear topic changes, reset and late worker error checks passed.');
+
+// Execute the actual first-setup functions with audio/mic stubs, avoiding model
+// downloads while checking permission order and the previously missing epoch.
+const appSource=readFileSync(new URL('./src/app.js',import.meta.url),'utf8');
+const setupFunction=appSource.slice(appSource.indexOf('async function prepareFirstRun()'),appSource.indexOf('async function startEmma('));
+const semanticSetup=appSource.slice(appSource.indexOf('async function prepareSemanticForConversation()'),appSource.indexOf('async function stopEmma()'));
+for(const enabled of [true,false]) {
+ const calls=[],values=new Map();
+ const sandbox={conversationEpoch:0,CURRENT_SETUP_REVISION:'setup-test',STORAGE:{asrModel:'asr',startTiny:'tiny',setupRevision:'emma_web_setup_revision'},
+  ui:{prepareEmmaButton:{disabled:false},onboardingStartTiny:{checked:false},asrModel:{value:''}},
+  localStorage:{setItem:(k,v)=>values.set(k,v)},navigator:{storage:{persist:async()=>true}},
+  requestMicrophonePermission:async()=>calls.push('microphone'),ensureMoonshineIsolation:async()=>true,
+  clearObsoleteModelCaches:async()=>{},initWorkers:async()=>calls.push('audio'),
+  semanticPanel:{requested:enabled,subscribe(fn){fn({status:{message:'ready',ready:true}});return()=>{};},prepare:async()=>{calls.push('semantic');return true;}},
+  showOnboardingProgress(){},showProgress(){},setBusy(){},showScreen(){},setState(){},updateAsrModelStatus(){},startTutorial:()=>calls.push('tutorial'),friendlyError:e=>e.message,console};
+ runInNewContext(setupFunction+semanticSetup+'globalThis.runSetup=prepareFirstRun;',sandbox);
+ await sandbox.runSetup();assert.deepEqual(calls,enabled ? ['microphone','audio','semantic','tutorial'] : ['microphone','audio','tutorial']);assert.equal(values.get('emma_web_setup_revision'),'setup-test');
+}
+console.log('Actual first-setup permission/audio/Semantic order and opt-out checks passed.');
