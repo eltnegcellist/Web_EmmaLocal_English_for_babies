@@ -871,6 +871,21 @@ export class LiteResponseEngine {
     return { english: styled, scene: scene?.id || "generic", score: sceneScore, ruleScene: ruleScene?.id || "generic", semanticUsed, contextUsed };
   }
 
+  respondGeneric(spokenBabyName = "") {
+    const safeName = sanitizeName(spokenBabyName);
+    const forceName = !!safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW;
+    const suppressName = !!safeName && this.turnsSinceName < STYLE.NAME_REPEAT_WINDOW;
+    const raw = this.chooseReply(GENERIC_REPLIES, "", forceName, suppressName);
+    const named = applyName(raw, safeName, forceName);
+    const styled = this.alignToBabyStyle(named, "", null);
+
+    this.remember(raw, styled);
+    this.turnsSinceName = safeName && containsName(styled, safeName)
+      ? 0 : this.turnsSinceName + 1;
+    this.turnCounter++;
+    return { english: styled, scene: "generic", score: 0, ruleScene: "generic", semanticUsed: false, contextUsed: false };
+  }
+
   resetConversationContext() {
     this.activeSceneId = null;
     this.activeSceneTurnsRemaining = 0;
