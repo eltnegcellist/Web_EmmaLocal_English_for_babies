@@ -1,6 +1,6 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>みつことば Semantic Lite テスト</title><link rel="stylesheet" href="./styles.css"></head><body class="semantic-test-page"><main><div class="screen-content settings-content"><header class="subpage-header"><a href="./index.html">← みつことばへ</a><h1>Semantic Lite テスト版</h1></header><p>マイクや音声モデルの準備なしに、日本語から選ぶ話題と既存の英文を確認できます。会話でも、通常アプリの設定から同じ意味判定を使えます。</p><article class="card" id="semanticPanel"></article><p class="small muted">状態は文で言及する状態です。「飲み終わった？」を、実際に飲み終わったと断定する判定ではありません。</p></div></main><script type="module">
 import { LiteResponseEngine } from './src/lite-response-engine.js';
 import { installSemanticPanel } from './src/semantic/panel.js';
-await navigator.serviceWorker?.register('./service-worker.js?v=semantic-test-r2',{updateViaCache:'none'});
+await navigator.serviceWorker?.register('./service-worker.js?v=semantic-test-r3',{updateViaCache:'none'});
 installSemanticPanel({engine:new LiteResponseEngine()});
 </script></body></html>

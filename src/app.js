@@ -37,7 +37,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261006-semantic-test-r2';
+const WEB_BUILD = '20261006-semantic-test-r3';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -1545,7 +1545,7 @@ async function ensureMoonshineIsolation() {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-test-r2',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-test-r3',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1579,6 +1579,6 @@ async function ensureMoonshineIsolation() {
 
 window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-test-r2',{updateViaCache:'none'}).then(()=>ensureMoonshineIsolation()).catch(error=>console.warn('Moonshine isolation setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261006-semantic-test-r3',{updateViaCache:'none'}).then(()=>ensureMoonshineIsolation()).catch(error=>console.warn('Moonshine isolation setup:',error));
   }
 });

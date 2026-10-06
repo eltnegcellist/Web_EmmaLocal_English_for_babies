@@ -59,3 +59,5 @@ intent/stateはMacとWebで差があり、実用応答の条件には採用し�
 実装ブランチは `experiment/semantic-lite-web-test`。Pages配信はmainのCIから公開用ブランチへ同期する既存手順を利用します。GitHub Releaseは作成しません。ライセンス原文・帰属は `licenses/semantic/` と `THIRD_PARTY_NOTICES.md` に保存しています。
 
 2026-10-06の機能確認は通過しました。実画面・3方式切替・中止／再試行・資産欠落時の復帰・保存済みモデルのオフライン実行・390px幅を確認済みです。既存npm test、shared contract、構文チェック、diffチェックも通過し、npm auditは0件でした。確認記録は `semantic-lite-web-functional-checks.json` です。
+
+PagesのHTTP圧縮ではContent-Lengthが圧縮前の資産サイズと異なるため、Semantic専用ダウンローダーはmanifestの展開後サイズとSHA256で確認します。完了済み資産をキャッシュし、失敗したファイルは再試行時に取り直します。既存ASR/TTSの再開対応ダウンローダーは変更していません。

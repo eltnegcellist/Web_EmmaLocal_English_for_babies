@@ -5,7 +5,7 @@ import {chromium} from 'playwright';
 const browser=await chromium.launch({channel:'chrome',headless:true});
 const base=process.env.SEMANTIC_TEST_URL || 'http://127.0.0.1:8765/';
 const errors=[];const results={};
-async function ready(page){await page.waitForFunction(()=>document.querySelector('[data-semantic="status"]').textContent.includes('判定できます'),null,{timeout:180000});}
+async function ready(page){await page.waitForFunction(()=>/判定できます|できません|HTTP |error|Error|failed|no available|Incomplete/.test(document.querySelector('[data-semantic="status"]').textContent),null,{timeout:180000});assert.match(await page.locator('[data-semantic="status"]').innerText(),/判定できます/);}
 async function reply(page){await page.locator('[data-semantic="input"]').fill('お風呂に入って温まろう');await page.locator('[data-semantic="try"]').click();await page.waitForFunction(()=>document.querySelector('[data-semantic="result"]').textContent.includes('選んだ話題：bath'),null,{timeout:60000});assert.match(await page.locator('[data-semantic="result"]').innerText(),/既存ライブラリの英語：.+/);}
 try {
  await mkdir('.semantic-test-results',{recursive:true});

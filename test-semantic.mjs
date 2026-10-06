@@ -5,6 +5,13 @@ import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.j
 import { SemanticLiteClient } from './src/semantic/client.js';
 import { decodeHead, classifyEmbedding } from './src/semantic/core.js';
 import { installSemanticPanel } from './src/semantic/panel.js';
+import { downloadSemanticAsset } from './src/semantic/download.js';
+// Browser fetch decodes gzip but preserves the compressed Content-Length.
+const decoded = Uint8Array.from([1,2,3,4,5]);
+const compressedResponse = () => Promise.resolve(new Response(decoded, {headers:{'content-encoding':'gzip','content-length':'3'}}));
+assert.deepEqual(new Uint8Array(await downloadSemanticAsset('/asset',5,null,compressedResponse)),decoded);
+await assert.rejects(downloadSemanticAsset('/asset',6,null,compressedResponse),/途中/);
+await assert.rejects(downloadSemanticAsset('/asset',4,null,compressedResponse),/サイズ/);
 const baseline=new LiteResponseEngine().respond('お風呂に入ろうね','Hana');
 const semantic=new LiteResponseEngine().respond('お風呂に入ろうね','Hana',{topic:'sleep',mode:'semantic'});
 assert.equal(semantic.scene,'sleep');assert.equal(semantic.ruleScene,'bath');assert.equal(semantic.semanticUsed,true);assert.equal(splitSentences(semantic.english).length,3);

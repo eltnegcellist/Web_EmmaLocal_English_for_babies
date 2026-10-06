@@ -1,6 +1,6 @@
 import { classifyEmbedding, decodeHead } from './core.js';
 import { createRuriTokenizer } from './tokenize.js';
-import { downloadResumable } from '../resumable-download.js';
+import { downloadSemanticAsset } from './download.js';
 let session, tokenizer, ort, heads, config, manifest;
 let initPromise;
 const manifestURL = new URL('../semantic-assets-manifest.json', import.meta.url);
@@ -22,8 +22,7 @@ async function prepare() {
       if (buffer.byteLength !== meta.bytes || await sha(buffer) !== meta.sha256) { await cache.delete(url); buffer = null; }
     }
     if (!buffer) {
-      const result = await downloadResumable(url, { onProgress: (n) => progress(n, '意味判定のデータを準備しています…') });
-      buffer = result.buffer;
+      buffer = await downloadSemanticAsset(url, meta.bytes, n => progress(n, '意味判定のデータを準備しています…'));
       if (buffer.byteLength !== meta.bytes || await sha(buffer) !== meta.sha256) throw Error('意味判定データを確認できませんでした。もう一度準備してください。');
       await cache.put(url, new Response(buffer, { headers: { 'content-type': file.endsWith('.mjs') ? 'text/javascript' : file.endsWith('.wasm') ? 'application/wasm' : 'application/octet-stream' } }));
     }
