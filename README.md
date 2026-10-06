@@ -518,7 +518,7 @@ Web navigation: Browser/phone Back on Settings returns to the main screen, and B
 
 ### 隠し開発者設定
 
-設定画面の「モデル保存」を5回タップすると、通常利用では隠している開発者設定を開けます。Semantic / Guard / 従来Liteの比較、日本語テキストからの返答確認、Semantic単体テスト、モデルラボ、Moonshine / Kitten共存診断、Kitten音声診断、TTSの直近処理時間、診断情報のコピー・TXT保存、完全リセットを利用できます。診断TXTには個人名や会話本文を含めず、実行環境・モデル状態・設定・直近の処理時間を出力します。
+設定画面の「モデル保存」を5回タップすると、通常利用では隠している開発者設定を開けます。Semantic / Guard / 従来Liteの比較、日本語テキストからの返答確認、Semantic単体テスト、モデルラボ、Moonshine / Kitten共存診断、Kitten音声診断、TTSの直近処理時間、ブラウザの直近エラー記録、診断情報のコピー・TXT保存・記録クリア、完全リセットを利用できます。診断TXTには個人名や会話本文を含めず、実行環境・モデル状態・設定・直近の処理時間・ブラウザエラー概要を出力します。
 
 ### Semanticによる話題判定
 
