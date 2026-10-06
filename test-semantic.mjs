@@ -68,17 +68,29 @@ console.log('Semantic default-on/opt-out, lazy preparation, six follow-ups, weak
 const appSource=readFileSync(new URL('./src/app.js',import.meta.url),'utf8');
 const setupFunction=appSource.slice(appSource.indexOf('async function prepareFirstRun()'),appSource.indexOf('async function startEmma('));
 const semanticSetup=appSource.slice(appSource.indexOf('async function prepareSemanticForConversation()'),appSource.indexOf('async function stopEmma()'));
-for(const enabled of [true,false]) {
+for(const highPerformance of [true,false]) {
  const calls=[],values=new Map();
- const sandbox={conversationEpoch:0,CURRENT_SETUP_REVISION:'setup-test',STORAGE:{asrModel:'asr',startTiny:'tiny',setupRevision:'emma_web_setup_revision'},
-  ui:{prepareEmmaButton:{disabled:false},onboardingStartTiny:{checked:false},asrModel:{value:''}},
+ const semanticStub={
+  requested:true,
+  async setEnabled(value){this.requested=!!value;},
+  subscribe(fn){fn({status:{message:'ready',ready:true}});return()=>{};},
+  prepare:async()=>{calls.push('semantic');return true;}
+ };
+ const sandbox={conversationEpoch:0,CURRENT_SETUP_REVISION:'setup-test',STORAGE:{asrModel:'asr',startTiny:'tiny',highPerformance:'performance',setupRevision:'emma_web_setup_revision'},
+  ui:{prepareEmmaButton:{disabled:false},onboardingHighPerformance:{checked:highPerformance},asrModel:{value:''}},
   localStorage:{setItem:(k,v)=>values.set(k,v)},navigator:{storage:{persist:async()=>true}},
   requestMicrophonePermission:async()=>calls.push('microphone'),ensureMoonshineIsolation:async()=>true,
   clearObsoleteModelCaches:async()=>{},initWorkers:async()=>calls.push('audio'),
-  semanticPanel:{requested:enabled,subscribe(fn){fn({status:{message:'ready',ready:true}});return()=>{};},prepare:async()=>{calls.push('semantic');return true;}},
+  semanticPanel:semanticStub,
   showOnboardingProgress(){},showProgress(){},setBusy(){},showScreen(){},setState(){},updateAsrModelStatus(){},startTutorial:()=>calls.push('tutorial'),friendlyError:e=>e.message,console};
  runInNewContext(setupFunction+semanticSetup+'globalThis.runSetup=prepareFirstRun;',sandbox);
- await sandbox.runSetup();assert.deepEqual(calls,enabled ? ['microphone','audio','semantic','tutorial'] : ['microphone','audio','tutorial']);assert.equal(values.get('emma_web_setup_revision'),'setup-test');
+ await sandbox.runSetup();
+ assert.deepEqual(calls,highPerformance ? ['microphone','audio','semantic','tutorial'] : ['microphone','audio','tutorial']);
+ assert.equal(values.get('asr'),highPerformance ? 'small' : 'tiny');
+ assert.equal(values.get('tiny'),String(!highPerformance));
+ assert.equal(values.get('performance'),String(highPerformance));
+ assert.equal(semanticStub.requested,highPerformance);
+ assert.equal(values.get('emma_web_setup_revision'),'setup-test');
 }
 console.log('Actual first-setup permission/audio/Semantic order and opt-out checks passed.');
 // A cached ASR may be ready before the new Semantic stage. Capture must ignore
