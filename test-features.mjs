@@ -56,6 +56,7 @@ assert.equal($('onboardingSemanticOff'),null,'legacy Semantic-off toggle should 
 assert.match($('onboardingHighPerformance').closest('label').textContent,/高性能モデルを使う/);
 assert($('copyDiagnosticsButton'),'hidden developer tools should expose diagnostic copy');
 assert($('downloadDiagnosticsButton'),'hidden developer tools should expose diagnostic TXT download');
+assert($('clearDiagnosticsButton'),'hidden developer tools should expose diagnostic reset');
 assert($('webTimingDiagnostics'),'hidden developer tools should expose TTS timing');
 for(const href of ['./semantic-test.html','./model-lab.html','./coexistence-diagnostic.html']){
   assert($('developerTools').querySelector(`a[href="${href}"]`),`missing developer link ${href}`);
@@ -109,6 +110,8 @@ assert(source.includes("const firstRunAsr = highPerformance ? 'small' : 'tiny';"
 assert(source.includes("await semanticPanel.setEnabled(highPerformance,{prepare:false,mode:'semantic'});"));
 assert(source.includes('async function buildWebDiagnosticReport()'));
 assert(source.includes('lastTtsFirstAudioMillis'));
+assert(source.includes('runtimeDiagnosticEvents'));
+assert(source.includes('unhandledrejection'));
 assert(source.includes('diagnosticNow'));
 source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=>{};renderAvatarFrame=()=>{};setBusy=()=>{};
   audioContext=testAudio;ttsWorker={postMessage(message){captureRequest(message.requestId);}};
