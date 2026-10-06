@@ -24,10 +24,18 @@ export class EmmaMicrophone {
     this.stream = stream;
     const context = this.context = new AudioContext({ latencyHint: 'interactive' });
     if (this.context.state === 'suspended') {
-      await this.context.resume();
+      await withTimeout(
+        this.context.resume(),
+        5000,
+        'マイク音声処理を開始できませんでした。「会話を始める」をもう一度押してください。'
+      );
     }
     if(generation !== this.generation) return;
-    await context.audioWorklet.addModule(new URL('../worklets/pcm-capture-worklet.js', import.meta.url));
+    await withTimeout(
+      context.audioWorklet.addModule(new URL('../worklets/pcm-capture-worklet.js', import.meta.url)),
+      15000,
+      'マイク音声処理の読み込みが完了しませんでした。ページを再読み込みして、もう一度お試しください。'
+    );
     if(generation !== this.generation) return;
     const source = this.context.createMediaStreamSource(this.stream);
     this.node = new AudioWorkletNode(this.context, 'emma-pcm-capture');
@@ -68,7 +76,11 @@ export class EmmaMicrophone {
 
   async ensureActive() {
     if (this.context && this.context.state === 'suspended') {
-      await this.context.resume();
+      await withTimeout(
+        this.context.resume(),
+        5000,
+        'マイク音声処理を再開できませんでした。「会話を始める」をもう一度押してください。'
+      );
     }
   }
 

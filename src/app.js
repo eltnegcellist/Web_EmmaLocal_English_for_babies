@@ -39,7 +39,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261006-semantic-main-r3';
+const WEB_BUILD = '20261006-mic-reload-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -165,6 +165,7 @@ function initUi() {
   startAvatarBlinkLoop();
 
   const reloadedAsr=sessionStorage.getItem(STORAGE.asrReload);
+  const needsMicGestureAfterIsolation=sessionStorage.getItem('emma_coi_manual_start')==='1';
   if (localStorage.getItem(STORAGE.setupRevision) === CURRENT_SETUP_REVISION) {
     if(reloadedAsr){
       sessionStorage.removeItem(STORAGE.asrReload);
@@ -173,6 +174,10 @@ function initUi() {
       setState('idle',`音声認識を${label}に変更しました`,'「会話を始める」を押して会話を再開してください。');
       if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}。再読み込みして安全に切り替えました。`;
       if(localStorage.getItem(STORAGE.tutorialDone)!=='true') queueMicrotask(()=>startTutorial());
+    } else if(needsMicGestureAfterIsolation) {
+      sessionStorage.removeItem('emma_coi_manual_start');
+      showScreen('home',{autoStart:false});
+      setState('idle','マイクの準備ができました','「会話を始める」を押すと、マイクの許可を確認して会話を始めます。');
     } else if(localStorage.getItem(STORAGE.tutorialDone)==='true') {
       showScreen('home');
     } else {
@@ -578,7 +583,7 @@ async function startEmma({ auto = false } = {}) {
   ui.mainButton.disabled=true;
   preparingConversation=true;
   try {
-    if(!(await ensureMoonshineIsolation({isCurrent:()=>epoch===conversationEpoch}))) return;
+    if(!(await ensureMoonshineIsolation({isCurrent:()=>epoch===conversationEpoch,manualStartAfterReload:true}))) return;
 
     // Always try the real microphone first. Do not gate startup on the
     // Permissions API: Android/Brave/Chrome may report "prompt" even when the
@@ -1570,7 +1575,7 @@ function withTimeout(promise,ms,message){
   return Promise.race([promise,timeout]).finally(()=>clearTimeout(timer));
 }
 
-async function ensureMoonshineIsolation({isCurrent=()=>true}={}) {
+async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterReload=false}={}) {
   if(!isCurrent())return false;
   if(window.crossOriginIsolated && typeof SharedArrayBuffer === 'function') {
     sessionStorage.removeItem('emma_coi_reload_count');
@@ -1580,7 +1585,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true}={}) {
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-reply-priority-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261006-mic-reload-r1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1606,6 +1611,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true}={}) {
   const reloadCount=Number(sessionStorage.getItem('emma_coi_reload_count')||'0');
   if(reloadCount<2) {
     sessionStorage.setItem('emma_coi_reload_count',String(reloadCount+1));
+    if(manualStartAfterReload) sessionStorage.setItem('emma_coi_manual_start','1');
     location.reload();
     return false;
   }
@@ -1617,6 +1623,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261006-reply-priority-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261006-mic-reload-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });

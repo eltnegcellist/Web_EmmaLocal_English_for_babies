@@ -102,3 +102,29 @@ const isoSandbox={window:{crossOriginIsolated:false},navigator:{serviceWorker:{r
 const isolationSource=appSource.slice(appSource.indexOf('async function ensureMoonshineIsolation('),appSource.lastIndexOf("window.addEventListener('load'"));
 runInNewContext(isolationSource+'globalThis.isolate=ensureMoonshineIsolation;',isoSandbox);assert.equal(await isoSandbox.isolate({isCurrent:()=>current}),false);assert.equal(reloads,0);
 console.log('Background registration does not reload editors; cancelled ASR startup cannot reload.');
+
+// A conversation-triggered isolation reload must not auto-start the microphone
+// after navigation, because Android may require a fresh user gesture for permission.
+let reloadsWithGesture=0;
+const isolationStore=new Map();
+const gestureIsoSandbox={
+ window:{crossOriginIsolated:false},
+ navigator:{serviceWorker:{register:async()=>({update:async()=>{}})}},
+ location:{reload(){reloadsWithGesture++;}},
+ sessionStorage:{getItem:key=>isolationStore.get(key)||null,setItem:(key,value)=>isolationStore.set(key,value),removeItem:key=>isolationStore.delete(key)},
+ delay:async()=>{},
+ SharedArrayBuffer
+};
+runInNewContext(isolationSource+'globalThis.isolate=ensureMoonshineIsolation;',gestureIsoSandbox);
+assert.equal(await gestureIsoSandbox.isolate({manualStartAfterReload:true}),false);
+assert.equal(reloadsWithGesture,1);
+assert.equal(isolationStore.get('emma_coi_manual_start'),'1');
+assert.equal(isolationStore.get('emma_coi_reload_count'),'1');
+console.log('Isolation reload requires a fresh manual microphone gesture after navigation.');
+
+// Microphone startup must fail instead of waiting forever on a suspended
+// AudioContext or AudioWorklet load.
+const audioCaptureSource=readFileSync(new URL('./src/audio-capture.js',import.meta.url),'utf8');
+assert.match(audioCaptureSource,/withTimeout\(\s*this\.context\.resume\(\),\s*5000/);
+assert.match(audioCaptureSource,/withTimeout\(\s*context\.audioWorklet\.addModule[\s\S]*?15000/);
+console.log('Microphone AudioContext and worklet startup are bounded by timeouts.');
