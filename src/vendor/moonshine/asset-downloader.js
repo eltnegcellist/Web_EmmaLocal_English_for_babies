@@ -7,6 +7,9 @@
 import { MoonshineDownloadError } from './errors.js';
 import { clearResumableDownload, downloadResumable } from '../../resumable-download.js';
 const DEFAULT_CACHE = 'moonshine-models-v1';
+const diagnosticNow = () => typeof performance !== 'undefined' && typeof performance.now === 'function'
+    ? performance.now()
+    : Date.now();
 /**
  * Downloads model files with transparent caching. A single instance can be
  * reused across models; entries are keyed by absolute URL.
@@ -16,10 +19,12 @@ export class AssetDownloader {
     onProgress;
     baseUrl;
     session;
+    onAssetEvent;
     constructor(options = {}) {
         this.cacheName = options.cacheName ?? DEFAULT_CACHE;
         this.onProgress = options.onProgress;
         this.baseUrl = options.baseUrl;
+        this.onAssetEvent = options.onAssetEvent;
     }
     /**
      * Downloads every file listed in a `{groups:[...]}` manifest (STT / embedding),
@@ -81,25 +86,46 @@ export class AssetDownloader {
     }
     /** Fetches a single URL, using the Cache API when available. */
     async fetchFile(url) {
+        const file = basename(url);
         const cache = await this.openCache();
         if (cache) {
+            const lookupStarted = diagnosticNow();
             const hit = await cache.match(url);
+            const lookupMs = diagnosticNow() - lookupStarted;
             if (hit) {
+                this.reportProgress(0, undefined, file, { source: 'cache' });
+                const readStarted = diagnosticNow();
                 const buf = await hit.arrayBuffer();
+                const readMs = diagnosticNow() - readStarted;
                 await clearResumableDownload(url).catch(() => {});
-                this.reportProgress(buf.byteLength, buf.byteLength, basename(url));
+                this.reportProgress(buf.byteLength, buf.byteLength, file, { source: 'cache' });
+                this.onAssetEvent?.({
+                    kind: 'cache-read',
+                    file,
+                    bytes: buf.byteLength,
+                    lookupMs,
+                    readMs,
+                    durationMs: lookupMs + readMs,
+                });
                 this.finishFile(buf.byteLength);
                 return new Uint8Array(buf);
             }
+            this.onAssetEvent?.({ kind: 'cache-miss', file, lookupMs });
         }
         let result;
+        const downloadStarted = diagnosticNow();
         try {
             result = await downloadResumable(url, {
                 background: {
                     cacheName: this.cacheName,
                     cacheKey: url,
                 },
-                onProgress: (loaded, total) => this.reportProgress(loaded, total, basename(url)),
+                onProgress: (loaded, total, detail) => this.reportProgress(
+                    loaded,
+                    total,
+                    file,
+                    { source: 'network', resumed: Boolean(detail?.resumed) }
+                ),
             });
         }
         catch (error) {
@@ -107,11 +133,24 @@ export class AssetDownloader {
                 `Failed to download ${url}: ${error?.message || error}`
             );
         }
+        const downloadMs = diagnosticNow() - downloadStarted;
         const buf = result.buffer;
+        let cacheWriteMs = 0;
         if (cache) {
+            const writeStarted = diagnosticNow();
             await cache.put(url, new Response(buf));
+            cacheWriteMs = diagnosticNow() - writeStarted;
         }
         await clearResumableDownload(url).catch(() => {});
+        this.onAssetEvent?.({
+            kind: 'network-download',
+            file,
+            bytes: Number(result.networkLoaded) || buf.byteLength,
+            assetBytes: buf.byteLength,
+            resumed: Boolean(result.resumed),
+            durationMs: downloadMs,
+            cacheWriteMs,
+        });
         this.finishFile(buf.byteLength);
         return new Uint8Array(buf);
     }
@@ -136,14 +175,14 @@ export class AssetDownloader {
         if (this.session)
             this.session.completedBytes += bytes;
     }
-    reportProgress(loadedInFile, fileTotal, file) {
+    reportProgress(loadedInFile, fileTotal, file, detail = {}) {
         if (!this.onProgress)
             return;
         if (!this.session) {
-            this.onProgress(loadedInFile, fileTotal, file);
+            this.onProgress(loadedInFile, fileTotal, file, detail);
             return;
         }
-        this.onProgress(this.session.completedBytes + loadedInFile, this.session.totalBytes, file);
+        this.onProgress(this.session.completedBytes + loadedInFile, this.session.totalBytes, file, detail);
     }
     async readWithProgress(response, file) {
         const total = Number(response.headers.get('content-length')) || undefined;

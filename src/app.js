@@ -42,7 +42,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261007-developer-parity-r2';
+const WEB_BUILD = '20261007-model-load-diagnostics-r3';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -102,6 +102,7 @@ let lastTtsFirstChunkMillis=null;
 let lastTtsGenerationCompleteMillis=null;
 let lastTtsFirstAudioMillis=null;
 let lastTtsTotalMillis=null;
+let lastMoonshineDiagnostics=null;
 const runtimeDiagnosticEvents=[];
 function recordRuntimeDiagnosticEvent(kind,error){
   const value=error instanceof Error ? error : new Error(String(error||kind));
@@ -876,6 +877,23 @@ async function initVoice() {
 async function initMoonshine() {
   if(moonshineTranscriber && asrInfoCache?.kind==='moonshine') return asrInfoCache;
 
+  const startedAt=diagnosticNow();
+  const diagnostics={
+    cacheReadMs:0,
+    cacheReadBytes:0,
+    cacheFiles:0,
+    networkDownloadMs:0,
+    networkDownloadBytes:0,
+    networkFiles:0,
+    cacheWriteMs:0,
+    wasmInitMs:null,
+    modelBuildMs:null,
+    totalInitMs:null,
+    lastSource:'unknown'
+  };
+  lastMoonshineDiagnostics=diagnostics;
+  updateWebTimingDiagnostics();
+
   moonshineStage='runtime';
   showMoonshineProgress(0,'Moonshineの実行エンジンを準備しています…');
   if(!moonshineModule){
@@ -886,7 +904,7 @@ async function initMoonshine() {
     throw new Error('Moonshineの公式Transcriberを読み込めませんでした。');
   }
 
-  const onProgress=(loaded,total,file)=>{
+  const onProgress=(loaded,total,file,detail={})=>{
     moonshineStage='download';
     const safeLoaded=Number(loaded)||0;
     const safeTotal=Number(total)||0;
@@ -898,12 +916,39 @@ async function initMoonshine() {
       : `${mbLoaded.toFixed(1)} MB`;
     const fileName=String(file||'').split('/').pop();
     const selectedLabel=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'Tiny' : 'Small';
-    const progressMessage=`Moonshine 日本語${selectedLabel} Streamingを取得しています… ${sizeText}${fileName ? `（${fileName}）` : ''}`;
+    const source=detail?.source==='cache' ? 'cache' : detail?.source==='network' ? 'network' : 'unknown';
+    diagnostics.lastSource=source;
+    const action=source==='cache'
+      ? '端末から読み込んでいます'
+      : source==='network'
+        ? 'ダウンロードしています'
+        : '準備しています';
+    const progressMessage=`Moonshine 日本語${selectedLabel} Streamingを${action}… ${sizeText}${fileName ? `（${fileName}）` : ''}`;
     showMoonshineProgress(progress,progressMessage);
     if(ui.asrModelStatus) ui.asrModelStatus.textContent=progressMessage;
   };
 
+  const onAssetEvent=event=>{
+    if(event?.kind==='cache-read'){
+      diagnostics.cacheReadMs+=Number(event.durationMs)||0;
+      diagnostics.cacheReadBytes+=Number(event.bytes)||0;
+      diagnostics.cacheFiles+=1;
+      diagnostics.lastSource='cache';
+    } else if(event?.kind==='network-download'){
+      diagnostics.networkDownloadMs+=Number(event.durationMs)||0;
+      diagnostics.networkDownloadBytes+=Number(event.bytes)||0;
+      diagnostics.networkFiles+=1;
+      diagnostics.cacheWriteMs+=Number(event.cacheWriteMs)||0;
+      diagnostics.lastSource='network';
+    }
+    updateWebTimingDiagnostics();
+  };
+
+  const wasmStarted=diagnosticNow();
   const module=await loadEmmaMoonshineModule();
+  diagnostics.wasmInitMs=diagnosticNow()-wasmStarted;
+  updateWebTimingDiagnostics();
+
   moonshineStage='catalog';
   const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'tiny' : 'small';
   const modelArch=selectedAsr==='small' ? ModelArch.SmallStreaming : ModelArch.TinyStreaming;
@@ -913,7 +958,12 @@ async function initMoonshine() {
     language:'ja',
     modelArch,
     options:{max_tokens_per_second:'13.0'},
-    onProgress
+    onProgress,
+    onAssetEvent,
+    onDiagnostic:event=>{
+      if(event?.kind==='model-build') diagnostics.modelBuildMs=Number(event.durationMs)||0;
+      updateWebTimingDiagnostics();
+    }
   });
   try {
     nextTranscriber.setKeyterms(CHILDCARE_ASR_KEYTERMS);
@@ -921,11 +971,18 @@ async function initMoonshine() {
     console.warn('Moonshine育児語バイアスを適用できませんでした',error);
   }
 
+  diagnostics.totalInitMs=diagnosticNow()-startedAt;
+  updateWebTimingDiagnostics();
   moonshineStage='ready';
   moonshineTranscriber?.close?.();
   moonshineTranscriber=nextTranscriber;
   showMoonshineProgress(100,`Moonshine 日本語${modelLabel}を準備できました`);
-  if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${modelLabel}。準備完了。取得済みモデルはブラウザキャッシュを再利用します。`;
+  if(ui.asrModelStatus) {
+    const source=diagnostics.networkFiles>0
+      ? '必要なモデルを取得して準備しました。次回以降はブラウザ保存を再利用します。'
+      : '保存済みモデルを端末から読み込んで準備しました。';
+    ui.asrModelStatus.textContent=`現在：${modelLabel}。準備完了。${source}`;
+  }
 
   return {
     kind:'moonshine',
@@ -937,7 +994,6 @@ async function initMoonshine() {
     worker:'none-batch-transcriber'
   };
 }
-
 function forwardBackgroundDownload(message) {
   if(!message?.url || !message?.cacheName || !message?.cacheKey) return;
   navigator.serviceWorker?.ready
@@ -1605,9 +1661,14 @@ function updateAsrModelStatus() {
 
 function updateWebTimingDiagnostics() {
   if(!ui.webTimingDiagnostics)return;
-  const format=value=>Number.isFinite(value)?`${value}ms`:'未計測';
+  const format=value=>Number.isFinite(value)?`${Math.round(value)}ms`:'未計測';
+  const formatMb=value=>Number.isFinite(value)?`${(value/1_000_000).toFixed(1)}MB`:'未計測';
+  const asr=lastMoonshineDiagnostics;
+  const asrText=asr
+    ? `ASR 端末読込 ${format(asr.cacheReadMs)} / ${formatMb(asr.cacheReadBytes)} / 通信 ${format(asr.networkDownloadMs)} / ${formatMb(asr.networkDownloadBytes)} / WASM ${format(asr.wasmInitMs)} / モデル構築 ${format(asr.modelBuildMs)} / 合計 ${format(asr.totalInitMs)} ｜ `
+    : '';
   ui.webTimingDiagnostics.textContent=
-    `直近計測: TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
+    `直近計測: ${asrText}TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
 }
 
 async function buildWebDiagnosticReport() {
@@ -1630,6 +1691,17 @@ async function buildWebDiagnosticReport() {
     `asr.selected=${selectedAsr}`,
     `asr.ready=${Boolean(moonshineTranscriber)}`,
     `asr.stage=${moonshineStage}`,
+    `asr.lastSource=${lastMoonshineDiagnostics?.lastSource??'unmeasured'}`,
+    `asr.cacheReadMs=${lastMoonshineDiagnostics?.cacheReadMs??'unmeasured'}`,
+    `asr.cacheReadBytes=${lastMoonshineDiagnostics?.cacheReadBytes??'unmeasured'}`,
+    `asr.cacheFiles=${lastMoonshineDiagnostics?.cacheFiles??'unmeasured'}`,
+    `asr.networkDownloadMs=${lastMoonshineDiagnostics?.networkDownloadMs??'unmeasured'}`,
+    `asr.networkDownloadBytes=${lastMoonshineDiagnostics?.networkDownloadBytes??'unmeasured'}`,
+    `asr.networkFiles=${lastMoonshineDiagnostics?.networkFiles??'unmeasured'}`,
+    `asr.cacheWriteMs=${lastMoonshineDiagnostics?.cacheWriteMs??'unmeasured'}`,
+    `asr.wasmInitMs=${lastMoonshineDiagnostics?.wasmInitMs??'unmeasured'}`,
+    `asr.modelBuildMs=${lastMoonshineDiagnostics?.modelBuildMs??'unmeasured'}`,
+    `asr.totalInitMs=${lastMoonshineDiagnostics?.totalInitMs??'unmeasured'}`,
     `tts.ready=${Boolean(ttsWorker&&ttsInfoCache)}`,
     'tts.model=Kitten TTS Nano FP32',
     'tts.voice=Kiki',
@@ -1777,7 +1849,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261007-developer-parity-r2',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261007-model-load-diagnostics-r3',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1815,6 +1887,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261007-developer-parity-r2',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261007-model-load-diagnostics-r3',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });

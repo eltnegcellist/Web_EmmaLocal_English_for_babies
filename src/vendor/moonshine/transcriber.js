@@ -15,6 +15,9 @@ const DECODER_FILE = 'decoder_model_merged.ort';
 const TOKENIZER_FILE = 'tokenizer.bin';
 const SPELLING_FILE = 'spelling_cnn.ort';
 const DIARIZATION_FILES = ['segmentation.ort', 'embedding.ort'];
+const diagnosticNow = () => typeof performance !== 'undefined' && typeof performance.now === 'function'
+    ? performance.now()
+    : Date.now();
 function wantsSpeakerIds(options) {
     const value = options?.identify_speakers?.trim().toLowerCase();
     return value === 'true' || value === '1';
@@ -30,7 +33,7 @@ async function addDiarizationModels(module, files, options) {
         return files;
     if (DIARIZATION_FILES.every((name) => files.has(name)))
         return files;
-    const downloader = options.downloader ?? new AssetDownloader({ onProgress: options.onProgress });
+    const downloader = options.downloader ?? new AssetDownloader({ onProgress: options.onProgress, onAssetEvent: options.onAssetEvent });
     const downloaded = await downloader.downloadManifest(module.diarizationDependencies());
     for (const [name, bytes] of downloaded) {
         if (!files.has(name))
@@ -86,10 +89,18 @@ export class Transcriber {
         // load correctly.
         const arch = options.modelArch ?? ModelArch.Base;
         const downloader = options.downloader ??
-            new AssetDownloader({ onProgress: options.onProgress });
+            new AssetDownloader({ onProgress: options.onProgress, onAssetEvent: options.onAssetEvent });
         const manifest = module.sttDependencies(options.language, String(arch), options.includeSpelling ?? false);
         const files = await downloader.downloadManifest(manifest);
-        return Transcriber.construct(module, await addDiarizationModels(module, files, options), arch, options.options);
+        const completedFiles = await addDiarizationModels(module, files, options);
+        const buildStarted = diagnosticNow();
+        const transcriber = Transcriber.construct(module, completedFiles, arch, options.options);
+        options.onDiagnostic?.({
+            kind: 'model-build',
+            durationMs: diagnosticNow() - buildStarted,
+            fileCount: completedFiles.size,
+        });
+        return transcriber;
     }
     /**
      * Loads a transcriber from a map of canonical filename -> URL. Downloads each
@@ -107,7 +118,7 @@ export class Transcriber {
     static async loadFromUrls(files, options = {}) {
         const module = options.module ?? (await loadMoonshineModule(options.moduleOptions));
         const downloader = options.downloader ??
-            new AssetDownloader({ onProgress: options.onProgress });
+            new AssetDownloader({ onProgress: options.onProgress, onAssetEvent: options.onAssetEvent });
         const downloaded = await downloader.downloadNamedFiles(files);
         return Transcriber.construct(module, await addDiarizationModels(module, downloaded, options), options.modelArch ?? ModelArch.Base, options.options);
     }

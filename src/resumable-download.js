@@ -278,7 +278,7 @@ export async function downloadResumable(url, options = {}) {
     persisted: completedBytes,
     complete: true,
   });
-  return { buffer, resumed };
+  return { buffer, resumed, networkLoaded };
 }
 
 export const RESUMABLE_DOWNLOAD_DB = DB_NAME;
