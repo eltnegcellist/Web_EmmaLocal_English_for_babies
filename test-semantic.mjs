@@ -80,6 +80,7 @@ for(const highPerformance of [true,false]) {
   ui:{prepareEmmaButton:{disabled:false},onboardingHighPerformance:{checked:highPerformance},asrModel:{value:''}},
   localStorage:{setItem:(k,v)=>values.set(k,v)},navigator:{storage:{persist:async()=>true}},
   requestMicrophonePermission:async()=>calls.push('microphone'),ensureMoonshineIsolation:async()=>true,
+  ensurePersistentModelStorage:async()=>true,
   clearObsoleteModelCaches:async()=>{},initWorkers:async()=>calls.push('audio'),
   semanticPanel:semanticStub,
   showOnboardingProgress(){},showProgress(){},setBusy(){},showScreen(){},setState(){},updateAsrModelStatus(){},startTutorial:()=>calls.push('tutorial'),friendlyError:e=>e.message,console};
