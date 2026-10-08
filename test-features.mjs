@@ -58,6 +58,7 @@ assert($('copyDiagnosticsButton'),'hidden developer tools should expose diagnost
 assert($('downloadDiagnosticsButton'),'hidden developer tools should expose diagnostic TXT download');
 assert($('clearDiagnosticsButton'),'hidden developer tools should expose diagnostic reset');
 assert($('webTimingDiagnostics'),'hidden developer tools should expose TTS timing');
+assert.equal($('enableAudioButton'),null,'redundant audio-enable CTA must not compete with conversation start');
 for(const href of ['./semantic-test.html','./model-lab.html','./coexistence-diagnostic.html']){
   assert($('developerTools').querySelector(`a[href="${href}"]`),`missing developer link ${href}`);
 }
@@ -121,6 +122,13 @@ assert(source.includes('asr.networkDownloadMs='));
 assert(source.includes('asr.wasmInitMs='));
 assert(source.includes('asr.modelBuildMs='));
 assert(source.includes('asr.totalInitMs='));
+assert(source.includes('asr.cacheMisses='));
+assert(source.includes('storage.persisted='));
+assert(source.includes('storage.persistenceState='));
+assert(source.includes('ensurePersistentModelStorage'));
+assert(source.includes("sessionStorage.getItem('emma_mic_session_granted')==='1'"));
+assert(source.includes("permission!=='granted'"));
+assert(source.includes('画面を一度タップすると音声を再開します'));
 source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=>{};renderAvatarFrame=()=>{};setBusy=()=>{};
   audioContext=testAudio;ttsWorker={postMessage(message){captureRequest(message.requestId);}};
   history.append=async()=>{commitHistory();};

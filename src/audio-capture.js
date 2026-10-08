@@ -18,7 +18,7 @@ export class EmmaMicrophone {
     requested.then(stream=>{ if(generation !== this.generation) stream.getTracks().forEach(track=>track.stop()); },()=>{});
     let stream;
     try { stream = await withTimeout(requested, 15000,
-      'マイクの開始が完了しませんでした。ブラウザのサイト設定でマイクを許可してから、もう一度お試しください。'); }
+      'マイクの開始が完了しませんでした。サイト設定でマイクを許可し、Androidで他アプリのバブルやオーバーレイが表示されている場合は閉じてから、もう一度お試しください。'); }
     catch(error) { if(generation === this.generation) this.generation++; throw error; }
     if(generation !== this.generation) return;
     this.stream = stream;

@@ -42,7 +42,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261007-model-load-diagnostics-r3';
+const WEB_BUILD = '20261009-storage-permission-ux-r4';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -103,6 +103,7 @@ let lastTtsGenerationCompleteMillis=null;
 let lastTtsFirstAudioMillis=null;
 let lastTtsTotalMillis=null;
 let lastMoonshineDiagnostics=null;
+let storagePersistenceState='unknown';
 const runtimeDiagnosticEvents=[];
 function recordRuntimeDiagnosticEvent(kind,error){
   const value=error instanceof Error ? error : new Error(String(error||kind));
@@ -191,6 +192,7 @@ function initUi() {
   applyAppearance();
   updateAppearanceSettings();
   updateAudioUnlockUi();
+  queueMicrotask(()=>ensurePersistentModelStorage({request:false}));
 
   startAvatarBlinkLoop();
 
@@ -492,7 +494,14 @@ function showScreen(name,{autoStart=true}={}) {
     localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION &&
     localStorage.getItem(STORAGE.tutorialDone)==='true'
   ) {
-    queueMicrotask(()=>{
+    queueMicrotask(async()=>{
+      if(running || processing || speaking || ui.mainButton.disabled) return;
+      const permission=await getMicrophonePermissionState();
+      const sessionGranted=sessionStorage.getItem('emma_mic_session_granted')==='1';
+      if(!sessionGranted && permission!=='granted') {
+        setState('idle','会話を始められます','「会話を始める」を押すと、マイクを確認して会話を始めます。');
+        return;
+      }
       if(!running && !processing && !speaking && !ui.mainButton.disabled) {
         startEmma({ auto: true }).catch(error=>console.warn('Emma auto-start:',error));
       }
@@ -563,7 +572,7 @@ async function requestMicrophonePermission(timeoutMs=30000) {
       }),
       new Promise((_,reject)=>{
         timer=setTimeout(
-          ()=>reject(new Error('マイクの許可確認が完了しませんでした。ブラウザのサイト設定でマイクを許可してから、もう一度お試しください。')),
+          ()=>reject(new Error('マイクの許可確認が完了しませんでした。サイト設定でマイクを許可し、Androidで他アプリのバブルやオーバーレイが表示されている場合は閉じてから、もう一度お試しください。')),
           timeoutMs
         );
       })
@@ -573,6 +582,40 @@ async function requestMicrophonePermission(timeoutMs=30000) {
     clearTimeout(timer);
     stream?.getTracks?.().forEach(track=>track.stop());
   }
+}
+
+function renderStoragePersistenceStatus() {
+  if(ui.developerUnlockTrigger) {
+    ui.developerUnlockTrigger.textContent=storagePersistenceState==='persistent'
+      ? 'モデル保存: 保護されています'
+      : storagePersistenceState==='best-effort'
+        ? 'モデル保存: 一時保存（ブラウザが削除する場合があります）'
+        : storagePersistenceState==='unsupported'
+          ? 'モデル保存: 永続化API非対応'
+          : 'モデル保存: 状態確認中';
+  }
+  if(moonshineStage==='idle' || moonshineStage==='ready') updateAsrModelStatus();
+}
+
+async function ensurePersistentModelStorage({request=false}={}) {
+  const storage=navigator.storage;
+  if(!storage || typeof storage.persisted!=='function') {
+    storagePersistenceState='unsupported';
+    renderStoragePersistenceStatus();
+    return false;
+  }
+  try {
+    let persisted=await storage.persisted();
+    if(!persisted && request && typeof storage.persist==='function') {
+      persisted=await storage.persist();
+    }
+    storagePersistenceState=persisted ? 'persistent' : 'best-effort';
+  } catch(error) {
+    console.warn('モデル保存の永続化状態を確認できませんでした',error);
+    storagePersistenceState='unknown';
+  }
+  renderStoragePersistenceStatus();
+  return storagePersistenceState==='persistent';
 }
 
 async function clearObsoleteModelCaches() {
@@ -620,9 +663,10 @@ async function prepareFirstRun() {
     await semanticPanel.setEnabled(highPerformance,{prepare:false,mode:'semantic'});
     updateAsrModelStatus();
     if(!(await ensureMoonshineIsolation({isCurrent:()=>epoch===conversationEpoch})) || epoch!==conversationEpoch) return;
-    await navigator.storage?.persist?.().catch(()=>false);
+    await ensurePersistentModelStorage({request:true});
     await clearObsoleteModelCaches();
     await initWorkers();
+    await ensurePersistentModelStorage({request:true});
     if(epoch!==conversationEpoch)return;
     await prepareSemanticForConversation();
     if(epoch!==conversationEpoch)return;
@@ -662,18 +706,20 @@ async function startEmma({ auto = false } = {}) {
     setState('thinking','マイクを起動しています','必要なら表示される許可画面でマイクを許可してください。');
     showProgress(true,0,'マイクを開始しています…');
     await startMoonshineCapture();
+    sessionStorage.setItem('emma_mic_session_granted','1');
     if(epoch!==conversationEpoch){await mic?.stop();mic=null;return;}
 
     // Only after real capture is active do we prepare the local ASR/TTS models.
     // This prevents model startup from blocking the microphone permission UI.
     setState('thinking','みつことばを準備しています','マイクは起動済みです。Moonshineと音声モデルを準備しています。');
     showProgress(true,0,'Moonshineを準備しています…');
-    await navigator.storage?.persist?.().catch(()=>false);
+    await ensurePersistentModelStorage({request:true});
     await withTimeout(
       initWorkers(),
       330000,
       'みつことばの準備が完了しませんでした。ページを再読み込みして、もう一度お試しください。'
     );
+    await ensurePersistentModelStorage({request:true});
     if(epoch!==conversationEpoch)return;
     await prepareSemanticForConversation();
 
@@ -882,6 +928,7 @@ async function initMoonshine() {
     cacheReadMs:0,
     cacheReadBytes:0,
     cacheFiles:0,
+    cacheMisses:0,
     networkDownloadMs:0,
     networkDownloadBytes:0,
     networkFiles:0,
@@ -934,6 +981,8 @@ async function initMoonshine() {
       diagnostics.cacheReadBytes+=Number(event.bytes)||0;
       diagnostics.cacheFiles+=1;
       diagnostics.lastSource='cache';
+    } else if(event?.kind==='cache-miss'){
+      diagnostics.cacheMisses+=1;
     } else if(event?.kind==='network-download'){
       diagnostics.networkDownloadMs+=Number(event.durationMs)||0;
       diagnostics.networkDownloadBytes+=Number(event.bytes)||0;
@@ -981,7 +1030,12 @@ async function initMoonshine() {
     const source=diagnostics.networkFiles>0
       ? '必要なモデルを取得して準備しました。次回以降はブラウザ保存を再利用します。'
       : '保存済みモデルを端末から読み込んで準備しました。';
-    ui.asrModelStatus.textContent=`現在：${modelLabel}。準備完了。${source}`;
+    const storageNote=storagePersistenceState==='persistent'
+      ? ' モデル保存は保護されています。'
+      : storagePersistenceState==='best-effort'
+        ? ' モデル保存は一時扱いのため、ブラウザに削除される場合があります。'
+        : '';
+    ui.asrModelStatus.textContent=`現在：${modelLabel}。準備完了。${source}${storageNote}`;
   }
 
   return {
@@ -1296,7 +1350,7 @@ async function waitForPlaybackAudio() {
 
   audioUnlocked=false;
   updateAudioUnlockUi();
-  setState('speaking','AIの声を有効にしてください','画面下の「みつことばの声を有効にする」を一度タップしてください。');
+  setState('speaking','AIの声を再開してください','画面を一度タップすると音声を再開します。');
   await new Promise(resolve=>audioUnlockWaiters.push(resolve));
 }
 
@@ -1555,7 +1609,7 @@ function onRuntimeError(message) {
 
 function friendlyError(error) {
   const msg=error?.message||String(error);
-  if(error?.name==='NotAllowedError') return 'マイクの使用を許可してください。';
+  if(error?.name==='NotAllowedError') return 'マイクを開始できませんでした。サイト設定でマイクを許可してください。Androidで他アプリのバブルやオーバーレイが表示されている場合は、閉じてから「会話を始める」をもう一度押してください。';
   if(!window.isSecureContext) return 'マイクを使うにはHTTPSで開く必要があります。';
   const trimmed=String(msg||'').trim();
   if(/^[-+]?\d+(?:\s+[-+]?\d+)*$/.test(trimmed)) {
@@ -1656,7 +1710,14 @@ function getTtsSignature() {
 function updateAsrModelStatus() {
   if(!ui.asrModelStatus) return;
   const selected=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'Tiny' : 'Small';
-  ui.asrModelStatus.textContent=`現在：${selected}。モデルはブラウザ内に保存されます。`;
+  const note=storagePersistenceState==='persistent'
+    ? 'モデル保存は保護されています。'
+    : storagePersistenceState==='best-effort'
+      ? 'モデルは一時保存です。ブラウザの判断で削除される場合があります。'
+      : storagePersistenceState==='unsupported'
+        ? 'モデルはブラウザ内に保存しますが、保存保護には対応していません。'
+        : 'モデルはブラウザ内に保存されます。';
+  ui.asrModelStatus.textContent=`現在：${selected}。${note}`;
 }
 
 function updateWebTimingDiagnostics() {
@@ -1674,7 +1735,11 @@ function updateWebTimingDiagnostics() {
 async function buildWebDiagnosticReport() {
   const semantic=semanticPanel?.snapshot||{};
   let storageEstimate=null;
+  let storagePersisted='unknown';
   try { storageEstimate=await navigator.storage?.estimate?.() || null; } catch {}
+  try {
+    if(typeof navigator.storage?.persisted==='function') storagePersisted=await navigator.storage.persisted();
+  } catch {}
   const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny'?'Tiny':'Small';
   const lines=[
     'Mitsukotoba Web diagnostics',
@@ -1695,6 +1760,7 @@ async function buildWebDiagnosticReport() {
     `asr.cacheReadMs=${lastMoonshineDiagnostics?.cacheReadMs??'unmeasured'}`,
     `asr.cacheReadBytes=${lastMoonshineDiagnostics?.cacheReadBytes??'unmeasured'}`,
     `asr.cacheFiles=${lastMoonshineDiagnostics?.cacheFiles??'unmeasured'}`,
+    `asr.cacheMisses=${lastMoonshineDiagnostics?.cacheMisses??'unmeasured'}`,
     `asr.networkDownloadMs=${lastMoonshineDiagnostics?.networkDownloadMs??'unmeasured'}`,
     `asr.networkDownloadBytes=${lastMoonshineDiagnostics?.networkDownloadBytes??'unmeasured'}`,
     `asr.networkFiles=${lastMoonshineDiagnostics?.networkFiles??'unmeasured'}`,
@@ -1725,6 +1791,8 @@ async function buildWebDiagnosticReport() {
     `tts.totalMs=${lastTtsTotalMillis??'unmeasured'}`,
     `storage.usageBytes=${storageEstimate?.usage??'unknown'}`,
     `storage.quotaBytes=${storageEstimate?.quota??'unknown'}`,
+    `storage.persisted=${storagePersisted}`,
+    `storage.persistenceState=${storagePersistenceState}`,
   ];
   if(runtimeDiagnosticEvents.length){
     lines.push('runtimeErrors.begin');
@@ -1849,7 +1917,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261007-model-load-diagnostics-r3',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261009-storage-permission-ux-r4',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1887,6 +1955,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261007-model-load-diagnostics-r3',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261009-storage-permission-ux-r4',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });
