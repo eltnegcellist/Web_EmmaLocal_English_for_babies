@@ -36,6 +36,8 @@ jobs:
           npm ci --ignore-scripts
           node test-features.mjs
           node test-semantic.mjs
+      - name: Run actual Web Semantic inference parity baseline
+        run: node scripts/semantic-parity-web.mjs --output .semantic-parity/web.json
       - name: Syntax check
         run: |
           node --check src/app.js
@@ -55,6 +57,7 @@ jobs:
           node --check src/lite-phonetic-scene-matcher.js
           node --check src/name-pronunciation.js
           node --check src/model-lab.js
+          node --check scripts/semantic-parity-web.mjs
       - name: Reject GPL/eSpeak runtime regressions
         run: |
           set -euo pipefail
