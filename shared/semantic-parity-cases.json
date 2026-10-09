@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "purpose": "Cross-runtime consistency only; not an accuracy benchmark.",
+  "cases": [
+    {
+      "id": "bath",
+      "text": "お風呂に入って温まろう"
+    },
+    {
+      "id": "milk",
+      "text": "ミルクを飲もうね"
+    },
+    {
+      "id": "sleep",
+      "text": "そろそろねんねしよう"
+    },
+    {
+      "id": "diaper",
+      "text": "おむつを替えようね"
+    },
+    {
+      "id": "hug",
+      "text": "ぎゅーって抱っこしよう"
+    },
+    {
+      "id": "hands",
+      "text": "おててをにぎにぎしよう"
+    },
+    {
+      "id": "feet",
+      "text": "あんよをばたばたしてるね"
+    },
+    {
+      "id": "outside",
+      "text": "お外にお散歩へ行こう"
+    },
+    {
+      "id": "rain",
+      "text": "雨がぽつぽつ降ってるね"
+    },
+    {
+      "id": "sun",
+      "text": "お日さまがまぶしいね"
+    },
+    {
+      "id": "book",
+      "text": "絵本を一緒に読もう"
+    },
+    {
+      "id": "music",
+      "text": "お歌をうたってみよう"
+    },
+    {
+      "id": "voice",
+      "text": "かわいい声が聞こえたよ"
+    },
+    {
+      "id": "generic",
+      "text": "今日はなんだかいい感じだね"
+    }
+  ]
+}
