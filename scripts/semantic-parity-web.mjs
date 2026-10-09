@@ -19,9 +19,9 @@ const tokenizerConfig=JSON.parse(await readFile(join(assetDir,'tokenizer_config.
 const headsConfig=JSON.parse(await readFile(join(assetDir,'heads-config.json'),'utf8'));
 const tokenizer=createRuriTokenizer(Tokenizer,tokenizerJson,tokenizerConfig);
 const topicConfig=headsConfig.heads.topic;
-const topicHead=decodeHead((await readFile(join(assetDir,topicConfig.filename))).buffer.slice(
-  (await readFile(join(assetDir,topicConfig.filename))).byteOffset
-),topicConfig);
+const headBytes=await readFile(join(assetDir,topicConfig.filename));
+const headBuffer=headBytes.buffer.slice(headBytes.byteOffset,headBytes.byteOffset+headBytes.byteLength);
+const topicHead=decodeHead(headBuffer,topicConfig);
 
 ort.env.wasm.numThreads=1;
 ort.env.wasm.wasmPaths=runtimeDir + '/';
