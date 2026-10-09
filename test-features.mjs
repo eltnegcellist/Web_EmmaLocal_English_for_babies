@@ -71,6 +71,7 @@ assert($('clearDiagnosticsButton'),'hidden developer tools should expose diagnos
 assert($('webTimingDiagnostics'),'hidden developer tools should expose TTS timing');
 assert($('storageProtectionStatus'),'settings must show storage protection separately');
 assert($('modelCacheStatus'),'settings must show actual Moonshine cache separately');
+assert($('modelCacheHistoryStatus'),'settings must show prior Moonshine cache observation');
 assert.equal($('enableAudioButton'),null,'redundant audio-enable CTA must not compete with conversation start');
 for(const href of ['./semantic-test.html','./model-lab.html','./coexistence-diagnostic.html']){
   assert($('developerTools').querySelector(`a[href="${href}"]`),`missing developer link ${href}`);
@@ -140,6 +141,13 @@ assert(source.includes('storage.persisted='));
 assert(source.includes('storage.persistenceState='));
 assert(source.includes('modelCache.status='));
 assert(source.includes('modelCache.missingFiles='));
+assert(source.includes('modelCache.previousSnapshot='));
+assert(source.includes('modelCache.lastLoss='));
+assert(source.includes('detectModelCacheLoss'));
+assert(source.includes('recordModelCacheObservation'));
+assert(source.includes('renderModelCacheHistoryStatus'));
+assert(source.includes('emma_moonshine_cache_snapshot_v1'));
+assert(source.includes('emma_moonshine_cache_loss_v1'));
 assert(source.includes('inspectMoonshineManifestCache'));
 assert(source.includes('refreshSelectedMoonshineCache'));
 assert(source.includes('ensurePersistentModelStorage'));

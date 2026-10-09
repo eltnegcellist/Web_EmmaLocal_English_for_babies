@@ -33,7 +33,7 @@ const ui = {
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
-  storageProtectionStatus:$('storageProtectionStatus'), modelCacheStatus:$('modelCacheStatus'),
+  storageProtectionStatus:$('storageProtectionStatus'), modelCacheStatus:$('modelCacheStatus'), modelCacheHistoryStatus:$('modelCacheHistoryStatus'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   webTimingDiagnostics:$('webTimingDiagnostics'), copyDiagnosticsButton:$('copyDiagnosticsButton'),
   downloadDiagnosticsButton:$('downloadDiagnosticsButton'), clearDiagnosticsButton:$('clearDiagnosticsButton'),
@@ -44,7 +44,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261009-model-cache-integrity-r5';
+const WEB_BUILD = '20261010-model-cache-history-r6';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -64,13 +64,28 @@ const STORAGE = {
   startTiny:'emma_first_run_start_tiny',
   highPerformance:'emma_first_run_high_performance',
   asrReload:'emma_asr_reload',
-  tutorialDone:'emma_web_tutorial_completed_v1'
+  tutorialDone:'emma_web_tutorial_completed_v1',
+  modelCacheSnapshot:'emma_moonshine_cache_snapshot_v1',
+  modelCacheLoss:'emma_moonshine_cache_loss_v1'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
   localStorage.setItem(STORAGE.babyName, localStorage.getItem('emmaBabyName'));
 }
 if (new URLSearchParams(location.search).has('debug')) document.body.classList.add('debug');
+
+function readStoredJson(key) {
+  try {
+    const raw=localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeStoredJson(key,value) {
+  try { localStorage.setItem(key,JSON.stringify(value)); } catch {}
+}
 
 const engine = new LiteResponseEngine();
 let semanticPanel;
@@ -117,6 +132,8 @@ let modelCacheState={
   aliasHits:0,
   missingFiles:[]
 };
+let previousModelCacheSnapshot=readStoredJson(STORAGE.modelCacheSnapshot);
+let lastModelCacheLoss=readStoredJson(STORAGE.modelCacheLoss);
 const runtimeDiagnosticEvents=[];
 function recordRuntimeDiagnosticEvent(kind,error){
   const value=error instanceof Error ? error : new Error(String(error||kind));
@@ -207,6 +224,7 @@ function initUi() {
   updateAudioUnlockUi();
   queueMicrotask(()=>ensurePersistentModelStorage({request:false}));
   queueMicrotask(()=>refreshMoonshineCacheInventory());
+  renderModelCacheHistoryStatus();
 
   startAvatarBlinkLoop();
 
@@ -615,6 +633,97 @@ function formatModelMb(value) {
   return Number.isFinite(value) ? `${(value/1_000_000).toFixed(1)} MB` : '';
 }
 
+function formatModelCheckTime(value) {
+  const date=new Date(value||0);
+  if(!Number.isFinite(date.getTime())) return '時刻不明';
+  return new Intl.DateTimeFormat('ja-JP',{
+    month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'
+  }).format(date);
+}
+
+function snapshotFromModelCacheState(state=modelCacheState) {
+  return {
+    checkedAt:new Date().toISOString(),
+    label:state.label,
+    status:state.status,
+    entryCount:Number(state.entryCount)||0,
+    expectedFiles:Number.isFinite(state.expectedFiles)?state.expectedFiles:null,
+    presentFiles:Number.isFinite(state.presentFiles)?state.presentFiles:null,
+    expectedBytes:Number.isFinite(state.expectedBytes)?state.expectedBytes:null,
+    presentBytes:Number.isFinite(state.presentBytes)?state.presentBytes:null,
+    missingFiles:Array.isArray(state.missingFiles)?[...state.missingFiles]:[],
+    storageProtection:storagePersistenceState
+  };
+}
+
+function isComparableCompleteSnapshot(snapshot,label) {
+  return snapshot?.label===label &&
+    snapshot?.status==='complete' &&
+    Number.isFinite(snapshot.presentFiles) &&
+    snapshot.presentFiles===snapshot.expectedFiles;
+}
+
+function detectModelCacheLoss(previous,current,{inventoryOnly=false}={}) {
+  if(!previous || !current) return null;
+  if(!isComparableCompleteSnapshot(previous,current.label||previous.label)) return null;
+  const definitelyMissing=inventoryOnly
+    ? Number(current.entryCount)===0
+    : current.status==='missing' || current.status==='partial';
+  if(!definitelyMissing) return null;
+  return {
+    detectedAt:new Date().toISOString(),
+    previous,
+    current,
+    inventoryOnly:Boolean(inventoryOnly),
+    storageProtectionAtDetection:storagePersistenceState
+  };
+}
+
+function recordModelCacheObservation({inventoryOnly=false}={}) {
+  const current=snapshotFromModelCacheState();
+  if(inventoryOnly && !current.label) current.label=previousModelCacheSnapshot?.label||null;
+  const loss=detectModelCacheLoss(previousModelCacheSnapshot,current,{inventoryOnly});
+  if(loss) {
+    lastModelCacheLoss=loss;
+    writeStoredJson(STORAGE.modelCacheLoss,loss);
+  }
+  if(!inventoryOnly && current.label && ['complete','partial','missing'].includes(current.status)) {
+    previousModelCacheSnapshot=current;
+    writeStoredJson(STORAGE.modelCacheSnapshot,current);
+  }
+  renderModelCacheHistoryStatus();
+  return loss;
+}
+
+function renderModelCacheHistoryStatus() {
+  if(!ui.modelCacheHistoryStatus) return;
+  if(lastModelCacheLoss?.previous && lastModelCacheLoss?.current) {
+    const prev=lastModelCacheLoss.previous;
+    const cur=lastModelCacheLoss.current;
+    const prevFiles=Number.isFinite(prev.presentFiles)&&Number.isFinite(prev.expectedFiles)
+      ? `${prev.presentFiles}/${prev.expectedFiles}`
+      : '確認済み';
+    const currentFiles=Number.isFinite(cur.presentFiles)&&Number.isFinite(cur.expectedFiles)
+      ? `${cur.presentFiles}/${cur.expectedFiles}`
+      : Number(cur.entryCount)===0 ? 'キャッシュ0件' : cur.status;
+    const protection=lastModelCacheLoss.storageProtectionAtDetection==='persistent' ? '保護ON' : '保護状態 '+String(lastModelCacheLoss.storageProtectionAtDetection||'不明');
+    ui.modelCacheHistoryStatus.textContent=
+      `キャッシュ消失を検出: 前回 ${prevFiles}（${formatModelCheckTime(prev.checkedAt)}）→ 今回 ${currentFiles}（${formatModelCheckTime(lastModelCacheLoss.detectedAt)} / ${protection}）`;
+    return;
+  }
+  if(previousModelCacheSnapshot) {
+    const prev=previousModelCacheSnapshot;
+    const files=Number.isFinite(prev.presentFiles)&&Number.isFinite(prev.expectedFiles)
+      ? `${prev.presentFiles}/${prev.expectedFiles}ファイル`
+      : prev.status;
+    const size=Number.isFinite(prev.expectedBytes)?`・${formatModelMb(prev.expectedBytes)}`:'';
+    ui.modelCacheHistoryStatus.textContent=
+      `前回確認: Moonshine ${prev.label||''} ${files}${size}（${formatModelCheckTime(prev.checkedAt)}）`;
+    return;
+  }
+  ui.modelCacheHistoryStatus.textContent='前回確認: まだ記録がありません。';
+}
+
 function renderModelCacheStatus() {
   if(!ui.modelCacheStatus) return;
   const selected=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'Tiny' : 'Small';
@@ -649,6 +758,7 @@ async function refreshMoonshineCacheInventory() {
     modelCacheState={...modelCacheState,status:'unsupported'};
   }
   renderModelCacheStatus();
+  recordModelCacheObservation({inventoryOnly:true});
   if(moonshineStage==='idle' || moonshineStage==='ready') updateAsrModelStatus();
 }
 
@@ -671,6 +781,7 @@ async function refreshSelectedMoonshineCache(manifestJson,label,{repairAliases=t
     modelCacheState={...modelCacheState,status:'unsupported',label};
   }
   renderModelCacheStatus();
+  recordModelCacheObservation({inventoryOnly:false});
   if(moonshineStage==='idle' || moonshineStage==='ready') updateAsrModelStatus();
   return modelCacheState;
 }
@@ -1893,6 +2004,8 @@ async function buildWebDiagnosticReport() {
     `modelCache.expectedBytes=${modelCacheState.expectedBytes??'unknown'}`,
     `modelCache.aliasHits=${modelCacheState.aliasHits??0}`,
     `modelCache.missingFiles=${modelCacheState.missingFiles?.join(',')||'none'}`,
+    `modelCache.previousSnapshot=${previousModelCacheSnapshot?JSON.stringify(previousModelCacheSnapshot):'none'}`,
+    `modelCache.lastLoss=${lastModelCacheLoss?JSON.stringify(lastModelCacheLoss):'none'}`,
   ];
   if(runtimeDiagnosticEvents.length){
     lines.push('runtimeErrors.begin');
@@ -2017,7 +2130,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261009-model-cache-integrity-r5',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261010-model-cache-history-r6',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -2055,6 +2168,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261009-model-cache-integrity-r5',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261010-model-cache-history-r6',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });
