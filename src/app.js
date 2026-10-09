@@ -7,6 +7,7 @@ import { EmmaMicrophone } from './audio-capture.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
+import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -32,6 +33,7 @@ const ui = {
   pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
+  storageProtectionStatus:$('storageProtectionStatus'), modelCacheStatus:$('modelCacheStatus'),
   developerUnlockTrigger:$('developerUnlockTrigger'), webBuild:$('webBuild'), developerTools:$('developerTools'), fullResetButton:$('fullResetButton'),
   webTimingDiagnostics:$('webTimingDiagnostics'), copyDiagnosticsButton:$('copyDiagnosticsButton'),
   downloadDiagnosticsButton:$('downloadDiagnosticsButton'), clearDiagnosticsButton:$('clearDiagnosticsButton'),
@@ -42,7 +44,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261009-storage-permission-ux-r4';
+const WEB_BUILD = '20261009-model-cache-integrity-r5';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -104,6 +106,17 @@ let lastTtsFirstAudioMillis=null;
 let lastTtsTotalMillis=null;
 let lastMoonshineDiagnostics=null;
 let storagePersistenceState='unknown';
+let modelCacheState={
+  status:'unknown',
+  label:null,
+  entryCount:0,
+  expectedFiles:null,
+  presentFiles:null,
+  expectedBytes:null,
+  presentBytes:null,
+  aliasHits:0,
+  missingFiles:[]
+};
 const runtimeDiagnosticEvents=[];
 function recordRuntimeDiagnosticEvent(kind,error){
   const value=error instanceof Error ? error : new Error(String(error||kind));
@@ -193,6 +206,7 @@ function initUi() {
   updateAppearanceSettings();
   updateAudioUnlockUi();
   queueMicrotask(()=>ensurePersistentModelStorage({request:false}));
+  queueMicrotask(()=>refreshMoonshineCacheInventory());
 
   startAvatarBlinkLoop();
 
@@ -585,16 +599,80 @@ async function requestMicrophonePermission(timeoutMs=30000) {
 }
 
 function renderStoragePersistenceStatus() {
-  if(ui.developerUnlockTrigger) {
-    ui.developerUnlockTrigger.textContent=storagePersistenceState==='persistent'
-      ? 'モデル保存: 保護されています'
+  if(ui.storageProtectionStatus) {
+    ui.storageProtectionStatus.textContent=storagePersistenceState==='persistent'
+      ? '保存領域の保護: ON'
       : storagePersistenceState==='best-effort'
-        ? 'モデル保存: 一時保存（ブラウザが削除する場合があります）'
+        ? '保存領域の保護: OFF（ブラウザが削除する場合があります）'
         : storagePersistenceState==='unsupported'
-          ? 'モデル保存: 永続化API非対応'
-          : 'モデル保存: 状態確認中';
+          ? '保存領域の保護: このブラウザは非対応'
+          : '保存領域の保護: 確認中';
   }
   if(moonshineStage==='idle' || moonshineStage==='ready') updateAsrModelStatus();
+}
+
+function formatModelMb(value) {
+  return Number.isFinite(value) ? `${(value/1_000_000).toFixed(1)} MB` : '';
+}
+
+function renderModelCacheStatus() {
+  if(!ui.modelCacheStatus) return;
+  const selected=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'Tiny' : 'Small';
+  const state=modelCacheState;
+  if(state.status==='complete' && state.label===selected) {
+    ui.modelCacheStatus.textContent=`Moonshine ${selected}: 保存済み ${formatModelMb(state.expectedBytes)}（${state.presentFiles}/${state.expectedFiles}ファイル）`;
+  } else if(state.status==='partial' && state.label===selected) {
+    ui.modelCacheStatus.textContent=`Moonshine ${selected}: 一部不足（${state.presentFiles}/${state.expectedFiles}ファイル）。不足分は次回取得します。`;
+  } else if(state.status==='missing' && state.label===selected) {
+    ui.modelCacheStatus.textContent=`Moonshine ${selected}: 未保存。次回利用時に取得します。`;
+  } else if(state.status==='unsupported') {
+    ui.modelCacheStatus.textContent=`Moonshine ${selected}: キャッシュ状態を確認できません。`;
+  } else if(state.entryCount>0) {
+    ui.modelCacheStatus.textContent=`Moonshine ${selected}: キャッシュに${state.entryCount}件あります。完全性は会話開始時に確認します。`;
+  } else if(state.status==='inventory') {
+    ui.modelCacheStatus.textContent=`Moonshine ${selected}: キャッシュは空です。`;
+  } else {
+    ui.modelCacheStatus.textContent=`Moonshine ${selected}: 保存状態を確認中。`;
+  }
+}
+
+async function refreshMoonshineCacheInventory() {
+  try {
+    const inventory=await inspectMoonshineCacheInventory();
+    modelCacheState={
+      ...modelCacheState,
+      status:inventory.supported ? 'inventory' : 'unsupported',
+      entryCount:Number(inventory.entryCount)||0
+    };
+  } catch(error) {
+    console.warn('Moonshineキャッシュ一覧を確認できませんでした',error);
+    modelCacheState={...modelCacheState,status:'unsupported'};
+  }
+  renderModelCacheStatus();
+  if(moonshineStage==='idle' || moonshineStage==='ready') updateAsrModelStatus();
+}
+
+async function refreshSelectedMoonshineCache(manifestJson,label,{repairAliases=true}={}) {
+  try {
+    const result=await inspectMoonshineManifestCache(manifestJson,{repairAliases});
+    modelCacheState={
+      status:result.status,
+      label,
+      entryCount:Number(result.entryCount)||0,
+      expectedFiles:result.expectedFiles,
+      presentFiles:result.presentFiles,
+      expectedBytes:result.expectedBytes,
+      presentBytes:result.presentBytes,
+      aliasHits:result.aliasHits||0,
+      missingFiles:Array.isArray(result.missingFiles)?result.missingFiles:[]
+    };
+  } catch(error) {
+    console.warn('Moonshineモデルの保存状態を確認できませんでした',error);
+    modelCacheState={...modelCacheState,status:'unsupported',label};
+  }
+  renderModelCacheStatus();
+  if(moonshineStage==='idle' || moonshineStage==='ready') updateAsrModelStatus();
+  return modelCacheState;
 }
 
 async function ensurePersistentModelStorage({request=false}={}) {
@@ -1002,6 +1080,15 @@ async function initMoonshine() {
   const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'tiny' : 'small';
   const modelArch=selectedAsr==='small' ? ModelArch.SmallStreaming : ModelArch.TinyStreaming;
   const modelLabel=selectedAsr==='small' ? 'Small' : 'Tiny';
+  const modelManifest=module.sttDependencies('ja',String(modelArch),false);
+  await refreshSelectedMoonshineCache(modelManifest,modelLabel,{repairAliases:true});
+  diagnostics.cacheManifestBefore={
+    status:modelCacheState.status,
+    presentFiles:modelCacheState.presentFiles,
+    expectedFiles:modelCacheState.expectedFiles,
+    aliasHits:modelCacheState.aliasHits,
+    missingFiles:[...modelCacheState.missingFiles]
+  };
   const nextTranscriber=await Transcriber.load({
     module,
     language:'ja',
@@ -1020,6 +1107,14 @@ async function initMoonshine() {
     console.warn('Moonshine育児語バイアスを適用できませんでした',error);
   }
 
+  await refreshSelectedMoonshineCache(modelManifest,modelLabel,{repairAliases:true});
+  diagnostics.cacheManifestAfter={
+    status:modelCacheState.status,
+    presentFiles:modelCacheState.presentFiles,
+    expectedFiles:modelCacheState.expectedFiles,
+    aliasHits:modelCacheState.aliasHits,
+    missingFiles:[...modelCacheState.missingFiles]
+  };
   diagnostics.totalInitMs=diagnosticNow()-startedAt;
   updateWebTimingDiagnostics();
   moonshineStage='ready';
@@ -1028,14 +1123,9 @@ async function initMoonshine() {
   showMoonshineProgress(100,`Moonshine 日本語${modelLabel}を準備できました`);
   if(ui.asrModelStatus) {
     const source=diagnostics.networkFiles>0
-      ? '必要なモデルを取得して準備しました。次回以降はブラウザ保存を再利用します。'
+      ? '不足していたモデルを取得して準備しました。'
       : '保存済みモデルを端末から読み込んで準備しました。';
-    const storageNote=storagePersistenceState==='persistent'
-      ? ' モデル保存は保護されています。'
-      : storagePersistenceState==='best-effort'
-        ? ' モデル保存は一時扱いのため、ブラウザに削除される場合があります。'
-        : '';
-    ui.asrModelStatus.textContent=`現在：${modelLabel}。準備完了。${source}${storageNote}`;
+    ui.asrModelStatus.textContent=`現在：${modelLabel}。準備完了。${source}`;
   }
 
   return {
@@ -1710,14 +1800,15 @@ function getTtsSignature() {
 function updateAsrModelStatus() {
   if(!ui.asrModelStatus) return;
   const selected=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'Tiny' : 'Small';
-  const note=storagePersistenceState==='persistent'
-    ? 'モデル保存は保護されています。'
-    : storagePersistenceState==='best-effort'
-      ? 'モデルは一時保存です。ブラウザの判断で削除される場合があります。'
-      : storagePersistenceState==='unsupported'
-        ? 'モデルはブラウザ内に保存しますが、保存保護には対応していません。'
-        : 'モデルはブラウザ内に保存されます。';
-  ui.asrModelStatus.textContent=`現在：${selected}。${note}`;
+  const state=modelCacheState;
+  if(state.label===selected && state.status==='complete') {
+    ui.asrModelStatus.textContent=`現在：${selected}。必要なモデルファイルはすべて保存済みです。`;
+  } else if(state.label===selected && (state.status==='partial'||state.status==='missing')) {
+    ui.asrModelStatus.textContent=`現在：${selected}。モデルファイルが不足しているため、次回利用時に取得します。`;
+  } else {
+    ui.asrModelStatus.textContent=`現在：${selected}。保存状態は会話開始時に必要ファイル単位で確認します。`;
+  }
+  renderModelCacheStatus();
 }
 
 function updateWebTimingDiagnostics() {
@@ -1793,6 +1884,15 @@ async function buildWebDiagnosticReport() {
     `storage.quotaBytes=${storageEstimate?.quota??'unknown'}`,
     `storage.persisted=${storagePersisted}`,
     `storage.persistenceState=${storagePersistenceState}`,
+    `modelCache.status=${modelCacheState.status}`,
+    `modelCache.label=${modelCacheState.label??'unverified'}`,
+    `modelCache.entryCount=${modelCacheState.entryCount??'unknown'}`,
+    `modelCache.presentFiles=${modelCacheState.presentFiles??'unknown'}`,
+    `modelCache.expectedFiles=${modelCacheState.expectedFiles??'unknown'}`,
+    `modelCache.presentBytes=${modelCacheState.presentBytes??'unknown'}`,
+    `modelCache.expectedBytes=${modelCacheState.expectedBytes??'unknown'}`,
+    `modelCache.aliasHits=${modelCacheState.aliasHits??0}`,
+    `modelCache.missingFiles=${modelCacheState.missingFiles?.join(',')||'none'}`,
   ];
   if(runtimeDiagnosticEvents.length){
     lines.push('runtimeErrors.begin');
@@ -1917,7 +2017,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261009-storage-permission-ux-r4',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261009-model-cache-integrity-r5',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -1955,6 +2055,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261009-storage-permission-ux-r4',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261009-model-cache-integrity-r5',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });

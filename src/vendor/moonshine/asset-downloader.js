@@ -6,10 +6,144 @@
  */
 import { MoonshineDownloadError } from './errors.js';
 import { clearResumableDownload, downloadResumable } from '../../resumable-download.js';
-const DEFAULT_CACHE = 'moonshine-models-v1';
+export const MOONSHINE_MODEL_CACHE = 'moonshine-models-v1';
+const DEFAULT_CACHE = MOONSHINE_MODEL_CACHE;
 const diagnosticNow = () => typeof performance !== 'undefined' && typeof performance.now === 'function'
     ? performance.now()
     : Date.now();
+
+export function canonicalMoonshineModelAssetKey(value) {
+    try {
+        const parsed = new URL(String(value));
+        const marker = '/model/';
+        const index = parsed.pathname.indexOf(marker);
+        return index >= 0 ? parsed.pathname.slice(index) : parsed.pathname;
+    }
+    catch {
+        const clean = String(value || '').split(/[?#]/)[0];
+        const marker = '/model/';
+        const index = clean.indexOf(marker);
+        return index >= 0 ? clean.slice(index) : clean;
+    }
+}
+
+async function findCompatibleCacheHit(cache, url, { repairAlias = true } = {}) {
+    const exact = await cache.match(url);
+    if (exact)
+        return { response: exact, matchType: 'exact', cachedUrl: url };
+    const targetKey = canonicalMoonshineModelAssetKey(url);
+    const requests = await cache.keys();
+    const compatible = requests.find(request =>
+        canonicalMoonshineModelAssetKey(request.url) === targetKey
+    );
+    if (!compatible)
+        return null;
+    const response = await cache.match(compatible);
+    if (!response)
+        return null;
+    if (repairAlias) {
+        await cache.put(url, response.clone()).catch(() => {});
+    }
+    return { response, matchType: 'canonical-path', cachedUrl: compatible.url };
+}
+
+function parseManifest(manifestJson) {
+    const manifest = typeof manifestJson === 'string' ? JSON.parse(manifestJson) : manifestJson;
+    const groups = manifest?.groups ?? [];
+    const files = [];
+    for (const group of groups) {
+        for (const file of group.files ?? []) {
+            const url = file.url ?? joinUrl(group.base_url, file.name);
+            files.push({
+                name: file.name,
+                url,
+                size: typeof file.size === 'number' && file.size >= 0 ? file.size : null,
+            });
+        }
+    }
+    return files;
+}
+
+export async function inspectMoonshineCacheInventory(cacheName = DEFAULT_CACHE) {
+    if (typeof caches === 'undefined')
+        return { supported: false, entryCount: 0 };
+    const cache = await caches.open(cacheName);
+    const requests = await cache.keys();
+    return {
+        supported: true,
+        entryCount: requests.length,
+        canonicalKeys: requests.map(request => canonicalMoonshineModelAssetKey(request.url)),
+    };
+}
+
+export async function inspectMoonshineManifestCache(manifestJson, options = {}) {
+    const cacheName = options.cacheName ?? DEFAULT_CACHE;
+    const repairAliases = options.repairAliases !== false;
+    const files = parseManifest(manifestJson);
+    if (typeof caches === 'undefined') {
+        return {
+            supported: false,
+            status: 'unsupported',
+            expectedFiles: files.length,
+            presentFiles: 0,
+            expectedBytes: files.reduce((sum, file) => sum + (file.size ?? 0), 0),
+            presentBytes: 0,
+            aliasHits: 0,
+            missingFiles: files.map(file => file.name),
+        };
+    }
+    const cache = await caches.open(cacheName);
+    const requests = await cache.keys();
+    const exactUrls = new Map(requests.map(request => [request.url, request]));
+    const byCanonicalKey = new Map();
+    for (const request of requests) {
+        const key = canonicalMoonshineModelAssetKey(request.url);
+        if (!byCanonicalKey.has(key))
+            byCanonicalKey.set(key, request);
+    }
+
+    let presentFiles = 0;
+    let presentBytes = 0;
+    let aliasHits = 0;
+    const missingFiles = [];
+    for (const file of files) {
+        let request = exactUrls.get(file.url);
+        let alias = false;
+        if (!request) {
+            request = byCanonicalKey.get(canonicalMoonshineModelAssetKey(file.url));
+            alias = Boolean(request);
+        }
+        if (!request) {
+            missingFiles.push(file.name);
+            continue;
+        }
+        const response = await cache.match(request);
+        if (!response) {
+            missingFiles.push(file.name);
+            continue;
+        }
+        presentFiles += 1;
+        presentBytes += file.size ?? 0;
+        if (alias) {
+            aliasHits += 1;
+            if (repairAliases) {
+                await cache.put(file.url, response.clone()).catch(() => {});
+            }
+        }
+    }
+    const expectedBytes = files.reduce((sum, file) => sum + (file.size ?? 0), 0);
+    return {
+        supported: true,
+        status: missingFiles.length === 0 ? 'complete' : presentFiles === 0 ? 'missing' : 'partial',
+        expectedFiles: files.length,
+        presentFiles,
+        expectedBytes,
+        presentBytes,
+        aliasHits,
+        missingFiles,
+        entryCount: requests.length,
+    };
+}
 /**
  * Downloads model files with transparent caching. A single instance can be
  * reused across models; entries are keyed by absolute URL.
@@ -46,7 +180,7 @@ export class AssetDownloader {
                     const url = this.baseUrl
                         ? joinUrl(this.baseUrl, file.name)
                         : (file.url ?? joinUrl(group.base_url, file.name));
-                    const bytes = await this.fetchFile(url);
+                    const bytes = await this.fetchFile(url, file.size);
                     if (typeof file.size === 'number' &&
                         file.size >= 0 &&
                         bytes.byteLength !== file.size) {
@@ -85,32 +219,58 @@ export class AssetDownloader {
         });
     }
     /** Fetches a single URL, using the Cache API when available. */
-    async fetchFile(url) {
+    async fetchFile(url, expectedSize) {
         const file = basename(url);
         const cache = await this.openCache();
         if (cache) {
             const lookupStarted = diagnosticNow();
-            const hit = await cache.match(url);
+            const hit = await findCompatibleCacheHit(cache, url, { repairAlias: true });
             const lookupMs = diagnosticNow() - lookupStarted;
             if (hit) {
                 this.reportProgress(0, undefined, file, { source: 'cache' });
                 const readStarted = diagnosticNow();
-                const buf = await hit.arrayBuffer();
+                const buf = await hit.response.arrayBuffer();
                 const readMs = diagnosticNow() - readStarted;
-                await clearResumableDownload(url).catch(() => {});
-                this.reportProgress(buf.byteLength, buf.byteLength, file, { source: 'cache' });
+                const sizeValid = typeof expectedSize !== 'number' || expectedSize < 0 || buf.byteLength === expectedSize;
+                if (sizeValid) {
+                    await clearResumableDownload(url).catch(() => {});
+                    this.reportProgress(buf.byteLength, buf.byteLength, file, { source: 'cache' });
+                    this.onAssetEvent?.({
+                        kind: 'cache-read',
+                        file,
+                        url,
+                        matchType: hit.matchType,
+                        cachedUrl: hit.cachedUrl,
+                        bytes: buf.byteLength,
+                        lookupMs,
+                        readMs,
+                        durationMs: lookupMs + readMs,
+                    });
+                    this.finishFile(buf.byteLength);
+                    return new Uint8Array(buf);
+                }
+                await cache.delete(url).catch(() => {});
                 this.onAssetEvent?.({
-                    kind: 'cache-read',
+                    kind: 'cache-invalid',
                     file,
-                    bytes: buf.byteLength,
+                    url,
+                    matchType: hit.matchType,
+                    cachedUrl: hit.cachedUrl,
+                    expectedBytes: expectedSize,
+                    actualBytes: buf.byteLength,
                     lookupMs,
                     readMs,
-                    durationMs: lookupMs + readMs,
                 });
-                this.finishFile(buf.byteLength);
-                return new Uint8Array(buf);
             }
-            this.onAssetEvent?.({ kind: 'cache-miss', file, lookupMs });
+            else {
+                this.onAssetEvent?.({
+                    kind: 'cache-miss',
+                    file,
+                    url,
+                    canonicalKey: canonicalMoonshineModelAssetKey(url),
+                    lookupMs,
+                });
+            }
         }
         let result;
         const downloadStarted = diagnosticNow();
@@ -145,6 +305,8 @@ export class AssetDownloader {
         this.onAssetEvent?.({
             kind: 'network-download',
             file,
+            url,
+            canonicalKey: canonicalMoonshineModelAssetKey(url),
             bytes: Number(result.networkLoaded) || buf.byteLength,
             assetBytes: buf.byteLength,
             resumed: Boolean(result.resumed),

@@ -5,6 +5,7 @@ import { JSDOM } from 'jsdom';
 import { ConversationHistory, createHistoryEntry, historyEnabled } from './src/conversation-history.js';
 import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhrases, phrasesForSentenceCount, localHistoryStamp } from './src/feature-screens.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './src/app-navigation.js';
+import { canonicalMoonshineModelAssetKey } from './src/vendor/moonshine/asset-downloader.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
 
 assert.deepEqual(appHistoryState('settings'),{mitsukotobaScreen:'settings'});
@@ -14,6 +15,16 @@ assert.equal(resolveAppPopScreen('about','onboarding',null),'onboarding');
 assert.equal(resolveAppPopScreen('about','settings',{mitsukotobaScreen:'settings'}),'settings');
 assert.equal(shouldUseBrowserBack('settings',{mitsukotobaScreen:'settings'}),true);
 assert.equal(shouldUseBrowserBack('settings',null),false);
+assert.equal(
+  canonicalMoonshineModelAssetKey('https://download-a.example/model/small-streaming-ja/rev1/encoder.ort?sig=one'),
+  canonicalMoonshineModelAssetKey('https://download-b.example/model/small-streaming-ja/rev1/encoder.ort?sig=two'),
+  'CDN host/query changes should keep the same model cache identity'
+);
+assert.notEqual(
+  canonicalMoonshineModelAssetKey('https://download.example/model/small-streaming-ja/rev1/encoder.ort'),
+  canonicalMoonshineModelAssetKey('https://download.example/model/small-streaming-ja/rev2/encoder.ort'),
+  'model revision path changes must not reuse old cache entries'
+);
 assert.equal(topics.topics.length,22);
 assert.equal(topics.topics.reduce((count,topic)=>count+topic.phrases.length,0),110);
 for(const topic of topics.topics){
@@ -58,6 +69,8 @@ assert($('copyDiagnosticsButton'),'hidden developer tools should expose diagnost
 assert($('downloadDiagnosticsButton'),'hidden developer tools should expose diagnostic TXT download');
 assert($('clearDiagnosticsButton'),'hidden developer tools should expose diagnostic reset');
 assert($('webTimingDiagnostics'),'hidden developer tools should expose TTS timing');
+assert($('storageProtectionStatus'),'settings must show storage protection separately');
+assert($('modelCacheStatus'),'settings must show actual Moonshine cache separately');
 assert.equal($('enableAudioButton'),null,'redundant audio-enable CTA must not compete with conversation start');
 for(const href of ['./semantic-test.html','./model-lab.html','./coexistence-diagnostic.html']){
   assert($('developerTools').querySelector(`a[href="${href}"]`),`missing developer link ${href}`);
@@ -125,6 +138,10 @@ assert(source.includes('asr.totalInitMs='));
 assert(source.includes('asr.cacheMisses='));
 assert(source.includes('storage.persisted='));
 assert(source.includes('storage.persistenceState='));
+assert(source.includes('modelCache.status='));
+assert(source.includes('modelCache.missingFiles='));
+assert(source.includes('inspectMoonshineManifestCache'));
+assert(source.includes('refreshSelectedMoonshineCache'));
 assert(source.includes('ensurePersistentModelStorage'));
 assert(source.includes("sessionStorage.getItem('emma_mic_session_granted')==='1'"));
 assert(source.includes("permission!=='granted'"));
