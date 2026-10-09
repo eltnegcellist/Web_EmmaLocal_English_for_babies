@@ -523,3 +523,8 @@ Web navigation: Browser/phone Back on Settings returns to the main screen, and B
 ### Semanticによる話題判定
 
 70M INT8による話題判定を標準で有効にしています。初期設定では「高性能モデルを使う」をオフにするとTinyと同時に無効になり、通常の設定では後から個別に変更できます。明確な話題変更がない発話は直前の話題を最大6回使います。診断・比較は「モデル保存」を5回タップする隠し設定内にあります。[使い方・起動・既知の制約](docs/semantic-lite-web-test.md)を参照してください。[文字で試す](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/semantic-test.html)。
+
+
+### Semantic実推論のAndroid/Web一致
+
+Semantic関連の変更時は、固定14ケースをWeb WASMとAndroid相当のJava ONNX Runtimeで実際に推論し、token ID、最終topic/raw topic、probability・marginの差を専用CIで自動比較します。これは分類精度のベンチマークではなく、両実装の回帰差を検出するためのテストです。
