@@ -1,6 +1,9 @@
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
 import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink, detectNounTopics } from './lite-topic-matcher.js';
 
+// A detected topic may be carried into at most two subsequent ambiguous turns.
+const TOPIC_HOLD_TURNS = 2;
+
 // Reply bank and style synced from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
 // Android source commit: dfd20958931d2767d3b54e0c9106f8cb690be93d
 // Do not hand-edit the reply bank independently from Android.
@@ -826,7 +829,7 @@ export class LiteResponseEngine {
     const implicitMilkDrink = useDrinkingScene && drinkingScene?.id==='milk' && this.activeSceneId==='milk' && !explicitMilk && !hasNonMilkDrink(transcript);
     const semanticFollowup = this.activeSceneTurnsRemaining>0 && (plainFollowup || implicitMilkDrink);
     // Clear Semantic evidence can change the topic. Generic/weak predictions
-    // consume the same six follow-up turns as the existing rule matcher.
+    // consume the same two follow-up turns as the existing rule matcher.
     const semanticClear = !semanticFollowup && !!requested && (
       semantic?.probability == null || (semantic.probability >= 0.65 && semantic.margin >= 0.15)
     );
@@ -843,14 +846,14 @@ export class LiteResponseEngine {
     const sceneScore = semanticUsed ? contextUsed ? 2 : 0 : explicitScene ? explicitScore : contextualScene ? 2 : 0;
 
     if (semanticUsed) {
-      if(clearScene){this.activeSceneId=clearScene.id;this.activeSceneTurnsRemaining=6;}
+      if(clearScene){this.activeSceneId=clearScene.id;this.activeSceneTurnsRemaining = TOPIC_HOLD_TURNS;}
       else if(contextUsed){
         this.activeSceneTurnsRemaining-=1;
         if(this.activeSceneTurnsRemaining<=0)this.activeSceneId=null;
       }
     } else if (explicitScene) {
       this.activeSceneId = explicitScene.id;
-      this.activeSceneTurnsRemaining = 6;
+      this.activeSceneTurnsRemaining = TOPIC_HOLD_TURNS;
     } else if (contextualScene) {
       this.activeSceneTurnsRemaining -= 1;
       if (this.activeSceneTurnsRemaining <= 0) this.activeSceneId = null;
