@@ -1,8 +1,8 @@
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
 import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink, detectNounTopics } from './lite-topic-matcher.js';
 
-// A detected topic may be carried into at most two subsequent ambiguous turns.
-const TOPIC_HOLD_TURNS = 2;
+// A detected topic may be carried into at most one subsequent ambiguous turn.
+const TOPIC_HOLD_TURNS = 1;
 
 // Reply bank and style synced from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
 // Android source commit: dfd20958931d2767d3b54e0c9106f8cb690be93d
@@ -829,7 +829,7 @@ export class LiteResponseEngine {
     const implicitMilkDrink = useDrinkingScene && drinkingScene?.id==='milk' && this.activeSceneId==='milk' && !explicitMilk && !hasNonMilkDrink(transcript);
     const semanticFollowup = this.activeSceneTurnsRemaining>0 && (plainFollowup || implicitMilkDrink);
     // Clear Semantic evidence can change the topic. Generic/weak predictions
-    // consume the same two follow-up turns as the existing rule matcher.
+    // consume the same one follow-up turn as the existing rule matcher.
     const semanticClear = !semanticFollowup && !!requested && (
       semantic?.probability == null || (semantic.probability >= 0.65 && semantic.margin >= 0.15)
     );
