@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/shared/visual-cue-contract.schema.json",
+  "title": "Mitsukotoba Lite Visual Cue Contract",
+  "description": "Draft, non-runtime schema for extensible visual cue assignments. Cue IDs are namespaced strings and are intentionally open-ended so new emotions, praise, success and future concepts do not require a schema rewrite.",
+  "type": "object",
+  "required": ["schemaVersion", "assignments"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "revision": {
+      "type": "string"
+    },
+    "assignments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assignment"
+      }
+    }
+  },
+  "$defs": {
+    "cueId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$",
+      "examples": [
+        "subject.milk",
+        "action.sip",
+        "emotion.happy",
+        "emotion.crying",
+        "social.praise",
+        "social.success",
+        "attention.listen"
+      ]
+    },
+    "assignment": {
+      "type": "object",
+      "required": ["phraseId", "primaryCue"],
+      "additionalProperties": false,
+      "properties": {
+        "phraseId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable authoring-time ID. Do not use array indexes. A text fingerprint may be used only during migration."
+        },
+        "text": {
+          "type": "string",
+          "description": "Optional review copy of the English text. Runtime lookup should prefer phraseId."
+        },
+        "topic": {
+          "type": "string",
+          "description": "Optional scene/topic. This is context, not the visual cue itself."
+        },
+        "primaryCue": {
+          "$ref": "#/$defs/cueId"
+        },
+        "secondaryCues": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/cueId"
+          },
+          "default": []
+        },
+        "renderPreference": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "illustration",
+            "motion",
+            "emma",
+            "composite"
+          ],
+          "default": "auto"
+        },
+        "reviewStatus": {
+          "type": "string",
+          "enum": [
+            "generated",
+            "reviewed"
+          ]
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "schemaVersion": 1,
+      "revision": "draft",
+      "assignments": [
+        {
+          "phraseId": "success-001",
+          "text": "You did it! Great job!",
+          "primaryCue": "social.success",
+          "secondaryCues": [
+            "emotion.happy",
+            "social.praise"
+          ],
+          "renderPreference": "emma",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "phraseId": "cry-comfort-001",
+          "text": "You're crying. I'm right here.",
+          "primaryCue": "emotion.crying",
+          "secondaryCues": [
+            "social.comfort"
+          ],
+          "renderPreference": "emma",
+          "reviewStatus": "reviewed"
+        },
+        {
+          "phraseId": "milk-sip-001",
+          "text": "Milk time! Sip, sip!",
+          "topic": "milk",
+          "primaryCue": "action.sip",
+          "secondaryCues": [
+            "subject.milk"
+          ],
+          "renderPreference": "composite",
+          "reviewStatus": "reviewed"
+        }
+      ]
+    }
+  ]
+}
