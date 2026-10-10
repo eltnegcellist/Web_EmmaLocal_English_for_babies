@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "revision": "2026-10-03.1",
+  "revision": "2026-10-10.1",
   "rules": {
-    "contextFollowupTurns": 6
+    "contextFollowupTurns": 2
   },
   "guide": {
     "intro": {
@@ -1855,26 +1855,6 @@
         },
         {
           "text": "いい感じですね",
-          "scene": "book",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
-          "scene": "book",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
-          "scene": "book",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
-          "scene": "book",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
           "scene": "generic",
           "meaningful": true
         }
@@ -1900,26 +1880,6 @@
         },
         {
           "text": "いい感じですね",
-          "scene": "drink",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
-          "scene": "drink",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
-          "scene": "drink",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
-          "scene": "drink",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
           "scene": "generic",
           "meaningful": true
         }
@@ -1930,26 +1890,6 @@
       "steps": [
         {
           "text": "ミルク飲もうね",
-          "scene": "milk",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
-          "scene": "milk",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
-          "scene": "milk",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
-          "scene": "milk",
-          "meaningful": true
-        },
-        {
-          "text": "いい感じですね",
           "scene": "milk",
           "meaningful": true
         },
