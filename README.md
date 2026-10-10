@@ -97,7 +97,7 @@ Web版では「呼びかけ」を利用できます。生成型の「会話」�
 
 「押して聞く」は、既存の挨拶にLiteの20育児話題と「飲む」を加えた22話題・110種類の短い英語をAndroid/Webで共通利用します。標準は1回に1文で、110個のまとまりから得られる重複なし167種類の1文候補のうち、短い一言も含めて1つだけ再生します。再生画面のカード外にある「1回 1文｜3文」で切り替えられ、発話中は「一緒に聞こう」＋口パク＋ごく薄いテーマ色表示になります。複数行の英語も中央揃えです。
 
-Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして使います。genericは話題として保存せず、過去6ターン内の具体的な育児トピックだけをGemmaへ参考情報として渡します。
+Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして使います。genericは話題として保存せず、過去2ターン内の具体的な育児トピックだけをGemmaへ参考情報として渡します。
 
 ### 会話を自分で区切る
 
@@ -139,7 +139,7 @@ Kitten TTS Nano 0.8 / Kiki
 
 「飲むかい／飲もうか／飲みたい？」は共通の飲む動作として判定します。ミルクと明示された場合やミルクの話題が続いている場合はミルクの返答を使い、それ以外は飲む物を限定しない返答を使います。水やお茶が明示された場合もミルクとは決めつけません。短いかな表記の「のむ？」も応答対象です。
 
-Web版は21種類の育児の話題を端末内で判定します。「寝ましょう／寝よう」のような語尾、漢字・かな表記、対象と動作の間の助詞に対応しています。短い単語の音が少し崩れた場合は、関連する動作も照合して話題を推定します。判断材料が不足する発話は直前の話題を最大6ターン保持し、その後はジェネラルの返答に戻ります。
+Web版は21種類の育児の話題を端末内で判定します。「寝ましょう／寝よう」のような語尾、漢字・かな表記、対象と動作の間の助詞に対応しています。短い単語の音が少し崩れた場合は、関連する動作も照合して話題を推定します。判断材料が不足する発話は直前の話題を最大2ターン保持し、その後はジェネラルの返答に戻ります。
 
 `node test-topic-detection.mjs` で言い回しと模擬的な誤認識、無関係な文、話題の切り替えを検証します。この検証は実際の音声認識精度を測定したものではありません。
 
@@ -164,7 +164,7 @@ Web版は21種類の育児の話題を端末内で判定します。「寝まし
 
 初回起動時に、選択した構成に必要なモデルを取得します。
 
-標準構成はMoonshine Small Streaming + Kitten TTS Nanoです。Tiny Streamingはモデルサイズを優先したい場合に選べる軽量オプションです。具体的な育児トピックは最大6ターン保持し、明確な別話題が出れば即時に切り替えます。
+標準構成はMoonshine Small Streaming + Kitten TTS Nanoです。Tiny Streamingはモデルサイズを優先したい場合に選べる軽量オプションです。具体的な育児トピックは最大2ターン保持し、明確な別話題が出れば即時に切り替えます。
 
 Moonshine / Kittenの大きなファイルは途中データをIndexedDBへ保存し、配布元が対応する場合はHTTP Rangeで続きから再開します。Background Fetch対応ブラウザではバックグラウンド継続も試みます。非対応ブラウザでも、停止後に再度開いた際は保存済み地点からの再開を優先します。
 
@@ -385,7 +385,7 @@ The [topic guide and trigger examples (Japanese)](https://eltnegcellist.github.i
 
 Drinking invitations share one action detector across conjugations and kana/kanji spellings. Explicit milk references and ongoing milk context use milk replies; otherwise a neutral drinking fallback shared with Android Lite avoids guessing the beverage. Explicit water or tea also overrides prior milk context. Short kana-only prompts such as `のむ？` pass the speech gate.
 
-The Web edition detects 21 childcare topics locally. Detection normalizes polite verb forms and kana/kanji spellings, and recognizes object-action combinations across particles. Slight phonetic errors in short topic words require a related action as supporting evidence. Ambiguous follow-ups retain the previous topic for up to six turns before returning to generic replies.
+The Web edition detects 21 childcare topics locally. Detection normalizes polite verb forms and kana/kanji spellings, and recognizes object-action combinations across particles. Slight phonetic errors in short topic words require a related action as supporting evidence. Ambiguous follow-ups retain the previous topic for up to two turns before returning to generic replies.
 
 Run `node test-topic-detection.mjs` for phrase variations, simulated transcript errors, unrelated sentences, and topic switching. These text fixtures are not a measurement of real-world ASR accuracy.
 
@@ -410,7 +410,7 @@ Run `node test-topic-detection.mjs` for phrase variations, simulated transcript 
 
 The first launch downloads the models required by the selected configuration.
 
-The default configuration uses Moonshine Small Streaming plus Kitten TTS Nano. Tiny Streaming is an optional lightweight alternative. Concrete childcare topics remain active for up to six follow-up turns unless a new explicit topic appears.
+The default configuration uses Moonshine Small Streaming plus Kitten TTS Nano. Tiny Streaming is an optional lightweight alternative. Concrete childcare topics remain active for up to two follow-up turns unless a new explicit topic appears.
 
 Large Moonshine / Kitten files are checkpointed in IndexedDB. When the origin supports it, HTTP Range resumes from the saved position. Browsers with Background Fetch support can also continue tracked downloads in the background; unsupported browsers still prefer persisted resume on reopen.
 
@@ -522,4 +522,4 @@ Web navigation: Browser/phone Back on Settings returns to the main screen, and B
 
 ### Semanticによる話題判定
 
-70M INT8による話題判定を標準で有効にしています。初期設定では「高性能モデルを使う」をオフにするとTinyと同時に無効になり、通常の設定では後から個別に変更できます。明確な話題変更がない発話は直前の話題を最大6回使います。診断・比較は「モデル保存」を5回タップする隠し設定内にあります。[使い方・起動・既知の制約](docs/semantic-lite-web-test.md)を参照してください。[文字で試す](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/semantic-test.html)。
+70M INT8による話題判定を標準で有効にしています。初期設定では「高性能モデルを使う」をオフにするとTinyと同時に無効になり、通常の設定では後から個別に変更できます。明確な話題変更がない発話は直前の話題を最大2回使います。診断・比較は「モデル保存」を5回タップする隠し設定内にあります。[使い方・起動・既知の制約](docs/semantic-lite-web-test.md)を参照してください。[文字で試す](https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/semantic-test.html)。
