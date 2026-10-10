@@ -77,5 +77,5 @@ Webの画面ロック中の継続は保証しません。
 
 一般ユーザー向け画面には出さず、設定画面の「モデル保存」5回タップで開く開発者設定を拡張します。WebではSemantic / Guard / 従来Liteの比較、文字入力返答、Semantic単体テスト、モデルラボ、Moonshine / Kitten共存診断、Kitten音声診断、TTSの直近処理時間、診断情報のコピー・TXT保存、完全リセットへアクセスできます。診断情報には個人名・会話本文を含めません。
 
-Android側にも同系統の隠し診断を用意し、両版で可能な範囲の診断機能を相互補完します。Semantic実推論のクロスプラットフォーム自動一致テストはこの変更には含めず、次の課題とします。
+Android側にも同系統の隠し診断を用意し、両版で可能な範囲の診断機能を相互補完します。Semantic実推論のクロスプラットフォーム自動一致テストも実装済みです。固定14ケースをWebのWASM ONNX Runtime 1.30とAndroid相当のJava ONNX Runtime 1.23.2で実際に推論し、token ID・raw topic・最終topicの完全一致に加え、probability差0.025以下、margin差0.035以下、embedding cosine 0.995以上をCIで検証します。実測では14/14でtopic/raw topic/token IDが一致し、最大probability差0.016734、最大margin差0.025733、最小embedding cosine 0.996722でした。
 
