@@ -36,22 +36,31 @@ rejectMode=false;document.querySelector('[data-semantic="prepare"]').click();awa
 fake.predict=()=>new Promise(resolve=>finish=resolve);const pending=panel.respond('ミルク','',{isCurrent:()=>false});await Promise.resolve();finish({topic:{id:'milk'},intent:{id:'observation'},state:{id:'ongoing'},elapsedMs:1});assert.equal(await pending,null);
 console.log('Semantic policies, catalog rendering, invalid data, cancellation/retry, failed-model fallback and stale reply checks passed.');
 
-// Semantic context consumes, rather than continually resets, six follow-up turns.
+// Semantic context consumes, rather than continually resets, two follow-up turns.
 const clear=(topic)=>({topic,mode:'semantic',probability:.95,margin:.8});
 const generic={topic:'generic',mode:'semantic',probability:.8,margin:.7};
 const held=new LiteResponseEngine();held.respond('ミルクを飲もうか','',clear('milk'));
-for(let i=0;i<6;i++){const r=held.respond('いいね','',generic);assert.equal(r.scene,'milk');assert.equal(r.contextUsed,true);assert.equal(held.activeSceneTurnsRemaining,5-i);}
+for(let i=0;i<2;i++){const r=held.respond('いいね','',generic);assert.equal(r.scene,'milk');assert.equal(r.contextUsed,true);assert.equal(held.activeSceneTurnsRemaining,1-i);}
 assert.equal(held.respond('どうかな','',generic).scene,'generic');
 held.respond('ミルクを飲もうか','',clear('milk'));
 assert.equal(held.respond('もっと？','',{topic:'book',mode:'semantic',probability:.4,margin:.1}).scene,'milk');
-assert.equal(held.activeSceneTurnsRemaining,5);
-assert.equal(held.respond('いい感じですね','',clear('smile')).scene,'milk');assert.equal(held.activeSceneTurnsRemaining,4);
-assert.equal(held.respond('もう少し飲む？','',clear('drink')).scene,'milk');assert.equal(held.activeSceneTurnsRemaining,3);
-assert.equal(held.respond('お水を飲もう','',clear('drink')).scene,'drink');assert.equal(held.activeSceneTurnsRemaining,6);
-assert.equal(held.respond('眠る時間だよ','',clear('sleep')).scene,'sleep');assert.equal(held.activeSceneTurnsRemaining,6);
-assert.equal(held.respond('お風呂入ろうね','',generic).scene,'bath');assert.equal(held.activeSceneTurnsRemaining,6);
+assert.equal(held.activeSceneTurnsRemaining,1);
+assert.equal(held.respond('いい感じですね','',clear('smile')).scene,'milk');assert.equal(held.activeSceneTurnsRemaining,0);
+assert.equal(held.respond('もう少し飲む？','',clear('drink')).scene,'drink');assert.equal(held.activeSceneTurnsRemaining,2);
+assert.equal(held.respond('お水を飲もう','',clear('drink')).scene,'drink');assert.equal(held.activeSceneTurnsRemaining,2);
+assert.equal(held.respond('眠る時間だよ','',clear('sleep')).scene,'sleep');assert.equal(held.activeSceneTurnsRemaining,2);
+assert.equal(held.respond('お風呂入ろうね','',generic).scene,'bath');assert.equal(held.activeSceneTurnsRemaining,2);
 held.resetConversationContext();assert.equal(held.respond('どうかな','',generic).scene,'generic');
-const firstWeak=new LiteResponseEngine();assert.equal(firstWeak.respond('見てみよう','',{topic:'book',mode:'semantic',probability:.4,margin:.1}).scene,'book');assert.equal(firstWeak.activeSceneTurnsRemaining,6);
+const firstWeak=new LiteResponseEngine();assert.equal(firstWeak.respond('見てみよう','',{topic:'book',mode:'semantic',probability:.4,margin:.1}).scene,'book');assert.equal(firstWeak.activeSceneTurnsRemaining,2);
+// Simulate a one-off Semantic / ASR misclassification: neither a greeting
+// mislabeled as diaper nor a name mislabeled as sleep may persist past 2 follow-ups.
+for(const [utterance,wrongTopic] of [['おはよう','diaper'],['マユ','sleep']]){
+  const mistaken=new LiteResponseEngine();
+  assert.equal(mistaken.respond(utterance,'',clear(wrongTopic)).scene,wrongTopic);
+  assert.equal(mistaken.respond('どうかな','',generic).scene,wrongTopic);
+  assert.equal(mistaken.respond('いいね','',generic).scene,wrongTopic);
+  assert.equal(mistaken.respond('どうかな','',generic).scene,'generic');
+}
 // Default-on does not download anything until first setup, startup or explicit testing.
 const isolated=new JSDOM('',{url:'https://prefs.test/'}).window.localStorage;
 let prepares=0,predicts=0;
@@ -61,7 +70,7 @@ assert.equal(ctrl.enabled,true);assert.equal(prepares,0);await ctrl.setEnabled(f
 const persisted=createSemanticController({engine:new LiteResponseEngine(),storage:isolated,clientFactory:()=>noAuto});assert.equal(persisted.enabled,false);
 isolated.setItem('emma_semantic_enabled','true');isolated.setItem('emma_semantic_mode','lite');
 const main=createSemanticController({engine:new LiteResponseEngine(),storage:isolated,clientFactory:()=>noAuto,mode:'semantic'});assert.equal(main.enabled,true);assert.equal(main.snapshot.mode,'semantic');
-console.log('Semantic default-on/opt-out, lazy preparation, six follow-ups, weak/clear topic changes, reset and late worker error checks passed.');
+console.log('Semantic default-on/opt-out, lazy preparation, two follow-ups, weak/clear topic changes, reset and late worker error checks passed.');
 
 // Execute the actual first-setup functions with audio/mic stubs, avoiding model
 // downloads while checking permission order and the previously missing epoch.
