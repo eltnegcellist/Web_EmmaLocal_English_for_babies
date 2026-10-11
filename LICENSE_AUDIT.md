@@ -87,3 +87,7 @@ including:
 
 Mitsukotoba's local `src/vendor/kitten/phonemizer.js` is intentionally
 allowed; it is the CMUDict-based implementation described above.
+
+## Silero endpoint update (2026-10-11)
+
+The standalone microphone VAD model is bundled under MIT with the upstream copyright and complete license. Provenance and checksum are stored beside the model. It uses the existing full ONNX Runtime; no TTS dependency or phonemizer is added. `scripts/verify-silero-assets.py` verifies the committed model and notice.

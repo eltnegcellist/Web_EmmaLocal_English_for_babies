@@ -26,6 +26,8 @@ jobs:
           python3 scripts/generate-lite-topic-contract.py --target web --check
           python3 scripts/test-lite-topic-contract.py
           python3 scripts/verify-play-topics.py
+      - name: Verify bundled Silero model and license
+        run: python3 scripts/verify-silero-assets.py
       - name: Verify pinned Semantic distribution assets
         run: python3 scripts/verify-semantic-assets.py
       - name: Smoke test LiteResponseEngine
@@ -36,6 +38,11 @@ jobs:
           npm ci --ignore-scripts
           node test-features.mjs
           node test-semantic.mjs
+          node test-silero.mjs
+      - name: Test actual Silero WASM inference and Settings rollback
+        run: |
+          npx playwright install --with-deps chromium
+          VAD_BROWSER_CHANNEL=chromium npm run test:vad-browser
       - name: Run actual Web Semantic inference parity baseline
         run: node scripts/semantic-parity-web.mjs --output .semantic-parity/web.json
       - name: Syntax check
@@ -46,6 +53,10 @@ jobs:
           node --check src/feature-screens.js
           node --check src/app-navigation.js
           node --check src/resumable-download.js
+          node --check src/silero-capture.js
+          node --check src/silero-endpoint.js
+          node --check src/silero-worker.js
+          node --check scripts/browser-silero-smoke.mjs
           node --check src/audio-capture.js
           node --check src/asr-worker.js
           node --check src/tts-worker.js

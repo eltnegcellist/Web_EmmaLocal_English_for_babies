@@ -1,5 +1,9 @@
+import { SileroCaptureDetector } from './silero-capture.js';
 export class EmmaMicrophone {
-  constructor({ onState, onUtterance, shouldIgnore }) {
+  constructor({ onState, onUtterance, shouldIgnore, endpointMode = 'silero', onWarning, onError }) {
+    this.endpointMode = endpointMode;
+    this.onWarning = onWarning;
+    this.onError = onError;
     this.onState = onState;
     this.onUtterance = onUtterance;
     this.shouldIgnore = shouldIgnore;
@@ -37,6 +41,23 @@ export class EmmaMicrophone {
       'マイク音声処理の読み込みが完了しませんでした。ページを再読み込みして、もう一度お試しください。'
     );
     if(generation !== this.generation) return;
+    if(this.endpointMode === 'silero') {
+      try {
+        this.vadAbort=new AbortController();
+        const detector=await SileroCaptureDetector.create({
+          signal:this.vadAbort.signal,
+          sampleRate:context.sampleRate,
+          onResult:result=>{if(generation===this.generation && !this.shouldIgnore?.())this.handleResult(result);},
+          onError:error=>{if(generation===this.generation)this.onError?.(error);}
+        });
+        if(generation!==this.generation){detector.close();return;}
+        this.vad=detector;
+      } catch(error) {
+        if(generation!==this.generation)return;
+        this.vad=new AdaptiveEndpointDetector();
+        this.onWarning?.('声の判定を準備できなかったため、今回は従来方式で会話します。設定で判定方式を変更できます。');
+      }
+    } else this.vad=new AdaptiveEndpointDetector();
     const source = this.context.createMediaStreamSource(this.stream);
     this.node = new AudioWorkletNode(this.context, 'emma-pcm-capture');
     const silent = this.context.createGain();
@@ -52,6 +73,11 @@ export class EmmaMicrophone {
       return;
     }
     const result = this.vad.push(frame, this.context.sampleRate, performance.now());
+    this.handleResult(result);
+  }
+
+  handleResult(result) {
+    if(!this.context)return;
     if (result.event === 'speech-start') this.onState?.('endpoint');
     if (result.event === 'utterance') {
       const downsampled = resampleLinear(result.audio, this.context.sampleRate, 16000);
@@ -86,6 +112,8 @@ export class EmmaMicrophone {
 
   async stop() {
     this.generation++;
+    this.vadAbort?.abort();
+    this.vadAbort=null;
     this.node?.disconnect();
     this.stream?.getTracks().forEach((t) => t.stop());
     if (this.context && this.context.state !== 'closed') await this.context.close();
@@ -93,10 +121,11 @@ export class EmmaMicrophone {
     this.context = null;
     this.node = null;
     this.vad.reset();
+    this.vad.close?.();
   }
 }
 
-class AdaptiveEndpointDetector {
+export class AdaptiveEndpointDetector {
   constructor() { this.reset(); }
   reset() {
     this.noiseFloor = 0.006;

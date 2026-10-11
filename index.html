@@ -687,6 +687,14 @@
         
         <article class="card">
           <h2>音声認識</h2>
+          <label>話し終わりの判定
+            <select id="endpointMode">
+              <option value="silero">声で判定（Silero・標準）</option>
+              <option value="legacy">音量で判定（従来）</option>
+            </select>
+          </label>
+          <p class="small muted">背景音がある場所でも話の区切りを捉えやすくします。動作が気になる場合は従来方式に戻せます。変更後は会話を再開してください。</p>
+
           <label>Moonshineモデル
             <select id="asrModel">
               <option value="tiny">軽量（Tiny）</option>
@@ -888,6 +896,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261007-developer-parity-r2"></script>
+  <script type="module" src="./src/app.js?v=20261011-silero-vad-r1"></script>
 </body>
 </html>
