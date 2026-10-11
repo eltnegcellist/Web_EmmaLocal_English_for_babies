@@ -2,11 +2,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node test-lite.mjs && node test-topic-detection.mjs && node test-avatar.mjs && node test-features.mjs && node test-semantic.mjs",
+    "test": "node test-lite.mjs && node test-topic-detection.mjs && node test-avatar.mjs && node test-features.mjs && node test-semantic.mjs && node test-silero.mjs",
     "prepare:semantic": "node scripts/prepare-semantic.mjs",
     "serve:semantic": "python3 scripts/serve-semantic-test.py",
     "package:semantic": "node scripts/package-semantic-test.mjs",
-    "test:semantic-browser": "node scripts/browser-semantic-smoke.mjs"
+    "test:semantic-browser": "node scripts/browser-semantic-smoke.mjs",
+    "test:vad-browser": "node scripts/browser-silero-smoke.mjs"
   },
   "devDependencies": {
     "@huggingface/tokenizers": "0.2.0",

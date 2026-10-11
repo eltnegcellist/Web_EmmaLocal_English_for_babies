@@ -179,3 +179,12 @@ the upstream `v1.30.0` tag:
 The pinned model and runtime distribution assets are included in the repository
 for the opt-in Pages test feature. Local preparation/package scripts preserve
 the same hashes and license copies.
+
+## Silero VAD for microphone endpoint detection
+
+- Source: https://github.com/snakers4/silero-vad
+- Pinned revision: `1e261b036686cd0017d500ee96acd1c4ba572a9d`.
+- License: MIT.
+- Bundled ONNX model: 2,327,524 bytes; SHA-256 `1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3`.
+- Model and notice are bundled together; see `assets/vad/model-provenance.json` and `LICENSE-SILERO-VAD-MIT.txt` in that directory.
+- Runs through the existing local ONNX Runtime Web 1.30.0 distribution used by Semantic. This adds no eSpeak or sherpa TTS dependency.

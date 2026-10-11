@@ -21,7 +21,7 @@ const ui = {
   progressWrap:$('progressWrap'), progressBar:$('progressBar'), progressText:$('progressText'),
   conversation:$('conversation'), parentBubble:$('parentBubble'), emmaBubble:$('emmaBubble'), transcript:$('transcript'), reply:$('reply'),
   mainButton:$('mainButton'), stopButton:$('stopButton'), manualReplyButton:$('manualReplyButton'), enableAudioButton:$('enableAudioButton'),
-  autoRespond:$('autoRespond'), aboutButton:$('aboutButton'), settingsButton:$('settingsButton'),
+  autoRespond:$('autoRespond'), endpointMode:$('endpointMode'), aboutButton:$('aboutButton'), settingsButton:$('settingsButton'),
   settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
   aboutBackButton:$('aboutBackButton'), onboardingAboutButton:$('onboardingAboutButton'),
   aiCharacterName:$('aiCharacterName'), aiNamePreview:$('aiNamePreview'), aiBubbleLabel:$('aiBubbleLabel'), aiNameBadge:$('aiNameBadge'),
@@ -44,7 +44,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261010-model-cache-history-r6';
+const WEB_BUILD = '20261011-silero-vad-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -58,6 +58,7 @@ const STORAGE = {
   filled:'emma_filled_palette',
   keepAwake:'emma_keep_awake',
   autoRespond:'emma_auto_respond',
+  endpointMode:'emma_endpoint_mode',
   playSentenceCount:'emma_play_sentence_count',
   useChanSuffix:'emma_use_chan_suffix',
   asrModel:'emma_asr_model',
@@ -200,6 +201,7 @@ function initUi() {
   ui.filledPalette.value = normalizeFilledPalette(localStorage.getItem(STORAGE.filled));
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
+  if(ui.endpointMode)ui.endpointMode.value=localStorage.getItem(STORAGE.endpointMode)==='legacy'?'legacy':'silero';
   if (ui.asrModel) ui.asrModel.value = localStorage.getItem(STORAGE.asrModel) || 'small';
   if (ui.onboardingHighPerformance) {
     const savedPerformance = localStorage.getItem(STORAGE.highPerformance);
@@ -408,6 +410,12 @@ function bindEvents() {
     localStorage.setItem(STORAGE.highPerformance,String(ui.onboardingHighPerformance.checked));
   });
   ui.semanticEnabled.addEventListener('change',()=>semanticPanel.setEnabled(ui.semanticEnabled.checked,{prepare:true,mode:'semantic'}));
+  ui.endpointMode?.addEventListener('change',async()=>{
+    await stopEmma();
+    const mode=ui.endpointMode.value==='legacy'?'legacy':'silero';
+    localStorage.setItem(STORAGE.endpointMode,mode);
+    setState('idle','話し終わりの判定を変更しました','「会話を始める」を押して再開してください。');
+  });
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
     if (ui.autoRespond.checked && pendingUtterance && !processing && !speaking) respondToPendingUtterance();
@@ -1061,6 +1069,9 @@ async function startMoonshineCapture() {
   if(mic) return;
   const epoch=conversationEpoch;
   const capture=new EmmaMicrophone({
+    endpointMode:localStorage.getItem(STORAGE.endpointMode)==='legacy'?'legacy':'silero',
+    onWarning:message=>{if(epoch===conversationEpoch)showNotice('従来方式で会話します',message);},
+    onError:async error=>{if(epoch===conversationEpoch){await stopEmma();setState('error','音声の判定が中断しました',error.message);}},
     onState:(state)=>{
       if(epoch!==conversationEpoch || !running || preparingConversation || !workersReady||processing||speaking)return;
       if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');

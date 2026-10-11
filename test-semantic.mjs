@@ -110,10 +110,11 @@ console.log('Actual first-setup permission/audio/Semantic order and opt-out chec
 // A cached ASR may be ready before the new Semantic stage. Capture must ignore
 // speech until all conversation preparation finishes, and ignore stale epochs.
 let captureOptions,utterances=0;
-const captureSandbox={mic:null,conversationEpoch:1,running:true,workersReady:true,preparingConversation:true,processing:false,speaking:false,
+const captureSandbox={localStorage:{getItem:()=>null},STORAGE:{endpointMode:'endpoint_mode'},mic:null,conversationEpoch:1,running:true,workersReady:true,preparingConversation:true,processing:false,speaking:false,
  EmmaMicrophone:class{constructor(options){captureOptions=options;}async start(){}async stop(){}},setState(){},getAiName:()=> 'Emma',handleCapturedUtterance:()=>utterances++};
 const captureFunction=appSource.slice(appSource.indexOf('async function startMoonshineCapture()'),appSource.indexOf('async function initWorkers()'));
 runInNewContext(captureFunction+'globalThis.startCapture=startMoonshineCapture;',captureSandbox);await captureSandbox.startCapture();
+assert.equal(captureOptions.endpointMode,'silero');
 assert.equal(captureOptions.shouldIgnore(),true);captureOptions.onUtterance([]);assert.equal(utterances,0);
 captureSandbox.preparingConversation=false;assert.equal(captureOptions.shouldIgnore(),false);captureOptions.onUtterance([]);assert.equal(utterances,1);
 captureSandbox.conversationEpoch=2;assert.equal(captureOptions.shouldIgnore(),true);captureOptions.onUtterance([]);assert.equal(utterances,1);
