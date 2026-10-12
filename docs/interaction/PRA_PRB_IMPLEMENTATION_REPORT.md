@@ -14,7 +14,7 @@
 
 - `shared/interaction-taxonomy-draft.json`: 14分類の意図・境界・日本語例、既存分類との違い、否定・疑問・衝突例。
 - `scripts/build-interaction-experiment.mjs`: GitHub内の暫定分類と既存 `shared/lite-topic-contract.json` から再現可能な分類実験データを生成。
-- `research/interaction-head/experimental-dataset.json`: **382件**を出力し、**train 249 / dev 70 / test 63**へ振り分け。各新カテゴリのtrainは8例、devとtestは各2例。既存Topicと無関係発話を `none` として追加。
+- `research/interaction-head/experimental-dataset.json`: **383件**を出力し、**train 250 / dev 70 / test 63**へ振り分け。各新カテゴリのtrainは8～9例、devとtestは各2例。既存Topicと無関係発話を `none` として追加。
 - 分割時は文字列重複を避けたが、**同じ人が手作りした近い言い換えが複数分割にまたがる**。これを実家庭での一般化能力とはみなさない。
 - 以前作成した日本語候補2,212件（Phase0 v3）は候補であり、正解ラベルの第三者審査は済んでいない。今回のGitHub実験は**その2,212件をそのまま学習したものではない**。少数の暫定例文と既存Topic契約で動く最初の実験である。
 - したがってPR-Aの**分類仕様の暫定固定と実験用データ作成は完了**。**人手審査による正式な教師データ確定は未完了**。後続の本番採用前に必須。
@@ -38,21 +38,21 @@
 
 採用パラメータ：`C=30`、`threshold=0.40`、`margin=0`。この値は**devの小さな候補群にのみ最適化した暫定値**で、運用上の信頼度・精度保証ではありません。クラスごとのtestは2件しかないため統計的な誤差が非常に大きいことを必ず併記してください。
 
-### 実測で判明した誤分類・見逃し
+### 実測で判明した誤分類・見逃し（分類定義の再確認後）
 
 - `できるところまでね`（encouragement）→ none
 - `準備はいいかな`（start）→ none
 - `頑張ったんだね`（care）→ none
-- `抱っこしようね`（reassurance想定）→ none（ただし既存hugがあるので複合発話としてラベル自体の再審査が必要）
+- `なにかあったの`（inquiry）→ none
 - `ぎゅっと抱きしめよう`（既存hug）→ affection
 - `いっしょに遊びましょうね`（既存play）→ invitation
 
-別の31例の**参考用**否定・疑問・話題混合確認は29/31一致。ただしこれらは一部学習例を含むため独立テスト精度に算入しない。
+別の31例の**参考用**否定・疑問・話題混合確認は30/31一致。ただしこれらは一部学習例を含むため独立テスト精度に算入しない。
 
-- `大丈夫？`（本来inquiry）→ none（重要な残課題）
+- `大丈夫？`（inquiry）→ inquiry。問いかけと安心の違いを学習例で補強して改善した。ただし学習例が含まれる診断のため独立成果ではない。
 - `寝返りできたね`（achievement想定）→ none（低優先の発達段階特有例）
 
-31例の全結果は `research/interaction-head/artifacts/contrast-report.json`。
+現行テストでは `寝返りできたね` のみ未一致。31例の全結果は `research/interaction-head/artifacts/contrast-report.json`。
 
 ## 本番へ直接入れてはいけない理由
 
