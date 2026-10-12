@@ -25,7 +25,7 @@
   "dimensions": 384,
   "dtype": "little-endian float32",
   "layout": "row-major [class,385]; last column bias",
-  "sha256": "f314cff66c1bf68cbd0657736b255b7d5ba2ebc22033bc7fbcefcd417b313162",
+  "sha256": "d65b1e4e7ac4c4b73a2410f0213dd478aa745b22a82ad998393b745c66045582",
   "thresholds": {
     "threshold": 0.4,
     "margin": 0
