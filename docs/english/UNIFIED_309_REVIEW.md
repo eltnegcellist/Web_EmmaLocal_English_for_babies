@@ -104,7 +104,7 @@
 ## B. clothes — 着替え（8セット）
 
 1. Let's put clothes on. One arm first. Other arm next!
-2. Your little shirt! Let's put it on. Here comes one arm!
+2. Your little shirt! Let's put it on. One arm goes in!
 3. Here come your socks. One little foot. Then another!
 4. Time to get dressed. Arms through the sleeves. All ready!
 5. Let's change your clothes. This arm first. There you go!
@@ -238,7 +238,7 @@
 1. Time for a bite! Here's your spoon. Open wide!
 2. Let's try some food. One little bite. How is it?
 3. Ready to eat? A little spoonful. There you go!
-4. Do you like it? Want another bite? We can take time.
+4. Do you like it? Want another bite? No need to hurry.
 5. Here's a little bite. Let's taste it. Mmm, yummy!
 6. All done eating? Shall we wipe up? You did well!
 7. {name}, food time! One little spoonful. Is it yummy?
@@ -271,15 +271,15 @@
 1. Would you like some? Here's a little sip. There you go!
 2. Here's your drink! Ready for a sip? Here you are!
 3. Drink time! One little sip. How does it taste?
-4. Want a little sip? Here's your cup. Take your time!
-5. Want another sip? We can take time. Here you go!
+4. Want a little sip? Here's your drink. Take your time!
+5. Want another sip? No need to hurry. Here you go!
 6. {name}, your drink! Here's a little sip. There you go!
 7. {name}, thirsty? Let's have a drink. Take your time!
 
 ## C. affection — 愛情・かわいい（8セット・採用前の草案）
 
 1. You're so cute! What a sweetheart! I love you.
-2. You're so sweet. Just as you are. You're loved so much.
+2. You're so sweet. Just as you are. I love you dearly.
 3. What a sweetheart! You're adorable. Such a lovely child.
 4. You're absolutely adorable! My sweet little one. So precious.
 5. You are wonderful. Just as you are. I adore you.
