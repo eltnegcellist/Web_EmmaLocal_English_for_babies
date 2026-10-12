@@ -11,8 +11,8 @@ export const TOPIC_ACCEPT_MARGIN = 0.05;
 export const COMBINED_REPLIES = {
   "milk|invitation": [
     "Shall we have milk? Little sips are fine. I'm here with you.",
-    "Here's your milk. Let's do it together. Ready when you are?",
-    "Milk time together. Come try with me. What do you think?"
+    "Milk is ready now! Shall we try together? Take your time.",
+    "A little milk now. Would you like some? Take your time."
   ],
   "milk|praise": [
     "You drank some milk! Well done, little one. I'm proud of you.",
@@ -41,8 +41,8 @@ export const COMBINED_REPLIES = {
   ],
   "diaper|invitation": [
     "Shall we change diapers? I'll be gentle. Let's get comfy.",
-    "Here's your diaper. Let's do it together. Ready when you are?",
-    "A little diaper change. Come try with me. What do you think?"
+    "Fresh diaper coming up! Shall we get ready? I'll be gentle.",
+    "Let's change your diaper. I'll go very slowly. Are you ready?"
   ],
   "diaper|finish": [
     "All done changing! Nice and fresh. Here we are.",
@@ -61,8 +61,8 @@ export const COMBINED_REPLIES = {
   ],
   "hug|invitation": [
     "Want a little cuddle? Come here, sweetheart. I'm right here.",
-    "Time for a cuddle. Let's do it together. Ready when you are?",
-    "Here comes a hug. Come try with me. What do you think?"
+    "Shall we have cuddles? Come into my arms. I'll hold you.",
+    "A gentle little hug. Would you like one? Come close, sweetheart."
   ],
   "hug|reassurance": [
     "Come for a cuddle. I'm right here. I've got you.",
@@ -81,8 +81,8 @@ export const COMBINED_REPLIES = {
   ],
   "sleep|invitation": [
     "Shall we rest now? Let's get cozy. I'll stay close.",
-    "Time for a rest. Let's do it together. Ready when you are?",
-    "Let's rest a little. Come try with me. What do you think?"
+    "Shall we rest now? Here's a cozy spot. I'll stay close.",
+    "Feel like resting now? Let's get comfortable. I'll stay with you."
   ],
   "sleep|reassurance": [
     "Ready for a rest? I'm right here. We have time.",
@@ -91,13 +91,13 @@ export const COMBINED_REPLIES = {
   ],
   "wake|affection": [
     "Hello, sleepyhead! You're awake now. I love seeing you.",
-    "You're awake now! I love being together. You're so precious.",
+    "You're awake, sweetheart! What a lovely surprise. I love you.",
     "Hello, little one! I love you, sweetheart. I'm right here."
   ],
   "book|invitation": [
     "Shall we read together? Here's our book. Let's look inside.",
-    "Let's open our book. Let's do it together. Ready when you are?",
-    "Look at this book. Come try with me. What do you think?"
+    "Here is our book. Shall we read together? Turn a page.",
+    "A story for you! Look at these pictures. Shall we start?"
   ],
   "book|repeat": [
     "One more page? Let's read again. Turn the page.",
@@ -106,12 +106,12 @@ export const COMBINED_REPLIES = {
   ],
   "book|start": [
     "Here comes our book. Let's begin reading. What comes next?",
-    "Let's open our book. Here we go! Let's begin gently.",
+    "Let's open our book. See the first page? Shall we read?",
     "Look at this book. Let's get started. I'm right beside you."
   ],
   "smile|affection": [
     "What a lovely smile! You're so sweet. I love you.",
-    "What a lovely smile! I love being together. You're so precious.",
+    "What a lovely smile! Your face lights up. I love you.",
     "Look at your smile! I love you, sweetheart. I'm right here."
   ],
   "smile|praise": [
@@ -121,8 +121,8 @@ export const COMBINED_REPLIES = {
   ],
   "play|invitation": [
     "Shall we play together? Let's try something. This could be fun.",
-    "Here's our little game. Let's do it together. Ready when you are?",
-    "Let's play together. Come try with me. What do you think?"
+    "Let's start a game. Can you see this? It looks fun.",
+    "Shall we play together? Here's our little toy. Let's have fun."
   ],
   "play|repeat": [
     "Let's play again! One more time? Ready when you are.",
@@ -131,13 +131,13 @@ export const COMBINED_REPLIES = {
   ],
   "play|start": [
     "Ready to play? Let's get started. Here we go.",
-    "Here's our little game. Here we go! Let's begin gently.",
+    "Look at this toy! Ready for a game? Let's begin together.",
     "Let's play together. Let's get started. I'm right beside you."
   ],
   "food|invitation": [
     "Shall we eat? One little bite. I'll stay close.",
-    "Here's a little food. Let's do it together. Ready when you are?",
-    "A little food together. Come try with me. What do you think?"
+    "Ready for some food? Here's a little bite. We can go slowly.",
+    "Would you like food? One little bite now. I'll stay near."
   ],
   "food|praise": [
     "You took a bite! Good job, little one. That was lovely.",
@@ -146,8 +146,8 @@ export const COMBINED_REPLIES = {
   ],
   "outside|invitation": [
     "Shall we go outside? Let's look around. What do you see?",
-    "We're going outside. Let's do it together. Ready when you are?",
-    "Let's look outside. Come try with me. What do you think?"
+    "Shall we go outside? Let's look all around. I'll stay close.",
+    "Want some fresh air? We can go together. Let's look around."
   ],
   "outside|start": [
     "Outside we go! Let's look around. What can you see?",
@@ -156,8 +156,8 @@ export const COMBINED_REPLIES = {
   ],
   "music|invitation": [
     "Shall we sing? La, la, la! Let's try together.",
-    "Here's a little song. Let's do it together. Ready when you are?",
-    "Listen to our music. Come try with me. What do you think?"
+    "Shall we sing now? Listen to this tune. La, la, la!",
+    "Can you hear that? Shall we sing together? La, la, la!"
   ],
   "music|start": [
     "Let's sing together! Here we go. La, la, la!",
@@ -171,8 +171,8 @@ export const COMBINED_REPLIES = {
   ],
   "drink|invitation": [
     "Want a little sip? Here is your drink. Sip if you like.",
-    "Here's your drink. Let's do it together. Ready when you are?",
-    "Let's have a drink. Come try with me. What do you think?"
+    "Shall we try drinking? Just a little sip. I'll stay nearby.",
+    "Here's a little drink. Take it slowly now. I'm here, sweetheart."
   ],
   "hands|praise": [
     "Look at those hands! You're doing great. Well done, little one.",
@@ -186,8 +186,8 @@ export const COMBINED_REPLIES = {
   ],
   "bath|invitation": [
     "Shall we bathe? Let's get ready. I'll be gentle.",
-    "Ready for bath time? Let's do it together. Ready when you are?",
-    "Want a little bath? Come try with me. What do you think?"
+    "Shall we bathe now? First, let's feel comfortable. I'm beside you.",
+    "Here comes warm water. Let's take it gently. Shall we start?"
   ],
   "bath|start": [
     "Here comes bath time! Let's begin gently. I'm with you.",
