@@ -52,7 +52,7 @@ for(const [text,t,i] of [
 assert.equal(answer('お風呂とミルクの話',topic('book'),interaction('praise')).scene,'combined:book:praise');
 assert.equal(answer('かわいいね',topic('milk'),interaction('praise')).scene,'combined:milk:praise');
 // Both present but pairing not curated -> current Topic; avoid unnatural concatenation.
-assert.equal(answer('irrelevant text',topic('milk'),interaction('pause')).scene,'milk');
+assert.equal(answer('irrelevant text',topic('milk'),interaction('inquiry')).scene,'milk');
 assert.equal(answer('かわいいね',topic('generic'),interaction('affection')).scene,'interaction:affection');
 assert.equal(answer('milk',topic('milk'),interaction('none')).scene,'milk');
 assert.equal(answer('milk',topic('milk'),interaction('affection'),false).scene,'milk');
