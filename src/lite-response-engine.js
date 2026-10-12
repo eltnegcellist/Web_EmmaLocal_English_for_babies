@@ -466,7 +466,7 @@ const SCENES = [
     ],
     "replies": [
       "Let's put clothes on. One arm first. Other arm next!",
-      "Your little shirt! Let's put it on. Here comes one arm!",
+      "Your little shirt! Let's put it on. One arm goes in!",
       "Here come your socks. One little foot. Then another!",
       "Time to get dressed. Arms through the sleeves. All ready!",
       "Let's change your clothes. This arm first. There you go!",
@@ -726,7 +726,7 @@ const SCENES = [
       "Time for a bite! Here's your spoon. Open wide!",
       "Let's try some food. One little bite. How is it?",
       "Ready to eat? A little spoonful. There you go!",
-      "Do you like it? Want another bite? We can take time.",
+      "Do you like it? Want another bite? No need to hurry.",
       "Here's a little bite. Let's taste it. Mmm, yummy!",
       "All done eating? Shall we wipe up? You did well!",
       "{name}, food time! One little spoonful. Is it yummy?",
@@ -789,8 +789,8 @@ const DRINK_SCENE = {
     "Would you like some? Here's a little sip. There you go!",
     "Here's your drink! Ready for a sip? Here you are!",
     "Drink time! One little sip. How does it taste?",
-    "Want a little sip? Here's your cup. Take your time!",
-    "Want another sip? We can take time. Here you go!",
+    "Want a little sip? Here's your drink. Take your time!",
+    "Want another sip? No need to hurry. Here you go!",
     "{name}, your drink! Here's a little sip. There you go!",
     "{name}, thirsty? Let's have a drink. Take your time!"
   ],
