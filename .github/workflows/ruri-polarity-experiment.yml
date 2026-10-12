@@ -1,0 +1,32 @@
+name: Ruri polarity research
+
+on:
+  pull_request:
+    branches:
+      - feature/interaction-phase-a-gemma-handoff-20261012
+
+permissions:
+  contents: read
+
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install experiment dependencies
+        run: |
+          npm ci --ignore-scripts
+          python3 -m pip install --user 'numpy>=1.24,<3' 'scikit-learn>=1.5,<2'
+      - name: Infer actual Ruri embeddings
+        run: node scripts/extract-ruri-polarity-embeddings.mjs
+      - name: Train and validate head
+        run: python3 scripts/train-ruri-polarity-head.py
+      - name: Archive experimental results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: polarity-experiment
+          path: research/ruri-polarity/artifacts/
+          retention-days: 14
+          if-no-files-found: warn
