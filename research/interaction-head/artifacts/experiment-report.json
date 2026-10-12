@@ -28,7 +28,7 @@
     15,
     385
   ],
-  "head_sha256": "24f18277e70f1ad44072f84f37052c3cbff7dca9d8c6b499ed8804fc339b23e9",
+  "head_sha256": "6b8664cb72489128baab4702f7dfe47452ab1331669aaaaa9bd328dbc86a5798",
   "fit": {
     "algorithm": "sklearn LogisticRegression multinomial softmax LBFGS",
     "C": 30.0,

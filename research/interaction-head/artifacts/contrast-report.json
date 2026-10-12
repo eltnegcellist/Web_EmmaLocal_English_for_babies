@@ -1,0 +1,255 @@
+{
+  "status": "DIAGNOSTIC_ONLY_NOT_INDEPENDENT_TEST",
+  "accuracy_on_handchosen_contrasts": "29/31",
+  "caveat": "Includes phrases already in train, dev or test. NOT an independent accuracy metric. The correct legacy Topic route must be evaluated separately.",
+  "results": [
+    {
+      "text": "かわいいね",
+      "expected_interaction": "affection",
+      "predicted_interaction": "affection",
+      "raw_top": "affection",
+      "probability": 0.826,
+      "match": true
+    },
+    {
+      "text": "よくできたね",
+      "expected_interaction": "praise",
+      "predicted_interaction": "praise",
+      "raw_top": "praise",
+      "probability": 0.8699,
+      "match": true
+    },
+    {
+      "text": "頑張ってるね",
+      "expected_interaction": "effort",
+      "predicted_interaction": "effort",
+      "raw_top": "effort",
+      "probability": 0.871,
+      "match": true
+    },
+    {
+      "text": "頑張ってね",
+      "expected_interaction": "encouragement",
+      "predicted_interaction": "encouragement",
+      "raw_top": "encouragement",
+      "probability": 0.7179,
+      "match": true
+    },
+    {
+      "text": "できたね",
+      "expected_interaction": "achievement",
+      "predicted_interaction": "achievement",
+      "raw_top": "achievement",
+      "probability": 0.854,
+      "match": true
+    },
+    {
+      "text": "できたかな",
+      "expected_interaction": "finish_check",
+      "predicted_interaction": "finish_check",
+      "raw_top": "finish_check",
+      "probability": 0.5922,
+      "match": true
+    },
+    {
+      "text": "できなかったね",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "achievement",
+      "probability": 0.3905,
+      "match": true
+    },
+    {
+      "text": "終わったね",
+      "expected_interaction": "finish",
+      "predicted_interaction": "finish",
+      "raw_top": "finish",
+      "probability": 0.7301,
+      "match": true
+    },
+    {
+      "text": "終わったかな",
+      "expected_interaction": "finish_check",
+      "predicted_interaction": "finish_check",
+      "raw_top": "finish_check",
+      "probability": 0.8874,
+      "match": true
+    },
+    {
+      "text": "まだ終わってないね",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "finish_check",
+      "probability": 0.2728,
+      "match": true
+    },
+    {
+      "text": "おしまいじゃないよ",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "finish",
+      "probability": 0.316,
+      "match": true
+    },
+    {
+      "text": "始めるよ",
+      "expected_interaction": "start",
+      "predicted_interaction": "start",
+      "raw_top": "start",
+      "probability": 0.8952,
+      "match": true
+    },
+    {
+      "text": "一緒にやろうか",
+      "expected_interaction": "invitation",
+      "predicted_interaction": "invitation",
+      "raw_top": "invitation",
+      "probability": 0.8449,
+      "match": true
+    },
+    {
+      "text": "もう一回やろう",
+      "expected_interaction": "repeat",
+      "predicted_interaction": "repeat",
+      "raw_top": "repeat",
+      "probability": 0.906,
+      "match": true
+    },
+    {
+      "text": "ちょっと待ってね",
+      "expected_interaction": "pause",
+      "predicted_interaction": "pause",
+      "raw_top": "pause",
+      "probability": 0.8905,
+      "match": true
+    },
+    {
+      "text": "どうしたの",
+      "expected_interaction": "inquiry",
+      "predicted_interaction": "inquiry",
+      "raw_top": "inquiry",
+      "probability": 0.8964,
+      "match": true
+    },
+    {
+      "text": "大丈夫だよ",
+      "expected_interaction": "reassurance",
+      "predicted_interaction": "reassurance",
+      "raw_top": "reassurance",
+      "probability": 0.8409,
+      "match": true
+    },
+    {
+      "text": "大丈夫？",
+      "expected_interaction": "inquiry",
+      "predicted_interaction": "none",
+      "raw_top": "reassurance",
+      "probability": 0.3738,
+      "match": false
+    },
+    {
+      "text": "お疲れ様",
+      "expected_interaction": "care",
+      "predicted_interaction": "care",
+      "raw_top": "care",
+      "probability": 0.8359,
+      "match": true
+    },
+    {
+      "text": "眠いかな",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.7127,
+      "match": true
+    },
+    {
+      "text": "眠くないよ",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.5022,
+      "match": true
+    },
+    {
+      "text": "起きたね",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.4943,
+      "match": true
+    },
+    {
+      "text": "泣いてるね",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.7047,
+      "match": true
+    },
+    {
+      "text": "泣いてないよ",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.4588,
+      "match": true
+    },
+    {
+      "text": "笑ったね",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.4881,
+      "match": true
+    },
+    {
+      "text": "笑ってないね",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.7252,
+      "match": true
+    },
+    {
+      "text": "ミルク飲もうか",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.8803,
+      "match": true
+    },
+    {
+      "text": "ミルク終わったね",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.5971,
+      "match": true
+    },
+    {
+      "text": "おむつ終わったね",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.7117,
+      "match": true
+    },
+    {
+      "text": "お風呂に入ろうか",
+      "expected_interaction": "none",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.829,
+      "match": true
+    },
+    {
+      "text": "寝返りできたね",
+      "expected_interaction": "achievement",
+      "predicted_interaction": "none",
+      "raw_top": "none",
+      "probability": 0.5548,
+      "match": false
+    }
+  ]
+}
