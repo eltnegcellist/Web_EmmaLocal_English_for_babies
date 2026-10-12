@@ -40,7 +40,7 @@ const ui = {
   webTimingDiagnostics:$('webTimingDiagnostics'), copyDiagnosticsButton:$('copyDiagnosticsButton'),
   downloadDiagnosticsButton:$('downloadDiagnosticsButton'), clearDiagnosticsButton:$('clearDiagnosticsButton'),
   diagnosticsStatus:$('diagnosticsStatus'),
-  semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'),
+  semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'), interactionExperimental:$('interactionExperimental'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
@@ -419,6 +419,12 @@ function bindEvents() {
     localStorage.setItem(STORAGE.highPerformance,String(ui.onboardingHighPerformance.checked));
   });
   ui.semanticEnabled.addEventListener('change',()=>semanticPanel.setEnabled(ui.semanticEnabled.checked,{prepare:true,mode:'semantic'}));
+  ui.interactionExperimental.checked = localStorage.getItem('emma_interaction_experimental') === 'true';
+  ui.interactionExperimental.addEventListener('change',async()=>{
+    if(running||preparingConversation||processing||speaking)await stopEmma();
+    localStorage.setItem('emma_interaction_experimental',String(ui.interactionExperimental.checked));
+    engine.resetConversationContext();
+  });
   ui.endpointMode?.addEventListener('change',async()=>{
     await stopEmma();
     const mode=ui.endpointMode.value==='legacy'?'legacy':'silero';
