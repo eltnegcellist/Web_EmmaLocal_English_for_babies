@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { LiteResponseEngine, splitSentences, isMeaningfulUtterance } from './src/lite-response-engine.js';
+import { LiteResponseEngine, splitSentences, isMeaningfulUtterance, allLiteReplyTemplatesForValidation } from './src/lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './src/name-pronunciation.js';
 
 const contract = JSON.parse(readFileSync(new URL('./shared/lite-topic-contract.json', import.meta.url), 'utf8'));
@@ -112,6 +112,21 @@ console.log('Generic fallback variety test OK:', uniqueGeneric.size, 'unique / 2
 
 
 
+
+// Static quality gate for ordinary conversation; the independent Play Topics
+// catalog and 1/3-sentence toggle are covered by test-features.mjs.
+const allLiteReplies = allLiteReplyTemplatesForValidation();
+if (allLiteReplies.length !== 197) throw new Error(`Expected 197 curated Lite replies, got ${allLiteReplies.length}`);
+for (const reply of allLiteReplies) {
+  const spoken = reply.replaceAll('{name}', 'Mayu');
+  const sentences = splitSentences(spoken);
+  const counts = sentences.map(x => (x.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || []).length);
+  const total = counts.reduce((a, b) => a + b, 0);
+  if (sentences.length !== 3 || counts.some(n => n > 4) || total < 6 || total > 12) {
+    throw new Error(`Invalid baby-directed reply: ${spoken}; counts=${counts}`);
+  }
+}
+console.log('197 authored Lite replies pass compact 3-sentence style gate');
 
 const stockFillers = ['nice and slow', 'nice and easy', 'take your time', 'here we go', 'near and far', "let's wonder"];
 const stockFillerEngine = new LiteResponseEngine();
