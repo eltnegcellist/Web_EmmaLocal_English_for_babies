@@ -57,7 +57,7 @@ assert.equal(stored[0].englishText,'Hello, little feet!');assert(!Object.keys(st
 await history.delete(stored[0].id);assert.equal((await history.list()).length,999);
 await history.deleteMany([stored[1].id,stored[2].id]);assert.equal((await history.list()).length,997,'batch deletion removes only selected entries');
 // Explicit OFF preserves old entries.
-assert.equal(historyEnabled(storage),false);assert.equal((await history.list()).length,999);
+assert.equal(historyEnabled(storage),false);assert.equal((await history.list()).length,997);
 await history.delete();assert.deepEqual(await history.list(),[]);
 await assert.rejects(new ConversationHistory(null).list());
 const $=id=>document.getElementById(id);
