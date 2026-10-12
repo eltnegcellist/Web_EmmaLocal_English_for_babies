@@ -112,6 +112,25 @@ console.log('Generic fallback variety test OK:', uniqueGeneric.size, 'unique / 2
 
 
 
+
+const stockFillers = ['nice and slow', 'nice and easy', 'take your time', 'here we go', 'near and far', "let's wonder"];
+const stockFillerEngine = new LiteResponseEngine();
+for (const input of [
+  'これは特定の話題ではないよ',
+  'ミルク飲もうね',
+  'ごはん食べようか',
+  'げっぷ出たね',
+  'お風呂入ろうね',
+  'おむつ替えようね',
+  'お散歩行こうね',
+]) {
+  const english = stockFillerEngine.respond(input).english.toLowerCase();
+  for (const filler of stockFillers) {
+    if (english.includes(filler)) throw new Error(`Stock filler "${filler}" in: ${english}`);
+  }
+}
+console.log('No repetitive low-information Lite stock filler in smoke replies');
+
 const meaninglessCases=['','あー','うー','えーー','んー','あうあう','うんうん','えっと'];
 for(const input of meaninglessCases){
   if(isMeaningfulUtterance(input)) throw new Error(`meaningless gate should reject: ${input}`);
