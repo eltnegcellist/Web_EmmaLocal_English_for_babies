@@ -825,11 +825,10 @@ export class LiteResponseEngine {
     const { topic, interaction } = selectRuriAxes(topicPrediction, interactionPrediction, allowInteraction);
     const scene = findScene(topic);
     const pair = scene && interaction ? combinedCandidates(scene.id, interaction) : null;
-    const replies = pair || (interaction ? INTERACTION_REPLIES[interaction] : null)
-      || scene?.replies || GENERIC_REPLIES;
+    const replies = pair || scene?.replies || (interaction ? INTERACTION_REPLIES[interaction] : null)
+      || GENERIC_REPLIES;
     const route = pair ? `combined:${scene.id}:${interaction}`
-      : interaction ? `interaction:${interaction}`
-        : scene?.id || 'generic';
+      : scene?.id || (interaction ? `interaction:${interaction}` : 'generic');
     // The current utterance's Ruri result is authoritative: stale context never
     // overrides a new label and cannot cause fabricated composite replies.
     this.activeSceneId = null;
