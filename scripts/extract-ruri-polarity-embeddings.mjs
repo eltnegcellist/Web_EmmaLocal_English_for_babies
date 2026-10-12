@@ -10,15 +10,18 @@ const asset=join(root,'semantic-assets/ruri70-int8-bd500193');
 const runtime=join(root,'semantic-assets/runtime-ort1.30.0-tokenizers0.2.0');
 const training=JSON.parse(await readFile(join(root,'research/ruri-polarity/contrast-dataset.json'),'utf8'));
 const qa=JSON.parse(await readFile(join(root,'research/interaction-ruri-qa-probes-20261013.json'),'utf8'));
+const hard=JSON.parse(await readFile(join(root,'research/ruri-polarity/hard-challenges.json'),'utf8'));
 const trainText=new Set(training.items.map(z=>z.text.normalize('NFKC')));
-for(const probe of qa.cases)if(trainText.has(probe.text.normalize('NFKC')))throw Error('Training/QA text leakage: '+probe.text);
+for(const probe of [...qa.cases,...hard.cases])
+ if(trainText.has(probe.text.normalize('NFKC')))throw Error('Training/evaluation text leakage: '+probe.text);
 const tok=createRuriTokenizer(Tokenizer,JSON.parse(await readFile(join(asset,'tokenizer.json'),'utf8')),JSON.parse(await readFile(join(asset,'tokenizer_config.json'),'utf8')));
 ort.env.wasm.numThreads=1;ort.env.wasm.wasmPaths=runtime+'/';
 const session=await ort.InferenceSession.create(new Uint8Array(await readFile(join(asset,'model.onnx'))),{executionProviders:['wasm'],graphOptimizationLevel:'all'});
 const vectors=[];
 const texts=[
 ...training.items.map(z=>({...z,partition:'dataset'})),
-...qa.cases.map(z=>({text:z.text,partition:'qa',label:z.category==='negative'?'negated':'affirmative',split:'qa',family:'qa:'+z.id,qa_id:z.id,category:z.category}))
+...qa.cases.map(z=>({text:z.text,partition:'qa',label:z.category==='negative'?'negated':'affirmative',split:'qa',family:'qa:'+z.id,qa_id:z.id,category:z.category})),
+...hard.cases.map(z=>({text:z.text,partition:'hard',label:z.label,split:'hard',family:'hard:'+z.id,qa_id:z.id,category:z.phenomenon}))
 ];
 try{
  for(const [i,item]of texts.entries()){
