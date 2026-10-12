@@ -1,6 +1,6 @@
 {
   "status": "DIAGNOSTIC_ONLY_NOT_INDEPENDENT_TEST",
-  "accuracy_on_handchosen_contrasts": "29/31",
+  "accuracy_on_handchosen_contrasts": "30/31",
   "caveat": "Includes phrases already in train, dev or test. NOT an independent accuracy metric. The correct legacy Topic route must be evaluated separately.",
   "results": [
     {
@@ -16,7 +16,7 @@
       "expected_interaction": "praise",
       "predicted_interaction": "praise",
       "raw_top": "praise",
-      "probability": 0.8699,
+      "probability": 0.8697,
       "match": true
     },
     {
@@ -24,7 +24,7 @@
       "expected_interaction": "effort",
       "predicted_interaction": "effort",
       "raw_top": "effort",
-      "probability": 0.871,
+      "probability": 0.8716,
       "match": true
     },
     {
@@ -32,7 +32,7 @@
       "expected_interaction": "encouragement",
       "predicted_interaction": "encouragement",
       "raw_top": "encouragement",
-      "probability": 0.7179,
+      "probability": 0.7191,
       "match": true
     },
     {
@@ -40,7 +40,7 @@
       "expected_interaction": "achievement",
       "predicted_interaction": "achievement",
       "raw_top": "achievement",
-      "probability": 0.854,
+      "probability": 0.8546,
       "match": true
     },
     {
@@ -48,7 +48,7 @@
       "expected_interaction": "finish_check",
       "predicted_interaction": "finish_check",
       "raw_top": "finish_check",
-      "probability": 0.5922,
+      "probability": 0.5878,
       "match": true
     },
     {
@@ -56,7 +56,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "achievement",
-      "probability": 0.3905,
+      "probability": 0.3922,
       "match": true
     },
     {
@@ -64,7 +64,7 @@
       "expected_interaction": "finish",
       "predicted_interaction": "finish",
       "raw_top": "finish",
-      "probability": 0.7301,
+      "probability": 0.7294,
       "match": true
     },
     {
@@ -72,7 +72,7 @@
       "expected_interaction": "finish_check",
       "predicted_interaction": "finish_check",
       "raw_top": "finish_check",
-      "probability": 0.8874,
+      "probability": 0.889,
       "match": true
     },
     {
@@ -80,7 +80,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "finish_check",
-      "probability": 0.2728,
+      "probability": 0.2744,
       "match": true
     },
     {
@@ -88,7 +88,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "finish",
-      "probability": 0.316,
+      "probability": 0.3169,
       "match": true
     },
     {
@@ -96,7 +96,7 @@
       "expected_interaction": "start",
       "predicted_interaction": "start",
       "raw_top": "start",
-      "probability": 0.8952,
+      "probability": 0.8956,
       "match": true
     },
     {
@@ -104,7 +104,7 @@
       "expected_interaction": "invitation",
       "predicted_interaction": "invitation",
       "raw_top": "invitation",
-      "probability": 0.8449,
+      "probability": 0.8463,
       "match": true
     },
     {
@@ -112,7 +112,7 @@
       "expected_interaction": "repeat",
       "predicted_interaction": "repeat",
       "raw_top": "repeat",
-      "probability": 0.906,
+      "probability": 0.9066,
       "match": true
     },
     {
@@ -120,7 +120,7 @@
       "expected_interaction": "pause",
       "predicted_interaction": "pause",
       "raw_top": "pause",
-      "probability": 0.8905,
+      "probability": 0.8909,
       "match": true
     },
     {
@@ -128,7 +128,7 @@
       "expected_interaction": "inquiry",
       "predicted_interaction": "inquiry",
       "raw_top": "inquiry",
-      "probability": 0.8964,
+      "probability": 0.8927,
       "match": true
     },
     {
@@ -136,23 +136,23 @@
       "expected_interaction": "reassurance",
       "predicted_interaction": "reassurance",
       "raw_top": "reassurance",
-      "probability": 0.8409,
+      "probability": 0.8286,
       "match": true
     },
     {
       "text": "大丈夫？",
       "expected_interaction": "inquiry",
-      "predicted_interaction": "none",
-      "raw_top": "reassurance",
-      "probability": 0.3738,
-      "match": false
+      "predicted_interaction": "inquiry",
+      "raw_top": "inquiry",
+      "probability": 0.5504,
+      "match": true
     },
     {
       "text": "お疲れ様",
       "expected_interaction": "care",
       "predicted_interaction": "care",
       "raw_top": "care",
-      "probability": 0.8359,
+      "probability": 0.8366,
       "match": true
     },
     {
@@ -160,7 +160,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.7127,
+      "probability": 0.7148,
       "match": true
     },
     {
@@ -168,7 +168,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.5022,
+      "probability": 0.503,
       "match": true
     },
     {
@@ -176,7 +176,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.4943,
+      "probability": 0.5008,
       "match": true
     },
     {
@@ -184,7 +184,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.7047,
+      "probability": 0.7046,
       "match": true
     },
     {
@@ -192,7 +192,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.4588,
+      "probability": 0.4577,
       "match": true
     },
     {
@@ -200,7 +200,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.4881,
+      "probability": 0.4895,
       "match": true
     },
     {
@@ -208,7 +208,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.7252,
+      "probability": 0.7248,
       "match": true
     },
     {
@@ -216,7 +216,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.8803,
+      "probability": 0.8805,
       "match": true
     },
     {
@@ -224,7 +224,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.5971,
+      "probability": 0.5985,
       "match": true
     },
     {
@@ -232,7 +232,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.7117,
+      "probability": 0.7132,
       "match": true
     },
     {
@@ -240,7 +240,7 @@
       "expected_interaction": "none",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.829,
+      "probability": 0.8293,
       "match": true
     },
     {
@@ -248,7 +248,7 @@
       "expected_interaction": "achievement",
       "predicted_interaction": "none",
       "raw_top": "none",
-      "probability": 0.5548,
+      "probability": 0.5535,
       "match": false
     }
   ]

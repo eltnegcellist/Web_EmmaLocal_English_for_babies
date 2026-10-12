@@ -72,7 +72,7 @@
       "test": 2
     },
     "inquiry": {
-      "train": 8,
+      "train": 9,
       "dev": 2,
       "test": 2
     },
@@ -1125,13 +1125,21 @@
     {
       "id": "p0129",
       "label": "inquiry",
+      "text": "大丈夫?",
+      "family": "inquiry:seed:8",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0130",
+      "label": "inquiry",
       "text": "何が気になるのかな",
       "family": "inquiry:dev:0",
       "split": "dev",
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0130",
+      "id": "p0131",
       "label": "inquiry",
       "text": "何があったのかな",
       "family": "inquiry:dev:1",
@@ -1139,7 +1147,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0131",
+      "id": "p0132",
       "label": "inquiry",
       "text": "どうしたのかなあ",
       "family": "inquiry:test:0",
@@ -1147,7 +1155,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0132",
+      "id": "p0133",
       "label": "inquiry",
       "text": "なにかあったの",
       "family": "inquiry:test:1",
@@ -1155,7 +1163,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0133",
+      "id": "p0134",
       "label": "reassurance",
       "text": "大丈夫だよ",
       "family": "reassurance:seed:0",
@@ -1163,7 +1171,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0134",
+      "id": "p0135",
       "label": "reassurance",
       "text": "そばにいるよ",
       "family": "reassurance:seed:1",
@@ -1171,7 +1179,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0135",
+      "id": "p0136",
       "label": "reassurance",
       "text": "ここにいるよ",
       "family": "reassurance:seed:2",
@@ -1179,7 +1187,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0136",
+      "id": "p0137",
       "label": "reassurance",
       "text": "心配しないでね",
       "family": "reassurance:seed:3",
@@ -1187,7 +1195,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0137",
+      "id": "p0138",
       "label": "reassurance",
       "text": "大丈夫、いるよ",
       "family": "reassurance:seed:4",
@@ -1195,7 +1203,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0138",
+      "id": "p0139",
       "label": "reassurance",
       "text": "一緒にいるよ",
       "family": "reassurance:seed:5",
@@ -1203,7 +1211,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0139",
+      "id": "p0140",
       "label": "reassurance",
       "text": "安心してね",
       "family": "reassurance:seed:6",
@@ -1211,7 +1219,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0140",
+      "id": "p0141",
       "label": "reassurance",
       "text": "だいじょうぶだよ",
       "family": "reassurance:seed:7",
@@ -1219,7 +1227,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0141",
+      "id": "p0142",
       "label": "reassurance",
       "text": "そばにいるからね",
       "family": "reassurance:dev:0",
@@ -1227,7 +1235,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0142",
+      "id": "p0143",
       "label": "reassurance",
       "text": "怖くないようにしようね",
       "family": "reassurance:dev:1",
@@ -1235,7 +1243,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0143",
+      "id": "p0144",
       "label": "reassurance",
       "text": "いつでもここにいるよ",
       "family": "reassurance:test:0",
@@ -1243,15 +1251,15 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0144",
+      "id": "p0145",
       "label": "reassurance",
-      "text": "抱っこしようね",
+      "text": "ずっとそばにいるよ",
       "family": "reassurance:test:1",
       "split": "test",
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0145",
+      "id": "p0146",
       "label": "repeat",
       "text": "もう一回",
       "family": "repeat:seed:0",
@@ -1259,7 +1267,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0146",
+      "id": "p0147",
       "label": "repeat",
       "text": "もう一度",
       "family": "repeat:seed:1",
@@ -1267,7 +1275,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0147",
+      "id": "p0148",
       "label": "repeat",
       "text": "またやろう",
       "family": "repeat:seed:2",
@@ -1275,7 +1283,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0148",
+      "id": "p0149",
       "label": "repeat",
       "text": "もう一回やろうか",
       "family": "repeat:seed:3",
@@ -1283,7 +1291,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0149",
+      "id": "p0150",
       "label": "repeat",
       "text": "もう一度やってみよう",
       "family": "repeat:seed:4",
@@ -1291,7 +1299,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0150",
+      "id": "p0151",
       "label": "repeat",
       "text": "もういっかい",
       "family": "repeat:seed:5",
@@ -1299,7 +1307,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0151",
+      "id": "p0152",
       "label": "repeat",
       "text": "もう一回いくよ",
       "family": "repeat:seed:6",
@@ -1307,7 +1315,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0152",
+      "id": "p0153",
       "label": "repeat",
       "text": "またやってみる?",
       "family": "repeat:seed:7",
@@ -1315,7 +1323,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0153",
+      "id": "p0154",
       "label": "repeat",
       "text": "今度もやろうか",
       "family": "repeat:dev:0",
@@ -1323,7 +1331,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0154",
+      "id": "p0155",
       "label": "repeat",
       "text": "もう一度する?",
       "family": "repeat:dev:1",
@@ -1331,7 +1339,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0155",
+      "id": "p0156",
       "label": "repeat",
       "text": "何度でもやろうね",
       "family": "repeat:test:0",
@@ -1339,7 +1347,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0156",
+      "id": "p0157",
       "label": "repeat",
       "text": "もう一度挑戦ね",
       "family": "repeat:test:1",
@@ -1347,7 +1355,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0157",
+      "id": "p0158",
       "label": "pause",
       "text": "ちょっと待ってね",
       "family": "pause:seed:0",
@@ -1355,7 +1363,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0158",
+      "id": "p0159",
       "label": "pause",
       "text": "少し待ってね",
       "family": "pause:seed:1",
@@ -1363,7 +1371,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0159",
+      "id": "p0160",
       "label": "pause",
       "text": "待っててね",
       "family": "pause:seed:2",
@@ -1371,7 +1379,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0160",
+      "id": "p0161",
       "label": "pause",
       "text": "一休みしようか",
       "family": "pause:seed:3",
@@ -1379,7 +1387,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0161",
+      "id": "p0162",
       "label": "pause",
       "text": "今ちょっと待って",
       "family": "pause:seed:4",
@@ -1387,7 +1395,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0162",
+      "id": "p0163",
       "label": "pause",
       "text": "ゆっくりいこうね",
       "family": "pause:seed:5",
@@ -1395,7 +1403,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0163",
+      "id": "p0164",
       "label": "pause",
       "text": "少し休もうね",
       "family": "pause:seed:6",
@@ -1403,7 +1411,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0164",
+      "id": "p0165",
       "label": "pause",
       "text": "ちょっと休もうか",
       "family": "pause:seed:7",
@@ -1411,7 +1419,7 @@
       "source": "synthetic-verified-meaning-not-gold"
     },
     {
-      "id": "p0165",
+      "id": "p0166",
       "label": "pause",
       "text": "少しだけ待とうね",
       "family": "pause:dev:0",
@@ -1419,7 +1427,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0166",
+      "id": "p0167",
       "label": "pause",
       "text": "慌てなくていいよ",
       "family": "pause:dev:1",
@@ -1427,7 +1435,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0167",
+      "id": "p0168",
       "label": "pause",
       "text": "ひと休みだよ",
       "family": "pause:test:0",
@@ -1435,7 +1443,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0168",
+      "id": "p0169",
       "label": "pause",
       "text": "まず落ち着こうね",
       "family": "pause:test:1",
@@ -1443,7 +1451,7 @@
       "source": "synthetic-holdout-not-natural"
     },
     {
-      "id": "p0169",
+      "id": "p0170",
       "label": "none",
       "text": "こんにちは そろそろ寝ましょうね",
       "family": "legacy:sleep:0",
@@ -1451,7 +1459,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0170",
+      "id": "p0171",
       "label": "none",
       "text": "そろそろねましょうね",
       "family": "legacy:sleep:1",
@@ -1459,7 +1467,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0171",
+      "id": "p0172",
       "label": "none",
       "text": "もう寝ちゃったね",
       "family": "legacy:sleep:2",
@@ -1467,7 +1475,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0172",
+      "id": "p0173",
       "label": "none",
       "text": "ねむくなってきましたね",
       "family": "legacy:sleep:3",
@@ -1475,7 +1483,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0173",
+      "id": "p0174",
       "label": "none",
       "text": "そろそろ寝ませんか",
       "family": "legacy:sleep:4",
@@ -1483,7 +1491,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0174",
+      "id": "p0175",
       "label": "none",
       "text": "お昼寝の時間ですよ",
       "family": "legacy:sleep:5",
@@ -1491,7 +1499,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0175",
+      "id": "p0176",
       "label": "none",
       "text": "こんにちは、おふろに入りましょう",
       "family": "legacy:bath:6",
@@ -1499,7 +1507,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0176",
+      "id": "p0177",
       "label": "none",
       "text": "からだを洗いましょうね",
       "family": "legacy:bath:7",
@@ -1507,7 +1515,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0177",
+      "id": "p0178",
       "label": "none",
       "text": "おふらに入ろうね",
       "family": "legacy:bath:8",
@@ -1515,7 +1523,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0178",
+      "id": "p0179",
       "label": "none",
       "text": "ミルクを飲みましょうね",
       "family": "legacy:milk:9",
@@ -1523,7 +1531,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0179",
+      "id": "p0180",
       "label": "none",
       "text": "みるこを飲もうね",
       "family": "legacy:milk:10",
@@ -1531,7 +1539,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0180",
+      "id": "p0181",
       "label": "none",
       "text": "みりく飲もうか",
       "family": "legacy:milk:11",
@@ -1539,7 +1547,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0181",
+      "id": "p0182",
       "label": "none",
       "text": "ぼにゅうにしようね",
       "family": "legacy:milk:12",
@@ -1547,7 +1555,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0182",
+      "id": "p0183",
       "label": "none",
       "text": "ほにゅうびんだよ",
       "family": "legacy:milk:13",
@@ -1555,7 +1563,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0183",
+      "id": "p0184",
       "label": "none",
       "text": "そろそろ起きましょうね",
       "family": "legacy:wake:14",
@@ -1563,7 +1571,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0184",
+      "id": "p0185",
       "label": "none",
       "text": "おきましょうね",
       "family": "legacy:wake:15",
@@ -1571,7 +1579,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0185",
+      "id": "p0186",
       "label": "none",
       "text": "目を覚ましたね",
       "family": "legacy:wake:16",
@@ -1579,7 +1587,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0186",
+      "id": "p0187",
       "label": "none",
       "text": "おむつを取り替えましょう",
       "family": "legacy:diaper:17",
@@ -1587,7 +1595,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0187",
+      "id": "p0188",
       "label": "none",
       "text": "おむちをかえようね",
       "family": "legacy:diaper:18",
@@ -1595,7 +1603,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0188",
+      "id": "p0189",
       "label": "none",
       "text": "おしっこが出ましたね",
       "family": "legacy:diaper:19",
@@ -1603,7 +1611,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0189",
+      "id": "p0190",
       "label": "none",
       "text": "きがえましょうね",
       "family": "legacy:clothes:20",
@@ -1611,7 +1619,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0190",
+      "id": "p0191",
       "label": "none",
       "text": "洋服を着ましょうね",
       "family": "legacy:clothes:21",
@@ -1619,7 +1627,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0191",
+      "id": "p0192",
       "label": "none",
       "text": "ぱじゃまに着替えよう",
       "family": "legacy:clothes:22",
@@ -1627,7 +1635,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0192",
+      "id": "p0193",
       "label": "none",
       "text": "だっこしましょうね",
       "family": "legacy:hug:23",
@@ -1635,7 +1643,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0193",
+      "id": "p0194",
       "label": "none",
       "text": "だつこしようか",
       "family": "legacy:hug:24",
@@ -1643,7 +1651,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0194",
+      "id": "p0195",
       "label": "none",
       "text": "ぎゅっと抱きしめよう",
       "family": "legacy:hug:25",
@@ -1651,7 +1659,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0195",
+      "id": "p0196",
       "label": "none",
       "text": "おててをにぎってるね",
       "family": "legacy:hands:26",
@@ -1659,7 +1667,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0196",
+      "id": "p0197",
       "label": "none",
       "text": "てをにぎりましょうね",
       "family": "legacy:hands:27",
@@ -1667,7 +1675,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0197",
+      "id": "p0198",
       "label": "none",
       "text": "ゆびをつかんだね",
       "family": "legacy:hands:28",
@@ -1675,7 +1683,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0198",
+      "id": "p0199",
       "label": "none",
       "text": "あんよがばたばたしてるね",
       "family": "legacy:feet:29",
@@ -1683,7 +1691,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0199",
+      "id": "p0200",
       "label": "none",
       "text": "あしを動かしてるね",
       "family": "legacy:feet:30",
@@ -1691,7 +1699,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0200",
+      "id": "p0201",
       "label": "none",
       "text": "足を蹴っているね",
       "family": "legacy:feet:31",
@@ -1699,7 +1707,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0201",
+      "id": "p0202",
       "label": "none",
       "text": "かわいいえがおですね",
       "family": "legacy:smile:32",
@@ -1707,7 +1715,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0202",
+      "id": "p0203",
       "label": "none",
       "text": "にこにこしていますね",
       "family": "legacy:smile:33",
@@ -1715,7 +1723,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0203",
+      "id": "p0204",
       "label": "none",
       "text": "わらってるね",
       "family": "legacy:smile:34",
@@ -1723,7 +1731,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0204",
+      "id": "p0205",
       "label": "none",
       "text": "ないちゃったね",
       "family": "legacy:cry:35",
@@ -1731,7 +1739,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0205",
+      "id": "p0206",
       "label": "none",
       "text": "ぐずぐずしてるね",
       "family": "legacy:cry:36",
@@ -1739,7 +1747,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0206",
+      "id": "p0207",
       "label": "none",
       "text": "泣いていますね",
       "family": "legacy:cry:37",
@@ -1747,7 +1755,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0207",
+      "id": "p0208",
       "label": "none",
       "text": "ないてるね",
       "family": "legacy:cry:38",
@@ -1755,7 +1763,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0208",
+      "id": "p0209",
       "label": "none",
       "text": "こえを出しているね",
       "family": "legacy:voice:39",
@@ -1763,7 +1771,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0209",
+      "id": "p0210",
       "label": "none",
       "text": "おしゃべりしていますね",
       "family": "legacy:voice:40",
@@ -1771,7 +1779,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0210",
+      "id": "p0211",
       "label": "none",
       "text": "なんごが出たね",
       "family": "legacy:voice:41",
@@ -1779,7 +1787,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0211",
+      "id": "p0212",
       "label": "none",
       "text": "げっぷが出ましたね",
       "family": "legacy:tummy:42",
@@ -1787,7 +1795,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0212",
+      "id": "p0213",
       "label": "none",
       "text": "げつぷが出たね",
       "family": "legacy:tummy:43",
@@ -1795,7 +1803,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0213",
+      "id": "p0214",
       "label": "none",
       "text": "おなかいっぱいですね",
       "family": "legacy:tummy:44",
@@ -1803,7 +1811,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0214",
+      "id": "p0215",
       "label": "none",
       "text": "いっしょに遊びましょうね",
       "family": "legacy:play:45",
@@ -1811,7 +1819,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0215",
+      "id": "p0216",
       "label": "none",
       "text": "あそびましょうね",
       "family": "legacy:play:46",
@@ -1819,7 +1827,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0216",
+      "id": "p0217",
       "label": "none",
       "text": "おもちょで遊ぼうね",
       "family": "legacy:play:47",
@@ -1827,7 +1835,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0217",
+      "id": "p0218",
       "label": "none",
       "text": "さんぽに行きましょうね",
       "family": "legacy:outside:48",
@@ -1835,7 +1843,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0218",
+      "id": "p0219",
       "label": "none",
       "text": "べびーかーでお出かけしよう",
       "family": "legacy:outside:49",
@@ -1843,7 +1851,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0219",
+      "id": "p0220",
       "label": "none",
       "text": "こうえんに行こうね",
       "family": "legacy:outside:50",
@@ -1851,7 +1859,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0220",
+      "id": "p0221",
       "label": "none",
       "text": "あめが降っていますね",
       "family": "legacy:rain:51",
@@ -1859,7 +1867,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0221",
+      "id": "p0222",
       "label": "none",
       "text": "あまおとが聞こえるね",
       "family": "legacy:rain:52",
@@ -1867,7 +1875,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0222",
+      "id": "p0223",
       "label": "none",
       "text": "はれてきましたね",
       "family": "legacy:sun:53",
@@ -1875,7 +1883,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0223",
+      "id": "p0224",
       "label": "none",
       "text": "たいようが出ているね",
       "family": "legacy:sun:54",
@@ -1883,7 +1891,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0224",
+      "id": "p0225",
       "label": "none",
       "text": "ぽかぽかしていますね",
       "family": "legacy:sun:55",
@@ -1891,7 +1899,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0225",
+      "id": "p0226",
       "label": "none",
       "text": "ごはんを食べましょうね",
       "family": "legacy:food:56",
@@ -1899,7 +1907,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0226",
+      "id": "p0227",
       "label": "none",
       "text": "たべましょうね",
       "family": "legacy:food:57",
@@ -1907,7 +1915,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0227",
+      "id": "p0228",
       "label": "none",
       "text": "りにゅうしょくだよ",
       "family": "legacy:food:58",
@@ -1915,7 +1923,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0228",
+      "id": "p0229",
       "label": "none",
       "text": "おなかがすいたね",
       "family": "legacy:food:59",
@@ -1923,7 +1931,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0229",
+      "id": "p0230",
       "label": "none",
       "text": "えほんを読みましょうね",
       "family": "legacy:book:60",
@@ -1931,7 +1939,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0230",
+      "id": "p0231",
       "label": "none",
       "text": "えほうを読もうね",
       "family": "legacy:book:61",
@@ -1939,7 +1947,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0231",
+      "id": "p0232",
       "label": "none",
       "text": "ほんをよみましょうね",
       "family": "legacy:book:62",
@@ -1947,7 +1955,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0232",
+      "id": "p0233",
       "label": "none",
       "text": "うたを歌いましょうね",
       "family": "legacy:music:63",
@@ -1955,7 +1963,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0233",
+      "id": "p0234",
       "label": "none",
       "text": "おんがき聞こうね",
       "family": "legacy:music:64",
@@ -1963,7 +1971,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0234",
+      "id": "p0235",
       "label": "none",
       "text": "踊りましょうね",
       "family": "legacy:music:65",
@@ -1971,7 +1979,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0235",
+      "id": "p0236",
       "label": "none",
       "text": "飲もうか",
       "family": "legacy:drink:66",
@@ -1979,7 +1987,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0236",
+      "id": "p0237",
       "label": "none",
       "text": "飲むかい",
       "family": "legacy:drink:67",
@@ -1987,7 +1995,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0237",
+      "id": "p0238",
       "label": "none",
       "text": "飲む?",
       "family": "legacy:drink:68",
@@ -1995,7 +2003,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0238",
+      "id": "p0239",
       "label": "none",
       "text": "飲みたい?",
       "family": "legacy:drink:69",
@@ -2003,7 +2011,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0239",
+      "id": "p0240",
       "label": "none",
       "text": "飲んだね",
       "family": "legacy:drink:70",
@@ -2011,7 +2019,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0240",
+      "id": "p0241",
       "label": "none",
       "text": "飲んでみよう",
       "family": "legacy:drink:71",
@@ -2019,7 +2027,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0241",
+      "id": "p0242",
       "label": "none",
       "text": "飲みましょうね",
       "family": "legacy:drink:72",
@@ -2027,7 +2035,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0242",
+      "id": "p0243",
       "label": "none",
       "text": "そろそろ飲む会",
       "family": "legacy:drink:73",
@@ -2035,7 +2043,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0243",
+      "id": "p0244",
       "label": "none",
       "text": "そろそろ飲むかい?",
       "family": "legacy:drink:74",
@@ -2043,7 +2051,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0244",
+      "id": "p0245",
       "label": "none",
       "text": "のむ?",
       "family": "legacy:drink:75",
@@ -2051,7 +2059,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0245",
+      "id": "p0246",
       "label": "none",
       "text": "のみたい?",
       "family": "legacy:drink:76",
@@ -2059,7 +2067,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0246",
+      "id": "p0247",
       "label": "none",
       "text": "のもうか",
       "family": "legacy:drink:77",
@@ -2067,7 +2075,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0247",
+      "id": "p0248",
       "label": "none",
       "text": "そろそろのむかい",
       "family": "legacy:drink:78",
@@ -2075,7 +2083,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0248",
+      "id": "p0249",
       "label": "none",
       "text": "もうのんだね",
       "family": "legacy:drink:79",
@@ -2083,7 +2091,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0249",
+      "id": "p0250",
       "label": "none",
       "text": "お水を飲むかい",
       "family": "legacy:drink:80",
@@ -2091,7 +2099,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0250",
+      "id": "p0251",
       "label": "none",
       "text": "お茶を飲もうか",
       "family": "legacy:drink:81",
@@ -2099,7 +2107,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0251",
+      "id": "p0252",
       "label": "none",
       "text": "足",
       "family": "legacy:feet:82",
@@ -2107,7 +2115,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0252",
+      "id": "p0253",
       "label": "none",
       "text": "あし",
       "family": "legacy:feet:83",
@@ -2115,7 +2123,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0253",
+      "id": "p0254",
       "label": "none",
       "text": "アシ",
       "family": "legacy:feet:84",
@@ -2123,7 +2131,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0254",
+      "id": "p0255",
       "label": "none",
       "text": "足だね",
       "family": "legacy:feet:85",
@@ -2131,7 +2139,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0255",
+      "id": "p0256",
       "label": "none",
       "text": "足がかわいいね",
       "family": "legacy:feet:86",
@@ -2139,7 +2147,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0256",
+      "id": "p0257",
       "label": "none",
       "text": "足を見て",
       "family": "legacy:feet:87",
@@ -2147,7 +2155,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0257",
+      "id": "p0258",
       "label": "none",
       "text": "あしを見て",
       "family": "legacy:feet:88",
@@ -2155,7 +2163,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0258",
+      "id": "p0259",
       "label": "none",
       "text": "このあし",
       "family": "legacy:feet:89",
@@ -2163,7 +2171,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0259",
+      "id": "p0260",
       "label": "none",
       "text": "かわいいあし",
       "family": "legacy:feet:90",
@@ -2171,7 +2179,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0260",
+      "id": "p0261",
       "label": "none",
       "text": "両足だね",
       "family": "legacy:feet:91",
@@ -2179,7 +2187,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0261",
+      "id": "p0262",
       "label": "none",
       "text": "手",
       "family": "legacy:hands:92",
@@ -2187,7 +2195,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0262",
+      "id": "p0263",
       "label": "none",
       "text": "て",
       "family": "legacy:hands:93",
@@ -2195,7 +2203,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0263",
+      "id": "p0264",
       "label": "none",
       "text": "指",
       "family": "legacy:hands:94",
@@ -2203,7 +2211,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0264",
+      "id": "p0265",
       "label": "none",
       "text": "ゆび",
       "family": "legacy:hands:95",
@@ -2211,7 +2219,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0265",
+      "id": "p0266",
       "label": "none",
       "text": "手だね",
       "family": "legacy:hands:96",
@@ -2219,7 +2227,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0266",
+      "id": "p0267",
       "label": "none",
       "text": "てがかわいいね",
       "family": "legacy:hands:97",
@@ -2227,7 +2235,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0267",
+      "id": "p0268",
       "label": "none",
       "text": "指を見て",
       "family": "legacy:hands:98",
@@ -2235,7 +2243,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0268",
+      "id": "p0269",
       "label": "none",
       "text": "このて",
       "family": "legacy:hands:99",
@@ -2243,7 +2251,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0269",
+      "id": "p0270",
       "label": "none",
       "text": "かわいいゆび",
       "family": "legacy:hands:100",
@@ -2251,7 +2259,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0270",
+      "id": "p0271",
       "label": "none",
       "text": "両手だね",
       "family": "legacy:hands:101",
@@ -2259,7 +2267,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0271",
+      "id": "p0272",
       "label": "none",
       "text": "声",
       "family": "legacy:voice:102",
@@ -2267,7 +2275,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0272",
+      "id": "p0273",
       "label": "none",
       "text": "こえ",
       "family": "legacy:voice:103",
@@ -2275,7 +2283,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0273",
+      "id": "p0274",
       "label": "none",
       "text": "声だね",
       "family": "legacy:voice:104",
@@ -2283,7 +2291,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0274",
+      "id": "p0275",
       "label": "none",
       "text": "こえがかわいいね",
       "family": "legacy:voice:105",
@@ -2291,7 +2299,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0275",
+      "id": "p0276",
       "label": "none",
       "text": "このこえ",
       "family": "legacy:voice:106",
@@ -2299,7 +2307,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0276",
+      "id": "p0277",
       "label": "none",
       "text": "本",
       "family": "legacy:book:107",
@@ -2307,7 +2315,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0277",
+      "id": "p0278",
       "label": "none",
       "text": "ほん",
       "family": "legacy:book:108",
@@ -2315,7 +2323,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0278",
+      "id": "p0279",
       "label": "none",
       "text": "本だよ",
       "family": "legacy:book:109",
@@ -2323,7 +2331,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0279",
+      "id": "p0280",
       "label": "none",
       "text": "ほんを見て",
       "family": "legacy:book:110",
@@ -2331,7 +2339,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0280",
+      "id": "p0281",
       "label": "none",
       "text": "このほん",
       "family": "legacy:book:111",
@@ -2339,7 +2347,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0281",
+      "id": "p0282",
       "label": "none",
       "text": "服",
       "family": "legacy:clothes:112",
@@ -2347,7 +2355,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0282",
+      "id": "p0283",
       "label": "none",
       "text": "ふく",
       "family": "legacy:clothes:113",
@@ -2355,7 +2363,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0283",
+      "id": "p0284",
       "label": "none",
       "text": "服だね",
       "family": "legacy:clothes:114",
@@ -2363,7 +2371,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0284",
+      "id": "p0285",
       "label": "none",
       "text": "ふくを見て",
       "family": "legacy:clothes:115",
@@ -2371,7 +2379,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0285",
+      "id": "p0286",
       "label": "none",
       "text": "このふく",
       "family": "legacy:clothes:116",
@@ -2379,7 +2387,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0286",
+      "id": "p0287",
       "label": "none",
       "text": "歌",
       "family": "legacy:music:117",
@@ -2387,7 +2395,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0287",
+      "id": "p0288",
       "label": "none",
       "text": "うた",
       "family": "legacy:music:118",
@@ -2395,7 +2403,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0288",
+      "id": "p0289",
       "label": "none",
       "text": "歌だね",
       "family": "legacy:music:119",
@@ -2403,7 +2411,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0289",
+      "id": "p0290",
       "label": "none",
       "text": "うたを聞こう",
       "family": "legacy:music:120",
@@ -2411,7 +2419,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0290",
+      "id": "p0291",
       "label": "none",
       "text": "このうた",
       "family": "legacy:music:121",
@@ -2419,7 +2427,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0291",
+      "id": "p0292",
       "label": "none",
       "text": "お腹",
       "family": "legacy:tummy:122",
@@ -2427,7 +2435,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0292",
+      "id": "p0293",
       "label": "none",
       "text": "おなか",
       "family": "legacy:tummy:123",
@@ -2435,7 +2443,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0293",
+      "id": "p0294",
       "label": "none",
       "text": "おなかだね",
       "family": "legacy:tummy:124",
@@ -2443,7 +2451,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0294",
+      "id": "p0295",
       "label": "none",
       "text": "おなかを見て",
       "family": "legacy:tummy:125",
@@ -2451,7 +2459,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0295",
+      "id": "p0296",
       "label": "none",
       "text": "お腹が減ったね",
       "family": "legacy:food:126",
@@ -2459,7 +2467,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0296",
+      "id": "p0297",
       "label": "none",
       "text": "ミルク飲むかい",
       "family": "legacy:milk:127",
@@ -2467,7 +2475,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0297",
+      "id": "p0298",
       "label": "none",
       "text": "みるくをのむ?",
       "family": "legacy:milk:128",
@@ -2475,7 +2483,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0298",
+      "id": "p0299",
       "label": "none",
       "text": "おっぱい飲みたい?",
       "family": "legacy:milk:129",
@@ -2483,7 +2491,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0299",
+      "id": "p0300",
       "label": "none",
       "text": "お風呂入ろっか",
       "family": "legacy:bath:130",
@@ -2491,7 +2499,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0300",
+      "id": "p0301",
       "label": "none",
       "text": "ミルク飲もっか",
       "family": "legacy:milk:131",
@@ -2499,7 +2507,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0301",
+      "id": "p0302",
       "label": "none",
       "text": "寝よっか",
       "family": "legacy:sleep:132",
@@ -2507,7 +2515,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0302",
+      "id": "p0303",
       "label": "none",
       "text": "そろそろ起きよっか",
       "family": "legacy:wake:133",
@@ -2515,7 +2523,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0303",
+      "id": "p0304",
       "label": "none",
       "text": "おむつ替えよっか",
       "family": "legacy:diaper:134",
@@ -2523,7 +2531,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0304",
+      "id": "p0305",
       "label": "none",
       "text": "着替えよっか",
       "family": "legacy:clothes:135",
@@ -2531,7 +2539,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0305",
+      "id": "p0306",
       "label": "none",
       "text": "抱っこする?",
       "family": "legacy:hug:136",
@@ -2539,7 +2547,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0306",
+      "id": "p0307",
       "label": "none",
       "text": "おてて握ってるね",
       "family": "legacy:hands:137",
@@ -2547,7 +2555,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0307",
+      "id": "p0308",
       "label": "none",
       "text": "あんよバタバタだね",
       "family": "legacy:feet:138",
@@ -2555,7 +2563,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0308",
+      "id": "p0309",
       "label": "none",
       "text": "にこって笑ったね",
       "family": "legacy:smile:139",
@@ -2563,7 +2571,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0309",
+      "id": "p0310",
       "label": "none",
       "text": "泣いてるね",
       "family": "legacy:cry:140",
@@ -2571,7 +2579,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0310",
+      "id": "p0311",
       "label": "none",
       "text": "いっぱいおしゃべりしてるね",
       "family": "legacy:voice:141",
@@ -2579,7 +2587,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0311",
+      "id": "p0312",
       "label": "none",
       "text": "げっぷ出たね",
       "family": "legacy:tummy:142",
@@ -2587,7 +2595,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0312",
+      "id": "p0313",
       "label": "none",
       "text": "一緒に遊ぼっか",
       "family": "legacy:play:143",
@@ -2595,7 +2603,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0313",
+      "id": "p0314",
       "label": "none",
       "text": "お散歩行こっか",
       "family": "legacy:outside:144",
@@ -2603,7 +2611,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0314",
+      "id": "p0315",
       "label": "none",
       "text": "雨だね",
       "family": "legacy:rain:145",
@@ -2611,7 +2619,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0315",
+      "id": "p0316",
       "label": "none",
       "text": "今日は晴れてるね",
       "family": "legacy:sun:146",
@@ -2619,7 +2627,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0316",
+      "id": "p0317",
       "label": "none",
       "text": "ごはん食べよっか",
       "family": "legacy:food:147",
@@ -2627,7 +2635,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0317",
+      "id": "p0318",
       "label": "none",
       "text": "絵本読もっか",
       "family": "legacy:book:148",
@@ -2635,7 +2643,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0318",
+      "id": "p0319",
       "label": "none",
       "text": "歌おっか",
       "family": "legacy:music:149",
@@ -2643,7 +2651,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0319",
+      "id": "p0320",
       "label": "none",
       "text": "寝る",
       "family": "legacy:sleep:150",
@@ -2651,7 +2659,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0320",
+      "id": "p0321",
       "label": "none",
       "text": "もう寝るよ",
       "family": "legacy:sleep:151",
@@ -2659,7 +2667,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0321",
+      "id": "p0322",
       "label": "none",
       "text": "寝たね",
       "family": "legacy:sleep:152",
@@ -2667,7 +2675,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0322",
+      "id": "p0323",
       "label": "none",
       "text": "寝かしつけよう",
       "family": "legacy:sleep:153",
@@ -2675,7 +2683,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0323",
+      "id": "p0324",
       "label": "none",
       "text": "睡眠の時間だよ",
       "family": "legacy:sleep:154",
@@ -2683,7 +2691,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0324",
+      "id": "p0325",
       "label": "none",
       "text": "寝ようか",
       "family": "legacy:sleep:155",
@@ -2691,7 +2699,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0325",
+      "id": "p0326",
       "label": "none",
       "text": "ねようか",
       "family": "legacy:sleep:156",
@@ -2699,7 +2707,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0326",
+      "id": "p0327",
       "label": "none",
       "text": "ねよっか",
       "family": "legacy:sleep:157",
@@ -2707,7 +2715,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0327",
+      "id": "p0328",
       "label": "none",
       "text": "もう寝よ",
       "family": "legacy:sleep:158",
@@ -2715,7 +2723,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0328",
+      "id": "p0329",
       "label": "none",
       "text": "ねんねしよっか",
       "family": "legacy:sleep:159",
@@ -2723,7 +2731,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0329",
+      "id": "p0330",
       "label": "none",
       "text": "眠ろうか",
       "family": "legacy:sleep:160",
@@ -2731,7 +2739,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0330",
+      "id": "p0331",
       "label": "none",
       "text": "眠る時間だよ",
       "family": "legacy:sleep:161",
@@ -2739,7 +2747,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0331",
+      "id": "p0332",
       "label": "none",
       "text": "お袋入ろうね",
       "family": "legacy:bath:162",
@@ -2747,7 +2755,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0332",
+      "id": "p0333",
       "label": "none",
       "text": "年々使用か",
       "family": "legacy:sleep:163",
@@ -2755,7 +2763,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0333",
+      "id": "p0334",
       "label": "none",
       "text": "おむづ変えようか",
       "family": "legacy:diaper:164",
@@ -2763,7 +2771,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0334",
+      "id": "p0335",
       "label": "none",
       "text": "みのく飲みますか",
       "family": "legacy:milk:165",
@@ -2771,7 +2779,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0335",
+      "id": "p0336",
       "label": "none",
       "text": "みのく飲もうか",
       "family": "legacy:milk:166",
@@ -2779,7 +2787,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0336",
+      "id": "p0337",
       "label": "none",
       "text": "お風呂入ろうね",
       "family": "legacy:bath:167",
@@ -2787,7 +2795,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0337",
+      "id": "p0338",
       "label": "none",
       "text": "授乳の時間だね",
       "family": "legacy:milk:168",
@@ -2795,7 +2803,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0338",
+      "id": "p0339",
       "label": "none",
       "text": "こんにちは、そろそろ寝ましょうね",
       "family": "legacy:sleep:169",
@@ -2803,7 +2811,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0339",
+      "id": "p0340",
       "label": "none",
       "text": "眠くなってきたね",
       "family": "legacy:sleep:170",
@@ -2811,7 +2819,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0340",
+      "id": "p0341",
       "label": "none",
       "text": "おもちゃで遊ぼうね",
       "family": "legacy:play:171",
@@ -2819,7 +2827,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0341",
+      "id": "p0342",
       "label": "none",
       "text": "絵本見ようか",
       "family": "legacy:book:172",
@@ -2827,7 +2835,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0342",
+      "id": "p0343",
       "label": "none",
       "text": "そろそろ飲むかい",
       "family": "legacy:drink:173",
@@ -2835,7 +2843,7 @@
       "source": "existing-childcare-topic"
     },
     {
-      "id": "p0343",
+      "id": "p0344",
       "label": "none",
       "text": "眠いかな",
       "family": "explicit-none:0",
@@ -2843,7 +2851,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0344",
+      "id": "p0345",
       "label": "none",
       "text": "眠いね",
       "family": "explicit-none:1",
@@ -2851,7 +2859,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0345",
+      "id": "p0346",
       "label": "none",
       "text": "そろそろ眠たいね",
       "family": "explicit-none:2",
@@ -2859,7 +2867,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0346",
+      "id": "p0347",
       "label": "none",
       "text": "起きたね",
       "family": "explicit-none:3",
@@ -2867,7 +2875,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0347",
+      "id": "p0348",
       "label": "none",
       "text": "目が覚めたね",
       "family": "explicit-none:4",
@@ -2875,7 +2883,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0348",
+      "id": "p0349",
       "label": "none",
       "text": "泣いちゃったね",
       "family": "explicit-none:6",
@@ -2883,7 +2891,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0349",
+      "id": "p0350",
       "label": "none",
       "text": "笑ったね",
       "family": "explicit-none:7",
@@ -2891,7 +2899,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0350",
+      "id": "p0351",
       "label": "none",
       "text": "にこにこだね",
       "family": "explicit-none:8",
@@ -2899,7 +2907,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0351",
+      "id": "p0352",
       "label": "none",
       "text": "暑いね",
       "family": "explicit-none:9",
@@ -2907,7 +2915,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0352",
+      "id": "p0353",
       "label": "none",
       "text": "寒いね",
       "family": "explicit-none:10",
@@ -2915,7 +2923,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0353",
+      "id": "p0354",
       "label": "none",
       "text": "ミルク飲もうか",
       "family": "explicit-none:11",
@@ -2923,7 +2931,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0354",
+      "id": "p0355",
       "label": "none",
       "text": "ミルク終わったね",
       "family": "explicit-none:12",
@@ -2931,7 +2939,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0355",
+      "id": "p0356",
       "label": "none",
       "text": "おむつ終わったね",
       "family": "explicit-none:13",
@@ -2939,7 +2947,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0356",
+      "id": "p0357",
       "label": "none",
       "text": "お風呂に入ろうか",
       "family": "explicit-none:14",
@@ -2947,7 +2955,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0357",
+      "id": "p0358",
       "label": "none",
       "text": "絵本読もうか",
       "family": "explicit-none:15",
@@ -2955,7 +2963,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0358",
+      "id": "p0359",
       "label": "none",
       "text": "おててを握ってるね",
       "family": "explicit-none:16",
@@ -2963,7 +2971,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0359",
+      "id": "p0360",
       "label": "none",
       "text": "こんにちは",
       "family": "explicit-none:17",
@@ -2971,7 +2979,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0360",
+      "id": "p0361",
       "label": "none",
       "text": "ありがとう",
       "family": "explicit-none:18",
@@ -2979,7 +2987,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0361",
+      "id": "p0362",
       "label": "none",
       "text": "おはよう",
       "family": "explicit-none:19",
@@ -2987,7 +2995,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0362",
+      "id": "p0363",
       "label": "none",
       "text": "おやすみ",
       "family": "explicit-none:20",
@@ -2995,7 +3003,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0363",
+      "id": "p0364",
       "label": "none",
       "text": "お腹すいたね",
       "family": "explicit-none:21",
@@ -3003,7 +3011,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0364",
+      "id": "p0365",
       "label": "none",
       "text": "ばたばたしてるね",
       "family": "explicit-none:22",
@@ -3011,7 +3019,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0365",
+      "id": "p0366",
       "label": "none",
       "text": "今日は雨だね",
       "family": "explicit-none:23",
@@ -3019,7 +3027,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0366",
+      "id": "p0367",
       "label": "none",
       "text": "明日は晴れるね",
       "family": "explicit-none:24",
@@ -3027,7 +3035,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0367",
+      "id": "p0368",
       "label": "none",
       "text": "眠くないよ",
       "family": "explicit-none:25",
@@ -3035,7 +3043,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0368",
+      "id": "p0369",
       "label": "none",
       "text": "泣いてないよ",
       "family": "explicit-none:26",
@@ -3043,7 +3051,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0369",
+      "id": "p0370",
       "label": "none",
       "text": "笑ってないね",
       "family": "explicit-none:27",
@@ -3051,7 +3059,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0370",
+      "id": "p0371",
       "label": "none",
       "text": "まだ起きてないよ",
       "family": "explicit-none:28",
@@ -3059,7 +3067,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0371",
+      "id": "p0372",
       "label": "none",
       "text": "終わってないよ",
       "family": "explicit-none:29",
@@ -3067,7 +3075,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0372",
+      "id": "p0373",
       "label": "none",
       "text": "まだおしまいじゃないよ",
       "family": "explicit-none:30",
@@ -3075,7 +3083,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0373",
+      "id": "p0374",
       "label": "none",
       "text": "できなかったね",
       "family": "explicit-none:31",
@@ -3083,7 +3091,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0374",
+      "id": "p0375",
       "label": "none",
       "text": "まだできないね",
       "family": "explicit-none:32",
@@ -3091,7 +3099,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0375",
+      "id": "p0376",
       "label": "none",
       "text": "暑くないね",
       "family": "explicit-none:33",
@@ -3099,7 +3107,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0376",
+      "id": "p0377",
       "label": "none",
       "text": "寒くないね",
       "family": "explicit-none:34",
@@ -3107,7 +3115,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0377",
+      "id": "p0378",
       "label": "none",
       "text": "今は違うよ",
       "family": "explicit-none:35",
@@ -3115,7 +3123,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0378",
+      "id": "p0379",
       "label": "none",
       "text": "これは何",
       "family": "explicit-none:36",
@@ -3123,7 +3131,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0379",
+      "id": "p0380",
       "label": "none",
       "text": "水を飲むかな",
       "family": "explicit-none:37",
@@ -3131,7 +3139,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0380",
+      "id": "p0381",
       "label": "none",
       "text": "服を着ようね",
       "family": "explicit-none:38",
@@ -3139,7 +3147,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0381",
+      "id": "p0382",
       "label": "none",
       "text": "歌が聞こえるね",
       "family": "explicit-none:39",
@@ -3147,7 +3155,7 @@
       "source": "manual-negative-control"
     },
     {
-      "id": "p0382",
+      "id": "p0383",
       "label": "none",
       "text": "お外を見ようね",
       "family": "explicit-none:40",
