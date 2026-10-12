@@ -113,7 +113,8 @@ console.log('Features: play selector outside card, 1/3 sentence switching, speak
 // Exercise the actual app's decode/start boundary: cancelling during decoding must
 // prevent both sound and history, while a started response commits exactly once.
 const {runInNewContext}=await import('node:vm');
-let decodedResolve,starts=0,commits=0,lastRequest;
+const {TurnRevisions}=await import('./src/turn-revisions.js');
+let decodedResolve,starts=0,commits=0,lastRequest,micStops=0,micRestores=0;
 const audioBuffer={length:128,sampleRate:24000,numberOfChannels:1,getChannelData:()=>new Float32Array(128).fill(.3)};
 const context={state:'running',decodeAudioData:()=>new Promise(resolve=>decodedResolve=resolve),
   createBufferSource:()=>({connect(node){return node;},start(){starts++;queueMicrotask(()=>this.onended?.());},stop(){this.onended?.();}}),
@@ -128,7 +129,7 @@ assert(source.includes('lastTtsFirstAudioMillis'));
 assert(source.includes('runtimeDiagnosticEvents'));
 assert(source.includes('unhandledrejection'));
 assert(source.includes('diagnosticNow'));
-assert(source.includes("detail?.source==='cache'"));
+assert(source.includes("detail.source==='cache'"));
 assert(source.includes("'端末から読み込んでいます'"));
 assert(source.includes("'ダウンロードしています'"));
 assert(source.includes('asr.cacheReadMs='));
@@ -157,10 +158,18 @@ assert(source.includes('画面を一度タップすると音声を再開しま�
 source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=>{};renderAvatarFrame=()=>{};setBusy=()=>{};
   audioContext=testAudio;ttsWorker={postMessage(message){captureRequest(message.requestId);}};
   history.append=async()=>{commitHistory();};
-  globalThis.appTest={speakResponse,stopEmma,enqueueAudio,complete(id){const q=audioQueues.get(id);if(q){q.generationDone=true;pumpAudio(id);}}};`;
+  globalThis.appTest={
+    speakResponse,stopEmma,enqueueAudio,
+    complete(id){const q=audioQueues.get(id);if(q){q.generationDone=true;q.generationResolve?.();pumpAudio(id);}},
+    appendTurn(audio){running=true;return turnRevisions.append(audio);},
+    continueTurn(){return turnRevisions.speechStart();},
+    useTestMic(){mic={stop:async()=>{}};}
+  };
+  releaseMicrophoneForEmmaVoice=async()=>{if(!mic)return false;mic=null;captureMicStop();return true;};
+  restoreMicrophoneAfterEmmaVoice=async()=>{captureMicRestore();};`;
 const sandbox={document,window,localStorage:storage,location:window.location,URL,URLSearchParams,console,crypto,
-  ConversationHistory,historyEnabled,createHistoryEntry,LiteResponseEngine:class{},testAudio:context,captureRequest:id=>lastRequest=id,commitHistory:()=>commits++,
-  requestAnimationFrame:()=>1,cancelAnimationFrame:()=>{},setTimeout,clearTimeout,navigator:{},Blob,Float32Array,Uint8Array};
+  ConversationHistory,historyEnabled,createHistoryEntry,TurnRevisions,LiteResponseEngine:class{},testAudio:context,captureRequest:id=>lastRequest=id,commitHistory:()=>commits++,
+  requestAnimationFrame:()=>1,cancelAnimationFrame:()=>{},setTimeout,clearTimeout,navigator:{},Blob,Float32Array,Uint8Array,captureMicStop:()=>micStops++,captureMicRestore:()=>micRestores++};
 runInNewContext(source,sandbox);
 storage.setItem('emma_history_enabled','true');
 const app=sandbox.appTest;
@@ -178,6 +187,37 @@ speech=app.speakResponse('History replay phrase');
 app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await settle();decodedResolve(audioBuffer);app.complete(lastRequest);await speech;
 assert.equal(starts,2);assert.equal(commits,1);
 console.log('Playback: stop during decode prevents late audio/history; first audio saves once; replay saves nothing OK');
+const beforeSpecStarts=starts,beforeSpecCommits=commits;
+app.useTestMic();
+const firstTurn=app.appendTurn(Float32Array.of(.1));
+speech=app.speakResponse('First partial reply',{entry:candidate,revision:firstTurn.version});
+app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});
+await settle();
+assert.equal(micStops,0,'mic must remain open during TTS generation');
+assert.equal(starts,beforeSpecStarts,'speculative sound must not play before generation completes');
+assert(app.continueTurn(),'speech-start must invalidate the old candidate');
+app.complete(lastRequest);
+await speech;
+assert.equal(starts,beforeSpecStarts,'interrupted candidate must never play');
+assert.equal(commits,beforeSpecCommits,'interrupted candidate must never enter history');
+assert.equal(micStops,0,'interrupted candidate must not release the microphone');
+
+const continued=app.appendTurn(Float32Array.of(.2));
+speech=app.speakResponse('Complete merged reply',{entry:candidate,revision:continued.version});
+app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});
+await settle();
+assert.equal(starts,beforeSpecStarts);
+assert.equal(micStops,0);
+app.complete(lastRequest);
+await settle();
+assert.equal(micStops,1,'mic should be released only after TTS finishes generating');
+decodedResolve(audioBuffer);
+await speech;
+assert.equal(starts,beforeSpecStarts+1);
+assert.equal(commits,beforeSpecCommits+1);
+assert.equal(micRestores,1);
+await app.stopEmma();
+console.log('Speculative TTS: continued speech cancels generation and history; mic stays live until playback OK');
 // An unresolved microphone permission request must not reopen capture after entry
 // into play/history (or after stopping while the browser prompt is visible).
 const {EmmaMicrophone}=await import('./src/audio-capture.js');

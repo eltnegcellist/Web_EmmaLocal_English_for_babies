@@ -39,6 +39,7 @@ jobs:
           node test-features.mjs
           node test-semantic.mjs
           node test-silero.mjs
+          node test-interruptible-turn.mjs
       - name: Test actual Silero WASM inference and Settings rollback
         run: |
           npx playwright install --with-deps chromium
@@ -59,6 +60,8 @@ jobs:
           node --check scripts/browser-silero-smoke.mjs
           node --check src/audio-capture.js
           node --check src/asr-worker.js
+          node --check src/asr-client.js
+          node --check src/turn-revisions.js
           node --check src/tts-worker.js
           node --check src/vendor/moonshine/asset-downloader.js
           node --check src/vendor/kitten/model-loader.js

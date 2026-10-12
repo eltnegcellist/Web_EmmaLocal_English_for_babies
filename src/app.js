@@ -4,6 +4,8 @@ import { ConversationHistory, historyEnabled, createHistoryEntry } from './conve
 import { installFeatureScreens } from './feature-screens.js';
 import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './emma-color-palettes.js';
 import { EmmaMicrophone } from './audio-capture.js';
+import { MoonshineAsrClient } from './asr-client.js';
+import { TurnRevisions } from './turn-revisions.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
@@ -44,7 +46,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261011-silero-vad-r1';
+const WEB_BUILD = '20261012-interruptible-listening-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -89,12 +91,19 @@ function writeStoredJson(key,value) {
 }
 
 const engine = new LiteResponseEngine();
+const turnRevisions = new TurnRevisions();
+let speculativeEngineSnapshot=null;
+function restoreUnspokenTurn(){
+  if(speculativeEngineSnapshot){engine.restoreTurnState(speculativeEngineSnapshot);speculativeEngineSnapshot=null;}
+}
+function isLiveTurn(revision,epoch){
+  return epoch===conversationEpoch && (revision===null || (running && turnRevisions.isCurrent(revision)));
+}
 let semanticPanel;
 let preparingConversation=false;
 // The official v0.1.5 release archive contains the split-frontend WASM build;
 // the v0.1.5 npm tarball's WASM does not.
-const MOONSHINE_MODULE_URL = new URL('./moonshine-module.js', import.meta.url).href;
-let moonshineTranscriber, moonshineModule, ttsWorker, mic, wakeLock;
+let moonshineTranscriber, ttsWorker, mic, wakeLock;
 let moonshineStage='idle';
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
@@ -418,6 +427,7 @@ function bindEvents() {
   });
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
+    if (!ui.autoRespond.checked){restoreUnspokenTurn();turnRevisions.reset();}
     if (ui.autoRespond.checked && pendingUtterance && !processing && !speaking) respondToPendingUtterance();
   });
 
@@ -980,7 +990,9 @@ async function stopEmma() {
   processing=false;
   speaking=false;
   pendingUtterance=null;
-  for(const q of audioQueues.values()) q.resolve?.();
+  restoreUnspokenTurn();
+  turnRevisions.reset();
+  for(const q of audioQueues.values()) {q.generationResolve?.();q.resolve?.();}
   audioQueues.clear();
   if(activeAudioSource){
     try{activeAudioSource.stop();}catch{}
@@ -999,7 +1011,7 @@ async function stopEmma() {
 }
 
 function handleCapturedUtterance(audio) {
-  if(!running||preparingConversation||processing||speaking)return;
+  if(!running||preparingConversation||speaking)return;
   if(tutorialStep===2){
     tutorialUserSpoke=true;
     pendingUtterance={kind:'audio',audio};
@@ -1008,12 +1020,28 @@ function handleCapturedUtterance(audio) {
     scheduleTutorialSpotlightSync();
     return;
   }
-  if(ui.autoRespond.checked) transcribeUtterance(audio);
-  else {
+  if(ui.autoRespond.checked){
+    // An earlier speculative reply has already been invalidated at speech-start.
+    // Re-transcribe the complete PCM, never concatenate separately decoded texts.
+    const {version,audio:complete}=turnRevisions.append(audio);
+    transcribeUtterance(complete,{revision:version});
+  } else {
+    if(processing)return;
     pendingUtterance={kind:'audio',audio};
     ui.manualReplyButton.classList.remove('hidden');
     setState('understood','話し終わりを検出しました','「今すぐAIが返事する」を押すと返事します。');
   }
+}
+
+function handleSpeechStartDuringPreparation(){
+  if(!running||preparingConversation||speaking||tutorialStep===2||!ui.autoRespond.checked)return;
+  if(!turnRevisions.speechStart())return;
+  // The old ASR/Semantic/TTS can finish naturally. Revision checks discard it.
+  restoreUnspokenTurn();
+  processing=false;
+  setBusy(false);
+  ui.emmaBubble.classList.add('hidden');
+  setState('endpoint','続きも聞いています…','返答の準備を中断し、続きのことばを聞いています。');
 }
 
 function respondToPendingUtterance({manual=false}={}) {
@@ -1073,12 +1101,12 @@ async function startMoonshineCapture() {
     onWarning:message=>{if(epoch===conversationEpoch)showNotice('従来方式で会話します',message);},
     onError:async error=>{if(epoch===conversationEpoch){await stopEmma();setState('error','音声の判定が中断しました',error.message);}},
     onState:(state)=>{
-      if(epoch!==conversationEpoch || !running || preparingConversation || !workersReady||processing||speaking)return;
-      if(state==='endpoint') setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');
+      if(epoch!==conversationEpoch || !running || preparingConversation || !workersReady || speaking || (processing && !ui.autoRespond.checked))return;
+      if(state==='endpoint') {handleSpeechStartDuringPreparation();if(!turnRevisions.continuing)setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');}
       else setState('listening',`${getAiName()}が聞いています`,'いつもどおり日本語で赤ちゃんへ話しかけてください。');
     },
     onUtterance:(audio)=>{ if(epoch===conversationEpoch && !preparingConversation)handleCapturedUtterance(audio); },
-    shouldIgnore:()=>epoch!==conversationEpoch||preparingConversation||!workersReady||processing||speaking
+    shouldIgnore:()=>epoch!==conversationEpoch||preparingConversation||!workersReady||speaking||(processing&&!ui.autoRespond.checked)
   });
   mic=capture;
   await capture.start();
@@ -1121,145 +1149,95 @@ async function initVoice() {
 }
 
 async function initMoonshine() {
-  if(moonshineTranscriber && asrInfoCache?.kind==='moonshine') return asrInfoCache;
-
-  const startedAt=diagnosticNow();
+  if(moonshineTranscriber && asrInfoCache?.kind==='moonshine')return asrInfoCache;
+  const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny'?'tiny':'small';
+  const modelLabel=selectedAsr==='tiny'?'Tiny':'Small';
+  const started=diagnosticNow();
   const diagnostics={
-    cacheReadMs:0,
-    cacheReadBytes:0,
-    cacheFiles:0,
-    cacheMisses:0,
-    networkDownloadMs:0,
-    networkDownloadBytes:0,
-    networkFiles:0,
-    cacheWriteMs:0,
-    wasmInitMs:null,
-    modelBuildMs:null,
-    totalInitMs:null,
-    lastSource:'unknown'
+    cacheReadMs:0,cacheReadBytes:0,cacheFiles:0,cacheMisses:0,
+    networkDownloadMs:0,networkDownloadBytes:0,networkFiles:0,
+    cacheWriteMs:0,wasmInitMs:null,modelBuildMs:null,totalInitMs:null,lastSource:'unknown'
   };
   lastMoonshineDiagnostics=diagnostics;
-  updateWebTimingDiagnostics();
-
+  let manifest=null;
   moonshineStage='runtime';
   showMoonshineProgress(0,'Moonshineの実行エンジンを準備しています…');
-  if(!moonshineModule){
-    moonshineModule=await import(MOONSHINE_MODULE_URL);
-  }
-  const { Transcriber, ModelArch, loadEmmaMoonshineModule }=moonshineModule;
-  if(typeof Transcriber?.load!=='function') {
-    throw new Error('Moonshineの公式Transcriberを読み込めませんでした。');
-  }
-
-  const onProgress=(loaded,total,file,detail={})=>{
-    moonshineStage='download';
-    const safeLoaded=Number(loaded)||0;
-    const safeTotal=Number(total)||0;
-    const fraction=safeTotal>0 ? safeLoaded/safeTotal : 0;
-    const progress=safeTotal>0 ? Math.max(1,Math.min(96,Math.round(fraction*96))) : 1;
-    const mbLoaded=safeLoaded/1_000_000;
-    const sizeText=safeTotal>0
-      ? `${mbLoaded.toFixed(1)} / ${(safeTotal/1_000_000).toFixed(1)} MB`
-      : `${mbLoaded.toFixed(1)} MB`;
-    const fileName=String(file||'').split('/').pop();
-    const selectedLabel=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'Tiny' : 'Small';
-    const source=detail?.source==='cache' ? 'cache' : detail?.source==='network' ? 'network' : 'unknown';
-    diagnostics.lastSource=source;
-    const action=source==='cache'
-      ? '端末から読み込んでいます'
-      : source==='network'
-        ? 'ダウンロードしています'
-        : '準備しています';
-    const progressMessage=`Moonshine 日本語${selectedLabel} Streamingを${action}… ${sizeText}${fileName ? `（${fileName}）` : ''}`;
-    showMoonshineProgress(progress,progressMessage);
-    if(ui.asrModelStatus) ui.asrModelStatus.textContent=progressMessage;
-  };
-
-  const onAssetEvent=event=>{
-    if(event?.kind==='cache-read'){
-      diagnostics.cacheReadMs+=Number(event.durationMs)||0;
-      diagnostics.cacheReadBytes+=Number(event.bytes)||0;
-      diagnostics.cacheFiles+=1;
-      diagnostics.lastSource='cache';
-    } else if(event?.kind==='cache-miss'){
-      diagnostics.cacheMisses+=1;
-    } else if(event?.kind==='network-download'){
-      diagnostics.networkDownloadMs+=Number(event.durationMs)||0;
-      diagnostics.networkDownloadBytes+=Number(event.bytes)||0;
-      diagnostics.networkFiles+=1;
-      diagnostics.cacheWriteMs+=Number(event.cacheWriteMs)||0;
-      diagnostics.lastSource='network';
-    }
+  const client=new MoonshineAsrClient({onEvent:event=>{
+    if(event.type==='stage'){
+      moonshineStage=event.stage;
+      showMoonshineProgress(1,event.message);
+    } else if(event.type==='manifest'){
+      manifest=event.manifest;
+      // Take the pre-download cache snapshot before releasing Worker initialization.
+      refreshSelectedMoonshineCache(manifest,modelLabel,{repairAliases:true})
+        .then(()=>{
+          diagnostics.cacheManifestBefore={
+            status:modelCacheState.status,presentFiles:modelCacheState.presentFiles,
+            expectedFiles:modelCacheState.expectedFiles,aliasHits:modelCacheState.aliasHits,
+            missingFiles:[...modelCacheState.missingFiles]
+          };
+        })
+        .finally(()=>client.resumeInit());
+    } else if(event.type==='progress'){
+      moonshineStage='download';
+      const loaded=Number(event.loaded)||0,total=Number(event.total)||0;
+      const progress=total?Math.max(1,Math.min(96,Math.round(loaded/total*96))):1;
+      const detail=event.detail||{};
+      const source=detail.source==='cache'?'cache':detail.source==='network'?'network':'unknown';
+      diagnostics.lastSource=source;
+      const fileName=String(event.file||'').split('/').pop();
+      const action=source==='cache'?'端末から読み込んでいます':source==='network'?'ダウンロードしています':'準備しています';
+      const sizeText=total?` ${(loaded/1e6).toFixed(1)} / ${(total/1e6).toFixed(1)} MB`:` ${(loaded/1e6).toFixed(1)} MB`;
+      const message=`Moonshine 日本語${modelLabel} Streamingを${action}…${sizeText}${fileName?'（'+fileName+'）':''}`;
+      showMoonshineProgress(progress,message);
+      if(ui.asrModelStatus)ui.asrModelStatus.textContent=message;
+    } else if(event.type==='asset-event'){
+      const item=event.event||{};
+      if(item.kind==='cache-read'){
+        diagnostics.cacheReadMs+=Number(item.durationMs)||0;
+        diagnostics.cacheReadBytes+=Number(item.bytes)||0;
+        diagnostics.cacheFiles++;
+        diagnostics.lastSource='cache';
+      } else if(item.kind==='cache-miss')diagnostics.cacheMisses++;
+      else if(item.kind==='network-download'){
+        diagnostics.networkDownloadMs+=Number(item.durationMs)||0;
+        diagnostics.networkDownloadBytes+=Number(item.bytes)||0;
+        diagnostics.networkFiles++;
+        diagnostics.cacheWriteMs+=Number(item.cacheWriteMs)||0;
+        diagnostics.lastSource='network';
+      }
+    } else if(event.type==='diagnostic'){
+      if(event.kind==='wasmInitMs')diagnostics.wasmInitMs=Number(event.durationMs)||0;
+      if(event.kind==='model-build')diagnostics.modelBuildMs=Number(event.durationMs)||0;
+    } else if(event.type==='warning')console.warn(event.message);
     updateWebTimingDiagnostics();
-  };
-
-  const wasmStarted=diagnosticNow();
-  const module=await loadEmmaMoonshineModule();
-  diagnostics.wasmInitMs=diagnosticNow()-wasmStarted;
-  updateWebTimingDiagnostics();
-
-  moonshineStage='catalog';
-  const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny' ? 'tiny' : 'small';
-  const modelArch=selectedAsr==='small' ? ModelArch.SmallStreaming : ModelArch.TinyStreaming;
-  const modelLabel=selectedAsr==='small' ? 'Small' : 'Tiny';
-  const modelManifest=module.sttDependencies('ja',String(modelArch),false);
-  await refreshSelectedMoonshineCache(modelManifest,modelLabel,{repairAliases:true});
-  diagnostics.cacheManifestBefore={
-    status:modelCacheState.status,
-    presentFiles:modelCacheState.presentFiles,
-    expectedFiles:modelCacheState.expectedFiles,
-    aliasHits:modelCacheState.aliasHits,
-    missingFiles:[...modelCacheState.missingFiles]
-  };
-  const nextTranscriber=await Transcriber.load({
-    module,
-    language:'ja',
-    modelArch,
-    options:{max_tokens_per_second:'13.0'},
-    onProgress,
-    onAssetEvent,
-    onDiagnostic:event=>{
-      if(event?.kind==='model-build') diagnostics.modelBuildMs=Number(event.durationMs)||0;
-      updateWebTimingDiagnostics();
+  }});
+  try{
+    const result=await client.init({model:selectedAsr,keyterms:CHILDCARE_ASR_KEYTERMS});
+    if(manifest){
+      await refreshSelectedMoonshineCache(manifest,modelLabel,{repairAliases:true});
+      diagnostics.cacheManifestAfter={
+        status:modelCacheState.status,presentFiles:modelCacheState.presentFiles,
+        expectedFiles:modelCacheState.expectedFiles,aliasHits:modelCacheState.aliasHits,
+        missingFiles:[...modelCacheState.missingFiles]
+      };
     }
-  });
-  try {
-    nextTranscriber.setKeyterms(CHILDCARE_ASR_KEYTERMS);
-  } catch(error) {
-    console.warn('Moonshine育児語バイアスを適用できませんでした',error);
+    diagnostics.totalInitMs=diagnosticNow()-started;
+    updateWebTimingDiagnostics();
+    moonshineStage='ready';
+    moonshineTranscriber?.close?.();
+    moonshineTranscriber=client;
+    showMoonshineProgress(100,`Moonshine 日本語${modelLabel}を準備できました`);
+    if(ui.asrModelStatus)ui.asrModelStatus.textContent=
+      `現在：${modelLabel}。準備完了。${diagnostics.networkFiles?'必要なモデルを取得しました。':'保存済みモデルを読み込みました。'}`;
+    return {kind:'moonshine',engine:'moonshine',model:result.model,architecture:result.architecture,license:'MIT',device:'wasm-cpu',worker:'dedicated'};
+  }catch(error){
+    client.close();
+    moonshineStage='error';
+    throw error;
   }
-
-  await refreshSelectedMoonshineCache(modelManifest,modelLabel,{repairAliases:true});
-  diagnostics.cacheManifestAfter={
-    status:modelCacheState.status,
-    presentFiles:modelCacheState.presentFiles,
-    expectedFiles:modelCacheState.expectedFiles,
-    aliasHits:modelCacheState.aliasHits,
-    missingFiles:[...modelCacheState.missingFiles]
-  };
-  diagnostics.totalInitMs=diagnosticNow()-startedAt;
-  updateWebTimingDiagnostics();
-  moonshineStage='ready';
-  moonshineTranscriber?.close?.();
-  moonshineTranscriber=nextTranscriber;
-  showMoonshineProgress(100,`Moonshine 日本語${modelLabel}を準備できました`);
-  if(ui.asrModelStatus) {
-    const source=diagnostics.networkFiles>0
-      ? '不足していたモデルを取得して準備しました。'
-      : '保存済みモデルを端末から読み込んで準備しました。';
-    ui.asrModelStatus.textContent=`現在：${modelLabel}。準備完了。${source}`;
-  }
-
-  return {
-    kind:'moonshine',
-    engine:'moonshine',
-    model:selectedAsr+'-streaming-ja',
-    architecture:selectedAsr+'_streaming',
-    license:'MIT',
-    device:'wasm-cpu',
-    worker:'none-batch-transcriber'
-  };
 }
+
 function forwardBackgroundDownload(message) {
   if(!message?.url || !message?.cacheName || !message?.cacheKey) return;
   navigator.serviceWorker?.ready
@@ -1309,9 +1287,10 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     readyReject?.(error);
     if(m.requestId){
       const q=audioQueues.get(m.requestId);
-      if(q) q.reject?.(error);
+      if(q){q.generationReject?.(error);q.reject?.(error);}
     }
-    if(workersReady && (!m.requestId || audioQueues.has(m.requestId))) onRuntimeError(error.message);
+    const affected=m.requestId?audioQueues.get(m.requestId):null;
+    if(workersReady && (!m.requestId || (affected && (affected.revision===null || turnRevisions.isCurrent(affected.revision))))) onRuntimeError(error.message);
   } else if(m.type==='audio') enqueueAudio(m);
   else if(m.type==='complete') {
     const q=audioQueues.get(m.requestId);
@@ -1326,6 +1305,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
         }
       }
       q.generationDone=true;
+      q.generationResolve?.();
       lastTtsGenerationCompleteMillis=Math.round(diagnosticNow()-q.ttsRequestStartedAt);
       updateWebTimingDiagnostics();
       pumpAudio(m.requestId);
@@ -1333,61 +1313,55 @@ function handleTtsMessage(event,readyResolve,readyReject) {
   }
 }
 
-async function transcribeUtterance(audio,{manual=false}={}) {
+async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
   const epoch=conversationEpoch;
-  if(!running||preparingConversation||processing||speaking||!moonshineTranscriber)return;
+  if(!isLiveTurn(revision,epoch)||preparingConversation||speaking||!moonshineTranscriber)return;
   processing=true;
   setBusy(true);
   setState('thinking','聞き取っています…','Moonshineで音声を端末内処理しています。');
-
-  try {
-    // Paint the thinking state before synchronous WASM inference starts.
-    await new Promise(resolve=>requestAnimationFrame(()=>resolve()));
-    if(epoch!==conversationEpoch||!running)return;
-    const result=moonshineTranscriber.transcribe(audio,{sampleRate:16000});
-    const text=Array.isArray(result?.lines)
-      ? result.lines
-          .map(line=>String(line?.text||'').trim())
-          .filter(Boolean)
-          .join(' ')
-          .replace(/\s+/g,' ')
-          .trim()
-      : '';
-    await processTranscript(text,{manual});
-  } catch(error) {
+  try{
+    // Worker transcription leaves the main thread free for new VAD events.
+    const text=await moonshineTranscriber.transcribe(audio);
+    if(!isLiveTurn(revision,epoch))return;
+    await processTranscript(text,{manual,revision});
+  }catch(error){
+    if(!isLiveTurn(revision,epoch))return;
     processing=false;
     setBusy(false);
+    if(revision!==null){restoreUnspokenTurn();turnRevisions.reset();}
     console.error(error);
     setState('error','音声認識でエラーが発生しました',friendlyError(error));
   }
 }
 
-async function processTranscript(text,{manual=false}={}) {
-  if(!running||speaking)return;
+async function processTranscript(text,{manual=false,revision=null}={}) {
+  const epoch=conversationEpoch;
+  if(!isLiveTurn(revision,epoch)||speaking)return;
   processing=true;
   setBusy(true);
   const clean=String(text||'').replace(/\s+/g,' ').trim();
   if(!isMeaningfulUtterance(clean)){
-    processing=false;
-    setBusy(false);
-    if(manual) {
-      await respondGenericallyToManualRequest();
-    } else {
-      setState('listening',`${getAiName()}が聞いています`,'意味のあることばを待っています。');
-    }
+    processing=false;setBusy(false);
+    if(revision!==null){restoreUnspokenTurn();turnRevisions.reset();}
+    if(manual)await respondGenericallyToManualRequest();
+    else setState('listening',`${getAiName()}が聞いています`,'意味のあることばを待っています。');
     return;
   }
   showConversation(clean,'');
   setState('understood','わかりました',`${getAiName()}が赤ちゃんへ話しかけます。`);
-  const epoch=conversationEpoch;
-  const response=await semanticPanel.respond(clean,getSpokenBabyName(),{isCurrent:()=>epoch===conversationEpoch&&running});
-  if(!response){if(epoch===conversationEpoch){processing=false;setBusy(false);}return;}
+  if(revision!==null)speculativeEngineSnapshot=engine.snapshotTurnState();
+  const response=await semanticPanel.respond(clean,getSpokenBabyName(),{isCurrent:()=>isLiveTurn(revision,epoch)});
+  if(!isLiveTurn(revision,epoch))return;
+  if(!response){processing=false;setBusy(false);restoreUnspokenTurn();return;}
   const english=stripAiSpeakerLabel(response.english);
   showConversation(clean,english);
-  processing=false;
-  setBusy(false);
-  await speakResponse(english,{entry:createHistoryEntry(sessionId,clean,english,response.scene)});
-  if(tutorialStep===2 && tutorialUserSpoke) finishTutorial();
+  // A speculative TTS is still an active turn: keep manual reply disabled,
+  // while allowing the microphone/VAD to detect a continuation.
+  processing=revision!==null;
+  setBusy(revision!==null);
+  await speakResponse(english,{entry:createHistoryEntry(sessionId,clean,english,response.scene),revision});
+  if(!isLiveTurn(revision,epoch))return;
+  if(tutorialStep===2 && tutorialUserSpoke)finishTutorial();
 }
 
 async function releaseMicrophoneForEmmaVoice() {
@@ -1420,56 +1394,86 @@ async function restoreMicrophoneAfterEmmaVoice() {
   }
 }
 
-async function speakResponse(text,{entry=null}={}) {
+async function speakResponse(text,{entry=null,revision=null}={}) {
   const epoch=conversationEpoch;
-  if(!ttsWorker) throw new Error('AIの声がまだ準備されていません');
-
+  if(!ttsWorker)throw Error('AIの声がまだ準備されていません');
+  const speculative=revision!==null;
+  const valid=()=>isLiveTurn(revision,epoch);
+  // Ordinary/manual replies keep their existing direct playback behavior.
   const shouldRestoreMic=running && Boolean(mic);
-  if(shouldRestoreMic){
+  let micReleased=false;
+  let startedPlayback=false;
+  if(!speculative && shouldRestoreMic){
     setState('thinking','AIが話す準備をしています','マイクを一時停止してスピーカー音量へ切り替えています。');
     await releaseMicrophoneForEmmaVoice();
+    micReleased=true;
   }
-
-  if(epoch!==conversationEpoch)return;
-  speaking=true;
+  if(!valid())return;
+  if(!speculative){speaking=true;startedPlayback=true;}
   const requestId=++requestSeq;
   const cacheKey=audioCacheKey(text);
   const ttsRequestStartedAt=diagnosticNow();
-  audioQueues.set(requestId,{items:new Map(),next:0,total:0,playing:false,generationDone:false,resolve:null,reject:null,entry,started:false,text,cacheKey,generated:[],ttsRequestStartedAt,firstChunkRecorded:false,firstAudioRecorded:false});
-  const done=new Promise((resolve,reject)=>{
-    const q=audioQueues.get(requestId);
-    q.resolve=resolve;
-    q.reject=reject;
+  audioQueues.set(requestId,{
+    items:new Map(),next:0,total:0,playing:false,generationDone:false,
+    resolve:null,reject:null,generationResolve:null,generationReject:null,
+    deferPlayback:speculative,revision,entry,started:false,text,cacheKey,generated:[],
+    ttsRequestStartedAt,firstChunkRecorded:false,firstAudioRecorded:false
   });
-
-  setState('speaking','AIが話しています',text);
-  try {
+  const queue=audioQueues.get(requestId);
+  const done=new Promise((resolve,reject)=>{queue.resolve=resolve;queue.reject=reject;});
+  const generationReady=new Promise((resolve,reject)=>{queue.generationResolve=resolve;queue.generationReject=reject;});
+  // Avoid unhandled rejections for whichever completion promise is unused.
+  if(!speculative)generationReady.catch(()=>{});
+  if(speculative)done.catch(()=>{});
+  setState(speculative?'thinking':'speaking',speculative?'英語の声を準備しています':'AIが話しています',
+    speculative?'続きのことばがあれば、そのまま話してください。':text);
+  try{
     const cached=preparedAudio.get(cacheKey);
-    if(cached){const q=audioQueues.get(requestId);cached.forEach((blob,index)=>q.items.set(index,blob));q.total=cached.length;q.generationDone=true;pumpAudio(requestId);}
-    else ttsWorker.postMessage({type:'speak',requestId,text,nameHints:getTtsNameHints()});
+    if(cached){
+      cached.forEach((blob,index)=>queue.items.set(index,blob));
+      queue.total=cached.length;queue.generationDone=true;
+      queue.generationResolve?.();
+      pumpAudio(requestId);
+    }else ttsWorker.postMessage({type:'speak',requestId,text,nameHints:getTtsNameHints()});
+    if(speculative){
+      await generationReady;
+      if(!valid())return;
+      // The microphone stays live throughout ASR, Semantic and TTS preparation.
+      if(shouldRestoreMic){
+        await releaseMicrophoneForEmmaVoice();
+        micReleased=true;
+      }
+      if(!valid())return;
+      // This candidate is now committed to playback. The next capture is a
+      // new turn, not a continuation of words we have already answered.
+      speculativeEngineSnapshot=null;
+      turnRevisions.reset();
+      processing=false;
+      setBusy(false);
+      speaking=true;
+      startedPlayback=true;
+      queue.deferPlayback=false;
+      setState('speaking','AIが話しています',text);
+      pumpAudio(requestId);
+    }
     await done;
     lastTtsTotalMillis=Math.round(diagnosticNow()-ttsRequestStartedAt);
     updateWebTimingDiagnostics();
-  } catch(error) {
+  }catch(error){
+    if(!valid())return;
     console.error('Emma TTS playback failed',error);
-    if(epoch!==conversationEpoch)return;
     setState('error','AIの声でエラーが発生しました',friendlyError(error));
     throw error;
-  } finally {
-    if(epoch===conversationEpoch)speaking=false;
+  }finally{
+    if(epoch===conversationEpoch && startedPlayback)speaking=false;
     audioQueues.delete(requestId);
-
-    if(shouldRestoreMic && running && epoch===conversationEpoch){
-      try {
-        await restoreMicrophoneAfterEmmaVoice();
-      } catch(error) {
-        console.error('Microphone restore failed after Emma voice.',error);
-      }
+    if(micReleased && running && epoch===conversationEpoch){
+      try{await restoreMicrophoneAfterEmmaVoice();}
+      catch(error){console.error('Microphone restore failed after Emma voice.',error);}
     }
   }
-
-  if(epoch!==conversationEpoch)return;
-  if(running) setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
+  if(!valid())return;
+  if(running)setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   else setState('idle','みつことばはおやすみ中','「会話を始める」を押すと、また会話できます。');
 }
 
@@ -1489,7 +1493,7 @@ function enqueueAudio(m) {
 
 async function pumpAudio(requestId) {
   const q=audioQueues.get(requestId);
-  if(!q||q.playing)return;
+  if(!q||q.playing||q.deferPlayback)return;
   const blob=q.items.get(q.next);
   if(!blob){
     if(q.generationDone&&q.next>=q.total){

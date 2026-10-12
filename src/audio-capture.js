@@ -82,7 +82,7 @@ export class EmmaMicrophone {
     if (result.event === 'utterance') {
       const downsampled = resampleLinear(result.audio, this.context.sampleRate, 16000);
       if (downsampled.length >= 16000 * 0.32) this.onUtterance?.(downsampled);
-      this.onState?.('listening');
+      // The caller owns the state now (ASR may already be running).
     }
   }
 
