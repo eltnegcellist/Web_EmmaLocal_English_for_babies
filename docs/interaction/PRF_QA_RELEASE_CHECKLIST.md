@@ -68,7 +68,7 @@
 - 似た褒め言葉、自然なASR誤認を多く含む独立試験データがない。
 - 111組のTopic×Interactionには固定英文333セットを用意。両軸が採用されてもペア英文がない組み合わせはTopic英文に戻し、未知の組み合わせを動的につなぎ合わせない。
 - 標準の名称挿入は既存197セットだけで、新112セットは固定英文・名前なし（3文/語数の安全性を優先）。
-- AndroidとWebは同一学習済みInteraction head（SHA256一致）を使用するが、Java Native ORTとWeb WASMの実際の埋め込み一致テストが一部CIで失敗。**原因が確定するまでAndroidの精度保証・一般公開は禁止**。
+- **Android（Java Native）とWeb（WASM）のRuri埋め込み一致テストは2026-10-13に復旧。** 原因はAndroid・CIの推論スレッドを1に固定していた設定であり、以前と同じ標準スレッド設定へ戻すと、最小embedding cosine **0.9967218**でCI成功（[Actions #38312365175](https://github.com/eltnegcellist/Android_English_character_for_baby/actions/runs/38312365175)）。ただしGalaxy S25実機、自然日本語のASRやKiki発話の検証は引き続き必須。
 - CIは構文・ユニットテスト・限定的な実モデル推論であり、自然さや赤ちゃんへの学習効果を測定しない。
 
 ## リリース実施時の手順
