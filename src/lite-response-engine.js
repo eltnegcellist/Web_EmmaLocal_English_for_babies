@@ -1,3 +1,4 @@
+import { selectRuriAxes, combinedCandidates } from './interaction/ruri-routing.js';
 import { selectInteraction, INTERACTION_REPLIES } from './interaction/response.js';
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
 import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink, detectNounTopics } from './lite-topic-matcher.js';
@@ -815,6 +816,39 @@ export class LiteResponseEngine {
     this.turnsSinceName = STYLE.NAME_REPEAT_WINDOW;
     this.activeSceneId = null;
     this.activeSceneTurnsRemaining = 0;
+  }
+
+  // Sole live classification path: Topic and Interaction labels come exclusively
+  // from their independent Ruri linear heads. Legacy respond() remains only for
+  // diagnostic comparison of the old rule engine, never for live Lite playback.
+  respondRuri(transcript, spokenBabyName = "", topicPrediction = null, interactionPrediction = null, allowInteraction = true) {
+    const { topic, interaction } = selectRuriAxes(topicPrediction, interactionPrediction, allowInteraction);
+    const scene = findScene(topic);
+    const pair = scene && interaction ? combinedCandidates(scene.id, interaction) : null;
+    const replies = pair || (interaction ? INTERACTION_REPLIES[interaction] : null)
+      || scene?.replies || GENERIC_REPLIES;
+    const route = pair ? `combined:${scene.id}:${interaction}`
+      : interaction ? `interaction:${interaction}`
+        : scene?.id || 'generic';
+    // The current utterance's Ruri result is authoritative: stale context never
+    // overrides a new label and cannot cause fabricated composite replies.
+    this.activeSceneId = null;
+    this.activeSceneTurnsRemaining = 0;
+    const safeName = sanitizeName(spokenBabyName);
+    const allowName = !interaction && !pair;
+    const forceName = allowName && !!safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW;
+    const suppressName = allowName && !!safeName && this.turnsSinceName < STYLE.NAME_REPEAT_WINDOW;
+    const raw = this.chooseReply(replies, transcript, forceName, suppressName);
+    const named = allowName ? applyName(raw, safeName, forceName) : raw;
+    const styled = this.alignToBabyStyle(named, transcript, scene?.id);
+    this.remember(raw, styled);
+    this.turnsSinceName = safeName && containsName(styled, safeName) ? 0 : this.turnsSinceName + 1;
+    this.turnCounter++;
+    return {
+      english: styled, scene: route, topic: scene?.id || null,
+      interaction: interaction || null, combined: !!pair, score: 0,
+      ruleScene: 'unused', semanticUsed: true, contextUsed: false
+    };
   }
 
   respond(transcript, spokenBabyName = "", semantic = null, interaction = null) {
