@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "status": "EXPERIMENTAL_ONLY_NOT_PRODUCTION_READY",
+  "model": "ruri-v3-70m INT8 fixed base plus linear head",
+  "model_sha256": "bd500193003fdeaba8c5422a47b974b40b49a5e0c91285c76f6bd949d2205264",
+  "training_examples": 249,
+  "dev_examples": 70,
+  "test_examples": 63,
+  "evaluation_warning": "Only synthetic seed/template labels; dev/test are distinct lexical seeds but not natural caregiver language; no human adjudication, no real ASR; never claim field accuracy.",
+  "labels": [
+    "affection",
+    "praise",
+    "achievement",
+    "effort",
+    "encouragement",
+    "invitation",
+    "start",
+    "finish",
+    "finish_check",
+    "care",
+    "inquiry",
+    "reassurance",
+    "repeat",
+    "pause",
+    "none"
+  ],
+  "head_shape": [
+    15,
+    385
+  ],
+  "head_sha256": "24f18277e70f1ad44072f84f37052c3cbff7dca9d8c6b499ed8804fc339b23e9",
+  "fit": {
+    "algorithm": "sklearn LogisticRegression multinomial softmax LBFGS",
+    "C": 30.0,
+    "max_iter": 1500,
+    "random_state": 123,
+    "class_weight": "balanced"
+  },
+  "calibrated_on_dev_only": {
+    "threshold": 0.4,
+    "margin": 0,
+    "dev_metrics": {
+      "accuracy": 0.8857142857142857,
+      "macro_f1_all_15": 0.7887878787878787,
+      "macro_f1_interaction_14": 0.7785714285714285,
+      "accepted_interaction_precision": 0.875,
+      "accepted_interaction_recall": 0.75,
+      "accepted_interaction_count": 24,
+      "legacy_none_false_alarms": 1,
+      "none_sample_count": 42
+    }
+  },
+  "untouched_synthetic_test": {
+    "accuracy": 0.9047619047619048,
+    "macro_f1_all_15": 0.8788888888888888,
+    "macro_f1_interaction_14": 0.8761904761904761,
+    "accepted_interaction_precision": 0.9230769230769231,
+    "accepted_interaction_recall": 0.8571428571428571,
+    "accepted_interaction_count": 26,
+    "legacy_none_false_alarms": 2,
+    "none_sample_count": 35
+  },
+  "test_per_class": {
+    "affection": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 0.6666666666666666
+    },
+    "praise": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 1.0
+    },
+    "achievement": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 1.0
+    },
+    "effort": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 1.0
+    },
+    "encouragement": {
+      "test_support": 2,
+      "test_recall": 0.5,
+      "precision": 1.0
+    },
+    "invitation": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 0.6666666666666666
+    },
+    "start": {
+      "test_support": 2,
+      "test_recall": 0.5,
+      "precision": 1.0
+    },
+    "finish": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 1.0
+    },
+    "finish_check": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 1.0
+    },
+    "care": {
+      "test_support": 2,
+      "test_recall": 0.5,
+      "precision": 1.0
+    },
+    "inquiry": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 1.0
+    },
+    "reassurance": {
+      "test_support": 2,
+      "test_recall": 0.5,
+      "precision": 1.0
+    },
+    "repeat": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 1.0
+    },
+    "pause": {
+      "test_support": 2,
+      "test_recall": 1.0,
+      "precision": 1.0
+    },
+    "none": {
+      "test_support": 35,
+      "test_recall": 0.9428571428571428,
+      "precision": 0.8918918918918919
+    }
+  },
+  "test_misclassified": [
+    {
+      "text": "できるところまでね",
+      "expected": "encouragement",
+      "predicted": "none",
+      "score": 0.3167
+    },
+    {
+      "text": "準備はいいかな",
+      "expected": "start",
+      "predicted": "none",
+      "score": 0.33899
+    },
+    {
+      "text": "頑張ったんだね",
+      "expected": "care",
+      "predicted": "none",
+      "score": 0.28721
+    },
+    {
+      "text": "抱っこしようね",
+      "expected": "reassurance",
+      "predicted": "none",
+      "score": 0.38415
+    },
+    {
+      "text": "ぎゅっと抱きしめよう",
+      "expected": "none",
+      "predicted": "affection",
+      "score": 0.49202
+    },
+    {
+      "text": "いっしょに遊びましょうね",
+      "expected": "none",
+      "predicted": "invitation",
+      "score": 0.55817
+    }
+  ],
+  "train_dataset_source": "research/interaction-head/experimental-dataset.json",
+  "decision": "NOT DEPLOYED. Requires human-confirmed labels, hard-negative audit, larger independent families, and actual ASR tests before runtime integration."
+}
