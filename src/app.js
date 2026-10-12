@@ -1279,7 +1279,8 @@ function handleTtsMessage(event,readyResolve,readyReject) {
       const q=audioQueues.get(m.requestId);
       if(q){q.generationReject?.(error);q.reject?.(error);}
     }
-    if(workersReady && (!m.requestId || audioQueues.has(m.requestId))) onRuntimeError(error.message);
+    const affected=m.requestId?audioQueues.get(m.requestId):null;
+    if(workersReady && (!m.requestId || (affected && (affected.revision===null || turnRevisions.isCurrent(affected.revision))))) onRuntimeError(error.message);
   } else if(m.type==='audio') enqueueAudio(m);
   else if(m.type==='complete') {
     const q=audioQueues.get(m.requestId);
@@ -1344,11 +1345,12 @@ async function processTranscript(text,{manual=false,revision=null}={}) {
   if(!response){processing=false;setBusy(false);restoreUnspokenTurn();return;}
   const english=stripAiSpeakerLabel(response.english);
   showConversation(clean,english);
-  processing=false;
-  setBusy(false);
+  // A speculative TTS is still an active turn: keep manual reply disabled,
+  // while allowing the microphone/VAD to detect a continuation.
+  processing=revision!==null;
+  setBusy(revision!==null);
   await speakResponse(english,{entry:createHistoryEntry(sessionId,clean,english,response.scene),revision});
   if(!isLiveTurn(revision,epoch))return;
-  if(revision!==null){speculativeEngineSnapshot=null;turnRevisions.reset();}
   if(tutorialStep===2 && tutorialUserSpoke)finishTutorial();
 }
 
@@ -1404,7 +1406,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
   audioQueues.set(requestId,{
     items:new Map(),next:0,total:0,playing:false,generationDone:false,
     resolve:null,reject:null,generationResolve:null,generationReject:null,
-    deferPlayback:speculative,entry,started:false,text,cacheKey,generated:[],
+    deferPlayback:speculative,revision,entry,started:false,text,cacheKey,generated:[],
     ttsRequestStartedAt,firstChunkRecorded:false,firstAudioRecorded:false
   });
   const queue=audioQueues.get(requestId);
@@ -1432,6 +1434,12 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
         micReleased=true;
       }
       if(!valid())return;
+      // This candidate is now committed to playback. The next capture is a
+      // new turn, not a continuation of words we have already answered.
+      speculativeEngineSnapshot=null;
+      turnRevisions.reset();
+      processing=false;
+      setBusy(false);
       speaking=true;
       startedPlayback=true;
       queue.deferPlayback=false;
