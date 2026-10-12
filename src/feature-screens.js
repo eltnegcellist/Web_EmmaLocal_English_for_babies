@@ -45,7 +45,11 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
   function requestClose(){if(kind!=='play'||confirm('おとなの方へ：遊びを終えて戻りますか？会話は自動で始まりません。'))close();}
   $('featureClose').addEventListener('click',requestClose);
   dialog.addEventListener('cancel',event=>{event.preventDefault();requestClose();});
-  document.addEventListener('visibilitychange',()=>{if(document.hidden&&dialog.open){generation++;stop(); if(kind==='play')showTopics();}});
+  document.addEventListener('visibilitychange',()=>{
+    if(!dialog.open)return;
+    if(document.hidden){generation++;stop();if(kind==='play')showTopics();}
+    else if(kind==='history')showHistory();
+  });
   async function open(type){generation++;kind=type;await stop();body.replaceChildren();title.textContent=type==='play'?'押して聞く':'会話履歴';dialog.showModal();}
 
   async function showHistory(selecting=false){
