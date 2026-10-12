@@ -27,26 +27,26 @@
 ### ミルク × 褒める (`milk|praise`)
 
 1. You drank some milk! Well done, little one. I'm proud of you.
-2. Here's your milk. That was lovely! Well done, sweetheart.
-3. Milk time together. You're doing so well. I'm proud of you.
+2. Look at those sips! That was lovely! Well done, sweetheart.
+3. You're drinking your milk! You're doing so well. I'm proud of you.
 
 ### ミルク × 達成 (`milk|achievement`)
 
 1. You drank your milk! You did it! Well done, sweetheart.
-2. Here's your milk. You did it! How wonderful is that!
-3. Milk time together. That worked out! Hooray, little one!
+2. You finished that milk! You did it! How wonderful is that!
+3. You took your milk! That worked out! Hooray, little one!
 
 ### ミルク × 完了 (`milk|finish`)
 
 1. Milk is all done! You're finished now. Let's rest together.
-2. Here's your milk. All finished now! Let's get cozy.
-3. Milk time together. That's all done. We can rest now.
+2. Milk time is over! All finished now! Let's get cozy.
+3. We're all done drinking! That's all done. We can rest now.
 
 ### ミルク × 完了確認 (`milk|finish_check`)
 
 1. Finished your milk? Shall we check? What do you think?
-2. Here's your milk. Shall we check? All done now?
-3. Milk time together. Let's check together. Are we finished?
+2. Is milk time over? Shall we check? All done now?
+3. Finished your milk yet? Let's check together. Are we finished?
 
 ### ミルク × 励ます (`milk|encouragement`)
 
@@ -89,14 +89,14 @@
 ### おむつ × 完了 (`diaper|finish`)
 
 1. All done changing! Nice and fresh. Here we are.
-2. Here's your diaper. All finished now! Let's get cozy.
-3. A little diaper change. That's all done. We can rest now.
+2. That diaper is changed! All finished now! Let's get cozy.
+3. Diaper change is finished! That's all done. We can rest now.
 
 ### おむつ × 完了確認 (`diaper|finish_check`)
 
 1. Diaper all done? Let's have a look. All clean now?
-2. Here's your diaper. Shall we check? All done now?
-3. A little diaper change. Let's check together. Are we finished?
+2. Diaper change finished yet? Shall we check? All done now?
+3. Finished changing your diaper? Let's check together. Are we finished?
 
 ### おむつ × 安心させる (`diaper|reassurance`)
 
@@ -183,7 +183,7 @@
 ### 抱っこ × 労い (`hug|care`)
 
 1. You've done a lot. Come for a cuddle. I'll hold you close.
-2. Time for a cuddle. That took some effort. Let's rest together.
+2. Come for a cuddle. That took some effort. Let's rest together.
 3. A gentle little cuddle. You did a lot. I'll stay with you.
 
 ### 抱っこ × 褒める (`hug|praise`)
@@ -396,7 +396,7 @@
 
 1. You took a bite! Good job, little one. That was lovely.
 2. Look at your food! You're doing so well. Well done, sweetheart.
-3. A little food together. You're doing so well. I'm proud of you.
+3. Look at that bite! You're doing so well. I'm proud of you.
 
 ### 食事 × 完了確認 (`food|finish_check`)
 
