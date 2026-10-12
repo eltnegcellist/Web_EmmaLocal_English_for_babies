@@ -177,7 +177,7 @@
 
 ### 抱っこ × 愛情 (`hug|affection`)
 
-1. I love this cuddle. You're my sweetheart. Stay close, little one.
+1. I love this cuddle. You're my treasure. Stay close, little one.
 2. A cuddle for you! I love being together. You're so precious.
 3. Hugs together, sweetheart! I love you, sweetheart. I'm right here.
 
@@ -249,7 +249,7 @@
 
 ### 起床 × 愛情 (`wake|affection`)
 
-1. Hello, sleepyhead! You're awake now. I love seeing you.
+1. Hello, my treasure! You're awake now. I love seeing you.
 2. You're awake, sweetheart! What a lovely surprise. I love you.
 3. Hello, little one! I love you, sweetheart. I'm right here.
 
