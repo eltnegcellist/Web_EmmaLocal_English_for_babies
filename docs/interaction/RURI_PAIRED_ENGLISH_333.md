@@ -1,10 +1,11 @@
 # Topic × Interaction — 英文333セット（全件レビュー用）
 
-2026-10-12。みつことばLiteの**Ruriのみ**による2軸分類に対応する固定英文候補です。
+2026-10-13更新（音素監査・26セット自然な文へ最小修正）。みつことばLiteの**Ruriのみ**による2軸分類に対応する固定英文候補です。
 
 - Topic：21種類（22クラスのRuri Topic headのうち generic を除く）。
 - Interaction：14種類（15クラスのRuri Interaction headのうち none を除く）。
 - 意味が自然に成立する **111組**、各組 **3セット**、合計 **333セット＝999文**。
+- CMUdictによる全英語音素・定型句反復の監査に基づき、自然さと意味を維持した26セットを修正（Web/Android完全同期）。音素は**均等頻度を目指さず**、自然な英語の多様性を優先します。
 - すべて3文、英単語6〜12語、1文4語以内の機械チェック対象。Kikiで実際に聴いて審査済みという意味ではありません。
 - 生成方式：ChatGPTによる文章草案・推敲。**Mac上のGemma生成ではありません。** 実行時に文を組み合わせて生成するのではなく、完成した固定英文から1セットを選びます。
 - 21×14=294の全組を機械的に作ったわけではありません。不自然な183組には組み合わせ英文を用意せず、Ruri Topic単独の英文に戻します。
@@ -21,8 +22,8 @@
 ### ミルク × 提案 (`milk|invitation`)
 
 1. Shall we have milk? Little sips are fine. I'm here with you.
-2. Here's your milk. Let's do it together. Ready when you are?
-3. Milk time together. Come try with me. What do you think?
+2. Milk is ready now! Shall we try together? Take your time.
+3. A little milk now. Would you like some? Take your time.
 
 ### ミルク × 褒める (`milk|praise`)
 
@@ -83,8 +84,8 @@
 ### おむつ × 提案 (`diaper|invitation`)
 
 1. Shall we change diapers? I'll be gentle. Let's get comfy.
-2. Here's your diaper. Let's do it together. Ready when you are?
-3. A little diaper change. Come try with me. What do you think?
+2. Fresh diaper coming up! Shall we get ready? I'll be gentle.
+3. Let's change your diaper. I'll go very slowly. Are you ready?
 
 ### おむつ × 完了 (`diaper|finish`)
 
@@ -121,8 +122,8 @@
 ### お風呂 × 提案 (`bath|invitation`)
 
 1. Shall we bathe? Let's get ready. I'll be gentle.
-2. Ready for bath time? Let's do it together. Ready when you are?
-3. Want a little bath? Come try with me. What do you think?
+2. Shall we bathe now? First, let's feel comfortable. I'm beside you.
+3. Here comes warm water. Let's take it gently. Shall we start?
 
 ### お風呂 × 始める (`bath|start`)
 
@@ -165,8 +166,8 @@
 ### 抱っこ × 提案 (`hug|invitation`)
 
 1. Want a little cuddle? Come here, sweetheart. I'm right here.
-2. Time for a cuddle. Let's do it together. Ready when you are?
-3. Here comes a hug. Come try with me. What do you think?
+2. Shall we have cuddles? Come into my arms. I'll hold you.
+3. A gentle little hug. Would you like one? Come close, sweetheart.
 
 ### 抱っこ × 安心させる (`hug|reassurance`)
 
@@ -229,8 +230,8 @@
 ### 睡眠 × 提案 (`sleep|invitation`)
 
 1. Shall we rest now? Let's get cozy. I'll stay close.
-2. Time for a rest. Let's do it together. Ready when you are?
-3. Let's rest a little. Come try with me. What do you think?
+2. Shall we rest now? Here's a cozy spot. I'll stay close.
+3. Feel like resting now? Let's get comfortable. I'll stay with you.
 
 ### 睡眠 × 安心させる (`sleep|reassurance`)
 
@@ -249,7 +250,7 @@
 ### 起床 × 愛情 (`wake|affection`)
 
 1. Hello, sleepyhead! You're awake now. I love seeing you.
-2. You're awake now! I love being together. You're so precious.
+2. You're awake, sweetheart! What a lovely surprise. I love you.
 3. Hello, little one! I love you, sweetheart. I'm right here.
 
 ### 起床 × 問いかけ (`wake|inquiry`)
@@ -269,8 +270,8 @@
 ### 絵本 × 提案 (`book|invitation`)
 
 1. Shall we read together? Here's our book. Let's look inside.
-2. Let's open our book. Let's do it together. Ready when you are?
-3. Look at this book. Come try with me. What do you think?
+2. Here is our book. Shall we read together? Turn a page.
+3. A story for you! Look at these pictures. Shall we start?
 
 ### 絵本 × 繰り返す (`book|repeat`)
 
@@ -281,7 +282,7 @@
 ### 絵本 × 始める (`book|start`)
 
 1. Here comes our book. Let's begin reading. What comes next?
-2. Let's open our book. Here we go! Let's begin gently.
+2. Let's open our book. See the first page? Shall we read?
 3. Look at this book. Let's get started. I'm right beside you.
 
 ### 絵本 × 問いかけ (`book|inquiry`)
@@ -313,7 +314,7 @@
 ### 笑顔 × 愛情 (`smile|affection`)
 
 1. What a lovely smile! You're so sweet. I love you.
-2. What a lovely smile! I love being together. You're so precious.
+2. What a lovely smile! Your face lights up. I love you.
 3. Look at your smile! I love you, sweetheart. I'm right here.
 
 ### 笑顔 × 褒める (`smile|praise`)
@@ -333,8 +334,8 @@
 ### 遊び × 提案 (`play|invitation`)
 
 1. Shall we play together? Let's try something. This could be fun.
-2. Here's our little game. Let's do it together. Ready when you are?
-3. Let's play together. Come try with me. What do you think?
+2. Let's start a game. Can you see this? It looks fun.
+3. Shall we play together? Here's our little toy. Let's have fun.
 
 ### 遊び × 繰り返す (`play|repeat`)
 
@@ -345,7 +346,7 @@
 ### 遊び × 始める (`play|start`)
 
 1. Ready to play? Let's get started. Here we go.
-2. Here's our little game. Here we go! Let's begin gently.
+2. Look at this toy! Ready for a game? Let's begin together.
 3. Let's play together. Let's get started. I'm right beside you.
 
 ### 遊び × 褒める (`play|praise`)
@@ -389,8 +390,8 @@
 ### 食事 × 提案 (`food|invitation`)
 
 1. Shall we eat? One little bite. I'll stay close.
-2. Here's a little food. Let's do it together. Ready when you are?
-3. A little food together. Come try with me. What do you think?
+2. Ready for some food? Here's a little bite. We can go slowly.
+3. Would you like food? One little bite now. I'll stay near.
 
 ### 食事 × 褒める (`food|praise`)
 
@@ -427,8 +428,8 @@
 ### 外出 × 提案 (`outside|invitation`)
 
 1. Shall we go outside? Let's look around. What do you see?
-2. We're going outside. Let's do it together. Ready when you are?
-3. Let's look outside. Come try with me. What do you think?
+2. Shall we go outside? Let's look all around. I'll stay close.
+3. Want some fresh air? We can go together. Let's look around.
 
 ### 外出 × 始める (`outside|start`)
 
@@ -459,8 +460,8 @@
 ### 音楽 × 提案 (`music|invitation`)
 
 1. Shall we sing? La, la, la! Let's try together.
-2. Here's a little song. Let's do it together. Ready when you are?
-3. Listen to our music. Come try with me. What do you think?
+2. Shall we sing now? Listen to this tune. La, la, la!
+3. Can you hear that? Shall we sing together? La, la, la!
 
 ### 音楽 × 始める (`music|start`)
 
@@ -497,8 +498,8 @@
 ### 飲む × 提案 (`drink|invitation`)
 
 1. Want a little sip? Here is your drink. Sip if you like.
-2. Here's your drink. Let's do it together. Ready when you are?
-3. Let's have a drink. Come try with me. What do you think?
+2. Shall we try drinking? Just a little sip. I'll stay nearby.
+3. Here's a little drink. Take it slowly now. I'm here, sweetheart.
 
 ### 飲む × 完了確認 (`drink|finish_check`)
 
