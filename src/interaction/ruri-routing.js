@@ -447,6 +447,121 @@ export const COMBINED_REPLIES = {
     "That was a bath! Now we can rest. I'm right here.",
     "All done with baths. That was a lot. Let's rest together.",
     "Your bath is finished. Let's get cozy now. I'll stay with you."
+  ],
+  "milk|pause": [
+    "Let's pause the milk. We can wait now. I'll stay with you.",
+    "Milk time can wait. There's no hurry. I'm right here.",
+    "Another sip can wait. Let's take a break. I'll be close."
+  ],
+  "diaper|pause": [
+    "Let's pause the change. We have time. I'm right here.",
+    "Diaper time can wait. No need to rush. I'll stay beside you.",
+    "A moment during changing. We'll take it slowly. I'm here, sweetheart."
+  ],
+  "bath|pause": [
+    "Let's pause bath time. No need to rush. I'll stay close.",
+    "Bath time can wait. We'll go gently. I'm here with you.",
+    "Let's slow the bath. We have time. I'll stay with you."
+  ],
+  "book|pause": [
+    "Let's pause the book. We can read later. I'm right here.",
+    "A pause in reading. Let's rest a moment. We'll return soon.",
+    "Let's stop this page. No need to rush. I'll stay with you."
+  ],
+  "play|pause": [
+    "Let's pause our game. We can rest now. I'm right here.",
+    "Playtime can wait. Let's take a break. I'll stay beside you.",
+    "Shall we stop playing? We can rest together. I'm here, sweetheart."
+  ],
+  "outside|pause": [
+    "Let's stop a moment. Our walk can wait. I'll stay near.",
+    "Pause our little walk. Let's look around. We have time.",
+    "A break while outside. We can wait here. I'm with you."
+  ],
+  "food|pause": [
+    "Let's pause eating now. We can wait. I'm beside you.",
+    "Food time can wait. No need to hurry. I'm right here.",
+    "Another bite can wait. Let's take a break. I'll stay close."
+  ],
+  "drink|pause": [
+    "Let's pause your drink. More sips can wait. I'm right here.",
+    "No more sips yet. We can wait. I'll stay with you.",
+    "Your drink can wait. Let's rest a little. I'm right here."
+  ],
+  "music|pause": [
+    "Let's pause our song. We can listen later. I'll stay close.",
+    "A little music break. We have time. I'm here with you.",
+    "Let's stop the music. We'll sing again later. I'm right here."
+  ],
+  "cry|pause": [
+    "We can pause now. I hear you crying. I'm here with you.",
+    "Let's rest a moment. I hear your cries. I'll stay close.",
+    "No need to rush. I hear you crying. We're here together."
+  ],
+  "hands|encouragement": [
+    "Try reaching your hand. I'm right here. You can go slowly.",
+    "Those hands can try. Just one little reach. I'll stay close.",
+    "Give your hand time. You can try again. I'm cheering you on."
+  ],
+  "feet|encouragement": [
+    "Try kicking those feet! I'm right here. You can try again.",
+    "One little kick? Give it a try! I'll stay close.",
+    "Those little toes! Try moving them. I'm cheering you on."
+  ],
+  "play|encouragement": [
+    "Try the game again. You can do this. I'm here with you.",
+    "Let's try that toy. Go at your pace. I'll stay close.",
+    "Playing takes practice. Give it a try. I'm right here."
+  ],
+  "voice|encouragement": [
+    "Want to make sounds? Give it a try. I'll listen closely.",
+    "Try your little voice. I'm listening, sweetheart. Take your time.",
+    "Another little sound? You can try. I'm right here."
+  ],
+  "milk|effort": [
+    "You're trying your milk. I see your effort. We'll go gently.",
+    "Little sips take practice. I see you trying. I'm right here.",
+    "You're working on drinking. I see your effort. Take it slowly."
+  ],
+  "food|effort": [
+    "You're trying that food. I see you trying. I'll stay close.",
+    "A new little bite. You're working on it. I'm right here.",
+    "You're learning about food. I can see that. Keep taking time."
+  ],
+  "rain|start": [
+    "Rain is starting now. Can you hear it? Let's listen together.",
+    "Here comes the rain! Drip, drop, drip. Let's listen together.",
+    "The first raindrops fall. Can you hear them? Come listen with me."
+  ],
+  "sun|start": [
+    "Here comes the sunshine! Look at that light. Let's look together.",
+    "The sunshine is coming. Shall we look outside? Look at that glow.",
+    "Sunlight is showing now. Look at the sky. Here it comes."
+  ],
+  "music|finish": [
+    "Our song is finished! All done singing. Let's rest together.",
+    "Music time is over. That was lovely. I'm right here.",
+    "That's the last note! We finished our song. Hooray for us."
+  ],
+  "book|finish": [
+    "Our book is finished! That's the last page. Well done, sweetheart.",
+    "Story time is over. We read together. What a lovely book.",
+    "All done reading now! Let's close the book. We can rest."
+  ],
+  "outside|finish": [
+    "Our little walk finished! Here we are. Let's get cozy.",
+    "Outside time is over. We're back together. I'm right here.",
+    "Our outing is finished. Let's take a rest. Here we are."
+  ],
+  "drink|finish": [
+    "All done with drinks! Your sipping is finished. Let's rest now.",
+    "That little drink finished. We can pause now. I'm right here.",
+    "No more sips now. Drinking time is done. Let's relax together."
+  ],
+  "play|finish": [
+    "Our game is finished! All done playing now. Well done, sweetheart.",
+    "Playtime is over now. Let's take a break. That was lovely.",
+    "That's the last game. We're all finished. Time for a rest."
   ]
 };
 
