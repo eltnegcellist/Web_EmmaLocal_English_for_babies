@@ -16,6 +16,20 @@ async function readHead(filename,settings){const b=await readFile(join(asset,fil
 const topic=await readHead('head-topic.f32',cfg.heads.topic);
 const labels=['affection','praise','achievement','effort','encouragement','invitation','start','finish','finish_check','care','inquiry','reassurance','repeat','pause','none'];
 const interaction=await readHead('head-interaction.f32',{shape:[15,385],classes:labels});
+const expectedSmokeRoutes = new Map([
+ ['かわいいね','interaction:affection'],
+ ['よくできたね','interaction:praise'],
+ ['頑張ってるね','interaction:effort'],
+ ['ミルクを上手に飲めたね','combined:milk:praise'],
+ ['ミルク飲もうか','combined:milk:invitation'],
+ ['ミルク終わったかな','combined:milk:finish_check'],
+ ['おむつ替え終わったかな','combined:diaper:finish_check'],
+ ['絵本読もうか','combined:book:invitation'],
+ ['泣いてるね、大丈夫だよ','combined:cry:reassurance'],
+ ['できなかったね','generic'],
+ ['眠くないね','generic'],
+ ['もう一回','interaction:repeat']
+]);
 const cases=[
 'かわいいね','よくできたね','できたね','頑張ってるね','頑張ってね','どうしたの？','大丈夫？','大丈夫だよ','お疲れさま',
 'ミルク飲もうか','ミルクを上手に飲めたね','ミルク終わったかな','おむつ替え終わったね','おむつ替え終わったかな',
@@ -35,6 +49,9 @@ try {
    const axes=selectRuriAxes(scores.topic,scores.interaction,true);
    const paired=!!(axes.topic&&axes.interaction&&combinedCandidates(axes.topic,axes.interaction));
    const route=paired?'combined:'+axes.topic+':'+axes.interaction:axes.topic||axes.interaction&&'interaction:'+axes.interaction||'generic';
+   if (expectedSmokeRoutes.has(text) && expectedSmokeRoutes.get(text) !== route) {
+     throw Error('Experimental Ruri-only route mismatch: '+text+' expected '+expectedSmokeRoutes.get(text)+' got '+route);
+   }
    console.log(JSON.stringify({text,topic:scores.topic.id,tp:+scores.topic.probability.toFixed(3),tm:+scores.topic.margin.toFixed(3),
     interaction:scores.interaction.id,ip:+scores.interaction.probability.toFixed(3),im:+scores.interaction.margin.toFixed(3),
     route,paired}));
