@@ -1,7 +1,7 @@
 // Non-blocking actual-ONNX diagnosis. Synthetic prompts are hand-selected
 // and do NOT constitute independent field accuracy or human gold labels.
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readFile, writeFile, mkdir} from 'node:fs/promises';
 import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRuriTokenizer} from '../src/semantic/tokenize.js';
@@ -12,6 +12,8 @@ const root=resolve(fileURLToPath(new URL('..',import.meta.url)));
 const asset=join(root,'semantic-assets/ruri70-int8-bd500193');
 const runtime=join(root,'semantic-assets/runtime-ort1.30.0-tokenizers0.2.0');
 const cfg=JSON.parse(await readFile(join(asset,'heads-config.json'),'utf8'));
+const qualityProbes=JSON.parse(await readFile(join(root,'research/interaction-ruri-qa-probes-20261013.json'),'utf8'));
+const probeByText=new Map(qualityProbes.cases.map(x=>[x.text,x]));
 const tokenizer=createRuriTokenizer(Tokenizer,JSON.parse(await readFile(join(asset,'tokenizer.json'),'utf8')),JSON.parse(await readFile(join(asset,'tokenizer_config.json'),'utf8')));
 async function readHead(filename,settings){const b=await readFile(join(asset,filename));return decodeHead(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),settings)}
 const topic=await readHead('head-topic.f32',cfg.heads.topic);
@@ -38,6 +40,7 @@ const cases=[
 'まだ終わってないね','できなかったね','眠くないね','笑ったね','眠いかな','起きたね','ただいま',
 '今日はいい天気だね','もう一回','ちょっと待ってね','寝返りできたね','ミルク'
 ];
+for(const probe of qualityProbes.cases){if(cases.includes(probe.text))throw Error('QA probe overlaps smoke suite: '+probe.text);cases.push(probe.text);}
 // Pinned actual-model guard cases. These are a small synthetic regression suite,
 // not an unbiased estimate of speech recognition quality.
 const expectedRoutes=new Map([
@@ -60,6 +63,7 @@ const expectedRoutes=new Map([
   ['眠いかな','sleep']
 ]);
 let guarded=0;
+const qaResults=[];
 ort.env.wasm.numThreads=1;ort.env.wasm.wasmPaths=runtime+'/';
 const session=await ort.InferenceSession.create(new Uint8Array(await readFile(join(asset,'model.onnx'))),{executionProviders:['wasm'],graphOptimizationLevel:'all'});
 try {
@@ -76,6 +80,15 @@ try {
      throw Error('Experimental Ruri-only route mismatch: '+text+' expected '+expectedSmokeRoutes.get(text)+' got '+route);
    }
    if(expectedRoutes.has(text)){assert.equal(route,expectedRoutes.get(text),`real Ruri route regression: ${text}`);guarded++;}
+   const probe=probeByText.get(text);
+   if(probe){
+      const record={id:probe.id,kind:probe.category,text,expected_topic:probe.expected_topic,expected_interaction:probe.expected_interaction,
+        topic:axes.topic,interaction:axes.interaction,topic_raw:scores.topic.rawId,interaction_raw:scores.interaction.rawId,
+        tp:+scores.topic.probability.toFixed(4),ip:+scores.interaction.probability.toFixed(4),route,
+        topic_match:axes.topic===probe.expected_topic,interaction_match:axes.interaction===probe.expected_interaction};
+      qaResults.push(record);
+      console.log('RURI_QA '+JSON.stringify(record));
+   }
    console.log(JSON.stringify({text,topic:scores.topic.id,tp:+scores.topic.probability.toFixed(3),tm:+scores.topic.margin.toFixed(3),
     interaction:scores.interaction.id,ip:+scores.interaction.probability.toFixed(3),im:+scores.interaction.margin.toFixed(3),
     route,paired}));
@@ -83,4 +96,11 @@ try {
  }
 }finally{await session.release?.();}
 assert.equal(guarded,expectedRoutes.size);
+const count=(xs,field)=>xs.filter(x=>x[field]).length;
+const byKind=Object.fromEntries([...new Set(qaResults.map(x=>x.kind))].map(k=>{const v=qaResults.filter(x=>x.kind===k);return [k,{n:v.length,topic_ok:count(v,'topic_match'),interaction_ok:count(v,'interaction_match'),both_ok:v.filter(x=>x.topic_match&&x.interaction_match).length}]}));
+const summary={status:qualityProbes.status,cases:qaResults.length,topic_exact:count(qaResults,'topic_match'),interaction_exact:count(qaResults,'interaction_match'),joint_exact:qaResults.filter(x=>x.topic_match&&x.interaction_match).length,by_kind:byKind};
+console.log('RURI_QA_SUMMARY '+JSON.stringify(summary));
+await mkdir(join(root,'.semantic-parity'),{recursive:true});
+await writeFile(join(root,'.semantic-parity/ruri-qa-20261013.json'),JSON.stringify({summary,rows:qaResults},null,2)+'\n');
+
 console.log('Measured real Ruri ONNX heads on '+cases.length+' Japanese prompts, '+guarded+' protected routes. NOT a field accuracy score.');
