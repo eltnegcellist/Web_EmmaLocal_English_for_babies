@@ -1,0 +1,471 @@
+{
+  "schema_version": "interaction-phase-a-draft-1",
+  "updated": "2026-10-12",
+  "status": "provisional_design_only_not_gold_labels",
+  "dataset_provenance": "synthetic manually authored design seeds, NOT natural speech frequency, NOT independently annotated",
+  "release_scope": {
+    "new_interaction_classes": 14,
+    "none_class": "none",
+    "reused_legacy_topics": [
+      "sleep",
+      "wake",
+      "cry",
+      "smile"
+    ],
+    "later": [
+      "tired",
+      "hot",
+      "cold",
+      "roll_over",
+      "crawling"
+    ]
+  },
+  "classification_axis": "single response route per turn; collect independent topic and interaction diagnostics; no Topic×Interaction composed English in v1",
+  "labels": [
+    {
+      "id": "affection",
+      "name_ja": "愛情・かわいさ",
+      "definition": "赤ちゃんの存在や愛らしさへの愛情",
+      "positive_seed": [
+        "かわいいね",
+        "大好きだよ",
+        "かわいすぎるね",
+        "愛しいね",
+        "愛してるよ",
+        "かわいいお顔だね",
+        "ぎゅーしたいね",
+        "大切だよ"
+      ],
+      "smoke_holdout": [
+        "とってもかわいい",
+        "ほんとにかわいい子だね",
+        "あなたが大好き",
+        "大事な宝物だよ"
+      ],
+      "potential_collision": "praise",
+      "annotation_rule": "発達の成功や手際を褒めている場合はpraiseにする。smile=笑顔の観察と混同しない"
+    },
+    {
+      "id": "praise",
+      "name_ja": "褒める・肯定",
+      "definition": "良い行動や様子への賞賛",
+      "positive_seed": [
+        "えらいね",
+        "上手だね",
+        "すごいね",
+        "よくできたね",
+        "とっても上手",
+        "上手にできたね",
+        "いい子だね",
+        "おりこうさんだね"
+      ],
+      "smoke_holdout": [
+        "お上手ね",
+        "それでいいよ",
+        "とってもえらいよ",
+        "ばっちりだね"
+      ],
+      "potential_collision": "achievement",
+      "annotation_rule": "『できた』の達成報告のみの場合はachievement候補。褒め言葉はpraise"
+    },
+    {
+      "id": "achievement",
+      "name_ja": "達成を喜ぶ",
+      "definition": "できた事実への喜び",
+      "positive_seed": [
+        "できたね",
+        "やったね",
+        "できたできた",
+        "やったあ",
+        "できたよ",
+        "成功したね",
+        "とうとうできたね",
+        "ちゃんとできたね"
+      ],
+      "smoke_holdout": [
+        "やりきったね",
+        "ほらできた",
+        "とうとうやれたね",
+        "もうできたんだ"
+      ],
+      "potential_collision": "praise",
+      "annotation_rule": "否定の『できなかった』や疑問の『できたかな』は成功断定禁止"
+    },
+    {
+      "id": "effort",
+      "name_ja": "努力を認める",
+      "definition": "いま努力している姿の観察・共感",
+      "positive_seed": [
+        "頑張ってるね",
+        "一生懸命だね",
+        "頑張ってるよ",
+        "今頑張ってるね",
+        "力いっぱいだね",
+        "よく頑張ってる",
+        "頑張っているんだね",
+        "一生懸命やってるね"
+      ],
+      "smoke_holdout": [
+        "すごく頑張ってるよ",
+        "一生懸命だよね",
+        "がんばっているなあ",
+        "全力でやってるね"
+      ],
+      "potential_collision": "encouragement",
+      "annotation_rule": "命令・未来志向の『頑張って』ではなく、現在の努力を見て認める"
+    },
+    {
+      "id": "encouragement",
+      "name_ja": "励まし・応援",
+      "definition": "これからの挑戦を支援する",
+      "positive_seed": [
+        "頑張って",
+        "頑張ってね",
+        "あと少しだよ",
+        "もうちょっとだよ",
+        "やってみよう",
+        "大丈夫、やってみよう",
+        "ゆっくりでいいよ",
+        "その調子だよ"
+      ],
+      "smoke_holdout": [
+        "あわてなくていいよ",
+        "応援してるよ",
+        "少しずつやろう",
+        "できるところまでね"
+      ],
+      "potential_collision": "effort",
+      "annotation_rule": "未達成の状態で成果を断定しない。『頑張ってるね』はeffort"
+    },
+    {
+      "id": "invitation",
+      "name_ja": "提案・一緒にする",
+      "definition": "何かをこれから一緒にする提案",
+      "positive_seed": [
+        "一緒にやろうか",
+        "何しようか",
+        "やってみようか",
+        "遊ぼうか",
+        "一緒にしようね",
+        "やってみる？",
+        "始めてみようか",
+        "これにしようか"
+      ],
+      "smoke_holdout": [
+        "一緒にやってみる？",
+        "次は何する？",
+        "ちょっとやってみる？",
+        "どっちにしようか"
+      ],
+      "potential_collision": "start",
+      "annotation_rule": "実際に開始すると断定しない。具体的なミルク/お風呂/絵本はlegacy Topic候補"
+    },
+    {
+      "id": "start",
+      "name_ja": "開始・準備",
+      "definition": "活動を始める合図",
+      "positive_seed": [
+        "始めるよ",
+        "いくよ",
+        "せーの",
+        "さあ始めよう",
+        "そろそろ始めるよ",
+        "はい、スタート",
+        "始まりだよ",
+        "いってみよう"
+      ],
+      "smoke_holdout": [
+        "今から始めるね",
+        "よーいどん",
+        "それじゃいくよ",
+        "準備はいいかな"
+      ],
+      "potential_collision": "invitation",
+      "annotation_rule": "『終わりだよ』と反対。『〜しようか』とは区別"
+    },
+    {
+      "id": "finish",
+      "name_ja": "終わり・完了",
+      "definition": "完了したことを述べる",
+      "positive_seed": [
+        "おしまい",
+        "終わったね",
+        "おしまいだよ",
+        "もう終わりだね",
+        "終わりました",
+        "おわり",
+        "これでおしまい",
+        "全部終わったよ"
+      ],
+      "smoke_holdout": [
+        "はい、おしまい",
+        "これで終わりだよ",
+        "もう済んだね",
+        "すっかり終わったね"
+      ],
+      "potential_collision": "finish_check",
+      "annotation_rule": "疑問『終わったかな？』否定『まだ終わってない』を除外"
+    },
+    {
+      "id": "finish_check",
+      "name_ja": "完了したか確認",
+      "definition": "まだ確信していない完了の問いかけ",
+      "positive_seed": [
+        "終わったかな",
+        "もう終わりかな",
+        "おしまいかな",
+        "終わった？",
+        "終わりにしようか",
+        "もういいかな",
+        "できたかな",
+        "これで終わり？"
+      ],
+      "smoke_holdout": [
+        "もうおしまいでいい？",
+        "全部終わったかしら",
+        "終わりにしていいかな",
+        "終わったのかなあ"
+      ],
+      "potential_collision": "finish",
+      "annotation_rule": "確定完了の英文を使わない。『終わりにしようか』はinvitationとの境界審査"
+    },
+    {
+      "id": "care",
+      "name_ja": "労い・いたわり",
+      "definition": "頑張った後の共感・ねぎらい",
+      "positive_seed": [
+        "お疲れさま",
+        "おつかれさま",
+        "お疲れだったね",
+        "よく頑張ったね",
+        "今日は頑張ったね",
+        "ゆっくり休もうね",
+        "大変だったね",
+        "よくやったよ、お疲れさま"
+      ],
+      "smoke_holdout": [
+        "お疲れさまでした",
+        "今日はいっぱい頑張ったね",
+        "頑張ったんだね",
+        "よくがんばりました"
+      ],
+      "potential_collision": "effort",
+      "annotation_rule": "努力が現在進行か事後かに着目。特定症状を診断しない"
+    },
+    {
+      "id": "inquiry",
+      "name_ja": "様子の確認",
+      "definition": "赤ちゃんに何があったか問いかける",
+      "positive_seed": [
+        "どうしたの",
+        "どうした？",
+        "何かな",
+        "どうしたのかな",
+        "何かあった？",
+        "どうしたんだろう",
+        "なあに",
+        "どうしたんだい"
+      ],
+      "smoke_holdout": [
+        "何が気になるのかな",
+        "何があったのかな",
+        "どうしたのかなあ",
+        "なにかあったの"
+      ],
+      "potential_collision": "reassurance",
+      "annotation_rule": "症状や感情を勝手に決めつけない。『大丈夫？』は確認であり断定しない"
+    },
+    {
+      "id": "reassurance",
+      "name_ja": "安心させる",
+      "definition": "側にいると伝え安心を支える",
+      "positive_seed": [
+        "大丈夫だよ",
+        "そばにいるよ",
+        "ここにいるよ",
+        "心配しないでね",
+        "大丈夫、いるよ",
+        "一緒にいるよ",
+        "安心してね",
+        "だいじょうぶだよ"
+      ],
+      "smoke_holdout": [
+        "そばにいるからね",
+        "怖くないようにしようね",
+        "いつでもここにいるよ",
+        "抱っこしようね"
+      ],
+      "potential_collision": "inquiry",
+      "annotation_rule": "『大丈夫？』と『大丈夫だよ』を分ける。医学的な安全を断定しない"
+    },
+    {
+      "id": "repeat",
+      "name_ja": "繰り返し",
+      "definition": "もう一度やる提案",
+      "positive_seed": [
+        "もう一回",
+        "もう一度",
+        "またやろう",
+        "もう一回やろうか",
+        "もう一度やってみよう",
+        "もういっかい",
+        "もう一回いくよ",
+        "またやってみる？"
+      ],
+      "smoke_holdout": [
+        "今度もやろうか",
+        "もう一度する？",
+        "何度でもやろうね",
+        "もう一度挑戦ね"
+      ],
+      "potential_collision": "start",
+      "annotation_rule": "一度行ったことを前提とするが、成功を断定しない"
+    },
+    {
+      "id": "pause",
+      "name_ja": "待つ・一時停止",
+      "definition": "しばらく待つ・ペースを緩める",
+      "positive_seed": [
+        "ちょっと待ってね",
+        "少し待ってね",
+        "待っててね",
+        "一休みしようか",
+        "今ちょっと待って",
+        "ゆっくりいこうね",
+        "少し休もうね",
+        "ちょっと休もうか"
+      ],
+      "smoke_holdout": [
+        "少しだけ待とうね",
+        "慌てなくていいよ",
+        "ひと休みだよ",
+        "まず落ち着こうね"
+      ],
+      "potential_collision": "finish",
+      "annotation_rule": "終わったと断定しない。強制的に泣き止ませる英文は禁止"
+    }
+  ],
+  "legacy_smoke": {
+    "sleep": [
+      "眠いのかな",
+      "眠そうだね",
+      "そろそろ眠たいかな",
+      "ねむくなってきたね"
+    ],
+    "wake": [
+      "起きたね",
+      "お目覚めだね",
+      "目が覚めたかな",
+      "起きたの？"
+    ],
+    "cry": [
+      "泣いてるね",
+      "泣いちゃった",
+      "涙が出たね",
+      "泣いてるのかな"
+    ],
+    "smile": [
+      "笑ってるね",
+      "にこにこだね",
+      "笑ったね",
+      "いい笑顔だね"
+    ]
+  },
+  "safety_and_negative_minimal_pairs": [
+    [
+      "終わったね",
+      "finish"
+    ],
+    [
+      "終わったかな",
+      "finish_check"
+    ],
+    [
+      "まだ終わってないね",
+      "none; NOT finish"
+    ],
+    [
+      "できたね",
+      "achievement"
+    ],
+    [
+      "できなかったね",
+      "none; NOT achievement"
+    ],
+    [
+      "できたかな",
+      "finish_check or inquiry; NOT confident achievement"
+    ],
+    [
+      "頑張ってるね",
+      "effort"
+    ],
+    [
+      "頑張ってね",
+      "encouragement"
+    ],
+    [
+      "かわいいね",
+      "affection"
+    ],
+    [
+      "笑ったね",
+      "legacy:smile"
+    ],
+    [
+      "どうしたの？",
+      "inquiry"
+    ],
+    [
+      "大丈夫だよ",
+      "reassurance"
+    ],
+    [
+      "大丈夫？",
+      "inquiry; NOT reassurance"
+    ],
+    [
+      "泣いてるね",
+      "legacy:cry"
+    ],
+    [
+      "泣いてないよ",
+      "none; NOT cry"
+    ],
+    [
+      "眠いかな",
+      "legacy:sleep"
+    ],
+    [
+      "眠くないね",
+      "none; NOT sleep"
+    ],
+    [
+      "起きたね",
+      "legacy:wake"
+    ],
+    [
+      "起きてないね",
+      "none; NOT wake"
+    ],
+    [
+      "ミルク飲もうか",
+      "legacy:milk; invitation for diagnostics only"
+    ],
+    [
+      "おむつ終わったね",
+      "legacy:diaper; finish for diagnostics only"
+    ],
+    [
+      "寝返りできたね",
+      "achievement possible; NOT sleep"
+    ]
+  ],
+  "policy": {
+    "english_at_runtime": "fixed pre-approved phrases only; no runtime Gemma in Lite",
+    "training": "review labels first; group paraphrase families before splitting train/dev/test; don't certify this file as gold",
+    "priority": "new interaction high-confidence explicit utterance outranks weak past-topic context; explicit concrete current topic takes initial precedence",
+    "threshold": "calibrate on held-out dev independently; do not compare separate head softmax values directly",
+    "on_uncertainty": "abstain to existing Topic/generic; avoid unsupported medical and emotional claims"
+  }
+}
