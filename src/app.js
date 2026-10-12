@@ -97,7 +97,7 @@ function restoreUnspokenTurn(){
   if(speculativeEngineSnapshot){engine.restoreTurnState(speculativeEngineSnapshot);speculativeEngineSnapshot=null;}
 }
 function isLiveTurn(revision,epoch){
-  return epoch===conversationEpoch && running && (revision===null || turnRevisions.isCurrent(revision));
+  return epoch===conversationEpoch && (revision===null || (running && turnRevisions.isCurrent(revision)));
 }
 let semanticPanel;
 let preparingConversation=false;
