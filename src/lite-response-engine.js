@@ -808,6 +808,15 @@ export function allLiteReplyTemplatesForValidation() {
   return [...GENERIC_REPLIES, ...SCENES.flatMap(scene => scene.replies), ...DRINK_SCENE.replies];
 }
 
+// Offline phoneme audit only: preserve the exact topic/scene associations.
+export function allLiteReplyGroupsForPhonemeAudit() {
+  return {
+    generic: [...GENERIC_REPLIES],
+    ...Object.fromEntries(SCENES.map(({id, replies}) => [id, [...replies]])),
+    drink: [...DRINK_SCENE.replies],
+  };
+}
+
 export class LiteResponseEngine {
   constructor() {
     this.recentReplies = [];
