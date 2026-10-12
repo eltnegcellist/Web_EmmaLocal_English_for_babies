@@ -1,3 +1,16 @@
+# 更新: 2026-10-12 — PR-C優先方針
+
+**以下のGemma大量生成手順より、今回追加したChatGPT執筆の統一英文草案を先にレビューすること。** 
+- Web PR [#72](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/72) に、通常Lite 197セットの再編集と新Interaction 112セットの草案がある。
+- Android PR [#37](https://github.com/eltnegcellist/Android_English_character_for_baby/pull/37) に、同じ197セットと112セットがある。
+- 英文全件レビュー: `docs/english/UNIFIED_309_REVIEW.md`（各PRブランチ上）。新Interaction草案: Webの `shared/interaction-replies.proposed.json`、Androidの `research/interaction-replies.proposed.json`。
+- 両者309セットは3文・6〜12語・1文4語以内、両版で一致。**新Interaction 112セットは候補のみで通常会話未接続。**
+- 現時点ではGemmaによる280候補の新規生成を必須とはしない。Codexはまず意味・重複・英語らしさの独立確認、Kiki発音試聴、分類器との接続準備を行う。追加候補の比較が必要なら、以下のGemma生成手順を選択可能な研究手段として実施し、出自と品質を分けて記録する。
+- 既存の『押して聞く』は別カタログ。1文／3文切替を壊さない。
+- PR #71の実験用Ruri head・推論測定・学習は英文とは別に継続。無断でmainへマージしない。
+
+---
+
 # Codex引き継ぎ：Gemmaによる日常の語りかけ英語ライブラリ作成（PR-C）
 
 - 作成日：2026-10-12
