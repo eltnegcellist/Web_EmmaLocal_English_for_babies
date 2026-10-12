@@ -112,7 +112,7 @@
     "head-interaction.f32": {
       "url": "../semantic-assets/ruri70-int8-bd500193/head-interaction.f32",
       "bytes": 23100,
-      "sha256": "d65b1e4e7ac4c4b73a2410f0213dd478aa745b22a82ad998393b745c66045582"
+      "sha256": "e0968799d9e477d512f0312350be458b8b3a84f6322fad8564bed7ff4645a464"
     }
   },
   "loadBytes": 92427692,
