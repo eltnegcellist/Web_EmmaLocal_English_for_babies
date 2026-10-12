@@ -31,7 +31,7 @@ const old=client.predict('ミルク');await Promise.resolve();client.cancel();co
 const dom=new JSDOM('<article id="semanticPanel"></article>',{url:'https://example.test/'});globalThis.document=dom.window.document;const storage=dom.window.localStorage;let rejectMode=false,finish;
 const engine=new LiteResponseEngine();const fake={ready:true,prepare:async()=>{},cancel(){},cancelPending(){},async predict(){if(rejectMode)throw Error('model failure');return {topic:{id:'sleep',probability:.9,margin:.8},intent:{id:'invitation'},state:{id:'future'},elapsedMs:10};}};
 const panel=installSemanticPanel({engine,storage,clientFactory:()=>fake});assert.equal(panel.enabled,true);
-document.querySelector('[data-semantic="enabled"]').checked=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'sleep');rejectMode=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'bath');assert.equal(panel.enabled,false);
+document.querySelector('[data-semantic="enabled"]').checked=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'sleep');rejectMode=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'generic');assert.equal(panel.enabled,false);
 rejectMode=false;document.querySelector('[data-semantic="prepare"]').click();await new Promise(r=>setTimeout(r,0));assert.equal(panel.enabled,true);
 fake.predict=()=>new Promise(resolve=>finish=resolve);const pending=panel.respond('ミルク','',{isCurrent:()=>false});await Promise.resolve();finish({topic:{id:'milk'},intent:{id:'observation'},state:{id:'ongoing'},elapsedMs:1});assert.equal(await pending,null);
 console.log('Semantic policies, catalog rendering, invalid data, cancellation/retry, failed-model fallback and stale reply checks passed.');

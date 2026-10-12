@@ -1,0 +1,477 @@
+{
+  "schema_version": 1,
+  "status": "UNADJUDICATED_EXPLORATORY_NOT_INDEPENDENT_GOLD",
+  "created": "2026-10-13",
+  "notes": "Hand-written Japanese probes not included as exact utterances in 477-item synthetic dataset; not sampled caregiver speech; expected labels are provisional and ambiguity requires human review. Do not use as performance claim or fit training on these examples.",
+  "cases": [
+    {
+      "id": "qa001",
+      "category": "interaction",
+      "text": "ほんとうにかわいい子だね",
+      "expected_topic": null,
+      "expected_interaction": "affection"
+    },
+    {
+      "id": "qa002",
+      "category": "interaction",
+      "text": "あなたは大切な宝物だよ",
+      "expected_topic": null,
+      "expected_interaction": "affection"
+    },
+    {
+      "id": "qa003",
+      "category": "interaction",
+      "text": "とても上手だったね",
+      "expected_topic": null,
+      "expected_interaction": "praise"
+    },
+    {
+      "id": "qa004",
+      "category": "interaction",
+      "text": "すごく上手にできたね",
+      "expected_topic": null,
+      "expected_interaction": "praise"
+    },
+    {
+      "id": "qa005",
+      "category": "interaction",
+      "text": "とうとうできるようになったね",
+      "expected_topic": null,
+      "expected_interaction": "achievement"
+    },
+    {
+      "id": "qa006",
+      "category": "interaction",
+      "text": "やっと成功したね",
+      "expected_topic": null,
+      "expected_interaction": "achievement"
+    },
+    {
+      "id": "qa007",
+      "category": "interaction",
+      "text": "一生懸命がんばってるね",
+      "expected_topic": null,
+      "expected_interaction": "effort"
+    },
+    {
+      "id": "qa008",
+      "category": "interaction",
+      "text": "今も頑張っているんだね",
+      "expected_topic": null,
+      "expected_interaction": "effort"
+    },
+    {
+      "id": "qa009",
+      "category": "interaction",
+      "text": "もう少し頑張ってみよう",
+      "expected_topic": null,
+      "expected_interaction": "encouragement"
+    },
+    {
+      "id": "qa010",
+      "category": "interaction",
+      "text": "慌てないで試してみよう",
+      "expected_topic": null,
+      "expected_interaction": "encouragement"
+    },
+    {
+      "id": "qa011",
+      "category": "interaction",
+      "text": "一緒にやってみる？",
+      "expected_topic": null,
+      "expected_interaction": "invitation"
+    },
+    {
+      "id": "qa012",
+      "category": "interaction",
+      "text": "二人で一緒にやってみようか",
+      "expected_topic": null,
+      "expected_interaction": "invitation"
+    },
+    {
+      "id": "qa013",
+      "category": "interaction",
+      "text": "これから遊びを始めるね",
+      "expected_topic": null,
+      "expected_interaction": "start"
+    },
+    {
+      "id": "qa014",
+      "category": "interaction",
+      "text": "いまから始めようね",
+      "expected_topic": null,
+      "expected_interaction": "start"
+    },
+    {
+      "id": "qa015",
+      "category": "interaction",
+      "text": "これでおしまいだね",
+      "expected_topic": null,
+      "expected_interaction": "finish"
+    },
+    {
+      "id": "qa016",
+      "category": "interaction",
+      "text": "もう全部終わったみたいだね",
+      "expected_topic": null,
+      "expected_interaction": "finish"
+    },
+    {
+      "id": "qa017",
+      "category": "interaction",
+      "text": "もう全部終わったかな",
+      "expected_topic": null,
+      "expected_interaction": "finish_check"
+    },
+    {
+      "id": "qa018",
+      "category": "interaction",
+      "text": "おしまいになったかな？",
+      "expected_topic": null,
+      "expected_interaction": "finish_check"
+    },
+    {
+      "id": "qa019",
+      "category": "interaction",
+      "text": "今日もおつかれさま",
+      "expected_topic": null,
+      "expected_interaction": "care"
+    },
+    {
+      "id": "qa020",
+      "category": "interaction",
+      "text": "今日は大変だったね",
+      "expected_topic": null,
+      "expected_interaction": "care"
+    },
+    {
+      "id": "qa021",
+      "category": "interaction",
+      "text": "なにかあったのかな",
+      "expected_topic": null,
+      "expected_interaction": "inquiry"
+    },
+    {
+      "id": "qa022",
+      "category": "interaction",
+      "text": "どうしたんだろうね",
+      "expected_topic": null,
+      "expected_interaction": "inquiry"
+    },
+    {
+      "id": "qa023",
+      "category": "interaction",
+      "text": "ここにいるから大丈夫だよ",
+      "expected_topic": null,
+      "expected_interaction": "reassurance"
+    },
+    {
+      "id": "qa024",
+      "category": "interaction",
+      "text": "いつでもそばにいるからね",
+      "expected_topic": null,
+      "expected_interaction": "reassurance"
+    },
+    {
+      "id": "qa025",
+      "category": "interaction",
+      "text": "もう一度やってみたい？",
+      "expected_topic": null,
+      "expected_interaction": "repeat"
+    },
+    {
+      "id": "qa026",
+      "category": "interaction",
+      "text": "あと一回やろうか",
+      "expected_topic": null,
+      "expected_interaction": "repeat"
+    },
+    {
+      "id": "qa027",
+      "category": "interaction",
+      "text": "少しだけ待っていてね",
+      "expected_topic": null,
+      "expected_interaction": "pause"
+    },
+    {
+      "id": "qa028",
+      "category": "interaction",
+      "text": "ちょっとひと休みしよう",
+      "expected_topic": null,
+      "expected_interaction": "pause"
+    },
+    {
+      "id": "qa029",
+      "category": "topic",
+      "text": "これはミルクだよ",
+      "expected_topic": "milk",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa030",
+      "category": "topic",
+      "text": "おむつが濡れてるね",
+      "expected_topic": "diaper",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa031",
+      "category": "topic",
+      "text": "お風呂のお湯だよ",
+      "expected_topic": "bath",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa032",
+      "category": "topic",
+      "text": "絵本には絵があるね",
+      "expected_topic": "book",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa033",
+      "category": "topic",
+      "text": "雨の音がするよ",
+      "expected_topic": "rain",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa034",
+      "category": "topic",
+      "text": "お日さまが出ているね",
+      "expected_topic": "sun",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa035",
+      "category": "topic",
+      "text": "おててを動かしているね",
+      "expected_topic": "hands",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa036",
+      "category": "topic",
+      "text": "つま先を動かしているね",
+      "expected_topic": "feet",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa037",
+      "category": "topic",
+      "text": "ねむそうなお顔だね",
+      "expected_topic": "sleep",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa038",
+      "category": "topic",
+      "text": "目が覚めたんだね",
+      "expected_topic": "wake",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa039",
+      "category": "topic",
+      "text": "お外の景色が見えるね",
+      "expected_topic": "outside",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa040",
+      "category": "combined",
+      "text": "ミルクを飲むのがとても上手だったよ",
+      "expected_topic": "milk",
+      "expected_interaction": "praise"
+    },
+    {
+      "id": "qa041",
+      "category": "combined",
+      "text": "ミルクの時間はもう終わったかな？",
+      "expected_topic": "milk",
+      "expected_interaction": "finish_check"
+    },
+    {
+      "id": "qa042",
+      "category": "combined",
+      "text": "おむつ替えをそろそろ始めようか",
+      "expected_topic": "diaper",
+      "expected_interaction": "invitation"
+    },
+    {
+      "id": "qa043",
+      "category": "combined",
+      "text": "おむつ替えが終わったよ",
+      "expected_topic": "diaper",
+      "expected_interaction": "finish"
+    },
+    {
+      "id": "qa044",
+      "category": "combined",
+      "text": "一緒にお風呂に入ってみようか",
+      "expected_topic": "bath",
+      "expected_interaction": "invitation"
+    },
+    {
+      "id": "qa045",
+      "category": "combined",
+      "text": "お風呂が終わったかな？",
+      "expected_topic": "bath",
+      "expected_interaction": "finish_check"
+    },
+    {
+      "id": "qa046",
+      "category": "combined",
+      "text": "この絵本をもう一度読もうか",
+      "expected_topic": "book",
+      "expected_interaction": "repeat"
+    },
+    {
+      "id": "qa047",
+      "category": "combined",
+      "text": "音楽をもう一度聞こうね",
+      "expected_topic": "music",
+      "expected_interaction": "repeat"
+    },
+    {
+      "id": "qa048",
+      "category": "combined",
+      "text": "泣いてもそばにいるからね",
+      "expected_topic": "cry",
+      "expected_interaction": "reassurance"
+    },
+    {
+      "id": "qa049",
+      "category": "combined",
+      "text": "おもちゃを一生懸命つかもうとしてるね",
+      "expected_topic": "play",
+      "expected_interaction": "effort"
+    },
+    {
+      "id": "qa050",
+      "category": "combined",
+      "text": "おててを上手に動かせたね",
+      "expected_topic": "hands",
+      "expected_interaction": "praise"
+    },
+    {
+      "id": "qa051",
+      "category": "combined",
+      "text": "お散歩を始めようね",
+      "expected_topic": "outside",
+      "expected_interaction": "start"
+    },
+    {
+      "id": "qa052",
+      "category": "combined",
+      "text": "お水を飲み終わったかな",
+      "expected_topic": "drink",
+      "expected_interaction": "finish_check"
+    },
+    {
+      "id": "qa053",
+      "category": "combined",
+      "text": "お洋服は着替え終わったかな",
+      "expected_topic": "clothes",
+      "expected_interaction": "finish_check"
+    },
+    {
+      "id": "qa054",
+      "category": "combined",
+      "text": "お腹は大丈夫かな",
+      "expected_topic": "tummy",
+      "expected_interaction": "inquiry"
+    },
+    {
+      "id": "qa055",
+      "category": "combined",
+      "text": "かわいい笑顔を見せてくれたね",
+      "expected_topic": "smile",
+      "expected_interaction": "affection"
+    },
+    {
+      "id": "qa056",
+      "category": "negative",
+      "text": "まだできていないんだね",
+      "expected_topic": null,
+      "expected_interaction": null
+    },
+    {
+      "id": "qa057",
+      "category": "negative",
+      "text": "まだおしまいではないんだね",
+      "expected_topic": null,
+      "expected_interaction": null
+    },
+    {
+      "id": "qa058",
+      "category": "negative",
+      "text": "終わっていないかな",
+      "expected_topic": null,
+      "expected_interaction": null
+    },
+    {
+      "id": "qa059",
+      "category": "negative",
+      "text": "ミルクを飲み終えていないね",
+      "expected_topic": "milk",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa060",
+      "category": "negative",
+      "text": "おむつはまだ替えてないね",
+      "expected_topic": "diaper",
+      "expected_interaction": null
+    },
+    {
+      "id": "qa061",
+      "category": "negative",
+      "text": "今は眠くないんだね",
+      "expected_topic": null,
+      "expected_interaction": null
+    },
+    {
+      "id": "qa062",
+      "category": "negative",
+      "text": "泣いてはいないんだよ",
+      "expected_topic": null,
+      "expected_interaction": null
+    },
+    {
+      "id": "qa063",
+      "category": "negative",
+      "text": "笑っていないみたいだね",
+      "expected_topic": null,
+      "expected_interaction": null
+    },
+    {
+      "id": "qa064",
+      "category": "negative",
+      "text": "まだ成功していないね",
+      "expected_topic": null,
+      "expected_interaction": null
+    },
+    {
+      "id": "qa065",
+      "category": "negative",
+      "text": "まだ始めてないんだよ",
+      "expected_topic": null,
+      "expected_interaction": null
+    },
+    {
+      "id": "qa066",
+      "category": "negative",
+      "text": "できなかったけど大丈夫だよ",
+      "expected_topic": null,
+      "expected_interaction": "reassurance"
+    },
+    {
+      "id": "qa067",
+      "category": "negative",
+      "text": "今日はミルクを飲まなかったね",
+      "expected_topic": "milk",
+      "expected_interaction": null
+    }
+  ]
+}

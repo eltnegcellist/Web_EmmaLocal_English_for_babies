@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { LiteResponseEngine, splitSentences, isMeaningfulUtterance } from './src/lite-response-engine.js';
+import { LiteResponseEngine, splitSentences, isMeaningfulUtterance, allLiteReplyTemplatesForValidation } from './src/lite-response-engine.js';
 import { toSpokenEnglish, withChanSuffix } from './src/name-pronunciation.js';
 
 const contract = JSON.parse(readFileSync(new URL('./shared/lite-topic-contract.json', import.meta.url), 'utf8'));
@@ -112,6 +112,40 @@ console.log('Generic fallback variety test OK:', uniqueGeneric.size, 'unique / 2
 
 
 
+
+// Static quality gate for ordinary conversation; the independent Play Topics
+// catalog and 1/3-sentence toggle are covered by test-features.mjs.
+const allLiteReplies = allLiteReplyTemplatesForValidation();
+if (allLiteReplies.length !== 197) throw new Error(`Expected 197 curated Lite replies, got ${allLiteReplies.length}`);
+for (const reply of allLiteReplies) {
+  const spoken = reply.replaceAll('{name}', 'Mayu');
+  const sentences = splitSentences(spoken);
+  const counts = sentences.map(x => (x.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || []).length);
+  const total = counts.reduce((a, b) => a + b, 0);
+  if (sentences.length !== 3 || counts.some(n => n > 4) || total < 6 || total > 12) {
+    throw new Error(`Invalid baby-directed reply: ${spoken}; counts=${counts}`);
+  }
+}
+console.log('197 authored Lite replies pass compact 3-sentence style gate');
+
+const stockFillers = ['nice and slow', 'nice and easy', 'take your time', 'here we go', 'near and far', "let's wonder"];
+const stockFillerEngine = new LiteResponseEngine();
+for (const input of [
+  'これは特定の話題ではないよ',
+  'ミルク飲もうね',
+  'ごはん食べようか',
+  'げっぷ出たね',
+  'お風呂入ろうね',
+  'おむつ替えようね',
+  'お散歩行こうね',
+]) {
+  const english = stockFillerEngine.respond(input).english.toLowerCase();
+  for (const filler of stockFillers) {
+    if (english.includes(filler)) throw new Error(`Stock filler "${filler}" in: ${english}`);
+  }
+}
+console.log('No repetitive low-information Lite stock filler in smoke replies');
+
 const meaninglessCases=['','あー','うー','えーー','んー','あうあう','うんうん','えっと'];
 for(const input of meaninglessCases){
   if(isMeaningfulUtterance(input)) throw new Error(`meaningless gate should reject: ${input}`);
@@ -136,3 +170,34 @@ if(switchEngine.respond('どうかな').scene!=='milk') throw new Error('topic s
 if(switchEngine.respond('お風呂入ろうね').scene!=='bath') throw new Error('explicit bath should override milk immediately');
 if(switchEngine.respond('気持ちいいね').scene!=='bath') throw new Error('bath context should persist');
 console.log('One-turn topic memory tests OK');
+
+
+// PR-C proposed Interaction bank is NOT wired into live Lite yet.
+// Validate it without changing the independent "Press to listen" catalog.
+const proposedInteraction = JSON.parse(readFileSync(new URL('./shared/interaction-replies.proposed.json', import.meta.url), 'utf8'));
+const interactionIds = ['affection','praise','achievement','effort','encouragement','invitation','start','finish','finish_check','care','inquiry','reassurance','repeat','pause'];
+if (proposedInteraction.status !== 'ASSISTANT_AUTHORED_CANDIDATES_NOT_HUMAN_APPROVED' || proposedInteraction.provenance.runtime_active !== false) {
+  throw new Error('Interaction draft was unexpectedly activated or marked reviewed');
+}
+if (Object.keys(proposedInteraction.replies).length !== interactionIds.length) throw new Error('Unexpected Interaction label count');
+const seenAll = new Set(allLiteReplies.map(s => s.toLowerCase()));
+let draftCount = 0;
+for (const label of interactionIds) {
+  const candidates = proposedInteraction.replies[label];
+  if (!Array.isArray(candidates) || candidates.length !== 8) throw new Error('Eight proposed replies required for ' + label);
+  for (const reply of candidates) {
+    const sentences = splitSentences(reply);
+    const counts = sentences.map(s => (s.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || []).length);
+    const total = counts.reduce((x,y)=>x+y,0);
+    if (sentences.length !== 3 || total < 6 || total > 12 || counts.some(n=>n>4)) {
+      throw new Error('Invalid Interaction draft: ' + label + ': ' + reply);
+    }
+    if (seenAll.has(reply.toLowerCase())) throw new Error('Duplicate in unified English catalog: ' + reply);
+    seenAll.add(reply.toLowerCase());
+    if (label === 'finish_check' && !sentences.some(s=>s.endsWith('?'))) throw new Error('finish_check must ask a question: ' + reply);
+    if (['effort','encouragement'].includes(label) && /you did it/i.test(reply)) throw new Error(label + ' must not assert success: ' + reply);
+    draftCount++;
+  }
+}
+if (draftCount !== 112 || allLiteReplies.length + draftCount !== 309) throw new Error('Unified English catalog count mismatch');
+console.log('Unified 309 English sets validated: 197 active + 112 inactive review candidates.');
