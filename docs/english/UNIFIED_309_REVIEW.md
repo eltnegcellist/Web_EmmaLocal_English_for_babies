@@ -271,10 +271,10 @@
 1. Would you like some? Here's a little sip. There you go!
 2. Here's your drink! Ready for a sip? Here you are!
 3. Drink time! One little sip. How does it taste?
-4. Want a little sip? Here's your drink. Take your time!
+4. Want a little sip? Here's your drink. Sip if you like!
 5. Want another sip? No need to hurry. Here you go!
 6. {name}, your drink! Here's a little sip. There you go!
-7. {name}, thirsty? Let's have a drink. Take your time!
+7. {name}, thirsty? Let's have a drink. Sip when you're ready!
 
 ## C. affection — 愛情・かわいい（8セット・採用前の草案）
 
