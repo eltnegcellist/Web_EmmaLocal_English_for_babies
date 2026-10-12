@@ -145,35 +145,11 @@ export const INTERACTION_REPLIES = {
 
 export const INTERACTION_LABELS = ["affection","praise","achievement","effort","encouragement","invitation","start","finish","finish_check","care","inquiry","reassurance","repeat","pause"];
 
-const WORDS = {
-  affection: /かわいい|可愛い|大好き|愛して|愛しい|いとしい|宝物/,
-  praise: /よくでき|えらい|偉い|上手|おりこう|すごい|素晴らし|ばっちり/,
-  achievement: /できた|やったね|成功し|やりきった|やり遂げた/,
-  effort: /頑張ってる|頑張っている|がんばってる|一生懸命|努力して/,
-  encouragement: /頑張って(?:ね|よ|ください|$)|がんばって(?:ね|よ|$)|できるよ|その調子|焦らなく|ゆっくりでいい/,
-  invitation: /しようか|やろうか|遊ぼうか|あそぼうか|一緒に|いっしょに|してみる/,
-  start: /始める|はじめる|スタート|せーの|よーい|いくよ|始めよう/,
-  finish: /終わった|終わり|おしまい|済んだ|終わりました|終わったよ/,
-  finish_check: /終わったかな|終わった[?？]|終わりかな|おしまいかな|できたかな|終わりにしようか|終わったのかな/,
-  care: /お疲れ|おつかれ|頑張った|がんばった|大変だった|頑張りました/,
-  inquiry: /どうした|なあに|何があった|大丈夫[?？]|大丈夫かな|なにかあった/,
-  reassurance: /大丈夫だよ|だいじょうぶだよ|そばにいる|ここにいる|安心して|一緒にいる/,
-  repeat: /もう一回|もう一度|またやろう|もういっかい/,
-  pause: /ちょっと待って|少し待って|待ってて|休もうか|ひと休み|一休み|休憩しよう/
-};
-const NEGATION = /終わってない|終わらな|できなかった|できてない|まだできない|泣いてない|笑ってない|起きてない|眠くない|大丈夫じゃない|大丈夫ではない/;
-const STRONG_QUESTION = /(?:かな|かしら|でしょうか|[?？])\s*$/;
 
-export function selectInteraction(text, prediction, explicitCurrentTopic = false) {
-  if (!prediction || explicitCurrentTopic) return null;
-  const label = prediction.id;
-  if (!INTERACTION_REPLIES[label] || prediction.probability < 0.40 || prediction.margin < 0) return null;
-  const normalized = String(text || '').replace(/[\s、。!！]/g, '');
-  if (NEGATION.test(normalized)) return null;
-  if (!WORDS[label].test(normalized)) return null;
-  if (label === 'finish' && STRONG_QUESTION.test(normalized)) return null;
-  if (label === 'achievement' && STRONG_QUESTION.test(normalized)) return null;
-  if (label === 'reassurance' && STRONG_QUESTION.test(normalized)) return null;
-  if (label === 'finish_check' && !STRONG_QUESTION.test(normalized)) return null;
-  return label;
+// Legacy diagnostic helper only. Even this helper uses only the Ruri
+// classifier's label and score: no Japanese keyword or regular-expression gates.
+export function selectInteraction(_text, prediction) {
+  const label = prediction?.id;
+  return label && Object.hasOwn(INTERACTION_REPLIES, label) && prediction.probability >= 0.40
+    ? label : null;
 }
