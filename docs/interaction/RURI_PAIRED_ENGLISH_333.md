@@ -68,15 +68,15 @@
 
 ### ミルク × 一時停止 (`milk|pause`)
 
-1. Let's pause the milk. We can wait now. I'll stay with you.
+1. Let's pause feeding. We can wait now. I'll stay with you.
 2. Milk time can wait. There's no hurry. I'm right here.
 3. Another sip can wait. Let's take a break. I'll be close.
 
 ### ミルク × 頑張りを認める (`milk|effort`)
 
-1. You're trying your milk. I see your effort. We'll go gently.
+1. You're trying to drink. I see your effort. We'll go gently.
 2. Little sips take practice. I see you trying. I'm right here.
-3. You're working on drinking. I see your effort. Take it slowly.
+3. You're practicing little sips. I see your effort. We'll go gently.
 
 ## diaper — おむつ（6組）
 
@@ -112,7 +112,7 @@
 
 ### おむつ × 一時停止 (`diaper|pause`)
 
-1. Let's pause the change. We have time. I'm right here.
+1. Let's pause changing. We have time. I'm right here.
 2. Diaper time can wait. No need to rush. I'll stay beside you.
 3. A moment during changing. We'll take it slowly. I'm here, sweetheart.
 
@@ -158,7 +158,7 @@
 
 1. Let's pause bath time. No need to rush. I'll stay close.
 2. Bath time can wait. We'll go gently. I'm here with you.
-3. Let's slow the bath. We have time. I'll stay with you.
+3. Let's slow down now. We have time. I'll stay with you.
 
 ## hug — 抱っこ（5組）
 
@@ -298,7 +298,7 @@
 
 ### 絵本 × 一時停止 (`book|pause`)
 
-1. Let's pause the book. We can read later. I'm right here.
+1. Let's pause reading. We can read later. I'm right here.
 2. A pause in reading. Let's rest a moment. We'll return soon.
 3. Let's stop this page. No need to rush. I'll stay with you.
 
@@ -420,7 +420,7 @@
 
 1. You're trying that food. I see you trying. I'll stay close.
 2. A new little bite. You're working on it. I'm right here.
-3. You're learning about food. I can see that. Keep taking time.
+3. You're trying new food. I can see that. We'll go slowly.
 
 ## outside — 外出（5組）
 
@@ -450,7 +450,7 @@
 
 ### 外出 × 完了 (`outside|finish`)
 
-1. Our little walk finished! Here we are. Let's get cozy.
+1. Our walk is over! Here we are. Let's get cozy.
 2. Outside time is over. We're back together. I'm right here.
 3. Our outing is finished. Let's take a rest. Here we are.
 
@@ -514,14 +514,14 @@
 
 ### 飲む × 一時停止 (`drink|pause`)
 
-1. Let's pause your drink. More sips can wait. I'm right here.
+1. Let's pause drinking. More sips can wait. I'm right here.
 2. No more sips yet. We can wait. I'll stay with you.
 3. Your drink can wait. Let's rest a little. I'm right here.
 
 ### 飲む × 完了 (`drink|finish`)
 
-1. All done with drinks! Your sipping is finished. Let's rest now.
-2. That little drink finished. We can pause now. I'm right here.
+1. All done drinking now! You're finished here. Let's rest together.
+2. Drinking time is over. We can pause now. I'm right here.
 3. No more sips now. Drinking time is done. Let's relax together.
 
 ## hands — 手（5組）
@@ -649,7 +649,7 @@
 ### 声 × 励ます (`voice|encouragement`)
 
 1. Want to make sounds? Give it a try. I'll listen closely.
-2. Try your little voice. I'm listening, sweetheart. Take your time.
+2. Make a little sound. I'm listening, sweetheart. You can try again.
 3. Another little sound? You can try. I'm right here.
 
 ## tummy — お腹（3組）
