@@ -889,6 +889,29 @@ export class LiteResponseEngine {
     return { english: styled, scene: "generic", score: 0, ruleScene: "generic", semanticUsed: false, contextUsed: false };
   }
 
+  // Roll back a speculative reply if the parent continues speaking.
+  // History, name repetition and the one-turn topic hold all belong to
+  // completed spoken replies, not to discarded preparation attempts.
+  snapshotTurnState() {
+    return {
+      recentReplies:[...this.recentReplies],
+      recentOpeners:[...this.recentOpeners],
+      turnCounter:this.turnCounter,
+      turnsSinceName:this.turnsSinceName,
+      activeSceneId:this.activeSceneId,
+      activeSceneTurnsRemaining:this.activeSceneTurnsRemaining
+    };
+  }
+  restoreTurnState(snapshot) {
+    if(!snapshot)return;
+    this.recentReplies=[...snapshot.recentReplies];
+    this.recentOpeners=[...snapshot.recentOpeners];
+    this.turnCounter=snapshot.turnCounter;
+    this.turnsSinceName=snapshot.turnsSinceName;
+    this.activeSceneId=snapshot.activeSceneId;
+    this.activeSceneTurnsRemaining=snapshot.activeSceneTurnsRemaining;
+  }
+
   resetConversationContext() {
     this.activeSceneId = null;
     this.activeSceneTurnsRemaining = 0;
