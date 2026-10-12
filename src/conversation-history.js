@@ -37,6 +37,15 @@ export class ConversationHistory {
       request.onsuccess=()=>resolve(request.result.reverse());request.onerror=()=>reject(request.error);
     });
   }
+  async deleteMany(ids) {
+    if(!ids?.length)return;
+    const db=await this.open();
+    return new Promise((resolve,reject)=>{
+      const tx=db.transaction('entries','readwrite'),store=tx.objectStore('entries');
+      for(const id of new Set(ids))store.delete(id);
+      tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);
+    });
+  }
   async delete(id) {
     const db=await this.open();
     return new Promise((resolve,reject)=>{
