@@ -1,0 +1,67 @@
+name: Interaction head experimental PR-B
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  interaction-experiment:
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feature/interaction-phase-a-gemma-handoff-20261012' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+      - name: Prepare pinned test runtimes
+        run: |
+          npm ci --ignore-scripts
+          python3 -m pip install --user 'numpy>=1.24,<3' 'scikit-learn>=1.5,<2'
+      - name: Build provisional split and test its invariants
+        run: node scripts/build-interaction-experiment.mjs
+      - name: Extract embeddings using shipped 71 MB real ONNX
+        run: node scripts/extract-interaction-embeddings.mjs
+      - name: Fit 14-class Interaction + none head and evaluate held-out seeds
+        run: python3 scripts/train-interaction-head.py
+      - name: Check output provenance and no runtime integration
+        run: |
+          python3 - <<'PY'
+          import json,pathlib,hashlib
+          p=pathlib.Path('research/interaction-head/artifacts')
+          conf=json.loads((p/'head-config.json').read_text())
+          data=(p/'head-interaction.f32').read_bytes()
+          assert len(data)==15*385*4
+          assert hashlib.sha256(data).hexdigest()==conf['sha256']
+          assert conf['runtime_included'] is False
+          assert len(json.loads((p/'experiment-report.json').read_text())['labels'])==15
+          print('Experimental head validated: not a production runtime asset.')
+          PY
+      - name: Save experiment results to PR branch (never main)
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/interaction-head/experimental-dataset.json research/interaction-head/artifacts/
+          if git diff --cached --quiet; then
+            echo "No artifact changes to commit"
+          else
+            git commit -m "research(interaction): record real Ruri head and provisional held-out metrics"
+            git push origin "HEAD:$HEAD_BRANCH"
+          fi
+      - name: Upload experimental evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: interaction-head-experiment
+          path: |
+            research/interaction-head/experimental-dataset.json
+            research/interaction-head/artifacts/
+          if-no-files-found: warn
