@@ -1,3 +1,4 @@
+import { selectInteraction, INTERACTION_REPLIES } from './interaction/response.js';
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
 import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink, detectNounTopics } from './lite-topic-matcher.js';
 
@@ -816,7 +817,7 @@ export class LiteResponseEngine {
     this.activeSceneTurnsRemaining = 0;
   }
 
-  respond(transcript, spokenBabyName = "", semantic = null) {
+  respond(transcript, spokenBabyName = "", semantic = null, interaction = null) {
     const normalized = normalize(transcript);
     const flexible = detectFlexibleTopics(transcript);
     const ranked = SCENES.map(scene => [scene, Math.max(score(scene, normalized), flexible[scene.id]?.score || 0)])
@@ -851,6 +852,11 @@ export class LiteResponseEngine {
     const candidateHasStrongTopicEvidence = !!candidateScene && (
       useDrinkingScene || !!rescued || !!flexible[candidateScene.id] || hasStrongTopicEvidence(candidateScene, normalized)
     );
+    // An explicit current childcare topic outranks an Interaction label. Held
+    // context does not outrank a new, clear compliment or question.
+    const interactionId = selectInteraction(transcript, interaction, candidateHasStrongTopicEvidence);
+    if (interactionId) return this.respondInteraction(interactionId, normalized);
+
     const explicitScene = !candidateScene ? null
       : !this.activeSceneId ? candidateScene
         : candidateScene.id === this.activeSceneId ? candidateScene
@@ -913,6 +919,17 @@ export class LiteResponseEngine {
       ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
     return { english: styled, scene: scene?.id || "generic", score: sceneScore, ruleScene: ruleScene?.id || "generic", semanticUsed, contextUsed };
+  }
+
+  respondInteraction(id, normalized) {
+    // This is a different utterance; never let the previous Topic bleed into it.
+    this.activeSceneId = null;
+    this.activeSceneTurnsRemaining = 0;
+    const raw = this.chooseReply(INTERACTION_REPLIES[id], normalized, false, false);
+    this.remember(raw, raw);
+    this.turnsSinceName++;
+    this.turnCounter++;
+    return { english: raw, scene: 'interaction:' + id, score: 0, ruleScene: 'generic', semanticUsed: true, contextUsed: false, interactionUsed: true };
   }
 
   respondGeneric(spokenBabyName = "") {
