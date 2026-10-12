@@ -67,7 +67,10 @@ export function createSemanticController({ engine, storage = localStorage, befor
       if(token!==generation || !isCurrent())return null;
       if(prediction?.unavailable)updateStatus({message:prediction.message});
       const semantic=prediction?.topic ? {topic:prediction.topic.id, probability:prediction.topic.probability, margin:prediction.topic.margin, mode} : null;
-      lastResponse=engine.respond(text,name,semantic);result=prediction;publish();return lastResponse;
+      // Default OFF until independent caregiver-audio evaluation and Kiki listening.
+      const interaction = storage.getItem('emma_interaction_experimental') === 'true'
+        ? prediction?.interaction ?? null : null;
+      lastResponse=engine.respond(text,name,semantic,interaction);result=prediction;publish();return lastResponse;
     },
     respondGeneric(name) {
       lastResponse=engine.respondGeneric(name);result=null;publish();return lastResponse;
