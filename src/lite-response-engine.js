@@ -5,7 +5,7 @@ import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasN
 const TOPIC_HOLD_TURNS = 1;
 
 // Reply bank and style synced from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
-// Android source commit: c011bf30fbe984464fa3f4ffd979a0dbf5ef2909
+// Android source commit: 2a99b46099850335190f6cd2b6f27ba6831d751b
 // Do not hand-edit the reply bank independently from Android.
 const STYLE = {
   "MIN_WORDS": 6,
@@ -15,53 +15,39 @@ const STYLE = {
   "MAX_WORDS_PER_SENTENCE": 4,
   "NAME_REPEAT_WINDOW": 2
 };
-// Human-curated baby-directed generic fallback. These short phrases are
-// packaged offline; Lite never invokes a model to select them at runtime.
+// Curated baby-directed English, synced from Android. Play Topics has an
+// independent one/three-sentence phrase catalog.
 const GENERIC_REPLIES = [
-  "Hello, little one! I'm here with you. Hi, baby!",
-  "Hi there, sweetheart! Good to see you. Hello again!",
-  "You're so precious! I'm glad you're here. Hello, baby!",
-  "Hello, dear baby! You make me smile. I'm right here.",
-  "Hi, my darling! You are so loved. Big hugs!",
-  "Look who's here! My lovely little baby. Hello, sweetheart!",
-  "You're wonderful! I'm happy you're here. Hello, baby!",
-  "Hey, sweet baby! Let's say hello. Hi there!",
-  "You're so special! I love you lots. Big, big hugs!",
-  "My little sunshine! You're a lovely baby. Hello there!",
-  "Hello, sweet pea! You are so loved. I'm here.",
-  "Sweet little baby! I'm glad you're here. Hi there!",
-  "Let's say hello! Hello, my love! Hi, hi!",
-  "Can you hear me? I'm talking to you. Hello there!",
-  "Shall we play? I have an idea. Peekaboo!",
-  "Peekaboo, baby! There you are! Hello again!",
-  "Let's play peekaboo! One, two, three. Here I am!",
-  "Want a little song? La, la, la! Sing with me!",
-  "Let's sing together! Listen to this tune. La, la!",
-  "Here's a little song! La, la, la! Just for you!",
-  "Shall we listen? Listen to my voice. Hi, hi!",
-  "Want to hear something? I have a song. La, la!",
-  "Let's count together! One, two, three! Good job!",
-  "One, two, three! Let's count again! Well done!",
-  "Let's wave hello! Wave, wave, wave! Hi there!",
-  "Can you wave? Hello, hello! Wave with me!",
-  "You're growing every day! How wonderful! I love you!",
-  "I'm so happy! You're here with me. Hello, sweetheart!",
-  "Let's have a cuddle! Come close, sweet baby. So cozy!",
-  "You're my little star! Twinkle, twinkle! I love you!",
-  "Shall we have fun? Let's play together. Yay, yay!",
-  "Want to try something? Let's make a sound. Ba, ba!",
-  "Let's say baa! Baa, baa, baa! What fun!",
-  "Can you say boo? Boo, boo! Hello again!",
-  "I love your voice! Talk to me, baby. I'm listening.",
-  "You're good company! I love being here. Hello, dear!",
-  "What's on your mind? I'm listening, little one. Tell me!",
-  "Something to tell me? I'm listening, baby. Go ahead!",
-  "How are you today? I'm happy you're here. Big hugs!",
-  "Let's smile together! Big, happy smiles. Hello, sweetheart!",
-  "You're my sunshine! I love you. Hello, dear!",
-  "Let's have some fun! What's next, little one? You choose!",
-  "Let me say hello! Hello to you! My sweet baby!",
-  "Do you hear that? It's me saying hi. Hello again!"
+  "Hello, sweet baby! You're so loved. I'm right here.",
+  "Hi, little one! I love your company. Hello there!",
+  "Look at you! You're growing every day. How wonderful!",
+  "You're very special. I'm happy you're here. Hello, sweetheart!",
+  "Hello again, baby! I'm listening to you. Say hello!",
+  "You're my little sunshine. I love you. Big hugs!",
+  "Can you hear me? It's my voice. Hello there!",
+  "Let's say hello! Hi, little one! Hello again!",
+  "I love being here. You're good company. Hello, sweetie!",
+  "Hello, sweetheart! Look at my face. Here I am!",
+  "Shall we talk? I'm listening, baby. Your turn!",
+  "Tell me more! I'm listening to you. Hello, baby!",
+  "You're so precious. I love you lots. Big hugs!",
+  "Hi there, baby! It's lovely seeing you. Hello!",
+  "Hello, little one! Can you hear me? Hi there!",
+  "Let's make a sound! Ba, ba, ba! Your turn!",
+  "One, two, three! Let's count again. Well done!",
+  "Wave hello, baby! Hi, hi, hi! Hello there!",
+  "Look at my hands! Let's wave hello. Hi, hi!",
+  "Let's say good morning! Hello, sweet baby. Hi there!",
+  "You're my sweet baby. I'm here with you. Big hugs!",
+  "Can you see me? Here I am! Hello, hello!",
+  "What do you think? Tell me, little one. I'm listening!",
+  "Do you hear that? That's my voice! Hello, baby!",
+  "{name}, hello there! I'm here with you. Big hugs!",
+  "{name}, my sweetheart! You're so loved. Hello, baby!",
+  "{name}, look here! It's me again. Hello there!",
+  "{name}, how are you? I'm listening, baby. Your turn!",
+  "{name}, my little star! I love you. Hello, sweetheart!",
+  "{name}, hello again! I'm happy you're here. Big hugs!"
 ];
 const NEUTRAL_CLOSERS = [
   "You are wonderful!",
@@ -357,11 +343,14 @@ const SCENES = [
       "あったかいお湯"
     ],
     "replies": [
-      "Bath time! Splash, splash! Let's get clean!",
-      "Warm bath! Feel the water. Splish, splash!",
-      "Bath time! Wash, wash! All clean.",
-      "Let's wash up! Bath time! Splash, splash!",
-      "{name}, bath time! Splash, splash! Let's get clean!"
+      "Bath time is here! Warm water feels good. Splash, splash!",
+      "Let's wash your hands. One, then the other. All clean!",
+      "Your little toes! Let's wash them gently. Splash, splash!",
+      "Feel the warm water. Can you hear it? Splish, splash!",
+      "We're taking a bath. Listen to the water. Splash, splash!",
+      "Let's wash your tummy. A little splash. There you go!",
+      "{name}, bath time! Feel the warm water. Splash, splash!",
+      "{name}, look! Water on your toes. Splish, splash!"
     ]
   },
   {
@@ -377,14 +366,14 @@ const SCENES = [
       "授乳"
     ],
     "replies": [
-      "Milk time! Let's have milk. Yum, yum!",
-      "Here comes milk! Is it tasty? Mmm, yummy!",
-      "Little sips. Milk for your tummy. Mmm, yum!",
-      "Milk is yummy! Let's have a sip. Mmm, yum!",
-      "Time for milk! Let's get cozy. Sip, sip!",
-      "Milk, milk! Are you enjoying it? Yum, yum!",
-      "{name}, it's milk time! Hello, little one. Yum, yum!",
-      "{name}, here comes milk! Let's have a sip. Yum, yum!"
+      "Here's your milk! Ready for a sip? Here you go!",
+      "Can you taste it? A little milk. Mmm, yummy!",
+      "Milk for you! One little sip. Then another!",
+      "Are you still hungry? We can have more. I'm here!",
+      "You're drinking milk! Sip by sip. Well done!",
+      "Milk time! Are you hungry? Let's have some!",
+      "{name}, your milk! Here's a little sip. Mmm, yummy!",
+      "{name}, milk time! Take a little sip. I'm here!"
     ]
   },
   {
@@ -411,11 +400,14 @@ const SCENES = [
       "眠く"
     ],
     "replies": [
-      "So sleepy. Night-night. Rest, little one.",
-      "Sleepy time. Nice and quiet. Night-night.",
-      "Time to sleep. Rest, rest. Nice and cozy.",
-      "Sleepy eyes. Night-night. Rest, little one.",
-      "{name}, sleepy time. Night-night. Rest nice and easy."
+      "Are you sleepy? Let's get cozy. Night-night!",
+      "Time to rest. Your bed is ready. Sweet dreams!",
+      "Let's close our eyes. I'll stay nearby. Sleep well!",
+      "Shh, little one. It's bedtime now. Night-night!",
+      "Getting sleepy? I'll stay with you. Rest well!",
+      "Good night, baby. You're safe here. Sweet dreams!",
+      "{name}, sleep well. I'm right here. Sweet dreams!",
+      "{name}, night-night! Let's get cozy. Rest well!"
     ]
   },
   {
@@ -429,11 +421,14 @@ const SCENES = [
       "朝だ"
     ],
     "replies": [
-      "Good morning! You're awake! Hello, hello!",
-      "You're awake! Hello, hello! Good morning!",
-      "Morning, little one! Eyes open. Hello, hello!",
-      "Hello there! You're awake! Good to see you!",
-      "{name}, good morning! You're awake! Hello, hello!"
+      "You're awake! Good morning, baby. Hello there!",
+      "Your eyes are open! Hello, little one. Good morning!",
+      "Morning is here! How are you? Hello, sunshine!",
+      "Hello again! Did you sleep well? Good morning!",
+      "Look who's awake! It's a new day. Hello there!",
+      "Good morning! Glad you're awake. Hello!",
+      "{name}, good morning! You're awake now. Hello, sweetheart!",
+      "{name}, you're awake! How are you? Hello again!"
     ]
   },
   {
@@ -448,11 +443,14 @@ const SCENES = [
       "お尻"
     ],
     "replies": [
-      "Diaper time! A fresh diaper. All clean!",
-      "Fresh diaper! Let's get comfy. Clean and dry!",
-      "Diaper change! Wipe, wipe! All clean.",
-      "Let's change you! Diaper time! Fresh and clean!",
-      "{name}, diaper time! Let's change you. All fresh!"
+      "Time for a change. Let's get you dry. All fresh!",
+      "New diaper time! Let's wipe your bottom. All clean!",
+      "Let's change your diaper. One little wipe. All fresh!",
+      "Off comes your diaper. Let's clean you up. There!",
+      "A clean diaper! Let's get you comfortable. All done!",
+      "Diaper change! I'll be gentle. You're doing great!",
+      "{name}, diaper time! Let's get you clean. All fresh!",
+      "{name}, let's change you. One little wipe. All clean!"
     ]
   },
   {
@@ -467,11 +465,14 @@ const SCENES = [
       "帽子"
     ],
     "replies": [
-      "Clothes on! One arm in. Other arm in!",
-      "Time to dress! One little arm. Now the other!",
-      "Getting dressed! Arms in first. Looking lovely!",
-      "Clothes time! Socks on next. So cozy!",
-      "{name}, clothes on! Looking lovely! So cozy!"
+      "Let's put clothes on. One arm first. Other arm next!",
+      "Your little shirt! Let's put it on. All dressed!",
+      "Here come your socks. One little foot. Then another!",
+      "Time to get dressed. Arms through the sleeves. All ready!",
+      "Let's change your clothes. This arm first. There you go!",
+      "Look at your outfit! The sleeves are soft. So cozy!",
+      "{name}, clothes on! One arm in. Looking lovely!",
+      "{name}, let's get dressed. Socks on next. All ready!"
     ]
   },
   {
@@ -485,11 +486,14 @@ const SCENES = [
       "腕の中"
     ],
     "replies": [
-      "Big cuddle! Up, up! Nice and close.",
-      "Cuddle time! Come close, baby. Big warm hugs!",
-      "Up we go! Big hug. So cozy.",
-      "Big hug! Nice and close. I'm right here.",
-      "{name}, cuddle time! Big hug. Nice and close."
+      "Come here, baby. Let's have a cuddle. Big hugs!",
+      "Up you go! Into my arms. You're safe here!",
+      "A little cuddle? I'll hold you close. So cozy!",
+      "Let's have a hug. Close to my heart. I love you!",
+      "Here are my arms. Come close, sweetheart. Big hug!",
+      "Hug time! You're warm and cozy. I'm here!",
+      "{name}, come here! A big warm hug. I love you!",
+      "{name}, cuddle time! I'll hold you close. So cozy!"
     ]
   },
   {
@@ -504,11 +508,14 @@ const SCENES = [
       "つかん"
     ],
     "replies": [
-      "Tiny hands! Squeeze, squeeze! Wiggle, wiggle!",
-      "Little hands! Open, close. Wiggle, wiggle!",
-      "Tiny fingers! Squeeze, squeeze! Little hands!",
-      "Hands, hands! Open and close. Wiggle, wiggle!",
-      "{name}, tiny hands! Squeeze, squeeze! Wiggle, wiggle!"
+      "Look at your hands! Ten tiny fingers. Wiggle, wiggle!",
+      "Open your hands. Close them again. Good job!",
+      "Those little fingers! Can you wiggle them? Wiggle, wiggle!",
+      "Here's your little hand. Hold my finger. So tiny!",
+      "One hand, two hands! Let's wave hello. Hi there!",
+      "Your fingers are moving! Open and close. Look at that!",
+      "{name}, tiny hands! Hold my finger. Hello there!",
+      "{name}, look! Your hands are moving. Wiggle, wiggle!"
     ]
   },
   {
@@ -522,11 +529,14 @@ const SCENES = [
       "足バタ"
     ],
     "replies": [
-      "Little feet! Kick, kick! Wiggle, wiggle!",
-      "Tiny feet! Kick, kick! Little toes!",
-      "Feet, feet! Up and down. Kick, kick!",
-      "Little toes! Wiggle, wiggle! Kick, kick!",
-      "{name}, little feet! Kick, kick! Wiggle, wiggle!"
+      "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+      "Kick those little legs! Kick, kick! Look at you!",
+      "Your toes are moving! One, two, three. So tiny!",
+      "Let's count your toes. One, two, three. More to go!",
+      "Little feet up! Little feet down! Kick, kick!",
+      "Can you kick? There go your feet! Good job!",
+      "{name}, little feet! Kick, kick! Look at you!",
+      "{name}, tiny toes! Wiggle those feet. So cute!"
     ]
   },
   {
@@ -540,11 +550,14 @@ const SCENES = [
       "微笑"
     ],
     "replies": [
-      "Big smile! Smile, smile! Hello, little one!",
-      "What a smile! Hello, hello! Smile, smile!",
-      "Smile, smile! There it is! Hello there!",
-      "Happy smile! Hello, little one! So sweet.",
-      "{name}, big smile! Hello, hello! Smile, smile!"
+      "What a smile! You look so happy. Hello there!",
+      "There's your smile! I love seeing it. So sweet!",
+      "You're smiling! That makes me smile. Thank you!",
+      "Such a big smile! Your cheeks look lovely. Hello, baby!",
+      "I see a smile! Are you happy? I am too!",
+      "Hello, happy face! That's a lovely smile. So sweet!",
+      "{name}, that smile! You make me happy. Hello, sweetheart!",
+      "{name}, you're smiling! I love that smile. So sweet!"
     ]
   },
   {
@@ -559,11 +572,14 @@ const SCENES = [
       "ぐずぐず"
     ],
     "replies": [
-      "I hear you. I'm right here. Nice and gentle.",
-      "I hear you. Here with you. Nice and close.",
-      "Hello, little one. I hear you. I'm right here.",
-      "I hear your voice. Nice and gentle. I'm right here.",
-      "{name}, I hear you. I'm right here. Nice and gentle."
+      "I hear you crying. I'm right here. You're not alone.",
+      "Something feels wrong? I'm listening, baby. I'm here.",
+      "You're feeling upset? I'll stay close. Big hugs!",
+      "I hear those tears. Let's have a cuddle. I'm here.",
+      "Are you upset? I'm here with you. Big hugs!",
+      "You can cry. I'll stay beside you. I love you.",
+      "{name}, I'm here. I hear you crying. Big hugs!",
+      "{name}, it's okay. I'm listening to you. I'm here!"
     ]
   },
   {
@@ -578,11 +594,14 @@ const SCENES = [
       "あうあう"
     ],
     "replies": [
-      "I hear you! Hello, hello! I'm listening.",
-      "What a voice! Ooh, ahh! I hear you.",
-      "Hello, little one! I hear you. Ooh, ahh!",
-      "You're talking! Hello, hello! I'm listening.",
-      "{name}, I hear you! Ooh, ahh! I'm listening."
+      "I hear your voice! Tell me more. I'm listening!",
+      "Are you talking? Hello, little one. Your turn!",
+      "What a lovely sound! Say it again. I'm listening!",
+      "Ooh, ahh! I hear you! Hello there!",
+      "You're making sounds! I love your voice. Talk to me!",
+      "Was that a coo? I heard you! Hello, baby!",
+      "{name}, I hear you! Tell me more. I'm listening!",
+      "{name}, your voice! I love hearing it. Hello, sweetheart!"
     ]
   },
   {
@@ -597,14 +616,14 @@ const SCENES = [
       "吐き戻"
     ],
     "replies": [
-      "How's your tummy? Are you feeling okay? I'm right here.",
-      "Little tummy! Does it feel full? Let's have a cuddle.",
-      "Is your tummy happy? Let's get comfortable. I'm here.",
-      "Your little tummy. Let's get cozy. I'm with you.",
-      "Tummy, tummy! I'm here to help. Big hugs!",
-      "Let's have a cuddle. Is that better? I'm right here.",
-      "{name}, how's your tummy? I'll stay right here. Big hugs!",
-      "{name}, little tummy! Let's get cozy. I'm here!"
+      "How's your tummy? Do you feel full? I'm here!",
+      "Let's pat your back. Maybe a little burp. There!",
+      "Your little tummy! Let's have a cuddle. So cozy!",
+      "Did you burp? I heard that sound! Well done!",
+      "Let's get comfortable. I'll hold you close. Big hugs!",
+      "Full tummy? We can rest now. I'm right here.",
+      "{name}, little tummy! Let's get comfortable. Big hugs!",
+      "{name}, feeling full? I'll hold you close. So cozy!"
     ]
   },
   {
@@ -619,11 +638,14 @@ const SCENES = [
       "ボール"
     ],
     "replies": [
-      "Play time! Let's have fun. Peekaboo!",
-      "Let's play! Can you find me? Peekaboo!",
-      "Play, play! Look, look! So much fun!",
-      "Time to play! Hello, hello! Let's play!",
-      "{name}, play time! Let's have fun. Peekaboo!"
+      "Let's play together! What should we try? Peekaboo!",
+      "Here's your toy! Can you see it? Look here!",
+      "Ready to play? Let's have some fun. Hello, toy!",
+      "Peekaboo! Where did I go? Here I am!",
+      "Let's shake the rattle. Can you hear it? Shake, shake!",
+      "Look at this toy! It's here for you. Let's play!",
+      "{name}, let's play! Here's your toy. Look at that!",
+      "{name}, peekaboo! Where am I? Here I am!"
     ]
   },
   {
@@ -638,11 +660,14 @@ const SCENES = [
       "出かけ"
     ],
     "replies": [
-      "Outside time! Look at the sky. What do you see?",
-      "Out we go! Look, look! Listen with me.",
-      "Outside, outside! Feel the fresh air. What's over there?",
-      "Time outside! Look with me. Listen, listen!",
-      "{name}, outside time! Look at the sky. What do you see?"
+      "Let's go outside! Look at the sky. What do you see?",
+      "Fresh air outside! Can you feel it? Hello, world!",
+      "Time for a stroll. Let's look around. What's over there?",
+      "We're going outside! Look at the trees. So tall!",
+      "Look up, baby! There's the sky. So big!",
+      "Out we go! What can you hear? Let's listen!",
+      "{name}, outside time! Look at the sky. Hello, world!",
+      "{name}, let's stroll! What can you see? Look around!"
     ]
   },
   {
@@ -655,11 +680,14 @@ const SCENES = [
       "傘"
     ],
     "replies": [
-      "Rain, rain! Pitter-patter! Listen, listen!",
-      "Rain outside! Drip, drop! Listen with me.",
-      "Pitter-patter! Rain, rain! Drip, drop!",
-      "Listen, listen! Rain outside! Pitter-patter!",
-      "{name}, rain outside! Pitter-patter! Listen, listen!"
+      "Rain is falling! Can you hear it? Pitter-patter!",
+      "Listen to the rain. Drip, drop! Drip, drop!",
+      "Rain on the window! Tap, tap, tap. Can you hear?",
+      "It's raining outside. Look at the drops. Drip, drop!",
+      "The rain sounds soft. Listen with me. Pitter-patter!",
+      "Raindrops are falling. One, two, three! Splash, splash!",
+      "{name}, it's raining! Listen to the drops. Drip, drop!",
+      "{name}, hear that? It's the rain. Pitter-patter!"
     ]
   },
   {
@@ -673,11 +701,14 @@ const SCENES = [
       "ぽかぽか"
     ],
     "replies": [
-      "Bright day! Hello, sunshine! Look, look!",
-      "Sunshine! Bright, bright! Look with me.",
-      "Hello, sunshine! Bright day! Look, look!",
-      "Bright, bright! Hello, sunshine! What a sunny day!",
-      "{name}, bright day! Hello, sunshine! Look, look!"
+      "The sun is shining! What a bright day. Hello, sunshine!",
+      "Look at the sunlight! It's bright outside. So lovely!",
+      "Hello, sunshine! The sky is bright. Look up!",
+      "A sunny day! Let's look outside. Can you see?",
+      "See the bright sky? The sun is out. Hello, sunshine!",
+      "Sunlight on the floor! Look at that glow. So bright!",
+      "{name}, it's sunny! Look at the light. So bright!",
+      "{name}, sunshine today! The sky is bright. Hello, sunshine!"
     ]
   },
   {
@@ -692,14 +723,14 @@ const SCENES = [
       "スプーン"
     ],
     "replies": [
-      "Food time! Let's try a bite. Yum, yum!",
-      "Is it tasty? Mmm, that's yummy! Another little bite?",
-      "Ready to eat? Open wide, little one! Here comes food!",
-      "A little spoon! A little bite! Yum, yum!",
-      "Let's taste this! Does it taste good? Mmm, yum!",
-      "Food is fun! Let's taste it. Yum, yum!",
-      "{name}, it's food time! One little bite. Mmm, yum!",
-      "{name}, let's eat! Tiny little bites. Mmm, yummy!"
+      "Time for a bite! Here's your spoon. Open wide!",
+      "Let's try some food. One little bite. How is it?",
+      "Ready to eat? A little spoonful. There you go!",
+      "Do you like it? Take another bite? Your choice!",
+      "Here's a little bite. Let's taste it. Mmm, yummy!",
+      "All done eating? Let's wipe your mouth. Good job!",
+      "{name}, food time! One little spoonful. Is it yummy?",
+      "{name}, let's eat! Here's your spoon. Open wide!"
     ]
   },
   {
@@ -713,11 +744,14 @@ const SCENES = [
       "めく"
     ],
     "replies": [
-      "Book time! Look, look! Turn the page.",
-      "Let's read! Look with me. Turn the page.",
-      "Book time! Turn a page. What comes next?",
-      "Story time! Turn the page. Let's see!",
-      "{name}, book time! Look, look! Turn the page."
+      "Let's read a book! Look at the pictures. What's that?",
+      "Here's your book! Turn the page. What comes next?",
+      "Look at this picture! Can you see it? Hello there!",
+      "One more page! Let's see what's there. Turn, turn!",
+      "Story time! Listen to my voice. Here comes a story!",
+      "Let's look together. See that picture? So colorful!",
+      "{name}, book time! Look at the pictures. What's that?",
+      "{name}, let's read! Turn the page. What comes next?"
     ]
   },
   {
@@ -732,11 +766,14 @@ const SCENES = [
       "曲"
     ],
     "replies": [
-      "Music time! La-la-la! Listen, listen!",
-      "Let's sing! La-la-la! Listen with me.",
-      "Music, music! Tap, tap! Hear that beat?",
-      "Song time! La-la-la! Listen, listen!",
-      "{name}, music time! La-la-la! Listen, listen!"
+      "Let's sing together! La, la, la! Your turn!",
+      "Listen to the music. Can you hear it? Tap, tap!",
+      "Here's a little song. Listen with me. La, la!",
+      "Hear the music? Tap, tap! Let's sing!",
+      "Let's make some music! Clap, clap! What fun!",
+      "A song for you! La, la, la! Sing with me!",
+      "{name}, let's sing! La, la, la! Your turn!",
+      "{name}, hear that song? Let's listen together. Tap, tap!"
     ]
   }
 ];
@@ -749,13 +786,13 @@ export function splitSentences(text) {
 const DRINK_SCENE = {
   id: 'drink',
   replies: [
-    "Ready for a drink? Little sips. How does it taste?",
-    "Let's have a drink! Sip, sip! Is it tasty?",
-    "Here's a little drink. Take a sip. Yum, yum!",
-    "A little drink! Sip, sip! Does that taste good?",
-    "Drink time! Let's have a sip. Mmm, yum!",
-    "{name}, want a drink? Little sips. Yum, yum!",
-    "{name}, here's a drink! Sip, sip! Is it yummy?"
+    "Would you like water? Here's a little sip. There you go!",
+    "Here's your drink! Ready for a sip? Here you are!",
+    "Drink time! One little sip. How does it taste?",
+    "A little water? Here's your cup. Sip, sip!",
+    "Want another sip? You can have more. I'm here!",
+    "{name}, your drink! Here's a little sip. There you go!",
+    "{name}, thirsty? Let's have some water. Sip, sip!"
   ],
 };
 
