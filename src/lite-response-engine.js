@@ -5,7 +5,7 @@ import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasN
 const TOPIC_HOLD_TURNS = 1;
 
 // Reply bank and style synced from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
-// Android source commit: 2a99b46099850335190f6cd2b6f27ba6831d751b
+// Android source commit: 91c5bc86fa343ec688e489415052af5f8adf6fa3
 // Do not hand-edit the reply bank independently from Android.
 const STYLE = {
   "MIN_WORDS": 6,
@@ -798,6 +798,12 @@ const DRINK_SCENE = {
 
 function findScene(id) {
   return id === 'drink' ? DRINK_SCENE : SCENES.find(scene => scene.id === id) || null;
+}
+
+// Expose the complete baked bank for regression checks. "Press to listen" phrases
+// live in shared/play-topics.json and are validated independently.
+export function allLiteReplyTemplatesForValidation() {
+  return [...GENERIC_REPLIES, ...SCENES.flatMap(scene => scene.replies), ...DRINK_SCENE.replies];
 }
 
 export class LiteResponseEngine {
