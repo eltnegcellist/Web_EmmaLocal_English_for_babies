@@ -2,9 +2,11 @@
 // keep receiving frames while a speculative turn is being transcribed.
 const MOONSHINE_MODULE_URL = new URL('./moonshine-module.js', import.meta.url).href;
 let transcriber = null;
+let resumeInitialization = null;
 
 self.onmessage = async ({data}) => {
   try {
+    if(data.type==='resume-init') {resumeInitialization?.();resumeInitialization=null;return;}
     if(data.type==='init') {
       if(!self.crossOriginIsolated || typeof SharedArrayBuffer!=='function') {
         throw Error('Moonshineの実行に必要なブラウザ分離を有効にできませんでした。ページを再読み込みしてください。');
@@ -18,6 +20,8 @@ self.onmessage = async ({data}) => {
       const architecture=selected==='tiny'?ModelArch.TinyStreaming:ModelArch.SmallStreaming;
       const manifest=module.sttDependencies('ja',String(architecture),false);
       self.postMessage({type:'manifest',manifest,label:selected==='tiny'?'Tiny':'Small'});
+      // Preserve the main-thread manifest cache inventory BEFORE downloading.
+      await new Promise(resolve=>{resumeInitialization=resolve;});
       self.postMessage({type:'stage',stage:'catalog',message:'日本語音声認識モデルを準備しています…'});
       const started=performance.now();
       const next=await Transcriber.load({
