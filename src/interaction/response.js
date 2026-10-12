@@ -150,6 +150,6 @@ export const INTERACTION_LABELS = ["affection","praise","achievement","effort","
 // classifier's label and score: no Japanese keyword or regular-expression gates.
 export function selectInteraction(_text, prediction) {
   const label = prediction?.id;
-  return label && Object.hasOwn(INTERACTION_REPLIES, label) && prediction.probability >= 0.40
+  return label && Object.hasOwn(INTERACTION_REPLIES, label) && prediction.probability >= 0.50
     ? label : null;
 }
