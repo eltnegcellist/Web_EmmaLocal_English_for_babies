@@ -7,6 +7,7 @@ import {createHash} from 'node:crypto';
 
 const taxonomy=JSON.parse(await readFile(new URL('../shared/interaction-taxonomy-draft.json',import.meta.url),'utf8'));
 const contract=JSON.parse(await readFile(new URL('../shared/lite-topic-contract.json',import.meta.url),'utf8'));
+const mixed=JSON.parse(await readFile(new URL('../shared/interaction-mixed-training-draft.json',import.meta.url),'utf8'));
 const labels=taxonomy.labels.map(l=>l.id);
 const items=[], seen=new Set();
 const add=(label,text,family,split,source)=>{
@@ -23,11 +24,25 @@ for(const x of taxonomy.labels) {
   x.smoke_holdout.slice(0,2).forEach((text,i)=>add(x.id,text,x.id+':dev:'+i,'dev','synthetic-holdout-not-natural'));
   x.smoke_holdout.slice(2,4).forEach((text,i)=>add(x.id,text,x.id+':test:'+i,'test','synthetic-holdout-not-natural'));
 }
+// Compound utterances must be labeled for BOTH axes. A Topic word does
+// not make the Interaction label 'none'. Last two examples per class are
+// distinct dev/test smoke checks; this is still NOT independent natural ASR.
+for (const [label,examples] of Object.entries(mixed.examples)) {
+  if(!labels.includes(label) || examples.length<5)throw Error('Invalid compound labels: '+label);
+  examples.forEach((value,i)=>add(
+    label,value,'compound:'+label+':'+i,
+    i===examples.length-1?'test':i===examples.length-2?'dev':'train',
+    'synthetic-two-axis-not-independently-reviewed'
+  ));
+}
 // Competing legacy topics must suppress false Interaction responses, but the current
 // topic contract also includes intentionally generic praise examples ('かわいいね').
 // We therefore only use explicit NON-generic legacy childcare topic examples.
 const legacyCases=(contract.cases||[]).filter(c=>c&&typeof c==='object');
-const exclusion=new Set(labels.flatMap(x=>taxonomy.labels.find(l=>l.id===x).positive_seed.concat(taxonomy.labels.find(l=>l.id===x).smoke_holdout)).map(s=>s.trim().normalize('NFKC')));
+const exclusion=new Set([
+  ...labels.flatMap(x=>taxonomy.labels.find(l=>l.id===x).positive_seed.concat(taxonomy.labels.find(l=>l.id===x).smoke_holdout)),
+  ...Object.values(mixed.examples).flat()
+].map(s=>s.trim().normalize('NFKC')));
 const topicPool=[];
 for(const c of legacyCases) {
   const text=c.text||c.utterance||c.input||c.japanese;
@@ -61,7 +76,7 @@ for(const i of items) {
   if(prev&&prev!==i.split)throw Error('Duplicate between splits: '+i.text);
   duplicates.set(i.text,i.split);
 }
-const out={schema_version:1,source:'Hand-crafted PR-A taxonomy + existing childcare topic contract; NOT field data',status:'experimental_provisional_no_independent_human_adjudication',split:'design seeds vs distinct synthetic smoke; not a true out-of-distribution benchmark',labels:[...labels,'none'],counts,items};
+const out={schema_version:1,source:'Hand-crafted PR-A taxonomy + 98 Topic×Interaction utterances + existing topic contract; NOT field data',status:'experimental_provisional_no_independent_human_adjudication',split:'design seeds vs distinct synthetic smoke; not a true out-of-distribution benchmark',labels:[...labels,'none'],counts,items};
 await mkdir('research/interaction-head',{recursive:true});
 await writeFile('research/interaction-head/experimental-dataset.json',JSON.stringify(out,null,2)+'\n');
 console.log('Provisional dataset:',items.length,'rows',JSON.stringify(counts));
