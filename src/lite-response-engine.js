@@ -790,10 +790,10 @@ const DRINK_SCENE = {
     "Would you like some? Here's a little sip. There you go!",
     "Here's your drink! Ready for a sip? Here you are!",
     "Drink time! One little sip. How does it taste?",
-    "Want a little sip? Here's your drink. Take your time!",
+    "Want a little sip? Here's your drink. Sip if you like!",
     "Want another sip? No need to hurry. Here you go!",
     "{name}, your drink! Here's a little sip. There you go!",
-    "{name}, thirsty? Let's have a drink. Take your time!"
+    "{name}, thirsty? Let's have a drink. Sip when you're ready!"
   ],
 };
 
