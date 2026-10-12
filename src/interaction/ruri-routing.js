@@ -16,23 +16,23 @@ export const COMBINED_REPLIES = {
   ],
   "milk|praise": [
     "You drank some milk! Well done, little one. I'm proud of you.",
-    "Here's your milk. That was lovely! Well done, sweetheart.",
-    "Milk time together. You're doing so well. I'm proud of you."
+    "Look at those sips! That was lovely! Well done, sweetheart.",
+    "You're drinking your milk! You're doing so well. I'm proud of you."
   ],
   "milk|achievement": [
     "You drank your milk! You did it! Well done, sweetheart.",
-    "Here's your milk. You did it! How wonderful is that!",
-    "Milk time together. That worked out! Hooray, little one!"
+    "You finished that milk! You did it! How wonderful is that!",
+    "You took your milk! That worked out! Hooray, little one!"
   ],
   "milk|finish": [
     "Milk is all done! You're finished now. Let's rest together.",
-    "Here's your milk. All finished now! Let's get cozy.",
-    "Milk time together. That's all done. We can rest now."
+    "Milk time is over! All finished now! Let's get cozy.",
+    "We're all done drinking! That's all done. We can rest now."
   ],
   "milk|finish_check": [
     "Finished your milk? Shall we check? What do you think?",
-    "Here's your milk. Shall we check? All done now?",
-    "Milk time together. Let's check together. Are we finished?"
+    "Is milk time over? Shall we check? All done now?",
+    "Finished your milk yet? Let's check together. Are we finished?"
   ],
   "milk|encouragement": [
     "Try a little sip. There's no hurry. I'm right here.",
@@ -46,13 +46,13 @@ export const COMBINED_REPLIES = {
   ],
   "diaper|finish": [
     "All done changing! Nice and fresh. Here we are.",
-    "Here's your diaper. All finished now! Let's get cozy.",
-    "A little diaper change. That's all done. We can rest now."
+    "That diaper is changed! All finished now! Let's get cozy.",
+    "Diaper change is finished! That's all done. We can rest now."
   ],
   "diaper|finish_check": [
     "Diaper all done? Let's have a look. All clean now?",
-    "Here's your diaper. Shall we check? All done now?",
-    "A little diaper change. Let's check together. Are we finished?"
+    "Diaper change finished yet? Shall we check? All done now?",
+    "Finished changing your diaper? Let's check together. Are we finished?"
   ],
   "diaper|reassurance": [
     "It's diaper time. I'll be gentle. I'm here with you.",
@@ -142,7 +142,7 @@ export const COMBINED_REPLIES = {
   "food|praise": [
     "You took a bite! Good job, little one. That was lovely.",
     "Look at your food! You're doing so well. Well done, sweetheart.",
-    "A little food together. You're doing so well. I'm proud of you."
+    "Look at that bite! You're doing so well. I'm proud of you."
   ],
   "outside|invitation": [
     "Shall we go outside? Let's look around. What do you see?",
@@ -436,7 +436,7 @@ export const COMBINED_REPLIES = {
   ],
   "hug|care": [
     "You've done a lot. Come for a cuddle. I'll hold you close.",
-    "Time for a cuddle. That took some effort. Let's rest together.",
+    "Come for a cuddle. That took some effort. Let's rest together.",
     "A gentle little cuddle. You did a lot. I'll stay with you."
   ],
   "hug|praise": [
