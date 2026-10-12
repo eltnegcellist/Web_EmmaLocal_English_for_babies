@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "status": "ADVERSARIAL_SYNTHETIC_UNSEEN_FOR_POLARITY_FIT",
+  "design": "Distinguish negated factual states from non-assertive requests/reassurance that happen to include Japanese negation. Hand-authored; not human gold or recorded parental speech.",
+  "source": "additional challenge, created after initial 114-pair study outcome; never train on these sentences",
+  "cases": [
+    {
+      "id": "hard001",
+      "label": "negated",
+      "text": "ミルクはまだ飲ませていないよ",
+      "phenomenon": "未授乳"
+    },
+    {
+      "id": "hard002",
+      "label": "negated",
+      "text": "お昼寝はしていないんだ",
+      "phenomenon": "睡眠"
+    },
+    {
+      "id": "hard003",
+      "label": "negated",
+      "text": "まだ今日は一度も泣いていません",
+      "phenomenon": "泣き"
+    },
+    {
+      "id": "hard004",
+      "label": "negated",
+      "text": "その笑顔は見られなかったね",
+      "phenomenon": "笑顔"
+    },
+    {
+      "id": "hard005",
+      "label": "negated",
+      "text": "今日は笑わずに過ごしたんだね",
+      "phenomenon": "笑顔"
+    },
+    {
+      "id": "hard006",
+      "label": "negated",
+      "text": "おむつ交換は済んでいないよ",
+      "phenomenon": "おむつ"
+    },
+    {
+      "id": "hard007",
+      "label": "negated",
+      "text": "お風呂に入るのはまだだよ",
+      "phenomenon": "お風呂"
+    },
+    {
+      "id": "hard008",
+      "label": "negated",
+      "text": "飲めたわけではないんだね",
+      "phenomenon": "達成"
+    },
+    {
+      "id": "hard009",
+      "label": "negated",
+      "text": "もうできたとは言えないね",
+      "phenomenon": "達成"
+    },
+    {
+      "id": "hard010",
+      "label": "negated",
+      "text": "まだ全部食べきれていないね",
+      "phenomenon": "完了"
+    },
+    {
+      "id": "hard011",
+      "label": "negated",
+      "text": "ちっとも寝付けないね",
+      "phenomenon": "睡眠"
+    },
+    {
+      "id": "hard012",
+      "label": "negated",
+      "text": "終わりそうだけど、まだ終わらないね",
+      "phenomenon": "完了"
+    },
+    {
+      "id": "hard013",
+      "label": "negated",
+      "text": "目が覚めていないみたいだね",
+      "phenomenon": "目覚め"
+    },
+    {
+      "id": "hard014",
+      "label": "negated",
+      "text": "うまくいかなかったんだね",
+      "phenomenon": "達成"
+    },
+    {
+      "id": "hard015",
+      "label": "negated",
+      "text": "今日の歌は始まっていないね",
+      "phenomenon": "開始"
+    },
+    {
+      "id": "hard016",
+      "label": "negated",
+      "text": "遊ぶことはできなかったね",
+      "phenomenon": "遊び"
+    },
+    {
+      "id": "hard017",
+      "label": "negated",
+      "text": "まだ着替えは済んでないね",
+      "phenomenon": "着替え"
+    },
+    {
+      "id": "hard018",
+      "label": "negated",
+      "text": "おてては動かさなかったみたいだね",
+      "phenomenon": "手"
+    },
+    {
+      "id": "hard019",
+      "label": "negated",
+      "text": "足を動かせていないね",
+      "phenomenon": "足"
+    },
+    {
+      "id": "hard020",
+      "label": "negated",
+      "text": "寝返りはまだ成功してないよ",
+      "phenomenon": "寝返り"
+    },
+    {
+      "id": "hard021",
+      "label": "negated",
+      "text": "ずっと泣いてなかったんだね",
+      "phenomenon": "泣き"
+    },
+    {
+      "id": "hard022",
+      "label": "negated",
+      "text": "もう泣かなくなったよ",
+      "phenomenon": "泣き"
+    },
+    {
+      "id": "hard023",
+      "label": "negated",
+      "text": "もう眠くなくなったよ",
+      "phenomenon": "睡眠"
+    },
+    {
+      "id": "hard024",
+      "label": "negated",
+      "text": "食べ終えないままだったね",
+      "phenomenon": "食事"
+    },
+    {
+      "id": "hard025",
+      "label": "negated",
+      "text": "今は声を出していないね",
+      "phenomenon": "声"
+    },
+    {
+      "id": "hard026",
+      "label": "affirmative",
+      "text": "慌てないで、ゆっくりやろうね",
+      "phenomenon": "励ましの依頼"
+    },
+    {
+      "id": "hard027",
+      "label": "affirmative",
+      "text": "心配しないで、そばにいるよ",
+      "phenomenon": "安心させる"
+    },
+    {
+      "id": "hard028",
+      "label": "affirmative",
+      "text": "泣かないでね、大丈夫だよ",
+      "phenomenon": "安心させる"
+    },
+    {
+      "id": "hard029",
+      "label": "affirmative",
+      "text": "無理しないでいいんだよ",
+      "phenomenon": "気遣い"
+    },
+    {
+      "id": "hard030",
+      "label": "affirmative",
+      "text": "急がなくていいよ、待ってるね",
+      "phenomenon": "気遣い"
+    },
+    {
+      "id": "hard031",
+      "label": "affirmative",
+      "text": "怖がらないで、一緒にいるからね",
+      "phenomenon": "安心させる"
+    },
+    {
+      "id": "hard032",
+      "label": "affirmative",
+      "text": "忘れないでね、大好きだよ",
+      "phenomenon": "愛情"
+    },
+    {
+      "id": "hard033",
+      "label": "affirmative",
+      "text": "ひとりじゃないよ、そばにいるよ",
+      "phenomenon": "安心させる"
+    },
+    {
+      "id": "hard034",
+      "label": "affirmative",
+      "text": "気にしなくていいよ",
+      "phenomenon": "気遣い"
+    },
+    {
+      "id": "hard035",
+      "label": "affirmative",
+      "text": "やめないで、もう少しやってみよう",
+      "phenomenon": "励ましの依頼"
+    },
+    {
+      "id": "hard036",
+      "label": "affirmative",
+      "text": "疲れないように休もうね",
+      "phenomenon": "提案"
+    },
+    {
+      "id": "hard037",
+      "label": "affirmative",
+      "text": "もう一回やらない？",
+      "phenomenon": "提案"
+    },
+    {
+      "id": "hard038",
+      "label": "affirmative",
+      "text": "絵本を一緒に読まない？",
+      "phenomenon": "提案"
+    },
+    {
+      "id": "hard039",
+      "label": "affirmative",
+      "text": "ミルクを少し飲まない？",
+      "phenomenon": "提案"
+    },
+    {
+      "id": "hard040",
+      "label": "affirmative",
+      "text": "このおもちゃで遊ばない？",
+      "phenomenon": "提案"
+    },
+    {
+      "id": "hard041",
+      "label": "affirmative",
+      "text": "これはなかなか上手だね",
+      "phenomenon": "褒める"
+    },
+    {
+      "id": "hard042",
+      "label": "affirmative",
+      "text": "ここではなくて、こっちを見てね",
+      "phenomenon": "依頼"
+    },
+    {
+      "id": "hard043",
+      "label": "affirmative",
+      "text": "頑張ったけどできなかったね、大丈夫だよ",
+      "phenomenon": "安心させる複合"
+    },
+    {
+      "id": "hard044",
+      "label": "affirmative",
+      "text": "泣いていなくても、いつでもそばにいるよ",
+      "phenomenon": "安心させる複合"
+    },
+    {
+      "id": "hard045",
+      "label": "affirmative",
+      "text": "できなくても大丈夫、見ているよ",
+      "phenomenon": "安心させる複合"
+    },
+    {
+      "id": "hard046",
+      "label": "affirmative",
+      "text": "食べなくても平気だよ、休もうね",
+      "phenomenon": "気遣い複合"
+    },
+    {
+      "id": "hard047",
+      "label": "affirmative",
+      "text": "眠くないなら、一緒に本を見よう",
+      "phenomenon": "提案複合"
+    },
+    {
+      "id": "hard048",
+      "label": "affirmative",
+      "text": "終わらなくても、頑張ってるね",
+      "phenomenon": "努力を認める複合"
+    },
+    {
+      "id": "hard049",
+      "label": "affirmative",
+      "text": "できたね、よく頑張ったね",
+      "phenomenon": "達成"
+    },
+    {
+      "id": "hard050",
+      "label": "affirmative",
+      "text": "すごく嬉しそうだね",
+      "phenomenon": "観察"
+    },
+    {
+      "id": "hard051",
+      "label": "affirmative",
+      "text": "おててがかわいいね",
+      "phenomenon": "愛情"
+    }
+  ]
+}

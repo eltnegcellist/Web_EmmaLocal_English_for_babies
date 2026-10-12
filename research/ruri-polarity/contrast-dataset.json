@@ -1,0 +1,811 @@
+{
+  "schema_version": 1,
+  "status": "EXPERIMENTAL_SYNTHETIC_NOT_HUMAN_GOLD",
+  "task": "binary_semantic_negated_assertion",
+  "labels": [
+    "affirmative",
+    "negated"
+  ],
+  "description": "Pair-family partition; negation in current statement, not sufficient to determine the parent's reassuring or exploratory intent. No regex or lexical rules will be used at inference.",
+  "design_warning": "Both classes use the same semantic family inside the same split; do not use this sample's performance as field evidence. The 67 older QA probes remain comparison-only and are not used in training.",
+  "items": [
+    {
+      "family": "finish-general",
+      "label": "affirmative",
+      "text": "作業が終わったよ",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-general",
+      "label": "negated",
+      "text": "作業はまだ終わっていないよ",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-question",
+      "label": "affirmative",
+      "text": "全部終わったかな",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-question",
+      "label": "negated",
+      "text": "全部はまだ終わっていないかな",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-play",
+      "label": "affirmative",
+      "text": "遊び終わったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-play",
+      "label": "negated",
+      "text": "まだ遊び終わっていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-book",
+      "label": "affirmative",
+      "text": "絵本読み終わったよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-book",
+      "label": "negated",
+      "text": "絵本はまだ読み終わっていないよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-bath",
+      "label": "affirmative",
+      "text": "お風呂終わったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-bath",
+      "label": "negated",
+      "text": "お風呂はまだ終わっていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-diaper",
+      "label": "affirmative",
+      "text": "おむつ替え終わったよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-diaper",
+      "label": "negated",
+      "text": "おむつはまだ替え終わっていないよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-milk",
+      "label": "affirmative",
+      "text": "ミルク飲み終わったよ",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-milk",
+      "label": "negated",
+      "text": "ミルクはまだ飲み終えていないよ",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-song",
+      "label": "affirmative",
+      "text": "歌い終わったね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-song",
+      "label": "negated",
+      "text": "歌はまだ終わってないね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-clothes",
+      "label": "affirmative",
+      "text": "着替えが終わったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-clothes",
+      "label": "negated",
+      "text": "着替えが終わっていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-food",
+      "label": "affirmative",
+      "text": "食事が終わったよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "finish-food",
+      "label": "negated",
+      "text": "食事はまだ終わっていません",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-first",
+      "label": "affirmative",
+      "text": "できたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-first",
+      "label": "negated",
+      "text": "できなかったんだね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-turn",
+      "label": "affirmative",
+      "text": "寝返りできたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-turn",
+      "label": "negated",
+      "text": "寝返りはできなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-reach",
+      "label": "affirmative",
+      "text": "おもちゃをつかめたね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-reach",
+      "label": "negated",
+      "text": "おもちゃはまだつかめないね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-page",
+      "label": "affirmative",
+      "text": "ページをめくれたね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-page",
+      "label": "negated",
+      "text": "まだページはめくれていないね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-kick",
+      "label": "affirmative",
+      "text": "足を動かせたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-kick",
+      "label": "negated",
+      "text": "足を動かせなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-lift",
+      "label": "affirmative",
+      "text": "頭を持ち上げられたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-lift",
+      "label": "negated",
+      "text": "頭が上がらなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-sound",
+      "label": "affirmative",
+      "text": "声を出せたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-sound",
+      "label": "negated",
+      "text": "声を出せなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-drink",
+      "label": "affirmative",
+      "text": "飲めたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-drink",
+      "label": "negated",
+      "text": "まだ飲めなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-shoes",
+      "label": "affirmative",
+      "text": "靴下をはけたね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-shoes",
+      "label": "negated",
+      "text": "靴下はうまくはけなかったね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-stand",
+      "label": "affirmative",
+      "text": "立てたね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "achievement-stand",
+      "label": "negated",
+      "text": "まだ立てないね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-basic",
+      "label": "affirmative",
+      "text": "眠そうだね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-basic",
+      "label": "negated",
+      "text": "眠くはないんだね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-now",
+      "label": "affirmative",
+      "text": "今はねむいかな",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-now",
+      "label": "negated",
+      "text": "今は眠くないかな",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-evening",
+      "label": "affirmative",
+      "text": "おねむの時間だね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-evening",
+      "label": "negated",
+      "text": "まだ眠たくないみたいだね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-nap",
+      "label": "affirmative",
+      "text": "お昼寝したいね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-nap",
+      "label": "negated",
+      "text": "お昼寝はしたくないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-rest",
+      "label": "affirmative",
+      "text": "眠りたいのかな",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-rest",
+      "label": "negated",
+      "text": "眠りたくないのかな",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-bed",
+      "label": "affirmative",
+      "text": "寝たいんだね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sleep-bed",
+      "label": "negated",
+      "text": "寝たくはないんだね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-basic",
+      "label": "affirmative",
+      "text": "泣いているね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-basic",
+      "label": "negated",
+      "text": "泣いていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-now",
+      "label": "affirmative",
+      "text": "いま泣いてるんだね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-now",
+      "label": "negated",
+      "text": "今は泣いてはいないよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-baby",
+      "label": "affirmative",
+      "text": "赤ちゃんが泣いたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-baby",
+      "label": "negated",
+      "text": "赤ちゃんは泣かなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-tears",
+      "label": "affirmative",
+      "text": "涙が出ているよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-tears",
+      "label": "negated",
+      "text": "涙は出ていないよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-today",
+      "label": "affirmative",
+      "text": "今日は泣いたね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-today",
+      "label": "negated",
+      "text": "今日は泣いてないね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-sound",
+      "label": "affirmative",
+      "text": "泣き声がするね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "cry-sound",
+      "label": "negated",
+      "text": "泣き声はしないね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-basic",
+      "label": "affirmative",
+      "text": "笑っているね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-basic",
+      "label": "negated",
+      "text": "笑っていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-now",
+      "label": "affirmative",
+      "text": "にこにこ笑ってるね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-now",
+      "label": "negated",
+      "text": "いまはにこにこしていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-sudden",
+      "label": "affirmative",
+      "text": "笑顔になったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-sudden",
+      "label": "negated",
+      "text": "笑顔にはなっていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-today",
+      "label": "affirmative",
+      "text": "今日は笑ったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-today",
+      "label": "negated",
+      "text": "今日は笑わなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-me",
+      "label": "affirmative",
+      "text": "こっちを見て笑ったね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "smile-me",
+      "label": "negated",
+      "text": "こっちを見ても笑っていないね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "milk-polarity",
+      "label": "affirmative",
+      "text": "ミルクを飲んだね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "milk-polarity",
+      "label": "negated",
+      "text": "ミルクを飲まなかったね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "milk-polarity-short",
+      "label": "affirmative",
+      "text": "ミルク飲めたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "milk-polarity-short",
+      "label": "negated",
+      "text": "ミルクは飲めなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "milk-polarity-now",
+      "label": "affirmative",
+      "text": "いまミルクを飲んでいるね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "milk-polarity-now",
+      "label": "negated",
+      "text": "今はミルクを飲んでいないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "food-polarity",
+      "label": "affirmative",
+      "text": "ごはん食べたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "food-polarity",
+      "label": "negated",
+      "text": "ごはんは食べてないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "drink-polarity",
+      "label": "affirmative",
+      "text": "お水を飲んだね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "drink-polarity",
+      "label": "negated",
+      "text": "お水は飲まなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "outdoor-polarity",
+      "label": "affirmative",
+      "text": "今日は外へ出たね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "outdoor-polarity",
+      "label": "negated",
+      "text": "今日は外には出ていないね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "bath-polarity",
+      "label": "affirmative",
+      "text": "お風呂に入ったね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "bath-polarity",
+      "label": "negated",
+      "text": "まだお風呂に入っていないね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "diaper-polarity",
+      "label": "affirmative",
+      "text": "おむつを替えたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "diaper-polarity",
+      "label": "negated",
+      "text": "おむつは替えていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "voice-polarity",
+      "label": "affirmative",
+      "text": "声が聞こえたよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "voice-polarity",
+      "label": "negated",
+      "text": "声は聞こえなかったよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "play-polarity",
+      "label": "affirmative",
+      "text": "おもちゃで遊んだね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "play-polarity",
+      "label": "negated",
+      "text": "おもちゃでは遊ばなかったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "walk-polarity",
+      "label": "affirmative",
+      "text": "お散歩に行ったよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "walk-polarity",
+      "label": "negated",
+      "text": "お散歩には行かなかったよ",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "hand-polarity",
+      "label": "affirmative",
+      "text": "手を伸ばしたね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "hand-polarity",
+      "label": "negated",
+      "text": "手を伸ばしていないね",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "foot-polarity",
+      "label": "affirmative",
+      "text": "足を動かしたよ",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "foot-polarity",
+      "label": "negated",
+      "text": "足を動かしていないよ",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "rain-polarity",
+      "label": "affirmative",
+      "text": "雨が降っているね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "rain-polarity",
+      "label": "negated",
+      "text": "雨は降っていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sun-polarity",
+      "label": "affirmative",
+      "text": "太陽が出ているね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "sun-polarity",
+      "label": "negated",
+      "text": "太陽が出ていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "start-polarity",
+      "label": "affirmative",
+      "text": "もう始まったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "start-polarity",
+      "label": "negated",
+      "text": "まだ始まっていないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "start-book",
+      "label": "affirmative",
+      "text": "読み始めたね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "start-book",
+      "label": "negated",
+      "text": "まだ読み始めてないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "start-music",
+      "label": "affirmative",
+      "text": "歌が始まったよ",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "start-music",
+      "label": "negated",
+      "text": "歌は始まらなかったよ",
+      "split": "test",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "need-check",
+      "label": "affirmative",
+      "text": "準備はできたね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "need-check",
+      "label": "negated",
+      "text": "準備はできていないね",
+      "split": "dev",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "status-safe",
+      "label": "affirmative",
+      "text": "もう大丈夫になったね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    },
+    {
+      "family": "status-safe",
+      "label": "negated",
+      "text": "まだ大丈夫じゃないね",
+      "split": "train",
+      "source": "assistant-authored-synthetic-contrast"
+    }
+  ]
+}
