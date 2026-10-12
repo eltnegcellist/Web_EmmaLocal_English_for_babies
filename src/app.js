@@ -1390,13 +1390,14 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
   // Ordinary/manual replies keep their existing direct playback behavior.
   const shouldRestoreMic=running && Boolean(mic);
   let micReleased=false;
+  let startedPlayback=false;
   if(!speculative && shouldRestoreMic){
     setState('thinking','AIが話す準備をしています','マイクを一時停止してスピーカー音量へ切り替えています。');
     await releaseMicrophoneForEmmaVoice();
     micReleased=true;
   }
   if(!valid())return;
-  if(!speculative)speaking=true;
+  if(!speculative){speaking=true;startedPlayback=true;}
   const requestId=++requestSeq;
   const cacheKey=audioCacheKey(text);
   const ttsRequestStartedAt=diagnosticNow();
@@ -1409,8 +1410,9 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
   const queue=audioQueues.get(requestId);
   const done=new Promise((resolve,reject)=>{queue.resolve=resolve;queue.reject=reject;});
   const generationReady=new Promise((resolve,reject)=>{queue.generationResolve=resolve;queue.generationReject=reject;});
-  // In manual mode there is no generationReady consumer; suppress rejection.
+  // Avoid unhandled rejections for whichever completion promise is unused.
   if(!speculative)generationReady.catch(()=>{});
+  if(speculative)done.catch(()=>{});
   setState(speculative?'thinking':'speaking',speculative?'英語の声を準備しています':'AIが話しています',
     speculative?'続きのことばがあれば、そのまま話してください。':text);
   try{
@@ -1431,6 +1433,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
       }
       if(!valid())return;
       speaking=true;
+      startedPlayback=true;
       queue.deferPlayback=false;
       setState('speaking','AIが話しています',text);
       pumpAudio(requestId);
@@ -1444,7 +1447,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
     setState('error','AIの声でエラーが発生しました',friendlyError(error));
     throw error;
   }finally{
-    if(epoch===conversationEpoch)speaking=false;
+    if(epoch===conversationEpoch && startedPlayback)speaking=false;
     audioQueues.delete(requestId);
     if(micReleased && running && epoch===conversationEpoch){
       try{await restoreMicrophoneAfterEmmaVoice();}
