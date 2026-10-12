@@ -112,9 +112,14 @@ def main():
         path=ROOT/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(s)
     print('PHONEME_AUDIT',json.dumps({'sets':r['total_sets'],'catalogs':r['catalogs'],
         'coverage':sum(v['raw']>0 for v in r['phonemes'].values()),'all_phonemes':len(ALL),
+        'unseen_phonemes':r['unseen_phonemes'],
         'unknown_ratio':r['unknown_ratio'],'unknown_words':r['unknown_words'],
         'contrasts':{k:v['sets'] for k,v in r['contrasts'].items()},
         'top_phrases':list(r['repeated_3_word_sequences'].items())[:12]},ensure_ascii=False))
     assert r['catalogs'].get('topic')==197 and r['catalogs'].get('interaction')==112 and r['catalogs'].get('combined')==333
+    # Quality regression bounds, NOT a requirement to equalize English phonemes.
+    assert len(r['unseen_phonemes'])<=1, 'unexpected inventory loss'
+    assert r['unknown_ratio']<0.01, 'too many words lack CMUdict pronunciations'
+    assert max(r['repeated_3_word_sequences'].values())<0.1*r['total_sets'], 'one stock phrase overwhelms the catalog'
 
 if __name__=='__main__':main()
