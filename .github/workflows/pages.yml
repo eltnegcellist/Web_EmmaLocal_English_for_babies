@@ -47,6 +47,8 @@ jobs:
           VAD_BROWSER_CHANNEL=chromium npm run test:vad-browser
       - name: Run actual Web Semantic inference parity baseline
         run: node scripts/semantic-parity-web.mjs --output .semantic-parity/web.json
+      - name: Probe real Ruri Topic and Interaction heads without keyword rules
+        run: node scripts/evaluate-ruri-two-axes.mjs
       - name: Syntax check
         run: |
           node --check src/app.js
