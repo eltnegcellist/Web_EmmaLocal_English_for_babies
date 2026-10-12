@@ -1101,12 +1101,12 @@ async function startMoonshineCapture() {
     onWarning:message=>{if(epoch===conversationEpoch)showNotice('従来方式で会話します',message);},
     onError:async error=>{if(epoch===conversationEpoch){await stopEmma();setState('error','音声の判定が中断しました',error.message);}},
     onState:(state)=>{
-      if(epoch!==conversationEpoch || !running || preparingConversation || !workersReady || speaking)return;
+      if(epoch!==conversationEpoch || !running || preparingConversation || !workersReady || speaking || (processing && !ui.autoRespond.checked))return;
       if(state==='endpoint') {handleSpeechStartDuringPreparation();if(!turnRevisions.continuing)setState('endpoint','聞いています…','話し終わるまで、そのまま話してください。');}
       else setState('listening',`${getAiName()}が聞いています`,'いつもどおり日本語で赤ちゃんへ話しかけてください。');
     },
     onUtterance:(audio)=>{ if(epoch===conversationEpoch && !preparingConversation)handleCapturedUtterance(audio); },
-    shouldIgnore:()=>epoch!==conversationEpoch||preparingConversation||!workersReady||speaking
+    shouldIgnore:()=>epoch!==conversationEpoch||preparingConversation||!workersReady||speaking||(processing&&!ui.autoRespond.checked)
   });
   mic=capture;
   await capture.start();
