@@ -55,8 +55,9 @@ await Promise.all(entries.map(e=>history.append(e)));
 let stored=await history.list();assert.equal(stored.length,1000);assert.equal(stored[0].id,entries[1001].id);assert(!stored.some(e=>e.id===entries[0].id));
 assert.equal(stored[0].englishText,'Hello, little feet!');assert(!Object.keys(stored[0]).some(key=>/audio|blob/i.test(key)));
 await history.delete(stored[0].id);assert.equal((await history.list()).length,999);
+await history.deleteMany([stored[1].id,stored[2].id]);assert.equal((await history.list()).length,997,'batch deletion removes only selected entries');
 // Explicit OFF preserves old entries.
-assert.equal(historyEnabled(storage),false);assert.equal((await history.list()).length,999);
+assert.equal(historyEnabled(storage),false);assert.equal((await history.list()).length,997);
 await history.delete();assert.deepEqual(await history.list(),[]);
 await assert.rejects(new ConversationHistory(null).list());
 const $=id=>document.getElementById(id);
@@ -107,6 +108,34 @@ finish();await settle();
 tap=$('featureBody').querySelector('.play-tap');assert.equal($('featureBody').querySelector('.play-topic-label').textContent,'て・おてて');assert.equal(tap.disabled,false);
 $('featureClose').click();await settle();assert.equal(features.isOpen(),false);assert(stops>=3);
 assert.deepEqual(await history.list(),[],'play must not create history');
+
+const historyEntryA=createHistoryEntry('history-a','今日はいい天気だね','What a lovely day!','sun');
+const historyEntryB=createHistoryEntry('history-b','おはよう','Good morning!','general');
+await history.append(historyEntryA);await history.append(historyEntryB);
+$('historyButton').click();await settle();await settle();
+let historyCards=$('featureBody').querySelectorAll('.history-card');
+assert.equal(historyCards.length,2);
+assert.equal(historyCards[0].querySelectorAll('button').length,1,'one icon button per history row');
+let replayButton=historyCards[0].querySelector('.history-replay');
+assert.equal(replayButton.textContent,'▶');
+replayButton.click();await settle();
+assert.equal(replayButton.textContent,'■','replay button changes to stop during playback');
+replayButton.click();await settle();
+assert.equal(replayButton.textContent,'▶','stopping restores play icon');
+assert.equal((await history.list()).length,2,'replaying does not create history');
+$('featureBody').querySelector('.history-toolbar button').click();await settle();await settle();
+historyCards=$('featureBody').querySelectorAll('.history-card');
+assert.equal(historyCards.length,2);
+assert.equal($('featureBody').querySelectorAll('.history-replay').length,0,'delete mode replaces replay buttons with selectors');
+const checkboxes=$('featureBody').querySelectorAll('.history-select');
+checkboxes[0].click();
+const deleteSelected=[...$('featureBody').querySelectorAll('.history-toolbar button')].find(x=>x.textContent==='1件を削除');
+assert(deleteSelected&&!deleteSelected.disabled);
+deleteSelected.click();await settle();await settle();await settle();await settle();
+assert.equal((await history.list()).length,1,'batch-delete UI must not remove unselected rows');
+$('featureClose').click();await settle();
+await history.delete();
+
 assert(!$('settingsScreen').querySelector('#playButton'),'play entry is on main');
 console.log('Features: play selector outside card, 1/3 sentence switching, speaking state, topic change, history isolation OK');
 
