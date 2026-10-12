@@ -113,6 +113,7 @@ console.log('Features: play selector outside card, 1/3 sentence switching, speak
 // Exercise the actual app's decode/start boundary: cancelling during decoding must
 // prevent both sound and history, while a started response commits exactly once.
 const {runInNewContext}=await import('node:vm');
+const {TurnRevisions}=await import('./src/turn-revisions.js');
 let decodedResolve,starts=0,commits=0,lastRequest;
 const audioBuffer={length:128,sampleRate:24000,numberOfChannels:1,getChannelData:()=>new Float32Array(128).fill(.3)};
 const context={state:'running',decodeAudioData:()=>new Promise(resolve=>decodedResolve=resolve),
@@ -128,7 +129,7 @@ assert(source.includes('lastTtsFirstAudioMillis'));
 assert(source.includes('runtimeDiagnosticEvents'));
 assert(source.includes('unhandledrejection'));
 assert(source.includes('diagnosticNow'));
-assert(source.includes("detail?.source==='cache'"));
+assert(source.includes("detail.source==='cache'"));
 assert(source.includes("'端末から読み込んでいます'"));
 assert(source.includes("'ダウンロードしています'"));
 assert(source.includes('asr.cacheReadMs='));
@@ -159,7 +160,7 @@ source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=
   history.append=async()=>{commitHistory();};
   globalThis.appTest={speakResponse,stopEmma,enqueueAudio,complete(id){const q=audioQueues.get(id);if(q){q.generationDone=true;pumpAudio(id);}}};`;
 const sandbox={document,window,localStorage:storage,location:window.location,URL,URLSearchParams,console,crypto,
-  ConversationHistory,historyEnabled,createHistoryEntry,LiteResponseEngine:class{},testAudio:context,captureRequest:id=>lastRequest=id,commitHistory:()=>commits++,
+  ConversationHistory,historyEnabled,createHistoryEntry,TurnRevisions,LiteResponseEngine:class{},testAudio:context,captureRequest:id=>lastRequest=id,commitHistory:()=>commits++,
   requestAnimationFrame:()=>1,cancelAnimationFrame:()=>{},setTimeout,clearTimeout,navigator:{},Blob,Float32Array,Uint8Array};
 runInNewContext(source,sandbox);
 storage.setItem('emma_history_enabled','true');
