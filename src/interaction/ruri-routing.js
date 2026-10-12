@@ -75,7 +75,7 @@ export const COMBINED_REPLIES = {
   ],
   "cry|inquiry": [
     "I hear you crying. What's the matter? I'm listening, sweetheart.",
-    "I hear you crying. What do you notice? Let's find out together.",
+    "I hear you crying. What's bothering you? I'm here to listen.",
     "I hear those tears. Let's take a look. I'm listening, sweetheart."
   ],
   "sleep|invitation": [
@@ -140,7 +140,7 @@ export const COMBINED_REPLIES = {
   ],
   "food|praise": [
     "You took a bite! Good job, little one. That was lovely.",
-    "Here's a little food. That was lovely! Well done, sweetheart.",
+    "Look at your food! You're doing so well. Well done, sweetheart.",
     "A little food together. You're doing so well. I'm proud of you."
   ],
   "outside|invitation": [
@@ -290,13 +290,13 @@ export const COMBINED_REPLIES = {
   ],
   "tummy|reassurance": [
     "Let's rest a little. I'll hold you close. You're not alone.",
-    "I'm here, little tummy. I'll stay close. You're not alone.",
+    "I'm here, sweetheart. I'll stay close. You're not alone.",
     "Let's rest your tummy. We have time. I'm here with you."
   ],
   "tummy|care": [
     "That was a lot. Let's rest your tummy. I'm right here.",
-    "Time to rest, tummy. That took some effort. Let's rest together.",
-    "Your tummy can rest. You did a lot. I'll stay with you."
+    "Let's rest your tummy. We can rest together. I'll stay with you.",
+    "Your tummy can rest. I'm here with you. Let's take time."
   ],
   "rain|inquiry": [
     "Can you hear rain? What's that sound? Let's listen together.",
@@ -330,8 +330,8 @@ export const COMBINED_REPLIES = {
   ],
   "smile|repeat": [
     "Another little smile? I'll smile at you. Your turn again.",
-    "Want to smile again? Let's try once more. Ready when you are?",
-    "Shall we smile together? Shall we go again? I'll stay close."
+    "Want to smile together? Here's a smile. I'll smile with you.",
+    "Shall we smile together? Look at my face. I'll smile too."
   ],
   "wake|inquiry": [
     "You're awake now! How do you feel? Hello, sweetheart.",
@@ -350,8 +350,8 @@ export const COMBINED_REPLIES = {
   ],
   "cry|care": [
     "I hear you crying. That was a lot. I'm here with you.",
-    "I hear your crying. That took some effort. Let's rest together.",
-    "Those tears are real. You did a lot. I'll stay with you."
+    "I hear you crying. We can rest now. I'll stay beside you.",
+    "Those tears are real. I'll stay with you. Let's rest together."
   ],
   "cry|affection": [
     "I hear you crying. I love you, sweetheart. I'm right here.",
@@ -370,8 +370,8 @@ export const COMBINED_REPLIES = {
   ],
   "play|effort": [
     "You're working on this! I see you trying. No need to hurry.",
-    "You're trying to play. I see you trying. I'm here with you.",
-    "You're working on play. You're working so hard. I'll stay beside you."
+    "You're trying this game. I see your effort. I'm here with you.",
+    "You're trying this game. You're working so hard. I'll stay beside you."
   ],
   "book|inquiry": [
     "What's in the book? Let's turn a page. What do you see?",
@@ -406,7 +406,7 @@ export const COMBINED_REPLIES = {
   "milk|care": [
     "That was milk time. You did a lot. Let's rest together.",
     "Milk time was busy. That took some effort. Let's rest together.",
-    "That was a feed! You did a lot. I'll stay with you."
+    "Milk time is over. I'll stay with you. Let's rest together."
   ],
   "milk|reassurance": [
     "Here comes your milk. I'll stay close. We can go slowly.",
@@ -425,8 +425,8 @@ export const COMBINED_REPLIES = {
   ],
   "diaper|care": [
     "That change is over. Let's get cozy. I'm with you.",
-    "That diaper change! That took some effort. Let's rest together.",
-    "A fresh diaper now. You did a lot. I'll stay with you."
+    "Diaper time is over. Let's get cozy. I'm here with you.",
+    "A fresh diaper now. We can get cozy. I'll stay with you."
   ],
   "hug|affection": [
     "I love this cuddle. You're my sweetheart. Stay close, little one.",
@@ -445,8 +445,8 @@ export const COMBINED_REPLIES = {
   ],
   "bath|care": [
     "That was a bath! Now we can rest. I'm right here.",
-    "All done with baths. That took some effort. Let's rest together.",
-    "That took bath time! You did a lot. I'll stay with you."
+    "All done with baths. That was a lot. Let's rest together.",
+    "Your bath is finished. Let's get cozy now. I'll stay with you."
   ]
 };
 
