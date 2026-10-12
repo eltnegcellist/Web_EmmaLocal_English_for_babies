@@ -42,6 +42,11 @@ async function prepare() {
   config = JSON.parse(new TextDecoder().decode(await asset('heads-config.json')));
   heads = {};
   for (const [name, head] of Object.entries(config.heads)) heads[name] = decodeHead(await asset(head.filename), head);
+  // Experimental optional Interaction head: identical 384D embedding, no second ONNX run.
+  const interactionClasses = ['affection','praise','achievement','effort','encouragement','invitation','start','finish','finish_check','care','inquiry','reassurance','repeat','pause','none'];
+  heads.interaction = decodeHead(await asset('head-interaction.f32'), {
+    name: 'interaction', classes: interactionClasses, filename: 'head-interaction.f32', shape: [15,385],
+  });
   const model = await asset('model.onnx');
   progress(0, '意味判定モデルを開始しています…');
   session = await ort.InferenceSession.create(new Uint8Array(model), { executionProviders: ['wasm'], graphOptimizationLevel: 'all' });
