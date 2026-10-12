@@ -4,7 +4,7 @@
 // real caregiver ASR. Fail closed on missing/low-confidence predictions.
 import { INTERACTION_REPLIES } from './response.js';
 
-export const INTERACTION_ACCEPT_PROBABILITY = 0.40;
+export const INTERACTION_ACCEPT_PROBABILITY = 0.50;
 export const TOPIC_ACCEPT_PROBABILITY = 0.50;
 export const TOPIC_ACCEPT_MARGIN = 0.05;
 
