@@ -5,7 +5,7 @@ import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasN
 const TOPIC_HOLD_TURNS = 1;
 
 // Reply bank and style synced from Android Emma LiteResponseEngine.kt / LiteSpeechStyle.kt.
-// Android source commit: dfd20958931d2767d3b54e0c9106f8cb690be93d
+// Android source commit: c011bf30fbe984464fa3f4ffd979a0dbf5ef2909
 // Do not hand-edit the reply bank independently from Android.
 const STYLE = {
   "MIN_WORDS": 6,
@@ -64,8 +64,8 @@ const GENERIC_REPLIES = [
   "Do you hear that? It's me saying hi. Hello again!"
 ];
 const NEUTRAL_CLOSERS = [
-  "Here we go!",
-  "Nice and easy.",
+  "You are wonderful!",
+  "You are loved.",
   "I'm right here.",
   "Hello, hello!",
   "Look with me.",
@@ -74,7 +74,7 @@ const NEUTRAL_CLOSERS = [
 const SCENE_FILLERS = {
   "bath": [
     "Splash, splash!",
-    "Here we go!"
+    "Let's get clean!"
   ],
   "milk": [
     "Sip, sip!",
@@ -89,11 +89,11 @@ const SCENE_FILLERS = {
     "Good morning!"
   ],
   "diaper": [
-    "Here we go!",
-    "Nice and easy."
+    "Let's change you!",
+    "All fresh!"
   ],
   "clothes": [
-    "Here we go!",
+    "Let's get dressed!",
     "All ready."
   ],
   "hug": [
@@ -122,15 +122,15 @@ const SCENE_FILLERS = {
   ],
   "tummy": [
     "Big hugs!",
-    "I\'m with you."
+    "I'm with you."
   ],
   "play": [
     "Look, look!",
-    "Here we go!"
+    "Let's have fun!"
   ],
   "outside": [
     "Look around!",
-    "Here we go!"
+    "What do you see?"
   ],
   "rain": [
     "Pitter-patter!",
@@ -357,11 +357,11 @@ const SCENES = [
       "あったかいお湯"
     ],
     "replies": [
-      "Bath time! Splash, splash! Here we go!",
-      "Warm bath! Splash, splash! Nice and easy.",
+      "Bath time! Splash, splash! Let's get clean!",
+      "Warm bath! Feel the water. Splish, splash!",
       "Bath time! Wash, wash! All clean.",
-      "Here we go! Bath time! Splash, splash!",
-      "{name}, bath time! Splash, splash! Here we go!"
+      "Let's wash up! Bath time! Splash, splash!",
+      "{name}, bath time! Splash, splash! Let's get clean!"
     ]
   },
   {
@@ -432,7 +432,7 @@ const SCENES = [
       "Good morning! You're awake! Hello, hello!",
       "You're awake! Hello, hello! Good morning!",
       "Morning, little one! Eyes open. Hello, hello!",
-      "Hello there! You're awake! Here we go!",
+      "Hello there! You're awake! Good to see you!",
       "{name}, good morning! You're awake! Hello, hello!"
     ]
   },
@@ -448,11 +448,11 @@ const SCENES = [
       "お尻"
     ],
     "replies": [
-      "Diaper time! Nice and easy. Here we go!",
-      "Fresh diaper! Here we go! Nice and easy.",
+      "Diaper time! A fresh diaper. All clean!",
+      "Fresh diaper! Let's get comfy. Clean and dry!",
       "Diaper change! Wipe, wipe! All clean.",
-      "Here we go! Diaper time! Nice and clean.",
-      "{name}, diaper time! Nice and easy. Here we go!"
+      "Let's change you! Diaper time! Fresh and clean!",
+      "{name}, diaper time! Let's change you. All fresh!"
     ]
   },
   {
@@ -467,11 +467,11 @@ const SCENES = [
       "帽子"
     ],
     "replies": [
-      "Clothes on! Here we go! Nice and easy.",
-      "Time to dress! One little arm. Here we go!",
-      "Getting dressed! Nice and easy. All ready.",
-      "Clothes time! Here we go! All cozy.",
-      "{name}, clothes on! Nice and easy. All ready."
+      "Clothes on! One arm in. Other arm in!",
+      "Time to dress! One little arm. Now the other!",
+      "Getting dressed! Arms in first. Looking lovely!",
+      "Clothes time! Socks on next. So cozy!",
+      "{name}, clothes on! Looking lovely! So cozy!"
     ]
   },
   {
@@ -486,7 +486,7 @@ const SCENES = [
     ],
     "replies": [
       "Big cuddle! Up, up! Nice and close.",
-      "Cuddle time! Nice and close. Here we go!",
+      "Cuddle time! Come close, baby. Big warm hugs!",
       "Up we go! Big hug. So cozy.",
       "Big hug! Nice and close. I'm right here.",
       "{name}, cuddle time! Big hug. Nice and close."
@@ -619,11 +619,11 @@ const SCENES = [
       "ボール"
     ],
     "replies": [
-      "Play time! Look, look! Here we go!",
-      "Let's play! Look with me. Here we go!",
+      "Play time! Let's have fun. Peekaboo!",
+      "Let's play! Can you find me? Peekaboo!",
       "Play, play! Look, look! So much fun!",
       "Time to play! Hello, hello! Let's play!",
-      "{name}, play time! Look, look! Here we go!"
+      "{name}, play time! Let's have fun. Peekaboo!"
     ]
   },
   {
@@ -638,11 +638,11 @@ const SCENES = [
       "出かけ"
     ],
     "replies": [
-      "Outside time! Look around! Here we go!",
+      "Outside time! Look at the sky. What do you see?",
       "Out we go! Look, look! Listen with me.",
-      "Outside, outside! Look around! Here we go!",
+      "Outside, outside! Feel the fresh air. What's over there?",
       "Time outside! Look with me. Listen, listen!",
-      "{name}, outside time! Look around! Here we go!"
+      "{name}, outside time! Look at the sky. What do you see?"
     ]
   },
   {
@@ -676,7 +676,7 @@ const SCENES = [
       "Bright day! Hello, sunshine! Look, look!",
       "Sunshine! Bright, bright! Look with me.",
       "Hello, sunshine! Bright day! Look, look!",
-      "Bright, bright! Sunshine! Here we go!",
+      "Bright, bright! Hello, sunshine! What a sunny day!",
       "{name}, bright day! Hello, sunshine! Look, look!"
     ]
   },
@@ -715,7 +715,7 @@ const SCENES = [
     "replies": [
       "Book time! Look, look! Turn the page.",
       "Let's read! Look with me. Turn the page.",
-      "Book, book! Look, look! Here we go!",
+      "Book time! Turn a page. What comes next?",
       "Story time! Turn the page. Let's see!",
       "{name}, book time! Look, look! Turn the page."
     ]
@@ -734,7 +734,7 @@ const SCENES = [
     "replies": [
       "Music time! La-la-la! Listen, listen!",
       "Let's sing! La-la-la! Listen with me.",
-      "Music, music! Tap, tap! Here we go!",
+      "Music, music! Tap, tap! Hear that beat?",
       "Song time! La-la-la! Listen, listen!",
       "{name}, music time! La-la-la! Listen, listen!"
     ]
