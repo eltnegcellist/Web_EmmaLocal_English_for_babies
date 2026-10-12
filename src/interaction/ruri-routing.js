@@ -5,6 +5,7 @@
 import { INTERACTION_REPLIES } from './response.js';
 
 export const INTERACTION_ACCEPT_PROBABILITY = 0.40;
+export const TOPIC_ACCEPT_PROBABILITY = 0.50;
 export const TOPIC_ACCEPT_MARGIN = 0.05;
 
 export const COMBINED_REPLIES = {
@@ -568,6 +569,7 @@ export const COMBINED_REPLIES = {
 export function selectRuriAxes(topicPrediction, interactionPrediction, allowInteraction = true) {
   const topicId = topicPrediction?.id ?? topicPrediction?.topic ?? null;
   const topic = topicId && topicId !== 'generic'
+    && (topicPrediction?.probability ?? 0) >= TOPIC_ACCEPT_PROBABILITY
     && (topicPrediction?.margin ?? 0) >= TOPIC_ACCEPT_MARGIN
     ? topicId : null;
   const id = interactionPrediction?.id ?? interactionPrediction?.interaction ?? null;
