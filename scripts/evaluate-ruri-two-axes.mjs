@@ -1,5 +1,6 @@
 // Non-blocking actual-ONNX diagnosis. Synthetic prompts are hand-selected
 // and do NOT constitute independent field accuracy or human gold labels.
+import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -37,6 +38,28 @@ const cases=[
 'まだ終わってないね','できなかったね','眠くないね','笑ったね','眠いかな','起きたね','ただいま',
 '今日はいい天気だね','もう一回','ちょっと待ってね','寝返りできたね','ミルク'
 ];
+// Pinned actual-model guard cases. These are a small synthetic regression suite,
+// not an unbiased estimate of speech recognition quality.
+const expectedRoutes=new Map([
+  ['かわいいね','interaction:affection'],
+  ['よくできたね','interaction:praise'],
+  ['できたね','interaction:achievement'],
+  ['頑張ってるね','interaction:effort'],
+  ['大丈夫？','interaction:inquiry'],
+  ['ミルク飲もうか','combined:milk:invitation'],
+  ['ミルクを上手に飲めたね','combined:milk:praise'],
+  ['ミルク終わったかな','combined:milk:finish_check'],
+  ['おむつ替え終わったね','combined:diaper:finish'],
+  ['おむつ替え終わったかな','combined:diaper:finish_check'],
+  ['絵本読もうか','combined:book:invitation'],
+  ['泣いてるね、大丈夫だよ','combined:cry:reassurance'],
+  ['まだ終わってないね','generic'],
+  ['できなかったね','generic'],
+  ['眠くないね','generic'],
+  ['笑ったね','smile'],
+  ['眠いかな','sleep']
+]);
+let guarded=0;
 ort.env.wasm.numThreads=1;ort.env.wasm.wasmPaths=runtime+'/';
 const session=await ort.InferenceSession.create(new Uint8Array(await readFile(join(asset,'model.onnx'))),{executionProviders:['wasm'],graphOptimizationLevel:'all'});
 try {
@@ -52,10 +75,12 @@ try {
    if (expectedSmokeRoutes.has(text) && expectedSmokeRoutes.get(text) !== route) {
      throw Error('Experimental Ruri-only route mismatch: '+text+' expected '+expectedSmokeRoutes.get(text)+' got '+route);
    }
+   if(expectedRoutes.has(text)){assert.equal(route,expectedRoutes.get(text),`real Ruri route regression: ${text}`);guarded++;}
    console.log(JSON.stringify({text,topic:scores.topic.id,tp:+scores.topic.probability.toFixed(3),tm:+scores.topic.margin.toFixed(3),
     interaction:scores.interaction.id,ip:+scores.interaction.probability.toFixed(3),im:+scores.interaction.margin.toFixed(3),
     route,paired}));
   }finally{for(const o of Object.values(out))o.dispose?.();}
  }
 }finally{await session.release?.();}
-console.log('Measured real Ruri ONNX heads on '+cases.length+' Japanese prompts. NOT a field accuracy score.');
+assert.equal(guarded,expectedRoutes.size);
+console.log('Measured real Ruri ONNX heads on '+cases.length+' Japanese prompts, '+guarded+' protected routes. NOT a field accuracy score.');
