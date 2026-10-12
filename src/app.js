@@ -1168,6 +1168,16 @@ async function initMoonshine() {
       showMoonshineProgress(1,event.message);
     } else if(event.type==='manifest'){
       manifest=event.manifest;
+      // Take the pre-download cache snapshot before releasing Worker initialization.
+      refreshSelectedMoonshineCache(manifest,modelLabel,{repairAliases:true})
+        .then(()=>{
+          diagnostics.cacheManifestBefore={
+            status:modelCacheState.status,presentFiles:modelCacheState.presentFiles,
+            expectedFiles:modelCacheState.expectedFiles,aliasHits:modelCacheState.aliasHits,
+            missingFiles:[...modelCacheState.missingFiles]
+          };
+        })
+        .finally(()=>client.resumeInit());
     } else if(event.type==='progress'){
       moonshineStage='download';
       const loaded=Number(event.loaded)||0,total=Number(event.total)||0;
