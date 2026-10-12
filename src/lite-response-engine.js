@@ -19,14 +19,14 @@ const STYLE = {
 // independent one/three-sentence phrase catalog.
 const GENERIC_REPLIES = [
   "Hello, sweet baby! You're so loved. I'm right here.",
-  "Hi, little one! I love your company. Hello there!",
-  "Look at you! You're growing every day. How wonderful!",
+  "Hi, little one! It's nice being together. Hello again!",
+  "Look at you! What a sweet face. I'm glad you're here!",
   "You're very special. I'm happy you're here. Hello, sweetheart!",
-  "Hello again, baby! I'm listening to you. Say hello!",
+  "Hello again, baby! It's lovely seeing you. Shall we say hello?",
   "You're my little sunshine. I love you. Big hugs!",
   "Can you hear me? It's my voice. Hello there!",
   "Let's say hello! Hi, little one! Hello again!",
-  "I love being here. You're good company. Hello, sweetie!",
+  "I'm glad we're together. Let's spend time here. Hello, sweetie!",
   "Hello, sweetheart! Look at my face. Here I am!",
   "Shall we talk? I'm listening, baby. Your turn!",
   "Tell me more! I'm listening to you. Hello, baby!",
@@ -34,8 +34,8 @@ const GENERIC_REPLIES = [
   "Hi there, baby! It's lovely seeing you. Hello!",
   "Hello, little one! Can you hear me? Hi there!",
   "Let's make a sound! Ba, ba, ba! Your turn!",
-  "One, two, three! Let's count again. Well done!",
-  "Wave hello, baby! Hi, hi, hi! Hello there!",
+  "One, two, three! Let's count together. Shall we go again?",
+  "Shall we wave hello? Hi, hi, hi! Here comes my hand!",
   "Look at my hands! Let's wave hello. Hi, hi!",
   "Let's say good morning! Hello, sweet baby. Hi there!",
   "You're my sweet baby. I'm here with you. Big hugs!",
@@ -343,7 +343,7 @@ const SCENES = [
       "あったかいお湯"
     ],
     "replies": [
-      "Bath time is here! Warm water feels good. Splash, splash!",
+      "Bath time is here! Is the water warm? Splash, splash!",
       "Let's wash your hands. One, then the other. All clean!",
       "Your little toes! Let's wash them gently. Splash, splash!",
       "Feel the warm water. Can you hear it? Splish, splash!",
@@ -370,7 +370,7 @@ const SCENES = [
       "Can you taste it? A little milk. Mmm, yummy!",
       "Milk for you! One little sip. Then another!",
       "Are you still hungry? We can have more. I'm here!",
-      "You're drinking milk! Sip by sip. Well done!",
+      "It's milk time! Take little sips. I'm here with you.",
       "Milk time! Are you hungry? Let's have some!",
       "{name}, your milk! Here's a little sip. Mmm, yummy!",
       "{name}, milk time! Take a little sip. I'm here!"
@@ -401,11 +401,11 @@ const SCENES = [
     ],
     "replies": [
       "Are you sleepy? Let's get cozy. Night-night!",
-      "Time to rest. Your bed is ready. Sweet dreams!",
+      "Time to rest. Let's get cozy now. I'll stay close.",
       "Let's close our eyes. I'll stay nearby. Sleep well!",
-      "Shh, little one. It's bedtime now. Night-night!",
+      "Shh, little one. Let's have quiet time. I'm right here.",
       "Getting sleepy? I'll stay with you. Rest well!",
-      "Good night, baby. You're safe here. Sweet dreams!",
+      "Rest well, baby. I'll stay close by. Sweet dreams!",
       "{name}, sleep well. I'm right here. Sweet dreams!",
       "{name}, night-night! Let's get cozy. Rest well!"
     ]
@@ -421,13 +421,13 @@ const SCENES = [
       "朝だ"
     ],
     "replies": [
-      "You're awake! Good morning, baby. Hello there!",
-      "Your eyes are open! Hello, little one. Good morning!",
-      "Morning is here! How are you? Hello, sunshine!",
-      "Hello again! Did you sleep well? Good morning!",
-      "Look who's awake! It's a new day. Hello there!",
-      "Good morning! Glad you're awake. Hello!",
-      "{name}, good morning! You're awake now. Hello, sweetheart!",
+      "You're awake! Hello, little one. It's nice seeing you!",
+      "Your eyes are open! Hello, little one. How are you?",
+      "Look who's awake! How are you? Hello, little one!",
+      "Hello again! Did you rest well? I'm glad you're awake.",
+      "Look who's awake! Did you rest well? Hello there!",
+      "Hello there! You're awake now. Let's say hello!",
+      "{name}, you're awake! How was your rest? Hello, sweetheart!",
       "{name}, you're awake! How are you? Hello again!"
     ]
   },
@@ -447,7 +447,7 @@ const SCENES = [
       "New diaper time! Let's wipe your bottom. All clean!",
       "Let's change your diaper. One little wipe. All fresh!",
       "Off comes your diaper. Let's clean you up. There!",
-      "A clean diaper! Let's get you comfortable. All done!",
+      "Let's change your diaper. I'll be gentle. Nice and fresh!",
       "Diaper change! I'll be gentle. You're doing great!",
       "{name}, diaper time! Let's get you clean. All fresh!",
       "{name}, let's change you. One little wipe. All clean!"
@@ -466,11 +466,11 @@ const SCENES = [
     ],
     "replies": [
       "Let's put clothes on. One arm first. Other arm next!",
-      "Your little shirt! Let's put it on. All dressed!",
+      "Your little shirt! Let's put it on. Here comes one arm!",
       "Here come your socks. One little foot. Then another!",
       "Time to get dressed. Arms through the sleeves. All ready!",
       "Let's change your clothes. This arm first. There you go!",
-      "Look at your outfit! The sleeves are soft. So cozy!",
+      "Look at your clothes! Shall we get dressed? One arm first!",
       "{name}, clothes on! One arm in. Looking lovely!",
       "{name}, let's get dressed. Socks on next. All ready!"
     ]
@@ -487,7 +487,7 @@ const SCENES = [
     ],
     "replies": [
       "Come here, baby. Let's have a cuddle. Big hugs!",
-      "Up you go! Into my arms. You're safe here!",
+      "Up you go! Into my arms. I've got you!",
       "A little cuddle? I'll hold you close. So cozy!",
       "Let's have a hug. Close to my heart. I love you!",
       "Here are my arms. Come close, sweetheart. Big hug!",
@@ -550,12 +550,12 @@ const SCENES = [
       "微笑"
     ],
     "replies": [
-      "What a smile! You look so happy. Hello there!",
+      "What a smile! I love seeing it. You're so sweet!",
       "There's your smile! I love seeing it. So sweet!",
       "You're smiling! That makes me smile. Thank you!",
       "Such a big smile! Your cheeks look lovely. Hello, baby!",
       "I see a smile! Are you happy? I am too!",
-      "Hello, happy face! That's a lovely smile. So sweet!",
+      "Hello, little smiler! That's a lovely grin. I see you!",
       "{name}, that smile! You make me happy. Hello, sweetheart!",
       "{name}, you're smiling! I love that smile. So sweet!"
     ]
@@ -573,9 +573,9 @@ const SCENES = [
     ],
     "replies": [
       "I hear you crying. I'm right here. You're not alone.",
-      "Something feels wrong? I'm listening, baby. I'm here.",
-      "You're feeling upset? I'll stay close. Big hugs!",
-      "I hear those tears. Let's have a cuddle. I'm here.",
+      "Are you feeling upset? I'm listening, baby. I'm right here.",
+      "Are you upset? I'll stay close. Would you like cuddles?",
+      "I hear you crying. Would a cuddle help? I'm here.",
       "Are you upset? I'm here with you. Big hugs!",
       "You can cry. I'll stay beside you. I love you.",
       "{name}, I'm here. I hear you crying. Big hugs!",
@@ -619,7 +619,7 @@ const SCENES = [
       "How's your tummy? Do you feel full? I'm here!",
       "Let's pat your back. Maybe a little burp. There!",
       "Your little tummy! Let's have a cuddle. So cozy!",
-      "Did you burp? I heard that sound! Well done!",
+      "Is that a burp? Let's take it slowly. I'm right here.",
       "Let's get comfortable. I'll hold you close. Big hugs!",
       "Full tummy? We can rest now. I'm right here.",
       "{name}, little tummy! Let's get comfortable. Big hugs!",
@@ -640,7 +640,7 @@ const SCENES = [
     "replies": [
       "Let's play together! What should we try? Peekaboo!",
       "Here's your toy! Can you see it? Look here!",
-      "Ready to play? Let's have some fun. Hello, toy!",
+      "Ready to play? Shall we start together? Here's a little game!",
       "Peekaboo! Where did I go? Here I am!",
       "Let's shake the rattle. Can you hear it? Shake, shake!",
       "Look at this toy! It's here for you. Let's play!",
@@ -663,7 +663,7 @@ const SCENES = [
       "Let's go outside! Look at the sky. What do you see?",
       "Fresh air outside! Can you feel it? Hello, world!",
       "Time for a stroll. Let's look around. What's over there?",
-      "We're going outside! Look at the trees. So tall!",
+      "We're going outside! Let's look all around. What do you see?",
       "Look up, baby! There's the sky. So big!",
       "Out we go! What can you hear? Let's listen!",
       "{name}, outside time! Look at the sky. Hello, world!",
@@ -685,7 +685,7 @@ const SCENES = [
       "Rain on the window! Tap, tap, tap. Can you hear?",
       "It's raining outside. Look at the drops. Drip, drop!",
       "The rain sounds soft. Listen with me. Pitter-patter!",
-      "Raindrops are falling. One, two, three! Splash, splash!",
+      "Raindrops are falling. Listen to their sound. Drip, drop!",
       "{name}, it's raining! Listen to the drops. Drip, drop!",
       "{name}, hear that? It's the rain. Pitter-patter!"
     ]
@@ -706,7 +706,7 @@ const SCENES = [
       "Hello, sunshine! The sky is bright. Look up!",
       "A sunny day! Let's look outside. Can you see?",
       "See the bright sky? The sun is out. Hello, sunshine!",
-      "Sunlight on the floor! Look at that glow. So bright!",
+      "Look at the sunshine! Can you see it? So bright!",
       "{name}, it's sunny! Look at the light. So bright!",
       "{name}, sunshine today! The sky is bright. Hello, sunshine!"
     ]
@@ -726,9 +726,9 @@ const SCENES = [
       "Time for a bite! Here's your spoon. Open wide!",
       "Let's try some food. One little bite. How is it?",
       "Ready to eat? A little spoonful. There you go!",
-      "Do you like it? Take another bite? Your choice!",
+      "Do you like it? Want another bite? We can take time.",
       "Here's a little bite. Let's taste it. Mmm, yummy!",
-      "All done eating? Let's wipe your mouth. Good job!",
+      "All done eating? Shall we wipe up? You did well!",
       "{name}, food time! One little spoonful. Is it yummy?",
       "{name}, let's eat! Here's your spoon. Open wide!"
     ]
@@ -746,10 +746,10 @@ const SCENES = [
     "replies": [
       "Let's read a book! Look at the pictures. What's that?",
       "Here's your book! Turn the page. What comes next?",
-      "Look at this picture! Can you see it? Hello there!",
+      "Look at this picture! What can you see? Let's look together!",
       "One more page! Let's see what's there. Turn, turn!",
       "Story time! Listen to my voice. Here comes a story!",
-      "Let's look together. See that picture? So colorful!",
+      "Let's look together. See that picture? What do you notice?",
       "{name}, book time! Look at the pictures. What's that?",
       "{name}, let's read! Turn the page. What comes next?"
     ]
@@ -786,13 +786,13 @@ export function splitSentences(text) {
 const DRINK_SCENE = {
   id: 'drink',
   replies: [
-    "Would you like water? Here's a little sip. There you go!",
+    "Would you like some? Here's a little sip. There you go!",
     "Here's your drink! Ready for a sip? Here you are!",
     "Drink time! One little sip. How does it taste?",
-    "A little water? Here's your cup. Sip, sip!",
-    "Want another sip? You can have more. I'm here!",
+    "Want a little sip? Here's your cup. Take your time!",
+    "Want another sip? We can take time. Here you go!",
     "{name}, your drink! Here's a little sip. There you go!",
-    "{name}, thirsty? Let's have some water. Sip, sip!"
+    "{name}, thirsty? Let's have a drink. Take your time!"
   ],
 };
 
