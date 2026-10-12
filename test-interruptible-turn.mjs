@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { TurnRevisions } from './src/turn-revisions.js';
 import { MoonshineAsrClient } from './src/asr-client.js';
+import { LiteResponseEngine } from './src/lite-response-engine.js';
 
 const turn=new TurnRevisions({maxSamples:10});
 const first=turn.append(Float32Array.of(1,2,3));
@@ -19,6 +20,14 @@ turn.reset();
 assert(!turn.isCurrent(third.version));
 assert(!turn.hasAudio);
 assert.deepEqual([...turn.append(Float32Array.of(7)).audio],[7]);
+
+// Candidate turns must not spend one of the already-earned topic/name turns.
+const engine=new LiteResponseEngine();
+engine.respond('お風呂に入ろうね');
+const before=engine.snapshotTurnState();
+engine.respond('今日も');
+engine.restoreTurnState(before);
+assert.deepEqual(engine.snapshotTurnState(),before);
 
 class StubWorker {
   postMessage(message){this.messages.push(message);}
