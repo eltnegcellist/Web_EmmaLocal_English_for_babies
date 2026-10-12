@@ -29,6 +29,8 @@ jobs:
         run: node scripts/extract-interaction-embeddings.mjs
       - name: Fit 14-class Interaction + none head and evaluate held-out seeds
         run: python3 scripts/train-interaction-head.py
+      - name: Probe semantic contrasts on real ONNX predictions (diagnostic only)
+        run: node scripts/evaluate-interaction-contrasts.mjs
       - name: Check output provenance and no runtime integration
         run: |
           python3 - <<'PY'
