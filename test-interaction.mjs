@@ -8,8 +8,8 @@ const topics=['drink','bath','milk','sleep','wake','diaper','clothes','hug','han
 const labels=['affection','praise','achievement','effort','encouragement','invitation','start',
   'finish','finish_check','care','inquiry','reassurance','repeat','pause'];
 assert.equal(Object.keys(INTERACTION_REPLIES).length,14);
-assert.equal(Object.keys(COMBINED_REPLIES).length,88,'88 curated meaningful pair types');
-assert.equal(Object.values(COMBINED_REPLIES).flat().length,264,'3 variants per pair');
+assert.equal(Object.keys(COMBINED_REPLIES).length,111,'111 curated meaningful pair types');
+assert.equal(Object.values(COMBINED_REPLIES).flat().length,333,'3 variants per pair');
 assert.equal(new Set(Object.keys(COMBINED_REPLIES).map(s=>s.split('|')[0])).size,21,'21 concrete Ruri topics represented, including drink');
 const onlySeen=new Set();
 for(const [key,replies] of Object.entries(COMBINED_REPLIES)){
@@ -65,4 +65,4 @@ const engine=new LiteResponseEngine();
 assert.equal(engine.respondRuri('ミルク', '',topic('milk'),interaction('none')).scene,'milk');
 assert.equal(engine.respondRuri('その後、かわいいね','',topic('generic'),interaction('affection')).scene,'interaction:affection');
 assert.equal(engine.respondRuri('どうかな','',null,null).scene,'generic');
-console.log('Ruri-only Topic×Interaction 88 pairs / 264 English sets, independent heads, fallback, no keywords: PASS');
+console.log('Ruri-only Topic×Interaction 111 pairs / 333 English sets, independent heads, fallback, no keywords: PASS');
