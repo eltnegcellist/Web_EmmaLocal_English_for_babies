@@ -40,6 +40,9 @@ export class MoonshineAsrClient {
     this.worker.postMessage({type:'init',model,keyterms});
     return promise;
   }
+  resumeInit() {
+    if(!this.closed)this.worker.postMessage({type:'resume-init'});
+  }
   transcribe(audio) {
     if(this.closed)return Promise.reject(Error('Moonshine worker was closed'));
     const id=++this.sequence;
