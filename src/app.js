@@ -1,5 +1,6 @@
 import { installSemanticPanel } from './semantic/panel.js';
 import { createSemanticController } from './semantic/controller.js';
+import { interactionEnabled, INTERACTION_PREFERENCE_KEY } from './interaction/settings.js';
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
 import { installFeatureScreens } from './feature-screens.js';
 import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './emma-color-palettes.js';
@@ -419,10 +420,10 @@ function bindEvents() {
     localStorage.setItem(STORAGE.highPerformance,String(ui.onboardingHighPerformance.checked));
   });
   ui.semanticEnabled.addEventListener('change',()=>semanticPanel.setEnabled(ui.semanticEnabled.checked,{prepare:true,mode:'semantic'}));
-  ui.interactionExperimental.checked = localStorage.getItem('emma_interaction_experimental') === 'true';
+  ui.interactionExperimental.checked = interactionEnabled(localStorage);
   ui.interactionExperimental.addEventListener('change',async()=>{
     if(running||preparingConversation||processing||speaking)await stopEmma();
-    localStorage.setItem('emma_interaction_experimental',String(ui.interactionExperimental.checked));
+    localStorage.setItem(INTERACTION_PREFERENCE_KEY,String(ui.interactionExperimental.checked));
     engine.resetConversationContext();
   });
   ui.endpointMode?.addEventListener('change',async()=>{
