@@ -216,8 +216,8 @@ for(const key of eligibleKeys) {
   const namedEngine=new LiteResponseEngine({diversityState:ready});
   const response=namedEngine.respondRuri('試験用の日本語','Hana',topic(t),interaction(i));
   if(response.scene!==`combined:${t}:${i}`||!response.english.includes('Hana'))continue;
-  assert.equal(response.english.trim().split(/(?<=[.!?])\\s+/).length,3);
-  const clauses=response.english.trim().split(/(?<=[.!?])\\s+/);
+  assert.equal(response.english.trim().split(/(?<=[.!?])\s+/).length,3);
+  const clauses=response.english.trim().split(/(?<=[.!?])\s+/);
   assert.ok(clauses.every(s=>countWords(s)<=4),response.english);
   assert.ok(countWords(response.english)<=12,response.english);
   const after=namedEngine.exportReplyDiversityState();
