@@ -6,7 +6,7 @@ root=Path(__file__).resolve().parents[1]
 path=root / ("app/src/main/assets/play-topics.json" if (root/"app").exists() else "shared/play-topics.json")
 data=json.loads(path.read_text())
 assert data["schemaVersion"] == 1
-assert hashlib.sha256(path.read_bytes()).hexdigest() == "1d3a55b4591853c331628d98a479290e4e6a907ac56587aa11d1cc4d3b02f49e", "Update both editions and this contract hash together"
+assert hashlib.sha256(path.read_bytes()).hexdigest() == "3065cd5f8614cc5fe82fb2d1233e89c7b497b8ae6e04ae851086da02a4967403", "Update both editions and this contract hash together"
 assert len({t["id"] for t in data["topics"]}) == len(data["topics"])
 for topic in data["topics"]:
     assert len(topic["phrases"]) >= 2
