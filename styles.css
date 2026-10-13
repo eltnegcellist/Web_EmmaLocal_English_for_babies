@@ -50,22 +50,16 @@ p{line-height:1.58}
 .text-button{border:0;background:transparent;color:var(--primary);font-weight:700;padding:10px 8px;border-radius:12px}
 .text-button:active{background:rgba(111,77,176,.08)}
 .inline-button{padding-left:0}
-.privacy-card,.audience-card,.auto-reply-card,.card{
+.audience-card,.auto-reply-card,.card{
   width:100%;
   border-radius:28px;
   background:#fff;
   border:1px solid rgba(124,116,127,.16);
   box-shadow:0 3px 12px rgba(44,23,84,.035);
 }
-.privacy-card{
-  background:rgba(237,226,255,.72);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:11px 15px;margin-bottom:12px
-}
-.privacy-card div,.auto-reply-card>div{display:grid;gap:2px}
-.privacy-card strong,.auto-reply-card strong{font-size:.88rem}
-.privacy-card span,.auto-reply-card span{font-size:.78rem}
-.privacy-dot{color:var(--primary);font-size:1rem!important}
+.auto-reply-card>div{display:grid;gap:2px}
+.auto-reply-card strong{font-size:.88rem}
+.auto-reply-card span{font-size:.78rem}
 .audience-card{background:rgba(242,236,244,.55);padding:12px;margin-bottom:10px}
 .audience-card p{margin:8px 2px 0;text-align:center}
 .segmented{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
@@ -277,7 +271,6 @@ body.debug .debug-panel{display:block}
   .text-button{font-size:.82rem;padding:9px 6px}
   .segmented{gap:5px}
   .segment-button{font-size:.78rem;padding:9px 5px}
-  .privacy-card{border-radius:24px}
 }
 
 
@@ -553,12 +546,6 @@ body{
   padding:0;
 }
 .icon-text-button span{display:none}
-#homeScreen .privacy-card{
-  border-radius:18px;
-  padding:9px 13px;
-  background:rgba(255,255,255,.74);
-  box-shadow:none;
-}
 #homeScreen .audience-card{
   border-radius:20px;
   background:rgba(255,255,255,.7);

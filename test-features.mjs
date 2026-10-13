@@ -13,6 +13,11 @@ assert(!publicHtml.includes('Android版について'));
 assert(!publicHtml.includes('Android版を見る'));
 assert(!publicHtml.includes('android-full-card'));
 assert(!publicHtml.includes('Android_English_character_for_baby'));
+// Home should prioritize the character, not repeat a persistent privacy notice.
+assert(!publicHtml.includes('class="privacy-card"'));
+assert(!publicHtml.includes('端末内で処理'));
+// Keep the onboarding explanation so users can still find the privacy promise.
+assert(publicHtml.includes('会話処理は端末内。クラウドAIへ音声を送りません。'));
 
 assert.deepEqual(appHistoryState('settings'),{mitsukotobaScreen:'settings'});
 assert.equal(resolveAppPopScreen('settings','home',null),'home');
