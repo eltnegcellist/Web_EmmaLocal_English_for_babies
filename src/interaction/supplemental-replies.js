@@ -34,7 +34,7 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   ],
   "diaper|affection": [
     "Fresh and cozy now. My sweet little one. I love you.",
-    "A gentle diaper change. You're so precious. I'm right here.",
+    "A fresh diaper, sweetheart. Your little legs wiggle. I love you.",
     "Your little diaper, sweetheart. I'm here with you. I love you.",
   ],
   "diaper|praise": [
@@ -54,7 +54,7 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   ],
   "sleep|care": [
     "You look sleepy. Let's rest now. I'll stay close.",
-    "Rest your little eyes. We have time. I'm right here.",
+    "Rest those little eyes. Your bed is cozy. I'll stay beside you.",
     "Time for a break. Let's get cozy. I'll stay nearby.",
   ],
   "wake|praise": [
@@ -63,7 +63,7 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
     "Here you are! You're awake now. So good to see!",
   ],
   "wake|reassurance": [
-    "You're awake now. I'm right here. You're safe with me.",
+    "Hello, little sleepyhead! Open those bright eyes. I'll hold you close.",
     "Hello, little one. I'll stay close. We're together now.",
     "You woke up. Take your time. I'm beside you.",
   ],
@@ -79,7 +79,7 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   ],
   "food|affection": [
     "Snack time with you. My sweet little one. I love you.",
-    "Little bites together. You're so precious. I'm right here.",
+    "Little bites together. I love your smile. Let's eat slowly.",
     "A meal together. My darling little one. I love you.",
   ],
   "food|finish": [
@@ -109,7 +109,7 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   ],
   "play|affection": [
     "Playtime with you. You're so precious. I love you.",
-    "My little playmate. This is lovely. I'm right here.",
+    "My little playmate! I love your giggle. What a fun game!",
     "We play together. You're my sweetheart. What lovely fun!",
   ],
   "play|finish_check": [
