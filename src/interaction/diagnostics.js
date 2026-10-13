@@ -18,10 +18,10 @@ export function describeRuriTurn({prediction = null, response, interactionEnable
     : rawInteraction === 'none' ? 'none'
     : interactionProbability == null || interactionProbability < 0.50 ? 'low_probability' : 'accepted';
   const pairMissing = Boolean(response?.topic && response?.interaction && !response?.combined);
-  const reason = response?.combined ? 'combined'
+  const reason = response?.selectionReason ?? (response?.combined ? 'combined'
     : pairMissing ? 'pair_missing'
     : response?.topic ? 'topic_only'
-    : response?.interaction ? 'interaction_only' : 'generic';
+    : response?.interaction ? 'interaction_only' : 'generic');
   return {
     at, topicRaw: rawTopic, topicProbability, topicMargin, topicStatus,
     interactionRaw: rawInteraction, interactionProbability, interactionMargin,

@@ -1,5 +1,6 @@
 import { SemanticLiteClient } from './client.js';
 import { isInteractionEnabled } from '../interaction/setting.js';
+import { DIVERSITY_STORAGE_KEY } from '../interaction/diversity.js';
 import { describeRuriTurn, appendRuriTurn } from '../interaction/diagnostics.js';
 
 // Conversation behavior is independent of whether the developer UI is visible.
@@ -74,6 +75,11 @@ export function createSemanticController({ engine, storage = localStorage, befor
       // An explicit saved OFF remains OFF.
       const interactionEnabled = isInteractionEnabled(storage);
       lastResponse=engine.respondRuri(text,name,prediction?.topic, prediction?.interaction, interactionEnabled);
+      // Store only template IDs and hashed phrase shingles, never what the parent said.
+      try {
+        if(typeof engine.exportReplyDiversityState==='function')
+          storage.setItem(DIVERSITY_STORAGE_KEY,JSON.stringify(engine.exportReplyDiversityState()));
+      } catch { /* Storage denial must never interrupt speaking. */ }
       routingHistory=appendRuriTurn(routingHistory, describeRuriTurn({
         prediction, response:lastResponse, interactionEnabled,
       }));
