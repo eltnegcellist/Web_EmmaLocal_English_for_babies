@@ -27,6 +27,8 @@ export class RuriReplyDiversity {
     this.phrases = valid && Array.isArray(state.phrases)
       ? state.phrases.filter(row=>Array.isArray(row)).slice(-PHRASE_LIMIT)
         .map(row=>row.filter(x=>typeof x==='string'&&/^[0-9a-f]+$/.test(x)).slice(0,32)) : [];
+    this.nameGap=valid && Number.isInteger(state.nameGap)
+      ? Math.min(8,Math.max(0,state.nameGap)) : 0;
     this.cycles={};
     if (valid && state.cycles && typeof state.cycles==='object') {
       for(const [key,cycle] of Object.entries(state.cycles).slice(-MAX_CYCLES)) {
@@ -37,9 +39,11 @@ export class RuriReplyDiversity {
     }
   }
   snapshot() {
-    return {version:1,history:[...this.history],phrases:this.phrases.map(row=>[...row]),
+    return {version:1,nameGap:this.nameGap,history:[...this.history],phrases:this.phrases.map(row=>[...row]),
       cycles:Object.fromEntries(Object.entries(this.cycles).map(([k,v])=>[k,{used:[...v.used],fallbackStep:v.fallbackStep}]))};
   }
+  canUsePairedName() { return this.nameGap>=8; }
+  recordName(used) { this.nameGap=used?0:Math.min(8,this.nameGap+1); }
   pick(poolKey, candidates, excluded=[]) {
     if(!Array.isArray(candidates) || !candidates.length)return null;
     const banned=new Set(excluded);
