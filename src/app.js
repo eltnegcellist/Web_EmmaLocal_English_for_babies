@@ -47,7 +47,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261013-ruri-diagnostics-405-r1';
+const WEB_BUILD = '20261013-diversity-495-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -70,7 +70,8 @@ const STORAGE = {
   asrReload:'emma_asr_reload',
   tutorialDone:'emma_web_tutorial_completed_v1',
   modelCacheSnapshot:'emma_moonshine_cache_snapshot_v1',
-  modelCacheLoss:'emma_moonshine_cache_loss_v1'
+  modelCacheLoss:'emma_moonshine_cache_loss_v1',
+  replyDiversity:'emma_ruri_reply_diversity_v1'
 };
 
 if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
@@ -91,11 +92,15 @@ function writeStoredJson(key,value) {
   try { localStorage.setItem(key,JSON.stringify(value)); } catch {}
 }
 
-const engine = new LiteResponseEngine();
+const engine = new LiteResponseEngine({diversityState:readStoredJson(STORAGE.replyDiversity)});
 const turnRevisions = new TurnRevisions();
 let speculativeEngineSnapshot=null;
 function restoreUnspokenTurn(){
-  if(speculativeEngineSnapshot){engine.restoreTurnState(speculativeEngineSnapshot);speculativeEngineSnapshot=null;}
+  if(speculativeEngineSnapshot){
+    engine.restoreTurnState(speculativeEngineSnapshot);
+    writeStoredJson(STORAGE.replyDiversity,engine.exportReplyDiversityState());
+    speculativeEngineSnapshot=null;
+  }
 }
 function isLiveTurn(revision,epoch){
   return epoch===conversationEpoch && (revision===null || (running && turnRevisions.isCurrent(revision)));
@@ -2162,7 +2167,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261013-ruri-diagnostics-405-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261013-diversity-495-r1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -2200,6 +2205,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261013-ruri-diagnostics-405-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261013-diversity-495-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });
