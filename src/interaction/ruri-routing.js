@@ -522,9 +522,9 @@ const BASE_COMBINED_REPLIES = {
     "Another little sound? You can try. I'm right here."
   ],
   "milk|effort": [
-    "You're trying to drink. I see your effort. We'll go gently.",
+    "You're trying little sips. Look at you! Take your time.",
     "Little sips take practice. I see you trying. I'm right here.",
-    "You're practicing little sips. I see your effort. We'll go gently."
+    "You're taking little sips. That looks gentle. Take your time."
   ],
   "food|effort": [
     "You're trying that food. I see you trying. I'll stay close.",
