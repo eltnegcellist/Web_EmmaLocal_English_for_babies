@@ -1,0 +1,3918 @@
+{
+  "schema_version": 1,
+  "source": "Hand-crafted PR-A taxonomy + 98 Topic×Interaction utterances + existing topic contract; NOT field data",
+  "status": "experimental_provisional_no_independent_human_adjudication",
+  "split": "design seeds vs distinct synthetic smoke; not a true out-of-distribution benchmark",
+  "labels": [
+    "affection",
+    "praise",
+    "achievement",
+    "effort",
+    "encouragement",
+    "invitation",
+    "start",
+    "finish",
+    "finish_check",
+    "care",
+    "inquiry",
+    "reassurance",
+    "repeat",
+    "pause",
+    "none"
+  ],
+  "counts": {
+    "affection": {
+      "train": 13,
+      "dev": 3,
+      "test": 3
+    },
+    "praise": {
+      "train": 15,
+      "dev": 3,
+      "test": 3
+    },
+    "achievement": {
+      "train": 13,
+      "dev": 3,
+      "test": 3
+    },
+    "effort": {
+      "train": 12,
+      "dev": 3,
+      "test": 3
+    },
+    "encouragement": {
+      "train": 12,
+      "dev": 3,
+      "test": 3
+    },
+    "invitation": {
+      "train": 18,
+      "dev": 3,
+      "test": 3
+    },
+    "start": {
+      "train": 13,
+      "dev": 3,
+      "test": 3
+    },
+    "finish": {
+      "train": 13,
+      "dev": 3,
+      "test": 3
+    },
+    "finish_check": {
+      "train": 13,
+      "dev": 3,
+      "test": 3
+    },
+    "care": {
+      "train": 12,
+      "dev": 3,
+      "test": 3
+    },
+    "inquiry": {
+      "train": 13,
+      "dev": 3,
+      "test": 3
+    },
+    "reassurance": {
+      "train": 12,
+      "dev": 3,
+      "test": 3
+    },
+    "repeat": {
+      "train": 12,
+      "dev": 3,
+      "test": 3
+    },
+    "pause": {
+      "train": 12,
+      "dev": 3,
+      "test": 3
+    },
+    "none": {
+      "train": 135,
+      "dev": 41,
+      "test": 34
+    }
+  },
+  "items": [
+    {
+      "id": "p0001",
+      "label": "affection",
+      "text": "かわいいね",
+      "family": "affection:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0002",
+      "label": "affection",
+      "text": "大好きだよ",
+      "family": "affection:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0003",
+      "label": "affection",
+      "text": "かわいすぎるね",
+      "family": "affection:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0004",
+      "label": "affection",
+      "text": "愛しいね",
+      "family": "affection:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0005",
+      "label": "affection",
+      "text": "愛してるよ",
+      "family": "affection:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0006",
+      "label": "affection",
+      "text": "かわいいお顔だね",
+      "family": "affection:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0007",
+      "label": "affection",
+      "text": "ぎゅーしたいね",
+      "family": "affection:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0008",
+      "label": "affection",
+      "text": "大切だよ",
+      "family": "affection:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0009",
+      "label": "affection",
+      "text": "とってもかわいい",
+      "family": "affection:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0010",
+      "label": "affection",
+      "text": "ほんとにかわいい子だね",
+      "family": "affection:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0011",
+      "label": "affection",
+      "text": "あなたが大好き",
+      "family": "affection:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0012",
+      "label": "affection",
+      "text": "大事な宝物だよ",
+      "family": "affection:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0013",
+      "label": "praise",
+      "text": "えらいね",
+      "family": "praise:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0014",
+      "label": "praise",
+      "text": "上手だね",
+      "family": "praise:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0015",
+      "label": "praise",
+      "text": "すごいね",
+      "family": "praise:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0016",
+      "label": "praise",
+      "text": "よくできたね",
+      "family": "praise:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0017",
+      "label": "praise",
+      "text": "とっても上手",
+      "family": "praise:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0018",
+      "label": "praise",
+      "text": "上手にできたね",
+      "family": "praise:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0019",
+      "label": "praise",
+      "text": "いい子だね",
+      "family": "praise:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0020",
+      "label": "praise",
+      "text": "おりこうさんだね",
+      "family": "praise:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0021",
+      "label": "praise",
+      "text": "お上手ね",
+      "family": "praise:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0022",
+      "label": "praise",
+      "text": "それでいいよ",
+      "family": "praise:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0023",
+      "label": "praise",
+      "text": "とってもえらいよ",
+      "family": "praise:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0024",
+      "label": "praise",
+      "text": "ばっちりだね",
+      "family": "praise:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0025",
+      "label": "achievement",
+      "text": "できたね",
+      "family": "achievement:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0026",
+      "label": "achievement",
+      "text": "やったね",
+      "family": "achievement:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0027",
+      "label": "achievement",
+      "text": "できたできた",
+      "family": "achievement:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0028",
+      "label": "achievement",
+      "text": "やったあ",
+      "family": "achievement:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0029",
+      "label": "achievement",
+      "text": "できたよ",
+      "family": "achievement:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0030",
+      "label": "achievement",
+      "text": "成功したね",
+      "family": "achievement:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0031",
+      "label": "achievement",
+      "text": "とうとうできたね",
+      "family": "achievement:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0032",
+      "label": "achievement",
+      "text": "ちゃんとできたね",
+      "family": "achievement:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0033",
+      "label": "achievement",
+      "text": "やりきったね",
+      "family": "achievement:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0034",
+      "label": "achievement",
+      "text": "ほらできた",
+      "family": "achievement:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0035",
+      "label": "achievement",
+      "text": "とうとうやれたね",
+      "family": "achievement:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0036",
+      "label": "achievement",
+      "text": "もうできたんだ",
+      "family": "achievement:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0037",
+      "label": "effort",
+      "text": "頑張ってるね",
+      "family": "effort:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0038",
+      "label": "effort",
+      "text": "一生懸命だね",
+      "family": "effort:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0039",
+      "label": "effort",
+      "text": "頑張ってるよ",
+      "family": "effort:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0040",
+      "label": "effort",
+      "text": "今頑張ってるね",
+      "family": "effort:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0041",
+      "label": "effort",
+      "text": "力いっぱいだね",
+      "family": "effort:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0042",
+      "label": "effort",
+      "text": "よく頑張ってる",
+      "family": "effort:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0043",
+      "label": "effort",
+      "text": "頑張っているんだね",
+      "family": "effort:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0044",
+      "label": "effort",
+      "text": "一生懸命やってるね",
+      "family": "effort:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0045",
+      "label": "effort",
+      "text": "すごく頑張ってるよ",
+      "family": "effort:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0046",
+      "label": "effort",
+      "text": "一生懸命だよね",
+      "family": "effort:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0047",
+      "label": "effort",
+      "text": "がんばっているなあ",
+      "family": "effort:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0048",
+      "label": "effort",
+      "text": "全力でやってるね",
+      "family": "effort:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0049",
+      "label": "encouragement",
+      "text": "頑張って",
+      "family": "encouragement:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0050",
+      "label": "encouragement",
+      "text": "頑張ってね",
+      "family": "encouragement:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0051",
+      "label": "encouragement",
+      "text": "あと少しだよ",
+      "family": "encouragement:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0052",
+      "label": "encouragement",
+      "text": "もうちょっとだよ",
+      "family": "encouragement:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0053",
+      "label": "encouragement",
+      "text": "やってみよう",
+      "family": "encouragement:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0054",
+      "label": "encouragement",
+      "text": "大丈夫、やってみよう",
+      "family": "encouragement:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0055",
+      "label": "encouragement",
+      "text": "ゆっくりでいいよ",
+      "family": "encouragement:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0056",
+      "label": "encouragement",
+      "text": "その調子だよ",
+      "family": "encouragement:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0057",
+      "label": "encouragement",
+      "text": "あわてなくていいよ",
+      "family": "encouragement:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0058",
+      "label": "encouragement",
+      "text": "応援してるよ",
+      "family": "encouragement:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0059",
+      "label": "encouragement",
+      "text": "少しずつやろう",
+      "family": "encouragement:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0060",
+      "label": "encouragement",
+      "text": "できるところまでね",
+      "family": "encouragement:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0061",
+      "label": "invitation",
+      "text": "一緒にやろうか",
+      "family": "invitation:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0062",
+      "label": "invitation",
+      "text": "何しようか",
+      "family": "invitation:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0063",
+      "label": "invitation",
+      "text": "やってみようか",
+      "family": "invitation:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0064",
+      "label": "invitation",
+      "text": "遊ぼうか",
+      "family": "invitation:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0065",
+      "label": "invitation",
+      "text": "一緒にしようね",
+      "family": "invitation:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0066",
+      "label": "invitation",
+      "text": "やってみる?",
+      "family": "invitation:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0067",
+      "label": "invitation",
+      "text": "始めてみようか",
+      "family": "invitation:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0068",
+      "label": "invitation",
+      "text": "これにしようか",
+      "family": "invitation:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0069",
+      "label": "invitation",
+      "text": "一緒にやってみる?",
+      "family": "invitation:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0070",
+      "label": "invitation",
+      "text": "次は何する?",
+      "family": "invitation:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0071",
+      "label": "invitation",
+      "text": "ちょっとやってみる?",
+      "family": "invitation:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0072",
+      "label": "invitation",
+      "text": "どっちにしようか",
+      "family": "invitation:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0073",
+      "label": "start",
+      "text": "始めるよ",
+      "family": "start:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0074",
+      "label": "start",
+      "text": "いくよ",
+      "family": "start:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0075",
+      "label": "start",
+      "text": "せーの",
+      "family": "start:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0076",
+      "label": "start",
+      "text": "さあ始めよう",
+      "family": "start:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0077",
+      "label": "start",
+      "text": "そろそろ始めるよ",
+      "family": "start:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0078",
+      "label": "start",
+      "text": "はい、スタート",
+      "family": "start:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0079",
+      "label": "start",
+      "text": "始まりだよ",
+      "family": "start:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0080",
+      "label": "start",
+      "text": "いってみよう",
+      "family": "start:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0081",
+      "label": "start",
+      "text": "今から始めるね",
+      "family": "start:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0082",
+      "label": "start",
+      "text": "よーいどん",
+      "family": "start:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0083",
+      "label": "start",
+      "text": "それじゃいくよ",
+      "family": "start:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0084",
+      "label": "start",
+      "text": "準備はいいかな",
+      "family": "start:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0085",
+      "label": "finish",
+      "text": "おしまい",
+      "family": "finish:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0086",
+      "label": "finish",
+      "text": "終わったね",
+      "family": "finish:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0087",
+      "label": "finish",
+      "text": "おしまいだよ",
+      "family": "finish:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0088",
+      "label": "finish",
+      "text": "もう終わりだね",
+      "family": "finish:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0089",
+      "label": "finish",
+      "text": "終わりました",
+      "family": "finish:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0090",
+      "label": "finish",
+      "text": "おわり",
+      "family": "finish:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0091",
+      "label": "finish",
+      "text": "これでおしまい",
+      "family": "finish:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0092",
+      "label": "finish",
+      "text": "全部終わったよ",
+      "family": "finish:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0093",
+      "label": "finish",
+      "text": "はい、おしまい",
+      "family": "finish:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0094",
+      "label": "finish",
+      "text": "これで終わりだよ",
+      "family": "finish:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0095",
+      "label": "finish",
+      "text": "もう済んだね",
+      "family": "finish:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0096",
+      "label": "finish",
+      "text": "すっかり終わったね",
+      "family": "finish:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0097",
+      "label": "finish_check",
+      "text": "終わったかな",
+      "family": "finish_check:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0098",
+      "label": "finish_check",
+      "text": "もう終わりかな",
+      "family": "finish_check:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0099",
+      "label": "finish_check",
+      "text": "おしまいかな",
+      "family": "finish_check:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0100",
+      "label": "finish_check",
+      "text": "終わった?",
+      "family": "finish_check:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0101",
+      "label": "finish_check",
+      "text": "終わりにしようか",
+      "family": "finish_check:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0102",
+      "label": "finish_check",
+      "text": "もういいかな",
+      "family": "finish_check:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0103",
+      "label": "finish_check",
+      "text": "できたかな",
+      "family": "finish_check:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0104",
+      "label": "finish_check",
+      "text": "これで終わり?",
+      "family": "finish_check:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0105",
+      "label": "finish_check",
+      "text": "もうおしまいでいい?",
+      "family": "finish_check:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0106",
+      "label": "finish_check",
+      "text": "全部終わったかしら",
+      "family": "finish_check:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0107",
+      "label": "finish_check",
+      "text": "終わりにしていいかな",
+      "family": "finish_check:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0108",
+      "label": "finish_check",
+      "text": "終わったのかなあ",
+      "family": "finish_check:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0109",
+      "label": "care",
+      "text": "お疲れさま",
+      "family": "care:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0110",
+      "label": "care",
+      "text": "おつかれさま",
+      "family": "care:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0111",
+      "label": "care",
+      "text": "お疲れだったね",
+      "family": "care:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0112",
+      "label": "care",
+      "text": "よく頑張ったね",
+      "family": "care:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0113",
+      "label": "care",
+      "text": "今日は頑張ったね",
+      "family": "care:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0114",
+      "label": "care",
+      "text": "ゆっくり休もうね",
+      "family": "care:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0115",
+      "label": "care",
+      "text": "大変だったね",
+      "family": "care:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0116",
+      "label": "care",
+      "text": "よくやったよ、お疲れさま",
+      "family": "care:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0117",
+      "label": "care",
+      "text": "お疲れさまでした",
+      "family": "care:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0118",
+      "label": "care",
+      "text": "今日はいっぱい頑張ったね",
+      "family": "care:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0119",
+      "label": "care",
+      "text": "頑張ったんだね",
+      "family": "care:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0120",
+      "label": "care",
+      "text": "よくがんばりました",
+      "family": "care:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0121",
+      "label": "inquiry",
+      "text": "どうしたの",
+      "family": "inquiry:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0122",
+      "label": "inquiry",
+      "text": "どうした?",
+      "family": "inquiry:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0123",
+      "label": "inquiry",
+      "text": "何かな",
+      "family": "inquiry:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0124",
+      "label": "inquiry",
+      "text": "どうしたのかな",
+      "family": "inquiry:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0125",
+      "label": "inquiry",
+      "text": "何かあった?",
+      "family": "inquiry:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0126",
+      "label": "inquiry",
+      "text": "どうしたんだろう",
+      "family": "inquiry:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0127",
+      "label": "inquiry",
+      "text": "なあに",
+      "family": "inquiry:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0128",
+      "label": "inquiry",
+      "text": "どうしたんだい",
+      "family": "inquiry:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0129",
+      "label": "inquiry",
+      "text": "大丈夫?",
+      "family": "inquiry:seed:8",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0130",
+      "label": "inquiry",
+      "text": "何が気になるのかな",
+      "family": "inquiry:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0131",
+      "label": "inquiry",
+      "text": "何があったのかな",
+      "family": "inquiry:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0132",
+      "label": "inquiry",
+      "text": "どうしたのかなあ",
+      "family": "inquiry:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0133",
+      "label": "inquiry",
+      "text": "なにかあったの",
+      "family": "inquiry:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0134",
+      "label": "reassurance",
+      "text": "大丈夫だよ",
+      "family": "reassurance:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0135",
+      "label": "reassurance",
+      "text": "そばにいるよ",
+      "family": "reassurance:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0136",
+      "label": "reassurance",
+      "text": "ここにいるよ",
+      "family": "reassurance:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0137",
+      "label": "reassurance",
+      "text": "心配しないでね",
+      "family": "reassurance:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0138",
+      "label": "reassurance",
+      "text": "大丈夫、いるよ",
+      "family": "reassurance:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0139",
+      "label": "reassurance",
+      "text": "一緒にいるよ",
+      "family": "reassurance:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0140",
+      "label": "reassurance",
+      "text": "安心してね",
+      "family": "reassurance:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0141",
+      "label": "reassurance",
+      "text": "だいじょうぶだよ",
+      "family": "reassurance:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0142",
+      "label": "reassurance",
+      "text": "そばにいるからね",
+      "family": "reassurance:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0143",
+      "label": "reassurance",
+      "text": "怖くないようにしようね",
+      "family": "reassurance:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0144",
+      "label": "reassurance",
+      "text": "いつでもここにいるよ",
+      "family": "reassurance:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0145",
+      "label": "reassurance",
+      "text": "ずっとそばにいるよ",
+      "family": "reassurance:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0146",
+      "label": "repeat",
+      "text": "もう一回",
+      "family": "repeat:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0147",
+      "label": "repeat",
+      "text": "もう一度",
+      "family": "repeat:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0148",
+      "label": "repeat",
+      "text": "またやろう",
+      "family": "repeat:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0149",
+      "label": "repeat",
+      "text": "もう一回やろうか",
+      "family": "repeat:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0150",
+      "label": "repeat",
+      "text": "もう一度やってみよう",
+      "family": "repeat:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0151",
+      "label": "repeat",
+      "text": "もういっかい",
+      "family": "repeat:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0152",
+      "label": "repeat",
+      "text": "もう一回いくよ",
+      "family": "repeat:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0153",
+      "label": "repeat",
+      "text": "またやってみる?",
+      "family": "repeat:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0154",
+      "label": "repeat",
+      "text": "今度もやろうか",
+      "family": "repeat:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0155",
+      "label": "repeat",
+      "text": "もう一度する?",
+      "family": "repeat:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0156",
+      "label": "repeat",
+      "text": "何度でもやろうね",
+      "family": "repeat:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0157",
+      "label": "repeat",
+      "text": "もう一度挑戦ね",
+      "family": "repeat:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0158",
+      "label": "pause",
+      "text": "ちょっと待ってね",
+      "family": "pause:seed:0",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0159",
+      "label": "pause",
+      "text": "少し待ってね",
+      "family": "pause:seed:1",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0160",
+      "label": "pause",
+      "text": "待っててね",
+      "family": "pause:seed:2",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0161",
+      "label": "pause",
+      "text": "一休みしようか",
+      "family": "pause:seed:3",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0162",
+      "label": "pause",
+      "text": "今ちょっと待って",
+      "family": "pause:seed:4",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0163",
+      "label": "pause",
+      "text": "ゆっくりいこうね",
+      "family": "pause:seed:5",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0164",
+      "label": "pause",
+      "text": "少し休もうね",
+      "family": "pause:seed:6",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0165",
+      "label": "pause",
+      "text": "ちょっと休もうか",
+      "family": "pause:seed:7",
+      "split": "train",
+      "source": "synthetic-verified-meaning-not-gold"
+    },
+    {
+      "id": "p0166",
+      "label": "pause",
+      "text": "少しだけ待とうね",
+      "family": "pause:dev:0",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0167",
+      "label": "pause",
+      "text": "慌てなくていいよ",
+      "family": "pause:dev:1",
+      "split": "dev",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0168",
+      "label": "pause",
+      "text": "ひと休みだよ",
+      "family": "pause:test:0",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0169",
+      "label": "pause",
+      "text": "まず落ち着こうね",
+      "family": "pause:test:1",
+      "split": "test",
+      "source": "synthetic-holdout-not-natural"
+    },
+    {
+      "id": "p0170",
+      "label": "affection",
+      "text": "ミルクを飲む姿かわいいね",
+      "family": "compound:affection:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0171",
+      "label": "affection",
+      "text": "お風呂のお顔かわいいね",
+      "family": "compound:affection:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0172",
+      "label": "affection",
+      "text": "絵本を見てる姿かわいいね",
+      "family": "compound:affection:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0173",
+      "label": "affection",
+      "text": "おててがかわいいね",
+      "family": "compound:affection:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0174",
+      "label": "affection",
+      "text": "寝顔がかわいいね",
+      "family": "compound:affection:4",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0175",
+      "label": "affection",
+      "text": "その笑顔かわいいね",
+      "family": "compound:affection:5",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0176",
+      "label": "affection",
+      "text": "その声がかわいいね",
+      "family": "compound:affection:6",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0177",
+      "label": "praise",
+      "text": "ミルクを上手に飲めたね",
+      "family": "compound:praise:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0178",
+      "label": "praise",
+      "text": "おむつ交換よくできたね",
+      "family": "compound:praise:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0179",
+      "label": "praise",
+      "text": "絵本上手に見てるね",
+      "family": "compound:praise:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0180",
+      "label": "praise",
+      "text": "おててを上手に動かしたね",
+      "family": "compound:praise:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0181",
+      "label": "praise",
+      "text": "足を上手に動かせたね",
+      "family": "compound:praise:4",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0182",
+      "label": "praise",
+      "text": "お風呂上手だったね",
+      "family": "compound:praise:5",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0183",
+      "label": "praise",
+      "text": "ご飯を上手に食べたね",
+      "family": "compound:praise:6",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0184",
+      "label": "praise",
+      "text": "おもちゃで上手に遊んでるね",
+      "family": "compound:praise:7",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0185",
+      "label": "praise",
+      "text": "歌が上手だね",
+      "family": "compound:praise:8",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0186",
+      "label": "achievement",
+      "text": "ミルク全部飲めたね",
+      "family": "compound:achievement:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0187",
+      "label": "achievement",
+      "text": "絵本のページをめくれたね",
+      "family": "compound:achievement:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0188",
+      "label": "achievement",
+      "text": "おててを伸ばせたね",
+      "family": "compound:achievement:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0189",
+      "label": "achievement",
+      "text": "おもちゃをつかめたね",
+      "family": "compound:achievement:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0190",
+      "label": "achievement",
+      "text": "ご飯を食べられたね",
+      "family": "compound:achievement:4",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0191",
+      "label": "achievement",
+      "text": "足を動かせたね",
+      "family": "compound:achievement:5",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0192",
+      "label": "achievement",
+      "text": "お風呂に入れたね",
+      "family": "compound:achievement:6",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0193",
+      "label": "effort",
+      "text": "ミルク頑張って飲んでるね",
+      "family": "compound:effort:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0194",
+      "label": "effort",
+      "text": "おててを一生懸命伸ばしてるね",
+      "family": "compound:effort:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0195",
+      "label": "effort",
+      "text": "おもちゃを頑張って取ろうとしてるね",
+      "family": "compound:effort:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0196",
+      "label": "effort",
+      "text": "ご飯を一生懸命食べてるね",
+      "family": "compound:effort:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0197",
+      "label": "effort",
+      "text": "お洋服を頑張って着てるね",
+      "family": "compound:effort:4",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0198",
+      "label": "effort",
+      "text": "足を動かそうと頑張ってるね",
+      "family": "compound:effort:5",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0199",
+      "label": "encouragement",
+      "text": "ミルクあと少し頑張ってね",
+      "family": "compound:encouragement:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0200",
+      "label": "encouragement",
+      "text": "足を動かすの頑張ってね",
+      "family": "compound:encouragement:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0201",
+      "label": "encouragement",
+      "text": "おもちゃもうちょっと頑張って",
+      "family": "compound:encouragement:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0202",
+      "label": "encouragement",
+      "text": "おててを伸ばしてみよう",
+      "family": "compound:encouragement:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0203",
+      "label": "encouragement",
+      "text": "絵本をめくってみよう",
+      "family": "compound:encouragement:4",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0204",
+      "label": "encouragement",
+      "text": "もう一口頑張ってみよう",
+      "family": "compound:encouragement:5",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0205",
+      "label": "invitation",
+      "text": "ミルク飲もうか",
+      "family": "compound:invitation:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0206",
+      "label": "invitation",
+      "text": "お風呂に入ろうか",
+      "family": "compound:invitation:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0207",
+      "label": "invitation",
+      "text": "絵本読もうか",
+      "family": "compound:invitation:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0208",
+      "label": "invitation",
+      "text": "おむつ替えようか",
+      "family": "compound:invitation:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0209",
+      "label": "invitation",
+      "text": "一緒に遊ぼうか",
+      "family": "compound:invitation:4",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0210",
+      "label": "invitation",
+      "text": "お散歩に行こうか",
+      "family": "compound:invitation:5",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0211",
+      "label": "invitation",
+      "text": "お洋服着ようか",
+      "family": "compound:invitation:6",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0212",
+      "label": "invitation",
+      "text": "音楽聞こうか",
+      "family": "compound:invitation:7",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0213",
+      "label": "invitation",
+      "text": "ご飯食べようか",
+      "family": "compound:invitation:8",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0214",
+      "label": "invitation",
+      "text": "手をつないでみようか",
+      "family": "compound:invitation:9",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0215",
+      "label": "invitation",
+      "text": "お水を飲もうか",
+      "family": "compound:invitation:10",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0216",
+      "label": "invitation",
+      "text": "雨を一緒に見ようか",
+      "family": "compound:invitation:11",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0217",
+      "label": "start",
+      "text": "お風呂始めるよ",
+      "family": "compound:start:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0218",
+      "label": "start",
+      "text": "お散歩始めよう",
+      "family": "compound:start:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0219",
+      "label": "start",
+      "text": "歌を始めるよ",
+      "family": "compound:start:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0220",
+      "label": "start",
+      "text": "絵本読むよ",
+      "family": "compound:start:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0221",
+      "label": "start",
+      "text": "遊びを始めよう",
+      "family": "compound:start:4",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0222",
+      "label": "start",
+      "text": "ミルク始めよう",
+      "family": "compound:start:5",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0223",
+      "label": "start",
+      "text": "着替え始めるね",
+      "family": "compound:start:6",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0224",
+      "label": "finish",
+      "text": "ミルク終わったね",
+      "family": "compound:finish:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0225",
+      "label": "finish",
+      "text": "おむつ替え終わったね",
+      "family": "compound:finish:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0226",
+      "label": "finish",
+      "text": "お風呂終わったね",
+      "family": "compound:finish:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0227",
+      "label": "finish",
+      "text": "絵本読み終わったね",
+      "family": "compound:finish:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0228",
+      "label": "finish",
+      "text": "歌い終わったね",
+      "family": "compound:finish:4",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0229",
+      "label": "finish",
+      "text": "遊び終わったね",
+      "family": "compound:finish:5",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0230",
+      "label": "finish",
+      "text": "ご飯食べ終わったね",
+      "family": "compound:finish:6",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0231",
+      "label": "finish_check",
+      "text": "ミルク終わったかな",
+      "family": "compound:finish_check:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0232",
+      "label": "finish_check",
+      "text": "おむつ替え終わったかな",
+      "family": "compound:finish_check:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0233",
+      "label": "finish_check",
+      "text": "お風呂終わったかな",
+      "family": "compound:finish_check:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0234",
+      "label": "finish_check",
+      "text": "絵本終わったかな",
+      "family": "compound:finish_check:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0235",
+      "label": "finish_check",
+      "text": "飲み終わったかな",
+      "family": "compound:finish_check:4",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0236",
+      "label": "finish_check",
+      "text": "遊び終わったかな",
+      "family": "compound:finish_check:5",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0237",
+      "label": "finish_check",
+      "text": "ご飯食べ終わったかな",
+      "family": "compound:finish_check:6",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0238",
+      "label": "care",
+      "text": "お風呂お疲れさま",
+      "family": "compound:care:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0239",
+      "label": "care",
+      "text": "ミルク頑張ったね",
+      "family": "compound:care:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0240",
+      "label": "care",
+      "text": "お散歩お疲れさま",
+      "family": "compound:care:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0241",
+      "label": "care",
+      "text": "着替えお疲れさま",
+      "family": "compound:care:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0242",
+      "label": "care",
+      "text": "遊んでお疲れさま",
+      "family": "compound:care:4",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0243",
+      "label": "care",
+      "text": "おむつ替えお疲れさま",
+      "family": "compound:care:5",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0244",
+      "label": "inquiry",
+      "text": "ミルク欲しいのかな",
+      "family": "compound:inquiry:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0245",
+      "label": "inquiry",
+      "text": "お腹どうしたの",
+      "family": "compound:inquiry:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0246",
+      "label": "inquiry",
+      "text": "雨が気になるのかな",
+      "family": "compound:inquiry:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0247",
+      "label": "inquiry",
+      "text": "泣いてるねどうしたの",
+      "family": "compound:inquiry:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0248",
+      "label": "inquiry",
+      "text": "お風呂どうしたの",
+      "family": "compound:inquiry:4",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0249",
+      "label": "inquiry",
+      "text": "足が気になるのかな",
+      "family": "compound:inquiry:5",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0250",
+      "label": "reassurance",
+      "text": "泣いてるね大丈夫だよ",
+      "family": "compound:reassurance:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0251",
+      "label": "reassurance",
+      "text": "ミルク飲むときそばにいるよ",
+      "family": "compound:reassurance:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0252",
+      "label": "reassurance",
+      "text": "お風呂大丈夫だよ",
+      "family": "compound:reassurance:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0253",
+      "label": "reassurance",
+      "text": "着替え大丈夫だよ",
+      "family": "compound:reassurance:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0254",
+      "label": "reassurance",
+      "text": "お外も一緒にいるよ",
+      "family": "compound:reassurance:4",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0255",
+      "label": "reassurance",
+      "text": "おむつ替えるね大丈夫だよ",
+      "family": "compound:reassurance:5",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0256",
+      "label": "repeat",
+      "text": "歌をもう一回",
+      "family": "compound:repeat:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0257",
+      "label": "repeat",
+      "text": "おもちゃもう一回やろう",
+      "family": "compound:repeat:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0258",
+      "label": "repeat",
+      "text": "絵本もう一回見よう",
+      "family": "compound:repeat:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0259",
+      "label": "repeat",
+      "text": "おててもう一回動かそう",
+      "family": "compound:repeat:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0260",
+      "label": "repeat",
+      "text": "音楽もう一回聞こう",
+      "family": "compound:repeat:4",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0261",
+      "label": "repeat",
+      "text": "もう一口食べようか",
+      "family": "compound:repeat:5",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0262",
+      "label": "pause",
+      "text": "ミルクちょっと待ってね",
+      "family": "compound:pause:0",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0263",
+      "label": "pause",
+      "text": "お風呂少し待ってね",
+      "family": "compound:pause:1",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0264",
+      "label": "pause",
+      "text": "絵本ちょっと待ってね",
+      "family": "compound:pause:2",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0265",
+      "label": "pause",
+      "text": "おむつ替え少し待ってね",
+      "family": "compound:pause:3",
+      "split": "train",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0266",
+      "label": "pause",
+      "text": "飲むのちょっと待ってね",
+      "family": "compound:pause:4",
+      "split": "dev",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0267",
+      "label": "pause",
+      "text": "ご飯少し待ってね",
+      "family": "compound:pause:5",
+      "split": "test",
+      "source": "synthetic-two-axis-not-independently-reviewed"
+    },
+    {
+      "id": "p0268",
+      "label": "none",
+      "text": "こんにちは そろそろ寝ましょうね",
+      "family": "legacy:sleep:0",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0269",
+      "label": "none",
+      "text": "そろそろねましょうね",
+      "family": "legacy:sleep:1",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0270",
+      "label": "none",
+      "text": "もう寝ちゃったね",
+      "family": "legacy:sleep:2",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0271",
+      "label": "none",
+      "text": "ねむくなってきましたね",
+      "family": "legacy:sleep:3",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0272",
+      "label": "none",
+      "text": "そろそろ寝ませんか",
+      "family": "legacy:sleep:4",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0273",
+      "label": "none",
+      "text": "お昼寝の時間ですよ",
+      "family": "legacy:sleep:5",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0274",
+      "label": "none",
+      "text": "こんにちは、おふろに入りましょう",
+      "family": "legacy:bath:6",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0275",
+      "label": "none",
+      "text": "からだを洗いましょうね",
+      "family": "legacy:bath:7",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0276",
+      "label": "none",
+      "text": "おふらに入ろうね",
+      "family": "legacy:bath:8",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0277",
+      "label": "none",
+      "text": "ミルクを飲みましょうね",
+      "family": "legacy:milk:9",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0278",
+      "label": "none",
+      "text": "みるこを飲もうね",
+      "family": "legacy:milk:10",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0279",
+      "label": "none",
+      "text": "みりく飲もうか",
+      "family": "legacy:milk:11",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0280",
+      "label": "none",
+      "text": "ぼにゅうにしようね",
+      "family": "legacy:milk:12",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0281",
+      "label": "none",
+      "text": "ほにゅうびんだよ",
+      "family": "legacy:milk:13",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0282",
+      "label": "none",
+      "text": "そろそろ起きましょうね",
+      "family": "legacy:wake:14",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0283",
+      "label": "none",
+      "text": "おきましょうね",
+      "family": "legacy:wake:15",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0284",
+      "label": "none",
+      "text": "目を覚ましたね",
+      "family": "legacy:wake:16",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0285",
+      "label": "none",
+      "text": "おむつを取り替えましょう",
+      "family": "legacy:diaper:17",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0286",
+      "label": "none",
+      "text": "おむちをかえようね",
+      "family": "legacy:diaper:18",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0287",
+      "label": "none",
+      "text": "おしっこが出ましたね",
+      "family": "legacy:diaper:19",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0288",
+      "label": "none",
+      "text": "きがえましょうね",
+      "family": "legacy:clothes:20",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0289",
+      "label": "none",
+      "text": "洋服を着ましょうね",
+      "family": "legacy:clothes:21",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0290",
+      "label": "none",
+      "text": "ぱじゃまに着替えよう",
+      "family": "legacy:clothes:22",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0291",
+      "label": "none",
+      "text": "だっこしましょうね",
+      "family": "legacy:hug:23",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0292",
+      "label": "none",
+      "text": "だつこしようか",
+      "family": "legacy:hug:24",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0293",
+      "label": "none",
+      "text": "ぎゅっと抱きしめよう",
+      "family": "legacy:hug:25",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0294",
+      "label": "none",
+      "text": "おててをにぎってるね",
+      "family": "legacy:hands:26",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0295",
+      "label": "none",
+      "text": "てをにぎりましょうね",
+      "family": "legacy:hands:27",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0296",
+      "label": "none",
+      "text": "ゆびをつかんだね",
+      "family": "legacy:hands:28",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0297",
+      "label": "none",
+      "text": "あんよがばたばたしてるね",
+      "family": "legacy:feet:29",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0298",
+      "label": "none",
+      "text": "あしを動かしてるね",
+      "family": "legacy:feet:30",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0299",
+      "label": "none",
+      "text": "足を蹴っているね",
+      "family": "legacy:feet:31",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0300",
+      "label": "none",
+      "text": "かわいいえがおですね",
+      "family": "legacy:smile:32",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0301",
+      "label": "none",
+      "text": "にこにこしていますね",
+      "family": "legacy:smile:33",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0302",
+      "label": "none",
+      "text": "わらってるね",
+      "family": "legacy:smile:34",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0303",
+      "label": "none",
+      "text": "ないちゃったね",
+      "family": "legacy:cry:35",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0304",
+      "label": "none",
+      "text": "ぐずぐずしてるね",
+      "family": "legacy:cry:36",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0305",
+      "label": "none",
+      "text": "泣いていますね",
+      "family": "legacy:cry:37",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0306",
+      "label": "none",
+      "text": "ないてるね",
+      "family": "legacy:cry:38",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0307",
+      "label": "none",
+      "text": "こえを出しているね",
+      "family": "legacy:voice:39",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0308",
+      "label": "none",
+      "text": "おしゃべりしていますね",
+      "family": "legacy:voice:40",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0309",
+      "label": "none",
+      "text": "なんごが出たね",
+      "family": "legacy:voice:41",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0310",
+      "label": "none",
+      "text": "げっぷが出ましたね",
+      "family": "legacy:tummy:42",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0311",
+      "label": "none",
+      "text": "げつぷが出たね",
+      "family": "legacy:tummy:43",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0312",
+      "label": "none",
+      "text": "おなかいっぱいですね",
+      "family": "legacy:tummy:44",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0313",
+      "label": "none",
+      "text": "いっしょに遊びましょうね",
+      "family": "legacy:play:45",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0314",
+      "label": "none",
+      "text": "あそびましょうね",
+      "family": "legacy:play:46",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0315",
+      "label": "none",
+      "text": "おもちょで遊ぼうね",
+      "family": "legacy:play:47",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0316",
+      "label": "none",
+      "text": "さんぽに行きましょうね",
+      "family": "legacy:outside:48",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0317",
+      "label": "none",
+      "text": "べびーかーでお出かけしよう",
+      "family": "legacy:outside:49",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0318",
+      "label": "none",
+      "text": "こうえんに行こうね",
+      "family": "legacy:outside:50",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0319",
+      "label": "none",
+      "text": "あめが降っていますね",
+      "family": "legacy:rain:51",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0320",
+      "label": "none",
+      "text": "あまおとが聞こえるね",
+      "family": "legacy:rain:52",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0321",
+      "label": "none",
+      "text": "はれてきましたね",
+      "family": "legacy:sun:53",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0322",
+      "label": "none",
+      "text": "たいようが出ているね",
+      "family": "legacy:sun:54",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0323",
+      "label": "none",
+      "text": "ぽかぽかしていますね",
+      "family": "legacy:sun:55",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0324",
+      "label": "none",
+      "text": "ごはんを食べましょうね",
+      "family": "legacy:food:56",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0325",
+      "label": "none",
+      "text": "たべましょうね",
+      "family": "legacy:food:57",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0326",
+      "label": "none",
+      "text": "りにゅうしょくだよ",
+      "family": "legacy:food:58",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0327",
+      "label": "none",
+      "text": "おなかがすいたね",
+      "family": "legacy:food:59",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0328",
+      "label": "none",
+      "text": "えほんを読みましょうね",
+      "family": "legacy:book:60",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0329",
+      "label": "none",
+      "text": "えほうを読もうね",
+      "family": "legacy:book:61",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0330",
+      "label": "none",
+      "text": "ほんをよみましょうね",
+      "family": "legacy:book:62",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0331",
+      "label": "none",
+      "text": "うたを歌いましょうね",
+      "family": "legacy:music:63",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0332",
+      "label": "none",
+      "text": "おんがき聞こうね",
+      "family": "legacy:music:64",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0333",
+      "label": "none",
+      "text": "踊りましょうね",
+      "family": "legacy:music:65",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0334",
+      "label": "none",
+      "text": "飲もうか",
+      "family": "legacy:drink:66",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0335",
+      "label": "none",
+      "text": "飲むかい",
+      "family": "legacy:drink:67",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0336",
+      "label": "none",
+      "text": "飲む?",
+      "family": "legacy:drink:68",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0337",
+      "label": "none",
+      "text": "飲みたい?",
+      "family": "legacy:drink:69",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0338",
+      "label": "none",
+      "text": "飲んだね",
+      "family": "legacy:drink:70",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0339",
+      "label": "none",
+      "text": "飲んでみよう",
+      "family": "legacy:drink:71",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0340",
+      "label": "none",
+      "text": "飲みましょうね",
+      "family": "legacy:drink:72",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0341",
+      "label": "none",
+      "text": "そろそろ飲む会",
+      "family": "legacy:drink:73",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0342",
+      "label": "none",
+      "text": "そろそろ飲むかい?",
+      "family": "legacy:drink:74",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0343",
+      "label": "none",
+      "text": "のむ?",
+      "family": "legacy:drink:75",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0344",
+      "label": "none",
+      "text": "のみたい?",
+      "family": "legacy:drink:76",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0345",
+      "label": "none",
+      "text": "のもうか",
+      "family": "legacy:drink:77",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0346",
+      "label": "none",
+      "text": "そろそろのむかい",
+      "family": "legacy:drink:78",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0347",
+      "label": "none",
+      "text": "もうのんだね",
+      "family": "legacy:drink:79",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0348",
+      "label": "none",
+      "text": "お水を飲むかい",
+      "family": "legacy:drink:80",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0349",
+      "label": "none",
+      "text": "お茶を飲もうか",
+      "family": "legacy:drink:81",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0350",
+      "label": "none",
+      "text": "足",
+      "family": "legacy:feet:82",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0351",
+      "label": "none",
+      "text": "あし",
+      "family": "legacy:feet:83",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0352",
+      "label": "none",
+      "text": "アシ",
+      "family": "legacy:feet:84",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0353",
+      "label": "none",
+      "text": "足だね",
+      "family": "legacy:feet:85",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0354",
+      "label": "none",
+      "text": "足がかわいいね",
+      "family": "legacy:feet:86",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0355",
+      "label": "none",
+      "text": "足を見て",
+      "family": "legacy:feet:87",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0356",
+      "label": "none",
+      "text": "あしを見て",
+      "family": "legacy:feet:88",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0357",
+      "label": "none",
+      "text": "このあし",
+      "family": "legacy:feet:89",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0358",
+      "label": "none",
+      "text": "かわいいあし",
+      "family": "legacy:feet:90",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0359",
+      "label": "none",
+      "text": "両足だね",
+      "family": "legacy:feet:91",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0360",
+      "label": "none",
+      "text": "手",
+      "family": "legacy:hands:92",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0361",
+      "label": "none",
+      "text": "て",
+      "family": "legacy:hands:93",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0362",
+      "label": "none",
+      "text": "指",
+      "family": "legacy:hands:94",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0363",
+      "label": "none",
+      "text": "ゆび",
+      "family": "legacy:hands:95",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0364",
+      "label": "none",
+      "text": "手だね",
+      "family": "legacy:hands:96",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0365",
+      "label": "none",
+      "text": "てがかわいいね",
+      "family": "legacy:hands:97",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0366",
+      "label": "none",
+      "text": "指を見て",
+      "family": "legacy:hands:98",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0367",
+      "label": "none",
+      "text": "このて",
+      "family": "legacy:hands:99",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0368",
+      "label": "none",
+      "text": "かわいいゆび",
+      "family": "legacy:hands:100",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0369",
+      "label": "none",
+      "text": "両手だね",
+      "family": "legacy:hands:101",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0370",
+      "label": "none",
+      "text": "声",
+      "family": "legacy:voice:102",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0371",
+      "label": "none",
+      "text": "こえ",
+      "family": "legacy:voice:103",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0372",
+      "label": "none",
+      "text": "声だね",
+      "family": "legacy:voice:104",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0373",
+      "label": "none",
+      "text": "こえがかわいいね",
+      "family": "legacy:voice:105",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0374",
+      "label": "none",
+      "text": "このこえ",
+      "family": "legacy:voice:106",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0375",
+      "label": "none",
+      "text": "本",
+      "family": "legacy:book:107",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0376",
+      "label": "none",
+      "text": "ほん",
+      "family": "legacy:book:108",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0377",
+      "label": "none",
+      "text": "本だよ",
+      "family": "legacy:book:109",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0378",
+      "label": "none",
+      "text": "ほんを見て",
+      "family": "legacy:book:110",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0379",
+      "label": "none",
+      "text": "このほん",
+      "family": "legacy:book:111",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0380",
+      "label": "none",
+      "text": "服",
+      "family": "legacy:clothes:112",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0381",
+      "label": "none",
+      "text": "ふく",
+      "family": "legacy:clothes:113",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0382",
+      "label": "none",
+      "text": "服だね",
+      "family": "legacy:clothes:114",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0383",
+      "label": "none",
+      "text": "ふくを見て",
+      "family": "legacy:clothes:115",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0384",
+      "label": "none",
+      "text": "このふく",
+      "family": "legacy:clothes:116",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0385",
+      "label": "none",
+      "text": "歌",
+      "family": "legacy:music:117",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0386",
+      "label": "none",
+      "text": "うた",
+      "family": "legacy:music:118",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0387",
+      "label": "none",
+      "text": "歌だね",
+      "family": "legacy:music:119",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0388",
+      "label": "none",
+      "text": "うたを聞こう",
+      "family": "legacy:music:120",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0389",
+      "label": "none",
+      "text": "このうた",
+      "family": "legacy:music:121",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0390",
+      "label": "none",
+      "text": "お腹",
+      "family": "legacy:tummy:122",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0391",
+      "label": "none",
+      "text": "おなか",
+      "family": "legacy:tummy:123",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0392",
+      "label": "none",
+      "text": "おなかだね",
+      "family": "legacy:tummy:124",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0393",
+      "label": "none",
+      "text": "おなかを見て",
+      "family": "legacy:tummy:125",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0394",
+      "label": "none",
+      "text": "お腹が減ったね",
+      "family": "legacy:food:126",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0395",
+      "label": "none",
+      "text": "ミルク飲むかい",
+      "family": "legacy:milk:127",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0396",
+      "label": "none",
+      "text": "みるくをのむ?",
+      "family": "legacy:milk:128",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0397",
+      "label": "none",
+      "text": "おっぱい飲みたい?",
+      "family": "legacy:milk:129",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0398",
+      "label": "none",
+      "text": "お風呂入ろっか",
+      "family": "legacy:bath:130",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0399",
+      "label": "none",
+      "text": "ミルク飲もっか",
+      "family": "legacy:milk:131",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0400",
+      "label": "none",
+      "text": "寝よっか",
+      "family": "legacy:sleep:132",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0401",
+      "label": "none",
+      "text": "そろそろ起きよっか",
+      "family": "legacy:wake:133",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0402",
+      "label": "none",
+      "text": "おむつ替えよっか",
+      "family": "legacy:diaper:134",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0403",
+      "label": "none",
+      "text": "着替えよっか",
+      "family": "legacy:clothes:135",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0404",
+      "label": "none",
+      "text": "抱っこする?",
+      "family": "legacy:hug:136",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0405",
+      "label": "none",
+      "text": "おてて握ってるね",
+      "family": "legacy:hands:137",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0406",
+      "label": "none",
+      "text": "あんよバタバタだね",
+      "family": "legacy:feet:138",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0407",
+      "label": "none",
+      "text": "にこって笑ったね",
+      "family": "legacy:smile:139",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0408",
+      "label": "none",
+      "text": "泣いてるね",
+      "family": "legacy:cry:140",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0409",
+      "label": "none",
+      "text": "いっぱいおしゃべりしてるね",
+      "family": "legacy:voice:141",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0410",
+      "label": "none",
+      "text": "げっぷ出たね",
+      "family": "legacy:tummy:142",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0411",
+      "label": "none",
+      "text": "一緒に遊ぼっか",
+      "family": "legacy:play:143",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0412",
+      "label": "none",
+      "text": "お散歩行こっか",
+      "family": "legacy:outside:144",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0413",
+      "label": "none",
+      "text": "雨だね",
+      "family": "legacy:rain:145",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0414",
+      "label": "none",
+      "text": "今日は晴れてるね",
+      "family": "legacy:sun:146",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0415",
+      "label": "none",
+      "text": "ごはん食べよっか",
+      "family": "legacy:food:147",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0416",
+      "label": "none",
+      "text": "絵本読もっか",
+      "family": "legacy:book:148",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0417",
+      "label": "none",
+      "text": "歌おっか",
+      "family": "legacy:music:149",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0418",
+      "label": "none",
+      "text": "寝る",
+      "family": "legacy:sleep:150",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0419",
+      "label": "none",
+      "text": "もう寝るよ",
+      "family": "legacy:sleep:151",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0420",
+      "label": "none",
+      "text": "寝たね",
+      "family": "legacy:sleep:152",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0421",
+      "label": "none",
+      "text": "寝かしつけよう",
+      "family": "legacy:sleep:153",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0422",
+      "label": "none",
+      "text": "睡眠の時間だよ",
+      "family": "legacy:sleep:154",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0423",
+      "label": "none",
+      "text": "寝ようか",
+      "family": "legacy:sleep:155",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0424",
+      "label": "none",
+      "text": "ねようか",
+      "family": "legacy:sleep:156",
+      "split": "test",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0425",
+      "label": "none",
+      "text": "ねよっか",
+      "family": "legacy:sleep:157",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0426",
+      "label": "none",
+      "text": "もう寝よ",
+      "family": "legacy:sleep:158",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0427",
+      "label": "none",
+      "text": "ねんねしよっか",
+      "family": "legacy:sleep:159",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0428",
+      "label": "none",
+      "text": "眠ろうか",
+      "family": "legacy:sleep:160",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0429",
+      "label": "none",
+      "text": "眠る時間だよ",
+      "family": "legacy:sleep:161",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0430",
+      "label": "none",
+      "text": "お袋入ろうね",
+      "family": "legacy:bath:162",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0431",
+      "label": "none",
+      "text": "年々使用か",
+      "family": "legacy:sleep:163",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0432",
+      "label": "none",
+      "text": "おむづ変えようか",
+      "family": "legacy:diaper:164",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0433",
+      "label": "none",
+      "text": "みのく飲みますか",
+      "family": "legacy:milk:165",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0434",
+      "label": "none",
+      "text": "みのく飲もうか",
+      "family": "legacy:milk:166",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0435",
+      "label": "none",
+      "text": "お風呂入ろうね",
+      "family": "legacy:bath:167",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0436",
+      "label": "none",
+      "text": "授乳の時間だね",
+      "family": "legacy:milk:168",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0437",
+      "label": "none",
+      "text": "こんにちは、そろそろ寝ましょうね",
+      "family": "legacy:sleep:169",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0438",
+      "label": "none",
+      "text": "眠くなってきたね",
+      "family": "legacy:sleep:170",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0439",
+      "label": "none",
+      "text": "おもちゃで遊ぼうね",
+      "family": "legacy:play:171",
+      "split": "dev",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0440",
+      "label": "none",
+      "text": "絵本見ようか",
+      "family": "legacy:book:172",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0441",
+      "label": "none",
+      "text": "そろそろ飲むかい",
+      "family": "legacy:drink:173",
+      "split": "train",
+      "source": "existing-childcare-topic"
+    },
+    {
+      "id": "p0442",
+      "label": "none",
+      "text": "眠いかな",
+      "family": "explicit-none:0",
+      "split": "test",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0443",
+      "label": "none",
+      "text": "眠いね",
+      "family": "explicit-none:1",
+      "split": "dev",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0444",
+      "label": "none",
+      "text": "そろそろ眠たいね",
+      "family": "explicit-none:2",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0445",
+      "label": "none",
+      "text": "起きたね",
+      "family": "explicit-none:3",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0446",
+      "label": "none",
+      "text": "目が覚めたね",
+      "family": "explicit-none:4",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0447",
+      "label": "none",
+      "text": "泣いちゃったね",
+      "family": "explicit-none:6",
+      "split": "dev",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0448",
+      "label": "none",
+      "text": "笑ったね",
+      "family": "explicit-none:7",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0449",
+      "label": "none",
+      "text": "にこにこだね",
+      "family": "explicit-none:8",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0450",
+      "label": "none",
+      "text": "暑いね",
+      "family": "explicit-none:9",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0451",
+      "label": "none",
+      "text": "寒いね",
+      "family": "explicit-none:10",
+      "split": "test",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0452",
+      "label": "none",
+      "text": "おむつ終わったね",
+      "family": "explicit-none:13",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0453",
+      "label": "none",
+      "text": "おててを握ってるね",
+      "family": "explicit-none:16",
+      "split": "dev",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0454",
+      "label": "none",
+      "text": "こんにちは",
+      "family": "explicit-none:17",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0455",
+      "label": "none",
+      "text": "ありがとう",
+      "family": "explicit-none:18",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0456",
+      "label": "none",
+      "text": "おはよう",
+      "family": "explicit-none:19",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0457",
+      "label": "none",
+      "text": "おやすみ",
+      "family": "explicit-none:20",
+      "split": "test",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0458",
+      "label": "none",
+      "text": "お腹すいたね",
+      "family": "explicit-none:21",
+      "split": "dev",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0459",
+      "label": "none",
+      "text": "ばたばたしてるね",
+      "family": "explicit-none:22",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0460",
+      "label": "none",
+      "text": "今日は雨だね",
+      "family": "explicit-none:23",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0461",
+      "label": "none",
+      "text": "明日は晴れるね",
+      "family": "explicit-none:24",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0462",
+      "label": "none",
+      "text": "眠くないよ",
+      "family": "explicit-none:25",
+      "split": "test",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0463",
+      "label": "none",
+      "text": "泣いてないよ",
+      "family": "explicit-none:26",
+      "split": "dev",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0464",
+      "label": "none",
+      "text": "笑ってないね",
+      "family": "explicit-none:27",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0465",
+      "label": "none",
+      "text": "まだ起きてないよ",
+      "family": "explicit-none:28",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0466",
+      "label": "none",
+      "text": "終わってないよ",
+      "family": "explicit-none:29",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0467",
+      "label": "none",
+      "text": "まだおしまいじゃないよ",
+      "family": "explicit-none:30",
+      "split": "test",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0468",
+      "label": "none",
+      "text": "できなかったね",
+      "family": "explicit-none:31",
+      "split": "dev",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0469",
+      "label": "none",
+      "text": "まだできないね",
+      "family": "explicit-none:32",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0470",
+      "label": "none",
+      "text": "暑くないね",
+      "family": "explicit-none:33",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0471",
+      "label": "none",
+      "text": "寒くないね",
+      "family": "explicit-none:34",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0472",
+      "label": "none",
+      "text": "今は違うよ",
+      "family": "explicit-none:35",
+      "split": "test",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0473",
+      "label": "none",
+      "text": "これは何",
+      "family": "explicit-none:36",
+      "split": "dev",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0474",
+      "label": "none",
+      "text": "水を飲むかな",
+      "family": "explicit-none:37",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0475",
+      "label": "none",
+      "text": "服を着ようね",
+      "family": "explicit-none:38",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0476",
+      "label": "none",
+      "text": "歌が聞こえるね",
+      "family": "explicit-none:39",
+      "split": "train",
+      "source": "manual-negative-control"
+    },
+    {
+      "id": "p0477",
+      "label": "none",
+      "text": "お外を見ようね",
+      "family": "explicit-none:40",
+      "split": "test",
+      "source": "manual-negative-control"
+    }
+  ]
+}

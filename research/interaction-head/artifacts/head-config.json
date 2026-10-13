@@ -1,0 +1,35 @@
+{
+  "name": "interaction",
+  "classes": [
+    "affection",
+    "praise",
+    "achievement",
+    "effort",
+    "encouragement",
+    "invitation",
+    "start",
+    "finish",
+    "finish_check",
+    "care",
+    "inquiry",
+    "reassurance",
+    "repeat",
+    "pause",
+    "none"
+  ],
+  "filename": "head-interaction.f32",
+  "shape": [
+    15,
+    385
+  ],
+  "dimensions": 384,
+  "dtype": "little-endian float32",
+  "layout": "row-major [class,385]; last column bias",
+  "sha256": "e0968799d9e477d512f0312350be458b8b3a84f6322fad8564bed7ff4645a464",
+  "thresholds": {
+    "threshold": 0.4,
+    "margin": 0
+  },
+  "runtime_included": false,
+  "status": "experimental_provisional_not_calibrated_on_natural_speech"
+}
