@@ -13,6 +13,16 @@ assert(!publicHtml.includes('Android版について'));
 assert(!publicHtml.includes('Android版を見る'));
 assert(!publicHtml.includes('android-full-card'));
 assert(!publicHtml.includes('Android_English_character_for_baby'));
+// Keep the standalone Web edition's public action and tutorial wording in sync.
+assert(publicHtml.includes('id="mainButton" class="primary-button">呼びかけを始める</button>'));
+assert(publicHtml.includes('id="stopButton" class="outline-button hidden">呼びかけを止める</button>'));
+assert(!publicHtml.includes('>会話を始める</button>'));
+assert(!publicHtml.includes('>会話を止める</button>'));
+const publicAppSource=readFileSync(new URL('./src/app.js',import.meta.url),'utf8');
+assert(publicAppSource.includes("ui.tutorialTitle.textContent='ここから呼びかけを始めます'"));
+assert(publicAppSource.includes('「呼びかけを始める」'));
+assert(!publicAppSource.includes('「会話を始める」'));
+assert(!publicAppSource.includes('ここから会話を始めます'));
 
 assert.deepEqual(appHistoryState('settings'),{mitsukotobaScreen:'settings'});
 assert.equal(resolveAppPopScreen('settings','home',null),'home');
