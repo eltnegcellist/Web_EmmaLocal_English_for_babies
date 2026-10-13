@@ -88,11 +88,14 @@ assert.equal((await control.respond('ミルクを上手に飲めたね','')).sce
 storage.setItem(INTERACTION_SETTING_KEY,'true');
 assert.equal(isInteractionEnabled(storage),true);
 assert.equal((await control.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise');
-// Ordinary settings, not developer-only, must contain the single toggle.
+// Only the unlockable developer settings may expose the OFF switch.
 const html=readFileSync(new URL('./index.html',import.meta.url),'utf8');
 const toggleAt=html.indexOf('id="interactionExperimental"');
-assert.ok(toggleAt>html.indexOf('<h2>返答と話題</h2>'));
-assert.ok(toggleAt<html.indexOf('id="developerTools"'));
+const developerAt=html.indexOf('id="developerTools" class="hidden developer-tools-card"');
+assert.ok(developerAt>html.indexOf('<h2>返答と話題</h2>'));
+assert.ok(toggleAt>developerAt);
 assert.equal(html.match(/id="interactionExperimental"/g)?.length,1);
-console.log('Interaction default-on / explicit saved OFF / settings exposure: PASS');
+assert.ok(html.slice(html.indexOf('<h2>返答と話題</h2>'),developerAt).includes('id="semanticEnabled"'));
+assert.ok(!html.slice(html.indexOf('<h2>返答と話題</h2>'),developerAt).includes('id="interactionExperimental"'));
+console.log('Interaction default-on / explicit saved OFF / developer-only toggle: PASS');
 console.log('Ruri-only Topic×Interaction 111 pairs / 333 English sets, independent heads, fallback, no keywords: PASS');
