@@ -1,5 +1,8 @@
 # PR-F 実機検証・段階公開ゲート — みつことば Interaction
 
+**2026-10-13 更新：ユーザーの指定により新Interactionは新規利用時に標準オンへ変更。** 保存済みの明示的なオフ設定は維持されます。Web・Androidとも設定画面でオン／オフ可能。以下の旧「初期オフ」は開発当時の経緯として記録されていたもので、現在の挙動を示しません。なお分類精度の人工テキスト評価と実音声評価の区別は引き続き必要です。
+
+
 作成: 2026-10-12 / Status: **INCOMPLETE — RC / Draft only**
 
 **2026-10-12 追記：Ruri-only 二軸実装へ改訂。** 旧「Topicがキーワードで明確なら優先」というルールは廃止。現在の会話ではRuriがTopic・Interactionを独立判定し、固定の組み合わせ英語を選びます。Web/Android両PRはドラフトのまま。全文：`docs/interaction/RURI_PAIRED_ENGLISH_333.md`。
