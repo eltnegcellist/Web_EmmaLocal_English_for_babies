@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.js';
 import { INTERACTION_REPLIES } from './src/interaction/response.js';
+import { createSemanticController } from './src/semantic/controller.js';
+import { interactionEnabled, INTERACTION_PREFERENCE_KEY } from './src/interaction/settings.js';
 import { COMBINED_REPLIES, selectRuriAxes, combinedCandidates } from './src/interaction/ruri-routing.js';
 
 const topics=['drink','bath','milk','sleep','wake','diaper','clothes','hug','hands','feet',
@@ -66,3 +68,32 @@ assert.equal(engine.respondRuri('ミルク', '',topic('milk'),interaction('none'
 assert.equal(engine.respondRuri('その後、かわいいね','',topic('generic'),interaction('affection')).scene,'interaction:affection');
 assert.equal(engine.respondRuri('どうかな','',null,null).scene,'generic');
 console.log('Ruri-only Topic×Interaction 111 pairs / 333 English sets, independent heads, fallback, no keywords: PASS');
+
+// Default-ON is a new-install behavior, not a migration that overwrites user choice.
+// Test actual controller -> Ruri-only English routing, not merely checkbox state.
+const saved = new Map();
+const prefs = {
+  getItem(key) { return saved.has(key) ? saved.get(key) : null; },
+  setItem(key,value) { saved.set(key, String(value)); },
+};
+const predictor = {
+  ready: true,
+  async predict() { return {topic:topic('milk'), interaction:interaction('praise')}; },
+  async prepare() {},
+  cancel() {},
+  cancelPending() {},
+};
+const controller = createSemanticController({
+  engine:new LiteResponseEngine(), storage:prefs, clientFactory:()=>predictor, mode:'semantic'
+});
+assert.equal(interactionEnabled(prefs),true,'new installs default ON');
+assert.equal((await controller.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise');
+prefs.setItem(INTERACTION_PREFERENCE_KEY,'false');
+assert.equal(interactionEnabled(prefs),false,'explicit OFF persists');
+assert.equal((await controller.respond('ミルクを上手に飲めたね','')).scene,'milk');
+prefs.setItem(INTERACTION_PREFERENCE_KEY,'true');
+assert.equal(interactionEnabled(prefs),true);
+assert.equal((await controller.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise');
+saved.delete(INTERACTION_PREFERENCE_KEY);
+assert.equal((await controller.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise');
+console.log('Default-on, persisted opt-out, and Topic×Interaction response routing: PASS');
