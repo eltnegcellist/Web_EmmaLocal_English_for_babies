@@ -1,5 +1,4 @@
 import { SemanticLiteClient } from './client.js';
-import { isInteractionEnabled } from '../interaction/setting.js';
 import { DIVERSITY_STORAGE_KEY } from '../interaction/diversity.js';
 import { describeRuriTurn, appendRuriTurn } from '../interaction/diagnostics.js';
 
@@ -73,7 +72,7 @@ export function createSemanticController({ engine, storage = localStorage, befor
       if(prediction?.unavailable)updateStatus({message:prediction.message});
       // No keyword fallback; unset interaction preference defaults to ON.
       // An explicit saved OFF remains OFF.
-      const interactionEnabled = isInteractionEnabled(storage);
+      const interactionEnabled = true; // Both Ruri axes are always active in public Lite.
       lastResponse=engine.respondRuri(text,name,prediction?.topic, prediction?.interaction, interactionEnabled);
       // Store only template IDs and hashed phrase shingles, never what the parent said.
       try {

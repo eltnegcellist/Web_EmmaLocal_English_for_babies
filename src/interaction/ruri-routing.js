@@ -74,7 +74,7 @@ const BASE_COMBINED_REPLIES = {
   "cry|reassurance": [
     "I hear you crying. I'm right here. Come for a cuddle.",
     "I hear your crying. Let me hold you. My arms are warm.",
-    "I hear those tears. We have time. I'm here with you."
+    "I hear your cries. Take your time, baby. I'll hold you."
   ],
   "cry|inquiry": [
     "I hear you crying. What's the matter? I'm listening, sweetheart.",
@@ -118,7 +118,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "smile|praise": [
     "What a sweet smile! So lovely to see. Hello, little one.",
-    "What a lovely smile! That was lovely! Well done, sweetheart.",
+    "What a happy smile! Your cheeks are glowing. I love it!",
     "Look at your smile! You're doing so well. I'm proud of you."
   ],
   "play|invitation": [
@@ -143,7 +143,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "food|praise": [
     "You took a bite! Good job, little one. That was lovely.",
-    "Look at your food! You're doing so well. Well done, sweetheart.",
+    "A little bite today! Look at your spoon. Nicely done, baby!",
     "Look at that bite! You're doing so well. I'm proud of you."
   ],
   "outside|invitation": [
@@ -178,12 +178,12 @@ const BASE_COMBINED_REPLIES = {
   ],
   "hands|praise": [
     "Look at those hands! You're doing great. Well done, little one.",
-    "Look at those hands! That was lovely! Well done, sweetheart.",
+    "Your fingers are moving! Open and close them. Look at you!",
     "Your little hands move. You're doing so well. I'm proud of you."
   ],
   "feet|praise": [
     "Look at those feet! You're doing great. Well done, little one.",
-    "Look at those toes! That was lovely! Well done, sweetheart.",
+    "Your toes are wiggling! Kick those little feet. There you go!",
     "Look at your feet! You're doing so well. I'm proud of you."
   ],
   "bath|invitation": [
@@ -213,7 +213,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "clothes|invitation": [
     "Shall we get dressed? Here comes your shirt. One arm first.",
-    "Ready for some clothes? Let's do it together. Ready when you are?",
+    "Here's your little shirt! One arm goes in. Here comes the other!",
     "Shall we dress together? Come try with me. What do you think?"
   ],
   "clothes|start": [
@@ -233,12 +233,12 @@ const BASE_COMBINED_REPLIES = {
   ],
   "clothes|praise": [
     "Look at you helping! Your shirt is on. Good job, little one.",
-    "You're helping with dressing! That was lovely! Well done, sweetheart.",
+    "One arm through! Your shirt is on. Nice and cozy now!",
     "Look at your clothes! You're doing so well. I'm proud of you."
   ],
   "hands|invitation": [
     "Shall we hold hands? Give me your hand. I'm right here.",
-    "Want to touch hands? Let's do it together. Ready when you are?",
+    "Give me your hand. Let's feel those fingers. Squeeze, squeeze!",
     "Let's play with fingers! Come try with me. What do you think?"
   ],
   "hands|effort": [
@@ -253,7 +253,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "feet|invitation": [
     "Shall we move toes? Let's kick together. One, two, three!",
-    "Want to wiggle toes? Let's do it together. Ready when you are?",
+    "Look at your toes! Wiggle, wiggle, little feet! Let's kick together.",
     "Shall we kick together? Come try with me. What do you think?"
   ],
   "feet|effort": [
@@ -273,12 +273,12 @@ const BASE_COMBINED_REPLIES = {
   ],
   "voice|praise": [
     "I hear your voice! Such a lovely sound. Let's hear it again!",
-    "That's your little voice! That was lovely! Well done, sweetheart.",
+    "I heard your voice! Ooh, what a sound! Say it again?",
     "You're making sweet sounds! You're doing so well. I'm proud of you."
   ],
   "voice|repeat": [
     "Another little sound? Let's try again. I'll listen closely.",
-    "One more little sound? Let's try once more. Ready when you are?",
+    "One more little sound? I'll listen closely. Ooh, ahh, ooh!",
     "Shall we make sounds? Shall we go again? I'll stay close."
   ],
   "voice|start": [
@@ -313,12 +313,12 @@ const BASE_COMBINED_REPLIES = {
   ],
   "rain|invitation": [
     "Shall we watch rain? Look at the window. Listen with me.",
-    "Shall we hear rain? Let's do it together. Ready when you are?",
+    "Listen to the rain! Drip, drop, drip. Can you hear it?",
     "Want to watch raindrops? Come try with me. What do you think?"
   ],
   "sun|invitation": [
     "Shall we see sunshine? Let's look outside. So bright today!",
-    "Want to see sunshine? Let's do it together. Ready when you are?",
+    "Look at the sunshine! It's bright and warm. See that glow?",
     "Shall we watch sunlight? Come try with me. What do you think?"
   ],
   "sun|affection": [
@@ -363,7 +363,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "play|praise": [
     "Look at you playing! You're doing great. Well done, sweetheart.",
-    "What lovely playing! That was lovely! Well done, sweetheart.",
+    "You're playing with me! That toy goes round. Look at it!",
     "You're playing right now! You're doing so well. I'm proud of you."
   ],
   "play|achievement": [
@@ -383,12 +383,12 @@ const BASE_COMBINED_REPLIES = {
   ],
   "book|praise": [
     "You looked at pictures! That's lovely, sweetheart. Well done.",
-    "Look at your book! That was lovely! Well done, sweetheart.",
+    "You turned the page! Look at that picture. What comes next?",
     "You're looking at pictures! You're doing so well. I'm proud of you."
   ],
   "music|praise": [
     "You made a sound! Well done, little one. Let's sing together.",
-    "What a lovely tune! That was lovely! Well done, sweetheart.",
+    "You're moving to music! Your little feet bounce. Tap, tap, tap!",
     "I heard your music! You're doing so well. I'm proud of you."
   ],
   "outside|reassurance": [
@@ -423,7 +423,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "drink|praise": [
     "You took a sip! Well done, little one. That's lovely.",
-    "Look at that sip! That was lovely! Well done, sweetheart.",
+    "You took a sip! Little by little now. Good job, baby!",
     "You had your drink! You're doing so well. I'm proud of you."
   ],
   "diaper|care": [
@@ -434,7 +434,7 @@ const BASE_COMBINED_REPLIES = {
   "hug|affection": [
     "I love this cuddle. You're my treasure. Stay close, little one.",
     "A cuddle for you! I love being together. You're so precious.",
-    "Hugs together, sweetheart! I love you, sweetheart. I'm right here."
+    "A cuddle with you! You're warm and cozy. I love you!"
   ],
   "hug|care": [
     "You've done a lot. Come for a cuddle. I'll hold you close.",
@@ -443,7 +443,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "hug|praise": [
     "You reached for hugs! How lovely, little one. Well done.",
-    "What a sweet cuddle! That was lovely! Well done, sweetheart.",
+    "Such a warm cuddle! You're snuggled up close. I love you.",
     "Look at your cuddle! You're doing so well. I'm proud of you."
   ],
   "bath|care": [

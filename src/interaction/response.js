@@ -127,7 +127,7 @@ export const INTERACTION_REPLIES = {
     "Shall we try again? Just once more. Ready to go?",
     "Let's do it again. Ready for more? We can start.",
     "Once more? Let's try together. Shall we go?",
-    "One more go? Let's do it. Ready when you are.",
+    "One more go? Let's try it again. Here we go!",
     "Want to try again? Let's try once more. Ready, little one?",
     "Let's have another go. We can try again. Shall we start?"
   ],

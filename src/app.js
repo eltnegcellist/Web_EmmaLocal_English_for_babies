@@ -1,4 +1,3 @@
-import { isInteractionEnabled, INTERACTION_SETTING_KEY } from './interaction/setting.js';
 import { installSemanticPanel } from './semantic/panel.js';
 import { createSemanticController } from './semantic/controller.js';
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
@@ -41,13 +40,13 @@ const ui = {
   webTimingDiagnostics:$('webTimingDiagnostics'), copyDiagnosticsButton:$('copyDiagnosticsButton'),
   downloadDiagnosticsButton:$('downloadDiagnosticsButton'), clearDiagnosticsButton:$('clearDiagnosticsButton'),
   diagnosticsStatus:$('diagnosticsStatus'),
-  semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'), interactionExperimental:$('interactionExperimental'),
+  semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261014-preauthored-name-r1';
+const WEB_BUILD = '20261014-interaction-fixed-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -425,12 +424,6 @@ function bindEvents() {
     localStorage.setItem(STORAGE.highPerformance,String(ui.onboardingHighPerformance.checked));
   });
   ui.semanticEnabled.addEventListener('change',()=>semanticPanel.setEnabled(ui.semanticEnabled.checked,{prepare:true,mode:'semantic'}));
-  ui.interactionExperimental.checked = isInteractionEnabled(localStorage);
-  ui.interactionExperimental.addEventListener('change',async()=>{
-    if(running||preparingConversation||processing||speaking)await stopEmma();
-    localStorage.setItem(INTERACTION_SETTING_KEY,String(ui.interactionExperimental.checked));
-    engine.resetConversationContext();
-  });
   ui.endpointMode?.addEventListener('change',async()=>{
     await stopEmma();
     const mode=ui.endpointMode.value==='legacy'?'legacy':'silero';
@@ -2009,7 +2002,7 @@ async function buildWebDiagnosticReport() {
     `semantic.ready=${Boolean(semantic.ready)}`,
     `semantic.failed=${Boolean(semantic.failed)}`,
     `semantic.status=${semantic.status?.message||'unknown'}`,
-    `interaction.enabled=${isInteractionEnabled(localStorage)}`,
+    `interaction.enabled=true`,
     `routing.auditLimit=20`,
     `routing.auditPrivacy=no_transcript_or_name`,
     `history.enabled=${historyEnabled(localStorage)}`,
@@ -2167,7 +2160,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261014-preauthored-name-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261014-interaction-fixed-r1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -2205,6 +2198,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261014-preauthored-name-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261014-interaction-fixed-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });

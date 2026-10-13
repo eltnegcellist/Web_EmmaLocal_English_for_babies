@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createSemanticController} from './src/semantic/controller.js';
-import {isInteractionEnabled, INTERACTION_SETTING_KEY} from './src/interaction/setting.js';
 import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.js';
 import { INTERACTION_REPLIES } from './src/interaction/response.js';
 import { COMBINED_REPLIES, selectRuriAxes, combinedCandidates } from './src/interaction/ruri-routing.js';
@@ -74,12 +73,10 @@ assert.equal(engine.respondRuri('ミルク', '',topic('milk'),interaction('none'
 assert.equal(engine.respondRuri('その後、かわいいね','',topic('generic'),interaction('affection')).scene,'interaction:affection');
 assert.equal(engine.respondRuri('どうかな','',null,null).scene,'generic');
 
-// New and existing installations with an unset preference use both Ruri axes.
-// A user who previously opted out stays opted out across new releases.
+// Public Lite always uses both Ruri axes; even obsolete saved OFF must be ignored.
 const saved = new Map();
 const storage = {getItem: key => saved.has(key) ? saved.get(key) : null,
   setItem: (key, value) => saved.set(key,String(value))};
-assert.equal(isInteractionEnabled(storage), true, 'unset preference must be ON');
 const prediction = {topic:topic('milk'),interaction:interaction('praise')};
 const mock = {ready:true, prepare:async()=>{}, cancel(){}, cancelPending(){},
   predict:async()=>prediction};
@@ -87,12 +84,8 @@ const control = createSemanticController({
   engine:new LiteResponseEngine(),storage,clientFactory:()=>mock,
 });
 assert.equal((await control.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise');
-storage.setItem(INTERACTION_SETTING_KEY,'false');
-assert.equal(isInteractionEnabled(storage),false);
-assert.equal((await control.respond('ミルクを上手に飲めたね','')).scene,'milk');
-storage.setItem(INTERACTION_SETTING_KEY,'true');
-assert.equal(isInteractionEnabled(storage),true);
-assert.equal((await control.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise');
+storage.setItem('emma_interaction_experimental','false');
+assert.equal((await control.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise', 'obsolete OFF must not disable Interaction');
 // Per-turn audit does not store transcript or baby name, but explains routing.
 const missing=answer('この文字列は判定に無関係',topic('rain'),interaction('praise'));
 const missingAudit=describeRuriTurn({prediction:{topic:topic('rain'),interaction:interaction('praise')},response:missing,at:'test'});
@@ -116,7 +109,7 @@ let rolling=[];
 for(let n=0;n<25;n++)rolling=appendRuriTurn(rolling,{n});
 assert.equal(rolling.length,20);
 assert.equal(rolling[0].n,5);
-assert.equal(control.snapshot.routingHistory.length,3);
+assert.equal(control.snapshot.routingHistory.length,2);
 assert.ok(control.snapshot.routingHistory.every(r=>typeof r.at==='string' && !('transcript' in r)));
 // Infant-directed naturalness regression: concrete actions and gentle reactions.
 const reviewed=[...Object.values(INTERACTION_REPLIES).flat(),...Object.values(COMBINED_REPLIES).flat()];
@@ -235,14 +228,12 @@ assert.ok(namedCombined,'at least one combined template should be personalizatio
 assert.ok(!new LiteResponseEngine({diversityState:{version:1,nameGap:8,recentNameGap:2,
   history:[],phrases:[],cycles:{}}}).respondRuri('試験用','',topic('milk'),interaction('affection')).english.includes('Hana'));
 
-// Only the unlockable developer settings may expose the OFF switch.
+// No Interaction ON/OFF switch exists, including in developer settings.
 const html=readFileSync(new URL('./index.html',import.meta.url),'utf8');
-const toggleAt=html.indexOf('id="interactionExperimental"');
 const developerAt=html.indexOf('id="developerTools" class="hidden developer-tools-card"');
 assert.ok(developerAt>html.indexOf('<h2>返答と話題</h2>'));
-assert.ok(toggleAt>developerAt);
-assert.equal(html.match(/id="interactionExperimental"/g)?.length,1);
+assert.ok(!html.includes('id="interactionExperimental"'));
 assert.ok(html.slice(html.indexOf('<h2>返答と話題</h2>'),developerAt).includes('id="semanticEnabled"'));
 assert.ok(!html.slice(html.indexOf('<h2>返答と話題</h2>'),developerAt).includes('id="interactionExperimental"'));
-console.log('Interaction default-on / explicit saved OFF / developer-only toggle: PASS');
+console.log('Interaction permanently ON / obsolete saved OFF ignored / no toggle: PASS');
 console.log('Ruri-only Topic×Interaction 135 pairs / 495 English sets, independent heads, fallback, no keywords: PASS');
