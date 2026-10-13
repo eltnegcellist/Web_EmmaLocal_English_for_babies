@@ -3,12 +3,13 @@
 // The thresholds are independent per head and provisional, not calibrated on
 // real caregiver ASR. Fail closed on missing/low-confidence predictions.
 import { INTERACTION_REPLIES } from './response.js';
+import { SUPPLEMENTAL_COMBINED_REPLIES } from './supplemental-replies.js';
 
 export const INTERACTION_ACCEPT_PROBABILITY = 0.50;
 export const TOPIC_ACCEPT_PROBABILITY = 0.50;
 export const TOPIC_ACCEPT_MARGIN = 0.05;
 
-export const COMBINED_REPLIES = {
+const BASE_COMBINED_REPLIES = {
   "milk|invitation": [
     "Shall we have milk? Little sips are fine. I'm here with you.",
     "Milk is ready now! Shall we try together? Take your time.",
@@ -565,6 +566,9 @@ export const COMBINED_REPLIES = {
     "That's the last game. We're all finished. Time for a rest."
   ]
 };
+
+// Stable core bank plus newly curated short, meaningful combinations.
+export const COMBINED_REPLIES = {...BASE_COMBINED_REPLIES, ...SUPPLEMENTAL_COMBINED_REPLIES};
 
 export function selectRuriAxes(topicPrediction, interactionPrediction, allowInteraction = true) {
   const topicId = topicPrediction?.id ?? topicPrediction?.topic ?? null;
