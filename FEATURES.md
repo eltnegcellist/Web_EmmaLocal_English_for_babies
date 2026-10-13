@@ -33,8 +33,8 @@ Webの画面ロック中の継続は保証しません。
 | ミルク・授乳 | Milk time! Sip, sip! Little by little. / Yummy milk! Sip, sip! Mmm, yummy! / Milk, milk! Little sips. Nice and easy. / Time for milk! Sip, sip! All done. / Little sips. Milk time! Take your time. |
 | ねんね | So sleepy. Night-night. Rest, little one. / Sleepy time. Nice and quiet. Night-night. / Time to sleep. Rest, rest. Nice and cozy. / Sleepy eyes. Night-night. Rest, rest. / Good night, little one. Nice and cozy. Rest. |
 | おはよう・起きる | Good morning! Eyes open. Hello, hello! / Morning, little one! Hello, hello! Wake up! / Wake up! Hello, hello! Here we go! / Good morning! Bright eyes. Hello there! / Hello there! Morning time. Eyes open. |
-| おむつ | Diaper time! Nice and easy. Here we go! / Fresh diaper! Here we go! Nice and easy. / Diaper change! Wipe, wipe! All clean. / Clean and fresh! Diaper time. All done. / Wipe, wipe! Fresh and clean. Here we go! |
-| 着替え | Clothes on! Here we go! Nice and easy. / Dress time! One little arm. Here we go! / Getting dressed! Nice and easy. All ready. / Clothes time! Here we go! All cozy. / One arm, one leg. All ready! Ready! |
+| おむつ | Diaper time! Nice and easy. Here we go! / Fresh diaper! Wiggle, wiggle! All clean! / Diaper change! Wipe, wipe! All clean. / Clean and fresh! Diaper time. All done. / Wipe, wipe! Fresh and clean. Here we go! |
+| 着替え | Clothes on! Here we go! Nice and easy. / Dress time! One little arm. Here we go! / Getting dressed! Nice and easy. All ready. / Clothes time! Arm goes in! All cozy. / One arm, one leg. All ready! Ready! |
 | 抱っこ・ぎゅー | Big cuddle! Up, up! Nice and close. / Cuddle time! Nice and close. Here we go! / Up we go! Big hug. So cozy. / Big hug! Nice and close. Right here. / Cuddle, cuddle! Warm and cozy. Big hug! |
 | て・おてて | Tiny hands! Squeeze, squeeze! Wiggle, wiggle! / Little hands! Open, close. Wiggle, wiggle! / Tiny fingers! Squeeze, squeeze! Little hands! / Hands, hands! Open and close. Wiggle, wiggle! / Clap, clap! Wave, wave! Little hands! |
 | あし・あんよ | Little feet! Kick, kick! Wiggle, wiggle! / Tiny feet! Kick, kick! Little toes! / Feet, feet! Up and down. Kick, kick! / Little toes! Wiggle, wiggle! Kick, kick! / Tap, tap! Little feet. Kick, kick! |
@@ -43,12 +43,12 @@ Webの画面ロック中の継続は保証しません。
 | こえ・おしゃべり | I hear you! Hello, hello! I'm listening. / What a voice! Ooh, ahh! I hear you. / Hello, little one! Ooh, ahh! I hear you. / Talk, talk! Ooh, ahh! I'm listening. / Little voice! Hello, hello! Sing with me. |
 | げっぷ・おなか | Little tummy. Nice and easy. Take your time. / Little tummy. Nice and gentle. Here we go. / Little sips. Happy tummy. There you go! / Easy, easy. Little tummy. Right here. / Burp, burp! Little tummy. Nice and easy. |
 | いっしょにあそぼう | Play time! Look, look! Here we go! / Let's play! Look with me. Here we go! / Play, play! Look, look! So much fun! / Time to play! Hello, hello! Let's play! / Peek-a-boo! One, two, three! Let's play! |
-| お散歩・外 | Outside time! Look around! Here we go! / Out we go! Look, look! Listen with me. / Outside, outside! Look around! Here we go! / Time outside! Look with me. Listen, listen! / Fresh air! Look around. Listen with me. |
+| お散歩・外 | Outside time! Look around! Here we go! / Out we go! Look, look! Listen with me. / Outside, outside! Birds up high! Look around! / Time outside! Look with me. Listen, listen! / Fresh air! Look around. Listen with me. |
 | 雨 | Rain, rain! Pitter-patter! Listen, listen! / Rain outside! Drip, drop! Listen with me. / Pitter-patter! Rain, rain! Drip, drop! / Listen, listen! Rain outside! Pitter-patter! / Drip, drop! Rainy day. Listen closely. |
 | 晴れ・お日様 | Bright day! Hello, sunshine! Look, look! / Sunshine! Bright, bright! Look with me. / Hello, sunshine! Bright day! Look, look! / Bright, bright! Sunshine! Here we go! / Sunny day! Warm and bright. Look around! |
 | ごはん・離乳食 | Food time! Yum, yum! Tiny little bites. / Yummy food! Little bite. Nice and easy. / Time to eat! Yum, yum! Here we go! / Food, food! Little bite. Yum, yum! / Little bite. Chew, chew! Nice and slow. |
-| 絵本 | Book time! Look, look! Turn the page. / Let's read! Look with me. Turn the page. / Book, book! Look, look! Here we go! / Story time! Turn the page. Let's see! / Open the book. Look, look! What's next? |
-| うた・リズム | Music time! La-la-la! Listen, listen! / Let's sing! La-la-la! Listen with me. / Music, music! Tap, tap! Here we go! / Song time! La-la-la! Listen, listen! / Clap, clap! Tap, tap! Sing with me. |
+| 絵本 | Book time! Look, look! Turn the page. / Let's read! Look with me. Turn the page. / Book, book! Flip that page! Look, look! / Story time! Turn the page. Let's see! / Open the book. Look, look! What's next? |
+| うた・リズム | Music time! La-la-la! Listen, listen! / Let's sing! La-la-la! Listen with me. / Music, music! Tap, tap! Sing with me! / Song time! La-la-la! Listen, listen! / Clap, clap! Tap, tap! Sing with me. |
 | 飲む | Little sips. Sip, sip! One at a time. / Let's drink. Little sips. Nice and slow. / Sip, sip! Take your time. Little sips. / Small sips. Nice and easy. Take your time. / Drink, drink! Little sips. Here you go. |
 
 共通データはWebの`shared/play-topics.json`とAndroidの`app/src/main/assets/play-topics.json`。`scripts/verify-play-topics.py`で同じSHA-256と説明の一致を確認します。話題判定用の既存共通データには変更しません。
@@ -79,3 +79,9 @@ Webの画面ロック中の継続は保証しません。
 
 Android側にも同系統の隠し診断を用意し、両版で可能な範囲の診断機能を相互補完します。Semantic実推論のクロスプラットフォーム自動一致テストも実装済みです。固定14ケースをWebのWASM ONNX Runtime 1.30とAndroid相当のJava ONNX Runtime 1.23.2で実際に推論し、token ID・raw topic・最終topicの完全一致に加え、probability差0.025以下、margin差0.035以下、embedding cosine 0.995以上をCIで検証します。実測では14/14でtopic/raw topic/token IDが一致し、最大probability差0.016734、最大margin差0.025733、最小embedding cosine 0.996722でした。
 
+
+## 2026-10-14 Interaction固定と英文再審査
+
+- 公開LiteはRuriのTopic＋Interactionを常時利用し、ON/OFF設定を通常設定・開発者設定の両方から撤去します。過去に保存したOFF値は参照しません。
+- CIで「改善推奨」と表示された186セットを場面適合性・自然さ・反復の用途で再評価。25セットを修正し、161セットは安心表現やリズムの役割を理由に維持しました。全件の個別判定は別途186件監査台帳に記録します。
+- 修正後もTopic 197、Interaction 112、組み合わせ495、押して聞く110の計914セットを維持します。母語話者審査とKiki実聴は引き続き別作業です。
