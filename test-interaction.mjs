@@ -5,14 +5,15 @@ import {isInteractionEnabled, INTERACTION_SETTING_KEY} from './src/interaction/s
 import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.js';
 import { INTERACTION_REPLIES } from './src/interaction/response.js';
 import { COMBINED_REPLIES, selectRuriAxes, combinedCandidates } from './src/interaction/ruri-routing.js';
+import {describeRuriTurn, appendRuriTurn} from './src/interaction/diagnostics.js';
 
 const topics=['drink','bath','milk','sleep','wake','diaper','clothes','hug','hands','feet',
   'smile','cry','voice','tummy','play','outside','rain','sun','food','book','music'];
 const labels=['affection','praise','achievement','effort','encouragement','invitation','start',
   'finish','finish_check','care','inquiry','reassurance','repeat','pause'];
 assert.equal(Object.keys(INTERACTION_REPLIES).length,14);
-assert.equal(Object.keys(COMBINED_REPLIES).length,111,'111 curated meaningful pair types');
-assert.equal(Object.values(COMBINED_REPLIES).flat().length,333,'3 variants per pair');
+assert.equal(Object.keys(COMBINED_REPLIES).length,135,'135 curated meaningful pair types');
+assert.equal(Object.values(COMBINED_REPLIES).flat().length,405,'3 variants per pair');
 assert.equal(new Set(Object.keys(COMBINED_REPLIES).map(s=>s.split('|')[0])).size,21,'21 concrete Ruri topics represented, including drink');
 const onlySeen=new Set();
 for(const [key,replies] of Object.entries(COMBINED_REPLIES)){
@@ -38,6 +39,8 @@ const interaction=(id,probability=.92)=>({id,probability,margin:.55});
 function answer(japanese,t,i,enable=true){return new LiteResponseEngine().respondRuri(japanese,'',t,i,enable);}
 for(const [text,t,i] of [
   ['ミルクを上手に飲めたね','milk','praise'],
+  ['ミルク飲んだね、かわいいね','milk','affection'],
+  ['ミルクは終わったかな','milk','finish_check'],
   ['ミルク飲もうか','milk','invitation'],
   ['おむつ終わったかな','diaper','finish_check'],
   ['泣いてるね、大丈夫だよ','cry','reassurance'],
@@ -54,8 +57,8 @@ for(const [text,t,i] of [
 // Nonmatching Japanese text cannot override the Ruri predictions.
 assert.equal(answer('お風呂とミルクの話',topic('book'),interaction('praise')).scene,'combined:book:praise');
 assert.equal(answer('かわいいね',topic('milk'),interaction('praise')).scene,'combined:milk:praise');
-// Both present but pairing not curated -> current Topic; avoid unnatural concatenation.
-assert.equal(answer('irrelevant text',topic('milk'),interaction('inquiry')).scene,'milk');
+// Both present but pairing not curated -> current Topic; no fabricated concatenation.
+assert.equal(answer('irrelevant text',topic('rain'),interaction('praise')).scene,'rain');
 assert.equal(answer('かわいいね',topic('generic'),interaction('affection')).scene,'interaction:affection');
 assert.equal(answer('milk',topic('milk'),interaction('none')).scene,'milk');
 assert.equal(answer('milk',topic('milk'),interaction('affection'),false).scene,'milk');
@@ -88,6 +91,31 @@ assert.equal((await control.respond('ミルクを上手に飲めたね','')).sce
 storage.setItem(INTERACTION_SETTING_KEY,'true');
 assert.equal(isInteractionEnabled(storage),true);
 assert.equal((await control.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise');
+// Per-turn audit does not store transcript or baby name, but explains routing.
+const missing=answer('この文字列は判定に無関係',topic('rain'),interaction('praise'));
+const missingAudit=describeRuriTurn({prediction:{topic:topic('rain'),interaction:interaction('praise')},response:missing,at:'test'});
+assert.equal(missingAudit.reason,'pair_missing');
+assert.equal(missingAudit.route,'rain');
+assert.equal(missingAudit.topicStatus,'accepted');
+assert.equal(missingAudit.interactionStatus,'accepted');
+const weakAudit=describeRuriTurn({prediction:{topic:topic('milk'),interaction:interaction('finish_check',.47)},
+  response:answer('ミルク終わった？',topic('milk'),interaction('finish_check',.47)),at:'test'});
+assert.equal(weakAudit.reason,'topic_only');
+assert.equal(weakAudit.interactionStatus,'low_probability');
+const disabledAudit=describeRuriTurn({prediction:{topic:topic('milk'),interaction:interaction('affection')},
+  response:answer('ミルクかわいいね',topic('milk'),interaction('affection'),false),interactionEnabled:false,at:'test'});
+assert.equal(disabledAudit.interactionStatus,'disabled');
+const combinedAudit=describeRuriTurn({prediction:{topic:topic('milk'),interaction:interaction('affection')},
+  response:answer('ミルクかわいいね',topic('milk'),interaction('affection')),at:'test'});
+assert.equal(combinedAudit.reason,'combined');
+assert.equal(combinedAudit.route,'combined:milk:affection');
+assert.equal('transcript' in combinedAudit,false);
+let rolling=[];
+for(let n=0;n<25;n++)rolling=appendRuriTurn(rolling,{n});
+assert.equal(rolling.length,20);
+assert.equal(rolling[0].n,5);
+assert.equal(control.snapshot.routingHistory.length,3);
+assert.ok(control.snapshot.routingHistory.every(r=>typeof r.at==='string' && !('transcript' in r)));
 // Only the unlockable developer settings may expose the OFF switch.
 const html=readFileSync(new URL('./index.html',import.meta.url),'utf8');
 const toggleAt=html.indexOf('id="interactionExperimental"');
@@ -98,4 +126,4 @@ assert.equal(html.match(/id="interactionExperimental"/g)?.length,1);
 assert.ok(html.slice(html.indexOf('<h2>返答と話題</h2>'),developerAt).includes('id="semanticEnabled"'));
 assert.ok(!html.slice(html.indexOf('<h2>返答と話題</h2>'),developerAt).includes('id="interactionExperimental"'));
 console.log('Interaction default-on / explicit saved OFF / developer-only toggle: PASS');
-console.log('Ruri-only Topic×Interaction 111 pairs / 333 English sets, independent heads, fallback, no keywords: PASS');
+console.log('Ruri-only Topic×Interaction 135 pairs / 405 English sets, independent heads, fallback, no keywords: PASS');
