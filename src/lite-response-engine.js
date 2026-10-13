@@ -1,4 +1,5 @@
 import { selectRuriAxes, combinedCandidates } from './interaction/ruri-routing.js';
+import { RuriReplyDiversity } from './interaction/diversity.js';
 import { selectInteraction, INTERACTION_REPLIES } from './interaction/response.js';
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
 import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink, detectNounTopics } from './lite-topic-matcher.js';
@@ -818,7 +819,8 @@ export function allLiteReplyGroupsForPhonemeAudit() {
 }
 
 export class LiteResponseEngine {
-  constructor() {
+  constructor({diversityState=null} = {}) {
+    this.diversity=new RuriReplyDiversity(diversityState);
     this.recentReplies = [];
     this.recentOpeners = [];
     this.turnCounter = 0;
@@ -834,19 +836,24 @@ export class LiteResponseEngine {
     const { topic, interaction } = selectRuriAxes(topicPrediction, interactionPrediction, allowInteraction);
     const scene = findScene(topic);
     const pair = scene && interaction ? combinedCandidates(scene.id, interaction) : null;
+    const selected=this.diversity.select({topic:scene?.id||null,interaction,pair,
+      topicReplies:scene?.replies||null,interactionReplies:interaction ? INTERACTION_REPLIES[interaction] : null});
     const replies = pair || scene?.replies || (interaction ? INTERACTION_REPLIES[interaction] : null)
       || GENERIC_REPLIES;
-    const route = pair ? `combined:${scene.id}:${interaction}`
+    const reason=selected?.reason||'generic';
+    const route=reason==='combined' ? `combined:${scene.id}:${interaction}`
+      : reason==='diversity_interaction' ? `interaction:${interaction}`
+      : reason==='diversity_topic' ? scene.id
       : scene?.id || (interaction ? `interaction:${interaction}` : 'generic');
     // The current utterance's Ruri result is authoritative: stale context never
     // overrides a new label and cannot cause fabricated composite replies.
     this.activeSceneId = null;
     this.activeSceneTurnsRemaining = 0;
     const safeName = sanitizeName(spokenBabyName);
-    const allowName = !interaction && !pair;
+    const allowName = !interaction && !pair || reason==='diversity_topic';
     const forceName = allowName && !!safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW;
     const suppressName = allowName && !!safeName && this.turnsSinceName < STYLE.NAME_REPEAT_WINDOW;
-    const raw = this.chooseReply(replies, transcript, forceName, suppressName);
+    const raw = selected?.text ?? this.chooseReply(replies, transcript, forceName, suppressName);
     const named = allowName ? applyName(raw, safeName, forceName) : raw;
     const styled = this.alignToBabyStyle(named, transcript, scene?.id);
     this.remember(raw, styled);
@@ -854,7 +861,8 @@ export class LiteResponseEngine {
     this.turnCounter++;
     return {
       english: styled, scene: route, topic: scene?.id || null,
-      interaction: interaction || null, combined: !!pair, score: 0,
+      interaction: interaction || null, combined: reason==='combined', score: 0,
+      selectionReason:reason,
       ruleScene: 'unused', semanticUsed: true, contextUsed: false
     };
   }
@@ -994,6 +1002,7 @@ export class LiteResponseEngine {
   // completed spoken replies, not to discarded preparation attempts.
   snapshotTurnState() {
     return {
+      diversity:this.diversity.snapshot(),
       recentReplies:[...this.recentReplies],
       recentOpeners:[...this.recentOpeners],
       turnCounter:this.turnCounter,
@@ -1004,6 +1013,7 @@ export class LiteResponseEngine {
   }
   restoreTurnState(snapshot) {
     if(!snapshot)return;
+    if(snapshot.diversity)this.diversity.restore(snapshot.diversity);
     this.recentReplies=[...snapshot.recentReplies];
     this.recentOpeners=[...snapshot.recentOpeners];
     this.turnCounter=snapshot.turnCounter;
@@ -1012,7 +1022,9 @@ export class LiteResponseEngine {
     this.activeSceneTurnsRemaining=snapshot.activeSceneTurnsRemaining;
   }
 
+  exportReplyDiversityState() { return this.diversity.snapshot(); }
   resetConversationContext() {
+    // Do not erase long-term variety across sessions or ordinary topic resets.
     this.activeSceneId = null;
     this.activeSceneTurnsRemaining = 0;
   }
