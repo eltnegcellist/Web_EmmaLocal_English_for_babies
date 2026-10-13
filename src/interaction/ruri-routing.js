@@ -24,7 +24,7 @@ const BASE_COMBINED_REPLIES = {
   "milk|achievement": [
     "You drank your milk! You did it! Well done, sweetheart.",
     "You finished that milk! You did it! How wonderful is that!",
-    "You took your milk! That worked out! Hooray, little one!"
+    "You drank some milk! Good job, baby! I'm right here."
   ],
   "milk|finish": [
     "Milk is all done! You're finished now. Let's rest together.",
@@ -103,7 +103,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "book|repeat": [
     "One more page? Let's read again. Turn the page.",
-    "Let's open our book. Let's try once more. Ready when you are?",
+    "Let's open our book. See that little bird? Turn the page!",
     "Look at this book. Shall we go again? I'll stay close."
   ],
   "book|start": [
@@ -127,8 +127,8 @@ const BASE_COMBINED_REPLIES = {
     "Shall we play together? Here's our little toy. Let's have fun."
   ],
   "play|repeat": [
-    "Let's play again! One more time? Ready when you are.",
-    "Here's our little game. Let's try once more. Ready when you are?",
+    "Let's play again! One more turn? Here comes your toy!",
+    "Here's our little game. Want another turn? Let's play together.",
     "Let's play together. Shall we go again? I'll stay close."
   ],
   "play|start": [
@@ -168,7 +168,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "music|repeat": [
     "One more song? Let's sing again. La, la, la!",
-    "Here's a little song. Let's try once more. Ready when you are?",
+    "Here's a little song. Can you hear it? Let's hum together.",
     "Listen to our music. Shall we go again? I'll stay close."
   ],
   "drink|invitation": [
@@ -249,7 +249,7 @@ const BASE_COMBINED_REPLIES = {
   "hands|achievement": [
     "Your fingers found it! Hooray, little one! You did that.",
     "Look at those hands! You did it! How wonderful is that!",
-    "Your fingers did it! That worked out! Hooray, little one!"
+    "Your little fingers moved! You did it! Wiggle them again!"
   ],
   "feet|invitation": [
     "Shall we move toes? Let's kick together. One, two, three!",
@@ -264,7 +264,7 @@ const BASE_COMBINED_REPLIES = {
   "feet|achievement": [
     "You gave a kick! You did it! Hooray for you.",
     "Look at your feet! You did it! How wonderful is that!",
-    "Those little toes moved! That worked out! Hooray, little one!"
+    "Your little toes moved! You did it! Kick them again!"
   ],
   "voice|affection": [
     "I love your voice! Such a sweet sound. I'm listening, sweetheart.",
@@ -272,7 +272,7 @@ const BASE_COMBINED_REPLIES = {
     "Listen to those sounds! I love you, sweetheart. I'm right here."
   ],
   "voice|praise": [
-    "What a lovely sound! You're doing so well. I'm listening, sweetheart.",
+    "I hear your voice! Such a lovely sound. Let's hear it again!",
     "That's your little voice! That was lovely! Well done, sweetheart.",
     "You're making sweet sounds! You're doing so well. I'm proud of you."
   ],
@@ -304,7 +304,7 @@ const BASE_COMBINED_REPLIES = {
   "rain|inquiry": [
     "Can you hear rain? What's that sound? Let's listen together.",
     "Hear the rain outside? What do you notice? Let's find out together.",
-    "Can you hear raindrops? Let's take a look. I'm listening, sweetheart."
+    "Hear the raindrops? Tap, tap, tap! They're on the window."
   ],
   "rain|affection": [
     "Rain is falling outside. I'm here with you. I love these moments.",
@@ -329,7 +329,7 @@ const BASE_COMBINED_REPLIES = {
   "sun|inquiry": [
     "Can you see sunshine? Look at the light. Isn't it bright?",
     "Where is the sunshine? What do you notice? Let's find out together.",
-    "Can you see sunlight? Let's take a look. I'm listening, sweetheart."
+    "Can you see sunshine? Look at that light. It's so bright!"
   ],
   "smile|repeat": [
     "Another little smile? I'll smile at you. Your turn again.",
@@ -369,17 +369,17 @@ const BASE_COMBINED_REPLIES = {
   "play|achievement": [
     "You got the toy! You did it! What a moment.",
     "Look at that play! You did it! How wonderful is that!",
-    "Your game worked out! That worked out! Hooray, little one!"
+    "What a fun game! You did it! Let's clap together!"
   ],
   "play|effort": [
     "You're working on this! I see you trying. No need to hurry.",
-    "You're trying this game. I see your effort. I'm here with you.",
+    "You're playing this game. You keep trying! I'm watching you.",
     "You're trying this game. You're working so hard. I'll stay beside you."
   ],
   "book|inquiry": [
     "What's in the book? Let's turn a page. What do you see?",
     "See the book? What do you notice? Let's find out together.",
-    "Look at this picture! Let's take a look. I'm listening, sweetheart."
+    "Look at this picture! What do you see? Let's look again!"
   ],
   "book|praise": [
     "You looked at pictures! That's lovely, sweetheart. Well done.",
@@ -408,7 +408,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "milk|care": [
     "That was milk time. You did a lot. Let's rest together.",
-    "Milk time was busy. That took some effort. Let's rest together.",
+    "You drank your milk. Your tummy is full. Let's rest together.",
     "Milk time is over. I'll stay with you. Let's rest together."
   ],
   "milk|reassurance": [
@@ -438,7 +438,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "hug|care": [
     "You've done a lot. Come for a cuddle. I'll hold you close.",
-    "Come for a cuddle. That took some effort. Let's rest together.",
+    "Come for a cuddle. You look tired, sweetheart. Let's rest together.",
     "A gentle little cuddle. You did a lot. I'll stay with you."
   ],
   "hug|praise": [
@@ -447,7 +447,7 @@ const BASE_COMBINED_REPLIES = {
     "Look at your cuddle! You're doing so well. I'm proud of you."
   ],
   "bath|care": [
-    "That was a bath! Now we can rest. I'm right here.",
+    "Bath time is done! You're all clean now. Let's get cozy!",
     "All done with baths. That was a lot. Let's rest together.",
     "Your bath is finished. Let's get cozy now. I'll stay with you."
   ],
