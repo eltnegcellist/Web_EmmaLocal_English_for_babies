@@ -30,7 +30,7 @@ Webの画面ロック中の継続は保証しません。
 | --- | --- |
 | こんにちは | Hello, hello! Hi there! Let's say hello! / Hi there! Hello, little one! Wave hello! / Hello, little one! Hi there! Hello again! / Let's say hello! Hi there! Hello, hello! / Good morning, little one! Hello, hello! Hi there! |
 | お風呂 | Bath time! Splash, splash! Here we go! / Warm bath! Splash, splash! Nice and easy. / Bath time! Wash, wash! All clean. / Splash, splash! Warm water. Nice and gentle. / Wash, wash! Little toes. All clean. |
-| ミルク・授乳 | Milk time! Sip, sip! Nice and slow. / Yummy milk! Sip, sip! Mmm, yummy! / Milk, milk! Little sips. Nice and easy. / Time for milk! Sip, sip! All done. / Little sips. Milk time! Nice and slow. |
+| ミルク・授乳 | Milk time! Sip, sip! Little by little. / Yummy milk! Sip, sip! Mmm, yummy! / Milk, milk! Little sips. Nice and easy. / Time for milk! Sip, sip! All done. / Little sips. Milk time! Take your time. |
 | ねんね | So sleepy. Night-night. Rest, little one. / Sleepy time. Nice and quiet. Night-night. / Time to sleep. Rest, rest. Nice and cozy. / Sleepy eyes. Night-night. Rest, rest. / Good night, little one. Nice and cozy. Rest. |
 | おはよう・起きる | Good morning! Eyes open. Hello, hello! / Morning, little one! Hello, hello! Wake up! / Wake up! Hello, hello! Here we go! / Good morning! Bright eyes. Hello there! / Hello there! Morning time. Eyes open. |
 | おむつ | Diaper time! Nice and easy. Here we go! / Fresh diaper! Here we go! Nice and easy. / Diaper change! Wipe, wipe! All clean. / Clean and fresh! Diaper time. All done. / Wipe, wipe! Fresh and clean. Here we go! |
@@ -41,15 +41,15 @@ Webの画面ロック中の継続は保証しません。
 | 笑顔 | Big smile! Smile, smile! Hello, little one! / What a smile! Hello, hello! Smile, smile! / Smile, smile! There it is! Hello there! / Happy smile! Hello, little one! So sweet. / Smile for me! Big, big smile! So sweet! |
 | 泣く・ぐずぐず | I hear you. Right here. Nice and gentle. / I hear you. Right here. Nice and close. / Hello, little one. I hear you. Right here. / Your little voice. Nice and gentle. Right here. / Easy, easy. Right here. Nice and close. |
 | こえ・おしゃべり | I hear you! Hello, hello! I'm listening. / What a voice! Ooh, ahh! I hear you. / Hello, little one! Ooh, ahh! I hear you. / Talk, talk! Ooh, ahh! I'm listening. / Little voice! Hello, hello! Sing with me. |
-| げっぷ・おなか | Little tummy. Nice and easy. Take your time. / Little tummy. Nice and gentle. Here we go. / Nice and slow. Little tummy. Take your time. / Easy, easy. Little tummy. Right here. / Burp, burp! Little tummy. Nice and easy. |
+| げっぷ・おなか | Little tummy. Nice and easy. Take your time. / Little tummy. Nice and gentle. Here we go. / Easy little sips. Happy little tummy. There you go! / Easy, easy. Little tummy. Right here. / Burp, burp! Little tummy. Nice and easy. |
 | いっしょにあそぼう | Play time! Look, look! Here we go! / Let's play! Look with me. Here we go! / Play, play! Look, look! So much fun! / Time to play! Hello, hello! Let's play! / Peek-a-boo! One, two, three! Let's play! |
 | お散歩・外 | Outside time! Look around! Here we go! / Out we go! Look, look! Listen with me. / Outside, outside! Look around! Here we go! / Time outside! Look with me. Listen, listen! / Fresh air! Look around. Listen with me. |
 | 雨 | Rain, rain! Pitter-patter! Listen, listen! / Rain outside! Drip, drop! Listen with me. / Pitter-patter! Rain, rain! Drip, drop! / Listen, listen! Rain outside! Pitter-patter! / Drip, drop! Rainy day. Listen closely. |
 | 晴れ・お日様 | Bright day! Hello, sunshine! Look, look! / Sunshine! Bright, bright! Look with me. / Hello, sunshine! Bright day! Look, look! / Bright, bright! Sunshine! Here we go! / Sunny day! Warm and bright. Look around! |
-| ごはん・離乳食 | Food time! Yum, yum! Nice and slow. / Yummy food! Little bite. Nice and easy. / Time to eat! Yum, yum! Here we go! / Food, food! Little bite. Yum, yum! / Little bite. Chew, chew! Nice and slow. |
+| ごはん・離乳食 | Food time! Yum, yum! Tiny little bites. / Yummy food! Little bite. Nice and easy. / Time to eat! Yum, yum! Here we go! / Food, food! Little bite. Yum, yum! / Little bite. Chew, chew! Nice and slow. |
 | 絵本 | Book time! Look, look! Turn the page. / Let's read! Look with me. Turn the page. / Book, book! Look, look! Here we go! / Story time! Turn the page. Let's see! / Open the book. Look, look! What's next? |
 | うた・リズム | Music time! La-la-la! Listen, listen! / Let's sing! La-la-la! Listen with me. / Music, music! Tap, tap! Here we go! / Song time! La-la-la! Listen, listen! / Clap, clap! Tap, tap! Sing with me. |
-| 飲む | Little sips. Sip, sip! Nice and slow. / Let's drink. Little sips. Nice and slow. / Sip, sip! Take your time. Little sips. / Small sips. Nice and easy. Take your time. / Drink, drink! Little sips. Nice and slow. |
+| 飲む | Little sips. Sip, sip! One at a time. / Let's drink. Little sips. Nice and slow. / Sip, sip! Take your time. Little sips. / Small sips. Nice and easy. Take your time. / Drink, drink! Little sips. Here you go. |
 
 共通データはWebの`shared/play-topics.json`とAndroidの`app/src/main/assets/play-topics.json`。`scripts/verify-play-topics.py`で同じSHA-256と説明の一致を確認します。話題判定用の既存共通データには変更しません。
 
