@@ -91,7 +91,7 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 - [World Health Organization (2019)](https://www.who.int/publications/i/item/9789241550536) — *Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age*.
 - [Johnson et al. (1991)](https://doi.org/10.1016/0010-0277(91)90045-6) — *Newborns' preferential tracking of face-like stimuli and its subsequent decline*. Cognition 40(1–2), 1–19.
 
-### 「呼びかけ」と「会話」
+### 呼びかけ（Web版）
 
 Web版のインタラクションは **呼びかけ** に統一しています。親子の今の場面を手がかりに、AIが短い英語を差し込みます。親と赤ちゃんのやり取りが主役です。
 
