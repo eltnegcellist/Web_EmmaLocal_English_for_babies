@@ -710,7 +710,6 @@
           <h2>返答と話題</h2>
           <label class="toggle-line"><span>意味で話題を判定する（標準）</span><span class="switch"><input id="semanticEnabled" type="checkbox" checked><span></span></span></label>
           <p id="semanticStatus" class="small muted"></p>
-          <label class="toggle-line"><span>話題と呼びかけの両方を判定する（標準）<small>「ミルク」などの話題と「かわいいね」「よくできたね」などを組み合わせて英語を選びます。オフにすると話題中心の返答になります。</small></span><span class="switch"><input id="interactionExperimental" type="checkbox" checked><span></span></span></label>
 
           <p class="small muted">話題が曖昧な場合は、直前の話題を最大6回使います。明確な別の話題が来たら切り替えます。</p>
           <p class="small muted">育児の話題を日本語から選び、短い英語で返します。話題の一覧と、拾いやすい呼びかけの例を確認できます。</p>
@@ -743,6 +742,7 @@
           </div>
           <div id="developerTools" class="hidden developer-tools-card">
             <p class="small muted">開発者向け：Semantic比較・モデル診断・音声確認・診断情報・完全リセット</p>
+            <label class="toggle-line"><span>新Interaction（Topic＋Interaction）<small>ON（標準）：話題＋働きかけに合う英文を選びます。OFF（開発者用）：話題だけで英文を選びます。明示的に保存したOFF設定は維持されます。</small></span><span class="switch"><input id="interactionExperimental" type="checkbox" checked><span></span></span></label>
             <a class="outline-button link-button compact-button" href="./voice-diagnostic.html?v=20260925-voice-diagnostic-r1">Kitten音声を診断する</a>
             <a class="outline-button link-button compact-button" href="./semantic-test.html">Semantic単体テストを開く</a>
             <a class="outline-button link-button compact-button" href="./model-lab.html">モデルラボを開く</a>
@@ -899,6 +899,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261012-compact-history-r1"></script>
+  <script type="module" src="./src/app.js?v=20261013-interaction-dev-settings-r1"></script>
 </body>
 </html>
