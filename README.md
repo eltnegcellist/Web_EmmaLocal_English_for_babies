@@ -12,7 +12,7 @@ Sileroを標準の発話開始・終了判定として追加しました。設�
 **Web版を開く**  
 https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
 
-みつことばは、**赤ちゃんに英語を聞かせるだけではなく、親・赤ちゃん・AIの3人で英語が生まれる時間をつくる**ためのアプリです。親・赤ちゃん・AIの3者を表す正式ロゴを、Web/PWAとAndroidで共通ブランドとして使用しています。
+みつことばは、**赤ちゃんに英語を聞かせるだけではなく、親・赤ちゃん・AIの3人で英語が生まれる時間をつくる**ためのアプリです。親・赤ちゃん・AIの3者を表す正式ロゴを、Web/PWAで使用しています。
 
 親が普段どおり日本語で話すと、まず **AI** がその場面を文脈として受け取り、短い英語を返します。AIキャラクターの初期名は **Emma** で、設定から変更できます。乳児の外国語学習研究では、受動的な音声・映像だけの場合と、社会的な相手と関わりながら経験する場合では学習が異なる可能性が示されています。
 
@@ -93,16 +93,9 @@ WHOの2019年ガイドラインは、1歳未満の乳児についてスクリー
 
 ### 「呼びかけ」と「会話」
 
-みつことばのインタラクションは、相手を「赤ちゃん向け / 親向け」に分けるのではなく、**親・赤ちゃん・AIの3人がどう関わるか**で分けます。
-
-- **呼びかけ** — 親子の今の場面を手がかりに、AIが短い英語を差し込みます。親と赤ちゃんのやり取りが主役です。
-- **会話** — 親の発話や直前の流れを踏まえ、AIも親・赤ちゃんとの3者のやり取りに継続して参加します。
-
-Web版では「呼びかけ」を利用できます。生成型の「会話」はAndroid Fullで利用できます。
+Web版のインタラクションは **呼びかけ** に統一しています。親子の今の場面を手がかりに、AIが短い英語を差し込みます。親と赤ちゃんのやり取りが主役です。
 
 「押して聞く」は、既存の挨拶にLiteの20育児話題と「飲む」を加えた22話題・110種類の短い英語をAndroid/Webで共通利用します。標準は1回に1文で、110個のまとまりから得られる重複なし167種類の1文候補のうち、短い一言も含めて1つだけ再生します。再生画面のカード外にある「1回 1文｜3文」で切り替えられ、発話中は「一緒に聞こう」＋口パク＋ごく薄いテーマ色表示になります。複数行の英語も中央揃えです。
-
-Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして使います。genericは話題として保存せず、過去1ターン内の具体的な育児トピックだけをGemmaへ参考情報として渡します。
 
 ### 会話を自分で区切る
 
@@ -110,18 +103,9 @@ Android Fullでは、同じ軽量Scene判定を補助的なTopicTrackerとして
 
 ### 安定版の位置づけ
 
-現在のWeb版 `main` は、**みつことば Android v1.9.40** と並行して提供するブラウザ版の安定基準です。
+Web版は、ブラウザで完結する呼びかけアプリとして提供します。
 
 - Webアプリ: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android安定版: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.40
-- Androidリポジトリ: https://github.com/eltnegcellist/Android_English_character_for_baby
-
-Web版はブラウザ向けの軽量構成です。Android版では同系統の軽量構成に加えて、Gemmaを使うFullも利用できます。
-
-| プラットフォーム | 構成 |
-| --- | --- |
-| **Web** | ブラウザ向け軽量構成 |
-| **Android** | 軽量構成 / Full |
 
 ### 構成
 
@@ -185,8 +169,6 @@ Web版は、軽量で導入しやすいみつことば体験に絞っていま�
 - ローカル応答選択
 - ローカルTTS
 - GitHub Pagesで公開
-
-生成AIを使う **Full** はAndroid版で提供します。
 
 ### プライバシーとローカル処理
 
@@ -257,12 +239,6 @@ Web版の主要な第三者依存は次のとおりです。
 
 **現在の公開URL**  
 https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-
-### Android版
-
-軽量構成 + Full、および安定版Android APKはこちらです。
-
-https://github.com/eltnegcellist/Android_English_character_for_baby
 
 ---
 
@@ -354,20 +330,11 @@ Mitsukotoba normally detects the end of speech automatically. If endpoint detect
 
 ### Stable Project Baseline
 
-The current Web `main` is the browser-side stable companion to **Mitsukotoba Android v1.9.40**.
+The Web edition is a standalone browser/PWA app focused on short English callouts.
 
 - Web app: https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-- Android stable release: https://github.com/eltnegcellist/Android_English_character_for_baby/releases/tag/mitsukotoba-v1.9.40
-- Android repository: https://github.com/eltnegcellist/Android_English_character_for_baby
-
-The Web edition uses the lightweight browser configuration. Android provides the same lightweight style of interaction plus the Gemma-based Full mode.
 
 Tap to Listen plays one sentence per tap by default from 167 unique sentence candidates, including very short natural phrases. The 1-sentence / 3-sentence control now sits outside the tappable card on the play screen. While speaking, the card softly tints with the theme color, the action label changes to “Listen together,” and the existing avatar lip sync continues. Multi-line English is centered.
-
-| Platform | Configuration |
-| --- | --- |
-| **Web** | Lightweight browser configuration |
-| **Android** | Lightweight configuration / Full |
 
 ### Architecture
 
@@ -431,8 +398,6 @@ The Web edition is intentionally focused on the lightweight Mitsukotoba experien
 - Local response selection
 - Local TTS
 - Simple deployment through GitHub Pages
-
-The generative **Full** edition is provided by the Android application.
 
 ### Privacy and Local Processing
 
@@ -503,12 +468,6 @@ Updates to `main` are tested and then deployed to GitHub Pages.
 
 **Current public URL**  
 https://eltnegcellist.github.io/Web_EmmaLocal_English_for_babies/
-
-### Android Edition
-
-For the lightweight configuration + Full and the stable Android APK:
-
-https://github.com/eltnegcellist/Android_English_character_for_baby
 
 ### キャラクター配色 / Character colors
 
