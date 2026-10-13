@@ -12,16 +12,16 @@ export const FREQUENT_COMBINED_VARIANTS = {
   "milk|praise": [
     "You took another sip! Look how you're learning. Wonderful little steps!",
     "Such careful little sips! You worked so well. High five, sweetheart!",
-    "That was lovely drinking! Every sip matters. Well done today!",
+    "You drank your milk! Little sips are great. Well done today!",
     "See what you did! Milk time went well. What a happy moment!",
-    "Those sips went well! You managed those sips. Good work, baby!",
+    "Those sips went well! You took little sips! Good job, baby!",
   ],
   "milk|invitation": [
     "Shall we sit together? Your milk is waiting. Ready to try?",
     "Come closer, little one. Milk time is here. Let's get comfortable.",
     "Feeling hungry, sweetheart? Here's your warm milk. Shall we begin?",
     "Would milk sound good? Take a little look. We can start.",
-    "Let's settle down together. Your bottle is ready. Fancy a sip?",
+    "Let's settle down together. Your bottle is ready. Want a little sip?",
   ],
   "milk|finish": [
     "The last sip's done! Your tummy can rest. Time for cuddles.",
@@ -84,11 +84,11 @@ export const FREQUENT_COMBINED_VARIANTS = {
     "Crying is okay, sweetheart. I'll hold you gently. We'll stay together.",
     "That feels hard, huh? You can cry here. I'm listening closely.",
     "Let those tears come. I'll stay very near. You're safe, darling.",
-    "You're having big feelings. My hug is ready. We have time.",
+    "Are you upset, baby? Come for a cuddle. I'm here with you.",
   ],
   "smile|affection": [
     "That little smile shines! You've brightened my morning. My lovely baby.",
-    "Look at those dimples! What a happy face. I treasure you.",
+    "Look at those dimples! What a happy face. I love that smile!",
     "Your grin is wonderful. It makes me smile. Hello, sunshine!",
     "Such a cheerful face! Those eyes look bright. My darling baby.",
     "That smile feels magical. You're my little joy. What a lovely sight.",
@@ -126,6 +126,6 @@ export const FREQUENT_COMBINED_VARIANTS = {
     "Shall we take sips? Sit here with me. Ready for one?",
     "Feeling a little thirsty? Let's get your drink. Here you go.",
     "Want to drink together? I'll hold your cup. Shall we begin?",
-    "Let's take a break. There's a drink here. Fancy a sip?",
+    "Let's take a break. There's a drink here. Want a little sip?",
   ],
 };
