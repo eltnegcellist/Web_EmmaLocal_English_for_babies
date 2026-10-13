@@ -7,6 +7,12 @@ import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhras
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './src/app-navigation.js';
 import { canonicalMoonshineModelAssetKey } from './src/vendor/moonshine/asset-downloader.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
+// Guard against accidentally reviving Android/Full promotional UI on the standalone Web app.
+const publicHtml=readFileSync(new URL('./index.html',import.meta.url),'utf8');
+assert(!publicHtml.includes('Android版について'));
+assert(!publicHtml.includes('Android版を見る'));
+assert(!publicHtml.includes('android-full-card'));
+assert(!publicHtml.includes('Android_English_character_for_baby'));
 
 assert.deepEqual(appHistoryState('settings'),{mitsukotobaScreen:'settings'});
 assert.equal(resolveAppPopScreen('settings','home',null),'home');
