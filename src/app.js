@@ -1,3 +1,4 @@
+import { isInteractionEnabled, INTERACTION_SETTING_KEY } from './interaction/setting.js';
 import { installSemanticPanel } from './semantic/panel.js';
 import { createSemanticController } from './semantic/controller.js';
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
@@ -419,10 +420,10 @@ function bindEvents() {
     localStorage.setItem(STORAGE.highPerformance,String(ui.onboardingHighPerformance.checked));
   });
   ui.semanticEnabled.addEventListener('change',()=>semanticPanel.setEnabled(ui.semanticEnabled.checked,{prepare:true,mode:'semantic'}));
-  ui.interactionExperimental.checked = localStorage.getItem('emma_interaction_experimental') === 'true';
+  ui.interactionExperimental.checked = isInteractionEnabled(localStorage);
   ui.interactionExperimental.addEventListener('change',async()=>{
     if(running||preparingConversation||processing||speaking)await stopEmma();
-    localStorage.setItem('emma_interaction_experimental',String(ui.interactionExperimental.checked));
+    localStorage.setItem(INTERACTION_SETTING_KEY,String(ui.interactionExperimental.checked));
     engine.resetConversationContext();
   });
   ui.endpointMode?.addEventListener('change',async()=>{
