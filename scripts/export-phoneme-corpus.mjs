@@ -17,5 +17,5 @@ for(const [scene,phrases] of Object.entries(INTERACTION_REPLIES))add('interactio
 for(const [scene,phrases] of Object.entries(COMBINED_REPLIES))add('combined',scene,phrases);
 for(const t of play.topics)add('press',t.id,t.phrases);
 const counts=Object.fromEntries([...new Set(rows.map(r=>r.kind))].map(k=>[k,rows.filter(r=>r.kind===k).length]));
-if(counts.topic!==197||counts.interaction!==112||counts.combined!==495)throw Error('unexpected release bank count '+JSON.stringify(counts));
+if(counts.topic!==197||counts.interaction!==112||counts.combined!==495||counts.press!==110)throw Error('unexpected release bank count '+JSON.stringify(counts));
 console.log(JSON.stringify({schema_version:1,counts,rows}));
