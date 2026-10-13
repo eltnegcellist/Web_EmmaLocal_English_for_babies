@@ -252,13 +252,13 @@ function initUi() {
       sessionStorage.removeItem(STORAGE.asrReload);
       showScreen('home',{autoStart:false});
       const label=reloadedAsr==='small' ? 'Small' : 'Tiny';
-      setState('idle',`音声認識を${label}に変更しました`,'「会話を始める」を押して会話を再開してください。');
+      setState('idle',`音声認識を${label}に変更しました`,'「呼びかけを始める」を押して呼びかけを再開してください。');
       if(ui.asrModelStatus) ui.asrModelStatus.textContent=`現在：${label}。再読み込みして安全に切り替えました。`;
       if(localStorage.getItem(STORAGE.tutorialDone)!=='true') queueMicrotask(()=>startTutorial());
     } else if(needsMicGestureAfterIsolation) {
       sessionStorage.removeItem('emma_coi_manual_start');
       showScreen('home',{autoStart:false});
-      setState('idle','マイクの準備ができました','「会話を始める」を押すと、マイクの許可を確認して会話を始めます。');
+      setState('idle','マイクの準備ができました','「呼びかけを始める」を押すと、マイクの許可を確認して呼びかけを始めます。');
     } else if(localStorage.getItem(STORAGE.tutorialDone)==='true') {
       showScreen('home');
     } else {
@@ -435,7 +435,7 @@ function bindEvents() {
     await stopEmma();
     const mode=ui.endpointMode.value==='legacy'?'legacy':'silero';
     localStorage.setItem(STORAGE.endpointMode,mode);
-    setState('idle','話し終わりの判定を変更しました','「会話を始める」を押して再開してください。');
+    setState('idle','話し終わりの判定を変更しました','「呼びかけを始める」を押して再開してください。');
   });
   ui.autoRespond.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.autoRespond,String(ui.autoRespond.checked));
@@ -561,7 +561,7 @@ function showScreen(name,{autoStart=true}={}) {
       const permission=await getMicrophonePermissionState();
       const sessionGranted=sessionStorage.getItem('emma_mic_session_granted')==='1';
       if(!sessionGranted && permission!=='granted') {
-        setState('idle','会話を始められます','「会話を始める」を押すと、マイクを確認して会話を始めます。');
+        setState('idle','呼びかけを始められます','「呼びかけを始める」を押すと、マイクを確認して呼びかけを始めます。');
         return;
       }
       if(!running && !processing && !speaking && !ui.mainButton.disabled) {
@@ -1019,7 +1019,7 @@ async function stopEmma() {
   ui.mainButton.classList.remove('hidden');
   ui.mainButton.disabled=false;
   setBusy(false);
-  setState('idle','みつことばはおやすみ中','「会話を始める」を押すと、また会話できます。');
+  setState('idle','みつことばはおやすみ中','「呼びかけを始める」を押すと、また呼びかけられます。');
 }
 
 function handleCapturedUtterance(audio) {
@@ -1486,7 +1486,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
   }
   if(!valid())return;
   if(running)setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
-  else setState('idle','みつことばはおやすみ中','「会話を始める」を押すと、また会話できます。');
+  else setState('idle','みつことばはおやすみ中','「呼びかけを始める」を押すと、また呼びかけられます。');
 }
 
 function enqueueAudio(m) {
@@ -1720,8 +1720,8 @@ function renderTutorial(){
     ui.tutorialPrimaryButton.textContent=tutorialIntroPlayed?'次へ':'自己紹介を聞く';
     ui.tutorialPrimaryButton.classList.remove('hidden');
   }else if(tutorialStep===1){
-    ui.tutorialTitle.textContent='ここから会話を始めます';
-    ui.tutorialBody.textContent='画面下で光っている「会話を始める」を実際に押してください。押すとマイクが始まり、会話を開始します。';
+    ui.tutorialTitle.textContent='ここから呼びかけを始めます';
+    ui.tutorialBody.textContent='画面下で光っている「呼びかけを始める」を実際に押してください。押すとマイクが始まり、呼びかけを開始します。';
     ui.tutorialHint.textContent='↓ 光っている本物のボタンを押す';
     ui.tutorialHint.classList.remove('hidden');
   }else{
@@ -1837,7 +1837,7 @@ function onRuntimeError(message) {
 
 function friendlyError(error) {
   const msg=error?.message||String(error);
-  if(error?.name==='NotAllowedError') return 'マイクを開始できませんでした。サイト設定でマイクを許可してください。Androidで他アプリのバブルやオーバーレイが表示されている場合は、閉じてから「会話を始める」をもう一度押してください。';
+  if(error?.name==='NotAllowedError') return 'マイクを開始できませんでした。サイト設定でマイクを許可してください。Androidで他アプリのバブルやオーバーレイが表示されている場合は、閉じてから「呼びかけを始める」をもう一度押してください。';
   if(!window.isSecureContext) return 'マイクを使うにはHTTPSで開く必要があります。';
   const trimmed=String(msg||'').trim();
   if(/^[-+]?\d+(?:\s+[-+]?\d+)*$/.test(trimmed)) {
