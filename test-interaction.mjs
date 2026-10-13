@@ -184,11 +184,13 @@ assert.equal(insertPairedBabyName(nameExample,'Hana'),
   "Milk time, Hana! You're so lovely. I love you.");
 assert.equal(insertPairedBabyName(nameExample,'Hana-chan'),
   "Milk time, Hana-chan! You're so lovely. I love you.");
+assert.equal(insertPairedBabyName(nameExample,''),nameExample,'unconfigured name keeps the original English');
+assert.equal(insertPairedBabyName("Hi there, sweetheart! You look lovely. I love you.",'Hana'),
+  "Hi there, sweetheart! You look lovely. I love you.",'no unscripted baby-name insertion');
 assert.equal(insertPairedBabyName(nameExample,'Hana'.repeat(25)),nameExample);
 assert.equal(insertPairedBabyName("This is your milk. You did so well! Good job, baby!",'Hana'),
-  "This is your milk. You did so well! Good job, Hana!");
-// Global recent-name cooldown also observes topic-only names, but only combined
-// turns increment the eight-combination interval.
+  "This is your milk. You did so well! Good job, baby!");
+// Global two-turn name cooldown also observes topic-only names.
 const cadence=new RuriReplyDiversity();
 for(let i=0;i<8;i++)cadence.recordName(false,true);
 assert.equal(cadence.canUsePairedName(),true);
@@ -207,7 +209,7 @@ assert.equal(restoredCadence.canUsePairedName(),true);
 const legacyCadence=new RuriReplyDiversity({version:1,history:['combined:milk|affection#0'],
   phrases:[],cycles:{"milk|affection":{used:[0],fallbackStep:0}}});
 assert.equal(legacyCadence.snapshot().history.length,1);
-assert.equal(legacyCadence.canUsePairedName(),false);
+assert.equal(legacyCadence.canUsePairedName(),true);
 let namedCombined=null;
 const eligibleKeys=Object.keys(COMBINED_REPLIES);
 for(const key of eligibleKeys) {
