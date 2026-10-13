@@ -130,6 +130,17 @@ const playTopics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',imp
 const playReplies=playTopics.topics.flatMap(x=>x.phrases);
 assert.equal(playReplies.length,110);
 assert.ok(playReplies.filter(x=>/nice and slow/i.test(x)).length<=2,'avoid stock phrase fatigue');
+// Six refinements: all short, three-sentence options, shared with Android.
+const allPairReplies=Object.values(COMBINED_REPLIES).flat();
+for(const improved of [
+  "You drank your milk! Little sips add up. Well done, baby!",
+  "You took little sips! Look at you go! Good job, baby!",
+  "Let's sit together now. Your bottle is ready. Want a little sip?",
+  "Are you upset, baby? Come into my arms. I'll hold you.",
+  "Look at those dimples! What a happy face. I love you!",
+  "Let's take a break. Here's your little drink. Want a little sip?"
+])assert.ok(allPairReplies.includes(improved),improved);
+for(const english of allPairReplies)assert.ok(!/fancy a sip|you managed those sips|having big feelings|i treasure you|lovely drinking/i.test(english),english);
 // An exhausted high-frequency bank is followed by six alternating single-axis
 // choices (interaction, topic), then the least-recently-used combination.
 const rotating=new LiteResponseEngine();
