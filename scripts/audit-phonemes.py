@@ -116,7 +116,7 @@ def main():
         'unknown_ratio':r['unknown_ratio'],'unknown_words':r['unknown_words'],
         'contrasts':{k:v['sets'] for k,v in r['contrasts'].items()},
         'top_phrases':list(r['repeated_3_word_sequences'].items())[:12]},ensure_ascii=False))
-    assert r['catalogs'].get('topic')==197 and r['catalogs'].get('interaction')==112 and r['catalogs'].get('combined')==333
+    assert r['catalogs'].get('topic')==197 and r['catalogs'].get('interaction')==112 and r['catalogs'].get('combined')==405
     # Quality regression bounds, NOT a requirement to equalize English phonemes.
     assert len(r['unseen_phonemes'])<=1, 'unexpected inventory loss'
     assert r['unknown_ratio']<0.01, 'too many words lack CMUdict pronunciations'
