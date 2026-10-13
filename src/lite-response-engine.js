@@ -1,5 +1,6 @@
 import { selectRuriAxes, combinedCandidates } from './interaction/ruri-routing.js';
 import { RuriReplyDiversity } from './interaction/diversity.js';
+import { insertPairedBabyName } from './interaction/baby-name-insertion.js';
 import { selectInteraction, INTERACTION_REPLIES } from './interaction/response.js';
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
 import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink, detectNounTopics } from './lite-topic-matcher.js';
@@ -855,9 +856,13 @@ export class LiteResponseEngine {
     const suppressName = allowName && !!safeName && this.turnsSinceName < STYLE.NAME_REPEAT_WINDOW;
     const raw = selected?.text ?? this.chooseReply(replies, transcript, forceName, suppressName);
     const named = allowName ? applyName(raw, safeName, forceName) : raw;
-    const styled = this.alignToBabyStyle(named, transcript, scene?.id);
+    const styledBase = this.alignToBabyStyle(named, transcript, scene?.id);
+    const styled = reason==='combined' && safeName && this.diversity.canUsePairedName()
+      ? insertPairedBabyName(styledBase, safeName) : styledBase;
+    const nameUsed = !!safeName && containsName(styled, safeName);
+    this.diversity.recordName(nameUsed);
     this.remember(raw, styled);
-    this.turnsSinceName = safeName && containsName(styled, safeName) ? 0 : this.turnsSinceName + 1;
+    this.turnsSinceName = nameUsed ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
     return {
       english: styled, scene: route, topic: scene?.id || null,
