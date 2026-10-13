@@ -1,5 +1,8 @@
 # みつことば Lite Visual Cue 拡張設計
 
+**更新（2026-10-13）**: 最新mainの914セットを再確認し、旧41分類に依存しない最新設計を [Visual Cue コーパス再設計](./VISUAL_CUE_CORPUS_REFRESH_2026-10-13.md) に追加しました。新規のobserved/dialogue軸、Interaction 14分類、押して聞く1文モードの独立Cue、stablePhraseId移行をそこに定義します。以下の203文／41概念は2026-10-10時点の**歴史的な予備調査**としてのみ参照してください。
+
+
 作成日: 2026-10-10
 
 ## 目的
