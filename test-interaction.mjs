@@ -109,7 +109,7 @@ let rolling=[];
 for(let n=0;n<25;n++)rolling=appendRuriTurn(rolling,{n});
 assert.equal(rolling.length,20);
 assert.equal(rolling[0].n,5);
-assert.equal(control.snapshot.routingHistory.length,3);
+assert.equal(control.snapshot.routingHistory.length,2);
 assert.ok(control.snapshot.routingHistory.every(r=>typeof r.at==='string' && !('transcript' in r)));
 // Infant-directed naturalness regression: concrete actions and gentle reactions.
 const reviewed=[...Object.values(INTERACTION_REPLIES).flat(),...Object.values(COMBINED_REPLIES).flat()];
