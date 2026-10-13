@@ -1,5 +1,7 @@
 # PR-D Web Integration Verification
 
+> 2026-10-13更新：実装はRuri-onlyのTopic×Interaction方式としてmain統合済み。設定は新規利用時に標準オンで、保存済みのオフ選択は維持。以下の初期PR-D設計（標準オフ・Topic優先ルール）は履歴情報であり、現在の実装とは異なります。
+
 Date: 2026-10-12.
 
 - Web PR #73 is a staging integration of the candidate Interaction head and 112 fixed three-sentence replies.
