@@ -12,12 +12,14 @@ const oldFetch=globalThis.fetch;
 globalThis.fetch=async()=>({ok:true,text:async()=>cmu});
 try{
  const {phonemize}=await import('../src/vendor/kitten/phonemizer.js');
+ const playTopics=JSON.parse(await readFile(new URL('../shared/play-topics.json',import.meta.url),'utf8'));
  const all=[
   ...allLiteReplyTemplatesForValidation(),
   ...Object.values(INTERACTION_REPLIES).flat(),
-  ...Object.values(COMBINED_REPLIES).flat()
+  ...Object.values(COMBINED_REPLIES).flat(),
+  ...playTopics.topics.flatMap(topic=>topic.phrases)
  ];
- assert.equal(all.length,804);
+ assert.equal(all.length,914);
  const failures=[];
  for(const [i,template] of all.entries()){
   try{
