@@ -5,7 +5,7 @@ export const INTERACTION_REPLIES = {
     "You're so cute! What a sweetheart! I love you.",
     "You're so sweet. Just as you are. I love you dearly.",
     "What a sweetheart! You're adorable. Such a lovely child.",
-    "You're absolutely adorable! My sweet little one. So precious.",
+    "Look at you! My sweet baby. I love you!",
     "You are wonderful. Just as you are. I adore you.",
     "Hello, sweet one. You are adorable. Yes, you are!",
     "Such a cutie! That's you! My sweet little one.",
@@ -22,17 +22,17 @@ export const INTERACTION_REPLIES = {
     "Good job, little one! That's lovely. You did great!"
   ],
   "achievement": [
-    "You did it! It worked! What a wonderful moment!",
+    "You did it! Look what happened! Hooray for you!",
     "Hooray! You did it! That was wonderful!",
-    "You got it! Yes, you did! Let's celebrate together.",
-    "There you go! You made it happen. We can celebrate!",
+    "You got it! Yes, you did! Let's clap together.",
+    "There you go! Look what you did! Let's clap together!",
     "Yes! You made it! That's wonderful!",
-    "You made it! That took some doing. What a wonderful moment!",
+    "You did it! You kept trying! Look at you!",
     "There it is! You did it! Hooray for you!",
     "It's done! You got it! What a lovely moment!"
   ],
   "effort": [
-    "You're trying so hard. I see your effort. I'm cheering for you.",
+    "You're trying again! Look at you go! I'm here!",
     "You're really trying! You're working on it. I can see that!",
     "You're working so hard. I see you trying. Take your time.",
     "You keep on trying. You're giving it time. I see you.",
@@ -54,10 +54,10 @@ export const INTERACTION_REPLIES = {
   "invitation": [
     "Shall we do this? Come with me. Let's try together.",
     "Want to try? Let's do it. Let's try together.",
-    "What shall we do? Want to play together? Let's choose something.",
+    "What should we play? Want to play together? Let's pick a toy.",
     "How about this? We can try. Let's do it together.",
     "Ready to join me? Let's do this. We'll try together.",
-    "Shall we try something? Let's choose together. We can decide.",
+    "Want to try this? Let's look together. Pick your favorite.",
     "Let's try something. Let's do it together. What do you think?",
     "Shall we go? I'll go with you. We can go together."
   ],
@@ -95,9 +95,9 @@ export const INTERACTION_REPLIES = {
     "You worked so hard. That's a lot. Rest if you like.",
     "That was a lot. You did well. Now let's rest.",
     "Good work today. You can rest. We can slow down.",
-    "You did a lot. That took some effort. Shall we rest now?",
-    "That took a lot. I'm right here. Let's rest together.",
-    "That took effort. You worked hard. Let's take a break.",
+    "You worked so hard. Look at you! Let's rest now.",
+    "You worked so hard. Let's rest together. I'll hold you.",
+    "You worked hard! Your little hands moved. Let's rest a bit.",
     "You worked hard today. That was plenty. Time to rest.",
     "You did a lot. Now take a break. I'm still with you."
   ],
