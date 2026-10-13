@@ -17,7 +17,7 @@ try{
   ...Object.values(INTERACTION_REPLIES).flat(),
   ...Object.values(COMBINED_REPLIES).flat()
  ];
- assert.equal(all.length,714);
+ assert.equal(all.length,804);
  const failures=[];
  for(const [i,template] of all.entries()){
   try{
