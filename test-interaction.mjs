@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {createSemanticController} from './src/semantic/controller.js';
+import {isInteractionEnabled, INTERACTION_SETTING_KEY} from './src/interaction/setting.js';
 import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.js';
 import { INTERACTION_REPLIES } from './src/interaction/response.js';
 import { COMBINED_REPLIES, selectRuriAxes, combinedCandidates } from './src/interaction/ruri-routing.js';
@@ -65,4 +68,31 @@ const engine=new LiteResponseEngine();
 assert.equal(engine.respondRuri('ミルク', '',topic('milk'),interaction('none')).scene,'milk');
 assert.equal(engine.respondRuri('その後、かわいいね','',topic('generic'),interaction('affection')).scene,'interaction:affection');
 assert.equal(engine.respondRuri('どうかな','',null,null).scene,'generic');
+
+// New and existing installations with an unset preference use both Ruri axes.
+// A user who previously opted out stays opted out across new releases.
+const saved = new Map();
+const storage = {getItem: key => saved.has(key) ? saved.get(key) : null,
+  setItem: (key, value) => saved.set(key,String(value))};
+assert.equal(isInteractionEnabled(storage), true, 'unset preference must be ON');
+const prediction = {topic:topic('milk'),interaction:interaction('praise')};
+const mock = {ready:true, prepare:async()=>{}, cancel(){}, cancelPending(){},
+  predict:async()=>prediction};
+const control = createSemanticController({
+  engine:new LiteResponseEngine(),storage,clientFactory:()=>mock,
+});
+assert.equal((await control.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise');
+storage.setItem(INTERACTION_SETTING_KEY,'false');
+assert.equal(isInteractionEnabled(storage),false);
+assert.equal((await control.respond('ミルクを上手に飲めたね','')).scene,'milk');
+storage.setItem(INTERACTION_SETTING_KEY,'true');
+assert.equal(isInteractionEnabled(storage),true);
+assert.equal((await control.respond('ミルクを上手に飲めたね','')).scene,'combined:milk:praise');
+// Ordinary settings, not developer-only, must contain the single toggle.
+const html=readFileSync(new URL('./index.html',import.meta.url),'utf8');
+const toggleAt=html.indexOf('id="interactionExperimental"');
+assert.ok(toggleAt>html.indexOf('<h2>返答と話題</h2>'));
+assert.ok(toggleAt<html.indexOf('id="developerTools"'));
+assert.equal(html.match(/id="interactionExperimental"/g)?.length,1);
+console.log('Interaction default-on / explicit saved OFF / settings exposure: PASS');
 console.log('Ruri-only Topic×Interaction 111 pairs / 333 English sets, independent heads, fallback, no keywords: PASS');
