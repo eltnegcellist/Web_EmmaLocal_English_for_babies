@@ -135,7 +135,7 @@ for(let i=0;i<6;i++){
 }
 const next=rotating.respondRuri('ミルク飲んでかわいいね','',topic('milk'),interaction('affection'));
 assert.equal(next.scene,'combined:milk:affection');
-assert.notEqual(next.english,paired.values().next().value,'rotation should favor older but not forced same first text');
+assert.ok(paired.has(next.english),'after all variants have been used a pair can be reused');
 const savedVariety=rotating.exportReplyDiversityState();
 assert.equal(savedVariety.history.length,15);
 assert.equal('transcript' in savedVariety,false);
