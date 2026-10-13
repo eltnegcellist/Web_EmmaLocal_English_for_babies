@@ -29,6 +29,8 @@ export class RuriReplyDiversity {
         .map(row=>row.filter(x=>typeof x==='string'&&/^[0-9a-f]+$/.test(x)).slice(0,32)) : [];
     this.nameGap=valid && Number.isInteger(state.nameGap)
       ? Math.min(8,Math.max(0,state.nameGap)) : 0;
+    this.recentNameGap=valid && Number.isInteger(state.recentNameGap)
+      ? Math.min(2,Math.max(0,state.recentNameGap)) : 0;
     this.cycles={};
     if (valid && state.cycles && typeof state.cycles==='object') {
       for(const [key,cycle] of Object.entries(state.cycles).slice(-MAX_CYCLES)) {
@@ -39,11 +41,14 @@ export class RuriReplyDiversity {
     }
   }
   snapshot() {
-    return {version:1,nameGap:this.nameGap,history:[...this.history],phrases:this.phrases.map(row=>[...row]),
+    return {version:1,nameGap:this.nameGap,recentNameGap:this.recentNameGap,history:[...this.history],phrases:this.phrases.map(row=>[...row]),
       cycles:Object.fromEntries(Object.entries(this.cycles).map(([k,v])=>[k,{used:[...v.used],fallbackStep:v.fallbackStep}]))};
   }
-  canUsePairedName() { return this.nameGap>=8; }
-  recordName(used) { this.nameGap=used?0:Math.min(8,this.nameGap+1); }
+  canUsePairedName() { return this.nameGap>=8 && this.recentNameGap>=2; }
+  recordName(used,paired=false) {
+    this.recentNameGap=used?0:Math.min(2,this.recentNameGap+1);
+    if(paired)this.nameGap=used?0:Math.min(8,this.nameGap+1);
+  }
   pick(poolKey, candidates, excluded=[]) {
     if(!Array.isArray(candidates) || !candidates.length)return null;
     const banned=new Set(excluded);
