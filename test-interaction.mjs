@@ -13,14 +13,14 @@ const labels=['affection','praise','achievement','effort','encouragement','invit
   'finish','finish_check','care','inquiry','reassurance','repeat','pause'];
 assert.equal(Object.keys(INTERACTION_REPLIES).length,14);
 assert.equal(Object.keys(COMBINED_REPLIES).length,135,'135 curated meaningful pair types');
-assert.equal(Object.values(COMBINED_REPLIES).flat().length,405,'3 variants per pair');
+assert.equal(Object.values(COMBINED_REPLIES).flat().length,495,'new 90 English sets added');
 assert.equal(new Set(Object.keys(COMBINED_REPLIES).map(s=>s.split('|')[0])).size,21,'21 concrete Ruri topics represented, including drink');
 const onlySeen=new Set();
 for(const [key,replies] of Object.entries(COMBINED_REPLIES)){
   const [topic,interaction]=key.split('|');
   assert.ok([...topics,'drink'].includes(topic),key);
   assert.ok(labels.includes(interaction),key);
-  assert.equal(replies.length,3,key);
+  assert.equal(replies.length,(['milk|affection','milk|praise','milk|invitation','milk|finish','milk|finish_check','diaper|invitation','diaper|finish','diaper|finish_check','sleep|invitation','sleep|reassurance','play|invitation','cry|reassurance','smile|affection','book|invitation','bath|invitation','wake|affection','music|invitation','drink|invitation'].includes(key)?8:3),key);
   for(const english of replies){
     const sentences=splitSentences(english);
     const count=sentences.map(p=>(p.match(/[A-Za-z]+(?:'[A-Za-z]+)?/g)||[]).length);
@@ -116,6 +116,39 @@ assert.equal(rolling.length,20);
 assert.equal(rolling[0].n,5);
 assert.equal(control.snapshot.routingHistory.length,3);
 assert.ok(control.snapshot.routingHistory.every(r=>typeof r.at==='string' && !('transcript' in r)));
+// An exhausted high-frequency bank is followed by six alternating single-axis
+// choices (interaction, topic), then the least-recently-used combination.
+const rotating=new LiteResponseEngine();
+const paired=new Set();
+for(let i=0;i<8;i++){
+  const result=rotating.respondRuri('ミルク飲んでかわいいね','',topic('milk'),interaction('affection'));
+  assert.equal(result.scene,'combined:milk:affection');
+  assert.equal(result.selectionReason,'combined');
+  assert.ok(!paired.has(result.english),'no pair repeats before all eight are used');
+  paired.add(result.english);
+}
+assert.equal(paired.size,8);
+for(let i=0;i<6;i++){
+  const result=rotating.respondRuri('ミルク飲んでかわいいね','',topic('milk'),interaction('affection'));
+  assert.equal(result.selectionReason,i%2===0?'diversity_interaction':'diversity_topic');
+  assert.equal(result.scene,i%2===0?'interaction:affection':'milk');
+}
+const next=rotating.respondRuri('ミルク飲んでかわいいね','',topic('milk'),interaction('affection'));
+assert.equal(next.scene,'combined:milk:affection');
+assert.notEqual(next.english,paired.values().next().value,'rotation should favor older but not forced same first text');
+const savedVariety=rotating.exportReplyDiversityState();
+assert.equal(savedVariety.history.length,15);
+assert.equal('transcript' in savedVariety,false);
+const restored=new LiteResponseEngine({diversityState:JSON.parse(JSON.stringify(savedVariety))});
+const restoredReply=restored.respondRuri('ミルク飲んでかわいいね','',topic('milk'),interaction('affection'));
+assert.equal(restoredReply.scene,'combined:milk:affection');
+assert.notEqual(restoredReply.english,next.english,'restart preserves recent-reply avoidance');
+const midCycle=new LiteResponseEngine();
+const first=midCycle.respondRuri('ミルクだよ','',topic('milk'),interaction('affection'));
+const replica=new LiteResponseEngine({diversityState:midCycle.exportReplyDiversityState()});
+assert.notEqual(replica.respondRuri('ミルクだよ','',topic('milk'),interaction('affection')).english,first.english);
+assert.equal(rotating.exportReplyDiversityState().history.length,15);
+// Repeated common stock 3-word phrases are penalized across all English banks.
 // Only the unlockable developer settings may expose the OFF switch.
 const html=readFileSync(new URL('./index.html',import.meta.url),'utf8');
 const toggleAt=html.indexOf('id="interactionExperimental"');
@@ -126,4 +159,4 @@ assert.equal(html.match(/id="interactionExperimental"/g)?.length,1);
 assert.ok(html.slice(html.indexOf('<h2>返答と話題</h2>'),developerAt).includes('id="semanticEnabled"'));
 assert.ok(!html.slice(html.indexOf('<h2>返答と話題</h2>'),developerAt).includes('id="interactionExperimental"'));
 console.log('Interaction default-on / explicit saved OFF / developer-only toggle: PASS');
-console.log('Ruri-only Topic×Interaction 135 pairs / 405 English sets, independent heads, fallback, no keywords: PASS');
+console.log('Ruri-only Topic×Interaction 135 pairs / 495 English sets, independent heads, fallback, no keywords: PASS');
