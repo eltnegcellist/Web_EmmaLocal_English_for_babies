@@ -1,4 +1,3 @@
-import { isInteractionEnabled, INTERACTION_SETTING_KEY } from './interaction/setting.js';
 import { installSemanticPanel } from './semantic/panel.js';
 import { createSemanticController } from './semantic/controller.js';
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
@@ -41,7 +40,7 @@ const ui = {
   webTimingDiagnostics:$('webTimingDiagnostics'), copyDiagnosticsButton:$('copyDiagnosticsButton'),
   downloadDiagnosticsButton:$('downloadDiagnosticsButton'), clearDiagnosticsButton:$('clearDiagnosticsButton'),
   diagnosticsStatus:$('diagnosticsStatus'),
-  semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'), interactionExperimental:$('interactionExperimental'),
+  semanticEnabled:$('semanticEnabled'), semanticStatus:$('semanticStatus'),
   debugInput:$('debugInput'), debugReplyButton:$('debugReplyButton'),
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
@@ -425,12 +424,6 @@ function bindEvents() {
     localStorage.setItem(STORAGE.highPerformance,String(ui.onboardingHighPerformance.checked));
   });
   ui.semanticEnabled.addEventListener('change',()=>semanticPanel.setEnabled(ui.semanticEnabled.checked,{prepare:true,mode:'semantic'}));
-  ui.interactionExperimental.checked = isInteractionEnabled(localStorage);
-  ui.interactionExperimental.addEventListener('change',async()=>{
-    if(running||preparingConversation||processing||speaking)await stopEmma();
-    localStorage.setItem(INTERACTION_SETTING_KEY,String(ui.interactionExperimental.checked));
-    engine.resetConversationContext();
-  });
   ui.endpointMode?.addEventListener('change',async()=>{
     await stopEmma();
     const mode=ui.endpointMode.value==='legacy'?'legacy':'silero';
@@ -2009,7 +2002,7 @@ async function buildWebDiagnosticReport() {
     `semantic.ready=${Boolean(semantic.ready)}`,
     `semantic.failed=${Boolean(semantic.failed)}`,
     `semantic.status=${semantic.status?.message||'unknown'}`,
-    `interaction.enabled=${isInteractionEnabled(localStorage)}`,
+    `interaction.enabled=true`,
     `routing.auditLimit=20`,
     `routing.auditPrivacy=no_transcript_or_name`,
     `history.enabled=${historyEnabled(localStorage)}`,
