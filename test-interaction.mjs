@@ -116,6 +116,20 @@ assert.equal(rolling.length,20);
 assert.equal(rolling[0].n,5);
 assert.equal(control.snapshot.routingHistory.length,3);
 assert.ok(control.snapshot.routingHistory.every(r=>typeof r.at==='string' && !('transcript' in r)));
+// Infant-directed naturalness regression: concrete actions and gentle reactions.
+const reviewed=[...Object.values(INTERACTION_REPLIES).flat(),...Object.values(COMBINED_REPLIES).flat()];
+assert.ok(INTERACTION_REPLIES.affection.includes('Look at you! My sweet baby. I love you!'));
+assert.ok(INTERACTION_REPLIES.effort.includes("You're trying again! Look at you go! I'm here!"));
+assert.ok(COMBINED_REPLIES['milk|achievement'].includes("You drank some milk! Good job, baby! I'm right here."));
+assert.ok(COMBINED_REPLIES['milk|repeat'].includes("Want more milk? Just a little? Take your time."));
+assert.ok(COMBINED_REPLIES['book|inquiry'].includes("Look at this picture! What do you see? Let's look again!"));
+for(const english of reviewed) {
+  assert.ok(!/that worked out|i see your effort|you can decide|absolutely adorable/i.test(english),english);
+}
+const playTopics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url),'utf8'));
+const playReplies=playTopics.topics.flatMap(x=>x.phrases);
+assert.equal(playReplies.length,110);
+assert.ok(playReplies.filter(x=>/nice and slow/i.test(x)).length<=2,'avoid stock phrase fatigue');
 // An exhausted high-frequency bank is followed by six alternating single-axis
 // choices (interaction, topic), then the least-recently-used combination.
 const rotating=new LiteResponseEngine();

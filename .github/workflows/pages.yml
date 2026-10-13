@@ -47,6 +47,20 @@ jobs:
           python3 scripts/audit-phonemes.py
           python3 -c "import cmudict; from pathlib import Path; Path('/tmp/mitsukotoba-cmudict.txt').write_text(cmudict.raw())"
           CMU_DICT_FILE=/tmp/mitsukotoba-cmudict.txt node scripts/check-kitten-phonemes.mjs
+      - name: Classify all 914 infant-directed English sets
+        run: |
+          node scripts/review-infant-english.mjs --check
+          node scripts/review-infant-english.mjs
+      - name: Archive complete English naturalness ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: infant-english-review-914
+          path: |
+            docs/english/INFANT_ENGLISH_REVIEW_914.md
+            docs/english/infant-english-review.json
+          if-no-files-found: warn
+          retention-days: 30
       - name: Archive text-phoneme audit reports
         if: always()
         uses: actions/upload-artifact@v4
