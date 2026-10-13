@@ -15,7 +15,7 @@ export function installSemanticPanel({controller,engine,beforeChange,storage=loc
     <div data-semantic="result" class="semantic-result" aria-live="polite"></div><a class="text-button" href="./semantic-test.html">日本語でSemanticを試すページを開く</a>`;
   const $=key=>mount.querySelector(`[data-semantic="${key}"]`);
   let renderedResponse;
-  controller.subscribe(({requested,mode,status,lastResponse,result})=>{
+  controller.subscribe(({requested,mode,status,lastResponse,result,routingHistory})=>{
     $('enabled').checked=requested;$('mode').value=mode;
     $('status').textContent=status.message;
     $('progress').classList.toggle('hidden',!!status.ready || !status.total);
@@ -24,6 +24,13 @@ export function installSemanticPanel({controller,engine,beforeChange,storage=loc
     renderedResponse=lastResponse;$('result').replaceChildren();
     if(!lastResponse)return;
     const lines=[['選んだ話題',lastResponse.scene],['直前の話題を使用',lastResponse.contextUsed ? 'はい' : 'いいえ'],['既存ライブラリの英語',lastResponse.english]];
+    const route=(routingHistory||[]).at(-1);
+    if(route && route.route===lastResponse.scene){
+      const percent=x=>typeof x==='number' ? (x*100).toFixed(1)+'%' : '—';
+      lines.push(['Ruri Topic（生判定）',`${route.topicRaw||'—'} / ${percent(route.topicProbability)} / ${route.topicStatus}`],
+        ['Ruri Interaction（生判定）',`${route.interactionRaw||'—'} / ${percent(route.interactionProbability)} / ${route.interactionStatus}`],
+        ['英文の採用経路',route.route],['選択理由',route.reason]);
+    }
     if(result?.topic)lines.push(['意味で選んだ話題',`${result.topic.id}（分類スコア ${(result.topic.probability*100).toFixed(1)}%、候補差 ${(result.topic.margin*100).toFixed(1)}ポイント）`],['インテント（参考）',INTENT[result.intent.id]],['状態（参考）',STATE[result.state.id]],['判定時間',`${result.elapsedMs.toFixed(1)} ms`]);
     for(const [label,value] of lines){const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=label+'：';p.append(strong,document.createTextNode(value||'—'));$('result').append(p);}
   });
