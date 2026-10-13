@@ -1,38 +1,28 @@
-// Rare personalization for Ruri Topic × Interaction replies only.
-// Work on the rendered three-sentence reply, never the shared template bank.
-// Name (which may include "-chan") is not retained in reply-diversity history.
-export const PAIRED_NAME_MIN_GAP = 8;
+// Explicitly authored name variants; each original line remains the fallback
+// when no baby name is set or the name was used too recently.
+// Do not infer a slot or insert names into arbitrary English.
+export const PAIRED_NAME_TEMPLATES = new Map([
+  ["Milk time, sweetheart! You're so lovely. I love you.", "Milk time, {name}! You're so lovely. I love you."],
+  ["You drank your milk! You did it! Well done, sweetheart.", "You drank your milk! You did it! Well done, {name}."],
+  ["Diaper change, all done! We did it! Well done, sweetheart.", "Diaper change, all done! We did it! Well done, {name}."],
+  ["Time for a change. I'll be gentle. Ready, little one?", "Time for a change. I'll be gentle. Ready, {name}?"],
+  ["Sweet dreams, little one. You're so loved. I'm beside you.", "Sweet dreams, {name}. You're so loved. I'm beside you."],
+  ["Bath time, sweetheart! You're so lovely. I'm right here.", "Bath time, {name}! You're so lovely. I'm right here."],
+  ["You've finished your food. Well done, sweetheart. Let's rest now.", "You've finished your food. Well done, {name}. Let's rest now."],
+  ["Such careful little sips! You worked so well. High five, sweetheart!", "Such careful little sips! You worked so well. High five, {name}!"],
+  ["Shall we roll together? Here comes your ball. Catch it, sweetheart!", "Shall we roll together? Here comes your ball. Catch it, {name}!"],
+  ["Good morning, bright eyes! What a lovely hello. Welcome back, sweetheart.", "Good morning, bright eyes! What a lovely hello. Welcome back, {name}."],
+  ["You're awake, sweetheart! What a lovely surprise. I love you.", "You're awake, {name}! What a lovely surprise. I love you."],
+  ["I'm close by, darling. The night is quiet. Rest easy, sweetheart.", "I'm close by, darling. The night is quiet. Rest easy, {name}."],
+]);
 const words = text => (text.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || []).length;
 const sentences = text => text.trim().split(/(?<=[.!?])\s+/);
-const vocative = /,\s*(?:sweetheart|baby|darling|little one)(?=[.!?])/i;
-
-export function insertPairedBabyName(english, name) {
-  if (!name || !/^[A-Za-z'’ -]{1,45}$/.test(name)) return english;
-  const source = sentences(english);
-  if (source.length !== 3) return english;
-  const total = words(english);
-  const valid = candidate => {
-    const parts = sentences(candidate);
-    return parts.length === 3 && words(candidate) >= 6 && words(candidate) <= 12
-      && parts.every(part => words(part) <= 4);
-  };
-  // Replace a real term of address before adding more words to a sentence.
-  for (const part of [0,1,2]) {
-    if (!vocative.test(source[part])) continue;
-    const result = [...source];
-    result[part] = result[part].replace(vocative, ', '+name);
-    const candidate = result.join(' ');
-    if (valid(candidate)) return candidate;
-  }
-  if (total + words(name) > 12) return english;
-  // Adding the name as a vocative (not a new fourth sentence) preserves meaning.
-  // Prefer short declarative closings, then a short opening.
-  for (const part of [2,0,1]) {
-    if (!/[.!]$/.test(source[part]) || words(source[part]) + words(name) > 4) continue;
-    const result = [...source];
-    result[part] = result[part].replace(/([.!])$/, ', '+name+'$1');
-    const candidate = result.join(' ');
-    if (valid(candidate)) return candidate;
-  }
-  return english;
+export function insertPairedBabyName(original, name) {
+  if (!name || !/^[A-Za-z'’ -]{1,45}$/.test(name)) return original;
+  const authored=PAIRED_NAME_TEMPLATES.get(original);
+  if(!authored) return original;
+  const rendered=authored.replaceAll('{name}',name);
+  const parts=sentences(rendered);
+  if(parts.length!==3 || words(rendered)<6 || words(rendered)>12 || parts.some(x=>words(x)>4)) return original;
+  return rendered;
 }
