@@ -50,7 +50,10 @@ const ledger=rows.map(row=>{
   const notes=[], w=words(row.english);
   const clauses=row.english.split(/(?<=[.!?])\s+/).map(s=>s.trim()).filter(Boolean);
   if(!row.english.trim() || clauses.length!==3)notes.push('format_review');
-  if(w.length>12 || w.length<6 || clauses.some(s=>words(s).length>4))notes.push('length_review');
+  const lengthConcern = row.kind==='press'
+    ? (w.length>8 || w.length<2)
+    : (w.length>12 || w.length<6);
+  if(lengthConcern || clauses.some(s=>words(s).length>4))notes.push('length_review');
   const criticalFlags=critical.filter(([name,re])=>re.test(row.english)).map(([name])=>name);
   notes.push(...criticalFlags);
   notes.push(...recommended.filter(([name,re])=>re.test(row.english)).map(([name])=>name));
