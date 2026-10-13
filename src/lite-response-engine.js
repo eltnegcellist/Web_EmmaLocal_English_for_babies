@@ -855,9 +855,9 @@ export class LiteResponseEngine {
     const forceName = allowName && !!safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW;
     const suppressName = allowName && !!safeName && this.turnsSinceName < STYLE.NAME_REPEAT_WINDOW;
     const raw = selected?.text ?? this.chooseReply(replies, transcript, forceName, suppressName);
-    const named = allowName ? applyName(raw, safeName, forceName) : raw;
+    const named = allowName ? applyName(raw, this.diversity.canUsePairedName() && forceName ? safeName : '', false) : raw;
     const styledBase = this.alignToBabyStyle(named, transcript, scene?.id);
-    const styled = reason==='combined' && safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW
+    const styled = reason==='combined' && safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW && this.diversity.canUsePairedName()
       ? insertPairedBabyName(styledBase, safeName) : styledBase;
     const nameUsed = !!safeName && containsName(styled, safeName);
     this.diversity.recordName(nameUsed, reason==='combined');
