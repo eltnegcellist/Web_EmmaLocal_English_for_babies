@@ -1,4 +1,5 @@
 import { SemanticLiteClient } from './client.js';
+import { isInteractionEnabled } from '../interaction/setting.js';
 
 // Conversation behavior is independent of whether the developer UI is visible.
 export function createSemanticController({ engine, storage = localStorage, beforeChange = async () => {}, clientFactory, mode = null }) {
@@ -66,9 +67,9 @@ export function createSemanticController({ engine, storage = localStorage, befor
       }
       if(token!==generation || !isCurrent())return null;
       if(prediction?.unavailable)updateStatus({message:prediction.message});
-      // No rule-based fallback. A missing Ruri result becomes generic; the
-      // interaction head is developer-opt-in until real-audio quality gates pass.
-      const interactionEnabled = storage.getItem('emma_interaction_experimental') === 'true';
+      // No keyword fallback; unset interaction preference defaults to ON.
+      // An explicit saved OFF remains OFF.
+      const interactionEnabled = isInteractionEnabled(storage);
       lastResponse=engine.respondRuri(text,name,prediction?.topic, prediction?.interaction, interactionEnabled);
       result=prediction;publish();return lastResponse;
     },

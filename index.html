@@ -710,6 +710,8 @@
           <h2>返答と話題</h2>
           <label class="toggle-line"><span>意味で話題を判定する（標準）</span><span class="switch"><input id="semanticEnabled" type="checkbox" checked><span></span></span></label>
           <p id="semanticStatus" class="small muted"></p>
+          <label class="toggle-line"><span>話題と呼びかけの両方を判定する（標準）<small>「ミルク」などの話題と「かわいいね」「よくできたね」などを組み合わせて英語を選びます。オフにすると話題中心の返答になります。</small></span><span class="switch"><input id="interactionExperimental" type="checkbox" checked><span></span></span></label>
+
           <p class="small muted">話題が曖昧な場合は、直前の話題を最大6回使います。明確な別の話題が来たら切り替えます。</p>
           <p class="small muted">育児の話題を日本語から選び、短い英語で返します。話題の一覧と、拾いやすい呼びかけの例を確認できます。</p>
           <a class="outline-button link-button compact-button" href="./topic-guide.html" target="_blank" rel="noopener">話題の判定方法・話題一覧を見る ↗</a>
@@ -745,7 +747,7 @@
             <a class="outline-button link-button compact-button" href="./semantic-test.html">Semantic単体テストを開く</a>
             <a class="outline-button link-button compact-button" href="./model-lab.html">モデルラボを開く</a>
             <a class="outline-button link-button compact-button" href="./coexistence-diagnostic.html">Moonshine / Kitten共存診断を開く</a>
-            <label class="toggle-line"><span>新しい呼びかけ分類を試す（実験・標準オフ）<small>かわいいね、よくできたね、終わったかな等。音声品質と分類精度を検証中です。</small></span><span class="switch"><input id="interactionExperimental" type="checkbox"><span></span></span></label>
+
             <section class="card" id="semanticPanel"></section>
             <section id="debugPanel" class="developer-test-panel">
               <label>日本語テキストで返答を確認
