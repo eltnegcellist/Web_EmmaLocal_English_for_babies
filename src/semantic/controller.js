@@ -1,5 +1,6 @@
 import { SemanticLiteClient } from './client.js';
 import { isInteractionEnabled } from '../interaction/setting.js';
+import { describeRuriTurn, appendRuriTurn } from '../interaction/diagnostics.js';
 
 // Conversation behavior is independent of whether the developer UI is visible.
 export function createSemanticController({ engine, storage = localStorage, beforeChange = async () => {}, clientFactory, mode = null }) {
@@ -7,6 +8,8 @@ export function createSemanticController({ engine, storage = localStorage, befor
   const savedMode = storage.getItem('emma_semantic_mode');
   let selectedMode = mode || (['semantic','guard','lite'].includes(savedMode) ? savedMode : 'semantic');
   let generation = 0, failed = false, lastResponse = null, result = null;
+  // The last 20 decisions are session-only and contain no conversational text.
+  let routingHistory = [];
   let status = {message: requested ? '意味で話題を判定します。初回の準備でデータを取得します。' : '意味判定を無効にしたため汎用英文を使います。'};
   const listeners = new Set();
   const publish = () => { for (const listener of listeners) listener(api.snapshot); };
@@ -16,7 +19,7 @@ export function createSemanticController({ engine, storage = localStorage, befor
     client,
     get enabled() { return requested && selectedMode !== 'lite' && !failed; },
     get requested() { return requested; },
-    get snapshot() { return {requested, mode:selectedMode, enabled:api.enabled, failed, ready:client.ready, status, lastResponse, result}; },
+    get snapshot() { return {requested, mode:selectedMode, enabled:api.enabled, failed, ready:client.ready, status, lastResponse, result, routingHistory:routingHistory.slice()}; },
     subscribe(listener) { listeners.add(listener);listener(api.snapshot);return () => listeners.delete(listener); },
     async prepare({retry = false} = {}) {
       if (!requested || selectedMode === 'lite' || (failed && !retry)) return false;
@@ -71,6 +74,9 @@ export function createSemanticController({ engine, storage = localStorage, befor
       // An explicit saved OFF remains OFF.
       const interactionEnabled = isInteractionEnabled(storage);
       lastResponse=engine.respondRuri(text,name,prediction?.topic, prediction?.interaction, interactionEnabled);
+      routingHistory=appendRuriTurn(routingHistory, describeRuriTurn({
+        prediction, response:lastResponse, interactionEnabled,
+      }));
       result=prediction;publish();return lastResponse;
     },
     respondGeneric(name) {
