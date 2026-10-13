@@ -34,6 +34,15 @@ for(const [key,replies] of Object.entries(COMBINED_REPLIES)){
     if(interaction==='effort'||interaction==='encouragement')assert.ok(!/you did it/i.test(english),english);
   }
 }
+// Regression: infant-directed phrases remain concrete and consistent across editions.
+assert.ok(COMBINED_REPLIES["milk|praise"].includes("You drank your milk! Little sips are great. Well done today!"));
+assert.ok(COMBINED_REPLIES["milk|praise"].includes("Those sips went well! You took little sips! Good job, baby!"));
+assert.ok(COMBINED_REPLIES["milk|invitation"].includes("Let's settle down together. Your bottle is ready. Want a little sip?"));
+assert.ok(COMBINED_REPLIES["drink|invitation"].includes("Let's take a break. There's a drink here. Want a little sip?"));
+assert.ok(COMBINED_REPLIES["cry|reassurance"].includes("Are you upset, baby? Come for a cuddle. I'm here with you."));
+assert.ok(COMBINED_REPLIES["smile|affection"].includes("Look at those dimples! What a happy face. I love that smile!"));
+assert.ok(!Object.values(COMBINED_REPLIES).flat().some(english=>/fancy a sip|you managed those sips|having big feelings|i treasure you|that was lovely drinking/i.test(english)));
+
 const topic=(id,margin=.7)=>({id,margin,probability:.93});
 const interaction=(id,probability=.92)=>({id,probability,margin:.55});
 function answer(japanese,t,i,enable=true){return new LiteResponseEngine().respondRuri(japanese,'',t,i,enable);}
