@@ -32,7 +32,7 @@ export class RuriReplyDiversity {
       for(const [key,cycle] of Object.entries(state.cycles).slice(-MAX_CYCLES)) {
         if(!safeId(key) || !cycle || !Array.isArray(cycle.used))continue;
         this.cycles[key]={used:[...new Set(cycle.used.filter(n=>Number.isInteger(n)&&n>=0&&n<100))],
-          fallbackStep:cycle.fallbackStep===1||cycle.fallbackStep===2?cycle.fallbackStep:0};
+          fallbackStep:Number.isInteger(cycle.fallbackStep)&&cycle.fallbackStep>=0&&cycle.fallbackStep<=6?cycle.fallbackStep:0};
       }
     }
   }
@@ -71,18 +71,18 @@ export class RuriReplyDiversity {
       const cycle=this.cycles[key]||{used:[],fallbackStep:0};
       this.cycles[key]=cycle;
       cycle.used=cycle.used.filter(i=>i<pair.length);
-      if(cycle.used.length>=pair.length && cycle.fallbackStep<2) {
+      if(cycle.used.length>=pair.length && cycle.fallbackStep<6) {
         const step=cycle.fallbackStep++;
-        const preferred=step===0
+        const preferred=step%2===0
           ? [interactionKey,interactionReplies,'diversity_interaction']
           : [topicKey,topicReplies,'diversity_topic'];
-        const other=step===0
+        const other=step%2===0
           ? [topicKey,topicReplies,'diversity_topic']
           : [interactionKey,interactionReplies,'diversity_interaction'];
         const choice=this.pick(preferred[0],preferred[1])||this.pick(other[0],other[1]);
         if(choice)return {...choice,reason:choice.poolKey===preferred[0]?preferred[2]:other[2]};
       }
-      if(cycle.fallbackStep>=2){cycle.used=[];cycle.fallbackStep=0;}
+      if(cycle.fallbackStep>=6){cycle.used=[];cycle.fallbackStep=0;}
       const choice=this.pick('combined:'+key,pair,cycle.used);
       if(choice){cycle.used.push(choice.index);return {...choice,reason:'combined'};}
     }
