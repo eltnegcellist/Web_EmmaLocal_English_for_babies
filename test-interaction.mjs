@@ -6,6 +6,8 @@ import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.j
 import { INTERACTION_REPLIES } from './src/interaction/response.js';
 import { COMBINED_REPLIES, selectRuriAxes, combinedCandidates } from './src/interaction/ruri-routing.js';
 import {describeRuriTurn, appendRuriTurn} from './src/interaction/diagnostics.js';
+import { insertPairedBabyName } from './src/interaction/baby-name-insertion.js';
+import { RuriReplyDiversity } from './src/interaction/diversity.js';
 
 const topics=['drink','bath','milk','sleep','wake','diaper','clothes','hug','hands','feet',
   'smile','cry','voice','tummy','play','outside','rain','sun','food','book','music'];
@@ -174,6 +176,63 @@ const replica=new LiteResponseEngine({diversityState:midCycle.exportReplyDiversi
 assert.notEqual(replica.respondRuri('ミルクだよ','',topic('milk'),interaction('affection')).english,first.english);
 assert.equal(rotating.exportReplyDiversityState().history.length,15);
 // Repeated common stock 3-word phrases are penalized across all English banks.
+// Baby's spoken name can occasionally personalize a combined reply without
+// a fourth sentence, length inflation, or altering the fixed 495-set bank.
+const countWords=value=>(value.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g)||[]).length;
+const nameExample="Milk time, sweetheart! You're so lovely. I love you.";
+assert.equal(insertPairedBabyName(nameExample,'Hana'),
+  "Milk time, Hana! You're so lovely. I love you.");
+assert.equal(insertPairedBabyName(nameExample,'Hana-chan'),
+  "Milk time, Hana-chan! You're so lovely. I love you.");
+assert.equal(insertPairedBabyName(nameExample,'Hana'.repeat(25)),nameExample);
+assert.equal(insertPairedBabyName("This is your milk. You did so well! Good job, baby!",'Hana'),
+  "This is your milk. You did so well! Good job, Hana!");
+// Global recent-name cooldown also observes topic-only names, but only combined
+// turns increment the eight-combination interval.
+const cadence=new RuriReplyDiversity();
+for(let i=0;i<8;i++)cadence.recordName(false,true);
+assert.equal(cadence.canUsePairedName(),true);
+cadence.recordName(true,false);
+assert.equal(cadence.canUsePairedName(),false);
+cadence.recordName(false,false);
+cadence.recordName(false,false);
+assert.equal(cadence.canUsePairedName(),true);
+cadence.recordName(true,true);
+assert.equal(cadence.canUsePairedName(),false);
+const restoredCadence=new RuriReplyDiversity(cadence.snapshot());
+assert.equal(restoredCadence.canUsePairedName(),false);
+for(let i=0;i<8;i++)restoredCadence.recordName(false,true);
+assert.equal(restoredCadence.canUsePairedName(),true);
+// Old saved state is accepted without deleting the long-term reply rotation.
+const legacyCadence=new RuriReplyDiversity({version:1,history:['combined:milk|affection#0'],
+  phrases:[],cycles:{"milk|affection":{used:[0],fallbackStep:0}}});
+assert.equal(legacyCadence.snapshot().history.length,1);
+assert.equal(legacyCadence.canUsePairedName(),false);
+let namedCombined=null;
+const eligibleKeys=Object.keys(COMBINED_REPLIES);
+for(const key of eligibleKeys) {
+  const [t,i]=key.split('|');
+  const ready={version:1,nameGap:8,recentNameGap:2,history:[],phrases:[],cycles:{}};
+  const namedEngine=new LiteResponseEngine({diversityState:ready});
+  const response=namedEngine.respondRuri('試験用の日本語','Hana',topic(t),interaction(i));
+  if(response.scene!==`combined:${t}:${i}`||!response.english.includes('Hana'))continue;
+  assert.equal(response.english.trim().split(/(?<=[.!?])\s+/).length,3);
+  const clauses=response.english.trim().split(/(?<=[.!?])\s+/);
+  assert.ok(clauses.every(s=>countWords(s)<=4),response.english);
+  assert.ok(countWords(response.english)<=12,response.english);
+  const after=namedEngine.exportReplyDiversityState();
+  assert.equal(after.nameGap,0);
+  assert.equal(after.recentNameGap,0);
+  const afterRestart=new LiteResponseEngine({diversityState:after});
+  const next=afterRestart.respondRuri('別の発話','Hana',topic(t),interaction(i));
+  assert.ok(!next.english.includes('Hana'),'cannot repeat personalized name on immediate next turn');
+  namedCombined={key,reply:response.english};
+  break;
+}
+assert.ok(namedCombined,'at least one combined template should be personalization-ready');
+assert.ok(!new LiteResponseEngine({diversityState:{version:1,nameGap:8,recentNameGap:2,
+  history:[],phrases:[],cycles:{}}}).respondRuri('試験用','',topic('milk'),interaction('affection')).english.includes('Hana'));
+
 // Only the unlockable developer settings may expose the OFF switch.
 const html=readFileSync(new URL('./index.html',import.meta.url),'utf8');
 const toggleAt=html.indexOf('id="interactionExperimental"');
