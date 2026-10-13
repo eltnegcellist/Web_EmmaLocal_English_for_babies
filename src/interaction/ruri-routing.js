@@ -58,7 +58,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "diaper|reassurance": [
     "It's diaper time. I'll be gentle. I'm here with you.",
-    "Here's your diaper. I'll stay close. You're not alone.",
+    "Here's your fresh diaper. I'll change you gently. You'll feel cozy.",
     "A little diaper change. We have time. I'm here with you."
   ],
   "hug|invitation": [
@@ -73,7 +73,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "cry|reassurance": [
     "I hear you crying. I'm right here. Come for a cuddle.",
-    "I hear you crying. I'll stay close. You're not alone.",
+    "I hear your crying. Let me hold you. My arms are warm.",
     "I hear those tears. We have time. I'm here with you."
   ],
   "cry|inquiry": [
@@ -82,13 +82,13 @@ const BASE_COMBINED_REPLIES = {
     "I hear those tears. Let's take a look. I'm listening, sweetheart."
   ],
   "sleep|invitation": [
-    "Shall we rest now? Let's get cozy. I'll stay close.",
-    "Shall we rest now? Here's a cozy spot. I'll stay close.",
+    "Ready for your nap? Let's get cozy. I'll sing softly.",
+    "Let's rest for now. Here's a cozy spot. I'll sit beside you.",
     "Feel like resting now? Let's get comfortable. I'll stay with you."
   ],
   "sleep|reassurance": [
     "Ready for a rest? I'm right here. We have time.",
-    "Time for a rest. I'll stay close. You're not alone.",
+    "Time for a rest. Your bed feels soft. I'll sit nearby.",
     "Let's rest a little. We have time. I'm here with you."
   ],
   "wake|affection": [
@@ -114,7 +114,7 @@ const BASE_COMBINED_REPLIES = {
   "smile|affection": [
     "What a lovely smile! You're so sweet. I love you.",
     "What a lovely smile! Your face lights up. I love you.",
-    "Look at your smile! I love you, sweetheart. I'm right here."
+    "Look at your smile! It lights my day. Such a happy face!"
   ],
   "smile|praise": [
     "What a sweet smile! So lovely to see. Hello, little one.",
@@ -207,8 +207,8 @@ const BASE_COMBINED_REPLIES = {
     "Shall we finish bathing? Let's check together. Are we finished?"
   ],
   "bath|reassurance": [
-    "I'm right here, sweetheart. Let's bathe gently. I'll stay close.",
-    "Bath time with me. I'll stay close. You're not alone.",
+    "Here's the warm water. I'll wash your toes. Splish, splash, splash!",
+    "Bath time together. My hands are gentle. Your toes are warm.",
     "In the bath together. We have time. I'm here with you."
   ],
   "clothes|invitation": [
@@ -309,7 +309,7 @@ const BASE_COMBINED_REPLIES = {
   "rain|affection": [
     "Rain is falling outside. I'm here with you. I love these moments.",
     "Listen to the rain! I love being together. You're so precious.",
-    "Rain sounds so gentle. I love you, sweetheart. I'm right here."
+    "Rain taps the window. I love you, sweetheart. Let's listen together."
   ],
   "rain|invitation": [
     "Shall we watch rain? Look at the window. Listen with me.",
@@ -324,7 +324,7 @@ const BASE_COMBINED_REPLIES = {
   "sun|affection": [
     "Sunshine is so bright! I'm here with you. I love this moment.",
     "Look at the sunshine! I love being together. You're so precious.",
-    "Sunny light is lovely! I love you, sweetheart. I'm right here."
+    "Look at the sunshine! Your face looks bright. I love you!"
   ],
   "sun|inquiry": [
     "Can you see sunshine? Look at the light. Isn't it bright?",
@@ -412,8 +412,8 @@ const BASE_COMBINED_REPLIES = {
     "Milk time is over. I'll stay with you. Let's rest together."
   ],
   "milk|reassurance": [
-    "Here comes your milk. I'll stay close. We can go slowly.",
-    "It's milk time, sweetheart. I'll stay close. You're not alone.",
+    "Here comes your milk. I'll hold your bottle. One little sip.",
+    "It's milk time, sweetheart. Let's get comfy. I'm beside you.",
     "Here's a little milk. We have time. I'm here with you."
   ],
   "drink|finish_check": [
