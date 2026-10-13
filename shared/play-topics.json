@@ -27,11 +27,11 @@
       "id": "milk",
       "label": "ミルク・授乳",
       "phrases": [
-        "Milk time! Sip, sip! Nice and slow.",
+        "Milk time! Sip, sip! Little by little.",
         "Yummy milk! Sip, sip! Mmm, yummy!",
         "Milk, milk! Little sips. Nice and easy.",
         "Time for milk! Sip, sip! All done.",
-        "Little sips. Milk time! Nice and slow."
+        "Little sips. Milk time! Take your time."
       ]
     },
     {
@@ -150,7 +150,7 @@
       "phrases": [
         "Little tummy. Nice and easy. Take your time.",
         "Little tummy. Nice and gentle. Here we go.",
-        "Nice and slow. Little tummy. Take your time.",
+        "Easy little sips. Happy little tummy. There you go!",
         "Easy, easy. Little tummy. Right here.",
         "Burp, burp! Little tummy. Nice and easy."
       ]
@@ -203,7 +203,7 @@
       "id": "food",
       "label": "ごはん・離乳食",
       "phrases": [
-        "Food time! Yum, yum! Nice and slow.",
+        "Food time! Yum, yum! Tiny little bites.",
         "Yummy food! Little bite. Nice and easy.",
         "Time to eat! Yum, yum! Here we go!",
         "Food, food! Little bite. Yum, yum!",
@@ -236,11 +236,11 @@
       "id": "drink",
       "label": "飲む",
       "phrases": [
-        "Little sips. Sip, sip! Nice and slow.",
+        "Little sips. Sip, sip! One at a time.",
         "Let's drink. Little sips. Nice and slow.",
         "Sip, sip! Take your time. Little sips.",
         "Small sips. Nice and easy. Take your time.",
-        "Drink, drink! Little sips. Nice and slow."
+        "Drink, drink! Little sips. Here you go."
       ]
     }
   ]
