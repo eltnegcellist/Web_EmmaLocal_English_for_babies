@@ -4,6 +4,7 @@
 // real caregiver ASR. Fail closed on missing/low-confidence predictions.
 import { INTERACTION_REPLIES } from './response.js';
 import { SUPPLEMENTAL_COMBINED_REPLIES } from './supplemental-replies.js';
+import { FREQUENT_COMBINED_VARIANTS } from './frequent-replies.js';
 
 export const INTERACTION_ACCEPT_PROBABILITY = 0.50;
 export const TOPIC_ACCEPT_PROBABILITY = 0.50;
@@ -568,7 +569,10 @@ const BASE_COMBINED_REPLIES = {
 };
 
 // Stable core bank plus newly curated short, meaningful combinations.
-export const COMBINED_REPLIES = {...BASE_COMBINED_REPLIES, ...SUPPLEMENTAL_COMBINED_REPLIES};
+const COMBINED_BASE = {...BASE_COMBINED_REPLIES, ...SUPPLEMENTAL_COMBINED_REPLIES};
+export const COMBINED_REPLIES = Object.fromEntries(
+  Object.entries(COMBINED_BASE).map(([key,replies]) => [key,[...replies,...(FREQUENT_COMBINED_VARIANTS[key]||[])]])
+);
 
 export function selectRuriAxes(topicPrediction, interactionPrediction, allowInteraction = true) {
   const topicId = topicPrediction?.id ?? topicPrediction?.topic ?? null;
