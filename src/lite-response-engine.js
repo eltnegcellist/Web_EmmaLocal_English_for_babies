@@ -860,7 +860,7 @@ export class LiteResponseEngine {
     const styled = reason==='combined' && safeName && this.diversity.canUsePairedName()
       ? insertPairedBabyName(styledBase, safeName) : styledBase;
     const nameUsed = !!safeName && containsName(styled, safeName);
-    this.diversity.recordName(nameUsed);
+    this.diversity.recordName(nameUsed, reason==='combined');
     this.remember(raw, styled);
     this.turnsSinceName = nameUsed ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
