@@ -3,6 +3,11 @@ on:
   pull_request:
     paths:
       - 'shared/visual-cue-*.json'
+      - 'assets/visual-cue/**'
+      - 'visual-cue-prototypes.*'
+      - 'src/visual-cue-prototype-preview.js'
+      - 'scripts/test-visual-cue-svg.py'
+      - 'scripts/browser-visual-cue-prototypes.mjs'
       - 'scripts/*visual-cue*.mjs'
       - '.github/workflows/visual-cue-corpus.yml'
       - 'src/lite-response-engine.js'
@@ -33,3 +38,4 @@ jobs:
       - run: node scripts/build-visual-cue-assets.mjs --check
       - run: node scripts/audit-visual-cue-semantics.mjs --check
       - run: node scripts/test-visual-cue-semantics.mjs
+      - run: node scripts/test-visual-cue-prototypes.mjs

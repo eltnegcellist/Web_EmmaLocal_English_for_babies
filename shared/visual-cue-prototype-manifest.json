@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "status": "prototype-only-not-production",
+  "description": "12 manually chosen visuals; 8 original SVGs plus 4 existing Emma compositions. No runtime English playbacks are wired.",
+  "entries": [
+    {
+      "order": 1,
+      "cueId": "action.sip",
+      "title": "小さなひと口",
+      "example": "Little sips.",
+      "mode": "illustration",
+      "image": "assets/visual-cue/prototypes/action-sip.svg",
+      "concept": "milk",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 2,
+      "cueId": "action.splash",
+      "title": "おふろの水しぶき",
+      "example": "Splash, splash!",
+      "mode": "illustration",
+      "image": "assets/visual-cue/prototypes/action-splash.svg",
+      "concept": "bath",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 3,
+      "cueId": "action.clap",
+      "title": "ぱちぱち拍手",
+      "example": "Clap, clap!",
+      "mode": "illustration",
+      "image": "assets/visual-cue/prototypes/action-clap.svg",
+      "concept": "hands",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 4,
+      "cueId": "action.wave",
+      "title": "手を振ってこんにちは",
+      "example": "Wave hello!",
+      "mode": "illustration",
+      "image": "assets/visual-cue/prototypes/action-wave.svg",
+      "concept": "hands",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 5,
+      "cueId": "action.kick",
+      "title": "足をキック",
+      "example": "Kick, kick!",
+      "mode": "illustration",
+      "image": "assets/visual-cue/prototypes/action-kick.svg",
+      "concept": "feet",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 6,
+      "cueId": "action.turn-page",
+      "title": "絵本をめくる",
+      "example": "Turn the page.",
+      "mode": "illustration",
+      "image": "assets/visual-cue/prototypes/action-turn-page.svg",
+      "concept": "book",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 7,
+      "cueId": "subject.rain",
+      "title": "雨の音を聞く",
+      "example": "Listen to the rain.",
+      "mode": "illustration",
+      "image": "assets/visual-cue/prototypes/subject-rain.svg",
+      "concept": "weather",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 8,
+      "cueId": "action.sleep",
+      "title": "ねんねの時間",
+      "example": "Night-night.",
+      "mode": "illustration",
+      "image": "assets/visual-cue/prototypes/action-sleep.svg",
+      "concept": "sleep",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 9,
+      "cueId": "observed.smile",
+      "title": "笑顔への反応",
+      "example": "What a smile!",
+      "mode": "emma",
+      "image": "assets/emma-face/emma-face-idle-open.svg",
+      "concept": "emma",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 10,
+      "cueId": "social.reassurance",
+      "title": "優しく安心させる",
+      "example": "I'm right here.",
+      "mode": "emma",
+      "image": "assets/emma-face/emma-face-idle-open.svg",
+      "concept": "emma",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 11,
+      "cueId": "social.praise",
+      "title": "ほめる",
+      "example": "Good job!",
+      "mode": "emma",
+      "image": "assets/emma-face/emma-face-idle-open.svg",
+      "concept": "emma",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    },
+    {
+      "order": 12,
+      "cueId": "dialogue.finish-check",
+      "title": "終わったかな？と確認",
+      "example": "All done?",
+      "mode": "emma",
+      "image": "assets/emma-face/emma-face-idle-open.svg",
+      "concept": "emma",
+      "status": "prototype",
+      "reviewStatus": "design-review-needed",
+      "motion": "subtle-css-only"
+    }
+  ]
+}

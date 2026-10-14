@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="title description">
+<title id="title">Little kicks</title><desc id="description">Small baby foot and a gentle movement trail</desc>
+<rect width="480" height="360" rx="38" fill="#fff8fb"/>
+<circle cx="410" cy="60" r="68" fill="#fff" opacity=".65"/>
+<ellipse cx="240" cy="310" rx="158" ry="18" fill="#9f84ba" opacity=".12"/>
+
+<circle cx="240" cy="167" r="123" fill="#eff1fe"/>
+<path d="M161 258 Q145 231 156 209 Q166 183 198 162 L222 132 Q238 116 256 125 Q277 134 276 160 L297 178 Q315 196 309 223 Q305 252 272 271 Q224 287 185 275Z" fill="#f9d1b1" stroke="#675a78" stroke-width="9"/>
+<circle cx="282" cy="134" r="18" fill="#f8c09b" stroke="#675a78" stroke-width="6"/>
+<circle cx="308" cy="154" r="16" fill="#f8c09b" stroke="#675a78" stroke-width="6"/>
+<circle cx="320" cy="182" r="15" fill="#f8c09b" stroke="#675a78" stroke-width="6"/>
+<path d="M151 142 Q133 154 130 175 M128 107 Q100 127 101 151 M352 225 Q370 242 394 245" fill="none" stroke="#a493e5" stroke-width="10" stroke-linecap="round"/>
+<path d="M158 227 Q178 229 197 249" fill="none" stroke="#f5af8d" stroke-width="7" stroke-linecap="round"/>
+
+</svg>

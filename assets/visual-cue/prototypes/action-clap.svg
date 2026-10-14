@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="title description">
+<title id="title">Clap, clap</title><desc id="description">Two rounded child-friendly hands meeting gently</desc>
+<rect width="480" height="360" rx="38" fill="#fff8fb"/>
+<circle cx="410" cy="60" r="68" fill="#fff" opacity=".65"/>
+<ellipse cx="240" cy="310" rx="158" ry="18" fill="#9f84ba" opacity=".12"/>
+
+<circle cx="240" cy="166" r="125" fill="#fff0e1"/>
+<g fill="#ffdab9" stroke="#735b63" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M178 267 Q159 246 149 217 L127 178 Q116 156 134 148 Q149 143 163 166 L153 126 Q151 106 168 105 Q188 105 190 131 L189 103 Q193 86 207 91 Q224 96 219 118 L226 110 Q239 92 251 105 Q258 116 248 131 L255 147 Q269 135 279 151 Q286 164 270 189 L240 249 Q216 281 178 267Z"/>
+ <path d="M305 267 Q325 245 336 217 L358 178 Q367 154 350 148 Q334 146 320 166 L329 129 Q332 108 315 105 Q295 104 292 132 L293 105 Q289 89 275 94 Q260 98 264 121 L257 112 Q243 94 231 106 Q225 118 235 136 L229 149 Q216 136 205 153 Q201 167 219 193 L247 250 Q273 282 305 267Z"/>
+</g>
+<path d="M241 60 V88 M175 79 L190 101 M307 79 L292 101" stroke="#e4aa58" stroke-width="9" stroke-linecap="round"/>
+
+</svg>

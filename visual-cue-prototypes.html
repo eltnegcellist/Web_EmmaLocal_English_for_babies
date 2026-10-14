@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja" data-motion="on">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="light"/>
+<meta name="description" content="みつことば Visual Cue — イラストとEmmaの12種類の試作を確認するページ"/>
+<title>Visual Cue試作 | みつことば</title>
+<link rel="stylesheet" href="./visual-cue-prototypes.css"/>
+</head>
+<body>
+<main>
+<header class="vc-top">
+ <div class="vc-identity">
+  <img class="vc-logo" src="./icons/emma.svg" alt="" width="53" height="53"/>
+  <div><span class="vc-eyebrow">MITSUKOTOBA / VISUAL CUE LAB</span><h1>イラスト・アニメーション試作</h1></div>
+ </div>
+ <div class="vc-control"><span>動き</span><button id="motionToggle" type="button" aria-pressed="true" aria-label="アニメーションを停止">停止する</button></div>
+</header>
+<p class="vc-subtitle">最新版の914英文をもとに検討した代表12種類です。8つの新しいSVGと、既存Emmaの顔を活かした4つの演出を並べています。英文やTTSには連動せず、このページ内で見た目と穏やかな動きだけを確認できます。</p>
+<div class="vc-meta"><span class="vc-pill">12パターン</span><span class="vc-pill vc-pill--outline">8 SVG + 4 Emma</span><span class="vc-pill">オフライン閲覧可（素材は同梱）</span><span class="vc-pill vc-pill--outline">試作版・本番未接続</span></div>
+<section id="cueGrid" class="vc-grid" aria-label="Visual Cue 12試作一覧" aria-live="polite">
+<p id="loadingText">試作素材を読み込んでいます…</p>
+</section>
+<p class="vc-note"><strong>表示上の注意：</strong> 質問文で「飲んでいる」「終わった」と断定する画像は表示しません。「安心させる」では泣く赤ちゃんを描かずEmmaの優しい表現を使います。動きを止めるボタンがあり、OSの「視差効果を減らす」設定にも対応しています。素材や英語への割当は、追加レビュー後に本番へ取り込みます。</p>
+</main>
+<script type="module" src="./src/visual-cue-prototype-preview.js"></script>
+</body>
+</html>
