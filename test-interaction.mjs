@@ -5,7 +5,6 @@ import { LiteResponseEngine, splitSentences } from './src/lite-response-engine.j
 import { INTERACTION_REPLIES } from './src/interaction/response.js';
 import { COMBINED_REPLIES, selectRuriAxes, combinedCandidates } from './src/interaction/ruri-routing.js';
 import {describeRuriTurn, appendRuriTurn} from './src/interaction/diagnostics.js';
-import { insertPairedBabyName } from './src/interaction/baby-name-insertion.js';
 import { RuriReplyDiversity } from './src/interaction/diversity.js';
 
 const topics=['drink','bath','milk','sleep','wake','diaper','clothes','hug','hands','feet',
@@ -169,35 +168,12 @@ const replica=new LiteResponseEngine({diversityState:midCycle.exportReplyDiversi
 assert.notEqual(replica.respondRuri('ミルクだよ','',topic('milk'),interaction('affection')).english,first.english);
 assert.equal(rotating.exportReplyDiversityState().history.length,15);
 // Repeated common stock 3-word phrases are penalized across all English banks.
-// Baby's spoken name can occasionally personalize a combined reply without
-// a fourth sentence, length inflation, or altering the fixed 495-set bank.
-const countWords=value=>(value.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g)||[]).length;
-const nameExample="Milk time, sweetheart! You're so lovely. I love you.";
-assert.equal(insertPairedBabyName(nameExample,'Hana'),
-  "Milk time, Hana! You're so lovely. I love you.");
-assert.equal(insertPairedBabyName(nameExample,'Hana-chan'),
-  "Milk time, Hana-chan! You're so lovely. I love you.");
-assert.equal(insertPairedBabyName(nameExample,''),nameExample,'unconfigured name keeps the original English');
-assert.equal(insertPairedBabyName("Hi there, sweetheart! You look lovely. I love you.",'Hana'),
-  "Hi there, sweetheart! You look lovely. I love you.",'no unscripted baby-name insertion');
-assert.equal(insertPairedBabyName(nameExample,'Hana'.repeat(25)),nameExample);
-assert.equal(insertPairedBabyName("This is your milk. You did so well! Good job, baby!",'Hana'),
-  "This is your milk. You did so well! Good job, baby!");
-// Global two-turn name cooldown also observes topic-only names.
-const cadence=new RuriReplyDiversity();
-for(let i=0;i<8;i++)cadence.recordName(false,true);
-assert.equal(cadence.canUsePairedName(),true);
-cadence.recordName(true,false);
-assert.equal(cadence.canUsePairedName(),false);
-cadence.recordName(false,false);
-cadence.recordName(false,false);
-assert.equal(cadence.canUsePairedName(),true);
-cadence.recordName(true,true);
-assert.equal(cadence.canUsePairedName(),false);
-const restoredCadence=new RuriReplyDiversity(cadence.snapshot());
-assert.equal(restoredCadence.canUsePairedName(),false);
-for(let i=0;i<8;i++)restoredCadence.recordName(false,true);
-assert.equal(restoredCadence.canUsePairedName(),true);
+// Fixed lines are independent of the configured baby's spoken name.
+const fixedEngine=new LiteResponseEngine();
+const fixedOne=fixedEngine.respondRuri('ミルクだよ','',topic('milk'),interaction('affection')).english;
+const fixedTwo=new LiteResponseEngine().respondRuri('ミルクだよ','Hana',topic('milk'),interaction('affection')).english;
+assert.equal(fixedOne,fixedTwo);
+assert.ok(!fixedOne.includes('{name}') && !fixedOne.includes('Hana'));
 // Old saved state is accepted without deleting the long-term reply rotation.
 const legacyCadence=new RuriReplyDiversity({version:1,history:['combined:milk|affection#0'],
   phrases:[],cycles:{"milk|affection":{used:[0],fallbackStep:0}}});
