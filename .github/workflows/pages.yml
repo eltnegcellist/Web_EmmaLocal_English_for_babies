@@ -41,6 +41,8 @@ jobs:
           node test-interaction.mjs
           node test-silero.mjs
           node test-interruptible-turn.mjs
+      - name: Validate Kiki A/B samples and preserve-punctuation experiment
+        run: node scripts/test-kiki-ab.mjs
       - name: CMUdict phoneme audit of all English release candidates
         run: |
           python3 -m pip install 'cmudict==1.1.3'

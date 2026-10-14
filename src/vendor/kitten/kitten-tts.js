@@ -105,7 +105,7 @@ export class KittenTTS {
    */
   async generate(text, opts = {}) {
     const { voice = DEFAULT_VOICE, speed = 1.0, clean = true, nameHints = [] } = opts;
-    const chunks = this._chunkText(text);
+    const chunks = this._chunkText(text, opts.punctuationMode ?? 'legacy');
 
     const audioChunks = [];
     for (const chunk of chunks) {
@@ -135,7 +135,7 @@ export class KittenTTS {
    */
   async *stream(text, opts = {}) {
     const { voice = DEFAULT_VOICE, speed = 1.0, clean = true, nameHints = [] } = opts;
-    const chunks = this._chunkText(text);
+    const chunks = this._chunkText(text, opts.punctuationMode ?? 'legacy');
 
     for (const chunk of chunks) {
       const inputs = await this._prepareInputs(chunk, voice, speed, clean, nameHints);
@@ -182,37 +182,34 @@ export class KittenTTS {
    * @param {string} text
    * @returns {string[]}
    */
-  _chunkText(text) {
-    // Note: Python's re.split(r'[.!?]+', text) destroys the delimiter.
-    const sentences = text.split(/[.!?]+/);
+  _chunkText(text, punctuationMode = 'legacy') {
+    const preserve = punctuationMode === 'preserve';
+    // Legacy is deliberately the default until listening comparison is reviewed.
+    const sentences = preserve
+      ? (String(text).match(/[^.!?]+(?:[.!?]+|$)/g) || [])
+      : String(text).split(/[.!?]+/);
     const chunks = [];
-
-    for (const s of sentences) {
-      const sentence = s.trim();
+    for (const raw of sentences) {
+      const sentence = raw.trim();
       if (!sentence) continue;
-
       if (sentence.length <= MAX_CHUNK_CHARS) {
         chunks.push(this._ensurePunctuation(sentence));
-      } else {
-        // Split long sentences by words
-        const words = sentence.split(/\s+/);
-        let tempChunk = '';
-        for (const word of words) {
-          if (tempChunk.length + word.length + 1 <= MAX_CHUNK_CHARS) {
-            tempChunk += tempChunk ? ` ${word}` : word;
-          } else {
-            if (tempChunk) {
-              chunks.push(this._ensurePunctuation(tempChunk.trim()));
-            }
-            tempChunk = word;
-          }
-        }
-        if (tempChunk) {
-          chunks.push(this._ensurePunctuation(tempChunk.trim()));
+        continue;
+      }
+      const ending = preserve ? (sentence.match(/[.!?]+$/)?.[0] || '') : '';
+      const body = ending ? sentence.slice(0, -ending.length).trimEnd() : sentence;
+      const words = body.split(/\s+/);
+      let part = '';
+      for (const word of words) {
+        if (!part || part.length + word.length + 1 <= MAX_CHUNK_CHARS) {
+          part += part ? ' ' + word : word;
+        } else {
+          chunks.push(this._ensurePunctuation(part));
+          part = word;
         }
       }
+      if (part) chunks.push(this._ensurePunctuation(part + ending));
     }
-
     return chunks;
   }
 
