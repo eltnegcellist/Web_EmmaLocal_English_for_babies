@@ -13,7 +13,7 @@ import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from '.
 const $ = (id) => document.getElementById(id);
 const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
-  onboardingHighPerformance:$('onboardingHighPerformance'), genderHelp:$('genderHelp'),
+  onboardingHighPerformance:$('onboardingHighPerformance'),
   prepareEmmaButton:$('prepareEmmaButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'), tutorialStatusTarget:$('tutorialStatusTarget'),
@@ -41,11 +41,10 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261014-qwen3-seed1202-r2';
+const WEB_BUILD = '20261014-gender-settings-removed-r3';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
-  gender:'emma_baby_gender',
   colorMode:'emma_color_mode',
   vivid:'emma_vivid_palette',
   soft:'emma_soft_palette',
@@ -206,7 +205,6 @@ function initUi() {
   }
   updateAsrModelStatus();
   bindEvents();
-  updateGenderUi();
   updateAiNameUi();
   applyAppearance();
   updateAppearanceSettings();
@@ -276,13 +274,6 @@ function bindEvents() {
   });
   document.addEventListener('keydown',(event)=>{
     if(event.key==='Escape'&&!ui.noticeDialog.classList.contains('hidden')) closeNotice();
-  });
-
-  document.querySelectorAll('[data-gender]').forEach(button=>{
-    button.addEventListener('click',()=>{
-      localStorage.setItem(STORAGE.gender,button.dataset.gender);
-      updateGenderUi();
-    });
   });
 
   ui.colorMode.addEventListener('change',()=>{
@@ -1783,14 +1774,6 @@ function updateAiNameUi() {
       '<span class="ai-intro-copy">名前は <strong>' + name +
       '</strong>。初回チュートリアルで自己紹介します。</span>';
   }
-}
-
-function updateGenderUi() {
-  const gender=localStorage.getItem(STORAGE.gender)||'UNSPECIFIED';
-  document.querySelectorAll('[data-gender]').forEach(button=>button.classList.toggle('selected',button.dataset.gender===gender));
-  ui.genderHelp.textContent=gender==='UNSPECIFIED'
-    ? '未指定の場合、AIは名前などから性別を推測しません。'
-    : '親へ話す機能を追加した場合も、この設定に合わせて呼び方を選びます。';
 }
 
 function getTtsSignature() {
