@@ -1,0 +1,710 @@
+{
+  "schemaVersion": 1,
+  "status": "concept-plan-only-no-assets-created",
+  "countSummary": {
+    "cueIds": 59,
+    "conceptualPrimitives": 31,
+    "byType": {
+      "illustration": 14,
+      "animation": 10,
+      "avatar-state": 7
+    },
+    "currentlyReferencedPrimitives": 31
+  },
+  "guidelines": [
+    "A Cue ID is not one image. Assemble reused illustration, small motion and existing Emma expression layers.",
+    "Never depict a baby crying merely because the Japanese source matched a cry Topic; prefer soothing Emma.",
+    "Do not show an action as completed when English asks whether it is finished or whether it should start.",
+    "Keep illustrations calm, high-contrast, large shapes; no flashing, intense spinning or rapid transitions.",
+    "Baby/parent positions do not imply infants can stand or sit independently; use age-appropriate poses.",
+    "The visual layer is optional; reduced-motion, offline loading errors and stop/retry fall back to static neutral Emma.",
+    "No external images, network or cloud dependency is authorized by this plan; assets to be authored separately."
+  ],
+  "primitives": [
+    {
+      "id": "scene.bath",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: bath"
+    },
+    {
+      "id": "scene.milk",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: milk"
+    },
+    {
+      "id": "scene.care",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: care"
+    },
+    {
+      "id": "scene.hands",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: hands"
+    },
+    {
+      "id": "scene.feet",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: feet"
+    },
+    {
+      "id": "scene.book",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: book"
+    },
+    {
+      "id": "scene.toy",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: toy"
+    },
+    {
+      "id": "scene.outdoor",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: outdoor"
+    },
+    {
+      "id": "scene.weather",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: weather"
+    },
+    {
+      "id": "scene.meal",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: meal"
+    },
+    {
+      "id": "scene.tummy",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: tummy"
+    },
+    {
+      "id": "scene.music",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: music"
+    },
+    {
+      "id": "scene.sleep",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: sleep"
+    },
+    {
+      "id": "scene.family",
+      "kind": "illustration",
+      "fileStatus": "not-created",
+      "description": "Reusable illustration layer: family"
+    },
+    {
+      "id": "motion.sip",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: sip"
+    },
+    {
+      "id": "motion.water",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: water"
+    },
+    {
+      "id": "motion.hand",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: hand"
+    },
+    {
+      "id": "motion.kick",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: kick"
+    },
+    {
+      "id": "motion.page",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: page"
+    },
+    {
+      "id": "motion.change",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: change"
+    },
+    {
+      "id": "motion.hug",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: hug"
+    },
+    {
+      "id": "motion.peekaboo",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: peekaboo"
+    },
+    {
+      "id": "motion.spoon",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: spoon"
+    },
+    {
+      "id": "motion.notes",
+      "kind": "animation",
+      "fileStatus": "not-created",
+      "description": "Small motion layer: notes"
+    },
+    {
+      "id": "emma.neutral",
+      "kind": "avatar-state",
+      "fileStatus": "not-created",
+      "description": "Emma expression/pose concept: neutral"
+    },
+    {
+      "id": "emma.smile",
+      "kind": "avatar-state",
+      "fileStatus": "not-created",
+      "description": "Emma expression/pose concept: smile"
+    },
+    {
+      "id": "emma.calm",
+      "kind": "avatar-state",
+      "fileStatus": "not-created",
+      "description": "Emma expression/pose concept: calm"
+    },
+    {
+      "id": "emma.celebrate",
+      "kind": "avatar-state",
+      "fileStatus": "not-created",
+      "description": "Emma expression/pose concept: celebrate"
+    },
+    {
+      "id": "emma.listen",
+      "kind": "avatar-state",
+      "fileStatus": "not-created",
+      "description": "Emma expression/pose concept: listen"
+    },
+    {
+      "id": "emma.ask",
+      "kind": "avatar-state",
+      "fileStatus": "not-created",
+      "description": "Emma expression/pose concept: ask"
+    },
+    {
+      "id": "emma.invite",
+      "kind": "avatar-state",
+      "fileStatus": "not-created",
+      "description": "Emma expression/pose concept: invite"
+    }
+  ],
+  "bindings": [
+    {
+      "cueId": "action.burp",
+      "primitives": [
+        "scene.tummy",
+        "motion.change"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.clap",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.count",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.dress",
+      "primitives": [
+        "scene.care",
+        "motion.change"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.eat",
+      "primitives": [
+        "scene.meal",
+        "motion.spoon"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.hug",
+      "primitives": [
+        "scene.family",
+        "motion.hug"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.kick",
+      "primitives": [
+        "scene.feet",
+        "motion.kick"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.open-close",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.peekaboo",
+      "primitives": [
+        "scene.family",
+        "motion.peekaboo"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.read",
+      "primitives": [
+        "scene.book",
+        "motion.page"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.sing",
+      "primitives": [
+        "scene.music",
+        "motion.notes"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.sip",
+      "primitives": [
+        "scene.milk",
+        "motion.sip"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.sit",
+      "primitives": [
+        "scene.family"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.sleep",
+      "primitives": [
+        "scene.sleep",
+        "emma.calm"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.splash",
+      "primitives": [
+        "scene.bath",
+        "motion.water"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.squeeze",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.tap",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.turn-page",
+      "primitives": [
+        "scene.book",
+        "motion.page"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.wake",
+      "primitives": [
+        "scene.sleep",
+        "emma.smile"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.wash",
+      "primitives": [
+        "scene.bath",
+        "motion.water"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.wave",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.wiggle",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "action.wipe",
+      "primitives": [
+        "scene.care",
+        "motion.change"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "attention.listen",
+      "primitives": [
+        "emma.listen"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "attention.look",
+      "primitives": [
+        "emma.listen"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "dialogue.finish",
+      "primitives": [
+        "emma.celebrate"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "dialogue.finish-check",
+      "primitives": [
+        "emma.ask"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "dialogue.inquiry",
+      "primitives": [
+        "emma.ask"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "dialogue.invitation",
+      "primitives": [
+        "emma.invite"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "dialogue.pause",
+      "primitives": [
+        "emma.calm"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "dialogue.repeat",
+      "primitives": [
+        "emma.invite"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "dialogue.start",
+      "primitives": [
+        "emma.invite"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "emma.neutral",
+      "primitives": [
+        "emma.neutral"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "observed.cry",
+      "primitives": [
+        "emma.calm"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "observed.smile",
+      "primitives": [
+        "emma.smile"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "observed.voice",
+      "primitives": [
+        "emma.listen"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "social.achievement",
+      "primitives": [
+        "emma.celebrate"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "social.affection",
+      "primitives": [
+        "emma.smile"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "social.care",
+      "primitives": [
+        "emma.calm"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "social.effort",
+      "primitives": [
+        "emma.calm"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "social.encouragement",
+      "primitives": [
+        "emma.celebrate"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "social.greeting",
+      "primitives": [
+        "emma.smile"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "social.praise",
+      "primitives": [
+        "emma.celebrate"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "social.reassurance",
+      "primitives": [
+        "emma.calm"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.bath",
+      "primitives": [
+        "scene.bath"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.book",
+      "primitives": [
+        "scene.book"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.clothes",
+      "primitives": [
+        "scene.care"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.diaper",
+      "primitives": [
+        "scene.care"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.drink",
+      "primitives": [
+        "scene.milk"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.feet",
+      "primitives": [
+        "scene.feet"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.food",
+      "primitives": [
+        "scene.meal"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.hands",
+      "primitives": [
+        "scene.hands"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.milk",
+      "primitives": [
+        "scene.milk"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.music",
+      "primitives": [
+        "scene.music"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.outside",
+      "primitives": [
+        "scene.outdoor"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.rain",
+      "primitives": [
+        "scene.weather"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.sun",
+      "primitives": [
+        "scene.weather"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.toy",
+      "primitives": [
+        "scene.toy"
+      ],
+      "buildStatus": "planned"
+    },
+    {
+      "cueId": "subject.tummy",
+      "primitives": [
+        "scene.tummy"
+      ],
+      "buildStatus": "planned"
+    }
+  ],
+  "firstPrototypes": [
+    {
+      "order": 1,
+      "cueId": "action.sip",
+      "goal": "milk drinking: clear bottle and tiny sipping movement"
+    },
+    {
+      "order": 2,
+      "cueId": "action.splash",
+      "goal": "bath splashes with gentle water arcs"
+    },
+    {
+      "order": 3,
+      "cueId": "action.clap",
+      "goal": "clapping hands using reusable hand shapes"
+    },
+    {
+      "order": 4,
+      "cueId": "action.wave",
+      "goal": "hello gesture using same hand-shape primitives"
+    },
+    {
+      "order": 5,
+      "cueId": "action.kick",
+      "goal": "one gentle foot movement"
+    },
+    {
+      "order": 6,
+      "cueId": "action.turn-page",
+      "goal": "turn a page of a single book"
+    },
+    {
+      "order": 7,
+      "cueId": "subject.rain",
+      "goal": "simple rain and listening cue without hand tapping"
+    },
+    {
+      "order": 8,
+      "cueId": "action.sleep",
+      "goal": "quiet bedtime expression without implying crying"
+    },
+    {
+      "order": 9,
+      "cueId": "observed.smile",
+      "goal": "Emma smiles; do not infer unknown feelings"
+    },
+    {
+      "order": 10,
+      "cueId": "social.reassurance",
+      "goal": "Emma reassurance; no crying baby depiction"
+    },
+    {
+      "order": 11,
+      "cueId": "social.praise",
+      "goal": "Emma celebrates without changing observed baby action"
+    },
+    {
+      "order": 12,
+      "cueId": "dialogue.finish-check",
+      "goal": "asking whether finished without checkmark or completed badge"
+    }
+  ]
+}
