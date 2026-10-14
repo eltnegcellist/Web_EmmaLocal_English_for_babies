@@ -51,7 +51,8 @@ const interactionCues={
 };
 export function inferVisualCue(english,kind,scene,strictSentence=false){
  const t=String(english).toLowerCase(), topic=(kind==="combined"?scene.split("|")[0]:(kind==="topic"||kind==="press")?scene:null), inter=(kind==="combined"?scene.split("|")[1]:kind==="interaction"?scene:null);
- const base=topic?topicCues[topic]||"attention.look":null, social=inter?interactionCues[inter]||"attention.listen":null;
+ let base=topic?topicCues[topic]||"attention.look":null, social=inter?interactionCues[inter]||"attention.listen":null;
+ if(topic==="cry")base="social.reassurance";
  const cues=[];
  const add=(pattern,cue)=>{if(pattern.test(t)&&!cues.includes(cue))cues.push(cue);};
  // Explicit semantics from this exact English text take precedence over generic topic fallback.
@@ -59,28 +60,29 @@ export function inferVisualCue(english,kind,scene,strictSentence=false){
  add(/\bclap(?:ping)?\b/,"action.clap");
  add(/\bwave(?:s|d|ing)?\b/,"action.wave");
  add(/\bkick(?:s|ed|ing)?\b/,"action.kick");
- add(/\b(sip|sips|sipping|drank|drinking)\b/,"action.sip");
+ add(/\b(drank|drinking|sipping)\b/,"action.sip");
+ if(splitSentences(t).some(x=>/\b(sip|sips)\b/.test(x)&&!/\?$/.test(x)&&!/\b(maybe|might|could|would)\b/.test(x)))add(/\b(sip|sips)\b/,"action.sip");
  add(/\b(splash|splish|splosh)\b/,"action.splash");
  add(/\b(wash|washing|rinse|rinsing|bathe|bathing)\b/,"action.wash");
  add(/\b(wipe|wiping)\b/,"action.wipe");
  add(/\b(dress|dressed|sock|socks|sleeves?|clothes on|arm in)\b/,"action.dress");
- add(topic==="hands"?/\b(open|close)\b/:/\b(open and close|open,\s*close)\b/,"action.open-close");
+ add(/\bopen\b.{0,45}\bclose\b|\bclose\b.{0,45}\bopen\b/,"action.open-close");
  add(/\bwiggle\b/,"action.wiggle");
  add(/\b(squeeze|squeezing)\b/,"action.squeeze");
  add(/\b(cuddle|cuddles|hug|hugs|hugging)\b/,"action.hug");
- add(/\b(stand|sitting|sit)\b/,"action.sit");
+ if(topic==="play"||topic==="outside")add(/\b(you sit|baby sits|sit down, baby)\b/,"action.sit");
  add(/\b(sing|singing|sang)\b/,"action.sing");
- add(/\b(tap|tapping)\b/,"action.tap");
+ if(topic!=="rain")add(/\b(tap|tapping)\b/,"action.tap");
  add(/\b(dance|dancing)\b/,"action.dance");
- add(/\b(peekaboo|peek-a-boo|peek)\b/,"action.peekaboo");
- add(/\b(sleep|sleeping|night-night|dream|dreams|rest|resting)\b/,"action.sleep");
- add(/\b(wake|waking|awake|good morning)\b/,"action.wake");
- add(/\b(eat|eating|chew|chewing|bite|tasty|yummy)\b/,"action.eat");
- add(/\b(burp|burping)\b/,"action.burp");
+ add(/\b(peekaboo|peek-a-boo|peek,\s*peek)\b/,"action.peekaboo");
+ if(topic!=="wake")add(/\b(sleep|sleeping|night-night|dream|dreams|rest|resting)\b/,"action.sleep");
+ if(topic!=="generic"||/\b(wake|waking|awake)\b/.test(t))add(/\b(wake|waking|awake|good morning)\b/,"action.wake");
+ add(/\b(eat|eating|chew|chewing|bite)\b/,"action.eat");
+ if(!/\b(?:maybe|might|could)\b.{0,24}\bburp\b|\bis that a burp\?/.test(t))add(/\b(burp|burping|burped)\b/,"action.burp");
  add(/\b(read|reading)\b/,"action.read");
  add(/\b(count|counting)\b/,"action.count");
  add(/\b(smile|smiling|grin|gigg|laugh)\w*/,"observed.smile");
- add(/\b(cry|crying|cries|tears)\b/,"observed.cry");
+ if(!/\b(?:are you crying|you can cry|can you cry|no tears|don\x27t cry|crying is okay)\b/.test(t))add(/\b(cry|crying|cries|tears)\b/,"observed.cry");
  add(/\b(babble|coo|cooing|ooh|ahh)\b/,"observed.voice");
  add(/\b(rain|pitter-patter|raindrops?)\b/,"subject.rain");
  add(topic==="sun"?/\b(sun|sunny|sunshine)\b/:/\b(sun|sunny)\b/,"subject.sun");
@@ -88,6 +90,10 @@ export function inferVisualCue(english,kind,scene,strictSentence=false){
  add(/\b(listen|hear)\b/,"attention.listen");
  add(/\b(again|repeat|more)\b/,"dialogue.repeat");
  add(/\b(all done|finished|finish|done now)\b/,"dialogue.finish");
+ if(/\b(?:all done|finished|done yet|had enough)\?/.test(t)){
+ const n=cues.indexOf("dialogue.finish");if(n>=0)cues.splice(n,1);
+ if(!cues.includes("dialogue.finish-check"))cues.push("dialogue.finish-check");
+ }
  add(/\b(want|shall we|would you|ready|can we|let's)\b/,"dialogue.invitation");
  add(/\b(great|good job|well done|wonderful|bravo)\b/,"social.praise");
  add(/\b(love you|sweetheart|precious|darling|adorable)\b/,"social.affection");
@@ -99,12 +105,16 @@ export function inferVisualCue(english,kind,scene,strictSentence=false){
    primary=cues.find(c=>c.startsWith("action.")||c.startsWith("observed."))||cues.find(c=>c.startsWith("subject."))||cues.find(c=>c.startsWith("dialogue.")||c.startsWith("social.")||c.startsWith("attention."))||base||social||"attention.look";
  }else primary=cues.find(c=>c.startsWith("action.")||c.startsWith("observed."))||base||social||cues[0]||"attention.look";
  if(kind==="combined"&&/finish_check/.test(scene))primary="dialogue.finish-check";
+ if(topic==="cry"&&kind!=="interaction")primary="social.reassurance";
  const secondary=[];
  for(const c of [base,social,...cues])if(c&&c!==primary&&!secondary.includes(c)&&secondary.length<4)secondary.push(c);
+ if(primary==="dialogue.finish-check"){
+  const n=secondary.indexOf("dialogue.finish");if(n>=0)secondary.splice(n,1);
+ }
  const renderer=primary.startsWith("action.")?(secondary.some(c=>c.startsWith("subject."))?"composite":"motion"):primary.startsWith("subject.")?"illustration":"emma";
  return {primaryCue:primary,secondaryCues:secondary,renderPreference:renderer};
 }
-export function createVisualCueData(rows,previousPhrases=[],previousAssignments=[]){
+export function createVisualCueData(rows,previousPhrases=[],previousAssignments=[],reviewedOverrides=[]){
  const oldBySlot=new Map(previousPhrases.map(r=>[r.sourceKind+"\0"+r.sourceKey+"\0"+r.sourceIndex,r]));
  const oldByText=new Map(previousPhrases.map(r=>[r.sourceKind+"\0"+r.sourceKey+"\0"+r.text,r]));
  const oldAssigned=new Map(previousAssignments.map(a=>[a.phraseId,a]));
@@ -122,15 +132,22 @@ export function createVisualCueData(rows,previousPhrases=[],previousAssignments=
   if(!phraseId){maximum++;phraseId="vc_"+String(maximum).padStart(6,"0");newIds++;}
   assigned.add(phraseId);return {phraseId,...row};
  });
+ const overrides=new Map(reviewedOverrides.map(x=>[x.phraseId,x]));
+ const consumed=new Set();
  const assignments=output.map(p=>{
   const {phraseId,sourceKind,sourceKey,text}=p;
   const suggestion=inferVisualCue(text,sourceKind,sourceKey);
   const old=oldAssigned.get(phraseId);
-  if(old&&old.text===text&&old.reviewStatus==="reviewed")return old;
+  const override=overrides.get(phraseId);
+  if(override&&override.text!==text)throw Error("Reviewed cue override changed text: "+phraseId);
+  if(override)consumed.add(phraseId);
+  if(!override&&old&&old.text===text&&old.reviewStatus==="reviewed")return old;
   const a={phraseId,sourceKind,sourceKey,text,...suggestion,reviewStatus:"generated"};
   if(sourceKind==="press")a.sentenceCues=splitSentences(text).map((s,i)=>({index:i,...inferVisualCue(s,sourceKind,sourceKey,true)}));
+  if(override){a.primaryCue=override.primaryCue;a.secondaryCues=[...override.secondaryCues];a.renderPreference=override.renderPreference;a.reviewStatus="reviewed";}
   return a;
  });
+ for(const id of overrides.keys())if(!consumed.has(id))throw Error("Unused reviewed cue override "+id);
  const counts={topic:0,interaction:0,combined:0,press:0};for(const row of output)counts[row.sourceKind]++;
  const pressSentences=new Set(sourceRows.filter(r=>r.sourceKind==="press").flatMap(r=>splitSentences(r.text)));
  const snapshot={schemaVersion:1,counts,uniquePhraseCount:new Set(sourceRows.map(r=>r.text)).size,uniquePressSentenceCount:pressSentences.size,rows:sourceRows.map(x=>({...x}))};
@@ -153,7 +170,8 @@ if(isCLI){
  const read=(path)=>{try{return JSON.parse(readFileSync(new URL(path,import.meta.url),'utf8'));}catch(err){if(err.code==='ENOENT')return null;throw err;}};
  const oldPhrases=read('../shared/visual-cue-phrases.json')?.rows||[];
  const oldAssignments=read('../shared/visual-cue-assignments.draft.json')?.assignments||[];
- const data=createVisualCueData(currentBankRows(),oldPhrases,oldAssignments);
+ const reviewedOverrides=read('../shared/visual-cue-reviewed-overrides.json')?.overrides||[];
+ const data=createVisualCueData(currentBankRows(),oldPhrases,oldAssignments,reviewedOverrides);
  const registry=read('../shared/visual-cue-namespaces.json');
  if(!registry || registry.schemaVersion!==2)throw Error('Visual Cue registry is missing');
  const used=new Set([registry.safeFallback]);
