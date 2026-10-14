@@ -13,6 +13,7 @@ import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from '.
 const $ = (id) => document.getElementById(id);
 const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
+  onboardingHighPerformance:$('onboardingHighPerformance'), genderHelp:$('genderHelp'),
   prepareEmmaButton:$('prepareEmmaButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'), tutorialStatusTarget:$('tutorialStatusTarget'),
