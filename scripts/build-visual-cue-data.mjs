@@ -49,10 +49,36 @@ const interactionCues={
   "repeat": "dialogue.repeat",
   "pause": "dialogue.pause"
 };
+const literalTopicAnchors={
+ "generic": /\b(hi|hello|morning|wave)\b/,
+ "bath": /\b(bath|water|splash|wash|towel)\b/,
+ "milk": /\b(milk|bottle|sip|sips)\b/,
+ "sleep": /\b(sleep|rest|night|dream|bed|cozy)\b/,
+ "wake": /\b(wake|awake|waking|morning)\b/,
+ "diaper": /\b(diaper|wipe|bottom|fresh|clean)\b/,
+ "clothes": /\b(clothes|shirt|sock|socks|sleeve|dressed)\b/,
+ "hug": /\b(hug|hugs|cuddle|arms)\b/,
+ "hands": /\b(hand|hands|finger|fingers|clap|wave|wiggle)\b/,
+ "feet": /\b(feet|foot|toes|kick)\b/,
+ "smile": /\b(smile|smiling|grin|giggle|cheeks)\b/,
+ "cry": /\b(cry|crying|tears)\b/,
+ "voice": /\b(voice|sound|ooh|ahh|talk|babble)\b/,
+ "tummy": /\b(tummy|burp|belly)\b/,
+ "play": /\b(play|toy|game|peekaboo)\b/,
+ "outside": /\b(outside|outdoors|park|stroll|sky)\b|\bout we go\b/,
+ "rain": /\b(rain|rainy|pitter|drip|drop)\b/,
+ "sun": /\b(sun|sunny|sunshine|bright|glow)\b/,
+ "food": /\b(food|meal|spoon|bite|yummy)\b/,
+ "book": /\b(book|page|story|picture)\b/,
+ "music": /\b(music|song|sing|la-la|tap)\b/,
+ "drink": /\b(drink|bottle|sip|sips)\b/,
+ "greeting": /\b(hello|hi|morning|wave)\b/,
+};
 export function inferVisualCue(english,kind,scene,strictSentence=false){
  const t=String(english).toLowerCase(), topic=(kind==="combined"?scene.split("|")[0]:(kind==="topic"||kind==="press")?scene:null), inter=(kind==="combined"?scene.split("|")[1]:kind==="interaction"?scene:null);
  let base=topic?topicCues[topic]||"attention.look":null, social=inter?interactionCues[inter]||"attention.listen":null;
  if(topic==="cry")base="social.reassurance";
+ const sceneCue=(!strictSentence || (topic && Boolean(literalTopicAnchors[topic]?.test(t))))?base:null;
  const cues=[];
  const add=(pattern,cue)=>{if(pattern.test(t)&&!cues.includes(cue))cues.push(cue);};
  // Explicit semantics from this exact English text take precedence over generic topic fallback.
@@ -102,12 +128,12 @@ export function inferVisualCue(english,kind,scene,strictSentence=false){
  let primary=null;
  if(kind==="interaction")primary=social;
  else if(strictSentence){
-   primary=cues.find(c=>c.startsWith("action.")||c.startsWith("observed."))||cues.find(c=>c.startsWith("subject."))||cues.find(c=>c.startsWith("dialogue.")||c.startsWith("social.")||c.startsWith("attention."))||base||social||"attention.look";
+   primary=cues.find(c=>c.startsWith("action.")||c.startsWith("observed."))||cues.find(c=>c.startsWith("subject."))||cues.find(c=>c.startsWith("dialogue.")||c.startsWith("social.")||c.startsWith("attention."))||sceneCue||social||"emma.neutral";
  }else primary=cues.find(c=>c.startsWith("action.")||c.startsWith("observed."))||base||social||cues[0]||"attention.look";
  if(kind==="combined"&&/finish_check/.test(scene))primary="dialogue.finish-check";
  if(topic==="cry"&&kind!=="interaction")primary="social.reassurance";
  const secondary=[];
- for(const c of [base,social,...cues])if(c&&c!==primary&&!secondary.includes(c)&&secondary.length<4)secondary.push(c);
+ for(const c of [sceneCue,social,...cues])if(c&&c!==primary&&!secondary.includes(c)&&secondary.length<4)secondary.push(c);
  if(primary==="dialogue.finish-check"){
   const n=secondary.indexOf("dialogue.finish");if(n>=0)secondary.splice(n,1);
  }
