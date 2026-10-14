@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="title description">
+<title id="title">Raindrops</title><desc id="description">Soft rain outside a window, without assuming any baby action</desc>
+<rect width="480" height="360" rx="38" fill="#f7fcff"/>
+<circle cx="410" cy="60" r="68" fill="#fff" opacity=".65"/>
+<ellipse cx="240" cy="310" rx="158" ry="18" fill="#9f84ba" opacity=".12"/>
+
+<circle cx="240" cy="167" r="126" fill="#e9f5ff"/>
+<rect x="124" y="75" width="230" height="213" rx="28" fill="#ffffff" stroke="#6b7492" stroke-width="11"/>
+<rect x="140" y="92" width="198" height="175" rx="15" fill="#c8e5f5"/>
+<path d="M240 93 V266 M141 174 H338" stroke="#fff" stroke-width="9"/>
+<path d="M169 124 L159 151 M202 198 L192 225 M292 112 L280 140 M300 202 L288 231 M252 189 L241 218" stroke="#66b6da" stroke-width="8" stroke-linecap="round"/>
+<path d="M147 249 Q175 207 194 239 Q226 197 264 241 Q293 202 330 237 V265 H147Z" fill="#88bcae"/>
+<path d="M110 291 H368" stroke="#846b86" stroke-width="11" stroke-linecap="round"/>
+
+</svg>

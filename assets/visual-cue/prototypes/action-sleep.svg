@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="title description">
+<title id="title">Sleep peacefully</title><desc id="description">Quiet pillow, moon and stars, no implication of distress</desc>
+<rect width="480" height="360" rx="38" fill="#faf9ff"/>
+<circle cx="410" cy="60" r="68" fill="#fff" opacity=".65"/>
+<ellipse cx="240" cy="310" rx="158" ry="18" fill="#9f84ba" opacity=".12"/>
+
+<circle cx="240" cy="167" r="126" fill="#e8e9ff"/>
+<path d="M316 73 Q290 134 346 158 Q300 201 257 158 Q215 111 254 64 Q269 123 316 73Z" fill="#f8de96" stroke="#dfb86a" stroke-width="5" stroke-linejoin="round"/>
+<rect x="101" y="209" width="275" height="76" rx="35" fill="#a8adea" stroke="#7778ad" stroke-width="9"/>
+<rect x="145" y="190" width="194" height="64" rx="31" fill="#ffffff" stroke="#999ac4" stroke-width="7"/>
+<path d="M185 222 Q203 233 220 222 M260 222 Q278 233 295 222" fill="none" stroke="#a5a3d6" stroke-width="5" stroke-linecap="round"/>
+<path d="M123 118 L127 132 L141 136 L127 140 L123 154 L119 140 L105 136 L119 132Z M354 171 L357 182 L368 185 L357 188 L354 199 L351 188 L339 185 L351 182Z" fill="#e5c7a1"/>
+
+</svg>

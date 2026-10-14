@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="title description">
+<title id="title">A little sip</title><desc id="description">A baby bottle and small sip droplets; a neutral depiction of milk time</desc>
+<rect width="480" height="360" rx="38" fill="#fff8fb"/>
+<circle cx="410" cy="60" r="68" fill="#fff" opacity=".65"/>
+<ellipse cx="240" cy="310" rx="158" ry="18" fill="#9f84ba" opacity=".12"/>
+
+<circle cx="240" cy="164" r="118" fill="#fbe2ed"/>
+<g transform="rotate(-16 240 174)">
+ <rect x="182" y="114" width="116" height="157" rx="42" fill="#fff" stroke="#665778" stroke-width="9"/>
+ <path d="M194 197 H286 V238 Q286 257 268 257 H212 Q194 257 194 238Z" fill="#ffe7a6"/>
+ <path d="M196 195 H284" stroke="#e6bc74" stroke-width="5" stroke-linecap="round"/>
+ <rect x="204" y="103" width="72" height="25" rx="9" fill="#af8bdb" stroke="#665778" stroke-width="6"/>
+ <path d="M224 104 Q224 73 240 69 Q256 75 256 104" fill="#ffd0b8" stroke="#665778" stroke-width="7"/>
+ <path d="M217 154 V167 M241 154 V167 M265 154 V167" stroke="#b79cc9" stroke-width="5" stroke-linecap="round"/>
+</g>
+<path d="M333 115 Q347 91 347 80 M350 151 Q371 146 381 130" fill="none" stroke="#b44e72" stroke-width="8" stroke-linecap="round"/>
+<path d="M121 249 Q124 232 137 225 Q146 237 137 251 Q129 260 121 249Z" fill="#9aceec" opacity=".92"/>
+
+</svg>

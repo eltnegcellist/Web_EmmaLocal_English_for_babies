@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="title description">
+<title id="title">Turn the page</title><desc id="description">A pastel picture book with a visible page-turn corner</desc>
+<rect width="480" height="360" rx="38" fill="#fcf8ff"/>
+<circle cx="410" cy="60" r="68" fill="#fff" opacity=".65"/>
+<ellipse cx="240" cy="310" rx="158" ry="18" fill="#9f84ba" opacity=".12"/>
+
+<circle cx="240" cy="158" r="123" fill="#f5eefe"/>
+<path d="M90 134 Q156 109 233 139 V279 Q164 248 90 269Z" fill="#d8c5fa" stroke="#67587c" stroke-width="9" stroke-linejoin="round"/>
+<path d="M390 134 Q316 112 244 139 V279 Q319 249 390 269Z" fill="#e9b9d9" stroke="#67587c" stroke-width="9" stroke-linejoin="round"/>
+<path d="M240 137 V278" stroke="#67587c" stroke-width="7"/>
+<path d="M291 149 Q340 149 386 154 L345 205 Q326 185 291 178Z" fill="#fffaf5" stroke="#67587c" stroke-width="7" stroke-linejoin="round"/>
+<path d="M147 193 Q171 158 194 193 Q172 223 147 193Z" fill="#ffffff" stroke="#a485d5" stroke-width="5"/>
+<circle cx="337" cy="236" r="14" fill="#ffe3a0"/>
+<path d="M110 238 Q162 229 210 251" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="title description">
+<title id="title">Gentle bath splashes</title><desc id="description">A warm bath tub with calm water and tiny droplets</desc>
+<rect width="480" height="360" rx="38" fill="#f7fcff"/>
+<circle cx="410" cy="60" r="68" fill="#fff" opacity=".65"/>
+<ellipse cx="240" cy="310" rx="158" ry="18" fill="#9f84ba" opacity=".12"/>
+
+<circle cx="240" cy="167" r="120" fill="#dff4fc"/>
+<path d="M126 190 Q240 178 354 190 L342 250 Q326 283 302 284 H178 Q154 282 138 250Z" fill="#a8d5ed" stroke="#566985" stroke-width="9" stroke-linejoin="round"/>
+<path d="M134 189 Q177 168 214 189 T294 188 T349 188" fill="none" stroke="#fdfdfd" stroke-width="9" stroke-linecap="round"/>
+<path d="M154 212 Q240 245 330 211" fill="none" stroke="#76b7db" stroke-width="8" stroke-linecap="round"/>
+<path d="M133 178 Q240 159 348 178" fill="none" stroke="#566985" stroke-width="9" stroke-linecap="round"/>
+<path d="M182 120 Q165 148 174 158 Q190 172 201 156 Q207 147 182 120Z" fill="#83cced"/>
+<path d="M247 91 Q225 122 237 137 Q252 151 264 137 Q273 123 247 91Z" fill="#83cced"/>
+<path d="M317 127 Q301 146 307 159 Q320 172 330 158 Q337 146 317 127Z" fill="#83cced"/>
+<circle cx="363" cy="208" r="12" fill="#e7f7fd" stroke="#8fc5e4" stroke-width="4"/>
+<circle cx="109" cy="211" r="16" fill="#e7f7fd" stroke="#8fc5e4" stroke-width="4"/>
+
+</svg>

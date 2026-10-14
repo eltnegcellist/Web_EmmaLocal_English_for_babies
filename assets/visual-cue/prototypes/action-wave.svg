@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="title description">
+<title id="title">Wave hello</title><desc id="description">An open hand gently waving hello</desc>
+<rect width="480" height="360" rx="38" fill="#f7fef9"/>
+<circle cx="410" cy="60" r="68" fill="#fff" opacity=".65"/>
+<ellipse cx="240" cy="310" rx="158" ry="18" fill="#9f84ba" opacity=".12"/>
+
+<circle cx="240" cy="166" r="123" fill="#edf7ed"/>
+<path d="M199 284 Q179 252 179 227 L173 168 Q170 147 187 146 Q205 147 207 168 L211 100 Q211 82 228 83 Q247 84 247 102 L249 88 Q249 70 266 72 Q283 74 283 93 L284 110 Q285 91 302 94 Q318 97 315 114 L313 155 Q334 139 349 151 Q361 163 346 184 L314 253 Q289 296 244 298Z" fill="#ffdec1" stroke="#725865" stroke-width="9" stroke-linejoin="round"/>
+<path d="M117 127 Q103 151 117 176 M130 96 Q104 111 93 133 M363 95 Q383 116 380 143" fill="none" stroke="#74bdb4" stroke-width="8" stroke-linecap="round"/>
+<path d="M246 103 V162 M283 107 V165 M315 142 V168" stroke="#e6baa4" stroke-width="5" stroke-linecap="round"/>
+
+</svg>
