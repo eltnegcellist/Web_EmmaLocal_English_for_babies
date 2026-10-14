@@ -1,0 +1,32 @@
+name: Visual Cue corpus checks
+on:
+  pull_request:
+    paths:
+      - 'shared/visual-cue-*.json'
+      - 'scripts/*visual-cue*.mjs'
+      - '.github/workflows/visual-cue-corpus.yml'
+      - 'src/lite-response-engine.js'
+      - 'src/interaction/**'
+      - 'shared/play-topics.json'
+  push:
+    branches: [main]
+    paths:
+      - 'shared/visual-cue-*.json'
+      - 'scripts/*visual-cue*.mjs'
+      - '.github/workflows/visual-cue-corpus.yml'
+      - 'src/lite-response-engine.js'
+      - 'src/interaction/**'
+      - 'shared/play-topics.json'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/build-visual-cue-data.mjs --check
+      - run: node scripts/test-visual-cue-data.mjs
+      - run: node scripts/validate-visual-cue-data.mjs
