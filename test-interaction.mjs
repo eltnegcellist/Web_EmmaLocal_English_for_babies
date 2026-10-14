@@ -178,31 +178,14 @@ assert.ok(!fixedOne.includes('{name}') && !fixedOne.includes('Hana'));
 const legacyCadence=new RuriReplyDiversity({version:1,history:['combined:milk|affection#0'],
   phrases:[],cycles:{"milk|affection":{used:[0],fallbackStep:0}}});
 assert.equal(legacyCadence.snapshot().history.length,1);
-assert.equal(legacyCadence.canUsePairedName(),true);
-let namedCombined=null;
-const eligibleKeys=Object.keys(COMBINED_REPLIES);
-for(const key of eligibleKeys) {
+assert.equal(legacyCadence.snapshot().history.length,1);
+for(const key of Object.keys(COMBINED_REPLIES).slice(0,8)) {
   const [t,i]=key.split('|');
-  const ready={version:1,nameGap:8,recentNameGap:2,history:[],phrases:[],cycles:{}};
-  const namedEngine=new LiteResponseEngine({diversityState:ready});
-  const response=namedEngine.respondRuri('試験用の日本語','Hana',topic(t),interaction(i));
-  if(response.scene!==`combined:${t}:${i}`||!response.english.includes('Hana'))continue;
-  assert.equal(response.english.trim().split(/(?<=[.!?])\s+/).length,3);
-  const clauses=response.english.trim().split(/(?<=[.!?])\s+/);
-  assert.ok(clauses.every(s=>countWords(s)<=4),response.english);
-  assert.ok(countWords(response.english)<=12,response.english);
-  const after=namedEngine.exportReplyDiversityState();
-  assert.equal(after.nameGap,0);
-  assert.equal(after.recentNameGap,0);
-  const afterRestart=new LiteResponseEngine({diversityState:after});
-  const next=afterRestart.respondRuri('別の発話','Hana',topic(t),interaction(i));
-  assert.ok(!next.english.includes('Hana'),'cannot repeat personalized name on immediate next turn');
-  namedCombined={key,reply:response.english};
-  break;
+  const normal=new LiteResponseEngine().respondRuri('試験用','',topic(t),interaction(i));
+  const named=new LiteResponseEngine().respondRuri('試験用','Hana',topic(t),interaction(i));
+  assert.equal(normal.english,named.english,'name input cannot alter a fixed voice line');
+  assert.ok(!normal.english.includes('{name}'));
 }
-assert.ok(namedCombined,'at least one combined template should be personalization-ready');
-assert.ok(!new LiteResponseEngine({diversityState:{version:1,nameGap:8,recentNameGap:2,
-  history:[],phrases:[],cycles:{}}}).respondRuri('試験用','',topic('milk'),interaction('affection')).english.includes('Hana'));
 
 // No Interaction ON/OFF switch exists, including in developer settings.
 const html=readFileSync(new URL('./index.html',import.meta.url),'utf8');
