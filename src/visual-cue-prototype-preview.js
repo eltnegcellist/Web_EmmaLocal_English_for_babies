@@ -12,7 +12,7 @@ function renderPreview(list){
   header.append(no,chip);
   const stage=document.createElement('div');stage.className='vc-stage';stage.dataset.cue=item.cueId;stage.dataset.type=item.mode;
   stage.setAttribute('role','img');stage.setAttribute('aria-label',item.title+'。'+item.example);
-  const img=document.createElement('img');img.src='./'+item.image;img.alt='';img.width=480;img.height=360;img.loading='lazy';
+  const img=document.createElement('img');img.src='./'+item.image;img.alt='';img.width=480;img.height=360;img.loading='eager';
   img.addEventListener('error',()=>{stage.textContent='素材の読み込みに失敗しました';stage.setAttribute('role','status');});
   const deco=document.createElement('span');deco.className='vc-decor';deco.setAttribute('aria-hidden','true');
   stage.append(img,deco);
