@@ -88,7 +88,8 @@ jobs:
         with:
           name: kiki-rhythm-audio-ab
           path: .kiki-review/
-          if-no-files-found: warn
+          include-hidden-files: true
+          if-no-files-found: error
           retention-days: 14
       - name: Run actual Web Semantic inference parity baseline
         run: node scripts/semantic-parity-web.mjs --output .semantic-parity/web.json
