@@ -27,7 +27,7 @@ async function initialize() {
    worker.onmessage=e=>{
       const msg=e.data||{};
       if(msg.type==='status') { status(msg.message||'準備中…'); return; }
-      if(msg.type==='ready'){status('Kiki準備完了（製品と同じ声・速度）');log('Ready: '+msg.model+' / '+msg.voice);resolve();return;}
+      if(msg.type==='ready'){status('Kiki準備完了（従来の声・速度）');log('Ready: '+msg.model+' / '+msg.voice);resolve();return;}
       if(msg.type==='error'){
        const job=pending.get(msg.requestId);
        if(job){ pending.delete(msg.requestId);job.reject(new Error(msg.message)); }
@@ -38,7 +38,7 @@ async function initialize() {
       if(msg.type==='audio')job.chunks[msg.index]=msg.blob;
       if(msg.type==='complete'){pending.delete(msg.requestId);try{job.resolve(combineWavs(job.chunks.filter(Boolean)));}catch(error){job.reject(error);}}
    };
-   worker.postMessage({type:'init'});
+   worker.postMessage({type:'init',engine:'kitten-tts'});
  });
  try{await initializing;$('playA').disabled=false;$('playB').disabled=false;}catch(error){initializing=null;worker?.terminate();worker=null;throw error;}
 }
@@ -63,7 +63,7 @@ async function render(id,version,punctuationMode) {
  if(cache.has(key))return cache.get(key);
  const text=c[version==='A'?'before':'after'],requestId=++seq;
  const job=new Promise((resolve,reject)=>{pending.set(requestId,{resolve,reject,chunks:[]});});
- worker.postMessage({type:'speak',requestId,text,punctuationMode});
+ worker.postMessage({type:'speak',requestId,text,punctuationMode,engine:'kitten-tts'});
  const output=await job;cache.set(key,output);
  log(c.label+' / '+version+' / '+punctuationMode+' / '+Math.round(output.size/1024)+'KiB');
  return output;

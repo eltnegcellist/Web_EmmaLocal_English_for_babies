@@ -1,7 +1,9 @@
+import {PrerecordedVoiceBank} from './prerecorded-voice.js?v=20261014-r2';
 const logEl=document.getElementById('log');
 const resultEl=document.getElementById('result');
 const testButton=document.getElementById('test');
 const clearButton=document.getElementById('clear');
+const cachedButton=document.getElementById('cached');
 
 let audioContext=null;
 let worker=null;
@@ -17,6 +19,7 @@ function log(message,data){
 function fail(message,error){
   const detail=error?.message||String(error||'');
   log('ERROR: '+message,detail);
+  if(error?.stack)log('Diagnostic stack',error.stack);
   resultEl.className='bad';
   resultEl.textContent=`失敗: ${message}${detail?' / '+detail:''}`;
 }
@@ -36,7 +39,7 @@ async function ensureAudio(){
 
 function initWorker(){
   if(worker) worker.terminate();
-  worker=new Worker(new URL('./tts-worker.js?v=20260925-stable-tts-r1',import.meta.url),{type:'module'});
+  worker=new Worker(new URL('./tts-worker.js?v=20261014-qwen3-voice1202-r2',import.meta.url),{type:'module'});
   log('TTS Worker created');
   return new Promise((resolve,reject)=>{
     const timeout=setTimeout(()=>reject(new Error('Worker init timeout after 120s')),120000);
@@ -86,7 +89,7 @@ async function runSpeak(){
         reject(new Error(m.message||'TTS generation error'));
       }
     };
-    worker.postMessage({type:'speak',requestId,text:'Hello. Can you hear my voice?'});
+    worker.postMessage({type:'speak',requestId,text:"Hi, I'm Emma. Hello, little one!"});
     log('Speak request sent',{requestId});
   });
 }
@@ -119,7 +122,7 @@ testButton.addEventListener('click',async()=>{
     if(!chunks.length) throw new Error('TTS completed without audio chunks');
     for(let i=0;i<chunks.length;i++) await playBlob(chunks[i],i);
     resultEl.className='ok';
-    resultEl.textContent='成功: Kitten TTS生成・WAVデコード・再生まで完了しました。';
+    resultEl.textContent='成功: 採用音声の読込・AACデコード・再生まで完了しました。';
     log('=== diagnostic success ===');
   }catch(error){
     fail('音声診断',error);
@@ -132,4 +135,22 @@ clearButton.addEventListener('click',()=>{
   logEl.textContent='';
   resultEl.textContent='';
   resultEl.className='';
+});
+
+cachedButton.addEventListener('click',async()=>{
+  cachedButton.disabled=true;
+  testButton.disabled=true;
+  resultEl.textContent='保存音声を確認中…';
+  try{
+    await ensureAudio();
+    const bank=new PrerecordedVoiceBank({fetcher:async()=>{throw new Error('Cache-only diagnostic: network disabled');}});
+    const manifest=await bank.init();
+    const blob=await bank.audioFor("Hi, I'm Emma. Hello, little one!");
+    if(!blob)throw new Error('試聴用音源が保存されていません。');
+    log('Cache-only verified',{clips:manifest.entries.length,generationSeed:manifest.generationSeed,networkRequests:0});
+    await playBlob(blob,0);
+    resultEl.className='ok';
+    resultEl.textContent='成功: 通信を使わず、保存音源の検証・AACデコード・再生まで完了しました。';
+  }catch(error){fail('保存音声の診断（先に通常テストで音源を保存してください）',error);}
+  finally{cachedButton.disabled=false;testButton.disabled=false;}
 });
