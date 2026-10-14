@@ -77,6 +77,17 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           VAD_BROWSER_CHANNEL=chromium npm run test:vad-browser
+      - name: Screenshot 12 Visual Cue prototypes (desktop and mobile)
+        run: node scripts/browser-visual-cue-prototypes.mjs
+      - name: Archive Visual Cue prototype screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-cue-prototype-screenshots
+          path: .visual-cue-results/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
       - name: Generate actual Kiki A/B WAV previews (experimental)
         id: kiki_audio
         timeout-minutes: 15
