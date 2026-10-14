@@ -18,12 +18,13 @@
       "phraseId": "vc_000002",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "Hi, little one! It's nice being together. Hello again!",
-      "primaryCue": "social.greeting",
+      "text": "Hi, little one! Peekaboo! Hello again!",
+      "primaryCue": "action.peekaboo",
       "secondaryCues": [
+        "social.greeting",
         "dialogue.repeat"
       ],
-      "renderPreference": "emma",
+      "renderPreference": "motion",
       "reviewStatus": "generated"
     },
     {
@@ -42,25 +43,26 @@
       "phraseId": "vc_000004",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "You're very special. I'm happy you're here. Hello, sweetheart!",
-      "primaryCue": "social.greeting",
+      "text": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+      "primaryCue": "action.hug",
       "secondaryCues": [
+        "social.greeting",
         "social.affection"
       ],
-      "renderPreference": "emma",
+      "renderPreference": "motion",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000005",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "Hello again, baby! It's lovely seeing you. Shall we say hello?",
-      "primaryCue": "social.greeting",
+      "text": "Hello again, baby! Hello, hello! Wave, wave, wave!",
+      "primaryCue": "action.wave",
       "secondaryCues": [
-        "dialogue.repeat",
-        "dialogue.invitation"
+        "social.greeting",
+        "dialogue.repeat"
       ],
-      "renderPreference": "emma",
+      "renderPreference": "motion",
       "reviewStatus": "generated"
     },
     {
@@ -105,11 +107,9 @@
       "phraseId": "vc_000009",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "I'm glad we're together. Let's spend time here. Hello, sweetie!",
+      "text": "Here we are! You and me! Hello, sweetie!",
       "primaryCue": "social.greeting",
-      "secondaryCues": [
-        "dialogue.invitation"
-      ],
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -130,9 +130,10 @@
       "phraseId": "vc_000011",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "Shall we talk? I'm listening, baby. Your turn!",
-      "primaryCue": "social.greeting",
+      "text": "Let's chat, baby! Ooh, ahh, ooh! Your turn!",
+      "primaryCue": "observed.voice",
       "secondaryCues": [
+        "social.greeting",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -142,10 +143,11 @@
       "phraseId": "vc_000012",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "Tell me more! I'm listening to you. Hello, baby!",
-      "primaryCue": "social.greeting",
+      "text": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+      "primaryCue": "observed.voice",
       "secondaryCues": [
-        "dialogue.repeat"
+        "social.greeting",
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -154,11 +156,10 @@
       "phraseId": "vc_000013",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "You're so precious. I love you lots. Big hugs!",
+      "text": "Sweet little baby! Love, love, love! Big hugs!",
       "primaryCue": "action.hug",
       "secondaryCues": [
-        "social.greeting",
-        "social.affection"
+        "social.greeting"
       ],
       "renderPreference": "motion",
       "reviewStatus": "generated"
@@ -167,10 +168,13 @@
       "phraseId": "vc_000014",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "Hi there, baby! It's lovely seeing you. Hello!",
-      "primaryCue": "social.greeting",
-      "secondaryCues": [],
-      "renderPreference": "emma",
+      "text": "Hi there, baby! Peekaboo! Hello again!",
+      "primaryCue": "action.peekaboo",
+      "secondaryCues": [
+        "social.greeting",
+        "dialogue.repeat"
+      ],
+      "renderPreference": "motion",
       "reviewStatus": "generated"
     },
     {
@@ -201,12 +205,11 @@
       "phraseId": "vc_000017",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "One, two, three! Let's count together. Shall we go again?",
+      "text": "One, two, three! Count with me! Again, again!",
       "primaryCue": "action.count",
       "secondaryCues": [
         "social.greeting",
-        "dialogue.repeat",
-        "dialogue.invitation"
+        "dialogue.repeat"
       ],
       "renderPreference": "motion",
       "reviewStatus": "generated"
@@ -215,11 +218,10 @@
       "phraseId": "vc_000018",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "Shall we wave hello? Hi, hi, hi! Here comes my hand!",
+      "text": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
       "primaryCue": "action.wave",
       "secondaryCues": [
-        "social.greeting",
-        "dialogue.invitation"
+        "social.greeting"
       ],
       "renderPreference": "motion",
       "reviewStatus": "generated"
@@ -255,7 +257,7 @@
       "phraseId": "vc_000021",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "You're my sweet baby. I'm here with you. Big hugs!",
+      "text": "My sweet baby! I'm right here! Big hugs!",
       "primaryCue": "action.hug",
       "secondaryCues": [
         "social.greeting",
@@ -280,9 +282,11 @@
       "phraseId": "vc_000023",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "What do you think? Tell me, little one. I'm listening!",
-      "primaryCue": "social.greeting",
-      "secondaryCues": [],
+      "text": "Ooh, ahh, ooh! Talk to me! I'm listening!",
+      "primaryCue": "observed.voice",
+      "secondaryCues": [
+        "social.greeting"
+      ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -927,7 +931,7 @@
       "phraseId": "vc_000076",
       "sourceKind": "topic",
       "sourceKey": "clothes",
-      "text": "Look at your clothes! Shall we get dressed? One arm first!",
+      "text": "Look, your little shirt! One arm in! Let's get dressed!",
       "primaryCue": "action.dress",
       "secondaryCues": [
         "subject.clothes",
@@ -1658,12 +1662,13 @@
       "phraseId": "vc_000137",
       "sourceKind": "topic",
       "sourceKey": "play",
-      "text": "Ready to play? Shall we start together? Here's a little game!",
-      "primaryCue": "subject.toy",
+      "text": "Ready to play? Peek, peek, peek! Let's have fun!",
+      "primaryCue": "action.peekaboo",
       "secondaryCues": [
+        "subject.toy",
         "dialogue.invitation"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -2086,13 +2091,12 @@
       "phraseId": "vc_000172",
       "sourceKind": "topic",
       "sourceKey": "food",
-      "text": "All done eating? Shall we wipe up? You did well!",
+      "text": "All done eating? Wipe, wipe, wipe! Nice and clean!",
       "primaryCue": "action.wipe",
       "secondaryCues": [
         "subject.food",
         "action.eat",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "dialogue.finish"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -2191,11 +2195,10 @@
       "phraseId": "vc_000180",
       "sourceKind": "topic",
       "sourceKey": "book",
-      "text": "Let's look together. See that picture? What do you notice?",
+      "text": "Look at this! See that picture? Look, look, look!",
       "primaryCue": "subject.book",
       "secondaryCues": [
-        "attention.look",
-        "dialogue.invitation"
+        "attention.look"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -2434,9 +2437,11 @@
       "phraseId": "vc_000199",
       "sourceKind": "interaction",
       "sourceKey": "affection",
-      "text": "You're so sweet. Just as you are. I love you dearly.",
+      "text": "Sweet little baby! Cuddle, cuddle! I love you!",
       "primaryCue": "social.affection",
-      "secondaryCues": [],
+      "secondaryCues": [
+        "action.hug"
+      ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -2444,9 +2449,12 @@
       "phraseId": "vc_000200",
       "sourceKind": "interaction",
       "sourceKey": "affection",
-      "text": "What a sweetheart! You're adorable. Such a lovely child.",
+      "text": "Sweet, sweet baby! Look at you! Big hugs!",
       "primaryCue": "social.affection",
-      "secondaryCues": [],
+      "secondaryCues": [
+        "action.hug",
+        "attention.look"
+      ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -2466,10 +2474,10 @@
       "phraseId": "vc_000202",
       "sourceKind": "interaction",
       "sourceKey": "affection",
-      "text": "You are wonderful. Just as you are. I adore you.",
+      "text": "My lovely baby! Love, love, love! Big hugs!",
       "primaryCue": "social.affection",
       "secondaryCues": [
-        "social.praise"
+        "action.hug"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -2478,7 +2486,7 @@
       "phraseId": "vc_000203",
       "sourceKind": "interaction",
       "sourceKey": "affection",
-      "text": "Hello, sweet one. You are adorable. Yes, you are!",
+      "text": "Hello, sweet one! So, so sweet! Yes, you are!",
       "primaryCue": "social.affection",
       "secondaryCues": [],
       "renderPreference": "emma",
@@ -2508,9 +2516,11 @@
       "phraseId": "vc_000206",
       "sourceKind": "interaction",
       "sourceKey": "praise",
-      "text": "Well done! You did great. I'm proud of you!",
+      "text": "Yay, you did it! Clap, clap, clap! Big cheers, baby!",
       "primaryCue": "social.praise",
-      "secondaryCues": [],
+      "secondaryCues": [
+        "action.clap"
+      ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -2528,9 +2538,10 @@
       "phraseId": "vc_000208",
       "sourceKind": "interaction",
       "sourceKey": "praise",
-      "text": "Great work! Look what you did! I'm proud of you.",
+      "text": "Look at you! Yay, you did it! Clap, clap!",
       "primaryCue": "social.praise",
       "secondaryCues": [
+        "action.clap",
         "attention.look"
       ],
       "renderPreference": "emma",
@@ -2540,7 +2551,7 @@
       "phraseId": "vc_000209",
       "sourceKind": "interaction",
       "sourceKey": "praise",
-      "text": "That's wonderful! You did well. Well done, little one!",
+      "text": "Yay, yay, yay! You did it! Well done, baby!",
       "primaryCue": "social.praise",
       "secondaryCues": [],
       "renderPreference": "emma",
@@ -2550,7 +2561,7 @@
       "phraseId": "vc_000210",
       "sourceKind": "interaction",
       "sourceKey": "praise",
-      "text": "Very good! You did that yourself. How wonderful is that!",
+      "text": "Good job, baby! You did it! Yay, yay!",
       "primaryCue": "social.praise",
       "secondaryCues": [],
       "renderPreference": "emma",
@@ -2560,9 +2571,11 @@
       "phraseId": "vc_000211",
       "sourceKind": "interaction",
       "sourceKey": "praise",
-      "text": "Nicely done! That was lovely. Great job, little one!",
+      "text": "Nicely done! Clap, clap, clap! Good job, baby!",
       "primaryCue": "social.praise",
-      "secondaryCues": [],
+      "secondaryCues": [
+        "action.clap"
+      ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -2675,7 +2688,7 @@
       "phraseId": "vc_000221",
       "sourceKind": "interaction",
       "sourceKey": "achievement",
-      "text": "It's done! You got it! What a lovely moment!",
+      "text": "It's done! You got it! Hooray, hooray!",
       "primaryCue": "social.achievement",
       "secondaryCues": [],
       "renderPreference": "emma",
@@ -2698,7 +2711,7 @@
       "phraseId": "vc_000223",
       "sourceKind": "interaction",
       "sourceKey": "effort",
-      "text": "You're really trying! You're working on it. I can see that!",
+      "text": "Try, try, try! Look at you! I'm here!",
       "primaryCue": "social.effort",
       "secondaryCues": [
         "attention.look"
@@ -2710,12 +2723,9 @@
       "phraseId": "vc_000224",
       "sourceKind": "interaction",
       "sourceKey": "effort",
-      "text": "You're working so hard. I see you trying. Take your time.",
+      "text": "Try, try, try! Little by little! I'm here!",
       "primaryCue": "social.effort",
-      "secondaryCues": [
-        "attention.look",
-        "social.reassurance"
-      ],
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -2723,10 +2733,11 @@
       "phraseId": "vc_000225",
       "sourceKind": "interaction",
       "sourceKey": "effort",
-      "text": "You keep on trying. You're giving it time. I see you.",
+      "text": "Again, again! Little by little! I see you!",
       "primaryCue": "social.effort",
       "secondaryCues": [
-        "attention.look"
+        "attention.look",
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -2735,10 +2746,9 @@
       "phraseId": "vc_000226",
       "sourceKind": "interaction",
       "sourceKey": "effort",
-      "text": "You're trying again. I can see that. I'm here with you.",
+      "text": "One more try! Little by little! I'm here with you!",
       "primaryCue": "social.effort",
       "secondaryCues": [
-        "attention.look",
         "dialogue.repeat",
         "social.reassurance"
       ],
@@ -2749,7 +2759,7 @@
       "phraseId": "vc_000227",
       "sourceKind": "interaction",
       "sourceKey": "effort",
-      "text": "You're really trying. You haven't stopped yet. I'm cheering you on.",
+      "text": "Try, try, try! No rush, baby! I'm here!",
       "primaryCue": "social.effort",
       "secondaryCues": [],
       "renderPreference": "emma",
@@ -2759,10 +2769,11 @@
       "phraseId": "vc_000228",
       "sourceKind": "interaction",
       "sourceKey": "effort",
-      "text": "You've been trying hard. I see that. I'm proud of you.",
+      "text": "Look at you! Trying again! Yay, yay!",
       "primaryCue": "social.effort",
       "secondaryCues": [
-        "attention.look"
+        "attention.look",
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -2771,7 +2782,7 @@
       "phraseId": "vc_000229",
       "sourceKind": "interaction",
       "sourceKey": "effort",
-      "text": "Look at you trying! You're working so hard. I'm right beside you.",
+      "text": "Look at you! Try, try, try! I'm here!",
       "primaryCue": "social.effort",
       "secondaryCues": [
         "attention.look"
@@ -2872,7 +2883,7 @@
       "phraseId": "vc_000238",
       "sourceKind": "interaction",
       "sourceKey": "invitation",
-      "text": "Shall we do this? Come with me. Let's try together.",
+      "text": "Ready, baby? Here we go! You and me!",
       "primaryCue": "dialogue.invitation",
       "secondaryCues": [],
       "renderPreference": "emma",
@@ -2934,7 +2945,7 @@
       "phraseId": "vc_000244",
       "sourceKind": "interaction",
       "sourceKey": "invitation",
-      "text": "Let's try something. Let's do it together. What do you think?",
+      "text": "Let's try it! Here we go! You and me!",
       "primaryCue": "dialogue.invitation",
       "secondaryCues": [],
       "renderPreference": "emma",
@@ -2944,7 +2955,7 @@
       "phraseId": "vc_000245",
       "sourceKind": "interaction",
       "sourceKey": "invitation",
-      "text": "Shall we go? I'll go with you. We can go together.",
+      "text": "Ready to go? Step by step! You and me!",
       "primaryCue": "dialogue.invitation",
       "secondaryCues": [],
       "renderPreference": "emma",
@@ -3151,9 +3162,10 @@
       "phraseId": "vc_000263",
       "sourceKind": "interaction",
       "sourceKey": "finish_check",
-      "text": "Are we finished? Shall we check? What do you think?",
+      "text": "All done now? Let's have a look! All done, baby?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
+        "attention.look",
         "dialogue.finish",
         "dialogue.invitation"
       ],
@@ -3164,12 +3176,11 @@
       "phraseId": "vc_000264",
       "sourceKind": "interaction",
       "sourceKey": "finish_check",
-      "text": "Is it all done? Let's see together. Shall we check?",
+      "text": "All done, baby? Look with me! One last check?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "attention.look",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -3191,11 +3202,12 @@
       "phraseId": "vc_000266",
       "sourceKind": "interaction",
       "sourceKey": "finish_check",
-      "text": "Is that the end? Shall we see? Let's check together.",
+      "text": "All done now? Look with me! One more time?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "attention.look",
-        "dialogue.invitation"
+        "dialogue.repeat",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -3217,9 +3229,10 @@
       "phraseId": "vc_000268",
       "sourceKind": "interaction",
       "sourceKey": "finish_check",
-      "text": "All finished? Let's check together. Are we done now?",
+      "text": "All finished? Let's have a look! All done, baby?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
+        "attention.look",
         "dialogue.finish",
         "dialogue.invitation"
       ],
@@ -3403,10 +3416,10 @@
       "phraseId": "vc_000283",
       "sourceKind": "interaction",
       "sourceKey": "inquiry",
-      "text": "Do you need something? I'm with you. Let's find out.",
+      "text": "Need something, baby? Tell me more! I'm here!",
       "primaryCue": "dialogue.inquiry",
       "secondaryCues": [
-        "dialogue.invitation"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -3548,7 +3561,7 @@
       "phraseId": "vc_000296",
       "sourceKind": "interaction",
       "sourceKey": "repeat",
-      "text": "Shall we try again? Just once more. Ready to go?",
+      "text": "Want another turn? One more try? Here we are!",
       "primaryCue": "dialogue.repeat",
       "secondaryCues": [
         "dialogue.invitation"
@@ -3572,7 +3585,7 @@
       "phraseId": "vc_000298",
       "sourceKind": "interaction",
       "sourceKey": "repeat",
-      "text": "Once more? Let's try together. Shall we go?",
+      "text": "Once more, baby? Ready, steady, go! You and me!",
       "primaryCue": "dialogue.repeat",
       "secondaryCues": [
         "dialogue.invitation"
@@ -3608,7 +3621,7 @@
       "phraseId": "vc_000301",
       "sourceKind": "interaction",
       "sourceKey": "repeat",
-      "text": "Let's have another go. We can try again. Shall we start?",
+      "text": "One more turn! Try it again! Ready, little one?",
       "primaryCue": "dialogue.repeat",
       "secondaryCues": [
         "dialogue.invitation"
@@ -3680,11 +3693,11 @@
       "phraseId": "vc_000307",
       "sourceKind": "interaction",
       "sourceKey": "pause",
-      "text": "Shall we rest? We have time. I'll stay beside you.",
+      "text": "Rest, rest, rest. Cozy little baby. I'm right here.",
       "primaryCue": "dialogue.pause",
       "secondaryCues": [
         "action.sleep",
-        "dialogue.invitation"
+        "social.reassurance"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -3715,7 +3728,7 @@
       "phraseId": "vc_000310",
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
-      "text": "Shall we have milk? Little sips are fine. I'm here with you.",
+      "text": "Milk time, baby! Sip, sip, sip! I'm right here!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
@@ -3729,34 +3742,8 @@
       "phraseId": "vc_000311",
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
-      "text": "Milk is ready now! Shall we try together? Take your time.",
-      "primaryCue": "subject.milk",
-      "secondaryCues": [
-        "dialogue.invitation",
-        "social.reassurance"
-      ],
-      "renderPreference": "illustration",
-      "reviewStatus": "generated"
-    },
-    {
-      "phraseId": "vc_000312",
-      "sourceKind": "combined",
-      "sourceKey": "milk|invitation",
-      "text": "A little milk now. Would you like some? Take your time.",
-      "primaryCue": "subject.milk",
-      "secondaryCues": [
-        "dialogue.invitation",
-        "social.reassurance"
-      ],
-      "renderPreference": "illustration",
-      "reviewStatus": "generated"
-    },
-    {
-      "phraseId": "vc_000313",
-      "sourceKind": "combined",
-      "sourceKey": "milk|invitation",
-      "text": "Shall we sit together? Your milk is waiting. Ready to try?",
-      "primaryCue": "action.sit",
+      "text": "Milk is ready! Sip, sip, sip! Nice and easy!",
+      "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
         "dialogue.invitation"
@@ -3765,10 +3752,35 @@
       "reviewStatus": "generated"
     },
     {
+      "phraseId": "vc_000312",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "text": "A little milk! Want some, baby? One tiny sip!",
+      "primaryCue": "action.sip",
+      "secondaryCues": [
+        "subject.milk",
+        "dialogue.invitation"
+      ],
+      "renderPreference": "composite",
+      "reviewStatus": "generated"
+    },
+    {
+      "phraseId": "vc_000313",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "text": "Milk time, baby! Bottle is ready! Here we go!",
+      "primaryCue": "subject.milk",
+      "secondaryCues": [
+        "dialogue.invitation"
+      ],
+      "renderPreference": "illustration",
+      "reviewStatus": "generated"
+    },
+    {
       "phraseId": "vc_000314",
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
-      "text": "Come closer, little one. Milk time is here. Let's get comfortable.",
+      "text": "Come here, baby! Milk time, milk time! Cozy together!",
       "primaryCue": "subject.milk",
       "secondaryCues": [
         "dialogue.invitation"
@@ -3780,13 +3792,13 @@
       "phraseId": "vc_000315",
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
-      "text": "Feeling hungry, sweetheart? Here's your warm milk. Shall we begin?",
-      "primaryCue": "subject.milk",
+      "text": "Hungry, little one? Milk is ready! One little sip?",
+      "primaryCue": "action.sip",
       "secondaryCues": [
-        "dialogue.invitation",
-        "social.affection"
+        "subject.milk",
+        "dialogue.invitation"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -3820,11 +3832,12 @@
       "phraseId": "vc_000318",
       "sourceKind": "combined",
       "sourceKey": "milk|praise",
-      "text": "You drank some milk! Well done, little one. I'm proud of you.",
+      "text": "Those little sips! Look at you! Good job, baby!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
-        "social.praise"
+        "social.praise",
+        "attention.look"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -3848,20 +3861,7 @@
       "phraseId": "vc_000320",
       "sourceKind": "combined",
       "sourceKey": "milk|praise",
-      "text": "You're drinking your milk! You're doing so well. I'm proud of you.",
-      "primaryCue": "action.sip",
-      "secondaryCues": [
-        "subject.milk",
-        "social.praise"
-      ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
-    },
-    {
-      "phraseId": "vc_000321",
-      "sourceKind": "combined",
-      "sourceKey": "milk|praise",
-      "text": "You took another sip! Look how you're learning. Wonderful little steps!",
+      "text": "Sip, sip, sip! Look at you! Good job, baby!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
@@ -3872,15 +3872,28 @@
       "reviewStatus": "generated"
     },
     {
-      "phraseId": "vc_000322",
+      "phraseId": "vc_000321",
       "sourceKind": "combined",
       "sourceKey": "milk|praise",
-      "text": "Such careful little sips! You worked so well. High five, sweetheart!",
+      "text": "One more sip! Sip, sip, sip! Hooray, baby!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
         "social.praise",
-        "social.affection"
+        "dialogue.repeat"
+      ],
+      "renderPreference": "composite",
+      "reviewStatus": "generated"
+    },
+    {
+      "phraseId": "vc_000322",
+      "sourceKind": "combined",
+      "sourceKey": "milk|praise",
+      "text": "Little sips, baby! Sip, sip, sip! High five!",
+      "primaryCue": "action.sip",
+      "secondaryCues": [
+        "subject.milk",
+        "social.praise"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -3944,12 +3957,10 @@
       "phraseId": "vc_000327",
       "sourceKind": "combined",
       "sourceKey": "milk|achievement",
-      "text": "You finished that milk! You did it! How wonderful is that!",
+      "text": "Milk all gone! You did it! Hooray, hooray!",
       "primaryCue": "subject.milk",
       "secondaryCues": [
-        "social.achievement",
-        "dialogue.finish",
-        "social.praise"
+        "social.achievement"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -4083,12 +4094,13 @@
       "phraseId": "vc_000337",
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
-      "text": "Finished your milk? Shall we check? What do you think?",
+      "text": "Milk all done? One more sip? Let's have a look!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.milk",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "action.sip",
+        "attention.look",
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4097,12 +4109,13 @@
       "phraseId": "vc_000338",
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
-      "text": "Is milk time over? Shall we check? All done now?",
+      "text": "Milk time all done? One more sip? Let me see!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.milk",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "action.sip",
+        "attention.look",
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4111,12 +4124,13 @@
       "phraseId": "vc_000339",
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
-      "text": "Finished your milk yet? Let's check together. Are we finished?",
+      "text": "All done drinking? Look at your bottle! All done, baby?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.milk",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "action.sip",
+        "attention.look",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4155,12 +4169,13 @@
       "phraseId": "vc_000342",
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
-      "text": "Was that your last? Shall we stop now? Let's see together.",
+      "text": "Last little sip? All done now? Let me see!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.milk",
+        "action.sip",
         "attention.look",
-        "dialogue.invitation"
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4184,10 +4199,11 @@
       "phraseId": "vc_000344",
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
-      "text": "More milk or finished? What do you think? We can check.",
+      "text": "More milk, baby? Or all done? One more look?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.milk",
+        "attention.look",
         "dialogue.repeat",
         "dialogue.finish"
       ],
@@ -4238,7 +4254,7 @@
       "phraseId": "vc_000348",
       "sourceKind": "combined",
       "sourceKey": "diaper|invitation",
-      "text": "Shall we change diapers? I'll be gentle. Let's get comfy.",
+      "text": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
       "primaryCue": "subject.diaper",
       "secondaryCues": [
         "dialogue.invitation"
@@ -4250,7 +4266,7 @@
       "phraseId": "vc_000349",
       "sourceKind": "combined",
       "sourceKey": "diaper|invitation",
-      "text": "Fresh diaper coming up! Shall we get ready? I'll be gentle.",
+      "text": "Fresh diaper, baby! Ready to change? Soft, gentle hands!",
       "primaryCue": "subject.diaper",
       "secondaryCues": [
         "dialogue.invitation"
@@ -4286,7 +4302,7 @@
       "phraseId": "vc_000352",
       "sourceKind": "combined",
       "sourceKey": "diaper|invitation",
-      "text": "Shall we get comfy? A clean diaper awaits. Here we go.",
+      "text": "Diaper time, baby! Fresh and clean! Here we go!",
       "primaryCue": "subject.diaper",
       "secondaryCues": [
         "dialogue.invitation"
@@ -4451,12 +4467,12 @@
       "phraseId": "vc_000365",
       "sourceKind": "combined",
       "sourceKey": "diaper|finish_check",
-      "text": "Diaper change finished yet? Shall we check? All done now?",
+      "text": "Fresh diaper on? Wiggle those toes! All done now?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.diaper",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "action.wiggle",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4465,10 +4481,11 @@
       "phraseId": "vc_000366",
       "sourceKind": "combined",
       "sourceKey": "diaper|finish_check",
-      "text": "Finished changing your diaper? Let's check together. Are we finished?",
+      "text": "Clean diaper now? Let's have a look! All done, baby?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.diaper",
+        "attention.look",
         "dialogue.finish",
         "dialogue.invitation"
       ],
@@ -4479,10 +4496,11 @@
       "phraseId": "vc_000367",
       "sourceKind": "combined",
       "sourceKey": "diaper|finish_check",
-      "text": "Is your diaper changed? Shall we check? Almost ready, baby?",
+      "text": "Fresh diaper on? Let's have a look! All clean, baby?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.diaper",
+        "attention.look",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -4535,12 +4553,10 @@
       "phraseId": "vc_000371",
       "sourceKind": "combined",
       "sourceKey": "diaper|finish_check",
-      "text": "Fresh diaper on yet? Shall we get dressed? Are we all done?",
+      "text": "Fresh diaper on? Ready for clothes? One arm first?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.diaper",
-        "action.dress",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -4600,10 +4616,11 @@
       "phraseId": "vc_000376",
       "sourceKind": "combined",
       "sourceKey": "hug|invitation",
-      "text": "Shall we have cuddles? Come into my arms. I'll hold you.",
+      "text": "Want a cuddle? Arms open wide! Come here, sweetheart!",
       "primaryCue": "action.hug",
       "secondaryCues": [
-        "dialogue.invitation"
+        "dialogue.invitation",
+        "social.affection"
       ],
       "renderPreference": "motion",
       "reviewStatus": "generated"
@@ -4688,11 +4705,12 @@
       "phraseId": "vc_000383",
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
-      "text": "I hear your cries. Take your time, baby. I'll hold you.",
+      "text": "I hear you, baby! Come close, sweetheart! I'll hold you.",
       "primaryCue": "observed.cry",
       "secondaryCues": [
         "social.reassurance",
-        "attention.listen"
+        "attention.listen",
+        "social.affection"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -5108,26 +5126,24 @@
       "phraseId": "vc_000416",
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
-      "text": "Shall we read together? Here's our book. Let's look inside.",
-      "primaryCue": "action.read",
+      "text": "Book time, baby! Open the book! Look inside!",
+      "primaryCue": "subject.book",
       "secondaryCues": [
-        "subject.book",
         "dialogue.invitation",
         "attention.look"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000417",
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
-      "text": "Here is our book. Shall we read together? Turn a page.",
+      "text": "Here's our book! Flip, flip, flip! Turn a page!",
       "primaryCue": "action.turn-page",
       "secondaryCues": [
         "subject.book",
-        "dialogue.invitation",
-        "action.read"
+        "dialogue.invitation"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -5136,7 +5152,7 @@
       "phraseId": "vc_000418",
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
-      "text": "A story for you! Look at these pictures. Shall we start?",
+      "text": "Look at this book! See the pictures? Story time, baby!",
       "primaryCue": "subject.book",
       "secondaryCues": [
         "dialogue.invitation",
@@ -5149,12 +5165,11 @@
       "phraseId": "vc_000419",
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
-      "text": "Shall we turn pages? Look, a little rabbit! Let's read together.",
+      "text": "Turn the page! Look, a bunny! Hop, hop, hop!",
       "primaryCue": "action.turn-page",
       "secondaryCues": [
         "subject.book",
         "dialogue.invitation",
-        "action.read",
         "attention.look"
       ],
       "renderPreference": "composite",
@@ -5247,14 +5262,15 @@
       "phraseId": "vc_000426",
       "sourceKind": "combined",
       "sourceKey": "book|repeat",
-      "text": "Look at this book. Shall we go again? I'll stay close.",
-      "primaryCue": "subject.book",
+      "text": "Look at the book! One more page? Let's read, baby!",
+      "primaryCue": "action.read",
       "secondaryCues": [
+        "subject.book",
         "dialogue.repeat",
         "attention.look",
         "dialogue.invitation"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -5275,7 +5291,7 @@
       "phraseId": "vc_000428",
       "sourceKind": "combined",
       "sourceKey": "book|start",
-      "text": "Let's open our book. See the first page? Shall we read?",
+      "text": "Open the book! See page one? Let's read, baby!",
       "primaryCue": "action.read",
       "secondaryCues": [
         "subject.book",
@@ -5290,14 +5306,15 @@
       "phraseId": "vc_000429",
       "sourceKind": "combined",
       "sourceKey": "book|start",
-      "text": "Look at this book. Let's get started. I'm right beside you.",
-      "primaryCue": "subject.book",
+      "text": "See this book? Open, open, open! Let's read together!",
+      "primaryCue": "action.read",
       "secondaryCues": [
+        "subject.book",
         "dialogue.start",
         "attention.look",
         "dialogue.invitation"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -5341,7 +5358,7 @@
       "phraseId": "vc_000433",
       "sourceKind": "combined",
       "sourceKey": "smile|affection",
-      "text": "That little smile shines! You've brightened my morning. My lovely baby.",
+      "text": "Smile, smile, smile! Bright little eyes! My sweet baby!",
       "primaryCue": "observed.smile",
       "secondaryCues": [
         "social.affection"
@@ -5366,11 +5383,10 @@
       "phraseId": "vc_000435",
       "sourceKind": "combined",
       "sourceKey": "smile|affection",
-      "text": "Your grin is wonderful. It makes me smile. Hello, sunshine!",
+      "text": "Big, big smile! I smile too! Hello, sunshine!",
       "primaryCue": "observed.smile",
       "secondaryCues": [
-        "social.affection",
-        "social.praise"
+        "social.affection"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -5392,7 +5408,7 @@
       "phraseId": "vc_000437",
       "sourceKind": "combined",
       "sourceKey": "smile|affection",
-      "text": "That smile feels magical. You're my little joy. What a lovely sight.",
+      "text": "Hello, happy face! Smile, smile, smile! I love you!",
       "primaryCue": "observed.smile",
       "secondaryCues": [
         "social.affection"
@@ -5429,7 +5445,7 @@
       "phraseId": "vc_000440",
       "sourceKind": "combined",
       "sourceKey": "smile|praise",
-      "text": "Look at your smile! You're doing so well. I'm proud of you.",
+      "text": "Smile, smile, smile! Look at those cheeks! Big happy face!",
       "primaryCue": "observed.smile",
       "secondaryCues": [
         "social.praise",
@@ -5442,7 +5458,7 @@
       "phraseId": "vc_000441",
       "sourceKind": "combined",
       "sourceKey": "play|invitation",
-      "text": "Shall we play together? Let's try something. This could be fun.",
+      "text": "Playtime, little one! Pick a toy! Let's have fun!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
         "dialogue.invitation"
@@ -5467,7 +5483,7 @@
       "phraseId": "vc_000443",
       "sourceKind": "combined",
       "sourceKey": "play|invitation",
-      "text": "Shall we play together? Here's our little toy. Let's have fun.",
+      "text": "Here's your little toy! Roll it along! Play with me!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
         "dialogue.invitation"
@@ -5479,11 +5495,11 @@
       "phraseId": "vc_000444",
       "sourceKind": "combined",
       "sourceKey": "play|invitation",
-      "text": "Shall we roll together? Here comes your ball. Catch it, sweetheart!",
+      "text": "Roll, roll, roll! Here comes the ball! Look, baby, look!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
         "dialogue.invitation",
-        "social.affection"
+        "attention.look"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -5570,11 +5586,10 @@
       "phraseId": "vc_000451",
       "sourceKind": "combined",
       "sourceKey": "play|repeat",
-      "text": "Let's play together. Shall we go again? I'll stay close.",
+      "text": "Play it again? Roll, roll, roll! Your turn, baby!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
-        "dialogue.repeat",
-        "dialogue.invitation"
+        "dialogue.repeat"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -5610,7 +5625,7 @@
       "phraseId": "vc_000454",
       "sourceKind": "combined",
       "sourceKey": "play|start",
-      "text": "Let's play together. Let's get started. I'm right beside you.",
+      "text": "A toy for you! Ready, steady, go! Let's play!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
         "dialogue.start",
@@ -5623,11 +5638,12 @@
       "phraseId": "vc_000455",
       "sourceKind": "combined",
       "sourceKey": "food|invitation",
-      "text": "Shall we eat? One little bite. I'll stay close.",
+      "text": "Ready for food? One little bite! Look at your spoon!",
       "primaryCue": "action.eat",
       "secondaryCues": [
         "subject.food",
-        "dialogue.invitation"
+        "dialogue.invitation",
+        "attention.look"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -5689,12 +5705,11 @@
       "phraseId": "vc_000460",
       "sourceKind": "combined",
       "sourceKey": "food|praise",
-      "text": "Look at that bite! You're doing so well. I'm proud of you.",
+      "text": "Yum, yum, yum! One little bite! Yay, baby!",
       "primaryCue": "action.eat",
       "secondaryCues": [
         "subject.food",
-        "social.praise",
-        "attention.look"
+        "social.praise"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -5703,7 +5718,7 @@
       "phraseId": "vc_000461",
       "sourceKind": "combined",
       "sourceKey": "outside|invitation",
-      "text": "Shall we go outside? Let's look around. What do you see?",
+      "text": "Outside, outside! Look at the trees! See the sky?",
       "primaryCue": "subject.outside",
       "secondaryCues": [
         "dialogue.invitation",
@@ -5716,7 +5731,7 @@
       "phraseId": "vc_000462",
       "sourceKind": "combined",
       "sourceKey": "outside|invitation",
-      "text": "Shall we go outside? Let's look all around. I'll stay close.",
+      "text": "Out we go! Look left, look right! I'll hold you.",
       "primaryCue": "subject.outside",
       "secondaryCues": [
         "dialogue.invitation",
@@ -5769,7 +5784,7 @@
       "phraseId": "vc_000466",
       "sourceKind": "combined",
       "sourceKey": "outside|start",
-      "text": "Let's look outside. Let's get started. I'm right beside you.",
+      "text": "Look outside, baby! See those leaves? Let's go!",
       "primaryCue": "subject.outside",
       "secondaryCues": [
         "dialogue.start",
@@ -5783,7 +5798,7 @@
       "phraseId": "vc_000467",
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
-      "text": "Shall we sing? La, la, la! Let's try together.",
+      "text": "Sing with me! La, la, la! Your turn, baby!",
       "primaryCue": "action.sing",
       "secondaryCues": [
         "subject.music",
@@ -5796,21 +5811,20 @@
       "phraseId": "vc_000468",
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
-      "text": "Shall we sing now? Listen to this tune. La, la, la!",
-      "primaryCue": "action.sing",
+      "text": "A little tune! Listen, listen, listen! La, la, la!",
+      "primaryCue": "subject.music",
       "secondaryCues": [
-        "subject.music",
         "dialogue.invitation",
         "attention.listen"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000469",
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
-      "text": "Can you hear that? Shall we sing together? La, la, la!",
+      "text": "Hear that song? Sing along, baby! La, la, la!",
       "primaryCue": "action.sing",
       "secondaryCues": [
         "subject.music",
@@ -5824,11 +5838,12 @@
       "phraseId": "vc_000470",
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
-      "text": "Shall we sing together? I'll hum a tune. Join when you're ready.",
+      "text": "Let's sing, baby! La, la, la! Listen, listen!",
       "primaryCue": "action.sing",
       "secondaryCues": [
         "subject.music",
-        "dialogue.invitation"
+        "dialogue.invitation",
+        "attention.listen"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -5864,11 +5879,12 @@
       "phraseId": "vc_000473",
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
-      "text": "Let's make some sounds. Tap with your hands. Shall we try?",
+      "text": "Tap, tap, tap! Listen to that! Your turn, baby!",
       "primaryCue": "action.tap",
       "secondaryCues": [
         "subject.music",
-        "dialogue.invitation"
+        "dialogue.invitation",
+        "attention.listen"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -5918,12 +5934,10 @@
       "phraseId": "vc_000477",
       "sourceKind": "combined",
       "sourceKey": "music|start",
-      "text": "Listen to our music. Let's get started. I'm right beside you.",
+      "text": "Music time, baby! La, la, la! Here we go!",
       "primaryCue": "subject.music",
       "secondaryCues": [
-        "dialogue.start",
-        "attention.listen",
-        "dialogue.invitation"
+        "dialogue.start"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -5960,12 +5974,11 @@
       "phraseId": "vc_000480",
       "sourceKind": "combined",
       "sourceKey": "music|repeat",
-      "text": "Listen to our music. Shall we go again? I'll stay close.",
+      "text": "Hear that music? Another little song? La, la, la!",
       "primaryCue": "subject.music",
       "secondaryCues": [
         "dialogue.repeat",
-        "attention.listen",
-        "dialogue.invitation"
+        "attention.listen"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -5987,7 +6000,7 @@
       "phraseId": "vc_000482",
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
-      "text": "Shall we try drinking? Just a little sip. I'll stay nearby.",
+      "text": "Ready for a sip? Little by little! Here comes your drink!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.drink",
@@ -6013,20 +6026,20 @@
       "phraseId": "vc_000484",
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
-      "text": "Would you like water? Here's your little cup. Take your time.",
-      "primaryCue": "subject.drink",
+      "text": "Want some water? Here's your little cup! One small sip?",
+      "primaryCue": "action.sip",
       "secondaryCues": [
-        "dialogue.invitation",
-        "social.reassurance"
+        "subject.drink",
+        "dialogue.invitation"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000485",
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
-      "text": "Shall we take sips? Sit here with me. Ready for one?",
+      "text": "Sit with me! Ready for a sip? Here you go!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.drink",
@@ -6052,12 +6065,13 @@
       "phraseId": "vc_000487",
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
-      "text": "Want to drink together? I'll hold your cup. Shall we begin?",
-      "primaryCue": "subject.drink",
+      "text": "Drink time, baby! Sip, sip, sip! Here we go!",
+      "primaryCue": "action.sip",
       "secondaryCues": [
+        "subject.drink",
         "dialogue.invitation"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -6104,12 +6118,14 @@
       "phraseId": "vc_000491",
       "sourceKind": "combined",
       "sourceKey": "hands|praise",
-      "text": "Your little hands move. You're doing so well. I'm proud of you.",
-      "primaryCue": "subject.hands",
+      "text": "Wiggle, wiggle, wiggle! Look at those fingers! Yay, baby!",
+      "primaryCue": "action.wiggle",
       "secondaryCues": [
-        "social.praise"
+        "subject.hands",
+        "social.praise",
+        "attention.look"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -6142,46 +6158,21 @@
       "phraseId": "vc_000494",
       "sourceKind": "combined",
       "sourceKey": "feet|praise",
-      "text": "Look at your feet! You're doing so well. I'm proud of you.",
-      "primaryCue": "subject.feet",
+      "text": "Kick, kick, kick! Look at those toes! Yay, baby!",
+      "primaryCue": "action.kick",
       "secondaryCues": [
+        "subject.feet",
         "social.praise",
         "attention.look"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000495",
       "sourceKind": "combined",
       "sourceKey": "bath|invitation",
-      "text": "Shall we bathe? Let's get ready. I'll be gentle.",
-      "primaryCue": "action.wash",
-      "secondaryCues": [
-        "subject.bath",
-        "dialogue.invitation"
-      ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
-    },
-    {
-      "phraseId": "vc_000496",
-      "sourceKind": "combined",
-      "sourceKey": "bath|invitation",
-      "text": "Shall we bathe now? First, let's feel comfortable. I'm beside you.",
-      "primaryCue": "action.wash",
-      "secondaryCues": [
-        "subject.bath",
-        "dialogue.invitation"
-      ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
-    },
-    {
-      "phraseId": "vc_000497",
-      "sourceKind": "combined",
-      "sourceKey": "bath|invitation",
-      "text": "Here comes warm water. Let's take it gently. Shall we start?",
+      "text": "Bath time, baby! Feel that water! I'll be gentle.",
       "primaryCue": "subject.bath",
       "secondaryCues": [
         "dialogue.invitation"
@@ -6190,14 +6181,43 @@
       "reviewStatus": "generated"
     },
     {
-      "phraseId": "vc_000498",
+      "phraseId": "vc_000496",
       "sourceKind": "combined",
       "sourceKey": "bath|invitation",
-      "text": "Shall we splash softly? The bath feels warm. Let's get ready.",
+      "text": "Bath time, baby! Splish, splash, splash! I'm right here!",
       "primaryCue": "action.splash",
       "secondaryCues": [
         "subject.bath",
-        "dialogue.invitation"
+        "dialogue.invitation",
+        "social.reassurance"
+      ],
+      "renderPreference": "composite",
+      "reviewStatus": "generated"
+    },
+    {
+      "phraseId": "vc_000497",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "text": "Warm water, baby! Splash, splash, splash! Ready to wash?",
+      "primaryCue": "action.splash",
+      "secondaryCues": [
+        "subject.bath",
+        "dialogue.invitation",
+        "action.wash"
+      ],
+      "renderPreference": "composite",
+      "reviewStatus": "generated"
+    },
+    {
+      "phraseId": "vc_000498",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "text": "Splish, splash, splish! Warm water, baby! Ready to wash?",
+      "primaryCue": "action.splash",
+      "secondaryCues": [
+        "subject.bath",
+        "dialogue.invitation",
+        "action.wash"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -6219,7 +6239,7 @@
       "phraseId": "vc_000500",
       "sourceKind": "combined",
       "sourceKey": "bath|invitation",
-      "text": "How about a bath? Your little towel waits. Shall we start?",
+      "text": "Ready for bath time? Towel is waiting! Here comes water!",
       "primaryCue": "subject.bath",
       "secondaryCues": [
         "dialogue.invitation"
@@ -6282,12 +6302,11 @@
       "phraseId": "vc_000505",
       "sourceKind": "combined",
       "sourceKey": "bath|start",
-      "text": "Ready to start bathing? Let's get started. I'm right beside you.",
-      "primaryCue": "action.wash",
+      "text": "Bath time, baby! Splash, splash, splash! Here we go!",
+      "primaryCue": "action.splash",
       "secondaryCues": [
         "subject.bath",
-        "dialogue.start",
-        "dialogue.invitation"
+        "dialogue.start"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -6335,7 +6354,7 @@
       "phraseId": "vc_000509",
       "sourceKind": "combined",
       "sourceKey": "bath|finish_check",
-      "text": "Bath time all done? Shall we get out? Let's check together.",
+      "text": "Bath time all done? Towel time, baby? Let's get dry!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.bath",
@@ -6349,11 +6368,10 @@
       "phraseId": "vc_000510",
       "sourceKind": "combined",
       "sourceKey": "bath|finish_check",
-      "text": "Are we finished bathing? Shall we check? All done now?",
+      "text": "Bath all done? Warm towel ready? Let's get cozy!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.bath",
-        "action.wash",
         "dialogue.finish",
         "dialogue.invitation"
       ],
@@ -6364,12 +6382,11 @@
       "phraseId": "vc_000511",
       "sourceKind": "combined",
       "sourceKey": "bath|finish_check",
-      "text": "Shall we finish bathing? Let's check together. Are we finished?",
+      "text": "One last splash? All washed now? Let's get dry!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.bath",
-        "action.wash",
-        "dialogue.finish",
+        "action.splash",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -6417,13 +6434,12 @@
       "phraseId": "vc_000515",
       "sourceKind": "combined",
       "sourceKey": "clothes|invitation",
-      "text": "Shall we get dressed? Here comes your shirt. One arm first.",
-      "primaryCue": "action.dress",
+      "text": "Here comes your shirt! One arm first! In you go!",
+      "primaryCue": "subject.clothes",
       "secondaryCues": [
-        "subject.clothes",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -6442,7 +6458,7 @@
       "phraseId": "vc_000517",
       "sourceKind": "combined",
       "sourceKey": "clothes|invitation",
-      "text": "Shall we dress together? Come try with me. What do you think?",
+      "text": "Clothes on, baby! One little arm! Here we go!",
       "primaryCue": "action.dress",
       "secondaryCues": [
         "subject.clothes",
@@ -6482,13 +6498,14 @@
       "phraseId": "vc_000520",
       "sourceKind": "combined",
       "sourceKey": "clothes|start",
-      "text": "Dressing time starts now! Let's get started. I'm right beside you.",
-      "primaryCue": "subject.clothes",
+      "text": "Shirt time, baby! One arm first! Let's get dressed!",
+      "primaryCue": "action.dress",
       "secondaryCues": [
+        "subject.clothes",
         "dialogue.start",
         "dialogue.invitation"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -6551,13 +6568,12 @@
       "phraseId": "vc_000525",
       "sourceKind": "combined",
       "sourceKey": "clothes|finish_check",
-      "text": "Are your clothes on? Shall we check? All done now?",
+      "text": "Clothes all on? See that shirt? All done, baby?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.clothes",
-        "action.dress",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "attention.look",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -6566,12 +6582,13 @@
       "phraseId": "vc_000526",
       "sourceKind": "combined",
       "sourceKey": "clothes|finish_check",
-      "text": "Dressing finished now? Let's check together. Are we finished?",
+      "text": "All dressed now? Look at your shirt! All done, baby?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.clothes",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "action.dress",
+        "attention.look",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -6605,26 +6622,26 @@
       "phraseId": "vc_000529",
       "sourceKind": "combined",
       "sourceKey": "clothes|praise",
-      "text": "Look at your clothes! You're doing so well. I'm proud of you.",
-      "primaryCue": "subject.clothes",
+      "text": "One arm in! Other arm in! All dressed, baby!",
+      "primaryCue": "action.dress",
       "secondaryCues": [
-        "social.praise",
-        "attention.look"
+        "subject.clothes",
+        "social.praise"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000530",
       "sourceKind": "combined",
       "sourceKey": "hands|invitation",
-      "text": "Shall we hold hands? Give me your hand. I'm right here.",
-      "primaryCue": "subject.hands",
+      "text": "Little hands together! Squeeze, squeeze, squeeze! Hold my hand!",
+      "primaryCue": "action.squeeze",
       "secondaryCues": [
-        "dialogue.invitation",
-        "social.reassurance"
+        "subject.hands",
+        "dialogue.invitation"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -6644,12 +6661,14 @@
       "phraseId": "vc_000532",
       "sourceKind": "combined",
       "sourceKey": "hands|invitation",
-      "text": "Let's play with fingers! Come try with me. What do you think?",
-      "primaryCue": "subject.hands",
+      "text": "See those fingers? Wiggle, wiggle, wiggle! Let's play!",
+      "primaryCue": "action.wiggle",
       "secondaryCues": [
-        "dialogue.invitation"
+        "subject.hands",
+        "dialogue.invitation",
+        "attention.look"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -6669,12 +6688,11 @@
       "phraseId": "vc_000534",
       "sourceKind": "combined",
       "sourceKey": "hands|effort",
-      "text": "Look at your hands! I see you trying. I'm here with you.",
+      "text": "Look at those hands! Reach, reach, reach! I'm here, baby!",
       "primaryCue": "subject.hands",
       "secondaryCues": [
         "social.effort",
-        "attention.look",
-        "social.reassurance"
+        "attention.look"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -6683,13 +6701,14 @@
       "phraseId": "vc_000535",
       "sourceKind": "combined",
       "sourceKey": "hands|effort",
-      "text": "See your little fingers? You're working so hard. I'll stay beside you.",
-      "primaryCue": "subject.hands",
+      "text": "Little fingers! Wiggle, wiggle, wiggle! I'm right here!",
+      "primaryCue": "action.wiggle",
       "secondaryCues": [
+        "subject.hands",
         "social.effort",
-        "attention.look"
+        "social.reassurance"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -6708,12 +6727,10 @@
       "phraseId": "vc_000537",
       "sourceKind": "combined",
       "sourceKey": "hands|achievement",
-      "text": "Look at those hands! You did it! How wonderful is that!",
+      "text": "Those little hands! You did it! High five, baby!",
       "primaryCue": "subject.hands",
       "secondaryCues": [
-        "social.achievement",
-        "attention.look",
-        "social.praise"
+        "social.achievement"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -6736,7 +6753,7 @@
       "phraseId": "vc_000539",
       "sourceKind": "combined",
       "sourceKey": "feet|invitation",
-      "text": "Shall we move toes? Let's kick together. One, two, three!",
+      "text": "One, two, three! Kick, kick, kick! Little baby toes!",
       "primaryCue": "action.kick",
       "secondaryCues": [
         "subject.feet",
@@ -6764,7 +6781,7 @@
       "phraseId": "vc_000541",
       "sourceKind": "combined",
       "sourceKey": "feet|invitation",
-      "text": "Shall we kick together? Come try with me. What do you think?",
+      "text": "Kick, kick, kick! Little baby feet! Here we go!",
       "primaryCue": "action.kick",
       "secondaryCues": [
         "subject.feet",
@@ -6777,7 +6794,21 @@
       "phraseId": "vc_000542",
       "sourceKind": "combined",
       "sourceKey": "feet|effort",
-      "text": "Your feet are moving. I see you trying. That's hard work.",
+      "text": "Those feet are moving! Kick, kick, kick! Look at you!",
+      "primaryCue": "action.kick",
+      "secondaryCues": [
+        "subject.feet",
+        "social.effort",
+        "attention.look"
+      ],
+      "renderPreference": "composite",
+      "reviewStatus": "generated"
+    },
+    {
+      "phraseId": "vc_000543",
+      "sourceKind": "combined",
+      "sourceKey": "feet|effort",
+      "text": "Look at your feet! Stretch those toes! I'm here, baby!",
       "primaryCue": "subject.feet",
       "secondaryCues": [
         "social.effort",
@@ -6787,29 +6818,17 @@
       "reviewStatus": "generated"
     },
     {
-      "phraseId": "vc_000543",
-      "sourceKind": "combined",
-      "sourceKey": "feet|effort",
-      "text": "Look at those feet! I see you trying. I'm here with you.",
-      "primaryCue": "subject.feet",
-      "secondaryCues": [
-        "social.effort",
-        "attention.look",
-        "social.reassurance"
-      ],
-      "renderPreference": "illustration",
-      "reviewStatus": "generated"
-    },
-    {
       "phraseId": "vc_000544",
       "sourceKind": "combined",
       "sourceKey": "feet|effort",
-      "text": "Your little feet move! You're working so hard. I'll stay beside you.",
-      "primaryCue": "subject.feet",
+      "text": "Little feet! Kick, kick, kick! I'm right here!",
+      "primaryCue": "action.kick",
       "secondaryCues": [
-        "social.effort"
+        "subject.feet",
+        "social.effort",
+        "social.reassurance"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -6829,14 +6848,14 @@
       "phraseId": "vc_000546",
       "sourceKind": "combined",
       "sourceKey": "feet|achievement",
-      "text": "Look at your feet! You did it! How wonderful is that!",
-      "primaryCue": "subject.feet",
+      "text": "Look at your feet! You kicked! Yay, little toes!",
+      "primaryCue": "action.kick",
       "secondaryCues": [
+        "subject.feet",
         "social.achievement",
-        "attention.look",
-        "social.praise"
+        "attention.look"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -6869,7 +6888,7 @@
       "phraseId": "vc_000549",
       "sourceKind": "combined",
       "sourceKey": "voice|affection",
-      "text": "What a little voice! I love being together. You're so precious.",
+      "text": "Ooh, ahh, ooh! Sweet little voice! I love you!",
       "primaryCue": "observed.voice",
       "secondaryCues": [
         "social.affection"
@@ -6923,10 +6942,11 @@
       "phraseId": "vc_000553",
       "sourceKind": "combined",
       "sourceKey": "voice|praise",
-      "text": "You're making sweet sounds! You're doing so well. I'm proud of you.",
+      "text": "Ooh, ahh, ooh! I hear you! Hooray, baby!",
       "primaryCue": "observed.voice",
       "secondaryCues": [
-        "social.praise"
+        "social.praise",
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -6962,11 +6982,11 @@
       "phraseId": "vc_000556",
       "sourceKind": "combined",
       "sourceKey": "voice|repeat",
-      "text": "Shall we make sounds? Shall we go again? I'll stay close.",
+      "text": "Ooh, ahh, ooh! One more sound? I'll listen, baby!",
       "primaryCue": "observed.voice",
       "secondaryCues": [
         "dialogue.repeat",
-        "dialogue.invitation"
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7002,7 +7022,7 @@
       "phraseId": "vc_000559",
       "sourceKind": "combined",
       "sourceKey": "voice|start",
-      "text": "Ready for little noises? Let's get started. I'm right beside you.",
+      "text": "Ready for a sound? Ooh, ahh, ooh! Your turn, baby!",
       "primaryCue": "observed.voice",
       "secondaryCues": [
         "dialogue.start",
@@ -7028,11 +7048,11 @@
       "phraseId": "vc_000561",
       "sourceKind": "combined",
       "sourceKey": "tummy|inquiry",
-      "text": "Is your tummy okay? What do you notice? Let's find out together.",
+      "text": "Little tummy! How's it feeling? I'm right here!",
       "primaryCue": "subject.tummy",
       "secondaryCues": [
         "dialogue.inquiry",
-        "dialogue.invitation"
+        "social.reassurance"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -7041,13 +7061,11 @@
       "phraseId": "vc_000562",
       "sourceKind": "combined",
       "sourceKey": "tummy|inquiry",
-      "text": "What about your tummy? Let's take a look. I'm listening, sweetheart.",
+      "text": "How's your tummy? Little gurgle sounds! I'm right here!",
       "primaryCue": "subject.tummy",
       "secondaryCues": [
         "dialogue.inquiry",
-        "attention.look",
-        "dialogue.invitation",
-        "social.affection"
+        "social.reassurance"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -7155,14 +7173,14 @@
       "phraseId": "vc_000570",
       "sourceKind": "combined",
       "sourceKey": "rain|inquiry",
-      "text": "Hear the rain outside? What do you notice? Let's find out together.",
-      "primaryCue": "subject.rain",
+      "text": "Hear the rain? Drip, drop, drip! Tap, tap, tap!",
+      "primaryCue": "action.tap",
       "secondaryCues": [
+        "subject.rain",
         "dialogue.inquiry",
-        "attention.listen",
-        "dialogue.invitation"
+        "attention.listen"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -7196,7 +7214,7 @@
       "phraseId": "vc_000573",
       "sourceKind": "combined",
       "sourceKey": "rain|affection",
-      "text": "Listen to the rain! I love being together. You're so precious.",
+      "text": "Listen, listen! Drip, drop, drip! I love you!",
       "primaryCue": "subject.rain",
       "secondaryCues": [
         "social.affection",
@@ -7223,11 +7241,10 @@
       "phraseId": "vc_000575",
       "sourceKind": "combined",
       "sourceKey": "rain|invitation",
-      "text": "Shall we watch rain? Look at the window. Listen with me.",
+      "text": "Rain on the window! Drip, drop, drip! Listen with me!",
       "primaryCue": "subject.rain",
       "secondaryCues": [
         "dialogue.invitation",
-        "attention.look",
         "attention.listen"
       ],
       "renderPreference": "illustration",
@@ -7250,20 +7267,21 @@
       "phraseId": "vc_000577",
       "sourceKind": "combined",
       "sourceKey": "rain|invitation",
-      "text": "Want to watch raindrops? Come try with me. What do you think?",
-      "primaryCue": "subject.rain",
+      "text": "See those raindrops? Tap, tap, tap! Look with me!",
+      "primaryCue": "action.tap",
       "secondaryCues": [
+        "subject.rain",
         "dialogue.invitation",
         "attention.look"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000578",
       "sourceKind": "combined",
       "sourceKey": "sun|invitation",
-      "text": "Shall we see sunshine? Let's look outside. So bright today!",
+      "text": "Hello, sunshine! Look outside, baby! So bright today!",
       "primaryCue": "subject.sun",
       "secondaryCues": [
         "dialogue.invitation",
@@ -7289,7 +7307,7 @@
       "phraseId": "vc_000580",
       "sourceKind": "combined",
       "sourceKey": "sun|invitation",
-      "text": "Shall we watch sunlight? Come try with me. What do you think?",
+      "text": "Look at the sun! Bright, bright, bright! See that light?",
       "primaryCue": "subject.sun",
       "secondaryCues": [
         "dialogue.invitation",
@@ -7315,11 +7333,10 @@
       "phraseId": "vc_000582",
       "sourceKind": "combined",
       "sourceKey": "sun|affection",
-      "text": "Look at the sunshine! I love being together. You're so precious.",
+      "text": "Hello, sunshine! Bright, bright, bright! Hello, baby!",
       "primaryCue": "subject.sun",
       "secondaryCues": [
-        "social.affection",
-        "attention.look"
+        "social.affection"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -7354,11 +7371,11 @@
       "phraseId": "vc_000585",
       "sourceKind": "combined",
       "sourceKey": "sun|inquiry",
-      "text": "Where is the sunshine? What do you notice? Let's find out together.",
+      "text": "Where's the sunshine? Look up, baby! There it is!",
       "primaryCue": "subject.sun",
       "secondaryCues": [
         "dialogue.inquiry",
-        "dialogue.invitation"
+        "attention.look"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -7405,12 +7422,10 @@
       "phraseId": "vc_000589",
       "sourceKind": "combined",
       "sourceKey": "smile|repeat",
-      "text": "Shall we smile together? Look at my face. I'll smile too.",
+      "text": "Here's my smile! Smile, smile, smile! I smile too!",
       "primaryCue": "observed.smile",
       "secondaryCues": [
-        "dialogue.repeat",
-        "attention.look",
-        "dialogue.invitation"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7432,11 +7447,11 @@
       "phraseId": "vc_000591",
       "sourceKind": "combined",
       "sourceKey": "wake|inquiry",
-      "text": "Hello, little one! What do you notice? Let's find out together.",
+      "text": "Hello, baby! Eyes wide open! Look, look, look!",
       "primaryCue": "action.wake",
       "secondaryCues": [
         "dialogue.inquiry",
-        "dialogue.invitation"
+        "attention.look"
       ],
       "renderPreference": "motion",
       "reviewStatus": "generated"
@@ -7487,11 +7502,10 @@
       "phraseId": "vc_000595",
       "sourceKind": "combined",
       "sourceKey": "wake|start",
-      "text": "It's awake time! Let's get started. I'm right beside you.",
+      "text": "Good morning, baby! Eyes open wide! Hello, hello!",
       "primaryCue": "action.wake",
       "secondaryCues": [
-        "dialogue.start",
-        "dialogue.invitation"
+        "dialogue.start"
       ],
       "renderPreference": "motion",
       "reviewStatus": "generated"
@@ -7500,13 +7514,12 @@
       "phraseId": "vc_000596",
       "sourceKind": "combined",
       "sourceKey": "sleep|finish_check",
-      "text": "Is nap time finished? Shall we get up? I'm right here.",
+      "text": "Nap time all done? Hello, little eyes! Hello again, baby!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "action.sleep",
-        "dialogue.finish",
-        "dialogue.invitation",
-        "social.reassurance"
+        "dialogue.repeat",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7515,12 +7528,11 @@
       "phraseId": "vc_000597",
       "sourceKind": "combined",
       "sourceKey": "sleep|finish_check",
-      "text": "All done resting? Shall we check? All done now?",
+      "text": "Had a nice rest? Eyes open now? Hello again, baby!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "action.sleep",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7529,12 +7541,13 @@
       "phraseId": "vc_000598",
       "sourceKind": "combined",
       "sourceKey": "sleep|finish_check",
-      "text": "Is your rest finished? Let's check together. Are we finished?",
+      "text": "All done resting? More cozy time? I'm right here!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "action.sleep",
+        "dialogue.repeat",
         "dialogue.finish",
-        "dialogue.invitation"
+        "social.reassurance"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7599,13 +7612,14 @@
       "phraseId": "vc_000603",
       "sourceKind": "combined",
       "sourceKey": "cry|affection",
-      "text": "I hear your tears. I love being together. You're so precious.",
-      "primaryCue": "observed.cry",
+      "text": "Oh, sweet baby! I hear you! Big, soft hugs!",
+      "primaryCue": "action.hug",
       "secondaryCues": [
+        "observed.cry",
         "social.affection",
         "attention.listen"
       ],
-      "renderPreference": "emma",
+      "renderPreference": "motion",
       "reviewStatus": "generated"
     },
     {
@@ -7652,10 +7666,11 @@
       "phraseId": "vc_000607",
       "sourceKind": "combined",
       "sourceKey": "play|praise",
-      "text": "You're playing right now! You're doing so well. I'm proud of you.",
+      "text": "Play, play, play! Look at that toy! Yay, baby!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
-        "social.praise"
+        "social.praise",
+        "attention.look"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -7664,7 +7679,7 @@
       "phraseId": "vc_000608",
       "sourceKind": "combined",
       "sourceKey": "play|achievement",
-      "text": "You got the toy! You did it! What a moment.",
+      "text": "Got the toy! You did it! Yay, yay!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
         "social.achievement"
@@ -7676,14 +7691,14 @@
       "phraseId": "vc_000609",
       "sourceKind": "combined",
       "sourceKey": "play|achievement",
-      "text": "Look at that play! You did it! How wonderful is that!",
-      "primaryCue": "subject.toy",
+      "text": "Yay, yay, yay! You did it! Let's clap together!",
+      "primaryCue": "action.clap",
       "secondaryCues": [
+        "subject.toy",
         "social.achievement",
-        "attention.look",
-        "social.praise"
+        "dialogue.invitation"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -7704,11 +7719,10 @@
       "phraseId": "vc_000611",
       "sourceKind": "combined",
       "sourceKey": "play|effort",
-      "text": "You're working on this! I see you trying. No need to hurry.",
+      "text": "Try, try, try! No rush, baby! I'm here!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
-        "social.effort",
-        "attention.look"
+        "social.effort"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -7729,10 +7743,11 @@
       "phraseId": "vc_000613",
       "sourceKind": "combined",
       "sourceKey": "play|effort",
-      "text": "You're trying this game. You're working so hard. I'll stay beside you.",
+      "text": "Try, try, try! That little toy! I'm right here!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
-        "social.effort"
+        "social.effort",
+        "social.reassurance"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -7756,14 +7771,14 @@
       "phraseId": "vc_000615",
       "sourceKind": "combined",
       "sourceKey": "book|inquiry",
-      "text": "See the book? What do you notice? Let's find out together.",
-      "primaryCue": "subject.book",
+      "text": "See this book? Look, look, look! Turn the page!",
+      "primaryCue": "action.turn-page",
       "secondaryCues": [
+        "subject.book",
         "dialogue.inquiry",
-        "attention.look",
-        "dialogue.invitation"
+        "attention.look"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -7811,10 +7826,11 @@
       "phraseId": "vc_000619",
       "sourceKind": "combined",
       "sourceKey": "book|praise",
-      "text": "You're looking at pictures! You're doing so well. I'm proud of you.",
+      "text": "Look, look, look! A pretty picture! Yay, baby!",
       "primaryCue": "subject.book",
       "secondaryCues": [
-        "social.praise"
+        "social.praise",
+        "attention.look"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -7850,10 +7866,11 @@
       "phraseId": "vc_000622",
       "sourceKind": "combined",
       "sourceKey": "music|praise",
-      "text": "I heard your music! You're doing so well. I'm proud of you.",
+      "text": "La, la, la! I hear you! Yay, baby!",
       "primaryCue": "subject.music",
       "secondaryCues": [
-        "social.praise"
+        "social.praise",
+        "attention.listen"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -7898,13 +7915,13 @@
       "phraseId": "vc_000626",
       "sourceKind": "combined",
       "sourceKey": "food|finish_check",
-      "text": "Are we done eating? Shall we wipe up? Let's check together.",
+      "text": "All done eating? Wipe, wipe, wipe? Let's have a look!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.food",
         "action.wipe",
         "action.eat",
-        "dialogue.invitation"
+        "attention.look"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7913,13 +7930,12 @@
       "phraseId": "vc_000627",
       "sourceKind": "combined",
       "sourceKey": "food|finish_check",
-      "text": "Finished eating yet? Shall we check? All done now?",
+      "text": "Food all done? One last bite? All done, baby?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.food",
         "action.eat",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7928,13 +7944,13 @@
       "phraseId": "vc_000628",
       "sourceKind": "combined",
       "sourceKey": "food|finish_check",
-      "text": "Are we done eating? Let's check together. Are we finished?",
+      "text": "All done eating? Last little bite? Let's have a look!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.food",
         "action.eat",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "attention.look",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -8078,12 +8094,13 @@
       "phraseId": "vc_000639",
       "sourceKind": "combined",
       "sourceKey": "drink|finish_check",
-      "text": "Finished your drink? Shall we check? All done now?",
+      "text": "Drink all done? One more sip? Let's have a look!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.drink",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "action.sip",
+        "attention.look",
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -8132,12 +8149,13 @@
       "phraseId": "vc_000643",
       "sourceKind": "combined",
       "sourceKey": "drink|praise",
-      "text": "You had your drink! You're doing so well. I'm proud of you.",
-      "primaryCue": "subject.drink",
+      "text": "One little sip! Sip, sip, sip! Good job, baby!",
+      "primaryCue": "action.sip",
       "secondaryCues": [
+        "subject.drink",
         "social.praise"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -8195,7 +8213,7 @@
       "phraseId": "vc_000648",
       "sourceKind": "combined",
       "sourceKey": "hug|affection",
-      "text": "A cuddle for you! I love being together. You're so precious.",
+      "text": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
       "primaryCue": "action.hug",
       "secondaryCues": [
         "social.affection"
@@ -8283,11 +8301,11 @@
       "phraseId": "vc_000655",
       "sourceKind": "combined",
       "sourceKey": "hug|praise",
-      "text": "Look at your cuddle! You're doing so well. I'm proud of you.",
+      "text": "Cuddle time! Snuggle, snuggle, snuggle! I love you!",
       "primaryCue": "action.hug",
       "secondaryCues": [
         "social.praise",
-        "attention.look"
+        "social.affection"
       ],
       "renderPreference": "motion",
       "reviewStatus": "generated"
@@ -8527,13 +8545,12 @@
       "phraseId": "vc_000673",
       "sourceKind": "combined",
       "sourceKey": "play|pause",
-      "text": "Shall we stop playing? We can rest together. I'm here, sweetheart.",
+      "text": "Playtime all done? Bye-bye, toy! Time to rest!",
       "primaryCue": "action.sleep",
       "secondaryCues": [
         "subject.toy",
         "dialogue.pause",
-        "dialogue.invitation",
-        "social.affection"
+        "dialogue.finish"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -8910,13 +8927,11 @@
       "phraseId": "vc_000701",
       "sourceKind": "combined",
       "sourceKey": "milk|effort",
-      "text": "You're trying little sips. Look at you! Take your time.",
+      "text": "Little sips, baby! Sip by sip! You're doing fine!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
-        "social.effort",
-        "attention.look",
-        "social.reassurance"
+        "social.effort"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -8925,13 +8940,12 @@
       "phraseId": "vc_000702",
       "sourceKind": "combined",
       "sourceKey": "milk|effort",
-      "text": "Little sips take practice. I see you trying. I'm right here.",
+      "text": "One little sip! Then another? You can rest!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
         "social.effort",
-        "attention.look",
-        "social.reassurance"
+        "action.sleep"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -8940,12 +8954,11 @@
       "phraseId": "vc_000703",
       "sourceKind": "combined",
       "sourceKey": "milk|effort",
-      "text": "You're taking little sips. That looks gentle. Take your time.",
+      "text": "Sip, sip, sip! Nice little sips! No need to rush!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
-        "social.effort",
-        "social.reassurance"
+        "social.effort"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -8954,13 +8967,13 @@
       "phraseId": "vc_000704",
       "sourceKind": "combined",
       "sourceKey": "food|effort",
-      "text": "You're trying that food. I see you trying. I'll stay close.",
-      "primaryCue": "subject.food",
+      "text": "One tiny bite! Taste, taste, taste! I'll stay close!",
+      "primaryCue": "action.eat",
       "secondaryCues": [
-        "social.effort",
-        "attention.look"
+        "subject.food",
+        "social.effort"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -8981,11 +8994,10 @@
       "phraseId": "vc_000706",
       "sourceKind": "combined",
       "sourceKey": "food|effort",
-      "text": "You're trying new food. I can see that. We'll go slowly.",
+      "text": "New food, baby! Just a little taste! Nice and gentle!",
       "primaryCue": "subject.food",
       "secondaryCues": [
-        "social.effort",
-        "attention.look"
+        "social.effort"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -9049,12 +9061,11 @@
       "phraseId": "vc_000711",
       "sourceKind": "combined",
       "sourceKey": "sun|start",
-      "text": "The sunshine is coming. Shall we look outside? Look at that glow.",
+      "text": "Here comes the sun! Warm, warm light! Look outside, baby!",
       "primaryCue": "subject.sun",
       "secondaryCues": [
         "dialogue.start",
-        "attention.look",
-        "dialogue.invitation"
+        "attention.look"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -9306,19 +9317,20 @@
       "phraseId": "vc_000730",
       "sourceKind": "combined",
       "sourceKey": "milk|affection",
-      "text": "Your milk is here. You're so precious. I'm right beside you.",
-      "primaryCue": "subject.milk",
+      "text": "Milk is here! Sip, sip, sip! I love you!",
+      "primaryCue": "action.sip",
       "secondaryCues": [
+        "subject.milk",
         "social.affection"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000731",
       "sourceKind": "combined",
       "sourceKey": "milk|affection",
-      "text": "Sweet milk moments together. Your little eyes sparkle. You're my sunshine.",
+      "text": "Milk time, sweetheart! Sweet little eyes! I love you!",
       "primaryCue": "subject.milk",
       "secondaryCues": [
         "social.affection"
@@ -9449,13 +9461,13 @@
       "phraseId": "vc_000741",
       "sourceKind": "combined",
       "sourceKey": "milk|inquiry",
-      "text": "Need another little sip? Shall we try? Take your time.",
+      "text": "One more little sip? Want to try? I'm with you!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
         "dialogue.inquiry",
-        "dialogue.invitation",
-        "social.reassurance"
+        "dialogue.repeat",
+        "dialogue.invitation"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -9491,14 +9503,13 @@
       "phraseId": "vc_000744",
       "sourceKind": "combined",
       "sourceKey": "milk|repeat",
-      "text": "Want more milk? Just a little? Take your time.",
-      "primaryCue": "subject.milk",
+      "text": "More milk, baby? One tiny sip? We can wait!",
+      "primaryCue": "action.sip",
       "secondaryCues": [
-        "dialogue.repeat",
-        "dialogue.invitation",
-        "social.reassurance"
+        "subject.milk",
+        "dialogue.repeat"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -9517,32 +9528,34 @@
       "phraseId": "vc_000746",
       "sourceKind": "combined",
       "sourceKey": "drink|affection",
-      "text": "Here is your drink. You're so precious. I love you.",
-      "primaryCue": "subject.drink",
+      "text": "Here is your drink! Sip, sip, sip! I love you!",
+      "primaryCue": "action.sip",
       "secondaryCues": [
+        "subject.drink",
         "social.affection"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000747",
       "sourceKind": "combined",
       "sourceKey": "drink|affection",
-      "text": "A little drink together. You're my sweetheart. I'm right here.",
-      "primaryCue": "subject.drink",
+      "text": "A little drink! Sip, sip, sip! I'm right here!",
+      "primaryCue": "action.sip",
       "secondaryCues": [
+        "subject.drink",
         "social.affection",
         "social.reassurance"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000748",
       "sourceKind": "combined",
       "sourceKey": "drink|inquiry",
-      "text": "Would you like water? Are you thirsty? Let's find out.",
+      "text": "Want some water? Feeling thirsty, baby? Here you go!",
       "primaryCue": "subject.drink",
       "secondaryCues": [
         "dialogue.inquiry",
@@ -9713,7 +9726,7 @@
       "phraseId": "vc_000761",
       "sourceKind": "combined",
       "sourceKey": "sleep|affection",
-      "text": "Time for cozy rest. You're so precious. I love you.",
+      "text": "Cozy little baby! Night-night, night-night! I love you!",
       "primaryCue": "action.sleep",
       "secondaryCues": [
         "social.affection"
@@ -9838,7 +9851,7 @@
       "phraseId": "vc_000771",
       "sourceKind": "combined",
       "sourceKey": "wake|reassurance",
-      "text": "You woke up. Take your time. I'm beside you.",
+      "text": "Good morning, baby! Eyes open wide! I'm beside you!",
       "primaryCue": "action.wake",
       "secondaryCues": [
         "social.reassurance"
@@ -9875,25 +9888,27 @@
       "phraseId": "vc_000774",
       "sourceKind": "combined",
       "sourceKey": "bath|affection",
-      "text": "Little splashes together. You're so precious. I love you.",
-      "primaryCue": "subject.bath",
+      "text": "Splash, splash, splash! My sweet baby! I love you!",
+      "primaryCue": "action.splash",
       "secondaryCues": [
+        "subject.bath",
         "social.affection"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
       "phraseId": "vc_000775",
       "sourceKind": "combined",
       "sourceKey": "bath|praise",
-      "text": "You're splashing water! That's so lovely. Well done, sweetheart.",
-      "primaryCue": "subject.bath",
+      "text": "Splash, splash, splash! Look at you! Yay, baby!",
+      "primaryCue": "action.splash",
       "secondaryCues": [
+        "subject.bath",
         "social.praise",
-        "social.affection"
+        "attention.look"
       ],
-      "renderPreference": "illustration",
+      "renderPreference": "composite",
       "reviewStatus": "generated"
     },
     {
@@ -10020,12 +10035,12 @@
       "phraseId": "vc_000785",
       "sourceKind": "combined",
       "sourceKey": "book|affection",
-      "text": "A book together. You're so precious. Let's turn pages.",
+      "text": "Book time, baby! Look, look, look! Turn the page!",
       "primaryCue": "action.turn-page",
       "secondaryCues": [
         "subject.book",
         "social.affection",
-        "dialogue.invitation"
+        "attention.look"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -10075,12 +10090,13 @@
       "phraseId": "vc_000789",
       "sourceKind": "combined",
       "sourceKey": "book|finish_check",
-      "text": "Is that the end? Shall we check? One last look.",
+      "text": "One last page? Story all done? Let's look again!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.book",
         "attention.look",
-        "dialogue.invitation"
+        "dialogue.repeat",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10101,7 +10117,7 @@
       "phraseId": "vc_000791",
       "sourceKind": "combined",
       "sourceKey": "music|affection",
-      "text": "Music time together. You're so precious. I'm right here.",
+      "text": "Music time, baby! La, la, la! I'm right here!",
       "primaryCue": "subject.music",
       "secondaryCues": [
         "social.affection",
@@ -10128,13 +10144,12 @@
       "phraseId": "vc_000793",
       "sourceKind": "combined",
       "sourceKey": "music|finish_check",
-      "text": "Is our song done? Shall we listen? One more note?",
+      "text": "Song all done? One more note? La, la, la!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.music",
-        "attention.listen",
         "dialogue.repeat",
-        "dialogue.invitation"
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10143,12 +10158,12 @@
       "phraseId": "vc_000794",
       "sourceKind": "combined",
       "sourceKey": "music|finish_check",
-      "text": "Song finished already? Let's check together. Is that all?",
+      "text": "Song all done? One more tune? La, la, la!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.music",
-        "dialogue.finish",
-        "dialogue.invitation"
+        "dialogue.repeat",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10172,10 +10187,11 @@
       "phraseId": "vc_000796",
       "sourceKind": "combined",
       "sourceKey": "play|affection",
-      "text": "Playtime with you. You're so precious. I love you.",
+      "text": "Playtime, baby! Look, look, look! I love you!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
-        "social.affection"
+        "social.affection",
+        "attention.look"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -10197,7 +10213,7 @@
       "phraseId": "vc_000798",
       "sourceKind": "combined",
       "sourceKey": "play|affection",
-      "text": "We play together. You're my sweetheart. What lovely fun!",
+      "text": "Play, play, play! My sweet baby! What fun!",
       "primaryCue": "subject.toy",
       "secondaryCues": [
         "social.affection"
@@ -10224,11 +10240,12 @@
       "phraseId": "vc_000800",
       "sourceKind": "combined",
       "sourceKey": "play|finish_check",
-      "text": "Is playtime over? Shall we stop? We can choose.",
+      "text": "Playtime all done? One more game? Bye-bye, toy!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.toy",
-        "dialogue.invitation"
+        "dialogue.repeat",
+        "dialogue.finish"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10237,10 +10254,11 @@
       "phraseId": "vc_000801",
       "sourceKind": "combined",
       "sourceKey": "play|finish_check",
-      "text": "All finished playing? One last turn? What do you think?",
+      "text": "Playtime all done? One more turn? Bye-bye, toy!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.toy",
+        "dialogue.repeat",
         "dialogue.finish"
       ],
       "renderPreference": "emma",
@@ -10250,7 +10268,7 @@
       "phraseId": "vc_000802",
       "sourceKind": "combined",
       "sourceKey": "clothes|affection",
-      "text": "Your cozy little clothes. You're so precious. I love you.",
+      "text": "Cozy little clothes! Soft, soft, soft! I love you!",
       "primaryCue": "subject.clothes",
       "secondaryCues": [
         "social.affection"

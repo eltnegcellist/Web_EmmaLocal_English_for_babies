@@ -13,7 +13,7 @@
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 2,
-      "text": "Hi, little one! It's nice being together. Hello again!"
+      "text": "Hi, little one! Peekaboo! Hello again!"
     },
     {
       "phraseId": "vc_000003",
@@ -27,14 +27,14 @@
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 4,
-      "text": "You're very special. I'm happy you're here. Hello, sweetheart!"
+      "text": "My sweet baby! Big, big hugs! Hello, sweetheart!"
     },
     {
       "phraseId": "vc_000005",
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 5,
-      "text": "Hello again, baby! It's lovely seeing you. Shall we say hello?"
+      "text": "Hello again, baby! Hello, hello! Wave, wave, wave!"
     },
     {
       "phraseId": "vc_000006",
@@ -62,7 +62,7 @@
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 9,
-      "text": "I'm glad we're together. Let's spend time here. Hello, sweetie!"
+      "text": "Here we are! You and me! Hello, sweetie!"
     },
     {
       "phraseId": "vc_000010",
@@ -76,28 +76,28 @@
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 11,
-      "text": "Shall we talk? I'm listening, baby. Your turn!"
+      "text": "Let's chat, baby! Ooh, ahh, ooh! Your turn!"
     },
     {
       "phraseId": "vc_000012",
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 12,
-      "text": "Tell me more! I'm listening to you. Hello, baby!"
+      "text": "Ooh, ahh, ooh! I hear you! Hello, baby!"
     },
     {
       "phraseId": "vc_000013",
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 13,
-      "text": "You're so precious. I love you lots. Big hugs!"
+      "text": "Sweet little baby! Love, love, love! Big hugs!"
     },
     {
       "phraseId": "vc_000014",
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 14,
-      "text": "Hi there, baby! It's lovely seeing you. Hello!"
+      "text": "Hi there, baby! Peekaboo! Hello again!"
     },
     {
       "phraseId": "vc_000015",
@@ -118,14 +118,14 @@
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 17,
-      "text": "One, two, three! Let's count together. Shall we go again?"
+      "text": "One, two, three! Count with me! Again, again!"
     },
     {
       "phraseId": "vc_000018",
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 18,
-      "text": "Shall we wave hello? Hi, hi, hi! Here comes my hand!"
+      "text": "Wave hello, baby! Hi, hi, hi! My hand says hello!"
     },
     {
       "phraseId": "vc_000019",
@@ -146,7 +146,7 @@
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 21,
-      "text": "You're my sweet baby. I'm here with you. Big hugs!"
+      "text": "My sweet baby! I'm right here! Big hugs!"
     },
     {
       "phraseId": "vc_000022",
@@ -160,7 +160,7 @@
       "sourceKind": "topic",
       "sourceKey": "generic",
       "sourceIndex": 23,
-      "text": "What do you think? Tell me, little one. I'm listening!"
+      "text": "Ooh, ahh, ooh! Talk to me! I'm listening!"
     },
     {
       "phraseId": "vc_000024",
@@ -531,7 +531,7 @@
       "sourceKind": "topic",
       "sourceKey": "clothes",
       "sourceIndex": 6,
-      "text": "Look at your clothes! Shall we get dressed? One arm first!"
+      "text": "Look, your little shirt! One arm in! Let's get dressed!"
     },
     {
       "phraseId": "vc_000077",
@@ -958,7 +958,7 @@
       "sourceKind": "topic",
       "sourceKey": "play",
       "sourceIndex": 3,
-      "text": "Ready to play? Shall we start together? Here's a little game!"
+      "text": "Ready to play? Peek, peek, peek! Let's have fun!"
     },
     {
       "phraseId": "vc_000138",
@@ -1203,7 +1203,7 @@
       "sourceKind": "topic",
       "sourceKey": "food",
       "sourceIndex": 6,
-      "text": "All done eating? Shall we wipe up? You did well!"
+      "text": "All done eating? Wipe, wipe, wipe! Nice and clean!"
     },
     {
       "phraseId": "vc_000173",
@@ -1259,7 +1259,7 @@
       "sourceKind": "topic",
       "sourceKey": "book",
       "sourceIndex": 6,
-      "text": "Let's look together. See that picture? What do you notice?"
+      "text": "Look at this! See that picture? Look, look, look!"
     },
     {
       "phraseId": "vc_000181",
@@ -1392,14 +1392,14 @@
       "sourceKind": "interaction",
       "sourceKey": "affection",
       "sourceIndex": 2,
-      "text": "You're so sweet. Just as you are. I love you dearly."
+      "text": "Sweet little baby! Cuddle, cuddle! I love you!"
     },
     {
       "phraseId": "vc_000200",
       "sourceKind": "interaction",
       "sourceKey": "affection",
       "sourceIndex": 3,
-      "text": "What a sweetheart! You're adorable. Such a lovely child."
+      "text": "Sweet, sweet baby! Look at you! Big hugs!"
     },
     {
       "phraseId": "vc_000201",
@@ -1413,14 +1413,14 @@
       "sourceKind": "interaction",
       "sourceKey": "affection",
       "sourceIndex": 5,
-      "text": "You are wonderful. Just as you are. I adore you."
+      "text": "My lovely baby! Love, love, love! Big hugs!"
     },
     {
       "phraseId": "vc_000203",
       "sourceKind": "interaction",
       "sourceKey": "affection",
       "sourceIndex": 6,
-      "text": "Hello, sweet one. You are adorable. Yes, you are!"
+      "text": "Hello, sweet one! So, so sweet! Yes, you are!"
     },
     {
       "phraseId": "vc_000204",
@@ -1441,7 +1441,7 @@
       "sourceKind": "interaction",
       "sourceKey": "praise",
       "sourceIndex": 1,
-      "text": "Well done! You did great. I'm proud of you!"
+      "text": "Yay, you did it! Clap, clap, clap! Big cheers, baby!"
     },
     {
       "phraseId": "vc_000207",
@@ -1455,28 +1455,28 @@
       "sourceKind": "interaction",
       "sourceKey": "praise",
       "sourceIndex": 3,
-      "text": "Great work! Look what you did! I'm proud of you."
+      "text": "Look at you! Yay, you did it! Clap, clap!"
     },
     {
       "phraseId": "vc_000209",
       "sourceKind": "interaction",
       "sourceKey": "praise",
       "sourceIndex": 4,
-      "text": "That's wonderful! You did well. Well done, little one!"
+      "text": "Yay, yay, yay! You did it! Well done, baby!"
     },
     {
       "phraseId": "vc_000210",
       "sourceKind": "interaction",
       "sourceKey": "praise",
       "sourceIndex": 5,
-      "text": "Very good! You did that yourself. How wonderful is that!"
+      "text": "Good job, baby! You did it! Yay, yay!"
     },
     {
       "phraseId": "vc_000211",
       "sourceKind": "interaction",
       "sourceKey": "praise",
       "sourceIndex": 6,
-      "text": "Nicely done! That was lovely. Great job, little one!"
+      "text": "Nicely done! Clap, clap, clap! Good job, baby!"
     },
     {
       "phraseId": "vc_000212",
@@ -1546,7 +1546,7 @@
       "sourceKind": "interaction",
       "sourceKey": "achievement",
       "sourceIndex": 8,
-      "text": "It's done! You got it! What a lovely moment!"
+      "text": "It's done! You got it! Hooray, hooray!"
     },
     {
       "phraseId": "vc_000222",
@@ -1560,49 +1560,49 @@
       "sourceKind": "interaction",
       "sourceKey": "effort",
       "sourceIndex": 2,
-      "text": "You're really trying! You're working on it. I can see that!"
+      "text": "Try, try, try! Look at you! I'm here!"
     },
     {
       "phraseId": "vc_000224",
       "sourceKind": "interaction",
       "sourceKey": "effort",
       "sourceIndex": 3,
-      "text": "You're working so hard. I see you trying. Take your time."
+      "text": "Try, try, try! Little by little! I'm here!"
     },
     {
       "phraseId": "vc_000225",
       "sourceKind": "interaction",
       "sourceKey": "effort",
       "sourceIndex": 4,
-      "text": "You keep on trying. You're giving it time. I see you."
+      "text": "Again, again! Little by little! I see you!"
     },
     {
       "phraseId": "vc_000226",
       "sourceKind": "interaction",
       "sourceKey": "effort",
       "sourceIndex": 5,
-      "text": "You're trying again. I can see that. I'm here with you."
+      "text": "One more try! Little by little! I'm here with you!"
     },
     {
       "phraseId": "vc_000227",
       "sourceKind": "interaction",
       "sourceKey": "effort",
       "sourceIndex": 6,
-      "text": "You're really trying. You haven't stopped yet. I'm cheering you on."
+      "text": "Try, try, try! No rush, baby! I'm here!"
     },
     {
       "phraseId": "vc_000228",
       "sourceKind": "interaction",
       "sourceKey": "effort",
       "sourceIndex": 7,
-      "text": "You've been trying hard. I see that. I'm proud of you."
+      "text": "Look at you! Trying again! Yay, yay!"
     },
     {
       "phraseId": "vc_000229",
       "sourceKind": "interaction",
       "sourceKey": "effort",
       "sourceIndex": 8,
-      "text": "Look at you trying! You're working so hard. I'm right beside you."
+      "text": "Look at you! Try, try, try! I'm here!"
     },
     {
       "phraseId": "vc_000230",
@@ -1665,7 +1665,7 @@
       "sourceKind": "interaction",
       "sourceKey": "invitation",
       "sourceIndex": 1,
-      "text": "Shall we do this? Come with me. Let's try together."
+      "text": "Ready, baby? Here we go! You and me!"
     },
     {
       "phraseId": "vc_000239",
@@ -1707,14 +1707,14 @@
       "sourceKind": "interaction",
       "sourceKey": "invitation",
       "sourceIndex": 7,
-      "text": "Let's try something. Let's do it together. What do you think?"
+      "text": "Let's try it! Here we go! You and me!"
     },
     {
       "phraseId": "vc_000245",
       "sourceKind": "interaction",
       "sourceKey": "invitation",
       "sourceIndex": 8,
-      "text": "Shall we go? I'll go with you. We can go together."
+      "text": "Ready to go? Step by step! You and me!"
     },
     {
       "phraseId": "vc_000246",
@@ -1840,14 +1840,14 @@
       "sourceKind": "interaction",
       "sourceKey": "finish_check",
       "sourceIndex": 2,
-      "text": "Are we finished? Shall we check? What do you think?"
+      "text": "All done now? Let's have a look! All done, baby?"
     },
     {
       "phraseId": "vc_000264",
       "sourceKind": "interaction",
       "sourceKey": "finish_check",
       "sourceIndex": 3,
-      "text": "Is it all done? Let's see together. Shall we check?"
+      "text": "All done, baby? Look with me! One last check?"
     },
     {
       "phraseId": "vc_000265",
@@ -1861,7 +1861,7 @@
       "sourceKind": "interaction",
       "sourceKey": "finish_check",
       "sourceIndex": 5,
-      "text": "Is that the end? Shall we see? Let's check together."
+      "text": "All done now? Look with me! One more time?"
     },
     {
       "phraseId": "vc_000267",
@@ -1875,7 +1875,7 @@
       "sourceKind": "interaction",
       "sourceKey": "finish_check",
       "sourceIndex": 7,
-      "text": "All finished? Let's check together. Are we done now?"
+      "text": "All finished? Let's have a look! All done, baby?"
     },
     {
       "phraseId": "vc_000269",
@@ -1980,7 +1980,7 @@
       "sourceKind": "interaction",
       "sourceKey": "inquiry",
       "sourceIndex": 6,
-      "text": "Do you need something? I'm with you. Let's find out."
+      "text": "Need something, baby? Tell me more! I'm here!"
     },
     {
       "phraseId": "vc_000284",
@@ -2071,7 +2071,7 @@
       "sourceKind": "interaction",
       "sourceKey": "repeat",
       "sourceIndex": 3,
-      "text": "Shall we try again? Just once more. Ready to go?"
+      "text": "Want another turn? One more try? Here we are!"
     },
     {
       "phraseId": "vc_000297",
@@ -2085,7 +2085,7 @@
       "sourceKind": "interaction",
       "sourceKey": "repeat",
       "sourceIndex": 5,
-      "text": "Once more? Let's try together. Shall we go?"
+      "text": "Once more, baby? Ready, steady, go! You and me!"
     },
     {
       "phraseId": "vc_000299",
@@ -2106,7 +2106,7 @@
       "sourceKind": "interaction",
       "sourceKey": "repeat",
       "sourceIndex": 8,
-      "text": "Let's have another go. We can try again. Shall we start?"
+      "text": "One more turn! Try it again! Ready, little one?"
     },
     {
       "phraseId": "vc_000302",
@@ -2148,7 +2148,7 @@
       "sourceKind": "interaction",
       "sourceKey": "pause",
       "sourceIndex": 6,
-      "text": "Shall we rest? We have time. I'll stay beside you."
+      "text": "Rest, rest, rest. Cozy little baby. I'm right here."
     },
     {
       "phraseId": "vc_000308",
@@ -2169,42 +2169,42 @@
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
       "sourceIndex": 1,
-      "text": "Shall we have milk? Little sips are fine. I'm here with you."
+      "text": "Milk time, baby! Sip, sip, sip! I'm right here!"
     },
     {
       "phraseId": "vc_000311",
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
       "sourceIndex": 2,
-      "text": "Milk is ready now! Shall we try together? Take your time."
+      "text": "Milk is ready! Sip, sip, sip! Nice and easy!"
     },
     {
       "phraseId": "vc_000312",
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
       "sourceIndex": 3,
-      "text": "A little milk now. Would you like some? Take your time."
+      "text": "A little milk! Want some, baby? One tiny sip!"
     },
     {
       "phraseId": "vc_000313",
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
       "sourceIndex": 4,
-      "text": "Shall we sit together? Your milk is waiting. Ready to try?"
+      "text": "Milk time, baby! Bottle is ready! Here we go!"
     },
     {
       "phraseId": "vc_000314",
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
       "sourceIndex": 5,
-      "text": "Come closer, little one. Milk time is here. Let's get comfortable."
+      "text": "Come here, baby! Milk time, milk time! Cozy together!"
     },
     {
       "phraseId": "vc_000315",
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
       "sourceIndex": 6,
-      "text": "Feeling hungry, sweetheart? Here's your warm milk. Shall we begin?"
+      "text": "Hungry, little one? Milk is ready! One little sip?"
     },
     {
       "phraseId": "vc_000316",
@@ -2225,7 +2225,7 @@
       "sourceKind": "combined",
       "sourceKey": "milk|praise",
       "sourceIndex": 1,
-      "text": "You drank some milk! Well done, little one. I'm proud of you."
+      "text": "Those little sips! Look at you! Good job, baby!"
     },
     {
       "phraseId": "vc_000319",
@@ -2239,21 +2239,21 @@
       "sourceKind": "combined",
       "sourceKey": "milk|praise",
       "sourceIndex": 3,
-      "text": "You're drinking your milk! You're doing so well. I'm proud of you."
+      "text": "Sip, sip, sip! Look at you! Good job, baby!"
     },
     {
       "phraseId": "vc_000321",
       "sourceKind": "combined",
       "sourceKey": "milk|praise",
       "sourceIndex": 4,
-      "text": "You took another sip! Look how you're learning. Wonderful little steps!"
+      "text": "One more sip! Sip, sip, sip! Hooray, baby!"
     },
     {
       "phraseId": "vc_000322",
       "sourceKind": "combined",
       "sourceKey": "milk|praise",
       "sourceIndex": 5,
-      "text": "Such careful little sips! You worked so well. High five, sweetheart!"
+      "text": "Little sips, baby! Sip, sip, sip! High five!"
     },
     {
       "phraseId": "vc_000323",
@@ -2288,7 +2288,7 @@
       "sourceKind": "combined",
       "sourceKey": "milk|achievement",
       "sourceIndex": 2,
-      "text": "You finished that milk! You did it! How wonderful is that!"
+      "text": "Milk all gone! You did it! Hooray, hooray!"
     },
     {
       "phraseId": "vc_000328",
@@ -2358,21 +2358,21 @@
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
       "sourceIndex": 1,
-      "text": "Finished your milk? Shall we check? What do you think?"
+      "text": "Milk all done? One more sip? Let's have a look!"
     },
     {
       "phraseId": "vc_000338",
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
       "sourceIndex": 2,
-      "text": "Is milk time over? Shall we check? All done now?"
+      "text": "Milk time all done? One more sip? Let me see!"
     },
     {
       "phraseId": "vc_000339",
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
       "sourceIndex": 3,
-      "text": "Finished your milk yet? Let's check together. Are we finished?"
+      "text": "All done drinking? Look at your bottle! All done, baby?"
     },
     {
       "phraseId": "vc_000340",
@@ -2393,7 +2393,7 @@
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
       "sourceIndex": 6,
-      "text": "Was that your last? Shall we stop now? Let's see together."
+      "text": "Last little sip? All done now? Let me see!"
     },
     {
       "phraseId": "vc_000343",
@@ -2407,7 +2407,7 @@
       "sourceKind": "combined",
       "sourceKey": "milk|finish_check",
       "sourceIndex": 8,
-      "text": "More milk or finished? What do you think? We can check."
+      "text": "More milk, baby? Or all done? One more look?"
     },
     {
       "phraseId": "vc_000345",
@@ -2435,14 +2435,14 @@
       "sourceKind": "combined",
       "sourceKey": "diaper|invitation",
       "sourceIndex": 1,
-      "text": "Shall we change diapers? I'll be gentle. Let's get comfy."
+      "text": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!"
     },
     {
       "phraseId": "vc_000349",
       "sourceKind": "combined",
       "sourceKey": "diaper|invitation",
       "sourceIndex": 2,
-      "text": "Fresh diaper coming up! Shall we get ready? I'll be gentle."
+      "text": "Fresh diaper, baby! Ready to change? Soft, gentle hands!"
     },
     {
       "phraseId": "vc_000350",
@@ -2463,7 +2463,7 @@
       "sourceKind": "combined",
       "sourceKey": "diaper|invitation",
       "sourceIndex": 5,
-      "text": "Shall we get comfy? A clean diaper awaits. Here we go."
+      "text": "Diaper time, baby! Fresh and clean! Here we go!"
     },
     {
       "phraseId": "vc_000353",
@@ -2554,21 +2554,21 @@
       "sourceKind": "combined",
       "sourceKey": "diaper|finish_check",
       "sourceIndex": 2,
-      "text": "Diaper change finished yet? Shall we check? All done now?"
+      "text": "Fresh diaper on? Wiggle those toes! All done now?"
     },
     {
       "phraseId": "vc_000366",
       "sourceKind": "combined",
       "sourceKey": "diaper|finish_check",
       "sourceIndex": 3,
-      "text": "Finished changing your diaper? Let's check together. Are we finished?"
+      "text": "Clean diaper now? Let's have a look! All done, baby?"
     },
     {
       "phraseId": "vc_000367",
       "sourceKind": "combined",
       "sourceKey": "diaper|finish_check",
       "sourceIndex": 4,
-      "text": "Is your diaper changed? Shall we check? Almost ready, baby?"
+      "text": "Fresh diaper on? Let's have a look! All clean, baby?"
     },
     {
       "phraseId": "vc_000368",
@@ -2596,7 +2596,7 @@
       "sourceKind": "combined",
       "sourceKey": "diaper|finish_check",
       "sourceIndex": 8,
-      "text": "Fresh diaper on yet? Shall we get dressed? Are we all done?"
+      "text": "Fresh diaper on? Ready for clothes? One arm first?"
     },
     {
       "phraseId": "vc_000372",
@@ -2631,7 +2631,7 @@
       "sourceKind": "combined",
       "sourceKey": "hug|invitation",
       "sourceIndex": 2,
-      "text": "Shall we have cuddles? Come into my arms. I'll hold you."
+      "text": "Want a cuddle? Arms open wide! Come here, sweetheart!"
     },
     {
       "phraseId": "vc_000377",
@@ -2680,7 +2680,7 @@
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "sourceIndex": 3,
-      "text": "I hear your cries. Take your time, baby. I'll hold you."
+      "text": "I hear you, baby! Come close, sweetheart! I'll hold you."
     },
     {
       "phraseId": "vc_000384",
@@ -2911,28 +2911,28 @@
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
       "sourceIndex": 1,
-      "text": "Shall we read together? Here's our book. Let's look inside."
+      "text": "Book time, baby! Open the book! Look inside!"
     },
     {
       "phraseId": "vc_000417",
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
       "sourceIndex": 2,
-      "text": "Here is our book. Shall we read together? Turn a page."
+      "text": "Here's our book! Flip, flip, flip! Turn a page!"
     },
     {
       "phraseId": "vc_000418",
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
       "sourceIndex": 3,
-      "text": "A story for you! Look at these pictures. Shall we start?"
+      "text": "Look at this book! See the pictures? Story time, baby!"
     },
     {
       "phraseId": "vc_000419",
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
       "sourceIndex": 4,
-      "text": "Shall we turn pages? Look, a little rabbit! Let's read together."
+      "text": "Turn the page! Look, a bunny! Hop, hop, hop!"
     },
     {
       "phraseId": "vc_000420",
@@ -2981,7 +2981,7 @@
       "sourceKind": "combined",
       "sourceKey": "book|repeat",
       "sourceIndex": 3,
-      "text": "Look at this book. Shall we go again? I'll stay close."
+      "text": "Look at the book! One more page? Let's read, baby!"
     },
     {
       "phraseId": "vc_000427",
@@ -2995,14 +2995,14 @@
       "sourceKind": "combined",
       "sourceKey": "book|start",
       "sourceIndex": 2,
-      "text": "Let's open our book. See the first page? Shall we read?"
+      "text": "Open the book! See page one? Let's read, baby!"
     },
     {
       "phraseId": "vc_000429",
       "sourceKind": "combined",
       "sourceKey": "book|start",
       "sourceIndex": 3,
-      "text": "Look at this book. Let's get started. I'm right beside you."
+      "text": "See this book? Open, open, open! Let's read together!"
     },
     {
       "phraseId": "vc_000430",
@@ -3030,7 +3030,7 @@
       "sourceKind": "combined",
       "sourceKey": "smile|affection",
       "sourceIndex": 4,
-      "text": "That little smile shines! You've brightened my morning. My lovely baby."
+      "text": "Smile, smile, smile! Bright little eyes! My sweet baby!"
     },
     {
       "phraseId": "vc_000434",
@@ -3044,7 +3044,7 @@
       "sourceKind": "combined",
       "sourceKey": "smile|affection",
       "sourceIndex": 6,
-      "text": "Your grin is wonderful. It makes me smile. Hello, sunshine!"
+      "text": "Big, big smile! I smile too! Hello, sunshine!"
     },
     {
       "phraseId": "vc_000436",
@@ -3058,7 +3058,7 @@
       "sourceKind": "combined",
       "sourceKey": "smile|affection",
       "sourceIndex": 8,
-      "text": "That smile feels magical. You're my little joy. What a lovely sight."
+      "text": "Hello, happy face! Smile, smile, smile! I love you!"
     },
     {
       "phraseId": "vc_000438",
@@ -3079,14 +3079,14 @@
       "sourceKind": "combined",
       "sourceKey": "smile|praise",
       "sourceIndex": 3,
-      "text": "Look at your smile! You're doing so well. I'm proud of you."
+      "text": "Smile, smile, smile! Look at those cheeks! Big happy face!"
     },
     {
       "phraseId": "vc_000441",
       "sourceKind": "combined",
       "sourceKey": "play|invitation",
       "sourceIndex": 1,
-      "text": "Shall we play together? Let's try something. This could be fun."
+      "text": "Playtime, little one! Pick a toy! Let's have fun!"
     },
     {
       "phraseId": "vc_000442",
@@ -3100,14 +3100,14 @@
       "sourceKind": "combined",
       "sourceKey": "play|invitation",
       "sourceIndex": 3,
-      "text": "Shall we play together? Here's our little toy. Let's have fun."
+      "text": "Here's your little toy! Roll it along! Play with me!"
     },
     {
       "phraseId": "vc_000444",
       "sourceKind": "combined",
       "sourceKey": "play|invitation",
       "sourceIndex": 4,
-      "text": "Shall we roll together? Here comes your ball. Catch it, sweetheart!"
+      "text": "Roll, roll, roll! Here comes the ball! Look, baby, look!"
     },
     {
       "phraseId": "vc_000445",
@@ -3156,7 +3156,7 @@
       "sourceKind": "combined",
       "sourceKey": "play|repeat",
       "sourceIndex": 3,
-      "text": "Let's play together. Shall we go again? I'll stay close."
+      "text": "Play it again? Roll, roll, roll! Your turn, baby!"
     },
     {
       "phraseId": "vc_000452",
@@ -3177,14 +3177,14 @@
       "sourceKind": "combined",
       "sourceKey": "play|start",
       "sourceIndex": 3,
-      "text": "Let's play together. Let's get started. I'm right beside you."
+      "text": "A toy for you! Ready, steady, go! Let's play!"
     },
     {
       "phraseId": "vc_000455",
       "sourceKind": "combined",
       "sourceKey": "food|invitation",
       "sourceIndex": 1,
-      "text": "Shall we eat? One little bite. I'll stay close."
+      "text": "Ready for food? One little bite! Look at your spoon!"
     },
     {
       "phraseId": "vc_000456",
@@ -3219,21 +3219,21 @@
       "sourceKind": "combined",
       "sourceKey": "food|praise",
       "sourceIndex": 3,
-      "text": "Look at that bite! You're doing so well. I'm proud of you."
+      "text": "Yum, yum, yum! One little bite! Yay, baby!"
     },
     {
       "phraseId": "vc_000461",
       "sourceKind": "combined",
       "sourceKey": "outside|invitation",
       "sourceIndex": 1,
-      "text": "Shall we go outside? Let's look around. What do you see?"
+      "text": "Outside, outside! Look at the trees! See the sky?"
     },
     {
       "phraseId": "vc_000462",
       "sourceKind": "combined",
       "sourceKey": "outside|invitation",
       "sourceIndex": 2,
-      "text": "Shall we go outside? Let's look all around. I'll stay close."
+      "text": "Out we go! Look left, look right! I'll hold you."
     },
     {
       "phraseId": "vc_000463",
@@ -3261,35 +3261,35 @@
       "sourceKind": "combined",
       "sourceKey": "outside|start",
       "sourceIndex": 3,
-      "text": "Let's look outside. Let's get started. I'm right beside you."
+      "text": "Look outside, baby! See those leaves? Let's go!"
     },
     {
       "phraseId": "vc_000467",
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
       "sourceIndex": 1,
-      "text": "Shall we sing? La, la, la! Let's try together."
+      "text": "Sing with me! La, la, la! Your turn, baby!"
     },
     {
       "phraseId": "vc_000468",
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
       "sourceIndex": 2,
-      "text": "Shall we sing now? Listen to this tune. La, la, la!"
+      "text": "A little tune! Listen, listen, listen! La, la, la!"
     },
     {
       "phraseId": "vc_000469",
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
       "sourceIndex": 3,
-      "text": "Can you hear that? Shall we sing together? La, la, la!"
+      "text": "Hear that song? Sing along, baby! La, la, la!"
     },
     {
       "phraseId": "vc_000470",
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
       "sourceIndex": 4,
-      "text": "Shall we sing together? I'll hum a tune. Join when you're ready."
+      "text": "Let's sing, baby! La, la, la! Listen, listen!"
     },
     {
       "phraseId": "vc_000471",
@@ -3310,7 +3310,7 @@
       "sourceKind": "combined",
       "sourceKey": "music|invitation",
       "sourceIndex": 7,
-      "text": "Let's make some sounds. Tap with your hands. Shall we try?"
+      "text": "Tap, tap, tap! Listen to that! Your turn, baby!"
     },
     {
       "phraseId": "vc_000474",
@@ -3338,7 +3338,7 @@
       "sourceKind": "combined",
       "sourceKey": "music|start",
       "sourceIndex": 3,
-      "text": "Listen to our music. Let's get started. I'm right beside you."
+      "text": "Music time, baby! La, la, la! Here we go!"
     },
     {
       "phraseId": "vc_000478",
@@ -3359,7 +3359,7 @@
       "sourceKind": "combined",
       "sourceKey": "music|repeat",
       "sourceIndex": 3,
-      "text": "Listen to our music. Shall we go again? I'll stay close."
+      "text": "Hear that music? Another little song? La, la, la!"
     },
     {
       "phraseId": "vc_000481",
@@ -3373,7 +3373,7 @@
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
       "sourceIndex": 2,
-      "text": "Shall we try drinking? Just a little sip. I'll stay nearby."
+      "text": "Ready for a sip? Little by little! Here comes your drink!"
     },
     {
       "phraseId": "vc_000483",
@@ -3387,14 +3387,14 @@
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
       "sourceIndex": 4,
-      "text": "Would you like water? Here's your little cup. Take your time."
+      "text": "Want some water? Here's your little cup! One small sip?"
     },
     {
       "phraseId": "vc_000485",
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
       "sourceIndex": 5,
-      "text": "Shall we take sips? Sit here with me. Ready for one?"
+      "text": "Sit with me! Ready for a sip? Here you go!"
     },
     {
       "phraseId": "vc_000486",
@@ -3408,7 +3408,7 @@
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
       "sourceIndex": 7,
-      "text": "Want to drink together? I'll hold your cup. Shall we begin?"
+      "text": "Drink time, baby! Sip, sip, sip! Here we go!"
     },
     {
       "phraseId": "vc_000488",
@@ -3436,7 +3436,7 @@
       "sourceKind": "combined",
       "sourceKey": "hands|praise",
       "sourceIndex": 3,
-      "text": "Your little hands move. You're doing so well. I'm proud of you."
+      "text": "Wiggle, wiggle, wiggle! Look at those fingers! Yay, baby!"
     },
     {
       "phraseId": "vc_000492",
@@ -3457,35 +3457,35 @@
       "sourceKind": "combined",
       "sourceKey": "feet|praise",
       "sourceIndex": 3,
-      "text": "Look at your feet! You're doing so well. I'm proud of you."
+      "text": "Kick, kick, kick! Look at those toes! Yay, baby!"
     },
     {
       "phraseId": "vc_000495",
       "sourceKind": "combined",
       "sourceKey": "bath|invitation",
       "sourceIndex": 1,
-      "text": "Shall we bathe? Let's get ready. I'll be gentle."
+      "text": "Bath time, baby! Feel that water! I'll be gentle."
     },
     {
       "phraseId": "vc_000496",
       "sourceKind": "combined",
       "sourceKey": "bath|invitation",
       "sourceIndex": 2,
-      "text": "Shall we bathe now? First, let's feel comfortable. I'm beside you."
+      "text": "Bath time, baby! Splish, splash, splash! I'm right here!"
     },
     {
       "phraseId": "vc_000497",
       "sourceKind": "combined",
       "sourceKey": "bath|invitation",
       "sourceIndex": 3,
-      "text": "Here comes warm water. Let's take it gently. Shall we start?"
+      "text": "Warm water, baby! Splash, splash, splash! Ready to wash?"
     },
     {
       "phraseId": "vc_000498",
       "sourceKind": "combined",
       "sourceKey": "bath|invitation",
       "sourceIndex": 4,
-      "text": "Shall we splash softly? The bath feels warm. Let's get ready."
+      "text": "Splish, splash, splish! Warm water, baby! Ready to wash?"
     },
     {
       "phraseId": "vc_000499",
@@ -3499,7 +3499,7 @@
       "sourceKind": "combined",
       "sourceKey": "bath|invitation",
       "sourceIndex": 6,
-      "text": "How about a bath? Your little towel waits. Shall we start?"
+      "text": "Ready for bath time? Towel is waiting! Here comes water!"
     },
     {
       "phraseId": "vc_000501",
@@ -3534,7 +3534,7 @@
       "sourceKind": "combined",
       "sourceKey": "bath|start",
       "sourceIndex": 3,
-      "text": "Ready to start bathing? Let's get started. I'm right beside you."
+      "text": "Bath time, baby! Splash, splash, splash! Here we go!"
     },
     {
       "phraseId": "vc_000506",
@@ -3562,21 +3562,21 @@
       "sourceKind": "combined",
       "sourceKey": "bath|finish_check",
       "sourceIndex": 1,
-      "text": "Bath time all done? Shall we get out? Let's check together."
+      "text": "Bath time all done? Towel time, baby? Let's get dry!"
     },
     {
       "phraseId": "vc_000510",
       "sourceKind": "combined",
       "sourceKey": "bath|finish_check",
       "sourceIndex": 2,
-      "text": "Are we finished bathing? Shall we check? All done now?"
+      "text": "Bath all done? Warm towel ready? Let's get cozy!"
     },
     {
       "phraseId": "vc_000511",
       "sourceKind": "combined",
       "sourceKey": "bath|finish_check",
       "sourceIndex": 3,
-      "text": "Shall we finish bathing? Let's check together. Are we finished?"
+      "text": "One last splash? All washed now? Let's get dry!"
     },
     {
       "phraseId": "vc_000512",
@@ -3604,7 +3604,7 @@
       "sourceKind": "combined",
       "sourceKey": "clothes|invitation",
       "sourceIndex": 1,
-      "text": "Shall we get dressed? Here comes your shirt. One arm first."
+      "text": "Here comes your shirt! One arm first! In you go!"
     },
     {
       "phraseId": "vc_000516",
@@ -3618,7 +3618,7 @@
       "sourceKind": "combined",
       "sourceKey": "clothes|invitation",
       "sourceIndex": 3,
-      "text": "Shall we dress together? Come try with me. What do you think?"
+      "text": "Clothes on, baby! One little arm! Here we go!"
     },
     {
       "phraseId": "vc_000518",
@@ -3639,7 +3639,7 @@
       "sourceKind": "combined",
       "sourceKey": "clothes|start",
       "sourceIndex": 3,
-      "text": "Dressing time starts now! Let's get started. I'm right beside you."
+      "text": "Shirt time, baby! One arm first! Let's get dressed!"
     },
     {
       "phraseId": "vc_000521",
@@ -3674,14 +3674,14 @@
       "sourceKind": "combined",
       "sourceKey": "clothes|finish_check",
       "sourceIndex": 2,
-      "text": "Are your clothes on? Shall we check? All done now?"
+      "text": "Clothes all on? See that shirt? All done, baby?"
     },
     {
       "phraseId": "vc_000526",
       "sourceKind": "combined",
       "sourceKey": "clothes|finish_check",
       "sourceIndex": 3,
-      "text": "Dressing finished now? Let's check together. Are we finished?"
+      "text": "All dressed now? Look at your shirt! All done, baby?"
     },
     {
       "phraseId": "vc_000527",
@@ -3702,14 +3702,14 @@
       "sourceKind": "combined",
       "sourceKey": "clothes|praise",
       "sourceIndex": 3,
-      "text": "Look at your clothes! You're doing so well. I'm proud of you."
+      "text": "One arm in! Other arm in! All dressed, baby!"
     },
     {
       "phraseId": "vc_000530",
       "sourceKind": "combined",
       "sourceKey": "hands|invitation",
       "sourceIndex": 1,
-      "text": "Shall we hold hands? Give me your hand. I'm right here."
+      "text": "Little hands together! Squeeze, squeeze, squeeze! Hold my hand!"
     },
     {
       "phraseId": "vc_000531",
@@ -3723,7 +3723,7 @@
       "sourceKind": "combined",
       "sourceKey": "hands|invitation",
       "sourceIndex": 3,
-      "text": "Let's play with fingers! Come try with me. What do you think?"
+      "text": "See those fingers? Wiggle, wiggle, wiggle! Let's play!"
     },
     {
       "phraseId": "vc_000533",
@@ -3737,14 +3737,14 @@
       "sourceKind": "combined",
       "sourceKey": "hands|effort",
       "sourceIndex": 2,
-      "text": "Look at your hands! I see you trying. I'm here with you."
+      "text": "Look at those hands! Reach, reach, reach! I'm here, baby!"
     },
     {
       "phraseId": "vc_000535",
       "sourceKind": "combined",
       "sourceKey": "hands|effort",
       "sourceIndex": 3,
-      "text": "See your little fingers? You're working so hard. I'll stay beside you."
+      "text": "Little fingers! Wiggle, wiggle, wiggle! I'm right here!"
     },
     {
       "phraseId": "vc_000536",
@@ -3758,7 +3758,7 @@
       "sourceKind": "combined",
       "sourceKey": "hands|achievement",
       "sourceIndex": 2,
-      "text": "Look at those hands! You did it! How wonderful is that!"
+      "text": "Those little hands! You did it! High five, baby!"
     },
     {
       "phraseId": "vc_000538",
@@ -3772,7 +3772,7 @@
       "sourceKind": "combined",
       "sourceKey": "feet|invitation",
       "sourceIndex": 1,
-      "text": "Shall we move toes? Let's kick together. One, two, three!"
+      "text": "One, two, three! Kick, kick, kick! Little baby toes!"
     },
     {
       "phraseId": "vc_000540",
@@ -3786,28 +3786,28 @@
       "sourceKind": "combined",
       "sourceKey": "feet|invitation",
       "sourceIndex": 3,
-      "text": "Shall we kick together? Come try with me. What do you think?"
+      "text": "Kick, kick, kick! Little baby feet! Here we go!"
     },
     {
       "phraseId": "vc_000542",
       "sourceKind": "combined",
       "sourceKey": "feet|effort",
       "sourceIndex": 1,
-      "text": "Your feet are moving. I see you trying. That's hard work."
+      "text": "Those feet are moving! Kick, kick, kick! Look at you!"
     },
     {
       "phraseId": "vc_000543",
       "sourceKind": "combined",
       "sourceKey": "feet|effort",
       "sourceIndex": 2,
-      "text": "Look at those feet! I see you trying. I'm here with you."
+      "text": "Look at your feet! Stretch those toes! I'm here, baby!"
     },
     {
       "phraseId": "vc_000544",
       "sourceKind": "combined",
       "sourceKey": "feet|effort",
       "sourceIndex": 3,
-      "text": "Your little feet move! You're working so hard. I'll stay beside you."
+      "text": "Little feet! Kick, kick, kick! I'm right here!"
     },
     {
       "phraseId": "vc_000545",
@@ -3821,7 +3821,7 @@
       "sourceKind": "combined",
       "sourceKey": "feet|achievement",
       "sourceIndex": 2,
-      "text": "Look at your feet! You did it! How wonderful is that!"
+      "text": "Look at your feet! You kicked! Yay, little toes!"
     },
     {
       "phraseId": "vc_000547",
@@ -3842,7 +3842,7 @@
       "sourceKind": "combined",
       "sourceKey": "voice|affection",
       "sourceIndex": 2,
-      "text": "What a little voice! I love being together. You're so precious."
+      "text": "Ooh, ahh, ooh! Sweet little voice! I love you!"
     },
     {
       "phraseId": "vc_000550",
@@ -3870,7 +3870,7 @@
       "sourceKind": "combined",
       "sourceKey": "voice|praise",
       "sourceIndex": 3,
-      "text": "You're making sweet sounds! You're doing so well. I'm proud of you."
+      "text": "Ooh, ahh, ooh! I hear you! Hooray, baby!"
     },
     {
       "phraseId": "vc_000554",
@@ -3891,7 +3891,7 @@
       "sourceKind": "combined",
       "sourceKey": "voice|repeat",
       "sourceIndex": 3,
-      "text": "Shall we make sounds? Shall we go again? I'll stay close."
+      "text": "Ooh, ahh, ooh! One more sound? I'll listen, baby!"
     },
     {
       "phraseId": "vc_000557",
@@ -3912,7 +3912,7 @@
       "sourceKind": "combined",
       "sourceKey": "voice|start",
       "sourceIndex": 3,
-      "text": "Ready for little noises? Let's get started. I'm right beside you."
+      "text": "Ready for a sound? Ooh, ahh, ooh! Your turn, baby!"
     },
     {
       "phraseId": "vc_000560",
@@ -3926,14 +3926,14 @@
       "sourceKind": "combined",
       "sourceKey": "tummy|inquiry",
       "sourceIndex": 2,
-      "text": "Is your tummy okay? What do you notice? Let's find out together."
+      "text": "Little tummy! How's it feeling? I'm right here!"
     },
     {
       "phraseId": "vc_000562",
       "sourceKind": "combined",
       "sourceKey": "tummy|inquiry",
       "sourceIndex": 3,
-      "text": "What about your tummy? Let's take a look. I'm listening, sweetheart."
+      "text": "How's your tummy? Little gurgle sounds! I'm right here!"
     },
     {
       "phraseId": "vc_000563",
@@ -3989,7 +3989,7 @@
       "sourceKind": "combined",
       "sourceKey": "rain|inquiry",
       "sourceIndex": 2,
-      "text": "Hear the rain outside? What do you notice? Let's find out together."
+      "text": "Hear the rain? Drip, drop, drip! Tap, tap, tap!"
     },
     {
       "phraseId": "vc_000571",
@@ -4010,7 +4010,7 @@
       "sourceKind": "combined",
       "sourceKey": "rain|affection",
       "sourceIndex": 2,
-      "text": "Listen to the rain! I love being together. You're so precious."
+      "text": "Listen, listen! Drip, drop, drip! I love you!"
     },
     {
       "phraseId": "vc_000574",
@@ -4024,7 +4024,7 @@
       "sourceKind": "combined",
       "sourceKey": "rain|invitation",
       "sourceIndex": 1,
-      "text": "Shall we watch rain? Look at the window. Listen with me."
+      "text": "Rain on the window! Drip, drop, drip! Listen with me!"
     },
     {
       "phraseId": "vc_000576",
@@ -4038,14 +4038,14 @@
       "sourceKind": "combined",
       "sourceKey": "rain|invitation",
       "sourceIndex": 3,
-      "text": "Want to watch raindrops? Come try with me. What do you think?"
+      "text": "See those raindrops? Tap, tap, tap! Look with me!"
     },
     {
       "phraseId": "vc_000578",
       "sourceKind": "combined",
       "sourceKey": "sun|invitation",
       "sourceIndex": 1,
-      "text": "Shall we see sunshine? Let's look outside. So bright today!"
+      "text": "Hello, sunshine! Look outside, baby! So bright today!"
     },
     {
       "phraseId": "vc_000579",
@@ -4059,7 +4059,7 @@
       "sourceKind": "combined",
       "sourceKey": "sun|invitation",
       "sourceIndex": 3,
-      "text": "Shall we watch sunlight? Come try with me. What do you think?"
+      "text": "Look at the sun! Bright, bright, bright! See that light?"
     },
     {
       "phraseId": "vc_000581",
@@ -4073,7 +4073,7 @@
       "sourceKind": "combined",
       "sourceKey": "sun|affection",
       "sourceIndex": 2,
-      "text": "Look at the sunshine! I love being together. You're so precious."
+      "text": "Hello, sunshine! Bright, bright, bright! Hello, baby!"
     },
     {
       "phraseId": "vc_000583",
@@ -4094,7 +4094,7 @@
       "sourceKind": "combined",
       "sourceKey": "sun|inquiry",
       "sourceIndex": 2,
-      "text": "Where is the sunshine? What do you notice? Let's find out together."
+      "text": "Where's the sunshine? Look up, baby! There it is!"
     },
     {
       "phraseId": "vc_000586",
@@ -4122,7 +4122,7 @@
       "sourceKind": "combined",
       "sourceKey": "smile|repeat",
       "sourceIndex": 3,
-      "text": "Shall we smile together? Look at my face. I'll smile too."
+      "text": "Here's my smile! Smile, smile, smile! I smile too!"
     },
     {
       "phraseId": "vc_000590",
@@ -4136,7 +4136,7 @@
       "sourceKind": "combined",
       "sourceKey": "wake|inquiry",
       "sourceIndex": 2,
-      "text": "Hello, little one! What do you notice? Let's find out together."
+      "text": "Hello, baby! Eyes wide open! Look, look, look!"
     },
     {
       "phraseId": "vc_000592",
@@ -4164,28 +4164,28 @@
       "sourceKind": "combined",
       "sourceKey": "wake|start",
       "sourceIndex": 3,
-      "text": "It's awake time! Let's get started. I'm right beside you."
+      "text": "Good morning, baby! Eyes open wide! Hello, hello!"
     },
     {
       "phraseId": "vc_000596",
       "sourceKind": "combined",
       "sourceKey": "sleep|finish_check",
       "sourceIndex": 1,
-      "text": "Is nap time finished? Shall we get up? I'm right here."
+      "text": "Nap time all done? Hello, little eyes! Hello again, baby!"
     },
     {
       "phraseId": "vc_000597",
       "sourceKind": "combined",
       "sourceKey": "sleep|finish_check",
       "sourceIndex": 2,
-      "text": "All done resting? Shall we check? All done now?"
+      "text": "Had a nice rest? Eyes open now? Hello again, baby!"
     },
     {
       "phraseId": "vc_000598",
       "sourceKind": "combined",
       "sourceKey": "sleep|finish_check",
       "sourceIndex": 3,
-      "text": "Is your rest finished? Let's check together. Are we finished?"
+      "text": "All done resting? More cozy time? I'm right here!"
     },
     {
       "phraseId": "vc_000599",
@@ -4220,7 +4220,7 @@
       "sourceKind": "combined",
       "sourceKey": "cry|affection",
       "sourceIndex": 2,
-      "text": "I hear your tears. I love being together. You're so precious."
+      "text": "Oh, sweet baby! I hear you! Big, soft hugs!"
     },
     {
       "phraseId": "vc_000604",
@@ -4248,21 +4248,21 @@
       "sourceKind": "combined",
       "sourceKey": "play|praise",
       "sourceIndex": 3,
-      "text": "You're playing right now! You're doing so well. I'm proud of you."
+      "text": "Play, play, play! Look at that toy! Yay, baby!"
     },
     {
       "phraseId": "vc_000608",
       "sourceKind": "combined",
       "sourceKey": "play|achievement",
       "sourceIndex": 1,
-      "text": "You got the toy! You did it! What a moment."
+      "text": "Got the toy! You did it! Yay, yay!"
     },
     {
       "phraseId": "vc_000609",
       "sourceKind": "combined",
       "sourceKey": "play|achievement",
       "sourceIndex": 2,
-      "text": "Look at that play! You did it! How wonderful is that!"
+      "text": "Yay, yay, yay! You did it! Let's clap together!"
     },
     {
       "phraseId": "vc_000610",
@@ -4276,7 +4276,7 @@
       "sourceKind": "combined",
       "sourceKey": "play|effort",
       "sourceIndex": 1,
-      "text": "You're working on this! I see you trying. No need to hurry."
+      "text": "Try, try, try! No rush, baby! I'm here!"
     },
     {
       "phraseId": "vc_000612",
@@ -4290,7 +4290,7 @@
       "sourceKind": "combined",
       "sourceKey": "play|effort",
       "sourceIndex": 3,
-      "text": "You're trying this game. You're working so hard. I'll stay beside you."
+      "text": "Try, try, try! That little toy! I'm right here!"
     },
     {
       "phraseId": "vc_000614",
@@ -4304,7 +4304,7 @@
       "sourceKind": "combined",
       "sourceKey": "book|inquiry",
       "sourceIndex": 2,
-      "text": "See the book? What do you notice? Let's find out together."
+      "text": "See this book? Look, look, look! Turn the page!"
     },
     {
       "phraseId": "vc_000616",
@@ -4332,7 +4332,7 @@
       "sourceKind": "combined",
       "sourceKey": "book|praise",
       "sourceIndex": 3,
-      "text": "You're looking at pictures! You're doing so well. I'm proud of you."
+      "text": "Look, look, look! A pretty picture! Yay, baby!"
     },
     {
       "phraseId": "vc_000620",
@@ -4353,7 +4353,7 @@
       "sourceKind": "combined",
       "sourceKey": "music|praise",
       "sourceIndex": 3,
-      "text": "I heard your music! You're doing so well. I'm proud of you."
+      "text": "La, la, la! I hear you! Yay, baby!"
     },
     {
       "phraseId": "vc_000623",
@@ -4381,21 +4381,21 @@
       "sourceKind": "combined",
       "sourceKey": "food|finish_check",
       "sourceIndex": 1,
-      "text": "Are we done eating? Shall we wipe up? Let's check together."
+      "text": "All done eating? Wipe, wipe, wipe? Let's have a look!"
     },
     {
       "phraseId": "vc_000627",
       "sourceKind": "combined",
       "sourceKey": "food|finish_check",
       "sourceIndex": 2,
-      "text": "Finished eating yet? Shall we check? All done now?"
+      "text": "Food all done? One last bite? All done, baby?"
     },
     {
       "phraseId": "vc_000628",
       "sourceKind": "combined",
       "sourceKey": "food|finish_check",
       "sourceIndex": 3,
-      "text": "Are we done eating? Let's check together. Are we finished?"
+      "text": "All done eating? Last little bite? Let's have a look!"
     },
     {
       "phraseId": "vc_000629",
@@ -4472,7 +4472,7 @@
       "sourceKind": "combined",
       "sourceKey": "drink|finish_check",
       "sourceIndex": 2,
-      "text": "Finished your drink? Shall we check? All done now?"
+      "text": "Drink all done? One more sip? Let's have a look!"
     },
     {
       "phraseId": "vc_000640",
@@ -4500,7 +4500,7 @@
       "sourceKind": "combined",
       "sourceKey": "drink|praise",
       "sourceIndex": 3,
-      "text": "You had your drink! You're doing so well. I'm proud of you."
+      "text": "One little sip! Sip, sip, sip! Good job, baby!"
     },
     {
       "phraseId": "vc_000644",
@@ -4535,7 +4535,7 @@
       "sourceKind": "combined",
       "sourceKey": "hug|affection",
       "sourceIndex": 2,
-      "text": "A cuddle for you! I love being together. You're so precious."
+      "text": "Cuddle, cuddle, cuddle! My sweet baby! I love you!"
     },
     {
       "phraseId": "vc_000649",
@@ -4584,7 +4584,7 @@
       "sourceKind": "combined",
       "sourceKey": "hug|praise",
       "sourceIndex": 3,
-      "text": "Look at your cuddle! You're doing so well. I'm proud of you."
+      "text": "Cuddle time! Snuggle, snuggle, snuggle! I love you!"
     },
     {
       "phraseId": "vc_000656",
@@ -4710,7 +4710,7 @@
       "sourceKind": "combined",
       "sourceKey": "play|pause",
       "sourceIndex": 3,
-      "text": "Shall we stop playing? We can rest together. I'm here, sweetheart."
+      "text": "Playtime all done? Bye-bye, toy! Time to rest!"
     },
     {
       "phraseId": "vc_000674",
@@ -4906,28 +4906,28 @@
       "sourceKind": "combined",
       "sourceKey": "milk|effort",
       "sourceIndex": 1,
-      "text": "You're trying little sips. Look at you! Take your time."
+      "text": "Little sips, baby! Sip by sip! You're doing fine!"
     },
     {
       "phraseId": "vc_000702",
       "sourceKind": "combined",
       "sourceKey": "milk|effort",
       "sourceIndex": 2,
-      "text": "Little sips take practice. I see you trying. I'm right here."
+      "text": "One little sip! Then another? You can rest!"
     },
     {
       "phraseId": "vc_000703",
       "sourceKind": "combined",
       "sourceKey": "milk|effort",
       "sourceIndex": 3,
-      "text": "You're taking little sips. That looks gentle. Take your time."
+      "text": "Sip, sip, sip! Nice little sips! No need to rush!"
     },
     {
       "phraseId": "vc_000704",
       "sourceKind": "combined",
       "sourceKey": "food|effort",
       "sourceIndex": 1,
-      "text": "You're trying that food. I see you trying. I'll stay close."
+      "text": "One tiny bite! Taste, taste, taste! I'll stay close!"
     },
     {
       "phraseId": "vc_000705",
@@ -4941,7 +4941,7 @@
       "sourceKind": "combined",
       "sourceKey": "food|effort",
       "sourceIndex": 3,
-      "text": "You're trying new food. I can see that. We'll go slowly."
+      "text": "New food, baby! Just a little taste! Nice and gentle!"
     },
     {
       "phraseId": "vc_000707",
@@ -4976,7 +4976,7 @@
       "sourceKind": "combined",
       "sourceKey": "sun|start",
       "sourceIndex": 2,
-      "text": "The sunshine is coming. Shall we look outside? Look at that glow."
+      "text": "Here comes the sun! Warm, warm light! Look outside, baby!"
     },
     {
       "phraseId": "vc_000712",
@@ -5109,14 +5109,14 @@
       "sourceKind": "combined",
       "sourceKey": "milk|affection",
       "sourceIndex": 3,
-      "text": "Your milk is here. You're so precious. I'm right beside you."
+      "text": "Milk is here! Sip, sip, sip! I love you!"
     },
     {
       "phraseId": "vc_000731",
       "sourceKind": "combined",
       "sourceKey": "milk|affection",
       "sourceIndex": 4,
-      "text": "Sweet milk moments together. Your little eyes sparkle. You're my sunshine."
+      "text": "Milk time, sweetheart! Sweet little eyes! I love you!"
     },
     {
       "phraseId": "vc_000732",
@@ -5186,7 +5186,7 @@
       "sourceKind": "combined",
       "sourceKey": "milk|inquiry",
       "sourceIndex": 3,
-      "text": "Need another little sip? Shall we try? Take your time."
+      "text": "One more little sip? Want to try? I'm with you!"
     },
     {
       "phraseId": "vc_000742",
@@ -5207,7 +5207,7 @@
       "sourceKind": "combined",
       "sourceKey": "milk|repeat",
       "sourceIndex": 3,
-      "text": "Want more milk? Just a little? Take your time."
+      "text": "More milk, baby? One tiny sip? We can wait!"
     },
     {
       "phraseId": "vc_000745",
@@ -5221,21 +5221,21 @@
       "sourceKind": "combined",
       "sourceKey": "drink|affection",
       "sourceIndex": 2,
-      "text": "Here is your drink. You're so precious. I love you."
+      "text": "Here is your drink! Sip, sip, sip! I love you!"
     },
     {
       "phraseId": "vc_000747",
       "sourceKind": "combined",
       "sourceKey": "drink|affection",
       "sourceIndex": 3,
-      "text": "A little drink together. You're my sweetheart. I'm right here."
+      "text": "A little drink! Sip, sip, sip! I'm right here!"
     },
     {
       "phraseId": "vc_000748",
       "sourceKind": "combined",
       "sourceKey": "drink|inquiry",
       "sourceIndex": 1,
-      "text": "Would you like water? Are you thirsty? Let's find out."
+      "text": "Want some water? Feeling thirsty, baby? Here you go!"
     },
     {
       "phraseId": "vc_000749",
@@ -5326,7 +5326,7 @@
       "sourceKind": "combined",
       "sourceKey": "sleep|affection",
       "sourceIndex": 2,
-      "text": "Time for cozy rest. You're so precious. I love you."
+      "text": "Cozy little baby! Night-night, night-night! I love you!"
     },
     {
       "phraseId": "vc_000762",
@@ -5396,7 +5396,7 @@
       "sourceKind": "combined",
       "sourceKey": "wake|reassurance",
       "sourceIndex": 3,
-      "text": "You woke up. Take your time. I'm beside you."
+      "text": "Good morning, baby! Eyes open wide! I'm beside you!"
     },
     {
       "phraseId": "vc_000772",
@@ -5417,14 +5417,14 @@
       "sourceKind": "combined",
       "sourceKey": "bath|affection",
       "sourceIndex": 3,
-      "text": "Little splashes together. You're so precious. I love you."
+      "text": "Splash, splash, splash! My sweet baby! I love you!"
     },
     {
       "phraseId": "vc_000775",
       "sourceKind": "combined",
       "sourceKey": "bath|praise",
       "sourceIndex": 1,
-      "text": "You're splashing water! That's so lovely. Well done, sweetheart."
+      "text": "Splash, splash, splash! Look at you! Yay, baby!"
     },
     {
       "phraseId": "vc_000776",
@@ -5494,7 +5494,7 @@
       "sourceKind": "combined",
       "sourceKey": "book|affection",
       "sourceIndex": 2,
-      "text": "A book together. You're so precious. Let's turn pages."
+      "text": "Book time, baby! Look, look, look! Turn the page!"
     },
     {
       "phraseId": "vc_000786",
@@ -5522,7 +5522,7 @@
       "sourceKind": "combined",
       "sourceKey": "book|finish_check",
       "sourceIndex": 3,
-      "text": "Is that the end? Shall we check? One last look."
+      "text": "One last page? Story all done? Let's look again!"
     },
     {
       "phraseId": "vc_000790",
@@ -5536,7 +5536,7 @@
       "sourceKind": "combined",
       "sourceKey": "music|affection",
       "sourceIndex": 2,
-      "text": "Music time together. You're so precious. I'm right here."
+      "text": "Music time, baby! La, la, la! I'm right here!"
     },
     {
       "phraseId": "vc_000792",
@@ -5550,14 +5550,14 @@
       "sourceKind": "combined",
       "sourceKey": "music|finish_check",
       "sourceIndex": 1,
-      "text": "Is our song done? Shall we listen? One more note?"
+      "text": "Song all done? One more note? La, la, la!"
     },
     {
       "phraseId": "vc_000794",
       "sourceKind": "combined",
       "sourceKey": "music|finish_check",
       "sourceIndex": 2,
-      "text": "Song finished already? Let's check together. Is that all?"
+      "text": "Song all done? One more tune? La, la, la!"
     },
     {
       "phraseId": "vc_000795",
@@ -5571,7 +5571,7 @@
       "sourceKind": "combined",
       "sourceKey": "play|affection",
       "sourceIndex": 1,
-      "text": "Playtime with you. You're so precious. I love you."
+      "text": "Playtime, baby! Look, look, look! I love you!"
     },
     {
       "phraseId": "vc_000797",
@@ -5585,7 +5585,7 @@
       "sourceKind": "combined",
       "sourceKey": "play|affection",
       "sourceIndex": 3,
-      "text": "We play together. You're my sweetheart. What lovely fun!"
+      "text": "Play, play, play! My sweet baby! What fun!"
     },
     {
       "phraseId": "vc_000799",
@@ -5599,21 +5599,21 @@
       "sourceKind": "combined",
       "sourceKey": "play|finish_check",
       "sourceIndex": 2,
-      "text": "Is playtime over? Shall we stop? We can choose."
+      "text": "Playtime all done? One more game? Bye-bye, toy!"
     },
     {
       "phraseId": "vc_000801",
       "sourceKind": "combined",
       "sourceKey": "play|finish_check",
       "sourceIndex": 3,
-      "text": "All finished playing? One last turn? What do you think?"
+      "text": "Playtime all done? One more turn? Bye-bye, toy!"
     },
     {
       "phraseId": "vc_000802",
       "sourceKind": "combined",
       "sourceKey": "clothes|affection",
       "sourceIndex": 1,
-      "text": "Your cozy little clothes. You're so precious. I love you."
+      "text": "Cozy little clothes! Soft, soft, soft! I love you!"
     },
     {
       "phraseId": "vc_000803",
