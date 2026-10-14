@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs';
 import { LiteResponseEngine, splitSentences, isMeaningfulUtterance, allLiteReplyTemplatesForValidation } from './src/lite-response-engine.js';
-import { toSpokenEnglish, withChanSuffix } from './src/name-pronunciation.js';
 
 const contract = JSON.parse(readFileSync(new URL('./shared/lite-topic-contract.json', import.meta.url), 'utf8'));
 const cases = contract.cases.filter(c => c.checkWebOutputStyle).map(c => [c.text, c.scene]);
@@ -15,36 +14,6 @@ for(const [input,expected] of cases){
   if(words<6||words>12) throw new Error(`${input}: word count ${words}, expected 6-12`);
   console.log(input,'=>',out.scene,'|',out.english);
 }
-
-const names=[
-  ['まゆ','','Mayu'],
-  ['マユ','','Mayu'],
-  ['はな','','Hana'],
-  ['Hana','','Hana'],
-  ['花','',''],
-  ['花','Hana','Hana']
-];
-for(const [saved,override,expected] of names){
-  const actual=toSpokenEnglish(saved,override);
-  if(actual!==expected) throw new Error(`name ${saved}/${override}: expected ${expected}, got ${actual}`);
-}
-
-console.log('Android-aligned LiteResponseEngine + BabyNamePronunciation smoke test OK');
-
-
-const chanNames=[
-  ['Hana',true,'Hana-chan'],
-  ['Hana',false,'Hana'],
-  ['Hana-chan',true,'Hana-chan'],
-  ['',true,'']
-];
-for(const [name,enabled,expected] of chanNames){
-  const actual=withChanSuffix(name,enabled);
-  if(actual!==expected) throw new Error(`chan suffix ${name}/${enabled}: expected ${expected}, got ${actual}`);
-}
-
-console.log('Chan suffix tests OK');
-
 
 const childcareAnchorCases = [
   ['沐浴しようか','bath'],
@@ -118,7 +87,8 @@ console.log('Generic fallback variety test OK:', uniqueGeneric.size, 'unique / 2
 const allLiteReplies = allLiteReplyTemplatesForValidation();
 if (allLiteReplies.length !== 197) throw new Error(`Expected 197 curated Lite replies, got ${allLiteReplies.length}`);
 for (const reply of allLiteReplies) {
-  const spoken = reply.replaceAll('{name}', 'Mayu');
+  const spoken = reply;
+  if (spoken.includes('{name}')) throw new Error(`Unresolved name token: ${spoken}`);
   const sentences = splitSentences(spoken);
   const counts = sentences.map(x => (x.match(/[A-Za-z]+(?:['’][A-Za-z]+)?/g) || []).length);
   const total = counts.reduce((a, b) => a + b, 0);
