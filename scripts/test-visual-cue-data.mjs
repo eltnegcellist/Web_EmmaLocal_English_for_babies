@@ -8,7 +8,9 @@ assert.deepEqual(check(args),[]);
 assert.equal(args[0].rows.length,914);
 assert.equal(args[0].uniquePressSentenceCount,178);
 assert.equal(args[2].assignments.filter(x=>x.sourceKind==='press').length,110);
-assert.equal(args[2].assignments.filter(x=>x.reviewStatus==='generated').length,914);
+const counts=Object.groupBy(args[2].assignments,x=>x.reviewStatus);
+assert.equal((counts.generated||[]).length+(counts.reviewed||[]).length,914);
+assert.equal((counts.reviewed||[]).length,load('visual-cue-reviewed-overrides.json').overrides.length);
 const negative=[
  ['duplicate_phrase_id',(s,p)=>p.rows[1].phraseId=p.rows[0].phraseId],
  ['phrase_snapshot_drift',(s,p)=>p.rows[0].text='other'],
