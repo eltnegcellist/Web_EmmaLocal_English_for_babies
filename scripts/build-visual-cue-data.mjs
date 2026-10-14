@@ -64,7 +64,7 @@ export function inferVisualCue(english,kind,scene,strictSentence=false){
  add(/\b(wash|washing|rinse|rinsing|bathe|bathing)\b/,"action.wash");
  add(/\b(wipe|wiping)\b/,"action.wipe");
  add(/\b(dress|dressed|sock|socks|sleeves?|clothes on|arm in)\b/,"action.dress");
- add(/\b(open|close)\b/,"action.open-close");
+ add(topic==="hands"?/\b(open|close)\b/:/\b(open and close|open,\s*close)\b/,"action.open-close");
  add(/\bwiggle\b/,"action.wiggle");
  add(/\b(squeeze|squeezing)\b/,"action.squeeze");
  add(/\b(cuddle|cuddles|hug|hugs|hugging)\b/,"action.hug");
@@ -83,7 +83,7 @@ export function inferVisualCue(english,kind,scene,strictSentence=false){
  add(/\b(cry|crying|cries|tears)\b/,"observed.cry");
  add(/\b(babble|coo|cooing|ooh|ahh)\b/,"observed.voice");
  add(/\b(rain|pitter-patter|raindrops?)\b/,"subject.rain");
- add(/\b(sun|sunny|sunshine)\b/,"subject.sun");
+ add(topic==="sun"?/\b(sun|sunny|sunshine)\b/:/\b(sun|sunny)\b/,"subject.sun");
  add(/\b(look|see|watch)\b/,"attention.look");
  add(/\b(listen|hear)\b/,"attention.listen");
  add(/\b(again|repeat|more)\b/,"dialogue.repeat");
@@ -112,11 +112,12 @@ export function createVisualCueData(rows,previousPhrases=[],previousAssignments=
  for(const p of previousPhrases){const m=/^vc_(\d+)$/.exec(p.phraseId||"");if(m)maximum=Math.max(maximum,Number(m[1]));}
  let reusedExact=0,reusedSlot=0,newIds=0;
  const sourceRows=rows.map(r=>({sourceKind:r.kind,sourceKey:r.scene,sourceIndex:r.index,text:normalized(r.english)}));
+ const reservedExact=new Set(sourceRows.map(row=>oldByText.get(row.sourceKind+"\0"+row.sourceKey+"\0"+row.text)?.phraseId).filter(Boolean));
  const output=sourceRows.map(row=>{
   let old=oldByText.get(row.sourceKind+"\0"+row.sourceKey+"\0"+row.text);
   if(old&&!assigned.has(old.phraseId)){reusedExact++;}
   else old=null;
-  if(!old){const slot=oldBySlot.get(row.sourceKind+"\0"+row.sourceKey+"\0"+row.sourceIndex);if(slot&&!assigned.has(slot.phraseId)){old=slot;reusedSlot++;}}
+  if(!old){const slot=oldBySlot.get(row.sourceKind+"\0"+row.sourceKey+"\0"+row.sourceIndex);if(slot&&!assigned.has(slot.phraseId)&&!reservedExact.has(slot.phraseId)){old=slot;reusedSlot++;}}
   let phraseId=old?.phraseId;
   if(!phraseId){maximum++;phraseId="vc_"+String(maximum).padStart(6,"0");newIds++;}
   assigned.add(phraseId);return {phraseId,...row};

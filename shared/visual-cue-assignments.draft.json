@@ -71,10 +71,9 @@
       "primaryCue": "action.hug",
       "secondaryCues": [
         "social.greeting",
-        "subject.sun",
         "social.affection"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "motion",
       "reviewStatus": "generated"
     },
     {
@@ -592,9 +591,8 @@
       "sourceKind": "topic",
       "sourceKey": "sleep",
       "text": "Time to rest. Let's get cozy now. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
-        "action.sleep",
         "dialogue.invitation"
       ],
       "renderPreference": "motion",
@@ -605,9 +603,8 @@
       "sourceKind": "topic",
       "sourceKey": "sleep",
       "text": "Let's close our eyes. I'll stay nearby. Sleep well!",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
-        "action.sleep",
         "dialogue.invitation"
       ],
       "renderPreference": "motion",
@@ -641,10 +638,8 @@
       "sourceKind": "topic",
       "sourceKey": "sleep",
       "text": "Rest well, baby. I'll stay close by. Sweet dreams!",
-      "primaryCue": "action.open-close",
-      "secondaryCues": [
-        "action.sleep"
-      ],
+      "primaryCue": "action.sleep",
+      "secondaryCues": [],
       "renderPreference": "motion",
       "reviewStatus": "generated"
     },
@@ -687,10 +682,8 @@
       "sourceKind": "topic",
       "sourceKey": "wake",
       "text": "Your eyes are open! Hello, little one. How are you?",
-      "primaryCue": "action.open-close",
-      "secondaryCues": [
-        "action.wake"
-      ],
+      "primaryCue": "action.wake",
+      "secondaryCues": [],
       "renderPreference": "motion",
       "reviewStatus": "generated"
     },
@@ -996,10 +989,8 @@
       "sourceKind": "topic",
       "sourceKey": "hug",
       "text": "A little cuddle? I'll hold you close. So cozy!",
-      "primaryCue": "action.open-close",
-      "secondaryCues": [
-        "action.hug"
-      ],
+      "primaryCue": "action.hug",
+      "secondaryCues": [],
       "renderPreference": "motion",
       "reviewStatus": "generated"
     },
@@ -1008,9 +999,8 @@
       "sourceKind": "topic",
       "sourceKey": "hug",
       "text": "Let's have a hug. Close to my heart. I love you!",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
-        "action.hug",
         "dialogue.invitation",
         "social.affection"
       ],
@@ -1022,9 +1012,8 @@
       "sourceKind": "topic",
       "sourceKey": "hug",
       "text": "Here are my arms. Come close, sweetheart. Big hug!",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
-        "action.hug",
         "social.affection"
       ],
       "renderPreference": "motion",
@@ -1057,10 +1046,8 @@
       "sourceKind": "topic",
       "sourceKey": "hug",
       "text": "Baby, cuddle time! I'll hold you close. So cozy!",
-      "primaryCue": "action.open-close",
-      "secondaryCues": [
-        "action.hug"
-      ],
+      "primaryCue": "action.hug",
+      "secondaryCues": [],
       "renderPreference": "motion",
       "reviewStatus": "generated"
     },
@@ -1380,10 +1367,9 @@
       "sourceKind": "topic",
       "sourceKey": "cry",
       "text": "Are you upset? I'll stay close. Would you like cuddles?",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
         "observed.cry",
-        "action.hug",
         "dialogue.invitation"
       ],
       "renderPreference": "motion",
@@ -1599,10 +1585,9 @@
       "sourceKind": "topic",
       "sourceKey": "tummy",
       "text": "Let's get comfortable. I'll hold you close. Big hugs!",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
         "subject.tummy",
-        "action.hug",
         "dialogue.invitation"
       ],
       "renderPreference": "composite",
@@ -1639,11 +1624,9 @@
       "sourceKind": "topic",
       "sourceKey": "tummy",
       "text": "Baby, feeling full? I'll hold you close. So cozy!",
-      "primaryCue": "action.open-close",
-      "secondaryCues": [
-        "subject.tummy"
-      ],
-      "renderPreference": "composite",
+      "primaryCue": "subject.tummy",
+      "secondaryCues": [],
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -2040,10 +2023,9 @@
       "sourceKind": "topic",
       "sourceKey": "food",
       "text": "Time for a bite! Here's your spoon. Open wide!",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.eat",
       "secondaryCues": [
-        "subject.food",
-        "action.eat"
+        "subject.food"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -2132,10 +2114,9 @@
       "sourceKind": "topic",
       "sourceKey": "food",
       "text": "Baby, let's eat! Here's your spoon. Open wide!",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.eat",
       "secondaryCues": [
         "subject.food",
-        "action.eat",
         "dialogue.invitation"
       ],
       "renderPreference": "composite",
@@ -2816,9 +2797,7 @@
       "sourceKey": "encouragement",
       "text": "Give it a try! I'll stay close. You can do this!",
       "primaryCue": "social.encouragement",
-      "secondaryCues": [
-        "action.open-close"
-      ],
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -2884,7 +2863,6 @@
       "text": "There's no hurry. Try when you're ready. I'll be close.",
       "primaryCue": "social.encouragement",
       "secondaryCues": [
-        "action.open-close",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -3463,9 +3441,7 @@
       "sourceKey": "reassurance",
       "text": "I'm here with you. You're not alone. I'm staying close.",
       "primaryCue": "social.reassurance",
-      "secondaryCues": [
-        "action.open-close"
-      ],
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -3488,9 +3464,7 @@
       "sourceKey": "reassurance",
       "text": "You're not alone. I'll stay close. We can slow down.",
       "primaryCue": "social.reassurance",
-      "secondaryCues": [
-        "action.open-close"
-      ],
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -3542,9 +3516,7 @@
       "sourceKey": "reassurance",
       "text": "We're together now. I'm close by. There's no hurry.",
       "primaryCue": "social.reassurance",
-      "secondaryCues": [
-        "action.open-close"
-      ],
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -3723,9 +3695,7 @@
       "sourceKey": "pause",
       "text": "Wait a moment. Not just yet. I'll stay close.",
       "primaryCue": "dialogue.pause",
-      "secondaryCues": [
-        "action.open-close"
-      ],
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -4643,9 +4613,8 @@
       "sourceKind": "combined",
       "sourceKey": "hug|invitation",
       "text": "A gentle little hug. Would you like one? Come close, sweetheart.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
-        "action.hug",
         "dialogue.invitation",
         "social.affection"
       ],
@@ -4669,9 +4638,8 @@
       "sourceKind": "combined",
       "sourceKey": "hug|reassurance",
       "text": "Time for a cuddle. I'll stay close. You're not alone.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
-        "action.hug",
         "social.reassurance"
       ],
       "renderPreference": "motion",
@@ -4734,13 +4702,12 @@
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "text": "I hear your tears. You're not alone. My arms are open.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "observed.cry",
       "secondaryCues": [
-        "observed.cry",
         "social.reassurance",
         "attention.listen"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -4878,9 +4845,8 @@
       "sourceKind": "combined",
       "sourceKey": "sleep|invitation",
       "text": "Let's close our eyes. The room feels calm. Let's rest together.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
-        "action.sleep",
         "dialogue.invitation"
       ],
       "renderPreference": "motion",
@@ -4980,9 +4946,8 @@
       "sourceKind": "combined",
       "sourceKey": "sleep|reassurance",
       "text": "I'm close by, darling. The night is quiet. Rest easy, sweetheart.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
-        "action.sleep",
         "social.reassurance",
         "social.affection"
       ],
@@ -5007,9 +4972,8 @@
       "sourceKind": "combined",
       "sourceKey": "sleep|reassurance",
       "text": "Little eyes can close. I'll stay nearby. Sleep when you're ready.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
-        "action.sleep",
         "social.reassurance",
         "dialogue.invitation"
       ],
@@ -5021,9 +4985,8 @@
       "sourceKind": "combined",
       "sourceKey": "sleep|reassurance",
       "text": "Everything feels peaceful now. Your bed is cozy. I'll be close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
-        "action.sleep",
         "social.reassurance"
       ],
       "renderPreference": "motion",
@@ -5110,10 +5073,9 @@
       "primaryCue": "action.wake",
       "secondaryCues": [
         "social.affection",
-        "subject.sun",
         "attention.look"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "motion",
       "reviewStatus": "generated"
     },
     {
@@ -5121,14 +5083,13 @@
       "sourceKind": "combined",
       "sourceKey": "wake|affection",
       "text": "Those eyes are open! Here comes your smile. What a wonderful morning.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "observed.smile",
       "secondaryCues": [
         "action.wake",
         "social.affection",
-        "observed.smile",
         "social.praise"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -5218,11 +5179,10 @@
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
       "text": "Would you like stories? Open the first page. Come sit close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sit",
       "secondaryCues": [
         "subject.book",
-        "dialogue.invitation",
-        "action.sit"
+        "dialogue.invitation"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -5277,8 +5237,8 @@
       "secondaryCues": [
         "subject.book",
         "dialogue.repeat",
-        "action.open-close",
-        "attention.look"
+        "attention.look",
+        "dialogue.invitation"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -5288,14 +5248,13 @@
       "sourceKind": "combined",
       "sourceKey": "book|repeat",
       "text": "Look at this book. Shall we go again? I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.book",
       "secondaryCues": [
-        "subject.book",
         "dialogue.repeat",
         "attention.look",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -5317,12 +5276,12 @@
       "sourceKind": "combined",
       "sourceKey": "book|start",
       "text": "Let's open our book. See the first page? Shall we read?",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.read",
       "secondaryCues": [
         "subject.book",
         "dialogue.start",
-        "action.read",
-        "attention.look"
+        "attention.look",
+        "dialogue.invitation"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -5411,7 +5370,6 @@
       "primaryCue": "observed.smile",
       "secondaryCues": [
         "social.affection",
-        "subject.sun",
         "social.praise"
       ],
       "renderPreference": "emma",
@@ -5613,13 +5571,12 @@
       "sourceKind": "combined",
       "sourceKey": "play|repeat",
       "text": "Let's play together. Shall we go again? I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.toy",
       "secondaryCues": [
-        "subject.toy",
         "dialogue.repeat",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -5667,11 +5624,10 @@
       "sourceKind": "combined",
       "sourceKey": "food|invitation",
       "text": "Shall we eat? One little bite. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.eat",
       "secondaryCues": [
         "subject.food",
-        "dialogue.invitation",
-        "action.eat"
+        "dialogue.invitation"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -5761,13 +5717,12 @@
       "sourceKind": "combined",
       "sourceKey": "outside|invitation",
       "text": "Shall we go outside? Let's look all around. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.outside",
       "secondaryCues": [
-        "subject.outside",
         "dialogue.invitation",
         "attention.look"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -6006,14 +5961,13 @@
       "sourceKind": "combined",
       "sourceKey": "music|repeat",
       "text": "Listen to our music. Shall we go again? I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.music",
       "secondaryCues": [
-        "subject.music",
         "dialogue.repeat",
         "attention.listen",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -7009,13 +6963,12 @@
       "sourceKind": "combined",
       "sourceKey": "voice|repeat",
       "text": "Shall we make sounds? Shall we go again? I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "observed.voice",
       "secondaryCues": [
-        "observed.voice",
         "dialogue.repeat",
         "dialogue.invitation"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -7104,11 +7057,10 @@
       "sourceKind": "combined",
       "sourceKey": "tummy|reassurance",
       "text": "Let's rest a little. I'll hold you close. You're not alone.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
         "subject.tummy",
         "social.reassurance",
-        "action.sleep",
         "dialogue.invitation"
       ],
       "renderPreference": "composite",
@@ -7119,13 +7071,12 @@
       "sourceKind": "combined",
       "sourceKey": "tummy|reassurance",
       "text": "I'm here, sweetheart. I'll stay close. You're not alone.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.tummy",
       "secondaryCues": [
-        "subject.tummy",
         "social.reassurance",
         "social.affection"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -7912,12 +7863,11 @@
       "sourceKind": "combined",
       "sourceKey": "outside|reassurance",
       "text": "We're going outside together. I'll stay close. I've got you.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.outside",
       "secondaryCues": [
-        "subject.outside",
         "social.reassurance"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -7925,12 +7875,11 @@
       "sourceKind": "combined",
       "sourceKey": "outside|reassurance",
       "text": "Out here with me. I'll stay close. You're not alone.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.outside",
       "secondaryCues": [
-        "subject.outside",
         "social.reassurance"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -8008,12 +7957,11 @@
       "sourceKind": "combined",
       "sourceKey": "food|reassurance",
       "text": "Food time together. I'll stay close. You're not alone.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.food",
       "secondaryCues": [
-        "subject.food",
         "social.reassurance"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -8236,9 +8184,8 @@
       "sourceKind": "combined",
       "sourceKey": "hug|affection",
       "text": "I love this cuddle. You're my treasure. Stay close, little one.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
-        "action.hug",
         "social.affection"
       ],
       "renderPreference": "motion",
@@ -8273,9 +8220,8 @@
       "sourceKind": "combined",
       "sourceKey": "hug|care",
       "text": "You've done a lot. Come for a cuddle. I'll hold you close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
-        "action.hug",
         "social.care"
       ],
       "renderPreference": "motion",
@@ -8325,9 +8271,8 @@
       "sourceKind": "combined",
       "sourceKey": "hug|praise",
       "text": "Such a warm cuddle! You're snuggled up close. I love you.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
-        "action.hug",
         "social.praise",
         "social.affection"
       ],
@@ -8424,7 +8369,6 @@
       "secondaryCues": [
         "subject.milk",
         "dialogue.pause",
-        "action.open-close",
         "dialogue.invitation"
       ],
       "renderPreference": "composite",
@@ -8474,13 +8418,12 @@
       "sourceKind": "combined",
       "sourceKey": "bath|pause",
       "text": "Let's pause bath time. No need to rush. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.bath",
       "secondaryCues": [
-        "subject.bath",
         "dialogue.pause",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -8666,11 +8609,10 @@
       "sourceKind": "combined",
       "sourceKey": "food|pause",
       "text": "Another bite can wait. Let's take a break. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.eat",
       "secondaryCues": [
         "subject.food",
         "dialogue.pause",
-        "action.eat",
         "dialogue.invitation"
       ],
       "renderPreference": "composite",
@@ -8725,14 +8667,13 @@
       "sourceKind": "combined",
       "sourceKey": "music|pause",
       "text": "Let's pause our song. We can listen later. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.music",
       "secondaryCues": [
-        "subject.music",
         "dialogue.pause",
         "attention.listen",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -8782,12 +8723,12 @@
       "sourceKind": "combined",
       "sourceKey": "cry|pause",
       "text": "Let's rest a moment. I hear your cries. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
         "observed.cry",
         "dialogue.pause",
-        "action.sleep",
-        "attention.listen"
+        "attention.listen",
+        "dialogue.invitation"
       ],
       "renderPreference": "motion",
       "reviewStatus": "generated"
@@ -8867,8 +8808,7 @@
       "primaryCue": "action.kick",
       "secondaryCues": [
         "subject.feet",
-        "social.encouragement",
-        "action.open-close"
+        "social.encouragement"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -8904,13 +8844,12 @@
       "sourceKind": "combined",
       "sourceKey": "play|encouragement",
       "text": "Let's try that toy. Go at your pace. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.toy",
       "secondaryCues": [
-        "subject.toy",
         "social.encouragement",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -9016,13 +8955,12 @@
       "sourceKind": "combined",
       "sourceKey": "food|effort",
       "text": "You're trying that food. I see you trying. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.food",
       "secondaryCues": [
-        "subject.food",
         "social.effort",
         "attention.look"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -9206,12 +9144,12 @@
       "sourceKind": "combined",
       "sourceKey": "book|finish",
       "text": "All done reading now! Let's close the book. We can rest.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
         "subject.book",
         "dialogue.finish",
-        "action.sleep",
-        "action.read"
+        "action.read",
+        "dialogue.invitation"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -9383,8 +9321,7 @@
       "text": "Sweet milk moments together. Your little eyes sparkle. You're my sunshine.",
       "primaryCue": "subject.milk",
       "secondaryCues": [
-        "social.affection",
-        "subject.sun"
+        "social.affection"
       ],
       "renderPreference": "illustration",
       "reviewStatus": "generated"
@@ -9801,9 +9738,8 @@
       "sourceKind": "combined",
       "sourceKey": "sleep|care",
       "text": "You look sleepy. Let's rest now. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
-        "action.sleep",
         "social.care",
         "attention.look",
         "dialogue.invitation"
@@ -9879,9 +9815,8 @@
       "sourceKind": "combined",
       "sourceKey": "wake|reassurance",
       "text": "Hello, little sleepyhead! Open those bright eyes. I'll hold you close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.wake",
       "secondaryCues": [
-        "action.wake",
         "social.reassurance"
       ],
       "renderPreference": "motion",
@@ -9892,9 +9827,8 @@
       "sourceKind": "combined",
       "sourceKey": "wake|reassurance",
       "text": "Hello, little one. I'll stay close. We're together now.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.wake",
       "secondaryCues": [
-        "action.wake",
         "social.reassurance"
       ],
       "renderPreference": "motion",
@@ -10101,12 +10035,11 @@
       "sourceKind": "combined",
       "sourceKey": "book|affection",
       "text": "This story is ours. I love you. Stay close, sweetheart.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.book",
       "secondaryCues": [
-        "subject.book",
         "social.affection"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -11026,10 +10959,8 @@
       "sourceKind": "press",
       "sourceKey": "wake",
       "text": "Good morning! Eyes open. Hello, hello!",
-      "primaryCue": "action.open-close",
-      "secondaryCues": [
-        "action.wake"
-      ],
+      "primaryCue": "action.wake",
+      "secondaryCues": [],
       "renderPreference": "motion",
       "reviewStatus": "generated",
       "sentenceCues": [
@@ -11041,10 +10972,8 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "action.wake"
-          ],
+          "primaryCue": "action.wake",
+          "secondaryCues": [],
           "renderPreference": "motion"
         },
         {
@@ -11150,10 +11079,8 @@
       "sourceKind": "press",
       "sourceKey": "wake",
       "text": "Hello there! Morning time. Eyes open.",
-      "primaryCue": "action.open-close",
-      "secondaryCues": [
-        "action.wake"
-      ],
+      "primaryCue": "action.wake",
+      "secondaryCues": [],
       "renderPreference": "motion",
       "reviewStatus": "generated",
       "sentenceCues": [
@@ -11171,10 +11098,8 @@
         },
         {
           "index": 2,
-          "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "action.wake"
-          ],
+          "primaryCue": "action.wake",
+          "secondaryCues": [],
           "renderPreference": "motion"
         }
       ]
@@ -11521,10 +11446,8 @@
       "sourceKind": "press",
       "sourceKey": "hug",
       "text": "Big cuddle! Up, up! Nice and close.",
-      "primaryCue": "action.open-close",
-      "secondaryCues": [
-        "action.hug"
-      ],
+      "primaryCue": "action.hug",
+      "secondaryCues": [],
       "renderPreference": "motion",
       "reviewStatus": "generated",
       "sentenceCues": [
@@ -11542,10 +11465,8 @@
         },
         {
           "index": 2,
-          "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "action.hug"
-          ],
+          "primaryCue": "action.hug",
+          "secondaryCues": [],
           "renderPreference": "motion"
         }
       ]
@@ -11555,10 +11476,8 @@
       "sourceKind": "press",
       "sourceKey": "hug",
       "text": "Cuddle time! Nice and close. Here we go!",
-      "primaryCue": "action.open-close",
-      "secondaryCues": [
-        "action.hug"
-      ],
+      "primaryCue": "action.hug",
+      "secondaryCues": [],
       "renderPreference": "motion",
       "reviewStatus": "generated",
       "sentenceCues": [
@@ -11570,10 +11489,8 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "action.hug"
-          ],
+          "primaryCue": "action.hug",
+          "secondaryCues": [],
           "renderPreference": "motion"
         },
         {
@@ -11619,9 +11536,8 @@
       "sourceKind": "press",
       "sourceKey": "hug",
       "text": "Big hug! Nice and close. Right here.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "action.hug",
       "secondaryCues": [
-        "action.hug",
         "social.reassurance"
       ],
       "renderPreference": "motion",
@@ -11635,10 +11551,8 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "action.hug"
-          ],
+          "primaryCue": "action.hug",
+          "secondaryCues": [],
           "renderPreference": "motion"
         },
         {
@@ -12234,13 +12148,12 @@
       "sourceKind": "press",
       "sourceKey": "cry",
       "text": "I hear you. Right here. Nice and close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "observed.cry",
       "secondaryCues": [
-        "observed.cry",
         "attention.listen",
         "social.reassurance"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated",
       "sentenceCues": [
         {
@@ -12261,11 +12174,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "observed.cry"
-          ],
-          "renderPreference": "motion"
+          "primaryCue": "observed.cry",
+          "secondaryCues": [],
+          "renderPreference": "emma"
         }
       ]
     },
@@ -12345,12 +12256,11 @@
       "sourceKind": "press",
       "sourceKey": "cry",
       "text": "Easy, easy. Right here. Nice and close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "observed.cry",
       "secondaryCues": [
-        "observed.cry",
         "social.reassurance"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated",
       "sentenceCues": [
         {
@@ -12369,11 +12279,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "observed.cry"
-          ],
-          "renderPreference": "motion"
+          "primaryCue": "observed.cry",
+          "secondaryCues": [],
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13726,21 +13634,18 @@
       "sourceKind": "press",
       "sourceKey": "book",
       "text": "Open the book. Look, look! What's next?",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.book",
       "secondaryCues": [
-        "subject.book",
         "attention.look"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated",
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "subject.book"
-          ],
-          "renderPreference": "composite"
+          "primaryCue": "subject.book",
+          "secondaryCues": [],
+          "renderPreference": "illustration"
         },
         {
           "index": 1,
