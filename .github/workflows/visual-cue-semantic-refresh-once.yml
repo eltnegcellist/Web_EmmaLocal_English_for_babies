@@ -1,5 +1,5 @@
 name: Visual Cue one-time semantic refresh
-# Retry after asset-plan catalog binding fix.
+# Retry after asset-plan catalog and reviewed-status test fixes.
 on:
   push:
     branches: [feature/visual-cue-semantic-audit-20261014]
