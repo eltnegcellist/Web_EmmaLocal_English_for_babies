@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "status": "concept-plan-only-no-assets-created",
   "countSummary": {
-    "cueIds": 59,
+    "cueIds": 58,
     "conceptualPrimitives": 31,
     "byType": {
       "illustration": 14,
@@ -302,13 +302,6 @@
       "primitives": [
         "scene.milk",
         "motion.sip"
-      ],
-      "buildStatus": "planned"
-    },
-    {
-      "cueId": "action.sit",
-      "primitives": [
-        "scene.family"
       ],
       "buildStatus": "planned"
     },
