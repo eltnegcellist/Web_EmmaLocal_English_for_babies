@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "quality": "semireal-vector-motion-study",
+  "isProduction": false,
+  "note": "Shaded illustrated reference, not realistic photographic video; actions represented as separate articulated layers. Not wired to infant speech.",
+  "entries": [
+    {
+      "cueId": "action.sip",
+      "title": "ミルクを飲む",
+      "english": "Little sips.",
+      "old": "assets/visual-cue/prototypes/action-sip.svg",
+      "new": "assets/visual-cue/semireal/action-sip.svg",
+      "seconds": 3.4,
+      "movingParts": [
+        "bottlePivot",
+        "lip"
+      ],
+      "scene": "横向きの赤ちゃんと哺乳瓶",
+      "guardrail": "飲むかどうかの質問には自動適用しない"
+    },
+    {
+      "cueId": "action.turn-page",
+      "title": "ページをめくる",
+      "english": "Turn the page.",
+      "old": "assets/visual-cue/prototypes/action-turn-page.svg",
+      "new": "assets/visual-cue/semireal/action-turn-page.svg",
+      "seconds": 4,
+      "movingParts": [
+        "pagePivot"
+      ],
+      "scene": "開いた厚紙絵本",
+      "guardrail": "実際にページをめくる文だけ"
+    },
+    {
+      "cueId": "action.clap",
+      "title": "拍手をする",
+      "english": "Clap, clap!",
+      "old": "assets/visual-cue/prototypes/action-clap.svg",
+      "new": "assets/visual-cue/semireal/action-clap.svg",
+      "seconds": 3,
+      "movingParts": [
+        "leftPalm",
+        "rightPalm"
+      ],
+      "scene": "赤ちゃんの両手が中央で触れる",
+      "guardrail": "拍手を推測せず文の意味と一致させる"
+    },
+    {
+      "cueId": "action.kick",
+      "title": "足をキック",
+      "english": "Kick, kick!",
+      "old": "assets/visual-cue/prototypes/action-kick.svg",
+      "new": "assets/visual-cue/semireal/action-kick.svg",
+      "seconds": 3.6,
+      "movingParts": [
+        "legLeft",
+        "legRight"
+      ],
+      "scene": "仰向けの赤ちゃんが足を交互に動かす",
+      "guardrail": "立つ・歩く姿は使わない"
+    }
+  ]
+}
