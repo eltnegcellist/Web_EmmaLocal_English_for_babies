@@ -3,22 +3,22 @@
 // Identical to Android RuriFrequentReplyVariants.kt; classification is untouched.
 export const FREQUENT_COMBINED_VARIANTS = {
   "milk|affection": [
-    "Sweet milk moments together. Your little eyes sparkle. You're my sunshine.",
+    "Milk time, sweetheart! Sweet little eyes! I love you!",
     "Look at your cheeks! So soft and sweet. What a lovely moment.",
     "A cuddle after milk. My happy little one. You're so dear.",
     "Milk and gentle cuddles. Your smile warms me. What a sweet day.",
     "Hello, precious little one. That milk was nice. I adore you.",
   ],
   "milk|praise": [
-    "You took another sip! Look how you're learning. Wonderful little steps!",
-    "Such careful little sips! You worked so well. High five, sweetheart!",
+    "One more sip! Sip, sip, sip! Hooray, baby!",
+    "Little sips, baby! Sip, sip, sip! High five!",
     "You drank your milk! Little sips add up. Well done, baby!",
     "See what you did! Milk time went well. What a happy moment!",
     "You took little sips! Look at you go! Good job, baby!",
   ],
   "milk|invitation": [
-    "Shall we sit together? Your milk is waiting. Ready to try?",
-    "Come closer, little one. Milk time is here. Let's get comfortable.",
+    "Milk time, baby! Bottle is ready! Here we go!",
+    "Come here, baby! Milk time, milk time! Cozy together!",
     "Feeling hungry, sweetheart? Here's your warm milk. Shall we begin?",
     "Would milk sound good? Take a little look. We can start.",
     "Let's sit together now. Your bottle is ready. Want a little sip?",
@@ -39,7 +39,7 @@ export const FREQUENT_COMBINED_VARIANTS = {
   ],
   "diaper|invitation": [
     "Ready for fresh clothes? Let's change that diaper. I'll be gentle.",
-    "Shall we get comfy? A clean diaper awaits. Here we go.",
+    "Diaper time, baby! Fresh and clean! Here we go!",
     "Come to the mat. Let's change you gently. Ready for me?",
     "Your fresh diaper's here! Want to get changed? Let's do it.",
     "Let's get you clean. This won't take long. We'll do it together.",
@@ -73,7 +73,7 @@ export const FREQUENT_COMBINED_VARIANTS = {
     "Take your own time. No rush to sleep. I'm beside you.",
   ],
   "play|invitation": [
-    "Shall we roll together? Here comes your ball. Catch it, sweetheart!",
+    "Roll, roll, roll! Here comes the ball! Look, baby, look!",
     "Want to play peekaboo? Where did I go? Here I am!",
     "Let's watch that toy. It moves so slowly. Your turn now.",
     "Ready for some fun? I'll show a toy. Take a look.",
@@ -87,14 +87,14 @@ export const FREQUENT_COMBINED_VARIANTS = {
     "Are you upset, baby? Come into my arms. I'll hold you.",
   ],
   "smile|affection": [
-    "That little smile shines! You've brightened my morning. My lovely baby.",
+    "Smile, smile, smile! Bright little eyes! My sweet baby!",
     "Look at those dimples! What a happy face. I love you!",
-    "Your grin is wonderful. It makes me smile. Hello, sunshine!",
+    "Big, big smile! I smile too! Hello, sunshine!",
     "Such a cheerful face! Those eyes look bright. My darling baby.",
-    "That smile feels magical. You're my little joy. What a lovely sight.",
+    "Hello, happy face! Smile, smile, smile! I love you!",
   ],
   "book|invitation": [
-    "Shall we turn pages? Look, a little rabbit! Let's read together.",
+    "Turn the page! Look, a bunny! Hop, hop, hop!",
     "Here's a colorful book. Can you see it? Let's start reading.",
     "Would you like stories? Open the first page. Come sit close.",
     "Look at this picture! What do you see? Let's explore together.",
@@ -115,7 +115,7 @@ export const FREQUENT_COMBINED_VARIANTS = {
     "Hello, sleepy little face! I missed your eyes. You're such a joy.",
   ],
   "music|invitation": [
-    "Shall we sing together? I'll hum a tune. Join when you're ready.",
+    "Let's sing, baby! La, la, la! Listen, listen!",
     "Want a little song? Listen to this rhythm. Let's clap together.",
     "Here's our happy music! Can you hear drums? Let's sway slowly.",
     "Let's make some sounds. Tap with your hands. Shall we try?",
@@ -125,7 +125,7 @@ export const FREQUENT_COMBINED_VARIANTS = {
     "Would you like water? Here's your little cup. Take your time.",
     "Shall we take sips? Sit here with me. Ready for one?",
     "Feeling a little thirsty? Let's get your drink. Here you go.",
-    "Want to drink together? I'll hold your cup. Shall we begin?",
+    "Drink time, baby! Sip, sip, sip! Here we go!",
     "Let's take a break. Here's your little drink. Want a little sip?",
   ],
 };
