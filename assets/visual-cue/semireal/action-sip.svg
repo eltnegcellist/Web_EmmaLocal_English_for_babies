@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 390" role="img" aria-labelledby="visualTitle visualDesc">
+<title id="visualTitle">哺乳瓶を飲む動き</title><desc id="visualDesc">赤ちゃんが横になり、乳首の付いた哺乳瓶を口元へ傾けてひと口飲む。哺乳瓶だけがゆっくり動く。</desc>
+<defs>
+ <linearGradient id="skin" x1="0" y1="0" x2="0.85" y2="1"><stop stop-color="#ffe8d5"/><stop offset=".42" stop-color="#f3c6a8"/><stop offset=".82" stop-color="#e8a981"/><stop offset="1" stop-color="#bd8068"/></linearGradient>
+ <radialGradient id="cheek"><stop stop-color="#ef9091" stop-opacity=".6"/><stop offset="1" stop-color="#f59b93" stop-opacity="0"/></radialGradient>
+ <linearGradient id="fabric" x1="0" y1="0" x2=".82" y2="1"><stop stop-color="#fffefa"/><stop offset=".63" stop-color="#e9e0db"/><stop offset="1" stop-color="#d1c6c2"/></linearGradient>
+ <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ac7860"/><stop offset=".5" stop-color="#d0a486"/><stop offset="1" stop-color="#8e5e52"/></linearGradient>
+ <linearGradient id="shadowBlue" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#e4f6fc"/><stop offset=".53" stop-color="#a4d4e1"/><stop offset="1" stop-color="#6baabf"/></linearGradient>
+ <radialGradient id="background"><stop stop-color="#fffdf9"/><stop offset="1" stop-color="#f4e9e5"/></radialGradient>
+ <filter id="castShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8"/></filter>
+ <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter>
+ <filter id="clothTexture"><feTurbulence type="fractalNoise" baseFrequency=".32" numOctaves="2" seed="7" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".065"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+ 
+<linearGradient id="bottle" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#e2e8e8" stop-opacity=".83"/><stop offset=".19" stop-color="#fff" stop-opacity=".72"/><stop offset=".8" stop-color="#d4e4e8" stop-opacity=".7"/><stop offset="1" stop-color="#9cacb1" stop-opacity=".8"/></linearGradient>
+<linearGradient id="milk" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#fffcf0"/><stop offset="1" stop-color="#f6deb7"/></linearGradient>
+<style>
+#bottlePivot{transform-origin:133px 234px;animation:bottleTip 3.4s ease-in-out infinite;}
+@keyframes bottleTip{0%,13%,100%{transform:rotate(-9deg)}40%,68%{transform:rotate(3deg)}}
+#lip{transform-origin:318px 214px;animation:lipMove 3.4s ease-in-out infinite;}
+@keyframes lipMove{0%,18%,82%,100%{transform:scaleY(1)}42%,62%{transform:scaleY(.65)}}
+@media(prefers-reduced-motion:reduce){#bottlePivot,#lip{animation:none!important}}
+</style>
+</defs>
+<rect width="520" height="390" fill="url(#background)" rx="30"/>
+<path d="M0 313 C109 291 184 337 261 317 C369 281 433 297 520 307 V390 H0Z" fill="#f5e4dd"/>
+
+<ellipse cx="295" cy="321" rx="187" ry="42" fill="#b78d83" opacity=".13" filter="url(#castShadow)"/>
+<path d="M226 249 C253 228 369 232 455 285 L520 329 V390 H186Z" fill="#d4cbd0"/>
+<path d="M239 270 C292 248 415 269 490 336" fill="none" stroke="#b9a5b2" stroke-width="6"/>
+<path d="M214 248 Q256 282 300 273 L365 274 Q415 299 418 373 H170 Q168 308 214 248Z" fill="url(#fabric)" stroke="#cfbebb" stroke-width="4"/>
+<path d="M178 311 Q245 326 302 304 M284 280 Q302 309 320 318" fill="none" stroke="#dfcbca" stroke-width="5"/>
+<ellipse cx="352" cy="171" rx="95" ry="104" fill="url(#skin)" stroke="#c98d72" stroke-width="3"/>
+<path d="M273 152 Q285 79 353 72 Q423 74 443 127 Q409 114 389 91 Q354 121 321 107 Q295 142 273 152Z" fill="url(#wood)"/>
+<path d="M289 114 Q342 61 403 98" stroke="#865845" stroke-width="6" fill="none" stroke-linecap="round" opacity=".6"/>
+<path d="M288 153 Q307 130 329 139" stroke="#d69b83" stroke-width="7" fill="none"/>
+<ellipse cx="292" cy="195" rx="22" ry="29" fill="url(#skin)" stroke="#bd856d" stroke-width="3"/>
+<path d="M286 187 Q294 182 301 194" stroke="#b27663" stroke-width="4" fill="none" stroke-linecap="round"/>
+<ellipse cx="386" cy="197" rx="34" ry="32" fill="url(#cheek)"/>
+<path d="M371 173 Q386 165 399 173" stroke="#785248" stroke-width="5" stroke-linecap="round" fill="none"/>
+<ellipse cx="388" cy="184" rx="5" ry="6" fill="#4b302d"/>
+<circle cx="389" cy="182" r="1.5" fill="#fff"/>
+<path d="M342 209 Q350 217 343 221" fill="none" stroke="#ae7763" stroke-width="3" stroke-linecap="round"/>
+<g id="lip"><path d="M319 231 Q331 229 337 235 Q332 239 322 238" fill="#b46e69" stroke="#a7625f" stroke-width="2"/></g>
+<path d="M307 245 Q320 255 337 250" fill="none" stroke="#c5907b" stroke-width="2"/>
+<g id="bottlePivot">
+ <g transform="translate(108 134) rotate(-71 90 78)">
+  <rect x="26" y="26" width="140" height="86" rx="19" fill="url(#bottle)" stroke="#8c999e" stroke-width="5"/>
+  <path d="M41 74 H151 V93 Q151 102 140 102 H52 Q41 102 41 93Z" fill="url(#milk)" stroke="#ead1a7" stroke-width="2"/>
+  <path d="M51 44 H112" stroke="#fff" stroke-opacity=".85" stroke-width="7" stroke-linecap="round"/>
+  <path d="M62 62 V75 M82 62 V75 M102 62 V75" stroke="#b5a0a5" stroke-width="3"/>
+  <rect x="163" y="35" width="23" height="69" rx="6" fill="#d7b7b6" stroke="#9c8484" stroke-width="4"/>
+  <path d="M186 50 Q199 51 212 63 Q225 74 214 91 L186 94Z" fill="#f4cfba" stroke="#aa8271" stroke-width="4"/>
+ </g>
+</g>
+<path d="M198 267 Q218 237 244 239 Q264 242 273 254 L263 279 Q249 292 223 292Z" fill="url(#skin)" stroke="#b9806b" stroke-width="3"/>
+<path d="M215 260 Q223 248 230 253 M230 267 Q238 253 247 259 M245 272 Q253 261 261 270" stroke="#be826d" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+</svg>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 390" role="img" aria-labelledby="visualTitle visualDesc">
+<title id="visualTitle">絵本のページを一枚めくる</title><desc id="visualDesc">開いた厚紙絵本から右のページが背の綴じ目を支点に持ち上がり、左へ倒れてまた戻る。</desc>
+<defs>
+ <linearGradient id="skin" x1="0" y1="0" x2="0.85" y2="1"><stop stop-color="#ffe8d5"/><stop offset=".42" stop-color="#f3c6a8"/><stop offset=".82" stop-color="#e8a981"/><stop offset="1" stop-color="#bd8068"/></linearGradient>
+ <radialGradient id="cheek"><stop stop-color="#ef9091" stop-opacity=".6"/><stop offset="1" stop-color="#f59b93" stop-opacity="0"/></radialGradient>
+ <linearGradient id="fabric" x1="0" y1="0" x2=".82" y2="1"><stop stop-color="#fffefa"/><stop offset=".63" stop-color="#e9e0db"/><stop offset="1" stop-color="#d1c6c2"/></linearGradient>
+ <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ac7860"/><stop offset=".5" stop-color="#d0a486"/><stop offset="1" stop-color="#8e5e52"/></linearGradient>
+ <linearGradient id="shadowBlue" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#e4f6fc"/><stop offset=".53" stop-color="#a4d4e1"/><stop offset="1" stop-color="#6baabf"/></linearGradient>
+ <radialGradient id="background"><stop stop-color="#fffdf9"/><stop offset="1" stop-color="#f4e9e5"/></radialGradient>
+ <filter id="castShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8"/></filter>
+ <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter>
+ <filter id="clothTexture"><feTurbulence type="fractalNoise" baseFrequency=".32" numOctaves="2" seed="7" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".065"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+ 
+<linearGradient id="paper" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#fffdf7"/><stop offset=".77" stop-color="#f0e5cf"/><stop offset="1" stop-color="#dbceb4"/></linearGradient>
+<linearGradient id="cover" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#8fb2a9"/><stop offset=".65" stop-color="#658f8a"/><stop offset="1" stop-color="#416b6c"/></linearGradient>
+<linearGradient id="turnpaper" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#fffdf8"/><stop offset="1" stop-color="#deceb3"/></linearGradient>
+<style>
+#pagePivot{transform-origin:260px 143px;transform-box:view-box;animation:pageFlip 4s ease-in-out infinite;}
+@keyframes pageFlip{0%,17%,100%{transform:scaleX(1) rotate(-1deg)}42%,57%{transform:scaleX(.18) rotate(-4deg)}80%{transform:scaleX(-.92) rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce){#pagePivot{animation:none!important}}
+</style>
+</defs>
+<rect width="520" height="390" fill="url(#background)" rx="30"/>
+<path d="M0 313 C109 291 184 337 261 317 C369 281 433 297 520 307 V390 H0Z" fill="#f5e4dd"/>
+
+<ellipse cx="264" cy="332" rx="195" ry="28" fill="#988574" opacity=".19" filter="url(#castShadow)"/>
+<path d="M60 140 Q157 95 258 134 Q358 98 455 145 L459 305 Q348 263 259 323 Q160 264 60 306Z" fill="url(#cover)" stroke="#536f6f" stroke-width="8" stroke-linejoin="round"/>
+<path d="M77 144 Q170 121 259 151 V303 Q159 271 77 287Z" fill="url(#paper)" stroke="#b5a68e" stroke-width="4" stroke-linejoin="round"/>
+<path d="M259 151 Q342 121 439 146 V285 Q334 274 259 303Z" fill="#faf2e6" stroke="#b5a68e" stroke-width="4" stroke-linejoin="round"/>
+<path d="M259 151 V310" stroke="#8d7a75" stroke-width="6"/>
+<path d="M99 185 Q154 148 213 184 Q203 219 171 238 Q138 242 99 185Z" fill="#deb68f"/>
+<circle cx="158" cy="174" r="21" fill="#f4d5ad"/><circle cx="143" cy="170" r="5" fill="#75615a"/><circle cx="175" cy="170" r="5" fill="#75615a"/>
+<path d="M138 215 Q158 230 178 213" fill="none" stroke="#f6e0c5" stroke-width="7" stroke-linecap="round"/>
+<path d="M288 204 Q349 164 407 204 Q358 245 288 204Z" fill="#b8d5c1"/>
+<circle cx="347" cy="192" r="24" fill="#f3d99a"/>
+<path d="M314 231 Q365 221 409 239" stroke="#7aa89b" stroke-width="6" fill="none"/>
+<g id="pagePivot">
+ <path d="M259 154 Q357 130 431 146 L431 286 Q336 272 259 301Z" fill="url(#turnpaper)" stroke="#c3ab91" stroke-width="4" stroke-linejoin="round"/>
+ <path d="M300 176 Q355 157 402 180 Q381 215 328 214Z" fill="#d1e0b0" stroke="#9eb78a" stroke-width="3"/>
+ <circle cx="350" cy="179" r="15" fill="#eebea9" stroke="#d5a18b" stroke-width="2"/>
+ <path d="M284 252 Q347 236 407 248" stroke="#b6aa93" stroke-width="6" fill="none" stroke-linecap="round"/>
+ <path d="M426 145 L426 286" stroke="#fff" stroke-width="3" opacity=".85"/>
+</g>
+<g id="handBook">
+ <path d="M390 308 Q403 298 402 281 L404 265 Q408 257 416 262 L418 275 L425 265 Q433 260 437 268 L437 278 Q447 268 454 275 L450 291 Q457 297 446 309 Q425 324 402 323Z" fill="url(#skin)" stroke="#b57c6d" stroke-width="3"/>
+</g>
+
+</svg>

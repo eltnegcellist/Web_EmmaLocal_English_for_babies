@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 390" role="img" aria-labelledby="visualTitle visualDesc">
+<title id="visualTitle">寝転がった赤ちゃんが足をキックする</title><desc id="visualDesc">仰向けの赤ちゃんが脚を左右交互にゆっくり曲げ伸ばしする。立った姿勢ではない。</desc>
+<defs>
+ <linearGradient id="skin" x1="0" y1="0" x2="0.85" y2="1"><stop stop-color="#ffe8d5"/><stop offset=".42" stop-color="#f3c6a8"/><stop offset=".82" stop-color="#e8a981"/><stop offset="1" stop-color="#bd8068"/></linearGradient>
+ <radialGradient id="cheek"><stop stop-color="#ef9091" stop-opacity=".6"/><stop offset="1" stop-color="#f59b93" stop-opacity="0"/></radialGradient>
+ <linearGradient id="fabric" x1="0" y1="0" x2=".82" y2="1"><stop stop-color="#fffefa"/><stop offset=".63" stop-color="#e9e0db"/><stop offset="1" stop-color="#d1c6c2"/></linearGradient>
+ <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ac7860"/><stop offset=".5" stop-color="#d0a486"/><stop offset="1" stop-color="#8e5e52"/></linearGradient>
+ <linearGradient id="shadowBlue" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#e4f6fc"/><stop offset=".53" stop-color="#a4d4e1"/><stop offset="1" stop-color="#6baabf"/></linearGradient>
+ <radialGradient id="background"><stop stop-color="#fffdf9"/><stop offset="1" stop-color="#f4e9e5"/></radialGradient>
+ <filter id="castShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8"/></filter>
+ <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter>
+ <filter id="clothTexture"><feTurbulence type="fractalNoise" baseFrequency=".32" numOctaves="2" seed="7" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".065"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+ 
+<linearGradient id="onesie" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#d7e7f6"/><stop offset=".57" stop-color="#aac8e5"/><stop offset="1" stop-color="#84aed1"/></linearGradient>
+<linearGradient id="sock" x1="0" y1="0" x2=".9" y2=".5"><stop stop-color="#fff"/><stop offset=".77" stop-color="#e8d8e0"/><stop offset="1" stop-color="#beacb8"/></linearGradient>
+<style>
+#legLeft{transform-origin:225px 251px;animation:kickA 3.6s ease-in-out infinite;}
+#legRight{transform-origin:298px 251px;animation:kickB 3.6s ease-in-out infinite;}
+@keyframes kickA{0%,100%{transform:rotate(-8deg)}40%,59%{transform:rotate(14deg)}}
+@keyframes kickB{0%,100%{transform:rotate(14deg)}40%,59%{transform:rotate(-8deg)}}
+@media(prefers-reduced-motion:reduce){#legLeft,#legRight{animation:none!important}}
+</style>
+</defs>
+<rect width="520" height="390" fill="url(#background)" rx="30"/>
+<path d="M0 313 C109 291 184 337 261 317 C369 281 433 297 520 307 V390 H0Z" fill="#f5e4dd"/>
+
+<path d="M33 265 Q180 228 487 264 L520 300 V390 H0 V301Z" fill="url(#fabric)"/>
+<ellipse cx="260" cy="348" rx="189" ry="25" fill="#a696a2" opacity=".12" filter="url(#castShadow)"/>
+<rect x="132" y="74" width="253" height="112" rx="54" fill="#fff9f6" stroke="#e7d7d4" stroke-width="7"/>
+<path d="M169 89 Q252 70 353 94" fill="none" stroke="#fff" stroke-width="12"/>
+<ellipse cx="258" cy="133" rx="81" ry="75" fill="url(#skin)" stroke="#c18b77" stroke-width="3"/>
+<path d="M185 128 Q172 69 227 49 Q284 28 325 68 Q338 90 336 119 Q299 94 278 86 Q220 100 200 94Z" fill="url(#wood)"/>
+<path d="M221 124 Q231 117 240 123 M280 123 Q290 118 299 126" fill="none" stroke="#775349" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="230" cy="136" rx="4.5" ry="5.5" fill="#513632"/><ellipse cx="289" cy="137" rx="4.5" ry="5.5" fill="#513632"/>
+<ellipse cx="208" cy="150" rx="25" ry="21" fill="url(#cheek)"/><ellipse cx="309" cy="149" rx="24" ry="20" fill="url(#cheek)"/>
+<path d="M249 154 Q260 160 269 153" fill="none" stroke="#ae746d" stroke-width="3" stroke-linecap="round"/>
+<path d="M213 193 Q252 176 300 194 Q336 209 337 258 L320 279 L199 279 L181 258 Q177 212 213 193Z" fill="url(#onesie)" stroke="#81a2c6" stroke-width="4"/>
+<path d="M223 195 V232 M294 195 V232" stroke="#e9f4fb" stroke-width="7" stroke-linecap="round"/>
+<ellipse cx="261" cy="250" rx="28" ry="12" fill="#93b4cf"/>
+<path d="M182 222 Q162 215 147 236 Q142 262 168 271" fill="url(#skin)" stroke="#c18b77" stroke-width="4"/>
+<path d="M336 224 Q352 218 373 234 Q378 264 351 271" fill="url(#skin)" stroke="#c18b77" stroke-width="4"/>
+<g id="legLeft">
+ <path d="M218 250 Q201 259 193 286 Q193 309 209 331 L223 345 Q248 355 262 337 Q262 318 246 304 L253 275 Q253 259 235 252Z" fill="url(#skin)" stroke="#b77f71" stroke-width="4"/>
+ <path d="M206 304 Q221 295 237 309" fill="none" stroke="#d4a38d" stroke-width="5"/>
+ <path d="M220 339 Q239 348 251 337 Q267 336 276 349 Q285 363 267 373 Q234 389 212 364Z" fill="url(#sock)" stroke="#b6a4ae" stroke-width="4"/>
+ <path d="M229 354 Q244 349 260 358" fill="none" stroke="#fefdfd" stroke-width="5"/>
+</g>
+<g id="legRight">
+ <path d="M300 250 Q326 256 334 283 Q341 307 326 332 L315 349 Q293 355 277 336 Q276 317 296 304 L279 278 Q278 254 292 251Z" fill="url(#skin)" stroke="#b77f71" stroke-width="4"/>
+ <path d="M320 303 Q310 295 296 307" fill="none" stroke="#d4a38d" stroke-width="5"/>
+ <path d="M311 340 Q293 349 281 338 Q263 339 256 350 Q252 370 272 377 Q303 391 324 364Z" fill="url(#sock)" stroke="#b6a4ae" stroke-width="4"/>
+ <path d="M309 356 Q296 350 277 358" fill="none" stroke="#fff" stroke-width="5"/>
+</g>
+
+</svg>

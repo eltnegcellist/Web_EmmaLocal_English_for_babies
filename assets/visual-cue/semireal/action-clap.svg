@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 390" role="img" aria-labelledby="visualTitle visualDesc">
+<title id="visualTitle">両手を合わせて拍手する</title><desc id="visualDesc">赤ちゃんの二本の腕と指がゆっくり中央で合わさり離れる。手だけが動く。</desc>
+<defs>
+ <linearGradient id="skin" x1="0" y1="0" x2="0.85" y2="1"><stop stop-color="#ffe8d5"/><stop offset=".42" stop-color="#f3c6a8"/><stop offset=".82" stop-color="#e8a981"/><stop offset="1" stop-color="#bd8068"/></linearGradient>
+ <radialGradient id="cheek"><stop stop-color="#ef9091" stop-opacity=".6"/><stop offset="1" stop-color="#f59b93" stop-opacity="0"/></radialGradient>
+ <linearGradient id="fabric" x1="0" y1="0" x2=".82" y2="1"><stop stop-color="#fffefa"/><stop offset=".63" stop-color="#e9e0db"/><stop offset="1" stop-color="#d1c6c2"/></linearGradient>
+ <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ac7860"/><stop offset=".5" stop-color="#d0a486"/><stop offset="1" stop-color="#8e5e52"/></linearGradient>
+ <linearGradient id="shadowBlue" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#e4f6fc"/><stop offset=".53" stop-color="#a4d4e1"/><stop offset="1" stop-color="#6baabf"/></linearGradient>
+ <radialGradient id="background"><stop stop-color="#fffdf9"/><stop offset="1" stop-color="#f4e9e5"/></radialGradient>
+ <filter id="castShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8"/></filter>
+ <filter id="smallShadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter>
+ <filter id="clothTexture"><feTurbulence type="fractalNoise" baseFrequency=".32" numOctaves="2" seed="7" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".065"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+ 
+<linearGradient id="shirt" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#f7ddd7"/><stop offset=".6" stop-color="#ebbbb9"/><stop offset="1" stop-color="#bf919f"/></linearGradient>
+<style>
+#leftPalm{transform-origin:151px 258px;animation:clapLeft 3s ease-in-out infinite;}
+#rightPalm{transform-origin:368px 258px;animation:clapRight 3s ease-in-out infinite;}
+@keyframes clapLeft{0%,18%,100%{transform:rotate(0deg) translateX(0)}43%,61%{transform:rotate(-11deg) translateX(39px)}}
+@keyframes clapRight{0%,18%,100%{transform:rotate(0deg) translateX(0)}43%,61%{transform:rotate(11deg) translateX(-39px)}}
+@media(prefers-reduced-motion:reduce){#leftPalm,#rightPalm{animation:none!important}}
+</style>
+</defs>
+<rect width="520" height="390" fill="url(#background)" rx="30"/>
+<path d="M0 313 C109 291 184 337 261 317 C369 281 433 297 520 307 V390 H0Z" fill="#f5e4dd"/>
+
+<ellipse cx="265" cy="350" rx="146" ry="24" fill="#9d7a81" opacity=".14" filter="url(#castShadow)"/>
+<path d="M125 391 Q128 287 182 280 Q250 269 340 280 Q392 306 394 390Z" fill="url(#shirt)" stroke="#ba919a" stroke-width="5"/>
+<path d="M216 282 Q260 308 306 279" stroke="#f5e1dc" stroke-width="14" fill="none"/>
+<ellipse cx="262" cy="154" rx="100" ry="113" fill="url(#skin)" stroke="#c18d77" stroke-width="3"/>
+<path d="M162 157 Q164 75 226 46 Q304 18 357 98 Q358 111 349 139 Q315 105 292 92 Q244 113 217 95 Q205 135 162 157Z" fill="url(#wood)"/>
+<path d="M176 123 Q232 45 318 73" stroke="#7b4c43" stroke-width="5" fill="none" opacity=".45"/>
+<ellipse cx="171" cy="188" rx="20" ry="28" fill="url(#skin)" stroke="#bc8271" stroke-width="3"/>
+<ellipse cx="350" cy="188" rx="20" ry="28" fill="url(#skin)" stroke="#bc8271" stroke-width="3"/>
+<ellipse cx="209" cy="209" rx="30" ry="28" fill="url(#cheek)"/>
+<ellipse cx="310" cy="209" rx="30" ry="28" fill="url(#cheek)"/>
+<path d="M214 174 Q227 165 240 172 M281 172 Q294 164 308 174" fill="none" stroke="#785148" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="225" cy="183" rx="5" ry="6" fill="#4b302d"/><ellipse cx="297" cy="183" rx="5" ry="6" fill="#4b302d"/>
+<circle cx="226" cy="181" r="1.5" fill="#fff"/><circle cx="298" cy="181" r="1.5" fill="#fff"/>
+<path d="M257 198 Q252 211 264 214" fill="none" stroke="#c58d78" stroke-width="3"/>
+<path d="M235 228 Q262 261 290 228 Q269 249 235 228Z" fill="#b26363" stroke="#a46666" stroke-width="3"/>
+<path d="M250 239 Q264 232 275 240" fill="none" stroke="#e8a29c" stroke-width="5" stroke-linecap="round"/>
+<path d="M137 301 Q120 296 118 266 Q121 250 136 256 L184 282 L211 304 L199 335Z" fill="#efd2c7" stroke="#bb8c80" stroke-width="4"/>
+<path d="M385 301 Q402 296 405 266 Q402 250 388 256 L339 282 L311 304 L323 335Z" fill="#efd2c7" stroke="#bb8c80" stroke-width="4"/>
+<g id="leftPalm">
+ <path d="M124 278 Q96 250 102 212 L104 159 Q107 143 119 146 Q132 149 131 164 L135 138 Q139 124 151 131 Q158 134 158 146 L161 122 Q166 111 177 116 Q185 120 183 136 L190 134 Q203 124 210 135 Q217 146 207 163 L188 199 Q208 185 220 193 Q231 202 219 216 L183 272Z" fill="url(#skin)" stroke="#b47f6c" stroke-width="4" stroke-linejoin="round"/>
+ <path d="M123 174 L134 213 M150 158 L154 210 M177 151 L171 205" stroke="#bd8976" stroke-width="3" fill="none" stroke-linecap="round"/>
+ <path d="M113 163 Q118 155 127 159 M141 148 Q147 141 154 145 M169 134 Q175 128 181 131" stroke="#ffe9d9" stroke-width="5" fill="none" stroke-linecap="round"/>
+</g>
+<g id="rightPalm">
+ <path d="M400 278 Q427 250 421 212 L419 159 Q416 143 403 146 Q390 149 391 164 L388 138 Q384 124 372 131 Q365 134 365 146 L362 122 Q356 111 346 116 Q337 120 340 136 L334 134 Q321 124 315 135 Q308 146 318 163 L336 199 Q316 185 304 193 Q293 202 305 216 L342 272Z" fill="url(#skin)" stroke="#b47f6c" stroke-width="4" stroke-linejoin="round"/>
+ <path d="M401 174 L389 213 M373 158 L369 210 M347 151 L353 205" stroke="#bd8976" stroke-width="3" fill="none" stroke-linecap="round"/>
+ <path d="M411 163 Q406 155 397 159 M382 148 Q376 141 369 145 M354 134 Q348 128 343 131" stroke="#ffe9d9" stroke-width="5" fill="none" stroke-linecap="round"/>
+</g>
+
+</svg>
