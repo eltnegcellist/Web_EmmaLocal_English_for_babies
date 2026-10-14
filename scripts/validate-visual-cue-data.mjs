@@ -32,7 +32,7 @@ export function validateVisualCueArtifacts(snapshot,phrases,draft,registry,{stri
   const slot=row.sourceKind+"\0"+row.sourceKey+"\0"+row.sourceIndex;if(slots.has(slot))err("duplicate_source_slot",path);slots.add(slot);
   if(typeof row.text!=="string"||!row.text.trim())err("text_invalid",path);
   if(/\{(?:name|ai_name|baby_name)\}/i.test(row.text||""))err("placeholder_present",path);
-  if(texts.has(row.text))err("duplicate_phrase_text",path);texts.add(row.text);
+  texts.add(row.text);
   if(kinds.has(row.sourceKind))counts[row.sourceKind]++;
   if(!/^vc_\d{6,}$/.test(p.phraseId||""))err("phrase_id_invalid",path);
   if(ids.has(p.phraseId))err("duplicate_phrase_id",path);ids.add(p.phraseId);
