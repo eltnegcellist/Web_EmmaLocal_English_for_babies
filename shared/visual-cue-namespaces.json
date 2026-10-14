@@ -106,11 +106,6 @@
       "reviewStatus": "generated"
     },
     {
-      "id": "action.sit",
-      "assetStatus": "not-created",
-      "reviewStatus": "generated"
-    },
-    {
       "id": "action.sleep",
       "assetStatus": "not-created",
       "reviewStatus": "generated"

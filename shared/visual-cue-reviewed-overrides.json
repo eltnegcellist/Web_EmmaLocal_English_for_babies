@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "overrides": [
+    {
+      "phraseId": "vc_000020",
+      "text": "Let's say good morning! Hello, sweet baby. Hi there!",
+      "primaryCue": "social.greeting",
+      "secondaryCues": [
+        "dialogue.invitation"
+      ],
+      "renderPreference": "emma",
+      "reason": "Good morning is greeting, not a statement that baby just awoke"
+    },
+    {
+      "phraseId": "vc_000039",
+      "text": "Here's your milk! Ready for a sip? Here you go!",
+      "primaryCue": "subject.milk",
+      "secondaryCues": [
+        "dialogue.invitation"
+      ],
+      "renderPreference": "illustration",
+      "reason": "Ready for a sip is a question, not observed drinking"
+    },
+    {
+      "phraseId": "vc_000040",
+      "text": "Can you taste it? A little milk. Mmm, yummy!",
+      "primaryCue": "subject.milk",
+      "secondaryCues": [],
+      "renderPreference": "illustration",
+      "reason": "Yummy milk does not mean eating solids"
+    },
+    {
+      "phraseId": "vc_000058",
+      "text": "Hello again! Did you rest well? I'm glad you're awake.",
+      "primaryCue": "action.wake",
+      "secondaryCues": [
+        "dialogue.repeat"
+      ],
+      "renderPreference": "motion",
+      "reason": "Past rest is not current sleep"
+    },
+    {
+      "phraseId": "vc_000059",
+      "text": "Look who's awake! Did you rest well? Hello there!",
+      "primaryCue": "action.wake",
+      "secondaryCues": [
+        "attention.look"
+      ],
+      "renderPreference": "motion",
+      "reason": "Past rest is not current sleep"
+    },
+    {
+      "phraseId": "vc_000061",
+      "text": "Baby, you're awake! How was your rest? Hello, sweetheart!",
+      "primaryCue": "action.wake",
+      "secondaryCues": [
+        "social.affection"
+      ],
+      "renderPreference": "motion",
+      "reason": "Past rest is not current sleep"
+    },
+    {
+      "phraseId": "vc_000112",
+      "text": "Are you feeling upset? I'm listening, baby. I'm right here.",
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [],
+      "renderPreference": "emma",
+      "reason": "Asking whether upset does not mean crying"
+    },
+    {
+      "phraseId": "vc_000118",
+      "text": "Baby, it's okay. I'm listening to you. I'm here!",
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [],
+      "renderPreference": "emma",
+      "reason": "Reassurance alone does not mean crying"
+    },
+    {
+      "phraseId": "vc_000128",
+      "text": "Let's pat your back. Maybe a little burp. There!",
+      "primaryCue": "subject.tummy",
+      "secondaryCues": [
+        "dialogue.invitation"
+      ],
+      "renderPreference": "illustration",
+      "reason": "Maybe a burp is hypothetical"
+    },
+    {
+      "phraseId": "vc_000130",
+      "text": "Is that a burp? Let's take it slowly. I'm right here.",
+      "primaryCue": "subject.tummy",
+      "secondaryCues": [
+        "dialogue.invitation",
+        "social.reassurance"
+      ],
+      "renderPreference": "illustration",
+      "reason": "Is that a burp? is uncertain"
+    },
+    {
+      "phraseId": "vc_000153",
+      "text": "Rain on the window! Tap, tap, tap. Can you hear?",
+      "primaryCue": "subject.rain",
+      "secondaryCues": [
+        "attention.listen"
+      ],
+      "renderPreference": "illustration",
+      "reason": "Rain tapping a window does not mean baby tapping hands"
+    },
+    {
+      "phraseId": "vc_000173",
+      "text": "Baby, food time! One little spoonful. Is it yummy?",
+      "primaryCue": "subject.food",
+      "secondaryCues": [],
+      "renderPreference": "illustration",
+      "reason": "Spoonful / yummy question does not assert chewing"
+    },
+    {
+      "phraseId": "vc_000192",
+      "text": "Here's your drink! Ready for a sip? Here you are!",
+      "primaryCue": "subject.drink",
+      "secondaryCues": [
+        "dialogue.invitation"
+      ],
+      "renderPreference": "illustration",
+      "reason": "Ready for a sip? is prospective"
+    },
+    {
+      "phraseId": "vc_000195",
+      "text": "Want another sip? No need to hurry. Here you go!",
+      "primaryCue": "subject.drink",
+      "secondaryCues": [
+        "dialogue.invitation"
+      ],
+      "renderPreference": "illustration",
+      "reason": "Want another sip? is prospective"
+    },
+    {
+      "phraseId": "vc_000262",
+      "text": "All done? Is that everything? Let's have a look.",
+      "primaryCue": "dialogue.finish-check",
+      "secondaryCues": [
+        "attention.look",
+        "dialogue.invitation"
+      ],
+      "renderPreference": "emma",
+      "reason": "All done? is asking, not affirming completion"
+    },
+    {
+      "phraseId": "vc_000265",
+      "text": "Finished already? Let me see. Are we all done?",
+      "primaryCue": "dialogue.finish-check",
+      "secondaryCues": [
+        "attention.look"
+      ],
+      "renderPreference": "emma",
+      "reason": "Finished already? is asking, not affirming completion"
+    },
+    {
+      "phraseId": "vc_000268",
+      "text": "All finished? Let's have a look! All done, baby?",
+      "primaryCue": "dialogue.finish-check",
+      "secondaryCues": [
+        "attention.look",
+        "dialogue.invitation"
+      ],
+      "renderPreference": "emma",
+      "reason": "All finished? is asking, not affirming completion"
+    },
+    {
+      "phraseId": "vc_000368",
+      "text": "All clean down there? Did we finish? Let's take a peek.",
+      "primaryCue": "dialogue.finish-check",
+      "secondaryCues": [
+        "subject.diaper",
+        "dialogue.invitation"
+      ],
+      "renderPreference": "emma",
+      "reason": "Take a peek is inspection, not peekaboo"
+    },
+    {
+      "phraseId": "vc_000383",
+      "text": "I hear you, baby! Come close, sweetheart! I'll hold you.",
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [
+        "attention.listen",
+        "social.affection"
+      ],
+      "renderPreference": "emma",
+      "reason": "Cry reassurance should prefer a caring Emma state"
+    },
+    {
+      "phraseId": "vc_000388",
+      "text": "Are you upset, baby? Come into my arms. I'll hold you.",
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [],
+      "renderPreference": "emma",
+      "reason": "Are you upset? is a question, not proven crying"
+    },
+    {
+      "phraseId": "vc_000690",
+      "text": "Those hands can try. Just one little reach. I'll stay close.",
+      "primaryCue": "subject.hands",
+      "secondaryCues": [
+        "social.encouragement"
+      ],
+      "renderPreference": "illustration",
+      "reason": "Stay close does not mean open and close hands"
+    }
+  ]
+}

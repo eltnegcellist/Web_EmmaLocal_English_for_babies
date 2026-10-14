@@ -245,13 +245,12 @@
       "sourceKind": "topic",
       "sourceKey": "generic",
       "text": "Let's say good morning! Hello, sweet baby. Hi there!",
-      "primaryCue": "action.wake",
+      "primaryCue": "social.greeting",
       "secondaryCues": [
-        "social.greeting",
         "dialogue.invitation"
       ],
-      "renderPreference": "motion",
-      "reviewStatus": "generated"
+      "renderPreference": "emma",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000021",
@@ -484,25 +483,22 @@
       "sourceKind": "topic",
       "sourceKey": "milk",
       "text": "Here's your milk! Ready for a sip? Here you go!",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.milk",
       "secondaryCues": [
-        "subject.milk",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
+      "renderPreference": "illustration",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000040",
       "sourceKind": "topic",
       "sourceKey": "milk",
       "text": "Can you taste it? A little milk. Mmm, yummy!",
-      "primaryCue": "action.eat",
-      "secondaryCues": [
-        "subject.milk"
-      ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
+      "primaryCue": "subject.milk",
+      "secondaryCues": [],
+      "renderPreference": "illustration",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000041",
@@ -560,8 +556,7 @@
       "text": "Baby, your milk! Here's a little sip. Mmm, yummy!",
       "primaryCue": "action.sip",
       "secondaryCues": [
-        "subject.milk",
-        "action.eat"
+        "subject.milk"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -708,26 +703,24 @@
       "sourceKind": "topic",
       "sourceKey": "wake",
       "text": "Hello again! Did you rest well? I'm glad you're awake.",
-      "primaryCue": "action.sleep",
+      "primaryCue": "action.wake",
       "secondaryCues": [
-        "action.wake",
         "dialogue.repeat"
       ],
       "renderPreference": "motion",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000059",
       "sourceKind": "topic",
       "sourceKey": "wake",
       "text": "Look who's awake! Did you rest well? Hello there!",
-      "primaryCue": "action.sleep",
+      "primaryCue": "action.wake",
       "secondaryCues": [
-        "action.wake",
         "attention.look"
       ],
       "renderPreference": "motion",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000060",
@@ -746,13 +739,12 @@
       "sourceKind": "topic",
       "sourceKey": "wake",
       "text": "Baby, you're awake! How was your rest? Hello, sweetheart!",
-      "primaryCue": "action.sleep",
+      "primaryCue": "action.wake",
       "secondaryCues": [
-        "action.wake",
         "social.affection"
       ],
       "renderPreference": "motion",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000062",
@@ -1346,10 +1338,10 @@
       "sourceKind": "topic",
       "sourceKey": "cry",
       "text": "I hear you crying. I'm right here. You're not alone.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "attention.listen",
-        "social.reassurance"
+        "observed.cry",
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -1359,24 +1351,22 @@
       "sourceKind": "topic",
       "sourceKey": "cry",
       "text": "Are you feeling upset? I'm listening, baby. I'm right here.",
-      "primaryCue": "observed.cry",
-      "secondaryCues": [
-        "social.reassurance"
-      ],
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [],
       "renderPreference": "emma",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000113",
       "sourceKind": "topic",
       "sourceKey": "cry",
       "text": "Are you upset? I'll stay close. Would you like cuddles?",
-      "primaryCue": "action.hug",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "observed.cry",
+        "action.hug",
         "dialogue.invitation"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -1384,12 +1374,13 @@
       "sourceKind": "topic",
       "sourceKey": "cry",
       "text": "I hear you crying. Would a cuddle help? I'm here.",
-      "primaryCue": "action.hug",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
+        "action.hug",
         "observed.cry",
         "attention.listen"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -1397,12 +1388,11 @@
       "sourceKind": "topic",
       "sourceKey": "cry",
       "text": "Are you upset? I'm here with you. Big hugs!",
-      "primaryCue": "action.hug",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "observed.cry",
-        "social.reassurance"
+        "action.hug"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -1410,7 +1400,7 @@
       "sourceKind": "topic",
       "sourceKey": "cry",
       "text": "You can cry. I'll stay beside you. I love you.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
         "social.affection"
       ],
@@ -1422,12 +1412,13 @@
       "sourceKind": "topic",
       "sourceKey": "cry",
       "text": "Baby, I'm here. I hear you crying. Big hugs!",
-      "primaryCue": "action.hug",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
+        "action.hug",
         "observed.cry",
         "attention.listen"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -1435,12 +1426,10 @@
       "sourceKind": "topic",
       "sourceKey": "cry",
       "text": "Baby, it's okay. I'm listening to you. I'm here!",
-      "primaryCue": "observed.cry",
-      "secondaryCues": [
-        "social.reassurance"
-      ],
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [],
       "renderPreference": "emma",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000119",
@@ -1549,13 +1538,12 @@
       "sourceKind": "topic",
       "sourceKey": "tummy",
       "text": "Let's pat your back. Maybe a little burp. There!",
-      "primaryCue": "action.burp",
+      "primaryCue": "subject.tummy",
       "secondaryCues": [
-        "subject.tummy",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
+      "renderPreference": "illustration",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000129",
@@ -1575,14 +1563,13 @@
       "sourceKind": "topic",
       "sourceKey": "tummy",
       "text": "Is that a burp? Let's take it slowly. I'm right here.",
-      "primaryCue": "action.burp",
+      "primaryCue": "subject.tummy",
       "secondaryCues": [
-        "subject.tummy",
         "dialogue.invitation",
         "social.reassurance"
       ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
+      "renderPreference": "illustration",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000131",
@@ -1862,13 +1849,12 @@
       "sourceKind": "topic",
       "sourceKey": "rain",
       "text": "Rain on the window! Tap, tap, tap. Can you hear?",
-      "primaryCue": "action.tap",
+      "primaryCue": "subject.rain",
       "secondaryCues": [
-        "subject.rain",
         "attention.listen"
       ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
+      "renderPreference": "illustration",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000154",
@@ -2106,12 +2092,10 @@
       "sourceKind": "topic",
       "sourceKey": "food",
       "text": "Baby, food time! One little spoonful. Is it yummy?",
-      "primaryCue": "action.eat",
-      "secondaryCues": [
-        "subject.food"
-      ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
+      "primaryCue": "subject.food",
+      "secondaryCues": [],
+      "renderPreference": "illustration",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000174",
@@ -2352,13 +2336,12 @@
       "sourceKind": "topic",
       "sourceKey": "drink",
       "text": "Here's your drink! Ready for a sip? Here you are!",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.drink",
       "secondaryCues": [
-        "subject.drink",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
+      "renderPreference": "illustration",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000193",
@@ -2390,13 +2373,12 @@
       "sourceKind": "topic",
       "sourceKey": "drink",
       "text": "Want another sip? No need to hurry. Here you go!",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.drink",
       "secondaryCues": [
-        "subject.drink",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
+      "renderPreference": "illustration",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000196",
@@ -3152,11 +3134,10 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "attention.look",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000263",
@@ -3166,7 +3147,6 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "attention.look",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -3179,8 +3159,7 @@
       "text": "All done, baby? Look with me! One last check?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
-        "attention.look",
-        "dialogue.finish"
+        "attention.look"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -3192,11 +3171,10 @@
       "text": "Finished already? Let me see. Are we all done?",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
-        "attention.look",
-        "dialogue.finish"
+        "attention.look"
       ],
       "renderPreference": "emma",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000266",
@@ -3206,8 +3184,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "attention.look",
-        "dialogue.repeat",
-        "dialogue.finish"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -3233,11 +3210,10 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "attention.look",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000269",
@@ -3793,12 +3769,11 @@
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
       "text": "Hungry, little one? Milk is ready! One little sip?",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.milk",
       "secondaryCues": [
-        "subject.milk",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -3819,13 +3794,11 @@
       "sourceKind": "combined",
       "sourceKey": "milk|invitation",
       "text": "Let's sit together now. Your bottle is ready. Want a little sip?",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.milk",
       "secondaryCues": [
-        "subject.milk",
-        "dialogue.invitation",
-        "action.sit"
+        "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -4098,9 +4071,9 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.milk",
-        "action.sip",
         "attention.look",
-        "dialogue.repeat"
+        "dialogue.repeat",
+        "dialogue.invitation"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4113,7 +4086,6 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.milk",
-        "action.sip",
         "attention.look",
         "dialogue.repeat"
       ],
@@ -4129,8 +4101,7 @@
       "secondaryCues": [
         "subject.milk",
         "action.sip",
-        "attention.look",
-        "dialogue.finish"
+        "attention.look"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4144,7 +4115,6 @@
       "secondaryCues": [
         "subject.milk",
         "attention.look",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -4158,8 +4128,6 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.milk",
-        "action.sip",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -4173,9 +4141,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.milk",
-        "action.sip",
-        "attention.look",
-        "dialogue.finish"
+        "attention.look"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4189,7 +4155,6 @@
       "secondaryCues": [
         "subject.milk",
         "action.sip",
-        "dialogue.finish",
         "social.affection"
       ],
       "renderPreference": "emma",
@@ -4204,8 +4169,7 @@
       "secondaryCues": [
         "subject.milk",
         "attention.look",
-        "dialogue.repeat",
-        "dialogue.finish"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4457,7 +4421,6 @@
       "secondaryCues": [
         "subject.diaper",
         "attention.look",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -4471,8 +4434,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.diaper",
-        "action.wiggle",
-        "dialogue.finish"
+        "action.wiggle"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4486,7 +4448,6 @@
       "secondaryCues": [
         "subject.diaper",
         "attention.look",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -4514,12 +4475,10 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.diaper",
-        "action.peekaboo",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000369",
@@ -4543,7 +4502,6 @@
       "secondaryCues": [
         "subject.diaper",
         "attention.look",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -4679,13 +4637,13 @@
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "text": "I hear you crying. I'm right here. Come for a cuddle.",
-      "primaryCue": "action.hug",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
+        "action.hug",
         "observed.cry",
-        "social.reassurance",
         "attention.listen"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -4693,9 +4651,9 @@
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "text": "I hear your crying. Let me hold you. My arms are warm.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "social.reassurance",
+        "observed.cry",
         "attention.listen"
       ],
       "renderPreference": "emma",
@@ -4706,23 +4664,22 @@
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "text": "I hear you, baby! Come close, sweetheart! I'll hold you.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "social.reassurance",
         "attention.listen",
         "social.affection"
       ],
       "renderPreference": "emma",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000384",
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "text": "I hear your tears. You're not alone. My arms are open.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "social.reassurance",
+        "observed.cry",
         "attention.listen"
       ],
       "renderPreference": "emma",
@@ -4733,9 +4690,8 @@
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "text": "Crying is okay, sweetheart. I'll hold you gently. We'll stay together.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "social.reassurance",
         "social.affection"
       ],
       "renderPreference": "emma",
@@ -4746,10 +4702,8 @@
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "text": "That feels hard, huh? You can cry here. I'm listening closely.",
-      "primaryCue": "observed.cry",
-      "secondaryCues": [
-        "social.reassurance"
-      ],
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
@@ -4758,9 +4712,9 @@
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "text": "Let those tears come. I'll stay very near. You're safe, darling.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "social.reassurance",
+        "observed.cry",
         "social.affection"
       ],
       "renderPreference": "emma",
@@ -4771,21 +4725,20 @@
       "sourceKind": "combined",
       "sourceKey": "cry|reassurance",
       "text": "Are you upset, baby? Come into my arms. I'll hold you.",
-      "primaryCue": "observed.cry",
-      "secondaryCues": [
-        "social.reassurance"
-      ],
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [],
       "renderPreference": "emma",
-      "reviewStatus": "generated"
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000389",
       "sourceKind": "combined",
       "sourceKey": "cry|inquiry",
       "text": "I hear you crying. What's the matter? I'm listening, sweetheart.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
         "dialogue.inquiry",
+        "observed.cry",
         "attention.listen",
         "social.affection"
       ],
@@ -4797,9 +4750,10 @@
       "sourceKind": "combined",
       "sourceKey": "cry|inquiry",
       "text": "I hear you crying. What's bothering you? I'm here to listen.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
         "dialogue.inquiry",
+        "observed.cry",
         "attention.listen"
       ],
       "renderPreference": "emma",
@@ -4810,12 +4764,12 @@
       "sourceKind": "combined",
       "sourceKey": "cry|inquiry",
       "text": "I hear those tears. Let's take a look. I'm listening, sweetheart.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
         "dialogue.inquiry",
+        "observed.cry",
         "attention.look",
-        "attention.listen",
-        "dialogue.invitation"
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -4838,9 +4792,8 @@
       "sourceKind": "combined",
       "sourceKey": "sleep|invitation",
       "text": "Let's rest for now. Here's a cozy spot. I'll sit beside you.",
-      "primaryCue": "action.sit",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
-        "action.sleep",
         "dialogue.invitation"
       ],
       "renderPreference": "motion",
@@ -4938,9 +4891,8 @@
       "sourceKind": "combined",
       "sourceKey": "sleep|reassurance",
       "text": "Time for a rest. Your bed feels soft. I'll sit nearby.",
-      "primaryCue": "action.sit",
+      "primaryCue": "action.sleep",
       "secondaryCues": [
-        "action.sleep",
         "social.reassurance"
       ],
       "renderPreference": "motion",
@@ -5194,7 +5146,7 @@
       "sourceKind": "combined",
       "sourceKey": "book|invitation",
       "text": "Would you like stories? Open the first page. Come sit close.",
-      "primaryCue": "action.sit",
+      "primaryCue": "action.open-close",
       "secondaryCues": [
         "subject.book",
         "dialogue.invitation"
@@ -6001,12 +5953,11 @@
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
       "text": "Ready for a sip? Little by little! Here comes your drink!",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.drink",
       "secondaryCues": [
-        "subject.drink",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -6027,12 +5978,11 @@
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
       "text": "Want some water? Here's your little cup! One small sip?",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.drink",
       "secondaryCues": [
-        "subject.drink",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -6040,13 +5990,11 @@
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
       "text": "Sit with me! Ready for a sip? Here you go!",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.drink",
       "secondaryCues": [
-        "subject.drink",
-        "dialogue.invitation",
-        "action.sit"
+        "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -6079,12 +6027,11 @@
       "sourceKind": "combined",
       "sourceKey": "drink|invitation",
       "text": "Let's take a break. Here's your little drink. Want a little sip?",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.drink",
       "secondaryCues": [
-        "subject.drink",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -6358,7 +6305,6 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.bath",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -6372,7 +6318,6 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.bath",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -6572,8 +6517,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.clothes",
-        "attention.look",
-        "dialogue.finish"
+        "attention.look"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -6587,8 +6531,7 @@
       "secondaryCues": [
         "subject.clothes",
         "action.dress",
-        "attention.look",
-        "dialogue.finish"
+        "attention.look"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7174,13 +7117,12 @@
       "sourceKind": "combined",
       "sourceKey": "rain|inquiry",
       "text": "Hear the rain? Drip, drop, drip! Tap, tap, tap!",
-      "primaryCue": "action.tap",
+      "primaryCue": "subject.rain",
       "secondaryCues": [
-        "subject.rain",
         "dialogue.inquiry",
         "attention.listen"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -7188,13 +7130,12 @@
       "sourceKind": "combined",
       "sourceKey": "rain|inquiry",
       "text": "Hear the raindrops? Tap, tap, tap! They're on the window.",
-      "primaryCue": "action.tap",
+      "primaryCue": "subject.rain",
       "secondaryCues": [
-        "subject.rain",
         "dialogue.inquiry",
         "attention.listen"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -7268,13 +7209,12 @@
       "sourceKind": "combined",
       "sourceKey": "rain|invitation",
       "text": "See those raindrops? Tap, tap, tap! Look with me!",
-      "primaryCue": "action.tap",
+      "primaryCue": "subject.rain",
       "secondaryCues": [
-        "subject.rain",
         "dialogue.invitation",
         "attention.look"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -7518,8 +7458,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "action.sleep",
-        "dialogue.repeat",
-        "dialogue.finish"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7546,7 +7485,6 @@
       "secondaryCues": [
         "action.sleep",
         "dialogue.repeat",
-        "dialogue.finish",
         "social.reassurance"
       ],
       "renderPreference": "emma",
@@ -7557,11 +7495,11 @@
       "sourceKind": "combined",
       "sourceKey": "cry|care",
       "text": "I hear you crying. That was a lot. I'm here with you.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
         "social.care",
-        "attention.listen",
-        "social.reassurance"
+        "observed.cry",
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7571,13 +7509,14 @@
       "sourceKind": "combined",
       "sourceKey": "cry|care",
       "text": "I hear you crying. We can rest now. I'll stay beside you.",
-      "primaryCue": "action.sleep",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "observed.cry",
         "social.care",
+        "action.sleep",
+        "observed.cry",
         "attention.listen"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -7585,13 +7524,14 @@
       "sourceKind": "combined",
       "sourceKey": "cry|care",
       "text": "Those tears are real. I'll stay with you. Let's rest together.",
-      "primaryCue": "action.sleep",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "observed.cry",
         "social.care",
+        "action.sleep",
+        "observed.cry",
         "dialogue.invitation"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -7599,11 +7539,11 @@
       "sourceKind": "combined",
       "sourceKey": "cry|affection",
       "text": "I hear you crying. I love you, sweetheart. I'm right here.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
         "social.affection",
-        "attention.listen",
-        "social.reassurance"
+        "observed.cry",
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7613,13 +7553,13 @@
       "sourceKind": "combined",
       "sourceKey": "cry|affection",
       "text": "Oh, sweet baby! I hear you! Big, soft hugs!",
-      "primaryCue": "action.hug",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "observed.cry",
         "social.affection",
+        "action.hug",
         "attention.listen"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -7627,10 +7567,10 @@
       "sourceKind": "combined",
       "sourceKey": "cry|affection",
       "text": "You're crying, little one. I love you, sweetheart. I'm right here.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
         "social.affection",
-        "social.reassurance"
+        "observed.cry"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7934,8 +7874,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.food",
-        "action.eat",
-        "dialogue.finish"
+        "action.eat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -7949,8 +7888,7 @@
       "secondaryCues": [
         "subject.food",
         "action.eat",
-        "attention.look",
-        "dialogue.finish"
+        "attention.look"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -8084,8 +8022,7 @@
       "secondaryCues": [
         "subject.drink",
         "action.sip",
-        "attention.look",
-        "dialogue.finish"
+        "attention.look"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -8098,9 +8035,9 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.drink",
-        "action.sip",
         "attention.look",
-        "dialogue.repeat"
+        "dialogue.repeat",
+        "dialogue.invitation"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -8113,7 +8050,6 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.drink",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -8550,7 +8486,7 @@
       "secondaryCues": [
         "subject.toy",
         "dialogue.pause",
-        "dialogue.finish"
+        "dialogue.finish-check"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated"
@@ -8726,11 +8662,11 @@
       "sourceKind": "combined",
       "sourceKey": "cry|pause",
       "text": "We can pause now. I hear you crying. I'm here with you.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
         "dialogue.pause",
-        "attention.listen",
-        "social.reassurance"
+        "observed.cry",
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -8740,14 +8676,14 @@
       "sourceKind": "combined",
       "sourceKey": "cry|pause",
       "text": "Let's rest a moment. I hear your cries. I'll stay close.",
-      "primaryCue": "action.sleep",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "observed.cry",
         "dialogue.pause",
-        "attention.listen",
-        "dialogue.invitation"
+        "action.sleep",
+        "observed.cry",
+        "attention.listen"
       ],
-      "renderPreference": "motion",
+      "renderPreference": "emma",
       "reviewStatus": "generated"
     },
     {
@@ -8755,9 +8691,10 @@
       "sourceKind": "combined",
       "sourceKey": "cry|pause",
       "text": "No need to rush. I hear you crying. We're here together.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
         "dialogue.pause",
+        "observed.cry",
         "attention.listen"
       ],
       "renderPreference": "emma",
@@ -8781,13 +8718,12 @@
       "sourceKind": "combined",
       "sourceKey": "hands|encouragement",
       "text": "Those hands can try. Just one little reach. I'll stay close.",
-      "primaryCue": "action.open-close",
+      "primaryCue": "subject.hands",
       "secondaryCues": [
-        "subject.hands",
         "social.encouragement"
       ],
-      "renderPreference": "composite",
-      "reviewStatus": "generated"
+      "renderPreference": "illustration",
+      "reviewStatus": "reviewed"
     },
     {
       "phraseId": "vc_000691",
@@ -9395,13 +9331,12 @@
       "sourceKind": "combined",
       "sourceKey": "milk|start",
       "text": "Here comes your milk. Let's get comfy. Ready for a sip?",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.milk",
       "secondaryCues": [
-        "subject.milk",
         "dialogue.start",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -9421,13 +9356,12 @@
       "sourceKind": "combined",
       "sourceKey": "milk|start",
       "text": "Time for your milk! Let's sit together. Here it comes.",
-      "primaryCue": "action.sit",
+      "primaryCue": "subject.milk",
       "secondaryCues": [
-        "subject.milk",
         "dialogue.start",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -9449,12 +9383,11 @@
       "sourceKind": "combined",
       "sourceKey": "milk|inquiry",
       "text": "How is your milk? Is it yummy? Smack those little lips!",
-      "primaryCue": "action.eat",
+      "primaryCue": "subject.milk",
       "secondaryCues": [
-        "subject.milk",
         "dialogue.inquiry"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -9462,14 +9395,13 @@
       "sourceKind": "combined",
       "sourceKey": "milk|inquiry",
       "text": "One more little sip? Want to try? I'm with you!",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.milk",
       "secondaryCues": [
-        "subject.milk",
         "dialogue.inquiry",
         "dialogue.repeat",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -9477,13 +9409,12 @@
       "sourceKind": "combined",
       "sourceKey": "milk|repeat",
       "text": "Want another sip? We can try. No need to hurry.",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.milk",
       "secondaryCues": [
-        "subject.milk",
         "dialogue.repeat",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -9504,12 +9435,11 @@
       "sourceKind": "combined",
       "sourceKey": "milk|repeat",
       "text": "More milk, baby? One tiny sip? We can wait!",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.milk",
       "secondaryCues": [
-        "subject.milk",
         "dialogue.repeat"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -9569,14 +9499,13 @@
       "sourceKind": "combined",
       "sourceKey": "drink|inquiry",
       "text": "Another sip for you? Do you want more? It's up to you.",
-      "primaryCue": "action.sip",
+      "primaryCue": "subject.drink",
       "secondaryCues": [
-        "subject.drink",
         "dialogue.inquiry",
         "dialogue.repeat",
         "dialogue.invitation"
       ],
-      "renderPreference": "composite",
+      "renderPreference": "illustration",
       "reviewStatus": "generated"
     },
     {
@@ -9828,8 +9757,9 @@
       "sourceKind": "combined",
       "sourceKey": "wake|reassurance",
       "text": "Hello, little sleepyhead! Open those bright eyes. I'll hold you close.",
-      "primaryCue": "action.wake",
+      "primaryCue": "action.open-close",
       "secondaryCues": [
+        "action.wake",
         "social.reassurance"
       ],
       "renderPreference": "motion",
@@ -10080,7 +10010,6 @@
       "secondaryCues": [
         "subject.book",
         "attention.look",
-        "dialogue.finish",
         "dialogue.invitation"
       ],
       "renderPreference": "emma",
@@ -10096,7 +10025,7 @@
         "subject.book",
         "attention.look",
         "dialogue.repeat",
-        "dialogue.finish"
+        "dialogue.invitation"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10148,8 +10077,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.music",
-        "dialogue.repeat",
-        "dialogue.finish"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10162,8 +10090,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.music",
-        "dialogue.repeat",
-        "dialogue.finish"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10230,8 +10157,7 @@
       "secondaryCues": [
         "subject.toy",
         "action.sleep",
-        "dialogue.repeat",
-        "dialogue.finish"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10244,8 +10170,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.toy",
-        "dialogue.repeat",
-        "dialogue.finish"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10258,8 +10183,7 @@
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.toy",
-        "dialogue.repeat",
-        "dialogue.finish"
+        "dialogue.repeat"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
@@ -10499,9 +10423,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.bath",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -10533,9 +10457,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.bath",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -10567,9 +10491,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.bath",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -10601,9 +10525,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.bath",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -10629,15 +10553,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.bath",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.bath",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -10669,9 +10593,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.milk",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -10682,19 +10606,16 @@
       "text": "Yummy milk! Sip, sip! Mmm, yummy!",
       "primaryCue": "action.sip",
       "secondaryCues": [
-        "subject.milk",
-        "action.eat"
+        "subject.milk"
       ],
       "renderPreference": "composite",
       "reviewStatus": "generated",
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "action.eat",
-          "secondaryCues": [
-            "subject.milk"
-          ],
-          "renderPreference": "composite"
+          "primaryCue": "subject.milk",
+          "secondaryCues": [],
+          "renderPreference": "illustration"
         },
         {
           "index": 1,
@@ -10706,11 +10627,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "action.eat",
-          "secondaryCues": [
-            "subject.milk"
-          ],
-          "renderPreference": "composite"
+          "primaryCue": "emma.neutral",
+          "secondaryCues": [],
+          "renderPreference": "emma"
         }
       ]
     },
@@ -10742,9 +10661,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.milk",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -10778,9 +10697,7 @@
         {
           "index": 2,
           "primaryCue": "dialogue.finish",
-          "secondaryCues": [
-            "subject.milk"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -10815,9 +10732,7 @@
         {
           "index": 2,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "subject.milk"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -10834,9 +10749,9 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "action.sleep",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 1,
@@ -10864,15 +10779,15 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "action.sleep",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 1,
-          "primaryCue": "action.sleep",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
@@ -10924,9 +10839,9 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "action.sleep",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 1,
@@ -10990,15 +10905,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.wake",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "action.wake",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11020,9 +10935,9 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.wake",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
@@ -11050,15 +10965,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.wake",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "action.wake",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11080,15 +10995,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.wake",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "action.wake",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11104,9 +11019,9 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "action.wake",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 1,
@@ -11116,9 +11031,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "action.wake",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11140,15 +11055,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.diaper",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.diaper",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11173,10 +11088,8 @@
         {
           "index": 1,
           "primaryCue": "action.wiggle",
-          "secondaryCues": [
-            "subject.diaper"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 2,
@@ -11247,9 +11160,7 @@
         {
           "index": 2,
           "primaryCue": "dialogue.finish",
-          "secondaryCues": [
-            "subject.diaper"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -11282,9 +11193,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.diaper",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11310,15 +11221,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.clothes",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.clothes",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11337,22 +11248,20 @@
         {
           "index": 0,
           "primaryCue": "action.dress",
-          "secondaryCues": [
-            "subject.clothes"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 1,
-          "primaryCue": "subject.clothes",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.clothes",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11379,16 +11288,14 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.clothes",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "dialogue.invitation",
-          "secondaryCues": [
-            "subject.clothes"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -11411,15 +11318,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.clothes",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.clothes",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11437,24 +11344,20 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "subject.clothes",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 1,
           "primaryCue": "dialogue.invitation",
-          "secondaryCues": [
-            "subject.clothes"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "dialogue.invitation",
-          "secondaryCues": [
-            "subject.clothes"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -11477,15 +11380,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.hug",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "action.hug",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11507,15 +11410,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.hug",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "action.hug",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11531,9 +11434,9 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "action.hug",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 1,
@@ -11543,9 +11446,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "action.hug",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -11569,16 +11472,14 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.hug",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "action.hug"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -11601,9 +11502,9 @@
         },
         {
           "index": 1,
-          "primaryCue": "action.hug",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "motion"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
@@ -11635,10 +11536,8 @@
         {
           "index": 1,
           "primaryCue": "action.squeeze",
-          "secondaryCues": [
-            "subject.hands"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 2,
@@ -11672,10 +11571,8 @@
         {
           "index": 1,
           "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "subject.hands"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 2,
@@ -11708,10 +11605,8 @@
         {
           "index": 1,
           "primaryCue": "action.squeeze",
-          "secondaryCues": [
-            "subject.hands"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 2,
@@ -11743,10 +11638,8 @@
         {
           "index": 1,
           "primaryCue": "action.open-close",
-          "secondaryCues": [
-            "subject.hands"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 2,
@@ -11825,10 +11718,8 @@
         {
           "index": 2,
           "primaryCue": "action.wiggle",
-          "secondaryCues": [
-            "subject.feet"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         }
       ]
     },
@@ -11886,9 +11777,9 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.feet",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
@@ -11922,10 +11813,8 @@
         {
           "index": 1,
           "primaryCue": "action.wiggle",
-          "secondaryCues": [
-            "subject.feet"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 2,
@@ -11953,10 +11842,8 @@
         {
           "index": 0,
           "primaryCue": "action.tap",
-          "secondaryCues": [
-            "subject.feet"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 1,
@@ -11998,7 +11885,7 @@
         },
         {
           "index": 2,
-          "primaryCue": "observed.smile",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         }
@@ -12022,7 +11909,7 @@
         },
         {
           "index": 1,
-          "primaryCue": "observed.smile",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
@@ -12052,13 +11939,13 @@
         },
         {
           "index": 1,
-          "primaryCue": "observed.smile",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "observed.smile",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         }
@@ -12082,13 +11969,13 @@
         },
         {
           "index": 1,
-          "primaryCue": "observed.smile",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "observed.smile",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         }
@@ -12118,7 +12005,7 @@
         },
         {
           "index": 2,
-          "primaryCue": "observed.smile",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         }
@@ -12129,33 +12016,30 @@
       "sourceKind": "press",
       "sourceKey": "cry",
       "text": "I hear you. Right here. Nice and gentle.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "attention.listen",
-        "social.reassurance"
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated",
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "attention.listen",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [
-            "observed.cry"
+            "attention.listen"
           ],
           "renderPreference": "emma"
         },
         {
           "index": 1,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "observed.cry"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "observed.cry",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [],
           "renderPreference": "emma"
         }
@@ -12166,33 +12050,30 @@
       "sourceKind": "press",
       "sourceKey": "cry",
       "text": "I hear you. Right here. Nice and close.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "attention.listen",
-        "social.reassurance"
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated",
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "attention.listen",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [
-            "observed.cry"
+            "attention.listen"
           ],
           "renderPreference": "emma"
         },
         {
           "index": 1,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "observed.cry"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "observed.cry",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [],
           "renderPreference": "emma"
         }
@@ -12203,34 +12084,31 @@
       "sourceKind": "press",
       "sourceKey": "cry",
       "text": "Hello, little one. I hear you. Right here.",
-      "primaryCue": "observed.cry",
+      "primaryCue": "social.reassurance",
       "secondaryCues": [
-        "attention.listen",
-        "social.reassurance"
+        "attention.listen"
       ],
       "renderPreference": "emma",
       "reviewStatus": "generated",
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "observed.cry",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 1,
-          "primaryCue": "attention.listen",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [
-            "observed.cry"
+            "attention.listen"
           ],
           "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "observed.cry"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -12240,31 +12118,27 @@
       "sourceKind": "press",
       "sourceKey": "cry",
       "text": "Your little voice. Nice and gentle. Right here.",
-      "primaryCue": "observed.cry",
-      "secondaryCues": [
-        "social.reassurance"
-      ],
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated",
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "observed.cry",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 1,
-          "primaryCue": "observed.cry",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "observed.cry"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -12274,30 +12148,26 @@
       "sourceKind": "press",
       "sourceKey": "cry",
       "text": "Easy, easy. Right here. Nice and close.",
-      "primaryCue": "observed.cry",
-      "secondaryCues": [
-        "social.reassurance"
-      ],
+      "primaryCue": "social.reassurance",
+      "secondaryCues": [],
       "renderPreference": "emma",
       "reviewStatus": "generated",
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "observed.cry",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 1,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "observed.cry"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "observed.cry",
+          "primaryCue": "social.reassurance",
           "secondaryCues": [],
           "renderPreference": "emma"
         }
@@ -12318,20 +12188,18 @@
         {
           "index": 0,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "observed.voice"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 1,
-          "primaryCue": "observed.voice",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "observed.voice",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         }
@@ -12364,9 +12232,7 @@
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "observed.voice"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -12385,7 +12251,7 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "observed.voice",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
@@ -12398,9 +12264,7 @@
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "observed.voice"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -12429,7 +12293,7 @@
         },
         {
           "index": 2,
-          "primaryCue": "observed.voice",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         }
@@ -12455,16 +12319,14 @@
         },
         {
           "index": 1,
-          "primaryCue": "observed.voice",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "action.sing",
-          "secondaryCues": [
-            "observed.voice"
-          ],
+          "secondaryCues": [],
           "renderPreference": "motion"
         }
       ]
@@ -12489,16 +12351,14 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.tummy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "subject.tummy"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -12521,15 +12381,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.tummy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.tummy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -12548,10 +12408,8 @@
         {
           "index": 0,
           "primaryCue": "action.sip",
-          "secondaryCues": [
-            "subject.tummy"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 1,
@@ -12561,9 +12419,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.tummy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -12581,9 +12439,9 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "subject.tummy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 1,
@@ -12594,9 +12452,7 @@
         {
           "index": 2,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "subject.tummy"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -12629,9 +12485,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.tummy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -12656,16 +12512,14 @@
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.toy"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.toy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -12693,16 +12547,14 @@
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.toy"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.toy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -12727,16 +12579,14 @@
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.toy"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.toy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -12760,9 +12610,9 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.toy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
@@ -12790,16 +12640,14 @@
         {
           "index": 0,
           "primaryCue": "action.peekaboo",
-          "secondaryCues": [
-            "subject.toy"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 1,
-          "primaryCue": "subject.toy",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
@@ -12832,16 +12680,14 @@
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.outside"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.outside",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -12867,17 +12713,13 @@
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.outside"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.outside"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -12902,16 +12744,14 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.outside",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.outside"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -12938,17 +12778,13 @@
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.outside"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.outside"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -12968,24 +12804,20 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "subject.outside",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.outside"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.outside"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13017,9 +12849,7 @@
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.rain"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13051,9 +12881,7 @@
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.rain"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13103,9 +12931,7 @@
         {
           "index": 0,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.rain"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
@@ -13149,9 +12975,7 @@
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.rain"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13183,9 +13007,7 @@
         {
           "index": 2,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.sun"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13217,9 +13039,7 @@
         {
           "index": 2,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.sun"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13251,9 +13071,7 @@
         {
           "index": 2,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.sun"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13282,9 +13100,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.sun",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13315,9 +13133,7 @@
         {
           "index": 2,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.sun"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13340,15 +13156,15 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.food",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.food",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13366,11 +13182,9 @@
       "sentenceCues": [
         {
           "index": 0,
-          "primaryCue": "action.eat",
-          "secondaryCues": [
-            "subject.food"
-          ],
-          "renderPreference": "composite"
+          "primaryCue": "subject.food",
+          "secondaryCues": [],
+          "renderPreference": "illustration"
         },
         {
           "index": 1,
@@ -13382,9 +13196,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.food",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13403,22 +13217,20 @@
         {
           "index": 0,
           "primaryCue": "action.eat",
-          "secondaryCues": [
-            "subject.food"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 1,
-          "primaryCue": "subject.food",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.food",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13450,9 +13262,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.food",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13479,16 +13291,14 @@
         {
           "index": 1,
           "primaryCue": "action.eat",
-          "secondaryCues": [
-            "subject.food"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 2,
-          "primaryCue": "subject.food",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13514,9 +13324,7 @@
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.book"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
@@ -13548,17 +13356,14 @@
           "index": 0,
           "primaryCue": "action.read",
           "secondaryCues": [
-            "subject.book",
             "dialogue.invitation"
           ],
-          "renderPreference": "composite"
+          "renderPreference": "motion"
         },
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.book"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
@@ -13601,9 +13406,7 @@
         {
           "index": 2,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.book"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13640,7 +13443,6 @@
           "index": 2,
           "primaryCue": "attention.look",
           "secondaryCues": [
-            "subject.book",
             "dialogue.invitation"
           ],
           "renderPreference": "emma"
@@ -13668,16 +13470,14 @@
         {
           "index": 1,
           "primaryCue": "attention.look",
-          "secondaryCues": [
-            "subject.book"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
           "index": 2,
-          "primaryCue": "subject.book",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13708,9 +13508,7 @@
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.music"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13747,9 +13545,7 @@
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.music"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13818,9 +13614,7 @@
         {
           "index": 2,
           "primaryCue": "attention.listen",
-          "secondaryCues": [
-            "subject.music"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -13842,10 +13636,8 @@
         {
           "index": 0,
           "primaryCue": "action.clap",
-          "secondaryCues": [
-            "subject.music"
-          ],
-          "renderPreference": "composite"
+          "secondaryCues": [],
+          "renderPreference": "motion"
         },
         {
           "index": 1,
@@ -13895,9 +13687,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.drink",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13932,9 +13724,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.drink",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     },
@@ -13962,9 +13754,7 @@
         {
           "index": 1,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "subject.drink"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         },
         {
@@ -14000,16 +13790,14 @@
         },
         {
           "index": 1,
-          "primaryCue": "subject.drink",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         },
         {
           "index": 2,
           "primaryCue": "social.reassurance",
-          "secondaryCues": [
-            "subject.drink"
-          ],
+          "secondaryCues": [],
           "renderPreference": "emma"
         }
       ]
@@ -14042,9 +13830,9 @@
         },
         {
           "index": 2,
-          "primaryCue": "subject.drink",
+          "primaryCue": "emma.neutral",
           "secondaryCues": [],
-          "renderPreference": "illustration"
+          "renderPreference": "emma"
         }
       ]
     }
