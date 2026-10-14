@@ -95,6 +95,16 @@ jobs:
         run: node scripts/semantic-parity-web.mjs --output .semantic-parity/web.json
       - name: Probe real Ruri Topic and Interaction heads without keyword rules
         run: node scripts/evaluate-ruri-two-axes.mjs
+      - name: Sweep generic-only rescue thresholds (research, no shipping changes)
+        run: node scripts/experiment-ruri-generic-rescue.mjs
+      - name: Archive exploratory generic-rescue sweep
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ruri-generic-rescue-sweep
+          path: .semantic-parity/ruri-generic-rescue-sweep.json
+          if-no-files-found: warn
+          retention-days: 14
       - name: Upload exploratory Ruri two-axis accuracy probes
         if: always()
         uses: actions/upload-artifact@v4
@@ -126,7 +136,6 @@ jobs:
           node --check src/lite-response-engine.js
           node --check src/lite-topic-matcher.js
           node --check src/lite-phonetic-scene-matcher.js
-          node --check src/name-pronunciation.js
           node --check src/model-lab.js
           node --check scripts/semantic-parity-web.mjs
       - name: Reject GPL/eSpeak runtime regressions

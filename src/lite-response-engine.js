@@ -1,6 +1,5 @@
 import { selectRuriAxes, combinedCandidates } from './interaction/ruri-routing.js';
 import { RuriReplyDiversity } from './interaction/diversity.js';
-import { insertPairedBabyName } from './interaction/baby-name-insertion.js';
 import { selectInteraction, INTERACTION_REPLIES } from './interaction/response.js';
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
 import { detectFlexibleTopics, normalizeParentSpeech, detectDrinkingAction, hasNonMilkDrink, detectNounTopics } from './lite-topic-matcher.js';
@@ -16,8 +15,7 @@ const STYLE = {
   "MAX_WORDS": 12,
   "MIN_SENTENCES": 3,
   "MAX_SENTENCES": 3,
-  "MAX_WORDS_PER_SENTENCE": 4,
-  "NAME_REPEAT_WINDOW": 2
+  "MAX_WORDS_PER_SENTENCE": 4
 };
 // Curated baby-directed English, synced from Android. Play Topics has an
 // independent one/three-sentence phrase catalog.
@@ -46,12 +44,12 @@ const GENERIC_REPLIES = [
   "Can you see me? Here I am! Hello, hello!",
   "Ooh, ahh, ooh! Talk to me! I'm listening!",
   "Do you hear that? That's my voice! Hello, baby!",
-  "{name}, hello there! I'm here with you. Big hugs!",
-  "{name}, my sweetheart! You're so loved. Hello, baby!",
-  "{name}, look here! It's me again. Hello there!",
-  "{name}, hello, hello! Ooh, ahh, ooh! Your turn!",
-  "{name}, my little star! I love you. Hello, sweetheart!",
-  "{name}, hello again! I'm happy you're here. Big hugs!"
+  "Baby, hello there! I'm here with you. Big hugs!",
+  "Baby, my sweetheart! You're so loved. Hello, baby!",
+  "Baby, look here! It's me again. Hello there!",
+  "Baby, how are you? I'm listening, baby. Your turn!",
+  "Baby, my little star! I love you. Hello, sweetheart!",
+  "Baby, hello again! I'm happy you're here. Big hugs!"
 ];
 const NEUTRAL_CLOSERS = [
   "You are wonderful!",
@@ -353,8 +351,8 @@ const SCENES = [
       "Feel the warm water. Can you hear it? Splish, splash!",
       "We're taking a bath. Listen to the water. Splash, splash!",
       "Let's wash your tummy. A little splash. There you go!",
-      "{name}, bath time! Feel the warm water. Splash, splash!",
-      "{name}, look! Water on your toes. Splish, splash!"
+      "Baby, bath time! Feel the warm water. Splash, splash!",
+      "Baby, look! Water on your toes. Splish, splash!"
     ]
   },
   {
@@ -376,8 +374,8 @@ const SCENES = [
       "Are you still hungry? We can have more. I'm here!",
       "It's milk time! Take little sips. I'm here with you.",
       "Milk time! Are you hungry? Let's have some!",
-      "{name}, your milk! Here's a little sip. Mmm, yummy!",
-      "{name}, milk time! Take a little sip. I'm here!"
+      "Baby, your milk! Here's a little sip. Mmm, yummy!",
+      "Baby, milk time! Take a little sip. I'm here!"
     ]
   },
   {
@@ -410,8 +408,8 @@ const SCENES = [
       "Shh, little one. Let's have quiet time. I'm right here.",
       "Getting sleepy? I'll stay with you. Rest well!",
       "Rest well, baby. I'll stay close by. Sweet dreams!",
-      "{name}, sleep well. I'm right here. Sweet dreams!",
-      "{name}, night-night! Let's get cozy. Rest well!"
+      "Baby, sleep well. I'm right here. Sweet dreams!",
+      "Baby, night-night! Let's get cozy. Rest well!"
     ]
   },
   {
@@ -431,8 +429,8 @@ const SCENES = [
       "Hello again! Did you rest well? I'm glad you're awake.",
       "Look who's awake! Did you rest well? Hello there!",
       "Hello there! You're awake now. Let's say hello!",
-      "{name}, you're awake! How was your rest? Hello, sweetheart!",
-      "{name}, you're awake! How are you? Hello again!"
+      "Baby, you're awake! How was your rest? Hello, sweetheart!",
+      "Baby, you're awake! How are you? Hello again!"
     ]
   },
   {
@@ -453,8 +451,8 @@ const SCENES = [
       "Off comes your diaper. Let's clean you up. There!",
       "Let's change your diaper. I'll be gentle. Nice and fresh!",
       "Diaper change! I'll be gentle. You're doing great!",
-      "{name}, diaper time! Let's get you clean. All fresh!",
-      "{name}, let's change you. One little wipe. All clean!"
+      "Baby, diaper time! Let's get you clean. All fresh!",
+      "Baby, let's change you. One little wipe. All clean!"
     ]
   },
   {
@@ -475,8 +473,8 @@ const SCENES = [
       "Time to get dressed. Arms through the sleeves. All ready!",
       "Let's change your clothes. This arm first. There you go!",
       "Look, your little shirt! One arm in! Let's get dressed!",
-      "{name}, clothes on! One arm in. Looking lovely!",
-      "{name}, let's get dressed. Socks on next. All ready!"
+      "Baby, clothes on! One arm in. Looking lovely!",
+      "Baby, let's get dressed. Socks on next. All ready!"
     ]
   },
   {
@@ -496,8 +494,8 @@ const SCENES = [
       "Let's have a hug. Close to my heart. I love you!",
       "Here are my arms. Come close, sweetheart. Big hug!",
       "Hug time! You're warm and cozy. I'm here!",
-      "{name}, come here! A big warm hug. I love you!",
-      "{name}, cuddle time! I'll hold you close. So cozy!"
+      "Baby, come here! A big warm hug. I love you!",
+      "Baby, cuddle time! I'll hold you close. So cozy!"
     ]
   },
   {
@@ -518,8 +516,8 @@ const SCENES = [
       "Here's your little hand. Hold my finger. So tiny!",
       "One hand, two hands! Let's wave hello. Hi there!",
       "Your fingers are moving! Open and close. Look at that!",
-      "{name}, tiny hands! Hold my finger. Hello there!",
-      "{name}, look! Your hands are moving. Wiggle, wiggle!"
+      "Baby, tiny hands! Hold my finger. Hello there!",
+      "Baby, look! Your hands are moving. Wiggle, wiggle!"
     ]
   },
   {
@@ -539,8 +537,8 @@ const SCENES = [
       "Let's count your toes. One, two, three. More to go!",
       "Little feet up! Little feet down! Kick, kick!",
       "Can you kick? There go your feet! Good job!",
-      "{name}, little feet! Kick, kick! Look at you!",
-      "{name}, tiny toes! Wiggle those feet. So cute!"
+      "Baby, little feet! Kick, kick! Look at you!",
+      "Baby, tiny toes! Wiggle those feet. So cute!"
     ]
   },
   {
@@ -560,8 +558,8 @@ const SCENES = [
       "Such a big smile! Your cheeks look lovely. Hello, baby!",
       "I see a smile! Are you happy? I am too!",
       "Hello, little smiler! That's a lovely grin. I see you!",
-      "{name}, that smile! You make me happy. Hello, sweetheart!",
-      "{name}, you're smiling! I love that smile. So sweet!"
+      "Baby, that smile! You make me happy. Hello, sweetheart!",
+      "Baby, you're smiling! I love that smile. So sweet!"
     ]
   },
   {
@@ -582,8 +580,8 @@ const SCENES = [
       "I hear you crying. Would a cuddle help? I'm here.",
       "Are you upset? I'm here with you. Big hugs!",
       "You can cry. I'll stay beside you. I love you.",
-      "{name}, I'm here. I hear you crying. Big hugs!",
-      "{name}, it's okay. I'm listening to you. I'm here!"
+      "Baby, I'm here. I hear you crying. Big hugs!",
+      "Baby, it's okay. I'm listening to you. I'm here!"
     ]
   },
   {
@@ -604,8 +602,8 @@ const SCENES = [
       "Ooh, ahh! I hear you! Hello there!",
       "You're making sounds! I love your voice. Talk to me!",
       "Was that a coo? I heard you! Hello, baby!",
-      "{name}, I hear you! Tell me more. I'm listening!",
-      "{name}, your voice! I love hearing it. Hello, sweetheart!"
+      "Baby, I hear you! Tell me more. I'm listening!",
+      "Baby, your voice! I love hearing it. Hello, sweetheart!"
     ]
   },
   {
@@ -626,8 +624,8 @@ const SCENES = [
       "Is that a burp? Let's take it slowly. I'm right here.",
       "Let's get comfortable. I'll hold you close. Big hugs!",
       "Full tummy? We can rest now. I'm right here.",
-      "{name}, little tummy! Let's get comfortable. Big hugs!",
-      "{name}, feeling full? I'll hold you close. So cozy!"
+      "Baby, little tummy! Let's get comfortable. Big hugs!",
+      "Baby, feeling full? I'll hold you close. So cozy!"
     ]
   },
   {
@@ -648,8 +646,8 @@ const SCENES = [
       "Peekaboo! Where did I go? Here I am!",
       "Let's shake the rattle. Can you hear it? Shake, shake!",
       "Look at this toy! It's here for you. Let's play!",
-      "{name}, let's play! Here's your toy. Look at that!",
-      "{name}, peekaboo! Where am I? Here I am!"
+      "Baby, let's play! Here's your toy. Look at that!",
+      "Baby, peekaboo! Where am I? Here I am!"
     ]
   },
   {
@@ -670,8 +668,8 @@ const SCENES = [
       "We're going outside! Let's look all around. What do you see?",
       "Look up, baby! There's the sky. So big!",
       "Out we go! What can you hear? Let's listen!",
-      "{name}, outside time! Look at the sky. Hello, world!",
-      "{name}, let's stroll! What can you see? Look around!"
+      "Baby, outside time! Look at the sky. Hello, world!",
+      "Baby, let's stroll! What can you see? Look around!"
     ]
   },
   {
@@ -690,8 +688,8 @@ const SCENES = [
       "It's raining outside. Look at the drops. Drip, drop!",
       "The rain sounds soft. Listen with me. Pitter-patter!",
       "Raindrops are falling. Listen to their sound. Drip, drop!",
-      "{name}, it's raining! Listen to the drops. Drip, drop!",
-      "{name}, hear that? It's the rain. Pitter-patter!"
+      "Baby, it's raining! Listen to the drops. Drip, drop!",
+      "Baby, hear that? It's the rain. Pitter-patter!"
     ]
   },
   {
@@ -711,8 +709,8 @@ const SCENES = [
       "A sunny day! Let's look outside. Can you see?",
       "See the bright sky? The sun is out. Hello, sunshine!",
       "Look at the sunshine! Can you see it? So bright!",
-      "{name}, it's sunny! Look at the light. So bright!",
-      "{name}, sunshine today! The sky is bright. Hello, sunshine!"
+      "Baby, it's sunny! Look at the light. So bright!",
+      "Baby, sunshine today! The sky is bright. Hello, sunshine!"
     ]
   },
   {
@@ -733,8 +731,8 @@ const SCENES = [
       "Do you like it? Want another bite? No need to hurry.",
       "Here's a little bite. Let's taste it. Mmm, yummy!",
       "All done eating? Wipe, wipe, wipe! Nice and clean!",
-      "{name}, food time! One little spoonful. Is it yummy?",
-      "{name}, let's eat! Here's your spoon. Open wide!"
+      "Baby, food time! One little spoonful. Is it yummy?",
+      "Baby, let's eat! Here's your spoon. Open wide!"
     ]
   },
   {
@@ -754,8 +752,8 @@ const SCENES = [
       "One more page! Let's see what's there. Turn, turn!",
       "Story time! Listen to my voice. Here comes a story!",
       "Look at this! See that picture? Look, look, look!",
-      "{name}, book time! Look at the pictures. What's that?",
-      "{name}, let's read! Turn the page. What comes next?"
+      "Baby, book time! Look at the pictures. What's that?",
+      "Baby, let's read! Turn the page. What comes next?"
     ]
   },
   {
@@ -776,8 +774,8 @@ const SCENES = [
       "Hear the music? Tap, tap! Let's sing!",
       "Let's make some music! Clap, clap! What fun!",
       "A song for you! La, la, la! Sing with me!",
-      "{name}, let's sing! La, la, la! Your turn!",
-      "{name}, hear that song? Let's listen together. Tap, tap!"
+      "Baby, let's sing! La, la, la! Your turn!",
+      "Baby, hear that song? Let's listen together. Tap, tap!"
     ]
   }
 ];
@@ -795,8 +793,8 @@ const DRINK_SCENE = {
     "Drink time! One little sip. How does it taste?",
     "Want a little sip? Here's your drink. Sip if you like!",
     "Want another sip? No need to hurry. Here you go!",
-    "{name}, your drink! Here's a little sip. There you go!",
-    "{name}, thirsty? Let's have a drink. Sip when you're ready!"
+    "Baby, your drink! Here's a little sip. There you go!",
+    "Baby, thirsty? Let's have a drink. Sip when you're ready!"
   ],
 };
 
@@ -825,7 +823,6 @@ export class LiteResponseEngine {
     this.recentReplies = [];
     this.recentOpeners = [];
     this.turnCounter = 0;
-    this.turnsSinceName = STYLE.NAME_REPEAT_WINDOW;
     this.activeSceneId = null;
     this.activeSceneTurnsRemaining = 0;
   }
@@ -850,19 +847,10 @@ export class LiteResponseEngine {
     // overrides a new label and cannot cause fabricated composite replies.
     this.activeSceneId = null;
     this.activeSceneTurnsRemaining = 0;
-    const safeName = sanitizeName(spokenBabyName);
-    const allowName = !interaction && !pair || reason==='diversity_topic';
-    const forceName = allowName && !!safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW;
-    const suppressName = allowName && !!safeName && this.turnsSinceName < STYLE.NAME_REPEAT_WINDOW;
-    const raw = selected?.text ?? this.chooseReply(replies, transcript, forceName, suppressName);
-    const named = allowName ? applyName(raw, this.diversity.canUsePairedName() && forceName ? safeName : '', false) : raw;
-    const styledBase = this.alignToBabyStyle(named, transcript, scene?.id);
-    const styled = reason==='combined' && safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW && this.diversity.canUsePairedName()
-      ? insertPairedBabyName(styledBase, safeName) : styledBase;
-    const nameUsed = !!safeName && containsName(styled, safeName);
-    this.diversity.recordName(nameUsed, reason==='combined');
+    // Every candidate is now a complete, immutable line for pre-generated audio.
+    const raw = selected?.text ?? this.chooseReply(replies, transcript);
+    const styled = this.alignToBabyStyle(raw, transcript, scene?.id);
     this.remember(raw, styled);
-    this.turnsSinceName = nameUsed ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
     return {
       english: styled, scene: route, topic: scene?.id || null,
@@ -962,16 +950,9 @@ export class LiteResponseEngine {
     }
 
     const replies = scene?.replies || GENERIC_REPLIES;
-    const safeName = sanitizeName(spokenBabyName);
-    const forceName = !!safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW;
-    const suppressName = !!safeName && this.turnsSinceName < STYLE.NAME_REPEAT_WINDOW;
-    const raw = this.chooseReply(replies, normalized, forceName, suppressName);
-    const named = applyName(raw, safeName, forceName);
-    const styled = this.alignToBabyStyle(named, normalized, scene?.id);
-
+    const raw = this.chooseReply(replies, normalized);
+    const styled = this.alignToBabyStyle(raw, normalized, scene?.id);
     this.remember(raw, styled);
-    this.turnsSinceName = safeName && containsName(styled, safeName)
-      ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
     return { english: styled, scene: scene?.id || "generic", score: sceneScore, ruleScene: ruleScene?.id || "generic", semanticUsed, contextUsed };
   }
@@ -980,30 +961,22 @@ export class LiteResponseEngine {
     // This is a different utterance; never let the previous Topic bleed into it.
     this.activeSceneId = null;
     this.activeSceneTurnsRemaining = 0;
-    const raw = this.chooseReply(INTERACTION_REPLIES[id], normalized, false, false);
+    const raw = this.chooseReply(INTERACTION_REPLIES[id], normalized);
     this.remember(raw, raw);
-    this.turnsSinceName++;
     this.turnCounter++;
     return { english: raw, scene: 'interaction:' + id, score: 0, ruleScene: 'generic', semanticUsed: true, contextUsed: false, interactionUsed: true };
   }
 
   respondGeneric(spokenBabyName = "") {
-    const safeName = sanitizeName(spokenBabyName);
-    const forceName = !!safeName && this.turnsSinceName >= STYLE.NAME_REPEAT_WINDOW;
-    const suppressName = !!safeName && this.turnsSinceName < STYLE.NAME_REPEAT_WINDOW;
-    const raw = this.chooseReply(GENERIC_REPLIES, "", forceName, suppressName);
-    const named = applyName(raw, safeName, forceName);
-    const styled = this.alignToBabyStyle(named, "", null);
-
+    const raw = this.chooseReply(GENERIC_REPLIES, "");
+    const styled = this.alignToBabyStyle(raw, "", null);
     this.remember(raw, styled);
-    this.turnsSinceName = safeName && containsName(styled, safeName)
-      ? 0 : this.turnsSinceName + 1;
     this.turnCounter++;
     return { english: styled, scene: "generic", score: 0, ruleScene: "generic", semanticUsed: false, contextUsed: false };
   }
 
   // Roll back a speculative reply if the parent continues speaking.
-  // History, name repetition and the one-turn topic hold all belong to
+  // History and the one-turn topic hold belong to
   // completed spoken replies, not to discarded preparation attempts.
   snapshotTurnState() {
     return {
@@ -1011,7 +984,6 @@ export class LiteResponseEngine {
       recentReplies:[...this.recentReplies],
       recentOpeners:[...this.recentOpeners],
       turnCounter:this.turnCounter,
-      turnsSinceName:this.turnsSinceName,
       activeSceneId:this.activeSceneId,
       activeSceneTurnsRemaining:this.activeSceneTurnsRemaining
     };
@@ -1022,7 +994,6 @@ export class LiteResponseEngine {
     this.recentReplies=[...snapshot.recentReplies];
     this.recentOpeners=[...snapshot.recentOpeners];
     this.turnCounter=snapshot.turnCounter;
-    this.turnsSinceName=snapshot.turnsSinceName;
     this.activeSceneId=snapshot.activeSceneId;
     this.activeSceneTurnsRemaining=snapshot.activeSceneTurnsRemaining;
   }
@@ -1034,10 +1005,8 @@ export class LiteResponseEngine {
     this.activeSceneTurnsRemaining = 0;
   }
 
-  chooseReply(replies, transcript, forceName, suppressName) {
-    let eligible = forceName ? replies.filter(x => x.includes("{name}"))
-      : suppressName ? replies.filter(x => !x.includes("{name}")) : replies;
-    if (!eligible.length) eligible = replies;
+  chooseReply(replies, transcript) {
+    const eligible = replies;
     if (eligible.length === 1) return eligible[0];
 
     const rawIndex = hashCode(transcript) + this.turnCounter;
@@ -1123,15 +1092,6 @@ function score(scene, transcript) {
   if (hintMatched) total = Math.max(total, 4);
   return total;
 }
-function sanitizeName(name) {
-  return String(name || "").trim().replace(/[^\p{L}'’\- ]/gu, "").slice(0, 40);
-}
-function applyName(reply, safeName, forceName) {
-  if (reply.includes("{name}") && !safeName) return reply.replaceAll("{name}, ", "").replaceAll("{name}", "little one");
-  if (reply.includes("{name}")) return reply.replaceAll("{name}", safeName);
-  if (forceName && safeName) return safeName + "! " + reply;
-  return reply;
-}
 function normalize(text) {
   return normalizeParentSpeech(text)
     .replace(/[\s、。！？!?,.・「」『』（）()〜~]/g, "")
@@ -1149,10 +1109,7 @@ function wordCount(text) {
 }
 function openerKey(text) {
   const first = splitSentences(text)[0] || "";
-  return first.replaceAll("{name}", "").toLowerCase().replace(/[^a-z]+/g, " ").trim().split(/\s+/).slice(0, 3).join(" ");
-}
-function containsName(text, safeName) {
-  return !!safeName && String(text).toLowerCase().includes(String(safeName).toLowerCase());
+  return first.toLowerCase().replace(/[^a-z]+/g, " ").trim().split(/\s+/).slice(0, 3).join(" ");
 }
 function positiveIndex(value, size) {
   if (!size) return 0;
