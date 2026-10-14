@@ -104,47 +104,17 @@
           <summary>
             <span>
               <strong>赤ちゃんの設定</strong>
-              <small>名前・性別・英語での呼び方（任意）</small>
+              <small>性別（任意）</small>
             </span>
             <span class="summary-chevron" aria-hidden="true">⌄</span>
           </summary>
           <div class="setup-body">
-            <label>名前（任意・日本語）
-              <input id="onboardingBabyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
-            </label>
             <div class="field-title">性別</div>
             <div class="segmented" data-gender-group="onboarding">
               <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
               <button data-gender="GIRL" class="segment-button">女の子</button>
               <button data-gender="BOY" class="segment-button">男の子</button>
             </div>
-            <button id="onboardingPronunciationToggle" type="button" class="text-button inline-button">名前の読み方を調整</button>
-            <div id="onboardingPronunciationPanel" class="hidden">
-              <label>英語で呼ぶ名前
-                <input id="onboardingSpokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Hana" />
-              </label>
-              <label class="toggle-line">
-                <span>名前に「-chan」を付ける</span>
-                <span class="switch"><input id="onboardingUseChanSuffix" type="checkbox" checked /><span></span></span>
-              </label>
-              <p id="onboardingSpokenNamePreview" class="small muted"></p>
-            </div>
-          </div>
-        </details>
-
-        <details class="setup-disclosure ai-setup-disclosure">
-          <summary>
-            <span>
-              <strong>AIの設定</strong>
-              <small>AIの名前を変更する場合はこちら（任意）</small>
-            </span>
-            <span class="summary-chevron" aria-hidden="true">⌄</span>
-          </summary>
-          <div class="setup-body">
-            <label>AIの名前（任意）
-              <input id="onboardingAiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
-            </label>
-            <p class="small muted onboarding-ai-name-help">空欄の場合はEmmaになります。英語音声で自然に読める英字の名前をおすすめします。</p>
           </div>
         </details>
 
@@ -589,14 +559,11 @@
           <summary>
             <span>
               <strong>赤ちゃんの設定</strong>
-              <small>名前・性別・英語での呼び方</small>
+              <small>性別（任意）</small>
             </span>
             <span class="summary-chevron" aria-hidden="true">⌄</span>
           </summary>
           <div class="settings-disclosure-body">
-            <label>名前（任意・日本語）
-              <input id="babyName" maxlength="30" autocomplete="off" placeholder="例：はな" />
-            </label>
             <div class="field-title">性別</div>
             <div class="segmented" data-gender-group="settings">
               <button data-gender="UNSPECIFIED" class="segment-button">指定しない</button>
@@ -604,35 +571,6 @@
               <button data-gender="BOY" class="segment-button">男の子</button>
             </div>
             <p id="genderHelp" class="small muted"></p>
-            <button id="pronunciationToggle" class="text-button inline-button">名前の読み方を調整</button>
-            <div id="pronunciationPanel" class="hidden">
-              <label>英語で呼ぶ名前
-                <input id="spokenBabyName" maxlength="40" autocomplete="off" placeholder="例：Hana" />
-              </label>
-              <label class="toggle-line">
-                <span>名前に「-chan」を付ける</span>
-                <span class="switch"><input id="useChanSuffix" type="checkbox" checked /><span></span></span>
-              </label>
-              <p id="spokenNamePreview" class="small muted"></p>
-            </div>
-          </div>
-        </details>
-
-        <details class="card settings-disclosure" id="aiSettingsDisclosure">
-          <summary>
-            <span>
-              <strong>AIの設定</strong>
-              <small>AIの名前を変更します</small>
-            </span>
-            <span class="summary-chevron" aria-hidden="true">⌄</span>
-          </summary>
-          <div class="settings-disclosure-body">
-            <p class="small muted">初期の名前はEmmaです。ぬいぐるみなど別のキャラクターとして使う場合は、好きな名前に変えられます。</p>
-            <label>AIの名前
-              <input id="aiCharacterName" maxlength="24" autocomplete="off" placeholder="Emma" />
-            </label>
-            <p id="aiNamePreview" class="small muted">初回チュートリアルで「Hi, I'm Emma.」と自己紹介します。通常会話では毎回名乗りません。</p>
-            <p class="small muted">英語音声で自然に読めるよう、英字の名前をおすすめします。空欄ならEmmaになります。</p>
           </div>
         </details>
 
