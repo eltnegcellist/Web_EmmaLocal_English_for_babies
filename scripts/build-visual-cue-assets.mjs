@@ -451,6 +451,9 @@ export const PRIORITY_PROTOTYPES=[
   }
 ];
 export function buildVisualAssetPlan(registry){
+ const primitives=VISUAL_PRIMITIVES;
+ const explicit=CUE_TO_PRIMITIVES;
+ const protos=PRIORITY_PROTOTYPES;
  const listed=new Set(primitives.map(x=>x.id));
  for(const values of Object.values(explicit))for(const v of values)if(!listed.has(v))throw Error("Unregistered primitive "+v);
  const bindings=registry.cues.map(c=>{
