@@ -7,16 +7,12 @@ import { EmmaMicrophone } from './audio-capture.js';
 import { MoonshineAsrClient } from './asr-client.js';
 import { TurnRevisions } from './turn-revisions.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
-import { toSpokenEnglish, withChanSuffix } from './name-pronunciation.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
-  onboardingBabyName:$('onboardingBabyName'), onboardingAiCharacterName:$('onboardingAiCharacterName'), onboardingSpokenBabyName:$('onboardingSpokenBabyName'),
-  onboardingUseChanSuffix:$('onboardingUseChanSuffix'), onboardingHighPerformance:$('onboardingHighPerformance'), onboardingSpokenNamePreview:$('onboardingSpokenNamePreview'),
-  onboardingPronunciationToggle:$('onboardingPronunciationToggle'), onboardingPronunciationPanel:$('onboardingPronunciationPanel'),
   prepareEmmaButton:$('prepareEmmaButton'),
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'), tutorialStatusTarget:$('tutorialStatusTarget'),
@@ -26,13 +22,11 @@ const ui = {
   autoRespond:$('autoRespond'), endpointMode:$('endpointMode'), aboutButton:$('aboutButton'), settingsButton:$('settingsButton'),
   settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
   aboutBackButton:$('aboutBackButton'), onboardingAboutButton:$('onboardingAboutButton'),
-  aiCharacterName:$('aiCharacterName'), aiNamePreview:$('aiNamePreview'), aiBubbleLabel:$('aiBubbleLabel'), aiNameBadge:$('aiNameBadge'),
+  aiBubbleLabel:$('aiBubbleLabel'), aiNameBadge:$('aiNameBadge'),
   aiAvatarFace:$('aiAvatarFace'), onboardingAiIntro:$('onboardingAiIntro'),
   tutorialReplayButton:$('tutorialReplayButton'), tutorialOverlay:$('tutorialOverlay'), tutorialSpotlight:$('tutorialSpotlight'),
   tutorialCard:$('tutorialCard'), tutorialStepLabel:$('tutorialStepLabel'), tutorialTitle:$('tutorialTitle'),
   tutorialBody:$('tutorialBody'), tutorialSkipButton:$('tutorialSkipButton'), tutorialPrimaryButton:$('tutorialPrimaryButton'), tutorialHint:$('tutorialHint'),
-  babyName:$('babyName'), spokenBabyName:$('spokenBabyName'), useChanSuffix:$('useChanSuffix'), genderHelp:$('genderHelp'),
-  pronunciationToggle:$('pronunciationToggle'), pronunciationPanel:$('pronunciationPanel'), spokenNamePreview:$('spokenNamePreview'),
   filledPalette:$('filledPalette'), filledPaletteRow:$('filledPaletteRow'), softPalette:$('softPalette'), softPaletteRow:$('softPaletteRow'), colorMode:$('colorMode'), vividPalette:$('vividPalette'), vividPaletteRow:$('vividPaletteRow'), colorModeDescription:$('colorModeDescription'), gradientDescription:$('gradientDescription'),
   keepAwake:$('keepAwake'), asrModel:$('asrModel'), asrModelStatus:$('asrModelStatus'), runtimeBackend:$('runtimeBackend'),
   storageProtectionStatus:$('storageProtectionStatus'), modelCacheStatus:$('modelCacheStatus'), modelCacheHistoryStatus:$('modelCacheHistoryStatus'),
@@ -46,13 +40,10 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261014-interaction-fixed-r1';
+const WEB_BUILD = '20261014-fixed-voice-lines-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
-  aiName:'emma_ai_character_name',
-  babyName:'emma_baby_name',
-  spokenName:'emma_baby_spoken_name',
   gender:'emma_baby_gender',
   colorMode:'emma_color_mode',
   vivid:'emma_vivid_palette',
@@ -62,7 +53,6 @@ const STORAGE = {
   autoRespond:'emma_auto_respond',
   endpointMode:'emma_endpoint_mode',
   playSentenceCount:'emma_play_sentence_count',
-  useChanSuffix:'emma_use_chan_suffix',
   asrModel:'emma_asr_model',
   startTiny:'emma_first_run_start_tiny',
   highPerformance:'emma_first_run_high_performance',
@@ -73,9 +63,6 @@ const STORAGE = {
   replyDiversity:'emma_ruri_reply_diversity_v1'
 };
 
-if (!localStorage.getItem(STORAGE.babyName) && localStorage.getItem('emmaBabyName')) {
-  localStorage.setItem(STORAGE.babyName, localStorage.getItem('emmaBabyName'));
-}
 if (new URLSearchParams(location.search).has('debug')) document.body.classList.add('debug');
 
 function readStoredJson(key) {
@@ -171,7 +158,7 @@ let sessionId='', conversationEpoch=0;
 const preparedAudio=new Map();
 let featureScreens;
 function audioCacheKey(text){
-  return [getTtsSignature(),...getTtsNameHints(),String(text||'')].join('|');
+  return [getTtsSignature(),String(text||'')].join('|');
 }
 
 
@@ -198,16 +185,6 @@ function initUi() {
     setPlaySentenceCount:count=>localStorage.setItem(STORAGE.playSentenceCount,count===3?'3':'1'),
     avatar:()=>{ const avatar=ui.avatar.cloneNode(true); avatar.removeAttribute('id'); avatar.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id')); return avatar; }
   });
-  const babyName = localStorage.getItem(STORAGE.babyName) || '';
-  const aiName = localStorage.getItem(STORAGE.aiName) || 'Emma';
-  if(ui.webBuild) ui.webBuild.textContent=`Web build: ${WEB_BUILD}`;
-  if(ui.aiCharacterName) ui.aiCharacterName.value = aiName;
-  if(ui.onboardingAiCharacterName) ui.onboardingAiCharacterName.value = aiName;
-  ui.babyName.value = babyName;
-  ui.onboardingBabyName.value = babyName;
-  const spokenName = localStorage.getItem(STORAGE.spokenName) || '';
-  ui.spokenBabyName.value = spokenName;
-  ui.onboardingSpokenBabyName.value = spokenName;
   const colors = normalizeColorSettings(localStorage.getItem(STORAGE.colorMode), localStorage.getItem(STORAGE.vivid));
   ui.colorMode.value = colors.mode;
   ui.vividPalette.value = colors.vivid;
@@ -227,13 +204,8 @@ function initUi() {
       : savedPerformance !== 'false';
   }
   updateAsrModelStatus();
-  const useChanSuffix = localStorage.getItem(STORAGE.useChanSuffix) !== 'false';
-  ui.useChanSuffix.checked = useChanSuffix;
-  ui.onboardingUseChanSuffix.checked = useChanSuffix;
-
   bindEvents();
   updateGenderUi();
-  updateSpokenNamePreview();
   updateAiNameUi();
   applyAppearance();
   updateAppearanceSettings();
@@ -303,70 +275,6 @@ function bindEvents() {
   });
   document.addEventListener('keydown',(event)=>{
     if(event.key==='Escape'&&!ui.noticeDialog.classList.contains('hidden')) closeNotice();
-  });
-
-  ui.aiCharacterName?.addEventListener('input',()=>{
-    const value=sanitizeAiName(ui.aiCharacterName.value);
-    ui.aiCharacterName.value=value;
-    if(ui.onboardingAiCharacterName) ui.onboardingAiCharacterName.value=value;
-    localStorage.setItem(STORAGE.aiName,value);
-    updateAiNameUi();
-  });
-  ui.onboardingAiCharacterName?.addEventListener('input',()=>{
-    const value=sanitizeAiName(ui.onboardingAiCharacterName.value);
-    ui.onboardingAiCharacterName.value=value;
-    if(ui.aiCharacterName) ui.aiCharacterName.value=value;
-    localStorage.setItem(STORAGE.aiName,value);
-    updateAiNameUi();
-  });
-
-  ui.babyName.addEventListener('input',()=>{
-    const value=sanitizePlainName(ui.babyName.value,30);
-    ui.babyName.value=value;
-    ui.onboardingBabyName.value=value;
-    localStorage.setItem(STORAGE.babyName,value);
-    updateSpokenNamePreview();
-  });
-  ui.onboardingBabyName.addEventListener('input',()=>{
-    const value=sanitizePlainName(ui.onboardingBabyName.value,30);
-    ui.onboardingBabyName.value=value;
-    ui.babyName.value=value;
-    localStorage.setItem(STORAGE.babyName,value);
-    updateSpokenNamePreview();
-  });
-  ui.spokenBabyName.addEventListener('input',()=>{
-    const value=sanitizeSpokenName(ui.spokenBabyName.value);
-    ui.spokenBabyName.value=value;
-    ui.onboardingSpokenBabyName.value=value;
-    localStorage.setItem(STORAGE.spokenName,value);
-    updateSpokenNamePreview();
-  });
-  ui.onboardingSpokenBabyName.addEventListener('input',()=>{
-    const value=sanitizeSpokenName(ui.onboardingSpokenBabyName.value);
-    ui.onboardingSpokenBabyName.value=value;
-    ui.spokenBabyName.value=value;
-    localStorage.setItem(STORAGE.spokenName,value);
-    updateSpokenNamePreview();
-  });
-  ui.useChanSuffix.addEventListener('change',()=>{
-    ui.onboardingUseChanSuffix.checked=ui.useChanSuffix.checked;
-    localStorage.setItem(STORAGE.useChanSuffix,String(ui.useChanSuffix.checked));
-    updateSpokenNamePreview();
-  });
-  ui.onboardingUseChanSuffix.addEventListener('change',()=>{
-    ui.useChanSuffix.checked=ui.onboardingUseChanSuffix.checked;
-    localStorage.setItem(STORAGE.useChanSuffix,String(ui.onboardingUseChanSuffix.checked));
-    updateSpokenNamePreview();
-  });
-  ui.pronunciationToggle.addEventListener('click',()=>{
-    const opening=ui.pronunciationPanel.classList.contains('hidden');
-    ui.pronunciationPanel.classList.toggle('hidden',!opening);
-    ui.pronunciationToggle.textContent=opening?'名前の読み方設定を閉じる':'名前の読み方を調整';
-  });
-  ui.onboardingPronunciationToggle.addEventListener('click',()=>{
-    const opening=ui.onboardingPronunciationPanel.classList.contains('hidden');
-    ui.onboardingPronunciationPanel.classList.toggle('hidden',!opening);
-    ui.onboardingPronunciationToggle.textContent=opening?'名前の読み方設定を閉じる':'名前の読み方を調整';
   });
 
   document.querySelectorAll('[data-gender]').forEach(button=>{
@@ -499,7 +407,7 @@ function bindEvents() {
       ui.tutorialPrimaryButton.disabled=true;
       try{
         await ensureWorkersForDebug();
-        await speakResponse(`Hi, I'm ${getAiName()}.`);
+        await speakResponse("Hi, I'm Emma.");
         tutorialIntroPlayed=true;
       }finally{
         ui.tutorialPrimaryButton.disabled=false;
@@ -520,7 +428,7 @@ function bindEvents() {
     if(!text)return;
     showConversation(text,'');
     const epoch=conversationEpoch;
-    const response=await semanticPanel.respond(text,getSpokenBabyName(),{isCurrent:()=>epoch===conversationEpoch});
+    const response=await semanticPanel.respond(text,'',{isCurrent:()=>epoch===conversationEpoch});
     if(!response)return;
     const english=stripAiSpeakerLabel(response.english);
     showConversation(text,english);
@@ -1069,7 +977,7 @@ async function respondGenericallyToManualRequest() {
   setState('thinking','返事を考えています…',`${getAiName()}が今すぐ話します。`);
 
   try {
-    const response=semanticPanel.respondGeneric(getSpokenBabyName());
+    const response=semanticPanel.respondGeneric('');
     const english=stripAiSpeakerLabel(response.english);
     showConversation('',english);
     processing=false;
@@ -1355,7 +1263,7 @@ async function processTranscript(text,{manual=false,revision=null}={}) {
   showConversation(clean,'');
   setState('understood','わかりました',`${getAiName()}が赤ちゃんへ話しかけます。`);
   if(revision!==null)speculativeEngineSnapshot=engine.snapshotTurnState();
-  const response=await semanticPanel.respond(clean,getSpokenBabyName(),{isCurrent:()=>isLiveTurn(revision,epoch)});
+  const response=await semanticPanel.respond(clean,'',{isCurrent:()=>isLiveTurn(revision,epoch)});
   if(!isLiveTurn(revision,epoch))return;
   if(!response){processing=false;setBusy(false);restoreUnspokenTurn();return;}
   const english=stripAiSpeakerLabel(response.english);
@@ -1439,7 +1347,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
       queue.total=cached.length;queue.generationDone=true;
       queue.generationResolve?.();
       pumpAudio(requestId);
-    }else ttsWorker.postMessage({type:'speak',requestId,text,nameHints:getTtsNameHints()});
+    }else ttsWorker.postMessage({type:'speak',requestId,text,nameHints:[]});
     if(speculative){
       await generationReady;
       if(!valid())return;
@@ -1701,7 +1609,7 @@ function renderTutorial(){
   ui.tutorialOverlay?.classList.toggle('hidden',!active);
   ui.tutorialOverlay?.setAttribute('aria-hidden',String(!active));
   if(!active) return;
-  const name=getAiName();
+  const name='Emma';
   ui.tutorialStepLabel.textContent=`${tutorialStep+1} / 3`;
   ui.tutorialHint.classList.add('hidden');
   ui.tutorialPrimaryButton.classList.add('hidden');
@@ -1852,27 +1760,15 @@ async function requestWakeLock() {
   try{wakeLock=await navigator.wakeLock.request('screen');}catch{}
 }
 
-function sanitizeAiName(raw) {
-  return String(raw||'')
-    .replace(/[^A-Za-z' -]/g,'')
-    .replace(/\s+/g,' ')
-    .slice(0,24);
-}
-
-function getAiName() {
-  return sanitizeAiName(localStorage.getItem(STORAGE.aiName)||'').trim() || 'Emma';
-}
-
 function stripAiSpeakerLabel(text) {
   const clean=String(text||'').trim();
-  const name=getAiName();
+  const name='Emma';
   const escaped=name.replace(/[.*+?^\${}()|[\]\\]/g,'\\$&');
   const pattern=new RegExp('^\\s*(?:'+escaped+'|AI)\\s*[:：\\-–—]\\s*','i');
   return clean.replace(pattern,'').trim();
 }
 function updateAiNameUi() {
-  const name=getAiName();
-  if(ui.aiNamePreview) ui.aiNamePreview.textContent=`初回チュートリアルで「Hi, I'm ${name}.」と自己紹介します。通常会話では毎回名乗りません。`;
+  const name='Emma';
   if(ui.aiBubbleLabel) ui.aiBubbleLabel.textContent=name;
   if(ui.aiNameBadge) ui.aiNameBadge.textContent=name;
   if(ui.aiAvatarFace) ui.aiAvatarFace.setAttribute('aria-label',`${name}（みつことば AI）`);
@@ -1890,38 +1786,6 @@ function updateGenderUi() {
   ui.genderHelp.textContent=gender==='UNSPECIFIED'
     ? '未指定の場合、AIは名前などから性別を推測しません。'
     : '親へ話す機能を追加した場合も、この設定に合わせて呼び方を選びます。';
-}
-
-function updateSpokenNamePreview() {
-  const spoken=getSpokenBabyName();
-  const base=localStorage.getItem(STORAGE.babyName)||'';
-  const message=!base
-    ? '名前は未設定です。'
-    : spoken
-      ? `AIが呼ぶ名前：${spoken}`
-      : '必要な場合だけ、英字で読み方を指定してください。';
-  ui.spokenNamePreview.textContent=message;
-  ui.onboardingSpokenNamePreview.textContent=message;
-}
-
-function getSpokenBabyName() {
-  const base=toSpokenEnglish(
-    localStorage.getItem(STORAGE.babyName)||'',
-    localStorage.getItem(STORAGE.spokenName)||''
-  );
-  const useChan=localStorage.getItem(STORAGE.useChanSuffix)!=='false';
-  return withChanSuffix(base,useChan);
-}
-
-function getTtsNameHints() {
-  const saved=localStorage.getItem(STORAGE.babyName)||'';
-  const override=localStorage.getItem(STORAGE.spokenName)||'';
-  const base=toSpokenEnglish(saved,override);
-  if(!base) return [];
-  // Only route names originating from Japanese script through the Japanese-name G2P.
-  // Plain ASCII names continue to use CMUDict so English names keep their normal reading.
-  const isJapaneseSource=/[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/u.test(saved);
-  return isJapaneseSource ? [base] : [];
 }
 
 function getTtsSignature() {
@@ -2130,14 +1994,6 @@ function setPalette(palette) {
   root.setProperty('--blush',palette.blush);
   root.setProperty('--mouth',palette.mouth);
   root.setProperty('--tongue',palette.tongue);
-}
-
-function sanitizePlainName(value,max) {
-  return String(value||'').replace(/[\n\r\t]/g,'').slice(0,max);
-}
-
-function sanitizeSpokenName(value) {
-  return String(value||'').replace(/[^\p{L}'’\- ]/gu,'').slice(0,40);
 }
 
 function delay(ms){return new Promise(r=>setTimeout(r,ms));}
