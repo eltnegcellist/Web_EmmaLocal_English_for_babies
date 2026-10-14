@@ -1,3 +1,4 @@
+import { splitKittenChunks } from './sentence-chunks.js';
 /**
  * KittenTTS — main class.
  *
@@ -183,34 +184,7 @@ export class KittenTTS {
    * @returns {string[]}
    */
   _chunkText(text, punctuationMode = 'legacy') {
-    const preserve = punctuationMode === 'preserve';
-    // Legacy is deliberately the default until listening comparison is reviewed.
-    const sentences = preserve
-      ? (String(text).match(/[^.!?]+(?:[.!?]+|$)/g) || [])
-      : String(text).split(/[.!?]+/);
-    const chunks = [];
-    for (const raw of sentences) {
-      const sentence = raw.trim();
-      if (!sentence) continue;
-      if (sentence.length <= MAX_CHUNK_CHARS) {
-        chunks.push(this._ensurePunctuation(sentence));
-        continue;
-      }
-      const ending = preserve ? (sentence.match(/[.!?]+$/)?.[0] || '') : '';
-      const body = ending ? sentence.slice(0, -ending.length).trimEnd() : sentence;
-      const words = body.split(/\s+/);
-      let part = '';
-      for (const word of words) {
-        if (!part || part.length + word.length + 1 <= MAX_CHUNK_CHARS) {
-          part += part ? ' ' + word : word;
-        } else {
-          chunks.push(this._ensurePunctuation(part));
-          part = word;
-        }
-      }
-      if (part) chunks.push(this._ensurePunctuation(part + ending));
-    }
-    return chunks;
+    return splitKittenChunks(text, { punctuationMode, maxChars: MAX_CHUNK_CHARS });
   }
 
   /**

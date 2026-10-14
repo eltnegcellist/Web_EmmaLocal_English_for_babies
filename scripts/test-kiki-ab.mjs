@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {KittenTTS} from '../src/vendor/kitten/kitten-tts.js';
+import {splitKittenChunks} from '../src/vendor/kitten/sentence-chunks.js';
 import {allLiteReplyTemplatesForValidation} from '../src/lite-response-engine.js';
 import {INTERACTION_REPLIES} from '../src/interaction/response.js';
 import {COMBINED_REPLIES} from '../src/interaction/ruri-routing.js';
-const engine=Object.create(KittenTTS.prototype);
+const engine={_chunkText:(text,mode='legacy')=>splitKittenChunks(text,{punctuationMode:mode})};
 const old=engine._chunkText('Hello, baby! Can you hear me? Here I am.');
 const fresh=engine._chunkText('Hello, baby! Can you hear me? Here I am.','preserve');
 assert.deepEqual(old,['Hello, baby,','Can you hear me,','Here I am,']);
