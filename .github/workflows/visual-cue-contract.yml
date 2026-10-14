@@ -1,0 +1,25 @@
+name: Visual Cue authoring contract
+on:
+  pull_request:
+    paths:
+      - 'shared/visual-cue-*.json'
+      - 'scripts/*visual-cue*.mjs'
+      - '.github/workflows/visual-cue-contract.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'shared/visual-cue-*.json'
+      - 'scripts/*visual-cue*.mjs'
+      - '.github/workflows/visual-cue-contract.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test-visual-cue-contract.mjs
+      - run: node scripts/validate-visual-cues.mjs shared/visual-cue-contract.example.json shared/visual-cue-namespaces.json --strict

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 2,
+  "revision": "synthetic-example-only",
+  "assignments": [
+    {
+      "phraseId": "vc_demo_milk_01",
+      "sourceKind": "topic",
+      "sourceKey": "milk",
+      "text": "Milk time! Sip, sip! Little by little.",
+      "primaryCue": "action.sip",
+      "secondaryCues": [
+        "subject.milk"
+      ],
+      "renderPreference": "composite",
+      "reviewStatus": "reviewed"
+    },
+    {
+      "phraseId": "vc_demo_book_02",
+      "sourceKind": "press",
+      "sourceKey": "book",
+      "text": "Book time! Turn the page. Look at that!",
+      "primaryCue": "subject.book",
+      "reviewStatus": "reviewed",
+      "sentenceCues": [
+        {
+          "index": 0,
+          "primaryCue": "subject.book"
+        },
+        {
+          "index": 1,
+          "primaryCue": "action.turn-page",
+          "secondaryCues": [
+            "subject.book"
+          ]
+        },
+        {
+          "index": 2,
+          "primaryCue": "attention.look"
+        }
+      ]
+    }
+  ]
+}

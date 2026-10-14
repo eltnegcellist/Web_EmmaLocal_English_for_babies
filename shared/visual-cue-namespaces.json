@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "status": "provisional-open-vocabulary",
+  "safeFallback": {
+    "renderer": "emma",
+    "state": "neutral"
+  },
+  "namespaces": [
+    {
+      "id": "subject",
+      "defaultRenderer": "illustration",
+      "description": "Object or concrete scene"
+    },
+    {
+      "id": "action",
+      "defaultRenderer": "motion",
+      "description": "Visible movement"
+    },
+    {
+      "id": "observed",
+      "defaultRenderer": "emma",
+      "description": "Observable state, not inferred emotion"
+    },
+    {
+      "id": "emotion",
+      "defaultRenderer": "emma",
+      "description": "Emotion explicitly in the sentence"
+    },
+    {
+      "id": "social",
+      "defaultRenderer": "emma",
+      "description": "Affection, praise, success, effort, care"
+    },
+    {
+      "id": "attention",
+      "defaultRenderer": "emma",
+      "description": "Look, listen, slow"
+    },
+    {
+      "id": "dialogue",
+      "defaultRenderer": "emma",
+      "description": "Invite, start, finish, finish-check, inquire, repeat, pause"
+    }
+  ]
+}
