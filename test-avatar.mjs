@@ -42,7 +42,7 @@ const context = {
   Date:{now:()=>0}, avatarVisualState:'idle', avatarBlinkFrame:'open', avatarMouthLevel:'small',
 };
 const frameCode=app.slice(app.indexOf('function avatarFrameName()'), app.indexOf('function startAvatarBlinkLoop()'));
-const colorCode=app.slice(app.indexOf('function applyAppearance()'), app.indexOf('function sanitizePlainName('));
+const colorCode=app.slice(app.indexOf('function applyAppearance()'), app.indexOf('function delay(ms)'));
 runInNewContext(frameCode + colorCode + '\napplyAppearance(); renderAvatarFrame();', context);
 assert.equal(rootStyle.get('--face'), '#ffffff');
 assert.equal(rootStyle.get('--accent'), VIVID_PALETTES.coral.accent);
