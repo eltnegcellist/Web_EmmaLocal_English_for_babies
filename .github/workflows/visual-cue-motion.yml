@@ -1,0 +1,44 @@
+name: Visual Cue articulated-motion preview
+on:
+  pull_request:
+    paths:
+      - 'assets/visual-cue/semireal/**'
+      - 'shared/visual-cue-semireal-study.json'
+      - 'src/visual-cue-motion-study.js'
+      - 'visual-cue-motion-study.*'
+      - 'scripts/*visual-cue-semireal*'
+      - 'scripts/browser-visual-cue-motion-study.mjs'
+      - '.github/workflows/visual-cue-motion.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'assets/visual-cue/semireal/**'
+      - 'shared/visual-cue-semireal-study.json'
+      - 'src/visual-cue-motion-study.js'
+      - 'visual-cue-motion-study.*'
+      - 'scripts/*visual-cue-semireal*'
+      - 'scripts/browser-visual-cue-motion-study.mjs'
+      - '.github/workflows/visual-cue-motion.yml'
+permissions:
+  contents: read
+jobs:
+  visual-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/test-visual-cue-semireal.mjs
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/browser-visual-cue-motion-study.mjs
+      - name: Store desktop and mobile comparison screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-cue-semireal-motion-preview
+          path: .visual-cue-motion-results/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
