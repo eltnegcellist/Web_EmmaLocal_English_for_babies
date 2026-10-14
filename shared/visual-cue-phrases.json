@@ -1,0 +1,6403 @@
+{
+  "schemaVersion": 1,
+  "rows": [
+    {
+      "phraseId": "vc_000001",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 1,
+      "text": "Hello, sweet baby! You're so loved. I'm right here."
+    },
+    {
+      "phraseId": "vc_000002",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 2,
+      "text": "Hi, little one! It's nice being together. Hello again!"
+    },
+    {
+      "phraseId": "vc_000003",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 3,
+      "text": "Look at you! What a sweet face. I'm glad you're here!"
+    },
+    {
+      "phraseId": "vc_000004",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 4,
+      "text": "You're very special. I'm happy you're here. Hello, sweetheart!"
+    },
+    {
+      "phraseId": "vc_000005",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 5,
+      "text": "Hello again, baby! It's lovely seeing you. Shall we say hello?"
+    },
+    {
+      "phraseId": "vc_000006",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 6,
+      "text": "You're my little sunshine. I love you. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000007",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 7,
+      "text": "Can you hear me? It's my voice. Hello there!"
+    },
+    {
+      "phraseId": "vc_000008",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 8,
+      "text": "Let's say hello! Hi, little one! Hello again!"
+    },
+    {
+      "phraseId": "vc_000009",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 9,
+      "text": "I'm glad we're together. Let's spend time here. Hello, sweetie!"
+    },
+    {
+      "phraseId": "vc_000010",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 10,
+      "text": "Hello, sweetheart! Look at my face. Here I am!"
+    },
+    {
+      "phraseId": "vc_000011",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 11,
+      "text": "Shall we talk? I'm listening, baby. Your turn!"
+    },
+    {
+      "phraseId": "vc_000012",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 12,
+      "text": "Tell me more! I'm listening to you. Hello, baby!"
+    },
+    {
+      "phraseId": "vc_000013",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 13,
+      "text": "You're so precious. I love you lots. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000014",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 14,
+      "text": "Hi there, baby! It's lovely seeing you. Hello!"
+    },
+    {
+      "phraseId": "vc_000015",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 15,
+      "text": "Hello, little one! Can you hear me? Hi there!"
+    },
+    {
+      "phraseId": "vc_000016",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 16,
+      "text": "Let's make a sound! Ba, ba, ba! Your turn!"
+    },
+    {
+      "phraseId": "vc_000017",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 17,
+      "text": "One, two, three! Let's count together. Shall we go again?"
+    },
+    {
+      "phraseId": "vc_000018",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 18,
+      "text": "Shall we wave hello? Hi, hi, hi! Here comes my hand!"
+    },
+    {
+      "phraseId": "vc_000019",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 19,
+      "text": "Look at my hands! Let's wave hello. Hi, hi!"
+    },
+    {
+      "phraseId": "vc_000020",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 20,
+      "text": "Let's say good morning! Hello, sweet baby. Hi there!"
+    },
+    {
+      "phraseId": "vc_000021",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 21,
+      "text": "You're my sweet baby. I'm here with you. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000022",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 22,
+      "text": "Can you see me? Here I am! Hello, hello!"
+    },
+    {
+      "phraseId": "vc_000023",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 23,
+      "text": "What do you think? Tell me, little one. I'm listening!"
+    },
+    {
+      "phraseId": "vc_000024",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 24,
+      "text": "Do you hear that? That's my voice! Hello, baby!"
+    },
+    {
+      "phraseId": "vc_000025",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 25,
+      "text": "Baby, hello there! I'm here with you. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000026",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 26,
+      "text": "Baby, my sweetheart! You're so loved. Hello, baby!"
+    },
+    {
+      "phraseId": "vc_000027",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 27,
+      "text": "Baby, look here! It's me again. Hello there!"
+    },
+    {
+      "phraseId": "vc_000028",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 28,
+      "text": "Baby, how are you? I'm listening, baby. Your turn!"
+    },
+    {
+      "phraseId": "vc_000029",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 29,
+      "text": "Baby, my little star! I love you. Hello, sweetheart!"
+    },
+    {
+      "phraseId": "vc_000030",
+      "sourceKind": "topic",
+      "sourceKey": "generic",
+      "sourceIndex": 30,
+      "text": "Baby, hello again! I'm happy you're here. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000031",
+      "sourceKind": "topic",
+      "sourceKey": "bath",
+      "sourceIndex": 1,
+      "text": "Bath time is here! Is the water warm? Splash, splash!"
+    },
+    {
+      "phraseId": "vc_000032",
+      "sourceKind": "topic",
+      "sourceKey": "bath",
+      "sourceIndex": 2,
+      "text": "Let's wash your hands. One, then the other. All clean!"
+    },
+    {
+      "phraseId": "vc_000033",
+      "sourceKind": "topic",
+      "sourceKey": "bath",
+      "sourceIndex": 3,
+      "text": "Your little toes! Let's wash them gently. Splash, splash!"
+    },
+    {
+      "phraseId": "vc_000034",
+      "sourceKind": "topic",
+      "sourceKey": "bath",
+      "sourceIndex": 4,
+      "text": "Feel the warm water. Can you hear it? Splish, splash!"
+    },
+    {
+      "phraseId": "vc_000035",
+      "sourceKind": "topic",
+      "sourceKey": "bath",
+      "sourceIndex": 5,
+      "text": "We're taking a bath. Listen to the water. Splash, splash!"
+    },
+    {
+      "phraseId": "vc_000036",
+      "sourceKind": "topic",
+      "sourceKey": "bath",
+      "sourceIndex": 6,
+      "text": "Let's wash your tummy. A little splash. There you go!"
+    },
+    {
+      "phraseId": "vc_000037",
+      "sourceKind": "topic",
+      "sourceKey": "bath",
+      "sourceIndex": 7,
+      "text": "Baby, bath time! Feel the warm water. Splash, splash!"
+    },
+    {
+      "phraseId": "vc_000038",
+      "sourceKind": "topic",
+      "sourceKey": "bath",
+      "sourceIndex": 8,
+      "text": "Baby, look! Water on your toes. Splish, splash!"
+    },
+    {
+      "phraseId": "vc_000039",
+      "sourceKind": "topic",
+      "sourceKey": "milk",
+      "sourceIndex": 1,
+      "text": "Here's your milk! Ready for a sip? Here you go!"
+    },
+    {
+      "phraseId": "vc_000040",
+      "sourceKind": "topic",
+      "sourceKey": "milk",
+      "sourceIndex": 2,
+      "text": "Can you taste it? A little milk. Mmm, yummy!"
+    },
+    {
+      "phraseId": "vc_000041",
+      "sourceKind": "topic",
+      "sourceKey": "milk",
+      "sourceIndex": 3,
+      "text": "Milk for you! One little sip. Then another!"
+    },
+    {
+      "phraseId": "vc_000042",
+      "sourceKind": "topic",
+      "sourceKey": "milk",
+      "sourceIndex": 4,
+      "text": "Are you still hungry? We can have more. I'm here!"
+    },
+    {
+      "phraseId": "vc_000043",
+      "sourceKind": "topic",
+      "sourceKey": "milk",
+      "sourceIndex": 5,
+      "text": "It's milk time! Take little sips. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000044",
+      "sourceKind": "topic",
+      "sourceKey": "milk",
+      "sourceIndex": 6,
+      "text": "Milk time! Are you hungry? Let's have some!"
+    },
+    {
+      "phraseId": "vc_000045",
+      "sourceKind": "topic",
+      "sourceKey": "milk",
+      "sourceIndex": 7,
+      "text": "Baby, your milk! Here's a little sip. Mmm, yummy!"
+    },
+    {
+      "phraseId": "vc_000046",
+      "sourceKind": "topic",
+      "sourceKey": "milk",
+      "sourceIndex": 8,
+      "text": "Baby, milk time! Take a little sip. I'm here!"
+    },
+    {
+      "phraseId": "vc_000047",
+      "sourceKind": "topic",
+      "sourceKey": "sleep",
+      "sourceIndex": 1,
+      "text": "Are you sleepy? Let's get cozy. Night-night!"
+    },
+    {
+      "phraseId": "vc_000048",
+      "sourceKind": "topic",
+      "sourceKey": "sleep",
+      "sourceIndex": 2,
+      "text": "Time to rest. Let's get cozy now. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000049",
+      "sourceKind": "topic",
+      "sourceKey": "sleep",
+      "sourceIndex": 3,
+      "text": "Let's close our eyes. I'll stay nearby. Sleep well!"
+    },
+    {
+      "phraseId": "vc_000050",
+      "sourceKind": "topic",
+      "sourceKey": "sleep",
+      "sourceIndex": 4,
+      "text": "Shh, little one. Let's have quiet time. I'm right here."
+    },
+    {
+      "phraseId": "vc_000051",
+      "sourceKind": "topic",
+      "sourceKey": "sleep",
+      "sourceIndex": 5,
+      "text": "Getting sleepy? I'll stay with you. Rest well!"
+    },
+    {
+      "phraseId": "vc_000052",
+      "sourceKind": "topic",
+      "sourceKey": "sleep",
+      "sourceIndex": 6,
+      "text": "Rest well, baby. I'll stay close by. Sweet dreams!"
+    },
+    {
+      "phraseId": "vc_000053",
+      "sourceKind": "topic",
+      "sourceKey": "sleep",
+      "sourceIndex": 7,
+      "text": "Baby, sleep well. I'm right here. Sweet dreams!"
+    },
+    {
+      "phraseId": "vc_000054",
+      "sourceKind": "topic",
+      "sourceKey": "sleep",
+      "sourceIndex": 8,
+      "text": "Baby, night-night! Let's get cozy. Rest well!"
+    },
+    {
+      "phraseId": "vc_000055",
+      "sourceKind": "topic",
+      "sourceKey": "wake",
+      "sourceIndex": 1,
+      "text": "You're awake! Hello, little one. It's nice seeing you!"
+    },
+    {
+      "phraseId": "vc_000056",
+      "sourceKind": "topic",
+      "sourceKey": "wake",
+      "sourceIndex": 2,
+      "text": "Your eyes are open! Hello, little one. How are you?"
+    },
+    {
+      "phraseId": "vc_000057",
+      "sourceKind": "topic",
+      "sourceKey": "wake",
+      "sourceIndex": 3,
+      "text": "Look who's awake! How are you? Hello, little one!"
+    },
+    {
+      "phraseId": "vc_000058",
+      "sourceKind": "topic",
+      "sourceKey": "wake",
+      "sourceIndex": 4,
+      "text": "Hello again! Did you rest well? I'm glad you're awake."
+    },
+    {
+      "phraseId": "vc_000059",
+      "sourceKind": "topic",
+      "sourceKey": "wake",
+      "sourceIndex": 5,
+      "text": "Look who's awake! Did you rest well? Hello there!"
+    },
+    {
+      "phraseId": "vc_000060",
+      "sourceKind": "topic",
+      "sourceKey": "wake",
+      "sourceIndex": 6,
+      "text": "Hello there! You're awake now. Let's say hello!"
+    },
+    {
+      "phraseId": "vc_000061",
+      "sourceKind": "topic",
+      "sourceKey": "wake",
+      "sourceIndex": 7,
+      "text": "Baby, you're awake! How was your rest? Hello, sweetheart!"
+    },
+    {
+      "phraseId": "vc_000062",
+      "sourceKind": "topic",
+      "sourceKey": "wake",
+      "sourceIndex": 8,
+      "text": "Baby, you're awake! How are you? Hello again!"
+    },
+    {
+      "phraseId": "vc_000063",
+      "sourceKind": "topic",
+      "sourceKey": "diaper",
+      "sourceIndex": 1,
+      "text": "Time for a change. Let's get you dry. All fresh!"
+    },
+    {
+      "phraseId": "vc_000064",
+      "sourceKind": "topic",
+      "sourceKey": "diaper",
+      "sourceIndex": 2,
+      "text": "New diaper time! Let's wipe your bottom. All clean!"
+    },
+    {
+      "phraseId": "vc_000065",
+      "sourceKind": "topic",
+      "sourceKey": "diaper",
+      "sourceIndex": 3,
+      "text": "Let's change your diaper. One little wipe. All fresh!"
+    },
+    {
+      "phraseId": "vc_000066",
+      "sourceKind": "topic",
+      "sourceKey": "diaper",
+      "sourceIndex": 4,
+      "text": "Off comes your diaper. Let's clean you up. There!"
+    },
+    {
+      "phraseId": "vc_000067",
+      "sourceKind": "topic",
+      "sourceKey": "diaper",
+      "sourceIndex": 5,
+      "text": "Let's change your diaper. I'll be gentle. Nice and fresh!"
+    },
+    {
+      "phraseId": "vc_000068",
+      "sourceKind": "topic",
+      "sourceKey": "diaper",
+      "sourceIndex": 6,
+      "text": "Diaper change! I'll be gentle. You're doing great!"
+    },
+    {
+      "phraseId": "vc_000069",
+      "sourceKind": "topic",
+      "sourceKey": "diaper",
+      "sourceIndex": 7,
+      "text": "Baby, diaper time! Let's get you clean. All fresh!"
+    },
+    {
+      "phraseId": "vc_000070",
+      "sourceKind": "topic",
+      "sourceKey": "diaper",
+      "sourceIndex": 8,
+      "text": "Baby, let's change you. One little wipe. All clean!"
+    },
+    {
+      "phraseId": "vc_000071",
+      "sourceKind": "topic",
+      "sourceKey": "clothes",
+      "sourceIndex": 1,
+      "text": "Let's put clothes on. One arm first. Other arm next!"
+    },
+    {
+      "phraseId": "vc_000072",
+      "sourceKind": "topic",
+      "sourceKey": "clothes",
+      "sourceIndex": 2,
+      "text": "Your little shirt! Let's put it on. One arm goes in!"
+    },
+    {
+      "phraseId": "vc_000073",
+      "sourceKind": "topic",
+      "sourceKey": "clothes",
+      "sourceIndex": 3,
+      "text": "Here come your socks. One little foot. Then another!"
+    },
+    {
+      "phraseId": "vc_000074",
+      "sourceKind": "topic",
+      "sourceKey": "clothes",
+      "sourceIndex": 4,
+      "text": "Time to get dressed. Arms through the sleeves. All ready!"
+    },
+    {
+      "phraseId": "vc_000075",
+      "sourceKind": "topic",
+      "sourceKey": "clothes",
+      "sourceIndex": 5,
+      "text": "Let's change your clothes. This arm first. There you go!"
+    },
+    {
+      "phraseId": "vc_000076",
+      "sourceKind": "topic",
+      "sourceKey": "clothes",
+      "sourceIndex": 6,
+      "text": "Look at your clothes! Shall we get dressed? One arm first!"
+    },
+    {
+      "phraseId": "vc_000077",
+      "sourceKind": "topic",
+      "sourceKey": "clothes",
+      "sourceIndex": 7,
+      "text": "Baby, clothes on! One arm in. Looking lovely!"
+    },
+    {
+      "phraseId": "vc_000078",
+      "sourceKind": "topic",
+      "sourceKey": "clothes",
+      "sourceIndex": 8,
+      "text": "Baby, let's get dressed. Socks on next. All ready!"
+    },
+    {
+      "phraseId": "vc_000079",
+      "sourceKind": "topic",
+      "sourceKey": "hug",
+      "sourceIndex": 1,
+      "text": "Come here, baby. Let's have a cuddle. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000080",
+      "sourceKind": "topic",
+      "sourceKey": "hug",
+      "sourceIndex": 2,
+      "text": "Up you go! Into my arms. I've got you!"
+    },
+    {
+      "phraseId": "vc_000081",
+      "sourceKind": "topic",
+      "sourceKey": "hug",
+      "sourceIndex": 3,
+      "text": "A little cuddle? I'll hold you close. So cozy!"
+    },
+    {
+      "phraseId": "vc_000082",
+      "sourceKind": "topic",
+      "sourceKey": "hug",
+      "sourceIndex": 4,
+      "text": "Let's have a hug. Close to my heart. I love you!"
+    },
+    {
+      "phraseId": "vc_000083",
+      "sourceKind": "topic",
+      "sourceKey": "hug",
+      "sourceIndex": 5,
+      "text": "Here are my arms. Come close, sweetheart. Big hug!"
+    },
+    {
+      "phraseId": "vc_000084",
+      "sourceKind": "topic",
+      "sourceKey": "hug",
+      "sourceIndex": 6,
+      "text": "Hug time! You're warm and cozy. I'm here!"
+    },
+    {
+      "phraseId": "vc_000085",
+      "sourceKind": "topic",
+      "sourceKey": "hug",
+      "sourceIndex": 7,
+      "text": "Baby, come here! A big warm hug. I love you!"
+    },
+    {
+      "phraseId": "vc_000086",
+      "sourceKind": "topic",
+      "sourceKey": "hug",
+      "sourceIndex": 8,
+      "text": "Baby, cuddle time! I'll hold you close. So cozy!"
+    },
+    {
+      "phraseId": "vc_000087",
+      "sourceKind": "topic",
+      "sourceKey": "hands",
+      "sourceIndex": 1,
+      "text": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+    },
+    {
+      "phraseId": "vc_000088",
+      "sourceKind": "topic",
+      "sourceKey": "hands",
+      "sourceIndex": 2,
+      "text": "Open your hands. Close them again. Good job!"
+    },
+    {
+      "phraseId": "vc_000089",
+      "sourceKind": "topic",
+      "sourceKey": "hands",
+      "sourceIndex": 3,
+      "text": "Those little fingers! Can you wiggle them? Wiggle, wiggle!"
+    },
+    {
+      "phraseId": "vc_000090",
+      "sourceKind": "topic",
+      "sourceKey": "hands",
+      "sourceIndex": 4,
+      "text": "Here's your little hand. Hold my finger. So tiny!"
+    },
+    {
+      "phraseId": "vc_000091",
+      "sourceKind": "topic",
+      "sourceKey": "hands",
+      "sourceIndex": 5,
+      "text": "One hand, two hands! Let's wave hello. Hi there!"
+    },
+    {
+      "phraseId": "vc_000092",
+      "sourceKind": "topic",
+      "sourceKey": "hands",
+      "sourceIndex": 6,
+      "text": "Your fingers are moving! Open and close. Look at that!"
+    },
+    {
+      "phraseId": "vc_000093",
+      "sourceKind": "topic",
+      "sourceKey": "hands",
+      "sourceIndex": 7,
+      "text": "Baby, tiny hands! Hold my finger. Hello there!"
+    },
+    {
+      "phraseId": "vc_000094",
+      "sourceKind": "topic",
+      "sourceKey": "hands",
+      "sourceIndex": 8,
+      "text": "Baby, look! Your hands are moving. Wiggle, wiggle!"
+    },
+    {
+      "phraseId": "vc_000095",
+      "sourceKind": "topic",
+      "sourceKey": "feet",
+      "sourceIndex": 1,
+      "text": "Look at your feet! Ten tiny toes. Wiggle, wiggle!"
+    },
+    {
+      "phraseId": "vc_000096",
+      "sourceKind": "topic",
+      "sourceKey": "feet",
+      "sourceIndex": 2,
+      "text": "Kick those little legs! Kick, kick! Look at you!"
+    },
+    {
+      "phraseId": "vc_000097",
+      "sourceKind": "topic",
+      "sourceKey": "feet",
+      "sourceIndex": 3,
+      "text": "Your toes are moving! One, two, three. So tiny!"
+    },
+    {
+      "phraseId": "vc_000098",
+      "sourceKind": "topic",
+      "sourceKey": "feet",
+      "sourceIndex": 4,
+      "text": "Let's count your toes. One, two, three. More to go!"
+    },
+    {
+      "phraseId": "vc_000099",
+      "sourceKind": "topic",
+      "sourceKey": "feet",
+      "sourceIndex": 5,
+      "text": "Little feet up! Little feet down! Kick, kick!"
+    },
+    {
+      "phraseId": "vc_000100",
+      "sourceKind": "topic",
+      "sourceKey": "feet",
+      "sourceIndex": 6,
+      "text": "Can you kick? There go your feet! Good job!"
+    },
+    {
+      "phraseId": "vc_000101",
+      "sourceKind": "topic",
+      "sourceKey": "feet",
+      "sourceIndex": 7,
+      "text": "Baby, little feet! Kick, kick! Look at you!"
+    },
+    {
+      "phraseId": "vc_000102",
+      "sourceKind": "topic",
+      "sourceKey": "feet",
+      "sourceIndex": 8,
+      "text": "Baby, tiny toes! Wiggle those feet. So cute!"
+    },
+    {
+      "phraseId": "vc_000103",
+      "sourceKind": "topic",
+      "sourceKey": "smile",
+      "sourceIndex": 1,
+      "text": "What a smile! I love seeing it. You're so sweet!"
+    },
+    {
+      "phraseId": "vc_000104",
+      "sourceKind": "topic",
+      "sourceKey": "smile",
+      "sourceIndex": 2,
+      "text": "There's your smile! I love seeing it. So sweet!"
+    },
+    {
+      "phraseId": "vc_000105",
+      "sourceKind": "topic",
+      "sourceKey": "smile",
+      "sourceIndex": 3,
+      "text": "You're smiling! That makes me smile. Thank you!"
+    },
+    {
+      "phraseId": "vc_000106",
+      "sourceKind": "topic",
+      "sourceKey": "smile",
+      "sourceIndex": 4,
+      "text": "Such a big smile! Your cheeks look lovely. Hello, baby!"
+    },
+    {
+      "phraseId": "vc_000107",
+      "sourceKind": "topic",
+      "sourceKey": "smile",
+      "sourceIndex": 5,
+      "text": "I see a smile! Are you happy? I am too!"
+    },
+    {
+      "phraseId": "vc_000108",
+      "sourceKind": "topic",
+      "sourceKey": "smile",
+      "sourceIndex": 6,
+      "text": "Hello, little smiler! That's a lovely grin. I see you!"
+    },
+    {
+      "phraseId": "vc_000109",
+      "sourceKind": "topic",
+      "sourceKey": "smile",
+      "sourceIndex": 7,
+      "text": "Baby, that smile! You make me happy. Hello, sweetheart!"
+    },
+    {
+      "phraseId": "vc_000110",
+      "sourceKind": "topic",
+      "sourceKey": "smile",
+      "sourceIndex": 8,
+      "text": "Baby, you're smiling! I love that smile. So sweet!"
+    },
+    {
+      "phraseId": "vc_000111",
+      "sourceKind": "topic",
+      "sourceKey": "cry",
+      "sourceIndex": 1,
+      "text": "I hear you crying. I'm right here. You're not alone."
+    },
+    {
+      "phraseId": "vc_000112",
+      "sourceKind": "topic",
+      "sourceKey": "cry",
+      "sourceIndex": 2,
+      "text": "Are you feeling upset? I'm listening, baby. I'm right here."
+    },
+    {
+      "phraseId": "vc_000113",
+      "sourceKind": "topic",
+      "sourceKey": "cry",
+      "sourceIndex": 3,
+      "text": "Are you upset? I'll stay close. Would you like cuddles?"
+    },
+    {
+      "phraseId": "vc_000114",
+      "sourceKind": "topic",
+      "sourceKey": "cry",
+      "sourceIndex": 4,
+      "text": "I hear you crying. Would a cuddle help? I'm here."
+    },
+    {
+      "phraseId": "vc_000115",
+      "sourceKind": "topic",
+      "sourceKey": "cry",
+      "sourceIndex": 5,
+      "text": "Are you upset? I'm here with you. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000116",
+      "sourceKind": "topic",
+      "sourceKey": "cry",
+      "sourceIndex": 6,
+      "text": "You can cry. I'll stay beside you. I love you."
+    },
+    {
+      "phraseId": "vc_000117",
+      "sourceKind": "topic",
+      "sourceKey": "cry",
+      "sourceIndex": 7,
+      "text": "Baby, I'm here. I hear you crying. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000118",
+      "sourceKind": "topic",
+      "sourceKey": "cry",
+      "sourceIndex": 8,
+      "text": "Baby, it's okay. I'm listening to you. I'm here!"
+    },
+    {
+      "phraseId": "vc_000119",
+      "sourceKind": "topic",
+      "sourceKey": "voice",
+      "sourceIndex": 1,
+      "text": "I hear your voice! Tell me more. I'm listening!"
+    },
+    {
+      "phraseId": "vc_000120",
+      "sourceKind": "topic",
+      "sourceKey": "voice",
+      "sourceIndex": 2,
+      "text": "Are you talking? Hello, little one. Your turn!"
+    },
+    {
+      "phraseId": "vc_000121",
+      "sourceKind": "topic",
+      "sourceKey": "voice",
+      "sourceIndex": 3,
+      "text": "What a lovely sound! Say it again. I'm listening!"
+    },
+    {
+      "phraseId": "vc_000122",
+      "sourceKind": "topic",
+      "sourceKey": "voice",
+      "sourceIndex": 4,
+      "text": "Ooh, ahh! I hear you! Hello there!"
+    },
+    {
+      "phraseId": "vc_000123",
+      "sourceKind": "topic",
+      "sourceKey": "voice",
+      "sourceIndex": 5,
+      "text": "You're making sounds! I love your voice. Talk to me!"
+    },
+    {
+      "phraseId": "vc_000124",
+      "sourceKind": "topic",
+      "sourceKey": "voice",
+      "sourceIndex": 6,
+      "text": "Was that a coo? I heard you! Hello, baby!"
+    },
+    {
+      "phraseId": "vc_000125",
+      "sourceKind": "topic",
+      "sourceKey": "voice",
+      "sourceIndex": 7,
+      "text": "Baby, I hear you! Tell me more. I'm listening!"
+    },
+    {
+      "phraseId": "vc_000126",
+      "sourceKind": "topic",
+      "sourceKey": "voice",
+      "sourceIndex": 8,
+      "text": "Baby, your voice! I love hearing it. Hello, sweetheart!"
+    },
+    {
+      "phraseId": "vc_000127",
+      "sourceKind": "topic",
+      "sourceKey": "tummy",
+      "sourceIndex": 1,
+      "text": "How's your tummy? Do you feel full? I'm here!"
+    },
+    {
+      "phraseId": "vc_000128",
+      "sourceKind": "topic",
+      "sourceKey": "tummy",
+      "sourceIndex": 2,
+      "text": "Let's pat your back. Maybe a little burp. There!"
+    },
+    {
+      "phraseId": "vc_000129",
+      "sourceKind": "topic",
+      "sourceKey": "tummy",
+      "sourceIndex": 3,
+      "text": "Your little tummy! Let's have a cuddle. So cozy!"
+    },
+    {
+      "phraseId": "vc_000130",
+      "sourceKind": "topic",
+      "sourceKey": "tummy",
+      "sourceIndex": 4,
+      "text": "Is that a burp? Let's take it slowly. I'm right here."
+    },
+    {
+      "phraseId": "vc_000131",
+      "sourceKind": "topic",
+      "sourceKey": "tummy",
+      "sourceIndex": 5,
+      "text": "Let's get comfortable. I'll hold you close. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000132",
+      "sourceKind": "topic",
+      "sourceKey": "tummy",
+      "sourceIndex": 6,
+      "text": "Full tummy? We can rest now. I'm right here."
+    },
+    {
+      "phraseId": "vc_000133",
+      "sourceKind": "topic",
+      "sourceKey": "tummy",
+      "sourceIndex": 7,
+      "text": "Baby, little tummy! Let's get comfortable. Big hugs!"
+    },
+    {
+      "phraseId": "vc_000134",
+      "sourceKind": "topic",
+      "sourceKey": "tummy",
+      "sourceIndex": 8,
+      "text": "Baby, feeling full? I'll hold you close. So cozy!"
+    },
+    {
+      "phraseId": "vc_000135",
+      "sourceKind": "topic",
+      "sourceKey": "play",
+      "sourceIndex": 1,
+      "text": "Let's play together! What should we try? Peekaboo!"
+    },
+    {
+      "phraseId": "vc_000136",
+      "sourceKind": "topic",
+      "sourceKey": "play",
+      "sourceIndex": 2,
+      "text": "Here's your toy! Can you see it? Look here!"
+    },
+    {
+      "phraseId": "vc_000137",
+      "sourceKind": "topic",
+      "sourceKey": "play",
+      "sourceIndex": 3,
+      "text": "Ready to play? Shall we start together? Here's a little game!"
+    },
+    {
+      "phraseId": "vc_000138",
+      "sourceKind": "topic",
+      "sourceKey": "play",
+      "sourceIndex": 4,
+      "text": "Peekaboo! Where did I go? Here I am!"
+    },
+    {
+      "phraseId": "vc_000139",
+      "sourceKind": "topic",
+      "sourceKey": "play",
+      "sourceIndex": 5,
+      "text": "Let's shake the rattle. Can you hear it? Shake, shake!"
+    },
+    {
+      "phraseId": "vc_000140",
+      "sourceKind": "topic",
+      "sourceKey": "play",
+      "sourceIndex": 6,
+      "text": "Look at this toy! It's here for you. Let's play!"
+    },
+    {
+      "phraseId": "vc_000141",
+      "sourceKind": "topic",
+      "sourceKey": "play",
+      "sourceIndex": 7,
+      "text": "Baby, let's play! Here's your toy. Look at that!"
+    },
+    {
+      "phraseId": "vc_000142",
+      "sourceKind": "topic",
+      "sourceKey": "play",
+      "sourceIndex": 8,
+      "text": "Baby, peekaboo! Where am I? Here I am!"
+    },
+    {
+      "phraseId": "vc_000143",
+      "sourceKind": "topic",
+      "sourceKey": "outside",
+      "sourceIndex": 1,
+      "text": "Let's go outside! Look at the sky. What do you see?"
+    },
+    {
+      "phraseId": "vc_000144",
+      "sourceKind": "topic",
+      "sourceKey": "outside",
+      "sourceIndex": 2,
+      "text": "Fresh air outside! Can you feel it? Hello, world!"
+    },
+    {
+      "phraseId": "vc_000145",
+      "sourceKind": "topic",
+      "sourceKey": "outside",
+      "sourceIndex": 3,
+      "text": "Time for a stroll. Let's look around. What's over there?"
+    },
+    {
+      "phraseId": "vc_000146",
+      "sourceKind": "topic",
+      "sourceKey": "outside",
+      "sourceIndex": 4,
+      "text": "We're going outside! Let's look all around. What do you see?"
+    },
+    {
+      "phraseId": "vc_000147",
+      "sourceKind": "topic",
+      "sourceKey": "outside",
+      "sourceIndex": 5,
+      "text": "Look up, baby! There's the sky. So big!"
+    },
+    {
+      "phraseId": "vc_000148",
+      "sourceKind": "topic",
+      "sourceKey": "outside",
+      "sourceIndex": 6,
+      "text": "Out we go! What can you hear? Let's listen!"
+    },
+    {
+      "phraseId": "vc_000149",
+      "sourceKind": "topic",
+      "sourceKey": "outside",
+      "sourceIndex": 7,
+      "text": "Baby, outside time! Look at the sky. Hello, world!"
+    },
+    {
+      "phraseId": "vc_000150",
+      "sourceKind": "topic",
+      "sourceKey": "outside",
+      "sourceIndex": 8,
+      "text": "Baby, let's stroll! What can you see? Look around!"
+    },
+    {
+      "phraseId": "vc_000151",
+      "sourceKind": "topic",
+      "sourceKey": "rain",
+      "sourceIndex": 1,
+      "text": "Rain is falling! Can you hear it? Pitter-patter!"
+    },
+    {
+      "phraseId": "vc_000152",
+      "sourceKind": "topic",
+      "sourceKey": "rain",
+      "sourceIndex": 2,
+      "text": "Listen to the rain. Drip, drop! Drip, drop!"
+    },
+    {
+      "phraseId": "vc_000153",
+      "sourceKind": "topic",
+      "sourceKey": "rain",
+      "sourceIndex": 3,
+      "text": "Rain on the window! Tap, tap, tap. Can you hear?"
+    },
+    {
+      "phraseId": "vc_000154",
+      "sourceKind": "topic",
+      "sourceKey": "rain",
+      "sourceIndex": 4,
+      "text": "It's raining outside. Look at the drops. Drip, drop!"
+    },
+    {
+      "phraseId": "vc_000155",
+      "sourceKind": "topic",
+      "sourceKey": "rain",
+      "sourceIndex": 5,
+      "text": "The rain sounds soft. Listen with me. Pitter-patter!"
+    },
+    {
+      "phraseId": "vc_000156",
+      "sourceKind": "topic",
+      "sourceKey": "rain",
+      "sourceIndex": 6,
+      "text": "Raindrops are falling. Listen to their sound. Drip, drop!"
+    },
+    {
+      "phraseId": "vc_000157",
+      "sourceKind": "topic",
+      "sourceKey": "rain",
+      "sourceIndex": 7,
+      "text": "Baby, it's raining! Listen to the drops. Drip, drop!"
+    },
+    {
+      "phraseId": "vc_000158",
+      "sourceKind": "topic",
+      "sourceKey": "rain",
+      "sourceIndex": 8,
+      "text": "Baby, hear that? It's the rain. Pitter-patter!"
+    },
+    {
+      "phraseId": "vc_000159",
+      "sourceKind": "topic",
+      "sourceKey": "sun",
+      "sourceIndex": 1,
+      "text": "The sun is shining! What a bright day. Hello, sunshine!"
+    },
+    {
+      "phraseId": "vc_000160",
+      "sourceKind": "topic",
+      "sourceKey": "sun",
+      "sourceIndex": 2,
+      "text": "Look at the sunlight! It's bright outside. So lovely!"
+    },
+    {
+      "phraseId": "vc_000161",
+      "sourceKind": "topic",
+      "sourceKey": "sun",
+      "sourceIndex": 3,
+      "text": "Hello, sunshine! The sky is bright. Look up!"
+    },
+    {
+      "phraseId": "vc_000162",
+      "sourceKind": "topic",
+      "sourceKey": "sun",
+      "sourceIndex": 4,
+      "text": "A sunny day! Let's look outside. Can you see?"
+    },
+    {
+      "phraseId": "vc_000163",
+      "sourceKind": "topic",
+      "sourceKey": "sun",
+      "sourceIndex": 5,
+      "text": "See the bright sky? The sun is out. Hello, sunshine!"
+    },
+    {
+      "phraseId": "vc_000164",
+      "sourceKind": "topic",
+      "sourceKey": "sun",
+      "sourceIndex": 6,
+      "text": "Look at the sunshine! Can you see it? So bright!"
+    },
+    {
+      "phraseId": "vc_000165",
+      "sourceKind": "topic",
+      "sourceKey": "sun",
+      "sourceIndex": 7,
+      "text": "Baby, it's sunny! Look at the light. So bright!"
+    },
+    {
+      "phraseId": "vc_000166",
+      "sourceKind": "topic",
+      "sourceKey": "sun",
+      "sourceIndex": 8,
+      "text": "Baby, sunshine today! The sky is bright. Hello, sunshine!"
+    },
+    {
+      "phraseId": "vc_000167",
+      "sourceKind": "topic",
+      "sourceKey": "food",
+      "sourceIndex": 1,
+      "text": "Time for a bite! Here's your spoon. Open wide!"
+    },
+    {
+      "phraseId": "vc_000168",
+      "sourceKind": "topic",
+      "sourceKey": "food",
+      "sourceIndex": 2,
+      "text": "Let's try some food. One little bite. How is it?"
+    },
+    {
+      "phraseId": "vc_000169",
+      "sourceKind": "topic",
+      "sourceKey": "food",
+      "sourceIndex": 3,
+      "text": "Ready to eat? A little spoonful. There you go!"
+    },
+    {
+      "phraseId": "vc_000170",
+      "sourceKind": "topic",
+      "sourceKey": "food",
+      "sourceIndex": 4,
+      "text": "Do you like it? Want another bite? No need to hurry."
+    },
+    {
+      "phraseId": "vc_000171",
+      "sourceKind": "topic",
+      "sourceKey": "food",
+      "sourceIndex": 5,
+      "text": "Here's a little bite. Let's taste it. Mmm, yummy!"
+    },
+    {
+      "phraseId": "vc_000172",
+      "sourceKind": "topic",
+      "sourceKey": "food",
+      "sourceIndex": 6,
+      "text": "All done eating? Shall we wipe up? You did well!"
+    },
+    {
+      "phraseId": "vc_000173",
+      "sourceKind": "topic",
+      "sourceKey": "food",
+      "sourceIndex": 7,
+      "text": "Baby, food time! One little spoonful. Is it yummy?"
+    },
+    {
+      "phraseId": "vc_000174",
+      "sourceKind": "topic",
+      "sourceKey": "food",
+      "sourceIndex": 8,
+      "text": "Baby, let's eat! Here's your spoon. Open wide!"
+    },
+    {
+      "phraseId": "vc_000175",
+      "sourceKind": "topic",
+      "sourceKey": "book",
+      "sourceIndex": 1,
+      "text": "Let's read a book! Look at the pictures. What's that?"
+    },
+    {
+      "phraseId": "vc_000176",
+      "sourceKind": "topic",
+      "sourceKey": "book",
+      "sourceIndex": 2,
+      "text": "Here's your book! Turn the page. What comes next?"
+    },
+    {
+      "phraseId": "vc_000177",
+      "sourceKind": "topic",
+      "sourceKey": "book",
+      "sourceIndex": 3,
+      "text": "Look at this picture! What can you see? Let's look together!"
+    },
+    {
+      "phraseId": "vc_000178",
+      "sourceKind": "topic",
+      "sourceKey": "book",
+      "sourceIndex": 4,
+      "text": "One more page! Let's see what's there. Turn, turn!"
+    },
+    {
+      "phraseId": "vc_000179",
+      "sourceKind": "topic",
+      "sourceKey": "book",
+      "sourceIndex": 5,
+      "text": "Story time! Listen to my voice. Here comes a story!"
+    },
+    {
+      "phraseId": "vc_000180",
+      "sourceKind": "topic",
+      "sourceKey": "book",
+      "sourceIndex": 6,
+      "text": "Let's look together. See that picture? What do you notice?"
+    },
+    {
+      "phraseId": "vc_000181",
+      "sourceKind": "topic",
+      "sourceKey": "book",
+      "sourceIndex": 7,
+      "text": "Baby, book time! Look at the pictures. What's that?"
+    },
+    {
+      "phraseId": "vc_000182",
+      "sourceKind": "topic",
+      "sourceKey": "book",
+      "sourceIndex": 8,
+      "text": "Baby, let's read! Turn the page. What comes next?"
+    },
+    {
+      "phraseId": "vc_000183",
+      "sourceKind": "topic",
+      "sourceKey": "music",
+      "sourceIndex": 1,
+      "text": "Let's sing together! La, la, la! Your turn!"
+    },
+    {
+      "phraseId": "vc_000184",
+      "sourceKind": "topic",
+      "sourceKey": "music",
+      "sourceIndex": 2,
+      "text": "Listen to the music. Can you hear it? Tap, tap!"
+    },
+    {
+      "phraseId": "vc_000185",
+      "sourceKind": "topic",
+      "sourceKey": "music",
+      "sourceIndex": 3,
+      "text": "Here's a little song. Listen with me. La, la!"
+    },
+    {
+      "phraseId": "vc_000186",
+      "sourceKind": "topic",
+      "sourceKey": "music",
+      "sourceIndex": 4,
+      "text": "Hear the music? Tap, tap! Let's sing!"
+    },
+    {
+      "phraseId": "vc_000187",
+      "sourceKind": "topic",
+      "sourceKey": "music",
+      "sourceIndex": 5,
+      "text": "Let's make some music! Clap, clap! What fun!"
+    },
+    {
+      "phraseId": "vc_000188",
+      "sourceKind": "topic",
+      "sourceKey": "music",
+      "sourceIndex": 6,
+      "text": "A song for you! La, la, la! Sing with me!"
+    },
+    {
+      "phraseId": "vc_000189",
+      "sourceKind": "topic",
+      "sourceKey": "music",
+      "sourceIndex": 7,
+      "text": "Baby, let's sing! La, la, la! Your turn!"
+    },
+    {
+      "phraseId": "vc_000190",
+      "sourceKind": "topic",
+      "sourceKey": "music",
+      "sourceIndex": 8,
+      "text": "Baby, hear that song? Let's listen together. Tap, tap!"
+    },
+    {
+      "phraseId": "vc_000191",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 1,
+      "text": "Would you like some? Here's a little sip. There you go!"
+    },
+    {
+      "phraseId": "vc_000192",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 2,
+      "text": "Here's your drink! Ready for a sip? Here you are!"
+    },
+    {
+      "phraseId": "vc_000193",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 3,
+      "text": "Drink time! One little sip. How does it taste?"
+    },
+    {
+      "phraseId": "vc_000194",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 4,
+      "text": "Want a little sip? Here's your drink. Sip if you like!"
+    },
+    {
+      "phraseId": "vc_000195",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 5,
+      "text": "Want another sip? No need to hurry. Here you go!"
+    },
+    {
+      "phraseId": "vc_000196",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 6,
+      "text": "Baby, your drink! Here's a little sip. There you go!"
+    },
+    {
+      "phraseId": "vc_000197",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 7,
+      "text": "Baby, thirsty? Let's have a drink. Sip when you're ready!"
+    },
+    {
+      "phraseId": "vc_000198",
+      "sourceKind": "interaction",
+      "sourceKey": "affection",
+      "sourceIndex": 1,
+      "text": "You're so cute! What a sweetheart! I love you."
+    },
+    {
+      "phraseId": "vc_000199",
+      "sourceKind": "interaction",
+      "sourceKey": "affection",
+      "sourceIndex": 2,
+      "text": "You're so sweet. Just as you are. I love you dearly."
+    },
+    {
+      "phraseId": "vc_000200",
+      "sourceKind": "interaction",
+      "sourceKey": "affection",
+      "sourceIndex": 3,
+      "text": "What a sweetheart! You're adorable. Such a lovely child."
+    },
+    {
+      "phraseId": "vc_000201",
+      "sourceKind": "interaction",
+      "sourceKey": "affection",
+      "sourceIndex": 4,
+      "text": "Look at you! My sweet baby. I love you!"
+    },
+    {
+      "phraseId": "vc_000202",
+      "sourceKind": "interaction",
+      "sourceKey": "affection",
+      "sourceIndex": 5,
+      "text": "You are wonderful. Just as you are. I adore you."
+    },
+    {
+      "phraseId": "vc_000203",
+      "sourceKind": "interaction",
+      "sourceKey": "affection",
+      "sourceIndex": 6,
+      "text": "Hello, sweet one. You are adorable. Yes, you are!"
+    },
+    {
+      "phraseId": "vc_000204",
+      "sourceKind": "interaction",
+      "sourceKey": "affection",
+      "sourceIndex": 7,
+      "text": "Such a cutie! That's you! My sweet little one."
+    },
+    {
+      "phraseId": "vc_000205",
+      "sourceKind": "interaction",
+      "sourceKey": "affection",
+      "sourceIndex": 8,
+      "text": "I love you. My darling little one. So very much."
+    },
+    {
+      "phraseId": "vc_000206",
+      "sourceKind": "interaction",
+      "sourceKey": "praise",
+      "sourceIndex": 1,
+      "text": "Well done! You did great. I'm proud of you!"
+    },
+    {
+      "phraseId": "vc_000207",
+      "sourceKind": "interaction",
+      "sourceKey": "praise",
+      "sourceIndex": 2,
+      "text": "Good job! That's just right. You did so well!"
+    },
+    {
+      "phraseId": "vc_000208",
+      "sourceKind": "interaction",
+      "sourceKey": "praise",
+      "sourceIndex": 3,
+      "text": "Great work! Look what you did! I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000209",
+      "sourceKind": "interaction",
+      "sourceKey": "praise",
+      "sourceIndex": 4,
+      "text": "That's wonderful! You did well. Well done, little one!"
+    },
+    {
+      "phraseId": "vc_000210",
+      "sourceKind": "interaction",
+      "sourceKey": "praise",
+      "sourceIndex": 5,
+      "text": "Very good! You did that yourself. How wonderful is that!"
+    },
+    {
+      "phraseId": "vc_000211",
+      "sourceKind": "interaction",
+      "sourceKey": "praise",
+      "sourceIndex": 6,
+      "text": "Nicely done! That was lovely. Great job, little one!"
+    },
+    {
+      "phraseId": "vc_000212",
+      "sourceKind": "interaction",
+      "sourceKey": "praise",
+      "sourceIndex": 7,
+      "text": "That's really good! What a great job! I'm so proud!"
+    },
+    {
+      "phraseId": "vc_000213",
+      "sourceKind": "interaction",
+      "sourceKey": "praise",
+      "sourceIndex": 8,
+      "text": "Good job, little one! That's lovely. You did great!"
+    },
+    {
+      "phraseId": "vc_000214",
+      "sourceKind": "interaction",
+      "sourceKey": "achievement",
+      "sourceIndex": 1,
+      "text": "You did it! Look what happened! Hooray for you!"
+    },
+    {
+      "phraseId": "vc_000215",
+      "sourceKind": "interaction",
+      "sourceKey": "achievement",
+      "sourceIndex": 2,
+      "text": "Hooray! You did it! That was wonderful!"
+    },
+    {
+      "phraseId": "vc_000216",
+      "sourceKind": "interaction",
+      "sourceKey": "achievement",
+      "sourceIndex": 3,
+      "text": "You got it! Yes, you did! Let's clap together."
+    },
+    {
+      "phraseId": "vc_000217",
+      "sourceKind": "interaction",
+      "sourceKey": "achievement",
+      "sourceIndex": 4,
+      "text": "There you go! Look what you did! Let's clap together!"
+    },
+    {
+      "phraseId": "vc_000218",
+      "sourceKind": "interaction",
+      "sourceKey": "achievement",
+      "sourceIndex": 5,
+      "text": "Yes! You made it! That's wonderful!"
+    },
+    {
+      "phraseId": "vc_000219",
+      "sourceKind": "interaction",
+      "sourceKey": "achievement",
+      "sourceIndex": 6,
+      "text": "You did it! You kept trying! Look at you!"
+    },
+    {
+      "phraseId": "vc_000220",
+      "sourceKind": "interaction",
+      "sourceKey": "achievement",
+      "sourceIndex": 7,
+      "text": "There it is! You did it! Hooray for you!"
+    },
+    {
+      "phraseId": "vc_000221",
+      "sourceKind": "interaction",
+      "sourceKey": "achievement",
+      "sourceIndex": 8,
+      "text": "It's done! You got it! What a lovely moment!"
+    },
+    {
+      "phraseId": "vc_000222",
+      "sourceKind": "interaction",
+      "sourceKey": "effort",
+      "sourceIndex": 1,
+      "text": "You're trying again! Look at you go! I'm here!"
+    },
+    {
+      "phraseId": "vc_000223",
+      "sourceKind": "interaction",
+      "sourceKey": "effort",
+      "sourceIndex": 2,
+      "text": "You're really trying! You're working on it. I can see that!"
+    },
+    {
+      "phraseId": "vc_000224",
+      "sourceKind": "interaction",
+      "sourceKey": "effort",
+      "sourceIndex": 3,
+      "text": "You're working so hard. I see you trying. Take your time."
+    },
+    {
+      "phraseId": "vc_000225",
+      "sourceKind": "interaction",
+      "sourceKey": "effort",
+      "sourceIndex": 4,
+      "text": "You keep on trying. You're giving it time. I see you."
+    },
+    {
+      "phraseId": "vc_000226",
+      "sourceKind": "interaction",
+      "sourceKey": "effort",
+      "sourceIndex": 5,
+      "text": "You're trying again. I can see that. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000227",
+      "sourceKind": "interaction",
+      "sourceKey": "effort",
+      "sourceIndex": 6,
+      "text": "You're really trying. You haven't stopped yet. I'm cheering you on."
+    },
+    {
+      "phraseId": "vc_000228",
+      "sourceKind": "interaction",
+      "sourceKey": "effort",
+      "sourceIndex": 7,
+      "text": "You've been trying hard. I see that. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000229",
+      "sourceKind": "interaction",
+      "sourceKey": "effort",
+      "sourceIndex": 8,
+      "text": "Look at you trying! You're working so hard. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000230",
+      "sourceKind": "interaction",
+      "sourceKey": "encouragement",
+      "sourceIndex": 1,
+      "text": "You can try. I'm beside you. Go when you're ready."
+    },
+    {
+      "phraseId": "vc_000231",
+      "sourceKind": "interaction",
+      "sourceKey": "encouragement",
+      "sourceIndex": 2,
+      "text": "Give it a try! I'll stay close. You can do this!"
+    },
+    {
+      "phraseId": "vc_000232",
+      "sourceKind": "interaction",
+      "sourceKey": "encouragement",
+      "sourceIndex": 3,
+      "text": "Keep trying, little one. No need to hurry. I'm cheering you on."
+    },
+    {
+      "phraseId": "vc_000233",
+      "sourceKind": "interaction",
+      "sourceKey": "encouragement",
+      "sourceIndex": 4,
+      "text": "Try again, sweetheart. That's okay. You've got time."
+    },
+    {
+      "phraseId": "vc_000234",
+      "sourceKind": "interaction",
+      "sourceKey": "encouragement",
+      "sourceIndex": 5,
+      "text": "One more try? I'm here too. You've got this!"
+    },
+    {
+      "phraseId": "vc_000235",
+      "sourceKind": "interaction",
+      "sourceKey": "encouragement",
+      "sourceIndex": 6,
+      "text": "You can keep trying. Go at your pace. I'll stay nearby."
+    },
+    {
+      "phraseId": "vc_000236",
+      "sourceKind": "interaction",
+      "sourceKey": "encouragement",
+      "sourceIndex": 7,
+      "text": "Go on, little one! You can try. I believe in you."
+    },
+    {
+      "phraseId": "vc_000237",
+      "sourceKind": "interaction",
+      "sourceKey": "encouragement",
+      "sourceIndex": 8,
+      "text": "There's no hurry. Try when you're ready. I'll be close."
+    },
+    {
+      "phraseId": "vc_000238",
+      "sourceKind": "interaction",
+      "sourceKey": "invitation",
+      "sourceIndex": 1,
+      "text": "Shall we do this? Come with me. Let's try together."
+    },
+    {
+      "phraseId": "vc_000239",
+      "sourceKind": "interaction",
+      "sourceKey": "invitation",
+      "sourceIndex": 2,
+      "text": "Want to try? Let's do it. Let's try together."
+    },
+    {
+      "phraseId": "vc_000240",
+      "sourceKind": "interaction",
+      "sourceKey": "invitation",
+      "sourceIndex": 3,
+      "text": "What should we play? Want to play together? Let's pick a toy."
+    },
+    {
+      "phraseId": "vc_000241",
+      "sourceKind": "interaction",
+      "sourceKey": "invitation",
+      "sourceIndex": 4,
+      "text": "How about this? We can try. Let's do it together."
+    },
+    {
+      "phraseId": "vc_000242",
+      "sourceKind": "interaction",
+      "sourceKey": "invitation",
+      "sourceIndex": 5,
+      "text": "Ready to join me? Let's do this. We'll try together."
+    },
+    {
+      "phraseId": "vc_000243",
+      "sourceKind": "interaction",
+      "sourceKey": "invitation",
+      "sourceIndex": 6,
+      "text": "Want to try this? Let's look together. Pick your favorite."
+    },
+    {
+      "phraseId": "vc_000244",
+      "sourceKind": "interaction",
+      "sourceKey": "invitation",
+      "sourceIndex": 7,
+      "text": "Let's try something. Let's do it together. What do you think?"
+    },
+    {
+      "phraseId": "vc_000245",
+      "sourceKind": "interaction",
+      "sourceKey": "invitation",
+      "sourceIndex": 8,
+      "text": "Shall we go? I'll go with you. We can go together."
+    },
+    {
+      "phraseId": "vc_000246",
+      "sourceKind": "interaction",
+      "sourceKey": "start",
+      "sourceIndex": 1,
+      "text": "Here we go! We're beginning now. Ready, little one?"
+    },
+    {
+      "phraseId": "vc_000247",
+      "sourceKind": "interaction",
+      "sourceKey": "start",
+      "sourceIndex": 2,
+      "text": "Ready, set, go! Let's begin now. Off we go!"
+    },
+    {
+      "phraseId": "vc_000248",
+      "sourceKind": "interaction",
+      "sourceKey": "start",
+      "sourceIndex": 3,
+      "text": "It's time to start. Ready, little one? Let's do this."
+    },
+    {
+      "phraseId": "vc_000249",
+      "sourceKind": "interaction",
+      "sourceKey": "start",
+      "sourceIndex": 4,
+      "text": "We're starting! Are you ready? Off we go!"
+    },
+    {
+      "phraseId": "vc_000250",
+      "sourceKind": "interaction",
+      "sourceKey": "start",
+      "sourceIndex": 5,
+      "text": "Let's begin! Now we start. Ready for this?"
+    },
+    {
+      "phraseId": "vc_000251",
+      "sourceKind": "interaction",
+      "sourceKey": "start",
+      "sourceIndex": 6,
+      "text": "Ready? We're starting now. Let's go together."
+    },
+    {
+      "phraseId": "vc_000252",
+      "sourceKind": "interaction",
+      "sourceKey": "start",
+      "sourceIndex": 7,
+      "text": "Here we go! It's time to start. Ready for this?"
+    },
+    {
+      "phraseId": "vc_000253",
+      "sourceKind": "interaction",
+      "sourceKey": "start",
+      "sourceIndex": 8,
+      "text": "Three, two, one! It's time! Let's begin together."
+    },
+    {
+      "phraseId": "vc_000254",
+      "sourceKind": "interaction",
+      "sourceKey": "finish",
+      "sourceIndex": 1,
+      "text": "It's all done! We finished. Well done, little one."
+    },
+    {
+      "phraseId": "vc_000255",
+      "sourceKind": "interaction",
+      "sourceKey": "finish",
+      "sourceIndex": 2,
+      "text": "That's the end. All finished now. We did it."
+    },
+    {
+      "phraseId": "vc_000256",
+      "sourceKind": "interaction",
+      "sourceKey": "finish",
+      "sourceIndex": 3,
+      "text": "All done now. We're finished. Good work, little one."
+    },
+    {
+      "phraseId": "vc_000257",
+      "sourceKind": "interaction",
+      "sourceKey": "finish",
+      "sourceIndex": 4,
+      "text": "That's finished now. We can stop. Well done, little one."
+    },
+    {
+      "phraseId": "vc_000258",
+      "sourceKind": "interaction",
+      "sourceKey": "finish",
+      "sourceIndex": 5,
+      "text": "We're all done. That's the end. Well done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000259",
+      "sourceKind": "interaction",
+      "sourceKey": "finish",
+      "sourceIndex": 6,
+      "text": "That's everything. We're all finished. Time for a break."
+    },
+    {
+      "phraseId": "vc_000260",
+      "sourceKind": "interaction",
+      "sourceKey": "finish",
+      "sourceIndex": 7,
+      "text": "All finished now! We can pause here. Thank you, little one."
+    },
+    {
+      "phraseId": "vc_000261",
+      "sourceKind": "interaction",
+      "sourceKey": "finish",
+      "sourceIndex": 8,
+      "text": "That's it! We're finished now. All done together."
+    },
+    {
+      "phraseId": "vc_000262",
+      "sourceKind": "interaction",
+      "sourceKey": "finish_check",
+      "sourceIndex": 1,
+      "text": "All done? Is that everything? Let's have a look."
+    },
+    {
+      "phraseId": "vc_000263",
+      "sourceKind": "interaction",
+      "sourceKey": "finish_check",
+      "sourceIndex": 2,
+      "text": "Are we finished? Shall we check? What do you think?"
+    },
+    {
+      "phraseId": "vc_000264",
+      "sourceKind": "interaction",
+      "sourceKey": "finish_check",
+      "sourceIndex": 3,
+      "text": "Is it all done? Let's see together. Shall we check?"
+    },
+    {
+      "phraseId": "vc_000265",
+      "sourceKind": "interaction",
+      "sourceKey": "finish_check",
+      "sourceIndex": 4,
+      "text": "Finished already? Let me see. Are we all done?"
+    },
+    {
+      "phraseId": "vc_000266",
+      "sourceKind": "interaction",
+      "sourceKey": "finish_check",
+      "sourceIndex": 5,
+      "text": "Is that the end? Shall we see? Let's check together."
+    },
+    {
+      "phraseId": "vc_000267",
+      "sourceKind": "interaction",
+      "sourceKey": "finish_check",
+      "sourceIndex": 6,
+      "text": "Are you done? Let's have a look. Is that everything?"
+    },
+    {
+      "phraseId": "vc_000268",
+      "sourceKind": "interaction",
+      "sourceKey": "finish_check",
+      "sourceIndex": 7,
+      "text": "All finished? Let's check together. Are we done now?"
+    },
+    {
+      "phraseId": "vc_000269",
+      "sourceKind": "interaction",
+      "sourceKey": "finish_check",
+      "sourceIndex": 8,
+      "text": "Could that be it? Let's see. Are we done yet?"
+    },
+    {
+      "phraseId": "vc_000270",
+      "sourceKind": "interaction",
+      "sourceKey": "care",
+      "sourceIndex": 1,
+      "text": "You worked so hard. That's a lot. Rest if you like."
+    },
+    {
+      "phraseId": "vc_000271",
+      "sourceKind": "interaction",
+      "sourceKey": "care",
+      "sourceIndex": 2,
+      "text": "That was a lot. You did well. Now let's rest."
+    },
+    {
+      "phraseId": "vc_000272",
+      "sourceKind": "interaction",
+      "sourceKey": "care",
+      "sourceIndex": 3,
+      "text": "Good work today. You can rest. We can slow down."
+    },
+    {
+      "phraseId": "vc_000273",
+      "sourceKind": "interaction",
+      "sourceKey": "care",
+      "sourceIndex": 4,
+      "text": "You worked so hard. Look at you! Let's rest now."
+    },
+    {
+      "phraseId": "vc_000274",
+      "sourceKind": "interaction",
+      "sourceKey": "care",
+      "sourceIndex": 5,
+      "text": "You worked so hard. Let's rest together. I'll hold you."
+    },
+    {
+      "phraseId": "vc_000275",
+      "sourceKind": "interaction",
+      "sourceKey": "care",
+      "sourceIndex": 6,
+      "text": "You worked hard! Your little hands moved. Let's rest a bit."
+    },
+    {
+      "phraseId": "vc_000276",
+      "sourceKind": "interaction",
+      "sourceKey": "care",
+      "sourceIndex": 7,
+      "text": "You worked hard today. That was plenty. Time to rest."
+    },
+    {
+      "phraseId": "vc_000277",
+      "sourceKind": "interaction",
+      "sourceKey": "care",
+      "sourceIndex": 8,
+      "text": "You did a lot. Now take a break. I'm still with you."
+    },
+    {
+      "phraseId": "vc_000278",
+      "sourceKind": "interaction",
+      "sourceKey": "inquiry",
+      "sourceIndex": 1,
+      "text": "What's the matter? I'm right here. Can you show me?"
+    },
+    {
+      "phraseId": "vc_000279",
+      "sourceKind": "interaction",
+      "sourceKey": "inquiry",
+      "sourceIndex": 2,
+      "text": "What's going on? Let's figure it out. What do you need?"
+    },
+    {
+      "phraseId": "vc_000280",
+      "sourceKind": "interaction",
+      "sourceKey": "inquiry",
+      "sourceIndex": 3,
+      "text": "Is something bothering you? I'm right here. What do you need?"
+    },
+    {
+      "phraseId": "vc_000281",
+      "sourceKind": "interaction",
+      "sourceKey": "inquiry",
+      "sourceIndex": 4,
+      "text": "What is it? Can you show me? I'll listen closely."
+    },
+    {
+      "phraseId": "vc_000282",
+      "sourceKind": "interaction",
+      "sourceKey": "inquiry",
+      "sourceIndex": 5,
+      "text": "What's happening, little one? I'll listen closely. Tell me more."
+    },
+    {
+      "phraseId": "vc_000283",
+      "sourceKind": "interaction",
+      "sourceKey": "inquiry",
+      "sourceIndex": 6,
+      "text": "Do you need something? I'm with you. Let's find out."
+    },
+    {
+      "phraseId": "vc_000284",
+      "sourceKind": "interaction",
+      "sourceKey": "inquiry",
+      "sourceIndex": 7,
+      "text": "Are you okay? Let's take a look. What happened, sweetheart?"
+    },
+    {
+      "phraseId": "vc_000285",
+      "sourceKind": "interaction",
+      "sourceKey": "inquiry",
+      "sourceIndex": 8,
+      "text": "What's up, little one? I'm listening closely. What do you need?"
+    },
+    {
+      "phraseId": "vc_000286",
+      "sourceKind": "interaction",
+      "sourceKey": "reassurance",
+      "sourceIndex": 1,
+      "text": "I'm here with you. You're not alone. I'm staying close."
+    },
+    {
+      "phraseId": "vc_000287",
+      "sourceKind": "interaction",
+      "sourceKey": "reassurance",
+      "sourceIndex": 2,
+      "text": "It's okay, sweetheart. I'm here to listen. We have time."
+    },
+    {
+      "phraseId": "vc_000288",
+      "sourceKind": "interaction",
+      "sourceKey": "reassurance",
+      "sourceIndex": 3,
+      "text": "You're not alone. I'll stay close. We can slow down."
+    },
+    {
+      "phraseId": "vc_000289",
+      "sourceKind": "interaction",
+      "sourceKey": "reassurance",
+      "sourceIndex": 4,
+      "text": "I'm here with you. I'll listen closely. We're together now."
+    },
+    {
+      "phraseId": "vc_000290",
+      "sourceKind": "interaction",
+      "sourceKey": "reassurance",
+      "sourceIndex": 5,
+      "text": "I've got you. I'll stay right here. We're together now."
+    },
+    {
+      "phraseId": "vc_000291",
+      "sourceKind": "interaction",
+      "sourceKey": "reassurance",
+      "sourceIndex": 6,
+      "text": "You're not alone. I'm here now. We'll take our time."
+    },
+    {
+      "phraseId": "vc_000292",
+      "sourceKind": "interaction",
+      "sourceKey": "reassurance",
+      "sourceIndex": 7,
+      "text": "Right here, little one. I've got you. I'll stay nearby."
+    },
+    {
+      "phraseId": "vc_000293",
+      "sourceKind": "interaction",
+      "sourceKey": "reassurance",
+      "sourceIndex": 8,
+      "text": "We're together now. I'm close by. There's no hurry."
+    },
+    {
+      "phraseId": "vc_000294",
+      "sourceKind": "interaction",
+      "sourceKey": "repeat",
+      "sourceIndex": 1,
+      "text": "One more time? Let's try again. Ready to go?"
+    },
+    {
+      "phraseId": "vc_000295",
+      "sourceKind": "interaction",
+      "sourceKey": "repeat",
+      "sourceIndex": 2,
+      "text": "Again? Let's do that. One more time!"
+    },
+    {
+      "phraseId": "vc_000296",
+      "sourceKind": "interaction",
+      "sourceKey": "repeat",
+      "sourceIndex": 3,
+      "text": "Shall we try again? Just once more. Ready to go?"
+    },
+    {
+      "phraseId": "vc_000297",
+      "sourceKind": "interaction",
+      "sourceKey": "repeat",
+      "sourceIndex": 4,
+      "text": "Let's do it again. Ready for more? We can start."
+    },
+    {
+      "phraseId": "vc_000298",
+      "sourceKind": "interaction",
+      "sourceKey": "repeat",
+      "sourceIndex": 5,
+      "text": "Once more? Let's try together. Shall we go?"
+    },
+    {
+      "phraseId": "vc_000299",
+      "sourceKind": "interaction",
+      "sourceKey": "repeat",
+      "sourceIndex": 6,
+      "text": "One more go? Let's try it again. Here we go!"
+    },
+    {
+      "phraseId": "vc_000300",
+      "sourceKind": "interaction",
+      "sourceKey": "repeat",
+      "sourceIndex": 7,
+      "text": "Want to try again? Let's try once more. Ready, little one?"
+    },
+    {
+      "phraseId": "vc_000301",
+      "sourceKind": "interaction",
+      "sourceKey": "repeat",
+      "sourceIndex": 8,
+      "text": "Let's have another go. We can try again. Shall we start?"
+    },
+    {
+      "phraseId": "vc_000302",
+      "sourceKind": "interaction",
+      "sourceKey": "pause",
+      "sourceIndex": 1,
+      "text": "Just a moment. I'll be right here. We can wait."
+    },
+    {
+      "phraseId": "vc_000303",
+      "sourceKind": "interaction",
+      "sourceKey": "pause",
+      "sourceIndex": 2,
+      "text": "Let's wait a little. No need to rush. We'll wait together."
+    },
+    {
+      "phraseId": "vc_000304",
+      "sourceKind": "interaction",
+      "sourceKey": "pause",
+      "sourceIndex": 3,
+      "text": "Hold on, sweetheart. Just a moment. I'm with you."
+    },
+    {
+      "phraseId": "vc_000305",
+      "sourceKind": "interaction",
+      "sourceKey": "pause",
+      "sourceIndex": 4,
+      "text": "We can pause now. There's no hurry. I'm staying right here."
+    },
+    {
+      "phraseId": "vc_000306",
+      "sourceKind": "interaction",
+      "sourceKey": "pause",
+      "sourceIndex": 5,
+      "text": "One little moment. Let's stay together. We have time."
+    },
+    {
+      "phraseId": "vc_000307",
+      "sourceKind": "interaction",
+      "sourceKey": "pause",
+      "sourceIndex": 6,
+      "text": "Shall we rest? We have time. I'll stay beside you."
+    },
+    {
+      "phraseId": "vc_000308",
+      "sourceKind": "interaction",
+      "sourceKey": "pause",
+      "sourceIndex": 7,
+      "text": "Wait a moment. Not just yet. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000309",
+      "sourceKind": "interaction",
+      "sourceKey": "pause",
+      "sourceIndex": 8,
+      "text": "Let's take a break. We can wait. No rush."
+    },
+    {
+      "phraseId": "vc_000310",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we have milk? Little sips are fine. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000311",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "sourceIndex": 2,
+      "text": "Milk is ready now! Shall we try together? Take your time."
+    },
+    {
+      "phraseId": "vc_000312",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "sourceIndex": 3,
+      "text": "A little milk now. Would you like some? Take your time."
+    },
+    {
+      "phraseId": "vc_000313",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "sourceIndex": 4,
+      "text": "Shall we sit together? Your milk is waiting. Ready to try?"
+    },
+    {
+      "phraseId": "vc_000314",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "sourceIndex": 5,
+      "text": "Come closer, little one. Milk time is here. Let's get comfortable."
+    },
+    {
+      "phraseId": "vc_000315",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "sourceIndex": 6,
+      "text": "Feeling hungry, sweetheart? Here's your warm milk. Shall we begin?"
+    },
+    {
+      "phraseId": "vc_000316",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "sourceIndex": 7,
+      "text": "Would milk sound good? Take a little look. We can start."
+    },
+    {
+      "phraseId": "vc_000317",
+      "sourceKind": "combined",
+      "sourceKey": "milk|invitation",
+      "sourceIndex": 8,
+      "text": "Let's sit together now. Your bottle is ready. Want a little sip?"
+    },
+    {
+      "phraseId": "vc_000318",
+      "sourceKind": "combined",
+      "sourceKey": "milk|praise",
+      "sourceIndex": 1,
+      "text": "You drank some milk! Well done, little one. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000319",
+      "sourceKind": "combined",
+      "sourceKey": "milk|praise",
+      "sourceIndex": 2,
+      "text": "Look at those sips! That was lovely! Well done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000320",
+      "sourceKind": "combined",
+      "sourceKey": "milk|praise",
+      "sourceIndex": 3,
+      "text": "You're drinking your milk! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000321",
+      "sourceKind": "combined",
+      "sourceKey": "milk|praise",
+      "sourceIndex": 4,
+      "text": "You took another sip! Look how you're learning. Wonderful little steps!"
+    },
+    {
+      "phraseId": "vc_000322",
+      "sourceKind": "combined",
+      "sourceKey": "milk|praise",
+      "sourceIndex": 5,
+      "text": "Such careful little sips! You worked so well. High five, sweetheart!"
+    },
+    {
+      "phraseId": "vc_000323",
+      "sourceKind": "combined",
+      "sourceKey": "milk|praise",
+      "sourceIndex": 6,
+      "text": "You drank your milk! Little sips add up. Well done, baby!"
+    },
+    {
+      "phraseId": "vc_000324",
+      "sourceKind": "combined",
+      "sourceKey": "milk|praise",
+      "sourceIndex": 7,
+      "text": "See what you did! Milk time went well. What a happy moment!"
+    },
+    {
+      "phraseId": "vc_000325",
+      "sourceKind": "combined",
+      "sourceKey": "milk|praise",
+      "sourceIndex": 8,
+      "text": "You took little sips! Look at you go! Good job, baby!"
+    },
+    {
+      "phraseId": "vc_000326",
+      "sourceKind": "combined",
+      "sourceKey": "milk|achievement",
+      "sourceIndex": 1,
+      "text": "You drank your milk! You did it! Well done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000327",
+      "sourceKind": "combined",
+      "sourceKey": "milk|achievement",
+      "sourceIndex": 2,
+      "text": "You finished that milk! You did it! How wonderful is that!"
+    },
+    {
+      "phraseId": "vc_000328",
+      "sourceKind": "combined",
+      "sourceKey": "milk|achievement",
+      "sourceIndex": 3,
+      "text": "You drank some milk! Good job, baby! I'm right here."
+    },
+    {
+      "phraseId": "vc_000329",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish",
+      "sourceIndex": 1,
+      "text": "Milk is all done! You're finished now. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000330",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish",
+      "sourceIndex": 2,
+      "text": "Milk time is over! All finished now! Let's get cozy."
+    },
+    {
+      "phraseId": "vc_000331",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish",
+      "sourceIndex": 3,
+      "text": "We're all done drinking! That's all done. We can rest now."
+    },
+    {
+      "phraseId": "vc_000332",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish",
+      "sourceIndex": 4,
+      "text": "The last sip's done! Your tummy can rest. Time for cuddles."
+    },
+    {
+      "phraseId": "vc_000333",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish",
+      "sourceIndex": 5,
+      "text": "Milk time is finished. Put the bottle down. Let's get cozy."
+    },
+    {
+      "phraseId": "vc_000334",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish",
+      "sourceIndex": 6,
+      "text": "That was your milk. We're all done now. Here comes a cuddle."
+    },
+    {
+      "phraseId": "vc_000335",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish",
+      "sourceIndex": 7,
+      "text": "No more milk now. What a lovely break. Let's rest a while."
+    },
+    {
+      "phraseId": "vc_000336",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish",
+      "sourceIndex": 8,
+      "text": "Your bottle is finished. Let's relax together. Snuggle up with me."
+    },
+    {
+      "phraseId": "vc_000337",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish_check",
+      "sourceIndex": 1,
+      "text": "Finished your milk? Shall we check? What do you think?"
+    },
+    {
+      "phraseId": "vc_000338",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish_check",
+      "sourceIndex": 2,
+      "text": "Is milk time over? Shall we check? All done now?"
+    },
+    {
+      "phraseId": "vc_000339",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish_check",
+      "sourceIndex": 3,
+      "text": "Finished your milk yet? Let's check together. Are we finished?"
+    },
+    {
+      "phraseId": "vc_000340",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish_check",
+      "sourceIndex": 4,
+      "text": "Have you had enough? Is your bottle finished? Let's have a look."
+    },
+    {
+      "phraseId": "vc_000341",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish_check",
+      "sourceIndex": 5,
+      "text": "All done with milk? Want another small sip? You can choose."
+    },
+    {
+      "phraseId": "vc_000342",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish_check",
+      "sourceIndex": 6,
+      "text": "Was that your last? Shall we stop now? Let's see together."
+    },
+    {
+      "phraseId": "vc_000343",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish_check",
+      "sourceIndex": 7,
+      "text": "Is your tummy happy? Have you finished drinking? Tell me, sweetheart."
+    },
+    {
+      "phraseId": "vc_000344",
+      "sourceKind": "combined",
+      "sourceKey": "milk|finish_check",
+      "sourceIndex": 8,
+      "text": "More milk or finished? What do you think? We can check."
+    },
+    {
+      "phraseId": "vc_000345",
+      "sourceKind": "combined",
+      "sourceKey": "milk|encouragement",
+      "sourceIndex": 1,
+      "text": "Try a little sip. There's no hurry. I'm right here."
+    },
+    {
+      "phraseId": "vc_000346",
+      "sourceKind": "combined",
+      "sourceKey": "milk|encouragement",
+      "sourceIndex": 2,
+      "text": "Here's your milk. Give it a try! I'm right here."
+    },
+    {
+      "phraseId": "vc_000347",
+      "sourceKind": "combined",
+      "sourceKey": "milk|encouragement",
+      "sourceIndex": 3,
+      "text": "Milk time together. Try when you're ready. We can take time."
+    },
+    {
+      "phraseId": "vc_000348",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we change diapers? I'll be gentle. Let's get comfy."
+    },
+    {
+      "phraseId": "vc_000349",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|invitation",
+      "sourceIndex": 2,
+      "text": "Fresh diaper coming up! Shall we get ready? I'll be gentle."
+    },
+    {
+      "phraseId": "vc_000350",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|invitation",
+      "sourceIndex": 3,
+      "text": "Let's change your diaper. I'll go very slowly. Are you ready?"
+    },
+    {
+      "phraseId": "vc_000351",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|invitation",
+      "sourceIndex": 4,
+      "text": "Ready for fresh clothes? Let's change that diaper. I'll be gentle."
+    },
+    {
+      "phraseId": "vc_000352",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|invitation",
+      "sourceIndex": 5,
+      "text": "Shall we get comfy? A clean diaper awaits. Here we go."
+    },
+    {
+      "phraseId": "vc_000353",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|invitation",
+      "sourceIndex": 6,
+      "text": "Come to the mat. Let's change you gently. Ready for me?"
+    },
+    {
+      "phraseId": "vc_000354",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|invitation",
+      "sourceIndex": 7,
+      "text": "Your fresh diaper's here! Want to get changed? Let's do it."
+    },
+    {
+      "phraseId": "vc_000355",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|invitation",
+      "sourceIndex": 8,
+      "text": "Let's get you clean. This won't take long. We'll do it together."
+    },
+    {
+      "phraseId": "vc_000356",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish",
+      "sourceIndex": 1,
+      "text": "All done changing! Nice and fresh. Here we are."
+    },
+    {
+      "phraseId": "vc_000357",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish",
+      "sourceIndex": 2,
+      "text": "That diaper is changed! All finished now! Let's get cozy."
+    },
+    {
+      "phraseId": "vc_000358",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish",
+      "sourceIndex": 3,
+      "text": "Diaper change is finished! That's all done. We can rest now."
+    },
+    {
+      "phraseId": "vc_000359",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish",
+      "sourceIndex": 4,
+      "text": "Clean diaper, fresh start! Your bottom feels cozy. We're all finished."
+    },
+    {
+      "phraseId": "vc_000360",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish",
+      "sourceIndex": 5,
+      "text": "That change is complete! Let's get you dressed. There you go."
+    },
+    {
+      "phraseId": "vc_000361",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish",
+      "sourceIndex": 6,
+      "text": "Fresh and dry now! We put things away. Time for play."
+    },
+    {
+      "phraseId": "vc_000362",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish",
+      "sourceIndex": 7,
+      "text": "Everything's nice and clean. Your diaper is changed. All done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000363",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish",
+      "sourceIndex": 8,
+      "text": "Finished the diaper change! Your little legs relax. Back to cuddles."
+    },
+    {
+      "phraseId": "vc_000364",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish_check",
+      "sourceIndex": 1,
+      "text": "Diaper all done? Let's have a look. All clean now?"
+    },
+    {
+      "phraseId": "vc_000365",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish_check",
+      "sourceIndex": 2,
+      "text": "Diaper change finished yet? Shall we check? All done now?"
+    },
+    {
+      "phraseId": "vc_000366",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish_check",
+      "sourceIndex": 3,
+      "text": "Finished changing your diaper? Let's check together. Are we finished?"
+    },
+    {
+      "phraseId": "vc_000367",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish_check",
+      "sourceIndex": 4,
+      "text": "Is your diaper changed? Shall we check? Almost ready, baby?"
+    },
+    {
+      "phraseId": "vc_000368",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish_check",
+      "sourceIndex": 5,
+      "text": "All clean down there? Did we finish? Let's take a peek."
+    },
+    {
+      "phraseId": "vc_000369",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish_check",
+      "sourceIndex": 6,
+      "text": "Are we done changing? One last little check. Ready to go?"
+    },
+    {
+      "phraseId": "vc_000370",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish_check",
+      "sourceIndex": 7,
+      "text": "Everything finished, sweetheart? Does that feel better? Let's have a look."
+    },
+    {
+      "phraseId": "vc_000371",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|finish_check",
+      "sourceIndex": 8,
+      "text": "Fresh diaper on yet? Shall we get dressed? Are we all done?"
+    },
+    {
+      "phraseId": "vc_000372",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|reassurance",
+      "sourceIndex": 1,
+      "text": "It's diaper time. I'll be gentle. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000373",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|reassurance",
+      "sourceIndex": 2,
+      "text": "Here's your fresh diaper. I'll change you gently. You'll feel cozy."
+    },
+    {
+      "phraseId": "vc_000374",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|reassurance",
+      "sourceIndex": 3,
+      "text": "A little diaper change. We have time. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000375",
+      "sourceKind": "combined",
+      "sourceKey": "hug|invitation",
+      "sourceIndex": 1,
+      "text": "Want a little cuddle? Come here, sweetheart. I'm right here."
+    },
+    {
+      "phraseId": "vc_000376",
+      "sourceKind": "combined",
+      "sourceKey": "hug|invitation",
+      "sourceIndex": 2,
+      "text": "Shall we have cuddles? Come into my arms. I'll hold you."
+    },
+    {
+      "phraseId": "vc_000377",
+      "sourceKind": "combined",
+      "sourceKey": "hug|invitation",
+      "sourceIndex": 3,
+      "text": "A gentle little hug. Would you like one? Come close, sweetheart."
+    },
+    {
+      "phraseId": "vc_000378",
+      "sourceKind": "combined",
+      "sourceKey": "hug|reassurance",
+      "sourceIndex": 1,
+      "text": "Come for a cuddle. I'm right here. I've got you."
+    },
+    {
+      "phraseId": "vc_000379",
+      "sourceKind": "combined",
+      "sourceKey": "hug|reassurance",
+      "sourceIndex": 2,
+      "text": "Time for a cuddle. I'll stay close. You're not alone."
+    },
+    {
+      "phraseId": "vc_000380",
+      "sourceKind": "combined",
+      "sourceKey": "hug|reassurance",
+      "sourceIndex": 3,
+      "text": "Here comes a hug. We have time. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000381",
+      "sourceKind": "combined",
+      "sourceKey": "cry|reassurance",
+      "sourceIndex": 1,
+      "text": "I hear you crying. I'm right here. Come for a cuddle."
+    },
+    {
+      "phraseId": "vc_000382",
+      "sourceKind": "combined",
+      "sourceKey": "cry|reassurance",
+      "sourceIndex": 2,
+      "text": "I hear your crying. Let me hold you. My arms are warm."
+    },
+    {
+      "phraseId": "vc_000383",
+      "sourceKind": "combined",
+      "sourceKey": "cry|reassurance",
+      "sourceIndex": 3,
+      "text": "I hear your cries. Take your time, baby. I'll hold you."
+    },
+    {
+      "phraseId": "vc_000384",
+      "sourceKind": "combined",
+      "sourceKey": "cry|reassurance",
+      "sourceIndex": 4,
+      "text": "I hear your tears. You're not alone. My arms are open."
+    },
+    {
+      "phraseId": "vc_000385",
+      "sourceKind": "combined",
+      "sourceKey": "cry|reassurance",
+      "sourceIndex": 5,
+      "text": "Crying is okay, sweetheart. I'll hold you gently. We'll stay together."
+    },
+    {
+      "phraseId": "vc_000386",
+      "sourceKind": "combined",
+      "sourceKey": "cry|reassurance",
+      "sourceIndex": 6,
+      "text": "That feels hard, huh? You can cry here. I'm listening closely."
+    },
+    {
+      "phraseId": "vc_000387",
+      "sourceKind": "combined",
+      "sourceKey": "cry|reassurance",
+      "sourceIndex": 7,
+      "text": "Let those tears come. I'll stay very near. You're safe, darling."
+    },
+    {
+      "phraseId": "vc_000388",
+      "sourceKind": "combined",
+      "sourceKey": "cry|reassurance",
+      "sourceIndex": 8,
+      "text": "Are you upset, baby? Come into my arms. I'll hold you."
+    },
+    {
+      "phraseId": "vc_000389",
+      "sourceKind": "combined",
+      "sourceKey": "cry|inquiry",
+      "sourceIndex": 1,
+      "text": "I hear you crying. What's the matter? I'm listening, sweetheart."
+    },
+    {
+      "phraseId": "vc_000390",
+      "sourceKind": "combined",
+      "sourceKey": "cry|inquiry",
+      "sourceIndex": 2,
+      "text": "I hear you crying. What's bothering you? I'm here to listen."
+    },
+    {
+      "phraseId": "vc_000391",
+      "sourceKind": "combined",
+      "sourceKey": "cry|inquiry",
+      "sourceIndex": 3,
+      "text": "I hear those tears. Let's take a look. I'm listening, sweetheart."
+    },
+    {
+      "phraseId": "vc_000392",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|invitation",
+      "sourceIndex": 1,
+      "text": "Ready for your nap? Let's get cozy. I'll sing softly."
+    },
+    {
+      "phraseId": "vc_000393",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|invitation",
+      "sourceIndex": 2,
+      "text": "Let's rest for now. Here's a cozy spot. I'll sit beside you."
+    },
+    {
+      "phraseId": "vc_000394",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|invitation",
+      "sourceIndex": 3,
+      "text": "Feel like resting now? Let's get comfortable. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000395",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|invitation",
+      "sourceIndex": 4,
+      "text": "Let's close our eyes. The room feels calm. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000396",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|invitation",
+      "sourceIndex": 5,
+      "text": "Ready for a nap? Your bed feels cozy. Settle in, sweetheart."
+    },
+    {
+      "phraseId": "vc_000397",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|invitation",
+      "sourceIndex": 6,
+      "text": "Let's settle down now. We can rest now. Sweet dreams, baby."
+    },
+    {
+      "phraseId": "vc_000398",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|invitation",
+      "sourceIndex": 7,
+      "text": "Would you like sleep? I'll sing softly. Let's get peaceful."
+    },
+    {
+      "phraseId": "vc_000399",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|invitation",
+      "sourceIndex": 8,
+      "text": "Time to slow down. Let's snuggle up. Ready to dream?"
+    },
+    {
+      "phraseId": "vc_000400",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|reassurance",
+      "sourceIndex": 1,
+      "text": "Ready for a rest? I'm right here. We have time."
+    },
+    {
+      "phraseId": "vc_000401",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|reassurance",
+      "sourceIndex": 2,
+      "text": "Time for a rest. Your bed feels soft. I'll sit nearby."
+    },
+    {
+      "phraseId": "vc_000402",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|reassurance",
+      "sourceIndex": 3,
+      "text": "Let's rest a little. We have time. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000403",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|reassurance",
+      "sourceIndex": 4,
+      "text": "I'm close by, darling. The night is quiet. Rest easy, sweetheart."
+    },
+    {
+      "phraseId": "vc_000404",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|reassurance",
+      "sourceIndex": 5,
+      "text": "Hear my gentle voice. Nothing needs doing now. You're safe here."
+    },
+    {
+      "phraseId": "vc_000405",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|reassurance",
+      "sourceIndex": 6,
+      "text": "Little eyes can close. I'll stay nearby. Sleep when you're ready."
+    },
+    {
+      "phraseId": "vc_000406",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|reassurance",
+      "sourceIndex": 7,
+      "text": "Everything feels peaceful now. Your bed is cozy. I'll be close."
+    },
+    {
+      "phraseId": "vc_000407",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|reassurance",
+      "sourceIndex": 8,
+      "text": "Take your own time. No rush to sleep. I'm beside you."
+    },
+    {
+      "phraseId": "vc_000408",
+      "sourceKind": "combined",
+      "sourceKey": "wake|affection",
+      "sourceIndex": 1,
+      "text": "Hello, my treasure! You're awake now. I love seeing you."
+    },
+    {
+      "phraseId": "vc_000409",
+      "sourceKind": "combined",
+      "sourceKey": "wake|affection",
+      "sourceIndex": 2,
+      "text": "You're awake, sweetheart! What a lovely surprise. I love you."
+    },
+    {
+      "phraseId": "vc_000410",
+      "sourceKind": "combined",
+      "sourceKey": "wake|affection",
+      "sourceIndex": 3,
+      "text": "Hello, little one! I love you, sweetheart. I'm right here."
+    },
+    {
+      "phraseId": "vc_000411",
+      "sourceKind": "combined",
+      "sourceKey": "wake|affection",
+      "sourceIndex": 4,
+      "text": "Good morning, bright eyes! What a lovely hello. Welcome back, sweetheart."
+    },
+    {
+      "phraseId": "vc_000412",
+      "sourceKind": "combined",
+      "sourceKey": "wake|affection",
+      "sourceIndex": 5,
+      "text": "You're awake, my darling! The day looks bright. So glad you're here."
+    },
+    {
+      "phraseId": "vc_000413",
+      "sourceKind": "combined",
+      "sourceKey": "wake|affection",
+      "sourceIndex": 6,
+      "text": "Look who's awake now! My heart feels happy. Hello, little sunshine."
+    },
+    {
+      "phraseId": "vc_000414",
+      "sourceKind": "combined",
+      "sourceKey": "wake|affection",
+      "sourceIndex": 7,
+      "text": "Those eyes are open! Here comes your smile. What a wonderful morning."
+    },
+    {
+      "phraseId": "vc_000415",
+      "sourceKind": "combined",
+      "sourceKey": "wake|affection",
+      "sourceIndex": 8,
+      "text": "Hello, sleepy little face! I missed your eyes. You're such a joy."
+    },
+    {
+      "phraseId": "vc_000416",
+      "sourceKind": "combined",
+      "sourceKey": "book|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we read together? Here's our book. Let's look inside."
+    },
+    {
+      "phraseId": "vc_000417",
+      "sourceKind": "combined",
+      "sourceKey": "book|invitation",
+      "sourceIndex": 2,
+      "text": "Here is our book. Shall we read together? Turn a page."
+    },
+    {
+      "phraseId": "vc_000418",
+      "sourceKind": "combined",
+      "sourceKey": "book|invitation",
+      "sourceIndex": 3,
+      "text": "A story for you! Look at these pictures. Shall we start?"
+    },
+    {
+      "phraseId": "vc_000419",
+      "sourceKind": "combined",
+      "sourceKey": "book|invitation",
+      "sourceIndex": 4,
+      "text": "Shall we turn pages? Look, a little rabbit! Let's read together."
+    },
+    {
+      "phraseId": "vc_000420",
+      "sourceKind": "combined",
+      "sourceKey": "book|invitation",
+      "sourceIndex": 5,
+      "text": "Here's a colorful book. Can you see it? Let's start reading."
+    },
+    {
+      "phraseId": "vc_000421",
+      "sourceKind": "combined",
+      "sourceKey": "book|invitation",
+      "sourceIndex": 6,
+      "text": "Would you like stories? Open the first page. Come sit close."
+    },
+    {
+      "phraseId": "vc_000422",
+      "sourceKind": "combined",
+      "sourceKey": "book|invitation",
+      "sourceIndex": 7,
+      "text": "Look at this picture! What do you see? Let's explore together."
+    },
+    {
+      "phraseId": "vc_000423",
+      "sourceKind": "combined",
+      "sourceKey": "book|invitation",
+      "sourceIndex": 8,
+      "text": "Ready for storytime, baby? Pick a little book. We'll read aloud."
+    },
+    {
+      "phraseId": "vc_000424",
+      "sourceKind": "combined",
+      "sourceKey": "book|repeat",
+      "sourceIndex": 1,
+      "text": "One more page? Let's read again. Turn the page."
+    },
+    {
+      "phraseId": "vc_000425",
+      "sourceKind": "combined",
+      "sourceKey": "book|repeat",
+      "sourceIndex": 2,
+      "text": "Let's open our book. See that little bird? Turn the page!"
+    },
+    {
+      "phraseId": "vc_000426",
+      "sourceKind": "combined",
+      "sourceKey": "book|repeat",
+      "sourceIndex": 3,
+      "text": "Look at this book. Shall we go again? I'll stay close."
+    },
+    {
+      "phraseId": "vc_000427",
+      "sourceKind": "combined",
+      "sourceKey": "book|start",
+      "sourceIndex": 1,
+      "text": "Here comes our book. Let's begin reading. What comes next?"
+    },
+    {
+      "phraseId": "vc_000428",
+      "sourceKind": "combined",
+      "sourceKey": "book|start",
+      "sourceIndex": 2,
+      "text": "Let's open our book. See the first page? Shall we read?"
+    },
+    {
+      "phraseId": "vc_000429",
+      "sourceKind": "combined",
+      "sourceKey": "book|start",
+      "sourceIndex": 3,
+      "text": "Look at this book. Let's get started. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000430",
+      "sourceKind": "combined",
+      "sourceKey": "smile|affection",
+      "sourceIndex": 1,
+      "text": "What a lovely smile! You're so sweet. I love you."
+    },
+    {
+      "phraseId": "vc_000431",
+      "sourceKind": "combined",
+      "sourceKey": "smile|affection",
+      "sourceIndex": 2,
+      "text": "What a lovely smile! Your face lights up. I love you."
+    },
+    {
+      "phraseId": "vc_000432",
+      "sourceKind": "combined",
+      "sourceKey": "smile|affection",
+      "sourceIndex": 3,
+      "text": "Look at your smile! It lights my day. Such a happy face!"
+    },
+    {
+      "phraseId": "vc_000433",
+      "sourceKind": "combined",
+      "sourceKey": "smile|affection",
+      "sourceIndex": 4,
+      "text": "That little smile shines! You've brightened my morning. My lovely baby."
+    },
+    {
+      "phraseId": "vc_000434",
+      "sourceKind": "combined",
+      "sourceKey": "smile|affection",
+      "sourceIndex": 5,
+      "text": "Look at those dimples! What a happy face. I love you!"
+    },
+    {
+      "phraseId": "vc_000435",
+      "sourceKind": "combined",
+      "sourceKey": "smile|affection",
+      "sourceIndex": 6,
+      "text": "Your grin is wonderful. It makes me smile. Hello, sunshine!"
+    },
+    {
+      "phraseId": "vc_000436",
+      "sourceKind": "combined",
+      "sourceKey": "smile|affection",
+      "sourceIndex": 7,
+      "text": "Such a cheerful face! Those eyes look bright. My darling baby."
+    },
+    {
+      "phraseId": "vc_000437",
+      "sourceKind": "combined",
+      "sourceKey": "smile|affection",
+      "sourceIndex": 8,
+      "text": "That smile feels magical. You're my little joy. What a lovely sight."
+    },
+    {
+      "phraseId": "vc_000438",
+      "sourceKind": "combined",
+      "sourceKey": "smile|praise",
+      "sourceIndex": 1,
+      "text": "What a sweet smile! So lovely to see. Hello, little one."
+    },
+    {
+      "phraseId": "vc_000439",
+      "sourceKind": "combined",
+      "sourceKey": "smile|praise",
+      "sourceIndex": 2,
+      "text": "What a happy smile! Your cheeks are glowing. I love it!"
+    },
+    {
+      "phraseId": "vc_000440",
+      "sourceKind": "combined",
+      "sourceKey": "smile|praise",
+      "sourceIndex": 3,
+      "text": "Look at your smile! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000441",
+      "sourceKind": "combined",
+      "sourceKey": "play|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we play together? Let's try something. This could be fun."
+    },
+    {
+      "phraseId": "vc_000442",
+      "sourceKind": "combined",
+      "sourceKey": "play|invitation",
+      "sourceIndex": 2,
+      "text": "Let's start a game. Can you see this? It looks fun."
+    },
+    {
+      "phraseId": "vc_000443",
+      "sourceKind": "combined",
+      "sourceKey": "play|invitation",
+      "sourceIndex": 3,
+      "text": "Shall we play together? Here's our little toy. Let's have fun."
+    },
+    {
+      "phraseId": "vc_000444",
+      "sourceKind": "combined",
+      "sourceKey": "play|invitation",
+      "sourceIndex": 4,
+      "text": "Shall we roll together? Here comes your ball. Catch it, sweetheart!"
+    },
+    {
+      "phraseId": "vc_000445",
+      "sourceKind": "combined",
+      "sourceKey": "play|invitation",
+      "sourceIndex": 5,
+      "text": "Want to play peekaboo? Where did I go? Here I am!"
+    },
+    {
+      "phraseId": "vc_000446",
+      "sourceKind": "combined",
+      "sourceKey": "play|invitation",
+      "sourceIndex": 6,
+      "text": "Let's watch that toy. It moves so slowly. Your turn now."
+    },
+    {
+      "phraseId": "vc_000447",
+      "sourceKind": "combined",
+      "sourceKey": "play|invitation",
+      "sourceIndex": 7,
+      "text": "Ready for some fun? I'll show a toy. Take a look."
+    },
+    {
+      "phraseId": "vc_000448",
+      "sourceKind": "combined",
+      "sourceKey": "play|invitation",
+      "sourceIndex": 8,
+      "text": "How about a game? We can laugh together. Let's start small."
+    },
+    {
+      "phraseId": "vc_000449",
+      "sourceKind": "combined",
+      "sourceKey": "play|repeat",
+      "sourceIndex": 1,
+      "text": "Let's play again! One more turn? Here comes your toy!"
+    },
+    {
+      "phraseId": "vc_000450",
+      "sourceKind": "combined",
+      "sourceKey": "play|repeat",
+      "sourceIndex": 2,
+      "text": "Here's our little game. Want another turn? Let's play together."
+    },
+    {
+      "phraseId": "vc_000451",
+      "sourceKind": "combined",
+      "sourceKey": "play|repeat",
+      "sourceIndex": 3,
+      "text": "Let's play together. Shall we go again? I'll stay close."
+    },
+    {
+      "phraseId": "vc_000452",
+      "sourceKind": "combined",
+      "sourceKey": "play|start",
+      "sourceIndex": 1,
+      "text": "Ready to play? Let's get started. Here we go."
+    },
+    {
+      "phraseId": "vc_000453",
+      "sourceKind": "combined",
+      "sourceKey": "play|start",
+      "sourceIndex": 2,
+      "text": "Look at this toy! Ready for a game? Let's begin together."
+    },
+    {
+      "phraseId": "vc_000454",
+      "sourceKind": "combined",
+      "sourceKey": "play|start",
+      "sourceIndex": 3,
+      "text": "Let's play together. Let's get started. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000455",
+      "sourceKind": "combined",
+      "sourceKey": "food|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we eat? One little bite. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000456",
+      "sourceKind": "combined",
+      "sourceKey": "food|invitation",
+      "sourceIndex": 2,
+      "text": "Ready for some food? Here's a little bite. We can go slowly."
+    },
+    {
+      "phraseId": "vc_000457",
+      "sourceKind": "combined",
+      "sourceKey": "food|invitation",
+      "sourceIndex": 3,
+      "text": "Would you like food? One little bite now. I'll stay near."
+    },
+    {
+      "phraseId": "vc_000458",
+      "sourceKind": "combined",
+      "sourceKey": "food|praise",
+      "sourceIndex": 1,
+      "text": "You took a bite! Good job, little one. That was lovely."
+    },
+    {
+      "phraseId": "vc_000459",
+      "sourceKind": "combined",
+      "sourceKey": "food|praise",
+      "sourceIndex": 2,
+      "text": "A little bite today! Look at your spoon. Nicely done, baby!"
+    },
+    {
+      "phraseId": "vc_000460",
+      "sourceKind": "combined",
+      "sourceKey": "food|praise",
+      "sourceIndex": 3,
+      "text": "Look at that bite! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000461",
+      "sourceKind": "combined",
+      "sourceKey": "outside|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we go outside? Let's look around. What do you see?"
+    },
+    {
+      "phraseId": "vc_000462",
+      "sourceKind": "combined",
+      "sourceKey": "outside|invitation",
+      "sourceIndex": 2,
+      "text": "Shall we go outside? Let's look all around. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000463",
+      "sourceKind": "combined",
+      "sourceKey": "outside|invitation",
+      "sourceIndex": 3,
+      "text": "Want some fresh air? We can go together. Let's look around."
+    },
+    {
+      "phraseId": "vc_000464",
+      "sourceKind": "combined",
+      "sourceKey": "outside|start",
+      "sourceIndex": 1,
+      "text": "Outside we go! Let's look around. What can you see?"
+    },
+    {
+      "phraseId": "vc_000465",
+      "sourceKind": "combined",
+      "sourceKey": "outside|start",
+      "sourceIndex": 2,
+      "text": "We're going outside. Here we go! Let's begin gently."
+    },
+    {
+      "phraseId": "vc_000466",
+      "sourceKind": "combined",
+      "sourceKey": "outside|start",
+      "sourceIndex": 3,
+      "text": "Let's look outside. Let's get started. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000467",
+      "sourceKind": "combined",
+      "sourceKey": "music|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we sing? La, la, la! Let's try together."
+    },
+    {
+      "phraseId": "vc_000468",
+      "sourceKind": "combined",
+      "sourceKey": "music|invitation",
+      "sourceIndex": 2,
+      "text": "Shall we sing now? Listen to this tune. La, la, la!"
+    },
+    {
+      "phraseId": "vc_000469",
+      "sourceKind": "combined",
+      "sourceKey": "music|invitation",
+      "sourceIndex": 3,
+      "text": "Can you hear that? Shall we sing together? La, la, la!"
+    },
+    {
+      "phraseId": "vc_000470",
+      "sourceKind": "combined",
+      "sourceKey": "music|invitation",
+      "sourceIndex": 4,
+      "text": "Shall we sing together? I'll hum a tune. Join when you're ready."
+    },
+    {
+      "phraseId": "vc_000471",
+      "sourceKind": "combined",
+      "sourceKey": "music|invitation",
+      "sourceIndex": 5,
+      "text": "Want a little song? Listen to this rhythm. Let's clap together."
+    },
+    {
+      "phraseId": "vc_000472",
+      "sourceKind": "combined",
+      "sourceKey": "music|invitation",
+      "sourceIndex": 6,
+      "text": "Here's our happy music! Can you hear drums? Let's sway slowly."
+    },
+    {
+      "phraseId": "vc_000473",
+      "sourceKind": "combined",
+      "sourceKey": "music|invitation",
+      "sourceIndex": 7,
+      "text": "Let's make some sounds. Tap with your hands. Shall we try?"
+    },
+    {
+      "phraseId": "vc_000474",
+      "sourceKind": "combined",
+      "sourceKey": "music|invitation",
+      "sourceIndex": 8,
+      "text": "Ready to hear music? I'll sing the start. You can listen."
+    },
+    {
+      "phraseId": "vc_000475",
+      "sourceKind": "combined",
+      "sourceKey": "music|start",
+      "sourceIndex": 1,
+      "text": "Let's sing together! Here we go. La, la, la!"
+    },
+    {
+      "phraseId": "vc_000476",
+      "sourceKind": "combined",
+      "sourceKey": "music|start",
+      "sourceIndex": 2,
+      "text": "Here's a little song. Here we go! Let's begin gently."
+    },
+    {
+      "phraseId": "vc_000477",
+      "sourceKind": "combined",
+      "sourceKey": "music|start",
+      "sourceIndex": 3,
+      "text": "Listen to our music. Let's get started. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000478",
+      "sourceKind": "combined",
+      "sourceKey": "music|repeat",
+      "sourceIndex": 1,
+      "text": "One more song? Let's sing again. La, la, la!"
+    },
+    {
+      "phraseId": "vc_000479",
+      "sourceKind": "combined",
+      "sourceKey": "music|repeat",
+      "sourceIndex": 2,
+      "text": "Here's a little song. Can you hear it? Let's hum together."
+    },
+    {
+      "phraseId": "vc_000480",
+      "sourceKind": "combined",
+      "sourceKey": "music|repeat",
+      "sourceIndex": 3,
+      "text": "Listen to our music. Shall we go again? I'll stay close."
+    },
+    {
+      "phraseId": "vc_000481",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 1,
+      "text": "Want a little sip? Here is your drink. Sip if you like."
+    },
+    {
+      "phraseId": "vc_000482",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 2,
+      "text": "Shall we try drinking? Just a little sip. I'll stay nearby."
+    },
+    {
+      "phraseId": "vc_000483",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 3,
+      "text": "Here's a little drink. Take it slowly now. I'm here, sweetheart."
+    },
+    {
+      "phraseId": "vc_000484",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 4,
+      "text": "Would you like water? Here's your little cup. Take your time."
+    },
+    {
+      "phraseId": "vc_000485",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 5,
+      "text": "Shall we take sips? Sit here with me. Ready for one?"
+    },
+    {
+      "phraseId": "vc_000486",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 6,
+      "text": "Feeling a little thirsty? Let's get your drink. Here you go."
+    },
+    {
+      "phraseId": "vc_000487",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 7,
+      "text": "Want to drink together? I'll hold your cup. Shall we begin?"
+    },
+    {
+      "phraseId": "vc_000488",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 8,
+      "text": "Let's take a break. Here's your little drink. Want a little sip?"
+    },
+    {
+      "phraseId": "vc_000489",
+      "sourceKind": "combined",
+      "sourceKey": "hands|praise",
+      "sourceIndex": 1,
+      "text": "Look at those hands! You're doing great. Well done, little one."
+    },
+    {
+      "phraseId": "vc_000490",
+      "sourceKind": "combined",
+      "sourceKey": "hands|praise",
+      "sourceIndex": 2,
+      "text": "Your fingers are moving! Open and close them. Look at you!"
+    },
+    {
+      "phraseId": "vc_000491",
+      "sourceKind": "combined",
+      "sourceKey": "hands|praise",
+      "sourceIndex": 3,
+      "text": "Your little hands move. You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000492",
+      "sourceKind": "combined",
+      "sourceKey": "feet|praise",
+      "sourceIndex": 1,
+      "text": "Look at those feet! You're doing great. Well done, little one."
+    },
+    {
+      "phraseId": "vc_000493",
+      "sourceKind": "combined",
+      "sourceKey": "feet|praise",
+      "sourceIndex": 2,
+      "text": "Your toes are wiggling! Kick those little feet. There you go!"
+    },
+    {
+      "phraseId": "vc_000494",
+      "sourceKind": "combined",
+      "sourceKey": "feet|praise",
+      "sourceIndex": 3,
+      "text": "Look at your feet! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000495",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we bathe? Let's get ready. I'll be gentle."
+    },
+    {
+      "phraseId": "vc_000496",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "sourceIndex": 2,
+      "text": "Shall we bathe now? First, let's feel comfortable. I'm beside you."
+    },
+    {
+      "phraseId": "vc_000497",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "sourceIndex": 3,
+      "text": "Here comes warm water. Let's take it gently. Shall we start?"
+    },
+    {
+      "phraseId": "vc_000498",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "sourceIndex": 4,
+      "text": "Shall we splash softly? The bath feels warm. Let's get ready."
+    },
+    {
+      "phraseId": "vc_000499",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "sourceIndex": 5,
+      "text": "Ready for the bubbles? Come feel the water. Let's wash gently."
+    },
+    {
+      "phraseId": "vc_000500",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "sourceIndex": 6,
+      "text": "How about a bath? Your little towel waits. Shall we start?"
+    },
+    {
+      "phraseId": "vc_000501",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "sourceIndex": 7,
+      "text": "Let's get all clean. Here comes warm water. Ready, little toes?"
+    },
+    {
+      "phraseId": "vc_000502",
+      "sourceKind": "combined",
+      "sourceKey": "bath|invitation",
+      "sourceIndex": 8,
+      "text": "Would you like splashes? We'll wash your hands. Let's begin slowly."
+    },
+    {
+      "phraseId": "vc_000503",
+      "sourceKind": "combined",
+      "sourceKey": "bath|start",
+      "sourceIndex": 1,
+      "text": "Here comes bath time! Let's begin gently. I'm with you."
+    },
+    {
+      "phraseId": "vc_000504",
+      "sourceKind": "combined",
+      "sourceKey": "bath|start",
+      "sourceIndex": 2,
+      "text": "Bath time begins! Here we go! Let's begin gently."
+    },
+    {
+      "phraseId": "vc_000505",
+      "sourceKind": "combined",
+      "sourceKey": "bath|start",
+      "sourceIndex": 3,
+      "text": "Ready to start bathing? Let's get started. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000506",
+      "sourceKind": "combined",
+      "sourceKey": "bath|finish",
+      "sourceIndex": 1,
+      "text": "Bath time is finished! All done now. Let's get dry."
+    },
+    {
+      "phraseId": "vc_000507",
+      "sourceKind": "combined",
+      "sourceKey": "bath|finish",
+      "sourceIndex": 2,
+      "text": "Bath time is over! All finished now! Let's get cozy."
+    },
+    {
+      "phraseId": "vc_000508",
+      "sourceKind": "combined",
+      "sourceKey": "bath|finish",
+      "sourceIndex": 3,
+      "text": "All done with baths! That's all done. We can rest now."
+    },
+    {
+      "phraseId": "vc_000509",
+      "sourceKind": "combined",
+      "sourceKey": "bath|finish_check",
+      "sourceIndex": 1,
+      "text": "Bath time all done? Shall we get out? Let's check together."
+    },
+    {
+      "phraseId": "vc_000510",
+      "sourceKind": "combined",
+      "sourceKey": "bath|finish_check",
+      "sourceIndex": 2,
+      "text": "Are we finished bathing? Shall we check? All done now?"
+    },
+    {
+      "phraseId": "vc_000511",
+      "sourceKind": "combined",
+      "sourceKey": "bath|finish_check",
+      "sourceIndex": 3,
+      "text": "Shall we finish bathing? Let's check together. Are we finished?"
+    },
+    {
+      "phraseId": "vc_000512",
+      "sourceKind": "combined",
+      "sourceKey": "bath|reassurance",
+      "sourceIndex": 1,
+      "text": "Here's the warm water. I'll wash your toes. Splish, splash, splash!"
+    },
+    {
+      "phraseId": "vc_000513",
+      "sourceKind": "combined",
+      "sourceKey": "bath|reassurance",
+      "sourceIndex": 2,
+      "text": "Bath time together. My hands are gentle. Your toes are warm."
+    },
+    {
+      "phraseId": "vc_000514",
+      "sourceKind": "combined",
+      "sourceKey": "bath|reassurance",
+      "sourceIndex": 3,
+      "text": "In the bath together. We have time. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000515",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we get dressed? Here comes your shirt. One arm first."
+    },
+    {
+      "phraseId": "vc_000516",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|invitation",
+      "sourceIndex": 2,
+      "text": "Here's your little shirt! One arm goes in. Here comes the other!"
+    },
+    {
+      "phraseId": "vc_000517",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|invitation",
+      "sourceIndex": 3,
+      "text": "Shall we dress together? Come try with me. What do you think?"
+    },
+    {
+      "phraseId": "vc_000518",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|start",
+      "sourceIndex": 1,
+      "text": "Time to get dressed! Let's start here. One arm first."
+    },
+    {
+      "phraseId": "vc_000519",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|start",
+      "sourceIndex": 2,
+      "text": "Here come your clothes! Here we go! Let's begin gently."
+    },
+    {
+      "phraseId": "vc_000520",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|start",
+      "sourceIndex": 3,
+      "text": "Dressing time starts now! Let's get started. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000521",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|finish",
+      "sourceIndex": 1,
+      "text": "All dressed now! Look at your outfit. Nice and cozy."
+    },
+    {
+      "phraseId": "vc_000522",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|finish",
+      "sourceIndex": 2,
+      "text": "You're all dressed! All finished now! Let's get cozy."
+    },
+    {
+      "phraseId": "vc_000523",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|finish",
+      "sourceIndex": 3,
+      "text": "Your clothes are on! That's all done. We can rest now."
+    },
+    {
+      "phraseId": "vc_000524",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|finish_check",
+      "sourceIndex": 1,
+      "text": "Are we all dressed? Let's have a look. One more sleeve?"
+    },
+    {
+      "phraseId": "vc_000525",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|finish_check",
+      "sourceIndex": 2,
+      "text": "Are your clothes on? Shall we check? All done now?"
+    },
+    {
+      "phraseId": "vc_000526",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|finish_check",
+      "sourceIndex": 3,
+      "text": "Dressing finished now? Let's check together. Are we finished?"
+    },
+    {
+      "phraseId": "vc_000527",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|praise",
+      "sourceIndex": 1,
+      "text": "Look at you helping! Your shirt is on. Good job, little one."
+    },
+    {
+      "phraseId": "vc_000528",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|praise",
+      "sourceIndex": 2,
+      "text": "One arm through! Your shirt is on. Nice and cozy now!"
+    },
+    {
+      "phraseId": "vc_000529",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|praise",
+      "sourceIndex": 3,
+      "text": "Look at your clothes! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000530",
+      "sourceKind": "combined",
+      "sourceKey": "hands|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we hold hands? Give me your hand. I'm right here."
+    },
+    {
+      "phraseId": "vc_000531",
+      "sourceKind": "combined",
+      "sourceKey": "hands|invitation",
+      "sourceIndex": 2,
+      "text": "Give me your hand. Let's feel those fingers. Squeeze, squeeze!"
+    },
+    {
+      "phraseId": "vc_000532",
+      "sourceKind": "combined",
+      "sourceKey": "hands|invitation",
+      "sourceIndex": 3,
+      "text": "Let's play with fingers! Come try with me. What do you think?"
+    },
+    {
+      "phraseId": "vc_000533",
+      "sourceKind": "combined",
+      "sourceKey": "hands|effort",
+      "sourceIndex": 1,
+      "text": "Your hands are moving. You're trying so hard. I see you."
+    },
+    {
+      "phraseId": "vc_000534",
+      "sourceKind": "combined",
+      "sourceKey": "hands|effort",
+      "sourceIndex": 2,
+      "text": "Look at your hands! I see you trying. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000535",
+      "sourceKind": "combined",
+      "sourceKey": "hands|effort",
+      "sourceIndex": 3,
+      "text": "See your little fingers? You're working so hard. I'll stay beside you."
+    },
+    {
+      "phraseId": "vc_000536",
+      "sourceKind": "combined",
+      "sourceKey": "hands|achievement",
+      "sourceIndex": 1,
+      "text": "Your fingers found it! Hooray, little one! You did that."
+    },
+    {
+      "phraseId": "vc_000537",
+      "sourceKind": "combined",
+      "sourceKey": "hands|achievement",
+      "sourceIndex": 2,
+      "text": "Look at those hands! You did it! How wonderful is that!"
+    },
+    {
+      "phraseId": "vc_000538",
+      "sourceKind": "combined",
+      "sourceKey": "hands|achievement",
+      "sourceIndex": 3,
+      "text": "Your little fingers moved! You did it! Wiggle them again!"
+    },
+    {
+      "phraseId": "vc_000539",
+      "sourceKind": "combined",
+      "sourceKey": "feet|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we move toes? Let's kick together. One, two, three!"
+    },
+    {
+      "phraseId": "vc_000540",
+      "sourceKind": "combined",
+      "sourceKey": "feet|invitation",
+      "sourceIndex": 2,
+      "text": "Look at your toes! Wiggle, wiggle, little feet! Let's kick together."
+    },
+    {
+      "phraseId": "vc_000541",
+      "sourceKind": "combined",
+      "sourceKey": "feet|invitation",
+      "sourceIndex": 3,
+      "text": "Shall we kick together? Come try with me. What do you think?"
+    },
+    {
+      "phraseId": "vc_000542",
+      "sourceKind": "combined",
+      "sourceKey": "feet|effort",
+      "sourceIndex": 1,
+      "text": "Your feet are moving. I see you trying. That's hard work."
+    },
+    {
+      "phraseId": "vc_000543",
+      "sourceKind": "combined",
+      "sourceKey": "feet|effort",
+      "sourceIndex": 2,
+      "text": "Look at those feet! I see you trying. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000544",
+      "sourceKind": "combined",
+      "sourceKey": "feet|effort",
+      "sourceIndex": 3,
+      "text": "Your little feet move! You're working so hard. I'll stay beside you."
+    },
+    {
+      "phraseId": "vc_000545",
+      "sourceKind": "combined",
+      "sourceKey": "feet|achievement",
+      "sourceIndex": 1,
+      "text": "You gave a kick! You did it! Hooray for you."
+    },
+    {
+      "phraseId": "vc_000546",
+      "sourceKind": "combined",
+      "sourceKey": "feet|achievement",
+      "sourceIndex": 2,
+      "text": "Look at your feet! You did it! How wonderful is that!"
+    },
+    {
+      "phraseId": "vc_000547",
+      "sourceKind": "combined",
+      "sourceKey": "feet|achievement",
+      "sourceIndex": 3,
+      "text": "Your little toes moved! You did it! Kick them again!"
+    },
+    {
+      "phraseId": "vc_000548",
+      "sourceKind": "combined",
+      "sourceKey": "voice|affection",
+      "sourceIndex": 1,
+      "text": "I love your voice! Such a sweet sound. I'm listening, sweetheart."
+    },
+    {
+      "phraseId": "vc_000549",
+      "sourceKind": "combined",
+      "sourceKey": "voice|affection",
+      "sourceIndex": 2,
+      "text": "What a little voice! I love being together. You're so precious."
+    },
+    {
+      "phraseId": "vc_000550",
+      "sourceKind": "combined",
+      "sourceKey": "voice|affection",
+      "sourceIndex": 3,
+      "text": "Listen to those sounds! I love you, sweetheart. I'm right here."
+    },
+    {
+      "phraseId": "vc_000551",
+      "sourceKind": "combined",
+      "sourceKey": "voice|praise",
+      "sourceIndex": 1,
+      "text": "I hear your voice! Such a lovely sound. Let's hear it again!"
+    },
+    {
+      "phraseId": "vc_000552",
+      "sourceKind": "combined",
+      "sourceKey": "voice|praise",
+      "sourceIndex": 2,
+      "text": "I heard your voice! Ooh, what a sound! Say it again?"
+    },
+    {
+      "phraseId": "vc_000553",
+      "sourceKind": "combined",
+      "sourceKey": "voice|praise",
+      "sourceIndex": 3,
+      "text": "You're making sweet sounds! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000554",
+      "sourceKind": "combined",
+      "sourceKey": "voice|repeat",
+      "sourceIndex": 1,
+      "text": "Another little sound? Let's try again. I'll listen closely."
+    },
+    {
+      "phraseId": "vc_000555",
+      "sourceKind": "combined",
+      "sourceKey": "voice|repeat",
+      "sourceIndex": 2,
+      "text": "One more little sound? I'll listen closely. Ooh, ahh, ooh!"
+    },
+    {
+      "phraseId": "vc_000556",
+      "sourceKind": "combined",
+      "sourceKey": "voice|repeat",
+      "sourceIndex": 3,
+      "text": "Shall we make sounds? Shall we go again? I'll stay close."
+    },
+    {
+      "phraseId": "vc_000557",
+      "sourceKind": "combined",
+      "sourceKey": "voice|start",
+      "sourceIndex": 1,
+      "text": "Let's make some sounds! I'll listen first. Now it's your turn."
+    },
+    {
+      "phraseId": "vc_000558",
+      "sourceKind": "combined",
+      "sourceKey": "voice|start",
+      "sourceIndex": 2,
+      "text": "Let's start making sounds! Here we go! Let's begin gently."
+    },
+    {
+      "phraseId": "vc_000559",
+      "sourceKind": "combined",
+      "sourceKey": "voice|start",
+      "sourceIndex": 3,
+      "text": "Ready for little noises? Let's get started. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000560",
+      "sourceKind": "combined",
+      "sourceKey": "tummy|inquiry",
+      "sourceIndex": 1,
+      "text": "How's your tummy? Are you comfortable? I'm listening, sweetheart."
+    },
+    {
+      "phraseId": "vc_000561",
+      "sourceKind": "combined",
+      "sourceKey": "tummy|inquiry",
+      "sourceIndex": 2,
+      "text": "Is your tummy okay? What do you notice? Let's find out together."
+    },
+    {
+      "phraseId": "vc_000562",
+      "sourceKind": "combined",
+      "sourceKey": "tummy|inquiry",
+      "sourceIndex": 3,
+      "text": "What about your tummy? Let's take a look. I'm listening, sweetheart."
+    },
+    {
+      "phraseId": "vc_000563",
+      "sourceKind": "combined",
+      "sourceKey": "tummy|reassurance",
+      "sourceIndex": 1,
+      "text": "Let's rest a little. I'll hold you close. You're not alone."
+    },
+    {
+      "phraseId": "vc_000564",
+      "sourceKind": "combined",
+      "sourceKey": "tummy|reassurance",
+      "sourceIndex": 2,
+      "text": "I'm here, sweetheart. I'll stay close. You're not alone."
+    },
+    {
+      "phraseId": "vc_000565",
+      "sourceKind": "combined",
+      "sourceKey": "tummy|reassurance",
+      "sourceIndex": 3,
+      "text": "Let's rest your tummy. We have time. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000566",
+      "sourceKind": "combined",
+      "sourceKey": "tummy|care",
+      "sourceIndex": 1,
+      "text": "That was a lot. Let's rest your tummy. I'm right here."
+    },
+    {
+      "phraseId": "vc_000567",
+      "sourceKind": "combined",
+      "sourceKey": "tummy|care",
+      "sourceIndex": 2,
+      "text": "Let's rest your tummy. We can rest together. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000568",
+      "sourceKind": "combined",
+      "sourceKey": "tummy|care",
+      "sourceIndex": 3,
+      "text": "Your tummy can rest. I'm here with you. Let's take time."
+    },
+    {
+      "phraseId": "vc_000569",
+      "sourceKind": "combined",
+      "sourceKey": "rain|inquiry",
+      "sourceIndex": 1,
+      "text": "Can you hear rain? What's that sound? Let's listen together."
+    },
+    {
+      "phraseId": "vc_000570",
+      "sourceKind": "combined",
+      "sourceKey": "rain|inquiry",
+      "sourceIndex": 2,
+      "text": "Hear the rain outside? What do you notice? Let's find out together."
+    },
+    {
+      "phraseId": "vc_000571",
+      "sourceKind": "combined",
+      "sourceKey": "rain|inquiry",
+      "sourceIndex": 3,
+      "text": "Hear the raindrops? Tap, tap, tap! They're on the window."
+    },
+    {
+      "phraseId": "vc_000572",
+      "sourceKind": "combined",
+      "sourceKey": "rain|affection",
+      "sourceIndex": 1,
+      "text": "Rain is falling outside. I'm here with you. I love these moments."
+    },
+    {
+      "phraseId": "vc_000573",
+      "sourceKind": "combined",
+      "sourceKey": "rain|affection",
+      "sourceIndex": 2,
+      "text": "Listen to the rain! I love being together. You're so precious."
+    },
+    {
+      "phraseId": "vc_000574",
+      "sourceKind": "combined",
+      "sourceKey": "rain|affection",
+      "sourceIndex": 3,
+      "text": "Rain taps the window. I love you, sweetheart. Let's listen together."
+    },
+    {
+      "phraseId": "vc_000575",
+      "sourceKind": "combined",
+      "sourceKey": "rain|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we watch rain? Look at the window. Listen with me."
+    },
+    {
+      "phraseId": "vc_000576",
+      "sourceKind": "combined",
+      "sourceKey": "rain|invitation",
+      "sourceIndex": 2,
+      "text": "Listen to the rain! Drip, drop, drip. Can you hear it?"
+    },
+    {
+      "phraseId": "vc_000577",
+      "sourceKind": "combined",
+      "sourceKey": "rain|invitation",
+      "sourceIndex": 3,
+      "text": "Want to watch raindrops? Come try with me. What do you think?"
+    },
+    {
+      "phraseId": "vc_000578",
+      "sourceKind": "combined",
+      "sourceKey": "sun|invitation",
+      "sourceIndex": 1,
+      "text": "Shall we see sunshine? Let's look outside. So bright today!"
+    },
+    {
+      "phraseId": "vc_000579",
+      "sourceKind": "combined",
+      "sourceKey": "sun|invitation",
+      "sourceIndex": 2,
+      "text": "Look at the sunshine! It's bright and warm. See that glow?"
+    },
+    {
+      "phraseId": "vc_000580",
+      "sourceKind": "combined",
+      "sourceKey": "sun|invitation",
+      "sourceIndex": 3,
+      "text": "Shall we watch sunlight? Come try with me. What do you think?"
+    },
+    {
+      "phraseId": "vc_000581",
+      "sourceKind": "combined",
+      "sourceKey": "sun|affection",
+      "sourceIndex": 1,
+      "text": "Sunshine is so bright! I'm here with you. I love this moment."
+    },
+    {
+      "phraseId": "vc_000582",
+      "sourceKind": "combined",
+      "sourceKey": "sun|affection",
+      "sourceIndex": 2,
+      "text": "Look at the sunshine! I love being together. You're so precious."
+    },
+    {
+      "phraseId": "vc_000583",
+      "sourceKind": "combined",
+      "sourceKey": "sun|affection",
+      "sourceIndex": 3,
+      "text": "Look at the sunshine! Your face looks bright. I love you!"
+    },
+    {
+      "phraseId": "vc_000584",
+      "sourceKind": "combined",
+      "sourceKey": "sun|inquiry",
+      "sourceIndex": 1,
+      "text": "Can you see sunshine? Look at the light. Isn't it bright?"
+    },
+    {
+      "phraseId": "vc_000585",
+      "sourceKind": "combined",
+      "sourceKey": "sun|inquiry",
+      "sourceIndex": 2,
+      "text": "Where is the sunshine? What do you notice? Let's find out together."
+    },
+    {
+      "phraseId": "vc_000586",
+      "sourceKind": "combined",
+      "sourceKey": "sun|inquiry",
+      "sourceIndex": 3,
+      "text": "Can you see sunshine? Look at that light. It's so bright!"
+    },
+    {
+      "phraseId": "vc_000587",
+      "sourceKind": "combined",
+      "sourceKey": "smile|repeat",
+      "sourceIndex": 1,
+      "text": "Another little smile? I'll smile at you. Your turn again."
+    },
+    {
+      "phraseId": "vc_000588",
+      "sourceKind": "combined",
+      "sourceKey": "smile|repeat",
+      "sourceIndex": 2,
+      "text": "Want to smile together? Here's a smile. I'll smile with you."
+    },
+    {
+      "phraseId": "vc_000589",
+      "sourceKind": "combined",
+      "sourceKey": "smile|repeat",
+      "sourceIndex": 3,
+      "text": "Shall we smile together? Look at my face. I'll smile too."
+    },
+    {
+      "phraseId": "vc_000590",
+      "sourceKind": "combined",
+      "sourceKey": "wake|inquiry",
+      "sourceIndex": 1,
+      "text": "You're awake now! How do you feel? Hello, sweetheart."
+    },
+    {
+      "phraseId": "vc_000591",
+      "sourceKind": "combined",
+      "sourceKey": "wake|inquiry",
+      "sourceIndex": 2,
+      "text": "Hello, little one! What do you notice? Let's find out together."
+    },
+    {
+      "phraseId": "vc_000592",
+      "sourceKind": "combined",
+      "sourceKey": "wake|inquiry",
+      "sourceIndex": 3,
+      "text": "Awake already, sweetheart? Let's take a look. I'm listening, sweetheart."
+    },
+    {
+      "phraseId": "vc_000593",
+      "sourceKind": "combined",
+      "sourceKey": "wake|start",
+      "sourceIndex": 1,
+      "text": "You're awake now! Here we go again. Hello, little one."
+    },
+    {
+      "phraseId": "vc_000594",
+      "sourceKind": "combined",
+      "sourceKey": "wake|start",
+      "sourceIndex": 2,
+      "text": "Look who's awake! Here we go! Let's begin gently."
+    },
+    {
+      "phraseId": "vc_000595",
+      "sourceKind": "combined",
+      "sourceKey": "wake|start",
+      "sourceIndex": 3,
+      "text": "It's awake time! Let's get started. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000596",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|finish_check",
+      "sourceIndex": 1,
+      "text": "Is nap time finished? Shall we get up? I'm right here."
+    },
+    {
+      "phraseId": "vc_000597",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|finish_check",
+      "sourceIndex": 2,
+      "text": "All done resting? Shall we check? All done now?"
+    },
+    {
+      "phraseId": "vc_000598",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|finish_check",
+      "sourceIndex": 3,
+      "text": "Is your rest finished? Let's check together. Are we finished?"
+    },
+    {
+      "phraseId": "vc_000599",
+      "sourceKind": "combined",
+      "sourceKey": "cry|care",
+      "sourceIndex": 1,
+      "text": "I hear you crying. That was a lot. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000600",
+      "sourceKind": "combined",
+      "sourceKey": "cry|care",
+      "sourceIndex": 2,
+      "text": "I hear you crying. We can rest now. I'll stay beside you."
+    },
+    {
+      "phraseId": "vc_000601",
+      "sourceKind": "combined",
+      "sourceKey": "cry|care",
+      "sourceIndex": 3,
+      "text": "Those tears are real. I'll stay with you. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000602",
+      "sourceKind": "combined",
+      "sourceKey": "cry|affection",
+      "sourceIndex": 1,
+      "text": "I hear you crying. I love you, sweetheart. I'm right here."
+    },
+    {
+      "phraseId": "vc_000603",
+      "sourceKind": "combined",
+      "sourceKey": "cry|affection",
+      "sourceIndex": 2,
+      "text": "I hear your tears. I love being together. You're so precious."
+    },
+    {
+      "phraseId": "vc_000604",
+      "sourceKind": "combined",
+      "sourceKey": "cry|affection",
+      "sourceIndex": 3,
+      "text": "You're crying, little one. I love you, sweetheart. I'm right here."
+    },
+    {
+      "phraseId": "vc_000605",
+      "sourceKind": "combined",
+      "sourceKey": "play|praise",
+      "sourceIndex": 1,
+      "text": "Look at you playing! You're doing great. Well done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000606",
+      "sourceKind": "combined",
+      "sourceKey": "play|praise",
+      "sourceIndex": 2,
+      "text": "You're playing with me! That toy goes round. Look at it!"
+    },
+    {
+      "phraseId": "vc_000607",
+      "sourceKind": "combined",
+      "sourceKey": "play|praise",
+      "sourceIndex": 3,
+      "text": "You're playing right now! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000608",
+      "sourceKind": "combined",
+      "sourceKey": "play|achievement",
+      "sourceIndex": 1,
+      "text": "You got the toy! You did it! What a moment."
+    },
+    {
+      "phraseId": "vc_000609",
+      "sourceKind": "combined",
+      "sourceKey": "play|achievement",
+      "sourceIndex": 2,
+      "text": "Look at that play! You did it! How wonderful is that!"
+    },
+    {
+      "phraseId": "vc_000610",
+      "sourceKind": "combined",
+      "sourceKey": "play|achievement",
+      "sourceIndex": 3,
+      "text": "What a fun game! You did it! Let's clap together!"
+    },
+    {
+      "phraseId": "vc_000611",
+      "sourceKind": "combined",
+      "sourceKey": "play|effort",
+      "sourceIndex": 1,
+      "text": "You're working on this! I see you trying. No need to hurry."
+    },
+    {
+      "phraseId": "vc_000612",
+      "sourceKind": "combined",
+      "sourceKey": "play|effort",
+      "sourceIndex": 2,
+      "text": "You're playing this game. You keep trying! I'm watching you."
+    },
+    {
+      "phraseId": "vc_000613",
+      "sourceKind": "combined",
+      "sourceKey": "play|effort",
+      "sourceIndex": 3,
+      "text": "You're trying this game. You're working so hard. I'll stay beside you."
+    },
+    {
+      "phraseId": "vc_000614",
+      "sourceKind": "combined",
+      "sourceKey": "book|inquiry",
+      "sourceIndex": 1,
+      "text": "What's in the book? Let's turn a page. What do you see?"
+    },
+    {
+      "phraseId": "vc_000615",
+      "sourceKind": "combined",
+      "sourceKey": "book|inquiry",
+      "sourceIndex": 2,
+      "text": "See the book? What do you notice? Let's find out together."
+    },
+    {
+      "phraseId": "vc_000616",
+      "sourceKind": "combined",
+      "sourceKey": "book|inquiry",
+      "sourceIndex": 3,
+      "text": "Look at this picture! What do you see? Let's look again!"
+    },
+    {
+      "phraseId": "vc_000617",
+      "sourceKind": "combined",
+      "sourceKey": "book|praise",
+      "sourceIndex": 1,
+      "text": "You looked at pictures! That's lovely, sweetheart. Well done."
+    },
+    {
+      "phraseId": "vc_000618",
+      "sourceKind": "combined",
+      "sourceKey": "book|praise",
+      "sourceIndex": 2,
+      "text": "You turned the page! Look at that picture. What comes next?"
+    },
+    {
+      "phraseId": "vc_000619",
+      "sourceKind": "combined",
+      "sourceKey": "book|praise",
+      "sourceIndex": 3,
+      "text": "You're looking at pictures! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000620",
+      "sourceKind": "combined",
+      "sourceKey": "music|praise",
+      "sourceIndex": 1,
+      "text": "You made a sound! Well done, little one. Let's sing together."
+    },
+    {
+      "phraseId": "vc_000621",
+      "sourceKind": "combined",
+      "sourceKey": "music|praise",
+      "sourceIndex": 2,
+      "text": "You're moving to music! Your little feet bounce. Tap, tap, tap!"
+    },
+    {
+      "phraseId": "vc_000622",
+      "sourceKind": "combined",
+      "sourceKey": "music|praise",
+      "sourceIndex": 3,
+      "text": "I heard your music! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000623",
+      "sourceKind": "combined",
+      "sourceKey": "outside|reassurance",
+      "sourceIndex": 1,
+      "text": "We're going outside together. I'll stay close. I've got you."
+    },
+    {
+      "phraseId": "vc_000624",
+      "sourceKind": "combined",
+      "sourceKey": "outside|reassurance",
+      "sourceIndex": 2,
+      "text": "Out here with me. I'll stay close. You're not alone."
+    },
+    {
+      "phraseId": "vc_000625",
+      "sourceKind": "combined",
+      "sourceKey": "outside|reassurance",
+      "sourceIndex": 3,
+      "text": "We're outside together. We have time. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000626",
+      "sourceKind": "combined",
+      "sourceKey": "food|finish_check",
+      "sourceIndex": 1,
+      "text": "Are we done eating? Shall we wipe up? Let's check together."
+    },
+    {
+      "phraseId": "vc_000627",
+      "sourceKind": "combined",
+      "sourceKey": "food|finish_check",
+      "sourceIndex": 2,
+      "text": "Finished eating yet? Shall we check? All done now?"
+    },
+    {
+      "phraseId": "vc_000628",
+      "sourceKind": "combined",
+      "sourceKey": "food|finish_check",
+      "sourceIndex": 3,
+      "text": "Are we done eating? Let's check together. Are we finished?"
+    },
+    {
+      "phraseId": "vc_000629",
+      "sourceKind": "combined",
+      "sourceKey": "food|reassurance",
+      "sourceIndex": 1,
+      "text": "It's food time, sweetheart. I'll stay beside you. We can go slowly."
+    },
+    {
+      "phraseId": "vc_000630",
+      "sourceKind": "combined",
+      "sourceKey": "food|reassurance",
+      "sourceIndex": 2,
+      "text": "Food time together. I'll stay close. You're not alone."
+    },
+    {
+      "phraseId": "vc_000631",
+      "sourceKind": "combined",
+      "sourceKey": "food|reassurance",
+      "sourceIndex": 3,
+      "text": "Here's a little bite. We have time. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000632",
+      "sourceKind": "combined",
+      "sourceKey": "milk|care",
+      "sourceIndex": 1,
+      "text": "That was milk time. You did a lot. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000633",
+      "sourceKind": "combined",
+      "sourceKey": "milk|care",
+      "sourceIndex": 2,
+      "text": "You drank your milk. Your tummy is full. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000634",
+      "sourceKind": "combined",
+      "sourceKey": "milk|care",
+      "sourceIndex": 3,
+      "text": "Milk time is over. I'll stay with you. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000635",
+      "sourceKind": "combined",
+      "sourceKey": "milk|reassurance",
+      "sourceIndex": 1,
+      "text": "Here comes your milk. I'll hold your bottle. One little sip."
+    },
+    {
+      "phraseId": "vc_000636",
+      "sourceKind": "combined",
+      "sourceKey": "milk|reassurance",
+      "sourceIndex": 2,
+      "text": "It's milk time, sweetheart. Let's get comfy. I'm beside you."
+    },
+    {
+      "phraseId": "vc_000637",
+      "sourceKind": "combined",
+      "sourceKey": "milk|reassurance",
+      "sourceIndex": 3,
+      "text": "Here's a little milk. We have time. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000638",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish_check",
+      "sourceIndex": 1,
+      "text": "All done drinking? Want another sip? Let's see together."
+    },
+    {
+      "phraseId": "vc_000639",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish_check",
+      "sourceIndex": 2,
+      "text": "Finished your drink? Shall we check? All done now?"
+    },
+    {
+      "phraseId": "vc_000640",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish_check",
+      "sourceIndex": 3,
+      "text": "Had enough to drink? Let's check together. Are we finished?"
+    },
+    {
+      "phraseId": "vc_000641",
+      "sourceKind": "combined",
+      "sourceKey": "drink|praise",
+      "sourceIndex": 1,
+      "text": "You took a sip! Well done, little one. That's lovely."
+    },
+    {
+      "phraseId": "vc_000642",
+      "sourceKind": "combined",
+      "sourceKey": "drink|praise",
+      "sourceIndex": 2,
+      "text": "You took a sip! Little by little now. Good job, baby!"
+    },
+    {
+      "phraseId": "vc_000643",
+      "sourceKind": "combined",
+      "sourceKey": "drink|praise",
+      "sourceIndex": 3,
+      "text": "You had your drink! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000644",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|care",
+      "sourceIndex": 1,
+      "text": "That change is over. Let's get cozy. I'm with you."
+    },
+    {
+      "phraseId": "vc_000645",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|care",
+      "sourceIndex": 2,
+      "text": "Diaper time is over. Let's get cozy. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000646",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|care",
+      "sourceIndex": 3,
+      "text": "A fresh diaper now. We can get cozy. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000647",
+      "sourceKind": "combined",
+      "sourceKey": "hug|affection",
+      "sourceIndex": 1,
+      "text": "I love this cuddle. You're my treasure. Stay close, little one."
+    },
+    {
+      "phraseId": "vc_000648",
+      "sourceKind": "combined",
+      "sourceKey": "hug|affection",
+      "sourceIndex": 2,
+      "text": "A cuddle for you! I love being together. You're so precious."
+    },
+    {
+      "phraseId": "vc_000649",
+      "sourceKind": "combined",
+      "sourceKey": "hug|affection",
+      "sourceIndex": 3,
+      "text": "A cuddle with you! You're warm and cozy. I love you!"
+    },
+    {
+      "phraseId": "vc_000650",
+      "sourceKind": "combined",
+      "sourceKey": "hug|care",
+      "sourceIndex": 1,
+      "text": "You've done a lot. Come for a cuddle. I'll hold you close."
+    },
+    {
+      "phraseId": "vc_000651",
+      "sourceKind": "combined",
+      "sourceKey": "hug|care",
+      "sourceIndex": 2,
+      "text": "Come for a cuddle. You look tired, sweetheart. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000652",
+      "sourceKind": "combined",
+      "sourceKey": "hug|care",
+      "sourceIndex": 3,
+      "text": "A gentle little cuddle. You did a lot. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000653",
+      "sourceKind": "combined",
+      "sourceKey": "hug|praise",
+      "sourceIndex": 1,
+      "text": "You reached for hugs! How lovely, little one. Well done."
+    },
+    {
+      "phraseId": "vc_000654",
+      "sourceKind": "combined",
+      "sourceKey": "hug|praise",
+      "sourceIndex": 2,
+      "text": "Such a warm cuddle! You're snuggled up close. I love you."
+    },
+    {
+      "phraseId": "vc_000655",
+      "sourceKind": "combined",
+      "sourceKey": "hug|praise",
+      "sourceIndex": 3,
+      "text": "Look at your cuddle! You're doing so well. I'm proud of you."
+    },
+    {
+      "phraseId": "vc_000656",
+      "sourceKind": "combined",
+      "sourceKey": "bath|care",
+      "sourceIndex": 1,
+      "text": "Bath time is done! You're all clean now. Let's get cozy!"
+    },
+    {
+      "phraseId": "vc_000657",
+      "sourceKind": "combined",
+      "sourceKey": "bath|care",
+      "sourceIndex": 2,
+      "text": "All done with baths. That was a lot. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000658",
+      "sourceKind": "combined",
+      "sourceKey": "bath|care",
+      "sourceIndex": 3,
+      "text": "Your bath is finished. Let's get cozy now. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000659",
+      "sourceKind": "combined",
+      "sourceKey": "milk|pause",
+      "sourceIndex": 1,
+      "text": "Let's pause feeding. We can wait now. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000660",
+      "sourceKind": "combined",
+      "sourceKey": "milk|pause",
+      "sourceIndex": 2,
+      "text": "Milk time can wait. There's no hurry. I'm right here."
+    },
+    {
+      "phraseId": "vc_000661",
+      "sourceKind": "combined",
+      "sourceKey": "milk|pause",
+      "sourceIndex": 3,
+      "text": "Another sip can wait. Let's take a break. I'll be close."
+    },
+    {
+      "phraseId": "vc_000662",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|pause",
+      "sourceIndex": 1,
+      "text": "Let's pause changing. We have time. I'm right here."
+    },
+    {
+      "phraseId": "vc_000663",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|pause",
+      "sourceIndex": 2,
+      "text": "Diaper time can wait. No need to rush. I'll stay beside you."
+    },
+    {
+      "phraseId": "vc_000664",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|pause",
+      "sourceIndex": 3,
+      "text": "A moment during changing. We'll take it slowly. I'm here, sweetheart."
+    },
+    {
+      "phraseId": "vc_000665",
+      "sourceKind": "combined",
+      "sourceKey": "bath|pause",
+      "sourceIndex": 1,
+      "text": "Let's pause bath time. No need to rush. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000666",
+      "sourceKind": "combined",
+      "sourceKey": "bath|pause",
+      "sourceIndex": 2,
+      "text": "Bath time can wait. We'll go gently. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000667",
+      "sourceKind": "combined",
+      "sourceKey": "bath|pause",
+      "sourceIndex": 3,
+      "text": "Let's slow down now. We have time. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000668",
+      "sourceKind": "combined",
+      "sourceKey": "book|pause",
+      "sourceIndex": 1,
+      "text": "Let's pause reading. We can read later. I'm right here."
+    },
+    {
+      "phraseId": "vc_000669",
+      "sourceKind": "combined",
+      "sourceKey": "book|pause",
+      "sourceIndex": 2,
+      "text": "A pause in reading. Let's rest a moment. We'll return soon."
+    },
+    {
+      "phraseId": "vc_000670",
+      "sourceKind": "combined",
+      "sourceKey": "book|pause",
+      "sourceIndex": 3,
+      "text": "Let's stop this page. No need to rush. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000671",
+      "sourceKind": "combined",
+      "sourceKey": "play|pause",
+      "sourceIndex": 1,
+      "text": "Let's pause our game. We can rest now. I'm right here."
+    },
+    {
+      "phraseId": "vc_000672",
+      "sourceKind": "combined",
+      "sourceKey": "play|pause",
+      "sourceIndex": 2,
+      "text": "Playtime can wait. Let's take a break. I'll stay beside you."
+    },
+    {
+      "phraseId": "vc_000673",
+      "sourceKind": "combined",
+      "sourceKey": "play|pause",
+      "sourceIndex": 3,
+      "text": "Shall we stop playing? We can rest together. I'm here, sweetheart."
+    },
+    {
+      "phraseId": "vc_000674",
+      "sourceKind": "combined",
+      "sourceKey": "outside|pause",
+      "sourceIndex": 1,
+      "text": "Let's stop a moment. Our walk can wait. I'll stay near."
+    },
+    {
+      "phraseId": "vc_000675",
+      "sourceKind": "combined",
+      "sourceKey": "outside|pause",
+      "sourceIndex": 2,
+      "text": "Pause our little walk. Let's look around. We have time."
+    },
+    {
+      "phraseId": "vc_000676",
+      "sourceKind": "combined",
+      "sourceKey": "outside|pause",
+      "sourceIndex": 3,
+      "text": "A break while outside. We can wait here. I'm with you."
+    },
+    {
+      "phraseId": "vc_000677",
+      "sourceKind": "combined",
+      "sourceKey": "food|pause",
+      "sourceIndex": 1,
+      "text": "Let's pause eating now. We can wait. I'm beside you."
+    },
+    {
+      "phraseId": "vc_000678",
+      "sourceKind": "combined",
+      "sourceKey": "food|pause",
+      "sourceIndex": 2,
+      "text": "Food time can wait. No need to hurry. I'm right here."
+    },
+    {
+      "phraseId": "vc_000679",
+      "sourceKind": "combined",
+      "sourceKey": "food|pause",
+      "sourceIndex": 3,
+      "text": "Another bite can wait. Let's take a break. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000680",
+      "sourceKind": "combined",
+      "sourceKey": "drink|pause",
+      "sourceIndex": 1,
+      "text": "Let's pause drinking. More sips can wait. I'm right here."
+    },
+    {
+      "phraseId": "vc_000681",
+      "sourceKind": "combined",
+      "sourceKey": "drink|pause",
+      "sourceIndex": 2,
+      "text": "No more sips yet. We can wait. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000682",
+      "sourceKind": "combined",
+      "sourceKey": "drink|pause",
+      "sourceIndex": 3,
+      "text": "Your drink can wait. Let's rest a little. I'm right here."
+    },
+    {
+      "phraseId": "vc_000683",
+      "sourceKind": "combined",
+      "sourceKey": "music|pause",
+      "sourceIndex": 1,
+      "text": "Let's pause our song. We can listen later. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000684",
+      "sourceKind": "combined",
+      "sourceKey": "music|pause",
+      "sourceIndex": 2,
+      "text": "A little music break. We have time. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000685",
+      "sourceKind": "combined",
+      "sourceKey": "music|pause",
+      "sourceIndex": 3,
+      "text": "Let's stop the music. We'll sing again later. I'm right here."
+    },
+    {
+      "phraseId": "vc_000686",
+      "sourceKind": "combined",
+      "sourceKey": "cry|pause",
+      "sourceIndex": 1,
+      "text": "We can pause now. I hear you crying. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000687",
+      "sourceKind": "combined",
+      "sourceKey": "cry|pause",
+      "sourceIndex": 2,
+      "text": "Let's rest a moment. I hear your cries. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000688",
+      "sourceKind": "combined",
+      "sourceKey": "cry|pause",
+      "sourceIndex": 3,
+      "text": "No need to rush. I hear you crying. We're here together."
+    },
+    {
+      "phraseId": "vc_000689",
+      "sourceKind": "combined",
+      "sourceKey": "hands|encouragement",
+      "sourceIndex": 1,
+      "text": "Try reaching your hand. I'm right here. You can go slowly."
+    },
+    {
+      "phraseId": "vc_000690",
+      "sourceKind": "combined",
+      "sourceKey": "hands|encouragement",
+      "sourceIndex": 2,
+      "text": "Those hands can try. Just one little reach. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000691",
+      "sourceKind": "combined",
+      "sourceKey": "hands|encouragement",
+      "sourceIndex": 3,
+      "text": "Give your hand time. You can try again. I'm cheering you on."
+    },
+    {
+      "phraseId": "vc_000692",
+      "sourceKind": "combined",
+      "sourceKey": "feet|encouragement",
+      "sourceIndex": 1,
+      "text": "Try kicking those feet! I'm right here. You can try again."
+    },
+    {
+      "phraseId": "vc_000693",
+      "sourceKind": "combined",
+      "sourceKey": "feet|encouragement",
+      "sourceIndex": 2,
+      "text": "One little kick? Give it a try! I'll stay close."
+    },
+    {
+      "phraseId": "vc_000694",
+      "sourceKind": "combined",
+      "sourceKey": "feet|encouragement",
+      "sourceIndex": 3,
+      "text": "Those little toes! Try moving them. I'm cheering you on."
+    },
+    {
+      "phraseId": "vc_000695",
+      "sourceKind": "combined",
+      "sourceKey": "play|encouragement",
+      "sourceIndex": 1,
+      "text": "Try the game again. You can do this. I'm here with you."
+    },
+    {
+      "phraseId": "vc_000696",
+      "sourceKind": "combined",
+      "sourceKey": "play|encouragement",
+      "sourceIndex": 2,
+      "text": "Let's try that toy. Go at your pace. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000697",
+      "sourceKind": "combined",
+      "sourceKey": "play|encouragement",
+      "sourceIndex": 3,
+      "text": "Playing takes practice. Give it a try. I'm right here."
+    },
+    {
+      "phraseId": "vc_000698",
+      "sourceKind": "combined",
+      "sourceKey": "voice|encouragement",
+      "sourceIndex": 1,
+      "text": "Want to make sounds? Give it a try. I'll listen closely."
+    },
+    {
+      "phraseId": "vc_000699",
+      "sourceKind": "combined",
+      "sourceKey": "voice|encouragement",
+      "sourceIndex": 2,
+      "text": "Make a little sound. I'm listening, sweetheart. You can try again."
+    },
+    {
+      "phraseId": "vc_000700",
+      "sourceKind": "combined",
+      "sourceKey": "voice|encouragement",
+      "sourceIndex": 3,
+      "text": "Another little sound? You can try. I'm right here."
+    },
+    {
+      "phraseId": "vc_000701",
+      "sourceKind": "combined",
+      "sourceKey": "milk|effort",
+      "sourceIndex": 1,
+      "text": "You're trying little sips. Look at you! Take your time."
+    },
+    {
+      "phraseId": "vc_000702",
+      "sourceKind": "combined",
+      "sourceKey": "milk|effort",
+      "sourceIndex": 2,
+      "text": "Little sips take practice. I see you trying. I'm right here."
+    },
+    {
+      "phraseId": "vc_000703",
+      "sourceKind": "combined",
+      "sourceKey": "milk|effort",
+      "sourceIndex": 3,
+      "text": "You're taking little sips. That looks gentle. Take your time."
+    },
+    {
+      "phraseId": "vc_000704",
+      "sourceKind": "combined",
+      "sourceKey": "food|effort",
+      "sourceIndex": 1,
+      "text": "You're trying that food. I see you trying. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000705",
+      "sourceKind": "combined",
+      "sourceKey": "food|effort",
+      "sourceIndex": 2,
+      "text": "A new little bite. You're working on it. I'm right here."
+    },
+    {
+      "phraseId": "vc_000706",
+      "sourceKind": "combined",
+      "sourceKey": "food|effort",
+      "sourceIndex": 3,
+      "text": "You're trying new food. I can see that. We'll go slowly."
+    },
+    {
+      "phraseId": "vc_000707",
+      "sourceKind": "combined",
+      "sourceKey": "rain|start",
+      "sourceIndex": 1,
+      "text": "Rain is starting now. Can you hear it? Let's listen together."
+    },
+    {
+      "phraseId": "vc_000708",
+      "sourceKind": "combined",
+      "sourceKey": "rain|start",
+      "sourceIndex": 2,
+      "text": "Here comes the rain! Drip, drop, drip. Let's listen together."
+    },
+    {
+      "phraseId": "vc_000709",
+      "sourceKind": "combined",
+      "sourceKey": "rain|start",
+      "sourceIndex": 3,
+      "text": "The first raindrops fall. Can you hear them? Come listen with me."
+    },
+    {
+      "phraseId": "vc_000710",
+      "sourceKind": "combined",
+      "sourceKey": "sun|start",
+      "sourceIndex": 1,
+      "text": "Here comes the sunshine! Look at that light. Let's look together."
+    },
+    {
+      "phraseId": "vc_000711",
+      "sourceKind": "combined",
+      "sourceKey": "sun|start",
+      "sourceIndex": 2,
+      "text": "The sunshine is coming. Shall we look outside? Look at that glow."
+    },
+    {
+      "phraseId": "vc_000712",
+      "sourceKind": "combined",
+      "sourceKey": "sun|start",
+      "sourceIndex": 3,
+      "text": "Sunlight is showing now. Look at the sky. Here it comes."
+    },
+    {
+      "phraseId": "vc_000713",
+      "sourceKind": "combined",
+      "sourceKey": "music|finish",
+      "sourceIndex": 1,
+      "text": "Our song is finished! All done singing. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000714",
+      "sourceKind": "combined",
+      "sourceKey": "music|finish",
+      "sourceIndex": 2,
+      "text": "Music time is over. That was lovely. I'm right here."
+    },
+    {
+      "phraseId": "vc_000715",
+      "sourceKind": "combined",
+      "sourceKey": "music|finish",
+      "sourceIndex": 3,
+      "text": "That's the last note! We finished our song. Hooray for us."
+    },
+    {
+      "phraseId": "vc_000716",
+      "sourceKind": "combined",
+      "sourceKey": "book|finish",
+      "sourceIndex": 1,
+      "text": "Our book is finished! That's the last page. Well done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000717",
+      "sourceKind": "combined",
+      "sourceKey": "book|finish",
+      "sourceIndex": 2,
+      "text": "Story time is over. We read together. What a lovely book."
+    },
+    {
+      "phraseId": "vc_000718",
+      "sourceKind": "combined",
+      "sourceKey": "book|finish",
+      "sourceIndex": 3,
+      "text": "All done reading now! Let's close the book. We can rest."
+    },
+    {
+      "phraseId": "vc_000719",
+      "sourceKind": "combined",
+      "sourceKey": "outside|finish",
+      "sourceIndex": 1,
+      "text": "Our walk is over! Here we are. Let's get cozy."
+    },
+    {
+      "phraseId": "vc_000720",
+      "sourceKind": "combined",
+      "sourceKey": "outside|finish",
+      "sourceIndex": 2,
+      "text": "Outside time is over. We're back together. I'm right here."
+    },
+    {
+      "phraseId": "vc_000721",
+      "sourceKind": "combined",
+      "sourceKey": "outside|finish",
+      "sourceIndex": 3,
+      "text": "Our outing is finished. Let's take a rest. Here we are."
+    },
+    {
+      "phraseId": "vc_000722",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish",
+      "sourceIndex": 1,
+      "text": "All done drinking now! You're finished here. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000723",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish",
+      "sourceIndex": 2,
+      "text": "Drinking time is over. We can pause now. I'm right here."
+    },
+    {
+      "phraseId": "vc_000724",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish",
+      "sourceIndex": 3,
+      "text": "No more sips now. Drinking time is done. Let's relax together."
+    },
+    {
+      "phraseId": "vc_000725",
+      "sourceKind": "combined",
+      "sourceKey": "play|finish",
+      "sourceIndex": 1,
+      "text": "Our game is finished! All done playing now. Well done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000726",
+      "sourceKind": "combined",
+      "sourceKey": "play|finish",
+      "sourceIndex": 2,
+      "text": "Playtime is over now. Let's take a break. That was lovely."
+    },
+    {
+      "phraseId": "vc_000727",
+      "sourceKind": "combined",
+      "sourceKey": "play|finish",
+      "sourceIndex": 3,
+      "text": "That's the last game. We're all finished. Time for a rest."
+    },
+    {
+      "phraseId": "vc_000728",
+      "sourceKind": "combined",
+      "sourceKey": "milk|affection",
+      "sourceIndex": 1,
+      "text": "Milk time, sweetheart! You're so lovely. I love you."
+    },
+    {
+      "phraseId": "vc_000729",
+      "sourceKind": "combined",
+      "sourceKey": "milk|affection",
+      "sourceIndex": 2,
+      "text": "Milk time with you. My sweet little one. I love you."
+    },
+    {
+      "phraseId": "vc_000730",
+      "sourceKind": "combined",
+      "sourceKey": "milk|affection",
+      "sourceIndex": 3,
+      "text": "Your milk is here. You're so precious. I'm right beside you."
+    },
+    {
+      "phraseId": "vc_000731",
+      "sourceKind": "combined",
+      "sourceKey": "milk|affection",
+      "sourceIndex": 4,
+      "text": "Sweet milk moments together. Your little eyes sparkle. You're my sunshine."
+    },
+    {
+      "phraseId": "vc_000732",
+      "sourceKind": "combined",
+      "sourceKey": "milk|affection",
+      "sourceIndex": 5,
+      "text": "Look at your cheeks! So soft and sweet. What a lovely moment."
+    },
+    {
+      "phraseId": "vc_000733",
+      "sourceKind": "combined",
+      "sourceKey": "milk|affection",
+      "sourceIndex": 6,
+      "text": "A cuddle after milk. My happy little one. You're so dear."
+    },
+    {
+      "phraseId": "vc_000734",
+      "sourceKind": "combined",
+      "sourceKey": "milk|affection",
+      "sourceIndex": 7,
+      "text": "Milk and gentle cuddles. Your smile warms me. What a sweet day."
+    },
+    {
+      "phraseId": "vc_000735",
+      "sourceKind": "combined",
+      "sourceKey": "milk|affection",
+      "sourceIndex": 8,
+      "text": "Hello, precious little one. That milk was nice. I adore you."
+    },
+    {
+      "phraseId": "vc_000736",
+      "sourceKind": "combined",
+      "sourceKey": "milk|start",
+      "sourceIndex": 1,
+      "text": "Here comes your milk. Let's get comfy. Ready for a sip?"
+    },
+    {
+      "phraseId": "vc_000737",
+      "sourceKind": "combined",
+      "sourceKey": "milk|start",
+      "sourceIndex": 2,
+      "text": "Milk time starts now. You're all cozy. Here we go!"
+    },
+    {
+      "phraseId": "vc_000738",
+      "sourceKind": "combined",
+      "sourceKey": "milk|start",
+      "sourceIndex": 3,
+      "text": "Time for your milk! Let's sit together. Here it comes."
+    },
+    {
+      "phraseId": "vc_000739",
+      "sourceKind": "combined",
+      "sourceKey": "milk|inquiry",
+      "sourceIndex": 1,
+      "text": "Want some more milk? Are you still hungry? Let's check together."
+    },
+    {
+      "phraseId": "vc_000740",
+      "sourceKind": "combined",
+      "sourceKey": "milk|inquiry",
+      "sourceIndex": 2,
+      "text": "How is your milk? Is it yummy? Smack those little lips!"
+    },
+    {
+      "phraseId": "vc_000741",
+      "sourceKind": "combined",
+      "sourceKey": "milk|inquiry",
+      "sourceIndex": 3,
+      "text": "Need another little sip? Shall we try? Take your time."
+    },
+    {
+      "phraseId": "vc_000742",
+      "sourceKind": "combined",
+      "sourceKey": "milk|repeat",
+      "sourceIndex": 1,
+      "text": "Want another sip? We can try. No need to hurry."
+    },
+    {
+      "phraseId": "vc_000743",
+      "sourceKind": "combined",
+      "sourceKey": "milk|repeat",
+      "sourceIndex": 2,
+      "text": "More milk, little one? Only if you like. I'm right here."
+    },
+    {
+      "phraseId": "vc_000744",
+      "sourceKind": "combined",
+      "sourceKey": "milk|repeat",
+      "sourceIndex": 3,
+      "text": "Want more milk? Just a little? Take your time."
+    },
+    {
+      "phraseId": "vc_000745",
+      "sourceKind": "combined",
+      "sourceKey": "drink|affection",
+      "sourceIndex": 1,
+      "text": "A drink with you. My sweet little one. I love you."
+    },
+    {
+      "phraseId": "vc_000746",
+      "sourceKind": "combined",
+      "sourceKey": "drink|affection",
+      "sourceIndex": 2,
+      "text": "Here is your drink. You're so precious. I love you."
+    },
+    {
+      "phraseId": "vc_000747",
+      "sourceKind": "combined",
+      "sourceKey": "drink|affection",
+      "sourceIndex": 3,
+      "text": "A little drink together. You're my sweetheart. I'm right here."
+    },
+    {
+      "phraseId": "vc_000748",
+      "sourceKind": "combined",
+      "sourceKey": "drink|inquiry",
+      "sourceIndex": 1,
+      "text": "Would you like water? Are you thirsty? Let's find out."
+    },
+    {
+      "phraseId": "vc_000749",
+      "sourceKind": "combined",
+      "sourceKey": "drink|inquiry",
+      "sourceIndex": 2,
+      "text": "Another sip for you? Do you want more? It's up to you."
+    },
+    {
+      "phraseId": "vc_000750",
+      "sourceKind": "combined",
+      "sourceKey": "drink|inquiry",
+      "sourceIndex": 3,
+      "text": "How is your drink? Is that enough? I'm here with you."
+    },
+    {
+      "phraseId": "vc_000751",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|affection",
+      "sourceIndex": 1,
+      "text": "Fresh and cozy now. My sweet little one. I love you."
+    },
+    {
+      "phraseId": "vc_000752",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|affection",
+      "sourceIndex": 2,
+      "text": "A fresh diaper, sweetheart. Your little legs wiggle. I love you."
+    },
+    {
+      "phraseId": "vc_000753",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|affection",
+      "sourceIndex": 3,
+      "text": "Your little diaper, sweetheart. I'm here with you. I love you."
+    },
+    {
+      "phraseId": "vc_000754",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|praise",
+      "sourceIndex": 1,
+      "text": "Diaper change, all done! We did it! Well done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000755",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|praise",
+      "sourceIndex": 2,
+      "text": "Look at you! All clean now. You did great!"
+    },
+    {
+      "phraseId": "vc_000756",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|praise",
+      "sourceIndex": 3,
+      "text": "A fresh diaper now. We did that. Good job, little one!"
+    },
+    {
+      "phraseId": "vc_000757",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|start",
+      "sourceIndex": 1,
+      "text": "Let's change your diaper. We'll be gentle. Here we go!"
+    },
+    {
+      "phraseId": "vc_000758",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|start",
+      "sourceIndex": 2,
+      "text": "Time for a change. I'll be gentle. Ready, little one?"
+    },
+    {
+      "phraseId": "vc_000759",
+      "sourceKind": "combined",
+      "sourceKey": "diaper|start",
+      "sourceIndex": 3,
+      "text": "A fresh diaper now. Let's get ready. I'm right here."
+    },
+    {
+      "phraseId": "vc_000760",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|affection",
+      "sourceIndex": 1,
+      "text": "Sleepy little sweetheart. I love you. I'm right here."
+    },
+    {
+      "phraseId": "vc_000761",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|affection",
+      "sourceIndex": 2,
+      "text": "Time for cozy rest. You're so precious. I love you."
+    },
+    {
+      "phraseId": "vc_000762",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|affection",
+      "sourceIndex": 3,
+      "text": "Sweet dreams, little one. You're so loved. I'm beside you."
+    },
+    {
+      "phraseId": "vc_000763",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|care",
+      "sourceIndex": 1,
+      "text": "You look sleepy. Let's rest now. I'll stay close."
+    },
+    {
+      "phraseId": "vc_000764",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|care",
+      "sourceIndex": 2,
+      "text": "Rest those little eyes. Your bed is cozy. I'll stay beside you."
+    },
+    {
+      "phraseId": "vc_000765",
+      "sourceKind": "combined",
+      "sourceKey": "sleep|care",
+      "sourceIndex": 3,
+      "text": "Time for a break. Let's get cozy. I'll stay nearby."
+    },
+    {
+      "phraseId": "vc_000766",
+      "sourceKind": "combined",
+      "sourceKey": "wake|praise",
+      "sourceIndex": 1,
+      "text": "You're awake now! Look at you! What a lovely day."
+    },
+    {
+      "phraseId": "vc_000767",
+      "sourceKind": "combined",
+      "sourceKey": "wake|praise",
+      "sourceIndex": 2,
+      "text": "You opened your eyes! Hello, little one. What a lovely sight."
+    },
+    {
+      "phraseId": "vc_000768",
+      "sourceKind": "combined",
+      "sourceKey": "wake|praise",
+      "sourceIndex": 3,
+      "text": "Here you are! You're awake now. So good to see!"
+    },
+    {
+      "phraseId": "vc_000769",
+      "sourceKind": "combined",
+      "sourceKey": "wake|reassurance",
+      "sourceIndex": 1,
+      "text": "Hello, little sleepyhead! Open those bright eyes. I'll hold you close."
+    },
+    {
+      "phraseId": "vc_000770",
+      "sourceKind": "combined",
+      "sourceKey": "wake|reassurance",
+      "sourceIndex": 2,
+      "text": "Hello, little one. I'll stay close. We're together now."
+    },
+    {
+      "phraseId": "vc_000771",
+      "sourceKind": "combined",
+      "sourceKey": "wake|reassurance",
+      "sourceIndex": 3,
+      "text": "You woke up. Take your time. I'm beside you."
+    },
+    {
+      "phraseId": "vc_000772",
+      "sourceKind": "combined",
+      "sourceKey": "bath|affection",
+      "sourceIndex": 1,
+      "text": "Warm water together. My sweet little one. I love you."
+    },
+    {
+      "phraseId": "vc_000773",
+      "sourceKind": "combined",
+      "sourceKey": "bath|affection",
+      "sourceIndex": 2,
+      "text": "Bath time, sweetheart! You're so lovely. I'm right here."
+    },
+    {
+      "phraseId": "vc_000774",
+      "sourceKind": "combined",
+      "sourceKey": "bath|affection",
+      "sourceIndex": 3,
+      "text": "Little splashes together. You're so precious. I love you."
+    },
+    {
+      "phraseId": "vc_000775",
+      "sourceKind": "combined",
+      "sourceKey": "bath|praise",
+      "sourceIndex": 1,
+      "text": "You're splashing water! That's so lovely. Well done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000776",
+      "sourceKind": "combined",
+      "sourceKey": "bath|praise",
+      "sourceIndex": 2,
+      "text": "Look at you! What lovely splashes! You're doing great."
+    },
+    {
+      "phraseId": "vc_000777",
+      "sourceKind": "combined",
+      "sourceKey": "bath|praise",
+      "sourceIndex": 3,
+      "text": "You're enjoying bath time! That's so lovely. Well done, sweetheart."
+    },
+    {
+      "phraseId": "vc_000778",
+      "sourceKind": "combined",
+      "sourceKey": "food|affection",
+      "sourceIndex": 1,
+      "text": "Snack time with you. My sweet little one. I love you."
+    },
+    {
+      "phraseId": "vc_000779",
+      "sourceKind": "combined",
+      "sourceKey": "food|affection",
+      "sourceIndex": 2,
+      "text": "Little bites together. I love your smile. Let's eat slowly."
+    },
+    {
+      "phraseId": "vc_000780",
+      "sourceKind": "combined",
+      "sourceKey": "food|affection",
+      "sourceIndex": 3,
+      "text": "A meal together. My darling little one. I love you."
+    },
+    {
+      "phraseId": "vc_000781",
+      "sourceKind": "combined",
+      "sourceKey": "food|finish",
+      "sourceIndex": 1,
+      "text": "Mealtime is all done. Let's wipe up. Time to rest."
+    },
+    {
+      "phraseId": "vc_000782",
+      "sourceKind": "combined",
+      "sourceKey": "food|finish",
+      "sourceIndex": 2,
+      "text": "You've finished your food. Well done, sweetheart. Let's rest now."
+    },
+    {
+      "phraseId": "vc_000783",
+      "sourceKind": "combined",
+      "sourceKey": "food|finish",
+      "sourceIndex": 3,
+      "text": "Those bites are finished. We are done. Let's clean up."
+    },
+    {
+      "phraseId": "vc_000784",
+      "sourceKind": "combined",
+      "sourceKey": "book|affection",
+      "sourceIndex": 1,
+      "text": "Story time with you. My sweet little one. I love you."
+    },
+    {
+      "phraseId": "vc_000785",
+      "sourceKind": "combined",
+      "sourceKey": "book|affection",
+      "sourceIndex": 2,
+      "text": "A book together. You're so precious. Let's turn pages."
+    },
+    {
+      "phraseId": "vc_000786",
+      "sourceKind": "combined",
+      "sourceKey": "book|affection",
+      "sourceIndex": 3,
+      "text": "This story is ours. I love you. Stay close, sweetheart."
+    },
+    {
+      "phraseId": "vc_000787",
+      "sourceKind": "combined",
+      "sourceKey": "book|finish_check",
+      "sourceIndex": 1,
+      "text": "Is our story done? One more page? Let's check together."
+    },
+    {
+      "phraseId": "vc_000788",
+      "sourceKind": "combined",
+      "sourceKey": "book|finish_check",
+      "sourceIndex": 2,
+      "text": "Last page already? Are we finished? Let's look together."
+    },
+    {
+      "phraseId": "vc_000789",
+      "sourceKind": "combined",
+      "sourceKey": "book|finish_check",
+      "sourceIndex": 3,
+      "text": "Is that the end? Shall we check? One last look."
+    },
+    {
+      "phraseId": "vc_000790",
+      "sourceKind": "combined",
+      "sourceKey": "music|affection",
+      "sourceIndex": 1,
+      "text": "A song for you. My sweet little one. I love you."
+    },
+    {
+      "phraseId": "vc_000791",
+      "sourceKind": "combined",
+      "sourceKey": "music|affection",
+      "sourceIndex": 2,
+      "text": "Music time together. You're so precious. I'm right here."
+    },
+    {
+      "phraseId": "vc_000792",
+      "sourceKind": "combined",
+      "sourceKey": "music|affection",
+      "sourceIndex": 3,
+      "text": "This song is yours. I love you. Let's listen together."
+    },
+    {
+      "phraseId": "vc_000793",
+      "sourceKind": "combined",
+      "sourceKey": "music|finish_check",
+      "sourceIndex": 1,
+      "text": "Is our song done? Shall we listen? One more note?"
+    },
+    {
+      "phraseId": "vc_000794",
+      "sourceKind": "combined",
+      "sourceKey": "music|finish_check",
+      "sourceIndex": 2,
+      "text": "Song finished already? Let's check together. Is that all?"
+    },
+    {
+      "phraseId": "vc_000795",
+      "sourceKind": "combined",
+      "sourceKey": "music|finish_check",
+      "sourceIndex": 3,
+      "text": "Is that the end? One more sound? Let's listen together."
+    },
+    {
+      "phraseId": "vc_000796",
+      "sourceKind": "combined",
+      "sourceKey": "play|affection",
+      "sourceIndex": 1,
+      "text": "Playtime with you. You're so precious. I love you."
+    },
+    {
+      "phraseId": "vc_000797",
+      "sourceKind": "combined",
+      "sourceKey": "play|affection",
+      "sourceIndex": 2,
+      "text": "My little playmate! I love your giggle. What a fun game!"
+    },
+    {
+      "phraseId": "vc_000798",
+      "sourceKind": "combined",
+      "sourceKey": "play|affection",
+      "sourceIndex": 3,
+      "text": "We play together. You're my sweetheart. What lovely fun!"
+    },
+    {
+      "phraseId": "vc_000799",
+      "sourceKind": "combined",
+      "sourceKey": "play|finish_check",
+      "sourceIndex": 1,
+      "text": "All done playing? One more game? Let's play or rest."
+    },
+    {
+      "phraseId": "vc_000800",
+      "sourceKind": "combined",
+      "sourceKey": "play|finish_check",
+      "sourceIndex": 2,
+      "text": "Is playtime over? Shall we stop? We can choose."
+    },
+    {
+      "phraseId": "vc_000801",
+      "sourceKind": "combined",
+      "sourceKey": "play|finish_check",
+      "sourceIndex": 3,
+      "text": "All finished playing? One last turn? What do you think?"
+    },
+    {
+      "phraseId": "vc_000802",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|affection",
+      "sourceIndex": 1,
+      "text": "Your cozy little clothes. You're so precious. I love you."
+    },
+    {
+      "phraseId": "vc_000803",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|affection",
+      "sourceIndex": 2,
+      "text": "All snug and warm. My sweet little one. I'm right here."
+    },
+    {
+      "phraseId": "vc_000804",
+      "sourceKind": "combined",
+      "sourceKey": "clothes|affection",
+      "sourceIndex": 3,
+      "text": "A little outfit today. You're so lovely. I love you."
+    },
+    {
+      "phraseId": "vc_000805",
+      "sourceKind": "press",
+      "sourceKey": "greeting",
+      "sourceIndex": 1,
+      "text": "Hello, hello! Hi there! Let's say hello!"
+    },
+    {
+      "phraseId": "vc_000806",
+      "sourceKind": "press",
+      "sourceKey": "greeting",
+      "sourceIndex": 2,
+      "text": "Hi there! Hello, little one! Wave hello!"
+    },
+    {
+      "phraseId": "vc_000807",
+      "sourceKind": "press",
+      "sourceKey": "greeting",
+      "sourceIndex": 3,
+      "text": "Hello, little one! Hi there! Hello again!"
+    },
+    {
+      "phraseId": "vc_000808",
+      "sourceKind": "press",
+      "sourceKey": "greeting",
+      "sourceIndex": 4,
+      "text": "Let's say hello! Hi there! Hello, hello!"
+    },
+    {
+      "phraseId": "vc_000809",
+      "sourceKind": "press",
+      "sourceKey": "greeting",
+      "sourceIndex": 5,
+      "text": "Good morning, little one! Hello, hello! Hi there!"
+    },
+    {
+      "phraseId": "vc_000810",
+      "sourceKind": "press",
+      "sourceKey": "bath",
+      "sourceIndex": 1,
+      "text": "Bath time! Splash, splash! Here we go!"
+    },
+    {
+      "phraseId": "vc_000811",
+      "sourceKind": "press",
+      "sourceKey": "bath",
+      "sourceIndex": 2,
+      "text": "Warm bath! Splash, splash! Nice and easy."
+    },
+    {
+      "phraseId": "vc_000812",
+      "sourceKind": "press",
+      "sourceKey": "bath",
+      "sourceIndex": 3,
+      "text": "Bath time! Wash, wash! All clean."
+    },
+    {
+      "phraseId": "vc_000813",
+      "sourceKind": "press",
+      "sourceKey": "bath",
+      "sourceIndex": 4,
+      "text": "Splash, splash! Warm water. Nice and gentle."
+    },
+    {
+      "phraseId": "vc_000814",
+      "sourceKind": "press",
+      "sourceKey": "bath",
+      "sourceIndex": 5,
+      "text": "Wash, wash! Little toes. All clean."
+    },
+    {
+      "phraseId": "vc_000815",
+      "sourceKind": "press",
+      "sourceKey": "milk",
+      "sourceIndex": 1,
+      "text": "Milk time! Sip, sip! Little by little."
+    },
+    {
+      "phraseId": "vc_000816",
+      "sourceKind": "press",
+      "sourceKey": "milk",
+      "sourceIndex": 2,
+      "text": "Yummy milk! Sip, sip! Mmm, yummy!"
+    },
+    {
+      "phraseId": "vc_000817",
+      "sourceKind": "press",
+      "sourceKey": "milk",
+      "sourceIndex": 3,
+      "text": "Milk, milk! Little sips. Nice and easy."
+    },
+    {
+      "phraseId": "vc_000818",
+      "sourceKind": "press",
+      "sourceKey": "milk",
+      "sourceIndex": 4,
+      "text": "Time for milk! Sip, sip! All done."
+    },
+    {
+      "phraseId": "vc_000819",
+      "sourceKind": "press",
+      "sourceKey": "milk",
+      "sourceIndex": 5,
+      "text": "Little sips. Milk time! Take your time."
+    },
+    {
+      "phraseId": "vc_000820",
+      "sourceKind": "press",
+      "sourceKey": "sleep",
+      "sourceIndex": 1,
+      "text": "So sleepy. Night-night. Rest, little one."
+    },
+    {
+      "phraseId": "vc_000821",
+      "sourceKind": "press",
+      "sourceKey": "sleep",
+      "sourceIndex": 2,
+      "text": "Sleepy time. Nice and quiet. Night-night."
+    },
+    {
+      "phraseId": "vc_000822",
+      "sourceKind": "press",
+      "sourceKey": "sleep",
+      "sourceIndex": 3,
+      "text": "Time to sleep. Rest, rest. Nice and cozy."
+    },
+    {
+      "phraseId": "vc_000823",
+      "sourceKind": "press",
+      "sourceKey": "sleep",
+      "sourceIndex": 4,
+      "text": "Sleepy eyes. Night-night. Rest, rest."
+    },
+    {
+      "phraseId": "vc_000824",
+      "sourceKind": "press",
+      "sourceKey": "sleep",
+      "sourceIndex": 5,
+      "text": "Good night, little one. Nice and cozy. Rest."
+    },
+    {
+      "phraseId": "vc_000825",
+      "sourceKind": "press",
+      "sourceKey": "wake",
+      "sourceIndex": 1,
+      "text": "Good morning! Eyes open. Hello, hello!"
+    },
+    {
+      "phraseId": "vc_000826",
+      "sourceKind": "press",
+      "sourceKey": "wake",
+      "sourceIndex": 2,
+      "text": "Morning, little one! Hello, hello! Wake up!"
+    },
+    {
+      "phraseId": "vc_000827",
+      "sourceKind": "press",
+      "sourceKey": "wake",
+      "sourceIndex": 3,
+      "text": "Wake up! Hello, hello! Here we go!"
+    },
+    {
+      "phraseId": "vc_000828",
+      "sourceKind": "press",
+      "sourceKey": "wake",
+      "sourceIndex": 4,
+      "text": "Good morning! Bright eyes. Hello there!"
+    },
+    {
+      "phraseId": "vc_000829",
+      "sourceKind": "press",
+      "sourceKey": "wake",
+      "sourceIndex": 5,
+      "text": "Hello there! Morning time. Eyes open."
+    },
+    {
+      "phraseId": "vc_000830",
+      "sourceKind": "press",
+      "sourceKey": "diaper",
+      "sourceIndex": 1,
+      "text": "Diaper time! Nice and easy. Here we go!"
+    },
+    {
+      "phraseId": "vc_000831",
+      "sourceKind": "press",
+      "sourceKey": "diaper",
+      "sourceIndex": 2,
+      "text": "Fresh diaper! Wiggle, wiggle! All clean!"
+    },
+    {
+      "phraseId": "vc_000832",
+      "sourceKind": "press",
+      "sourceKey": "diaper",
+      "sourceIndex": 3,
+      "text": "Diaper change! Wipe, wipe! All clean."
+    },
+    {
+      "phraseId": "vc_000833",
+      "sourceKind": "press",
+      "sourceKey": "diaper",
+      "sourceIndex": 4,
+      "text": "Clean and fresh! Diaper time. All done."
+    },
+    {
+      "phraseId": "vc_000834",
+      "sourceKind": "press",
+      "sourceKey": "diaper",
+      "sourceIndex": 5,
+      "text": "Wipe, wipe! Fresh and clean. Here we go!"
+    },
+    {
+      "phraseId": "vc_000835",
+      "sourceKind": "press",
+      "sourceKey": "clothes",
+      "sourceIndex": 1,
+      "text": "Clothes on! Here we go! Nice and easy."
+    },
+    {
+      "phraseId": "vc_000836",
+      "sourceKind": "press",
+      "sourceKey": "clothes",
+      "sourceIndex": 2,
+      "text": "Dress time! One little arm. Here we go!"
+    },
+    {
+      "phraseId": "vc_000837",
+      "sourceKind": "press",
+      "sourceKey": "clothes",
+      "sourceIndex": 3,
+      "text": "Getting dressed! Nice and easy. All ready."
+    },
+    {
+      "phraseId": "vc_000838",
+      "sourceKind": "press",
+      "sourceKey": "clothes",
+      "sourceIndex": 4,
+      "text": "Clothes time! Arm goes in! All cozy."
+    },
+    {
+      "phraseId": "vc_000839",
+      "sourceKind": "press",
+      "sourceKey": "clothes",
+      "sourceIndex": 5,
+      "text": "One arm, one leg. All ready! Ready!"
+    },
+    {
+      "phraseId": "vc_000840",
+      "sourceKind": "press",
+      "sourceKey": "hug",
+      "sourceIndex": 1,
+      "text": "Big cuddle! Up, up! Nice and close."
+    },
+    {
+      "phraseId": "vc_000841",
+      "sourceKind": "press",
+      "sourceKey": "hug",
+      "sourceIndex": 2,
+      "text": "Cuddle time! Nice and close. Here we go!"
+    },
+    {
+      "phraseId": "vc_000842",
+      "sourceKind": "press",
+      "sourceKey": "hug",
+      "sourceIndex": 3,
+      "text": "Up we go! Big hug. So cozy."
+    },
+    {
+      "phraseId": "vc_000843",
+      "sourceKind": "press",
+      "sourceKey": "hug",
+      "sourceIndex": 4,
+      "text": "Big hug! Nice and close. Right here."
+    },
+    {
+      "phraseId": "vc_000844",
+      "sourceKind": "press",
+      "sourceKey": "hug",
+      "sourceIndex": 5,
+      "text": "Cuddle, cuddle! Warm and cozy. Big hug!"
+    },
+    {
+      "phraseId": "vc_000845",
+      "sourceKind": "press",
+      "sourceKey": "hands",
+      "sourceIndex": 1,
+      "text": "Tiny hands! Squeeze, squeeze! Wiggle, wiggle!"
+    },
+    {
+      "phraseId": "vc_000846",
+      "sourceKind": "press",
+      "sourceKey": "hands",
+      "sourceIndex": 2,
+      "text": "Little hands! Open, close. Wiggle, wiggle!"
+    },
+    {
+      "phraseId": "vc_000847",
+      "sourceKind": "press",
+      "sourceKey": "hands",
+      "sourceIndex": 3,
+      "text": "Tiny fingers! Squeeze, squeeze! Little hands!"
+    },
+    {
+      "phraseId": "vc_000848",
+      "sourceKind": "press",
+      "sourceKey": "hands",
+      "sourceIndex": 4,
+      "text": "Hands, hands! Open and close. Wiggle, wiggle!"
+    },
+    {
+      "phraseId": "vc_000849",
+      "sourceKind": "press",
+      "sourceKey": "hands",
+      "sourceIndex": 5,
+      "text": "Clap, clap! Wave, wave! Little hands!"
+    },
+    {
+      "phraseId": "vc_000850",
+      "sourceKind": "press",
+      "sourceKey": "feet",
+      "sourceIndex": 1,
+      "text": "Little feet! Kick, kick! Wiggle, wiggle!"
+    },
+    {
+      "phraseId": "vc_000851",
+      "sourceKind": "press",
+      "sourceKey": "feet",
+      "sourceIndex": 2,
+      "text": "Tiny feet! Kick, kick! Little toes!"
+    },
+    {
+      "phraseId": "vc_000852",
+      "sourceKind": "press",
+      "sourceKey": "feet",
+      "sourceIndex": 3,
+      "text": "Feet, feet! Up and down. Kick, kick!"
+    },
+    {
+      "phraseId": "vc_000853",
+      "sourceKind": "press",
+      "sourceKey": "feet",
+      "sourceIndex": 4,
+      "text": "Little toes! Wiggle, wiggle! Kick, kick!"
+    },
+    {
+      "phraseId": "vc_000854",
+      "sourceKind": "press",
+      "sourceKey": "feet",
+      "sourceIndex": 5,
+      "text": "Tap, tap! Little feet. Kick, kick!"
+    },
+    {
+      "phraseId": "vc_000855",
+      "sourceKind": "press",
+      "sourceKey": "smile",
+      "sourceIndex": 1,
+      "text": "Big smile! Smile, smile! Hello, little one!"
+    },
+    {
+      "phraseId": "vc_000856",
+      "sourceKind": "press",
+      "sourceKey": "smile",
+      "sourceIndex": 2,
+      "text": "What a smile! Hello, hello! Smile, smile!"
+    },
+    {
+      "phraseId": "vc_000857",
+      "sourceKind": "press",
+      "sourceKey": "smile",
+      "sourceIndex": 3,
+      "text": "Smile, smile! There it is! Hello there!"
+    },
+    {
+      "phraseId": "vc_000858",
+      "sourceKind": "press",
+      "sourceKey": "smile",
+      "sourceIndex": 4,
+      "text": "Happy smile! Hello, little one! So sweet."
+    },
+    {
+      "phraseId": "vc_000859",
+      "sourceKind": "press",
+      "sourceKey": "smile",
+      "sourceIndex": 5,
+      "text": "Smile for me! Big, big smile! So sweet!"
+    },
+    {
+      "phraseId": "vc_000860",
+      "sourceKind": "press",
+      "sourceKey": "cry",
+      "sourceIndex": 1,
+      "text": "I hear you. Right here. Nice and gentle."
+    },
+    {
+      "phraseId": "vc_000861",
+      "sourceKind": "press",
+      "sourceKey": "cry",
+      "sourceIndex": 2,
+      "text": "I hear you. Right here. Nice and close."
+    },
+    {
+      "phraseId": "vc_000862",
+      "sourceKind": "press",
+      "sourceKey": "cry",
+      "sourceIndex": 3,
+      "text": "Hello, little one. I hear you. Right here."
+    },
+    {
+      "phraseId": "vc_000863",
+      "sourceKind": "press",
+      "sourceKey": "cry",
+      "sourceIndex": 4,
+      "text": "Your little voice. Nice and gentle. Right here."
+    },
+    {
+      "phraseId": "vc_000864",
+      "sourceKind": "press",
+      "sourceKey": "cry",
+      "sourceIndex": 5,
+      "text": "Easy, easy. Right here. Nice and close."
+    },
+    {
+      "phraseId": "vc_000865",
+      "sourceKind": "press",
+      "sourceKey": "voice",
+      "sourceIndex": 1,
+      "text": "I hear you! Hello, hello! I'm listening."
+    },
+    {
+      "phraseId": "vc_000866",
+      "sourceKind": "press",
+      "sourceKey": "voice",
+      "sourceIndex": 2,
+      "text": "What a voice! Ooh, ahh! I hear you."
+    },
+    {
+      "phraseId": "vc_000867",
+      "sourceKind": "press",
+      "sourceKey": "voice",
+      "sourceIndex": 3,
+      "text": "Hello, little one! Ooh, ahh! I hear you."
+    },
+    {
+      "phraseId": "vc_000868",
+      "sourceKind": "press",
+      "sourceKey": "voice",
+      "sourceIndex": 4,
+      "text": "Talk, talk! Ooh, ahh! I'm listening."
+    },
+    {
+      "phraseId": "vc_000869",
+      "sourceKind": "press",
+      "sourceKey": "voice",
+      "sourceIndex": 5,
+      "text": "Little voice! Hello, hello! Sing with me."
+    },
+    {
+      "phraseId": "vc_000870",
+      "sourceKind": "press",
+      "sourceKey": "tummy",
+      "sourceIndex": 1,
+      "text": "Little tummy. Nice and easy. Take your time."
+    },
+    {
+      "phraseId": "vc_000871",
+      "sourceKind": "press",
+      "sourceKey": "tummy",
+      "sourceIndex": 2,
+      "text": "Little tummy. Nice and gentle. Here we go."
+    },
+    {
+      "phraseId": "vc_000872",
+      "sourceKind": "press",
+      "sourceKey": "tummy",
+      "sourceIndex": 3,
+      "text": "Little sips. Happy tummy. There you go!"
+    },
+    {
+      "phraseId": "vc_000873",
+      "sourceKind": "press",
+      "sourceKey": "tummy",
+      "sourceIndex": 4,
+      "text": "Easy, easy. Little tummy. Right here."
+    },
+    {
+      "phraseId": "vc_000874",
+      "sourceKind": "press",
+      "sourceKey": "tummy",
+      "sourceIndex": 5,
+      "text": "Burp, burp! Little tummy. Nice and easy."
+    },
+    {
+      "phraseId": "vc_000875",
+      "sourceKind": "press",
+      "sourceKey": "play",
+      "sourceIndex": 1,
+      "text": "Play time! Look, look! Here we go!"
+    },
+    {
+      "phraseId": "vc_000876",
+      "sourceKind": "press",
+      "sourceKey": "play",
+      "sourceIndex": 2,
+      "text": "Let's play! Look with me. Here we go!"
+    },
+    {
+      "phraseId": "vc_000877",
+      "sourceKind": "press",
+      "sourceKey": "play",
+      "sourceIndex": 3,
+      "text": "Play, play! Look, look! So much fun!"
+    },
+    {
+      "phraseId": "vc_000878",
+      "sourceKind": "press",
+      "sourceKey": "play",
+      "sourceIndex": 4,
+      "text": "Time to play! Hello, hello! Let's play!"
+    },
+    {
+      "phraseId": "vc_000879",
+      "sourceKind": "press",
+      "sourceKey": "play",
+      "sourceIndex": 5,
+      "text": "Peek-a-boo! One, two, three! Let's play!"
+    },
+    {
+      "phraseId": "vc_000880",
+      "sourceKind": "press",
+      "sourceKey": "outside",
+      "sourceIndex": 1,
+      "text": "Outside time! Look around! Here we go!"
+    },
+    {
+      "phraseId": "vc_000881",
+      "sourceKind": "press",
+      "sourceKey": "outside",
+      "sourceIndex": 2,
+      "text": "Out we go! Look, look! Listen with me."
+    },
+    {
+      "phraseId": "vc_000882",
+      "sourceKind": "press",
+      "sourceKey": "outside",
+      "sourceIndex": 3,
+      "text": "Outside, outside! Birds up high! Look around!"
+    },
+    {
+      "phraseId": "vc_000883",
+      "sourceKind": "press",
+      "sourceKey": "outside",
+      "sourceIndex": 4,
+      "text": "Time outside! Look with me. Listen, listen!"
+    },
+    {
+      "phraseId": "vc_000884",
+      "sourceKind": "press",
+      "sourceKey": "outside",
+      "sourceIndex": 5,
+      "text": "Fresh air! Look around. Listen with me."
+    },
+    {
+      "phraseId": "vc_000885",
+      "sourceKind": "press",
+      "sourceKey": "rain",
+      "sourceIndex": 1,
+      "text": "Rain, rain! Pitter-patter! Listen, listen!"
+    },
+    {
+      "phraseId": "vc_000886",
+      "sourceKind": "press",
+      "sourceKey": "rain",
+      "sourceIndex": 2,
+      "text": "Rain outside! Drip, drop! Listen with me."
+    },
+    {
+      "phraseId": "vc_000887",
+      "sourceKind": "press",
+      "sourceKey": "rain",
+      "sourceIndex": 3,
+      "text": "Pitter-patter! Rain, rain! Drip, drop!"
+    },
+    {
+      "phraseId": "vc_000888",
+      "sourceKind": "press",
+      "sourceKey": "rain",
+      "sourceIndex": 4,
+      "text": "Listen, listen! Rain outside! Pitter-patter!"
+    },
+    {
+      "phraseId": "vc_000889",
+      "sourceKind": "press",
+      "sourceKey": "rain",
+      "sourceIndex": 5,
+      "text": "Drip, drop! Rainy day. Listen closely."
+    },
+    {
+      "phraseId": "vc_000890",
+      "sourceKind": "press",
+      "sourceKey": "sun",
+      "sourceIndex": 1,
+      "text": "Bright day! Hello, sunshine! Look, look!"
+    },
+    {
+      "phraseId": "vc_000891",
+      "sourceKind": "press",
+      "sourceKey": "sun",
+      "sourceIndex": 2,
+      "text": "Sunshine! Bright, bright! Look with me."
+    },
+    {
+      "phraseId": "vc_000892",
+      "sourceKind": "press",
+      "sourceKey": "sun",
+      "sourceIndex": 3,
+      "text": "Hello, sunshine! Bright day! Look, look!"
+    },
+    {
+      "phraseId": "vc_000893",
+      "sourceKind": "press",
+      "sourceKey": "sun",
+      "sourceIndex": 4,
+      "text": "Bright, bright! Sunshine! Here we go!"
+    },
+    {
+      "phraseId": "vc_000894",
+      "sourceKind": "press",
+      "sourceKey": "sun",
+      "sourceIndex": 5,
+      "text": "Sunny day! Warm and bright. Look around!"
+    },
+    {
+      "phraseId": "vc_000895",
+      "sourceKind": "press",
+      "sourceKey": "food",
+      "sourceIndex": 1,
+      "text": "Food time! Yum, yum! Tiny little bites."
+    },
+    {
+      "phraseId": "vc_000896",
+      "sourceKind": "press",
+      "sourceKey": "food",
+      "sourceIndex": 2,
+      "text": "Yummy food! Little bite. Nice and easy."
+    },
+    {
+      "phraseId": "vc_000897",
+      "sourceKind": "press",
+      "sourceKey": "food",
+      "sourceIndex": 3,
+      "text": "Time to eat! Yum, yum! Here we go!"
+    },
+    {
+      "phraseId": "vc_000898",
+      "sourceKind": "press",
+      "sourceKey": "food",
+      "sourceIndex": 4,
+      "text": "Food, food! Little bite. Yum, yum!"
+    },
+    {
+      "phraseId": "vc_000899",
+      "sourceKind": "press",
+      "sourceKey": "food",
+      "sourceIndex": 5,
+      "text": "Little bite. Chew, chew! Nice and slow."
+    },
+    {
+      "phraseId": "vc_000900",
+      "sourceKind": "press",
+      "sourceKey": "book",
+      "sourceIndex": 1,
+      "text": "Book time! Look, look! Turn the page."
+    },
+    {
+      "phraseId": "vc_000901",
+      "sourceKind": "press",
+      "sourceKey": "book",
+      "sourceIndex": 2,
+      "text": "Let's read! Look with me. Turn the page."
+    },
+    {
+      "phraseId": "vc_000902",
+      "sourceKind": "press",
+      "sourceKey": "book",
+      "sourceIndex": 3,
+      "text": "Book, book! Flip that page! Look, look!"
+    },
+    {
+      "phraseId": "vc_000903",
+      "sourceKind": "press",
+      "sourceKey": "book",
+      "sourceIndex": 4,
+      "text": "Story time! Turn the page. Let's see!"
+    },
+    {
+      "phraseId": "vc_000904",
+      "sourceKind": "press",
+      "sourceKey": "book",
+      "sourceIndex": 5,
+      "text": "Open the book. Look, look! What's next?"
+    },
+    {
+      "phraseId": "vc_000905",
+      "sourceKind": "press",
+      "sourceKey": "music",
+      "sourceIndex": 1,
+      "text": "Music time! La-la-la! Listen, listen!"
+    },
+    {
+      "phraseId": "vc_000906",
+      "sourceKind": "press",
+      "sourceKey": "music",
+      "sourceIndex": 2,
+      "text": "Let's sing! La-la-la! Listen with me."
+    },
+    {
+      "phraseId": "vc_000907",
+      "sourceKind": "press",
+      "sourceKey": "music",
+      "sourceIndex": 3,
+      "text": "Music, music! Tap, tap! Sing with me!"
+    },
+    {
+      "phraseId": "vc_000908",
+      "sourceKind": "press",
+      "sourceKey": "music",
+      "sourceIndex": 4,
+      "text": "Song time! La-la-la! Listen, listen!"
+    },
+    {
+      "phraseId": "vc_000909",
+      "sourceKind": "press",
+      "sourceKey": "music",
+      "sourceIndex": 5,
+      "text": "Clap, clap! Tap, tap! Sing with me."
+    },
+    {
+      "phraseId": "vc_000910",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 1,
+      "text": "Little sips. Sip, sip! One at a time."
+    },
+    {
+      "phraseId": "vc_000911",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 2,
+      "text": "Let's drink. Little sips. Nice and slow."
+    },
+    {
+      "phraseId": "vc_000912",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 3,
+      "text": "Sip, sip! Take your time. Little sips."
+    },
+    {
+      "phraseId": "vc_000913",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 4,
+      "text": "Small sips. Nice and easy. Take your time."
+    },
+    {
+      "phraseId": "vc_000914",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 5,
+      "text": "Drink, drink! Little sips. Here you go."
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 2,
+  "status": "draft-generated-review-required",
+  "safeFallback": "emma.neutral",
+  "namespaces": [
+    {
+      "id": "subject",
+      "defaultRenderer": "illustration",
+      "description": "Visible object, person, scene"
+    },
+    {
+      "id": "action",
+      "defaultRenderer": "motion",
+      "description": "Observable action"
+    },
+    {
+      "id": "observed",
+      "defaultRenderer": "emma",
+      "description": "Externally observable state; no ungrounded emotion inference"
+    },
+    {
+      "id": "emotion",
+      "defaultRenderer": "emma",
+      "description": "Explicit emotion"
+    },
+    {
+      "id": "social",
+      "defaultRenderer": "emma",
+      "description": "Social response or caregiving"
+    },
+    {
+      "id": "attention",
+      "defaultRenderer": "emma",
+      "description": "Shared attention and pacing"
+    },
+    {
+      "id": "dialogue",
+      "defaultRenderer": "emma",
+      "description": "Invitation, action phase, question, repetition"
+    },
+    {
+      "id": "emma",
+      "defaultRenderer": "emma",
+      "description": "Fallback character state"
+    }
+  ],
+  "cues": [
+    {
+      "id": "action.burp",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.clap",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.count",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.dress",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.eat",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.hug",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.kick",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.open-close",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.peekaboo",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.read",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.sing",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.sip",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.sit",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.sleep",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.splash",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.squeeze",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.tap",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.turn-page",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.wake",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.wash",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.wave",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.wiggle",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "action.wipe",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "attention.listen",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "attention.look",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "dialogue.finish",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "dialogue.finish-check",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "dialogue.inquiry",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "dialogue.invitation",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "dialogue.pause",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "dialogue.repeat",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "dialogue.start",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "emma.neutral",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "observed.cry",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "observed.smile",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "observed.voice",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "social.achievement",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "social.affection",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "social.care",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "social.effort",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "social.encouragement",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "social.greeting",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "social.praise",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "social.reassurance",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.bath",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.book",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.clothes",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.diaper",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.drink",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.feet",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.food",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.hands",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.milk",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.music",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.outside",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.rain",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.sun",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.toy",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    },
+    {
+      "id": "subject.tummy",
+      "assetStatus": "not-created",
+      "reviewStatus": "generated"
+    }
+  ]
+}
