@@ -75,7 +75,7 @@ function metrics(rows,variant) {
 
 const scenarios=[
   {id:'baseline',topic:0.50,margin:0.05,interaction:0.50},
-  ...[0.45,0.40,0.35].flatMap(topic=>
+  ...[0.45,0.40,0.35,0.30,0.25].flatMap(topic=>
     [0.05,0.02].flatMap(margin=>
       [0.45,0.40].map(interaction=>({id:'t'+topic+'m'+margin+'i'+interaction,topic,margin,interaction}))))
 ];
