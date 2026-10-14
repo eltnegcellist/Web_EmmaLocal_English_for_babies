@@ -154,7 +154,19 @@ if(isCLI){
  const oldPhrases=read('../shared/visual-cue-phrases.json')?.rows||[];
  const oldAssignments=read('../shared/visual-cue-assignments.draft.json')?.assignments||[];
  const data=createVisualCueData(currentBankRows(),oldPhrases,oldAssignments);
- for(const [file,value] of [['../shared/visual-cue-corpus.snapshot.json',data.snapshot],['../shared/visual-cue-phrases.json',data.phrases],['../shared/visual-cue-assignments.draft.json',data.draft]]){
+ const registry=read('../shared/visual-cue-namespaces.json');
+ if(!registry || registry.schemaVersion!==2)throw Error('Visual Cue registry is missing');
+ const used=new Set([registry.safeFallback]);
+ for(const a of data.draft.assignments){
+  used.add(a.primaryCue);
+  for(const cue of a.secondaryCues||[])used.add(cue);
+  for(const part of a.sentenceCues||[]){
+   used.add(part.primaryCue);
+   for(const cue of part.secondaryCues||[])used.add(cue);
+  }
+ }
+ registry.cues=[...used].sort().map(id=>({id,assetStatus:'not-created',reviewStatus:'generated'}));
+ for(const [file,value] of [['../shared/visual-cue-corpus.snapshot.json',data.snapshot],['../shared/visual-cue-phrases.json',data.phrases],['../shared/visual-cue-assignments.draft.json',data.draft],['../shared/visual-cue-namespaces.json',registry]]){
   const path=new URL(file,import.meta.url);const output=JSON.stringify(value,null,2)+'\n';
   if(check){if(readFileSync(path,'utf8')!==output)throw Error(file+' differs from English bank: review and explicitly regenerate');}
   else writeFileSync(path,output);
