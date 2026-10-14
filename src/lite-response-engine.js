@@ -39,7 +39,7 @@ const GENERIC_REPLIES = [
   "Hello, little one! Can you hear me? Hi there!",
   "Let's make a sound! Ba, ba, ba! Your turn!",
   "One, two, three! Count with me! Again, again!",
-  "Shall we wave hello? Hi, hi, hi! Here comes my hand!",
+  "Wave hello, baby! Hi, hi, hi! My hand says hello!",
   "Look at my hands! Let's wave hello. Hi, hi!",
   "Let's say good morning! Hello, sweet baby. Hi there!",
   "My sweet baby! I'm right here! Big hugs!",
@@ -474,7 +474,7 @@ const SCENES = [
       "Here come your socks. One little foot. Then another!",
       "Time to get dressed. Arms through the sleeves. All ready!",
       "Let's change your clothes. This arm first. There you go!",
-      "Look at your clothes! Shall we get dressed? One arm first!",
+      "Look, your little shirt! One arm in! Let's get dressed!",
       "{name}, clothes on! One arm in. Looking lovely!",
       "{name}, let's get dressed. Socks on next. All ready!"
     ]
@@ -644,7 +644,7 @@ const SCENES = [
     "replies": [
       "Let's play together! What should we try? Peekaboo!",
       "Here's your toy! Can you see it? Look here!",
-      "Ready to play? Here we go! Let's have fun!",
+      "Ready to play? Peek, peek, peek! Let's have fun!",
       "Peekaboo! Where did I go? Here I am!",
       "Let's shake the rattle. Can you hear it? Shake, shake!",
       "Look at this toy! It's here for you. Let's play!",
@@ -732,7 +732,7 @@ const SCENES = [
       "Ready to eat? A little spoonful. There you go!",
       "Do you like it? Want another bite? No need to hurry.",
       "Here's a little bite. Let's taste it. Mmm, yummy!",
-      "All done eating? Shall we wipe up? You did well!",
+      "All done eating? Wipe, wipe, wipe! Nice and clean!",
       "{name}, food time! One little spoonful. Is it yummy?",
       "{name}, let's eat! Here's your spoon. Open wide!"
     ]

@@ -19,7 +19,7 @@ export const FREQUENT_COMBINED_VARIANTS = {
   "milk|invitation": [
     "Milk time, baby! Bottle is ready! Here we go!",
     "Come here, baby! Milk time, milk time! Cozy together!",
-    "Feeling hungry, sweetheart? Here's your warm milk. Shall we begin?",
+    "Hungry, little one? Milk is ready! One little sip?",
     "Would milk sound good? Take a little look. We can start.",
     "Let's sit together now. Your bottle is ready. Want a little sip?",
   ],
@@ -33,9 +33,9 @@ export const FREQUENT_COMBINED_VARIANTS = {
   "milk|finish_check": [
     "Have you had enough? Is your bottle finished? Let's have a look.",
     "All done with milk? Want another small sip? You can choose.",
-    "Was that your last? Shall we stop now? Let's see together.",
+    "Last little sip? All done now? Let me see!",
     "Is your tummy happy? Have you finished drinking? Tell me, sweetheart.",
-    "More milk or finished? What do you think? We can check.",
+    "More milk, baby? Or all done? One more look?",
   ],
   "diaper|invitation": [
     "Ready for fresh clothes? Let's change that diaper. I'll be gentle.",
@@ -52,11 +52,11 @@ export const FREQUENT_COMBINED_VARIANTS = {
     "Finished the diaper change! Your little legs relax. Back to cuddles.",
   ],
   "diaper|finish_check": [
-    "Is your diaper changed? Shall we check? Almost ready, baby?",
+    "Fresh diaper on? Let's have a look! All clean, baby?",
     "All clean down there? Did we finish? Let's take a peek.",
     "Are we done changing? One last little check. Ready to go?",
     "Everything finished, sweetheart? Does that feel better? Let's have a look.",
-    "Fresh diaper on yet? Shall we get dressed? Are we all done?",
+    "Fresh diaper on? Ready for clothes? One arm first?",
   ],
   "sleep|invitation": [
     "Let's close our eyes. The room feels calm. Let's rest together.",
@@ -101,9 +101,9 @@ export const FREQUENT_COMBINED_VARIANTS = {
     "Ready for storytime, baby? Pick a little book. We'll read aloud.",
   ],
   "bath|invitation": [
-    "Shall we splash softly? The bath feels warm. Let's get ready.",
+    "Splish, splash, splish! Warm water, baby! Ready to wash?",
     "Ready for the bubbles? Come feel the water. Let's wash gently.",
-    "How about a bath? Your little towel waits. Shall we start?",
+    "Ready for bath time? Towel is waiting! Here comes water!",
     "Let's get all clean. Here comes warm water. Ready, little toes?",
     "Would you like splashes? We'll wash your hands. Let's begin slowly.",
   ],
@@ -118,12 +118,12 @@ export const FREQUENT_COMBINED_VARIANTS = {
     "Let's sing, baby! La, la, la! Listen, listen!",
     "Want a little song? Listen to this rhythm. Let's clap together.",
     "Here's our happy music! Can you hear drums? Let's sway slowly.",
-    "Let's make some sounds. Tap with your hands. Shall we try?",
+    "Tap, tap, tap! Listen to that! Your turn, baby!",
     "Ready to hear music? I'll sing the start. You can listen.",
   ],
   "drink|invitation": [
-    "Would you like water? Here's your little cup. Take your time.",
-    "Shall we take sips? Sit here with me. Ready for one?",
+    "Want some water? Here's your little cup! One small sip?",
+    "Sit with me! Ready for a sip? Here you go!",
     "Feeling a little thirsty? Let's get your drink. Here you go.",
     "Drink time, baby! Sip, sip, sip! Here we go!",
     "Let's take a break. Here's your little drink. Want a little sip?",
