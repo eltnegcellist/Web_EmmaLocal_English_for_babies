@@ -7,18 +7,20 @@
   <style>
     body{font-family:system-ui,-apple-system,sans-serif;max-width:760px;margin:0 auto;padding:24px;line-height:1.6}
     button{font:inherit;padding:12px 18px;margin:6px 6px 6px 0}
-    pre{white-space:pre-wrap;background:#111;color:#eee;padding:14px;border-radius:10px;min-height:220px}
+    pre{white-space:pre-wrap;background:#111;color:#eee;padding:14px;border-radius:10px;min-height:220px;max-height:360px;overflow:auto}
     .ok{color:#16803a}.bad{color:#b42318}
   </style>
 </head>
 <body>
   <h1>みつことば 音声診断</h1>
-  <p>Moonshine ASRを読み込まず、Kitten TTSだけをテストします。</p>
-  <p><strong>Build:</strong> 20260925-voice-diagnostic-r1</p>
+  <p>Moonshine ASRを読み込まず、採用した保存音声の読込・デコード・再生をテストします。</p>
+  <p><strong>Build:</strong> 20261014-qwen3-voice1202-r2</p>
   <button id="test">AIの声をテスト</button>
+  <button id="cached">保存音声だけでテスト</button>
   <button id="clear">ログを消す</button>
+  <p>初回は「AIの声をテスト」で全音源を保存します。「保存音声だけでテスト」は通信を使わず、端末に保存した音源で再生を確認します。</p>
   <p id="result"></p>
   <pre id="log"></pre>
-  <script type="module" src="./src/voice-diagnostic.js?v=20260925-voice-diagnostic-r1"></script>
+  <script type="module" src="./src/voice-diagnostic.js?v=20261014-qwen3-voice1202-r2"></script>
 </body>
 </html>

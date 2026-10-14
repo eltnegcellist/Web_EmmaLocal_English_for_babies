@@ -5,6 +5,9 @@ import {resolve,dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {chromium} from 'playwright';
 const root=resolve(fileURLToPath(new URL('..',import.meta.url)));
+// This fixture tests settings after setup; follow the current release revision.
+const setupRevision=(await readFile(join(root,'src/app.js'),'utf8')).match(/const CURRENT_SETUP_REVISION = '([^']+)'/)?.[1];
+assert(setupRevision,'Current app setup revision must exist');
 const generated=join(root,'tests/generated/silero');await mkdir(generated,{recursive:true});
 const cases=[];
 for(const path of (process.env.VAD_TEST_MANIFESTS||'').split(',').filter(Boolean)){
@@ -49,7 +52,7 @@ try{
  assert.deepEqual(errors,[]);
  const failed=await browser.newContext({serviceWorkers:'block'});await failed.route('**/assets/vad/silero_vad.onnx',route=>route.fulfill({status:404,body:'missing'}));const fp=await failed.newPage();await fp.goto(base+'/tests/generated/silero/harness.html');await fp.waitForFunction(()=>window.testReady);
  results.missingModelFallback=await fp.evaluate(()=>window.fallback());assert(results.missingModelFallback.legacy);assert.equal(results.missingModelFallback.warnings.length,1);await failed.close();
- await context.addInitScript(()=>{localStorage.setItem('emma_web_setup_revision','moonshine-streaming-kitten-int8-kiki-v10');localStorage.setItem('emma_web_tutorial_completed_v1','true');localStorage.setItem('emma_semantic_enabled','false');sessionStorage.setItem('emma_asr_reload','small');});
+ await context.addInitScript(revision=>{localStorage.setItem('emma_web_setup_revision',revision);localStorage.setItem('emma_web_tutorial_completed_v1','true');localStorage.setItem('emma_semantic_enabled','false');sessionStorage.setItem('emma_asr_reload','small');},setupRevision);
  await page.goto(base+'/index.html');await page.locator('#settingsButton').click();await page.locator('#endpointMode').selectOption('legacy');assert.equal(await page.evaluate(()=>localStorage.getItem('emma_endpoint_mode')),'legacy');
  await page.locator('#endpointMode').scrollIntoViewIfNeeded();await page.screenshot({path:join(generated,'settings-legacy.png')});await page.reload();await page.locator('#settingsButton').click();assert.equal(await page.locator('#endpointMode').inputValue(),'legacy');
  await page.locator('#endpointMode').selectOption('silero');assert.equal(await page.evaluate(()=>localStorage.getItem('emma_endpoint_mode')),'silero');assert.equal(await page.locator('#asrModel').inputValue(),'small');

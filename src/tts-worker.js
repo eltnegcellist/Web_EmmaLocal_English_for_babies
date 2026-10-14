@@ -1,5 +1,5 @@
-import { KittenTTS } from './vendor/kitten/index.js';
-import { ensurePhonemizerReady } from './vendor/kitten/phonemizer.js';
+import { PrerecordedVoiceBank } from './prerecorded-voice.js?v=20261014-r2';
+const prerecordedVoice = new PrerecordedVoiceBank();
 
 const KITTEN_MODEL = 'KittenML/kitten-tts-nano-0.8-fp32';
 const KITTEN_VOICE = 'Kiki';
@@ -9,6 +9,10 @@ let kittenTts = null;
 
 async function ensureKitten() {
   if (kittenTts) return kittenTts;
+  // Fixed-text playback must also start offline without Kitten's CDN imports.
+  const [{KittenTTS}, {ensurePhonemizerReady}] = await Promise.all([
+    import('./vendor/kitten/index.js'), import('./vendor/kitten/phonemizer.js')
+  ]);
 
   self.postMessage({
     type: 'status',
@@ -84,7 +88,14 @@ async function ensureKitten() {
   return kittenTts;
 }
 
-async function synthesize(text, requestId, nameHints = [], punctuationMode = 'legacy') {
+async function synthesize(text, requestId, nameHints = [], punctuationMode = 'legacy', engine = '') {
+  const prepared = engine === 'kitten-tts' ? null : await prerecordedVoice.audioFor(text);
+  if (prepared) {
+    self.postMessage({type:'audio',requestId,index:0,sentence:text,blob:prepared,engine:'qwen3-prerecorded',voice:'Mitsukotoba-1202'});
+    self.postMessage({type:'complete',requestId,total:1,engine:'qwen3-prerecorded',voice:'Mitsukotoba-1202'});
+    return;
+  }
+
   const tts = await ensureKitten();
   let index = 0;
 
@@ -154,15 +165,13 @@ self.onmessage = async (event) => {
   const { type } = event.data;
   try {
     if (type === 'init') {
-      await ensureKitten();
-      self.postMessage({
-        type: 'ready',
-        device: 'wasm-cpu',
-        engine: 'kitten-tts',
-        model: KITTEN_MODEL,
-        voice: KITTEN_VOICE,
-        license: 'Apache-2.0 + CMUDict BSD-style'
-      });
+      if (event.data.engine === 'kitten-tts') {
+        await ensureKitten();
+        self.postMessage({type:'ready',device:'wasm',engine:'kitten-tts',model:KITTEN_MODEL,voice:KITTEN_VOICE});
+        return;
+      }
+      await prerecordedVoice.init(status=>self.postMessage({type:'status',...status}));
+      self.postMessage({type:'ready',device:'prerecorded-local',engine:'qwen3-prerecorded',model:'Qwen3-TTS-1.7B-Base-8bit',voice:'Mitsukotoba-1202',generationSeed:1202,license:'Apache-2.0'});
       return;
     }
 
@@ -178,7 +187,7 @@ self.onmessage = async (event) => {
         : [];
       const punctuationMode = event.data.punctuationMode === 'preserve'
         ? 'preserve' : 'legacy'; // Diagnostic opt-in only; app remains legacy.
-      await synthesize(text, event.data.requestId, nameHints, punctuationMode);
+      await synthesize(text, event.data.requestId, nameHints, punctuationMode, event.data.engine);
     }
   } catch (error) {
     self.postMessage({

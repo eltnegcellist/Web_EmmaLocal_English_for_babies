@@ -43,6 +43,12 @@ jobs:
           node test-interruptible-turn.mjs
       - name: Validate Kiki A/B samples and preserve-punctuation experiment
         run: node scripts/test-kiki-ab.mjs
+
+      - name: Verify adopted voice coverage, cache and audio integrity
+        run: |
+          node test-prerecorded-voice.mjs
+          node test-tts-prerecorded.mjs
+          npm run verify:voice
       - name: CMUdict phoneme audit of all English release candidates
         run: |
           python3 -m pip install 'cmudict==1.1.3'

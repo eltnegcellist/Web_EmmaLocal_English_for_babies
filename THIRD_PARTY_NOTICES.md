@@ -1,11 +1,26 @@
 # Third-Party Notices
 
-Updated: 2026-10-06
+Updated: 2026-10-14
 
 This file summarizes third-party software, models, data, and runtime components
 used by Mitsukotoba Web. It is intended to make redistribution and attribution
 requirements visible. The accompanying `LICENSE_AUDIT.md` records the
 GPL/eSpeak-focused technical audit.
+
+## Adopted prerecorded voice
+
+The current fixed English bank uses locally generated Qwen3-TTS AAC audio.
+The Web app distributes audio and a provenance manifest; Qwen3 weights and the
+MLX runtime are not downloaded to the browser. Kitten remains the optional
+uncatalogued free-text synthesis path and the explicit legacy A/B diagnostic.
+
+- Reference: user-selected synthesized VoiceDesign `surprise_02`, seed1202.
+- Generation: `mlx-community/Qwen3-TTS-12Hz-1.7B-Base-8bit`, revision
+  `e7dd0585652209fa0d7783659aad4e8a324de11c`, seed1202 per utterance.
+- Model card license: Apache-2.0; [pinned model card](https://huggingface.co/mlx-community/Qwen3-TTS-12Hz-1.7B-Base-8bit/blob/e7dd0585652209fa0d7783659aad4e8a324de11c/README.md).
+- Upstream: https://github.com/QwenLM/Qwen3-TTS
+- Full text/audio hashes, reference hash, source commits, and encoding details:
+  `assets/voice-1202/manifest.json`.
 
 ## GPL / eSpeak NG status
 
@@ -79,7 +94,7 @@ Attribution 4.0 International (CC BY 4.0).
 
 ## Kitten TTS Nano 0.8
 
-Mitsukotoba Web uses Kitten TTS Nano 0.8 for production speech synthesis.
+Mitsukotoba Web retains Kitten TTS Nano 0.8 for uncatalogued free-text synthesis.
 
 - Model: `KittenML/kitten-tts-nano-0.8-fp32`
 - Browser integration: adapted browser-only subset of `kitten-tts-js` 0.1.2

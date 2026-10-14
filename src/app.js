@@ -40,8 +40,8 @@ const ui = {
   noticeDialog:$('noticeDialog'), noticeTitle:$('noticeTitle'), noticeBody:$('noticeBody'), noticeLink:$('noticeLink'), noticeCloseButton:$('noticeCloseButton')
 };
 
-const CURRENT_SETUP_REVISION = 'moonshine-streaming-kitten-int8-kiki-v10';
-const WEB_BUILD = '20261014-fixed-voice-lines-r1';
+const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
+const WEB_BUILD = '20261014-qwen3-seed1202-r2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -391,7 +391,7 @@ function bindEvents() {
 
   ui.fullResetButton?.addEventListener('click',()=>{
     const confirmed=window.confirm(
-      'みつことばを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、Moonshine / Kittenのモデルキャッシュを削除します。次回はモデルの再取得が必要です。\n\n実行しますか？'
+      'みつことばを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、保存音声とモデルのキャッシュを削除します。次回は音声とモデルの再取得が必要です。\n\n実行しますか？'
     );
     if(confirmed) location.href='./reset.html?full=1';
   });
@@ -1051,7 +1051,7 @@ async function initVoice() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261005-play-history-bright-r19',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261014-qwen3-seed1202-r2',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -1197,7 +1197,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     showOnboardingProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
   } else if(m.type==='ready') readyResolve?.(m);
   else if(m.type==='error') {
-    const error=new Error(m.message || 'Kitten TTSでエラーが発生しました。');
+    const error=new Error(m.message || '音声の準備または再生に失敗しました。');
     readyReject?.(error);
     if(m.requestId){
       const q=audioQueues.get(m.requestId);
@@ -1491,10 +1491,12 @@ async function playBlob(blob,requestId) {
   if(!audioQueues.has(requestId))return;
   const source=audioContext.createBufferSource();
   activeAudioSource=source;
-  const playbackBuffer=trimAudioSilence(decoded);
+  // The adopted AAC bank already has matched volume and intentional pauses.
+  const prerecorded=blob.type==='audio/mp4';
+  const playbackBuffer=prerecorded ? decoded : trimAudioSilence(decoded);
   source.buffer=playbackBuffer;
   const gainNode=audioContext.createGain();
-  gainNode.gain.value=calculatePlaybackGain(playbackBuffer);
+  gainNode.gain.value=prerecorded ? 1 : calculatePlaybackGain(playbackBuffer);
   const analyser=audioContext.createAnalyser();
   analyser.fftSize=256;
   source.connect(gainNode).connect(analyser).connect(audioContext.destination);
@@ -1792,7 +1794,7 @@ function updateGenderUi() {
 }
 
 function getTtsSignature() {
-  return 'kitten-nano-fp32-kiki-cmudict-v1';
+  return 'qwen3-prerecorded-voice1202-v1';
 }
 
 function updateAsrModelStatus() {
@@ -1858,11 +1860,13 @@ async function buildWebDiagnosticReport() {
     `asr.modelBuildMs=${lastMoonshineDiagnostics?.modelBuildMs??'unmeasured'}`,
     `asr.totalInitMs=${lastMoonshineDiagnostics?.totalInitMs??'unmeasured'}`,
     `tts.ready=${Boolean(ttsWorker&&ttsInfoCache)}`,
-    'tts.model=Kitten TTS Nano FP32',
-    'tts.voice=Kiki',
-    'tts.speed=0.8',
-    'tts.targetPeak=0.92',
-    'tts.maxBoost=1.8x',
+    'tts.model=Qwen3-TTS pre-generated',
+    'tts.voice=Mitsukotoba-1202',
+    'tts.generationSeed=1202',
+    'tts.loudnessTarget=-20LUFS',
+    'tts.prerecordedPlaybackGain=1.0',
+    'tts.fallbackTargetPeak=0.92',
+    'tts.fallbackMaxBoost=1.8x',
     `semantic.requested=${Boolean(semantic.requested)}`,
     `semantic.mode=${semantic.mode||'unknown'}`,
     `semantic.enabled=${Boolean(semantic.enabled)}`,
@@ -1944,7 +1948,7 @@ function updateRuntimeBackend() {
     return;
   }
   const asrLabel=asrInfoCache?.architecture==='small_streaming' ? 'Small' : 'Tiny';
-  ui.runtimeBackend.textContent=`ASR: Moonshine Japanese ${asrLabel} Streaming / 端末内WASM ・ 音声: Kitten TTS Nano FP32 / Kiki / 端末内`;
+  ui.runtimeBackend.textContent=`ASR: Moonshine Japanese ${asrLabel} Streaming / 端末内WASM ・ 音声: 選んだ声 / 保存済み音声`;
 }
 
 function updateAppearanceSettings() {
