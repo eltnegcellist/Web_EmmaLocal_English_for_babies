@@ -15,7 +15,7 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   "milk|inquiry": [
     "Want some more milk? Are you still hungry? Let's check together.",
     "How is your milk? Is it yummy? Smack those little lips!",
-    "One more little sip? Want to try? I'm right here!",
+    "One more little sip? Want to try? I'm with you!",
   ],
   "milk|repeat": [
     "Want another sip? We can try. No need to hurry.",
