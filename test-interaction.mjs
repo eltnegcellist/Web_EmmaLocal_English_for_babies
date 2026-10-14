@@ -115,7 +115,7 @@ const reviewed=[...Object.values(INTERACTION_REPLIES).flat(),...Object.values(CO
 assert.ok(INTERACTION_REPLIES.affection.includes('Look at you! My sweet baby. I love you!'));
 assert.ok(INTERACTION_REPLIES.effort.includes("You're trying again! Look at you go! I'm here!"));
 assert.ok(COMBINED_REPLIES['milk|achievement'].includes("You drank some milk! Good job, baby! I'm right here."));
-assert.ok(COMBINED_REPLIES['milk|repeat'].includes("Want more milk? Just a little? Take your time."));
+assert.ok(COMBINED_REPLIES['milk|repeat'].includes("More milk, baby? One tiny sip? We can wait!"));
 assert.ok(COMBINED_REPLIES['book|inquiry'].includes("Look at this picture! What do you see? Let's look again!"));
 for(const english of reviewed) {
   assert.ok(!/that worked out|i see your effort|you can decide|absolutely adorable/i.test(english),english);

@@ -84,7 +84,7 @@ async function ensureKitten() {
   return kittenTts;
 }
 
-async function synthesize(text, requestId, nameHints = []) {
+async function synthesize(text, requestId, nameHints = [], punctuationMode = 'legacy') {
   const tts = await ensureKitten();
   let index = 0;
 
@@ -96,7 +96,8 @@ async function synthesize(text, requestId, nameHints = []) {
       voice: KITTEN_VOICE,
       speed: KITTEN_SPEED,
       clean: true,
-      nameHints
+      nameHints,
+      punctuationMode
     })) {
       const audio = chunk?.audio;
       const samples = audio?.data;
@@ -119,7 +120,8 @@ async function synthesize(text, requestId, nameHints = []) {
       voice: KITTEN_VOICE,
       speed: KITTEN_SPEED,
       clean: true,
-      nameHints
+      nameHints,
+      punctuationMode
     });
     const samples = audio?.data;
     const sampleRate = audio?.sampling_rate || 24000;
@@ -174,7 +176,9 @@ self.onmessage = async (event) => {
       const nameHints = Array.isArray(event.data.nameHints)
         ? event.data.nameHints.map((x) => String(x || '').trim()).filter(Boolean).slice(0, 4)
         : [];
-      await synthesize(text, event.data.requestId, nameHints);
+      const punctuationMode = event.data.punctuationMode === 'preserve'
+        ? 'preserve' : 'legacy'; // Diagnostic opt-in only; app remains legacy.
+      await synthesize(text, event.data.requestId, nameHints, punctuationMode);
     }
   } catch (error) {
     self.postMessage({

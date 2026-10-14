@@ -41,6 +41,8 @@ jobs:
           node test-interaction.mjs
           node test-silero.mjs
           node test-interruptible-turn.mjs
+      - name: Validate Kiki A/B samples and preserve-punctuation experiment
+        run: node scripts/test-kiki-ab.mjs
       - name: CMUdict phoneme audit of all English release candidates
         run: |
           python3 -m pip install 'cmudict==1.1.3'
@@ -75,6 +77,20 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           VAD_BROWSER_CHANNEL=chromium npm run test:vad-browser
+      - name: Generate actual Kiki A/B WAV previews (experimental)
+        id: kiki_audio
+        timeout-minutes: 15
+        continue-on-error: true
+        run: node scripts/record-kiki-ab.mjs
+      - name: Archive Kiki audio previews
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kiki-rhythm-audio-ab
+          path: .kiki-review/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
       - name: Run actual Web Semantic inference parity baseline
         run: node scripts/semantic-parity-web.mjs --output .semantic-parity/web.json
       - name: Probe real Ruri Topic and Interaction heads without keyword rules

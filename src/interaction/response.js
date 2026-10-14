@@ -3,21 +3,21 @@
 export const INTERACTION_REPLIES = {
   "affection": [
     "You're so cute! What a sweetheart! I love you.",
-    "You're so sweet. Just as you are. I love you dearly.",
-    "What a sweetheart! You're adorable. Such a lovely child.",
+    "Sweet little baby! Cuddle, cuddle! I love you!",
+    "Sweet, sweet baby! Look at you! Big hugs!",
     "Look at you! My sweet baby. I love you!",
-    "You are wonderful. Just as you are. I adore you.",
-    "Hello, sweet one. You are adorable. Yes, you are!",
+    "My lovely baby! Love, love, love! Big hugs!",
+    "Hello, sweet one! So, so sweet! Yes, you are!",
     "Such a cutie! That's you! My sweet little one.",
     "I love you. My darling little one. So very much."
   ],
   "praise": [
-    "Well done! You did great. I'm proud of you!",
+    "Yay, you did it! Clap, clap, clap! Big cheers, baby!",
     "Good job! That's just right. You did so well!",
-    "Great work! Look what you did! I'm proud of you.",
-    "That's wonderful! You did well. Well done, little one!",
-    "Very good! You did that yourself. How wonderful is that!",
-    "Nicely done! That was lovely. Great job, little one!",
+    "Look at you! Yay, you did it! Clap, clap!",
+    "Yay, yay, yay! You did it! Well done, baby!",
+    "Good job, baby! You did it! Yay, yay!",
+    "Nicely done! Clap, clap, clap! Good job, baby!",
     "That's really good! What a great job! I'm so proud!",
     "Good job, little one! That's lovely. You did great!"
   ],
@@ -29,17 +29,17 @@ export const INTERACTION_REPLIES = {
     "Yes! You made it! That's wonderful!",
     "You did it! You kept trying! Look at you!",
     "There it is! You did it! Hooray for you!",
-    "It's done! You got it! What a lovely moment!"
+    "It's done! You got it! Hooray, hooray!"
   ],
   "effort": [
     "You're trying again! Look at you go! I'm here!",
-    "You're really trying! You're working on it. I can see that!",
-    "You're working so hard. I see you trying. Take your time.",
-    "You keep on trying. You're giving it time. I see you.",
-    "You're trying again. I can see that. I'm here with you.",
-    "You're really trying. You haven't stopped yet. I'm cheering you on.",
-    "You've been trying hard. I see that. I'm proud of you.",
-    "Look at you trying! You're working so hard. I'm right beside you."
+    "Try, try, try! Look at you! I'm here!",
+    "Try, try, try! Little by little! I'm here!",
+    "Again, again! Little by little! I see you!",
+    "One more try! Little by little! I'm here with you!",
+    "Try, try, try! No rush, baby! I'm here!",
+    "Look at you! Trying again! Yay, yay!",
+    "Look at you! Try, try, try! I'm here!"
   ],
   "encouragement": [
     "You can try. I'm beside you. Go when you're ready.",
@@ -52,14 +52,14 @@ export const INTERACTION_REPLIES = {
     "There's no hurry. Try when you're ready. I'll be close."
   ],
   "invitation": [
-    "Shall we do this? Come with me. Let's try together.",
+    "Ready, baby? Here we go! You and me!",
     "Want to try? Let's do it. Let's try together.",
     "What should we play? Want to play together? Let's pick a toy.",
     "How about this? We can try. Let's do it together.",
     "Ready to join me? Let's do this. We'll try together.",
     "Want to try this? Let's look together. Pick your favorite.",
-    "Let's try something. Let's do it together. What do you think?",
-    "Shall we go? I'll go with you. We can go together."
+    "Let's try it! Here we go! You and me!",
+    "Ready to go? Step by step! You and me!"
   ],
   "start": [
     "Here we go! We're beginning now. Ready, little one?",
@@ -83,12 +83,12 @@ export const INTERACTION_REPLIES = {
   ],
   "finish_check": [
     "All done? Is that everything? Let's have a look.",
-    "Are we finished? Shall we check? What do you think?",
-    "Is it all done? Let's see together. Shall we check?",
+    "All done now? Let's have a look! All done, baby?",
+    "All done, baby? Look with me! One last check?",
     "Finished already? Let me see. Are we all done?",
-    "Is that the end? Shall we see? Let's check together.",
+    "All done now? Look with me! One more time?",
     "Are you done? Let's have a look. Is that everything?",
-    "All finished? Let's check together. Are we done now?",
+    "All finished? Let's have a look! All done, baby?",
     "Could that be it? Let's see. Are we done yet?"
   ],
   "care": [
@@ -107,7 +107,7 @@ export const INTERACTION_REPLIES = {
     "Is something bothering you? I'm right here. What do you need?",
     "What is it? Can you show me? I'll listen closely.",
     "What's happening, little one? I'll listen closely. Tell me more.",
-    "Do you need something? I'm with you. Let's find out.",
+    "Need something, baby? Tell me more! I'm here!",
     "Are you okay? Let's take a look. What happened, sweetheart?",
     "What's up, little one? I'm listening closely. What do you need?"
   ],
@@ -124,12 +124,12 @@ export const INTERACTION_REPLIES = {
   "repeat": [
     "One more time? Let's try again. Ready to go?",
     "Again? Let's do that. One more time!",
-    "Shall we try again? Just once more. Ready to go?",
+    "Want another turn? One more try? Here we are!",
     "Let's do it again. Ready for more? We can start.",
-    "Once more? Let's try together. Shall we go?",
+    "Once more, baby? Ready, steady, go! You and me!",
     "One more go? Let's try it again. Here we go!",
     "Want to try again? Let's try once more. Ready, little one?",
-    "Let's have another go. We can try again. Shall we start?"
+    "One more turn! Try it again! Ready, little one?"
   ],
   "pause": [
     "Just a moment. I'll be right here. We can wait.",
@@ -137,7 +137,7 @@ export const INTERACTION_REPLIES = {
     "Hold on, sweetheart. Just a moment. I'm with you.",
     "We can pause now. There's no hurry. I'm staying right here.",
     "One little moment. Let's stay together. We have time.",
-    "Shall we rest? We have time. I'll stay beside you.",
+    "Rest, rest, rest. Cozy little baby. I'm right here.",
     "Wait a moment. Not just yet. I'll stay close.",
     "Let's take a break. We can wait. No rush."
   ]

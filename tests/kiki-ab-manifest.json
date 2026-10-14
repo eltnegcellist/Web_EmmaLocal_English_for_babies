@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "voice": "Kiki",
+  "model": "KittenML/kitten-tts-nano-0.8-fp32",
+  "speed": 0.8,
+  "description": "Main vs PR text comparison. Actual audio playback requires browser model loading. Human prosody ratings are separate from CMUdict checks.",
+  "cases": [
+    {
+      "id": "milk-invite",
+      "label": "ミルク：誘い",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "Shall we have milk? Little sips are fine. I'm here with you.",
+      "after": "Milk time, baby! Sip, sip, sip! I'm right here!"
+    },
+    {
+      "id": "milk-praise",
+      "label": "ミルク：ほめる",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "You drank some milk! Well done, little one. I'm proud of you.",
+      "after": "Those little sips! Look at you! Good job, baby!"
+    },
+    {
+      "id": "cry-care",
+      "label": "泣いている：安心",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "I hear your tears. I love being together. You're so precious.",
+      "after": "Oh, sweet baby! I hear you! Big, soft hugs!"
+    },
+    {
+      "id": "voice-sound",
+      "label": "声：喃語",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "What a little voice! I love being together. You're so precious.",
+      "after": "Ooh, ahh, ooh! Sweet little voice! I love you!"
+    },
+    {
+      "id": "feet-praise",
+      "label": "足：キック",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "Look at your feet! You're doing so well. I'm proud of you.",
+      "after": "Kick, kick, kick! Look at those toes! Yay, baby!"
+    },
+    {
+      "id": "book-invite",
+      "label": "絵本：誘い",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "Shall we read together? Here's our book. Let's look inside.",
+      "after": "Book time, baby! Open the book! Look inside!"
+    },
+    {
+      "id": "rain-inquiry",
+      "label": "雨：音",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "Hear the rain outside? What do you notice? Let's find out together.",
+      "after": "Hear the rain? Drip, drop, drip! Tap, tap, tap!"
+    },
+    {
+      "id": "sun-inquiry",
+      "label": "太陽：問いかけ",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "Where is the sunshine? What do you notice? Let's find out together.",
+      "after": "Where's the sunshine? Look up, baby! There it is!"
+    },
+    {
+      "id": "sleep-love",
+      "label": "ねんね：愛情",
+      "source": "src/interaction/supplemental-replies.js",
+      "before": "Time for cozy rest. You're so precious. I love you.",
+      "after": "Cozy little baby! Night-night, night-night! I love you!"
+    },
+    {
+      "id": "music-invite",
+      "label": "音楽：誘い",
+      "source": "src/interaction/frequent-replies.js",
+      "before": "Shall we sing together? I'll hum a tune. Join when you're ready.",
+      "after": "Let's sing, baby! La, la, la! Listen, listen!"
+    },
+    {
+      "id": "affection",
+      "label": "愛情：語りかけ",
+      "source": "src/interaction/response.js",
+      "before": "You're so sweet. Just as you are. I love you dearly.",
+      "after": "Sweet little baby! Cuddle, cuddle! I love you!"
+    },
+    {
+      "id": "effort",
+      "label": "挑戦：励まし",
+      "source": "src/interaction/response.js",
+      "before": "You're really trying! You're working on it. I can see that!",
+      "after": "Try, try, try! Look at you! I'm here!"
+    },
+    {
+      "id": "finish-check",
+      "label": "おしまい：確認",
+      "source": "src/interaction/response.js",
+      "before": "Are we finished? Shall we check? What do you think?",
+      "after": "All done now? Let's have a look! All done, baby?"
+    },
+    {
+      "id": "play-start",
+      "label": "遊び：開始",
+      "source": "src/lite-response-engine.js",
+      "before": "Ready to play? Shall we start together? Here's a little game!",
+      "after": "Ready to play? Peek, peek, peek! Let's have fun!"
+    },
+    {
+      "id": "diaper-check",
+      "label": "おむつ：確認",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "Finished changing your diaper? Let's check together. Are we finished?",
+      "after": "Clean diaper now? Let's have a look! All done, baby?"
+    },
+    {
+      "id": "drink-inquiry",
+      "label": "飲み物：問いかけ",
+      "source": "src/interaction/supplemental-replies.js",
+      "before": "Would you like water? Are you thirsty? Let's find out.",
+      "after": "Want some water? Feeling thirsty, baby? Here you go!"
+    },
+    {
+      "id": "hug-care",
+      "label": "抱っこ：愛情",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "A cuddle for you! I love being together. You're so precious.",
+      "after": "Cuddle, cuddle, cuddle! My sweet baby! I love you!"
+    },
+    {
+      "id": "tummy-inquiry",
+      "label": "おなか：問いかけ",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "Is your tummy okay? What do you notice? Let's find out together.",
+      "after": "Little tummy! How's it feeling? I'm right here!"
+    },
+    {
+      "id": "smile-praise",
+      "label": "笑顔：ほめる",
+      "source": "src/interaction/ruri-routing.js",
+      "before": "Look at your smile! You're doing so well. I'm proud of you.",
+      "after": "Smile, smile, smile! Look at those cheeks! Big happy face!"
+    },
+    {
+      "id": "generic-talk",
+      "label": "一般：会話",
+      "source": "src/lite-response-engine.js",
+      "before": "What do you think? Tell me, little one. I'm listening!",
+      "after": "Ooh, ahh, ooh! Talk to me! I'm listening!"
+    }
+  ]
+}

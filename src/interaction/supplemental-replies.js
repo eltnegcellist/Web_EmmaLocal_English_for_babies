@@ -5,7 +5,7 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   "milk|affection": [
     "Milk time, sweetheart! You're so lovely. I love you.",
     "Milk time with you. My sweet little one. I love you.",
-    "Your milk is here. You're so precious. I'm right beside you.",
+    "Milk is here! Sip, sip, sip! I love you!",
   ],
   "milk|start": [
     "Here comes your milk. Let's get comfy. Ready for a sip?",
@@ -15,20 +15,20 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   "milk|inquiry": [
     "Want some more milk? Are you still hungry? Let's check together.",
     "How is your milk? Is it yummy? Smack those little lips!",
-    "Need another little sip? Shall we try? Take your time.",
+    "One more little sip? Want to try? I'm with you!",
   ],
   "milk|repeat": [
     "Want another sip? We can try. No need to hurry.",
     "More milk, little one? Only if you like. I'm right here.",
-    "Want more milk? Just a little? Take your time.",
+    "More milk, baby? One tiny sip? We can wait!",
   ],
   "drink|affection": [
     "A drink with you. My sweet little one. I love you.",
-    "Here is your drink. You're so precious. I love you.",
-    "A little drink together. You're my sweetheart. I'm right here.",
+    "Here is your drink! Sip, sip, sip! I love you!",
+    "A little drink! Sip, sip, sip! I'm right here!",
   ],
   "drink|inquiry": [
-    "Would you like water? Are you thirsty? Let's find out.",
+    "Want some water? Feeling thirsty, baby? Here you go!",
     "Another sip for you? Do you want more? It's up to you.",
     "How is your drink? Is that enough? I'm here with you.",
   ],
@@ -49,7 +49,7 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   ],
   "sleep|affection": [
     "Sleepy little sweetheart. I love you. I'm right here.",
-    "Time for cozy rest. You're so precious. I love you.",
+    "Cozy little baby! Night-night, night-night! I love you!",
     "Sweet dreams, little one. You're so loved. I'm beside you.",
   ],
   "sleep|care": [
@@ -65,15 +65,15 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   "wake|reassurance": [
     "Hello, little sleepyhead! Open those bright eyes. I'll hold you close.",
     "Hello, little one. I'll stay close. We're together now.",
-    "You woke up. Take your time. I'm beside you.",
+    "Good morning, baby! Eyes open wide! I'm beside you!",
   ],
   "bath|affection": [
     "Warm water together. My sweet little one. I love you.",
     "Bath time, sweetheart! You're so lovely. I'm right here.",
-    "Little splashes together. You're so precious. I love you.",
+    "Splash, splash, splash! My sweet baby! I love you!",
   ],
   "bath|praise": [
-    "You're splashing water! That's so lovely. Well done, sweetheart.",
+    "Splash, splash, splash! Look at you! Yay, baby!",
     "Look at you! What lovely splashes! You're doing great.",
     "You're enjoying bath time! That's so lovely. Well done, sweetheart.",
   ],
@@ -89,36 +89,36 @@ export const SUPPLEMENTAL_COMBINED_REPLIES = {
   ],
   "book|affection": [
     "Story time with you. My sweet little one. I love you.",
-    "A book together. You're so precious. Let's turn pages.",
+    "Book time, baby! Look, look, look! Turn the page!",
     "This story is ours. I love you. Stay close, sweetheart.",
   ],
   "book|finish_check": [
     "Is our story done? One more page? Let's check together.",
     "Last page already? Are we finished? Let's look together.",
-    "Is that the end? Shall we check? One last look.",
+    "One last page? Story all done? Let's look again!",
   ],
   "music|affection": [
     "A song for you. My sweet little one. I love you.",
-    "Music time together. You're so precious. I'm right here.",
+    "Music time, baby! La, la, la! I'm right here!",
     "This song is yours. I love you. Let's listen together.",
   ],
   "music|finish_check": [
-    "Is our song done? Shall we listen? One more note?",
-    "Song finished already? Let's check together. Is that all?",
+    "Song all done? One more note? La, la, la!",
+    "Song all done? One more tune? La, la, la!",
     "Is that the end? One more sound? Let's listen together.",
   ],
   "play|affection": [
-    "Playtime with you. You're so precious. I love you.",
+    "Playtime, baby! Look, look, look! I love you!",
     "My little playmate! I love your giggle. What a fun game!",
-    "We play together. You're my sweetheart. What lovely fun!",
+    "Play, play, play! My sweet baby! What fun!",
   ],
   "play|finish_check": [
     "All done playing? One more game? Let's play or rest.",
-    "Is playtime over? Shall we stop? We can choose.",
-    "All finished playing? One last turn? What do you think?",
+    "Playtime all done? One more game? Bye-bye, toy!",
+    "Playtime all done? One more turn? Bye-bye, toy!",
   ],
   "clothes|affection": [
-    "Your cozy little clothes. You're so precious. I love you.",
+    "Cozy little clothes! Soft, soft, soft! I love you!",
     "All snug and warm. My sweet little one. I'm right here.",
     "A little outfit today. You're so lovely. I love you.",
   ],
