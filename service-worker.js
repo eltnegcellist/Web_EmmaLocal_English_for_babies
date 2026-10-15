@@ -63,9 +63,8 @@ self.addEventListener('fetch',event=>{
           caches.open(CACHE).then(c=>c.put(event.request,copy));
           return isolated;
         })
-        .catch(()=>caches.match(event.request).then(response=>
-          response ? withIsolationHeaders(response) : Response.error()
-        ))
+        // Online-first Web: never boot stale application logic on network failure.
+        .catch(()=>Response.error())
     );
     return;
   }
