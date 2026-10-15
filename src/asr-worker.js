@@ -1,3 +1,4 @@
+import {applySupportedKeyterms} from './moonshine-keyterm-bias.js';
 // Moonshine recognition runs off the UI thread so Silero and AudioWorklet
 // keep receiving frames while a speculative turn is being transcribed.
 const MOONSHINE_MODULE_URL = new URL('./moonshine-module.js', import.meta.url).href;
@@ -31,8 +32,13 @@ self.onmessage = async ({data}) => {
         onAssetEvent:event=>self.postMessage({type:'asset-event',event}),
         onDiagnostic:event=>self.postMessage({type:'diagnostic',kind:event.kind,durationMs:event.durationMs})
       });
-      try{next.setKeyterms(data.keyterms||[]);}
-      catch(error){self.postMessage({type:'warning',message:'Moonshine育児語バイアスを適用できませんでした: '+String(error?.message||error)});}
+      // Reject only unsupported words instead of losing the entire childcare
+      // vocabulary (the Japanese tokenizer rejects 喃語 on some builds).
+      const {applied,skipped}=applySupportedKeyterms(next,data.keyterms||[]);
+      self.postMessage({type:'diagnostic',kind:'keyterm-status',
+        accepted:applied.length,skipped:skipped.map(x=>x.term)});
+      if(skipped.length)self.postMessage({type:'warning',
+        message:'Moonshineで使用できない育児語を除外しました: '+skipped.map(x=>x.term).join('、')});
       transcriber?.close?.();
       transcriber=next;
       self.postMessage({type:'ready',kind:'moonshine',engine:'moonshine',model:selected+'-streaming-ja',architecture:selected+'_streaming',license:'MIT',device:'wasm-cpu',worker:'dedicated',initMs:performance.now()-started,manifest});

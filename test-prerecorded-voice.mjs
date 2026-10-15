@@ -19,7 +19,7 @@ assert.equal(normalizeVoiceText(spaced),entry.text);
 await bank.init();assert.equal((await bank.audioFor(spaced)).size,audio.length);
 assert.equal(await bank.audioFor('Different text.'),null);assert.equal(downloads,2);
 const offline=new PrerecordedVoiceBank({manifestUrl:'https://example.test/app/manifest.json',fetcher:async()=>{throw Error('offline');},cacheStorage});
-await offline.init();assert.equal((await offline.audioFor(entry.text)).size,audio.length);
+await assert.rejects(offline.init(),/最新版の音声一覧/);
 const broken=new PrerecordedVoiceBank({manifestUrl:'https://example.test/other/manifest.json',cacheStorage:null,fetcher:async url=>String(url).endsWith('.json')?new Response(JSON.stringify(manifest)):new Response('corrupt audio')});
 await assert.rejects(broken.init(),/検証/);
 console.log('Prerecorded voice: real AAC lookup, whitespace, verified cache, complete offline reload and corruption rejection PASS');

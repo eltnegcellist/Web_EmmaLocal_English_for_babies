@@ -28,8 +28,9 @@ export class PrerecordedVoiceBank {
       if (!response.ok) throw Error('音声一覧を取得できません。');
       await this.cache?.put(this.manifestUrl, response.clone());
     } catch (error) {
-      response = await this.cache?.match(this.manifestUrl);
-      if (!response) throw error;
+      // Web is online-first. A stale, previously cached manifest must not
+      // silently map new English to obsolete audio when fetching fails.
+      throw Error('最新版の音声一覧を取得できません。通信を確認して再準備してください。');
     }
     const manifest = await response.json();
     if (manifest.schemaVersion !== 1 || manifest.generationSeed !== 1202 || !manifest.entries?.length) {

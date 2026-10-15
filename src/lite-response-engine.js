@@ -47,7 +47,7 @@ const GENERIC_REPLIES = [
   "Baby, hello there! I'm here with you. Big hugs!",
   "Baby, my sweetheart! You're so loved. Hello, baby!",
   "Baby, look here! It's me again. Hello there!",
-  "Baby, how are you? I'm listening, baby. Your turn!",
+  "Baby, hello, hello! Ooh, ahh, ooh! Your turn!",
   "Baby, my little star! I love you. Hello, sweetheart!",
   "Baby, hello again! I'm happy you're here. Big hugs!"
 ];
@@ -170,6 +170,7 @@ export const CHILDCARE_ASR_KEYTERMS = [
   "着替え", "抱っこ", "おてて", "あんよ", "にこにこ", "泣く",
   "ぐずぐず", "喃語", "クーイング", "げっぷ", "吐き戻し", "おもちゃ",
   "お散歩", "ベビーカー", "離乳食", "絵本", "音楽",
+  "しゃっくり", "ご機嫌", "くしゃみ", "あくび",
 ];
 
 const MEANINGFUL_SHORT_FORMS = [

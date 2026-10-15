@@ -343,9 +343,11 @@
       "phraseId": "vc_000028",
       "sourceKind": "topic",
       "sourceKey": "generic",
-      "text": "Baby, how are you? I'm listening, baby. Your turn!",
-      "primaryCue": "social.greeting",
-      "secondaryCues": [],
+      "text": "Baby, hello, hello! Ooh, ahh, ooh! Your turn!",
+      "primaryCue": "observed.voice",
+      "secondaryCues": [
+        "social.greeting"
+      ],
       "renderPreference": "emma",
       "reviewStatus": "generated"
     },
