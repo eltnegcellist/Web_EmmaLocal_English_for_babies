@@ -9,6 +9,7 @@ import {fileURLToPath} from 'node:url';
 import {createRuriTokenizer} from '../src/semantic/tokenize.js';
 import {classifyEmbedding,decodeHead} from '../src/semantic/core.js';
 import {selectRuriAxes} from '../src/interaction/ruri-routing.js';
+import {LiteResponseEngine} from '../src/lite-response-engine.js';
 import {Tokenizer,ort} from '../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/runtime.mjs';
 
 const root=resolve(fileURLToPath(new URL('..',import.meta.url)));
@@ -39,6 +40,20 @@ const fieldInspired=[
   'シルクの洋服だね','泣いてはいないよ','寝返りしたね','くしゃみしたね','あくびが出たね',
 ].map((text,index)=>({id:'field-'+String(index+1).padStart(2,'0'),category:'field_inspired',text,
   expected_topic:null,expected_interaction:null,adjudicated:false}));
+const contentRisk=[
+  ['おてて冷たいね あっためようね','cold hands should not become good-morning greeting'],
+  ['ミルクを飲んだら 少し休んでからお風呂に入ろうね','future bath must not be treated as current bath'],
+  ['おむつ替えたらお散歩に行こうね','two-stage sequence must not be reduced to certain completion'],
+  ['お外は雨が降っているから今日はおうちで一緒に遊ぼうね','rain outside, play indoors'],
+  ['おむつを替えてからお気に入りのおもちゃで遊ぼうか','two-stage sequence'],
+  ['ご機嫌ななめだね','negative mood is not smiling'],
+  ['笑っていないみたいだね','negative smile'],
+  ['泣いてはいないんだよ','not crying'],
+  ['今は眠くないんだね','not sleepy'],
+  ['しゃっくりが出たね','hiccup not burp'],
+].map(([text,note],index)=>({id:'risk-'+index,category:'content_risk',text,
+  expected_topic:null,expected_interaction:null,adjudicated:false,note}));
+
 
 function accepted(score,p,minMargin,ignored) {
   return score.rawId!==ignored && score.probability>=p && score.margin>=minMargin ? score.rawId:null;
@@ -84,7 +99,7 @@ ort.env.wasm.numThreads=1;ort.env.wasm.wasmPaths=runtime+'/';
 const session=await ort.InferenceSession.create(new Uint8Array(await readFile(join(asset,'model.onnx'))),
   {executionProviders:['wasm'],graphOptimizationLevel:'all'});
 try {
- for(const data of [...qa.cases,...fieldInspired]) {
+ for(const data of [...qa.cases,...fieldInspired,...contentRisk]) {
   const ids=tokenizer(data.text);
   const out=await session.run({
     input_ids:new ort.Tensor('int64',BigInt64Array.from(ids,BigInt),[1,ids.length]),
@@ -101,6 +116,13 @@ try {
      interaction_top:scores.interaction.rawId,interaction_top_p:+scores.interaction.probability.toFixed(4),
      interaction_top2:scores.interaction.candidates.map(x=>({id:x.id,p:+x.probability.toFixed(4)})),
      baseline:baseline(scores)};
+   if(data.category==='content_risk'){
+     const outcome=new LiteResponseEngine().respondRuri(data.text,'',scores.topic,scores.interaction,true);
+     row.content_risk_note=data.note;
+     row.baseline_selected_route=outcome.scene;
+     row.baseline_selected_english=outcome.english;
+     row.requires_human_meaning_review=true;
+   }
    for(const scenario of scenarios) {
      if(scenario.id==='baseline')continue;
      row[scenario.id]=rescued(scores,scenario);
@@ -118,7 +140,7 @@ const summary=scenarios.map(scenario=>{
   !(x[name==='baseline'?'baseline':name].topic || x[name==='baseline'?'baseline':name].interaction)).length};
 }).sort((a,b)=>b.rescued-a.rescued || b.exact-a.exact);
 const results={status:'RESEARCH_ONLY_UNADJUDICATED_SYNTHETIC_NOT_FOR_SHIPPING',
- source:'pinned Ruri v3 70M INT8; 67 pre-existing exploratory QA and user-inspired new prompts',
+ source:'pinned Ruri v3 70M INT8; 67 pre-existing exploratory QA, everyday probes and content-risk prompts',
  warning:'No parent audio, ASR variants, independent gold, or S25 latencies were measured.',
  decisions:'Do not adopt a threshold on these cases alone; negative/false-claim review is mandatory.',
  cases:rows.length,scenarios:summary,rows};
