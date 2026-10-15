@@ -45,6 +45,7 @@ jobs:
       - name: Verify adopted voice coverage, cache and audio integrity
         run: |
           node test-asr-keyterm-bias.mjs
+          node scripts/test-recorded-review-26.mjs
           node test-prerecorded-voice.mjs
           node test-tts-prerecorded.mjs
           npm run verify:voice
