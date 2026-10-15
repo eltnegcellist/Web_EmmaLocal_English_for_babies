@@ -1,0 +1,246 @@
+{
+  "version": 1,
+  "source": "2026-10-15 prerecord validation report pages 7–9; two ASR engines disagree with target; not proof of defective clips",
+  "validatedByEar": false,
+  "counts": {
+    "total": 26,
+    "coreEnglish": 22,
+    "extra": 4
+  },
+  "entries": [
+    {
+      "number": 1,
+      "expected": "All ready!",
+      "whisperSmall": "already",
+      "whisperBase": "Already!",
+      "category": "homophone",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 2,
+      "expected": "All ready.",
+      "whisperSmall": "already.",
+      "whisperBase": "Already.",
+      "category": "homophone",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 3,
+      "expected": "Song time!",
+      "whisperSmall": "Sondheim!",
+      "whisperBase": "Sometime!",
+      "category": "lexical",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 4,
+      "expected": "Chew, chew!",
+      "whisperSmall": "Shoo! Shoo!",
+      "whisperBase": "Choo! Choo!",
+      "category": "lexical",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 5,
+      "expected": "Talk, talk! Ooh, ahh! I'm listening.",
+      "whisperSmall": "Tuck tuck. Ooh, ah, I'm listening",
+      "whisperBase": "Tuck tuck! Oh, ah! I'm listening!",
+      "category": "lexical",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 6,
+      "expected": "Clothes on! Here we go! Nice and easy.",
+      "whisperSmall": "Close on. Here we go. Nice and easy.",
+      "whisperBase": "Close on. Here we go. Nice and easy.",
+      "category": "near-homophone",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 7,
+      "expected": "Hello, sunshine! Bright day! Look, look!",
+      "whisperSmall": "Hello sunshine bright day look",
+      "whisperBase": "Hello Sunshine! Bright day? Look!",
+      "category": "punctuation",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 8,
+      "expected": "Hi there! Hello, little one! Wave hello!",
+      "whisperSmall": "Hi, Bear. Hello, little one. Wave hello.",
+      "whisperBase": "Hi Bear! Hello little one! Wave hello!",
+      "category": "lexical",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 9,
+      "expected": "Was that a coo? I heard you! Hello, baby!",
+      "whisperSmall": "Was that a K.O.O.? I heard you! Hello, baby!",
+      "whisperBase": "Was that a Kio-O? I heard you. Hello, baby.",
+      "category": "spelling",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 10,
+      "expected": "Let's chat, baby! Ooh, ahh, ooh! Your turn!",
+      "whisperSmall": "Let's chat baby. Oh, ah, oh your turn",
+      "whisperBase": "Let's chat, baby. Oh, ah! Oh, your turn.",
+      "category": "vocalization",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 11,
+      "expected": "Little sips, baby! Sip, sip, sip! High five!",
+      "whisperSmall": "Little sips, baby. Sip, sip. High five.",
+      "whisperBase": "Little sips, baby. Sips, zip. High five.",
+      "category": "repetition",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 12,
+      "expected": "More milk, baby? Or all done? One more look?",
+      "whisperSmall": "More milk, baby? We're all done? One more look?",
+      "whisperBase": "More milk, baby. We're all done. One more look.",
+      "category": "semantic",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 13,
+      "expected": "Ooh, ahh, ooh! Sweet little voice! I love you!",
+      "whisperSmall": "Hoo! Ah! Ooh, sweet little voice! I love you!",
+      "whisperBase": "Oh, ah, ooh, sweet little voice. I love you.",
+      "category": "vocalization",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 14,
+      "expected": "Sip, sip, sip! Nice little sips! No need to rush!",
+      "whisperSmall": "Sip, sip, nice little sips. No need to rush.",
+      "whisperBase": "Sip, sip, nice little sips. No need to rush.",
+      "category": "repetition",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 15,
+      "expected": "Baby, let's get dressed. Socks on next. All ready!",
+      "whisperSmall": "Baby, let's get dressed. Socks on next. Already!",
+      "whisperBase": "Baby, let's get dressed. Socks on next. Already.",
+      "category": "homophone",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 16,
+      "expected": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+      "whisperSmall": "Cuddle, cuddle, my sweet baby, I love you!",
+      "whisperBase": "Cuddle cuddle my sweet baby. I love you",
+      "category": "repetition",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 17,
+      "expected": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+      "whisperSmall": "All done eating? Wipe, wipe? Let's have a look!",
+      "whisperBase": "All done eating? Wipe, wipe, let's have a look!",
+      "category": "repetition",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 18,
+      "expected": "Want a cuddle? Arms open wide! Come here, sweetheart!",
+      "whisperSmall": "Wanna cuddle? Arms open wide? Come here, sweetheart!",
+      "whisperBase": "Wanna cuddle? Arms open wide? Come here, sweetheart.",
+      "category": "contraction",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 19,
+      "expected": "I hear your crying. Let me hold you. My arms are warm.",
+      "whisperSmall": "I hear you're crying. Let me hold you. My arms are warm.",
+      "whisperBase": "I hear you're crying. Let me hold you. My arms are warm.",
+      "category": "semantic",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 20,
+      "expected": "Splish, splash, splish! Warm water, baby! Ready to wash?",
+      "whisperSmall": "Splish, splish, splish, warm water, baby. Ready to wash?",
+      "whisperBase": "Splish, splish, splish, warm water, baby. Ready to wash?",
+      "category": "semantic",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 21,
+      "expected": "Time to get dressed. Arms through the sleeves. All ready!",
+      "whisperSmall": "Time to get dressed arms through the sleeves already",
+      "whisperBase": "Time to get dressed! Arms through the sleeves! Already!",
+      "category": "homophone",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 22,
+      "expected": "You drank your milk! Little sips add up. Well done, baby!",
+      "whisperSmall": "You drink your milk. Little sips add up. Well done, baby.",
+      "whisperBase": "You drink your milk. Little sips that up. Well done, baby.",
+      "category": "semantic",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 23,
+      "expected": "One more little sound? I'll listen closely. Ooh, ahh, ooh!",
+      "whisperSmall": "One more little sound, I'll listen closely. Hoo, ha, hoo.",
+      "whisperBase": "One more little sound, I'll listen closely. Whoa! Huh? Whoa!",
+      "category": "vocalization",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 24,
+      "expected": "Your fresh diaper's here! Want to get changed? Let's do it.",
+      "whisperSmall": "Your fresh diapers here want to get changed? Let's do it!",
+      "whisperBase": "Your fresh diapers here want to get changed? Let's do it",
+      "category": "punctuation",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 25,
+      "expected": "You drank your milk. Your tummy is full. Let's rest together.",
+      "whisperSmall": "You drink your milk. Your tummy is full. Let's rest together.",
+      "whisperBase": "You drink your milk. Your tummy is full. Let's rest together.",
+      "category": "semantic",
+      "verification": "needs-listening",
+      "decision": null
+    },
+    {
+      "number": 26,
+      "expected": "Finished the diaper change! Your little legs relax. Back to cuddles.",
+      "whisperSmall": "Finish the diaper change. Your little legs relax. Back to cuddles.",
+      "whisperBase": "Finish the diaper change, your little legs relax. Back to cuddles.",
+      "category": "semantic",
+      "verification": "needs-listening",
+      "decision": null
+    }
+  ]
+}
