@@ -31,8 +31,16 @@ self.onmessage = async ({data}) => {
         onAssetEvent:event=>self.postMessage({type:'asset-event',event}),
         onDiagnostic:event=>self.postMessage({type:'diagnostic',kind:event.kind,durationMs:event.durationMs})
       });
-      try{next.setKeyterms(data.keyterms||[]);}
-      catch(error){self.postMessage({type:'warning',message:'Moonshine育児語バイアスを適用できませんでした: '+String(error?.message||error)});}
+      // Reject only unsupported words instead of losing the entire childcare
+      // vocabulary (the Japanese tokenizer rejects 喃語 on some builds).
+      const accepted=[], skipped=[];
+      for(const term of (data.keyterms||[])){
+        try{next.setKeyterms([...accepted,term]);accepted.push(term);}
+        catch(error){skipped.push(term);}
+      }
+      next.setKeyterms(accepted);
+      self.postMessage({type:'diagnostic',kind:'keyterm-status',accepted:accepted.length,skipped});
+      if(skipped.length)self.postMessage({type:'warning',message:'Moonshineで使用できない育児語を除外しました: '+skipped.join('、')});
       transcriber?.close?.();
       transcriber=next;
       self.postMessage({type:'ready',kind:'moonshine',engine:'moonshine',model:selected+'-streaming-ja',architecture:selected+'_streaming',license:'MIT',device:'wasm-cpu',worker:'dedicated',initMs:performance.now()-started,manifest});
