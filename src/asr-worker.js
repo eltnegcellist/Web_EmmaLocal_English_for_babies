@@ -1,3 +1,4 @@
+import {applySupportedKeyterms} from './moonshine-keyterm-bias.js';
 // Moonshine recognition runs off the UI thread so Silero and AudioWorklet
 // keep receiving frames while a speculative turn is being transcribed.
 const MOONSHINE_MODULE_URL = new URL('./moonshine-module.js', import.meta.url).href;
@@ -33,14 +34,11 @@ self.onmessage = async ({data}) => {
       });
       // Reject only unsupported words instead of losing the entire childcare
       // vocabulary (the Japanese tokenizer rejects 喃語 on some builds).
-      const accepted=[], skipped=[];
-      for(const term of (data.keyterms||[])){
-        try{next.setKeyterms([...accepted,term]);accepted.push(term);}
-        catch(error){skipped.push(term);}
-      }
-      next.setKeyterms(accepted);
-      self.postMessage({type:'diagnostic',kind:'keyterm-status',accepted:accepted.length,skipped});
-      if(skipped.length)self.postMessage({type:'warning',message:'Moonshineで使用できない育児語を除外しました: '+skipped.join('、')});
+      const {applied,skipped}=applySupportedKeyterms(next,data.keyterms||[]);
+      self.postMessage({type:'diagnostic',kind:'keyterm-status',
+        accepted:applied.length,skipped:skipped.map(x=>x.term)});
+      if(skipped.length)self.postMessage({type:'warning',
+        message:'Moonshineで使用できない育児語を除外しました: '+skipped.map(x=>x.term).join('、')});
       transcriber?.close?.();
       transcriber=next;
       self.postMessage({type:'ready',kind:'moonshine',engine:'moonshine',model:selected+'-streaming-ja',architecture:selected+'_streaming',license:'MIT',device:'wasm-cpu',worker:'dedicated',initMs:performance.now()-started,manifest});
