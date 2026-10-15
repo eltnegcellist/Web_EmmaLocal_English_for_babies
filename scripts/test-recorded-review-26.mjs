@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const rows=JSON.parse(await readFile(new URL('../research/voice-content-26-review-20261015.json',import.meta.url),'utf8'));
+const manifest=JSON.parse(await readFile(new URL('../assets/voice-1202/manifest.json',import.meta.url),'utf8'));
+const normalized=value=>String(value).trim().replace(/\\s+/g,' ');
+assert.equal(rows.entries.length,26);
+assert.equal(new Set(rows.entries.map(x=>x.expected)).size,26,'Duplicate review English');
+const byText=new Map(manifest.entries.map(x=>[normalized(x.text),x]));
+const missing=rows.entries.filter(x=>!byText.has(normalized(x.expected)));
+assert.deepEqual(missing.map(x=>x.number),[],'Audition UI must resolve every candidate against the actual audio manifest');
+assert.equal(rows.entries.filter(x=>x.number<=4).length,4);
+console.log('All 26 recorded voice audit candidates resolve to actual manifest clips.');
