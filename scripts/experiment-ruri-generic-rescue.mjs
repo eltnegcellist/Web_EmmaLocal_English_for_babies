@@ -148,6 +148,10 @@ await mkdir(join(root,'.semantic-parity'),{recursive:true});
 const filename=join(root,'.semantic-parity/ruri-generic-rescue-sweep.json');
 await writeFile(filename,JSON.stringify(results,null,2)+'\n');
 console.log('GENERIC_RESCUE_SUMMARY '+JSON.stringify(summary));
+console.log('RURI_CONTENT_RISK '+JSON.stringify(rows.filter(x=>x.category==='content_risk').map(x=>({
+ text:x.text,note:x.content_risk_note,route:x.baseline_selected_route,english:x.baseline_selected_english,
+ topicTop:x.topic_top,tp:x.topic_top_p,interactionTop:x.interaction_top,ip:x.interaction_top_p
+}))));
 console.log('FIELD_INSPIRED_BASELINE '+JSON.stringify(rows.filter(x=>x.category==='field_inspired').map(x=>({
  text:x.text,topic:x.topic_top,tp:x.topic_top_p,margin:x.topic_margin,
  interaction:x.interaction_top,ip:x.interaction_top_p,baseline:x.baseline
