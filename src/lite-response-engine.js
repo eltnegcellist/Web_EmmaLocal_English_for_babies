@@ -47,7 +47,7 @@ const GENERIC_REPLIES = [
   "Baby, hello there! I'm here with you. Big hugs!",
   "Baby, my sweetheart! You're so loved. Hello, baby!",
   "Baby, look here! It's me again. Hello there!",
-  "Baby, how are you? I'm listening, baby. Your turn!",
+  "Baby, hello, hello! Ooh, ahh, ooh! Your turn!",
   "Baby, my little star! I love you. Hello, sweetheart!",
   "Baby, hello again! I'm happy you're here. Big hugs!"
 ];
