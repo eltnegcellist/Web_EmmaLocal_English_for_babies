@@ -73,7 +73,7 @@ function rescued(scores,threshold) {
   return {topic,interaction,rescued:!!(topic||interaction)};
 }
 function metrics(rows,variant) {
-  const subset=rows.filter(x=>x.category!=='field_inspired');
+  const subset=rows.filter(x=>x.category!=='field_inspired'&&x.category!=='content_risk');
   const g=x=>!(x[variant].topic||x[variant].interaction);
   const baselineGeneric=subset.filter(x=>g({...x,[variant]:x.baseline})).length;
   const nowGeneric=subset.filter(g).length;
