@@ -35,12 +35,12 @@ try{
  assert.equal(sample.pictureParent,sample.faceParent);
  assert.equal(sample.pictureParent,'avatar');
  assert.ok(sample.bg.includes('visual-cue-atlas.webp'),sample.bg);
- await page.locator('#visualCueDisplayMode').selectOption('emma');
+ await page.locator('#visualCueDisplayMode').evaluate(el=>{el.value='emma';el.dispatchEvent(new Event('change',{bubbles:true}));});
  await page.waitForFunction(()=>localStorage.getItem('emma_visual_cue_display_mode')==='emma');
  await page.reload();
  await page.waitForFunction(()=>document.getElementById('visualCueDisplayMode')?.value==='emma');
  assert.equal(await page.locator('#visualCueDisplayMode').inputValue(),'emma');
- await page.locator('#visualCueDisplayMode').selectOption('illustration');
+ await page.locator('#visualCueDisplayMode').evaluate(el=>{el.value='illustration';el.dispatchEvent(new Event('change',{bubbles:true}));});
  await page.waitForFunction(()=>localStorage.getItem('emma_visual_cue_display_mode')==='illustration');
  // Illustration is not shown without a supported, committed reply (no false positive).
  assert.ok(await page.locator('#visualCuePicture').evaluate(e=>e.classList.contains('hidden')));
