@@ -1394,7 +1394,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
   }
   if(!valid())return;
   if(running)setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
-  else setState('idle','みつことばはおやすみ中','「呼びかけを始める」を押すと、また呼びかけられます。');
+  else setState('idle','Emmaはおやすみ中','大きな「呼びかけを始める」から会話を再開できます。');
 }
 
 function enqueueAudio(m) {
