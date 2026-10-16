@@ -89,6 +89,9 @@ assert.equal(historyEnabled(storage),false);assert.equal((await history.list()).
 await history.delete();assert.deepEqual(await history.list(),[]);
 await assert.rejects(new ConversationHistory(null).list());
 const $=id=>document.getElementById(id);
+assert($('replyTopic').closest('.avatar-wrap'), 'topic badge must sit in Emma avatar frame');
+assert($('replyJapanese').closest('#emmaBubble'), 'Japanese hint stays in the compact English panel');
+assert.equal($('parentBubble'), null, 'parent transcript is not shown on the live screen');
 assert($('onboardingHighPerformance'),'first-run performance toggle must exist');
 assert.equal($('onboardingHighPerformance').checked,true,'high-performance preset should default on');
 assert.equal($('onboardingStartTiny'),null,'legacy Tiny toggle should not appear in first-run UI');
