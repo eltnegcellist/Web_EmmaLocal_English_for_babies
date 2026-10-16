@@ -5,6 +5,7 @@ import { JSDOM } from 'jsdom';
 import { ConversationHistory, createHistoryEntry, historyEnabled } from './src/conversation-history.js';
 import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhrases, phrasesForSentenceCount, localHistoryStamp } from './src/feature-screens.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './src/app-navigation.js';
+import { replyDisplayHint } from './src/reply-display-hint.js';
 import { canonicalMoonshineModelAssetKey } from './src/vendor/moonshine/asset-downloader.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
 // Guard against accidentally reviving Android/Full promotional UI on the standalone Web app.
@@ -26,6 +27,12 @@ assert(!publicAppSource.includes('ここから会話を始めます'));
 // Home should prioritize the character, not repeat a persistent privacy notice.
 assert(!publicHtml.includes('class="privacy-card"'));
 assert(!publicHtml.includes('端末内で処理'));
+assert(!publicHtml.includes('id="parentBubble"'), 'ASR transcript must not be shown as a chat bubble');
+assert(publicHtml.includes('id="replyTopic"') && publicHtml.includes('id="replyJapanese"'));
+assert.equal(replyDisplayHint('combined:milk:affection').topicLabel, 'ミルク・授乳');
+assert.match(replyDisplayHint('combined:milk:affection').japaneseNote, /大好き/);
+assert.equal(replyDisplayHint('interaction:praise').topicLabel, 'ほめる');
+assert.equal(replyDisplayHint('generic').topicLabel, 'ふだんのことば');
 // Keep the onboarding explanation so users can still find the privacy promise.
 assert(publicHtml.includes('会話処理は端末内。クラウドAIへ音声を送りません。'));
 
