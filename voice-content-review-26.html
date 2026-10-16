@@ -20,7 +20,7 @@ const [audit,manifest]=await Promise.all([
 const byText=new Map(manifest.entries.map(e=>[e.text.trim().replace(/\s+/g,' '),e]));
 const stored=JSON.parse(localStorage.getItem('voice-review-26-v1')||'{}');
 const rootEl=document.getElementById('items');
-function save(){localStorage.setItem('voice-review-26-v1',JSON.stringify(stored));const values=Object.values(stored);document.getElementById('progress').textContent=values.filter(x=>x.decision&&x.decision!=='pending').length+' / '+audit.entries.length+' 判定済み';}
+function save(){localStorage.setItem('voice-review-26-v1',JSON.stringify(stored));const values=audit.entries.map(x=>stored[x.number]?.decision||'pending');const confirmed=values.filter(x=>x==='match'||x==='misread').length;const unclear=values.filter(x=>x==='unclear').length;const incorrect=values.filter(x=>x==='misread').length;document.getElementById('progress').textContent=confirmed+' / '+audit.entries.length+' 判定確定（判定不能 '+unclear+'件／再収録候補 '+incorrect+'件）';}
 for(const item of audit.entries){
  const section=document.createElement('article'), heading=document.createElement('h2');
  heading.textContent='#'+item.number+' '+item.category;
@@ -43,7 +43,10 @@ for(const item of audit.entries){
 }
 save();
 document.getElementById('export').addEventListener('click',()=>{
- const json=JSON.stringify({source:'20261015 audio-review-26',reviewed_at:new Date().toISOString(),results:stored},null,2);
+ const decisions=audit.entries.map(x=>stored[x.number]?.decision||'pending');
+ const complete=decisions.every(x=>x==='match'||x==='misread');
+ const noRerecord=decisions.every(x=>x==='match');
+ const json=JSON.stringify({source:'20261015 audio-review-26',reviewed_at:new Date().toISOString(),adjudication_complete:complete,audio_issues_resolved:noRerecord,results:stored},null,2);
  const anchor=document.createElement('a');anchor.href=URL.createObjectURL(new Blob([json],{type:'application/json'}));anchor.download='mitsukotoba-voice-content-review-26.json';anchor.click();URL.revokeObjectURL(anchor.href);
 });
 </script></body></html>
