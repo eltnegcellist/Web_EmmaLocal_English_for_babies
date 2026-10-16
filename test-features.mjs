@@ -143,6 +143,21 @@ assert.notEqual(
   canonicalMoonshineModelAssetKey('https://download.example/model/small-streaming-ja/rev2/encoder.ort'),
   'model revision path changes must not reuse old cache entries'
 );
+
+// The auto-reply toggle is a setting, never a control below Emma.
+{
+  const ui = new JSDOM(readFileSync(new URL('./preview-emma.html',import.meta.url),'utf8')).window.document;
+  const toggle=ui.getElementById('autoRespond');
+  assert(toggle, 'auto-reply preference must still exist');
+  assert(toggle.closest('#settingsScreen'),'auto-reply preference belongs in Settings');
+  assert.equal(ui.querySelector('#homeScreen .auto-reply-card'),null,'home must not show auto-reply controls');
+  assert.equal(ui.querySelectorAll('#autoRespond').length,1,'single saved auto-reply preference');
+  const css=readFileSync(new URL('./preview-emma.css',import.meta.url),'utf8');
+  assert(css.includes('.reply-topic::before'),'topic chip should have a subtle decorative accent');
+  assert(css.includes('.emma-bubble .reply-english'),'single English card must remain present');
+  assert(css.includes('.emma-bubble .reply-japanese'),'Japanese hint must remain in the same card');
+}
+
 assert.equal(topics.topics.length,22);
 assert.equal(topics.topics.reduce((count,topic)=>count+topic.phrases.length,0),110);
 for(const topic of topics.topics){
