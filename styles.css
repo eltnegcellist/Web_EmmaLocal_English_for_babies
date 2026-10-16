@@ -1207,3 +1207,25 @@ body{
 .switch input {inset:0;width:100%;height:100%;}
 #semanticPanel textarea {position:relative;z-index:1;pointer-events:auto;user-select:text;-webkit-user-select:text;touch-action:manipulation;min-height:110px;resize:vertical;}
 .semantic-compact-setting small {font-size:.74rem;}
+
+
+/* Emma-first conversation: preserve the existing full-size animated avatar.
+   Parents can glance at all three English sentences without chat bubbles. */
+#homeScreen .conversation{display:block;margin-top:8px}
+#homeScreen .conversation.hidden{display:none!important}
+#homeScreen .emma-bubble{
+  justify-self:stretch;width:100%;border-radius:18px;padding:10px 12px;
+  background:rgba(255,255,255,.83);border:1px solid rgba(111,77,176,.12);
+  box-shadow:none;color:var(--on-surface)
+}
+#homeScreen .reply-topic{
+  font-size:.7rem;line-height:1.3;font-weight:700;color:var(--primary);
+  margin-bottom:5px;text-align:left
+}
+#homeScreen .emma-bubble .reply-english{
+  font-size:.88rem;line-height:1.38;font-weight:650;overflow-wrap:anywhere
+}
+#homeScreen .emma-bubble .reply-japanese{
+  margin-top:5px;font-size:.72rem;line-height:1.35;
+  color:var(--on-surface-variant);overflow-wrap:anywhere
+}
