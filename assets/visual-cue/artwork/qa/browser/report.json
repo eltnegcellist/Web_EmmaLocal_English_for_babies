@@ -1,0 +1,49 @@
+{
+  "url": "http://127.0.0.1:8765/assets/visual-cue/artwork/preview.html",
+  "browser": "155.0.8059.80",
+  "checks": [
+    {
+      "name": "css-size-220",
+      "pass": true
+    },
+    {
+      "name": "css-size-256",
+      "pass": true
+    },
+    {
+      "name": "css-size-320",
+      "pass": true
+    },
+    {
+      "name": "pause-uses-posters",
+      "pass": true
+    },
+    {
+      "name": "resume-uses-animations",
+      "pass": true
+    },
+    {
+      "name": "reduced-motion-static",
+      "pass": true
+    },
+    {
+      "name": "filter-draft",
+      "pass": true
+    },
+    {
+      "name": "mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "58-cues-31-concepts",
+      "pass": true
+    },
+    {
+      "name": "all-images-decoded",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "badResponses": [],
+  "passed": true
+}

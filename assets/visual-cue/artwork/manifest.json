@@ -1,0 +1,1420 @@
+{
+  "schemaVersion": 1,
+  "nonRuntime": true,
+  "baseCommit": "03a5bcc",
+  "approval": "採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。",
+  "handoffSHA256": "73f04e328dc5aed60f810d6a3b4fcfa93f79e65030db2fb3c3b0c90165c6a700",
+  "assets": [
+    {
+      "id": "milk",
+      "primitive": "scene.milk",
+      "topic": "ミルク・哺乳瓶",
+      "kind": "illustration",
+      "illustration": "stills/milk.webp",
+      "animation": null,
+      "poster": "stills/milk.webp",
+      "loopMs": 0,
+      "source": "reference/artwork/approved/milk_bottle.webp",
+      "origin": "approved-design-direction",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "book",
+      "primitive": "scene.book",
+      "topic": "絵本",
+      "kind": "illustration",
+      "illustration": "stills/book.webp",
+      "animation": null,
+      "poster": "stills/book.webp",
+      "loopMs": 0,
+      "source": "reference/artwork/approved/picture_book.webp",
+      "origin": "approved-design-direction",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "hands",
+      "primitive": "scene.hands",
+      "topic": "手・拍手",
+      "kind": "illustration",
+      "illustration": "stills/hands.webp",
+      "animation": null,
+      "poster": "stills/hands.webp",
+      "loopMs": 0,
+      "source": "reference/artwork/approved/clapping_hands.webp",
+      "origin": "approved-design-direction",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "feet",
+      "primitive": "scene.feet",
+      "topic": "足",
+      "kind": "illustration",
+      "illustration": "stills/feet.webp",
+      "animation": null,
+      "poster": "stills/feet.webp",
+      "loopMs": 0,
+      "source": "reference/artwork/approved/kicking_feet.webp",
+      "origin": "approved-design-direction",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "既存の絵柄方向承認。今回の足首付き動画とは原画が異なる。",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "bath",
+      "primitive": "scene.bath",
+      "topic": "浴槽",
+      "kind": "illustration",
+      "illustration": "stills/bath.webp",
+      "animation": null,
+      "poster": "stills/bath.webp",
+      "loopMs": 0,
+      "source": "sources/generated/bath.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "diaper",
+      "primitive": "scene.care",
+      "topic": "おむつ",
+      "kind": "illustration",
+      "illustration": "stills/diaper.webp",
+      "animation": null,
+      "poster": "stills/diaper.webp",
+      "loopMs": 0,
+      "source": "sources/generated/diaper.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "toy",
+      "primitive": "scene.toy",
+      "topic": "おもちゃ",
+      "kind": "illustration",
+      "illustration": "stills/toy.webp",
+      "animation": null,
+      "poster": "stills/toy.webp",
+      "loopMs": 0,
+      "source": "sources/generated/toy.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "outdoor",
+      "primitive": "scene.outdoor",
+      "topic": "外・木",
+      "kind": "illustration",
+      "illustration": "stills/outdoor.webp",
+      "animation": null,
+      "poster": "stills/outdoor.webp",
+      "loopMs": 0,
+      "source": "sources/generated/outdoor.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "sun",
+      "primitive": "scene.weather",
+      "topic": "日差し",
+      "kind": "illustration",
+      "illustration": "stills/sun.webp",
+      "animation": null,
+      "poster": "stills/sun.webp",
+      "loopMs": 0,
+      "source": "sources/generated/sun.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "clothes",
+      "primitive": "scene.care",
+      "topic": "服",
+      "kind": "illustration",
+      "illustration": "stills/clothes.webp",
+      "animation": null,
+      "poster": "stills/clothes.webp",
+      "loopMs": 0,
+      "source": "reference/artwork/candidates/clothes.webp",
+      "origin": "handoff-candidate",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "rain",
+      "primitive": "scene.weather",
+      "topic": "雨",
+      "kind": "illustration",
+      "illustration": "stills/rain.webp",
+      "animation": null,
+      "poster": "stills/rain.webp",
+      "loopMs": 0,
+      "source": "reference/artwork/candidates/rain.webp",
+      "origin": "handoff-candidate",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "sleep",
+      "primitive": "scene.sleep",
+      "topic": "眠る・ベッド",
+      "kind": "illustration",
+      "illustration": "stills/sleep.webp",
+      "animation": null,
+      "poster": "stills/sleep.webp",
+      "loopMs": 0,
+      "source": "reference/artwork/candidates/sleep.webp",
+      "origin": "handoff-candidate",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "睡眠は就寝の物体表現。起床と同一素材で合格とはしない。",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "meal",
+      "primitive": "scene.meal",
+      "topic": "白いおかゆ",
+      "kind": "illustration",
+      "illustration": "stills/meal.webp",
+      "animation": null,
+      "poster": "stills/meal.webp",
+      "loopMs": 0,
+      "source": "reference/artwork/approved-style/meal_porridge.webp",
+      "origin": "design-direction-accepted",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "music",
+      "primitive": "scene.music",
+      "topic": "音楽・タンバリン",
+      "kind": "illustration",
+      "illustration": "stills/music.webp",
+      "animation": null,
+      "poster": "stills/music.webp",
+      "loopMs": 0,
+      "source": "sources/generated/music.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "hand-wave",
+      "primitive": "motion.hand",
+      "topic": "手を振る",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-wave.webp",
+      "poster": "posters/hand-wave.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/hand-wave.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "movingParts": [
+        "hand: wrist rotation"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "hand-clap",
+      "primitive": "motion.hand",
+      "topic": "拍手：両手が接触・離れる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-clap.webp",
+      "poster": "posters/hand-clap.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/hand-clap.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "接触位置と手の見え方は採用審査待ち。",
+      "movingParts": [
+        "left palm",
+        "right palm"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "kick",
+      "primitive": "motion.kick",
+      "topic": "キック：足首を支点に左右交互",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/kick.webp",
+      "poster": "posters/kick.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/foot.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "movingParts": [
+        "left foot at ankle",
+        "right foot at ankle"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "sip",
+      "primitive": "motion.sip",
+      "topic": "飲む：哺乳瓶を傾ける",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/sip.webp",
+      "poster": "posters/sip.webp",
+      "loopMs": 2988,
+      "source": "reference/artwork/approved/milk_bottle.webp",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "乳首と液面の自然さは人の確認が必要。",
+      "movingParts": [
+        "bottle tilt",
+        "horizontal milk surface"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "page",
+      "primitive": "motion.page",
+      "topic": "絵本：綴じ目を中心にページがめくれる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/page.webp",
+      "poster": "posters/page.webp",
+      "loopMs": 2988,
+      "source": "reference/artwork/approved/picture_book.webp",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "1枚を往復させるループ。背面はクリーム色。",
+      "movingParts": [
+        "right page"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "water-rain",
+      "primitive": "motion.water",
+      "topic": "雨粒が雲から落ちる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/water-rain.webp",
+      "poster": "posters/water-rain.webp",
+      "loopMs": 2988,
+      "source": "reference/artwork/candidates/rain.webp",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "movingParts": [
+        "rain drops"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "water-shower",
+      "primitive": "motion.water",
+      "topic": "シャワー：水が浴槽へ落ちる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/water-shower.webp",
+      "poster": "posters/water-shower.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/bath.png",
+        "reference/artwork/candidates/bath.webp"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "movingParts": [
+        "shower drops"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "water-splash",
+      "primitive": "motion.water",
+      "topic": "浴槽から水しぶき",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/water-splash.webp",
+      "poster": "posters/water-splash.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/bath.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "movingParts": [
+        "water splashes"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "spoon",
+      "primitive": "motion.spoon",
+      "topic": "白いおかゆ：すくう・上げる・戻す",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/spoon.webp",
+      "poster": "posters/spoon.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/meal-layers.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "空のスプーンを器に沈め、白いおかゆを載せて持ち上げる。器の手前壁で自然に隠す。",
+      "movingParts": [
+        "loaded spoon"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "notes",
+      "primitive": "motion.notes",
+      "topic": "音楽：拍に合わせて音符が動く",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/notes.webp",
+      "poster": "posters/notes.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/music.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "",
+      "movingParts": [
+        "three notes"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "peekaboo",
+      "primitive": "motion.peekaboo",
+      "topic": "いないいないばあ：布で隠す・見せる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/peekaboo.webp",
+      "poster": "posters/peekaboo.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/toy.png",
+        "sources/generated/cloth.png"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "note": "scene.familyの代替承認ではなく、玩具を隠す独立variant。",
+      "movingParts": [
+        "handkerchief"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "change-diaper",
+      "primitive": "motion.change",
+      "topic": "おむつ：留め具を開閉",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/change-diaper.webp",
+      "poster": "posters/change-diaper.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/diaper.png",
+      "status": "needs-review",
+      "readiness": "draft",
+      "note": "交換全体ではなく留め具の開閉。着替え・拭く・げっぷは未制作。",
+      "movingParts": [
+        "left fastening tab",
+        "right fastening tab"
+      ],
+      "verification": "qa/validation.json"
+    }
+  ],
+  "concepts": [
+    {
+      "primitive": "scene.bath",
+      "kind": "illustration",
+      "assetIds": [
+        "bath"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.milk",
+      "kind": "illustration",
+      "assetIds": [
+        "milk"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.care",
+      "kind": "illustration",
+      "assetIds": [
+        "diaper",
+        "clothes"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.hands",
+      "kind": "illustration",
+      "assetIds": [
+        "hands"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.feet",
+      "kind": "illustration",
+      "assetIds": [
+        "feet"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.book",
+      "kind": "illustration",
+      "assetIds": [
+        "book"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.toy",
+      "kind": "illustration",
+      "assetIds": [
+        "toy"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.outdoor",
+      "kind": "illustration",
+      "assetIds": [
+        "outdoor"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.weather",
+      "kind": "illustration",
+      "assetIds": [
+        "sun",
+        "rain"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.meal",
+      "kind": "illustration",
+      "assetIds": [
+        "meal"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.tummy",
+      "kind": "illustration",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "赤ちゃんの体を描かずに「おなか」を一義的に示す物体が未確定。抽象記号で代用せず構図レビュー待ち。"
+    },
+    {
+      "primitive": "scene.music",
+      "kind": "illustration",
+      "assetIds": [
+        "music"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.sleep",
+      "kind": "illustration",
+      "assetIds": [
+        "sleep"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "scene.family",
+      "kind": "illustration",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "クマ＋ハートは意味不明瞭で再制作対象。人物なしの家族・抱っこ構図は未確定。"
+    },
+    {
+      "primitive": "motion.sip",
+      "kind": "animation",
+      "assetIds": [
+        "sip"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "motion.water",
+      "kind": "animation",
+      "assetIds": [
+        "water-rain",
+        "water-shower",
+        "water-splash"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "motion.hand",
+      "kind": "animation",
+      "assetIds": [
+        "hand-wave",
+        "hand-clap"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "拍手・手振りの候補。指の開閉・握る・数える・タップ・指の独立動作は未制作。"
+    },
+    {
+      "primitive": "motion.kick",
+      "kind": "animation",
+      "assetIds": [
+        "kick"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "motion.page",
+      "kind": "animation",
+      "assetIds": [
+        "page"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "motion.change",
+      "kind": "animation",
+      "assetIds": [
+        "change-diaper"
+      ],
+      "status": "needs-review",
+      "readiness": "draft",
+      "reason": "おむつ留め具は試作。交換全体、着替え、拭く、げっぷは未完成。"
+    },
+    {
+      "primitive": "motion.hug",
+      "kind": "animation",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "ハート点滅・クマの上下動は不採用。人物描写が必要なため指示書に従いレビュー待ち。"
+    },
+    {
+      "primitive": "motion.peekaboo",
+      "kind": "animation",
+      "assetIds": [
+        "peekaboo"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "motion.spoon",
+      "kind": "animation",
+      "assetIds": [
+        "spoon"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "motion.notes",
+      "kind": "animation",
+      "assetIds": [
+        "notes"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。variant単位の未完はcueCoverageを参照。"
+    },
+    {
+      "primitive": "emma.neutral",
+      "kind": "avatar-state",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "evaluation-only",
+      "existingFile": "assets/emma-face/emma-face-idle-open.svg",
+      "reason": "待機表情は再利用候補。"
+    },
+    {
+      "primitive": "emma.smile",
+      "kind": "avatar-state",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "evaluation-only",
+      "existingFile": null,
+      "reason": "既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。"
+    },
+    {
+      "primitive": "emma.calm",
+      "kind": "avatar-state",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "evaluation-only",
+      "existingFile": "assets/emma-face/emma-face-idle-closed.svg",
+      "reason": "目閉じは既存。安心・落ち着きの意味一致は要審査。"
+    },
+    {
+      "primitive": "emma.celebrate",
+      "kind": "avatar-state",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "evaluation-only",
+      "existingFile": null,
+      "reason": "既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。"
+    },
+    {
+      "primitive": "emma.listen",
+      "kind": "avatar-state",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "evaluation-only",
+      "existingFile": null,
+      "reason": "既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。"
+    },
+    {
+      "primitive": "emma.ask",
+      "kind": "avatar-state",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "evaluation-only",
+      "existingFile": null,
+      "reason": "既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。"
+    },
+    {
+      "primitive": "emma.invite",
+      "kind": "avatar-state",
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "evaluation-only",
+      "existingFile": null,
+      "reason": "既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。"
+    }
+  ],
+  "cueCoverage": [
+    {
+      "cueId": "action.burp",
+      "primitives": [
+        "scene.tummy",
+        "motion.change"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "げっぷ動作は未制作。おむつの動きを流用不可。"
+    },
+    {
+      "cueId": "action.clap",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "assetIds": [
+        "hand-clap"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.count",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "指を順に伸ばす連続姿勢未制作。"
+    },
+    {
+      "cueId": "action.dress",
+      "primitives": [
+        "scene.care",
+        "motion.change"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "服は静止のみ。着替え動作未制作。"
+    },
+    {
+      "cueId": "action.eat",
+      "primitives": [
+        "scene.meal",
+        "motion.spoon"
+      ],
+      "assetIds": [
+        "spoon"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.hug",
+      "primitives": [
+        "scene.family",
+        "motion.hug"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "ハート点滅・クマの上下動は不採用。人物描写が必要なため指示書に従いレビュー待ち。"
+    },
+    {
+      "cueId": "action.kick",
+      "primitives": [
+        "scene.feet",
+        "motion.kick"
+      ],
+      "assetIds": [
+        "kick"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.open-close",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "指の開閉姿勢未制作。"
+    },
+    {
+      "cueId": "action.peekaboo",
+      "primitives": [
+        "scene.family",
+        "motion.peekaboo"
+      ],
+      "assetIds": [
+        "peekaboo"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "玩具を布で隠すvariant。計画のscene.familyは未制作、家族表現を代替承認したものではない。"
+    },
+    {
+      "cueId": "action.read",
+      "primitives": [
+        "scene.book",
+        "motion.page"
+      ],
+      "assetIds": [
+        "page"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.sing",
+      "primitives": [
+        "scene.music",
+        "motion.notes"
+      ],
+      "assetIds": [
+        "notes"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.sip",
+      "primitives": [
+        "scene.milk",
+        "motion.sip"
+      ],
+      "assetIds": [
+        "sip"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.sleep",
+      "primitives": [
+        "scene.sleep",
+        "emma.calm"
+      ],
+      "assetIds": [
+        "sleep"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.splash",
+      "primitives": [
+        "scene.bath",
+        "motion.water"
+      ],
+      "assetIds": [
+        "water-splash"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.squeeze",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "握る姿勢と対象未制作。"
+    },
+    {
+      "cueId": "action.tap",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "タップ接触動作未制作。雨と混同しない。"
+    },
+    {
+      "cueId": "action.turn-page",
+      "primitives": [
+        "scene.book",
+        "motion.page"
+      ],
+      "assetIds": [
+        "page"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.wake",
+      "primitives": [
+        "scene.sleep",
+        "emma.smile"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "眠るベッドを起床の動作として流用不可。"
+    },
+    {
+      "cueId": "action.wash",
+      "primitives": [
+        "scene.bath",
+        "motion.water"
+      ],
+      "assetIds": [
+        "water-shower"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.wave",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "assetIds": [
+        "hand-wave"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "action.wiggle",
+      "primitives": [
+        "scene.hands",
+        "motion.hand"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "指の独立した動き未制作。"
+    },
+    {
+      "cueId": "action.wipe",
+      "primitives": [
+        "scene.care",
+        "motion.change"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "拭く部品と接触対象が未確定。"
+    },
+    {
+      "cueId": "attention.listen",
+      "primitives": [
+        "emma.listen"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "attention.look",
+      "primitives": [
+        "emma.listen"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "dialogue.finish",
+      "primitives": [
+        "emma.celebrate"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "dialogue.finish-check",
+      "primitives": [
+        "emma.ask"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "dialogue.inquiry",
+      "primitives": [
+        "emma.ask"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "dialogue.invitation",
+      "primitives": [
+        "emma.invite"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "dialogue.pause",
+      "primitives": [
+        "emma.calm"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "dialogue.repeat",
+      "primitives": [
+        "emma.invite"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "dialogue.start",
+      "primitives": [
+        "emma.invite"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "emma.neutral",
+      "primitives": [
+        "emma.neutral"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "observed.cry",
+      "primitives": [
+        "emma.calm"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "observed.smile",
+      "primitives": [
+        "emma.smile"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "observed.voice",
+      "primitives": [
+        "emma.listen"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "social.achievement",
+      "primitives": [
+        "emma.celebrate"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "social.affection",
+      "primitives": [
+        "emma.smile"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "social.care",
+      "primitives": [
+        "emma.calm"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "social.effort",
+      "primitives": [
+        "emma.calm"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "social.encouragement",
+      "primitives": [
+        "emma.celebrate"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "social.greeting",
+      "primitives": [
+        "emma.smile"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "social.praise",
+      "primitives": [
+        "emma.celebrate"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "social.reassurance",
+      "primitives": [
+        "emma.calm"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "Emma状態の評価のみ。アプリ統合・意味承認は未実施。"
+    },
+    {
+      "cueId": "subject.bath",
+      "primitives": [
+        "scene.bath"
+      ],
+      "assetIds": [
+        "bath"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.book",
+      "primitives": [
+        "scene.book"
+      ],
+      "assetIds": [
+        "book"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.clothes",
+      "primitives": [
+        "scene.care"
+      ],
+      "assetIds": [
+        "clothes"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.diaper",
+      "primitives": [
+        "scene.care"
+      ],
+      "assetIds": [
+        "diaper"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.drink",
+      "primitives": [
+        "scene.milk"
+      ],
+      "assetIds": [
+        "milk"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.feet",
+      "primitives": [
+        "scene.feet"
+      ],
+      "assetIds": [
+        "feet"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.food",
+      "primitives": [
+        "scene.meal"
+      ],
+      "assetIds": [
+        "meal"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.hands",
+      "primitives": [
+        "scene.hands"
+      ],
+      "assetIds": [
+        "hands"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.milk",
+      "primitives": [
+        "scene.milk"
+      ],
+      "assetIds": [
+        "milk"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.music",
+      "primitives": [
+        "scene.music"
+      ],
+      "assetIds": [
+        "music"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.outside",
+      "primitives": [
+        "scene.outdoor"
+      ],
+      "assetIds": [
+        "outdoor"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.rain",
+      "primitives": [
+        "scene.weather"
+      ],
+      "assetIds": [
+        "rain",
+        "water-rain"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.sun",
+      "primitives": [
+        "scene.weather"
+      ],
+      "assetIds": [
+        "sun"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.toy",
+      "primitives": [
+        "scene.toy"
+      ],
+      "assetIds": [
+        "toy"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+    },
+    {
+      "cueId": "subject.tummy",
+      "primitives": [
+        "scene.tummy"
+      ],
+      "assetIds": [],
+      "status": "needs-review",
+      "readiness": "missing",
+      "reason": "赤ちゃんの体を描かずに「おなか」を一義的に示す物体が未確定。抽象記号で代用せず構図レビュー待ち。"
+    }
+  ]
+}
