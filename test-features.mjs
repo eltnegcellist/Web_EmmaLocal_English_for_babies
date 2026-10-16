@@ -8,6 +8,23 @@ import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhras
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './src/app-navigation.js';
 import { canonicalMoonshineModelAssetKey } from './src/vendor/moonshine/asset-downloader.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
+// Emma occupies the same large avatar panel. The former permanent name badge
+// is now the single live status chip, and ordinary spoken text appears only
+// in the compact English card.
+{
+  const markup=readFileSync(new URL('./preview-emma.html',import.meta.url),'utf8');
+  const app=readFileSync(new URL('./src/preview-emma-app.js',import.meta.url),'utf8');
+  const uiDom=new JSDOM(markup).window.document;
+  assert.equal(uiDom.getElementById('aiNameBadge'),null,'permanent Emma name badge must be removed');
+  assert(uiDom.getElementById('tutorialStatusTarget')?.closest('.avatar-wrap'),'voice state must occupy the old Emma name location');
+  assert.equal(uiDom.querySelectorAll('#statusTitle').length,1,'only one voice state title');
+  assert.equal(uiDom.querySelectorAll('#reply').length,1,'only one English reply block');
+  assert(uiDom.getElementById('reply').closest('#emmaBubble'),'reply belongs to compact card');
+  assert(uiDom.getElementById('statusDetail').classList.contains('hidden'),'status detail must start hidden');
+  assert(app.includes("ui.statusDetail.classList.toggle('hidden',!needsNotice)"),'normal status detail is hidden');
+  assert(!app.includes("setState('speaking','AIが話しています',text)"),'no second copy of the English speech');
+}
+
 // Guard against accidentally reviving Android/Full promotional UI on the standalone Web app.
 const publicHtml=readFileSync(new URL('./index.html',import.meta.url),'utf8');
 assert(!publicHtml.includes('Android版について'));
