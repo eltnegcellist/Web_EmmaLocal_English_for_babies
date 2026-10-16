@@ -22,6 +22,7 @@ const INTERACTIONS = {
   finish_check:['おわった？','もう終わりかな？'], care:['いたわる','少し休もうね。'],
   inquiry:['たずねる','どうしたのかな？'], reassurance:['安心','そばにいるよ。'],
   repeat:['もう一度','もう一回やってみる？'],
+  pause:['ひと休み','少し休もうね。'],
 };
 export function replyDisplayHint(route = '') {
   const parts = String(route || '').split(':');
