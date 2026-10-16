@@ -474,16 +474,7 @@
           </article>
         </section>
 
-        <article class="auto-reply-card">
-          <div>
-            <strong>自動で返事</strong>
-            <span>話し終わりを検出してAIが返します</span>
-          </div>
-          <label class="switch">
-            <input id="autoRespond" type="checkbox" checked />
-            <span></span>
-          </label>
-        </article>
+
       </div>
 
       <footer class="bottom-bar">
@@ -522,6 +513,15 @@
           </div>
           <button id="settingsAboutButton" class="text-button">英語学習に使える理由</button>
         </header>
+
+        <article class="card auto-reply-settings">
+          <h2>呼びかけの設定</h2>
+          <label class="toggle-line auto-respond-setting">
+            <span><strong>自動で返事</strong><small>話し終わりを検出してEmmaが返事をします</small></span>
+            <span class="switch"><input id="autoRespond" type="checkbox" checked aria-label="自動で返事" /><span></span></span>
+          </label>
+          <p class="small muted">オフの場合は、会話画面の「今すぐAIが返事する」で返答を開始できます。</p>
+        </article>
 
         <article class="card">
           <h2>会話履歴</h2>
