@@ -403,7 +403,6 @@ function bindEvents() {
   });
   ui.tutorialSkipButton?.addEventListener('click',finishTutorial);
   ui.tutorialPrimaryButton?.addEventListener('click',async()=>{
-    if(tutorialStep===2){finishTutorial();return;}
     if(tutorialStep!==0) return;
     unlockPlaybackAudioFromGesture();
     if(!tutorialIntroPlayed){
@@ -989,7 +988,6 @@ async function respondGenericallyToManualRequest() {
     processing=false;
     setBusy(false);
     await speakResponse(english,{entry:createHistoryEntry(sessionId,'',english,'generic')});
-    if(tutorialStep===2) finishTutorial();
   } catch(error) {
     processing=false;
     setBusy(false);
@@ -1279,8 +1277,8 @@ async function processTranscript(text,{manual=false,revision=null}={}) {
   processing=revision!==null;
   setBusy(revision!==null);
   await speakResponse(english,{entry:createHistoryEntry(sessionId,clean,english,response.scene),revision});
-  if(!isLiveTurn(revision,epoch))return;
-  if(tutorialStep===2 && tutorialUserSpoke)finishTutorial();
+  // Do not complete the tutorial here: the speculative playback commit resets
+  // turnRevisions, so isLiveTurn(revision) is no longer true after playback.
 }
 
 async function releaseMicrophoneForEmmaVoice() {
@@ -1376,6 +1374,13 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
       pumpAudio(requestId);
     }
     await done;
+    // Complete step 3 only after Emma's recorded audio actually finished.
+    // A speculative turn's revision is intentionally reset when playback
+    // commits, so the caller cannot reliably pass isLiveTurn(revision) here.
+    // Epoch + decoded-playback checks prevent stop/cancel/empty audio from
+    // incorrectly marking the tutorial complete.
+    if(epoch===conversationEpoch && startedPlayback && queue.next>0 &&
+       tutorialStep===2 && tutorialUserSpoke) finishTutorial();
     lastTtsTotalMillis=Math.round(diagnosticNow()-ttsRequestStartedAt);
     updateWebTimingDiagnostics();
   }catch(error){
@@ -1636,10 +1641,8 @@ function renderTutorial(){
   }else{
     ui.tutorialTitle.textContent='実際に話しかけてみよう';
     ui.tutorialBody.textContent='普段どおり日本語で赤ちゃんへ話しかけてください。話し終わったら、必要に応じて光っている「今すぐAIが返事する」を押すと、その時点までの言葉をもとにAIが返事します。「自動で返事」がオンなら、押さなくても話し終わりを検出して自動で返事します。';
-    ui.tutorialHint.textContent='自動応答で進みます。うまく進まない場合も、この画面で完了できます。';
+    ui.tutorialHint.textContent='Emmaの英語の返答が終わると自動的に完了します。';
     ui.tutorialHint.classList.remove('hidden');
-    ui.tutorialPrimaryButton.textContent='チュートリアルを完了';
-    ui.tutorialPrimaryButton.classList.remove('hidden');
   }
   if(tutorialStep===0) {
     tutorialTarget()?.scrollIntoView({block:'center',behavior:'auto'});
