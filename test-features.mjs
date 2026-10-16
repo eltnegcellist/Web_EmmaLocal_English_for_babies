@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import vm from 'node:vm';
 import { indexedDB } from 'fake-indexeddb';
 import { JSDOM } from 'jsdom';
 import { ConversationHistory, createHistoryEntry, historyEnabled } from './src/conversation-history.js';
@@ -13,6 +14,41 @@ assert(!publicHtml.includes('Android版について'));
 assert(!publicHtml.includes('Android版を見る'));
 assert(!publicHtml.includes('android-full-card'));
 assert(!publicHtml.includes('Android_English_character_for_baby'));
+
+const previewHtml=readFileSync(new URL('./preview-emma.html',import.meta.url),'utf8');
+const previewCode=readFileSync(new URL('./src/preview-emma-app.js',import.meta.url),'utf8');
+assert(previewHtml.includes('src="./src/preview-emma-app.js'), 'trial must load an isolated app entrypoint');
+assert(previewHtml.includes('id="replyTopic"') && previewHtml.includes('id="replyJapanese"'));
+assert(!previewHtml.includes('id="parentBubble"'), 'do not display parent ASR transcript');
+assert(previewCode.includes("tutorialStep=1;\n        tutorialIntroPlayed=true;"), 'COI reload must restore the tutorial');
+assert(previewCode.includes("if(tutorialStep===2){finishTutorial();return;}"), 'tutorial needs an explicit completion control');
+const captureStart=previewCode.indexOf('function handleCapturedUtterance(audio) {');
+const captureEnd=previewCode.indexOf('\nfunction handleSpeechStartDuringPreparation()',captureStart);
+assert(captureStart>0 && captureEnd>captureStart, 'trial capture handler should exist');
+const captureFunction=previewCode.slice(captureStart,captureEnd);
+function probeTutorialCapture(autoRespond) {
+  const transcriptCalls=[];
+  const manuallyShown=[];
+  const state={
+    running:true,preparingConversation:false,speaking:false,tutorialStep:2,tutorialUserSpoke:false,
+    pendingUtterance:null,processing:false,
+    ui:{autoRespond:{checked:autoRespond},manualReplyButton:{classList:{remove:v=>manuallyShown.push(v)}}},
+    turnRevisions:{append:(audio)=>({version:1,audio})},
+    transcribeUtterance:(audio,opts)=>{transcriptCalls.push({audio,opts});},
+    setState:()=>{},scheduleTutorialSpotlightSync:()=>{},
+  };
+  vm.runInNewContext(captureFunction+'\nhandleCapturedUtterance([1,2]);',state);
+  return {state,transcriptCalls,manuallyShown};
+}
+const automatic=probeTutorialCapture(true);
+assert.equal(automatic.state.tutorialUserSpoke,true);
+assert.equal(automatic.transcriptCalls.length,1,'automatic tutorial reply must reach speech recognition');
+assert.equal(automatic.state.pendingUtterance,null,'automatic tutorial reply must not be held for manual confirmation');
+const manual=probeTutorialCapture(false);
+assert.equal(manual.transcriptCalls.length,0,'manual preference must remain manual');
+assert.equal(manual.state.pendingUtterance.kind,'audio');
+assert.equal(manual.manuallyShown.length,1);
+
 // Guard the public callout labels as well as the removed Android promotion.
 assert(publicHtml.includes('id="mainButton" class="primary-button">呼びかけを始める</button>'));
 assert(publicHtml.includes('id="stopButton" class="outline-button hidden">呼びかけを止める</button>'));
