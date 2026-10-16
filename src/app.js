@@ -262,7 +262,7 @@ function bindEvents() {
   document.addEventListener('pointerdown',()=>{ if(!audioUnlocked) unlockPlaybackAudioFromGesture(); },{capture:true,passive:true});
   ui.prepareEmmaButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); prepareFirstRun(); });
 
-  ui.aboutButton.addEventListener('click',()=>openAbout('home'));
+  // About remains available in Settings; the top-right shortcut now opens "押して聞く".
   ui.settingsAboutButton.addEventListener('click',()=>openAbout('settings'));
   ui.onboardingAboutButton.addEventListener('click',()=>openAbout('onboarding'));
   ui.aboutBackButton.addEventListener('click',backFromSubpage);
@@ -920,7 +920,7 @@ async function stopEmma() {
   ui.mainButton.classList.remove('hidden');
   ui.mainButton.disabled=false;
   setBusy(false);
-  setState('idle','みつことばはおやすみ中','「呼びかけを始める」を押すと、また呼びかけられます。');
+  setState('idle','Emmaはおやすみ中','下の大きな「呼びかけを始める」を押すと再開できます。');
 }
 
 function handleCapturedUtterance(audio) {
@@ -1703,6 +1703,7 @@ function setState(state,title,detail) {
   renderAvatarFrame();
   ui.statusTitle.textContent=title;
   ui.statusDetail.textContent=detail;
+  ui.homeScreen.dataset.session=running?'active':'stopped';
   // Keep the status inside Emma's existing name-badge location.
   // Only surface secondary detail when the user needs to act (errors /
   // audio unlock), never duplicate the spoken English in a second row.
@@ -1743,7 +1744,7 @@ function showConversation(parentText,emmaText,route='generic') {
   const hint=replyDisplayHint(route);
   ui.replyTopic.textContent=hint.topicLabel;
   ui.reply.textContent=emmaText;
-  ui.replyJapanese.textContent=`ことばのヒント：${hint.japaneseNote}`;
+  ui.replyJapanese.textContent=hint.japaneseNote;
 }
 
 function onRuntimeError(message) {
