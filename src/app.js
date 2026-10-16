@@ -1717,6 +1717,7 @@ function showConversation(parentText,emmaText,route='generic') {
   const hasReply=Boolean(emmaText);
   ui.conversation.classList.toggle('hidden',!hasReply);
   ui.emmaBubble.classList.toggle('hidden',!hasReply);
+  ui.replyTopic.classList.toggle('hidden',!hasReply);
   if(!hasReply)return;
   const hint=replyDisplayHint(route);
   ui.replyTopic.textContent=hint.topicLabel;
