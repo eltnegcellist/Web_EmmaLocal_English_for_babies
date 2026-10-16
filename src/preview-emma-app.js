@@ -1370,7 +1370,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
       speaking=true;
       startedPlayback=true;
       queue.deferPlayback=false;
-      setState('speaking','AIが話しています',text);
+      setState('speaking','AIが話しています','赤ちゃんへ英語で話しかけています。');
       pumpAudio(requestId);
     }
     await done;
@@ -1707,6 +1707,13 @@ function setState(state,title,detail) {
   renderAvatarFrame();
   ui.statusTitle.textContent=title;
   ui.statusDetail.textContent=detail;
+  // Keep the status inside Emma's existing name-badge location.
+  // Only surface secondary detail when the user needs to act (errors /
+  // audio unlock), never duplicate the spoken English in a second row.
+  const needsNotice=state==='error' ||
+    (state==='speaking' && /再開|タップ/.test(title)) ||
+    (state==='idle' && /失敗|できません/.test(title));
+  ui.statusDetail.classList.toggle('hidden',!needsNotice);
   ui.statusTitle.className=`status-chip status-${state}`;
   if(tutorialStep!==null) scheduleTutorialSpotlightSync();
 }
@@ -1786,7 +1793,7 @@ function stripAiSpeakerLabel(text) {
 function updateAiNameUi() {
   const name='Emma';
   if(ui.aiBubbleLabel) ui.aiBubbleLabel.textContent=name;
-  if(ui.aiNameBadge) ui.aiNameBadge.textContent=name;
+  // The former name badge now displays the live voice recognition / speaking status.
   if(ui.aiAvatarFace) ui.aiAvatarFace.setAttribute('aria-label',`${name}（みつことば AI）`);
   if(ui.onboardingAiIntro) {
     ui.onboardingAiIntro.innerHTML =
