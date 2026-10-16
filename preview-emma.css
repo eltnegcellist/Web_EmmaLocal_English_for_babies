@@ -1266,3 +1266,46 @@ body{
   color:var(--primary);background:rgba(111,77,176,.055);
   border:1px solid rgba(111,77,176,.22)
 }
+
+
+/* Emma-first warm conversation ornamentation. Keep the face full-size and
+   decorate the ONE supporting reply panel rather than adding stacked cards. */
+#homeScreen .avatar-wrap>.reply-topic {
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 12px 7px 10px;
+  border:1.5px solid rgba(144,96,187,.34);
+  border-radius:999px;
+  background:linear-gradient(115deg,rgba(255,249,255,.98),rgba(238,224,255,.96));
+  color:#7043a2;
+  font-weight:800;font-size:.73rem;
+  box-shadow:0 4px 13px rgba(112,67,162,.10);
+}
+#homeScreen .avatar-wrap>.reply-topic::before{
+  content:"✦";color:#df8ab4;font-size:.86rem;line-height:1
+}
+#homeScreen .emma-bubble{
+  position:relative;overflow:hidden;
+  border:1.5px solid rgba(165,123,204,.3);
+  border-radius:22px;
+  background:linear-gradient(136deg,#fffefd 6%,#fff7fc 63%,#f8f2ff 100%);
+  box-shadow:0 5px 16px rgba(130,91,174,.09),inset 0 1px 0 rgba(255,255,255,.95);
+  padding:12px 15px 11px;
+}
+#homeScreen .emma-bubble::before{
+  content:"✦";position:absolute;right:12px;top:6px;
+  font-size:.8rem;color:#deabc9;opacity:.72;pointer-events:none
+}
+#homeScreen .emma-bubble .reply-english{
+  position:relative;z-index:1;
+  padding-right:12px;font-size:.90rem;line-height:1.43;
+  font-weight:670;color:#44304f;letter-spacing:.005em;
+}
+#homeScreen .emma-bubble .reply-japanese{
+  margin-top:8px;padding-top:7px;
+  border-top:1px dashed rgba(172,128,198,.30);
+  color:#826d91;font-size:.73rem;line-height:1.4;
+}
+#settingsScreen .auto-respond-setting{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#settingsScreen .auto-respond-setting>span:first-child{display:grid;gap:4px;flex:1;min-width:0}
+#settingsScreen .auto-respond-setting small{font-weight:400;color:var(--on-surface-variant);font-size:.78rem}
+#settingsScreen .auto-respond-setting .switch{flex:none}
