@@ -231,6 +231,12 @@ function initUi() {
       sessionStorage.removeItem('emma_coi_manual_start');
       showScreen('home',{autoStart:false});
       setState('idle','マイクの準備ができました','「呼びかけを始める」を押すと、マイクの許可を確認して呼びかけを始めます。');
+      if(localStorage.getItem(STORAGE.tutorialDone)!=='true') {
+        tutorialStep=1;
+        tutorialIntroPlayed=true;
+        tutorialUserSpoke=false;
+        renderTutorial();
+      }
     } else if(localStorage.getItem(STORAGE.tutorialDone)==='true') {
       showScreen('home');
     } else {
@@ -395,6 +401,7 @@ function bindEvents() {
   });
   ui.tutorialSkipButton?.addEventListener('click',finishTutorial);
   ui.tutorialPrimaryButton?.addEventListener('click',async()=>{
+    if(tutorialStep===2){finishTutorial();return;}
     if(tutorialStep!==0) return;
     unlockPlaybackAudioFromGesture();
     if(!tutorialIntroPlayed){
@@ -921,11 +928,13 @@ function handleCapturedUtterance(audio) {
   if(!running||preparingConversation||speaking)return;
   if(tutorialStep===2){
     tutorialUserSpoke=true;
-    pendingUtterance={kind:'audio',audio};
-    ui.manualReplyButton.classList.remove('hidden');
-    setState('understood','話し終わりを検出しました','画面下で光っている「今すぐAIが返事する」を押してください。');
-    scheduleTutorialSpotlightSync();
-    return;
+    if(!ui.autoRespond.checked) {
+      pendingUtterance={kind:'audio',audio};
+      ui.manualReplyButton.classList.remove('hidden');
+      setState('understood','話し終わりを検出しました','「今すぐAIが返事する」を押すと返事します。');
+      scheduleTutorialSpotlightSync();
+      return;
+    }
   }
   if(ui.autoRespond.checked){
     // An earlier speculative reply has already been invalidated at speech-start.
@@ -1623,8 +1632,10 @@ function renderTutorial(){
   }else{
     ui.tutorialTitle.textContent='実際に話しかけてみよう';
     ui.tutorialBody.textContent='普段どおり日本語で赤ちゃんへ話しかけてください。話し終わったら、必要に応じて光っている「今すぐAIが返事する」を押すと、その時点までの言葉をもとにAIが返事します。「自動で返事」がオンなら、押さなくても話し終わりを検出して自動で返事します。';
-    ui.tutorialHint.textContent='↓ 必要なら「今すぐAIが返事する」を押す';
+    ui.tutorialHint.textContent='自動応答で進みます。うまく進まない場合も、この画面で完了できます。';
     ui.tutorialHint.classList.remove('hidden');
+    ui.tutorialPrimaryButton.textContent='チュートリアルを完了';
+    ui.tutorialPrimaryButton.classList.remove('hidden');
   }
   if(tutorialStep===0) {
     tutorialTarget()?.scrollIntoView({block:'center',behavior:'auto'});
