@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {summarizeVoiceReview} from './scripts/audit-voice-review-26.mjs';
+import {readFile} from 'node:fs/promises';
+
+const ledger=JSON.parse(await readFile(new URL('./research/voice-content-26-review-20261015.json',import.meta.url),'utf8'));
+assert.equal(ledger.entries.length,26);
+const allMatch={results:Object.fromEntries(ledger.entries.map(e=>[e.number,
+  {expected:e.expected,decision:'match',note:''}]))};
+let output=summarizeVoiceReview(ledger,allMatch);
+assert.equal(output.total,26);
+assert.equal(output.match,26);
+assert.equal(output.adjudication_complete,true);
+assert.equal(output.audio_issues_resolved,true);
+const partial=structuredClone(allMatch);
+partial.results[1].decision='unclear';
+delete partial.results[2];
+partial.results[3].decision='misread';
+output=summarizeVoiceReview(ledger,partial);
+assert.equal(output.match,23);
+assert.equal(output.unclear,1);
+assert.equal(output.pending,1);
+assert.equal(output.misread,1);
+assert.deepEqual(output.rerecord_clip_numbers,[3]);
+assert.equal(output.adjudication_complete,false);
+assert.equal(output.audio_issues_resolved,false);
+assert.throws(()=>summarizeVoiceReview(ledger,{results:{...allMatch.results,999:{decision:'match'}}}),/Unknown/);
+const inconsistent=structuredClone(allMatch);
+inconsistent.results[1].expected='Wrong clip';
+assert.throws(()=>summarizeVoiceReview(ledger,inconsistent),/Mismatched/);
+assert.ok(!JSON.stringify(output).includes(ledger.entries[0].expected));
+console.log('26-clip human verdict gate: synthetic tests PASS (not human listening)');
