@@ -1722,7 +1722,7 @@ function showConversation(parentText,emmaText,route='generic') {
   const hint=replyDisplayHint(route);
   ui.replyTopic.textContent=hint.topicLabel;
   ui.reply.textContent=emmaText;
-  ui.replyJapanese.textContent=hint.japaneseNote;
+  ui.replyJapanese.textContent=`内容の目安：${hint.japaneseNote}`;
 }
 
 function onRuntimeError(message) {
