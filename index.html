@@ -450,6 +450,7 @@
 <path fill="var(--blush, #e00000)" d="M512,950 C489,930 462,946 468,969 C473,986 495,997 512,1007 C529,997 551,986 556,969 C562,946 535,930 512,950 Z" />
 </svg>
 </div>
+            <div id="visualCuePicture" class="visual-cue-picture hidden" role="img" aria-hidden="true"></div>
             <div class="thinking-dots"><span></span><span></span><span></span></div>
           </div>
           <div id="aiNameBadge" class="ai-name-badge">Emma</div>
@@ -539,6 +540,13 @@
         
         <article class="card">
           <h2>見た目</h2>
+          <label>会話画面の表示
+            <select id="visualCueDisplayMode">
+              <option value="emma">Emmaの顔を表示（標準）</option>
+              <option value="illustration">話題イラストに置き換える</option>
+            </select>
+          </label>
+          <p class="small muted">親の呼びかけに応じて、Emmaと同じ場所にイラストを表示します。対応画像がない話題・読み込みできない場合はEmmaに戻ります。</p>
           <label>キャラクターの色
             <select id="colorMode">
               <option value="soft">やさしい色</option>
@@ -785,6 +793,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261014-gender-settings-removed-r3"></script>
+  <script type="module" src="./src/app.js?v=20261016-visual-cue-face-option-r1"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@ import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette,
 import { EmmaMicrophone } from './audio-capture.js';
 import { MoonshineAsrClient } from './asr-client.js';
 import { TurnRevisions } from './turn-revisions.js';
+import { cueForReply, normalizeVisualCueMode, VISUAL_CUE_MODE_KEY, VISUAL_CUE_MODES, VISUAL_CUE_ASSET } from './visual-cue-display.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
@@ -24,7 +25,7 @@ const ui = {
   settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
   aboutBackButton:$('aboutBackButton'), onboardingAboutButton:$('onboardingAboutButton'),
   aiBubbleLabel:$('aiBubbleLabel'), aiNameBadge:$('aiNameBadge'),
-  aiAvatarFace:$('aiAvatarFace'), onboardingAiIntro:$('onboardingAiIntro'),
+  aiAvatarFace:$('aiAvatarFace'), visualCuePicture:$('visualCuePicture'), visualCueDisplayMode:$('visualCueDisplayMode'), onboardingAiIntro:$('onboardingAiIntro'),
   tutorialReplayButton:$('tutorialReplayButton'), tutorialOverlay:$('tutorialOverlay'), tutorialSpotlight:$('tutorialSpotlight'),
   tutorialCard:$('tutorialCard'), tutorialStepLabel:$('tutorialStepLabel'), tutorialTitle:$('tutorialTitle'),
   tutorialBody:$('tutorialBody'), tutorialSkipButton:$('tutorialSkipButton'), tutorialPrimaryButton:$('tutorialPrimaryButton'), tutorialHint:$('tutorialHint'),
@@ -41,7 +42,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261014-gender-settings-removed-r3';
+const WEB_BUILD = '20261016-visual-cue-face-option-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -109,6 +110,9 @@ let avatarVisualState='idle';
 let avatarBlinkFrame='open';
 let avatarMouthLevel='small';
 let avatarBlinkTimer=null;
+let selectedVisualCue=null;
+let visualCueAtlasStatus='idle';
+let visualCueMode=VISUAL_CUE_MODES.EMMA;
 let tutorialStep=null;
 let tutorialIntroPlayed=false;
 let tutorialUserSpoke=false;
@@ -190,6 +194,9 @@ function initUi() {
   ui.vividPalette.value = colors.vivid;
   ui.softPalette.value = normalizeSoftPalette(localStorage.getItem(STORAGE.soft));
   ui.filledPalette.value = normalizeFilledPalette(localStorage.getItem(STORAGE.filled));
+  visualCueMode=normalizeVisualCueMode(localStorage.getItem(VISUAL_CUE_MODE_KEY));
+  ui.visualCueDisplayMode.value=visualCueMode;
+  if(visualCueMode===VISUAL_CUE_MODES.ILLUSTRATION)loadVisualCueAtlas();
   ui.keepAwake.checked = localStorage.getItem(STORAGE.keepAwake) !== 'false';
   ui.autoRespond.checked = localStorage.getItem(STORAGE.autoRespond) !== 'false';
   if(ui.endpointMode)ui.endpointMode.value=localStorage.getItem(STORAGE.endpointMode)==='legacy'?'legacy':'silero';
@@ -276,6 +283,12 @@ function bindEvents() {
     if(event.key==='Escape'&&!ui.noticeDialog.classList.contains('hidden')) closeNotice();
   });
 
+  ui.visualCueDisplayMode.addEventListener('change',()=>{
+    visualCueMode=normalizeVisualCueMode(ui.visualCueDisplayMode.value);
+    localStorage.setItem(VISUAL_CUE_MODE_KEY,visualCueMode);
+    if(visualCueMode===VISUAL_CUE_MODES.ILLUSTRATION)loadVisualCueAtlas();
+    renderVisualCue();
+  });
   ui.colorMode.addEventListener('change',()=>{
     localStorage.setItem(STORAGE.colorMode,ui.colorMode.value);
     applyAppearance();
@@ -888,6 +901,7 @@ async function prepareSemanticForConversation() {
 
 async function stopEmma() {
   conversationEpoch++;
+  setVisualCue(null);
   semanticPanel?.cancelPending();
   while(audioUnlockWaiters.length)audioUnlockWaiters.shift()?.();
   running=false;
@@ -946,6 +960,7 @@ function handleSpeechStartDuringPreparation(){
   processing=false;
   setBusy(false);
   ui.emmaBubble.classList.add('hidden');
+  setVisualCue(null);
   setState('endpoint','続きも聞いています…','返答の準備を中断し、続きのことばを聞いています。');
 }
 
@@ -972,6 +987,7 @@ async function respondGenericallyToManualRequest() {
     const response=semanticPanel.respondGeneric('');
     const english=stripAiSpeakerLabel(response.english);
     showConversation('',english);
+    setVisualCue(null);
     processing=false;
     setBusy(false);
     await speakResponse(english,{entry:createHistoryEntry(sessionId,'',english,'generic')});
@@ -1264,7 +1280,7 @@ async function processTranscript(text,{manual=false,revision=null}={}) {
   // while allowing the microphone/VAD to detect a continuation.
   processing=revision!==null;
   setBusy(revision!==null);
-  await speakResponse(english,{entry:createHistoryEntry(sessionId,clean,english,response.scene),revision});
+  await speakResponse(english,{entry:createHistoryEntry(sessionId,clean,english,response.scene),revision,visualCue:cueForReply(response)});
   if(!isLiveTurn(revision,epoch))return;
   if(tutorialStep===2 && tutorialUserSpoke)finishTutorial();
 }
@@ -1299,7 +1315,7 @@ async function restoreMicrophoneAfterEmmaVoice() {
   }
 }
 
-async function speakResponse(text,{entry=null,revision=null}={}) {
+async function speakResponse(text,{entry=null,revision=null,visualCue=null}={}) {
   const epoch=conversationEpoch;
   if(!ttsWorker)throw Error('AIの声がまだ準備されていません');
   const speculative=revision!==null;
@@ -1314,7 +1330,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
     micReleased=true;
   }
   if(!valid())return;
-  if(!speculative){speaking=true;startedPlayback=true;}
+  if(!speculative){setVisualCue(visualCue);speaking=true;startedPlayback=true;}
   const requestId=++requestSeq;
   const cacheKey=audioCacheKey(text);
   const ttsRequestStartedAt=diagnosticNow();
@@ -1357,6 +1373,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
       setBusy(false);
       speaking=true;
       startedPlayback=true;
+      setVisualCue(visualCue);
       queue.deferPlayback=false;
       setState('speaking','AIが話しています',text);
       pumpAudio(requestId);
@@ -1682,10 +1699,39 @@ function trimAudioSilence(buffer) {
   return trimmed;
 }
 
+// The illustration occupies exactly Emma's existing face region. No extra card,
+// animation system, classifier, network model or new speech-to-image mapping.
+function loadVisualCueAtlas(){
+  if(visualCueAtlasStatus!=='idle')return;
+  visualCueAtlasStatus='loading';
+  const image=new Image();
+  image.onload=()=>{visualCueAtlasStatus='ready';renderVisualCue();};
+  image.onerror=()=>{visualCueAtlasStatus='error';renderVisualCue();console.warn('Visual Cue atlas unavailable; showing Emma.');};
+  image.src=VISUAL_CUE_ASSET;
+}
+function setVisualCue(value){
+  selectedVisualCue=value;
+  renderVisualCue();
+}
+function renderVisualCue(){
+  const showIllustration=Boolean(ui.visualCuePicture && selectedVisualCue && visualCueMode===VISUAL_CUE_MODES.ILLUSTRATION && visualCueAtlasStatus==='ready');
+  ui.aiAvatarFace?.classList.toggle('hidden',showIllustration);
+  ui.visualCuePicture?.classList.toggle('hidden',!showIllustration);
+  ui.avatar?.classList.toggle('visual-cue-active',showIllustration);
+  if(showIllustration){
+    ui.visualCuePicture.style.backgroundPosition=selectedVisualCue.position;
+    ui.visualCuePicture.setAttribute('aria-label',selectedVisualCue.label);
+  }else if(ui.visualCuePicture){
+    ui.visualCuePicture.style.backgroundPosition='';
+    ui.visualCuePicture.removeAttribute('aria-label');
+  }
+}
+
 function setState(state,title,detail) {
   avatarVisualState=state;
   ui.avatar.className=`avatar state-${state}`;
   renderAvatarFrame();
+  renderVisualCue();
   ui.statusTitle.textContent=title;
   ui.statusDetail.textContent=detail;
   ui.statusTitle.className=`status-chip status-${state}`;
@@ -1724,6 +1770,7 @@ function showConversation(parentText,emmaText) {
 }
 
 function onRuntimeError(message) {
+  setVisualCue(null);
   processing=false;
   speaking=false;
   setBusy(false);

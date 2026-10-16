@@ -79,6 +79,11 @@ p{line-height:1.58}
   animation:avatarBob 3.8s ease-in-out infinite;
 }
 .emma-face{width:95%;height:95%;overflow:visible;filter:drop-shadow(0 10px 22px rgba(48,41,64,.08))}
+/* Same space as Emma: 2x2 transparent approved object illustrations. */
+.visual-cue-picture{width:95%;height:95%;background-image:url('./assets/visual-cue/approved/visual-cue-atlas.webp');background-size:200% 200%;background-repeat:no-repeat;background-position:0% 0%;filter:drop-shadow(0 8px 10px rgba(48,41,64,.08));}
+.avatar.visual-cue-active{animation:none}
+.avatar.visual-cue-active .listening-ring,.avatar.visual-cue-active .thinking-dots{display:none!important}
+@media(prefers-reduced-motion:reduce){.avatar.visual-cue-active,.visual-cue-picture{animation:none!important;transition:none!important}}
 .face-fill{fill:var(--face)}
 .face-outline{fill:none;stroke:var(--dark);stroke-width:3;opacity:.18}
 .head-accent{fill:none;stroke:var(--accent);stroke-width:13;stroke-linecap:round;opacity:.78}
