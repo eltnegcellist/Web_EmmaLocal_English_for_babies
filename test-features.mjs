@@ -8,6 +8,34 @@ import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhras
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './src/app-navigation.js';
 import { canonicalMoonshineModelAssetKey } from './src/vendor/moonshine/asset-downloader.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
+
+// Eight-point Emma-first UI regression: startup CTA, manual-first recording
+// controls, header play shortcut, no sparkle decoration, compact scroll,
+// accessible history checkbox and untranslated hint without visible heading.
+{
+  const doc=new JSDOM(readFileSync(new URL('./preview-emma.html',import.meta.url),'utf8')).window.document;
+  const code=readFileSync(new URL('./src/preview-emma-app.js',import.meta.url),'utf8');
+  const css=readFileSync(new URL('./preview-emma.css',import.meta.url),'utf8');
+  assert.equal(doc.querySelectorAll('#playButton').length,1,'play entry must be unique');
+  assert(doc.querySelector('#homeScreen .app-actions #playButton'),'play belongs in top-right shortcut');
+  assert.equal(doc.querySelector('#homeScreen .bottom-bar #playButton'),null,'play removed from bottom controls');
+  assert.equal(doc.querySelector('#aboutButton'),null,'header help shortcut replaced by play');
+  assert(doc.querySelector('#settingsAboutButton'),'research/about remains available in settings');
+  assert(doc.querySelector('#mainButton .start-cta-hint'),'idle calls to action must invite a first tap');
+  assert.equal(doc.querySelector('#homeScreen').dataset.session,'stopped');
+  assert(doc.querySelector('#manualReplyButton'),'manual reply should remain an explicit action');
+  assert(doc.querySelector('#stopButton'),'stop remains accessible');
+  assert(code.includes("ui.homeScreen.dataset.session=running?'active':'stopped'"),'CTA layout tracks running state');
+  assert(code.includes("Emmaはおやすみ中"),'Emma rather than app sleeps');
+  assert(code.includes('ui.replyJapanese.textContent=hint.japaneseNote;'),'Japanese hint displayed without prefix');
+  assert(css.includes('.emma-bubble::before{content:none!important;display:none!important}'),'Gemini-like sparkles must be suppressed');
+  assert(css.includes('.screen-content.home-content') && css.includes('132px'),'home padding must not reserve a huge blank scroll');
+  assert(css.includes('#manualReplyButton') && css.includes('grid-column:1'),'manual reply is emphasized');
+  assert(doc.querySelector('#settingsScreen label.history-save-toggle input#historyEnabled'),'history checkbox remains inside label');
+  assert.equal(doc.querySelector('#settingsScreen label.history-save-toggle')?.lastElementChild?.id,'historyEnabled','history checkbox belongs to the right of text');
+  assert(css.includes('.history-save-toggle input[type="checkbox"]'),'checkbox size must override generic full-width form inputs');
+}
+
 // Emma occupies the same large avatar panel. The former permanent name badge
 // is now the single live status chip, and ordinary spoken text appears only
 // in the compact English card.
