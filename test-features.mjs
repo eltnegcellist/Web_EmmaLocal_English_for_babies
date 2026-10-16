@@ -21,7 +21,8 @@ assert(previewHtml.includes('src="./src/preview-emma-app.js'), 'trial must load 
 assert(previewHtml.includes('id="replyTopic"') && previewHtml.includes('id="replyJapanese"'));
 assert(!previewHtml.includes('id="parentBubble"'), 'do not display parent ASR transcript');
 assert(previewCode.includes("tutorialStep=1;\n        tutorialIntroPlayed=true;"), 'COI reload must restore the tutorial');
-assert(previewCode.includes("if(tutorialStep===2){finishTutorial();return;}"), 'tutorial needs an explicit completion control');
+assert(!previewCode.includes("if(tutorialStep===2){finishTutorial();return;}"), 'tutorial must not have a manual finish action');
+assert(!previewCode.includes("ui.tutorialPrimaryButton.textContent='チュートリアルを完了'"), 'tutorial completion button must not be shown');
 const captureStart=previewCode.indexOf('function handleCapturedUtterance(audio) {');
 const captureEnd=previewCode.indexOf('\nfunction handleSpeechStartDuringPreparation()',captureStart);
 assert(captureStart>0 && captureEnd>captureStart, 'trial capture handler should exist');
@@ -48,6 +49,49 @@ const manual=probeTutorialCapture(false);
 assert.equal(manual.transcriptCalls.length,0,'manual preference must remain manual');
 assert.equal(manual.state.pendingUtterance.kind,'audio');
 assert.equal(manual.manuallyShown.length,1);
+
+// Regression: a speculative reply resets the utterance revision as soon as
+// playback commits. Tutorial completion therefore belongs to the audio
+// completion event, not the (now-invalid) post-playback ASR revision.
+const speechStart=previewCode.indexOf('async function speakResponse(text,');
+const speechEnd=previewCode.indexOf('\nfunction enqueueAudio(m)',speechStart);
+assert(speechStart>=0 && speechEnd>speechStart, 'trial playback implementation exists');
+const speechFunction=previewCode.slice(speechStart,speechEnd);
+async function simulateTutorialPlayback({revision=null,haveAudio=true,cancel=false}={}) {
+  const state={
+    conversationEpoch:1,
+    revisionValid:true,
+    tutorialStep:2,
+    tutorialUserSpoke:true,
+    finished:0,
+    running:true, mic:null, ttsWorker:{postMessage:()=>{throw new Error('Unexpected uncached speech');}},
+    requestSeq:0, audioQueues:new Map(), preparedAudio:new Map([['cached',haveAudio?[{fakeAudio:true}]:[]]]),
+    audioCacheKey:()=> 'cached', diagnosticNow:()=>100, updateWebTimingDiagnostics:()=>{},
+    setState:()=>{},setBusy:()=>{},
+    isLiveTurn:(rev,epoch)=>state.conversationEpoch===epoch && (rev===null||state.revisionValid),
+    turnRevisions:{reset:()=>{state.revisionValid=false;}},
+    pumpAudio:(id)=>{
+      const queue=state.audioQueues.get(id);
+      if(!queue||queue.deferPlayback)return;
+      queue.next=queue.total;
+      if(cancel)state.conversationEpoch++;
+      queue.resolve?.();
+    },
+    finishTutorial:()=>{state.finished++;state.tutorialStep=null;},
+  };
+  await vm.runInNewContext(speechFunction+'\nspeakResponse("Hi!",{revision:'+String(revision)+'});',state);
+  return state;
+}
+const speculativePlayback=await simulateTutorialPlayback({revision:7});
+assert.equal(speculativePlayback.revisionValid,false, 'speculative playback resets ASR revision');
+assert.equal(speculativePlayback.finished,1,'tutorial must finish after successful speculative audio');
+const directPlayback=await simulateTutorialPlayback();
+assert.equal(directPlayback.finished,1,'tutorial must finish after successful manual audio');
+const noAudioPlayback=await simulateTutorialPlayback({haveAudio:false});
+assert.equal(noAudioPlayback.finished,0,'no audible response must not finish the tutorial');
+const cancelledPlayback=await simulateTutorialPlayback({cancel:true});
+assert.equal(cancelledPlayback.finished,0,'cancelled/stopped sessions must not finish the tutorial');
+
 
 // Guard the public callout labels as well as the removed Android promotion.
 assert(publicHtml.includes('id="mainButton" class="primary-button">呼びかけを始める</button>'));
