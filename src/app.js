@@ -1237,6 +1237,8 @@ function handleTtsMessage(event,readyResolve,readyReject) {
 async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
   const epoch=conversationEpoch;
   if(!isLiveTurn(revision,epoch)||preparingConversation||speaking||!moonshineTranscriber)return;
+  // A new utterance invalidates the previous topic image while we listen/recognize.
+  setVisualCue(null);
   processing=true;
   setBusy(true);
   setState('thinking','聞き取っています…','Moonshineで音声を端末内処理しています。');
