@@ -85,6 +85,8 @@ jobs:
           VAD_BROWSER_CHANNEL=chromium npm run test:vad-browser
       - name: Screenshot 12 Visual Cue prototypes (desktop and mobile)
         run: node scripts/browser-visual-cue-prototypes.mjs
+      - name: Check Emma face illustration setting in actual Web app
+        run: node scripts/browser-visual-cue-live.mjs
       - name: Archive Visual Cue prototype screenshots
         if: always()
         uses: actions/upload-artifact@v4
