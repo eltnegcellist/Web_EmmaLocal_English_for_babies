@@ -1280,9 +1280,6 @@ body{
   font-weight:800;font-size:.73rem;
   box-shadow:0 4px 13px rgba(112,67,162,.10);
 }
-#homeScreen .avatar-wrap>.reply-topic::before{
-  content:"✦";color:#df8ab4;font-size:.86rem;line-height:1
-}
 #homeScreen .emma-bubble{
   position:relative;overflow:hidden;
   border:1.5px solid rgba(165,123,204,.3);
@@ -1290,10 +1287,6 @@ body{
   background:linear-gradient(136deg,#fffefd 6%,#fff7fc 63%,#f8f2ff 100%);
   box-shadow:0 5px 16px rgba(130,91,174,.09),inset 0 1px 0 rgba(255,255,255,.95);
   padding:12px 15px 11px;
-}
-#homeScreen .emma-bubble::before{
-  content:"✦";position:absolute;right:12px;top:6px;
-  font-size:.8rem;color:#deabc9;opacity:.72;pointer-events:none
 }
 #homeScreen .emma-bubble .reply-english{
   position:relative;z-index:1;
