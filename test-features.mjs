@@ -28,7 +28,7 @@ const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.
   assert(code.includes("ui.homeScreen.dataset.session=running?'active':'stopped'"),'CTA layout tracks running state');
   assert(code.includes("Emmaはおやすみ中"),'Emma rather than app sleeps');
   assert(code.includes('ui.replyJapanese.textContent=hint.japaneseNote;'),'Japanese hint displayed without prefix');
-  assert(css.includes('.emma-bubble::before{content:none!important;display:none!important}'),'Gemini-like sparkles must be suppressed');
+  assert(!css.includes('content:"✦"'),'Gemini-like sparkle decorations must be removed');
   assert(css.includes('.screen-content.home-content') && css.includes('132px'),'home padding must not reserve a huge blank scroll');
   assert(css.includes('#manualReplyButton') && css.includes('grid-column:1'),'manual reply is emphasized');
   assert(doc.querySelector('#settingsScreen label.history-save-toggle input#historyEnabled'),'history checkbox remains inside label');
