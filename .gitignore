@@ -8,3 +8,6 @@ tests/generated/
 .semantic-test-results/
 .semantic-research/
 dist/
+
+# Issue #101: human review exports, acoustic trial logs and caregiver metadata
+.private-eval/
