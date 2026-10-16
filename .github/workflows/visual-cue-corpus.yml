@@ -4,6 +4,9 @@ on:
     paths:
       - 'shared/visual-cue-*.json'
       - 'assets/visual-cue/**'
+      - 'src/visual-cue-display.js'
+      - 'src/test-visual-cue-display.mjs'
+      - 'scripts/test-visual-cue-live.mjs'
       - 'visual-cue-prototypes.*'
       - 'src/visual-cue-prototype-preview.js'
       - 'scripts/test-visual-cue-svg.py'
@@ -39,3 +42,5 @@ jobs:
       - run: node scripts/audit-visual-cue-semantics.mjs --check
       - run: node scripts/test-visual-cue-semantics.mjs
       - run: node scripts/test-visual-cue-prototypes.mjs
+      - run: node src/test-visual-cue-display.mjs
+      - run: node scripts/test-visual-cue-live.mjs
