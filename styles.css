@@ -1240,3 +1240,29 @@ body{
   box-shadow:0 3px 9px rgba(30,12,58,.04);
   font-size:.71rem;line-height:1.2;font-weight:700;color:var(--primary)
 }
+
+
+/* Compact Emma-first UI: one status badge in the former "Emma" slot.
+   Preserve the existing avatar dimensions and animation. */
+#homeScreen .avatar-wrap .avatar-status{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  margin:2px auto 12px;max-width:calc(100% - 24px);
+  min-height:31px;z-index:3
+}
+#homeScreen .avatar-status .status-chip{
+  padding:7px 15px;border-radius:999px;font-size:.81rem;
+  line-height:1.3;text-align:center;max-width:100%;overflow-wrap:anywhere
+}
+#homeScreen .avatar-status .mini-spinner{width:16px;height:16px;flex:none}
+#homeScreen .status-section{margin:0}
+#homeScreen .status-section #statusDetail{margin:6px 0 0;font-size:.78rem;line-height:1.35}
+#homeScreen .conversation{margin-top:9px}
+#homeScreen .emma-bubble{padding:10px 12px}
+#homeScreen .auto-reply-card{margin-top:10px;padding:10px 14px}
+/* Optional manual endpoint is a secondary action, not the dominant purple CTA. */
+#homeScreen .bottom-bar #manualReplyButton{
+  min-height:40px;border-radius:13px;padding:8px 12px;
+  font-size:.83rem;font-weight:700;box-shadow:none;
+  color:var(--primary);background:rgba(111,77,176,.055);
+  border:1px solid rgba(111,77,176,.22)
+}
