@@ -8,6 +8,7 @@ import { MoonshineAsrClient } from './asr-client.js';
 import { TurnRevisions } from './turn-revisions.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
+import { replyDisplayHint } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 
 const $ = (id) => document.getElementById(id);
@@ -18,7 +19,8 @@ const ui = {
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'), tutorialStatusTarget:$('tutorialStatusTarget'),
   progressWrap:$('progressWrap'), progressBar:$('progressBar'), progressText:$('progressText'),
-  conversation:$('conversation'), parentBubble:$('parentBubble'), emmaBubble:$('emmaBubble'), transcript:$('transcript'), reply:$('reply'),
+  conversation:$('conversation'), emmaBubble:$('emmaBubble'), reply:$('reply'),
+  replyTopic:$('replyTopic'), replyJapanese:$('replyJapanese'),
   mainButton:$('mainButton'), stopButton:$('stopButton'), manualReplyButton:$('manualReplyButton'), enableAudioButton:$('enableAudioButton'),
   autoRespond:$('autoRespond'), endpointMode:$('endpointMode'), aboutButton:$('aboutButton'), settingsButton:$('settingsButton'),
   settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
@@ -423,7 +425,7 @@ function bindEvents() {
     const response=await semanticPanel.respond(text,'',{isCurrent:()=>epoch===conversationEpoch});
     if(!response)return;
     const english=stripAiSpeakerLabel(response.english);
-    showConversation(text,english);
+    showConversation(text,english,response.scene);
     await ensureWorkersForDebug();
     await speakResponse(english);
   });
@@ -965,7 +967,6 @@ async function respondGenericallyToManualRequest() {
   processing=true;
   setBusy(true);
   pendingUtterance=null;
-  ui.parentBubble.classList.add('hidden');
   setState('thinking','返事を考えています…',`${getAiName()}が今すぐ話します。`);
 
   try {
@@ -1259,7 +1260,7 @@ async function processTranscript(text,{manual=false,revision=null}={}) {
   if(!isLiveTurn(revision,epoch))return;
   if(!response){processing=false;setBusy(false);restoreUnspokenTurn();return;}
   const english=stripAiSpeakerLabel(response.english);
-  showConversation(clean,english);
+  showConversation(clean,english,response.scene);
   // A speculative TTS is still an active turn: keep manual reply disabled,
   // while allowing the microphone/VAD to detect a continuation.
   processing=revision!==null;
@@ -1331,7 +1332,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
   if(!speculative)generationReady.catch(()=>{});
   if(speculative)done.catch(()=>{});
   setState(speculative?'thinking':'speaking',speculative?'英語の声を準備しています':'AIが話しています',
-    speculative?'続きのことばがあれば、そのまま話してください。':text);
+    speculative?'続きのことばがあれば、そのまま話してください。':'赤ちゃんへ英語で話しかけています。');
   try{
     const cached=preparedAudio.get(cacheKey);
     if(cached){
@@ -1710,17 +1711,17 @@ function showOnboardingProgress(show,value=0,text='') {
   ui.onboardingProgressText.textContent=text;
 }
 
-function showConversation(parentText,emmaText) {
-  ui.conversation.classList.remove('hidden');
-  if(parentText){
-    ui.parentBubble.classList.remove('hidden');
-    ui.transcript.textContent=parentText;
-    if(!emmaText) ui.emmaBubble.classList.add('hidden');
-  }
-  if(emmaText){
-    ui.emmaBubble.classList.remove('hidden');
-    ui.reply.textContent=emmaText;
-  }
+function showConversation(parentText,emmaText,route='generic') {
+  // Do not render the parent's ASR transcript on the live home screen.
+  // The original transcript is still consumed by Ruri and saved by history.
+  const hasReply=Boolean(emmaText);
+  ui.conversation.classList.toggle('hidden',!hasReply);
+  ui.emmaBubble.classList.toggle('hidden',!hasReply);
+  if(!hasReply)return;
+  const hint=replyDisplayHint(route);
+  ui.replyTopic.textContent=hint.topicLabel;
+  ui.reply.textContent=emmaText;
+  ui.replyJapanese.textContent=hint.japaneseNote;
 }
 
 function onRuntimeError(message) {
