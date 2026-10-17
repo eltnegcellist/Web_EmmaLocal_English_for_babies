@@ -16,5 +16,18 @@
   "frequency_measured": false,
   "human_approved": false,
   "production_changed": false,
-  "main_merged": false
+  "main_merged": false,
+  "latest_followup": {
+    "policy": "C_topic0.3_M0.1",
+    "status": "ADDITIONAL_RECALL_PRIORITY_TRIAL_CANDIDATE_NOT_CONFIRMED_PRODUCTION_RECOMMENDATION",
+    "report": "docs/research/RURI_GUARDED30_REEVALUATION_20261017.md",
+    "new202_improved_english": 4,
+    "retrospective131_improved_english": 5,
+    "extra_beneficial_vs_guarded40": 3,
+    "additional_stress_cases": 81,
+    "additional_explicit_bad_vs_guarded40": 2,
+    "additional_undecidable_vs_guarded40": 1,
+    "human_approved": false,
+    "production_changed": false
+  }
 }

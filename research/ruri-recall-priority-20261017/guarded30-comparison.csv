@@ -1,0 +1,13 @@
+policy,stratum,n,topic_correct,topic_missed,topic_wrong,interaction_wrong,appropriate,generic_miss,unsupported_claim,contradiction,off_topic
+T0.5_I0.5_M0.05,ordinary,170,125,9,4,7,147,8,0,0,1
+T0.5_I0.5_M0.05,routine_context,12,11,0,1,0,0,0,0,0,0
+T0.5_I0.5_M0.05,plausible_absence,20,17,3,0,0,7,3,0,3,0
+T0.5_I0.5_M0.05,all,202,153,12,5,7,154,11,0,3,1
+C_topic0.4_M0.1,ordinary,170,127,7,4,7,149,6,0,0,1
+C_topic0.4_M0.1,routine_context,12,11,0,1,0,0,0,0,0,0
+C_topic0.4_M0.1,plausible_absence,20,17,2,1,0,8,2,0,3,0
+C_topic0.4_M0.1,all,202,155,9,6,7,157,8,0,3,1
+C_topic0.3_M0.1,ordinary,170,128,6,4,7,150,5,0,0,1
+C_topic0.3_M0.1,routine_context,12,11,0,1,0,0,0,0,0,0
+C_topic0.3_M0.1,plausible_absence,20,17,2,1,0,8,2,0,3,0
+C_topic0.3_M0.1,all,202,156,8,6,7,158,7,0,3,1

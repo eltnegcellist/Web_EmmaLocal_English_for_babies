@@ -1,5 +1,7 @@
 # 取りこぼしを優先した閾値再検証
 
+追加の[30%・差10pt限定救済の追試](../../docs/research/RURI_GUARDED30_REEVALUATION_20261017.md)も参照。ユーザー提案を追加の試用候補として比較した。通常群で40%よりさらに拾えるが、主語違い等の追加リスクがあり、本番採用は未確定。
+
 [日本語報告書](../../docs/research/RURI_RECALL_PRIORITY_REEVALUATION_20261017.md)
 が最新の研究上の推奨。前回の「50%固定を維持」を見直し、
 **通常は既存50%の判定を使い、両軸generic時だけTopic40%・差10ptで救済**を第一候補とした。
@@ -10,6 +12,8 @@ Interactionは50%を維持し、救済で付け足さない。本番コードに
 ```sh
 node scripts/evaluate-ruri-recall-priority.mjs --refresh
 node scripts/analyze-ruri-recall-tradeoffs.mjs
+node scripts/evaluate-ruri-guarded30.mjs
+node --test scripts/test-ruri-guarded30.mjs
 node --test scripts/test-ruri-recall-priority.mjs
 node --test scripts/test-ruri-reevaluation.mjs
 npm test
@@ -77,6 +81,9 @@ Galaxy S25やAPK、ASR、実マイク経路の測定ではない。
 |android-two-axes.json|202文のMac Native生確率と実Android返答・救済返答|
 |android-comparison.json|現行・候補のWeb/Native差分|
 |recommendation.json|最新の研究推奨。production変更/人手承認を意味しない|
+|guarded30-comparison.json / .csv|ユーザー提案の30%限定救済と現行/40%の比較、追加81文の注意例|
+|guarded30-stress-review.json|追加81文で変わった初回英文9組の暫定レビュー|
+|guarded30-android-two-axes.json|30%限定救済も含む202文のMac Native実推論・Android実返答|
 
 既存の否定反転を消したとは主張しない。50%でも起きる共通の誤りと、
 今回の救済で新たに生じる誤りを分ける。「一件でも誤ったら50%」という拒否基準は使わない。

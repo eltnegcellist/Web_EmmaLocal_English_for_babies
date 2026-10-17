@@ -57,10 +57,10 @@ fun main(args: Array<String>) {
    // The current axes must both abstain; do not invent an Interaction on rescue.
    val acceptedTopic=t.raw!="generic"&&t.p>=.5&&t.margin>=.05
    val acceptedInteraction=i.raw!="none"&&i.p>=.5
-   for(threshold in listOf(.45,.4))for(rescueMargin in listOf(.05,.10)){
+   for(threshold in listOf(.45,.4,.3))for(rescueMargin in listOf(.05,.10)){
     val rescue=!acceptedTopic&&!acceptedInteraction&&t.raw!="generic"&&t.p>=threshold&&t.margin>=rescueMargin
     val selected=if(rescue)LiteResponseEngine().respondRuri(text,"",SemanticTopicPrediction(t.raw,1.0,1.0,interaction="none"),true) else reply
-    val field=(if(threshold==.45)"researchTopicRescue45" else "researchTopicRescue40")+(if(rescueMargin==.10)"Margin10" else "")
+    val field="researchTopicRescue${(threshold*100).toInt()}"+(if(rescueMargin==.10)"Margin10" else "")
     record.put(field,JSONObject().put("rescued",rescue).put("route",selected.scene).put("english",selected.english))
    }
    rows.put(record)

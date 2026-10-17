@@ -15,6 +15,8 @@ export function recallPolicies() {
  return all;
 }
 export const currentId='T0.5_I0.5_M0.05';
+// Follow-up proposed by the user; kept separate from the frozen 42-policy study.
+export const guarded30Policy=Object.freeze({id:'C_topic0.3_M0.1',mode:'both_generic',topic:.3,interaction:.5,margin:.1});
 export const recallDecision=(scores,p)=>decide(scores,p);
 export function retrievalMetrics(rows,p){
  const m={n:rows.length,topic_positive:0,topic_correct:0,topic_missed:0,topic_wrong:0,interaction_positive:0,interaction_correct:0,interaction_missed:0,interaction_wrong:0,joint_acceptable:0,both_generic:0,new_wrong_topics:0,gained_topics:0,lost_topics:0,changed:0};
