@@ -77,3 +77,14 @@
 出力ID `exec-07cb1ea1-46d7-401e-ad9a-5aa2fe3d49c2`。
 
 > Use case illustration-story. Input STYLE REFERENCE ONLY. ONE square soft yellow handkerchief, front view, broad continuous opaque surface with softly rounded corners and subtle cloth folds only near edges, clear flat silhouette. Softly painted felt-paper children's picture book texture like reference, not real fabric photo, no stitch details or holes. Cloth is for hide-and-reveal peekaboo animation and should cover a toy completely. No face, hands, toy, people, text, logo, pattern or decoration. Genuine transparent RGBA background, square handkerchief centered in 65% of square canvas, all corners fully visible, generous margins.
+
+## 追加制作（第2回）
+
+組込み `image_gen` で次の4原画を追加しました。すべて `transparent_background: true`。**実際に使用した全文指示と出力IDは [sources/additional-prompts.json](sources/additional-prompts.json)** に保存しています。
+
+- `hand-rig-v2.png`：掌と袖口、4本の指、親指の6部品。参照は `sources/generated/hand-wave.png`（絵柄参照）。
+- `squeeze-block-v2.png`：握る・タップする対象の柔らかいブロック。参照は `sources/generated/toy.png`（絵柄参照）。握る動画は遮蔽と持ち方が未確定のため試作。
+- `clothes-zipper-v2.png`：ファスナーを開いた前開き服。参照は `reference/artwork/candidates/clothes.webp`（絵柄参照）。
+- `diaper-body-v2.png`：留め具を除いた完全なおむつ本体。`sources/generated/diaper.png` を事前に表示・確認して編集対象に指定。本体の再生成で色マスクによる欠けを回避。
+
+透明画素のRGBには背景らしい色が残る場合があるため、見た目の検査はアルファを実合成した明暗背景で行っています。指の関節の隙間は生成後の部品配置で検出し、関節部を重ねて修正しました。画像生成の呼び出しを再現スクリプトに隠していません。

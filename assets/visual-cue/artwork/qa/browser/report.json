@@ -15,6 +15,22 @@
       "pass": true
     },
     {
+      "name": "browser-motion-hand-open-close",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hand-count",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hand-tap",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-change-zipper",
+      "pass": true
+    },
+    {
       "name": "pause-uses-posters",
       "pass": true
     },
@@ -28,6 +44,10 @@
     },
     {
       "name": "filter-draft",
+      "pass": true
+    },
+    {
+      "name": "filter-production-pass-two",
       "pass": true
     },
     {

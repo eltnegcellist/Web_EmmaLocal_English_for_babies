@@ -33,8 +33,8 @@
 | --- | --- | --- |
 | scene.bath | candidate | bath 採用審査前。variant単位の未完はcueCoverageを参照。 |
 | scene.milk | candidate | milk 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.care | candidate | diaper, clothes 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.hands | candidate | hands 採用審査前。variant単位の未完はcueCoverageを参照。 |
+| scene.care | candidate | diaper, clothes, diaper-v2, clothes-open-v2 採用審査前。variant単位の未完はcueCoverageを参照。 |
+| scene.hands | candidate | hands, hands-open-v2 採用審査前。variant単位の未完はcueCoverageを参照。 |
 | scene.feet | candidate | feet 採用審査前。variant単位の未完はcueCoverageを参照。 |
 | scene.book | candidate | book 採用審査前。variant単位の未完はcueCoverageを参照。 |
 | scene.toy | candidate | toy 採用審査前。variant単位の未完はcueCoverageを参照。 |
@@ -47,10 +47,10 @@
 | scene.family | missing |  クマ＋ハートは意味不明瞭で再制作対象。人物なしの家族・抱っこ構図は未確定。 |
 | motion.sip | candidate | sip 採用審査前。variant単位の未完はcueCoverageを参照。 |
 | motion.water | candidate | water-rain, water-shower, water-splash 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| motion.hand | candidate | hand-wave, hand-clap 拍手・手振りの候補。指の開閉・握る・数える・タップ・指の独立動作は未制作。 |
+| motion.hand | candidate | hand-wave, hand-clap, hand-open-close, hand-count, hand-wiggle, hand-squeeze, hand-tap 拍手・手振りに加え、開閉・数える・タップ・指の独立動作を追加。握るは遮蔽を審査中。 |
 | motion.kick | candidate | kick 採用審査前。variant単位の未完はcueCoverageを参照。 |
 | motion.page | candidate | page 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| motion.change | draft | change-diaper おむつ留め具は試作。交換全体、着替え、拭く、げっぷは未完成。 |
+| motion.change | candidate | change-diaper, care-wipe, change-diaper-v2, change-zipper おむつの接合部改善、服のファスナー操作、手を拭くvariantを追加。交換・着替え全体、げっぷは未完成。 |
 | motion.hug | missing |  ハート点滅・クマの上下動は不採用。人物描写が必要なため指示書に従いレビュー待ち。 |
 | motion.peekaboo | candidate | peekaboo 採用審査前。variant単位の未完はcueCoverageを参照。 |
 | motion.spoon | candidate | spoon 採用審査前。variant単位の未完はcueCoverageを参照。 |
@@ -69,26 +69,26 @@
 | --- | --- | --- | --- |
 | action.burp | scene.tummy, motion.change | missing |  げっぷ動作は未制作。おむつの動きを流用不可。 |
 | action.clap | scene.hands, motion.hand | candidate | hand-clap 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.count | scene.hands, motion.hand | missing |  指を順に伸ばす連続姿勢未制作。 |
-| action.dress | scene.care, motion.change | missing |  服は静止のみ。着替え動作未制作。 |
+| action.count | scene.hands, motion.hand | candidate | hand-count 0→1→2→3→4→5本を示して戻す。数字ラベルを画像に焼き込まない。 |
+| action.dress | scene.care, motion.change | draft | change-zipper 前開き服のファスナー操作variantのみ。服を身体に着せる全過程は未制作。 |
 | action.eat | scene.meal, motion.spoon | candidate | spoon 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.hug | scene.family, motion.hug | missing |  ハート点滅・クマの上下動は不採用。人物描写が必要なため指示書に従いレビュー待ち。 |
 | action.kick | scene.feet, motion.kick | candidate | kick 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.open-close | scene.hands, motion.hand | missing |  指の開閉姿勢未制作。 |
+| action.open-close | scene.hands, motion.hand | candidate | hand-open-close 掌と袖口は静止。指の付け根と関節を支点に開閉。 |
 | action.peekaboo | scene.family, motion.peekaboo | candidate | peekaboo 玩具を布で隠すvariant。計画のscene.familyは未制作、家族表現を代替承認したものではない。 |
 | action.read | scene.book, motion.page | candidate | page 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.sing | scene.music, motion.notes | candidate | notes 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.sip | scene.milk, motion.sip | candidate | sip 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.sleep | scene.sleep, emma.calm | candidate | sleep 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.splash | scene.bath, motion.water | candidate | water-splash 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.squeeze | scene.hands, motion.hand | missing |  握る姿勢と対象未制作。 |
-| action.tap | scene.hands, motion.hand | missing |  タップ接触動作未制作。雨と混同しない。 |
+| action.squeeze | scene.hands, motion.hand | draft | hand-squeeze 柔らかい物体を握るvariant。握り込みの遮蔽と接触を審査。 |
+| action.tap | scene.hands, motion.hand | candidate | hand-tap 雨ではなく、指と物体の接触を示すvariant。接触位置は画素で確認。 |
 | action.turn-page | scene.book, motion.page | candidate | page 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.wake | scene.sleep, emma.smile | missing |  眠るベッドを起床の動作として流用不可。 |
 | action.wash | scene.bath, motion.water | candidate | water-shower 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.wave | scene.hands, motion.hand | candidate | hand-wave 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.wiggle | scene.hands, motion.hand | missing |  指の独立した動き未制作。 |
-| action.wipe | scene.care, motion.change | missing |  拭く部品と接触対象が未確定。 |
+| action.wiggle | scene.hands, motion.hand | candidate | hand-wiggle 追加制作した動作variant。採用審査待ち。 |
+| action.wipe | scene.care, motion.change | candidate | care-wipe 手を拭くvariant。口や顔を拭く英文への割当は別途審査。 |
 | attention.listen | emma.listen | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
 | attention.look | emma.listen | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
 | dialogue.finish | emma.celebrate | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
@@ -156,3 +156,14 @@
 | notes | candidate | 296.1 | 36 | 2.988 | 4075 | 0.9732 | PASS |
 | peekaboo | candidate | 320.3 | 36 | 2.988 | 16515 | 0.1821 | PASS |
 | change-diaper | draft | 179.0 | 36 | 2.988 | 4132 | 0.316 | PASS |
+| hands-open-v2 | candidate | 16.8 | 1 | 0.000 | — | — | PASS |
+| hand-open-close | candidate | 268.9 | 36 | 2.988 | 4623 | 0.4816 | PASS |
+| hand-count | candidate | 172.6 | 46 | 3.984 | 4409 | 0.5296 | PASS |
+| hand-wiggle | candidate | 216.7 | 36 | 2.988 | 2997 | 1.1529 | PASS |
+| hand-squeeze | draft | 284.3 | 36 | 2.988 | 5560 | 0.5322 | PASS |
+| hand-tap | candidate | 195.9 | 20 | 2.988 | 4653 | 0.303 | PASS |
+| care-wipe | candidate | 156.2 | 36 | 2.988 | 5247 | 0.7475 | PASS |
+| diaper-v2 | candidate | 16.2 | 1 | 0.000 | — | — | PASS |
+| change-diaper-v2 | candidate | 151.5 | 36 | 2.988 | 2994 | 0.6473 | PASS |
+| clothes-open-v2 | candidate | 26.0 | 1 | 0.000 | — | — | PASS |
+| change-zipper | candidate | 188.5 | 36 | 2.988 | 4374 | 0.5288 | PASS |

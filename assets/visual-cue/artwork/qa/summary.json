@@ -1,20 +1,21 @@
 {
-  "stills": 14,
-  "loops": 12,
+  "stills": 17,
+  "loops": 20,
   "readiness": {
-    "candidate": 25,
-    "draft": 1
+    "candidate": 35,
+    "draft": 2
   },
   "coveredIllustrationConcepts": 12,
   "animationConceptsWithArtifacts": 9,
   "cueReadiness": {
-    "missing": 32,
-    "candidate": 26
+    "missing": 25,
+    "candidate": 31,
+    "draft": 2
   },
-  "animationConceptsWithCandidates": 8,
+  "animationConceptsWithCandidates": 9,
   "newAccepted": 0,
-  "technicalPass": 26,
-  "technicalTotal": 26,
+  "technicalPass": 37,
+  "technicalTotal": 37,
   "sizeExceptions": [
     "hand-wave",
     "kick",

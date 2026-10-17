@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {mkdir,writeFile} from 'node:fs/promises';
 const require=createRequire(import.meta.url);
@@ -9,6 +10,7 @@ const browser=await chromium.launch({headless:true,...(process.env.VISUAL_CUE_CH
 const context=await browser.newContext({viewport:{width:1280,height:1000}});
 const page=await context.newPage();const errors=[];const badResponses=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)badResponses.push([r.status(),r.url()])});
+for(let attempt=0;attempt<30;attempt++){try{const r=await fetch(base);if(r.ok)break}catch{}if(attempt===29)throw Error('preview server unavailable');await new Promise(r=>setTimeout(r,100))}
 await page.goto(base);await page.waitForSelector('#gallery .card');await page.locator('#gallery img').evaluateAll(imgs=>Promise.all(imgs.map(img=>img.decode())));
 const {default:manifest}=await import('../../assets/visual-cue/artwork/manifest.json',{with:{type:'json'}});
 const checks=[];
@@ -24,6 +26,15 @@ for(const a of manifest.assets){
  await page.locator(`#${a.id}`).scrollIntoViewIfNeeded();
  await page.locator(`#${a.id}`).screenshot({path:new URL(`${a.id}.png`,output).pathname});
 }
+for(const id of ['hand-open-close','hand-count','hand-tap','change-zipper']){
+ await page.locator(`#${id}`).scrollIntoViewIfNeeded();
+ const signatures=[];
+ for(let phase=0;phase<5;phase++){
+  const png=await page.locator(`#${id} [data-animation]`).screenshot({animations:'allow'});signatures.push(createHash('sha256').update(png).digest('hex'));
+  await page.waitForTimeout(260);
+ }
+ checks.push({name:`browser-motion-${id}`,pass:new Set(signatures).size>1});
+}
 await page.click('#pause');
 checks.push({name:'pause-uses-posters',pass:await page.locator('#gallery [data-animation]').evaluateAll(imgs=>imgs.every(i=>i.getAttribute('src')===i.dataset.poster))});
 await page.click('#pause');
@@ -31,6 +42,7 @@ checks.push({name:'resume-uses-animations',pass:await page.locator('#gallery [da
 await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('#pause').getAttribute('aria-pressed')==='true');
 checks.push({name:'reduced-motion-static',pass:await page.locator('#gallery [data-animation]').evaluateAll(imgs=>imgs.every(i=>i.getAttribute('src')===i.dataset.poster))});
 await page.selectOption('#filter','draft');checks.push({name:'filter-draft',pass:await page.locator('#gallery .card:visible').count()===manifest.assets.filter(a=>a.readiness==='draft').length});
+await page.selectOption('#filter','new');checks.push({name:'filter-production-pass-two',pass:await page.locator('#gallery .card:visible').count()===manifest.assets.filter(a=>a.productionPass===2).length});await page.screenshot({path:new URL('additional-pass-overview.png',output).pathname,fullPage:true});
 await page.selectOption('#filter','all');await page.selectOption('#background','dark');
 await page.locator('#hand-wave').screenshot({path:new URL('dark-background.png',output).pathname});
 await page.setViewportSize({width:390,height:844});await page.selectOption('#size','320');await page.locator('#hand-clap').scrollIntoViewIfNeeded();

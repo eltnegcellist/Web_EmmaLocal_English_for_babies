@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen",
+  "transparent_background": true,
+  "entries": [
+    {
+      "path": "hand-rig-v2.png",
+      "outputId": "exec-ddf4ade1-af0c-45d9-a9d3-16e2f23e0d72",
+      "prompt": "Use case: illustration-story. Asset type: ONE hand animation rig layer kit for an original Japanese infant picture-book cue. Input image is STYLE REFERENCE ONLY. Match flat softly painted peach hand and blue cuff, matte paper/felt grain, medium simplification, no realistic skin wrinkles. On a transparent wide canvas arrange SIX completely separate isolated parts in an evenly spaced 3-column 2-row grid, without labels: TOP LEFT a complete palm and connected short blue sleeve cuff, NO extended fingers or thumb, upper palm edge gently scalloped for four finger roots; TOP CENTER a straight rounded index finger segment; TOP RIGHT a straight rounded middle finger segment, slightly longest; BOTTOM LEFT a straight rounded ring finger segment; BOTTOM CENTER a straight rounded little finger segment, shorter; BOTTOM RIGHT one curved thumb segment, wider and diagonal. All fingers have rounded tips and straight roots to overlap the palm. Warm consistent peach colors and scale, natural simplified anatomy when assembled. Large transparent gaps between all six pieces, complete rounded edges and 12 percent outer transparent margins. No extra fingers, hands, body, baby, text, arrows, outlines, grid lines, shadow or decorative marks. Genuine RGBA transparent background."
+    },
+    {
+      "path": "squeeze-block-v2.png",
+      "outputId": "exec-328b4003-08bc-4bf6-b64e-6eac56bf332a",
+      "prompt": "Use case: illustration-story. Asset type: ONE squeezable soft foam toy block for a hand action animation. Input is STYLE REFERENCE ONLY. Generate a single small yellow rounded rectangular foam block, wider than tall, with soft rounded corners, subtle tiny soft pores and a slightly lighter top face, side face warm orange. Very shallow three-quarter view. Match flat softly painted Japanese children's object picture-book style, matte paper/felt grain and moderate simplification. Clearly a squishy soft block, not a food, soap, sponge with cleaning suds, 3D photo or abstract UI button. No hand, person, baby, face, letters, logos, outlines, motion lines, drop shadow or extra objects. Genuine RGBA transparent background; block centered in 60 percent of square canvas with wide empty transparent margins."
+    },
+    {
+      "path": "clothes-zipper-v2.png",
+      "outputId": "exec-361879c3-9bd4-4d72-9220-9c9188455552",
+      "prompt": "Use case: illustration-story. Asset type: ONE front-opening infant garment animation layer kit, no infant depicted. Reference image is STYLE REFERENCE ONLY. Create a single teal long-sleeved baby sleepsuit with yellow collar and two clearly separate front fabric panels opened widely around its CENTER ZIPPER, pale cream lining visible behind, complete connected sleeves and two short legs with rounded cuffs. Flat front view, symmetric, natural simplified garment proportions. The zipper teeth are on the two front edges; no floating zipper pull, it will be added as an animation layer. Maintain recognizable clothing silhouette and same flat softly painted matte paper/felt picture-book texture as reference, moderate simplification, no photoreal stitching. No child, body, face, hanger, hand, decoration, text, letters or shadow. Entire garment centered in 65 percent of square canvas, ample transparent margins, all sleeve tips fully intact, genuine RGBA transparent background."
+    },
+    {
+      "path": "diaper-body-v2.png",
+      "outputId": "exec-3e3713bc-1281-494c-97ce-d9f005d48a5e",
+      "prompt": "Use case: precise-object-edit. Edit target is this diaper reference image. Preserve its flat softly painted paper-felt style, cream padded body, pale blue edging, full leg openings and front view. REMOVE ONLY the two dark blue extended fastening tabs from both sides. Reconstruct the body beneath them as a continuous complete pale-blue-edged clean diaper with short integrated pale blue tab attachment roots at upper left and upper right. No dark blue fragments or floating pieces. All body edges must remain smooth and complete. Diaper body only, no hand, child, face, pattern, logo, shadow, text or arrows. Reframe body in central 65 percent of square canvas with wide genuinely transparent RGBA margins. This is a full intact base for separate articulated tabs; do not add a second diaper or animation frames."
+    }
+  ]
+}

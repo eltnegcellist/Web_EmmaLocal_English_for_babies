@@ -2,6 +2,8 @@
   "schemaVersion": 1,
   "nonRuntime": true,
   "baseCommit": "03a5bcc",
+  "latestMainInspected": "c04edf8",
+  "productionPass": 2,
   "approval": "採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。",
   "handoffSHA256": "73f04e328dc5aed60f810d6a3b4fcfa93f79e65030db2fb3c3b0c90165c6a700",
   "assets": [
@@ -18,6 +20,7 @@
       "origin": "approved-design-direction",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -34,6 +37,7 @@
       "origin": "approved-design-direction",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -50,6 +54,7 @@
       "origin": "approved-design-direction",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -66,6 +71,7 @@
       "origin": "approved-design-direction",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "既存の絵柄方向承認。今回の足首付き動画とは原画が異なる。",
       "verification": "qa/validation.json"
     },
@@ -82,6 +88,7 @@
       "origin": "generated",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -98,6 +105,7 @@
       "origin": "generated",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -114,6 +122,7 @@
       "origin": "generated",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -130,6 +139,7 @@
       "origin": "generated",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -146,6 +156,7 @@
       "origin": "generated",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -162,6 +173,7 @@
       "origin": "handoff-candidate",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -178,6 +190,7 @@
       "origin": "handoff-candidate",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -194,6 +207,7 @@
       "origin": "handoff-candidate",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "睡眠は就寝の物体表現。起床と同一素材で合格とはしない。",
       "verification": "qa/validation.json"
     },
@@ -210,6 +224,7 @@
       "origin": "design-direction-accepted",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -226,6 +241,7 @@
       "origin": "generated",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "verification": "qa/validation.json"
     },
@@ -241,6 +257,7 @@
       "source": "sources/generated/hand-wave.png",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "movingParts": [
         "hand: wrist rotation"
@@ -259,6 +276,7 @@
       "source": "sources/generated/hand-clap.png",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "接触位置と手の見え方は採用審査待ち。",
       "movingParts": [
         "left palm",
@@ -278,6 +296,7 @@
       "source": "sources/generated/foot.png",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "movingParts": [
         "left foot at ankle",
@@ -297,6 +316,7 @@
       "source": "reference/artwork/approved/milk_bottle.webp",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "乳首と液面の自然さは人の確認が必要。",
       "movingParts": [
         "bottle tilt",
@@ -316,6 +336,7 @@
       "source": "reference/artwork/approved/picture_book.webp",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "1枚を往復させるループ。背面はクリーム色。",
       "movingParts": [
         "right page"
@@ -334,6 +355,7 @@
       "source": "reference/artwork/candidates/rain.webp",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "movingParts": [
         "rain drops"
@@ -355,6 +377,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "movingParts": [
         "shower drops"
@@ -373,6 +396,7 @@
       "source": "sources/generated/bath.png",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "movingParts": [
         "water splashes"
@@ -391,6 +415,7 @@
       "source": "sources/generated/meal-layers.png",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "空のスプーンを器に沈め、白いおかゆを載せて持ち上げる。器の手前壁で自然に隠す。",
       "movingParts": [
         "loaded spoon"
@@ -409,6 +434,7 @@
       "source": "sources/generated/music.png",
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "",
       "movingParts": [
         "three notes"
@@ -430,6 +456,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
+      "productionPass": 1,
       "note": "scene.familyの代替承認ではなく、玩具を隠す独立variant。",
       "movingParts": [
         "handkerchief"
@@ -448,10 +475,237 @@
       "source": "sources/generated/diaper.png",
       "status": "needs-review",
       "readiness": "draft",
+      "productionPass": 1,
       "note": "交換全体ではなく留め具の開閉。着替え・拭く・げっぷは未制作。",
       "movingParts": [
         "left fastening tab",
         "right fastening tab"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "hands-open-v2",
+      "primitive": "scene.hands",
+      "topic": "手：5本の指・部品別原画",
+      "kind": "illustration",
+      "illustration": "stills/hands-open-v2.webp",
+      "animation": null,
+      "poster": "stills/hands-open-v2.webp",
+      "loopMs": 0,
+      "source": "sources/generated/hand-rig-v2.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "掌・指・親指を独立した原画から組み立て。人体の見え方は採用審査対象。",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "hand-open-close",
+      "primitive": "motion.hand",
+      "topic": "手を開く・閉じる：指の関節を動かす",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-open-close.webp",
+      "poster": "posters/hand-open-close.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/hand-rig-v2.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "掌と袖口は静止。指の付け根と関節を支点に開閉。",
+      "movingParts": [
+        "four fingers: two phalanges each",
+        "thumb"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "hand-count",
+      "primitive": "motion.hand",
+      "topic": "指を順に伸ばして数える",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-count.webp",
+      "poster": "posters/hand-count.webp",
+      "loopMs": 3984,
+      "source": "sources/generated/hand-rig-v2.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "0→1→2→3→4→5本を示して戻す。数字ラベルを画像に焼き込まない。",
+      "movingParts": [
+        "index",
+        "middle",
+        "ring",
+        "little",
+        "thumb"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "hand-wiggle",
+      "primitive": "motion.hand",
+      "topic": "指を1本ずつ動かす",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-wiggle.webp",
+      "poster": "posters/hand-wiggle.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/hand-rig-v2.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "",
+      "movingParts": [
+        "four independent fingers"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "hand-squeeze",
+      "primitive": "motion.hand",
+      "topic": "柔らかいブロックを握る",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-squeeze.webp",
+      "poster": "posters/hand-squeeze.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/hand-rig-v2.png",
+        "sources/generated/squeeze-block-v2.png"
+      ],
+      "status": "needs-review",
+      "readiness": "draft",
+      "productionPass": 2,
+      "note": "柔らかい物体を握るvariant。握り込みの遮蔽と接触を審査。",
+      "movingParts": [
+        "fingers",
+        "thumb",
+        "compressible block"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "hand-tap",
+      "primitive": "motion.hand",
+      "topic": "人差し指でブロックをトントン",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-tap.webp",
+      "poster": "posters/hand-tap.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/hand-rig-v2.png",
+        "sources/generated/squeeze-block-v2.png"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "雨ではなく、指と物体の接触を示すvariant。接触位置は画素で確認。",
+      "movingParts": [
+        "index hand contacts block"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "care-wipe",
+      "primitive": "motion.change",
+      "topic": "手を布で拭く",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/care-wipe.webp",
+      "poster": "posters/care-wipe.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/hand-wave.png",
+        "sources/generated/cloth.png"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "手を拭くvariant。口や顔を拭く英文への割当は別途審査。",
+      "movingParts": [
+        "cloth across palm"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "diaper-v2",
+      "primitive": "scene.care",
+      "topic": "おむつ：欠けのない本体と留め具",
+      "kind": "illustration",
+      "illustration": "stills/diaper-v2.webp",
+      "animation": null,
+      "poster": "stills/diaper-v2.webp",
+      "loopMs": 0,
+      "source": [
+        "sources/generated/diaper-body-v2.png",
+        "sources/generated/diaper.png"
+      ],
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "change-diaper-v2",
+      "primitive": "motion.change",
+      "topic": "おむつ：留め具の接合部を改善",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/change-diaper-v2.webp",
+      "poster": "posters/change-diaper-v2.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/diaper-body-v2.png",
+        "sources/generated/diaper.png"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "留め具の開閉候補。取り外し→交換の全過程ではないため、交換全体は未完。",
+      "movingParts": [
+        "two hinged tabs"
+      ],
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "clothes-open-v2",
+      "primitive": "scene.care",
+      "topic": "前開き服：着替えの準備",
+      "kind": "illustration",
+      "illustration": "stills/clothes-open-v2.webp",
+      "animation": null,
+      "poster": "stills/clothes-open-v2.webp",
+      "loopMs": 0,
+      "source": "sources/generated/clothes-zipper-v2.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "",
+      "verification": "qa/validation.json"
+    },
+    {
+      "id": "change-zipper",
+      "primitive": "motion.change",
+      "topic": "前開き服：ファスナーを上げる・下げる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/change-zipper.webp",
+      "poster": "posters/change-zipper.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/clothes-zipper-v2.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 2,
+      "note": "着替えの準備として留め具を操作する候補。服を身体に着せる全過程は未制作。",
+      "movingParts": [
+        "zipper pull",
+        "front fabric panels"
       ],
       "verification": "qa/validation.json"
     }
@@ -482,7 +736,9 @@
       "kind": "illustration",
       "assetIds": [
         "diaper",
-        "clothes"
+        "clothes",
+        "diaper-v2",
+        "clothes-open-v2"
       ],
       "status": "needs-review",
       "readiness": "candidate",
@@ -492,7 +748,8 @@
       "primitive": "scene.hands",
       "kind": "illustration",
       "assetIds": [
-        "hands"
+        "hands",
+        "hands-open-v2"
       ],
       "status": "needs-review",
       "readiness": "candidate",
@@ -622,11 +879,16 @@
       "kind": "animation",
       "assetIds": [
         "hand-wave",
-        "hand-clap"
+        "hand-clap",
+        "hand-open-close",
+        "hand-count",
+        "hand-wiggle",
+        "hand-squeeze",
+        "hand-tap"
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "拍手・手振りの候補。指の開閉・握る・数える・タップ・指の独立動作は未制作。"
+      "reason": "拍手・手振りに加え、開閉・数える・タップ・指の独立動作を追加。握るは遮蔽を審査中。"
     },
     {
       "primitive": "motion.kick",
@@ -652,11 +914,14 @@
       "primitive": "motion.change",
       "kind": "animation",
       "assetIds": [
-        "change-diaper"
+        "change-diaper",
+        "care-wipe",
+        "change-diaper-v2",
+        "change-zipper"
       ],
       "status": "needs-review",
-      "readiness": "draft",
-      "reason": "おむつ留め具は試作。交換全体、着替え、拭く、げっぷは未完成。"
+      "readiness": "candidate",
+      "reason": "おむつの接合部改善、服のファスナー操作、手を拭くvariantを追加。交換・着替え全体、げっぷは未完成。"
     },
     {
       "primitive": "motion.hug",
@@ -791,10 +1056,12 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [],
+      "assetIds": [
+        "hand-count"
+      ],
       "status": "needs-review",
-      "readiness": "missing",
-      "reason": "指を順に伸ばす連続姿勢未制作。"
+      "readiness": "candidate",
+      "reason": "0→1→2→3→4→5本を示して戻す。数字ラベルを画像に焼き込まない。"
     },
     {
       "cueId": "action.dress",
@@ -802,10 +1069,12 @@
         "scene.care",
         "motion.change"
       ],
-      "assetIds": [],
+      "assetIds": [
+        "change-zipper"
+      ],
       "status": "needs-review",
-      "readiness": "missing",
-      "reason": "服は静止のみ。着替え動作未制作。"
+      "readiness": "draft",
+      "reason": "前開き服のファスナー操作variantのみ。服を身体に着せる全過程は未制作。"
     },
     {
       "cueId": "action.eat",
@@ -850,10 +1119,12 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [],
+      "assetIds": [
+        "hand-open-close"
+      ],
       "status": "needs-review",
-      "readiness": "missing",
-      "reason": "指の開閉姿勢未制作。"
+      "readiness": "candidate",
+      "reason": "掌と袖口は静止。指の付け根と関節を支点に開閉。"
     },
     {
       "cueId": "action.peekaboo",
@@ -939,10 +1210,12 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [],
+      "assetIds": [
+        "hand-squeeze"
+      ],
       "status": "needs-review",
-      "readiness": "missing",
-      "reason": "握る姿勢と対象未制作。"
+      "readiness": "draft",
+      "reason": "柔らかい物体を握るvariant。握り込みの遮蔽と接触を審査。"
     },
     {
       "cueId": "action.tap",
@@ -950,10 +1223,12 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [],
+      "assetIds": [
+        "hand-tap"
+      ],
       "status": "needs-review",
-      "readiness": "missing",
-      "reason": "タップ接触動作未制作。雨と混同しない。"
+      "readiness": "candidate",
+      "reason": "雨ではなく、指と物体の接触を示すvariant。接触位置は画素で確認。"
     },
     {
       "cueId": "action.turn-page",
@@ -1011,10 +1286,12 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [],
+      "assetIds": [
+        "hand-wiggle"
+      ],
       "status": "needs-review",
-      "readiness": "missing",
-      "reason": "指の独立した動き未制作。"
+      "readiness": "candidate",
+      "reason": "追加制作した動作variant。採用審査待ち。"
     },
     {
       "cueId": "action.wipe",
@@ -1022,10 +1299,12 @@
         "scene.care",
         "motion.change"
       ],
-      "assetIds": [],
+      "assetIds": [
+        "care-wipe"
+      ],
       "status": "needs-review",
-      "readiness": "missing",
-      "reason": "拭く部品と接触対象が未確定。"
+      "readiness": "candidate",
+      "reason": "手を拭くvariant。口や顔を拭く英文への割当は別途審査。"
     },
     {
       "cueId": "attention.listen",

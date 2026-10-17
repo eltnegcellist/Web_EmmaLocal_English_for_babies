@@ -51,7 +51,8 @@ for row in m['assets']:
    if r['stationaryRegionOpaquePixels']<20:errors.append('empty-stationary-test-region')
   # Extraction of actual decoded frames at five phases, for alpha/ghosting visual inspection.
   sheet=Image.new('RGB',(1100,260),'#eae5d9');d=ImageDraw.Draw(sheet)
-  for j,k in enumerate([0,len(frames)//6,len(frames)//3,len(frames)//2,len(frames)*5//6]):
+  sampleFrames=[min(len(frames)-1,int(np.searchsorted(np.cumsum(dur),ms))) for ms in [500,1000,1500,2000,2500]] if row['id']=='hand-count' else [0,len(frames)//6,len(frames)//3,len(frames)//2,len(frames)*5//6]
+  for j,k in enumerate(sampleFrames):
    f=frames[k].resize((220,220),Image.Resampling.LANCZOS);sheet.paste(f,(j*220,20),f);d.text((j*220+8,240),f'frame {k}',fill='black')
   sheet.save(OUT/'qa'/f'{row["id"]}-filmstrip.jpg',quality=88)
  r['errors']=sorted(set(errors));r['technicalPass']=not errors;results.append(r)
@@ -77,6 +78,39 @@ for i in range(36):
  ra=np.asarray(right.rotate(-angle,Image.Resampling.BICUBIC,center=(372,380)))[:,:,3]>100
  overlap.append(int((la&ra).sum()))
 invariants.append(dict(name='kick-feet-do-not-collide',pass_=max(overlap)==0,maxOverlapPixels=max(overlap)))
+# New articulated-hand and care rigs: inspect decoded foreground connectivity and contact.
+if any(a.get('productionPass')==2 for a in m['assets']):
+ def flood_connected(mask,seed):
+  f=Image.fromarray((mask.astype(np.uint8)*255)).copy();ImageDraw.floodfill(f,seed,128);return np.asarray(f)==128
+ hand=Image.open(OUT/'animations/hand-open-close.webp');detached=[];indexTops=[]
+ for i in range(hand.n_frames):
+  hand.seek(i);a=np.asarray(hand.convert('RGBA'))[:,:,3]>100;connected=flood_connected(a,(256,430));detached.append(int((a&~connected).sum()))
+  ys=np.where(a[:,179:194])[0];indexTops.append(int(ys.min()))
+ invariants.append(dict(name='open-close-fingers-connected-to-palm',pass_=max(detached)<45,maxDetachedPixels=max(detached)))
+ invariants.append(dict(name='index-finger-visible-joint-travel',pass_=max(indexTops)-min(indexTops)>70,travelPixels=max(indexTops)-min(indexTops)))
+ counting=Image.open(OUT/'animations/hand-count.webp');counts=set()
+ for i in range(counting.n_frames):
+  counting.seek(i);alpha=np.asarray(counting.convert('RGBA'))[:,:,3]>100
+  counts.add(sum(bool(alpha[:215,x-6:x+6].any()) for x in [186,236,286,333]))
+ invariants.append(dict(name='count-visible-zero-to-four-upright-fingers',pass_=counts==set(range(5)),observedCounts=sorted(counts)))
+ tapping=Image.open(OUT/'animations/hand-tap.webp');connectedFrames=0;separatedFrames=0
+ for i in range(tapping.n_frames):
+  tapping.seek(i);a=np.asarray(tapping.convert('RGBA'))[:,:,3]>100;connected=flood_connected(a,(256,420))
+  if connected[170,256]:connectedFrames+=1
+  else:separatedFrames+=1
+ invariants.append(dict(name='tap-hand-contacts-and-leaves-target',pass_=connectedFrames>0 and separatedFrames>0,contactFrames=connectedFrames,separatedFrames=separatedFrames))
+ intact=np.asarray(Image.open(OUT/'parts/v2-diaper-intact-body.png'))[:,:,3]>100
+ diaper=Image.open(OUT/'animations/change-diaper-v2.webp');missing=[];loose=[]
+ for i in range(diaper.n_frames):
+  diaper.seek(i);a=np.asarray(diaper.convert('RGBA'))[:,:,3]>100
+  missing.append(int((intact&~a).sum()));conn=flood_connected(a,(256,320));loose.append(int((a&~conn).sum()))
+ invariants.append(dict(name='diaper-v2-no-missing-body-or-floating-tabs',pass_=max(missing)<30 and max(loose)<80,maxMissingBodyPixels=max(missing),maxDetachedTabPixels=max(loose)))
+ z=Image.open(OUT/'animations/change-zipper.webp');gapWidths=[]
+ for i in range(z.n_frames):
+  z.seek(i);a=np.asarray(z.convert('RGBA'));lining=(a[260,:,0]>190)&(a[260,:,1]>175)&(a[260,:,3]>100)
+  gapWidths.append(int(lining[205:307].sum()))
+ invariants.append(dict(name='zipper-closes-visible-lining-gap',pass_=max(gapWidths)-min(gapWidths)>35,liningWidthRange=[min(gapWidths),max(gapWidths)]))
+
 for item in invariants:
  if not item['pass_']:failures.append(dict(id=item['name'],errors=['action-specific-pixel-check-failed']))
 

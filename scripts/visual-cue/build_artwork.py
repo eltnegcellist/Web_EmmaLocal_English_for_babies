@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rebuild non-runtime Visual Cue candidates from preserved raster sources. No AI/network calls."""
 from pathlib import Path
-import hashlib, json, math, zipfile
+import hashlib, json, math, zipfile, os, sys
 from collections import deque
 import numpy as np
 from PIL import Image, ImageDraw, ImageChops, ImageFilter, ImageOps
@@ -64,197 +64,210 @@ def rotate(layer,angle,pivot):return layer.rotate(angle,Image.Resampling.BICUBIC
 def slide(layer,x=0,y=0):return layer.transform(layer.size,Image.Transform.AFFINE,(1,0,-x,0,1,-y),Image.Resampling.BICUBIC)
 def q(t):return (1-math.cos(2*math.pi*t))/2
 
-assets=[]
+ONLY_NEW='--only-new' in sys.argv
+SAMPLE_ONLY=os.getenv('VISUAL_CUE_SAMPLE_ONLY')=='1'
+currentPass=1
+previous=json.loads((OUT/'manifest.json').read_text()) if ONLY_NEW else None
+assets=[a for a in previous['assets'] if a.get('productionPass',1)==1] if previous else []
+rigs=json.loads((OUT/'qa/motion-traces.json').read_text()) if ONLY_NEW else {}
+rigs={k:v for k,v in rigs.items() if any(a['id']==k for a in assets)}
 def still(key,primitive,label,im,source,cues=None,origin='generated',note=''):
     im.save(OUT/'sources/normalized'/f'{key}.png')
     im.save(OUT/'stills'/f'{key}.webp',quality=86,method=6)
-    row=dict(id=key,primitive=primitive,topic=label,kind='illustration',illustration=f'stills/{key}.webp',animation=None,poster=f'stills/{key}.webp',loopMs=0,source=source,origin=origin,status='needs-review',readiness='candidate',note=note,verification='qa/validation.json')
+    row=dict(id=key,primitive=primitive,topic=label,kind='illustration',illustration=f'stills/{key}.webp',animation=None,poster=f'stills/{key}.webp',loopMs=0,source=source,origin=origin,status='needs-review',readiness='candidate',productionPass=currentPass,note=note,verification='qa/validation.json')
     assets.append(row);return im
 
-milkraw=read(REF/'approved/milk_bottle.webp').resize((512,512),Image.Resampling.LANCZOS)
-milk=largest(milkraw)
-still('milk','scene.milk','ミルク・哺乳瓶',milk,'reference/artwork/approved/milk_bottle.webp',origin='approved-design-direction')
-book=read(REF/'approved/picture_book.webp').resize((512,512),Image.Resampling.LANCZOS)
-still('book','scene.book','絵本',book,'reference/artwork/approved/picture_book.webp',origin='approved-design-direction')
-still('hands','scene.hands','手・拍手',centered(read(REF/'approved/clapping_hands.webp')),'reference/artwork/approved/clapping_hands.webp',origin='approved-design-direction')
-still('feet','scene.feet','足',centered(read(REF/'approved/kicking_feet.webp')),'reference/artwork/approved/kicking_feet.webp',origin='approved-design-direction',note='既存の絵柄方向承認。今回の足首付き動画とは原画が異なる。')
-for key,primitive,label,source in [('bath','scene.bath','浴槽','bath'),('diaper','scene.care','おむつ','diaper'),('toy','scene.toy','おもちゃ','toy'),('outdoor','scene.outdoor','外・木','outdoor'),('sun','scene.weather','日差し','sun')]:
-    still(key,primitive,label,centered(read(GEN/f'{source}.png')),f'sources/generated/{source}.png')
-for key,primitive,label,src in [('clothes','scene.care','服','clothes'),('rain','scene.weather','雨','rain'),('sleep','scene.sleep','眠る・ベッド','sleep')]:
-    still(key,primitive,label,centered(read(REF/f'candidates/{src}.webp')),f'reference/artwork/candidates/{src}.webp',origin='handoff-candidate',note='睡眠は就寝の物体表現。起床と同一素材で合格とはしない。' if key=='sleep' else '')
-meal=still('meal','scene.meal','白いおかゆ',centered(read(REF/'approved-style/meal_porridge.webp')),'reference/artwork/approved-style/meal_porridge.webp',origin='design-direction-accepted')
-music=still('music','scene.music','音楽・タンバリン',centered(read(GEN/'music.png')), 'sources/generated/music.png')
-
 # All animation rigs keep complete source layers, and never warp a whole scene to imply action.
-rigs={}
-def animate(key,primitive,label,render,source,moving,stationary=None,note='',readiness='candidate'):
+def animate(key,primitive,label,render,source,moving,stationary=None,note='',readiness='candidate',frame_count=FRAMES):
     frames=[];traces=[]
-    for i in range(FRAMES):
-        im,trace=render(i/FRAMES);assert im.size==(512,512);frames.append(im);traces.append(trace)
+    for i in range(frame_count):
+        im,trace=render(i/frame_count);assert im.size==(512,512);frames.append(im);traces.append(trace)
     path=OUT/'animations'/f'{key}.webp'
-    frames[0].save(path,save_all=True,append_images=frames[1:],duration=MS,loop=0,quality=64,method=4,minimize_size=False,allow_mixed=False)
+    if not SAMPLE_ONLY:frames[0].save(path,save_all=True,append_images=frames[1:],duration=MS,loop=0,quality=64,method=4,minimize_size=False,allow_mixed=False)
     frames[0].save(OUT/'posters'/f'{key}.webp',quality=86,method=6)
     frames[0].save(OUT/'sources/normalized'/f'{key}-poster.png')
     # Keyframes are pixel evidence, not substitute animation deliverables.
     for i in [0,5,13,18,27]:frames[i].save(OUT/'qa/keyframes'/f'{key}-{i:02d}.png')
     rigs[key]=dict(movingParts=moving,stationaryRegion=stationary,traces=traces)
-    assets.append(dict(id=key,primitive=primitive,topic=label,kind='animation',illustration=None,animation=f'animations/{key}.webp',poster=f'posters/{key}.webp',loopMs=FRAMES*MS,source=source,status='needs-review',readiness=readiness,note=note,movingParts=moving,verification='qa/validation.json'))
+    assets.append(dict(id=key,primitive=primitive,topic=label,kind='animation',illustration=None,animation=f'animations/{key}.webp',poster=f'posters/{key}.webp',loopMs=frame_count*MS,source=source,status='needs-review',readiness=readiness,productionPass=currentPass,note=note,movingParts=moving,verification='qa/validation.json'))
 
-hand=fit(read(GEN/'hand-wave.png'),(270,330)); handlayer=part('wave-whole-hand',place(blank(),hand,(256-hand.width/2,390-hand.height)))
-def wave(t):
-    a=23*math.sin(4*math.pi*t);return rotate(handlayer,a,(256,360)),dict(angle=a,anchor=[256,360])
-animate('hand-wave','motion.hand','手を振る',wave,'sources/generated/hand-wave.png',['hand: wrist rotation'])
 
-profile=fit(read(GEN/'hand-clap.png'),(160,285));w,h=profile.size
-left=part('clap-left',place(blank(),profile,(256-w,125)))
-right=part('clap-right',place(blank(),ImageOps.mirror(profile),(256,125)))
-def clap(t):
-    # A dwell at contact makes palm meeting visible, followed by clear separation.
-    gap=72*max(0,(math.cos(4*math.pi*t)+.25)/1.25)
-    im=slide(left,-gap,0);im.alpha_composite(slide(right,gap,0));return im,dict(palmGap=2*gap,left=[256-gap,250],right=[256+gap,250])
-animate('hand-clap','motion.hand','拍手：両手が接触・離れる',clap,'sources/generated/hand-clap.png',['left palm','right palm'],note='接触位置と手の見え方は採用審査待ち。')
+if not ONLY_NEW:
+    milkraw=read(REF/'approved/milk_bottle.webp').resize((512,512),Image.Resampling.LANCZOS)
+    milk=largest(milkraw)
+    still('milk','scene.milk','ミルク・哺乳瓶',milk,'reference/artwork/approved/milk_bottle.webp',origin='approved-design-direction')
+    book=read(REF/'approved/picture_book.webp').resize((512,512),Image.Resampling.LANCZOS)
+    still('book','scene.book','絵本',book,'reference/artwork/approved/picture_book.webp',origin='approved-design-direction')
+    still('hands','scene.hands','手・拍手',centered(read(REF/'approved/clapping_hands.webp')),'reference/artwork/approved/clapping_hands.webp',origin='approved-design-direction')
+    still('feet','scene.feet','足',centered(read(REF/'approved/kicking_feet.webp')),'reference/artwork/approved/kicking_feet.webp',origin='approved-design-direction',note='既存の絵柄方向承認。今回の足首付き動画とは原画が異なる。')
+    for key,primitive,label,source in [('bath','scene.bath','浴槽','bath'),('diaper','scene.care','おむつ','diaper'),('toy','scene.toy','おもちゃ','toy'),('outdoor','scene.outdoor','外・木','outdoor'),('sun','scene.weather','日差し','sun')]:
+        still(key,primitive,label,centered(read(GEN/f'{source}.png')),f'sources/generated/{source}.png')
+    for key,primitive,label,src in [('clothes','scene.care','服','clothes'),('rain','scene.weather','雨','rain'),('sleep','scene.sleep','眠る・ベッド','sleep')]:
+        still(key,primitive,label,centered(read(REF/f'candidates/{src}.webp')),f'reference/artwork/candidates/{src}.webp',origin='handoff-candidate',note='睡眠は就寝の物体表現。起床と同一素材で合格とはしない。' if key=='sleep' else '')
+    meal=still('meal','scene.meal','白いおかゆ',centered(read(REF/'approved-style/meal_porridge.webp')),'reference/artwork/approved-style/meal_porridge.webp',origin='design-direction-accepted')
+    music=still('music','scene.music','音楽・タンバリン',centered(read(GEN/'music.png')), 'sources/generated/music.png')
 
-foot=fit(read(GEN/'foot.png'),(130,250));fw,fh=foot.size
-fl=part('kick-left',place(blank(),foot,(140-fw/2,414-fh)))
-fr=part('kick-right',place(blank(),ImageOps.mirror(foot),(372-fw/2,414-fh)))
-def kick(t):
-    al=12*math.sin(2*math.pi*t);ar=-12*math.sin(2*math.pi*t)
-    im=rotate(fl,al,(140,380));im.alpha_composite(rotate(fr,ar,(372,380)))
-    return im,dict(leftAngle=al,rightAngle=ar,leftAnchor=[140,380],rightAnchor=[372,380])
-animate('kick','motion.kick','キック：足首を支点に左右交互',kick,'sources/generated/foot.png',['left foot at ankle','right foot at ankle'])
+    hand=fit(read(GEN/'hand-wave.png'),(270,330)); handlayer=part('wave-whole-hand',place(blank(),hand,(256-hand.width/2,390-hand.height)))
+    def wave(t):
+        a=23*math.sin(4*math.pi*t);return rotate(handlayer,a,(256,360)),dict(angle=a,anchor=[256,360])
+    animate('hand-wave','motion.hand','手を振る',wave,'sources/generated/hand-wave.png',['hand: wrist rotation'])
 
-# Bottle liquid: body interior mask is rotated with bottle, fill boundary stays level in world space.
-interior=Image.new('L',(512,512));d=ImageDraw.Draw(interior)
-d.polygon([(134,240),(292,286),(253,398),(190,415),(98,364)],fill=255)
-# Keep blue measurement marks on top of liquid, no clipping of shoulder/cap.
-a=np.asarray(milk);blue=(a[:,:,2]>a[:,:,0]+15)&(a[:,:,2]>140)&(a[:,:,0]<150)
-interior=ImageChops.multiply(interior,milk.getchannel('A')); part('bottle-interior-mask',interior)
-base=milk.copy();base.paste((250,246,236,255),(0,0,512,512),interior)
-marks=milk.copy();marks.putalpha(Image.fromarray((blue*255).astype(np.uint8)));part('bottle-base',base);part('bottle-marks',marks)
-def sip(t):
-    angle=-94*q(t);b=rotate(base,angle,(256,256));mask=rotate(interior,angle,(256,256))
-    ma=np.asarray(mask); mass=ma.sum(axis=1);cum=np.cumsum(mass); waterline=int(np.searchsorted(cum,cum[-1]*.30))
-    liquid=Image.new('L',(512,512));ImageDraw.Draw(liquid).rectangle((0,waterline,511,511),fill=255)
-    liquid=ImageChops.multiply(mask,liquid);b.paste((255,238,192,255),(0,0,512,512),liquid);b.alpha_composite(rotate(marks,angle,(256,256)))
-    return b,dict(bottleAngle=angle,liquidSurfaceY=waterline,liquidSurfaceAngle=0)
-animate('sip','motion.sip','飲む：哺乳瓶を傾ける',sip,'reference/artwork/approved/milk_bottle.webp',['bottle tilt','horizontal milk surface'],note='乳首と液面の自然さは人の確認が必要。')
+    profile=fit(read(GEN/'hand-clap.png'),(160,285));w,h=profile.size
+    left=part('clap-left',place(blank(),profile,(256-w,125)))
+    right=part('clap-right',place(blank(),ImageOps.mirror(profile),(256,125)))
+    def clap(t):
+        # A dwell at contact makes palm meeting visible, followed by clear separation.
+        gap=72*max(0,(math.cos(4*math.pi*t)+.25)/1.25)
+        im=slide(left,-gap,0);im.alpha_composite(slide(right,gap,0));return im,dict(palmGap=2*gap,left=[256-gap,250],right=[256+gap,250])
+    animate('hand-clap','motion.hand','拍手：両手が接触・離れる',clap,'sources/generated/hand-clap.png',['left palm','right palm'],note='接触位置と手の見え方は採用審査待ち。')
 
-# Inverse perspective mapping: the actual printed right page hinges on the spine.
-src=np.array([(328,235),(600,156),(654,502),(373,551)],float)*512/720
-pageMask=Image.new('L',(512,512));ImageDraw.Draw(pageMask).polygon([tuple(v) for v in src],fill=255)
-page=book.copy();page.putalpha(ImageChops.multiply(page.getchannel('A'),pageMask));part('book-right-page',page)
-def perspective(im,dst):
-    A=[];B=[]
-    for (x,y),(u,v) in zip(dst,src):
-        A += [[x,y,1,0,0,0,-u*x,-u*y],[0,0,0,x,y,1,-v*x,-v*y]];B += [u,v]
-    c=np.linalg.solve(np.array(A),np.array(B));return im.transform((512,512),Image.Transform.PERSPECTIVE,c,Image.Resampling.BICUBIC)
-def turn(t):
-    theta=math.pi*.98*q(t);c=math.cos(theta);s=math.sin(theta)
-    dst=src.copy()
-    for outer,hinge in [(1,0),(2,3)]:dst[outer]=src[hinge]+np.array([(src[outer,0]-src[hinge,0])*c,(src[outer,1]-src[hinge,1])*abs(c)-35*s])
-    im=book.copy()
-    if abs(c)>.015:
-        leaf=perspective(page,dst)
-        if c<0:
-            back=Image.new('RGBA',(512,512),(250,241,214,255));back.putalpha(leaf.getchannel('A'));leaf=back
-        im.alpha_composite(leaf)
-    return im,dict(pageAngle=theta*180/math.pi,spineTop=src[0].tolist(),outerTop=dst[1].tolist())
-animate('page','motion.page','絵本：綴じ目を中心にページがめくれる',turn,'reference/artwork/approved/picture_book.webp',['right page'],stationary=[268,394,280,399],note='1枚を往復させるループ。背面はクリーム色。')
+    foot=fit(read(GEN/'foot.png'),(130,250));fw,fh=foot.size
+    fl=part('kick-left',place(blank(),foot,(140-fw/2,414-fh)))
+    fr=part('kick-right',place(blank(),ImageOps.mirror(foot),(372-fw/2,414-fh)))
+    def kick(t):
+        al=12*math.sin(2*math.pi*t);ar=-12*math.sin(2*math.pi*t)
+        im=rotate(fl,al,(140,380));im.alpha_composite(rotate(fr,ar,(372,380)))
+        return im,dict(leftAngle=al,rightAngle=ar,leftAnchor=[140,380],rightAnchor=[372,380])
+    animate('kick','motion.kick','キック：足首を支点に左右交互',kick,'sources/generated/foot.png',['left foot at ankle','right foot at ankle'])
 
-# Rain drops use isolated raster components, cloud stays still.
-rainSrc=read(REF/'candidates/rain.webp');pcs=components(rainSrc);cloud=fit(pcs[0],(310,205));drop=fit(pcs[-1],(24,40));part('rain-drop',drop)
-cloudLayer=part('rain-cloud',place(blank(),cloud,(256-cloud.width/2,75)))
-def rainloop(t):
-    im=blank();positions=[]
-    for j,x in enumerate([157,221,285,349]):
-        phase=(t+j*.24)%1;y=220+phase*190;alpha=math.sin(math.pi*phase)**.7
-        dro=drop.copy();dro.putalpha(dro.getchannel('A').point(lambda a:round(a*alpha)));place(im,dro,(x,y));positions.append([x,y,alpha])
-    im.alpha_composite(cloudLayer);return im,dict(drops=positions)
-animate('water-rain','motion.water','雨粒が雲から落ちる',rainloop,'reference/artwork/candidates/rain.webp',['rain drops'],stationary=[175,110,300,180])
+    # Bottle liquid: body interior mask is rotated with bottle, fill boundary stays level in world space.
+    interior=Image.new('L',(512,512));d=ImageDraw.Draw(interior)
+    d.polygon([(134,240),(292,286),(253,398),(190,415),(98,364)],fill=255)
+    # Keep blue measurement marks on top of liquid, no clipping of shoulder/cap.
+    a=np.asarray(milk);blue=(a[:,:,2]>a[:,:,0]+15)&(a[:,:,2]>140)&(a[:,:,0]<150)
+    interior=ImageChops.multiply(interior,milk.getchannel('A')); part('bottle-interior-mask',interior)
+    base=milk.copy();base.paste((250,246,236,255),(0,0,512,512),interior)
+    marks=milk.copy();marks.putalpha(Image.fromarray((blue*255).astype(np.uint8)));part('bottle-base',base);part('bottle-marks',marks)
+    def sip(t):
+        angle=-94*q(t);b=rotate(base,angle,(256,256));mask=rotate(interior,angle,(256,256))
+        ma=np.asarray(mask); mass=ma.sum(axis=1);cum=np.cumsum(mass); waterline=int(np.searchsorted(cum,cum[-1]*.30))
+        liquid=Image.new('L',(512,512));ImageDraw.Draw(liquid).rectangle((0,waterline,511,511),fill=255)
+        liquid=ImageChops.multiply(mask,liquid);b.paste((255,238,192,255),(0,0,512,512),liquid);b.alpha_composite(rotate(marks,angle,(256,256)))
+        return b,dict(bottleAngle=angle,liquidSurfaceY=waterline,liquidSurfaceAngle=0)
+    animate('sip','motion.sip','飲む：哺乳瓶を傾ける',sip,'reference/artwork/approved/milk_bottle.webp',['bottle tilt','horizontal milk surface'],note='乳首と液面の自然さは人の確認が必要。')
 
-# Shower head is separated from the original shower/duck scene. Tub is a new complete source.
-bathSrc=read(REF/'candidates/bath.webp');head=largest(bathSrc.crop((0,0,235,285)));head=fit(head,(100,135));headLayer=part('shower-head',place(blank(),head,(110,48)))
-tub=fit(read(GEN/'bath.png'),(375,240));tubLayer=part('bath-tub',place(blank(),tub,(256-tub.width/2,250)))
-def shower(t):
-    im=blank();pos=[]
-    for j in range(6):
-        phase=(t*2+j/6)%1;x=184+(j%3)*32;y=150+phase*165
-        dro=drop.resize((16,26),Image.Resampling.LANCZOS);dro.putalpha(dro.getchannel('A').point(lambda a:round(a*math.sin(math.pi*phase))))
-        place(im,dro,(x,y));pos.append([x,y])
-    im.alpha_composite(headLayer);im.alpha_composite(tubLayer);return im,dict(waterDrops=pos)
-animate('water-shower','motion.water','シャワー：水が浴槽へ落ちる',shower,['sources/generated/bath.png','reference/artwork/candidates/bath.webp'],['shower drops'],stationary=[140,390,350,430])
+    # Inverse perspective mapping: the actual printed right page hinges on the spine.
+    src=np.array([(328,235),(600,156),(654,502),(373,551)],float)*512/720
+    pageMask=Image.new('L',(512,512));ImageDraw.Draw(pageMask).polygon([tuple(v) for v in src],fill=255)
+    page=book.copy();page.putalpha(ImageChops.multiply(page.getchannel('A'),pageMask));part('book-right-page',page)
+    def perspective(im,dst):
+        A=[];B=[]
+        for (x,y),(u,v) in zip(dst,src):
+            A += [[x,y,1,0,0,0,-u*x,-u*y],[0,0,0,x,y,1,-v*x,-v*y]];B += [u,v]
+        c=np.linalg.solve(np.array(A),np.array(B));return im.transform((512,512),Image.Transform.PERSPECTIVE,c,Image.Resampling.BICUBIC)
+    def turn(t):
+        theta=math.pi*.98*q(t);c=math.cos(theta);s=math.sin(theta)
+        dst=src.copy()
+        for outer,hinge in [(1,0),(2,3)]:dst[outer]=src[hinge]+np.array([(src[outer,0]-src[hinge,0])*c,(src[outer,1]-src[hinge,1])*abs(c)-35*s])
+        im=book.copy()
+        if abs(c)>.015:
+            leaf=perspective(page,dst)
+            if c<0:
+                back=Image.new('RGBA',(512,512),(250,241,214,255));back.putalpha(leaf.getchannel('A'));leaf=back
+            im.alpha_composite(leaf)
+        return im,dict(pageAngle=theta*180/math.pi,spineTop=src[0].tolist(),outerTop=dst[1].tolist())
+    animate('page','motion.page','絵本：綴じ目を中心にページがめくれる',turn,'reference/artwork/approved/picture_book.webp',['right page'],stationary=[268,394,280,399],note='1枚を往復させるループ。背面はクリーム色。')
 
-# Splash moves water itself above a fixed complete tub, not the tub or a duck.
-def splash(t):
-    im=tubLayer.copy();positions=[]
-    for j,x in enumerate([170,235,300]):
-        phase=(t+j/3)%1; lift=math.sin(math.pi*phase)**2
-        dro=drop.resize((22,34),Image.Resampling.LANCZOS);dro.putalpha(dro.getchannel('A').point(lambda a:round(a*math.sin(math.pi*phase))))
-        y=285-105*lift;place(im,dro,(x,y));positions.append([x,y])
-    return im,dict(splashes=positions)
-animate('water-splash','motion.water','浴槽から水しぶき',splash,'sources/generated/bath.png',['water splashes'],stationary=[140,390,350,430])
+    # Rain drops use isolated raster components, cloud stays still.
+    rainSrc=read(REF/'candidates/rain.webp');pcs=components(rainSrc);cloud=fit(pcs[0],(310,205));drop=fit(pcs[-1],(24,40));part('rain-drop',drop)
+    cloudLayer=part('rain-cloud',place(blank(),cloud,(256-cloud.width/2,75)))
+    def rainloop(t):
+        im=blank();positions=[]
+        for j,x in enumerate([157,221,285,349]):
+            phase=(t+j*.24)%1;y=220+phase*190;alpha=math.sin(math.pi*phase)**.7
+            dro=drop.copy();dro.putalpha(dro.getchannel('A').point(lambda a:round(a*alpha)));place(im,dro,(x,y));positions.append([x,y,alpha])
+        im.alpha_composite(cloudLayer);return im,dict(drops=positions)
+    animate('water-rain','motion.water','雨粒が雲から落ちる',rainloop,'reference/artwork/candidates/rain.webp',['rain drops'],stationary=[175,110,300,180])
 
-# Real bowl, contents and spoon are complete independent original raster components.
-ml=read(GEN/'meal-layers.png');mw,mh=ml.size
-bowl=fit(ml.crop((0,0,mw//2,mh)),(330,265));spoon=fit(ml.crop((mw//2,0,mw,mh)),(188,188))
-bowlLayer=part('meal-bowl',place(blank(),bowl,(256-bowl.width/2,230)))
-part('meal-spoon-loaded',spoon)
-sp=np.asarray(spoon);sy,sx=np.indices(sp.shape[:2]);food=(sp[:,:,0]>225)&(sp[:,:,1]>205)&(sp[:,:,2]>150)&(sp[:,:,3]>80)&(sy>spoon.height*.45)&(sx<spoon.width*.65)
-foodmask=Image.fromarray(food.astype(np.uint8)*255).filter(ImageFilter.GaussianBlur(.7))
-emptyspoon=spoon.copy();emptyspoon.paste((255,194,67,255),(0,0,spoon.width,spoon.height),foodmask);part('meal-spoon-empty',emptyspoon)
-# Front wall occludes spoon below the bowl rim to imply dipping, with no holes in bowl.
-front=bowlLayer.copy();mask=Image.new('L',(512,512));ImageDraw.Draw(mask).rectangle((0,355,511,511),fill=255);front.putalpha(ImageChops.multiply(front.getchannel('A'),mask));part('meal-front-wall',front)
-def scoop(t):
-    lift=q(t);im=bowlLayer.copy();x=223+38*lift;y=243-122*lift
-    scoopspoon=Image.blend(emptyspoon,spoon,min(1,lift*8));place(im,scoopspoon,(x,y));im.alpha_composite(front)
-    return im,dict(spoon=[x,y],bowl=[256,350],liftPx=122*lift)
-animate('spoon','motion.spoon','白いおかゆ：すくう・上げる・戻す',scoop,'sources/generated/meal-layers.png',['loaded spoon'],stationary=[160,395,330,435],note='空のスプーンを器に沈め、白いおかゆを載せて持ち上げる。器の手前壁で自然に隠す。')
+    # Shower head is separated from the original shower/duck scene. Tub is a new complete source.
+    bathSrc=read(REF/'candidates/bath.webp');head=largest(bathSrc.crop((0,0,235,285)));head=fit(head,(100,135));headLayer=part('shower-head',place(blank(),head,(110,48)))
+    tub=fit(read(GEN/'bath.png'),(375,240));tubLayer=part('bath-tub',place(blank(),tub,(256-tub.width/2,250)))
+    def shower(t):
+        im=blank();pos=[]
+        for j in range(6):
+            phase=(t*2+j/6)%1;x=184+(j%3)*32;y=150+phase*165
+            dro=drop.resize((16,26),Image.Resampling.LANCZOS);dro.putalpha(dro.getchannel('A').point(lambda a:round(a*math.sin(math.pi*phase))))
+            place(im,dro,(x,y));pos.append([x,y])
+        im.alpha_composite(headLayer);im.alpha_composite(tubLayer);return im,dict(waterDrops=pos)
+    animate('water-shower','motion.water','シャワー：水が浴槽へ落ちる',shower,['sources/generated/bath.png','reference/artwork/candidates/bath.webp'],['shower drops'],stationary=[140,390,350,430])
 
-# Notes move smoothly with a beat; instrument stays completely stationary.
-mu=read(GEN/'music.png');ww,hh=mu.size
-inst=fit(mu.crop((0,round(hh*.40),ww,hh)),(310,260));instrument=part('music-instrument',place(blank(),inst,(256-inst.width/2,245)))
-notes=[]
-noteParts=sorted(components(mu.crop((0,0,ww,round(hh*.4))))[:3],key=lambda im:bbox(im)[0])
-for j,npiece in enumerate(noteParts):
-    n=fit(npiece,(65,85));notes.append(part(f'music-note-{j}',n))
-def notesloop(t):
-    im=instrument.copy();pos=[]
-    for j,n in enumerate(notes):
-        theta=2*math.pi*t+j*2*math.pi/3;x=130+j*95+10*math.sin(theta);y=110+28*math.sin(theta)
-        place(im,n,(x,y));pos.append([x,y])
-    return im,dict(notes=pos)
-animate('notes','motion.notes','音楽：拍に合わせて音符が動く',notesloop,'sources/generated/music.png',['three notes'],stationary=[160,320,300,400])
+    # Splash moves water itself above a fixed complete tub, not the tub or a duck.
+    def splash(t):
+        im=tubLayer.copy();positions=[]
+        for j,x in enumerate([170,235,300]):
+            phase=(t+j/3)%1; lift=math.sin(math.pi*phase)**2
+            dro=drop.resize((22,34),Image.Resampling.LANCZOS);dro.putalpha(dro.getchannel('A').point(lambda a:round(a*math.sin(math.pi*phase))))
+            y=285-105*lift;place(im,dro,(x,y));positions.append([x,y])
+        return im,dict(splashes=positions)
+    animate('water-splash','motion.water','浴槽から水しぶき',splash,'sources/generated/bath.png',['water splashes'],stationary=[140,390,350,430])
 
-# Hide/reveal a familiar toy with an opaque handkerchief. Nothing fades into existence.
-toy=fit(read(GEN/'toy.png'),(100,150));toyLayer=part('peekaboo-toy',place(blank(),toy,(256-toy.width/2,350-toy.height/2)))
-cloth=fit(read(GEN/'cloth.png'),(220,220));clothLayer=part('peekaboo-cloth',place(blank(),cloth,(256-cloth.width/2,350-cloth.height/2)))
-def peek(t):
-    lift=220*q(t);im=toyLayer.copy();im.alpha_composite(slide(clothLayer,0,-lift));return im,dict(clothOffsetY=-lift,toyCenter=[256,350])
-animate('peekaboo','motion.peekaboo','いないいないばあ：布で隠す・見せる',peek,['sources/generated/toy.png','sources/generated/cloth.png'],['handkerchief'],note='scene.familyの代替承認ではなく、玩具を隠す独立variant。')
+    # Real bowl, contents and spoon are complete independent original raster components.
+    ml=read(GEN/'meal-layers.png');mw,mh=ml.size
+    bowl=fit(ml.crop((0,0,mw//2,mh)),(330,265));spoon=fit(ml.crop((mw//2,0,mw,mh)),(188,188))
+    bowlLayer=part('meal-bowl',place(blank(),bowl,(256-bowl.width/2,230)))
+    part('meal-spoon-loaded',spoon)
+    sp=np.asarray(spoon);sy,sx=np.indices(sp.shape[:2]);food=(sp[:,:,0]>225)&(sp[:,:,1]>205)&(sp[:,:,2]>150)&(sp[:,:,3]>80)&(sy>spoon.height*.45)&(sx<spoon.width*.65)
+    foodmask=Image.fromarray(food.astype(np.uint8)*255).filter(ImageFilter.GaussianBlur(.7))
+    emptyspoon=spoon.copy();emptyspoon.paste((255,194,67,255),(0,0,spoon.width,spoon.height),foodmask);part('meal-spoon-empty',emptyspoon)
+    # Front wall occludes spoon below the bowl rim to imply dipping, with no holes in bowl.
+    front=bowlLayer.copy();mask=Image.new('L',(512,512));ImageDraw.Draw(mask).rectangle((0,355,511,511),fill=255);front.putalpha(ImageChops.multiply(front.getchannel('A'),mask));part('meal-front-wall',front)
+    def scoop(t):
+        lift=q(t);im=bowlLayer.copy();x=223+38*lift;y=243-122*lift
+        scoopspoon=Image.blend(emptyspoon,spoon,min(1,lift*8));place(im,scoopspoon,(x,y));im.alpha_composite(front)
+        return im,dict(spoon=[x,y],bowl=[256,350],liftPx=122*lift)
+    animate('spoon','motion.spoon','白いおかゆ：すくう・上げる・戻す',scoop,'sources/generated/meal-layers.png',['loaded spoon'],stationary=[160,395,330,435],note='空のスプーンを器に沈め、白いおかゆを載せて持ち上げる。器の手前壁で自然に隠す。')
 
-# Diaper tabs hinge at their roots, the padded body remains stationary.
-di=read(OUT/'sources/normalized/diaper.png');a=np.asarray(di);yy,xx=np.indices(a.shape[:2]);blue=(a[:,:,0]<90)&(a[:,:,1]<190)&(a[:,:,2]>150)&(a[:,:,3]>30)
-leftMask=Image.fromarray((blue&(xx<190)&(yy<260)).astype(np.uint8)*255).filter(ImageFilter.MaxFilter(3))
-rightMask=Image.fromarray((blue&(xx>322)&(yy<260)).astype(np.uint8)*255).filter(ImageFilter.MaxFilter(3))
-tabL=di.copy();tabL.putalpha(ImageChops.multiply(di.getchannel('A'),leftMask));tabR=di.copy();tabR.putalpha(ImageChops.multiply(di.getchannel('A'),rightMask))
-body=di.copy();body.putalpha(ImageChops.subtract(di.getchannel('A'),ImageChops.lighter(leftMask,rightMask)))
-part('diaper-body',body);part('diaper-tab-left',tabL);part('diaper-tab-right',tabR)
-lbox=bbox(tabL);rbox=bbox(tabR);lh=lbox[2]-4;rh=rbox[0]+4;cy=(lbox[1]+lbox[3])/2
-# Keep a narrow root patch under each tab; no detached or missing joint.
-def fold(layer,pivot,sx):
-    if abs(sx)<.03:sx=.03
-    return layer.transform((512,512),Image.Transform.AFFINE,(1/sx,0,pivot-pivot/sx,0,1,0),Image.Resampling.BICUBIC)
-def change(t):
-    angle=math.pi*.84*q(t);sx=math.cos(angle);im=body.copy();im.alpha_composite(fold(tabL,lh,sx));im.alpha_composite(fold(tabR,rh,sx));return im,dict(tabFoldAngle=angle*180/math.pi,leftHinge=[lh,cy],rightHinge=[rh,cy])
-animate('change-diaper','motion.change','おむつ：留め具を開閉',change,'sources/generated/diaper.png',['left fastening tab','right fastening tab'],stationary=[210,255,300,340],note='交換全体ではなく留め具の開閉。着替え・拭く・げっぷは未制作。',readiness='draft')
+    # Notes move smoothly with a beat; instrument stays completely stationary.
+    mu=read(GEN/'music.png');ww,hh=mu.size
+    inst=fit(mu.crop((0,round(hh*.40),ww,hh)),(310,260));instrument=part('music-instrument',place(blank(),inst,(256-inst.width/2,245)))
+    notes=[]
+    noteParts=sorted(components(mu.crop((0,0,ww,round(hh*.4))))[:3],key=lambda im:bbox(im)[0])
+    for j,npiece in enumerate(noteParts):
+        n=fit(npiece,(65,85));notes.append(part(f'music-note-{j}',n))
+    def notesloop(t):
+        im=instrument.copy();pos=[]
+        for j,n in enumerate(notes):
+            theta=2*math.pi*t+j*2*math.pi/3;x=130+j*95+10*math.sin(theta);y=110+28*math.sin(theta)
+            place(im,n,(x,y));pos.append([x,y])
+        return im,dict(notes=pos)
+    animate('notes','motion.notes','音楽：拍に合わせて音符が動く',notesloop,'sources/generated/music.png',['three notes'],stationary=[160,320,300,400])
+
+    # Hide/reveal a familiar toy with an opaque handkerchief. Nothing fades into existence.
+    toy=fit(read(GEN/'toy.png'),(100,150));toyLayer=part('peekaboo-toy',place(blank(),toy,(256-toy.width/2,350-toy.height/2)))
+    cloth=fit(read(GEN/'cloth.png'),(220,220));clothLayer=part('peekaboo-cloth',place(blank(),cloth,(256-cloth.width/2,350-cloth.height/2)))
+    def peek(t):
+        lift=220*q(t);im=toyLayer.copy();im.alpha_composite(slide(clothLayer,0,-lift));return im,dict(clothOffsetY=-lift,toyCenter=[256,350])
+    animate('peekaboo','motion.peekaboo','いないいないばあ：布で隠す・見せる',peek,['sources/generated/toy.png','sources/generated/cloth.png'],['handkerchief'],note='scene.familyの代替承認ではなく、玩具を隠す独立variant。')
+
+    # Diaper tabs hinge at their roots, the padded body remains stationary.
+    di=read(OUT/'sources/normalized/diaper.png');a=np.asarray(di);yy,xx=np.indices(a.shape[:2]);blue=(a[:,:,0]<90)&(a[:,:,1]<190)&(a[:,:,2]>150)&(a[:,:,3]>30)
+    leftMask=Image.fromarray((blue&(xx<190)&(yy<260)).astype(np.uint8)*255).filter(ImageFilter.MaxFilter(3))
+    rightMask=Image.fromarray((blue&(xx>322)&(yy<260)).astype(np.uint8)*255).filter(ImageFilter.MaxFilter(3))
+    tabL=di.copy();tabL.putalpha(ImageChops.multiply(di.getchannel('A'),leftMask));tabR=di.copy();tabR.putalpha(ImageChops.multiply(di.getchannel('A'),rightMask))
+    body=di.copy();body.putalpha(ImageChops.subtract(di.getchannel('A'),ImageChops.lighter(leftMask,rightMask)))
+    part('diaper-body',body);part('diaper-tab-left',tabL);part('diaper-tab-right',tabR)
+    lbox=bbox(tabL);rbox=bbox(tabR);lh=lbox[2]-4;rh=rbox[0]+4;cy=(lbox[1]+lbox[3])/2
+    # Keep a narrow root patch under each tab; no detached or missing joint.
+    def fold(layer,pivot,sx):
+        if abs(sx)<.03:sx=.03
+        return layer.transform((512,512),Image.Transform.AFFINE,(1/sx,0,pivot-pivot/sx,0,1,0),Image.Resampling.BICUBIC)
+    def change(t):
+        angle=math.pi*.84*q(t);sx=math.cos(angle);im=body.copy();im.alpha_composite(fold(tabL,lh,sx));im.alpha_composite(fold(tabR,rh,sx));return im,dict(tabFoldAngle=angle*180/math.pi,leftHinge=[lh,cy],rightHinge=[rh,cy])
+    animate('change-diaper','motion.change','おむつ：留め具を開閉',change,'sources/generated/diaper.png',['left fastening tab','right fastening tab'],stationary=[210,255,300,340],note='交換全体ではなく留め具の開閉。着替え・拭く・げっぷは未制作。',readiness='draft')
+
+
+currentPass=2
+exec(compile((ROOT/'scripts/visual-cue/additional_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/additional_artwork.py'),'exec'),globals())
+if SAMPLE_ONLY:
+    print('Sample keyframes saved; manifest and videos unchanged.');raise SystemExit(0)
 
 # All 31 concepts and all 58 Cue IDs are represented, without fictitious assets.
 plan=json.loads((ROOT/'shared/visual-cue-asset-plan.json').read_text())
 missing={
  'scene.tummy':'赤ちゃんの体を描かずに「おなか」を一義的に示す物体が未確定。抽象記号で代用せず構図レビュー待ち。',
  'scene.family':'クマ＋ハートは意味不明瞭で再制作対象。人物なしの家族・抱っこ構図は未確定。',
- 'motion.hand':'拍手・手振りの候補。指の開閉・握る・数える・タップ・指の独立動作は未制作。',
- 'motion.change':'おむつ留め具は試作。交換全体、着替え、拭く、げっぷは未完成。',
+ 'motion.hand':'拍手・手振りに加え、開閉・数える・タップ・指の独立動作を追加。握るは遮蔽を審査中。',
+ 'motion.change':'おむつの接合部改善、服のファスナー操作、手を拭くvariantを追加。交換・着替え全体、げっぷは未完成。',
  'motion.hug':'ハート点滅・クマの上下動は不採用。人物描写が必要なため指示書に従いレビュー待ち。'}
 concepts=[]
 for p in plan['primitives']:
@@ -266,7 +279,7 @@ for p in plan['primitives']:
     else:concepts.append(dict(primitive=p['id'],kind=p['kind'],assetIds=ids,status='needs-review',readiness=('candidate' if any(a['id'] in ids and a['readiness']=='candidate' for a in assets) else 'draft') if ids else 'missing',reason=missing.get(p['id'],'採用審査前。variant単位の未完はcueCoverageを参照。')))
 
 cueFiles={
-'action.clap':['hand-clap'],'action.wave':['hand-wave'],'action.kick':['kick'],'action.read':['page'],'action.turn-page':['page'],
+'action.open-close':['hand-open-close'],'action.count':['hand-count'],'action.wiggle':['hand-wiggle'],'action.squeeze':['hand-squeeze'],'action.tap':['hand-tap'],'action.wipe':['care-wipe'],'action.dress':['change-zipper'],'action.clap':['hand-clap'],'action.wave':['hand-wave'],'action.kick':['kick'],'action.read':['page'],'action.turn-page':['page'],
 'action.sip':['sip'],'action.eat':['spoon'],'action.sing':['notes'],'action.peekaboo':['peekaboo'],'action.splash':['water-splash'],'action.wash':['water-shower'],
 'action.sleep':['sleep'],'subject.bath':['bath'],'subject.book':['book'],'subject.clothes':['clothes'],'subject.diaper':['diaper'],'subject.drink':['milk'],'subject.feet':['feet'],
 'subject.food':['meal'],'subject.hands':['hands'],'subject.milk':['milk'],'subject.music':['music'],'subject.outside':['outdoor'],'subject.rain':['rain','water-rain'],'subject.sun':['sun'],'subject.toy':['toy']}
@@ -279,9 +292,11 @@ for b in plan['bindings']:
     ids=cueFiles.get(b['cueId'],[])
     ready='candidate' if ids and all(next(x for x in assets if x['id']==i)['readiness']=='candidate' for i in ids) else 'draft' if ids else 'missing'
     reason=unmade.get(b['cueId'],'Emma状態の評価のみ。アプリ統合・意味承認は未実施。' if not ids else '素材候補の審査待ち。914英文の割当品質を保証しない。')
+    if ids and b['cueId'] in unmade:reason=next(a for a in assets if a['id']==ids[0]).get('note') or '追加制作した動作variant。採用審査待ち。'
+    if b['cueId']=='action.dress':ready='draft';reason='前開き服のファスナー操作variantのみ。服を身体に着せる全過程は未制作。'
     if b['cueId']=='action.peekaboo':reason='玩具を布で隠すvariant。計画のscene.familyは未制作、家族表現を代替承認したものではない。'
     coverage.append(dict(cueId=b['cueId'],primitives=b['primitives'],assetIds=ids,status='needs-review',readiness=ready,reason=reason))
-manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
+manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='c04edf8',productionPass=2,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
 (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
 (OUT/'qa/motion-traces.json').write_text(json.dumps(rigs,ensure_ascii=False,indent=2)+'\n')
 print(f'Built {sum(x["kind"]=="illustration" for x in assets)} stills, {sum(x["kind"]=="animation" for x in assets)} loops; {len(concepts)} concepts / {len(coverage)} Cues. Approval remains pending.')
