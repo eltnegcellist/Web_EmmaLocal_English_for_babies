@@ -72,8 +72,9 @@ Gradleのホームへ書けない場合は`GRADLE_USER_HOME=/tmp/ruri-gradle`な
 |critical-cases.json|重点6文（既存重複も明示）の全条件出力|
 |critical-repeated-replies.json|6文×5方式×20回の実返答履歴|
 |english-meaning-review.json|Codexが読んだ51入力/英文組。人手承認0|
-|head-training.json|新たな178学習/開発文。67＋150文を学習に使用しない|
-|head-training-result.json|138学習・40開発、prior正則化3条件、選択理由・支持数|
+|head-training.json|近接7文を除いた171学習/開発文。67＋150文を学習に使用しない|
+|family-exclusions.json|学習/開発から除いた近接7表現と理由|
+|head-training-result.json|134学習・37開発、prior正則化3条件、選択理由・支持数|
 |experimental-head-*.f32|研究用線形ヘッド。本番ファイルに上書きしない|
 |head-evaluation.json|選択済みヘッドの固定評価、元スコア・採用・英文・退行|
 |legacy67-reproduction.json|既存67例・17保護ルートの再現結果|
@@ -91,6 +92,6 @@ Gradleのホームへ書けない場合は`GRADLE_USER_HOME=/tmp/ruri-gradle`な
 残り69文は一致率の分母から除外するが、生スコア・generic率・英文検査に残す。
 全150文では単一ラベル77文・未確定73文。
 
-`English_review.contradictions`はレビュー済み部分の**暫定的な矛盾・意図/時系列反転候補**。
+`english_review.contradictions`はレビュー済み部分の**暫定的な矛盾・意図/時系列反転候補**。
 睡眠の疑問や誘いを現在の睡眠の断定とみなす等の一律判定はしていない。
 表現の人手確認・録音の試聴・実機測定・Moonshine誤認識文字列の評価は未完了。

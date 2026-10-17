@@ -1,6 +1,6 @@
 {
   "status": "SYNTHETIC_PROVISIONAL_UNADJUDICATED_RESEARCH_ONLY",
-  "notes": "New head experiment only, no legacy67 or new evaluation text used for fitting. Global construction families are held out for development; evaluation families are separate. Topic generic for negative/temporal expressions is an unapproved routing target. Four examples per topic, five per interaction are insufficient for deployment.",
+  "notes": "New head experiment only, no legacy67 or new evaluation text used for fitting. Global construction families are held out for development; evaluation families are separate. Topic generic for negative/temporal expressions is an unapproved routing target. At most four examples per topic, at most five per interaction are insufficient for deployment. Final lexical-family audit conservatively removed seven close expressions before final refit; see family-exclusions.json. Other family assignments remain provisional and require independent human audit.",
   "cases": [
     {
       "id": "train001",
@@ -822,15 +822,6 @@
       "adjudicated": false
     },
     {
-      "id": "train092",
-      "text": "あなたは私の宝物です",
-      "expected_topic": null,
-      "expected_interaction": "affection",
-      "family": "training_interaction_form_3",
-      "split": "train",
-      "adjudicated": false
-    },
-    {
       "id": "train093",
       "text": "かわいくて大好きだよ",
       "expected_topic": null,
@@ -867,15 +858,6 @@
       "adjudicated": false
     },
     {
-      "id": "train097",
-      "text": "上手にできました",
-      "expected_topic": null,
-      "expected_interaction": "praise",
-      "family": "training_interaction_form_3",
-      "split": "train",
-      "adjudicated": false
-    },
-    {
       "id": "train098",
       "text": "いい出来だったね",
       "expected_topic": null,
@@ -900,15 +882,6 @@
       "expected_interaction": "achievement",
       "family": "training_interaction_form_1",
       "split": "train",
-      "adjudicated": false
-    },
-    {
-      "id": "train101",
-      "text": "初めてやり遂げました",
-      "expected_topic": null,
-      "expected_interaction": "achievement",
-      "family": "training_interaction_form_2",
-      "split": "development",
       "adjudicated": false
     },
     {
@@ -1016,15 +989,6 @@
       "expected_topic": null,
       "expected_interaction": "encouragement",
       "family": "training_interaction_form_4",
-      "split": "train",
-      "adjudicated": false
-    },
-    {
-      "id": "train114",
-      "text": "一緒にやってみませんか",
-      "expected_topic": null,
-      "expected_interaction": "invitation",
-      "family": "training_interaction_form_0",
       "split": "train",
       "adjudicated": false
     },
@@ -1218,29 +1182,11 @@
       "adjudicated": false
     },
     {
-      "id": "train136",
-      "text": "今日は本当におつかれさま",
-      "expected_topic": null,
-      "expected_interaction": "care",
-      "family": "training_interaction_form_2",
-      "split": "development",
-      "adjudicated": false
-    },
-    {
       "id": "train137",
       "text": "大変だったから体を休めてね",
       "expected_topic": null,
       "expected_interaction": "care",
       "family": "training_interaction_form_3",
-      "split": "train",
-      "adjudicated": false
-    },
-    {
-      "id": "train138",
-      "text": "いっぱいやったね、お疲れさま",
-      "expected_topic": null,
-      "expected_interaction": "care",
-      "family": "training_interaction_form_4",
       "split": "train",
       "adjudicated": false
     },
@@ -1350,15 +1296,6 @@
       "expected_interaction": "repeat",
       "family": "training_interaction_form_1",
       "split": "train",
-      "adjudicated": false
-    },
-    {
-      "id": "train151",
-      "text": "あと一回繰り返してみよう",
-      "expected_topic": null,
-      "expected_interaction": "repeat",
-      "family": "training_interaction_form_2",
-      "split": "development",
       "adjudicated": false
     },
     {

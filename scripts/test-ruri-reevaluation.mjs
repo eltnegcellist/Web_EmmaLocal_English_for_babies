@@ -36,10 +36,12 @@ test('six required safety inputs retain actual selected English and repeated his
  const bath=trace.rows.find(x=>x.text==='ミルクを飲んだらお風呂に入ろうね'&&x.policy==='A50_m05');
  assert.ok(bath.turns.some(x=>x.english==="We're taking a bath. Listen to the water. Splash, splash!"));
 });
-test('new data, training and legacy remain separate and ambiguity is excluded',()=>{
+test('new data, training and legacy remain separate and ambiguity is excluded',async()=>{
  assert.ok(data.cases.length>=100);assert.equal(new Set(data.cases.map(x=>x.text)).size,data.cases.length);
  const old=new Set(raw.rows.filter(x=>x.source==='legacy67').map(x=>x.text));
  assert.ok(train.cases.every(x=>!old.has(x.text)&&!data.cases.some(y=>y.text===x.text)));
+ const excluded=await json('family-exclusions.json');assert.equal(excluded.rows.length,7);
+ assert.ok(excluded.rows.every(x=>!train.cases.some(y=>y.text===x.text)));
  const families=new Set(train.cases.filter(x=>x.split==='train').map(x=>x.family));
  assert.ok(train.cases.filter(x=>x.split==='development').every(x=>!families.has(x.family)));
  const cal=new Set(data.cases.filter(x=>x.split==='calibration').map(x=>x.family));

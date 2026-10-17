@@ -62,5 +62,11 @@
     "human semantic approval",
     "Android APK/Compose tests (SDK unavailable)",
     "human listening to recorded audio"
-  ]
+  ],
+  "initial_commit_web_ci": {
+    "commit": "446558e5f4be2df6354367211c2844bbf0a139a1",
+    "run": "38998596334",
+    "conclusion": "success",
+    "includes": "browser Silero, phoneme audit, voice bank integrity, existing Ruri ONNX regressions"
+  }
 }

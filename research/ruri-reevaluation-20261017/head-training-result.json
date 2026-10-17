@@ -9,11 +9,11 @@
   ],
   "steps": 800,
   "learning_rate": 4.0,
-  "train_count": 138,
-  "development_count": 40,
+  "train_count": 134,
+  "development_count": 37,
   "numpy": "2.5.1",
   "python": "3.14.4",
-  "embedding_cache_key": "7375db040ec050fa462bf27082104e03318a2cbdc37bba03e307df783face260",
+  "embedding_cache_key": "5331b0f49bedc2509ab548e058aa080af4e0a025316f87724fbc1f8a38eb243d",
   "human_adjudicated_training": 0,
   "limitations": "Tiny unapproved synthetic corpus, partial coverage, no original 477-item training corpus in repository. This is a feasibility/failure experiment, not a deployment recommendation.",
   "heads": {
@@ -44,57 +44,57 @@
       ],
       "selected_lambda": 0.0001,
       "filename": "experimental-head-topic.f32",
-      "sha256": "4bf6d03445748666dab45957838333249d0fead1c1b3e4860f84809b95dc9ad9",
+      "sha256": "913642fac732647e971bd09535b5c09cf701b130620361889428706a3eb86a3a",
       "original": {
         "train": {
-          "raw_exact": 93,
-          "n": 138,
-          "cross_entropy": 1.2141636620422451
+          "raw_exact": 91,
+          "n": 134,
+          "cross_entropy": 1.1980186911426134
         },
         "development": {
-          "raw_exact": 32,
-          "n": 40,
-          "cross_entropy": 1.0247437897476628
+          "raw_exact": 29,
+          "n": 37,
+          "cross_entropy": 1.0358073784026827
         }
       },
       "grid": [
         {
           "prior_lambda": 0.01,
           "train": {
-            "raw_exact": 130,
-            "n": 138,
-            "cross_entropy": 0.30773814118788284
+            "raw_exact": 126,
+            "n": 134,
+            "cross_entropy": 0.31234815319059095
           },
           "development": {
-            "raw_exact": 35,
-            "n": 40,
-            "cross_entropy": 0.4334768254871738
+            "raw_exact": 32,
+            "n": 37,
+            "cross_entropy": 0.46302236262795593
           }
         },
         {
           "prior_lambda": 0.001,
           "train": {
-            "raw_exact": 135,
-            "n": 138,
-            "cross_entropy": 0.17108004786854
+            "raw_exact": 132,
+            "n": 134,
+            "cross_entropy": 0.17265549721946236
           },
           "development": {
-            "raw_exact": 36,
-            "n": 40,
-            "cross_entropy": 0.3215072046484721
+            "raw_exact": 33,
+            "n": 37,
+            "cross_entropy": 0.3433966369015137
           }
         },
         {
           "prior_lambda": 0.0001,
           "train": {
-            "raw_exact": 138,
-            "n": 138,
-            "cross_entropy": 0.08001399846478749
+            "raw_exact": 134,
+            "n": 134,
+            "cross_entropy": 0.08023565301730688
           },
           "development": {
-            "raw_exact": 39,
-            "n": 40,
-            "cross_entropy": 0.22499098385908556
+            "raw_exact": 36,
+            "n": 37,
+            "cross_entropy": 0.24030668111100767
           }
         }
       ],
@@ -120,7 +120,7 @@
         "food": 3,
         "book": 3,
         "music": 3,
-        "generic": 75
+        "generic": 71
       },
       "development_class_support": {
         "drink": 1,
@@ -144,7 +144,7 @@
         "food": 1,
         "book": 1,
         "music": 1,
-        "generic": 19
+        "generic": 16
       }
     },
     "interaction": {
@@ -167,71 +167,71 @@
       ],
       "selected_lambda": 0.0001,
       "filename": "experimental-head-interaction.f32",
-      "sha256": "6a7348fb4a92a586d6e82bc5f866e5ba08597a6e72bdc8c97d06cbb333fdf66d",
+      "sha256": "a409e02a99a9bd43300e134c56cfa2246a65a6f4ae18215bd5d9c1e341a5f306",
       "original": {
         "train": {
-          "raw_exact": 124,
-          "n": 138,
-          "cross_entropy": 0.6759162433976083
+          "raw_exact": 121,
+          "n": 134,
+          "cross_entropy": 0.681309988205874
         },
         "development": {
-          "raw_exact": 36,
-          "n": 40,
-          "cross_entropy": 0.824331894140439
+          "raw_exact": 33,
+          "n": 37,
+          "cross_entropy": 0.8674119193532004
         }
       },
       "grid": [
         {
           "prior_lambda": 0.01,
           "train": {
-            "raw_exact": 134,
-            "n": 138,
-            "cross_entropy": 0.2529695415782458
+            "raw_exact": 131,
+            "n": 134,
+            "cross_entropy": 0.23827695340410496
           },
           "development": {
-            "raw_exact": 38,
-            "n": 40,
-            "cross_entropy": 0.3168726264831797
+            "raw_exact": 35,
+            "n": 37,
+            "cross_entropy": 0.2924085661307123
           }
         },
         {
           "prior_lambda": 0.001,
           "train": {
-            "raw_exact": 138,
-            "n": 138,
-            "cross_entropy": 0.13791399712891736
+            "raw_exact": 134,
+            "n": 134,
+            "cross_entropy": 0.1311640578319077
           },
           "development": {
-            "raw_exact": 38,
-            "n": 40,
-            "cross_entropy": 0.24009702239949265
+            "raw_exact": 35,
+            "n": 37,
+            "cross_entropy": 0.21316422042305155
           }
         },
         {
           "prior_lambda": 0.0001,
           "train": {
-            "raw_exact": 138,
-            "n": 138,
-            "cross_entropy": 0.06316377760533394
+            "raw_exact": 134,
+            "n": 134,
+            "cross_entropy": 0.06080818279948112
           },
           "development": {
-            "raw_exact": 38,
-            "n": 40,
-            "cross_entropy": 0.18433464505944103
+            "raw_exact": 35,
+            "n": 37,
+            "cross_entropy": 0.16191466088406978
           }
         }
       ],
       "train_class_support": {
-        "affection": 4,
-        "praise": 4,
+        "affection": 3,
+        "praise": 3,
         "achievement": 4,
         "effort": 4,
         "encouragement": 4,
-        "invitation": 4,
+        "invitation": 3,
         "start": 4,
         "finish": 4,
         "finish_check": 4,
-        "care": 4,
+        "care": 3,
         "inquiry": 4,
         "reassurance": 4,
         "repeat": 4,
@@ -241,17 +241,17 @@
       "development_class_support": {
         "affection": 1,
         "praise": 1,
-        "achievement": 1,
+        "achievement": 0,
         "effort": 1,
         "encouragement": 1,
         "invitation": 1,
         "start": 1,
         "finish": 1,
         "finish_check": 1,
-        "care": 1,
+        "care": 0,
         "inquiry": 1,
         "reassurance": 1,
-        "repeat": 1,
+        "repeat": 0,
         "pause": 1,
         "none": 26
       }
