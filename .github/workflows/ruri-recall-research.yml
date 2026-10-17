@@ -19,6 +19,8 @@ jobs:
         with:
           node-version: '26'
       - name: Run actual pinned Ruri on the 202 synthetic inputs
+        env:
+          RURI_RESEARCH_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: node scripts/evaluate-ruri-recall-priority.mjs --refresh
       - name: Recompute frequency, cost and retrospective sampling sensitivity
         run: node scripts/analyze-ruri-recall-tradeoffs.mjs
