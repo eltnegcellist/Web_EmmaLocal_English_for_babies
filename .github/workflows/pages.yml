@@ -47,6 +47,7 @@ jobs:
           node test-asr-keyterm-bias.mjs
           node scripts/test-recorded-review-26.mjs
           node test-voice-review-gate.mjs
+          node scripts/test-audit-ruri-human-review.mjs
           node test-audible-latency-summary.mjs
           node test-prerecorded-voice.mjs
           node test-tts-prerecorded.mjs
