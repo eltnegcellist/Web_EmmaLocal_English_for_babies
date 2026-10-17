@@ -2,6 +2,8 @@
 
 **Research only. This does not grant production approval or change Ruri thresholds, weights, Topic/Interaction classes, English bank or prerecorded audio.** It prepares the human review required by Issue #101 and experimental Web PR #109. No caregiver recordings are needed for this text-only step.
 
+**Later research recommendation:** The initial fixed-50% recommendation below is historical. [Recall-priority re-evaluation](RURI_RECALL_PRIORITY_REEVALUATION_20261017.md) compares natural utterances and frequency/cost assumptions, and recommends studying Topic-only 40% rescue with a 10-point margin when both existing axes abstain. Production still uses 50%; this does not grant release approval. The import files and the 150/51 review scope below remain frozen to the original study.
+
 ## Inputs (frozen research PR #109)
 
 Obtain these two files from PR #109 commit `125172858bab63b24b562a089b1222902b7e1695` and save them on your Mac:

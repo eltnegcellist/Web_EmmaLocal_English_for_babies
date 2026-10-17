@@ -1,0 +1,33 @@
+{
+  "status": "RECALL_PRIORITY_RESEARCH_RECOMMENDATION_NOT_DEPLOYMENT",
+  "supersedes": "initial blanket recommendation to keep fixed 50%",
+  "preferred_policy": "C_topic0.4_M0.1",
+  "baseline_topic_probability": 0.5,
+  "baseline_topic_margin": 0.05,
+  "baseline_interaction_probability": 0.5,
+  "rescue_eligibility": "both axes abstain",
+  "rescue_topic_probability": 0.4,
+  "rescue_topic_margin": 0.1,
+  "rescue_interaction": false,
+  "new202_improved_english": 3,
+  "retrospective131_improved_english": 3,
+  "additional_explicit_bad_english_on_those_333": 0,
+  "known_outside_set_negation_failures_remain": true,
+  "frequency_measured": false,
+  "human_approved": false,
+  "production_changed": false,
+  "main_merged": false,
+  "latest_followup": {
+    "policy": "C_topic0.3_M0.1",
+    "status": "ADDITIONAL_RECALL_PRIORITY_TRIAL_CANDIDATE_NOT_CONFIRMED_PRODUCTION_RECOMMENDATION",
+    "report": "docs/research/RURI_GUARDED30_REEVALUATION_20261017.md",
+    "new202_improved_english": 4,
+    "retrospective131_improved_english": 5,
+    "extra_beneficial_vs_guarded40": 3,
+    "additional_stress_cases": 81,
+    "additional_explicit_bad_vs_guarded40": 2,
+    "additional_undecidable_vs_guarded40": 1,
+    "human_approved": false,
+    "production_changed": false
+  }
+}

@@ -1,0 +1,3526 @@
+{
+  "schema_version": 1,
+  "status": "SYNTHETIC_PROVISIONAL_RECALL_PRIORITY_NOT_OBSERVED_FREQUENCY",
+  "design": "Written and frozen before fresh inference. No head fitting or threshold fitting. ordinary/routine/absence strata are frequency scenarios, never measured caregiver prevalence. Dialogue topic can be present in a negative question; it does not certify current action. Unknown interaction intent uses acceptable alternatives. Old stress cases remain separately reported.",
+  "cases": [
+    {
+      "id": "natural001",
+      "text": "ぐっすりねんねしてるね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_0",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural002",
+      "text": "すやすや眠っているね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_0",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural003",
+      "text": "気持ちよさそうに寝てるね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_0",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural004",
+      "text": "おめめがとろんとしてきたね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_1",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural005",
+      "text": "うとうとしているね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_1",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural006",
+      "text": "お昼寝しようか",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_1",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural007",
+      "text": "そろそろお布団に入ろうね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_2",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural008",
+      "text": "ねむくなってきたかな",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_2",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null,
+        "inquiry"
+      ],
+      "expected_interaction": "inquiry",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural009",
+      "text": "たくさんお昼寝できたね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_2",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural010",
+      "text": "おやすみ、ゆっくり寝てね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_3",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural011",
+      "text": "お布団でころんとしてねんねしようね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_3",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural012",
+      "text": "寝息が聞こえてくるね",
+      "stratum": "ordinary",
+      "family": "everyday_sleep_3",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural013",
+      "text": "おいしそうにミルク飲んでるね",
+      "stratum": "ordinary",
+      "family": "everyday_milk_0",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural014",
+      "text": "ミルクをごくごく上手に飲めてるね",
+      "stratum": "ordinary",
+      "family": "everyday_milk_0",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        "praise"
+      ],
+      "expected_interaction": "praise",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural015",
+      "text": "おっぱいをたくさん飲めたね",
+      "stratum": "ordinary",
+      "family": "everyday_milk_0",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        "praise"
+      ],
+      "expected_interaction": "praise",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural016",
+      "text": "ミルクの時間にしようか",
+      "stratum": "ordinary",
+      "family": "everyday_milk_1",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural017",
+      "text": "おっぱいにしようか",
+      "stratum": "ordinary",
+      "family": "everyday_milk_1",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural018",
+      "text": "ミルクを飲み終わったね",
+      "stratum": "ordinary",
+      "family": "everyday_milk_1",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        "finish"
+      ],
+      "expected_interaction": "finish",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural019",
+      "text": "もうミルクはおしまいかな",
+      "stratum": "ordinary",
+      "family": "everyday_milk_2",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        "finish_check"
+      ],
+      "expected_interaction": "finish_check",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural020",
+      "text": "もうちょっとミルク飲む？",
+      "stratum": "ordinary",
+      "family": "everyday_milk_2",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null,
+        "inquiry"
+      ],
+      "expected_interaction": "inquiry",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural021",
+      "text": "おなかすいたね、ミルク飲もうか",
+      "stratum": "ordinary",
+      "family": "everyday_milk_2",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural022",
+      "text": "哺乳びんを持ってきたよ",
+      "stratum": "ordinary",
+      "family": "everyday_milk_3",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural023",
+      "text": "ミルクをゆっくり飲んでるね",
+      "stratum": "ordinary",
+      "family": "everyday_milk_3",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural024",
+      "text": "口をぱくぱくしてるね、おっぱいかな",
+      "stratum": "ordinary",
+      "family": "everyday_milk_3",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null,
+        "inquiry"
+      ],
+      "expected_interaction": "inquiry",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural025",
+      "text": "おむつぱんぱんだね",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_0",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural026",
+      "text": "おしっこいっぱい出たね",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_0",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural027",
+      "text": "うんち出たね、きれいにしようね",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_0",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural028",
+      "text": "新しいおむつにしようか",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_1",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural029",
+      "text": "おしりをきれいに拭こうね",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_1",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural030",
+      "text": "おむつ替えできたよ",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_1",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        "finish"
+      ],
+      "expected_interaction": "finish",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural031",
+      "text": "すっきりしたね、おむつ替えたよ",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_2",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        "finish"
+      ],
+      "expected_interaction": "finish",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural032",
+      "text": "おむつ濡れちゃったかな",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_2",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        null,
+        "inquiry"
+      ],
+      "expected_interaction": "inquiry",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural033",
+      "text": "さらさらのおむつになったね",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_2",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural034",
+      "text": "きれいなおむつを持ってきたよ",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_3",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural035",
+      "text": "おむつ替えるよ、ころんしてね",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_3",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural036",
+      "text": "おしりを拭いているよ",
+      "stratum": "ordinary",
+      "family": "everyday_diaper_3",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural037",
+      "text": "おふろ、あったかいね",
+      "stratum": "ordinary",
+      "family": "everyday_bath_0",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural038",
+      "text": "お風呂のお湯が気持ちいいね",
+      "stratum": "ordinary",
+      "family": "everyday_bath_0",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural039",
+      "text": "ぱちゃぱちゃお風呂で遊んでるね",
+      "stratum": "ordinary",
+      "family": "everyday_bath_0",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural040",
+      "text": "からだをきれいに洗おうね",
+      "stratum": "ordinary",
+      "family": "everyday_bath_1",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural041",
+      "text": "そろそろおふろの時間だよ",
+      "stratum": "ordinary",
+      "family": "everyday_bath_1",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural042",
+      "text": "お風呂に入ってさっぱりしようね",
+      "stratum": "ordinary",
+      "family": "everyday_bath_1",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural043",
+      "text": "お風呂あがったね",
+      "stratum": "ordinary",
+      "family": "everyday_bath_2",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        "finish"
+      ],
+      "expected_interaction": "finish",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural044",
+      "text": "おふろ、もうあがろうか",
+      "stratum": "ordinary",
+      "family": "everyday_bath_2",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        "finish_check"
+      ],
+      "expected_interaction": "finish_check",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural045",
+      "text": "お湯はちょうどいいかな",
+      "stratum": "ordinary",
+      "family": "everyday_bath_2",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null,
+        "inquiry"
+      ],
+      "expected_interaction": "inquiry",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural046",
+      "text": "お風呂であんよを洗ってるよ",
+      "stratum": "ordinary",
+      "family": "everyday_bath_3",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural047",
+      "text": "お風呂をちゃぷちゃぷしてるね",
+      "stratum": "ordinary",
+      "family": "everyday_bath_3",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural048",
+      "text": "泡でやさしく体を洗っているよ",
+      "stratum": "ordinary",
+      "family": "everyday_bath_3",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural049",
+      "text": "お着替えしよっか",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_0",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural050",
+      "text": "こっちの服に着替えようね",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_0",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural051",
+      "text": "お洋服のお袖におててを通そうね",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_0",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural052",
+      "text": "シャツが着られたね",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_1",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural053",
+      "text": "ズボンもはけたね",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_1",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural054",
+      "text": "お着替え全部できたよ",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_1",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        "finish"
+      ],
+      "expected_interaction": "finish",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural055",
+      "text": "かわいいお洋服だね",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_2",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural056",
+      "text": "肌着を着てあったかくしようね",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_2",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural057",
+      "text": "パジャマを着ようか",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_2",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural058",
+      "text": "お着替えおしまいかな",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_3",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        "finish_check"
+      ],
+      "expected_interaction": "finish_check",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural059",
+      "text": "この服はふわふわだね",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_3",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural060",
+      "text": "お洋服を着ているところだね",
+      "stratum": "ordinary",
+      "family": "everyday_clothes_3",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural061",
+      "text": "おもちゃ楽しいね",
+      "stratum": "ordinary",
+      "family": "everyday_play_0",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural062",
+      "text": "ボールをころころして遊んでるね",
+      "stratum": "ordinary",
+      "family": "everyday_play_0",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural063",
+      "text": "積み木をつかめたね",
+      "stratum": "ordinary",
+      "family": "everyday_play_0",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        "achievement"
+      ],
+      "expected_interaction": "achievement",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural064",
+      "text": "いっしょにがらがらで遊ぼうね",
+      "stratum": "ordinary",
+      "family": "everyday_play_1",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural065",
+      "text": "おもちゃに手を伸ばしているね",
+      "stratum": "ordinary",
+      "family": "everyday_play_1",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural066",
+      "text": "ぬいぐるみと遊んでるね",
+      "stratum": "ordinary",
+      "family": "everyday_play_1",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural067",
+      "text": "もう一回このおもちゃで遊ぼうか",
+      "stratum": "ordinary",
+      "family": "everyday_play_2",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        "repeat"
+      ],
+      "expected_interaction": "repeat",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural068",
+      "text": "遊ぶの上手だね",
+      "stratum": "ordinary",
+      "family": "everyday_play_2",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        "praise"
+      ],
+      "expected_interaction": "praise",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural069",
+      "text": "がらがらを鳴らしてみようか",
+      "stratum": "ordinary",
+      "family": "everyday_play_2",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural070",
+      "text": "おもちゃに夢中だね",
+      "stratum": "ordinary",
+      "family": "everyday_play_3",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural071",
+      "text": "おもちゃを振るのがんばってるね",
+      "stratum": "ordinary",
+      "family": "everyday_play_3",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        "effort"
+      ],
+      "expected_interaction": "effort",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural072",
+      "text": "おもちゃで遊び始めようね",
+      "stratum": "ordinary",
+      "family": "everyday_play_3",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        "start"
+      ],
+      "expected_interaction": "start",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural073",
+      "text": "えんえん泣いちゃったね",
+      "stratum": "ordinary",
+      "family": "everyday_cry_0",
+      "expected_topic": "cry",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "cry"
+      ]
+    },
+    {
+      "id": "natural074",
+      "text": "大きな声で泣いてるね",
+      "stratum": "ordinary",
+      "family": "everyday_cry_0",
+      "expected_topic": "cry",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "cry"
+      ]
+    },
+    {
+      "id": "natural075",
+      "text": "涙がぽろぽろ出てるね",
+      "stratum": "ordinary",
+      "family": "everyday_cry_0",
+      "expected_topic": "cry",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "cry"
+      ]
+    },
+    {
+      "id": "natural076",
+      "text": "泣いちゃったね、ママがいるよ",
+      "stratum": "ordinary",
+      "family": "everyday_cry_1",
+      "expected_topic": "cry",
+      "acceptable_interactions": [
+        "reassurance"
+      ],
+      "expected_interaction": "reassurance",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "cry"
+      ]
+    },
+    {
+      "id": "natural077",
+      "text": "泣いてるね、どうしたのかな",
+      "stratum": "ordinary",
+      "family": "everyday_cry_1",
+      "expected_topic": "cry",
+      "acceptable_interactions": [
+        null,
+        "inquiry"
+      ],
+      "expected_interaction": "inquiry",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "cry"
+      ]
+    },
+    {
+      "id": "natural078",
+      "text": "泣いてもいいよ、そばにいるからね",
+      "stratum": "ordinary",
+      "family": "everyday_cry_1",
+      "expected_topic": "cry",
+      "acceptable_interactions": [
+        "reassurance"
+      ],
+      "expected_interaction": "reassurance",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "cry"
+      ]
+    },
+    {
+      "id": "natural079",
+      "text": "にっこりしてるね",
+      "stratum": "ordinary",
+      "family": "everyday_smile_0",
+      "expected_topic": "smile",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "smile"
+      ]
+    },
+    {
+      "id": "natural080",
+      "text": "にこにこ笑っているね",
+      "stratum": "ordinary",
+      "family": "everyday_smile_0",
+      "expected_topic": "smile",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "smile"
+      ]
+    },
+    {
+      "id": "natural081",
+      "text": "笑顔を見せてくれたね",
+      "stratum": "ordinary",
+      "family": "everyday_smile_0",
+      "expected_topic": "smile",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "smile"
+      ]
+    },
+    {
+      "id": "natural082",
+      "text": "えへへって笑ったね",
+      "stratum": "ordinary",
+      "family": "everyday_smile_1",
+      "expected_topic": "smile",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "smile"
+      ]
+    },
+    {
+      "id": "natural083",
+      "text": "うれしそうなお顔だね",
+      "stratum": "ordinary",
+      "family": "everyday_smile_1",
+      "expected_topic": "smile",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "smile"
+      ]
+    },
+    {
+      "id": "natural084",
+      "text": "その笑顔、かわいいね",
+      "stratum": "ordinary",
+      "family": "everyday_smile_1",
+      "expected_topic": "smile",
+      "acceptable_interactions": [
+        "affection"
+      ],
+      "expected_interaction": "affection",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "smile"
+      ]
+    },
+    {
+      "id": "natural085",
+      "text": "お水を一口飲んでみようね",
+      "stratum": "ordinary",
+      "family": "everyday_drink_0",
+      "expected_topic": "drink",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "drink"
+      ]
+    },
+    {
+      "id": "natural086",
+      "text": "お茶をちびちび飲んでるね",
+      "stratum": "ordinary",
+      "family": "everyday_drink_0",
+      "expected_topic": "drink",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "drink"
+      ]
+    },
+    {
+      "id": "natural087",
+      "text": "お水飲めたね",
+      "stratum": "ordinary",
+      "family": "everyday_drink_1",
+      "expected_topic": "drink",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "drink"
+      ]
+    },
+    {
+      "id": "natural088",
+      "text": "コップでお水を飲んでるね",
+      "stratum": "ordinary",
+      "family": "everyday_drink_1",
+      "expected_topic": "drink",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "drink"
+      ]
+    },
+    {
+      "id": "natural089",
+      "text": "お昼寝から起きたね",
+      "stratum": "ordinary",
+      "family": "everyday_wake_0",
+      "expected_topic": "wake",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "wake"
+      ]
+    },
+    {
+      "id": "natural090",
+      "text": "おめめがぱっちり開いたね",
+      "stratum": "ordinary",
+      "family": "everyday_wake_0",
+      "expected_topic": "wake",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "wake"
+      ]
+    },
+    {
+      "id": "natural091",
+      "text": "起きたんだね、おはよう",
+      "stratum": "ordinary",
+      "family": "everyday_wake_1",
+      "expected_topic": "wake",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "wake"
+      ]
+    },
+    {
+      "id": "natural092",
+      "text": "お目覚めだね",
+      "stratum": "ordinary",
+      "family": "everyday_wake_1",
+      "expected_topic": "wake",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "wake"
+      ]
+    },
+    {
+      "id": "natural093",
+      "text": "だっこしてぎゅーしようね",
+      "stratum": "ordinary",
+      "family": "everyday_hug_0",
+      "expected_topic": "hug",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "hug"
+      ]
+    },
+    {
+      "id": "natural094",
+      "text": "ママのだっこだよ",
+      "stratum": "ordinary",
+      "family": "everyday_hug_0",
+      "expected_topic": "hug",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "hug"
+      ]
+    },
+    {
+      "id": "natural095",
+      "text": "ぎゅっと抱っこしているよ",
+      "stratum": "ordinary",
+      "family": "everyday_hug_1",
+      "expected_topic": "hug",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "hug"
+      ]
+    },
+    {
+      "id": "natural096",
+      "text": "だっこでゆらゆらしようね",
+      "stratum": "ordinary",
+      "family": "everyday_hug_1",
+      "expected_topic": "hug",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "hug"
+      ]
+    },
+    {
+      "id": "natural097",
+      "text": "おててをにぎにぎしてるね",
+      "stratum": "ordinary",
+      "family": "everyday_hands_0",
+      "expected_topic": "hands",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "hands"
+      ]
+    },
+    {
+      "id": "natural098",
+      "text": "ちっちゃいおててだね",
+      "stratum": "ordinary",
+      "family": "everyday_hands_0",
+      "expected_topic": "hands",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "hands"
+      ]
+    },
+    {
+      "id": "natural099",
+      "text": "指をぎゅっと握ったね",
+      "stratum": "ordinary",
+      "family": "everyday_hands_1",
+      "expected_topic": "hands",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "hands"
+      ]
+    },
+    {
+      "id": "natural100",
+      "text": "おててをぱあにしてみようね",
+      "stratum": "ordinary",
+      "family": "everyday_hands_1",
+      "expected_topic": "hands",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "hands"
+      ]
+    },
+    {
+      "id": "natural101",
+      "text": "あんよがぴょこぴょこしてるね",
+      "stratum": "ordinary",
+      "family": "everyday_feet_0",
+      "expected_topic": "feet",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "feet"
+      ]
+    },
+    {
+      "id": "natural102",
+      "text": "ちいさい足の指だね",
+      "stratum": "ordinary",
+      "family": "everyday_feet_0",
+      "expected_topic": "feet",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "feet"
+      ]
+    },
+    {
+      "id": "natural103",
+      "text": "あんよでキックしたね",
+      "stratum": "ordinary",
+      "family": "everyday_feet_1",
+      "expected_topic": "feet",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "feet"
+      ]
+    },
+    {
+      "id": "natural104",
+      "text": "足をのびのびしてみようね",
+      "stratum": "ordinary",
+      "family": "everyday_feet_1",
+      "expected_topic": "feet",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "feet"
+      ]
+    },
+    {
+      "id": "natural105",
+      "text": "あーあーって声が出てるね",
+      "stratum": "ordinary",
+      "family": "everyday_voice_0",
+      "expected_topic": "voice",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "voice"
+      ]
+    },
+    {
+      "id": "natural106",
+      "text": "おしゃべりしてくれてるね",
+      "stratum": "ordinary",
+      "family": "everyday_voice_0",
+      "expected_topic": "voice",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "voice"
+      ]
+    },
+    {
+      "id": "natural107",
+      "text": "かわいい声が聞こえるよ",
+      "stratum": "ordinary",
+      "family": "everyday_voice_1",
+      "expected_topic": "voice",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "voice"
+      ]
+    },
+    {
+      "id": "natural108",
+      "text": "お声を聞かせてくれたね",
+      "stratum": "ordinary",
+      "family": "everyday_voice_1",
+      "expected_topic": "voice",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "voice"
+      ]
+    },
+    {
+      "id": "natural109",
+      "text": "げっぷが出たんだね",
+      "stratum": "ordinary",
+      "family": "everyday_tummy_0",
+      "expected_topic": "tummy",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "tummy"
+      ]
+    },
+    {
+      "id": "natural110",
+      "text": "おなかがすいてきたね",
+      "stratum": "ordinary",
+      "family": "everyday_tummy_0",
+      "expected_topic": "tummy",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "tummy"
+      ]
+    },
+    {
+      "id": "natural111",
+      "text": "お腹がぽこぽこ鳴ってるね",
+      "stratum": "ordinary",
+      "family": "everyday_tummy_1",
+      "expected_topic": "tummy",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "tummy"
+      ]
+    },
+    {
+      "id": "natural112",
+      "text": "おなかをさすっているよ",
+      "stratum": "ordinary",
+      "family": "everyday_tummy_1",
+      "expected_topic": "tummy",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "tummy"
+      ]
+    },
+    {
+      "id": "natural113",
+      "text": "お外の空気が気持ちいいね",
+      "stratum": "ordinary",
+      "family": "everyday_outside_0",
+      "expected_topic": "outside",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "outside"
+      ]
+    },
+    {
+      "id": "natural114",
+      "text": "お散歩に出かけようか",
+      "stratum": "ordinary",
+      "family": "everyday_outside_0",
+      "expected_topic": "outside",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "outside"
+      ]
+    },
+    {
+      "id": "natural115",
+      "text": "ベビーカーで外に出たね",
+      "stratum": "ordinary",
+      "family": "everyday_outside_1",
+      "expected_topic": "outside",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "outside"
+      ]
+    },
+    {
+      "id": "natural116",
+      "text": "公園をお散歩してるね",
+      "stratum": "ordinary",
+      "family": "everyday_outside_1",
+      "expected_topic": "outside",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "outside"
+      ]
+    },
+    {
+      "id": "natural117",
+      "text": "お外に雨が降ってるね",
+      "stratum": "ordinary",
+      "family": "everyday_rain_0",
+      "expected_topic": "rain",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "rain"
+      ]
+    },
+    {
+      "id": "natural118",
+      "text": "ぽつぽつ雨が降り始めたね",
+      "stratum": "ordinary",
+      "family": "everyday_rain_0",
+      "expected_topic": "rain",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "rain"
+      ]
+    },
+    {
+      "id": "natural119",
+      "text": "雨が窓についてるね",
+      "stratum": "ordinary",
+      "family": "everyday_rain_1",
+      "expected_topic": "rain",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "rain"
+      ]
+    },
+    {
+      "id": "natural120",
+      "text": "雨の音を聞いてみようね",
+      "stratum": "ordinary",
+      "family": "everyday_rain_1",
+      "expected_topic": "rain",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "rain"
+      ]
+    },
+    {
+      "id": "natural121",
+      "text": "お日さまがぴかぴかだね",
+      "stratum": "ordinary",
+      "family": "everyday_sun_0",
+      "expected_topic": "sun",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sun"
+      ]
+    },
+    {
+      "id": "natural122",
+      "text": "おひさまが顔を出したね",
+      "stratum": "ordinary",
+      "family": "everyday_sun_0",
+      "expected_topic": "sun",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sun"
+      ]
+    },
+    {
+      "id": "natural123",
+      "text": "窓からお日さまの光が入るね",
+      "stratum": "ordinary",
+      "family": "everyday_sun_1",
+      "expected_topic": "sun",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sun"
+      ]
+    },
+    {
+      "id": "natural124",
+      "text": "明るいお日さまを見ようね",
+      "stratum": "ordinary",
+      "family": "everyday_sun_1",
+      "expected_topic": "sun",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sun"
+      ]
+    },
+    {
+      "id": "natural125",
+      "text": "おかゆをぱくぱく食べてるね",
+      "stratum": "ordinary",
+      "family": "everyday_food_0",
+      "expected_topic": "food",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "natural126",
+      "text": "離乳食を食べようか",
+      "stratum": "ordinary",
+      "family": "everyday_food_0",
+      "expected_topic": "food",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "natural127",
+      "text": "ごはんを上手に食べられたね",
+      "stratum": "ordinary",
+      "family": "everyday_food_1",
+      "expected_topic": "food",
+      "acceptable_interactions": [
+        "praise"
+      ],
+      "expected_interaction": "praise",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "natural128",
+      "text": "スプーンでごはんを食べてるね",
+      "stratum": "ordinary",
+      "family": "everyday_food_1",
+      "expected_topic": "food",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "natural129",
+      "text": "絵本をいっしょに見ようね",
+      "stratum": "ordinary",
+      "family": "everyday_book_0",
+      "expected_topic": "book",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "book"
+      ]
+    },
+    {
+      "id": "natural130",
+      "text": "この本の絵を見ているね",
+      "stratum": "ordinary",
+      "family": "everyday_book_0",
+      "expected_topic": "book",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "book"
+      ]
+    },
+    {
+      "id": "natural131",
+      "text": "絵本のページがめくれたね",
+      "stratum": "ordinary",
+      "family": "everyday_book_1",
+      "expected_topic": "book",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "book"
+      ]
+    },
+    {
+      "id": "natural132",
+      "text": "本をもう一度読もうね",
+      "stratum": "ordinary",
+      "family": "everyday_book_1",
+      "expected_topic": "book",
+      "acceptable_interactions": [
+        "repeat"
+      ],
+      "expected_interaction": "repeat",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "book"
+      ]
+    },
+    {
+      "id": "natural133",
+      "text": "お歌が聞こえるね",
+      "stratum": "ordinary",
+      "family": "everyday_music_0",
+      "expected_topic": "music",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "natural134",
+      "text": "いっしょにお歌を歌ってみようね",
+      "stratum": "ordinary",
+      "family": "everyday_music_0",
+      "expected_topic": "music",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "natural135",
+      "text": "音楽に合わせて動いてるね",
+      "stratum": "ordinary",
+      "family": "everyday_music_1",
+      "expected_topic": "music",
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "natural136",
+      "text": "もう一回お歌を聞こうか",
+      "stratum": "ordinary",
+      "family": "everyday_music_1",
+      "expected_topic": "music",
+      "acceptable_interactions": [
+        "repeat"
+      ],
+      "expected_interaction": "repeat",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "natural137",
+      "text": "今日もかわいいね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_affection",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "affection"
+      ],
+      "expected_interaction": "affection",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural138",
+      "text": "大好きだよ、ママの宝物だよ",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_affection",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "affection"
+      ],
+      "expected_interaction": "affection",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural139",
+      "text": "上手にできてえらいね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_praise",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "praise"
+      ],
+      "expected_interaction": "praise",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural140",
+      "text": "わあ、じょうずだったね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_praise",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "praise"
+      ],
+      "expected_interaction": "praise",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural141",
+      "text": "やったね、できるようになったね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_achievement",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "achievement"
+      ],
+      "expected_interaction": "achievement",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural142",
+      "text": "自分でできたんだね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_achievement",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "achievement"
+      ],
+      "expected_interaction": "achievement",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural143",
+      "text": "いっしょうけんめいやってるね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_effort",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "effort"
+      ],
+      "expected_interaction": "effort",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural144",
+      "text": "何回もやってがんばってるね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_effort",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "effort"
+      ],
+      "expected_interaction": "effort",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural145",
+      "text": "あと少し、やってみてね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_encouragement",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "encouragement"
+      ],
+      "expected_interaction": "encouragement",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural146",
+      "text": "ゆっくりでいいよ、がんばってね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_encouragement",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "encouragement"
+      ],
+      "expected_interaction": "encouragement",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural147",
+      "text": "ママとやってみようか",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_invitation",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural148",
+      "text": "一緒に遊んでみない？",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_invitation",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        "invitation"
+      ],
+      "expected_interaction": "invitation",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural149",
+      "text": "さあ始めるよ、準備いいかな",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_start",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "start"
+      ],
+      "expected_interaction": "start",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural150",
+      "text": "これから始めるからね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_start",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "start"
+      ],
+      "expected_interaction": "start",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural151",
+      "text": "ぜんぶ終わったよ",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_finish",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "finish"
+      ],
+      "expected_interaction": "finish",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural152",
+      "text": "これでおしまいになったよ",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_finish",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "finish"
+      ],
+      "expected_interaction": "finish",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural153",
+      "text": "もう終わりにできたかな",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_finish_check",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "finish_check"
+      ],
+      "expected_interaction": "finish_check",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural154",
+      "text": "これでもうおしまいかな",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_finish_check",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "finish_check"
+      ],
+      "expected_interaction": "finish_check",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural155",
+      "text": "たくさんがんばったね、おつかれさま",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_care",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "care"
+      ],
+      "expected_interaction": "care",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural156",
+      "text": "いっぱいやって疲れたね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_care",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "care"
+      ],
+      "expected_interaction": "care",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural157",
+      "text": "どうしたの、何かあったかな",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_inquiry",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "inquiry"
+      ],
+      "expected_interaction": "inquiry",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural158",
+      "text": "なにが気になったのかな",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_inquiry",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "inquiry"
+      ],
+      "expected_interaction": "inquiry",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural159",
+      "text": "大丈夫だよ、ママここにいるよ",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_reassurance",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "reassurance"
+      ],
+      "expected_interaction": "reassurance",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural160",
+      "text": "こわくないよ、そばにいるね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_reassurance",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "reassurance"
+      ],
+      "expected_interaction": "reassurance",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural161",
+      "text": "同じのをもう一回しようか",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_repeat",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "repeat"
+      ],
+      "expected_interaction": "repeat",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural162",
+      "text": "もう一度やってみようね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_repeat",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "repeat"
+      ],
+      "expected_interaction": "repeat",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural163",
+      "text": "ちょっと待っててね",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_pause",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "pause"
+      ],
+      "expected_interaction": "pause",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural164",
+      "text": "少しお休みにしようか",
+      "stratum": "ordinary",
+      "family": "everyday_interaction_pause",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        "pause"
+      ],
+      "expected_interaction": "pause",
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural165",
+      "text": "赤いのが見えるね",
+      "stratum": "ordinary",
+      "family": "everyday_other",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural166",
+      "text": "これふわふわだね",
+      "stratum": "ordinary",
+      "family": "everyday_other",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural167",
+      "text": "そこにあったんだね",
+      "stratum": "ordinary",
+      "family": "everyday_other",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural168",
+      "text": "いろんな色があるね",
+      "stratum": "ordinary",
+      "family": "everyday_other",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural169",
+      "text": "まあるい形だね",
+      "stratum": "ordinary",
+      "family": "everyday_other",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural170",
+      "text": "パパが来たよ",
+      "stratum": "ordinary",
+      "family": "everyday_other",
+      "expected_topic": null,
+      "acceptable_interactions": [
+        null
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        null
+      ]
+    },
+    {
+      "id": "natural171",
+      "text": "おっぱいのあとでねんねしようね",
+      "stratum": "routine_context",
+      "family": "routine_sleep_0",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural172",
+      "text": "お着替えしたらミルクにしようね",
+      "stratum": "routine_context",
+      "family": "routine_milk_1",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural173",
+      "text": "起きたらおむつを替えようね",
+      "stratum": "routine_context",
+      "family": "routine_diaper_2",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural174",
+      "text": "ミルクを飲んでからお風呂にしようね",
+      "stratum": "routine_context",
+      "family": "routine_bath_3",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural175",
+      "text": "お風呂から出たらパジャマに着替えようね",
+      "stratum": "routine_context",
+      "family": "routine_clothes_4",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural176",
+      "text": "お昼寝が終わったらおもちゃで遊ぼうね",
+      "stratum": "routine_context",
+      "family": "routine_play_5",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural177",
+      "text": "お着替えができたらお散歩に行こうね",
+      "stratum": "routine_context",
+      "family": "routine_outside_6",
+      "expected_topic": "outside",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "outside"
+      ]
+    },
+    {
+      "id": "natural178",
+      "text": "ミルクのあとに絵本を見ようね",
+      "stratum": "routine_context",
+      "family": "routine_book_7",
+      "expected_topic": "book",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "book"
+      ]
+    },
+    {
+      "id": "natural179",
+      "text": "起きてからごはんにしようね",
+      "stratum": "routine_context",
+      "family": "routine_food_8",
+      "expected_topic": "food",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "natural180",
+      "text": "さっきミルクをたくさん飲んだね",
+      "stratum": "routine_context",
+      "family": "routine_milk_9",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural181",
+      "text": "よく眠れたみたいだね",
+      "stratum": "routine_context",
+      "family": "routine_sleep_10",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural182",
+      "text": "さっきのお風呂、気持ちよかったね",
+      "stratum": "routine_context",
+      "family": "routine_bath_11",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null,
+        "invitation",
+        "inquiry"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural183",
+      "text": "まだ寝てないのかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_sleep_0",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural184",
+      "text": "まだ眠くないのかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_sleep_1",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural185",
+      "text": "ねんねしたいけど眠れないのかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_sleep_2",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural186",
+      "text": "おめめがぱっちりで眠くなさそうだね",
+      "stratum": "plausible_absence",
+      "family": "plausible_sleep_3",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural187",
+      "text": "あまりミルク飲みたくないのかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_milk_4",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural188",
+      "text": "もうおっぱいはいらないのかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_milk_5",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural189",
+      "text": "まだミルクを飲み足りないかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_milk_6",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural190",
+      "text": "ミルクがなかなか飲めないね",
+      "stratum": "plausible_absence",
+      "family": "plausible_milk_7",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    },
+    {
+      "id": "natural191",
+      "text": "ごはんはもう食べたくないのかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_food_8",
+      "expected_topic": "food",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "natural192",
+      "text": "まだおなかいっぱいじゃないのかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_food_9",
+      "expected_topic": "food",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "food",
+        "tummy"
+      ]
+    },
+    {
+      "id": "natural193",
+      "text": "泣きやまないね、抱っこしようか",
+      "stratum": "plausible_absence",
+      "family": "plausible_cry_10",
+      "expected_topic": "cry",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "cry"
+      ]
+    },
+    {
+      "id": "natural194",
+      "text": "もう泣いてないね、落ち着いたね",
+      "stratum": "plausible_absence",
+      "family": "plausible_cry_11",
+      "expected_topic": "cry",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "cry"
+      ]
+    },
+    {
+      "id": "natural195",
+      "text": "まだおしっこ出てないね",
+      "stratum": "plausible_absence",
+      "family": "plausible_diaper_12",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural196",
+      "text": "おむつはまだ濡れてないみたいだね",
+      "stratum": "plausible_absence",
+      "family": "plausible_diaper_13",
+      "expected_topic": "diaper",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "diaper"
+      ]
+    },
+    {
+      "id": "natural197",
+      "text": "お風呂のお湯は熱くないかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_bath_14",
+      "expected_topic": "bath",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "bath"
+      ]
+    },
+    {
+      "id": "natural198",
+      "text": "このお洋服はきつくないかな",
+      "stratum": "plausible_absence",
+      "family": "plausible_clothes_15",
+      "expected_topic": "clothes",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "clothes"
+      ]
+    },
+    {
+      "id": "natural199",
+      "text": "おもちゃにまだ手が届かないね",
+      "stratum": "plausible_absence",
+      "family": "plausible_play_16",
+      "expected_topic": "play",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "play"
+      ]
+    },
+    {
+      "id": "natural200",
+      "text": "雨でお散歩には行けないね",
+      "stratum": "plausible_absence",
+      "family": "plausible_outside_17",
+      "expected_topic": "outside",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "outside"
+      ]
+    },
+    {
+      "id": "natural201",
+      "text": "寝たと思ったけど、まだ起きてたね",
+      "stratum": "plausible_absence",
+      "family": "plausible_sleep_18",
+      "expected_topic": "sleep",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "sleep"
+      ]
+    },
+    {
+      "id": "natural202",
+      "text": "ミルクはまだできてないから待っててね",
+      "stratum": "plausible_absence",
+      "family": "plausible_milk_19",
+      "expected_topic": "milk",
+      "acceptable_interactions": [
+        null,
+        "inquiry",
+        "reassurance",
+        "invitation"
+      ],
+      "expected_interaction": null,
+      "adjudicated": false,
+      "prior_evaluation_exact_overlap": false,
+      "previous_training_exact_overlap": false,
+      "acceptable_topics": [
+        "milk"
+      ]
+    }
+  ]
+}

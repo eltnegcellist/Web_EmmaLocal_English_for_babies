@@ -1,0 +1,47 @@
+{
+  "status": "CONSERVATIVE_CODEX_LEXICAL_FAMILY_AUDIT_NOT_HUMAN_APPROVED",
+  "rows": [
+    {
+      "id": "train092",
+      "text": "あなたは私の宝物です",
+      "reason": "既存評価の宝物という愛情表現に近い",
+      "excluded_from_fitting_and_selection": true
+    },
+    {
+      "id": "train097",
+      "text": "上手にできました",
+      "reason": "既存評価の上手にできたという賞賛に近い",
+      "excluded_from_fitting_and_selection": true
+    },
+    {
+      "id": "train101",
+      "text": "初めてやり遂げました",
+      "reason": "新規評価の初めて達成した表現に近い",
+      "excluded_from_fitting_and_selection": true
+    },
+    {
+      "id": "train114",
+      "text": "一緒にやってみませんか",
+      "reason": "開発側の二人でやってみませんかと同じ構文",
+      "excluded_from_fitting_and_selection": true
+    },
+    {
+      "id": "train136",
+      "text": "今日は本当におつかれさま",
+      "reason": "既存評価の今日もおつかれさまと同じ表現",
+      "excluded_from_fitting_and_selection": true
+    },
+    {
+      "id": "train138",
+      "text": "いっぱいやったね、お疲れさま",
+      "reason": "新規評価のいっぱいやったからおつかれさまだねに近い",
+      "excluded_from_fitting_and_selection": true
+    },
+    {
+      "id": "train151",
+      "text": "あと一回繰り返してみよう",
+      "reason": "新規評価の同じのをあと一回やってみように近い",
+      "excluded_from_fitting_and_selection": true
+    }
+  ]
+}

@@ -1,0 +1,5816 @@
+{
+  "status": "FOLLOW_UP_USER_PROPOSAL_REAL_SCORES_PROVISIONAL_NOT_FIELD_ACCURACY",
+  "human_approved": false,
+  "production_changed": false,
+  "policies": [
+    {
+      "id": "T0.5_I0.5_M0.05",
+      "mode": "uniform",
+      "topic": 0.5,
+      "interaction": 0.5,
+      "margin": 0.05
+    },
+    {
+      "id": "C_topic0.4_M0.1",
+      "mode": "both_generic",
+      "topic": 0.4,
+      "interaction": 0.5,
+      "margin": 0.1
+    },
+    {
+      "id": "C_topic0.3_M0.1",
+      "mode": "both_generic",
+      "topic": 0.3,
+      "interaction": 0.5,
+      "margin": 0.1
+    }
+  ],
+  "provenance": {
+    "scoring": "Fingerprint-verified saved real ONNX outputs. No recomputed or manually assigned scores.",
+    "fresh202_file_sha256": "c9188f3a3dc5d96999048f9021346fb096d8e7ca9ee5dff1888110dcc01e16cc",
+    "legacy_file_sha256": "46494362d8f1ddde737826ac6b4aa4353db6b94ce46dcd1217a7bb71d72a61ee",
+    "hashes": {
+      "model.onnx": "bd500193003fdeaba8c5422a47b974b40b49a5e0c91285c76f6bd949d2205264",
+      "head-topic.f32": "1391e9595ec2b932c0f915647c7d184112dadcce281bab59e6de37cc45e2bb29",
+      "head-interaction.f32": "e0968799d9e477d512f0312350be458b8b3a84f6322fad8564bed7ff4645a464",
+      "heads-config.json": "35246e7daff39d5f19b3857c0342e7b5e8278a465de330b7e4ee0d543ecaf49c",
+      "tokenizer.json": "0a94ac9a0a02c067bdef25b72ae9f4ee33f48f552e55988d444f6d25eeb1d062",
+      "tokenizer_config.json": "34004511993472f15c7202074284c57788c161fb6567de164b8e0c0266f155e4",
+      "runtime/runtime.mjs": "301ec3d39bc0828e4a835ab964d15bf5c74777771f6b536ad5764b0621165f8c",
+      "runtime/ort-wasm-simd-threaded.wasm": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2",
+      "runtime/ort-wasm-simd-threaded.mjs": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b",
+      "src/semantic/core.js": "309ea409a11532a29045d4e07ab5dcb0234dabaa7946207ded957e4a9e4c47cf",
+      "src/semantic/tokenize.js": "8845c5d5e90479dbaf113232478a974a2c0531eefc3427e178846402a133bf50",
+      "src/interaction/ruri-routing.js": "f61413133c21ad9fac2a5e9bf37e956ba52c2e9a0b61c0987ec774d1a83fe125",
+      "src/lite-response-engine.js": "603ff9ae5d75dbe8744e140336cf5ca955e3dd7e8895843ef4b37ed02d13d471",
+      "src/interaction/diversity.js": "f4db4e6385b524dbb3063a3f88d309e0df287a488d5bb64f9a10685c13ea0aa5"
+    }
+  },
+  "fresh": [
+    {
+      "policy": "T0.5_I0.5_M0.05",
+      "metrics": {
+        "ordinary": {
+          "retrieval": {
+            "n": 170,
+            "topic_positive": 137,
+            "topic_correct": 125,
+            "topic_missed": 9,
+            "topic_wrong": 4,
+            "interaction_positive": 80,
+            "interaction_correct": 44,
+            "interaction_missed": 35,
+            "interaction_wrong": 7,
+            "joint_acceptable": 117,
+            "both_generic": 13,
+            "new_wrong_topics": 0,
+            "gained_topics": 0,
+            "lost_topics": 0,
+            "changed": 0,
+            "topic_recall": 0.9124087591240876
+          },
+          "english": {
+            "n": 170,
+            "appropriate": 147,
+            "generic_miss": 8,
+            "minor_mismatch": 14,
+            "unsupported_claim": 0,
+            "contradiction": 0,
+            "off_topic": 1,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        },
+        "routine_context": {
+          "retrieval": {
+            "n": 12,
+            "topic_positive": 12,
+            "topic_correct": 11,
+            "topic_missed": 0,
+            "topic_wrong": 1,
+            "interaction_positive": 0,
+            "interaction_correct": 0,
+            "interaction_missed": 0,
+            "interaction_wrong": 0,
+            "joint_acceptable": 11,
+            "both_generic": 0,
+            "new_wrong_topics": 0,
+            "gained_topics": 0,
+            "lost_topics": 0,
+            "changed": 0,
+            "topic_recall": 0.9166666666666666
+          },
+          "english": {
+            "n": 12,
+            "appropriate": 0,
+            "generic_miss": 0,
+            "minor_mismatch": 12,
+            "unsupported_claim": 0,
+            "contradiction": 0,
+            "off_topic": 0,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        },
+        "plausible_absence": {
+          "retrieval": {
+            "n": 20,
+            "topic_positive": 20,
+            "topic_correct": 17,
+            "topic_missed": 3,
+            "topic_wrong": 0,
+            "interaction_positive": 0,
+            "interaction_correct": 0,
+            "interaction_missed": 0,
+            "interaction_wrong": 0,
+            "joint_acceptable": 17,
+            "both_generic": 3,
+            "new_wrong_topics": 0,
+            "gained_topics": 0,
+            "lost_topics": 0,
+            "changed": 0,
+            "topic_recall": 0.85
+          },
+          "english": {
+            "n": 20,
+            "appropriate": 7,
+            "generic_miss": 3,
+            "minor_mismatch": 7,
+            "unsupported_claim": 0,
+            "contradiction": 3,
+            "off_topic": 0,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        },
+        "all": {
+          "retrieval": {
+            "n": 202,
+            "topic_positive": 169,
+            "topic_correct": 153,
+            "topic_missed": 12,
+            "topic_wrong": 5,
+            "interaction_positive": 80,
+            "interaction_correct": 44,
+            "interaction_missed": 35,
+            "interaction_wrong": 7,
+            "joint_acceptable": 145,
+            "both_generic": 16,
+            "new_wrong_topics": 0,
+            "gained_topics": 0,
+            "lost_topics": 0,
+            "changed": 0,
+            "topic_recall": 0.9053254437869822
+          },
+          "english": {
+            "n": 202,
+            "appropriate": 154,
+            "generic_miss": 11,
+            "minor_mismatch": 33,
+            "unsupported_claim": 0,
+            "contradiction": 3,
+            "off_topic": 1,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        }
+      },
+      "changes_vs50": [],
+      "changes_vs40": [
+        {
+          "id": "natural005",
+          "text": "うとうとしているね",
+          "stratum": "ordinary",
+          "topic_probability": 0.4364195711433037,
+          "topic_margin": 0.3275244916121579,
+          "before": {
+            "topic": "sleep",
+            "interaction": null,
+            "route": "sleep",
+            "english": "Are you sleepy? Let's get cozy. Night-night!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Hi, little one! Peekaboo! Hello again!"
+          },
+          "before_verdict": "appropriate",
+          "after_verdict": "generic_miss",
+          "human_approved": false
+        },
+        {
+          "id": "natural112",
+          "text": "おなかをさすっているよ",
+          "stratum": "ordinary",
+          "topic_probability": 0.47384980125841375,
+          "topic_margin": 0.2700295875437718,
+          "before": {
+            "topic": "tummy",
+            "interaction": null,
+            "route": "tummy",
+            "english": "How's your tummy? Do you feel full? I'm here!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello again! I'm happy you're here. Big hugs!"
+          },
+          "before_verdict": "appropriate",
+          "after_verdict": "generic_miss",
+          "human_approved": false
+        },
+        {
+          "id": "natural186",
+          "text": "おめめがぱっちりで眠くなさそうだね",
+          "stratum": "plausible_absence",
+          "topic_probability": 0.49808936053489733,
+          "topic_margin": 0.3281207144185261,
+          "before": {
+            "topic": "wake",
+            "interaction": null,
+            "route": "wake",
+            "english": "You're awake! Hello, little one. It's nice seeing you!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Sweet little baby! Love, love, love! Big hugs!"
+          },
+          "before_verdict": "appropriate",
+          "after_verdict": "generic_miss",
+          "human_approved": false
+        }
+      ]
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "metrics": {
+        "ordinary": {
+          "retrieval": {
+            "n": 170,
+            "topic_positive": 137,
+            "topic_correct": 127,
+            "topic_missed": 7,
+            "topic_wrong": 4,
+            "interaction_positive": 80,
+            "interaction_correct": 44,
+            "interaction_missed": 35,
+            "interaction_wrong": 7,
+            "joint_acceptable": 119,
+            "both_generic": 11,
+            "new_wrong_topics": 0,
+            "gained_topics": 2,
+            "lost_topics": 0,
+            "changed": 2,
+            "topic_recall": 0.927007299270073
+          },
+          "english": {
+            "n": 170,
+            "appropriate": 149,
+            "generic_miss": 6,
+            "minor_mismatch": 14,
+            "unsupported_claim": 0,
+            "contradiction": 0,
+            "off_topic": 1,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        },
+        "routine_context": {
+          "retrieval": {
+            "n": 12,
+            "topic_positive": 12,
+            "topic_correct": 11,
+            "topic_missed": 0,
+            "topic_wrong": 1,
+            "interaction_positive": 0,
+            "interaction_correct": 0,
+            "interaction_missed": 0,
+            "interaction_wrong": 0,
+            "joint_acceptable": 11,
+            "both_generic": 0,
+            "new_wrong_topics": 0,
+            "gained_topics": 0,
+            "lost_topics": 0,
+            "changed": 0,
+            "topic_recall": 0.9166666666666666
+          },
+          "english": {
+            "n": 12,
+            "appropriate": 0,
+            "generic_miss": 0,
+            "minor_mismatch": 12,
+            "unsupported_claim": 0,
+            "contradiction": 0,
+            "off_topic": 0,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        },
+        "plausible_absence": {
+          "retrieval": {
+            "n": 20,
+            "topic_positive": 20,
+            "topic_correct": 17,
+            "topic_missed": 2,
+            "topic_wrong": 1,
+            "interaction_positive": 0,
+            "interaction_correct": 0,
+            "interaction_missed": 0,
+            "interaction_wrong": 0,
+            "joint_acceptable": 17,
+            "both_generic": 2,
+            "new_wrong_topics": 1,
+            "gained_topics": 0,
+            "lost_topics": 0,
+            "changed": 1,
+            "topic_recall": 0.85
+          },
+          "english": {
+            "n": 20,
+            "appropriate": 8,
+            "generic_miss": 2,
+            "minor_mismatch": 7,
+            "unsupported_claim": 0,
+            "contradiction": 3,
+            "off_topic": 0,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        },
+        "all": {
+          "retrieval": {
+            "n": 202,
+            "topic_positive": 169,
+            "topic_correct": 155,
+            "topic_missed": 9,
+            "topic_wrong": 6,
+            "interaction_positive": 80,
+            "interaction_correct": 44,
+            "interaction_missed": 35,
+            "interaction_wrong": 7,
+            "joint_acceptable": 147,
+            "both_generic": 13,
+            "new_wrong_topics": 1,
+            "gained_topics": 2,
+            "lost_topics": 0,
+            "changed": 3,
+            "topic_recall": 0.9171597633136095
+          },
+          "english": {
+            "n": 202,
+            "appropriate": 157,
+            "generic_miss": 8,
+            "minor_mismatch": 33,
+            "unsupported_claim": 0,
+            "contradiction": 3,
+            "off_topic": 1,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        }
+      },
+      "changes_vs50": [
+        {
+          "id": "natural005",
+          "text": "うとうとしているね",
+          "stratum": "ordinary",
+          "topic_probability": 0.4364195711433037,
+          "topic_margin": 0.3275244916121579,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Hi, little one! Peekaboo! Hello again!"
+          },
+          "after": {
+            "topic": "sleep",
+            "interaction": null,
+            "route": "sleep",
+            "english": "Are you sleepy? Let's get cozy. Night-night!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "natural112",
+          "text": "おなかをさすっているよ",
+          "stratum": "ordinary",
+          "topic_probability": 0.47384980125841375,
+          "topic_margin": 0.2700295875437718,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello again! I'm happy you're here. Big hugs!"
+          },
+          "after": {
+            "topic": "tummy",
+            "interaction": null,
+            "route": "tummy",
+            "english": "How's your tummy? Do you feel full? I'm here!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "natural186",
+          "text": "おめめがぱっちりで眠くなさそうだね",
+          "stratum": "plausible_absence",
+          "topic_probability": 0.49808936053489733,
+          "topic_margin": 0.3281207144185261,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Sweet little baby! Love, love, love! Big hugs!"
+          },
+          "after": {
+            "topic": "wake",
+            "interaction": null,
+            "route": "wake",
+            "english": "You're awake! Hello, little one. It's nice seeing you!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        }
+      ],
+      "changes_vs40": []
+    },
+    {
+      "policy": "C_topic0.3_M0.1",
+      "metrics": {
+        "ordinary": {
+          "retrieval": {
+            "n": 170,
+            "topic_positive": 137,
+            "topic_correct": 128,
+            "topic_missed": 6,
+            "topic_wrong": 4,
+            "interaction_positive": 80,
+            "interaction_correct": 44,
+            "interaction_missed": 35,
+            "interaction_wrong": 7,
+            "joint_acceptable": 119,
+            "both_generic": 10,
+            "new_wrong_topics": 0,
+            "gained_topics": 3,
+            "lost_topics": 0,
+            "changed": 3,
+            "topic_recall": 0.9343065693430657
+          },
+          "english": {
+            "n": 170,
+            "appropriate": 150,
+            "generic_miss": 5,
+            "minor_mismatch": 14,
+            "unsupported_claim": 0,
+            "contradiction": 0,
+            "off_topic": 1,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        },
+        "routine_context": {
+          "retrieval": {
+            "n": 12,
+            "topic_positive": 12,
+            "topic_correct": 11,
+            "topic_missed": 0,
+            "topic_wrong": 1,
+            "interaction_positive": 0,
+            "interaction_correct": 0,
+            "interaction_missed": 0,
+            "interaction_wrong": 0,
+            "joint_acceptable": 11,
+            "both_generic": 0,
+            "new_wrong_topics": 0,
+            "gained_topics": 0,
+            "lost_topics": 0,
+            "changed": 0,
+            "topic_recall": 0.9166666666666666
+          },
+          "english": {
+            "n": 12,
+            "appropriate": 0,
+            "generic_miss": 0,
+            "minor_mismatch": 12,
+            "unsupported_claim": 0,
+            "contradiction": 0,
+            "off_topic": 0,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        },
+        "plausible_absence": {
+          "retrieval": {
+            "n": 20,
+            "topic_positive": 20,
+            "topic_correct": 17,
+            "topic_missed": 2,
+            "topic_wrong": 1,
+            "interaction_positive": 0,
+            "interaction_correct": 0,
+            "interaction_missed": 0,
+            "interaction_wrong": 0,
+            "joint_acceptable": 17,
+            "both_generic": 2,
+            "new_wrong_topics": 1,
+            "gained_topics": 0,
+            "lost_topics": 0,
+            "changed": 1,
+            "topic_recall": 0.85
+          },
+          "english": {
+            "n": 20,
+            "appropriate": 8,
+            "generic_miss": 2,
+            "minor_mismatch": 7,
+            "unsupported_claim": 0,
+            "contradiction": 3,
+            "off_topic": 0,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        },
+        "all": {
+          "retrieval": {
+            "n": 202,
+            "topic_positive": 169,
+            "topic_correct": 156,
+            "topic_missed": 8,
+            "topic_wrong": 6,
+            "interaction_positive": 80,
+            "interaction_correct": 44,
+            "interaction_missed": 35,
+            "interaction_wrong": 7,
+            "joint_acceptable": 147,
+            "both_generic": 12,
+            "new_wrong_topics": 1,
+            "gained_topics": 3,
+            "lost_topics": 0,
+            "changed": 4,
+            "topic_recall": 0.9230769230769231
+          },
+          "english": {
+            "n": 202,
+            "appropriate": 158,
+            "generic_miss": 7,
+            "minor_mismatch": 33,
+            "unsupported_claim": 0,
+            "contradiction": 3,
+            "off_topic": 1,
+            "undecidable": 0,
+            "unreviewed": 0,
+            "human_approved": 0
+          }
+        }
+      },
+      "changes_vs50": [
+        {
+          "id": "natural005",
+          "text": "うとうとしているね",
+          "stratum": "ordinary",
+          "topic_probability": 0.4364195711433037,
+          "topic_margin": 0.3275244916121579,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Hi, little one! Peekaboo! Hello again!"
+          },
+          "after": {
+            "topic": "sleep",
+            "interaction": null,
+            "route": "sleep",
+            "english": "Are you sleepy? Let's get cozy. Night-night!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "natural100",
+          "text": "おててをぱあにしてみようね",
+          "stratum": "ordinary",
+          "topic_probability": 0.3887826198836442,
+          "topic_margin": 0.26179528853731937,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello again! I'm happy you're here. Big hugs!"
+          },
+          "after": {
+            "topic": "hands",
+            "interaction": null,
+            "route": "hands",
+            "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "natural112",
+          "text": "おなかをさすっているよ",
+          "stratum": "ordinary",
+          "topic_probability": 0.47384980125841375,
+          "topic_margin": 0.2700295875437718,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello again! I'm happy you're here. Big hugs!"
+          },
+          "after": {
+            "topic": "tummy",
+            "interaction": null,
+            "route": "tummy",
+            "english": "How's your tummy? Do you feel full? I'm here!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "natural186",
+          "text": "おめめがぱっちりで眠くなさそうだね",
+          "stratum": "plausible_absence",
+          "topic_probability": 0.49808936053489733,
+          "topic_margin": 0.3281207144185261,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Sweet little baby! Love, love, love! Big hugs!"
+          },
+          "after": {
+            "topic": "wake",
+            "interaction": null,
+            "route": "wake",
+            "english": "You're awake! Hello, little one. It's nice seeing you!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        }
+      ],
+      "changes_vs40": [
+        {
+          "id": "natural100",
+          "text": "おててをぱあにしてみようね",
+          "stratum": "ordinary",
+          "topic_probability": 0.3887826198836442,
+          "topic_margin": 0.26179528853731937,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello again! I'm happy you're here. Big hugs!"
+          },
+          "after": {
+            "topic": "hands",
+            "interaction": null,
+            "route": "hands",
+            "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        }
+      ]
+    }
+  ],
+  "reference": [
+    {
+      "policy": "T0.5_I0.5_M0.05",
+      "n": 131,
+      "changes_vs50": [],
+      "changes_vs40": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "stratum": null,
+          "topic_probability": 0.445099368852767,
+          "topic_margin": 0.29947336650563994,
+          "before": {
+            "topic": "sleep",
+            "interaction": null,
+            "route": "sleep",
+            "english": "Are you sleepy? Let's get cozy. Night-night!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello again! I'm happy you're here. Big hugs!"
+          },
+          "before_verdict": "appropriate",
+          "after_verdict": "generic_miss",
+          "human_approved": false
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "stratum": null,
+          "topic_probability": 0.45184531619496915,
+          "topic_margin": 0.3236204758600866,
+          "before": {
+            "topic": "sleep",
+            "interaction": null,
+            "route": "sleep",
+            "english": "Are you sleepy? Let's get cozy. Night-night!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Do you hear that? That's my voice! Hello, baby!"
+          },
+          "before_verdict": "appropriate",
+          "after_verdict": "generic_miss",
+          "human_approved": false
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "stratum": null,
+          "topic_probability": 0.4834424152100161,
+          "topic_margin": 0.28775415241477786,
+          "before": {
+            "topic": "tummy",
+            "interaction": null,
+            "route": "tummy",
+            "english": "How's your tummy? Do you feel full? I'm here!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, my little star! I love you. Hello, sweetheart!"
+          },
+          "before_verdict": "appropriate",
+          "after_verdict": "generic_miss",
+          "human_approved": false
+        }
+      ]
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "n": 131,
+      "changes_vs50": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "stratum": null,
+          "topic_probability": 0.445099368852767,
+          "topic_margin": 0.29947336650563994,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello again! I'm happy you're here. Big hugs!"
+          },
+          "after": {
+            "topic": "sleep",
+            "interaction": null,
+            "route": "sleep",
+            "english": "Are you sleepy? Let's get cozy. Night-night!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "stratum": null,
+          "topic_probability": 0.45184531619496915,
+          "topic_margin": 0.3236204758600866,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Do you hear that? That's my voice! Hello, baby!"
+          },
+          "after": {
+            "topic": "sleep",
+            "interaction": null,
+            "route": "sleep",
+            "english": "Are you sleepy? Let's get cozy. Night-night!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "stratum": null,
+          "topic_probability": 0.4834424152100161,
+          "topic_margin": 0.28775415241477786,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, my little star! I love you. Hello, sweetheart!"
+          },
+          "after": {
+            "topic": "tummy",
+            "interaction": null,
+            "route": "tummy",
+            "english": "How's your tummy? Do you feel full? I'm here!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        }
+      ],
+      "changes_vs40": []
+    },
+    {
+      "policy": "C_topic0.3_M0.1",
+      "n": 131,
+      "changes_vs50": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "stratum": null,
+          "topic_probability": 0.445099368852767,
+          "topic_margin": 0.29947336650563994,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello again! I'm happy you're here. Big hugs!"
+          },
+          "after": {
+            "topic": "sleep",
+            "interaction": null,
+            "route": "sleep",
+            "english": "Are you sleepy? Let's get cozy. Night-night!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "stratum": null,
+          "topic_probability": 0.45184531619496915,
+          "topic_margin": 0.3236204758600866,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Do you hear that? That's my voice! Hello, baby!"
+          },
+          "after": {
+            "topic": "sleep",
+            "interaction": null,
+            "route": "sleep",
+            "english": "Are you sleepy? Let's get cozy. Night-night!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "stratum": null,
+          "topic_probability": 0.3750451295501691,
+          "topic_margin": 0.23371528341805112,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Ooh, ahh, ooh! I hear you! Hello, baby!"
+          },
+          "after": {
+            "topic": "smile",
+            "interaction": null,
+            "route": "smile",
+            "english": "What a smile! I love seeing it. You're so sweet!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "new080",
+          "text": "あんよをばたばたさせてるね",
+          "stratum": null,
+          "topic_probability": 0.3199458727185191,
+          "topic_margin": 0.10301641899800706,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Wave hello, baby! Hi, hi, hi! My hand says hello!"
+          },
+          "after": {
+            "topic": "feet",
+            "interaction": null,
+            "route": "feet",
+            "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "stratum": null,
+          "topic_probability": 0.4834424152100161,
+          "topic_margin": 0.28775415241477786,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, my little star! I love you. Hello, sweetheart!"
+          },
+          "after": {
+            "topic": "tummy",
+            "interaction": null,
+            "route": "tummy",
+            "english": "How's your tummy? Do you feel full? I'm here!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        }
+      ],
+      "changes_vs40": [
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "stratum": null,
+          "topic_probability": 0.3750451295501691,
+          "topic_margin": 0.23371528341805112,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Ooh, ahh, ooh! I hear you! Hello, baby!"
+          },
+          "after": {
+            "topic": "smile",
+            "interaction": null,
+            "route": "smile",
+            "english": "What a smile! I love seeing it. You're so sweet!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "new080",
+          "text": "あんよをばたばたさせてるね",
+          "stratum": null,
+          "topic_probability": 0.3199458727185191,
+          "topic_margin": 0.10301641899800706,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Wave hello, baby! Hi, hi, hi! My hand says hello!"
+          },
+          "after": {
+            "topic": "feet",
+            "interaction": null,
+            "route": "feet",
+            "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!"
+          },
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate",
+          "human_approved": false
+        }
+      ]
+    }
+  ],
+  "additional_stress": [
+    {
+      "policy": "T0.5_I0.5_M0.05",
+      "n": 81,
+      "changes_vs50": [],
+      "changes_vs40": [
+        {
+          "id": "new023",
+          "text": "ミルクはお昼寝のあとにしようね",
+          "stratum": null,
+          "topic_probability": 0.48551047264460667,
+          "topic_margin": 0.3464903646927766,
+          "before": {
+            "topic": "milk",
+            "interaction": null,
+            "route": "milk",
+            "english": "Here's your milk! Ready for a sip? Here you go!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello there! I'm here with you. Big hugs!"
+          },
+          "before_verdict": "minor_mismatch",
+          "after_verdict": null,
+          "human_approved": false
+        },
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "stratum": null,
+          "topic_probability": 0.4320113770416388,
+          "topic_margin": 0.3041141371189073,
+          "before": {
+            "topic": "wake",
+            "interaction": null,
+            "route": "wake",
+            "english": "You're awake! Hello, little one. It's nice seeing you!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "One, two, three! Count with me! Again, again!"
+          },
+          "before_verdict": "contradiction",
+          "after_verdict": null,
+          "human_approved": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "stratum": null,
+          "topic_probability": 0.48892005599797894,
+          "topic_margin": 0.3119155448907933,
+          "before": {
+            "topic": "voice",
+            "interaction": null,
+            "route": "voice",
+            "english": "I hear your voice! Tell me more. I'm listening!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, my sweetheart! You're so loved. Hello, baby!"
+          },
+          "before_verdict": "contradiction",
+          "after_verdict": null,
+          "human_approved": false
+        },
+        {
+          "id": "new091",
+          "text": "お散歩は雨がやんでからにしよう",
+          "stratum": null,
+          "topic_probability": 0.4987807002811787,
+          "topic_margin": 0.20866417806550347,
+          "before": {
+            "topic": "outside",
+            "interaction": null,
+            "route": "outside",
+            "english": "Let's go outside! Look at the sky. What do you see?"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Let's say good morning! Hello, sweet baby. Hi there!"
+          },
+          "before_verdict": "minor_mismatch",
+          "after_verdict": null,
+          "human_approved": false
+        },
+        {
+          "id": "new106",
+          "text": "今は音楽は鳴っていないね",
+          "stratum": null,
+          "topic_probability": 0.46497115027382546,
+          "topic_margin": 0.36519684088986226,
+          "before": {
+            "topic": "music",
+            "interaction": null,
+            "route": "music",
+            "english": "Let's sing together! La, la, la! Your turn!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Hello, sweet baby! You're so loved. I'm right here."
+          },
+          "before_verdict": "appropriate",
+          "after_verdict": null,
+          "human_approved": false
+        },
+        {
+          "id": "new132",
+          "text": "おなかはすいたけどまだミルクは飲まないね",
+          "stratum": null,
+          "topic_probability": 0.4833243537157789,
+          "topic_margin": 0.2527961356708551,
+          "before": {
+            "topic": "milk",
+            "interaction": null,
+            "route": "milk",
+            "english": "Here's your milk! Ready for a sip? Here you go!"
+          },
+          "after": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Can you see me? Here I am! Hello, hello!"
+          },
+          "before_verdict": "minor_mismatch",
+          "after_verdict": null,
+          "human_approved": false
+        }
+      ]
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "n": 81,
+      "changes_vs50": [
+        {
+          "id": "new023",
+          "text": "ミルクはお昼寝のあとにしようね",
+          "stratum": null,
+          "topic_probability": 0.48551047264460667,
+          "topic_margin": 0.3464903646927766,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello there! I'm here with you. Big hugs!"
+          },
+          "after": {
+            "topic": "milk",
+            "interaction": null,
+            "route": "milk",
+            "english": "Here's your milk! Ready for a sip? Here you go!"
+          },
+          "before_verdict": null,
+          "after_verdict": "minor_mismatch",
+          "human_approved": false
+        },
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "stratum": null,
+          "topic_probability": 0.4320113770416388,
+          "topic_margin": 0.3041141371189073,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "One, two, three! Count with me! Again, again!"
+          },
+          "after": {
+            "topic": "wake",
+            "interaction": null,
+            "route": "wake",
+            "english": "You're awake! Hello, little one. It's nice seeing you!"
+          },
+          "before_verdict": null,
+          "after_verdict": "contradiction",
+          "human_approved": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "stratum": null,
+          "topic_probability": 0.48892005599797894,
+          "topic_margin": 0.3119155448907933,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, my sweetheart! You're so loved. Hello, baby!"
+          },
+          "after": {
+            "topic": "voice",
+            "interaction": null,
+            "route": "voice",
+            "english": "I hear your voice! Tell me more. I'm listening!"
+          },
+          "before_verdict": null,
+          "after_verdict": "contradiction",
+          "human_approved": false
+        },
+        {
+          "id": "new091",
+          "text": "お散歩は雨がやんでからにしよう",
+          "stratum": null,
+          "topic_probability": 0.4987807002811787,
+          "topic_margin": 0.20866417806550347,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Let's say good morning! Hello, sweet baby. Hi there!"
+          },
+          "after": {
+            "topic": "outside",
+            "interaction": null,
+            "route": "outside",
+            "english": "Let's go outside! Look at the sky. What do you see?"
+          },
+          "before_verdict": null,
+          "after_verdict": "minor_mismatch",
+          "human_approved": false
+        },
+        {
+          "id": "new106",
+          "text": "今は音楽は鳴っていないね",
+          "stratum": null,
+          "topic_probability": 0.46497115027382546,
+          "topic_margin": 0.36519684088986226,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Hello, sweet baby! You're so loved. I'm right here."
+          },
+          "after": {
+            "topic": "music",
+            "interaction": null,
+            "route": "music",
+            "english": "Let's sing together! La, la, la! Your turn!"
+          },
+          "before_verdict": null,
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "new132",
+          "text": "おなかはすいたけどまだミルクは飲まないね",
+          "stratum": null,
+          "topic_probability": 0.4833243537157789,
+          "topic_margin": 0.2527961356708551,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Can you see me? Here I am! Hello, hello!"
+          },
+          "after": {
+            "topic": "milk",
+            "interaction": null,
+            "route": "milk",
+            "english": "Here's your milk! Ready for a sip? Here you go!"
+          },
+          "before_verdict": null,
+          "after_verdict": "minor_mismatch",
+          "human_approved": false
+        }
+      ],
+      "changes_vs40": []
+    },
+    {
+      "policy": "C_topic0.3_M0.1",
+      "n": 81,
+      "changes_vs50": [
+        {
+          "id": "new038",
+          "text": "笑っていないみたいだね",
+          "stratum": null,
+          "topic_probability": 0.3413481248808298,
+          "topic_margin": 0.23008162221578557,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Do you hear that? That's my voice! Hello, baby!"
+          },
+          "after": {
+            "topic": "smile",
+            "interaction": null,
+            "route": "smile",
+            "english": "What a smile! I love seeing it. You're so sweet!"
+          },
+          "before_verdict": null,
+          "after_verdict": "contradiction",
+          "human_approved": false
+        },
+        {
+          "id": "new013",
+          "text": "寝返りしたね",
+          "stratum": null,
+          "topic_probability": 0.3914559098281431,
+          "topic_margin": 0.2989346388232585,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Look at you! What a sweet face. I'm glad you're here!"
+          },
+          "after": {
+            "topic": "wake",
+            "interaction": null,
+            "route": "wake",
+            "english": "You're awake! Hello, little one. It's nice seeing you!"
+          },
+          "before_verdict": null,
+          "after_verdict": "undecidable",
+          "human_approved": false
+        },
+        {
+          "id": "new015",
+          "text": "ママが寝不足だね",
+          "stratum": null,
+          "topic_probability": 0.3578045760305483,
+          "topic_margin": 0.13321610553067234,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "One, two, three! Count with me! Again, again!"
+          },
+          "after": {
+            "topic": "cry",
+            "interaction": null,
+            "route": "cry",
+            "english": "I hear you crying. I'm right here. You're not alone."
+          },
+          "before_verdict": null,
+          "after_verdict": "unsupported_claim",
+          "human_approved": false
+        },
+        {
+          "id": "new023",
+          "text": "ミルクはお昼寝のあとにしようね",
+          "stratum": null,
+          "topic_probability": 0.48551047264460667,
+          "topic_margin": 0.3464903646927766,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, hello there! I'm here with you. Big hugs!"
+          },
+          "after": {
+            "topic": "milk",
+            "interaction": null,
+            "route": "milk",
+            "english": "Here's your milk! Ready for a sip? Here you go!"
+          },
+          "before_verdict": null,
+          "after_verdict": "minor_mismatch",
+          "human_approved": false
+        },
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "stratum": null,
+          "topic_probability": 0.4320113770416388,
+          "topic_margin": 0.3041141371189073,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "One, two, three! Count with me! Again, again!"
+          },
+          "after": {
+            "topic": "wake",
+            "interaction": null,
+            "route": "wake",
+            "english": "You're awake! Hello, little one. It's nice seeing you!"
+          },
+          "before_verdict": null,
+          "after_verdict": "contradiction",
+          "human_approved": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "stratum": null,
+          "topic_probability": 0.48892005599797894,
+          "topic_margin": 0.3119155448907933,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Baby, my sweetheart! You're so loved. Hello, baby!"
+          },
+          "after": {
+            "topic": "voice",
+            "interaction": null,
+            "route": "voice",
+            "english": "I hear your voice! Tell me more. I'm listening!"
+          },
+          "before_verdict": null,
+          "after_verdict": "contradiction",
+          "human_approved": false
+        },
+        {
+          "id": "new091",
+          "text": "お散歩は雨がやんでからにしよう",
+          "stratum": null,
+          "topic_probability": 0.4987807002811787,
+          "topic_margin": 0.20866417806550347,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Let's say good morning! Hello, sweet baby. Hi there!"
+          },
+          "after": {
+            "topic": "outside",
+            "interaction": null,
+            "route": "outside",
+            "english": "Let's go outside! Look at the sky. What do you see?"
+          },
+          "before_verdict": null,
+          "after_verdict": "minor_mismatch",
+          "human_approved": false
+        },
+        {
+          "id": "new106",
+          "text": "今は音楽は鳴っていないね",
+          "stratum": null,
+          "topic_probability": 0.46497115027382546,
+          "topic_margin": 0.36519684088986226,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Hello, sweet baby! You're so loved. I'm right here."
+          },
+          "after": {
+            "topic": "music",
+            "interaction": null,
+            "route": "music",
+            "english": "Let's sing together! La, la, la! Your turn!"
+          },
+          "before_verdict": null,
+          "after_verdict": "appropriate",
+          "human_approved": false
+        },
+        {
+          "id": "new132",
+          "text": "おなかはすいたけどまだミルクは飲まないね",
+          "stratum": null,
+          "topic_probability": 0.4833243537157789,
+          "topic_margin": 0.2527961356708551,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Can you see me? Here I am! Hello, hello!"
+          },
+          "after": {
+            "topic": "milk",
+            "interaction": null,
+            "route": "milk",
+            "english": "Here's your milk! Ready for a sip? Here you go!"
+          },
+          "before_verdict": null,
+          "after_verdict": "minor_mismatch",
+          "human_approved": false
+        }
+      ],
+      "changes_vs40": [
+        {
+          "id": "new038",
+          "text": "笑っていないみたいだね",
+          "stratum": null,
+          "topic_probability": 0.3413481248808298,
+          "topic_margin": 0.23008162221578557,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Do you hear that? That's my voice! Hello, baby!"
+          },
+          "after": {
+            "topic": "smile",
+            "interaction": null,
+            "route": "smile",
+            "english": "What a smile! I love seeing it. You're so sweet!"
+          },
+          "before_verdict": null,
+          "after_verdict": "contradiction",
+          "human_approved": false
+        },
+        {
+          "id": "new013",
+          "text": "寝返りしたね",
+          "stratum": null,
+          "topic_probability": 0.3914559098281431,
+          "topic_margin": 0.2989346388232585,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "Look at you! What a sweet face. I'm glad you're here!"
+          },
+          "after": {
+            "topic": "wake",
+            "interaction": null,
+            "route": "wake",
+            "english": "You're awake! Hello, little one. It's nice seeing you!"
+          },
+          "before_verdict": null,
+          "after_verdict": "undecidable",
+          "human_approved": false
+        },
+        {
+          "id": "new015",
+          "text": "ママが寝不足だね",
+          "stratum": null,
+          "topic_probability": 0.3578045760305483,
+          "topic_margin": 0.13321610553067234,
+          "before": {
+            "topic": null,
+            "interaction": null,
+            "route": "generic",
+            "english": "One, two, three! Count with me! Again, again!"
+          },
+          "after": {
+            "topic": "cry",
+            "interaction": null,
+            "route": "cry",
+            "english": "I hear you crying. I'm right here. You're not alone."
+          },
+          "before_verdict": null,
+          "after_verdict": "unsupported_claim",
+          "human_approved": false
+        }
+      ]
+    }
+  ],
+  "android": {
+    "status": "MAC_NATIVE_JVM_NOT_ANDROID_DEVICE",
+    "n": 202,
+    "topic_differences": 0,
+    "interaction_differences": 1,
+    "english_differences": 1,
+    "token_mismatches": 0,
+    "rows": [
+      {
+        "id": "natural001",
+        "text": "ぐっすりねんねしてるね",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural002",
+        "text": "すやすや眠っているね",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural003",
+        "text": "気持ちよさそうに寝てるね",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural004",
+        "text": "おめめがとろんとしてきたね",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Baby, look here! It's me again. Hello there!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Baby, look here! It's me again. Hello there!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural005",
+        "text": "うとうとしているね",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": true,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural006",
+        "text": "お昼寝しようか",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural007",
+        "text": "そろそろお布団に入ろうね",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural008",
+        "text": "ねむくなってきたかな",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural009",
+        "text": "たくさんお昼寝できたね",
+        "web": {
+          "topic": "sleep",
+          "interaction": "care",
+          "route": "combined:sleep:care",
+          "english": "You look sleepy. Let's rest now. I'll stay close."
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": "care",
+          "rescued": false,
+          "route": "combined:sleep:care",
+          "english": "You look sleepy. Let's rest now. I'll stay close."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural010",
+        "text": "おやすみ、ゆっくり寝てね",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural011",
+        "text": "お布団でころんとしてねんねしようね",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural012",
+        "text": "寝息が聞こえてくるね",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural013",
+        "text": "おいしそうにミルク飲んでるね",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural014",
+        "text": "ミルクをごくごく上手に飲めてるね",
+        "web": {
+          "topic": "milk",
+          "interaction": "praise",
+          "route": "combined:milk:praise",
+          "english": "Those little sips! Look at you! Good job, baby!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": "praise",
+          "rescued": false,
+          "route": "combined:milk:praise",
+          "english": "Those little sips! Look at you! Good job, baby!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural015",
+        "text": "おっぱいをたくさん飲めたね",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural016",
+        "text": "ミルクの時間にしようか",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural017",
+        "text": "おっぱいにしようか",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural018",
+        "text": "ミルクを飲み終わったね",
+        "web": {
+          "topic": "milk",
+          "interaction": "finish",
+          "route": "combined:milk:finish",
+          "english": "Milk is all done! You're finished now. Let's rest together."
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": "finish",
+          "rescued": false,
+          "route": "combined:milk:finish",
+          "english": "Milk is all done! You're finished now. Let's rest together."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural019",
+        "text": "もうミルクはおしまいかな",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural020",
+        "text": "もうちょっとミルク飲む？",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural021",
+        "text": "おなかすいたね、ミルク飲もうか",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural022",
+        "text": "哺乳びんを持ってきたよ",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural023",
+        "text": "ミルクをゆっくり飲んでるね",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural024",
+        "text": "口をぱくぱくしてるね、おっぱいかな",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural025",
+        "text": "おむつぱんぱんだね",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural026",
+        "text": "おしっこいっぱい出たね",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural027",
+        "text": "うんち出たね、きれいにしようね",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural028",
+        "text": "新しいおむつにしようか",
+        "web": {
+          "topic": "diaper",
+          "interaction": "invitation",
+          "route": "combined:diaper:invitation",
+          "english": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": "invitation",
+          "rescued": false,
+          "route": "combined:diaper:invitation",
+          "english": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural029",
+        "text": "おしりをきれいに拭こうね",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural030",
+        "text": "おむつ替えできたよ",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural031",
+        "text": "すっきりしたね、おむつ替えたよ",
+        "web": {
+          "topic": "diaper",
+          "interaction": "finish",
+          "route": "combined:diaper:finish",
+          "english": "All done changing! Nice and fresh. Here we are."
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": false,
+        "english_same": false,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural032",
+        "text": "おむつ濡れちゃったかな",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural033",
+        "text": "さらさらのおむつになったね",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural034",
+        "text": "きれいなおむつを持ってきたよ",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural035",
+        "text": "おむつ替えるよ、ころんしてね",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural036",
+        "text": "おしりを拭いているよ",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural037",
+        "text": "おふろ、あったかいね",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural038",
+        "text": "お風呂のお湯が気持ちいいね",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural039",
+        "text": "ぱちゃぱちゃお風呂で遊んでるね",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural040",
+        "text": "からだをきれいに洗おうね",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural041",
+        "text": "そろそろおふろの時間だよ",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural042",
+        "text": "お風呂に入ってさっぱりしようね",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural043",
+        "text": "お風呂あがったね",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural044",
+        "text": "おふろ、もうあがろうか",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural045",
+        "text": "お湯はちょうどいいかな",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural046",
+        "text": "お風呂であんよを洗ってるよ",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural047",
+        "text": "お風呂をちゃぷちゃぷしてるね",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural048",
+        "text": "泡でやさしく体を洗っているよ",
+        "web": {
+          "topic": "bath",
+          "interaction": "reassurance",
+          "route": "combined:bath:reassurance",
+          "english": "Here's the warm water. I'll wash your toes. Splish, splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": "reassurance",
+          "rescued": false,
+          "route": "combined:bath:reassurance",
+          "english": "Here's the warm water. I'll wash your toes. Splish, splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural049",
+        "text": "お着替えしよっか",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural050",
+        "text": "こっちの服に着替えようね",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural051",
+        "text": "お洋服のお袖におててを通そうね",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural052",
+        "text": "シャツが着られたね",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural053",
+        "text": "ズボンもはけたね",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural054",
+        "text": "お着替え全部できたよ",
+        "web": {
+          "topic": "clothes",
+          "interaction": "achievement",
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": "achievement",
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural055",
+        "text": "かわいいお洋服だね",
+        "web": {
+          "topic": "clothes",
+          "interaction": "affection",
+          "route": "combined:clothes:affection",
+          "english": "Cozy little clothes! Soft, soft, soft! I love you!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": "affection",
+          "rescued": false,
+          "route": "combined:clothes:affection",
+          "english": "Cozy little clothes! Soft, soft, soft! I love you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural056",
+        "text": "肌着を着てあったかくしようね",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural057",
+        "text": "パジャマを着ようか",
+        "web": {
+          "topic": "clothes",
+          "interaction": "invitation",
+          "route": "combined:clothes:invitation",
+          "english": "Here comes your shirt! One arm first! In you go!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": "invitation",
+          "rescued": false,
+          "route": "combined:clothes:invitation",
+          "english": "Here comes your shirt! One arm first! In you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural058",
+        "text": "お着替えおしまいかな",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural059",
+        "text": "この服はふわふわだね",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural060",
+        "text": "お洋服を着ているところだね",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural061",
+        "text": "おもちゃ楽しいね",
+        "web": {
+          "topic": "play",
+          "interaction": null,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": null,
+          "rescued": false,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural062",
+        "text": "ボールをころころして遊んでるね",
+        "web": {
+          "topic": "play",
+          "interaction": null,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": null,
+          "rescued": false,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural063",
+        "text": "積み木をつかめたね",
+        "web": {
+          "topic": "play",
+          "interaction": "achievement",
+          "route": "combined:play:achievement",
+          "english": "Got the toy! You did it! Yay, yay!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": "achievement",
+          "rescued": false,
+          "route": "combined:play:achievement",
+          "english": "Got the toy! You did it! Yay, yay!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural064",
+        "text": "いっしょにがらがらで遊ぼうね",
+        "web": {
+          "topic": "play",
+          "interaction": "invitation",
+          "route": "combined:play:invitation",
+          "english": "Playtime, little one! Pick a toy! Let's have fun!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": "invitation",
+          "rescued": false,
+          "route": "combined:play:invitation",
+          "english": "Playtime, little one! Pick a toy! Let's have fun!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural065",
+        "text": "おもちゃに手を伸ばしているね",
+        "web": {
+          "topic": "play",
+          "interaction": null,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": null,
+          "rescued": false,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural066",
+        "text": "ぬいぐるみと遊んでるね",
+        "web": {
+          "topic": "play",
+          "interaction": null,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": null,
+          "rescued": false,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural067",
+        "text": "もう一回このおもちゃで遊ぼうか",
+        "web": {
+          "topic": "play",
+          "interaction": "repeat",
+          "route": "combined:play:repeat",
+          "english": "Let's play again! One more turn? Here comes your toy!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": "repeat",
+          "rescued": false,
+          "route": "combined:play:repeat",
+          "english": "Let's play again! One more turn? Here comes your toy!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural068",
+        "text": "遊ぶの上手だね",
+        "web": {
+          "topic": null,
+          "interaction": "praise",
+          "route": "interaction:praise",
+          "english": "Yay, you did it! Clap, clap, clap! Big cheers, baby!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "praise",
+          "rescued": false,
+          "route": "interaction:praise",
+          "english": "Yay, you did it! Clap, clap, clap! Big cheers, baby!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural069",
+        "text": "がらがらを鳴らしてみようか",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Look at my hands! Let's wave hello. Hi, hi!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Look at my hands! Let's wave hello. Hi, hi!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural070",
+        "text": "おもちゃに夢中だね",
+        "web": {
+          "topic": "play",
+          "interaction": "affection",
+          "route": "combined:play:affection",
+          "english": "Playtime, baby! Look, look, look! I love you!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": "affection",
+          "rescued": false,
+          "route": "combined:play:affection",
+          "english": "Playtime, baby! Look, look, look! I love you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural071",
+        "text": "おもちゃを振るのがんばってるね",
+        "web": {
+          "topic": "play",
+          "interaction": null,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": null,
+          "rescued": false,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural072",
+        "text": "おもちゃで遊び始めようね",
+        "web": {
+          "topic": "play",
+          "interaction": null,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": null,
+          "rescued": false,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural073",
+        "text": "えんえん泣いちゃったね",
+        "web": {
+          "topic": "cry",
+          "interaction": null,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "native": {
+          "topic": "cry",
+          "interaction": null,
+          "rescued": false,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural074",
+        "text": "大きな声で泣いてるね",
+        "web": {
+          "topic": "cry",
+          "interaction": null,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "native": {
+          "topic": "cry",
+          "interaction": null,
+          "rescued": false,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural075",
+        "text": "涙がぽろぽろ出てるね",
+        "web": {
+          "topic": "cry",
+          "interaction": null,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "native": {
+          "topic": "cry",
+          "interaction": null,
+          "rescued": false,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural076",
+        "text": "泣いちゃったね、ママがいるよ",
+        "web": {
+          "topic": "cry",
+          "interaction": null,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "native": {
+          "topic": "cry",
+          "interaction": null,
+          "rescued": false,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural077",
+        "text": "泣いてるね、どうしたのかな",
+        "web": {
+          "topic": "cry",
+          "interaction": "inquiry",
+          "route": "combined:cry:inquiry",
+          "english": "I hear you crying. What's the matter? I'm listening, sweetheart."
+        },
+        "native": {
+          "topic": "cry",
+          "interaction": "inquiry",
+          "rescued": false,
+          "route": "combined:cry:inquiry",
+          "english": "I hear you crying. What's the matter? I'm listening, sweetheart."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural078",
+        "text": "泣いてもいいよ、そばにいるからね",
+        "web": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle."
+        },
+        "native": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "rescued": false,
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural079",
+        "text": "にっこりしてるね",
+        "web": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!"
+        },
+        "native": {
+          "topic": "smile",
+          "interaction": null,
+          "rescued": false,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural080",
+        "text": "にこにこ笑っているね",
+        "web": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!"
+        },
+        "native": {
+          "topic": "smile",
+          "interaction": null,
+          "rescued": false,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural081",
+        "text": "笑顔を見せてくれたね",
+        "web": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!"
+        },
+        "native": {
+          "topic": "smile",
+          "interaction": null,
+          "rescued": false,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural082",
+        "text": "えへへって笑ったね",
+        "web": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!"
+        },
+        "native": {
+          "topic": "smile",
+          "interaction": null,
+          "rescued": false,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural083",
+        "text": "うれしそうなお顔だね",
+        "web": {
+          "topic": "smile",
+          "interaction": "affection",
+          "route": "combined:smile:affection",
+          "english": "What a lovely smile! You're so sweet. I love you."
+        },
+        "native": {
+          "topic": "smile",
+          "interaction": "affection",
+          "rescued": false,
+          "route": "combined:smile:affection",
+          "english": "What a lovely smile! You're so sweet. I love you."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural084",
+        "text": "その笑顔、かわいいね",
+        "web": {
+          "topic": "smile",
+          "interaction": "affection",
+          "route": "combined:smile:affection",
+          "english": "What a lovely smile! You're so sweet. I love you."
+        },
+        "native": {
+          "topic": "smile",
+          "interaction": "affection",
+          "rescued": false,
+          "route": "combined:smile:affection",
+          "english": "What a lovely smile! You're so sweet. I love you."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural085",
+        "text": "お水を一口飲んでみようね",
+        "web": {
+          "topic": "drink",
+          "interaction": null,
+          "route": "drink",
+          "english": "Would you like some? Here's a little sip. There you go!"
+        },
+        "native": {
+          "topic": "drink",
+          "interaction": null,
+          "rescued": false,
+          "route": "drink",
+          "english": "Would you like some? Here's a little sip. There you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural086",
+        "text": "お茶をちびちび飲んでるね",
+        "web": {
+          "topic": "drink",
+          "interaction": null,
+          "route": "drink",
+          "english": "Would you like some? Here's a little sip. There you go!"
+        },
+        "native": {
+          "topic": "drink",
+          "interaction": null,
+          "rescued": false,
+          "route": "drink",
+          "english": "Would you like some? Here's a little sip. There you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural087",
+        "text": "お水飲めたね",
+        "web": {
+          "topic": "drink",
+          "interaction": null,
+          "route": "drink",
+          "english": "Would you like some? Here's a little sip. There you go!"
+        },
+        "native": {
+          "topic": "drink",
+          "interaction": null,
+          "rescued": false,
+          "route": "drink",
+          "english": "Would you like some? Here's a little sip. There you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural088",
+        "text": "コップでお水を飲んでるね",
+        "web": {
+          "topic": "drink",
+          "interaction": null,
+          "route": "drink",
+          "english": "Would you like some? Here's a little sip. There you go!"
+        },
+        "native": {
+          "topic": "drink",
+          "interaction": null,
+          "rescued": false,
+          "route": "drink",
+          "english": "Would you like some? Here's a little sip. There you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural089",
+        "text": "お昼寝から起きたね",
+        "web": {
+          "topic": "wake",
+          "interaction": null,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "native": {
+          "topic": "wake",
+          "interaction": null,
+          "rescued": false,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural090",
+        "text": "おめめがぱっちり開いたね",
+        "web": {
+          "topic": "wake",
+          "interaction": null,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "native": {
+          "topic": "wake",
+          "interaction": null,
+          "rescued": false,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural091",
+        "text": "起きたんだね、おはよう",
+        "web": {
+          "topic": "wake",
+          "interaction": null,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "native": {
+          "topic": "wake",
+          "interaction": null,
+          "rescued": false,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural092",
+        "text": "お目覚めだね",
+        "web": {
+          "topic": "wake",
+          "interaction": null,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "native": {
+          "topic": "wake",
+          "interaction": null,
+          "rescued": false,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural093",
+        "text": "だっこしてぎゅーしようね",
+        "web": {
+          "topic": "hug",
+          "interaction": null,
+          "route": "hug",
+          "english": "Come here, baby. Let's have a cuddle. Big hugs!"
+        },
+        "native": {
+          "topic": "hug",
+          "interaction": null,
+          "rescued": false,
+          "route": "hug",
+          "english": "Come here, baby. Let's have a cuddle. Big hugs!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural094",
+        "text": "ママのだっこだよ",
+        "web": {
+          "topic": "hug",
+          "interaction": null,
+          "route": "hug",
+          "english": "Come here, baby. Let's have a cuddle. Big hugs!"
+        },
+        "native": {
+          "topic": "hug",
+          "interaction": null,
+          "rescued": false,
+          "route": "hug",
+          "english": "Come here, baby. Let's have a cuddle. Big hugs!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural095",
+        "text": "ぎゅっと抱っこしているよ",
+        "web": {
+          "topic": "hug",
+          "interaction": null,
+          "route": "hug",
+          "english": "Come here, baby. Let's have a cuddle. Big hugs!"
+        },
+        "native": {
+          "topic": "hug",
+          "interaction": null,
+          "rescued": false,
+          "route": "hug",
+          "english": "Come here, baby. Let's have a cuddle. Big hugs!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural096",
+        "text": "だっこでゆらゆらしようね",
+        "web": {
+          "topic": "hug",
+          "interaction": null,
+          "route": "hug",
+          "english": "Come here, baby. Let's have a cuddle. Big hugs!"
+        },
+        "native": {
+          "topic": "hug",
+          "interaction": null,
+          "rescued": false,
+          "route": "hug",
+          "english": "Come here, baby. Let's have a cuddle. Big hugs!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural097",
+        "text": "おててをにぎにぎしてるね",
+        "web": {
+          "topic": "hands",
+          "interaction": null,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "native": {
+          "topic": "hands",
+          "interaction": null,
+          "rescued": false,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural098",
+        "text": "ちっちゃいおててだね",
+        "web": {
+          "topic": "hands",
+          "interaction": null,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "native": {
+          "topic": "hands",
+          "interaction": null,
+          "rescued": false,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural099",
+        "text": "指をぎゅっと握ったね",
+        "web": {
+          "topic": "hands",
+          "interaction": null,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "native": {
+          "topic": "hands",
+          "interaction": null,
+          "rescued": false,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural100",
+        "text": "おててをぱあにしてみようね",
+        "web": {
+          "topic": "hands",
+          "interaction": null,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "native": {
+          "topic": "hands",
+          "interaction": null,
+          "rescued": true,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural101",
+        "text": "あんよがぴょこぴょこしてるね",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Look at you! What a sweet face. I'm glad you're here!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Look at you! What a sweet face. I'm glad you're here!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural102",
+        "text": "ちいさい足の指だね",
+        "web": {
+          "topic": "hands",
+          "interaction": null,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "native": {
+          "topic": "hands",
+          "interaction": null,
+          "rescued": false,
+          "route": "hands",
+          "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural103",
+        "text": "あんよでキックしたね",
+        "web": {
+          "topic": "feet",
+          "interaction": null,
+          "route": "feet",
+          "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!"
+        },
+        "native": {
+          "topic": "feet",
+          "interaction": null,
+          "rescued": false,
+          "route": "feet",
+          "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural104",
+        "text": "足をのびのびしてみようね",
+        "web": {
+          "topic": "feet",
+          "interaction": null,
+          "route": "feet",
+          "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!"
+        },
+        "native": {
+          "topic": "feet",
+          "interaction": null,
+          "rescued": false,
+          "route": "feet",
+          "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural105",
+        "text": "あーあーって声が出てるね",
+        "web": {
+          "topic": "voice",
+          "interaction": null,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "native": {
+          "topic": "voice",
+          "interaction": null,
+          "rescued": false,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural106",
+        "text": "おしゃべりしてくれてるね",
+        "web": {
+          "topic": "voice",
+          "interaction": null,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "native": {
+          "topic": "voice",
+          "interaction": null,
+          "rescued": false,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural107",
+        "text": "かわいい声が聞こえるよ",
+        "web": {
+          "topic": "voice",
+          "interaction": null,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "native": {
+          "topic": "voice",
+          "interaction": null,
+          "rescued": false,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural108",
+        "text": "お声を聞かせてくれたね",
+        "web": {
+          "topic": "voice",
+          "interaction": null,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "native": {
+          "topic": "voice",
+          "interaction": null,
+          "rescued": false,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural109",
+        "text": "げっぷが出たんだね",
+        "web": {
+          "topic": "tummy",
+          "interaction": null,
+          "route": "tummy",
+          "english": "How's your tummy? Do you feel full? I'm here!"
+        },
+        "native": {
+          "topic": "tummy",
+          "interaction": null,
+          "rescued": false,
+          "route": "tummy",
+          "english": "How's your tummy? Do you feel full? I'm here!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural110",
+        "text": "おなかがすいてきたね",
+        "web": {
+          "topic": "food",
+          "interaction": null,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "native": {
+          "topic": "food",
+          "interaction": null,
+          "rescued": false,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural111",
+        "text": "お腹がぽこぽこ鳴ってるね",
+        "web": {
+          "topic": "tummy",
+          "interaction": null,
+          "route": "tummy",
+          "english": "How's your tummy? Do you feel full? I'm here!"
+        },
+        "native": {
+          "topic": "tummy",
+          "interaction": null,
+          "rescued": false,
+          "route": "tummy",
+          "english": "How's your tummy? Do you feel full? I'm here!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural112",
+        "text": "おなかをさすっているよ",
+        "web": {
+          "topic": "tummy",
+          "interaction": null,
+          "route": "tummy",
+          "english": "How's your tummy? Do you feel full? I'm here!"
+        },
+        "native": {
+          "topic": "tummy",
+          "interaction": null,
+          "rescued": true,
+          "route": "tummy",
+          "english": "How's your tummy? Do you feel full? I'm here!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural113",
+        "text": "お外の空気が気持ちいいね",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Let's make a sound! Ba, ba, ba! Your turn!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Let's make a sound! Ba, ba, ba! Your turn!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural114",
+        "text": "お散歩に出かけようか",
+        "web": {
+          "topic": "outside",
+          "interaction": "invitation",
+          "route": "combined:outside:invitation",
+          "english": "Outside, outside! Look at the trees! See the sky?"
+        },
+        "native": {
+          "topic": "outside",
+          "interaction": "invitation",
+          "rescued": false,
+          "route": "combined:outside:invitation",
+          "english": "Outside, outside! Look at the trees! See the sky?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural115",
+        "text": "ベビーカーで外に出たね",
+        "web": {
+          "topic": "outside",
+          "interaction": null,
+          "route": "outside",
+          "english": "Let's go outside! Look at the sky. What do you see?"
+        },
+        "native": {
+          "topic": "outside",
+          "interaction": null,
+          "rescued": false,
+          "route": "outside",
+          "english": "Let's go outside! Look at the sky. What do you see?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural116",
+        "text": "公園をお散歩してるね",
+        "web": {
+          "topic": "outside",
+          "interaction": null,
+          "route": "outside",
+          "english": "Let's go outside! Look at the sky. What do you see?"
+        },
+        "native": {
+          "topic": "outside",
+          "interaction": null,
+          "rescued": false,
+          "route": "outside",
+          "english": "Let's go outside! Look at the sky. What do you see?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural117",
+        "text": "お外に雨が降ってるね",
+        "web": {
+          "topic": "rain",
+          "interaction": null,
+          "route": "rain",
+          "english": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        "native": {
+          "topic": "rain",
+          "interaction": null,
+          "rescued": false,
+          "route": "rain",
+          "english": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural118",
+        "text": "ぽつぽつ雨が降り始めたね",
+        "web": {
+          "topic": "rain",
+          "interaction": null,
+          "route": "rain",
+          "english": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        "native": {
+          "topic": "rain",
+          "interaction": null,
+          "rescued": false,
+          "route": "rain",
+          "english": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural119",
+        "text": "雨が窓についてるね",
+        "web": {
+          "topic": "rain",
+          "interaction": null,
+          "route": "rain",
+          "english": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        "native": {
+          "topic": "rain",
+          "interaction": null,
+          "rescued": false,
+          "route": "rain",
+          "english": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural120",
+        "text": "雨の音を聞いてみようね",
+        "web": {
+          "topic": "rain",
+          "interaction": null,
+          "route": "rain",
+          "english": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        "native": {
+          "topic": "rain",
+          "interaction": null,
+          "rescued": false,
+          "route": "rain",
+          "english": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural121",
+        "text": "お日さまがぴかぴかだね",
+        "web": {
+          "topic": "sun",
+          "interaction": null,
+          "route": "sun",
+          "english": "The sun is shining! What a bright day. Hello, sunshine!"
+        },
+        "native": {
+          "topic": "sun",
+          "interaction": null,
+          "rescued": false,
+          "route": "sun",
+          "english": "The sun is shining! What a bright day. Hello, sunshine!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural122",
+        "text": "おひさまが顔を出したね",
+        "web": {
+          "topic": "sun",
+          "interaction": null,
+          "route": "sun",
+          "english": "The sun is shining! What a bright day. Hello, sunshine!"
+        },
+        "native": {
+          "topic": "sun",
+          "interaction": null,
+          "rescued": false,
+          "route": "sun",
+          "english": "The sun is shining! What a bright day. Hello, sunshine!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural123",
+        "text": "窓からお日さまの光が入るね",
+        "web": {
+          "topic": "sun",
+          "interaction": null,
+          "route": "sun",
+          "english": "The sun is shining! What a bright day. Hello, sunshine!"
+        },
+        "native": {
+          "topic": "sun",
+          "interaction": null,
+          "rescued": false,
+          "route": "sun",
+          "english": "The sun is shining! What a bright day. Hello, sunshine!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural124",
+        "text": "明るいお日さまを見ようね",
+        "web": {
+          "topic": "sun",
+          "interaction": null,
+          "route": "sun",
+          "english": "The sun is shining! What a bright day. Hello, sunshine!"
+        },
+        "native": {
+          "topic": "sun",
+          "interaction": null,
+          "rescued": false,
+          "route": "sun",
+          "english": "The sun is shining! What a bright day. Hello, sunshine!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural125",
+        "text": "おかゆをぱくぱく食べてるね",
+        "web": {
+          "topic": "food",
+          "interaction": null,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "native": {
+          "topic": "food",
+          "interaction": null,
+          "rescued": false,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural126",
+        "text": "離乳食を食べようか",
+        "web": {
+          "topic": "food",
+          "interaction": "invitation",
+          "route": "combined:food:invitation",
+          "english": "Ready for food? One little bite! Look at your spoon!"
+        },
+        "native": {
+          "topic": "food",
+          "interaction": "invitation",
+          "rescued": false,
+          "route": "combined:food:invitation",
+          "english": "Ready for food? One little bite! Look at your spoon!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural127",
+        "text": "ごはんを上手に食べられたね",
+        "web": {
+          "topic": "food",
+          "interaction": "praise",
+          "route": "combined:food:praise",
+          "english": "You took a bite! Good job, little one. That was lovely."
+        },
+        "native": {
+          "topic": "food",
+          "interaction": "praise",
+          "rescued": false,
+          "route": "combined:food:praise",
+          "english": "You took a bite! Good job, little one. That was lovely."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural128",
+        "text": "スプーンでごはんを食べてるね",
+        "web": {
+          "topic": "food",
+          "interaction": null,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "native": {
+          "topic": "food",
+          "interaction": null,
+          "rescued": false,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural129",
+        "text": "絵本をいっしょに見ようね",
+        "web": {
+          "topic": "book",
+          "interaction": null,
+          "route": "book",
+          "english": "Let's read a book! Look at the pictures. What's that?"
+        },
+        "native": {
+          "topic": "book",
+          "interaction": null,
+          "rescued": false,
+          "route": "book",
+          "english": "Let's read a book! Look at the pictures. What's that?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural130",
+        "text": "この本の絵を見ているね",
+        "web": {
+          "topic": "book",
+          "interaction": null,
+          "route": "book",
+          "english": "Let's read a book! Look at the pictures. What's that?"
+        },
+        "native": {
+          "topic": "book",
+          "interaction": null,
+          "rescued": false,
+          "route": "book",
+          "english": "Let's read a book! Look at the pictures. What's that?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural131",
+        "text": "絵本のページがめくれたね",
+        "web": {
+          "topic": "book",
+          "interaction": null,
+          "route": "book",
+          "english": "Let's read a book! Look at the pictures. What's that?"
+        },
+        "native": {
+          "topic": "book",
+          "interaction": null,
+          "rescued": false,
+          "route": "book",
+          "english": "Let's read a book! Look at the pictures. What's that?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural132",
+        "text": "本をもう一度読もうね",
+        "web": {
+          "topic": "book",
+          "interaction": "repeat",
+          "route": "combined:book:repeat",
+          "english": "One more page? Let's read again. Turn the page."
+        },
+        "native": {
+          "topic": "book",
+          "interaction": "repeat",
+          "rescued": false,
+          "route": "combined:book:repeat",
+          "english": "One more page? Let's read again. Turn the page."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural133",
+        "text": "お歌が聞こえるね",
+        "web": {
+          "topic": "voice",
+          "interaction": null,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "native": {
+          "topic": "voice",
+          "interaction": null,
+          "rescued": false,
+          "route": "voice",
+          "english": "I hear your voice! Tell me more. I'm listening!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural134",
+        "text": "いっしょにお歌を歌ってみようね",
+        "web": {
+          "topic": "music",
+          "interaction": null,
+          "route": "music",
+          "english": "Let's sing together! La, la, la! Your turn!"
+        },
+        "native": {
+          "topic": "music",
+          "interaction": null,
+          "rescued": false,
+          "route": "music",
+          "english": "Let's sing together! La, la, la! Your turn!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural135",
+        "text": "音楽に合わせて動いてるね",
+        "web": {
+          "topic": "music",
+          "interaction": null,
+          "route": "music",
+          "english": "Let's sing together! La, la, la! Your turn!"
+        },
+        "native": {
+          "topic": "music",
+          "interaction": null,
+          "rescued": false,
+          "route": "music",
+          "english": "Let's sing together! La, la, la! Your turn!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural136",
+        "text": "もう一回お歌を聞こうか",
+        "web": {
+          "topic": "music",
+          "interaction": "repeat",
+          "route": "combined:music:repeat",
+          "english": "One more song? Let's sing again. La, la, la!"
+        },
+        "native": {
+          "topic": "music",
+          "interaction": "repeat",
+          "rescued": false,
+          "route": "combined:music:repeat",
+          "english": "One more song? Let's sing again. La, la, la!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural137",
+        "text": "今日もかわいいね",
+        "web": {
+          "topic": null,
+          "interaction": "affection",
+          "route": "interaction:affection",
+          "english": "You're so cute! What a sweetheart! I love you."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "affection",
+          "rescued": false,
+          "route": "interaction:affection",
+          "english": "You're so cute! What a sweetheart! I love you."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural138",
+        "text": "大好きだよ、ママの宝物だよ",
+        "web": {
+          "topic": null,
+          "interaction": "affection",
+          "route": "interaction:affection",
+          "english": "You're so cute! What a sweetheart! I love you."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "affection",
+          "rescued": false,
+          "route": "interaction:affection",
+          "english": "You're so cute! What a sweetheart! I love you."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural139",
+        "text": "上手にできてえらいね",
+        "web": {
+          "topic": null,
+          "interaction": "praise",
+          "route": "interaction:praise",
+          "english": "Yay, you did it! Clap, clap, clap! Big cheers, baby!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "praise",
+          "rescued": false,
+          "route": "interaction:praise",
+          "english": "Yay, you did it! Clap, clap, clap! Big cheers, baby!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural140",
+        "text": "わあ、じょうずだったね",
+        "web": {
+          "topic": null,
+          "interaction": "praise",
+          "route": "interaction:praise",
+          "english": "Yay, you did it! Clap, clap, clap! Big cheers, baby!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "praise",
+          "rescued": false,
+          "route": "interaction:praise",
+          "english": "Yay, you did it! Clap, clap, clap! Big cheers, baby!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural141",
+        "text": "やったね、できるようになったね",
+        "web": {
+          "topic": null,
+          "interaction": "achievement",
+          "route": "interaction:achievement",
+          "english": "You did it! Look what happened! Hooray for you!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "achievement",
+          "rescued": false,
+          "route": "interaction:achievement",
+          "english": "You did it! Look what happened! Hooray for you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural142",
+        "text": "自分でできたんだね",
+        "web": {
+          "topic": null,
+          "interaction": "achievement",
+          "route": "interaction:achievement",
+          "english": "You did it! Look what happened! Hooray for you!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "achievement",
+          "rescued": false,
+          "route": "interaction:achievement",
+          "english": "You did it! Look what happened! Hooray for you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural143",
+        "text": "いっしょうけんめいやってるね",
+        "web": {
+          "topic": null,
+          "interaction": "effort",
+          "route": "interaction:effort",
+          "english": "You're trying again! Look at you go! I'm here!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "effort",
+          "rescued": false,
+          "route": "interaction:effort",
+          "english": "You're trying again! Look at you go! I'm here!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural144",
+        "text": "何回もやってがんばってるね",
+        "web": {
+          "topic": null,
+          "interaction": "effort",
+          "route": "interaction:effort",
+          "english": "You're trying again! Look at you go! I'm here!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "effort",
+          "rescued": false,
+          "route": "interaction:effort",
+          "english": "You're trying again! Look at you go! I'm here!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural145",
+        "text": "あと少し、やってみてね",
+        "web": {
+          "topic": null,
+          "interaction": "encouragement",
+          "route": "interaction:encouragement",
+          "english": "You can try. I'm beside you. Go when you're ready."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "encouragement",
+          "rescued": false,
+          "route": "interaction:encouragement",
+          "english": "You can try. I'm beside you. Go when you're ready."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural146",
+        "text": "ゆっくりでいいよ、がんばってね",
+        "web": {
+          "topic": null,
+          "interaction": "encouragement",
+          "route": "interaction:encouragement",
+          "english": "You can try. I'm beside you. Go when you're ready."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "encouragement",
+          "rescued": false,
+          "route": "interaction:encouragement",
+          "english": "You can try. I'm beside you. Go when you're ready."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural147",
+        "text": "ママとやってみようか",
+        "web": {
+          "topic": null,
+          "interaction": "invitation",
+          "route": "interaction:invitation",
+          "english": "Ready, baby? Here we go! You and me!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "invitation",
+          "rescued": false,
+          "route": "interaction:invitation",
+          "english": "Ready, baby? Here we go! You and me!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural148",
+        "text": "一緒に遊んでみない？",
+        "web": {
+          "topic": "play",
+          "interaction": "invitation",
+          "route": "combined:play:invitation",
+          "english": "Playtime, little one! Pick a toy! Let's have fun!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": "invitation",
+          "rescued": false,
+          "route": "combined:play:invitation",
+          "english": "Playtime, little one! Pick a toy! Let's have fun!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural149",
+        "text": "さあ始めるよ、準備いいかな",
+        "web": {
+          "topic": null,
+          "interaction": "start",
+          "route": "interaction:start",
+          "english": "Here we go! We're beginning now. Ready, little one?"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "start",
+          "rescued": false,
+          "route": "interaction:start",
+          "english": "Here we go! We're beginning now. Ready, little one?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural150",
+        "text": "これから始めるからね",
+        "web": {
+          "topic": null,
+          "interaction": "start",
+          "route": "interaction:start",
+          "english": "Here we go! We're beginning now. Ready, little one?"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "start",
+          "rescued": false,
+          "route": "interaction:start",
+          "english": "Here we go! We're beginning now. Ready, little one?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural151",
+        "text": "ぜんぶ終わったよ",
+        "web": {
+          "topic": null,
+          "interaction": "finish",
+          "route": "interaction:finish",
+          "english": "It's all done! We finished. Well done, little one."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "finish",
+          "rescued": false,
+          "route": "interaction:finish",
+          "english": "It's all done! We finished. Well done, little one."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural152",
+        "text": "これでおしまいになったよ",
+        "web": {
+          "topic": null,
+          "interaction": "finish",
+          "route": "interaction:finish",
+          "english": "It's all done! We finished. Well done, little one."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "finish",
+          "rescued": false,
+          "route": "interaction:finish",
+          "english": "It's all done! We finished. Well done, little one."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural153",
+        "text": "もう終わりにできたかな",
+        "web": {
+          "topic": null,
+          "interaction": "finish_check",
+          "route": "interaction:finish_check",
+          "english": "All done? Is that everything? Let's have a look."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "finish_check",
+          "rescued": false,
+          "route": "interaction:finish_check",
+          "english": "All done? Is that everything? Let's have a look."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural154",
+        "text": "これでもうおしまいかな",
+        "web": {
+          "topic": null,
+          "interaction": "finish_check",
+          "route": "interaction:finish_check",
+          "english": "All done? Is that everything? Let's have a look."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "finish_check",
+          "rescued": false,
+          "route": "interaction:finish_check",
+          "english": "All done? Is that everything? Let's have a look."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural155",
+        "text": "たくさんがんばったね、おつかれさま",
+        "web": {
+          "topic": null,
+          "interaction": "care",
+          "route": "interaction:care",
+          "english": "You worked so hard. That's a lot. Rest if you like."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "care",
+          "rescued": false,
+          "route": "interaction:care",
+          "english": "You worked so hard. That's a lot. Rest if you like."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural156",
+        "text": "いっぱいやって疲れたね",
+        "web": {
+          "topic": null,
+          "interaction": "care",
+          "route": "interaction:care",
+          "english": "You worked so hard. That's a lot. Rest if you like."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "care",
+          "rescued": false,
+          "route": "interaction:care",
+          "english": "You worked so hard. That's a lot. Rest if you like."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural157",
+        "text": "どうしたの、何かあったかな",
+        "web": {
+          "topic": null,
+          "interaction": "inquiry",
+          "route": "interaction:inquiry",
+          "english": "What's the matter? I'm right here. Can you show me?"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "inquiry",
+          "rescued": false,
+          "route": "interaction:inquiry",
+          "english": "What's the matter? I'm right here. Can you show me?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural158",
+        "text": "なにが気になったのかな",
+        "web": {
+          "topic": null,
+          "interaction": "inquiry",
+          "route": "interaction:inquiry",
+          "english": "What's the matter? I'm right here. Can you show me?"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "inquiry",
+          "rescued": false,
+          "route": "interaction:inquiry",
+          "english": "What's the matter? I'm right here. Can you show me?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural159",
+        "text": "大丈夫だよ、ママここにいるよ",
+        "web": {
+          "topic": null,
+          "interaction": "reassurance",
+          "route": "interaction:reassurance",
+          "english": "I'm here with you. You're not alone. I'm staying close."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "reassurance",
+          "rescued": false,
+          "route": "interaction:reassurance",
+          "english": "I'm here with you. You're not alone. I'm staying close."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural160",
+        "text": "こわくないよ、そばにいるね",
+        "web": {
+          "topic": null,
+          "interaction": "reassurance",
+          "route": "interaction:reassurance",
+          "english": "I'm here with you. You're not alone. I'm staying close."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "reassurance",
+          "rescued": false,
+          "route": "interaction:reassurance",
+          "english": "I'm here with you. You're not alone. I'm staying close."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural161",
+        "text": "同じのをもう一回しようか",
+        "web": {
+          "topic": null,
+          "interaction": "repeat",
+          "route": "interaction:repeat",
+          "english": "One more time? Let's try again. Ready to go?"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "repeat",
+          "rescued": false,
+          "route": "interaction:repeat",
+          "english": "One more time? Let's try again. Ready to go?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural162",
+        "text": "もう一度やってみようね",
+        "web": {
+          "topic": null,
+          "interaction": "repeat",
+          "route": "interaction:repeat",
+          "english": "One more time? Let's try again. Ready to go?"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "repeat",
+          "rescued": false,
+          "route": "interaction:repeat",
+          "english": "One more time? Let's try again. Ready to go?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural163",
+        "text": "ちょっと待っててね",
+        "web": {
+          "topic": null,
+          "interaction": "pause",
+          "route": "interaction:pause",
+          "english": "Just a moment. I'll be right here. We can wait."
+        },
+        "native": {
+          "topic": null,
+          "interaction": "pause",
+          "rescued": false,
+          "route": "interaction:pause",
+          "english": "Just a moment. I'll be right here. We can wait."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural164",
+        "text": "少しお休みにしようか",
+        "web": {
+          "topic": "sleep",
+          "interaction": "pause",
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": "pause",
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural165",
+        "text": "赤いのが見えるね",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Let's say hello! Hi, little one! Hello again!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Let's say hello! Hi, little one! Hello again!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural166",
+        "text": "これふわふわだね",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Baby, my little star! I love you. Hello, sweetheart!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Baby, my little star! I love you. Hello, sweetheart!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural167",
+        "text": "そこにあったんだね",
+        "web": {
+          "topic": null,
+          "interaction": "achievement",
+          "route": "interaction:achievement",
+          "english": "You did it! Look what happened! Hooray for you!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": "achievement",
+          "rescued": false,
+          "route": "interaction:achievement",
+          "english": "You did it! Look what happened! Hooray for you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural168",
+        "text": "いろんな色があるね",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Hello again, baby! Hello, hello! Wave, wave, wave!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Hello again, baby! Hello, hello! Wave, wave, wave!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural169",
+        "text": "まあるい形だね",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Let's chat, baby! Ooh, ahh, ooh! Your turn!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Let's chat, baby! Ooh, ahh, ooh! Your turn!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural170",
+        "text": "パパが来たよ",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Look at my hands! Let's wave hello. Hi, hi!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Look at my hands! Let's wave hello. Hi, hi!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural171",
+        "text": "おっぱいのあとでねんねしようね",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural172",
+        "text": "お着替えしたらミルクにしようね",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural173",
+        "text": "起きたらおむつを替えようね",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural174",
+        "text": "ミルクを飲んでからお風呂にしようね",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural175",
+        "text": "お風呂から出たらパジャマに着替えようね",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural176",
+        "text": "お昼寝が終わったらおもちゃで遊ぼうね",
+        "web": {
+          "topic": "play",
+          "interaction": null,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": null,
+          "rescued": false,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural177",
+        "text": "お着替えができたらお散歩に行こうね",
+        "web": {
+          "topic": "outside",
+          "interaction": null,
+          "route": "outside",
+          "english": "Let's go outside! Look at the sky. What do you see?"
+        },
+        "native": {
+          "topic": "outside",
+          "interaction": null,
+          "rescued": false,
+          "route": "outside",
+          "english": "Let's go outside! Look at the sky. What do you see?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural178",
+        "text": "ミルクのあとに絵本を見ようね",
+        "web": {
+          "topic": "book",
+          "interaction": null,
+          "route": "book",
+          "english": "Let's read a book! Look at the pictures. What's that?"
+        },
+        "native": {
+          "topic": "book",
+          "interaction": null,
+          "rescued": false,
+          "route": "book",
+          "english": "Let's read a book! Look at the pictures. What's that?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural179",
+        "text": "起きてからごはんにしようね",
+        "web": {
+          "topic": "food",
+          "interaction": null,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "native": {
+          "topic": "food",
+          "interaction": null,
+          "rescued": false,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural180",
+        "text": "さっきミルクをたくさん飲んだね",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural181",
+        "text": "よく眠れたみたいだね",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural182",
+        "text": "さっきのお風呂、気持ちよかったね",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural183",
+        "text": "まだ寝てないのかな",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural184",
+        "text": "まだ眠くないのかな",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural185",
+        "text": "ねんねしたいけど眠れないのかな",
+        "web": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "native": {
+          "topic": "sleep",
+          "interaction": null,
+          "rescued": false,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural186",
+        "text": "おめめがぱっちりで眠くなさそうだね",
+        "web": {
+          "topic": "wake",
+          "interaction": null,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "native": {
+          "topic": "wake",
+          "interaction": null,
+          "rescued": true,
+          "route": "wake",
+          "english": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural187",
+        "text": "あまりミルク飲みたくないのかな",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural188",
+        "text": "もうおっぱいはいらないのかな",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural189",
+        "text": "まだミルクを飲み足りないかな",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural190",
+        "text": "ミルクがなかなか飲めないね",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural191",
+        "text": "ごはんはもう食べたくないのかな",
+        "web": {
+          "topic": "food",
+          "interaction": null,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "native": {
+          "topic": "food",
+          "interaction": null,
+          "rescued": false,
+          "route": "food",
+          "english": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural192",
+        "text": "まだおなかいっぱいじゃないのかな",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural193",
+        "text": "泣きやまないね、抱っこしようか",
+        "web": {
+          "topic": "cry",
+          "interaction": null,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "native": {
+          "topic": "cry",
+          "interaction": null,
+          "rescued": false,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural194",
+        "text": "もう泣いてないね、落ち着いたね",
+        "web": {
+          "topic": "cry",
+          "interaction": null,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "native": {
+          "topic": "cry",
+          "interaction": null,
+          "rescued": false,
+          "route": "cry",
+          "english": "I hear you crying. I'm right here. You're not alone."
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural195",
+        "text": "まだおしっこ出てないね",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural196",
+        "text": "おむつはまだ濡れてないみたいだね",
+        "web": {
+          "topic": "diaper",
+          "interaction": null,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "native": {
+          "topic": "diaper",
+          "interaction": null,
+          "rescued": false,
+          "route": "diaper",
+          "english": "Time for a change. Let's get you dry. All fresh!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural197",
+        "text": "お風呂のお湯は熱くないかな",
+        "web": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "native": {
+          "topic": "bath",
+          "interaction": null,
+          "rescued": false,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural198",
+        "text": "このお洋服はきつくないかな",
+        "web": {
+          "topic": "clothes",
+          "interaction": null,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "native": {
+          "topic": "clothes",
+          "interaction": null,
+          "rescued": false,
+          "route": "clothes",
+          "english": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural199",
+        "text": "おもちゃにまだ手が届かないね",
+        "web": {
+          "topic": "play",
+          "interaction": null,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "native": {
+          "topic": "play",
+          "interaction": null,
+          "rescued": false,
+          "route": "play",
+          "english": "Let's play together! What should we try? Peekaboo!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural200",
+        "text": "雨でお散歩には行けないね",
+        "web": {
+          "topic": "outside",
+          "interaction": null,
+          "route": "outside",
+          "english": "Let's go outside! Look at the sky. What do you see?"
+        },
+        "native": {
+          "topic": "outside",
+          "interaction": null,
+          "rescued": false,
+          "route": "outside",
+          "english": "Let's go outside! Look at the sky. What do you see?"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural201",
+        "text": "寝たと思ったけど、まだ起きてたね",
+        "web": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Baby, look here! It's me again. Hello there!"
+        },
+        "native": {
+          "topic": null,
+          "interaction": null,
+          "rescued": false,
+          "route": "generic",
+          "english": "Baby, look here! It's me again. Hello there!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      },
+      {
+        "id": "natural202",
+        "text": "ミルクはまだできてないから待っててね",
+        "web": {
+          "topic": "milk",
+          "interaction": null,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "native": {
+          "topic": "milk",
+          "interaction": null,
+          "rescued": false,
+          "route": "milk",
+          "english": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        "topic_same": true,
+        "interaction_same": true,
+        "english_same": true,
+        "token_ids_match": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "status": "SYNTHETIC_RESEARCH_NOT_RELEASE_APPROVAL",
+  "new_real_onnx_inputs": 202,
+  "new_regression_tests": 12,
+  "original_regression_tests": 11,
+  "web_npm_test": "PASS",
+  "human_review_auditor_synthetic_tests": "PASS",
+  "android_jvm_ai_tests": 44,
+  "android_suites": [
+    {
+      "name": "com.eltnegcellist.emma.ai.LiteWebTopicParityTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.LiteTopicGuideTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.BabySpeechStyleTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.InteractionReplyBankTest",
+      "tests": "10",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.LiteResponseEngineTest",
+      "tests": "27",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.MeaningfulJapaneseUtteranceTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "main_source_diff": "NO_PRODUCTION_MODEL_THRESHOLDS_REPLY_BANK_AUDIO_ASR_OR_PACKAGE_CHANGES",
+  "frequency_measured": false,
+  "human_approved": false,
+  "unperformed": [
+    "Galaxy S25",
+    "private caregiver audio",
+    "ASR transcript robustness",
+    "independent human semantic approval",
+    "all response history variants"
+  ]
+}

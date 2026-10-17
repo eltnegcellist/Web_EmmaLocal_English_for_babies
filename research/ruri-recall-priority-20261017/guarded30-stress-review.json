@@ -1,0 +1,87 @@
+{
+  "status": "PROVISIONAL_CHANGED_OUTPUT_REVIEW_NOT_HUMAN_APPROVAL",
+  "scope": "Only the nine changed first English outputs from the 81 retrospective cases outside reference131. Unchanged outputs and baseline absolute quality are not graded. Uncertainty is retained.",
+  "rows": [
+    {
+      "id": "new038",
+      "text": "笑っていないみたいだね",
+      "english": "What a smile! I love seeing it. You're so sweet!",
+      "verdict": "contradiction",
+      "note": "笑っていないという発話に対し、笑顔の存在を断定する。40%救済では出ない30%での追加反転。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new013",
+      "text": "寝返りしたね",
+      "english": "You're awake! Hello, little one. It's nice seeing you!",
+      "verdict": "undecidable",
+      "note": "寝返りの観察だけでは覚醒中かは確定しない。起きていると述べてよいか文脈の人手確認が必要。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new015",
+      "text": "ママが寝不足だね",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "verdict": "unsupported_claim",
+      "note": "母親の寝不足という話題から、赤ちゃんが現在泣いていると断定する。否定表現とは別の主語と現在行為の取り違え。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new023",
+      "text": "ミルクはお昼寝のあとにしようね",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "minor_mismatch",
+      "note": "昼寝後のミルク予定に対して今差し出す英文。未来の行為と現在の提示の時点がずれる。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new073",
+      "text": "まだ目を覚ましていないね",
+      "english": "You're awake! Hello, little one. It's nice seeing you!",
+      "verdict": "contradiction",
+      "note": "まだ覚醒していないという発話に対し起きていると断定する。40%でも共通して発生。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new085",
+      "text": "今は声を出していないね",
+      "english": "I hear your voice! Tell me more. I'm listening!",
+      "verdict": "contradiction",
+      "note": "声を出していないという発話に対し声が聞こえると断定する。40%でも共通して発生。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new091",
+      "text": "お散歩は雨がやんでからにしよう",
+      "english": "Let's go outside! Look at the sky. What do you see?",
+      "verdict": "minor_mismatch",
+      "note": "雨がやんだ後という条件を落として外へ誘う。現在外にいるとの断定はない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new106",
+      "text": "今は音楽は鳴っていないね",
+      "english": "Let's sing together! La, la, la! Your turn!",
+      "verdict": "appropriate",
+      "note": "音楽が今は鳴っていないという観察への歌唱の誘い。現在音楽が鳴っているとの断定ではない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new132",
+      "text": "おなかはすいたけどまだミルクは飲まないね",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "minor_mismatch",
+      "note": "今はまだミルクを飲まないという文脈にミルクを差し出す。飲んでいるとは断定しないが意図にずれ。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    }
+  ]
+}
