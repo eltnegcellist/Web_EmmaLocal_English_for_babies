@@ -8,6 +8,7 @@ import { MoonshineAsrClient } from './asr-client.js';
 import { TurnRevisions } from './turn-revisions.js';
 import { LiteResponseEngine, CHILDCARE_ASR_KEYTERMS, isMeaningfulUtterance } from './lite-response-engine.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
+import { replyDisplayHint } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 
 const $ = (id) => document.getElementById(id);
@@ -18,7 +19,8 @@ const ui = {
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'), tutorialStatusTarget:$('tutorialStatusTarget'),
   progressWrap:$('progressWrap'), progressBar:$('progressBar'), progressText:$('progressText'),
-  conversation:$('conversation'), parentBubble:$('parentBubble'), emmaBubble:$('emmaBubble'), transcript:$('transcript'), reply:$('reply'),
+  conversation:$('conversation'), emmaBubble:$('emmaBubble'), reply:$('reply'),
+  replyTopic:$('replyTopic'), replyJapanese:$('replyJapanese'),
   mainButton:$('mainButton'), stopButton:$('stopButton'), manualReplyButton:$('manualReplyButton'), enableAudioButton:$('enableAudioButton'),
   autoRespond:$('autoRespond'), endpointMode:$('endpointMode'), aboutButton:$('aboutButton'), settingsButton:$('settingsButton'),
   settingsBackButton:$('settingsBackButton'), settingsAboutButton:$('settingsAboutButton'),
@@ -229,6 +231,14 @@ function initUi() {
       sessionStorage.removeItem('emma_coi_manual_start');
       showScreen('home',{autoStart:false});
       setState('idle','マイクの準備ができました','「呼びかけを始める」を押すと、マイクの許可を確認して呼びかけを始めます。');
+      // The isolation reload is expected on some Android browsers. Resume at
+      // the real start-button exercise rather than silently losing the coach.
+      if(localStorage.getItem(STORAGE.tutorialDone)!=='true') {
+        tutorialStep=1;
+        tutorialIntroPlayed=true;
+        tutorialUserSpoke=false;
+        renderTutorial();
+      }
     } else if(localStorage.getItem(STORAGE.tutorialDone)==='true') {
       showScreen('home');
     } else {
@@ -254,7 +264,7 @@ function bindEvents() {
   document.addEventListener('pointerdown',()=>{ if(!audioUnlocked) unlockPlaybackAudioFromGesture(); },{capture:true,passive:true});
   ui.prepareEmmaButton.addEventListener('click',()=>{ unlockPlaybackAudioFromGesture(); prepareFirstRun(); });
 
-  ui.aboutButton.addEventListener('click',()=>openAbout('home'));
+  // About remains available in Settings; the top-right shortcut now opens "押して聞く".
   ui.settingsAboutButton.addEventListener('click',()=>openAbout('settings'));
   ui.onboardingAboutButton.addEventListener('click',()=>openAbout('onboarding'));
   ui.aboutBackButton.addEventListener('click',backFromSubpage);
@@ -423,7 +433,7 @@ function bindEvents() {
     const response=await semanticPanel.respond(text,'',{isCurrent:()=>epoch===conversationEpoch});
     if(!response)return;
     const english=stripAiSpeakerLabel(response.english);
-    showConversation(text,english);
+    showConversation(text,english,response.scene);
     await ensureWorkersForDebug();
     await speakResponse(english);
   });
@@ -912,18 +922,22 @@ async function stopEmma() {
   ui.mainButton.classList.remove('hidden');
   ui.mainButton.disabled=false;
   setBusy(false);
-  setState('idle','みつことばはおやすみ中','「呼びかけを始める」を押すと、また呼びかけられます。');
+  setState('idle','Emmaはおやすみ中','下の大きな「呼びかけを始める」を押すと再開できます。');
 }
 
 function handleCapturedUtterance(audio) {
   if(!running||preparingConversation||speaking)return;
   if(tutorialStep===2){
     tutorialUserSpoke=true;
-    pendingUtterance={kind:'audio',audio};
-    ui.manualReplyButton.classList.remove('hidden');
-    setState('understood','話し終わりを検出しました','画面下で光っている「今すぐAIが返事する」を押してください。');
-    scheduleTutorialSpotlightSync();
-    return;
+    // Tutorial must honor the same auto-reply preference as ordinary speech.
+    // Otherwise the screen promises automatic replies but waits for a tap.
+    if(!ui.autoRespond.checked){
+      pendingUtterance={kind:'audio',audio};
+      ui.manualReplyButton.classList.remove('hidden');
+      setState('understood','話し終わりを検出しました','「今すぐAIが返事する」を押すと返事します。');
+      scheduleTutorialSpotlightSync();
+      return;
+    }
   }
   if(ui.autoRespond.checked){
     // An earlier speculative reply has already been invalidated at speech-start.
@@ -965,7 +979,6 @@ async function respondGenericallyToManualRequest() {
   processing=true;
   setBusy(true);
   pendingUtterance=null;
-  ui.parentBubble.classList.add('hidden');
   setState('thinking','返事を考えています…',`${getAiName()}が今すぐ話します。`);
 
   try {
@@ -975,7 +988,6 @@ async function respondGenericallyToManualRequest() {
     processing=false;
     setBusy(false);
     await speakResponse(english,{entry:createHistoryEntry(sessionId,'',english,'generic')});
-    if(tutorialStep===2) finishTutorial();
   } catch(error) {
     processing=false;
     setBusy(false);
@@ -1259,14 +1271,14 @@ async function processTranscript(text,{manual=false,revision=null}={}) {
   if(!isLiveTurn(revision,epoch))return;
   if(!response){processing=false;setBusy(false);restoreUnspokenTurn();return;}
   const english=stripAiSpeakerLabel(response.english);
-  showConversation(clean,english);
+  showConversation(clean,english,response.scene);
   // A speculative TTS is still an active turn: keep manual reply disabled,
   // while allowing the microphone/VAD to detect a continuation.
   processing=revision!==null;
   setBusy(revision!==null);
   await speakResponse(english,{entry:createHistoryEntry(sessionId,clean,english,response.scene),revision});
-  if(!isLiveTurn(revision,epoch))return;
-  if(tutorialStep===2 && tutorialUserSpoke)finishTutorial();
+  // Do not complete the tutorial here: the speculative playback commit resets
+  // turnRevisions, so isLiveTurn(revision) is no longer true after playback.
 }
 
 async function releaseMicrophoneForEmmaVoice() {
@@ -1331,7 +1343,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
   if(!speculative)generationReady.catch(()=>{});
   if(speculative)done.catch(()=>{});
   setState(speculative?'thinking':'speaking',speculative?'英語の声を準備しています':'AIが話しています',
-    speculative?'続きのことばがあれば、そのまま話してください。':text);
+    speculative?'続きのことばがあれば、そのまま話してください。':'赤ちゃんへ英語で話しかけています。');
   try{
     const cached=preparedAudio.get(cacheKey);
     if(cached){
@@ -1358,10 +1370,17 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
       speaking=true;
       startedPlayback=true;
       queue.deferPlayback=false;
-      setState('speaking','AIが話しています',text);
+      setState('speaking','AIが話しています','赤ちゃんへ英語で話しかけています。');
       pumpAudio(requestId);
     }
     await done;
+    // Complete step 3 only after Emma's recorded audio actually finished.
+    // A speculative turn's revision is intentionally reset when playback
+    // commits, so the caller cannot reliably pass isLiveTurn(revision) here.
+    // Epoch + decoded-playback checks prevent stop/cancel/empty audio from
+    // incorrectly marking the tutorial complete.
+    if(epoch===conversationEpoch && startedPlayback && queue.next>0 &&
+       tutorialStep===2 && tutorialUserSpoke) finishTutorial();
     lastTtsTotalMillis=Math.round(diagnosticNow()-ttsRequestStartedAt);
     updateWebTimingDiagnostics();
   }catch(error){
@@ -1379,7 +1398,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
   }
   if(!valid())return;
   if(running)setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
-  else setState('idle','みつことばはおやすみ中','「呼びかけを始める」を押すと、また呼びかけられます。');
+  else setState('idle','Emmaはおやすみ中','大きな「呼びかけを始める」から会話を再開できます。');
 }
 
 function enqueueAudio(m) {
@@ -1622,7 +1641,7 @@ function renderTutorial(){
   }else{
     ui.tutorialTitle.textContent='実際に話しかけてみよう';
     ui.tutorialBody.textContent='普段どおり日本語で赤ちゃんへ話しかけてください。話し終わったら、必要に応じて光っている「今すぐAIが返事する」を押すと、その時点までの言葉をもとにAIが返事します。「自動で返事」がオンなら、押さなくても話し終わりを検出して自動で返事します。';
-    ui.tutorialHint.textContent='↓ 必要なら「今すぐAIが返事する」を押す';
+    ui.tutorialHint.textContent='Emmaの英語の返答が終わると自動的に完了します。';
     ui.tutorialHint.classList.remove('hidden');
   }
   if(tutorialStep===0) {
@@ -1688,6 +1707,14 @@ function setState(state,title,detail) {
   renderAvatarFrame();
   ui.statusTitle.textContent=title;
   ui.statusDetail.textContent=detail;
+  ui.homeScreen.dataset.session=running?'active':'stopped';
+  // Keep the status inside Emma's existing name-badge location.
+  // Only surface secondary detail when the user needs to act (errors /
+  // audio unlock), never duplicate the spoken English in a second row.
+  const needsNotice=state==='error' ||
+    (state==='speaking' && /再開|タップ/.test(title)) ||
+    (state==='idle' && /失敗|できません/.test(title));
+  ui.statusDetail.classList.toggle('hidden',!needsNotice);
   ui.statusTitle.className=`status-chip status-${state}`;
   if(tutorialStep!==null) scheduleTutorialSpotlightSync();
 }
@@ -1710,17 +1737,20 @@ function showOnboardingProgress(show,value=0,text='') {
   ui.onboardingProgressText.textContent=text;
 }
 
-function showConversation(parentText,emmaText) {
+function showConversation(parentText,emmaText,route='generic') {
+  // Do not render the parent's ASR transcript on the live home screen.
+  // The original transcript is still consumed by Ruri and saved by history.
+  // Preserve the initial "Hi, I'm Emma." and the most recent spoken reply
+  // while Moonshine/Ruri process the next utterance. Only a genuine new
+  // English response replaces the card, never an intermediate empty ASR turn.
+  if(!emmaText)return;
   ui.conversation.classList.remove('hidden');
-  if(parentText){
-    ui.parentBubble.classList.remove('hidden');
-    ui.transcript.textContent=parentText;
-    if(!emmaText) ui.emmaBubble.classList.add('hidden');
-  }
-  if(emmaText){
-    ui.emmaBubble.classList.remove('hidden');
-    ui.reply.textContent=emmaText;
-  }
+  ui.emmaBubble.classList.remove('hidden');
+  ui.replyTopic.classList.remove('hidden');
+  const hint=replyDisplayHint(route);
+  ui.replyTopic.textContent=hint.topicLabel;
+  ui.reply.textContent=emmaText;
+  ui.replyJapanese.textContent=hint.japaneseNote;
 }
 
 function onRuntimeError(message) {
@@ -1766,7 +1796,7 @@ function stripAiSpeakerLabel(text) {
 function updateAiNameUi() {
   const name='Emma';
   if(ui.aiBubbleLabel) ui.aiBubbleLabel.textContent=name;
-  if(ui.aiNameBadge) ui.aiNameBadge.textContent=name;
+  // The former name badge now displays the live voice recognition / speaking status.
   if(ui.aiAvatarFace) ui.aiAvatarFace.setAttribute('aria-label',`${name}（みつことば AI）`);
   if(ui.onboardingAiIntro) {
     ui.onboardingAiIntro.innerHTML =
