@@ -9,6 +9,21 @@ import { replyDisplayHint } from './src/reply-display-hint.js';
 import { canonicalMoonshineModelAssetKey } from './src/vendor/moonshine/asset-downloader.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
 
+// The intro card must be visible immediately (without any audio autoplay).
+// Empty interim ASR events must not erase it while the first turn is pending.
+{
+  const document=new JSDOM(readFileSync(new URL('./index.html',import.meta.url),'utf8')).window.document;
+  const script=readFileSync(new URL('./src/app.js',import.meta.url),'utf8');
+  assert.equal(document.querySelector('#replyTopic')?.textContent,'ごあいさつ');
+  assert.equal(document.querySelector('#reply')?.textContent,"Hi, I'm Emma.");
+  assert.equal(document.querySelector('#replyJapanese')?.textContent,'こんにちは、エマだよ。');
+  assert(!document.querySelector('#conversation')?.classList.contains('hidden'),'intro visible from first render');
+  assert(!document.querySelector('#emmaBubble')?.classList.contains('hidden'));
+  assert(script.includes('if(!emmaText)return;'),'intermediate empty replies must preserve last visible card');
+  assert(script.includes('await speakResponse("Hi, I\'m Emma.");'),'opening card agrees with tutorial audio');
+}
+
+
 // Eight-point Emma-first UI regression: startup CTA, manual-first recording
 // controls, header play shortcut, no sparkle decoration, compact scroll,
 // accessible history checkbox and untranslated hint without visible heading.
