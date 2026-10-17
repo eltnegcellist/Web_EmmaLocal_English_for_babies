@@ -1,0 +1,1262 @@
+{
+  "date": "2026-10-18",
+  "totalSets": 914,
+  "uniqueTexts": 913,
+  "sourceSHA256": "cfff4385abaa6c67c4a86d96a7f3996ea2532313ab26a518157ffaa87c006807",
+  "method": "sourceKeyの先頭話題を集計。生成済みprimaryCueによる頻度を採用数として扱わない。本文への明示言及は別集計し、候補例を提示。確率・利用ログ・意味適合の測定ではない。",
+  "scenes": [
+    {
+      "topic": "milk",
+      "label": "ミルク",
+      "setCount": 80,
+      "assetIds": [
+        "milk",
+        "sip"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000039",
+          "text": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        {
+          "phraseId": "vc_000040",
+          "text": "Can you taste it? A little milk. Mmm, yummy!"
+        },
+        {
+          "phraseId": "vc_000041",
+          "text": "Milk for you! One little sip. Then another!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "diaper",
+      "label": "おむつ",
+      "setCount": 55,
+      "assetIds": [
+        "diaper-v2",
+        "change-diaper-exchange"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000063",
+          "text": "Time for a change. Let's get you dry. All fresh!"
+        },
+        {
+          "phraseId": "vc_000064",
+          "text": "New diaper time! Let's wipe your bottom. All clean!"
+        },
+        {
+          "phraseId": "vc_000065",
+          "text": "Let's change your diaper. One little wipe. All fresh!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "play",
+      "label": "遊び",
+      "setCount": 51,
+      "assetIds": [
+        "toy"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000135",
+          "text": "Let's play together! What should we try? Peekaboo!"
+        },
+        {
+          "phraseId": "vc_000136",
+          "text": "Here's your toy! Can you see it? Look here!"
+        },
+        {
+          "phraseId": "vc_000137",
+          "text": "Ready to play? Peek, peek, peek! Let's have fun!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "bath",
+      "label": "お風呂",
+      "setCount": 45,
+      "assetIds": [
+        "bath",
+        "water-shower"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000031",
+          "text": "Bath time is here! Is the water warm? Splash, splash!"
+        },
+        {
+          "phraseId": "vc_000032",
+          "text": "Let's wash your hands. One, then the other. All clean!"
+        },
+        {
+          "phraseId": "vc_000033",
+          "text": "Your little toes! Let's wash them gently. Splash, splash!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "book",
+      "label": "絵本",
+      "setCount": 45,
+      "assetIds": [
+        "book",
+        "page"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000175",
+          "text": "Let's read a book! Look at the pictures. What's that?"
+        },
+        {
+          "phraseId": "vc_000176",
+          "text": "Here's your book! Turn the page. What comes next?"
+        },
+        {
+          "phraseId": "vc_000177",
+          "text": "Look at this picture! What can you see? Let's look together!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "music",
+      "label": "音楽",
+      "setCount": 42,
+      "assetIds": [
+        "music",
+        "notes"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000183",
+          "text": "Let's sing together! La, la, la! Your turn!"
+        },
+        {
+          "phraseId": "vc_000184",
+          "text": "Listen to the music. Can you hear it? Tap, tap!"
+        },
+        {
+          "phraseId": "vc_000185",
+          "text": "Here's a little song. Listen with me. La, la!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "sleep",
+      "label": "就寝",
+      "setCount": 38,
+      "assetIds": [
+        "sleep"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000047",
+          "text": "Are you sleepy? Let's get cozy. Night-night!"
+        },
+        {
+          "phraseId": "vc_000048",
+          "text": "Time to rest. Let's get cozy now. I'll stay close."
+        },
+        {
+          "phraseId": "vc_000049",
+          "text": "Let's close our eyes. I'll stay nearby. Sleep well!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "drink",
+      "label": "飲み物",
+      "setCount": 38,
+      "assetIds": [
+        "cup"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000191",
+          "text": "Would you like some? Here's a little sip. There you go!"
+        },
+        {
+          "phraseId": "vc_000192",
+          "text": "Here's your drink! Ready for a sip? Here you are!"
+        },
+        {
+          "phraseId": "vc_000193",
+          "text": "Drink time! One little sip. How does it taste?"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "food",
+      "label": "食事",
+      "setCount": 37,
+      "assetIds": [
+        "meal",
+        "spoon"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000167",
+          "text": "Time for a bite! Here's your spoon. Open wide!"
+        },
+        {
+          "phraseId": "vc_000168",
+          "text": "Let's try some food. One little bite. How is it?"
+        },
+        {
+          "phraseId": "vc_000169",
+          "text": "Ready to eat? A little spoonful. There you go!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "wake",
+      "label": "起床",
+      "setCount": 33,
+      "assetIds": [
+        "wake-bed",
+        "wake-quilt"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000055",
+          "text": "You're awake! Hello, little one. It's nice seeing you!"
+        },
+        {
+          "phraseId": "vc_000056",
+          "text": "Your eyes are open! Hello, little one. How are you?"
+        },
+        {
+          "phraseId": "vc_000057",
+          "text": "Look who's awake! How are you? Hello, little one!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "cry",
+      "label": "泣く・慰め",
+      "setCount": 33,
+      "assetIds": [],
+      "examples": [
+        {
+          "phraseId": "vc_000111",
+          "text": "I hear you crying. I'm right here. You're not alone."
+        },
+        {
+          "phraseId": "vc_000112",
+          "text": "Are you feeling upset? I'm listening, baby. I'm right here."
+        },
+        {
+          "phraseId": "vc_000113",
+          "text": "Are you upset? I'll stay close. Would you like cuddles?"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "clothes",
+      "label": "衣服",
+      "setCount": 31,
+      "assetIds": [
+        "clothes",
+        "change-clothes",
+        "dress-sleeves"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000071",
+          "text": "Let's put clothes on. One arm first. Other arm next!"
+        },
+        {
+          "phraseId": "vc_000072",
+          "text": "Your little shirt! Let's put it on. One arm goes in!"
+        },
+        {
+          "phraseId": "vc_000073",
+          "text": "Here come your socks. One little foot. Then another!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "generic",
+      "label": "一般会話",
+      "setCount": 30,
+      "assetIds": [],
+      "examples": [
+        {
+          "phraseId": "vc_000001",
+          "text": "Hello, sweet baby! You're so loved. I'm right here."
+        },
+        {
+          "phraseId": "vc_000002",
+          "text": "Hi, little one! Peekaboo! Hello again!"
+        },
+        {
+          "phraseId": "vc_000003",
+          "text": "Look at you! What a sweet face. I'm glad you're here!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "hug",
+      "label": "抱っこ",
+      "setCount": 28,
+      "assetIds": [
+        "family-care",
+        "hug-arms"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000079",
+          "text": "Come here, baby. Let's have a cuddle. Big hugs!"
+        },
+        {
+          "phraseId": "vc_000080",
+          "text": "Up you go! Into my arms. I've got you!"
+        },
+        {
+          "phraseId": "vc_000081",
+          "text": "A little cuddle? I'll hold you close. So cozy!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "hands",
+      "label": "手",
+      "setCount": 28,
+      "assetIds": [
+        "hands-open-v2",
+        "hand-wave",
+        "hold-hands"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000087",
+          "text": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!"
+        },
+        {
+          "phraseId": "vc_000088",
+          "text": "Open your hands. Close them again. Good job!"
+        },
+        {
+          "phraseId": "vc_000089",
+          "text": "Those little fingers! Can you wiggle them? Wiggle, wiggle!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "feet",
+      "label": "足",
+      "setCount": 28,
+      "assetIds": [
+        "feet",
+        "kick"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000095",
+          "text": "Look at your feet! Ten tiny toes. Wiggle, wiggle!"
+        },
+        {
+          "phraseId": "vc_000096",
+          "text": "Kick those little legs! Kick, kick! Look at you!"
+        },
+        {
+          "phraseId": "vc_000097",
+          "text": "Your toes are moving! One, two, three. So tiny!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "voice",
+      "label": "声",
+      "setCount": 28,
+      "assetIds": [],
+      "examples": [
+        {
+          "phraseId": "vc_000119",
+          "text": "I hear your voice! Tell me more. I'm listening!"
+        },
+        {
+          "phraseId": "vc_000120",
+          "text": "Are you talking? Hello, little one. Your turn!"
+        },
+        {
+          "phraseId": "vc_000121",
+          "text": "What a lovely sound! Say it again. I'm listening!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "outside",
+      "label": "外",
+      "setCount": 28,
+      "assetIds": [
+        "outdoor"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000143",
+          "text": "Let's go outside! Look at the sky. What do you see?"
+        },
+        {
+          "phraseId": "vc_000144",
+          "text": "Fresh air outside! Can you feel it? Hello, world!"
+        },
+        {
+          "phraseId": "vc_000145",
+          "text": "Time for a stroll. Let's look around. What's over there?"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "smile",
+      "label": "笑顔",
+      "setCount": 27,
+      "assetIds": [],
+      "examples": [
+        {
+          "phraseId": "vc_000103",
+          "text": "What a smile! I love seeing it. You're so sweet!"
+        },
+        {
+          "phraseId": "vc_000104",
+          "text": "There's your smile! I love seeing it. So sweet!"
+        },
+        {
+          "phraseId": "vc_000105",
+          "text": "You're smiling! That makes me smile. Thank you!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "rain",
+      "label": "雨",
+      "setCount": 25,
+      "assetIds": [
+        "rain",
+        "water-rain"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000151",
+          "text": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        {
+          "phraseId": "vc_000152",
+          "text": "Listen to the rain. Drip, drop! Drip, drop!"
+        },
+        {
+          "phraseId": "vc_000153",
+          "text": "Rain on the window! Tap, tap, tap. Can you hear?"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "sun",
+      "label": "日差し",
+      "setCount": 25,
+      "assetIds": [
+        "sun"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000159",
+          "text": "The sun is shining! What a bright day. Hello, sunshine!"
+        },
+        {
+          "phraseId": "vc_000160",
+          "text": "Look at the sunlight! It's bright outside. So lovely!"
+        },
+        {
+          "phraseId": "vc_000161",
+          "text": "Hello, sunshine! The sky is bright. Look up!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    },
+    {
+      "topic": "tummy",
+      "label": "おなか",
+      "setCount": 22,
+      "assetIds": [
+        "tummy"
+      ],
+      "examples": [
+        {
+          "phraseId": "vc_000127",
+          "text": "How's your tummy? Do you feel full? I'm here!"
+        },
+        {
+          "phraseId": "vc_000128",
+          "text": "Let's pat your back. Maybe a little burp. There!"
+        },
+        {
+          "phraseId": "vc_000129",
+          "text": "Your little tummy! Let's have a cuddle. So cozy!"
+        }
+      ],
+      "scope": "話題に含まれるセット数。全件に同じ画像を使える数ではない。"
+    }
+  ],
+  "mentions": [
+    {
+      "key": "burp",
+      "definition": "本文への明示的言及。素材適合数ではない。",
+      "count": 3,
+      "phrases": [
+        {
+          "phraseId": "vc_000128",
+          "sourceKey": "tummy",
+          "text": "Let's pat your back. Maybe a little burp. There!"
+        },
+        {
+          "phraseId": "vc_000130",
+          "sourceKey": "tummy",
+          "text": "Is that a burp? Let's take it slowly. I'm right here."
+        },
+        {
+          "phraseId": "vc_000874",
+          "sourceKey": "tummy",
+          "text": "Burp, burp! Little tummy. Nice and easy."
+        }
+      ]
+    },
+    {
+      "key": "count",
+      "definition": "本文への明示的言及。素材適合数ではない。",
+      "count": 2,
+      "phrases": [
+        {
+          "phraseId": "vc_000017",
+          "sourceKey": "generic",
+          "text": "One, two, three! Count with me! Again, again!"
+        },
+        {
+          "phraseId": "vc_000098",
+          "sourceKey": "feet",
+          "text": "Let's count your toes. One, two, three. More to go!"
+        }
+      ]
+    },
+    {
+      "key": "squeeze",
+      "definition": "本文への明示的言及。素材適合数ではない。",
+      "count": 4,
+      "phrases": [
+        {
+          "phraseId": "vc_000530",
+          "sourceKey": "hands|invitation",
+          "text": "Little hands together! Squeeze, squeeze, squeeze! Hold my hand!"
+        },
+        {
+          "phraseId": "vc_000531",
+          "sourceKey": "hands|invitation",
+          "text": "Give me your hand. Let's feel those fingers. Squeeze, squeeze!"
+        },
+        {
+          "phraseId": "vc_000845",
+          "sourceKey": "hands",
+          "text": "Tiny hands! Squeeze, squeeze! Wiggle, wiggle!"
+        },
+        {
+          "phraseId": "vc_000847",
+          "sourceKey": "hands",
+          "text": "Tiny fingers! Squeeze, squeeze! Little hands!"
+        }
+      ]
+    },
+    {
+      "key": "ball",
+      "definition": "本文への明示的言及。素材適合数ではない。",
+      "count": 1,
+      "phrases": [
+        {
+          "phraseId": "vc_000444",
+          "sourceKey": "play|invitation",
+          "text": "Roll, roll, roll! Here comes the ball! Look, baby, look!"
+        }
+      ]
+    },
+    {
+      "key": "rattle",
+      "definition": "本文への明示的言及。素材適合数ではない。",
+      "count": 1,
+      "phrases": [
+        {
+          "phraseId": "vc_000139",
+          "sourceKey": "play",
+          "text": "Let's shake the rattle. Can you hear it? Shake, shake!"
+        }
+      ]
+    },
+    {
+      "key": "hold-hand",
+      "definition": "本文への明示的言及。素材適合数ではない。",
+      "count": 2,
+      "phrases": [
+        {
+          "phraseId": "vc_000530",
+          "sourceKey": "hands|invitation",
+          "text": "Little hands together! Squeeze, squeeze, squeeze! Hold my hand!"
+        },
+        {
+          "phraseId": "vc_000531",
+          "sourceKey": "hands|invitation",
+          "text": "Give me your hand. Let's feel those fingers. Squeeze, squeeze!"
+        }
+      ]
+    },
+    {
+      "key": "listen-hear-voice",
+      "definition": "本文への明示的言及。素材適合数ではない。",
+      "count": 106,
+      "phrases": [
+        {
+          "phraseId": "vc_000007",
+          "sourceKey": "generic",
+          "text": "Can you hear me? It's my voice. Hello there!"
+        },
+        {
+          "phraseId": "vc_000012",
+          "sourceKey": "generic",
+          "text": "Ooh, ahh, ooh! I hear you! Hello, baby!"
+        },
+        {
+          "phraseId": "vc_000015",
+          "sourceKey": "generic",
+          "text": "Hello, little one! Can you hear me? Hi there!"
+        },
+        {
+          "phraseId": "vc_000016",
+          "sourceKey": "generic",
+          "text": "Let's make a sound! Ba, ba, ba! Your turn!"
+        },
+        {
+          "phraseId": "vc_000024",
+          "sourceKey": "generic",
+          "text": "Do you hear that? That's my voice! Hello, baby!"
+        },
+        {
+          "phraseId": "vc_000034",
+          "sourceKey": "bath",
+          "text": "Feel the warm water. Can you hear it? Splish, splash!"
+        },
+        {
+          "phraseId": "vc_000035",
+          "sourceKey": "bath",
+          "text": "We're taking a bath. Listen to the water. Splash, splash!"
+        },
+        {
+          "phraseId": "vc_000111",
+          "sourceKey": "cry",
+          "text": "I hear you crying. I'm right here. You're not alone."
+        },
+        {
+          "phraseId": "vc_000114",
+          "sourceKey": "cry",
+          "text": "I hear you crying. Would a cuddle help? I'm here."
+        },
+        {
+          "phraseId": "vc_000117",
+          "sourceKey": "cry",
+          "text": "Baby, I'm here. I hear you crying. Big hugs!"
+        },
+        {
+          "phraseId": "vc_000119",
+          "sourceKey": "voice",
+          "text": "I hear your voice! Tell me more. I'm listening!"
+        },
+        {
+          "phraseId": "vc_000121",
+          "sourceKey": "voice",
+          "text": "What a lovely sound! Say it again. I'm listening!"
+        },
+        {
+          "phraseId": "vc_000122",
+          "sourceKey": "voice",
+          "text": "Ooh, ahh! I hear you! Hello there!"
+        },
+        {
+          "phraseId": "vc_000123",
+          "sourceKey": "voice",
+          "text": "You're making sounds! I love your voice. Talk to me!"
+        },
+        {
+          "phraseId": "vc_000125",
+          "sourceKey": "voice",
+          "text": "Baby, I hear you! Tell me more. I'm listening!"
+        },
+        {
+          "phraseId": "vc_000126",
+          "sourceKey": "voice",
+          "text": "Baby, your voice! I love hearing it. Hello, sweetheart!"
+        },
+        {
+          "phraseId": "vc_000139",
+          "sourceKey": "play",
+          "text": "Let's shake the rattle. Can you hear it? Shake, shake!"
+        },
+        {
+          "phraseId": "vc_000148",
+          "sourceKey": "outside",
+          "text": "Out we go! What can you hear? Let's listen!"
+        },
+        {
+          "phraseId": "vc_000151",
+          "sourceKey": "rain",
+          "text": "Rain is falling! Can you hear it? Pitter-patter!"
+        },
+        {
+          "phraseId": "vc_000152",
+          "sourceKey": "rain",
+          "text": "Listen to the rain. Drip, drop! Drip, drop!"
+        },
+        {
+          "phraseId": "vc_000153",
+          "sourceKey": "rain",
+          "text": "Rain on the window! Tap, tap, tap. Can you hear?"
+        },
+        {
+          "phraseId": "vc_000155",
+          "sourceKey": "rain",
+          "text": "The rain sounds soft. Listen with me. Pitter-patter!"
+        },
+        {
+          "phraseId": "vc_000156",
+          "sourceKey": "rain",
+          "text": "Raindrops are falling. Listen to their sound. Drip, drop!"
+        },
+        {
+          "phraseId": "vc_000157",
+          "sourceKey": "rain",
+          "text": "Baby, it's raining! Listen to the drops. Drip, drop!"
+        },
+        {
+          "phraseId": "vc_000158",
+          "sourceKey": "rain",
+          "text": "Baby, hear that? It's the rain. Pitter-patter!"
+        },
+        {
+          "phraseId": "vc_000179",
+          "sourceKey": "book",
+          "text": "Story time! Listen to my voice. Here comes a story!"
+        },
+        {
+          "phraseId": "vc_000184",
+          "sourceKey": "music",
+          "text": "Listen to the music. Can you hear it? Tap, tap!"
+        },
+        {
+          "phraseId": "vc_000185",
+          "sourceKey": "music",
+          "text": "Here's a little song. Listen with me. La, la!"
+        },
+        {
+          "phraseId": "vc_000186",
+          "sourceKey": "music",
+          "text": "Hear the music? Tap, tap! Let's sing!"
+        },
+        {
+          "phraseId": "vc_000190",
+          "sourceKey": "music",
+          "text": "Baby, hear that song? Let's listen together. Tap, tap!"
+        },
+        {
+          "phraseId": "vc_000281",
+          "sourceKey": "inquiry",
+          "text": "What is it? Can you show me? I'll listen closely."
+        },
+        {
+          "phraseId": "vc_000282",
+          "sourceKey": "inquiry",
+          "text": "What's happening, little one? I'll listen closely. Tell me more."
+        },
+        {
+          "phraseId": "vc_000287",
+          "sourceKey": "reassurance",
+          "text": "It's okay, sweetheart. I'm here to listen. We have time."
+        },
+        {
+          "phraseId": "vc_000289",
+          "sourceKey": "reassurance",
+          "text": "I'm here with you. I'll listen closely. We're together now."
+        },
+        {
+          "phraseId": "vc_000316",
+          "sourceKey": "milk|invitation",
+          "text": "Would milk sound good? Take a little look. We can start."
+        },
+        {
+          "phraseId": "vc_000381",
+          "sourceKey": "cry|reassurance",
+          "text": "I hear you crying. I'm right here. Come for a cuddle."
+        },
+        {
+          "phraseId": "vc_000382",
+          "sourceKey": "cry|reassurance",
+          "text": "I hear your crying. Let me hold you. My arms are warm."
+        },
+        {
+          "phraseId": "vc_000383",
+          "sourceKey": "cry|reassurance",
+          "text": "I hear you, baby! Come close, sweetheart! I'll hold you."
+        },
+        {
+          "phraseId": "vc_000384",
+          "sourceKey": "cry|reassurance",
+          "text": "I hear your tears. You're not alone. My arms are open."
+        },
+        {
+          "phraseId": "vc_000389",
+          "sourceKey": "cry|inquiry",
+          "text": "I hear you crying. What's the matter? I'm listening, sweetheart."
+        },
+        {
+          "phraseId": "vc_000390",
+          "sourceKey": "cry|inquiry",
+          "text": "I hear you crying. What's bothering you? I'm here to listen."
+        },
+        {
+          "phraseId": "vc_000391",
+          "sourceKey": "cry|inquiry",
+          "text": "I hear those tears. Let's take a look. I'm listening, sweetheart."
+        },
+        {
+          "phraseId": "vc_000404",
+          "sourceKey": "sleep|reassurance",
+          "text": "Hear my gentle voice. Nothing needs doing now. You're safe here."
+        },
+        {
+          "phraseId": "vc_000468",
+          "sourceKey": "music|invitation",
+          "text": "A little tune! Listen, listen, listen! La, la, la!"
+        },
+        {
+          "phraseId": "vc_000469",
+          "sourceKey": "music|invitation",
+          "text": "Hear that song? Sing along, baby! La, la, la!"
+        },
+        {
+          "phraseId": "vc_000470",
+          "sourceKey": "music|invitation",
+          "text": "Let's sing, baby! La, la, la! Listen, listen!"
+        },
+        {
+          "phraseId": "vc_000471",
+          "sourceKey": "music|invitation",
+          "text": "Want a little song? Listen to this rhythm. Let's clap together."
+        },
+        {
+          "phraseId": "vc_000472",
+          "sourceKey": "music|invitation",
+          "text": "Here's our happy music! Can you hear drums? Let's sway slowly."
+        },
+        {
+          "phraseId": "vc_000473",
+          "sourceKey": "music|invitation",
+          "text": "Tap, tap, tap! Listen to that! Your turn, baby!"
+        },
+        {
+          "phraseId": "vc_000474",
+          "sourceKey": "music|invitation",
+          "text": "Ready to hear music? I'll sing the start. You can listen."
+        },
+        {
+          "phraseId": "vc_000479",
+          "sourceKey": "music|repeat",
+          "text": "Here's a little song. Can you hear it? Let's hum together."
+        },
+        {
+          "phraseId": "vc_000480",
+          "sourceKey": "music|repeat",
+          "text": "Hear that music? Another little song? La, la, la!"
+        },
+        {
+          "phraseId": "vc_000548",
+          "sourceKey": "voice|affection",
+          "text": "I love your voice! Such a sweet sound. I'm listening, sweetheart."
+        },
+        {
+          "phraseId": "vc_000549",
+          "sourceKey": "voice|affection",
+          "text": "Ooh, ahh, ooh! Sweet little voice! I love you!"
+        },
+        {
+          "phraseId": "vc_000550",
+          "sourceKey": "voice|affection",
+          "text": "Listen to those sounds! I love you, sweetheart. I'm right here."
+        },
+        {
+          "phraseId": "vc_000551",
+          "sourceKey": "voice|praise",
+          "text": "I hear your voice! Such a lovely sound. Let's hear it again!"
+        },
+        {
+          "phraseId": "vc_000552",
+          "sourceKey": "voice|praise",
+          "text": "I heard your voice! Ooh, what a sound! Say it again?"
+        },
+        {
+          "phraseId": "vc_000553",
+          "sourceKey": "voice|praise",
+          "text": "Ooh, ahh, ooh! I hear you! Hooray, baby!"
+        },
+        {
+          "phraseId": "vc_000554",
+          "sourceKey": "voice|repeat",
+          "text": "Another little sound? Let's try again. I'll listen closely."
+        },
+        {
+          "phraseId": "vc_000555",
+          "sourceKey": "voice|repeat",
+          "text": "One more little sound? I'll listen closely. Ooh, ahh, ooh!"
+        },
+        {
+          "phraseId": "vc_000556",
+          "sourceKey": "voice|repeat",
+          "text": "Ooh, ahh, ooh! One more sound? I'll listen, baby!"
+        },
+        {
+          "phraseId": "vc_000557",
+          "sourceKey": "voice|start",
+          "text": "Let's make some sounds! I'll listen first. Now it's your turn."
+        },
+        {
+          "phraseId": "vc_000559",
+          "sourceKey": "voice|start",
+          "text": "Ready for a sound? Ooh, ahh, ooh! Your turn, baby!"
+        },
+        {
+          "phraseId": "vc_000569",
+          "sourceKey": "rain|inquiry",
+          "text": "Can you hear rain? What's that sound? Let's listen together."
+        },
+        {
+          "phraseId": "vc_000570",
+          "sourceKey": "rain|inquiry",
+          "text": "Hear the rain? Drip, drop, drip! Tap, tap, tap!"
+        },
+        {
+          "phraseId": "vc_000571",
+          "sourceKey": "rain|inquiry",
+          "text": "Hear the raindrops? Tap, tap, tap! They're on the window."
+        },
+        {
+          "phraseId": "vc_000573",
+          "sourceKey": "rain|affection",
+          "text": "Listen, listen! Drip, drop, drip! I love you!"
+        },
+        {
+          "phraseId": "vc_000574",
+          "sourceKey": "rain|affection",
+          "text": "Rain taps the window. I love you, sweetheart. Let's listen together."
+        },
+        {
+          "phraseId": "vc_000575",
+          "sourceKey": "rain|invitation",
+          "text": "Rain on the window! Drip, drop, drip! Listen with me!"
+        },
+        {
+          "phraseId": "vc_000576",
+          "sourceKey": "rain|invitation",
+          "text": "Listen to the rain! Drip, drop, drip. Can you hear it?"
+        },
+        {
+          "phraseId": "vc_000599",
+          "sourceKey": "cry|care",
+          "text": "I hear you crying. That was a lot. I'm here with you."
+        },
+        {
+          "phraseId": "vc_000600",
+          "sourceKey": "cry|care",
+          "text": "I hear you crying. We can rest now. I'll stay beside you."
+        },
+        {
+          "phraseId": "vc_000602",
+          "sourceKey": "cry|affection",
+          "text": "I hear you crying. I love you, sweetheart. I'm right here."
+        },
+        {
+          "phraseId": "vc_000603",
+          "sourceKey": "cry|affection",
+          "text": "Oh, sweet baby! I hear you! Big, soft hugs!"
+        },
+        {
+          "phraseId": "vc_000620",
+          "sourceKey": "music|praise",
+          "text": "You made a sound! Well done, little one. Let's sing together."
+        },
+        {
+          "phraseId": "vc_000622",
+          "sourceKey": "music|praise",
+          "text": "La, la, la! I hear you! Yay, baby!"
+        },
+        {
+          "phraseId": "vc_000683",
+          "sourceKey": "music|pause",
+          "text": "Let's pause our song. We can listen later. I'll stay close."
+        },
+        {
+          "phraseId": "vc_000686",
+          "sourceKey": "cry|pause",
+          "text": "We can pause now. I hear you crying. I'm here with you."
+        },
+        {
+          "phraseId": "vc_000687",
+          "sourceKey": "cry|pause",
+          "text": "Let's rest a moment. I hear your cries. I'll stay close."
+        },
+        {
+          "phraseId": "vc_000688",
+          "sourceKey": "cry|pause",
+          "text": "No need to rush. I hear you crying. We're here together."
+        },
+        {
+          "phraseId": "vc_000698",
+          "sourceKey": "voice|encouragement",
+          "text": "Want to make sounds? Give it a try. I'll listen closely."
+        },
+        {
+          "phraseId": "vc_000699",
+          "sourceKey": "voice|encouragement",
+          "text": "Make a little sound. I'm listening, sweetheart. You can try again."
+        },
+        {
+          "phraseId": "vc_000700",
+          "sourceKey": "voice|encouragement",
+          "text": "Another little sound? You can try. I'm right here."
+        },
+        {
+          "phraseId": "vc_000707",
+          "sourceKey": "rain|start",
+          "text": "Rain is starting now. Can you hear it? Let's listen together."
+        },
+        {
+          "phraseId": "vc_000708",
+          "sourceKey": "rain|start",
+          "text": "Here comes the rain! Drip, drop, drip. Let's listen together."
+        },
+        {
+          "phraseId": "vc_000709",
+          "sourceKey": "rain|start",
+          "text": "The first raindrops fall. Can you hear them? Come listen with me."
+        },
+        {
+          "phraseId": "vc_000792",
+          "sourceKey": "music|affection",
+          "text": "This song is yours. I love you. Let's listen together."
+        },
+        {
+          "phraseId": "vc_000795",
+          "sourceKey": "music|finish_check",
+          "text": "Is that the end? One more sound? Let's listen together."
+        },
+        {
+          "phraseId": "vc_000860",
+          "sourceKey": "cry",
+          "text": "I hear you. Right here. Nice and gentle."
+        },
+        {
+          "phraseId": "vc_000861",
+          "sourceKey": "cry",
+          "text": "I hear you. Right here. Nice and close."
+        },
+        {
+          "phraseId": "vc_000862",
+          "sourceKey": "cry",
+          "text": "Hello, little one. I hear you. Right here."
+        },
+        {
+          "phraseId": "vc_000863",
+          "sourceKey": "cry",
+          "text": "Your little voice. Nice and gentle. Right here."
+        },
+        {
+          "phraseId": "vc_000865",
+          "sourceKey": "voice",
+          "text": "I hear you! Hello, hello! I'm listening."
+        },
+        {
+          "phraseId": "vc_000866",
+          "sourceKey": "voice",
+          "text": "What a voice! Ooh, ahh! I hear you."
+        },
+        {
+          "phraseId": "vc_000867",
+          "sourceKey": "voice",
+          "text": "Hello, little one! Ooh, ahh! I hear you."
+        },
+        {
+          "phraseId": "vc_000869",
+          "sourceKey": "voice",
+          "text": "Little voice! Hello, hello! Sing with me."
+        },
+        {
+          "phraseId": "vc_000881",
+          "sourceKey": "outside",
+          "text": "Out we go! Look, look! Listen with me."
+        },
+        {
+          "phraseId": "vc_000883",
+          "sourceKey": "outside",
+          "text": "Time outside! Look with me. Listen, listen!"
+        },
+        {
+          "phraseId": "vc_000884",
+          "sourceKey": "outside",
+          "text": "Fresh air! Look around. Listen with me."
+        },
+        {
+          "phraseId": "vc_000885",
+          "sourceKey": "rain",
+          "text": "Rain, rain! Pitter-patter! Listen, listen!"
+        },
+        {
+          "phraseId": "vc_000886",
+          "sourceKey": "rain",
+          "text": "Rain outside! Drip, drop! Listen with me."
+        },
+        {
+          "phraseId": "vc_000888",
+          "sourceKey": "rain",
+          "text": "Listen, listen! Rain outside! Pitter-patter!"
+        },
+        {
+          "phraseId": "vc_000889",
+          "sourceKey": "rain",
+          "text": "Drip, drop! Rainy day. Listen closely."
+        },
+        {
+          "phraseId": "vc_000905",
+          "sourceKey": "music",
+          "text": "Music time! La-la-la! Listen, listen!"
+        },
+        {
+          "phraseId": "vc_000906",
+          "sourceKey": "music",
+          "text": "Let's sing! La-la-la! Listen with me."
+        },
+        {
+          "phraseId": "vc_000908",
+          "sourceKey": "music",
+          "text": "Song time! La-la-la! Listen, listen!"
+        }
+      ]
+    },
+    {
+      "key": "cup",
+      "definition": "本文への明示的言及。素材適合数ではない。",
+      "count": 1,
+      "phrases": [
+        {
+          "phraseId": "vc_000484",
+          "sourceKey": "drink|invitation",
+          "text": "Want some water? Here's your little cup! One small sip?"
+        }
+      ]
+    }
+  ],
+  "priorities": [
+    {
+      "priority": 1,
+      "scene": "飲み物のコップ",
+      "action": "new-artwork",
+      "assetIds": [
+        "cup"
+      ],
+      "reason": "drinkは38セット。ミルクの哺乳瓶を飲み物全般へ流用しない。"
+    },
+    {
+      "priority": 1,
+      "scene": "自然な養育者と子の抱っこ",
+      "action": "redraw",
+      "assetIds": [
+        "family-care",
+        "hug-arms"
+      ],
+      "reason": "hug28セットと愛情・慰めの関連場面。毛布だけでは意味が伝わらず、人物のつながった場面へ。関連会話を一律に抱っこへ割り当てるものではない。"
+    },
+    {
+      "priority": 1,
+      "scene": "枕・ベッド・掛け物",
+      "action": "redraw",
+      "assetIds": [
+        "sleep",
+        "wake-bed",
+        "wake-quilt"
+      ],
+      "reason": "就寝38／起床33セット。整合する投影で共通部品を作り直す。"
+    },
+    {
+      "priority": 1,
+      "scene": "頭・肩・胴のある着替え",
+      "action": "redraw",
+      "assetIds": [
+        "change-clothes",
+        "dress-sleeves"
+      ],
+      "reason": "衣服31セット。腹部だけへの服の貼り付けを廃止。"
+    },
+    {
+      "priority": 2,
+      "scene": "手をつなぐ",
+      "action": "new-artwork",
+      "assetIds": [
+        "hold-hands",
+        "hold-hands-squeeze"
+      ],
+      "reason": "Hold my hand / Give me your handという明示文が2件。ボールより意味が合う。手の話題28セット全体への適合数とはしない。"
+    },
+    {
+      "priority": 2,
+      "scene": "遊びのおもちゃ",
+      "action": "reuse-existing",
+      "assetIds": [
+        "toy"
+      ],
+      "reason": "遊び51セットのため基本物体を優先。ballの明示は1件、rattleの明示も1件なので、球専用の握りを遊び全般に割り当てない。"
+    },
+    {
+      "priority": 3,
+      "scene": "会話・聞く・笑顔・安心",
+      "action": "emma-review-separate",
+      "assetIds": [],
+      "reason": "listen/hear/sound/voiceの明示言及は106件だが、対象は声・水・音楽など複数。1物体へ統合せず、場面の静止絵＋Emma表情を検討。専用Emma状態の制作とアプリ統合は別工程。"
+    }
+  ],
+  "limitedVariants": [
+    {
+      "assetId": "hand-squeeze-v3",
+      "scope": "ボールを握る限定variant。本文にボールを握る指示は見つからない。設計サンプルとして保持し、汎用・自動割当の適合数には含めない。"
+    },
+    {
+      "assetId": "hand-count",
+      "scope": "count言及2件のうち1件は足の指。手を数える絵への適合候補はgenericの1件のみ。"
+    },
+    {
+      "assetId": "care-burp",
+      "scope": "burpへの明示言及3件。基本場面より低優先。腹部ケアを撤回し、背中への手の動きに修正。"
+    }
+  ],
+  "runtimeChanged": false
+}

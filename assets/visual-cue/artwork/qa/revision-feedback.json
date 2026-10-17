@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-18",
+  "scope": "ユーザー指摘の旧版は撤回。修正版も採用承認前。",
+  "items": [
+    {
+      "assetId": "kick",
+      "problem": "親指が外側。左右を修正し、親指が中央を向くようにする。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "feet",
+      "problem": "静止画と動画で足の向きをそろえる。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "page",
+      "problem": "めくった後も同じ図、裏面が白紙。新しい左右の絵柄を用意。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hands-open-v2",
+      "problem": "親指の付け根が手首側へ下がり、不自然。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-open-close",
+      "problem": "共通の親指の付け根を掌の側面へ修正。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-count",
+      "problem": "共通の親指の付け根を掌の側面へ修正。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-wiggle",
+      "problem": "共通の親指の付け根を掌の側面へ修正。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-tap",
+      "problem": "共通の親指の付け根を掌の側面へ修正。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "family-care",
+      "problem": "毛布と手では意味不明瞭。養育者と子の抱っこを全再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hug-arms",
+      "problem": "毛布と手では意味不明瞭。養育者と子の抱っこを全再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-squeeze-v3",
+      "problem": "下の掌が隠れ、握っていると分からない。手全体を再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "change-clothes",
+      "problem": "腹部しかなく不自然。頭・首・肩・上半身・腕をつなげる。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "dress-sleeves",
+      "problem": "袖の出口と腕が一致せず、指先も切れる。袖の形で遮蔽する。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "wake-bed",
+      "problem": "掛け物の位置とベッドの透視が不一致。真上からの整合する原画に再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "wake-quilt",
+      "problem": "掛け物がマットレスへめり込む。上面に置き、端を折る。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "sleep",
+      "problem": "就寝・起床で整合した寝具を使う。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "care-burp",
+      "problem": "腹部への動きは誤り。縦抱きで背中に手を添える構図へ全再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    }
+  ],
+  "careReference": "https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/"
+}

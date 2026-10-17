@@ -681,7 +681,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 2.083778132003164,
@@ -693,7 +694,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 4.104241719908025,
@@ -705,7 +707,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 5.999999999999999,
@@ -717,7 +720,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 7.713451316238471,
@@ -729,7 +733,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 9.192533317427737,
@@ -741,7 +746,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 10.392304845413264,
@@ -753,7 +759,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 11.2763114494309,
@@ -765,7 +772,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 11.817693036146496,
@@ -777,7 +785,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 12.0,
@@ -789,7 +798,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 11.817693036146496,
@@ -801,7 +811,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 11.276311449430901,
@@ -813,7 +824,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 10.392304845413264,
@@ -825,7 +837,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 9.192533317427737,
@@ -837,7 +850,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 7.713451316238474,
@@ -849,7 +863,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 5.999999999999999,
@@ -861,7 +876,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 4.1042417199080266,
@@ -873,7 +889,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 2.0837781320031685,
@@ -885,7 +902,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": 1.4695761589768238e-15,
@@ -897,7 +915,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -2.0837781320031654,
@@ -909,7 +928,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -4.104241719908024,
@@ -921,7 +941,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -6.000000000000002,
@@ -933,7 +954,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -7.713451316238471,
@@ -945,7 +967,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -9.192533317427735,
@@ -957,7 +980,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -10.39230484541326,
@@ -969,7 +993,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -11.2763114494309,
@@ -981,7 +1006,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -11.817693036146496,
@@ -993,7 +1019,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -12.0,
@@ -1005,7 +1032,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -11.817693036146498,
@@ -1017,7 +1045,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -11.2763114494309,
@@ -1029,7 +1058,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -10.392304845413264,
@@ -1041,7 +1071,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -9.192533317427738,
@@ -1053,7 +1084,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -7.713451316238475,
@@ -1065,7 +1097,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -6.000000000000005,
@@ -1077,7 +1110,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -4.104241719908034,
@@ -1089,7 +1123,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       },
       {
         "leftAngle": -2.0837781320031645,
@@ -1101,7 +1136,8 @@
         "rightAnchor": [
           372,
           380
-        ]
+        ],
+        "bigToes": "inward"
       }
     ]
   },
@@ -1296,410 +1332,734 @@
   },
   "page": {
     "movingParts": [
-      "right page"
+      "printed leaf around spine"
     ],
     "stationaryRegion": [
-      268,
-      394,
-      280,
-      399
+      150,
+      380,
+      170,
+      384
     ],
     "traces": [
       {
         "pageAngle": 0.0,
+        "progress": 0,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          426.6666666666667,
-          110.93333333333334
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 1.3399561843232526,
+        "pageAngle": 0.0,
+        "progress": 0,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          426.61377435983144,
-          110.13023739546779
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 5.319110846682876,
+        "pageAngle": 0.0,
+        "progress": 0,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          425.8337582463904,
-          107.9306496128483
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 11.816559386212505,
+        "pageAngle": 0.0,
+        "progress": 0,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          422.56771037741925,
-          104.95657571954119
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 20.63488011690614,
+        "pageAngle": 0.0,
+        "progress": 0,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          414.25769700624,
-          102.2030090010648
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 31.506132825647228,
+        "pageAngle": 0.09075800577799475,
+        "progress": 0.000504211143211082,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          398.15318128143065,
-          100.92417964218022
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 44.09999999999998,
+        "pageAngle": 3.124237060546874,
+        "progress": 0.017356872558593747,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          372.14602879401775,
-          102.41142365826141
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 58.033823358676,
+        "pageAngle": 10.02009709676107,
+        "progress": 0.05566720609311705,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          335.6457558199219,
-          107.67692663578134
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 72.88423072977673,
+        "pageAngle": 20.182291666666657,
+        "progress": 0.11212384259259255,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          290.16925683449176,
-          117.12787983996847
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 88.19999999999999,
+        "pageAngle": 33.014774322509766,
+        "progress": 0.18341541290283203,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          239.3199832670229,
-          130.3637948549881
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 103.51576927022325,
+        "pageAngle": 47.92149861653646,
+        "progress": 0.266230547869647,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          188.0391612277411,
-          119.9509383016171
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 118.36617664132397,
+        "pageAngle": 64.30641810099283,
+        "progress": 0.357257878338849,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          141.34860969323296,
-          109.62325495175784
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 132.29999999999995,
+        "pageAngle": 81.57348632812499,
+        "progress": 0.45318603515625,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          103.0688684980208,
-          103.41567536124407
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 144.89386717435275,
+        "pageAngle": 99.12665685017902,
+        "progress": 0.5507036491676612,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          75.0080135333597,
-          101.02448719173753
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 155.76511988309383,
+        "pageAngle": 116.36988321940102,
+        "progress": 0.6464993512188947,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          56.86844585048263,
-          101.51752046387641
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 164.58344061378747,
+        "pageAngle": 132.7071189880371,
+        "progress": 0.7372617721557617,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          46.78182185075187,
-          103.65047155494193
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 171.08088915331712,
+        "pageAngle": 147.54231770833331,
+        "progress": 0.819679542824074,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          42.16104357936996,
-          106.18622654724716
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 175.06004381567675,
+        "pageAngle": 160.2794329325358,
+        "progress": 0.8904412940696433,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          40.54069158445398,
-          108.12809619865806
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 176.4,
+        "pageAngle": 170.32241821289062,
+        "progress": 0.9462356567382812,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          40.20389679467385,
-          108.84651916165913
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 175.06004381567675,
+        "pageAngle": 177.07522710164386,
+        "progress": 0.9837512616757993,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          40.54069158445398,
-          108.12809619865806
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 171.08088915331712,
+        "pageAngle": 179.94181315104166,
+        "progress": 0.9996767397280092,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          42.16104357936996,
-          106.18622654724716
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 164.58344061378747,
+        "pageAngle": 180.0,
+        "progress": 1,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          46.78182185075187,
-          103.65047155494193
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 155.76511988309383,
+        "pageAngle": 180.0,
+        "progress": 1,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          56.86844585048263,
-          101.51752046387641
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 144.89386717435278,
+        "pageAngle": 180.0,
+        "progress": 1,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          75.00801353335967,
-          101.02448719173753
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 132.30000000000004,
+        "pageAngle": 180.0,
+        "progress": 1,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          103.06886849802063,
-          103.41567536124406
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 118.36617664132403,
+        "pageAngle": 180.0,
+        "progress": 1,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          141.3486096932328,
-          109.6232549517578
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 103.51576927022325,
+        "pageAngle": 180.0,
+        "progress": 1,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          188.0391612277411,
-          119.9509383016171
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 88.20000000000002,
+        "pageAngle": 180.0,
+        "progress": 1,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          239.3199832670228,
-          130.36379485498813
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 72.88423072977677,
+        "pageAngle": 179.94181315104166,
+        "progress": 0.9996767397280092,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          290.16925683449165,
-          117.1278798399685
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 58.03382335867599,
+        "pageAngle": 177.07522710164386,
+        "progress": 0.9837512616757993,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          335.6457558199219,
-          107.67692663578133
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 44.09999999999998,
+        "pageAngle": 170.32241821289062,
+        "progress": 0.9462356567382811,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          372.14602879401775,
-          102.41142365826141
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 31.506132825647235,
+        "pageAngle": 160.27943293253574,
+        "progress": 0.8904412940696431,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          398.1531812814306,
-          100.92417964218023
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 20.634880116906157,
+        "pageAngle": 147.54231770833334,
+        "progress": 0.8196795428240741,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          414.25769700623994,
-          102.2030090010648
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 11.816559386212534,
+        "pageAngle": 132.70711898803705,
+        "progress": 0.7372617721557615,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          422.5677103774192,
-          104.95657571954118
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 5.319110846682905,
+        "pageAngle": 116.36988321940099,
+        "progress": 0.6464993512188943,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          425.8337582463904,
-          107.93064961284828
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       },
       {
-        "pageAngle": 1.3399561843232526,
+        "pageAngle": 99.12665685017905,
+        "progress": 0.5507036491676613,
         "spineTop": [
-          233.24444444444444,
-          167.11111111111111
+          233.0,
+          170.0
         ],
-        "outerTop": [
-          426.61377435983144,
-          110.13023739546779
-        ]
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 81.57348632812499,
+        "progress": 0.4531860351562499,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 64.3064181009928,
+        "progress": 0.3572578783388489,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 47.921498616536454,
+        "progress": 0.26623054786964695,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 33.014774322509766,
+        "progress": 0.18341541290283203,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 20.182291666666643,
+        "progress": 0.11212384259259245,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 10.020097096761068,
+        "progress": 0.05566720609311704,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 3.124237060546855,
+        "progress": 0.01735687255859364,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 0.09075800577799553,
+        "progress": 0.0005042111432110863,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 0.0,
+        "progress": 0,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 0.0,
+        "progress": 0,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 0.0,
+        "progress": 0,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
+      },
+      {
+        "pageAngle": 0.0,
+        "progress": 0,
+        "spineTop": [
+          233.0,
+          170.0
+        ],
+        "spineBottom": [
+          268.0,
+          386.0
+        ],
+        "frontPrint": "sun",
+        "backPrint": "pear",
+        "revealedRight": "fish"
       }
     ]
   },
@@ -5444,416 +5804,6 @@
         "toyCenter": [
           256,
           350
-        ]
-      }
-    ]
-  },
-  "change-diaper": {
-    "movingParts": [
-      "left fastening tab",
-      "right fastening tab"
-    ],
-    "stationaryRegion": [
-      210,
-      255,
-      300,
-      340
-    ],
-    "traces": [
-      {
-        "tabFoldAngle": 0.0,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 1.1485338722770737,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 4.559237868585322,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 10.128479473896432,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 17.68704010020526,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 27.00525670769762,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 37.79999999999999,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 49.743277164579425,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 62.472197768380056,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 75.59999999999998,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 88.72780223161993,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 101.45672283542054,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 113.39999999999996,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 124.19474329230236,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 133.5129598997947,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 141.07152052610354,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 146.64076213141468,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 150.0514661277229,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 151.2,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 150.0514661277229,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 146.64076213141468,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 141.07152052610354,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 133.5129598997947,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 124.19474329230238,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 113.40000000000002,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 101.45672283542059,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 88.72780223161993,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 75.60000000000001,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 62.472197768380084,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 49.743277164579425,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 37.79999999999999,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 27.00525670769763,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 17.687040100205277,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 10.128479473896459,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 4.559237868585348,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
-        ]
-      },
-      {
-        "tabFoldAngle": 1.1485338722770737,
-        "leftHinge": [
-          165,
-          184.0
-        ],
-        "rightHinge": [
-          343,
-          184.0
         ]
       }
     ]
@@ -14230,2577 +14180,6 @@
       }
     ]
   },
-  "hand-squeeze": {
-    "movingParts": [
-      "fingers",
-      "thumb",
-      "compressible block"
-    ],
-    "stationaryRegion": [
-      220,
-      410,
-      300,
-      440
-    ],
-    "traces": [
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              211.0
-            ],
-            "tip": [
-              186,
-              148.0
-            ],
-            "open": 1.0
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              192.5
-            ],
-            "tip": [
-              236,
-              120.0
-            ],
-            "open": 1.0
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              204.0
-            ],
-            "tip": [
-              286,
-              140.0
-            ],
-            "open": 1.0
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              233.5
-            ],
-            "tip": [
-              333,
-              184.0
-            ],
-            "open": 1.0
-          }
-        ],
-        "thumbAngle": -0.0,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 145,
-        "blockHeight": 96
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              211.00238988671776
-            ],
-            "tip": [
-              186,
-              148.0161238113136
-            ],
-            "open": 0.9931634888554937
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              192.5027502664609
-            ],
-            "tip": [
-              236,
-              120.01855517968627
-            ],
-            "open": 0.9931634888554937
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              204.00242782142757
-            ],
-            "tip": [
-              286,
-              140.0163797448265
-            ],
-            "open": 0.9931634888554937
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              233.5018777681354
-            ],
-            "tip": [
-              333,
-              184.01266870888927
-            ],
-            "open": 0.9931634888554937
-          }
-        ],
-        "thumbAngle": -0.27118160873208486,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 145,
-        "blockHeight": 96
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              211.03765595613925
-            ],
-            "tip": [
-              186,
-              148.2539570195165
-            ],
-            "open": 0.9728616793536587
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              192.54333423523963
-            ],
-            "tip": [
-              236,
-              120.29225212563409
-            ],
-            "open": 0.9728616793536587
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              204.03825366972876
-            ],
-            "tip": [
-              286,
-              140.25798808331837
-            ],
-            "open": 0.9728616793536587
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              233.52958682268084
-            ],
-            "tip": [
-              333,
-              184.19953765819153
-            ],
-            "open": 0.9728616793536587
-          }
-        ],
-        "thumbAngle": -1.076486718971535,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 144,
-        "blockHeight": 96
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              211.18576650171667
-            ],
-            "tip": [
-              186,
-              149.2508503850736
-            ],
-            "open": 0.9397114317029974
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              192.71377891070568
-            ],
-            "tip": [
-              236,
-              121.43947068123545
-            ],
-            "open": 0.9397114317029974
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              204.1887151763471
-            ],
-            "tip": [
-              286,
-              141.27070515309063
-            ],
-            "open": 0.9397114317029974
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              233.64595939420596
-            ],
-            "tip": [
-              333,
-              184.98281101684353
-            ],
-            "open": 0.9397114317029974
-          }
-        ],
-        "thumbAngle": -2.3914465424477678,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 143,
-        "blockHeight": 97
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              211.56591538086263
-            ],
-            "tip": [
-              186,
-              151.7950617095493
-            ],
-            "open": 0.8947199994035401
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              193.15125182718316
-            ],
-            "tip": [
-              236,
-              124.36733291971937
-            ],
-            "open": 0.8947199994035401
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              204.57489816468583
-            ],
-            "tip": [
-              286,
-              143.855300784304
-            ],
-            "open": 0.8947199994035401
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              233.9446477992492
-            ],
-            "tip": [
-              333,
-              186.98183420036014
-            ],
-            "open": 0.8947199994035401
-          }
-        ],
-        "thumbAngle": -4.1761066903262405,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 141,
-        "blockHeight": 97
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              212.31665047594038
-            ],
-            "tip": [
-              186,
-              156.7584493024448
-            ],
-            "open": 0.8392544243589427
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              194.0151930080266
-            ],
-            "tip": [
-              236,
-              130.07916784805155
-            ],
-            "open": 0.8392544243589427
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              205.3375496898442
-            ],
-            "tip": [
-              286,
-              148.89747230724552
-            ],
-            "open": 0.8392544243589427
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              234.53451108823884
-            ],
-            "tip": [
-              333,
-              190.88163873763517
-            ],
-            "open": 0.8392544243589427
-          }
-        ],
-        "thumbAngle": -6.376241167095274,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 139,
-        "blockHeight": 98
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              213.57098662304298
-            ],
-            "tip": [
-              186,
-              164.87132806119055
-            ],
-            "open": 0.775
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              195.45867508207328
-            ],
-            "tip": [
-              236,
-              139.41541721327485
-            ],
-            "open": 0.775
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              206.61179593451985
-            ],
-            "tip": [
-              286,
-              157.1391269193047
-            ],
-            "open": 0.775
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              235.5200609181052
-            ],
-            "tip": [
-              333,
-              197.25604347664972
-            ],
-            "open": 0.775
-          }
-        ],
-        "thumbAngle": -8.924999999999997,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 136,
-        "blockHeight": 99
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              215.43000850187067
-            ],
-            "tip": [
-              186,
-              176.4840320534076
-            ],
-            "open": 0.703909064496551
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              197.59802565691467
-            ],
-            "tip": [
-              236,
-              152.7792432360643
-            ],
-            "open": 0.703909064496551
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              208.50032609713844
-            ],
-            "tip": [
-              286,
-              168.9361595463188
-            ],
-            "open": 0.703909064496551
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              236.98072096575552
-            ],
-            "tip": [
-              333,
-              206.38031089910595
-            ],
-            "open": 0.703909064496551
-          }
-        ],
-        "thumbAngle": -11.744940441636809,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 133,
-        "blockHeight": 100
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              217.9394807860716
-            ],
-            "tip": [
-              186,
-              191.38949881584776
-            ],
-            "open": 0.6281416799501187
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              200.48591042841574
-            ],
-            "tip": [
-              236,
-              169.9323597483962
-            ],
-            "open": 0.6281416799501187
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              211.0496312747394
-            ],
-            "tip": [
-              286,
-              184.07822101927388
-            ],
-            "open": 0.6281416799501187
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              238.95244918905627
-            ],
-            "tip": [
-              333,
-              218.09174906959467
-            ],
-            "open": 0.6281416799501187
-          }
-        ],
-        "thumbAngle": -14.750380028645292,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 131,
-        "blockHeight": 101
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              221.07410610436665
-            ],
-            "tip": [
-              186,
-              208.78341581735054
-            ],
-            "open": 0.55
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              204.0932173423267
-            ],
-            "tip": [
-              236,
-              189.9491689961574
-            ],
-            "open": 0.55
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              214.2340125504677
-            ],
-            "tip": [
-              286,
-              201.74823194143548
-            ],
-            "open": 0.55
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              241.41536908200237
-            ],
-            "tip": [
-              333,
-              231.75839814220402
-            ],
-            "open": 0.55
-          }
-        ],
-        "thumbAngle": -17.849999999999998,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 128,
-        "blockHeight": 102
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              224.7329053125189
-            ],
-            "tip": [
-              186,
-              227.3983097531138
-            ],
-            "open": 0.4718583200498814
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              208.30374024059716
-            ],
-            "tip": [
-              236,
-              211.37107074763097
-            ],
-            "open": 0.4718583200498814
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              217.95088793652715
-            ],
-            "tip": [
-              286,
-              220.6586003841156
-            ],
-            "open": 0.4718583200498814
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              244.29013988840774
-            ],
-            "tip": [
-              333,
-              246.38438623458944
-            ],
-            "open": 0.4718583200498814
-          }
-        ],
-        "thumbAngle": -20.949619971354707,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 124,
-        "blockHeight": 103
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              228.74684355404338
-            ],
-            "tip": [
-              186,
-              245.77782577308292
-            ],
-            "open": 0.3960909355034491
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              212.92295488362134
-            ],
-            "tip": [
-              236,
-              232.52210108807162
-            ],
-            "open": 0.3960909355034491
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              222.02853948347263
-            ],
-            "tip": [
-              286,
-              239.32985475360803
-            ],
-            "open": 0.3960909355034491
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              247.44394850674837
-            ],
-            "tip": [
-              333,
-              260.82543453599374
-            ],
-            "open": 0.3960909355034491
-          }
-        ],
-        "thumbAngle": -23.955059558363185,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 122,
-        "blockHeight": 104
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              232.89696416404797
-            ],
-            "tip": [
-              186,
-              262.5949585840858
-            ],
-            "open": 0.32500000000000007
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              217.6988873316425
-            ],
-            "tip": [
-              236,
-              251.87515075152734
-            ],
-            "open": 0.32500000000000007
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              226.24453502379475
-            ],
-            "tip": [
-              286,
-              256.4139261806586
-            ],
-            "open": 0.32500000000000007
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              250.70475755746628
-            ],
-            "tip": [
-              333,
-              274.03889603035316
-            ],
-            "open": 0.32500000000000007
-          }
-        ],
-        "thumbAngle": -26.774999999999995,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 119,
-        "blockHeight": 105
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              236.9389108683765
-            ],
-            "tip": [
-              186,
-              276.90103337919805
-            ],
-            "open": 0.26074557564105727
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              222.3503339358301
-            ],
-            "tip": [
-              236,
-              268.33849079352154
-            ],
-            "open": 0.26074557564105727
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              230.350639612319
-            ],
-            "tip": [
-              286,
-              270.9470815280742
-            ],
-            "open": 0.26074557564105727
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              253.88057282515297
-            ],
-            "tip": [
-              333,
-              285.2793833693699
-            ],
-            "open": 0.26074557564105727
-          }
-        ],
-        "thumbAngle": -29.323758832904726,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 116,
-        "blockHeight": 106
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              240.6286642641259
-            ],
-            "tip": [
-              186,
-              288.230150366409
-            ],
-            "open": 0.2052800005964599
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              226.59647871665283
-            ],
-            "tip": [
-              236,
-              281.37596669150247
-            ],
-            "open": 0.2052800005964599
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              234.09896052228663
-            ],
-            "tip": [
-              286,
-              282.4560257690504
-            ],
-            "open": 0.2052800005964599
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              256.7796647789561
-            ],
-            "tip": [
-              333,
-              294.18083243075
-            ],
-            "open": 0.2052800005964599
-          }
-        ],
-        "thumbAngle": -31.523893309673753,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 114,
-        "blockHeight": 107
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              243.7448920345861
-            ],
-            "tip": [
-              186,
-              296.55087509897163
-            ],
-            "open": 0.16028856829700255
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              230.18261384932524
-            ],
-            "tip": [
-              236,
-              290.95140388373716
-            ],
-            "open": 0.16028856829700255
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              237.26465222561126
-            ],
-            "tip": [
-              286,
-              290.90882549736796
-            ],
-            "open": 0.16028856829700255
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              259.22812945574617
-            ],
-            "tip": [
-              333,
-              300.7185447206205
-            ],
-            "open": 0.16028856829700255
-          }
-        ],
-        "thumbAngle": -33.30855345755223,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 112,
-        "blockHeight": 107
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              246.1051495068014
-            ],
-            "tip": [
-              186,
-              302.11362910426016
-            ],
-            "open": 0.12713832064634123
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              232.89878316258893
-            ],
-            "tip": [
-              236,
-              297.35298587395016
-            ],
-            "open": 0.12713832064634123
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              239.66237410214745
-            ],
-            "tip": [
-              286,
-              296.55987718528013
-            ],
-            "open": 0.12713832064634123
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              261.08261746962967
-            ],
-            "tip": [
-              333,
-              305.0892800104901
-            ],
-            "open": 0.12713832064634123
-          }
-        ],
-        "thumbAngle": -34.623513281028465,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 111,
-        "blockHeight": 108
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              247.57545176993168
-            ],
-            "tip": [
-              186,
-              305.26379077117485
-            ],
-            "open": 0.10683651114450632
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              234.59079767174677
-            ],
-            "tip": [
-              236,
-              300.97817191920916
-            ],
-            "open": 0.10683651114450632
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              241.15601449643853
-            ],
-            "tip": [
-              286,
-              299.76004141833636
-            ],
-            "open": 0.10683651114450632
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              262.23785496208916
-            ],
-            "tip": [
-              333,
-              307.5644070344945
-            ],
-            "open": 0.10683651114450632
-          }
-        ],
-        "thumbAngle": -35.42881839126792,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 110,
-        "blockHeight": 108
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              248.07459540787815
-            ],
-            "tip": [
-              186,
-              306.27900595608924
-            ],
-            "open": 0.09999999999999998
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              235.16520900112963
-            ],
-            "tip": [
-              236,
-              302.14647510819793
-            ],
-            "open": 0.09999999999999998
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              241.66308104927305
-            ],
-            "tip": [
-              286,
-              300.7913711299954
-            ],
-            "open": 0.09999999999999998
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              262.6300392490471
-            ],
-            "tip": [
-              333,
-              308.36207610835584
-            ],
-            "open": 0.09999999999999998
-          }
-        ],
-        "thumbAngle": -35.699999999999996,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 110,
-        "blockHeight": 108
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              247.57545176993168
-            ],
-            "tip": [
-              186,
-              305.26379077117485
-            ],
-            "open": 0.10683651114450632
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              234.59079767174677
-            ],
-            "tip": [
-              236,
-              300.97817191920916
-            ],
-            "open": 0.10683651114450632
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              241.15601449643853
-            ],
-            "tip": [
-              286,
-              299.76004141833636
-            ],
-            "open": 0.10683651114450632
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              262.23785496208916
-            ],
-            "tip": [
-              333,
-              307.5644070344945
-            ],
-            "open": 0.10683651114450632
-          }
-        ],
-        "thumbAngle": -35.42881839126792,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 110,
-        "blockHeight": 108
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              246.1051495068014
-            ],
-            "tip": [
-              186,
-              302.11362910426016
-            ],
-            "open": 0.12713832064634123
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              232.89878316258893
-            ],
-            "tip": [
-              236,
-              297.35298587395016
-            ],
-            "open": 0.12713832064634123
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              239.66237410214745
-            ],
-            "tip": [
-              286,
-              296.55987718528013
-            ],
-            "open": 0.12713832064634123
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              261.08261746962967
-            ],
-            "tip": [
-              333,
-              305.0892800104901
-            ],
-            "open": 0.12713832064634123
-          }
-        ],
-        "thumbAngle": -34.623513281028465,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 111,
-        "blockHeight": 108
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              243.74489203458606
-            ],
-            "tip": [
-              186,
-              296.5508750989716
-            ],
-            "open": 0.16028856829700266
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              230.18261384932524
-            ],
-            "tip": [
-              236,
-              290.95140388373716
-            ],
-            "open": 0.16028856829700266
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              237.26465222561123
-            ],
-            "tip": [
-              286,
-              290.90882549736796
-            ],
-            "open": 0.16028856829700266
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              259.22812945574617
-            ],
-            "tip": [
-              333,
-              300.7185447206205
-            ],
-            "open": 0.16028856829700266
-          }
-        ],
-        "thumbAngle": -33.30855345755223,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 112,
-        "blockHeight": 107
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              240.6286642641259
-            ],
-            "tip": [
-              186,
-              288.230150366409
-            ],
-            "open": 0.2052800005964599
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              226.59647871665283
-            ],
-            "tip": [
-              236,
-              281.37596669150247
-            ],
-            "open": 0.2052800005964599
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              234.09896052228663
-            ],
-            "tip": [
-              286,
-              282.4560257690504
-            ],
-            "open": 0.2052800005964599
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              256.7796647789561
-            ],
-            "tip": [
-              333,
-              294.18083243075
-            ],
-            "open": 0.2052800005964599
-          }
-        ],
-        "thumbAngle": -31.523893309673753,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 114,
-        "blockHeight": 107
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              236.9389108683765
-            ],
-            "tip": [
-              186,
-              276.90103337919805
-            ],
-            "open": 0.26074557564105727
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              222.3503339358301
-            ],
-            "tip": [
-              236,
-              268.33849079352154
-            ],
-            "open": 0.26074557564105727
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              230.350639612319
-            ],
-            "tip": [
-              286,
-              270.9470815280742
-            ],
-            "open": 0.26074557564105727
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              253.88057282515297
-            ],
-            "tip": [
-              333,
-              285.2793833693699
-            ],
-            "open": 0.26074557564105727
-          }
-        ],
-        "thumbAngle": -29.32375883290473,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 116,
-        "blockHeight": 106
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              232.89696416404797
-            ],
-            "tip": [
-              186,
-              262.5949585840859
-            ],
-            "open": 0.32499999999999973
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              217.69888733164254
-            ],
-            "tip": [
-              236,
-              251.87515075152743
-            ],
-            "open": 0.32499999999999973
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              226.24453502379478
-            ],
-            "tip": [
-              286,
-              256.4139261806587
-            ],
-            "open": 0.32499999999999973
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              250.70475755746628
-            ],
-            "tip": [
-              333,
-              274.0388960303532
-            ],
-            "open": 0.32499999999999973
-          }
-        ],
-        "thumbAngle": -26.775000000000006,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 119,
-        "blockHeight": 105
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              228.7468435540434
-            ],
-            "tip": [
-              186,
-              245.777825773083
-            ],
-            "open": 0.39609093550344876
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              212.92295488362137
-            ],
-            "tip": [
-              236,
-              232.52210108807174
-            ],
-            "open": 0.39609093550344876
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              222.02853948347266
-            ],
-            "tip": [
-              286,
-              239.32985475360815
-            ],
-            "open": 0.39609093550344876
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              247.44394850674837
-            ],
-            "tip": [
-              333,
-              260.8254345359938
-            ],
-            "open": 0.39609093550344876
-          }
-        ],
-        "thumbAngle": -23.955059558363196,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 122,
-        "blockHeight": 104
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              224.7329053125189
-            ],
-            "tip": [
-              186,
-              227.3983097531138
-            ],
-            "open": 0.4718583200498814
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              208.30374024059716
-            ],
-            "tip": [
-              236,
-              211.37107074763097
-            ],
-            "open": 0.4718583200498814
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              217.95088793652715
-            ],
-            "tip": [
-              286,
-              220.6586003841156
-            ],
-            "open": 0.4718583200498814
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              244.29013988840774
-            ],
-            "tip": [
-              333,
-              246.38438623458944
-            ],
-            "open": 0.4718583200498814
-          }
-        ],
-        "thumbAngle": -20.949619971354707,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 124,
-        "blockHeight": 103
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              221.07410610436665
-            ],
-            "tip": [
-              186,
-              208.7834158173506
-            ],
-            "open": 0.5499999999999998
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              204.0932173423267
-            ],
-            "tip": [
-              236,
-              189.94916899615745
-            ],
-            "open": 0.5499999999999998
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              214.23401255046772
-            ],
-            "tip": [
-              286,
-              201.74823194143556
-            ],
-            "open": 0.5499999999999998
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              241.41536908200237
-            ],
-            "tip": [
-              333,
-              231.75839814220404
-            ],
-            "open": 0.5499999999999998
-          }
-        ],
-        "thumbAngle": -17.85,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 128,
-        "blockHeight": 102
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              217.9394807860716
-            ],
-            "tip": [
-              186,
-              191.38949881584782
-            ],
-            "open": 0.6281416799501185
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              200.48591042841576
-            ],
-            "tip": [
-              236,
-              169.9323597483963
-            ],
-            "open": 0.6281416799501185
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              211.04963127473943
-            ],
-            "tip": [
-              286,
-              184.07822101927397
-            ],
-            "open": 0.6281416799501185
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              238.95244918905627
-            ],
-            "tip": [
-              333,
-              218.0917490695947
-            ],
-            "open": 0.6281416799501185
-          }
-        ],
-        "thumbAngle": -14.750380028645296,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 131,
-        "blockHeight": 101
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              215.43000850187067
-            ],
-            "tip": [
-              186,
-              176.48403205340756
-            ],
-            "open": 0.7039090644965511
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              197.59802565691467
-            ],
-            "tip": [
-              236,
-              152.77924323606427
-            ],
-            "open": 0.7039090644965511
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              208.50032609713844
-            ],
-            "tip": [
-              286,
-              168.93615954631878
-            ],
-            "open": 0.7039090644965511
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              236.98072096575552
-            ],
-            "tip": [
-              333,
-              206.38031089910595
-            ],
-            "open": 0.7039090644965511
-          }
-        ],
-        "thumbAngle": -11.744940441636809,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 133,
-        "blockHeight": 100
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              213.57098662304298
-            ],
-            "tip": [
-              186,
-              164.87132806119055
-            ],
-            "open": 0.775
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              195.45867508207328
-            ],
-            "tip": [
-              236,
-              139.41541721327485
-            ],
-            "open": 0.775
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              206.61179593451985
-            ],
-            "tip": [
-              286,
-              157.1391269193047
-            ],
-            "open": 0.775
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              235.5200609181052
-            ],
-            "tip": [
-              333,
-              197.25604347664972
-            ],
-            "open": 0.775
-          }
-        ],
-        "thumbAngle": -8.924999999999997,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 136,
-        "blockHeight": 99
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              212.31665047594038
-            ],
-            "tip": [
-              186,
-              156.75844930244483
-            ],
-            "open": 0.8392544243589426
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              194.0151930080266
-            ],
-            "tip": [
-              236,
-              130.07916784805155
-            ],
-            "open": 0.8392544243589426
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              205.3375496898442
-            ],
-            "tip": [
-              286,
-              148.89747230724552
-            ],
-            "open": 0.8392544243589426
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              234.53451108823884
-            ],
-            "tip": [
-              333,
-              190.88163873763517
-            ],
-            "open": 0.8392544243589426
-          }
-        ],
-        "thumbAngle": -6.376241167095274,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 139,
-        "blockHeight": 98
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              211.56591538086263
-            ],
-            "tip": [
-              186,
-              151.7950617095493
-            ],
-            "open": 0.89471999940354
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              193.15125182718316
-            ],
-            "tip": [
-              236,
-              124.36733291971939
-            ],
-            "open": 0.89471999940354
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              204.57489816468583
-            ],
-            "tip": [
-              286,
-              143.855300784304
-            ],
-            "open": 0.89471999940354
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              233.9446477992492
-            ],
-            "tip": [
-              333,
-              186.98183420036014
-            ],
-            "open": 0.89471999940354
-          }
-        ],
-        "thumbAngle": -4.176106690326245,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 141,
-        "blockHeight": 97
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              211.18576650171667
-            ],
-            "tip": [
-              186,
-              149.2508503850736
-            ],
-            "open": 0.9397114317029973
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              192.71377891070568
-            ],
-            "tip": [
-              236,
-              121.43947068123546
-            ],
-            "open": 0.9397114317029973
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              204.1887151763471
-            ],
-            "tip": [
-              286,
-              141.27070515309063
-            ],
-            "open": 0.9397114317029973
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              233.64595939420596
-            ],
-            "tip": [
-              333,
-              184.98281101684353
-            ],
-            "open": 0.9397114317029973
-          }
-        ],
-        "thumbAngle": -2.3914465424477767,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 143,
-        "blockHeight": 97
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              211.03765595613925
-            ],
-            "tip": [
-              186,
-              148.25395701951652
-            ],
-            "open": 0.9728616793536586
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              192.54333423523963
-            ],
-            "tip": [
-              236,
-              120.29225212563409
-            ],
-            "open": 0.9728616793536586
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              204.03825366972876
-            ],
-            "tip": [
-              286,
-              140.25798808331837
-            ],
-            "open": 0.9728616793536586
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              233.52958682268084
-            ],
-            "tip": [
-              333,
-              184.19953765819156
-            ],
-            "open": 0.9728616793536586
-          }
-        ],
-        "thumbAngle": -1.0764867189715397,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 144,
-        "blockHeight": 96
-      },
-      {
-        "fingers": [
-          {
-            "root": [
-              186,
-              274
-            ],
-            "knuckle": [
-              186,
-              211.00238988671776
-            ],
-            "tip": [
-              186,
-              148.0161238113136
-            ],
-            "open": 0.9931634888554937
-          },
-          {
-            "root": [
-              236,
-              265
-            ],
-            "knuckle": [
-              236,
-              192.5027502664609
-            ],
-            "tip": [
-              236,
-              120.01855517968627
-            ],
-            "open": 0.9931634888554937
-          },
-          {
-            "root": [
-              286,
-              268
-            ],
-            "knuckle": [
-              286,
-              204.00242782142757
-            ],
-            "tip": [
-              286,
-              140.0163797448265
-            ],
-            "open": 0.9931634888554937
-          },
-          {
-            "root": [
-              333,
-              283
-            ],
-            "knuckle": [
-              333,
-              233.5018777681354
-            ],
-            "tip": [
-              333,
-              184.01266870888927
-            ],
-            "open": 0.9931634888554937
-          }
-        ],
-        "thumbAngle": -0.27118160873208486,
-        "palmAnchor": [
-          256,
-          398
-        ],
-        "blockWidth": 145,
-        "blockHeight": 96
-      }
-    ]
-  },
   "hand-tap": {
     "movingParts": [
       "index hand contacts block"
@@ -17972,792 +15351,613 @@
   },
   "hug-arms": {
     "movingParts": [
-      "left forearm and hand",
-      "right forearm and hand"
+      "forearm and hand across child back",
+      "lower supporting forearm"
     ],
     "stationaryRegion": [
-      230,
-      125,
-      280,
-      166
+      220,
+      100,
+      250,
+      150
     ],
     "traces": [
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          290.0,
+          323.0
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          281.0,
+          405.0
         ],
-        "armAngle": 35.0,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          289.90125039457934,
+          322.9392310120488
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.9772116295183,
+          404.9544232590366
         ],
-        "armAngle": 35.07596123493896,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          289.6080020351084,
+          322.7587704831436
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.9095389311789,
+          404.81907786235774
         ],
-        "armAngle": 35.30153689607046,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          289.12916512459884,
+          322.46410161513774
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.7990381056767,
+          404.5980762113533
         ],
-        "armAngle": 35.66987298107781,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          288.4792888802734,
+          322.0641777724759
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.64906666467846,
+          404.2981333293569
         ],
-        "armAngle": 36.16977778440511,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          287.6781194629625,
+          321.57115043874614
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.46418141452983,
+          403.9283628290596
         ],
-        "armAngle": 36.786061951567305,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          286.75,
+          321.0
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.25,
+          403.5
         ],
-        "armAngle": 37.5,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          285.7231309316168,
+          320.3680805733027
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.0130302149885,
+          403.026060429977
         ],
-        "armAngle": 38.28989928337165,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          284.62871315483505,
+          319.69459271066773
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          279.7604722665004,
+          402.5209445330008
         ],
-        "armAngle": 39.131759111665346,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          283.5,
+          319.0
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          279.5,
+          402.0
         ],
-        "armAngle": 40.0,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          282.37128684516495,
+          318.30540728933227
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          279.2395277334996,
+          401.4790554669992
         ],
-        "armAngle": 40.868240888334654,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          281.2768690683832,
+          317.6319194266973
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.9869697850115,
+          400.973939570023
         ],
-        "armAngle": 41.71010071662835,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          280.25,
+          317.0
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.75,
+          400.5
         ],
-        "armAngle": 42.5,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          279.3218805370375,
+          316.42884956125386
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.53581858547017,
+          400.0716371709404
         ],
-        "armAngle": 43.213938048432695,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          278.5207111197266,
+          315.9358222275241
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.35093333532154,
+          399.7018666706431
         ],
-        "armAngle": 43.83022221559489,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          277.87083487540116,
+          315.53589838486226
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.2009618943233,
+          399.4019237886467
         ],
-        "armAngle": 44.3301270189222,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          277.3919979648916,
+          315.2412295168564
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.0904610688211,
+          399.18092213764226
         ],
-        "armAngle": 44.69846310392954,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          277.09874960542066,
+          315.0607689879512
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.0227883704817,
+          399.0455767409634
         ],
-        "armAngle": 44.92403876506104,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          277.0,
+          315.0
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.0,
+          399.0
         ],
-        "armAngle": 45.0,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          277.09874960542066,
+          315.0607689879512
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.0227883704817,
+          399.0455767409634
         ],
-        "armAngle": 44.92403876506104,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          277.3919979648916,
+          315.2412295168564
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.0904610688211,
+          399.18092213764226
         ],
-        "armAngle": 44.69846310392954,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          277.87083487540116,
+          315.53589838486226
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.2009618943233,
+          399.4019237886467
         ],
-        "armAngle": 44.33012701892219,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          278.5207111197266,
+          315.9358222275241
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.35093333532154,
+          399.7018666706431
         ],
-        "armAngle": 43.83022221559489,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          279.3218805370375,
+          316.42884956125386
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.53581858547017,
+          400.0716371709404
         ],
-        "armAngle": 43.213938048432695,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          280.25,
+          317.0
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.75,
+          400.5
         ],
-        "armAngle": 42.5,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          281.2768690683831,
+          317.6319194266973
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          278.9869697850115,
+          400.973939570023
         ],
-        "armAngle": 41.71010071662835,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          282.37128684516495,
+          318.30540728933227
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          279.2395277334996,
+          401.4790554669992
         ],
-        "armAngle": 40.868240888334654,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          283.5,
+          319.0
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          279.5,
+          402.0
         ],
-        "armAngle": 40.0,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          284.62871315483505,
+          319.69459271066773
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          279.7604722665004,
+          402.5209445330008
         ],
-        "armAngle": 39.13175911166535,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          285.7231309316168,
+          320.3680805733027
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.0130302149885,
+          403.026060429977
         ],
-        "armAngle": 38.28989928337165,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          286.75,
+          321.0
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.25,
+          403.5
         ],
-        "armAngle": 37.5,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          287.6781194629625,
+          321.57115043874614
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.46418141452983,
+          403.9283628290596
         ],
-        "armAngle": 36.786061951567305,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          288.4792888802734,
+          322.0641777724759
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.64906666467846,
+          404.2981333293569
         ],
-        "armAngle": 36.16977778440511,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          289.12916512459884,
+          322.46410161513774
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.79903810567663,
+          404.5980762113533
         ],
-        "armAngle": 35.66987298107781,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          289.6080020351084,
+          322.7587704831436
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.9095389311789,
+          404.81907786235774
         ],
-        "armAngle": 35.30153689607046,
-        "blanketStationary": true
+        "headStationary": true
       },
       {
-        "leftCuff": [
-          118,
-          407
+        "handOnBack": [
+          289.90125039457934,
+          322.9392310120488
         ],
-        "rightCuff": [
-          394,
-          382
+        "supportingArm": [
+          280.9772116295183,
+          404.9544232590366
         ],
-        "armAngle": 35.07596123493896,
-        "blanketStationary": true
+        "headStationary": true
       }
     ]
   },
   "hand-squeeze-v3": {
     "movingParts": [
-      "four curved fingers",
-      "soft ball compression"
+      "four fingers curl against ball",
+      "thumb supports ball"
     ],
     "stationaryRegion": [
-      398,
-      355,
-      416,
-      380
+      210,
+      350,
+      250,
+      370
     ],
     "traces": [
       {
-        "ballWidth": 155,
-        "ballHeight": 155,
-        "fingerAngle": 0.0,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 0.0,
+        "thumbPress": 0.0,
+        "palmStationary": true
       },
       {
-        "ballWidth": 155,
-        "ballHeight": 155,
-        "fingerAngle": 0.09115348192675188,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 0.09115348192675188,
+        "thumbPress": 0.06076898795116792,
+        "palmStationary": true
       },
       {
-        "ballWidth": 155,
-        "ballHeight": 154,
-        "fingerAngle": 0.36184427528454943,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 0.36184427528454943,
+        "thumbPress": 0.2412295168563663,
+        "palmStationary": true
       },
       {
-        "ballWidth": 156,
-        "ballHeight": 153,
-        "fingerAngle": 0.8038475772933678,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 0.8038475772933678,
+        "thumbPress": 0.5358983848622452,
+        "palmStationary": true
       },
       {
-        "ballWidth": 156,
-        "ballHeight": 152,
-        "fingerAngle": 1.403733341286132,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 1.403733341286132,
+        "thumbPress": 0.935822227524088,
+        "palmStationary": true
       },
       {
-        "ballWidth": 157,
-        "ballHeight": 151,
-        "fingerAngle": 2.1432743418807636,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 2.1432743418807636,
+        "thumbPress": 1.4288495612538425,
+        "palmStationary": true
       },
       {
-        "ballWidth": 158,
-        "ballHeight": 149,
-        "fingerAngle": 2.999999999999999,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 2.999999999999999,
+        "thumbPress": 1.9999999999999996,
+        "palmStationary": true
       },
       {
-        "ballWidth": 158,
-        "ballHeight": 147,
-        "fingerAngle": 3.9478791400459867,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 3.9478791400459867,
+        "thumbPress": 2.6319194266973245,
+        "palmStationary": true
       },
       {
-        "ballWidth": 159,
-        "ballHeight": 145,
-        "fingerAngle": 4.958110933998418,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 4.958110933998418,
+        "thumbPress": 3.3054072893322783,
+        "palmStationary": true
       },
       {
-        "ballWidth": 160,
-        "ballHeight": 143,
-        "fingerAngle": 5.999999999999999,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 5.999999999999999,
+        "thumbPress": 3.9999999999999996,
+        "palmStationary": true
       },
       {
-        "ballWidth": 161,
-        "ballHeight": 141,
-        "fingerAngle": 7.041889066001582,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 7.041889066001582,
+        "thumbPress": 4.694592710667721,
+        "palmStationary": true
       },
       {
-        "ballWidth": 162,
-        "ballHeight": 139,
-        "fingerAngle": 8.052120859954012,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 8.052120859954012,
+        "thumbPress": 5.368080573302675,
+        "palmStationary": true
       },
       {
-        "ballWidth": 162,
-        "ballHeight": 137,
-        "fingerAngle": 8.999999999999998,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 8.999999999999998,
+        "thumbPress": 5.999999999999999,
+        "palmStationary": true
       },
       {
-        "ballWidth": 163,
-        "ballHeight": 135,
-        "fingerAngle": 9.856725658119235,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 9.856725658119235,
+        "thumbPress": 6.571150438746157,
+        "palmStationary": true
       },
       {
-        "ballWidth": 164,
-        "ballHeight": 134,
-        "fingerAngle": 10.596266658713867,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 10.596266658713867,
+        "thumbPress": 7.064177772475912,
+        "palmStationary": true
       },
       {
-        "ballWidth": 164,
-        "ballHeight": 133,
-        "fingerAngle": 11.196152422706632,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 11.196152422706632,
+        "thumbPress": 7.464101615137755,
+        "palmStationary": true
       },
       {
-        "ballWidth": 165,
-        "ballHeight": 132,
-        "fingerAngle": 11.63815572471545,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 11.63815572471545,
+        "thumbPress": 7.758770483143634,
+        "palmStationary": true
       },
       {
-        "ballWidth": 165,
-        "ballHeight": 131,
-        "fingerAngle": 11.908846518073249,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 11.908846518073249,
+        "thumbPress": 7.9392310120488325,
+        "palmStationary": true
       },
       {
-        "ballWidth": 165,
-        "ballHeight": 131,
-        "fingerAngle": 12.0,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 12.0,
+        "thumbPress": 8.0,
+        "palmStationary": true
       },
       {
-        "ballWidth": 165,
-        "ballHeight": 131,
-        "fingerAngle": 11.908846518073249,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 11.908846518073249,
+        "thumbPress": 7.9392310120488325,
+        "palmStationary": true
       },
       {
-        "ballWidth": 165,
-        "ballHeight": 132,
-        "fingerAngle": 11.63815572471545,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 11.63815572471545,
+        "thumbPress": 7.758770483143634,
+        "palmStationary": true
       },
       {
-        "ballWidth": 164,
-        "ballHeight": 133,
-        "fingerAngle": 11.196152422706632,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 11.196152422706632,
+        "thumbPress": 7.464101615137754,
+        "palmStationary": true
       },
       {
-        "ballWidth": 164,
-        "ballHeight": 134,
-        "fingerAngle": 10.596266658713867,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 10.596266658713867,
+        "thumbPress": 7.064177772475912,
+        "palmStationary": true
       },
       {
-        "ballWidth": 163,
-        "ballHeight": 135,
-        "fingerAngle": 9.856725658119236,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 9.856725658119236,
+        "thumbPress": 6.571150438746158,
+        "palmStationary": true
       },
       {
-        "ballWidth": 162,
-        "ballHeight": 137,
-        "fingerAngle": 9.000000000000004,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 9.000000000000004,
+        "thumbPress": 6.000000000000002,
+        "palmStationary": true
       },
       {
-        "ballWidth": 162,
-        "ballHeight": 139,
-        "fingerAngle": 8.052120859954016,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 8.052120859954016,
+        "thumbPress": 5.368080573302677,
+        "palmStationary": true
       },
       {
-        "ballWidth": 161,
-        "ballHeight": 141,
-        "fingerAngle": 7.041889066001582,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 7.041889066001582,
+        "thumbPress": 4.694592710667721,
+        "palmStationary": true
       },
       {
-        "ballWidth": 160,
-        "ballHeight": 143,
-        "fingerAngle": 6.000000000000002,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 6.000000000000002,
+        "thumbPress": 4.000000000000001,
+        "palmStationary": true
       },
       {
-        "ballWidth": 159,
-        "ballHeight": 145,
-        "fingerAngle": 4.95811093399842,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 4.95811093399842,
+        "thumbPress": 3.30540728933228,
+        "palmStationary": true
       },
       {
-        "ballWidth": 158,
-        "ballHeight": 147,
-        "fingerAngle": 3.947879140045986,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 3.947879140045986,
+        "thumbPress": 2.631919426697324,
+        "palmStationary": true
       },
       {
-        "ballWidth": 158,
-        "ballHeight": 149,
-        "fingerAngle": 2.999999999999999,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 2.999999999999999,
+        "thumbPress": 1.9999999999999996,
+        "palmStationary": true
       },
       {
-        "ballWidth": 157,
-        "ballHeight": 151,
-        "fingerAngle": 2.1432743418807645,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 2.1432743418807645,
+        "thumbPress": 1.428849561253843,
+        "palmStationary": true
       },
       {
-        "ballWidth": 156,
-        "ballHeight": 152,
-        "fingerAngle": 1.4037333412861333,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 1.4037333412861333,
+        "thumbPress": 0.9358222275240888,
+        "palmStationary": true
       },
       {
-        "ballWidth": 156,
-        "ballHeight": 153,
-        "fingerAngle": 0.8038475772933698,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 0.8038475772933698,
+        "thumbPress": 0.5358983848622465,
+        "palmStationary": true
       },
       {
-        "ballWidth": 155,
-        "ballHeight": 154,
-        "fingerAngle": 0.36184427528455143,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 0.36184427528455143,
+        "thumbPress": 0.24122951685636762,
+        "palmStationary": true
       },
       {
-        "ballWidth": 155,
-        "ballHeight": 155,
-        "fingerAngle": 0.09115348192675188,
-        "wrist": [
-          410,
-          370
-        ]
+        "fingerPress": 0.09115348192675188,
+        "thumbPress": 0.06076898795116792,
+        "palmStationary": true
       }
     ]
   },
   "change-clothes": {
     "movingParts": [
-      "yellow shirt removed",
-      "teal shirt put on"
+      "shoulder-connected arms lift",
+      "old shirt over shoulders",
+      "new shirt onto torso"
     ],
     "stationaryRegion": [
       230,
@@ -18769,880 +15969,1312 @@
       {
         "oldShirt": [
           256,
-          275
+          260
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 0.0,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          255.95075012423302,
-          274.9566483129476
+          256,
+          259.9998919615002
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.00029490943573045627,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 0.044471288842550694,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          255.2342874407337,
-          274.3259895436399
+          256,
+          259.97399936067086
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.004585105145307115,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 0.6913936565524501,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          252.30657235557362,
-          271.7488990195768
+          256,
+          259.40598952181153
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.022116333200157903,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 3.33238176288834,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          245.1040925785105,
-          265.40899167090447
+          256,
+          255.06432773784084
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.06524495461969763,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 9.769958103995688,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          231.70717514401716,
-          253.61649548605104
+          256,
+          237.62900749218193
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.1454660171016937,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 21.180165240776894,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          211.08293024041544,
-          235.46222003198247
+          256,
+          194.9054828395913
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.2689644895783506,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 35.901876299690436,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          183.7598120711663,
-          211.41133158360145
+          256,
+          130.64247939770058
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.43257597562175876,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 46.927207020219335,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          152.29057818808408,
-          183.7108682254393
+          244.768898883396,
+          86.01294835874481
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.62101450186776,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 44.57272784694203,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          121.38988039043778,
-          156.51085279876858
+          154.7231368786302,
+          85
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.8060486204165402,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 27.470729994566327,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          97.68254874600902,
-          135.64272254888218
+          94.20951039941389,
+          85
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.9480086901436586,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 7.805290930962848,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 1,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 0.0,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 1,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 0.0,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          417.8383281828747,
-          132.5435075276492
+          421.73119416311135,
+          85
         ],
         "remove": 1,
         "putOn": 0.030908214473804128,
-        "torsoStationary": true
+        "armLift": 4.653528169765062,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          396.06703339511716,
-          151.70746162226214
+          374.7316895702685,
+          85
         ],
         "remove": 1,
         "putOn": 0.16127524913103503,
-        "torsoStationary": true
+        "armLift": 23.29250676571093,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          364.58391302186044,
-          179.42014841788335
+          277.2803245312642,
+          85
         ],
         "remove": 1,
         "putOn": 0.3497969280128119,
-        "torsoStationary": true
+        "armLift": 42.75440211890776,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          330.77580590388277,
-          209.1793804319116
+          256,
+          125.28183737009257
         ],
         "remove": 1,
         "putOn": 0.552240683210283,
-        "torsoStationary": true
+        "armLift": 47.35500900228038,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          300.4846991766216,
-          235.84280970680615
+          256,
+          195.91851815472074
         ],
         "remove": 1,
         "putOn": 0.7336245558286133,
-        "torsoStationary": true
+        "armLift": 35.641551614743136,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          277.4355155349758,
-          256.1316120740033
+          256,
+          242.22279265382832
         ],
         "remove": 1,
         "putOn": 0.871643619551043,
-        "torsoStationary": true
+        "armLift": 18.83537831653817,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          263.06740645660807,
-          268.7789895262192
+          256,
+          257.87113595286706
         ],
         "remove": 1,
         "putOn": 0.9576802008586344,
-        "torsoStationary": true
+        "armLift": 6.362891429826362,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          256.761304057055,
-          274.3298700815145
+          256,
+          259.97429719103593
         ],
         "remove": 1,
         "putOn": 0.9954412930715272,
-        "torsoStationary": true
+        "armLift": 0.6874133098414545,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
           256,
-          275
+          260
         ],
         "remove": 1,
         "putOn": 1,
-        "torsoStationary": true
+        "armLift": 5.878304635907295e-15,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
           256,
-          275
+          260
         ],
         "remove": 1,
         "putOn": 1,
-        "torsoStationary": true
+        "armLift": 5.878304635907295e-15,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
           256,
-          275
+          260
         ],
         "remove": 1,
         "putOn": 1,
-        "torsoStationary": true
+        "armLift": 5.878304635907295e-15,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
           256,
-          275
+          260
         ],
         "remove": 1,
         "putOn": 1,
-        "torsoStationary": true
+        "armLift": 5.878304635907295e-15,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
           256,
-          275
+          260
         ],
         "remove": 1,
         "putOn": 1,
-        "torsoStationary": true
+        "armLift": 5.878304635907295e-15,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
           256,
-          275
+          260
         ],
         "remove": 1,
         "putOn": 1,
-        "torsoStationary": true
+        "armLift": 5.878304635907295e-15,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
           256,
-          275
+          260
         ],
         "remove": 1,
         "putOn": 1,
-        "torsoStationary": true
+        "armLift": 5.878304635907295e-15,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          256.761304057055,
-          274.3298700815145
+          256,
+          259.97429719103593
         ],
         "remove": 1,
         "putOn": 0.9954412930715271,
-        "torsoStationary": true
+        "armLift": 0.6874133098414759,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          263.067406456608,
-          268.7789895262193
+          256,
+          257.87113595286706
         ],
         "remove": 1,
         "putOn": 0.9576802008586346,
-        "torsoStationary": true
+        "armLift": 6.362891429826321,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          277.4355155349758,
-          256.1316120740033
+          256,
+          242.22279265382838
         ],
         "remove": 1,
         "putOn": 0.8716436195510432,
-        "torsoStationary": true
+        "armLift": 18.83537831653813,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          300.4846991766215,
-          235.84280970680624
+          256,
+          195.9185181547209
         ],
         "remove": 1,
         "putOn": 0.7336245558286137,
-        "torsoStationary": true
+        "armLift": 35.64155161474309,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          330.77580590388254,
-          209.1793804319118
+          256,
+          125.281837370093
         ],
         "remove": 1,
         "putOn": 0.5522406832102842,
-        "torsoStationary": true
+        "armLift": 47.355009002280354,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          364.5839130218602,
-          179.42014841788352
+          277.2803245312638,
+          85
         ],
         "remove": 1,
         "putOn": 0.34979692801281304,
-        "torsoStationary": true
+        "armLift": 42.75440211890784,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          396.06703339511716,
-          151.70746162226214
+          374.7316895702685,
+          85
         ],
         "remove": 1,
         "putOn": 0.16127524913103503,
-        "torsoStationary": true
+        "armLift": 23.29250676571093,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          417.8383281828747,
-          132.54350752764924
+          421.73119416311135,
+          85
         ],
         "remove": 1,
         "putOn": 0.030908214473804266,
-        "torsoStationary": true
+        "armLift": 4.653528169765083,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 1,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 0.0,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          89,
-          128
+          88.0,
+          85
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 1,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 0.0,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          97.68254874600896,
-          135.64272254888212
+          94.20951039941383,
+          85
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.948008690143659,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 7.805290930962807,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          121.38988039043784,
-          156.51085279876864
+          154.7231368786304,
+          85
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.8060486204165399,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 27.470729994566355,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          152.29057818808408,
-          183.7108682254393
+          244.768898883396,
+          86.01294835874481
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.62101450186776,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 44.57272784694203,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          183.7598120711663,
-          211.41133158360145
+          256,
+          130.64247939770058
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.43257597562175876,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 46.927207020219335,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          211.0829302404154,
-          235.4622200319824
+          256,
+          194.90548283959117
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.26896448957835095,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 35.90187629969047,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          231.7071751440171,
-          253.61649548605098
+          256,
+          237.62900749218184
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.145466017101694,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 21.18016524077693,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          245.10409257851043,
-          265.4089916709044
+          256,
+          255.0643277378408
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.06524495461969795,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 9.769958103995734,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          252.30657235557362,
-          271.74889901957675
+          256,
+          259.40598952181153
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.02211633320015803,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 3.3323817628883594,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          255.2342874407337,
-          274.3259895436399
+          256,
+          259.97399936067086
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.004585105145307115,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 0.6913936565524501,
+        "headAndTorsoPresent": true
       },
       {
         "oldShirt": [
-          255.95075012423302,
-          274.9566483129476
+          256,
+          259.9998919615002
         ],
         "newShirt": [
-          423,
-          128
+          424,
+          85
         ],
         "remove": 0.00029490943573045627,
         "putOn": 0,
-        "torsoStationary": true
+        "armLift": 0.044471288842550694,
+        "headAndTorsoPresent": true
       }
     ]
   },
   "dress-sleeves": {
     "movingParts": [
-      "left hand and forearm",
-      "right hand and forearm"
+      "left complete arm through sleeve",
+      "right complete arm through sleeve"
     ],
     "stationaryRegion": [
       230,
-      185,
+      115,
       280,
-      200
+      160
     ],
     "traces": [
       {
         "leftSleeveProgress": 0,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.00029490943573045627,
+        "leftSleeveProgress": 0.000281699526712426,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.004585105145307115,
+        "leftSleeveProgress": 0.004381759774647276,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.022116333200157903,
+        "leftSleeveProgress": 0.02115257261369748,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.06524495461969763,
+        "leftSleeveProgress": 0.06247710309661109,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.1454660171016937,
+        "leftSleeveProgress": 0.13953134316855617,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.2689644895783506,
+        "leftSleeveProgress": 0.25859266945796994,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.43257597562175876,
+        "leftSleeveProgress": 0.4172241881045022,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.62101450186776,
+        "leftSleeveProgress": 0.6016388054094663,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.8060486204165402,
+        "leftSleeveProgress": 0.7858823928030141,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.9480086901436586,
+        "leftSleeveProgress": 0.9331969147553815,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
+      },
+      {
+        "leftSleeveProgress": 0.9995741845763353,
+        "rightSleeveProgress": 0,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.0594746917714847,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.030908214473804128,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.20862381718402748,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.16127524913103503,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.4028539199582167,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.3497969280128119,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.6016388054094661,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.552240683210283,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.773555602001601,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.7336245558286133,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.8993666927085081,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.871643619551043,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.9728247753114133,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.9576802008586344,
-        "shouldersOccluded": true
-      },
-      {
-        "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.9954412930715272,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.9992514649513731,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
         "rightSleeveProgress": 1,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
         "rightSleeveProgress": 1,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
         "rightSleeveProgress": 1,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
         "rightSleeveProgress": 1,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
         "rightSleeveProgress": 1,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
         "rightSleeveProgress": 1,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
         "rightSleeveProgress": 1,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.9954412930715271,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.999251464951373,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.9576802008586346,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.9728247753114136,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.8716436195510432,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.8993666927085084,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.7336245558286137,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.7735556020016013,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.5522406832102842,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.6016388054094673,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.34979692801281304,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.4028539199582178,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.16127524913103503,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.20862381718402748,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0.030908214473804266,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 0.05947469177148489,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
         "leftSleeveProgress": 1,
-        "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "rightSleeveProgress": 1.9100131679873415e-31,
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 1,
+        "leftSleeveProgress": 0.9995741845763353,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.948008690143659,
+        "leftSleeveProgress": 0.9331969147553818,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.8060486204165399,
+        "leftSleeveProgress": 0.7858823928030139,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.62101450186776,
+        "leftSleeveProgress": 0.6016388054094663,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.43257597562175876,
+        "leftSleeveProgress": 0.4172241881045022,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.26896448957835095,
+        "leftSleeveProgress": 0.2585926694579703,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.145466017101694,
+        "leftSleeveProgress": 0.13953134316855645,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.06524495461969795,
+        "leftSleeveProgress": 0.0624771030966114,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.02211633320015803,
+        "leftSleeveProgress": 0.0211525726136976,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.004585105145307115,
+        "leftSleeveProgress": 0.004381759774647276,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       },
       {
-        "leftSleeveProgress": 0.00029490943573045627,
+        "leftSleeveProgress": 0.000281699526712426,
         "rightSleeveProgress": 0,
-        "shouldersOccluded": true
+        "leftShoulder": [
+          213,
+          274
+        ],
+        "rightShoulder": [
+          301,
+          274
+        ],
+        "handsNeverClipped": true
       }
     ]
   },
@@ -20336,532 +17968,869 @@
   },
   "wake-quilt": {
     "movingParts": [
-      "quilt folding to bed foot",
-      "morning sun"
+      "quilt top edge folds down mattress"
     ],
     "stationaryRegion": [
-      194,
-      191,
-      245,
-      213
+      210,
+      100,
+      290,
+      145
     ],
     "traces": [
       {
-        "quiltTop": 248,
-        "quiltFoot": 416,
-        "sunY": 147.0,
-        "mattressStationary": true
+        "quiltTop": 194.0,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 249,
-        "quiltFoot": 416,
-        "sunY": 146.25557989759818,
-        "mattressStationary": true
+        "quiltTop": 194.98749605420647,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 250,
-        "quiltFoot": 416,
-        "sunY": 144.0449384185095,
-        "mattressStationary": true
+        "quiltTop": 197.91997964891596,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 253,
-        "quiltFoot": 416,
-        "sunY": 140.4352447854375,
-        "mattressStationary": true
+        "quiltTop": 202.7083487540115,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 257,
-        "quiltFoot": 416,
-        "sunY": 135.53617771282993,
-        "mattressStationary": true
+        "quiltTop": 209.20711119726644,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 262,
-        "quiltFoot": 416,
-        "sunY": 129.49659287464044,
-        "mattressStationary": true
+        "quiltTop": 217.21880537037495,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 267,
-        "quiltFoot": 416,
-        "sunY": 122.5,
-        "mattressStationary": true
+        "quiltTop": 226.5,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 273,
-        "quiltFoot": 416,
-        "sunY": 114.75898702295777,
-        "mattressStationary": true
+        "quiltTop": 236.76869068383152,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 279,
-        "quiltFoot": 416,
-        "sunY": 106.50876070567959,
-        "mattressStationary": true
+        "quiltTop": 247.7128684516495,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 286,
-        "quiltFoot": 416,
-        "sunY": 98.0,
-        "mattressStationary": true
+        "quiltTop": 259.0,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 292,
-        "quiltFoot": 416,
-        "sunY": 89.49123929432042,
-        "mattressStationary": true
+        "quiltTop": 270.2871315483505,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 299,
-        "quiltFoot": 416,
-        "sunY": 81.24101297704223,
-        "mattressStationary": true
+        "quiltTop": 281.23130931616845,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 305,
-        "quiltFoot": 416,
-        "sunY": 73.50000000000001,
-        "mattressStationary": true
+        "quiltTop": 291.5,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 310,
-        "quiltFoot": 416,
-        "sunY": 66.50340712535957,
-        "mattressStationary": true
+        "quiltTop": 300.781194629625,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 315,
-        "quiltFoot": 416,
-        "sunY": 60.46382228717009,
-        "mattressStationary": true
+        "quiltTop": 308.79288880273356,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 319,
-        "quiltFoot": 416,
-        "sunY": 55.564755214562496,
-        "mattressStationary": true
+        "quiltTop": 315.29165124598853,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 321,
-        "quiltFoot": 416,
-        "sunY": 51.95506158149048,
-        "mattressStationary": true
+        "quiltTop": 320.08002035108404,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 323,
-        "quiltFoot": 416,
-        "sunY": 49.744420102401804,
-        "mattressStationary": true
+        "quiltTop": 323.0125039457935,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 324,
-        "quiltFoot": 416,
-        "sunY": 49.0,
-        "mattressStationary": true
+        "quiltTop": 324.0,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 323,
-        "quiltFoot": 416,
-        "sunY": 49.744420102401804,
-        "mattressStationary": true
+        "quiltTop": 323.0125039457935,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 321,
-        "quiltFoot": 416,
-        "sunY": 51.95506158149048,
-        "mattressStationary": true
+        "quiltTop": 320.08002035108404,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 319,
-        "quiltFoot": 416,
-        "sunY": 55.56475521456251,
-        "mattressStationary": true
+        "quiltTop": 315.29165124598853,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 315,
-        "quiltFoot": 416,
-        "sunY": 60.46382228717009,
-        "mattressStationary": true
+        "quiltTop": 308.79288880273356,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 310,
-        "quiltFoot": 416,
-        "sunY": 66.50340712535957,
-        "mattressStationary": true
+        "quiltTop": 300.7811946296251,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 305,
-        "quiltFoot": 416,
-        "sunY": 73.49999999999997,
-        "mattressStationary": true
+        "quiltTop": 291.5,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 299,
-        "quiltFoot": 416,
-        "sunY": 81.2410129770422,
-        "mattressStationary": true
+        "quiltTop": 281.2313093161685,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 292,
-        "quiltFoot": 416,
-        "sunY": 89.49123929432042,
-        "mattressStationary": true
+        "quiltTop": 270.2871315483505,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 286,
-        "quiltFoot": 416,
-        "sunY": 97.99999999999999,
-        "mattressStationary": true
+        "quiltTop": 259.0,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 279,
-        "quiltFoot": 416,
-        "sunY": 106.50876070567958,
-        "mattressStationary": true
+        "quiltTop": 247.71286845164957,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 273,
-        "quiltFoot": 416,
-        "sunY": 114.75898702295778,
-        "mattressStationary": true
+        "quiltTop": 236.76869068383152,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 267,
-        "quiltFoot": 416,
-        "sunY": 122.5,
-        "mattressStationary": true
+        "quiltTop": 226.5,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 262,
-        "quiltFoot": 416,
-        "sunY": 129.4965928746404,
-        "mattressStationary": true
+        "quiltTop": 217.21880537037495,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 257,
-        "quiltFoot": 416,
-        "sunY": 135.5361777128299,
-        "mattressStationary": true
+        "quiltTop": 209.20711119726644,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 253,
-        "quiltFoot": 416,
-        "sunY": 140.43524478543748,
-        "mattressStationary": true
+        "quiltTop": 202.7083487540115,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 250,
-        "quiltFoot": 416,
-        "sunY": 144.0449384185095,
-        "mattressStationary": true
+        "quiltTop": 197.91997964891598,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       },
       {
-        "quiltTop": 249,
-        "quiltFoot": 416,
-        "sunY": 146.25557989759818,
-        "mattressStationary": true
+        "quiltTop": 194.98749605420647,
+        "quiltFoot": 420,
+        "quiltLeft": 144,
+        "quiltRight": 368,
+        "projection": "shared-top-down"
       }
     ]
   },
   "care-burp": {
     "movingParts": [
-      "hand rests and pats tummy"
+      "hand gently rubs child back",
+      "connected forearm"
     ],
     "stationaryRegion": [
-      148,
-      383,
-      189,
-      400
+      220,
+      115,
+      250,
+      155
     ],
     "traces": [
       {
-        "handAngle": 0.0,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          300.0
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 0.36184427528454943,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          297.395277334996
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 1.403733341286132,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          294.86969785011496
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 2.999999999999999,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          292.5
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 4.958110933998418,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          290.3581858547019
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 7.041889066001582,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          288.5093333532153
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 8.999999999999998,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          287.0096189432334
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 10.596266658713867,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          285.9046106882114
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 11.63815572471545,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          285.22788370481686
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 12.0,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          285.0
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 11.63815572471545,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          285.22788370481686
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 10.596266658713867,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          285.9046106882114
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 9.000000000000004,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          287.0096189432334
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 7.041889066001582,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          288.5093333532153
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 4.95811093399842,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          290.3581858547019
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 2.999999999999999,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          292.5
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 1.4037333412861333,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          294.86969785011496
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 0.36184427528455143,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          297.395277334996
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 0.0,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          300.0
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 0.3618442752845501,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          302.604722665004
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 1.4037333412861313,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          305.13030214988504
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 3.0000000000000013,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          307.5
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 4.958110933998418,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          309.6418141452981
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 7.041889066001579,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          311.4906666467847
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 8.999999999999995,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          312.9903810567666
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 10.596266658713864,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          314.0953893117886
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 11.63815572471545,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          314.77211629518314
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 12.0,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          315.0
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 11.638155724715451,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          314.77211629518314
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 10.596266658713866,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          314.0953893117886
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 8.999999999999998,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          312.9903810567666
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 7.041889066001583,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          311.4906666467847
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 4.958110933998421,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          309.6418141452981
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 3.0000000000000053,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          307.5
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 1.4037333412861372,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          305.13030214988504
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
       },
       {
-        "handAngle": 0.3618442752845501,
-        "forearmRoot": [
-          383,
-          211
+        "handOn": "back",
+        "backHandCenter": [
+          293,
+          302.604722665004
         ],
-        "tummyStationary": true
+        "abdominalContact": false,
+        "bodySupported": true
+      }
+    ]
+  },
+  "hold-hands-squeeze": {
+    "movingParts": [
+      "child fingers gently close around adult index"
+    ],
+    "stationaryRegion": [
+      170,
+      330,
+      200,
+      360
+    ],
+    "traces": [
+      {
+        "childGrip": [
+          310.0,
+          180.0
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          309.9392310120488,
+          180.0379806174695
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          309.7587704831436,
+          180.15076844803522
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          309.46410161513774,
+          180.3349364905389
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          309.0641777724759,
+          180.58488889220254
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          308.57115043874614,
+          180.89303097578366
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          308.0,
+          181.25
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          307.3680805733027,
+          181.64494964168583
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          306.69459271066773,
+          182.06587955583268
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          306.0,
+          182.5
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          305.30540728933227,
+          182.93412044416732
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          304.6319194266973,
+          183.35505035831417
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          304.0,
+          183.75
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          303.42884956125386,
+          184.10696902421634
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          302.9358222275241,
+          184.41511110779746
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          302.53589838486226,
+          184.6650635094611
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          302.2412295168564,
+          184.84923155196478
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          302.0607689879512,
+          184.9620193825305
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          302.0,
+          185.0
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          302.0607689879512,
+          184.9620193825305
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          302.2412295168564,
+          184.84923155196478
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          302.53589838486226,
+          184.6650635094611
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          302.9358222275241,
+          184.41511110779746
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          303.42884956125386,
+          184.10696902421634
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          304.0,
+          183.75
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          304.6319194266973,
+          183.35505035831417
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          305.30540728933227,
+          182.93412044416732
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          306.0,
+          182.5
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          306.69459271066773,
+          182.06587955583268
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          307.3680805733027,
+          181.64494964168583
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          308.0,
+          181.25
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          308.57115043874614,
+          180.89303097578366
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          309.0641777724759,
+          180.58488889220254
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          309.46410161513774,
+          180.3349364905389
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          309.7587704831436,
+          180.15076844803522
+        ],
+        "adultPalmStationary": true
+      },
+      {
+        "childGrip": [
+          309.9392310120488,
+          180.0379806174695
+        ],
+        "adultPalmStationary": true
       }
     ]
   }

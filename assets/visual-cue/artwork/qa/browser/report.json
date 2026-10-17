@@ -1,5 +1,5 @@
 {
-  "url": "http://127.0.0.1:8765/assets/visual-cue/artwork/preview.html",
+  "url": "http://127.0.0.1:8766/assets/visual-cue/artwork/preview.html",
   "browser": "155.0.8059.80",
   "checks": [
     {
@@ -59,6 +59,26 @@
       "pass": true
     },
     {
+      "name": "browser-motion-kick",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-page",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hold-hands-squeeze",
+      "pass": true
+    },
+    {
+      "name": "rejected-version-comparison-opens",
+      "pass": true
+    },
+    {
+      "name": "filmstrip-opens-in-page",
+      "pass": true
+    },
+    {
       "name": "pause-uses-posters",
       "pass": true
     },
@@ -75,7 +95,11 @@
       "pass": true
     },
     {
-      "name": "filter-production-pass-three",
+      "name": "filter-latest-production-pass",
+      "pass": true
+    },
+    {
+      "name": "cue-link-reveals-filtered-target",
       "pass": true
     },
     {
@@ -96,6 +120,14 @@
     },
     {
       "name": "all-images-decoded",
+      "pass": true
+    },
+    {
+      "name": "daily-scene-filter",
+      "pass": true
+    },
+    {
+      "name": "human-feedback-and-usage-audit-visible",
       "pass": true
     }
   ],

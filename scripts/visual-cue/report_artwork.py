@@ -19,7 +19,7 @@ with (OUT/'inventory.csv').open('w') as f:
 summary=dict(stills=sum(a['kind']=='illustration' for a in m['assets']),loops=sum(a['kind']=='animation' for a in m['assets']),readiness=dict(collections.Counter(a['readiness'] for a in m['assets'])),coveredIllustrationConcepts=sum(c['kind']=='illustration' and bool(c['assetIds']) for c in m['concepts']),animationConceptsWithArtifacts=sum(c['kind']=='animation' and bool(c['assetIds']) for c in m['concepts']),cueReadiness=dict(collections.Counter(c['readiness'] for c in m['cueCoverage'])),animationConceptsWithCandidates=sum(c['kind']=='animation' and c['readiness']=='candidate' for c in m['concepts']),newAccepted=0,technicalPass=q['technicalPassCount'],technicalTotal=q['assetCount'],sizeExceptions=[r['id'] for r in q['results'] if r['bytes']>r['sizeTargetBytes']])
 (OUT/'qa/summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(json.dumps(summary,ensure_ascii=False,indent=2))
 
-for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg')]:
+for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg'),(4,'revision-keyframes-20261018.jpg')]:
  added=[a for a in m['assets'] if a.get('productionPass')==pass_id and a['animation']]
  if added:
   sheet=Image.new('RGB',(1100,len(added)*250),'#f6f3eb');draw=ImageDraw.Draw(sheet)
@@ -28,3 +28,9 @@ for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg'
     frame=Image.open(OUT/'qa/keyframes'/f'{a["id"]}-{k:02d}.png');frame.thumbnail((220,220))
     sheet.paste(frame,(col*220,row*250),frame);draw.text((col*220+3,row*250+222),f'{a["id"]} {k}',fill='black')
   sheet.save(OUT/'qa'/filename,quality=90)
+
+lines=['# 2026-10-18 指摘された旧版と修正候補','', '旧版は不採用として保存し、現行候補には含めません。修正版も目視採用審査前です。','', '| 対象 | 旧版の問題 | 修正候補 |','| --- | --- | --- |']
+for a in m['archivedAssets']:
+ if a.get('reviewBatch')=='2026-10-18':lines.append(f'| {a["originalId"]} | {a["rejectionReason"]} | 同IDのproductionPass=4を審査。 |')
+lines += ['', 'げっぷの構図は[NHSの背中へのケアと頭・首の支え](https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/)を参照。腹部をさする旧版を撤回しました。図の自然さ・安全性・意味の採用を自動検査で承認するものではありません。', '', '[汎用性の再点検](USAGE_REVIEW_20261018.md) / [修正候補の5フェーズ](qa/revision-keyframes-20261018.jpg)']
+(OUT/'REVISION_20261018.md').write_text('\n'.join(lines)+'\n')

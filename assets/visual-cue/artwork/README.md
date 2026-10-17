@@ -1,84 +1,72 @@
-# Visual Cue 採用審査用素材（非ランタイム）
+# Visual Cue 修正候補・素材審査（2026-10-18）
 
-**制作対象の14基本イラスト・10動作すべてに審査候補を用意しました。静止20枚・透過動画25本、合計45候補。採用承認は0件です。** 旧試作2件は候補から除外し、別枠で保存しています。既存Emma 7状態は指示書どおり流用可否の評価だけ完了しました。
+**静止22枚・動画26本、計48点の審査候補。目視採用承認は0件です。** ユーザー指摘の旧版17点（共通部品を使う派生版を含む）は不採用として候補から外しました。以前の試作2点も別枠で保存しています。技術PASSを、人体・意味・場面の自然さの完成判定に使いません。
 
-基準main `03a5bccbd62368cd5200bf2b86725f74940b8c20`、最新main確認 `ff14407`、ブランチ `codex/visual-cue-complete-assets`、[ドラフトPR #107](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/107)。アプリ本体・Emma表示切替・TTS・英文bank・Androidは変更していません。**mainにはマージしません。**
+**[GitHub Pagesで修正版を開く](https://eltnegcellist.github.io/visual-cue-artwork-preview/?revision=20261018&filter=new#kick)**
 
-## プレビューを開く
+公開元は専用リポジトリ `eltnegcellist/visual-cue-artwork-preview` の `gh-pages`。制作元のmainや既存アプリのPages設定は変更しません。制作ブランチ `codex/visual-cue-complete-assets`、[ドラフトPR #107](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/107)。**mainへマージしません。アプリ本体・Emma切替・TTS・914英文の割当は変更していません。**
 
-- **[GitHub Pagesで動画プレビューを開く](https://eltnegcellist.github.io/visual-cue-artwork-preview/)**：インストールやサーバー起動は不要です。専用の公開リポジトリ `eltnegcellist/visual-cue-artwork-preview` の `gh-pages` から配信し、既存アプリのPages公開元・更新経路は変更しません。
-- **[preview-offline.html](preview-offline.html)**：動画を含む単一HTML。ダウンロード／ローカルのファイルをブラウザで開くだけで動作し、サーバーやネット接続は不要です。GitHubのコード表示では動画は動きません。
-- [ローカルHTTP版](http://127.0.0.1:8765/assets/visual-cue/artwork/preview.html)：リポジトリ直下で `python3 -m http.server 8765 --bind 127.0.0.1` を起動して開きます。
+## 指摘を受けた修正
 
-静止ポスターと動画を並べて表示。220/256/320px、明暗背景／透過チェック、全停止・個別停止・再生、1画面1素材、最終追加制作の絞り込みに対応します。Reduced Motionではポスターに停止します。旧試作・既存19点・Emma評価は別枠で閲覧できます。
-
-[対応表と全実測](COVERAGE.md) / [素材検査](qa/validation.json) / [ブラウザ検査](qa/browser/report.json) / [オフライン検査](qa/browser/offline-report.json) / [最終追加の一覧](qa/browser/final-pass-overview.png)
-
-## 今回埋めた制作対象
-
-原画6点から、静止3枚と動画7本を追加しました。
-
-| 候補 | 実際に動く部品・意味の範囲 |
+| 対象 | 修正候補 |
 | --- | --- |
-| family-care / hug-arms | 両腕が毛布を包んで寄る。赤ちゃん本人や家族関係は描かず、抱き寄せる動作の候補 |
-| tummy | 年齢を特定しない、おなかの部分図。へそと衣服の境界を明示 |
-| hand-squeeze-v3 | 掌と親指で球を支え、上の4本の指を曲げて球を圧縮。旧試作を置換 |
-| change-clothes | 黄色い服を脱ぐ→おなかが見える→青緑の服を着る。身体は部分図のみ |
-| dress-sleeves | 片腕→もう片腕の順に袖を通す。肩側は実際に衣服で隠れる |
-| change-diaper-exchange | オレンジの留め具の旧おむつを開き外す→青い留め具の新おむつを置き留める |
-| wake-bed / wake-quilt | 掛け物を足元へ折り、寝具が現れて朝日が昇る。就寝と別素材 |
-| care-burp | おなかに触れて手をやさしく動かすケア。げっぷが出た事実・背中を叩く意味は示さない |
+| キック | 左右を直し、親指が中央を向く静止画・動画へ統一 |
+| ページ | 紙の表は太陽、裏は洋なし、下の右ページは魚。りんご・太陽→洋なし・魚の見開きを実際に表示。白紙の裏面を撤回 |
+| 5本指 | 親指を手首から42px上げ、掌側面に連続。開閉・数える・指を動かす・タップも修正 |
+| 抱っこ | 毛布と手の記号を撤回。養育者と子の頭・首・肩・胴・支える両腕がつながった原画へ再制作 |
+| 球を握る | 手全体の新原画で、球の下と右に掌を広く残す。指と親指を局所的に動かす |
+| 着替え | 腹部だけの絵を撤回。顔の見えない後ろ姿の頭・首・肩・肌着・胴・腕を保って服を替える |
+| 袖通し | 元の腕に合う水平な袖を着用した原画から服を分離。袖の軸に沿って片腕ずつ出し、指先の直線切断や首の欠片を除去 |
+| 寝具 | 真上からのベッドと掛け物を再制作。同じ投影で、枕の下・木枠内のマットレス上面に掛け物を置く |
+| げっぷの場面 | 腹部をさする旧版を却下。肩に頭を預けた縦抱きで、背中に手を添える構図へ再制作 |
 
-抱き寄せ・身体部位・げっぷの構図と意味は特に目視採用審査が必要です。意味が合わなければ採用せず再制作します。「候補」は技術検査を通して審査できる状態であり、意味の採用承認ではありません。未完成の旧 `hand-squeeze` と `change-diaper` はそのまま昇格させず、置換済み試作に分けています。
+[指摘と旧版の対応](REVISION_20261018.md) / [修正候補の5フェーズ](qa/revision-keyframes-20261018.jpg) / [全対応表と実測](COVERAGE.md)
 
-## 必須10動作
+抱っこ・げっぷのように人物が必要な場面と着替えは、顔の見えない頭と上半身を描く方針へ改めました。げっぷの構図は[NHSの頭・首を支えた背中へのケア](https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/)を参照しています。姿勢や人体の自然さは目視審査前で、図の医学的適否を自動承認しません。
 
-| primitive | 制作候補 |
-| --- | --- |
-| motion.sip | 哺乳瓶の傾き＋水平な液面 |
-| motion.water | 雨・シャワー・水しぶきの3種 |
-| motion.hand | 拍手・手振り・開閉・握る・数える・指を動かす・タップ |
-| motion.kick | 足首を支点に左右交互に蹴る |
-| motion.page | 綴じ目を支点にページそのものをめくる |
-| motion.change | 着替え・袖通し・おむつ交換・留め具・拭く・おなかのケア・起床 |
-| motion.hug | 両腕を寄せて毛布を包む |
-| motion.peekaboo | 布で玩具を隠す→見せる |
-| motion.spoon | クリーム色のおかゆをすくう→持ち上げる→戻す |
-| motion.notes | 静止した楽器の周囲で音符を拍に合わせて移動 |
+## 汎用性の再点検
 
-58 Cueは物体／動作の37 Cueに候補、Emmaのみの21 Cueは流用評価済み。Emma neutralは待機表情、calmは目閉じ表情の流用候補、残り5状態は既存の待機・発話・まばたきでは意味不足と評価しました。専用表情の制作・アプリ統合は対象外です。**914英文の意味や最終割当が合格したという報告ではありません。**
+[914セットから見直した優先順位](USAGE_REVIEW_20261018.md) / [集計・英文例JSON](qa/usage-audit.json)
 
-## 自動検査と画質改善
+生成済みのprimaryCueだけで判断せず、元の話題と本文を確認しました。話題別ではミルク80、おむつ55、遊び51、お風呂45、絵本45、飲み物38、就寝38、衣服31セット。一方、countへの言及は2件（1件は足の指）、burpは3件。squeezeは4件で、主に「手を握る」文脈でした。**話題のセット数は、同じ画像が適合する件数や実際の利用ログの頻度ではありません。**
 
-全45素材と25ポスターの512×512・RGBA・外周余白を検査。動画は2.988秒または3.984秒、原則約12.05fpsで制作。符号化時に同一フレームは持続時間にまとまります。停止ポスターと編集用PNGを保持しています。
+細かな動作より日常の基本場面を先に見せる構成へ変更し、コップと手をつなぐ絵、手を握る動作を追加しました。コップは哺乳瓶と区別する追加コンセプト `scene.drink` の案です。元の14基本イラスト・10動作には候補がありますが、共有設計31コンセプトやruntimeは変更していません。
 
-全フレームの透過・変化面積・220pxの動き・継ぎ目・輝度変化・固定部位を検査。動作別には拍手の接触、指の接続、数える段階、タップの接触、おむつの欠け／浮き、ファスナーの開閉、球の圧縮、抱き寄せの接触、服の色交換／おなかの露出、袖の順序、おむつの旧新交換、寝具の露出を画素から確認しています。数値は `qa/validation.json` が正です。
+ボールを握る具体的な英文は見つからず、この動画を汎用対応数へ含めません。「Hold my hand」には手をつなぐ新素材を対応候補にしました。声・聞く・安心・質問・応援を一つの物体へ無理に割り当てず、場面の静止絵とEmmaの既存表情／追加表情の検討を分けます。Emma 7状態は評価だけで、新しいEmma表情やアプリ統合は別工程です。
 
-容量超過6動画はアルファの過剰な精度を調整し、**全静止150KB以下・全動画400KB以下**にしました。寸法・フレーム・タイミングは維持。220pxで明暗両背景の変更前後差を測定し、平均RGB誤差は0.244–0.494/255、95百分位は2–3/255。[比較実測](qa/encoding-improvements.json)参照。元の編集原画・部品は保持しています。
+## 比較プレビュー
 
-ブラウザでは実表示の時間差キャプチャーで主要11動画の動きを確認し、サイズ3種、停止／再生、Reduced Motion、絞り込み、390px幅、58 Cue／31コンセプト、試作の分離を検査します。HTTP版と単一HTMLをそれぞれ検査し、各素材のスクリーンショットと動画の5フェーズ比較を保存します。これは意味・人体の自然さ・乳児への分かりやすさを自動承認するものではありません。
+- Pagesはブラウザだけで開けます。初期表示は「日常の基本場面」。「今回の修正・追加」「すべてのvariant」などに切り替えられます。
+- 静止ポスターと動画を並列表示。220/256/320px、明暗背景／透過チェック、全停止・個別停止、Reduced Motion、1画面1素材に対応。
+- 修正したカードの「指摘された旧版の静止画と比較」を開くと、旧版と見比べられます。旧版は現行候補数に含めません。
+- [単一HTML](preview-offline.html)はローカルで直接開けます。HTTP版はリポジトリ直下で `python3 -m http.server 8765 --bind 127.0.0.1` → `assets/visual-cue/artwork/preview.html`。
 
-## 出自・再現手順
+[素材検査](qa/validation.json) / [ブラウザ検査](qa/browser/report.json) / [オフライン検査](qa/browser/offline-report.json)
 
-実際の組込みImageGenで透過PNGを生成。保存原画は合計21点（初回11＋追加4＋最終6）、`sources/generated/`。正規化PNGは `sources/normalized/`、動く部品は `parts/`。生成指示と出力IDは [PROMPTS.md](PROMPTS.md)、[追加](sources/additional-prompts.json)、[最終](sources/final-prompts.json)。起床原画は最初の生成で余白が足りず、再編集してから採用候補にしました。参考商品の図版・ロゴ・キャラクターは模写していません。
+## 検査・出自・再現
 
-ZIPは不変のバックアップ。SHA256 `73f04e328dc5aed60f810d6a3b4fcfa93f79e65030db2fb3c3b0c90165c6a700`、既存19点の分類は絵柄方向承認4・色修正方向性承認1・未完成候補5・hug再制作1・緑のおかゆ却下1・実験7。[inventory.csv](inventory.csv)参照。元の承認と今回の採用審査は別です。
+保存原画30点（今回の新規・編集9点）は `sources/generated/`、部品PNGは `parts/`、正規化PNGは `sources/normalized/`。今回も実際の組込みImageGenを使い、[指示全文・生成ID](sources/revision-prompts-20261018.json)を保存しました。NHSの絵や商品の図版・ロゴを複製していません。
+
+全48素材の512×512・RGBA・外周余白、全ポスター、2.988/3.984秒のループ、220pxの変化量、固定部分を検査。今回は親指の内向き、親指突出部の高さ、新しい左右のページ絵柄、見える掌、袖の連続と順序、着替え中の頭部シルエット、掛け物の木枠外へのはみ出しを追加しました。これらは回帰検出で、意味や人体の完全性の自動承認ではありません。
+
+全静止150KB以下・全動画400KB以下。超過した動画はアルファ精度を調整し、寸法とタイミングを保って、220pxの明暗背景で変更前後差を測定。[今回の圧縮実測](qa/encoding-improvements.json)参照。
+
+元ZIP19点とSHA256は不変です。`73f04e328dc5aed60f810d6a3b4fcfa93f79e65030db2fb3c3b0c90165c6a700`。[元素材の棚卸し](inventory.csv)を参照してください。
 
 ```sh
 python3 -m pip install -r scripts/visual-cue/requirements.txt
 python3 scripts/verify-visual-cue-handoff.py
-python3 scripts/visual-cue/build_artwork.py
+python3 scripts/visual-cue/audit_scene_usage.py
+python3 scripts/visual-cue/build_artwork.py --only-review
 python3 scripts/visual-cue/compact_artwork.py
 python3 scripts/visual-cue/validate_artwork.py
 python3 scripts/visual-cue/report_artwork.py
 python3 scripts/visual-cue/export_preview.py
-# HTTPサーバーを起動後（Playwright/Chromiumが必要）
+# PlaywrightとChromiumを用意し、HTTPサーバーを起動後
 node scripts/visual-cue/capture_preview.mjs
 VISUAL_CUE_PREVIEW_URL="file://$PWD/assets/visual-cue/artwork/preview-offline.html" node scripts/visual-cue/capture_preview.mjs
 ```
 
-最終追加だけ再生成する場合は `build_artwork.py --only-final`、2回目以降は `--only-new`。Pillow/numpyで原画から再現し、再生成にAIサービスやAPIキーは不要です。MacでPython 3.14.4 / Pillow 12.3.0 / numpy 2.5.1 / Chrome 155を使用。ライブラリ差で容量や符号化バイトは変わり得ます。
+最初からの再出力は `build_artwork.py`、今回の修正だけは `--only-review`。保存原画からの再生成にAIサービスやAPIキーは不要です。Pages用パッケージは `prepare_pages.py --output /tmp/visual-cue-pages-new` で作り、公開専用リポジトリの `gh-pages` へ反映します。
 
-Pages再公開用のファイルは `python3 scripts/visual-cue/prepare_pages.py --output /tmp/visual-cue-pages-new` で新規フォルダに出力できます。`index.html`、`.nojekyll`、`deployment.json`、公開元説明だけを専用リポジトリの `gh-pages` へ反映します。アプリ本体や編集用原画は公開パッケージへ追加しません。
-
-CIは `.github/workflows/visual-cue-artwork.yml`。QA・プレビューをartifactとして保存します。採用承認、実機での最終確認、914英文の最終意味割当は引き続き人の審査工程です。今回の候補以外の新しい表現の制作や本体実装は行いません。
+残る工程は、修正版の目視採用審査、実機での見やすさ、914英文の個別の意味割当です。不適合な候補を自動で採用へ昇格させません。

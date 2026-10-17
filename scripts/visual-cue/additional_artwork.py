@@ -10,7 +10,7 @@ fingers=[]
 for j,cell in enumerate([cells[1],cells[2],cells[3],cells[4]]):
     f=trim(cell).resize((widths[j],lengths[j]),Image.Resampling.LANCZOS)
     part(f'v2-finger-{j}',f);fingers.append(f)
-thumb=fit(cells[5],(99,113));thumbLayer=part('v2-thumb',place(blank(),thumb,(117,291)))
+thumb=fit(cells[5],(99,113));thumbLayer=part('v2-thumb',place(blank(),thumb,(117,249)))
 
 
 def paste_span(canvas,segment,x,y0,y1):
@@ -41,7 +41,7 @@ def hand_pose(openness,thumb_open=1,record=False):
             cap.putalpha(cap.getchannel('A').point(lambda a:round(a*min(1,(.88-o)/.18))))
             place(im,cap,(rootX[j]-f.width/2,joint-10))
         joints.append(dict(root=[rootX[j],root],knuckle=[rootX[j],joint],tip=[rootX[j],tip],open=o))
-    angle=-42*(1-thumb_open);im.alpha_composite(rotate(thumbLayer,angle,(209,374)))
+    angle=-42*(1-thumb_open);im.alpha_composite(rotate(thumbLayer,angle,(209,332)))
     return im,dict(fingers=joints,thumbAngle=angle,palmAnchor=[256,398])
 
 openHand,_=hand_pose([1]*4)
