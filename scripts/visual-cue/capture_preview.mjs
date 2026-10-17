@@ -11,7 +11,7 @@ const context=await browser.newContext({viewport:{width:1280,height:1000}});
 const page=await context.newPage();const errors=[];const badResponses=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)badResponses.push([r.status(),r.url()])});
 if(!base.startsWith('file:'))for(let attempt=0;attempt<30;attempt++){try{const r=await fetch(base);await r.body?.cancel();if(r.ok)break}catch{}if(attempt===29)throw Error('preview server unavailable');await new Promise(r=>setTimeout(r,100))}
-await page.goto(base);await page.waitForSelector('#gallery .card');await page.selectOption('#filter','all');await page.locator('#gallery img').evaluateAll(imgs=>Promise.all(imgs.map(img=>img.decode())));
+await page.goto(base);await page.waitForSelector('#gallery .card:not([hidden])');await page.selectOption('#filter','all');await page.locator('#gallery img').evaluateAll(imgs=>Promise.all(imgs.map(img=>img.decode())));
 const {default:manifest}=await import('../../assets/visual-cue/artwork/manifest.json',{with:{type:'json'}});
 const checks=[];
 for(const px of [220,256,320]){
