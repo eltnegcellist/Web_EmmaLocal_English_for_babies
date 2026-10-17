@@ -1,0 +1,532 @@
+{
+  "status": "CODEX_PROVISIONAL_SEMANTIC_REVIEW_NOT_HUMAN_APPROVAL",
+  "scope": "Exact first reply for a declared subset of inputs across all threshold policies and the selected learned heads. Repeated traces, unlisted inputs, audio and live dialogue are unreviewed. Contradiction counts are provisional; pragmatic mismatch is not automatically a factual contradiction.",
+  "rows": [
+    {
+      "id": "new002",
+      "text": "ぐっすり寝てるね",
+      "english": "Do you hear that? That's my voice! Hello, baby!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "既に睡眠中という観察に対し眠いかと尋ねて寝かせる。明示的事実矛盾ではないが応答意図がずれる。"
+    },
+    {
+      "id": "new002",
+      "text": "ぐっすり寝てるね",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "既に睡眠中という観察に対し眠いかと尋ねて寝かせる。明示的事実矛盾ではないが応答意図がずれる。"
+    },
+    {
+      "id": "new011",
+      "text": "今は眠くないんだね",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "眠くないという観察に睡眠へ誘う。初回英文は疑問・誘いであり睡眠中の直接断定ではない。"
+    },
+    {
+      "id": "new012",
+      "text": "まだ寝ていないね",
+      "english": "Ooh, ahh, ooh! Talk to me! I'm listening!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "未入眠。sleepへの誘いは必ずしも矛盾ではない。"
+    },
+    {
+      "id": "new012",
+      "text": "まだ寝ていないね",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "未入眠。sleepへの誘いは必ずしも矛盾ではない。"
+    },
+    {
+      "id": "new014",
+      "text": "寝癖がついたね",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "寝癖という観察から睡眠へ誘う。発話根拠不足で人手確認。"
+    },
+    {
+      "id": "new016",
+      "text": "寝そうで寝ないね",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ寝ていない。睡眠への誘いを事実反転と一律に数えない。"
+    },
+    {
+      "id": "new031",
+      "text": "泣いてはいないんだよ",
+      "english": "I hear you crying. I'm right here. Come for a cuddle.",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "泣いていないと明示する入力にI hear you cryingは反転。"
+    },
+    {
+      "id": "new032",
+      "text": "もう涙は出ていないね",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "涙が出ていないと明示する入力にcryingの現在断定は反転。"
+    },
+    {
+      "id": "new038",
+      "text": "笑っていないみたいだね",
+      "english": "Do you hear that? That's my voice! Hello, baby!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "笑っていないという入力に現在のsmileを断定する応答は矛盾。"
+    },
+    {
+      "id": "new038",
+      "text": "笑っていないみたいだね",
+      "english": "What a smile! I love seeing it. You're so sweet!",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "笑っていないという入力に現在のsmileを断定する応答は矛盾。"
+    },
+    {
+      "id": "new039",
+      "text": "ご機嫌ななめだね",
+      "english": "What a smile! I love seeing it. You're so sweet!",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "ご機嫌ななめを現在の笑顔として応答する意味誤り。笑顔と不機嫌の併存可能性は人手判断。"
+    },
+    {
+      "id": "new073",
+      "text": "まだ目を覚ましていないね",
+      "english": "One, two, three! Count with me! Again, again!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ覚醒していないという入力にYou are awakeは反転。"
+    },
+    {
+      "id": "new073",
+      "text": "まだ目を覚ましていないね",
+      "english": "You're awake! Hello, little one. It's nice seeing you!",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ覚醒していないという入力にYou are awakeは反転。"
+    },
+    {
+      "id": "new085",
+      "text": "今は声を出していないね",
+      "english": "Baby, my sweetheart! You're so loved. Hello, baby!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "発声していないという入力にI hear your voiceは反転。"
+    },
+    {
+      "id": "new085",
+      "text": "今は声を出していないね",
+      "english": "I hear your voice! Tell me more. I'm listening!",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "発声していないという入力にI hear your voiceは反転。"
+    },
+    {
+      "id": "new094",
+      "text": "もう雨は降っていないね",
+      "english": "Rain is falling! Can you hear it? Pitter-patter!",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "雨は降っていないという入力にRain is fallingは反転。"
+    },
+    {
+      "id": "new097",
+      "text": "今日は太陽が出ていないね",
+      "english": "The sun is shining! What a bright day. Hello, sunshine!",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "太陽が出ていないという入力にsun is shiningは反転。"
+    },
+    {
+      "id": "new125",
+      "text": "ミルクを飲んだらお風呂に入ろうね",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "ミルクの後に入浴する予定にbath time is hereを選択。時系列の矛盾候補。"
+    },
+    {
+      "id": "new126",
+      "text": "まだ終わっていないね",
+      "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "未完了の入力。選択は中立的な呼びかけで完了断定はない。"
+    },
+    {
+      "id": "new128",
+      "text": "お風呂に入ったらミルクを飲もうね",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "入浴を先に行う計画に入浴中相当の応答。時点は人手確認だが現時点の根拠なし。"
+    },
+    {
+      "id": "new129",
+      "text": "泣いていたけど今は笑っているね",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "現在は笑っているのにI hear you cryingを選択。時系列反転。"
+    },
+    {
+      "id": "new130",
+      "text": "笑っていたけど泣き出しちゃったね",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "現在泣き始めたという入力にcryingは整合。"
+    },
+    {
+      "id": "new136",
+      "text": "泣きそうだけどまだ泣いてないね",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ泣いていないと明示しているのにcryingと断定。"
+    },
+    {
+      "id": "new136",
+      "text": "泣きそうだけどまだ泣いてないね",
+      "english": "I hear you crying. I'm right here. Come for a cuddle.",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ泣いていないと明示しているのにcryingと断定。"
+    },
+    {
+      "id": "new143",
+      "text": "お歌はもう終わったけど絵本はこれからだよ",
+      "english": "Our book is finished! That's the last page. Well done, sweetheart.",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "絵本はこれからという入力にOur book is finishedは反転。"
+    },
+    {
+      "id": "new147",
+      "text": "もう一回はやらなくていいよ",
+      "english": "One more time? Let's try again. Ready to go?",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "もう一回は不要という入力にもう一回を誘う。意図の反転。"
+    },
+    {
+      "id": "new150",
+      "text": "まだ始めてないんだよ",
+      "english": "Let's say good morning! Hello, sweet baby. Hi there!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ始めていないという観察をWe are beginning nowにする。時間解釈は要審査。"
+    },
+    {
+      "id": "new150",
+      "text": "まだ始めてないんだよ",
+      "english": "Here we go! We're beginning now. Ready, little one?",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ始めていないという観察をWe are beginning nowにする。時間解釈は要審査。"
+    },
+    {
+      "id": "new011",
+      "text": "今は眠くないんだね",
+      "english": "Baby, look here! It's me again. Hello there!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "眠くないという観察に睡眠へ誘う。初回英文は疑問・誘いであり睡眠中の直接断定ではない。"
+    },
+    {
+      "id": "new014",
+      "text": "寝癖がついたね",
+      "english": "Baby, my sweetheart! You're so loved. Hello, baby!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "寝癖という観察から睡眠へ誘う。発話根拠不足で人手確認。"
+    },
+    {
+      "id": "new016",
+      "text": "寝そうで寝ないね",
+      "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ寝ていない。睡眠への誘いを事実反転と一律に数えない。"
+    },
+    {
+      "id": "new031",
+      "text": "泣いてはいないんだよ",
+      "english": "Baby, my sweetheart! You're so loved. Hello, baby!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "泣いていないと明示する入力にI hear you cryingは反転。"
+    },
+    {
+      "id": "new032",
+      "text": "もう涙は出ていないね",
+      "english": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "涙が出ていないと明示する入力にcryingの現在断定は反転。"
+    },
+    {
+      "id": "new039",
+      "text": "ご機嫌ななめだね",
+      "english": "Baby, hello again! I'm happy you're here. Big hugs!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "ご機嫌ななめを現在の笑顔として応答する意味誤り。笑顔と不機嫌の併存可能性は人手判断。"
+    },
+    {
+      "id": "new094",
+      "text": "もう雨は降っていないね",
+      "english": "My sweet baby! I'm right here! Big hugs!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "雨は降っていないという入力にRain is fallingは反転。"
+    },
+    {
+      "id": "new097",
+      "text": "今日は太陽が出ていないね",
+      "english": "Hello, sweet baby! You're so loved. I'm right here.",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "太陽が出ていないという入力にsun is shiningは反転。"
+    },
+    {
+      "id": "new125",
+      "text": "ミルクを飲んだらお風呂に入ろうね",
+      "english": "You're my little sunshine. I love you. Big hugs!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "ミルクの後に入浴する予定にbath time is hereを選択。時系列の矛盾候補。"
+    },
+    {
+      "id": "new128",
+      "text": "お風呂に入ったらミルクを飲もうね",
+      "english": "Do you hear that? That's my voice! Hello, baby!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "入浴を先に行う計画に入浴中相当の応答。時点は人手確認だが現時点の根拠なし。"
+    },
+    {
+      "id": "new129",
+      "text": "泣いていたけど今は笑っているね",
+      "english": "Let's say hello! Hi, little one! Hello again!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "現在は笑っているのにI hear you cryingを選択。時系列反転。"
+    },
+    {
+      "id": "new136",
+      "text": "泣きそうだけどまだ泣いてないね",
+      "english": "Baby, my sweetheart! You're so loved. Hello, baby!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ泣いていないと明示しているのにcryingと断定。"
+    },
+    {
+      "id": "new143",
+      "text": "お歌はもう終わったけど絵本はこれからだよ",
+      "english": "Hello, sweetheart! Look at my face. Here I am!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "絵本はこれからという入力にOur book is finishedは反転。"
+    },
+    {
+      "id": "new147",
+      "text": "もう一回はやらなくていいよ",
+      "english": "Hi there, baby! Peekaboo! Hello again!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "もう一回は不要という入力にもう一回を誘う。意図の反転。"
+    },
+    {
+      "id": "qa061",
+      "text": "今は眠くないんだね",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "眠くないという観察に睡眠へ誘う。初回英文は疑問・誘いであり睡眠中の直接断定ではない。"
+    },
+    {
+      "id": "qa062",
+      "text": "泣いてはいないんだよ",
+      "english": "I hear you crying. I'm right here. Come for a cuddle.",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "泣いていないと明示する入力にI hear you cryingは反転。"
+    },
+    {
+      "id": "qa063",
+      "text": "笑っていないみたいだね",
+      "english": "Do you hear that? That's my voice! Hello, baby!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "笑っていないという入力に現在のsmileを断定する応答は矛盾。"
+    },
+    {
+      "id": "qa063",
+      "text": "笑っていないみたいだね",
+      "english": "What a smile! I love seeing it. You're so sweet!",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "笑っていないという入力に現在のsmileを断定する応答は矛盾。"
+    },
+    {
+      "id": "qa065",
+      "text": "まだ始めてないんだよ",
+      "english": "Let's say good morning! Hello, sweet baby. Hi there!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ始めていないという観察をWe are beginning nowにする。時間解釈は要審査。"
+    },
+    {
+      "id": "qa065",
+      "text": "まだ始めてないんだよ",
+      "english": "Here we go! We're beginning now. Ready, little one?",
+      "contradiction": true,
+      "semantic_reversal": true,
+      "human_approved": false,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "まだ始めていないという観察をWe are beginning nowにする。時間解釈は要審査。"
+    },
+    {
+      "id": "qa061",
+      "text": "今は眠くないんだね",
+      "english": "Baby, look here! It's me again. Hello there!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "眠くないという観察に睡眠へ誘う。初回英文は疑問・誘いであり睡眠中の直接断定ではない。"
+    },
+    {
+      "id": "qa062",
+      "text": "泣いてはいないんだよ",
+      "english": "Baby, my sweetheart! You're so loved. Hello, baby!",
+      "contradiction": false,
+      "semantic_reversal": false,
+      "human_approved": false,
+      "head_experiment": true,
+      "reviewer": "Codex provisional semantic reading",
+      "note": "泣いていないと明示する入力にI hear you cryingは反転。"
+    }
+  ]
+}

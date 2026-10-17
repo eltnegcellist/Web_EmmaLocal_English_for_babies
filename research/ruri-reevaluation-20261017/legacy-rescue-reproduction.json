@@ -1,0 +1,374 @@
+{
+  "prior_artifact_sha256": "71ff46d14d76542ba04f3a3e36a1ff2b69966c83fd22bdd29c4f842078a7e6b7",
+  "prior_artifact_description": "2026-10-14 local Ruri generic rescue sweep; same 100 synthetic inputs",
+  "current_status": "RESEARCH_ONLY_UNADJUDICATED_SYNTHETIC_NOT_FOR_SHIPPING",
+  "cases": 100,
+  "row_order_equal": false,
+  "rounded_score_and_baseline_differences": [],
+  "summary_equal": true,
+  "scenarios": [
+    {
+      "id": "t0.3m0.05i0.45",
+      "topic": 0.3,
+      "margin": 0.05,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 6,
+      "rescued": 3,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [
+        {
+          "text": "笑っていないみたいだね",
+          "topic": "smile",
+          "interaction": null
+        }
+      ],
+      "field_generic": 5
+    },
+    {
+      "id": "t0.3m0.02i0.45",
+      "topic": 0.3,
+      "margin": 0.02,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 6,
+      "rescued": 3,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [
+        {
+          "text": "笑っていないみたいだね",
+          "topic": "smile",
+          "interaction": null
+        }
+      ],
+      "field_generic": 5
+    },
+    {
+      "id": "t0.25m0.05i0.45",
+      "topic": 0.25,
+      "margin": 0.05,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 6,
+      "rescued": 3,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [
+        {
+          "text": "笑っていないみたいだね",
+          "topic": "smile",
+          "interaction": null
+        }
+      ],
+      "field_generic": 4
+    },
+    {
+      "id": "t0.25m0.02i0.45",
+      "topic": 0.25,
+      "margin": 0.02,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 6,
+      "rescued": 3,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [
+        {
+          "text": "笑っていないみたいだね",
+          "topic": "smile",
+          "interaction": null
+        }
+      ],
+      "field_generic": 4
+    },
+    {
+      "id": "t0.3m0.05i0.4",
+      "topic": 0.3,
+      "margin": 0.05,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 6,
+      "rescued": 3,
+      "baseline_exact": 56,
+      "exact": 55,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [
+        {
+          "text": "笑っていないみたいだね",
+          "topic": "smile",
+          "interaction": null
+        }
+      ],
+      "field_generic": 5
+    },
+    {
+      "id": "t0.3m0.02i0.4",
+      "topic": 0.3,
+      "margin": 0.02,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 6,
+      "rescued": 3,
+      "baseline_exact": 56,
+      "exact": 55,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [
+        {
+          "text": "笑っていないみたいだね",
+          "topic": "smile",
+          "interaction": null
+        }
+      ],
+      "field_generic": 5
+    },
+    {
+      "id": "t0.25m0.05i0.4",
+      "topic": 0.25,
+      "margin": 0.05,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 6,
+      "rescued": 3,
+      "baseline_exact": 56,
+      "exact": 55,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [
+        {
+          "text": "笑っていないみたいだね",
+          "topic": "smile",
+          "interaction": null
+        }
+      ],
+      "field_generic": 4
+    },
+    {
+      "id": "t0.25m0.02i0.4",
+      "topic": 0.25,
+      "margin": 0.02,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 6,
+      "rescued": 3,
+      "baseline_exact": 56,
+      "exact": 55,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [
+        {
+          "text": "笑っていないみたいだね",
+          "topic": "smile",
+          "interaction": null
+        }
+      ],
+      "field_generic": 4
+    },
+    {
+      "id": "t0.4m0.05i0.45",
+      "topic": 0.4,
+      "margin": 0.05,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 7,
+      "rescued": 2,
+      "baseline_exact": 56,
+      "exact": 57,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 11
+    },
+    {
+      "id": "t0.4m0.02i0.45",
+      "topic": 0.4,
+      "margin": 0.02,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 7,
+      "rescued": 2,
+      "baseline_exact": 56,
+      "exact": 57,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 11
+    },
+    {
+      "id": "t0.35m0.05i0.45",
+      "topic": 0.35,
+      "margin": 0.05,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 7,
+      "rescued": 2,
+      "baseline_exact": 56,
+      "exact": 57,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 7
+    },
+    {
+      "id": "t0.35m0.02i0.45",
+      "topic": 0.35,
+      "margin": 0.02,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 7,
+      "rescued": 2,
+      "baseline_exact": 56,
+      "exact": 57,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 7
+    },
+    {
+      "id": "t0.4m0.05i0.4",
+      "topic": 0.4,
+      "margin": 0.05,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 7,
+      "rescued": 2,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 11
+    },
+    {
+      "id": "t0.4m0.02i0.4",
+      "topic": 0.4,
+      "margin": 0.02,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 7,
+      "rescued": 2,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 11
+    },
+    {
+      "id": "t0.35m0.05i0.4",
+      "topic": 0.35,
+      "margin": 0.05,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 7,
+      "rescued": 2,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 7
+    },
+    {
+      "id": "t0.35m0.02i0.4",
+      "topic": 0.35,
+      "margin": 0.02,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 7,
+      "rescued": 2,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 7
+    },
+    {
+      "id": "t0.45m0.05i0.4",
+      "topic": 0.45,
+      "margin": 0.05,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 8,
+      "rescued": 1,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 12
+    },
+    {
+      "id": "t0.45m0.02i0.4",
+      "topic": 0.45,
+      "margin": 0.02,
+      "interaction": 0.4,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 8,
+      "rescued": 1,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 12
+    },
+    {
+      "id": "baseline",
+      "topic": 0.5,
+      "margin": 0.05,
+      "interaction": 0.5,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 9,
+      "rescued": 0,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 12
+    },
+    {
+      "id": "t0.45m0.05i0.45",
+      "topic": 0.45,
+      "margin": 0.05,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 9,
+      "rescued": 0,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 12
+    },
+    {
+      "id": "t0.45m0.02i0.45",
+      "topic": 0.45,
+      "margin": 0.02,
+      "interaction": 0.45,
+      "qa_count": 67,
+      "baseline_generic": 9,
+      "generic": 9,
+      "rescued": 0,
+      "baseline_exact": 56,
+      "exact": 56,
+      "full_negative_cases": 8,
+      "new_unwanted_negative_routes": [],
+      "field_generic": 12
+    }
+  ]
+}

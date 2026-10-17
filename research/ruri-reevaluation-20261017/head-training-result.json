@@ -1,0 +1,260 @@
+{
+  "status": "RESEARCH_ONLY_UNAPPROVED_SYNTHETIC_HEADS",
+  "method": "Full-batch softmax cross-entropy plus lambda/2 * ||W-W_original||^2; fixed encoder; 800 steps, lr=4; float64 optimizer, float32 saved heads.",
+  "selection": "Per-axis lowest development cross entropy, no evaluation/legacy67 selection; ties prefer stronger prior. Development construction families are disjoint.",
+  "grid": [
+    0.01,
+    0.001,
+    0.0001
+  ],
+  "steps": 800,
+  "learning_rate": 4.0,
+  "train_count": 138,
+  "development_count": 40,
+  "numpy": "2.5.1",
+  "python": "3.14.4",
+  "embedding_cache_key": "7375db040ec050fa462bf27082104e03318a2cbdc37bba03e307df783face260",
+  "human_adjudicated_training": 0,
+  "limitations": "Tiny unapproved synthetic corpus, partial coverage, no original 477-item training corpus in repository. This is a feasibility/failure experiment, not a deployment recommendation.",
+  "heads": {
+    "topic": {
+      "classes": [
+        "drink",
+        "bath",
+        "milk",
+        "sleep",
+        "wake",
+        "diaper",
+        "clothes",
+        "hug",
+        "hands",
+        "feet",
+        "smile",
+        "cry",
+        "voice",
+        "tummy",
+        "play",
+        "outside",
+        "rain",
+        "sun",
+        "food",
+        "book",
+        "music",
+        "generic"
+      ],
+      "selected_lambda": 0.0001,
+      "filename": "experimental-head-topic.f32",
+      "sha256": "4bf6d03445748666dab45957838333249d0fead1c1b3e4860f84809b95dc9ad9",
+      "original": {
+        "train": {
+          "raw_exact": 93,
+          "n": 138,
+          "cross_entropy": 1.2141636620422451
+        },
+        "development": {
+          "raw_exact": 32,
+          "n": 40,
+          "cross_entropy": 1.0247437897476628
+        }
+      },
+      "grid": [
+        {
+          "prior_lambda": 0.01,
+          "train": {
+            "raw_exact": 130,
+            "n": 138,
+            "cross_entropy": 0.30773814118788284
+          },
+          "development": {
+            "raw_exact": 35,
+            "n": 40,
+            "cross_entropy": 0.4334768254871738
+          }
+        },
+        {
+          "prior_lambda": 0.001,
+          "train": {
+            "raw_exact": 135,
+            "n": 138,
+            "cross_entropy": 0.17108004786854
+          },
+          "development": {
+            "raw_exact": 36,
+            "n": 40,
+            "cross_entropy": 0.3215072046484721
+          }
+        },
+        {
+          "prior_lambda": 0.0001,
+          "train": {
+            "raw_exact": 138,
+            "n": 138,
+            "cross_entropy": 0.08001399846478749
+          },
+          "development": {
+            "raw_exact": 39,
+            "n": 40,
+            "cross_entropy": 0.22499098385908556
+          }
+        }
+      ],
+      "train_class_support": {
+        "drink": 3,
+        "bath": 3,
+        "milk": 3,
+        "sleep": 3,
+        "wake": 3,
+        "diaper": 3,
+        "clothes": 3,
+        "hug": 3,
+        "hands": 3,
+        "feet": 3,
+        "smile": 3,
+        "cry": 3,
+        "voice": 3,
+        "tummy": 3,
+        "play": 3,
+        "outside": 3,
+        "rain": 3,
+        "sun": 3,
+        "food": 3,
+        "book": 3,
+        "music": 3,
+        "generic": 75
+      },
+      "development_class_support": {
+        "drink": 1,
+        "bath": 1,
+        "milk": 1,
+        "sleep": 1,
+        "wake": 1,
+        "diaper": 1,
+        "clothes": 1,
+        "hug": 1,
+        "hands": 1,
+        "feet": 1,
+        "smile": 1,
+        "cry": 1,
+        "voice": 1,
+        "tummy": 1,
+        "play": 1,
+        "outside": 1,
+        "rain": 1,
+        "sun": 1,
+        "food": 1,
+        "book": 1,
+        "music": 1,
+        "generic": 19
+      }
+    },
+    "interaction": {
+      "classes": [
+        "affection",
+        "praise",
+        "achievement",
+        "effort",
+        "encouragement",
+        "invitation",
+        "start",
+        "finish",
+        "finish_check",
+        "care",
+        "inquiry",
+        "reassurance",
+        "repeat",
+        "pause",
+        "none"
+      ],
+      "selected_lambda": 0.0001,
+      "filename": "experimental-head-interaction.f32",
+      "sha256": "6a7348fb4a92a586d6e82bc5f866e5ba08597a6e72bdc8c97d06cbb333fdf66d",
+      "original": {
+        "train": {
+          "raw_exact": 124,
+          "n": 138,
+          "cross_entropy": 0.6759162433976083
+        },
+        "development": {
+          "raw_exact": 36,
+          "n": 40,
+          "cross_entropy": 0.824331894140439
+        }
+      },
+      "grid": [
+        {
+          "prior_lambda": 0.01,
+          "train": {
+            "raw_exact": 134,
+            "n": 138,
+            "cross_entropy": 0.2529695415782458
+          },
+          "development": {
+            "raw_exact": 38,
+            "n": 40,
+            "cross_entropy": 0.3168726264831797
+          }
+        },
+        {
+          "prior_lambda": 0.001,
+          "train": {
+            "raw_exact": 138,
+            "n": 138,
+            "cross_entropy": 0.13791399712891736
+          },
+          "development": {
+            "raw_exact": 38,
+            "n": 40,
+            "cross_entropy": 0.24009702239949265
+          }
+        },
+        {
+          "prior_lambda": 0.0001,
+          "train": {
+            "raw_exact": 138,
+            "n": 138,
+            "cross_entropy": 0.06316377760533394
+          },
+          "development": {
+            "raw_exact": 38,
+            "n": 40,
+            "cross_entropy": 0.18433464505944103
+          }
+        }
+      ],
+      "train_class_support": {
+        "affection": 4,
+        "praise": 4,
+        "achievement": 4,
+        "effort": 4,
+        "encouragement": 4,
+        "invitation": 4,
+        "start": 4,
+        "finish": 4,
+        "finish_check": 4,
+        "care": 4,
+        "inquiry": 4,
+        "reassurance": 4,
+        "repeat": 4,
+        "pause": 4,
+        "none": 82
+      },
+      "development_class_support": {
+        "affection": 1,
+        "praise": 1,
+        "achievement": 1,
+        "effort": 1,
+        "encouragement": 1,
+        "invitation": 1,
+        "start": 1,
+        "finish": 1,
+        "finish_check": 1,
+        "care": 1,
+        "inquiry": 1,
+        "reassurance": 1,
+        "repeat": 1,
+        "pause": 1,
+        "none": 26
+      }
+    }
+  }
+}

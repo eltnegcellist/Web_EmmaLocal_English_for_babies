@@ -1,0 +1,1608 @@
+{
+  "status": "SYNTHETIC_PROVISIONAL_UNADJUDICATED_RESEARCH_ONLY",
+  "notes": "New head experiment only, no legacy67 or new evaluation text used for fitting. Global construction families are held out for development; evaluation families are separate. Topic generic for negative/temporal expressions is an unapproved routing target. Four examples per topic, five per interaction are insufficient for deployment.",
+  "cases": [
+    {
+      "id": "train001",
+      "text": "麦茶をごくごく飲んでいます",
+      "expected_topic": "drink",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train002",
+      "text": "ストローからお水を吸っています",
+      "expected_topic": "drink",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train003",
+      "text": "コップのお茶を飲んでいるところです",
+      "expected_topic": "drink",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train004",
+      "text": "水分をひと口ずつ飲んでいます",
+      "expected_topic": "drink",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train005",
+      "text": "湯船で体を洗っています",
+      "expected_topic": "bath",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train006",
+      "text": "おふろのお湯が体にかかっています",
+      "expected_topic": "bath",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train007",
+      "text": "浴槽で温まっているところです",
+      "expected_topic": "bath",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train008",
+      "text": "シャワーで体を流しています",
+      "expected_topic": "bath",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train009",
+      "text": "哺乳びんのミルクを飲んでいます",
+      "expected_topic": "milk",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train010",
+      "text": "母乳を飲んでいます",
+      "expected_topic": "milk",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train011",
+      "text": "授乳をしているところです",
+      "expected_topic": "milk",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train012",
+      "text": "ミルクをごくごく飲んでいます",
+      "expected_topic": "milk",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train013",
+      "text": "お布団で眠っています",
+      "expected_topic": "sleep",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train014",
+      "text": "深い眠りについています",
+      "expected_topic": "sleep",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train015",
+      "text": "目を閉じて眠っているところです",
+      "expected_topic": "sleep",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train016",
+      "text": "寝息を立てて眠っています",
+      "expected_topic": "sleep",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train017",
+      "text": "お昼寝から目覚めました",
+      "expected_topic": "wake",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train018",
+      "text": "朝になって目を開けました",
+      "expected_topic": "wake",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train019",
+      "text": "目が覚めて起きているところです",
+      "expected_topic": "wake",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train020",
+      "text": "眠りから起きました",
+      "expected_topic": "wake",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train021",
+      "text": "おむつを交換しています",
+      "expected_topic": "diaper",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train022",
+      "text": "ぬれたオムツを新しくしています",
+      "expected_topic": "diaper",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train023",
+      "text": "おむつの取り替えをしているところです",
+      "expected_topic": "diaper",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train024",
+      "text": "おむつを外して拭いています",
+      "expected_topic": "diaper",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train025",
+      "text": "新しいシャツを着ています",
+      "expected_topic": "clothes",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train026",
+      "text": "ズボンにはき替えています",
+      "expected_topic": "clothes",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train027",
+      "text": "服を着る練習をしているところです",
+      "expected_topic": "clothes",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train028",
+      "text": "肌着を着せています",
+      "expected_topic": "clothes",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train029",
+      "text": "お母さんの腕で抱かれています",
+      "expected_topic": "hug",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train030",
+      "text": "抱きしめてもらっています",
+      "expected_topic": "hug",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train031",
+      "text": "抱っこをしているところです",
+      "expected_topic": "hug",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train032",
+      "text": "パパの腕でぎゅっとされています",
+      "expected_topic": "hug",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train033",
+      "text": "小さな指を広げています",
+      "expected_topic": "hands",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train034",
+      "text": "てのひらを開いています",
+      "expected_topic": "hands",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train035",
+      "text": "両手を動かしているところです",
+      "expected_topic": "hands",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train036",
+      "text": "おててを握ったり開いたりしています",
+      "expected_topic": "hands",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train037",
+      "text": "両足を交互に動かしています",
+      "expected_topic": "feet",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train038",
+      "text": "つまさきを伸ばしています",
+      "expected_topic": "feet",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train039",
+      "text": "あんよを伸ばしているところです",
+      "expected_topic": "feet",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train040",
+      "text": "小さな足を曲げたり伸ばしたりしています",
+      "expected_topic": "feet",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train041",
+      "text": "にこにこと笑っています",
+      "expected_topic": "smile",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train042",
+      "text": "口元に笑みが浮かんでいます",
+      "expected_topic": "smile",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train043",
+      "text": "笑顔を見せているところです",
+      "expected_topic": "smile",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train044",
+      "text": "声を出して笑っています",
+      "expected_topic": "smile",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train045",
+      "text": "涙をこぼして泣いています",
+      "expected_topic": "cry",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train046",
+      "text": "大声で泣いています",
+      "expected_topic": "cry",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train047",
+      "text": "泣き声を出しているところです",
+      "expected_topic": "cry",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train048",
+      "text": "しくしく泣いています",
+      "expected_topic": "cry",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train049",
+      "text": "喃語を話しています",
+      "expected_topic": "voice",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train050",
+      "text": "あうあうと声を出しています",
+      "expected_topic": "voice",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train051",
+      "text": "おしゃべりをしているところです",
+      "expected_topic": "voice",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train052",
+      "text": "小さな声であーと言っています",
+      "expected_topic": "voice",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train053",
+      "text": "おなかが鳴っています",
+      "expected_topic": "tummy",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train054",
+      "text": "げっぷが出ました",
+      "expected_topic": "tummy",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train055",
+      "text": "お腹をさすっているところです",
+      "expected_topic": "tummy",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train056",
+      "text": "おなかが空いています",
+      "expected_topic": "tummy",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train057",
+      "text": "ぬいぐるみで遊んでいます",
+      "expected_topic": "play",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train058",
+      "text": "おもちゃを転がしています",
+      "expected_topic": "play",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train059",
+      "text": "ボール遊びをしているところです",
+      "expected_topic": "play",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train060",
+      "text": "積み木を触って遊んでいます",
+      "expected_topic": "play",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train061",
+      "text": "公園を散歩しています",
+      "expected_topic": "outside",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train062",
+      "text": "ベビーカーで外を歩いています",
+      "expected_topic": "outside",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train063",
+      "text": "おでかけをしているところです",
+      "expected_topic": "outside",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train064",
+      "text": "お外の道を歩いています",
+      "expected_topic": "outside",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train065",
+      "text": "窓の外に雨が降っています",
+      "expected_topic": "rain",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train066",
+      "text": "雨のしずくが落ちています",
+      "expected_topic": "rain",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train067",
+      "text": "雨音を聞いているところです",
+      "expected_topic": "rain",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train068",
+      "text": "空から雨粒が降っています",
+      "expected_topic": "rain",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train069",
+      "text": "太陽が明るく照っています",
+      "expected_topic": "sun",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train070",
+      "text": "日差しが入っています",
+      "expected_topic": "sun",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train071",
+      "text": "お日様の光を見ているところです",
+      "expected_topic": "sun",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train072",
+      "text": "窓辺に日光が差しています",
+      "expected_topic": "sun",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train073",
+      "text": "おかゆを食べています",
+      "expected_topic": "food",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train074",
+      "text": "スプーンで離乳食を食べています",
+      "expected_topic": "food",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train075",
+      "text": "ごはんを食べているところです",
+      "expected_topic": "food",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train076",
+      "text": "にんじんをもぐもぐしています",
+      "expected_topic": "food",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train077",
+      "text": "ページを開いて絵本を見ています",
+      "expected_topic": "book",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train078",
+      "text": "本を読んでもらっています",
+      "expected_topic": "book",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train079",
+      "text": "絵本を眺めているところです",
+      "expected_topic": "book",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train080",
+      "text": "本の絵を指でさしています",
+      "expected_topic": "book",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train081",
+      "text": "歌が聞こえています",
+      "expected_topic": "music",
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train082",
+      "text": "子守歌を聞いています",
+      "expected_topic": "music",
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train083",
+      "text": "お歌を歌っているところです",
+      "expected_topic": "music",
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train084",
+      "text": "音楽に耳を傾けています",
+      "expected_topic": "music",
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train085",
+      "text": "天井の模様があります",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train086",
+      "text": "四角い箱があります",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train087",
+      "text": "壁を眺めているところです",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train088",
+      "text": "机の色が青いです",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train089",
+      "text": "愛しているよ、大切な子",
+      "expected_topic": null,
+      "expected_interaction": "affection",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train090",
+      "text": "あなたが大好きです",
+      "expected_topic": null,
+      "expected_interaction": "affection",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train091",
+      "text": "愛おしくてたまらないよ",
+      "expected_topic": null,
+      "expected_interaction": "affection",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train092",
+      "text": "あなたは私の宝物です",
+      "expected_topic": null,
+      "expected_interaction": "affection",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train093",
+      "text": "かわいくて大好きだよ",
+      "expected_topic": null,
+      "expected_interaction": "affection",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train094",
+      "text": "よくやった、立派だよ",
+      "expected_topic": null,
+      "expected_interaction": "praise",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train095",
+      "text": "とても見事だったよ",
+      "expected_topic": null,
+      "expected_interaction": "praise",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train096",
+      "text": "すばらしいできばえだよ",
+      "expected_topic": null,
+      "expected_interaction": "praise",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train097",
+      "text": "上手にできました",
+      "expected_topic": null,
+      "expected_interaction": "praise",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train098",
+      "text": "いい出来だったね",
+      "expected_topic": null,
+      "expected_interaction": "praise",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train099",
+      "text": "ついに成功しました",
+      "expected_topic": null,
+      "expected_interaction": "achievement",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train100",
+      "text": "自分の力でできました",
+      "expected_topic": null,
+      "expected_interaction": "achievement",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train101",
+      "text": "初めてやり遂げました",
+      "expected_topic": null,
+      "expected_interaction": "achievement",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train102",
+      "text": "できるようになりました",
+      "expected_topic": null,
+      "expected_interaction": "achievement",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train103",
+      "text": "とうとう達成しました",
+      "expected_topic": null,
+      "expected_interaction": "achievement",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train104",
+      "text": "努力しているのが見えます",
+      "expected_topic": null,
+      "expected_interaction": "effort",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train105",
+      "text": "何回も挑戦しているね",
+      "expected_topic": null,
+      "expected_interaction": "effort",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train106",
+      "text": "一生懸命やっているところだね",
+      "expected_topic": null,
+      "expected_interaction": "effort",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train107",
+      "text": "がんばり続けているね",
+      "expected_topic": null,
+      "expected_interaction": "effort",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train108",
+      "text": "まだ挑戦を続けているんだね",
+      "expected_topic": null,
+      "expected_interaction": "effort",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train109",
+      "text": "次も挑戦してごらん",
+      "expected_topic": null,
+      "expected_interaction": "encouragement",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train110",
+      "text": "できるから試してみて",
+      "expected_topic": null,
+      "expected_interaction": "encouragement",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train111",
+      "text": "自分のペースでがんばって",
+      "expected_topic": null,
+      "expected_interaction": "encouragement",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train112",
+      "text": "少しずつ挑戦していこう",
+      "expected_topic": null,
+      "expected_interaction": "encouragement",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train113",
+      "text": "失敗してもまた挑戦できるよ",
+      "expected_topic": null,
+      "expected_interaction": "encouragement",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train114",
+      "text": "一緒にやってみませんか",
+      "expected_topic": null,
+      "expected_interaction": "invitation",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train115",
+      "text": "ママとやってみようよ",
+      "expected_topic": null,
+      "expected_interaction": "invitation",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train116",
+      "text": "二人でやってみませんか",
+      "expected_topic": null,
+      "expected_interaction": "invitation",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train117",
+      "text": "一緒に試してみないかな",
+      "expected_topic": null,
+      "expected_interaction": "invitation",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train118",
+      "text": "いっしょにやりましょう",
+      "expected_topic": null,
+      "expected_interaction": "invitation",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train119",
+      "text": "準備できたので開始するよ",
+      "expected_topic": null,
+      "expected_interaction": "start",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train120",
+      "text": "これから始めます",
+      "expected_topic": null,
+      "expected_interaction": "start",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train121",
+      "text": "今からスタートするよ",
+      "expected_topic": null,
+      "expected_interaction": "start",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train122",
+      "text": "始まりの時間になったよ",
+      "expected_topic": null,
+      "expected_interaction": "start",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train123",
+      "text": "さあ開始しよう",
+      "expected_topic": null,
+      "expected_interaction": "start",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train124",
+      "text": "すべて完了しました",
+      "expected_topic": null,
+      "expected_interaction": "finish",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train125",
+      "text": "これで終了です",
+      "expected_topic": null,
+      "expected_interaction": "finish",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train126",
+      "text": "最後まで終わりました",
+      "expected_topic": null,
+      "expected_interaction": "finish",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train127",
+      "text": "おしまいになりました",
+      "expected_topic": null,
+      "expected_interaction": "finish",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train128",
+      "text": "全部済みました",
+      "expected_topic": null,
+      "expected_interaction": "finish",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train129",
+      "text": "全部できあがりましたか",
+      "expected_topic": null,
+      "expected_interaction": "finish_check",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train130",
+      "text": "最後まで済みましたか",
+      "expected_topic": null,
+      "expected_interaction": "finish_check",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train131",
+      "text": "おしまいになったか見てみよう",
+      "expected_topic": null,
+      "expected_interaction": "finish_check",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train132",
+      "text": "終わったか確かめよう",
+      "expected_topic": null,
+      "expected_interaction": "finish_check",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train133",
+      "text": "もう済んだのかな",
+      "expected_topic": null,
+      "expected_interaction": "finish_check",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train134",
+      "text": "よくがんばったから休んでね",
+      "expected_topic": null,
+      "expected_interaction": "care",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train135",
+      "text": "たくさんやって疲れたね",
+      "expected_topic": null,
+      "expected_interaction": "care",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train136",
+      "text": "今日は本当におつかれさま",
+      "expected_topic": null,
+      "expected_interaction": "care",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train137",
+      "text": "大変だったから体を休めてね",
+      "expected_topic": null,
+      "expected_interaction": "care",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train138",
+      "text": "いっぱいやったね、お疲れさま",
+      "expected_topic": null,
+      "expected_interaction": "care",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train139",
+      "text": "何があったのか教えて",
+      "expected_topic": null,
+      "expected_interaction": "inquiry",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train140",
+      "text": "どんな気持ちなのかな",
+      "expected_topic": null,
+      "expected_interaction": "inquiry",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train141",
+      "text": "何か困っていることはあるかな",
+      "expected_topic": null,
+      "expected_interaction": "inquiry",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train142",
+      "text": "どうしたのか見せて",
+      "expected_topic": null,
+      "expected_interaction": "inquiry",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train143",
+      "text": "何が気にかかるの",
+      "expected_topic": null,
+      "expected_interaction": "inquiry",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train144",
+      "text": "安心して、ここにいるよ",
+      "expected_topic": null,
+      "expected_interaction": "reassurance",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train145",
+      "text": "こわくないから大丈夫",
+      "expected_topic": null,
+      "expected_interaction": "reassurance",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train146",
+      "text": "ずっとそばで見ているよ",
+      "expected_topic": null,
+      "expected_interaction": "reassurance",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train147",
+      "text": "ひとりじゃないよ、安心して",
+      "expected_topic": null,
+      "expected_interaction": "reassurance",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train148",
+      "text": "心配ないよ、私がいるから",
+      "expected_topic": null,
+      "expected_interaction": "reassurance",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train149",
+      "text": "同じことを繰り返そう",
+      "expected_topic": null,
+      "expected_interaction": "repeat",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train150",
+      "text": "もう一度同じことをしよう",
+      "expected_topic": null,
+      "expected_interaction": "repeat",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train151",
+      "text": "あと一回繰り返してみよう",
+      "expected_topic": null,
+      "expected_interaction": "repeat",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train152",
+      "text": "さっきのをもう一回やろう",
+      "expected_topic": null,
+      "expected_interaction": "repeat",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train153",
+      "text": "もう一回続けてみる",
+      "expected_topic": null,
+      "expected_interaction": "repeat",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train154",
+      "text": "ここで一旦止めよう",
+      "expected_topic": null,
+      "expected_interaction": "pause",
+      "family": "training_interaction_form_0",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train155",
+      "text": "少し待つことにしよう",
+      "expected_topic": null,
+      "expected_interaction": "pause",
+      "family": "training_interaction_form_1",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train156",
+      "text": "今は休憩にしよう",
+      "expected_topic": null,
+      "expected_interaction": "pause",
+      "family": "training_interaction_form_2",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train157",
+      "text": "いったん中断して休もう",
+      "expected_topic": null,
+      "expected_interaction": "pause",
+      "family": "training_interaction_form_3",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train158",
+      "text": "ちょっと待っていてください",
+      "expected_topic": null,
+      "expected_interaction": "pause",
+      "family": "training_interaction_form_4",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train159",
+      "text": "眠っているわけではありません",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train160",
+      "text": "赤ちゃんは眠くありません",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train161",
+      "text": "涙は流していません",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train162",
+      "text": "泣き声は出ていません",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train163",
+      "text": "赤ちゃんは笑顔ではありません",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast_dev",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train164",
+      "text": "にこにこした表情ではありません",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train165",
+      "text": "ごきげんが悪くてむすっとしています",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train166",
+      "text": "むずかしい顔で不機嫌です",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train167",
+      "text": "作業は未完了です",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train168",
+      "text": "全部済んだわけではありません",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast_dev",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train169",
+      "text": "おふろは夕方の予定で今は入りません",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train170",
+      "text": "哺乳びんのあとに入浴する予定です",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train171",
+      "text": "お着替えは明日する予定です",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train172",
+      "text": "お食事の予定はあるけれど今は食べません",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train173",
+      "text": "お母さんだけがお昼寝しています",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast_dev",
+      "split": "development",
+      "adjudicated": false
+    },
+    {
+      "id": "train174",
+      "text": "お父さんだけが入浴しています",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train175",
+      "text": "横を向く寝返りをしました",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train176",
+      "text": "髪の毛に寝ぐせがあります",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train177",
+      "text": "ミルクはこれから準備するところです",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast",
+      "split": "train",
+      "adjudicated": false
+    },
+    {
+      "id": "train178",
+      "text": "おむつの交換は明日に延期ではなく後でします",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "family": "training_contrast_dev",
+      "split": "development",
+      "adjudicated": false
+    }
+  ]
+}

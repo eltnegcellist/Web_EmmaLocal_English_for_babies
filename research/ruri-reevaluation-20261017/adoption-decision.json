@@ -1,0 +1,368 @@
+{
+  "conclusion": "MAINTAIN_CURRENT_50_PERCENT_PENDING_SEMANTIC_REMEDIATION",
+  "current_policy_is_not_certified_safe": true,
+  "decisions": [
+    {
+      "policy": "B0.45_m0",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.4_m0",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.35_m0",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.3_m0",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.45_m0.02",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.4_m0.02",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.35_m0.02",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.3_m0.02",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.45_m0.05",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.4_m0.05",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.35_m0.05",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.3_m0.05",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.45_m0.1",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.4_m0.1",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.35_m0.1",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "B0.3_m0.1",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "joint_regressions",
+        "new_wrong_topic",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "C0.45_m0",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "D0.45_m0",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "C0.4_m0",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "D0.4_m0",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "C0.45_m0.02",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "D0.45_m0.02",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "C0.4_m0.02",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "D0.4_m0.02",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "C0.45_m0.05",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "D0.45_m0.05",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "C0.4_m0.05",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "D0.4_m0.05",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "C0.45_m0.1",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "D0.45_m0.1",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "C0.4_m0.1",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "D0.4_m0.1",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "new_provisional_semantic_reversal"
+      ]
+    },
+    {
+      "policy": "E_per_topic_m05",
+      "adopt": false,
+      "reasons": [
+        "independent_human_adjudication_missing",
+        "safety_review_incomplete",
+        "per_class_support_insufficient",
+        "no_joint_gain"
+      ]
+    },
+    {
+      "policy": "learned_heads",
+      "adopt": false,
+      "reasons": [
+        "large_heldout_regression",
+        "unapproved_small_synthetic_training"
+      ]
+    }
+  ]
+}
