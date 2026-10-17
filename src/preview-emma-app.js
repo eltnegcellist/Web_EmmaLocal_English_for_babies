@@ -1740,11 +1740,13 @@ function showOnboardingProgress(show,value=0,text='') {
 function showConversation(parentText,emmaText,route='generic') {
   // Do not render the parent's ASR transcript on the live home screen.
   // The original transcript is still consumed by Ruri and saved by history.
-  const hasReply=Boolean(emmaText);
-  ui.conversation.classList.toggle('hidden',!hasReply);
-  ui.emmaBubble.classList.toggle('hidden',!hasReply);
-  ui.replyTopic.classList.toggle('hidden',!hasReply);
-  if(!hasReply)return;
+  // Preserve the initial "Hi, I'm Emma." and the most recent spoken reply
+  // while Moonshine/Ruri process the next utterance. Only a genuine new
+  // English response replaces the card, never an intermediate empty ASR turn.
+  if(!emmaText)return;
+  ui.conversation.classList.remove('hidden');
+  ui.emmaBubble.classList.remove('hidden');
+  ui.replyTopic.classList.remove('hidden');
   const hint=replyDisplayHint(route);
   ui.replyTopic.textContent=hint.topicLabel;
   ui.reply.textContent=emmaText;
