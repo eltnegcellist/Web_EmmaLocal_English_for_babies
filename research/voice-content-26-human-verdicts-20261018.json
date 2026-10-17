@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "evidence": "human-listened review export provided 2026-10-18",
+  "sourceLedger": "research/voice-content-26-review-20261015.json",
+  "reviewComplete": true,
+  "audioIssuesResolved": false,
+  "total": 26,
+  "matched": 21,
+  "misread": 5,
+  "verdicts": [
+    {
+      "number": 1,
+      "decision": "match"
+    },
+    {
+      "number": 2,
+      "decision": "match"
+    },
+    {
+      "number": 3,
+      "decision": "match"
+    },
+    {
+      "number": 4,
+      "decision": "match"
+    },
+    {
+      "number": 5,
+      "decision": "match"
+    },
+    {
+      "number": 6,
+      "decision": "match"
+    },
+    {
+      "number": 7,
+      "decision": "match"
+    },
+    {
+      "number": 8,
+      "decision": "match"
+    },
+    {
+      "number": 9,
+      "decision": "misread",
+      "issue": "spelled-letters",
+      "requirement": "coo must sound like /kuː/, not the letters C-O-O"
+    },
+    {
+      "number": 10,
+      "decision": "match"
+    },
+    {
+      "number": 11,
+      "decision": "misread",
+      "issue": "missing-repeat",
+      "requirement": "sip must occur three times in \"Sip, sip, sip!\""
+    },
+    {
+      "number": 12,
+      "decision": "match"
+    },
+    {
+      "number": 13,
+      "decision": "match"
+    },
+    {
+      "number": 14,
+      "decision": "misread",
+      "issue": "missing-repeat",
+      "requirement": "sip must occur three times in \"Sip, sip, sip!\""
+    },
+    {
+      "number": 15,
+      "decision": "match"
+    },
+    {
+      "number": 16,
+      "decision": "misread",
+      "issue": "missing-repeat",
+      "requirement": "cuddle must occur three times in \"Cuddle, cuddle, cuddle!\""
+    },
+    {
+      "number": 17,
+      "decision": "misread",
+      "issue": "missing-repeat",
+      "requirement": "wipe must occur three times in \"Wipe, wipe, wipe?\""
+    },
+    {
+      "number": 18,
+      "decision": "match"
+    },
+    {
+      "number": 19,
+      "decision": "match"
+    },
+    {
+      "number": 20,
+      "decision": "match"
+    },
+    {
+      "number": 21,
+      "decision": "match"
+    },
+    {
+      "number": 22,
+      "decision": "match"
+    },
+    {
+      "number": 23,
+      "decision": "match"
+    },
+    {
+      "number": 24,
+      "decision": "match"
+    },
+    {
+      "number": 25,
+      "decision": "match"
+    },
+    {
+      "number": 26,
+      "decision": "match"
+    }
+  ],
+  "releaseNote": "Human adjudication is complete, but the 5 source recordings are defective and remain unchanged. Do not claim audio repair/release approval until replacements are auditioned and recorded."
+}
