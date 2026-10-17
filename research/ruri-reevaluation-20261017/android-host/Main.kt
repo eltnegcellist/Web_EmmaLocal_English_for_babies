@@ -49,19 +49,25 @@ fun main(args: Array<String>) {
    }
    val t=classify(e,th,topics);val i=classify(e,ih,interactions)
    val prediction=SemanticTopicPrediction(if(t.margin<.05)"generic" else t.raw,t.p,t.margin,interaction=i.raw,interactionProbability=i.p,interactionMargin=i.margin)
-   val reply=LiteResponseEngine().respondRuri(text,"",prediction,true)
+   val productionReply=LiteResponseEngine().respondRuri(text,"",prediction,true)
+   val acceptedTopic=t.raw!="generic"&&t.p>=.5&&t.margin>=.05
+   val acceptedInteraction=i.raw!="none"&&i.p>=.5
+   // Keep the historical 50% baseline explicit after live policy adoption.
+   val reply=LiteResponseEngine().respondRuri(text,"",SemanticTopicPrediction(
+    if(acceptedTopic)t.raw else "generic",1.0,1.0,
+    interaction=if(acceptedInteraction)i.raw else "none",interactionProbability=1.0),true)
    val webIds=item.getJSONArray("tokenIds");val tokensMatch=ids.size==webIds.length()&&ids.indices.all{ids[it]==webIds.getLong(it)}
    val record=JSONObject().put("id",item.getString("id")).put("text",text).put("tokenIdsMatch",tokensMatch)
     .put("topic",t.json()).put("interaction",i.json()).put("route",reply.scene).put("english",reply.english).put("routingReason",reply.routingReason)
+    .put("productionRoute",productionReply.scene).put("productionEnglish",productionReply.english).put("productionRoutingReason",productionReply.routingReason)
    // Research projection only: neither live Android acceptance nor heads change.
    // The current axes must both abstain; do not invent an Interaction on rescue.
-   val acceptedTopic=t.raw!="generic"&&t.p>=.5&&t.margin>=.05
-   val acceptedInteraction=i.raw!="none"&&i.p>=.5
    for(threshold in listOf(.45,.4,.3))for(rescueMargin in listOf(.05,.10)){
     val rescue=!acceptedTopic&&!acceptedInteraction&&t.raw!="generic"&&t.p>=threshold&&t.margin>=rescueMargin
     val selected=if(rescue)LiteResponseEngine().respondRuri(text,"",SemanticTopicPrediction(t.raw,1.0,1.0,interaction="none"),true) else reply
     val field="researchTopicRescue${(threshold*100).toInt()}"+(if(rescueMargin==.10)"Margin10" else "")
     record.put(field,JSONObject().put("rescued",rescue).put("route",selected.scene).put("english",selected.english))
+    if(threshold==.3&&rescueMargin==.10)check(selected.scene==productionReply.scene&&selected.english==productionReply.english){"Adopted Android route differs from approved policy: $text"}
    }
    rows.put(record)
   }

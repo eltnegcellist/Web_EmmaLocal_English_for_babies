@@ -1,5 +1,7 @@
 # 取りこぼしを優先した閾値再検証
 
+2026-10-18、ユーザーが30%限定救済を採用し、[製品コードへの実装・検証](../../docs/interaction/RURI_TOPIC_RESCUE_POLICY_20261018.md)を追加した。以下は採用決定前の研究経緯。
+
 追加の[30%・差10pt限定救済の追試](../../docs/research/RURI_GUARDED30_REEVALUATION_20261017.md)も参照。ユーザー提案を追加の試用候補として比較した。通常群で40%よりさらに拾えるが、主語違い等の追加リスクがあり、本番採用は未確定。
 
 [日本語報告書](../../docs/research/RURI_RECALL_PRIORITY_REEVALUATION_20261017.md)

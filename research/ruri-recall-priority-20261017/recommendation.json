@@ -29,5 +29,16 @@
     "additional_undecidable_vs_guarded40": 1,
     "human_approved": false,
     "production_changed": false
+  },
+  "adoption_decision": {
+    "date": "2026-10-18",
+    "policy": "C_topic0.3_M0.1",
+    "selected_by_user": true,
+    "implementation": "Web and Android reply routing",
+    "main_merged": false,
+    "deployed": false,
+    "human_meaning_reviews_approved": false,
+    "known_semantic_errors_resolved": false,
+    "report": "docs/interaction/RURI_TOPIC_RESCUE_POLICY_20261018.md"
   }
 }

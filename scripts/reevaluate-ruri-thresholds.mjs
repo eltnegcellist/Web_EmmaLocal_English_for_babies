@@ -12,6 +12,7 @@ import {selectRuriAxes} from '../src/interaction/ruri-routing.js';
 import {LiteResponseEngine} from '../src/lite-response-engine.js';
 import {Tokenizer,ort} from '../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/runtime.mjs';
 import {interactionLabels,baselinePolicy,policies,decide,responseFor,summarize,fitTopicThresholds} from './ruri-reevaluation-lib.mjs';
+import {guarded30Policy} from './ruri-recall-priority-lib.mjs';
 const root=fileURLToPath(new URL('..',import.meta.url)),dir=join(root,'research/ruri-reevaluation-20261017');
 const asset=join(root,'semantic-assets/ruri70-int8-bd500193'),runtime=join(root,'semantic-assets/runtime-ort1.30.0-tokenizers0.2.0');
 const json=async f=>JSON.parse(await readFile(f,'utf8')),hash=b=>createHash('sha256').update(b).digest('hex');
@@ -42,9 +43,9 @@ if(process.argv.includes('--refresh')||cache?.key!==cacheKey){
 }
 const scored=inputs.map(x=>({...x,scores:classifyEmbedding(cache.embeddings[x.text].embedding,heads,cfg.topic_thresholds)}));
 const evaluation=scored.filter(x=>x.source!=='head_training'),newRows=evaluation.filter(x=>x.source==='new150');
-// Production route and first English must agree exactly at the baseline.
-for(const x of evaluation){const axes=selectRuriAxes(x.scores.topic,x.scores.interaction,true),ours=decide(x.scores,baselinePolicy);
- if(JSON.stringify(axes)!==JSON.stringify(ours))throw Error('Baseline policy mismatch '+x.id);
+// Verify the adopted live policy; retain the historic 50% comparison baseline.
+for(const x of evaluation){const axes=selectRuriAxes(x.scores.topic,x.scores.interaction,true),ours=decide(x.scores,guarded30Policy);
+ if(JSON.stringify(axes)!==JSON.stringify(ours))throw Error('Adopted policy mismatch '+x.id);
  const real=new LiteResponseEngine().respondRuri(x.text,'',x.scores.topic,x.scores.interaction,true),adapted=responseFor(ours,x.text);
  if(real.english!==adapted.english||real.scene!==adapted.scene)throw Error('Downstream projection mismatch '+x.id);
 }

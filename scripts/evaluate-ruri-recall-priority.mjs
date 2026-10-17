@@ -13,7 +13,7 @@ import {selectRuriAxes} from '../src/interaction/ruri-routing.js';
 import {LiteResponseEngine} from '../src/lite-response-engine.js';
 import {Tokenizer,ort} from '../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/runtime.mjs';
 import {interactionLabels} from './ruri-reevaluation-lib.mjs';
-import {recallPolicies,recallDecision,responseFor,retrievalMetrics,englishMetrics,ordinaryWeights,expectedLoss,breakEvenAbsence,currentId} from './ruri-recall-priority-lib.mjs';
+import {recallPolicies,guarded30Policy,recallDecision,responseFor,retrievalMetrics,englishMetrics,ordinaryWeights,expectedLoss,breakEvenAbsence,currentId} from './ruri-recall-priority-lib.mjs';
 const root=fileURLToPath(new URL('..',import.meta.url)),dir=join(root,'research/ruri-recall-priority-20261017'),asset=join(root,'semantic-assets/ruri70-int8-bd500193'),runtime=join(root,'semantic-assets/runtime-ort1.30.0-tokenizers0.2.0');
 const json=async p=>JSON.parse(await readFile(p,'utf8')),hash=b=>createHash('sha256').update(b).digest('hex');
 const gitRevision=ref=>{try{return execFileSync('git',['rev-parse','--verify',ref],{cwd:root,encoding:'utf8',stdio:['ignore','pipe','ignore']}).trim();}catch{return null;}};
@@ -41,7 +41,9 @@ if(cache?.key!==key||process.argv.includes('--refresh')){
 const policies=recallPolicies(),rows=dataset.cases.map(x=>({...x,scores:classifyEmbedding(cache.embeddings[x.id].embedding,heads,cfg.topic_thresholds)}));
 const base=policies.find(p=>p.id===currentId);
 for(const x of rows){
- const axes=selectRuriAxes(x.scores.topic,x.scores.interaction,true),ours=recallDecision(x.scores,base),r=new LiteResponseEngine().respondRuri(x.text,'',x.scores.topic,x.scores.interaction,true);
+ // Historical comparisons keep their 50% baseline; live routing now uses the
+ // user's adopted 30%/10pt guarded rescue, verified independently here.
+ const axes=selectRuriAxes(x.scores.topic,x.scores.interaction,true),ours=recallDecision(x.scores,guarded30Policy),r=new LiteResponseEngine().respondRuri(x.text,'',x.scores.topic,x.scores.interaction,true);
  if(JSON.stringify(axes)!==JSON.stringify(ours)||r.english!==responseFor(ours,x.text).english)throw Error('Baseline projection differs '+x.id);
 }
 const strata=['ordinary','routine_context','plausible_absence'];

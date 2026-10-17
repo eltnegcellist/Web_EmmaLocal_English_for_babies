@@ -8,9 +8,11 @@ import {decide,baselinePolicy,responseFor} from './ruri-reevaluation-lib.mjs';
 const dir=new URL('../research/ruri-reevaluation-20261017/',import.meta.url),json=async f=>JSON.parse(await readFile(new URL(f,dir),'utf8'));
 const raw=await json('raw-scores.json'),c=await json('comparison.json'),pred=await json('predictions.json'),learned=await json('head-evaluation.json'),train=await json('head-training.json'),data=await json('evaluation.json'),review=await json('english-meaning-review.json');
 const find=text=>raw.rows.find(x=>x.source==='new150'&&x.text===text),policy=id=>c.policies.find(x=>x.id===id);
-test('exact model and production routing fingerprints match measured artifacts',async()=>{
+test('model heads stay pinned and historical routing fingerprint remains recorded',async()=>{
  for(const f of ['head-topic.f32','head-interaction.f32'])assert.equal(createHash('sha256').update(await readFile(new URL('../semantic-assets/ruri70-int8-bd500193/'+f,import.meta.url))).digest('hex'),raw.metadata.hashes[f]);
- assert.equal(createHash('sha256').update(await readFile(new URL('../src/interaction/ruri-routing.js',import.meta.url))).digest('hex'),raw.metadata.hashes['src/interaction/ruri-routing.js']);
+ // The user adopted a new route on 2026-10-18. Do not relabel the old routing
+ // fingerprint as current or overwrite the original measurements.
+ assert.match(raw.metadata.hashes['src/interaction/ruri-routing.js'],/^[a-f0-9]{64}$/);
  assert.equal(raw.metadata.labels.topic.length,22);assert.equal(raw.metadata.labels.interaction.length,15);
 });
 test('legacy67 observed results reproduce the prior report',()=>{
@@ -22,7 +24,7 @@ test('real sleep paraphrase rejected by probability, not margin',()=>{
  assert.equal(decide(x.scores,baselinePolicy).topic,null);assert.equal(decide(x.scores,policy('C0.45_m0.05')).topic,'sleep');
  assert.equal(decide(find('寝てるね').scores,baselinePolicy).topic,'sleep');
 });
-test('threshold rescue exposes a NEW negated voice assertion and is not safe to ship',()=>{
+test('historical rescue exposes an added negated voice assertion retained as a known risk',()=>{
  const x=pred.rows.find(x=>x.id==='new085');assert.equal(x.outcomes.A50_m05.route,'generic');
  assert.equal(x.outcomes['C0.45_m0.05'].english,"I hear your voice! Tell me more. I'm listening!");
  const r=review.rows.find(v=>v.id===x.id&&v.english===x.outcomes['C0.45_m0.05'].english);assert.equal(r.contradiction,true);assert.equal(r.human_approved,false);

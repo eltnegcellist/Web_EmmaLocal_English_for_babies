@@ -66,6 +66,25 @@ assert.equal(answer('unknown',null,null).scene,'generic');
 assert.equal(answer('ミルク',topic('milk',0.01),interaction('affection',0.2)).scene,'generic');
 assert.equal(answer('ミルク',topic('milk',0.01),interaction('affection')).scene,'interaction:affection');
 assert.equal(answer('かわいいね',topic('generic'),interaction('affection',0.1)).scene,'generic');
+// Adopted 30%/10pt rescue runs only after both normal axes abstain.
+const weakTopic=(probability=.3,margin=.1)=>({id:'sleep',rawId:'sleep',probability,margin});
+assert.deepEqual(selectRuriAxes(weakTopic(),interaction('none')),{topic:'sleep',interaction:null});
+assert.equal(answer('arbitrary text',weakTopic(.45184531619496915,.3236204758600866),interaction('none')).scene,'sleep');
+assert.equal(answer('arbitrary text',weakTopic(.299999),interaction('none')).scene,'generic');
+assert.equal(answer('arbitrary text',weakTopic(.4,.099999),interaction('none')).scene,'generic');
+assert.equal(answer('arbitrary text',weakTopic(.5,.05),interaction('none')).scene,'sleep','normal 50% still uses 5pt');
+assert.equal(answer('arbitrary text',weakTopic(),interaction('affection',.5)).scene,'interaction:affection');
+assert.equal(answer('arbitrary text',weakTopic(),interaction('affection',.499999)).scene,'sleep');
+assert.equal(answer('arbitrary text',{...weakTopic(),id:'generic',rawId:'generic'},interaction('none')).scene,'generic');
+assert.equal(answer('arbitrary text',weakTopic(),null).scene,'generic','missing Interaction head is not a generic prediction');
+assert.equal(answer('arbitrary text',weakTopic(),interaction('none'),false).scene,'generic','disabled Interaction cannot enable rescue');
+assert.equal(answer('arbitrary text',{...weakTopic(),probability:NaN},interaction('none')).scene,'generic');
+assert.equal(answer('arbitrary text',weakTopic(),{id:'none',probability:NaN}).scene,'generic');
+const rescuedAudit=describeRuriTurn({prediction:{topic:weakTopic(),interaction:interaction('none')},
+ response:answer('arbitrary text',weakTopic(),interaction('none')),at:'test'});
+assert.equal(rescuedAudit.topicStatus,'rescued');
+assert.equal(rescuedAudit.reason,'topic_rescued_both_generic');
+assert.equal(rescuedAudit.topicProbability,.3,'diagnostics retain the real score');
 // A Ruri-only route does not hold past topic when Ruri is unavailable on next turn.
 const engine=new LiteResponseEngine();
 assert.equal(engine.respondRuri('ミルク', '',topic('milk'),interaction('none')).scene,'milk');

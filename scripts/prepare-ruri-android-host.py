@@ -37,5 +37,7 @@ dependencies {
 application { mainClass.set("com.eltnegcellist.emma.ai.MainKt") }
 tasks.test { testLogging { events("passed", "failed", "skipped") } }
 ''')
-(root / 'research/ruri-reevaluation-20261017/android-source-hashes.json').write_text(json.dumps(hashes, indent=2)+'\n')
+hash_output = pathlib.Path(sys.argv[2]).resolve() if len(sys.argv) > 2 else root / 'research/ruri-reevaluation-20261017/android-source-hashes.json'
+hash_output.parent.mkdir(parents=True, exist_ok=True)
+hash_output.write_text(json.dumps(hashes, indent=2)+'\n')
 print(target)
