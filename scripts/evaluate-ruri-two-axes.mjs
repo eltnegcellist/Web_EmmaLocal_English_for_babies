@@ -30,7 +30,9 @@ const expectedSmokeRoutes = new Map([
  ['絵本読もうか','combined:book:invitation'],
  ['泣いてるね、大丈夫だよ','combined:cry:reassurance'],
  ['できなかったね','generic'],
- ['眠くないね','generic'],
+ // Approved 30%/10pt rescue now admits sleep here. This is a route contract,
+ // NOT a human judgment that a sleep response to this utterance is correct.
+ ['眠くないね','sleep'],
  ['もう一回','interaction:repeat']
 ]);
 const cases=[
@@ -58,7 +60,8 @@ const expectedRoutes=new Map([
   ['泣いてるね、大丈夫だよ','combined:cry:reassurance'],
   ['まだ終わってないね','generic'],
   ['できなかったね','generic'],
-  ['眠くないね','generic'],
+  ['眠くないね','sleep'],
+  ['おててを動かしたね','hands'],
   ['笑ったね','smile'],
   ['眠いかな','sleep']
 ]);
