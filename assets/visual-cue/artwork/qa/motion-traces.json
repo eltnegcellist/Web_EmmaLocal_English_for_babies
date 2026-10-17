@@ -17969,5 +17969,2900 @@
         "panelClosingBelow": 355.39721794278796
       }
     ]
+  },
+  "hug-arms": {
+    "movingParts": [
+      "left forearm and hand",
+      "right forearm and hand"
+    ],
+    "stationaryRegion": [
+      230,
+      125,
+      280,
+      166
+    ],
+    "traces": [
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 35.0,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 35.07596123493896,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 35.30153689607046,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 35.66987298107781,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 36.16977778440511,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 36.786061951567305,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 37.5,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 38.28989928337165,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 39.131759111665346,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 40.0,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 40.868240888334654,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 41.71010071662835,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 42.5,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 43.213938048432695,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 43.83022221559489,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 44.3301270189222,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 44.69846310392954,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 44.92403876506104,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 45.0,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 44.92403876506104,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 44.69846310392954,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 44.33012701892219,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 43.83022221559489,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 43.213938048432695,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 42.5,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 41.71010071662835,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 40.868240888334654,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 40.0,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 39.13175911166535,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 38.28989928337165,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 37.5,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 36.786061951567305,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 36.16977778440511,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 35.66987298107781,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 35.30153689607046,
+        "blanketStationary": true
+      },
+      {
+        "leftCuff": [
+          118,
+          407
+        ],
+        "rightCuff": [
+          394,
+          382
+        ],
+        "armAngle": 35.07596123493896,
+        "blanketStationary": true
+      }
+    ]
+  },
+  "hand-squeeze-v3": {
+    "movingParts": [
+      "four curved fingers",
+      "soft ball compression"
+    ],
+    "stationaryRegion": [
+      398,
+      355,
+      416,
+      380
+    ],
+    "traces": [
+      {
+        "ballWidth": 155,
+        "ballHeight": 155,
+        "fingerAngle": 0.0,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 155,
+        "ballHeight": 155,
+        "fingerAngle": 0.09115348192675188,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 155,
+        "ballHeight": 154,
+        "fingerAngle": 0.36184427528454943,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 156,
+        "ballHeight": 153,
+        "fingerAngle": 0.8038475772933678,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 156,
+        "ballHeight": 152,
+        "fingerAngle": 1.403733341286132,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 157,
+        "ballHeight": 151,
+        "fingerAngle": 2.1432743418807636,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 158,
+        "ballHeight": 149,
+        "fingerAngle": 2.999999999999999,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 158,
+        "ballHeight": 147,
+        "fingerAngle": 3.9478791400459867,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 159,
+        "ballHeight": 145,
+        "fingerAngle": 4.958110933998418,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 160,
+        "ballHeight": 143,
+        "fingerAngle": 5.999999999999999,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 161,
+        "ballHeight": 141,
+        "fingerAngle": 7.041889066001582,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 162,
+        "ballHeight": 139,
+        "fingerAngle": 8.052120859954012,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 162,
+        "ballHeight": 137,
+        "fingerAngle": 8.999999999999998,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 163,
+        "ballHeight": 135,
+        "fingerAngle": 9.856725658119235,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 164,
+        "ballHeight": 134,
+        "fingerAngle": 10.596266658713867,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 164,
+        "ballHeight": 133,
+        "fingerAngle": 11.196152422706632,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 165,
+        "ballHeight": 132,
+        "fingerAngle": 11.63815572471545,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 165,
+        "ballHeight": 131,
+        "fingerAngle": 11.908846518073249,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 165,
+        "ballHeight": 131,
+        "fingerAngle": 12.0,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 165,
+        "ballHeight": 131,
+        "fingerAngle": 11.908846518073249,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 165,
+        "ballHeight": 132,
+        "fingerAngle": 11.63815572471545,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 164,
+        "ballHeight": 133,
+        "fingerAngle": 11.196152422706632,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 164,
+        "ballHeight": 134,
+        "fingerAngle": 10.596266658713867,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 163,
+        "ballHeight": 135,
+        "fingerAngle": 9.856725658119236,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 162,
+        "ballHeight": 137,
+        "fingerAngle": 9.000000000000004,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 162,
+        "ballHeight": 139,
+        "fingerAngle": 8.052120859954016,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 161,
+        "ballHeight": 141,
+        "fingerAngle": 7.041889066001582,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 160,
+        "ballHeight": 143,
+        "fingerAngle": 6.000000000000002,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 159,
+        "ballHeight": 145,
+        "fingerAngle": 4.95811093399842,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 158,
+        "ballHeight": 147,
+        "fingerAngle": 3.947879140045986,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 158,
+        "ballHeight": 149,
+        "fingerAngle": 2.999999999999999,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 157,
+        "ballHeight": 151,
+        "fingerAngle": 2.1432743418807645,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 156,
+        "ballHeight": 152,
+        "fingerAngle": 1.4037333412861333,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 156,
+        "ballHeight": 153,
+        "fingerAngle": 0.8038475772933698,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 155,
+        "ballHeight": 154,
+        "fingerAngle": 0.36184427528455143,
+        "wrist": [
+          410,
+          370
+        ]
+      },
+      {
+        "ballWidth": 155,
+        "ballHeight": 155,
+        "fingerAngle": 0.09115348192675188,
+        "wrist": [
+          410,
+          370
+        ]
+      }
+    ]
+  },
+  "change-clothes": {
+    "movingParts": [
+      "yellow shirt removed",
+      "teal shirt put on"
+    ],
+    "stationaryRegion": [
+      230,
+      418,
+      280,
+      421
+    ],
+    "traces": [
+      {
+        "oldShirt": [
+          256,
+          275
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          255.95075012423302,
+          274.9566483129476
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.00029490943573045627,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          255.2342874407337,
+          274.3259895436399
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.004585105145307115,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          252.30657235557362,
+          271.7488990195768
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.022116333200157903,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          245.1040925785105,
+          265.40899167090447
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.06524495461969763,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          231.70717514401716,
+          253.61649548605104
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.1454660171016937,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          211.08293024041544,
+          235.46222003198247
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.2689644895783506,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          183.7598120711663,
+          211.41133158360145
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.43257597562175876,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          152.29057818808408,
+          183.7108682254393
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.62101450186776,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          121.38988039043778,
+          156.51085279876858
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.8060486204165402,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          97.68254874600902,
+          135.64272254888218
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.9480086901436586,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 1,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 1,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          417.8383281828747,
+          132.5435075276492
+        ],
+        "remove": 1,
+        "putOn": 0.030908214473804128,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          396.06703339511716,
+          151.70746162226214
+        ],
+        "remove": 1,
+        "putOn": 0.16127524913103503,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          364.58391302186044,
+          179.42014841788335
+        ],
+        "remove": 1,
+        "putOn": 0.3497969280128119,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          330.77580590388277,
+          209.1793804319116
+        ],
+        "remove": 1,
+        "putOn": 0.552240683210283,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          300.4846991766216,
+          235.84280970680615
+        ],
+        "remove": 1,
+        "putOn": 0.7336245558286133,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          277.4355155349758,
+          256.1316120740033
+        ],
+        "remove": 1,
+        "putOn": 0.871643619551043,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          263.06740645660807,
+          268.7789895262192
+        ],
+        "remove": 1,
+        "putOn": 0.9576802008586344,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          256.761304057055,
+          274.3298700815145
+        ],
+        "remove": 1,
+        "putOn": 0.9954412930715272,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          256,
+          275
+        ],
+        "remove": 1,
+        "putOn": 1,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          256,
+          275
+        ],
+        "remove": 1,
+        "putOn": 1,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          256,
+          275
+        ],
+        "remove": 1,
+        "putOn": 1,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          256,
+          275
+        ],
+        "remove": 1,
+        "putOn": 1,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          256,
+          275
+        ],
+        "remove": 1,
+        "putOn": 1,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          256,
+          275
+        ],
+        "remove": 1,
+        "putOn": 1,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          256,
+          275
+        ],
+        "remove": 1,
+        "putOn": 1,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          256.761304057055,
+          274.3298700815145
+        ],
+        "remove": 1,
+        "putOn": 0.9954412930715271,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          263.067406456608,
+          268.7789895262193
+        ],
+        "remove": 1,
+        "putOn": 0.9576802008586346,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          277.4355155349758,
+          256.1316120740033
+        ],
+        "remove": 1,
+        "putOn": 0.8716436195510432,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          300.4846991766215,
+          235.84280970680624
+        ],
+        "remove": 1,
+        "putOn": 0.7336245558286137,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          330.77580590388254,
+          209.1793804319118
+        ],
+        "remove": 1,
+        "putOn": 0.5522406832102842,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          364.5839130218602,
+          179.42014841788352
+        ],
+        "remove": 1,
+        "putOn": 0.34979692801281304,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          396.06703339511716,
+          151.70746162226214
+        ],
+        "remove": 1,
+        "putOn": 0.16127524913103503,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          417.8383281828747,
+          132.54350752764924
+        ],
+        "remove": 1,
+        "putOn": 0.030908214473804266,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 1,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          89,
+          128
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 1,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          97.68254874600896,
+          135.64272254888212
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.948008690143659,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          121.38988039043784,
+          156.51085279876864
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.8060486204165399,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          152.29057818808408,
+          183.7108682254393
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.62101450186776,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          183.7598120711663,
+          211.41133158360145
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.43257597562175876,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          211.0829302404154,
+          235.4622200319824
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.26896448957835095,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          231.7071751440171,
+          253.61649548605098
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.145466017101694,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          245.10409257851043,
+          265.4089916709044
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.06524495461969795,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          252.30657235557362,
+          271.74889901957675
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.02211633320015803,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          255.2342874407337,
+          274.3259895436399
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.004585105145307115,
+        "putOn": 0,
+        "torsoStationary": true
+      },
+      {
+        "oldShirt": [
+          255.95075012423302,
+          274.9566483129476
+        ],
+        "newShirt": [
+          423,
+          128
+        ],
+        "remove": 0.00029490943573045627,
+        "putOn": 0,
+        "torsoStationary": true
+      }
+    ]
+  },
+  "dress-sleeves": {
+    "movingParts": [
+      "left hand and forearm",
+      "right hand and forearm"
+    ],
+    "stationaryRegion": [
+      230,
+      185,
+      280,
+      200
+    ],
+    "traces": [
+      {
+        "leftSleeveProgress": 0,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.00029490943573045627,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.004585105145307115,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.022116333200157903,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.06524495461969763,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.1454660171016937,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.2689644895783506,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.43257597562175876,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.62101450186776,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.8060486204165402,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.9480086901436586,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.030908214473804128,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.16127524913103503,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.3497969280128119,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.552240683210283,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.7336245558286133,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.871643619551043,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.9576802008586344,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.9954412930715272,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 1,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 1,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 1,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 1,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 1,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 1,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 1,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.9954412930715271,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.9576802008586346,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.8716436195510432,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.7336245558286137,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.5522406832102842,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.34979692801281304,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.16127524913103503,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0.030908214473804266,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 1,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.948008690143659,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.8060486204165399,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.62101450186776,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.43257597562175876,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.26896448957835095,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.145466017101694,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.06524495461969795,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.02211633320015803,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.004585105145307115,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      },
+      {
+        "leftSleeveProgress": 0.00029490943573045627,
+        "rightSleeveProgress": 0,
+        "shouldersOccluded": true
+      }
+    ]
+  },
+  "change-diaper-exchange": {
+    "movingParts": [
+      "old diaper tabs",
+      "old diaper",
+      "clean diaper",
+      "clean diaper tabs"
+    ],
+    "stationaryRegion": [
+      252,
+      420,
+      268,
+      432
+    ],
+    "traces": [
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.0016673808445427961,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.025180248353466668,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.11522072346341855,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.3124068974816178,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.6102166928251419,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.9087110112930816,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          238.52800000000005,
+          251.42400000000004
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0.10399999999999976,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          188.37860467358286,
+          200.97609636806848
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0.4025083055143877,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          128.08250542767462,
+          140.321091769506
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0.7614136581686035,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          89.8021441308334,
+          101.81287117923122
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0.9892729516021821,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          397.5584916768959,
+          126.59889825359875
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 0.15738993049466715,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          340.57230497609015,
+          183.92428844667123
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 0.4965934227613682,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          284.9582444223638,
+          239.86938507512212
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 0.8276294974859297,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256.72644515248066,
+          268.2692307692307
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 0.9956759217114246,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.01812871518107258
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.28595499391328427
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.6373817262249433
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.8906805869274337
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.9941640818958354
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 1
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 1
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 1
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 1
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 1
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.9941640818958356
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.8906805869274331
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.637381726224945
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.2859549939132851
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256,
+          269
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 1,
+        "fasten": 0.018128715181072848
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          256.72644515248066,
+          268.26923076923083
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 0.9956759217114248,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          284.9582444223636,
+          239.86938507512235
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 0.8276294974859311,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          340.57230497609015,
+          183.92428844667123
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 0.4965934227613682,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          397.5584916768958,
+          126.59889825359883
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 0.15738993049466765,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          88,
+          100
+        ],
+        "newCenter": [
+          424.0,
+          100.0
+        ],
+        "open": 1,
+        "remove": 1,
+        "introduce": 5.470096883466702e-31,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          89.80214413083334,
+          101.81287117923117
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0.9892729516021824,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          128.08250542767442,
+          140.3210917695058
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0.7614136581686046,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          188.37860467358297,
+          200.97609636806857
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0.4025083055143871,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          238.52800000000005,
+          251.42400000000004
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0.10399999999999976,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 1,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.9087110112930822,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.6102166928251429,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.3124068974816192,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.11522072346341918,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.025180248353466668,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      },
+      {
+        "oldCenter": [
+          256,
+          269
+        ],
+        "newCenter": [
+          424,
+          100
+        ],
+        "open": 0.0016673808445427961,
+        "remove": 0,
+        "introduce": 0,
+        "fasten": 0
+      }
+    ]
+  },
+  "wake-quilt": {
+    "movingParts": [
+      "quilt folding to bed foot",
+      "morning sun"
+    ],
+    "stationaryRegion": [
+      194,
+      191,
+      245,
+      213
+    ],
+    "traces": [
+      {
+        "quiltTop": 248,
+        "quiltFoot": 416,
+        "sunY": 147.0,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 249,
+        "quiltFoot": 416,
+        "sunY": 146.25557989759818,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 250,
+        "quiltFoot": 416,
+        "sunY": 144.0449384185095,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 253,
+        "quiltFoot": 416,
+        "sunY": 140.4352447854375,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 257,
+        "quiltFoot": 416,
+        "sunY": 135.53617771282993,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 262,
+        "quiltFoot": 416,
+        "sunY": 129.49659287464044,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 267,
+        "quiltFoot": 416,
+        "sunY": 122.5,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 273,
+        "quiltFoot": 416,
+        "sunY": 114.75898702295777,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 279,
+        "quiltFoot": 416,
+        "sunY": 106.50876070567959,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 286,
+        "quiltFoot": 416,
+        "sunY": 98.0,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 292,
+        "quiltFoot": 416,
+        "sunY": 89.49123929432042,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 299,
+        "quiltFoot": 416,
+        "sunY": 81.24101297704223,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 305,
+        "quiltFoot": 416,
+        "sunY": 73.50000000000001,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 310,
+        "quiltFoot": 416,
+        "sunY": 66.50340712535957,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 315,
+        "quiltFoot": 416,
+        "sunY": 60.46382228717009,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 319,
+        "quiltFoot": 416,
+        "sunY": 55.564755214562496,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 321,
+        "quiltFoot": 416,
+        "sunY": 51.95506158149048,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 323,
+        "quiltFoot": 416,
+        "sunY": 49.744420102401804,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 324,
+        "quiltFoot": 416,
+        "sunY": 49.0,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 323,
+        "quiltFoot": 416,
+        "sunY": 49.744420102401804,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 321,
+        "quiltFoot": 416,
+        "sunY": 51.95506158149048,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 319,
+        "quiltFoot": 416,
+        "sunY": 55.56475521456251,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 315,
+        "quiltFoot": 416,
+        "sunY": 60.46382228717009,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 310,
+        "quiltFoot": 416,
+        "sunY": 66.50340712535957,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 305,
+        "quiltFoot": 416,
+        "sunY": 73.49999999999997,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 299,
+        "quiltFoot": 416,
+        "sunY": 81.2410129770422,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 292,
+        "quiltFoot": 416,
+        "sunY": 89.49123929432042,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 286,
+        "quiltFoot": 416,
+        "sunY": 97.99999999999999,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 279,
+        "quiltFoot": 416,
+        "sunY": 106.50876070567958,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 273,
+        "quiltFoot": 416,
+        "sunY": 114.75898702295778,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 267,
+        "quiltFoot": 416,
+        "sunY": 122.5,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 262,
+        "quiltFoot": 416,
+        "sunY": 129.4965928746404,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 257,
+        "quiltFoot": 416,
+        "sunY": 135.5361777128299,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 253,
+        "quiltFoot": 416,
+        "sunY": 140.43524478543748,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 250,
+        "quiltFoot": 416,
+        "sunY": 144.0449384185095,
+        "mattressStationary": true
+      },
+      {
+        "quiltTop": 249,
+        "quiltFoot": 416,
+        "sunY": 146.25557989759818,
+        "mattressStationary": true
+      }
+    ]
+  },
+  "care-burp": {
+    "movingParts": [
+      "hand rests and pats tummy"
+    ],
+    "stationaryRegion": [
+      148,
+      383,
+      189,
+      400
+    ],
+    "traces": [
+      {
+        "handAngle": 0.0,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 0.36184427528454943,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 1.403733341286132,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 2.999999999999999,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 4.958110933998418,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 7.041889066001582,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 8.999999999999998,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 10.596266658713867,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 11.63815572471545,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 12.0,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 11.63815572471545,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 10.596266658713867,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 9.000000000000004,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 7.041889066001582,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 4.95811093399842,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 2.999999999999999,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 1.4037333412861333,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 0.36184427528455143,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 0.0,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 0.3618442752845501,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 1.4037333412861313,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 3.0000000000000013,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 4.958110933998418,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 7.041889066001579,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 8.999999999999995,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 10.596266658713864,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 11.63815572471545,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 12.0,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 11.638155724715451,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 10.596266658713866,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 8.999999999999998,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 7.041889066001583,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 4.958110933998421,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 3.0000000000000053,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 1.4037333412861372,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      },
+      {
+        "handAngle": 0.3618442752845501,
+        "forearmRoot": [
+          383,
+          211
+        ],
+        "tummyStationary": true
+      }
+    ]
   }
 }

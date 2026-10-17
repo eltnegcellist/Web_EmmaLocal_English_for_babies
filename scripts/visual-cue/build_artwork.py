@@ -64,11 +64,12 @@ def rotate(layer,angle,pivot):return layer.rotate(angle,Image.Resampling.BICUBIC
 def slide(layer,x=0,y=0):return layer.transform(layer.size,Image.Transform.AFFINE,(1,0,-x,0,1,-y),Image.Resampling.BICUBIC)
 def q(t):return (1-math.cos(2*math.pi*t))/2
 
-ONLY_NEW='--only-new' in sys.argv
+ONLY_FINAL='--only-final' in sys.argv
+ONLY_NEW='--only-new' in sys.argv or ONLY_FINAL
 SAMPLE_ONLY=os.getenv('VISUAL_CUE_SAMPLE_ONLY')=='1'
 currentPass=1
 previous=json.loads((OUT/'manifest.json').read_text()) if ONLY_NEW else None
-assets=[a for a in previous['assets'] if a.get('productionPass',1)==1] if previous else []
+assets=[a for a in previous['assets'] if a.get('productionPass',1)<(3 if ONLY_FINAL else 2)] if previous else []
 rigs=json.loads((OUT/'qa/motion-traces.json').read_text()) if ONLY_NEW else {}
 rigs={k:v for k,v in rigs.items() if any(a['id']==k for a in assets)}
 def still(key,primitive,label,im,source,cues=None,origin='generated',note=''):
@@ -257,31 +258,39 @@ if not ONLY_NEW:
 
 
 currentPass=2
-exec(compile((ROOT/'scripts/visual-cue/additional_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/additional_artwork.py'),'exec'),globals())
+if not ONLY_FINAL:exec(compile((ROOT/'scripts/visual-cue/additional_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/additional_artwork.py'),'exec'),globals())
+currentPass=3
+exec(compile((ROOT/'scripts/visual-cue/final_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/final_artwork.py'),'exec'),globals())
+archived=(previous.get('archivedAssets',[]) if previous else [])+[a for a in assets if a['id'] in ['hand-squeeze','change-diaper']]
+archived=list({a['id']:a for a in archived}.values())
+assets=[a for a in assets if a not in archived]
+for a in assets:
+    if a['id']=='change-diaper-v2':a['note']='留め具の開閉variant。交換の全過程はchange-diaper-exchangeで別候補。'
+    if a['id']=='change-zipper':a['note']='留め具操作variant。服の交換と袖通しはchange-clothes / dress-sleevesで別候補。'
 if SAMPLE_ONLY:
     print('Sample keyframes saved; manifest and videos unchanged.');raise SystemExit(0)
 
 # All 31 concepts and all 58 Cue IDs are represented, without fictitious assets.
 plan=json.loads((ROOT/'shared/visual-cue-asset-plan.json').read_text())
 missing={
- 'scene.tummy':'赤ちゃんの体を描かずに「おなか」を一義的に示す物体が未確定。抽象記号で代用せず構図レビュー待ち。',
- 'scene.family':'クマ＋ハートは意味不明瞭で再制作対象。人物なしの家族・抱っこ構図は未確定。',
- 'motion.hand':'拍手・手振りに加え、開閉・数える・タップ・指の独立動作を追加。握るは遮蔽を審査中。',
- 'motion.change':'おむつの接合部改善、服のファスナー操作、手を拭くvariantを追加。交換・着替え全体、げっぷは未完成。',
- 'motion.hug':'ハート点滅・クマの上下動は不採用。人物描写が必要なため指示書に従いレビュー待ち。'}
+ 'scene.tummy':'年齢を特定しないおなかの部分図。採用審査待ち。',
+ 'scene.family':'養育者の手と毛布の候補。家族関係や赤ちゃんの描写はなく、意味適合を審査。',
+ 'motion.hand':'拍手・手振り・開閉・数える・握る・タップ・指の独立動作を制作。',
+ 'motion.change':'服の交換・袖通し・おむつ交換・拭く・起床・おなかのケアを制作。個別の意味適合は要審査。',
+ 'motion.hug':'両腕が実際に毛布を包む候補。抱っこの意味適合は要目視審査。'}
 concepts=[]
 for p in plan['primitives']:
     ids=[x['id'] for x in assets if x['primitive']==p['id']]
     if p['kind']=='avatar-state':
         reuse={'emma.neutral':('assets/emma-face/emma-face-idle-open.svg','待機表情は再利用候補。'), 'emma.calm':('assets/emma-face/emma-face-idle-closed.svg','目閉じは既存。安心・落ち着きの意味一致は要審査。')}
-        f,reason=reuse.get(p['id'],(None,'既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。'))
-        concepts.append(dict(primitive=p['id'],kind=p['kind'],assetIds=[],status='needs-review',readiness='evaluation-only',existingFile=f,reason=reason))
-    else:concepts.append(dict(primitive=p['id'],kind=p['kind'],assetIds=ids,status='needs-review',readiness=('candidate' if any(a['id'] in ids and a['readiness']=='candidate' for a in assets) else 'draft') if ids else 'missing',reason=missing.get(p['id'],'採用審査前。variant単位の未完はcueCoverageを参照。')))
+        f,reason=reuse.get(p['id'],(None,'既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。専用表情が必要で、今回の流用評価では不可（新表情制作は対象外）。'))
+        concepts.append(dict(primitive=p['id'],kind=p['kind'],assetIds=[],status='needs-review',readiness='evaluation-complete',reuseAssessment='conditional' if f else 'unavailable',existingFile=f,reason=reason))
+    else:concepts.append(dict(primitive=p['id'],kind=p['kind'],assetIds=ids,status='needs-review',readiness=('candidate' if any(a['id'] in ids and a['readiness']=='candidate' for a in assets) else 'draft') if ids else 'missing',reason=missing.get(p['id'],'採用審査前。詳細と意味の審査範囲はcueCoverageを参照。')))
 
 cueFiles={
-'action.open-close':['hand-open-close'],'action.count':['hand-count'],'action.wiggle':['hand-wiggle'],'action.squeeze':['hand-squeeze'],'action.tap':['hand-tap'],'action.wipe':['care-wipe'],'action.dress':['change-zipper'],'action.clap':['hand-clap'],'action.wave':['hand-wave'],'action.kick':['kick'],'action.read':['page'],'action.turn-page':['page'],
+'action.open-close':['hand-open-close'],'action.count':['hand-count'],'action.wiggle':['hand-wiggle'],'action.squeeze':['hand-squeeze-v3'],'action.tap':['hand-tap'],'action.wipe':['care-wipe'],'action.dress':['change-clothes','dress-sleeves','change-zipper'],'action.clap':['hand-clap'],'action.wave':['hand-wave'],'action.kick':['kick'],'action.read':['page'],'action.turn-page':['page'],
 'action.sip':['sip'],'action.eat':['spoon'],'action.sing':['notes'],'action.peekaboo':['peekaboo'],'action.splash':['water-splash'],'action.wash':['water-shower'],
-'action.sleep':['sleep'],'subject.bath':['bath'],'subject.book':['book'],'subject.clothes':['clothes'],'subject.diaper':['diaper'],'subject.drink':['milk'],'subject.feet':['feet'],
+'action.burp':['care-burp'],'action.wake':['wake-quilt'],'action.hug':['hug-arms'],'subject.tummy':['tummy'],'action.sleep':['sleep'],'subject.bath':['bath'],'subject.book':['book'],'subject.clothes':['clothes'],'subject.diaper':['diaper'],'subject.drink':['milk'],'subject.feet':['feet'],
 'subject.food':['meal'],'subject.hands':['hands'],'subject.milk':['milk'],'subject.music':['music'],'subject.outside':['outdoor'],'subject.rain':['rain','water-rain'],'subject.sun':['sun'],'subject.toy':['toy']}
 unmade={
 'action.burp':'げっぷ動作は未制作。おむつの動きを流用不可。','action.dress':'服は静止のみ。着替え動作未制作。','action.wipe':'拭く部品と接触対象が未確定。',
@@ -293,10 +302,10 @@ for b in plan['bindings']:
     ready='candidate' if ids and all(next(x for x in assets if x['id']==i)['readiness']=='candidate' for i in ids) else 'draft' if ids else 'missing'
     reason=unmade.get(b['cueId'],'Emma状態の評価のみ。アプリ統合・意味承認は未実施。' if not ids else '素材候補の審査待ち。914英文の割当品質を保証しない。')
     if ids and b['cueId'] in unmade:reason=next(a for a in assets if a['id']==ids[0]).get('note') or '追加制作した動作variant。採用審査待ち。'
-    if b['cueId']=='action.dress':ready='draft';reason='前開き服のファスナー操作variantのみ。服を身体に着せる全過程は未制作。'
-    if b['cueId']=='action.peekaboo':reason='玩具を布で隠すvariant。計画のscene.familyは未制作、家族表現を代替承認したものではない。'
+    if not ids and all(p.startswith('emma.') for p in b['primitives']):ready='evaluation-complete';reason='既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。'
+    if b['cueId']=='action.peekaboo':reason='玩具を布で隠すvariant。人物のいない部分図として採用審査待ち。'
     coverage.append(dict(cueId=b['cueId'],primitives=b['primitives'],assetIds=ids,status='needs-review',readiness=ready,reason=reason))
-manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='c04edf8',productionPass=2,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
+manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='ff14407',productionPass=3,archivedAssets=archived,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
 (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
 (OUT/'qa/motion-traces.json').write_text(json.dumps(rigs,ensure_ascii=False,indent=2)+'\n')
 print(f'Built {sum(x["kind"]=="illustration" for x in assets)} stills, {sum(x["kind"]=="animation" for x in assets)} loops; {len(concepts)} concepts / {len(coverage)} Cues. Approval remains pending.')

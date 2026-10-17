@@ -19,11 +19,12 @@ with (OUT/'inventory.csv').open('w') as f:
 summary=dict(stills=sum(a['kind']=='illustration' for a in m['assets']),loops=sum(a['kind']=='animation' for a in m['assets']),readiness=dict(collections.Counter(a['readiness'] for a in m['assets'])),coveredIllustrationConcepts=sum(c['kind']=='illustration' and bool(c['assetIds']) for c in m['concepts']),animationConceptsWithArtifacts=sum(c['kind']=='animation' and bool(c['assetIds']) for c in m['concepts']),cueReadiness=dict(collections.Counter(c['readiness'] for c in m['cueCoverage'])),animationConceptsWithCandidates=sum(c['kind']=='animation' and c['readiness']=='candidate' for c in m['concepts']),newAccepted=0,technicalPass=q['technicalPassCount'],technicalTotal=q['assetCount'],sizeExceptions=[r['id'] for r in q['results'] if r['bytes']>r['sizeTargetBytes']])
 (OUT/'qa/summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(json.dumps(summary,ensure_ascii=False,indent=2))
 
-added=[a for a in m['assets'] if a.get('productionPass')==2 and a['animation']]
-if added:
- sheet=Image.new('RGB',(1100,len(added)*250),'#f6f3eb');draw=ImageDraw.Draw(sheet)
- for row,a in enumerate(added):
-  for col,k in enumerate([0,5,13,18,27]):
-   frame=Image.open(OUT/'qa/keyframes'/f'{a["id"]}-{k:02d}.png');frame.thumbnail((220,220))
-   sheet.paste(frame,(col*220,row*250),frame);draw.text((col*220+3,row*250+222),f'{a["id"]} {k}',fill='black')
- sheet.save(OUT/'qa/additional-keyframes.jpg',quality=90)
+for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg')]:
+ added=[a for a in m['assets'] if a.get('productionPass')==pass_id and a['animation']]
+ if added:
+  sheet=Image.new('RGB',(1100,len(added)*250),'#f6f3eb');draw=ImageDraw.Draw(sheet)
+  for row,a in enumerate(added):
+   for col,k in enumerate([0,5,13,18,27]):
+    frame=Image.open(OUT/'qa/keyframes'/f'{a["id"]}-{k:02d}.png');frame.thumbnail((220,220))
+    sheet.paste(frame,(col*220,row*250),frame);draw.text((col*220+3,row*250+222),f'{a["id"]} {k}',fill='black')
+  sheet.save(OUT/'qa'/filename,quality=90)

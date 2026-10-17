@@ -111,6 +111,48 @@ if any(a.get('productionPass')==2 for a in m['assets']):
   gapWidths.append(int(lining[205:307].sum()))
  invariants.append(dict(name='zipper-closes-visible-lining-gap',pass_=max(gapWidths)-min(gapWidths)>35,liningWidthRange=[min(gapWidths),max(gapWidths)]))
 
+# Final-pass checks use decoded pixels, independent of pose parameters.
+if any(a.get('productionPass')==3 for a in m['assets']):
+ def decoded(key):
+  im=Image.open(OUT/'animations'/f'{key}.webp');out=[]
+  for i in range(im.n_frames):im.seek(i);out.append(np.asarray(im.convert('RGBA')).astype(int))
+  return out
+ grip=decoded('hand-squeeze-v3');heights=[];detached=[]
+ for a in grip:
+  yellow=(a[:,:,0]>200)&(a[:,:,1]>185)&(a[:,:,2]<150)&(a[:,:,1]-a[:,:,2]>85)&(a[:,:,3]>100)
+  roi=np.zeros_like(yellow);roi[212:368,173:329]=True;yellow&=roi
+  ys=np.where(yellow)[0];heights.append(int(ys.max()-ys.min()))
+  solid=a[:,:,3]>100;conn=flood_connected(solid,(410,370));detached.append(int((solid&~conn).sum()))
+ invariants.append(dict(name='grip-ball-visibly-compresses',pass_=max(heights)-min(heights)>12,yellowVisibleHeightRange=[min(heights),max(heights)]))
+ invariants.append(dict(name='grip-all-parts-connected',pass_=max(detached)<120,maxDetachedPixels=max(detached)))
+ hugs=decoded('hug-arms');loose=[]
+ for a in hugs:
+  solid=a[:,:,3]>100;conn=flood_connected(solid,(256,250));loose.append(int((solid&~conn).sum()))
+ invariants.append(dict(name='hug-hands-touch-blanket',pass_=max(loose)<120,maxDetachedPixels=max(loose)))
+ clothes=decoded('change-clothes');teal=[];skin=[]
+ for a in clothes:
+  c=a[280:355,205:305];teal.append(int(((c[:,:,1]>130)&(c[:,:,0]<140)&(c[:,:,3]>100)).sum()))
+  skin.append(int(((c[:,:,0]>205)&(c[:,:,1]>140)&(c[:,:,1]<210)&(c[:,:,2]>105)&(c[:,:,3]>100)).sum()))
+ invariants.append(dict(name='dress-exposes-torso-then-new-color',pass_=max(teal)>3500 and max(skin)>2500,tealPixelsRange=[min(teal),max(teal)],tummyPixelsRange=[min(skin),max(skin)]))
+ sleeves=decoded('dress-sleeves');handareas=[]
+ for a in sleeves:
+  skin=(a[:,:,0]>200)&(a[:,:,1]>135)&(a[:,:,1]<215)&(a[:,:,2]>100)&(a[:,:,2]<190)&(a[:,:,3]>100)
+  handareas.append([int(skin[260:390,30:135].sum()),int(skin[260:390,377:482].sum())])
+ handareas=np.array(handareas)
+ invariants.append(dict(name='sleeves-left-before-right',pass_=bool(((handareas[:,0]>2000)&(handareas[:,1]<700)).any()) and bool((handareas>2000).all(axis=1).any()),leftAreaRange=[int(handareas[:,0].min()),int(handareas[:,0].max())],rightAreaRange=[int(handareas[:,1].min()),int(handareas[:,1].max())]))
+ diapers=decoded('change-diaper-exchange');blue=[];orange=[]
+ for a in diapers:
+  c=a[180:340,130:382];blue.append(int(((c[:,:,2]>c[:,:,0]+25)&(c[:,:,3]>100)).sum()));orange.append(int(((c[:,:,0]>220)&(c[:,:,1]>140)&(c[:,:,1]<205)&(c[:,:,2]<130)&(c[:,:,3]>100)).sum()))
+ invariants.append(dict(name='diaper-old-trim-removed-new-trim-introduced',pass_=max(blue)>5000 and max(orange)>3000 and min(blue)<200,blueTrimRange=[min(blue),max(blue)],oldTrimRange=[min(orange),max(orange)]))
+ wake=decoded('wake-quilt');covered=[]
+ for a in wake:
+  c=a[275:330,175:330];covered.append(int(((c[:,:,2]>c[:,:,0]+30)&(c[:,:,3]>100)).sum()))
+ invariants.append(dict(name='wake-quilt-exposes-mattress',pass_=max(covered)-min(covered)>2500,blueCoverPixelsRange=[min(covered),max(covered)]))
+ for kind,total in [('illustration',14),('animation',10)]:
+  cs=[c for c in m['concepts'] if c['kind']==kind]
+  invariants.append(dict(name=f'all-{total}-{kind}-concepts-have-candidates',pass_=len(cs)==total and all(c['readiness']=='candidate' for c in cs)))
+ invariants.append(dict(name='emma-evaluation-scope-complete',pass_=sum(c['kind']=='avatar-state' and c['readiness']=='evaluation-complete' for c in m['concepts'])==7))
+
 for item in invariants:
  if not item['pass_']:failures.append(dict(id=item['name'],errors=['action-specific-pixel-check-failed']))
 

@@ -10,7 +10,7 @@ const browser=await chromium.launch({headless:true,...(process.env.VISUAL_CUE_CH
 const context=await browser.newContext({viewport:{width:1280,height:1000}});
 const page=await context.newPage();const errors=[];const badResponses=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)badResponses.push([r.status(),r.url()])});
-for(let attempt=0;attempt<30;attempt++){try{const r=await fetch(base);if(r.ok)break}catch{}if(attempt===29)throw Error('preview server unavailable');await new Promise(r=>setTimeout(r,100))}
+if(!base.startsWith('file:'))for(let attempt=0;attempt<30;attempt++){try{const r=await fetch(base);if(r.ok)break}catch{}if(attempt===29)throw Error('preview server unavailable');await new Promise(r=>setTimeout(r,100))}
 await page.goto(base);await page.waitForSelector('#gallery .card');await page.locator('#gallery img').evaluateAll(imgs=>Promise.all(imgs.map(img=>img.decode())));
 const {default:manifest}=await import('../../assets/visual-cue/artwork/manifest.json',{with:{type:'json'}});
 const checks=[];
@@ -26,7 +26,7 @@ for(const a of manifest.assets){
  await page.locator(`#${a.id}`).scrollIntoViewIfNeeded();
  await page.locator(`#${a.id}`).screenshot({path:new URL(`${a.id}.png`,output).pathname});
 }
-for(const id of ['hand-open-close','hand-count','hand-tap','change-zipper']){
+for(const id of ['hand-open-close','hand-count','hand-tap','change-zipper','hug-arms','hand-squeeze-v3','change-clothes','dress-sleeves','change-diaper-exchange','wake-quilt','care-burp']){
  await page.locator(`#${id}`).scrollIntoViewIfNeeded();
  const signatures=[];
  for(let phase=0;phase<5;phase++){
@@ -42,13 +42,15 @@ checks.push({name:'resume-uses-animations',pass:await page.locator('#gallery [da
 await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('#pause').getAttribute('aria-pressed')==='true');
 checks.push({name:'reduced-motion-static',pass:await page.locator('#gallery [data-animation]').evaluateAll(imgs=>imgs.every(i=>i.getAttribute('src')===i.dataset.poster))});
 await page.selectOption('#filter','draft');checks.push({name:'filter-draft',pass:await page.locator('#gallery .card:visible').count()===manifest.assets.filter(a=>a.readiness==='draft').length});
-await page.selectOption('#filter','new');checks.push({name:'filter-production-pass-two',pass:await page.locator('#gallery .card:visible').count()===manifest.assets.filter(a=>a.productionPass===2).length});await page.screenshot({path:new URL('additional-pass-overview.png',output).pathname,fullPage:true});
+await page.selectOption('#filter','new');checks.push({name:'filter-production-pass-three',pass:await page.locator('#gallery .card:visible').count()===manifest.assets.filter(a=>a.productionPass===3).length});await page.screenshot({path:new URL('final-pass-overview.png',output).pathname,fullPage:true});
 await page.selectOption('#filter','all');await page.selectOption('#background','dark');
 await page.locator('#hand-wave').screenshot({path:new URL('dark-background.png',output).pathname});
 await page.setViewportSize({width:390,height:844});await page.selectOption('#size','320');await page.locator('#hand-clap').scrollIntoViewIfNeeded();
 await page.locator('#hand-clap').screenshot({path:new URL('mobile-390.png',output).pathname});
 checks.push({name:'mobile-no-overflow',pass:await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)});
 checks.push({name:'58-cues-31-concepts',pass:await page.locator('#cues tr').count()===58&&await page.locator('#primitives tr').count()===31});
+checks.push({name:'old-drafts-separate-from-candidates',pass:await page.locator('#archive article').count()===2&&await page.locator('#gallery .card[data-readiness="draft"]').count()===0});
+checks.push({name:'emma-seven-evaluations',pass:await page.locator('#emma article').count()===7});
 checks.push({name:'all-images-decoded',pass:await page.locator('#gallery img').evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth===512))});
 const report={url:base,browser:browser.version(),checks,errors,badResponses,passed:checks.every(c=>c.pass)&&!errors.length&&!badResponses.length};
-await writeFile(new URL('report.json',output),JSON.stringify(report,null,2)+'\n');await browser.close();console.log(JSON.stringify(report,null,2));if(!report.passed)process.exitCode=1;
+await writeFile(new URL(base.startsWith('file:')?'offline-report.json':'report.json',output),JSON.stringify(report,null,2)+'\n');await browser.close();console.log(JSON.stringify(report,null,2));if(!report.passed)process.exitCode=1;

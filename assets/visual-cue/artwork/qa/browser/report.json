@@ -31,6 +31,34 @@
       "pass": true
     },
     {
+      "name": "browser-motion-hug-arms",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hand-squeeze-v3",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-change-clothes",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-change-diaper-exchange",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-wake-quilt",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-care-burp",
+      "pass": true
+    },
+    {
       "name": "pause-uses-posters",
       "pass": true
     },
@@ -47,7 +75,7 @@
       "pass": true
     },
     {
-      "name": "filter-production-pass-two",
+      "name": "filter-production-pass-three",
       "pass": true
     },
     {
@@ -56,6 +84,14 @@
     },
     {
       "name": "58-cues-31-concepts",
+      "pass": true
+    },
+    {
+      "name": "old-drafts-separate-from-candidates",
+      "pass": true
+    },
+    {
+      "name": "emma-seven-evaluations",
       "pass": true
     },
     {

@@ -1,100 +1,81 @@
 # Visual Cue 採用審査用素材（非ランタイム）
 
-基準main `03a5bccbd62368cd5200bf2b86725f74940b8c20`、作業ブランチ `codex/visual-cue-complete-assets`、ドラフトPR #107。追加制作開始時に最新main `c04edf8` とPR・Issueコメントを再確認しました。アプリ本体・Emma表示切替・TTS・英文bank・Androidは変更していません。mainへのマージは行いません。
+**制作対象の14基本イラスト・10動作すべてに審査候補を用意しました。静止20枚・透過動画25本、合計45候補。採用承認は0件です。** 旧試作2件は候補から除外し、別枠で保存しています。既存Emma 7状態は指示書どおり流用可否の評価だけ完了しました。
 
-## 現在の制作数
+基準main `03a5bccbd62368cd5200bf2b86725f74940b8c20`、最新main確認 `ff14407`、ブランチ `codex/visual-cue-complete-assets`、[ドラフトPR #107](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/107)。アプリ本体・Emma表示切替・TTS・英文bank・Androidは変更していません。**mainにはマージしません。**
 
-- **静止17枚・透過animated WebP 20本**。全動画に停止用ポスターとPNG原本。
-- **完成候補35件・未完成試作2件・新規採用承認0件**。全件`needs-review`で採用審査前です。
-- 今回は静止3枚と動画8本を追加。追加分11件のうち10件が完成候補、握る動画1件は試作。初回のおむつ動画も試作のまま保存しています。
-- 基本イラスト12/14種類、必須動作9/10種類に候補があります。手やケアのvariantが増えても、家族・おなか・抱っこが完成したことにはしません。
-- 58 Cueを全件棚卸し。31 Cueに候補、2 Cueに部分対応の試作、25 Cueは未制作または既存Emmaの評価のみ。914英文の意味・割当品質の合格数ではありません。
+## プレビューを開く
 
-## 比較プレビュー
+- **[preview-offline.html](preview-offline.html)**：動画を含む単一HTML。ダウンロード／ローカルのファイルをブラウザで開くだけで動作し、サーバーやネット接続は不要です。GitHubのコード表示では動画は動きません。
+- [ローカルHTTP版](http://127.0.0.1:8765/assets/visual-cue/artwork/preview.html)：リポジトリ直下で `python3 -m http.server 8765 --bind 127.0.0.1` を起動して開きます。
 
-リポジトリ直下で `python3 -m http.server 8765 --bind 127.0.0.1` を実行し、[独立プレビュー](http://127.0.0.1:8765/assets/visual-cue/artwork/preview.html)を開いてください。JSONを読むため`file://`直開きでは動きません。
+静止ポスターと動画を並べて表示。220/256/320px、明暗背景／透過チェック、全停止・個別停止・再生、1画面1素材、最終追加制作の絞り込みに対応します。Reduced Motionではポスターに停止します。旧試作・既存19点・Emma評価は別枠で閲覧できます。
 
-静止ポスターと動画の並列表示、220/256/320 CSS px、明暗背景と透過チェック、全停止・個別停止・再生、1画面1素材、未完成・今回の追加制作だけの絞り込みに対応。Reduced Motionでは静止ポスターを表示します。動画の秒数表示は実ファイルに合わせ、4秒の数える動画を3秒と表示しないようにしました。
+[対応表と全実測](COVERAGE.md) / [素材検査](qa/validation.json) / [ブラウザ検査](qa/browser/report.json) / [オフライン検査](qa/browser/offline-report.json) / [最終追加の一覧](qa/browser/final-pass-overview.png)
 
-[対応表と全素材実測](COVERAGE.md) / [技術検証JSON](qa/validation.json) / [ブラウザ検証](qa/browser/report.json) / [今回の追加一覧](qa/browser/additional-pass-overview.png) / [220px一覧](qa/browser/overview-220.png) / [390px幅](qa/browser/mobile-390.png)
+## 今回埋めた制作対象
 
-全37素材の個別PNGは`qa/browser/{asset-id}.png`、20本の5フレーム比較は`qa/{asset-id}-filmstrip.jpg`、編集前の各フェーズは`qa/keyframes/`。これらは動画本数に加算しません。絵に文字やカード背景を焼き込んでいません。
+原画6点から、静止3枚と動画7本を追加しました。
 
-## 今回の追加制作
+| 候補 | 実際に動く部品・意味の範囲 |
+| --- | --- |
+| family-care / hug-arms | 両腕が毛布を包んで寄る。赤ちゃん本人や家族関係は描かず、抱き寄せる動作の候補 |
+| tummy | 年齢を特定しない、おなかの部分図。へそと衣服の境界を明示 |
+| hand-squeeze-v3 | 掌と親指で球を支え、上の4本の指を曲げて球を圧縮。旧試作を置換 |
+| change-clothes | 黄色い服を脱ぐ→おなかが見える→青緑の服を着る。身体は部分図のみ |
+| dress-sleeves | 片腕→もう片腕の順に袖を通す。肩側は実際に衣服で隠れる |
+| change-diaper-exchange | オレンジの留め具の旧おむつを開き外す→青い留め具の新おむつを置き留める |
+| wake-bed / wake-quilt | 掛け物を足元へ折り、寝具が現れて朝日が昇る。就寝と別素材 |
+| care-burp | おなかに触れて手をやさしく動かすケア。げっぷが出た事実・背中を叩く意味は示さない |
 
-| 素材 | 状態 | 動く部品と判定の範囲 |
-| --- | --- | --- |
-| hands-open-v2 | 静止候補 | 掌＋袖口、4本の指、親指を原画から組み立て |
-| hand-open-close | 動画候補 | 掌と袖口を固定し、指の付け根・関節を支点に開閉 |
-| hand-count | 動画候補 | 0→1→2→3→4→5本と順に指を伸ばして戻す。3.984秒 |
-| hand-wiggle | 動画候補 | 4本の指を異なる位相で動かす |
-| hand-squeeze | **未完成試作** | 指と親指を曲げ、柔らかいブロックを圧縮。持ち方・遮蔽の自然さは不足 |
-| hand-tap | 動画候補 | 人差し指を下げ、ブロックに接触→離れる。対象物は静止 |
-| care-wipe | 動画候補 | 完全な手を固定して布が掌を横切る。手を拭くvariant |
-| diaper-v2 | 静止候補 | 新しい完全な本体に独立した留め具を重ねる |
-| change-diaper-v2 | 動画候補 | 左右の留め具を付け根で開閉。本体を色マスクで切り抜かず欠け・残像を防止 |
-| clothes-open-v2 | 静止候補 | 前開き服。人物は描かない |
-| change-zipper | 動画候補 | ファスナーが移動し、その下で左右の前身頃が閉じる。袖・脚・襟は固定 |
+抱き寄せ・身体部位・げっぷの構図と意味は特に目視採用審査が必要です。意味が合わなければ採用せず再制作します。「候補」は技術検査を通して審査できる状態であり、意味の採用承認ではありません。未完成の旧 `hand-squeeze` と `change-diaper` はそのまま昇格させず、置換済み試作に分けています。
 
-`action.dress`は服を身体に着せる全過程が未制作のため、ファスナー操作候補があってもCueの対応は`draft`。`action.squeeze`も試作のままです。おむつの取り外し→交換全体、げっぷ・起床は未制作です。手の開閉・数える・指の独立動作・タップ・手を拭くの5 Cueを候補として追加しました。
+## 必須10動作
 
-## 10種類の動作コンセプト
+| primitive | 制作候補 |
+| --- | --- |
+| motion.sip | 哺乳瓶の傾き＋水平な液面 |
+| motion.water | 雨・シャワー・水しぶきの3種 |
+| motion.hand | 拍手・手振り・開閉・握る・数える・指を動かす・タップ |
+| motion.kick | 足首を支点に左右交互に蹴る |
+| motion.page | 綴じ目を支点にページそのものをめくる |
+| motion.change | 着替え・袖通し・おむつ交換・留め具・拭く・おなかのケア・起床 |
+| motion.hug | 両腕を寄せて毛布を包む |
+| motion.peekaboo | 布で玩具を隠す→見せる |
+| motion.spoon | クリーム色のおかゆをすくう→持ち上げる→戻す |
+| motion.notes | 静止した楽器の周囲で音符を拍に合わせて移動 |
 
-| primitive | 素材候補 | 未完・留意点 |
-| --- | --- | --- |
-| motion.sip | 哺乳瓶を傾け、液面を画面上で水平に保つ | 乳首側の液体・輪郭は人の視覚審査対象 |
-| motion.water | 雨・シャワー・水しぶきの3本 | 雲・浴槽は固定。雨と手のタップは別素材 |
-| motion.hand | 拍手・手振り・開閉・数える・指を動かす・タップ | 握るは未完成試作 |
-| motion.kick | 足首を支点とする左右交互の動き | 5本の指の原画を使用。左右の衝突は画素検査 |
-| motion.page | 綴じ目を中心に実ページがめくれる | 1枚の往復、背面はクリーム色 |
-| motion.change | 手を拭く・おむつ留め具v2・服のファスナー | 着替え・交換全体を表現できたとはみなさない。初回おむつは試作 |
-| motion.hug | **未制作** | クマ＋ハートの曖昧さを解消できず、指示書に従い人物構図レビュー待ち |
-| motion.peekaboo | 布で玩具を隠す→見せる | 計画のscene.familyを承認代替したものではない |
-| motion.spoon | 空のスプーンを器に沈め、白いおかゆを載せて持ち上げ戻す | 器・中身・スプーンは欠けのない独立原画 |
-| motion.notes | 楽器を固定し、音符が拍に合わせ移動 | 点滅なし |
+58 Cueは物体／動作の37 Cueに候補、Emmaのみの21 Cueは流用評価済み。Emma neutralは待機表情、calmは目閉じ表情の流用候補、残り5状態は既存の待機・発話・まばたきでは意味不足と評価しました。専用表情の制作・アプリ統合は対象外です。**914英文の意味や最終割当が合格したという報告ではありません。**
 
-睡眠はベッドの静止候補。起床の動作に同じ絵を流用して合格とはしません。`scene.tummy`は赤ちゃんの体を描かずに「おなか」を一義的に示す構図が未確定。家族・おなか・抱っこにダミー画像はありません。
+## 自動検査と画質改善
 
-Emmaは`assets/emma-face/`と既存表情選択を読み取り評価。neutralは待機SVG、calmは目閉じSVGを再利用候補とし、smile/celebrate/listen/ask/inviteは意味一致を保証できないためレビュー待ちです。既存SVGとアプリへの接続に変更はありません。
+全45素材と25ポスターの512×512・RGBA・外周余白を検査。動画は2.988秒または3.984秒、原則約12.05fpsで制作。符号化時に同一フレームは持続時間にまとまります。停止ポスターと編集用PNGを保持しています。
 
-## 原画・出自と既存19点
+全フレームの透過・変化面積・220pxの動き・継ぎ目・輝度変化・固定部位を検査。動作別には拍手の接触、指の接続、数える段階、タップの接触、おむつの欠け／浮き、ファスナーの開閉、球の圧縮、抱き寄せの接触、服の色交換／おなかの露出、袖の順序、おむつの旧新交換、寝具の露出を画素から確認しています。数値は `qa/validation.json` が正です。
 
-実際に利用できる組込み`image_gen`で透過PNGを生成しました。CLI/APIフォールバックは使用していません。合計15原画（初回11＋今回4）を`sources/generated/`へ保存。正規化した編集用PNGは`sources/normalized/`、部品は`parts/`。生成指示・出力ID・参照の役割は[PROMPTS.md](PROMPTS.md)と[追加生成の全文](sources/additional-prompts.json)。実在商品の図版・文字・ロゴ・既存キャラクターを複製していません。
+容量超過6動画はアルファの過剰な精度を調整し、**全静止150KB以下・全動画400KB以下**にしました。寸法・フレーム・タイミングは維持。220pxで明暗両背景の変更前後差を測定し、平均RGB誤差は0.244–0.494/255、95百分位は2–3/255。[比較実測](qa/encoding-improvements.json)参照。元の編集原画・部品は保持しています。
 
-元ZIPはSHA256を検証して`reference/`へ展開。ZIPは不変のバックアップです。既存19点は絵柄方向承認4、色修正の方向性承認1、未完成候補5、hug再制作1、緑のおかゆ却下1、実験7。[inventory.csv](inventory.csv)参照。これらの承認は絵柄方向の承認であり、今回の動作を採用承認したことにはなりません。
+ブラウザでは実表示の時間差キャプチャーで主要11動画の動きを確認し、サイズ3種、停止／再生、Reduced Motion、絞り込み、390px幅、58 Cue／31コンセプト、試作の分離を検査します。HTTP版と単一HTMLをそれぞれ検査し、各素材のスクリーンショットと動画の5フェーズ比較を保存します。これは意味・人体の自然さ・乳児への分かりやすさを自動承認するものではありません。
 
-## 自動生成・検査と再現
+## 出自・再現手順
 
-Python 3.12以降、Pillow/numpy。Mac実行はPython 3.14.4 / Pillow 12.3.0 / numpy 2.5.1、Chrome 155 / Playwright 1.62.1。
+実際の組込みImageGenで透過PNGを生成。保存原画は合計21点（初回11＋追加4＋最終6）、`sources/generated/`。正規化PNGは `sources/normalized/`、動く部品は `parts/`。生成指示と出力IDは [PROMPTS.md](PROMPTS.md)、[追加](sources/additional-prompts.json)、[最終](sources/final-prompts.json)。起床原画は最初の生成で余白が足りず、再編集してから採用候補にしました。参考商品の図版・ロゴ・キャラクターは模写していません。
+
+ZIPは不変のバックアップ。SHA256 `73f04e328dc5aed60f810d6a3b4fcfa93f79e65030db2fb3c3b0c90165c6a700`、既存19点の分類は絵柄方向承認4・色修正方向性承認1・未完成候補5・hug再制作1・緑のおかゆ却下1・実験7。[inventory.csv](inventory.csv)参照。元の承認と今回の採用審査は別です。
 
 ```sh
 python3 -m pip install -r scripts/visual-cue/requirements.txt
 python3 scripts/verify-visual-cue-handoff.py
 python3 scripts/visual-cue/build_artwork.py
+python3 scripts/visual-cue/compact_artwork.py
 python3 scripts/visual-cue/validate_artwork.py
 python3 scripts/visual-cue/report_artwork.py
-npm ci --ignore-scripts
-npx playwright install chromium
-# 別ターミナルで上記のHTTPサーバーを起動
+python3 scripts/visual-cue/export_preview.py
+# HTTPサーバーを起動後（Playwright/Chromiumが必要）
 node scripts/visual-cue/capture_preview.mjs
+VISUAL_CUE_PREVIEW_URL="file://$PWD/assets/visual-cue/artwork/preview-offline.html" node scripts/visual-cue/capture_preview.mjs
 ```
 
-追加分だけを再出力する場合は`python3 scripts/visual-cue/build_artwork.py --only-new`。全体の生成は`build_artwork.py`から`additional_artwork.py`を実行し、同じmanifestへ登録します。保存原画から再現でき、画像生成サービス・APIキーは不要。圧縮ライブラリ差でバイト列や容量は変わり得ます。
+最終追加だけ再生成する場合は `build_artwork.py --only-final`、2回目以降は `--only-new`。Pillow/numpyで原画から再現し、再生成にAIサービスやAPIキーは不要です。MacでPython 3.14.4 / Pillow 12.3.0 / numpy 2.5.1 / Chrome 155を使用。ライブラリ差で容量や符号化バイトは変わり得ます。
 
-動画は512×512、原則36フレーム×83ms＝2.988秒。数える動作のみ48フレーム×83ms＝3.984秒。約12.05fpsで制作しています。WebPは静止するフレームを持続時間にまとめるため、復号フレーム数は36/48より少なくなる場合があります。
-
-全フレームの透過・寸法・外周4px・背景面積、全ポスター、動画差分、220px縮小時の変化画素、ループ継ぎ目、平均輝度変化、固定部位を測定。加えて掌接触と離隔、玩具の遮蔽/露出、足の衝突、指から掌への接続、関節の移動量、指の本数の段階、タップの接触、おむつ本体の欠け/留め具の浮き、ファスナーによる開口幅変化を画素で検査します。実測は`qa/validation.json`、対応表は`COVERAGE.md`。
-
-ブラウザは静止/動画の復号と表示に加え、220/256/320px、停止・再生・Reduced Motion、未完成/追加分フィルター、390px幅、58 Cue/31コンセプトを検査。今回追加した主要4動画は、Chromeの実表示を時間差でキャプチャーして動画が動いていることも確認します。Canvasの`drawImage(img)`は初期フレームを描くため、動作判定には使用しません。
-
-修正履歴：初回の玩具の質感、おむつ原画の見切れ、浴槽の下端余白、色マスクによる脚ぐりの欠けを修正。今回も、指の関節にできた1pxの隙間、曲がった関節の突起、対象に届かないタップを検出して修正。新しいおむつは完全な本体を生成して欠け・残像の原因を除きました。検査の連結領域抽出には編集可能な画像コピーを使い、読み取り専用バッファへの塗りつぶし失敗を修正しました。
-
-静止は全て150KB未満、今回の追加8動画も全て400KB未満です。既存の手振り531,350B・キック619,486B・飲む402,222Bは超過を記録したまま。512pxで輪郭と質感を維持した候補として端末評価を要します。
-
-GitHubの`.github/workflows/visual-cue-artwork.yml`で同じ検証とキャプチャーを実行し、`visual-cue-raster-review` artifactを保存します。最終CI結果はPR #107のChecks欄とIssue #104に記録します。
-
-## 残課題と人の審査
-
-家族・おなか・抱っこの構図、握る物体の持ち方、服を着せる/おむつを交換する全過程、げっぷ・起床、7 Emma状態の意味一致が未完です。初回おむつと今回の握る動画は試作として完成数から除外。914英文の最終割当は別工程です。
-
-技術PASSは、人体・輪郭・意味の自然さや乳児への理解しやすさの採用承認ではありません。指の曲がり方と順番、タップの接触、拭く対象の意味、留め具の付け根、ページの重なり、液面、おかゆのすくい方をプレビューで審査してください。新規acceptedは0件です。人物を許容する抱っこ/おなか構図の判断と、容量超過3本の端末での画質・負荷確認も残ります。
+CIは `.github/workflows/visual-cue-artwork.yml`。QA・プレビューをartifactとして保存します。採用承認、実機での最終確認、914英文の最終意味割当は引き続き人の審査工程です。今回の候補以外の新しい表現の制作や本体実装は行いません。

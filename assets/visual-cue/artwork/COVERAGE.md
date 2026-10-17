@@ -31,85 +31,85 @@
 
 | Primitive | 状態 | 制作物・残課題 |
 | --- | --- | --- |
-| scene.bath | candidate | bath 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.milk | candidate | milk 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.care | candidate | diaper, clothes, diaper-v2, clothes-open-v2 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.hands | candidate | hands, hands-open-v2 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.feet | candidate | feet 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.book | candidate | book 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.toy | candidate | toy 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.outdoor | candidate | outdoor 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.weather | candidate | sun, rain 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.meal | candidate | meal 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.tummy | missing |  赤ちゃんの体を描かずに「おなか」を一義的に示す物体が未確定。抽象記号で代用せず構図レビュー待ち。 |
-| scene.music | candidate | music 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.sleep | candidate | sleep 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| scene.family | missing |  クマ＋ハートは意味不明瞭で再制作対象。人物なしの家族・抱っこ構図は未確定。 |
-| motion.sip | candidate | sip 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| motion.water | candidate | water-rain, water-shower, water-splash 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| motion.hand | candidate | hand-wave, hand-clap, hand-open-close, hand-count, hand-wiggle, hand-squeeze, hand-tap 拍手・手振りに加え、開閉・数える・タップ・指の独立動作を追加。握るは遮蔽を審査中。 |
-| motion.kick | candidate | kick 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| motion.page | candidate | page 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| motion.change | candidate | change-diaper, care-wipe, change-diaper-v2, change-zipper おむつの接合部改善、服のファスナー操作、手を拭くvariantを追加。交換・着替え全体、げっぷは未完成。 |
-| motion.hug | missing |  ハート点滅・クマの上下動は不採用。人物描写が必要なため指示書に従いレビュー待ち。 |
-| motion.peekaboo | candidate | peekaboo 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| motion.spoon | candidate | spoon 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| motion.notes | candidate | notes 採用審査前。variant単位の未完はcueCoverageを参照。 |
-| emma.neutral | evaluation-only |  待機表情は再利用候補。 |
-| emma.smile | evaluation-only |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。 |
-| emma.calm | evaluation-only |  目閉じは既存。安心・落ち着きの意味一致は要審査。 |
-| emma.celebrate | evaluation-only |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。 |
-| emma.listen | evaluation-only |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。 |
-| emma.ask | evaluation-only |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。 |
-| emma.invite | evaluation-only |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。追加表情レビュー待ち。 |
+| scene.bath | candidate | bath 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.milk | candidate | milk 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.care | candidate | diaper, clothes, diaper-v2, clothes-open-v2 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.hands | candidate | hands, hands-open-v2 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.feet | candidate | feet 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.book | candidate | book 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.toy | candidate | toy 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.outdoor | candidate | outdoor 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.weather | candidate | sun, rain 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.meal | candidate | meal 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.tummy | candidate | tummy 年齢を特定しないおなかの部分図。採用審査待ち。 |
+| scene.music | candidate | music 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.sleep | candidate | sleep, wake-bed 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.family | candidate | family-care 養育者の手と毛布の候補。家族関係や赤ちゃんの描写はなく、意味適合を審査。 |
+| motion.sip | candidate | sip 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| motion.water | candidate | water-rain, water-shower, water-splash 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| motion.hand | candidate | hand-wave, hand-clap, hand-open-close, hand-count, hand-wiggle, hand-tap, hand-squeeze-v3 拍手・手振り・開閉・数える・握る・タップ・指の独立動作を制作。 |
+| motion.kick | candidate | kick 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| motion.page | candidate | page 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| motion.change | candidate | care-wipe, change-diaper-v2, change-zipper, change-clothes, dress-sleeves, change-diaper-exchange, wake-quilt, care-burp 服の交換・袖通し・おむつ交換・拭く・起床・おなかのケアを制作。個別の意味適合は要審査。 |
+| motion.hug | candidate | hug-arms 両腕が実際に毛布を包む候補。抱っこの意味適合は要目視審査。 |
+| motion.peekaboo | candidate | peekaboo 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| motion.spoon | candidate | spoon 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| motion.notes | candidate | notes 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| emma.neutral | evaluation-complete |  待機表情は再利用候補。 |
+| emma.smile | evaluation-complete |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。専用表情が必要で、今回の流用評価では不可（新表情制作は対象外）。 |
+| emma.calm | evaluation-complete |  目閉じは既存。安心・落ち着きの意味一致は要審査。 |
+| emma.celebrate | evaluation-complete |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。専用表情が必要で、今回の流用評価では不可（新表情制作は対象外）。 |
+| emma.listen | evaluation-complete |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。専用表情が必要で、今回の流用評価では不可（新表情制作は対象外）。 |
+| emma.ask | evaluation-complete |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。専用表情が必要で、今回の流用評価では不可（新表情制作は対象外）。 |
+| emma.invite | evaluation-complete |  既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。専用表情が必要で、今回の流用評価では不可（新表情制作は対象外）。 |
 
 ## 58 Cue の対応
 
 | Cue | Primitive | 状態 | 素材 / 理由 |
 | --- | --- | --- | --- |
-| action.burp | scene.tummy, motion.change | missing |  げっぷ動作は未制作。おむつの動きを流用不可。 |
+| action.burp | scene.tummy, motion.change | candidate | care-burp 「Burp, burp! Little tummy. Nice and easy.」向けケア候補。げっぷが出た事実や背中を叩く動作を意味しない。意味適合は要審査。 |
 | action.clap | scene.hands, motion.hand | candidate | hand-clap 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.count | scene.hands, motion.hand | candidate | hand-count 0→1→2→3→4→5本を示して戻す。数字ラベルを画像に焼き込まない。 |
-| action.dress | scene.care, motion.change | draft | change-zipper 前開き服のファスナー操作variantのみ。服を身体に着せる全過程は未制作。 |
+| action.dress | scene.care, motion.change | candidate | change-clothes, dress-sleeves, change-zipper 身体はおなかの一部だけ。服を順に移す説明図の候補。逆順で元に戻るループ。 |
 | action.eat | scene.meal, motion.spoon | candidate | spoon 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.hug | scene.family, motion.hug | missing |  ハート点滅・クマの上下動は不採用。人物描写が必要なため指示書に従いレビュー待ち。 |
+| action.hug | scene.family, motion.hug | candidate | hug-arms 両袖口を支点に腕を寄せる。抱き寄せる動作の候補であり、赤ちゃんを抱く場面の採用承認ではない。 |
 | action.kick | scene.feet, motion.kick | candidate | kick 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.open-close | scene.hands, motion.hand | candidate | hand-open-close 掌と袖口は静止。指の付け根と関節を支点に開閉。 |
-| action.peekaboo | scene.family, motion.peekaboo | candidate | peekaboo 玩具を布で隠すvariant。計画のscene.familyは未制作、家族表現を代替承認したものではない。 |
+| action.peekaboo | scene.family, motion.peekaboo | candidate | peekaboo 玩具を布で隠すvariant。人物のいない部分図として採用審査待ち。 |
 | action.read | scene.book, motion.page | candidate | page 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.sing | scene.music, motion.notes | candidate | notes 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.sip | scene.milk, motion.sip | candidate | sip 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.sleep | scene.sleep, emma.calm | candidate | sleep 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.splash | scene.bath, motion.water | candidate | water-splash 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.squeeze | scene.hands, motion.hand | draft | hand-squeeze 柔らかい物体を握るvariant。握り込みの遮蔽と接触を審査。 |
+| action.squeeze | scene.hands, motion.hand | candidate | hand-squeeze-v3 親指と掌で下を支え、上の4本の指を曲げて押す。旧ブロック試作を置換。 |
 | action.tap | scene.hands, motion.hand | candidate | hand-tap 雨ではなく、指と物体の接触を示すvariant。接触位置は画素で確認。 |
 | action.turn-page | scene.book, motion.page | candidate | page 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.wake | scene.sleep, emma.smile | missing |  眠るベッドを起床の動作として流用不可。 |
+| action.wake | scene.sleep, emma.smile | candidate | wake-quilt 就寝素材と分けた起床場面の候補。寝ている本人は描かない。 |
 | action.wash | scene.bath, motion.water | candidate | water-shower 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.wave | scene.hands, motion.hand | candidate | hand-wave 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.wiggle | scene.hands, motion.hand | candidate | hand-wiggle 追加制作した動作variant。採用審査待ち。 |
 | action.wipe | scene.care, motion.change | candidate | care-wipe 手を拭くvariant。口や顔を拭く英文への割当は別途審査。 |
-| attention.listen | emma.listen | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| attention.look | emma.listen | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| dialogue.finish | emma.celebrate | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| dialogue.finish-check | emma.ask | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| dialogue.inquiry | emma.ask | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| dialogue.invitation | emma.invite | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| dialogue.pause | emma.calm | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| dialogue.repeat | emma.invite | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| dialogue.start | emma.invite | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| emma.neutral | emma.neutral | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| observed.cry | emma.calm | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| observed.smile | emma.smile | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| observed.voice | emma.listen | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| social.achievement | emma.celebrate | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| social.affection | emma.smile | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| social.care | emma.calm | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| social.effort | emma.calm | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| social.encouragement | emma.celebrate | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| social.greeting | emma.smile | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| social.praise | emma.celebrate | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
-| social.reassurance | emma.calm | missing |  Emma状態の評価のみ。アプリ統合・意味承認は未実施。 |
+| attention.listen | emma.listen | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| attention.look | emma.listen | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| dialogue.finish | emma.celebrate | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| dialogue.finish-check | emma.ask | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| dialogue.inquiry | emma.ask | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| dialogue.invitation | emma.invite | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| dialogue.pause | emma.calm | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| dialogue.repeat | emma.invite | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| dialogue.start | emma.invite | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| emma.neutral | emma.neutral | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| observed.cry | emma.calm | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| observed.smile | emma.smile | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| observed.voice | emma.listen | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| social.achievement | emma.celebrate | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| social.affection | emma.smile | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| social.care | emma.calm | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| social.effort | emma.calm | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| social.encouragement | emma.celebrate | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| social.greeting | emma.smile | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| social.praise | emma.celebrate | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
+| social.reassurance | emma.calm | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
 | subject.bath | scene.bath | candidate | bath 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | subject.book | scene.book | candidate | book 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | subject.clothes | scene.care | candidate | clothes 素材候補の審査待ち。914英文の割当品質を保証しない。 |
@@ -124,7 +124,7 @@
 | subject.rain | scene.weather | candidate | rain, water-rain 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | subject.sun | scene.weather | candidate | sun 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | subject.toy | scene.toy | candidate | toy 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| subject.tummy | scene.tummy | missing |  赤ちゃんの体を描かずに「おなか」を一義的に示す物体が未確定。抽象記号で代用せず構図レビュー待ち。 |
+| subject.tummy | scene.tummy | candidate | tummy 年齢を特定しない身体部位。顔・全身は描かない。 |
 
 ## 実測（バイトは10進KB）
 
@@ -144,10 +144,10 @@
 | sleep | candidate | 29.1 | 1 | 0.000 | — | — | PASS |
 | meal | candidate | 30.1 | 1 | 0.000 | — | — | PASS |
 | music | candidate | 26.2 | 1 | 0.000 | — | — | PASS |
-| hand-wave | candidate | 531.4 | 32 | 2.988 | 14575 | 0.9999 | PASS |
+| hand-wave | candidate | 366.4 | 32 | 2.988 | 14585 | 1.0005 | PASS |
 | hand-clap | candidate | 357.3 | 24 | 2.988 | 15888 | 0.2786 | PASS |
-| kick | candidate | 619.5 | 36 | 2.988 | 7700 | 0.9986 | PASS |
-| sip | candidate | 402.2 | 36 | 2.988 | 14372 | 0.2389 | PASS |
+| kick | candidate | 293.2 | 36 | 2.988 | 7711 | 0.9894 | PASS |
+| sip | candidate | 370.0 | 36 | 2.988 | 14282 | 0.2593 | PASS |
 | page | candidate | 321.0 | 36 | 2.988 | 12490 | 0.2625 | PASS |
 | water-rain | candidate | 251.8 | 36 | 2.988 | 2923 | 1.0054 | PASS |
 | water-shower | candidate | 221.5 | 36 | 2.988 | 958 | 1.0108 | PASS |
@@ -155,15 +155,23 @@
 | spoon | candidate | 253.0 | 36 | 2.988 | 4583 | 0.3957 | PASS |
 | notes | candidate | 296.1 | 36 | 2.988 | 4075 | 0.9732 | PASS |
 | peekaboo | candidate | 320.3 | 36 | 2.988 | 16515 | 0.1821 | PASS |
-| change-diaper | draft | 179.0 | 36 | 2.988 | 4132 | 0.316 | PASS |
 | hands-open-v2 | candidate | 16.8 | 1 | 0.000 | — | — | PASS |
 | hand-open-close | candidate | 268.9 | 36 | 2.988 | 4623 | 0.4816 | PASS |
 | hand-count | candidate | 172.6 | 46 | 3.984 | 4409 | 0.5296 | PASS |
 | hand-wiggle | candidate | 216.7 | 36 | 2.988 | 2997 | 1.1529 | PASS |
-| hand-squeeze | draft | 284.3 | 36 | 2.988 | 5560 | 0.5322 | PASS |
 | hand-tap | candidate | 195.9 | 20 | 2.988 | 4653 | 0.303 | PASS |
 | care-wipe | candidate | 156.2 | 36 | 2.988 | 5247 | 0.7475 | PASS |
 | diaper-v2 | candidate | 16.2 | 1 | 0.000 | — | — | PASS |
 | change-diaper-v2 | candidate | 151.5 | 36 | 2.988 | 2994 | 0.6473 | PASS |
 | clothes-open-v2 | candidate | 26.0 | 1 | 0.000 | — | — | PASS |
 | change-zipper | candidate | 188.5 | 36 | 2.988 | 4374 | 0.5288 | PASS |
+| family-care | candidate | 18.0 | 1 | 0.000 | — | — | PASS |
+| hug-arms | candidate | 347.3 | 36 | 2.988 | 4474 | 0.7134 | PASS |
+| tummy | candidate | 13.1 | 1 | 0.000 | — | — | PASS |
+| hand-squeeze-v3 | candidate | 292.6 | 36 | 2.988 | 4416 | 0.6268 | PASS |
+| change-clothes | candidate | 327.6 | 40 | 3.984 | 20357 | 0.103 | PASS |
+| dress-sleeves | candidate | 253.2 | 40 | 3.984 | 4351 | 0.4459 | PASS |
+| change-diaper-exchange | candidate | 296.4 | 44 | 3.984 | 16161 | 0.0859 | PASS |
+| wake-bed | candidate | 22.7 | 1 | 0.000 | — | — | PASS |
+| wake-quilt | candidate | 333.3 | 36 | 2.988 | 9062 | 0.3788 | PASS |
+| care-burp | candidate | 256.8 | 36 | 2.988 | 2235 | 0.5369 | PASS |

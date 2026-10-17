@@ -1,24 +1,18 @@
 {
-  "stills": 17,
-  "loops": 20,
+  "stills": 20,
+  "loops": 25,
   "readiness": {
-    "candidate": 35,
-    "draft": 2
+    "candidate": 45
   },
-  "coveredIllustrationConcepts": 12,
-  "animationConceptsWithArtifacts": 9,
+  "coveredIllustrationConcepts": 14,
+  "animationConceptsWithArtifacts": 10,
   "cueReadiness": {
-    "missing": 25,
-    "candidate": 31,
-    "draft": 2
+    "candidate": 37,
+    "evaluation-complete": 21
   },
-  "animationConceptsWithCandidates": 9,
+  "animationConceptsWithCandidates": 10,
   "newAccepted": 0,
-  "technicalPass": 37,
-  "technicalTotal": 37,
-  "sizeExceptions": [
-    "hand-wave",
-    "kick",
-    "sip"
-  ]
+  "technicalPass": 45,
+  "technicalTotal": 45,
+  "sizeExceptions": []
 }
