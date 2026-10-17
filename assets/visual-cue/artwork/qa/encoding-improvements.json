@@ -1,0 +1,68 @@
+[
+  {
+    "id": "hand-wave",
+    "beforeBytes": 531350,
+    "afterBytes": 366424,
+    "alphaQuality": 80,
+    "meanRGBErrorAt220": 0.244,
+    "p95RGBErrorAt220": 2.0,
+    "beforeSHA256": "4fd26f784294f02fe9343a6ed8c985d4747beba008725db1288be3d8e42bf50c",
+    "afterSHA256": "9d1817005e34a670579a6b942b883115aecf7e2f5d9ac8261b25af5db74125aa",
+    "timingAndDimensionsPreserved": true
+  },
+  {
+    "id": "kick",
+    "beforeBytes": 619486,
+    "afterBytes": 293154,
+    "alphaQuality": 70,
+    "meanRGBErrorAt220": 0.304,
+    "p95RGBErrorAt220": 2.0,
+    "beforeSHA256": "81c46b280b02b160dacfb1aafda304f01695f2a0b6e8931cbf960e60f802238f",
+    "afterSHA256": "6cef433df6b723b32c30e63da3091df1093adf773d7af2eb3c31e68f283a0053",
+    "timingAndDimensionsPreserved": true
+  },
+  {
+    "id": "sip",
+    "beforeBytes": 402222,
+    "afterBytes": 370020,
+    "alphaQuality": 90,
+    "meanRGBErrorAt220": 0.267,
+    "p95RGBErrorAt220": 2.0,
+    "beforeSHA256": "fc5eccaf83d319dbbaf0b7580ac3d456858b7cfdad335de14a89972297aea19a",
+    "afterSHA256": "8f2a5527392cd2c014b5267be1e7fabf0307ce541c1057b445816f84a0b1f855",
+    "timingAndDimensionsPreserved": true
+  },
+  {
+    "id": "hug-arms",
+    "beforeBytes": 435202,
+    "afterBytes": 347256,
+    "alphaQuality": 90,
+    "meanRGBErrorAt220": 0.329,
+    "p95RGBErrorAt220": 2.0,
+    "beforeSHA256": "bd65dcb6e59c78c8d144edf062370c0d53844da09d98f7058d799677afc75544",
+    "afterSHA256": "4f3c1a3a934461b83f9694f595e9e9334697297176d9d9de3e5b9cd54a965774",
+    "timingAndDimensionsPreserved": true
+  },
+  {
+    "id": "change-clothes",
+    "beforeBytes": 413752,
+    "afterBytes": 327640,
+    "alphaQuality": 90,
+    "meanRGBErrorAt220": 0.336,
+    "p95RGBErrorAt220": 2.0,
+    "beforeSHA256": "7878671ab36c34c4a1ada776f1ba4ad415e92cfa34bfc8e50dafc07d43817893",
+    "afterSHA256": "50efe46d14479a68e94f698a79abea4b9d51b717d572faec081999ef1428f993",
+    "timingAndDimensionsPreserved": true
+  },
+  {
+    "id": "wake-quilt",
+    "beforeBytes": 571300,
+    "afterBytes": 333336,
+    "alphaQuality": 70,
+    "meanRGBErrorAt220": 0.494,
+    "p95RGBErrorAt220": 3.0,
+    "beforeSHA256": "3c9470b60f34f5fc15afc151f9360b332d61c88ff6afddbba66370cd889ca560",
+    "afterSHA256": "3d951413c383cb0197dfdd76f0fcd45ffe9c94510d846ffd81e0eeb53749f570",
+    "timingAndDimensionsPreserved": true
+  }
+]

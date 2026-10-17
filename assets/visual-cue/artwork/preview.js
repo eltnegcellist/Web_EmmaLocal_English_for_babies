@@ -1,0 +1,31 @@
+const $=s=>document.querySelector(s);
+const bundle=window.__visualCueBundle;
+const assetURL=p=>bundle?.media[p]||p;
+const [manifest,qa,legacy]=bundle?[bundle.manifest,bundle.qa,bundle.legacy]:await Promise.all(['manifest.json','qa/validation.json','reference/manifest.json'].map(p=>fetch(p).then(r=>{if(!r.ok)throw Error(p);return r.json()})));
+for(const a of manifest.assets)for(const k of ['poster','animation','illustration'])if(a[k])a[k]=assetURL(a[k]);
+const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text)e.textContent=text;if(cls)e.className=cls;return e};
+const media=matchMedia('(prefers-reduced-motion: reduce)');let paused=media.matches;
+const labels={candidate:'完成候補・採用審査待ち',draft:'未完成・試作',missing:'未制作', 'evaluation-only':'既存Emma評価のみ','evaluation-complete':'既存Emma流用可否の評価済み'};
+const result=new Map(qa.results.map(r=>[r.id,r]));
+function imageFigure(src,label,animation,poster){const f=el('figure',null,'cell');const img=el('img',null,'art');img.src=animation&&paused?poster:src;img.alt=label;img.width=512;img.height=512;img.decoding='async';if(animation){img.dataset.animation=src;img.dataset.poster=poster}f.append(img,el('figcaption',label));return f}
+for(const a of manifest.assets){const card=el('article',null,'card');card.id=a.id;card.dataset.kind=a.kind;card.dataset.readiness=a.readiness;card.dataset.productionPass=String(a.productionPass||1);card.append(el('h2',a.topic),el('span',labels[a.readiness],`tag ${a.readiness==='draft'?'draft':''}`));const pair=el('div',null,'pair');pair.append(imageFigure(a.poster,a.animation?'静止ポスター / Reduced Motion':'静止イラスト',false));if(a.animation)pair.append(imageFigure(a.animation,`動作 / ${(a.loopMs/1000).toFixed(3)}秒ループ`,true,a.poster));card.append(pair);card.append(el('p',`${a.primitive} · ${a.id}`));if(a.note)card.append(el('p',a.note));const r=result.get(a.id);card.append(el('p',`${(r.bytes/1000).toFixed(1)} KB · ${r.technicalPass?'技術検査 PASS':'技術検査 FAIL'}${a.animation?` · ${r.frames} decoded frames · ${r.durationMs}ms`:''}`));if(a.animation){const b=el('button',paused?'この動画を再生':'この動画を停止');b.dataset.playback='true';b.addEventListener('click',()=>{const img=card.querySelector('[data-animation]');const stop=img.getAttribute('src')===a.animation;img.src=stop?a.poster:a.animation;b.textContent=stop?'この動画を再生':'この動画を停止'});card.append(b);const link=el('a',' 5フレーム比較');link.href=assetURL(`qa/${a.id}-filmstrip.jpg`);card.append(link)}$('#gallery').append(card)}
+function addRow(target,cells){const tr=el('tr');for(const c of cells){const td=el('td');if(c instanceof Node)td.append(c);else td.textContent=c;tr.append(td)}$(target).append(tr)}
+for(const c of manifest.cueCoverage){const wrap=el('div');for(const id of c.assetIds){const a=el('a',id+' ');a.href='#'+id;wrap.append(a)}wrap.append(el('p',c.reason));addRow('#cues',[c.cueId,labels[c.readiness],wrap])}
+for(const c of manifest.concepts)addRow('#primitives',[c.primitive,c.kind,`${c.assetIds.join(', ')||(c.kind==='avatar-state'?'既存表情の流用評価済み':'素材未作成')} — ${c.reason}${c.existingFile?' 既存: '+c.existingFile:''}`]);
+const statusNames={'approved-design-direction':'承認済み（絵柄方向）','design-direction-accepted':'方向性承認済み','design-draft-needs-review':'未完成・追加候補','redesign-required':'再制作必要','rejected-color':'却下・使用禁止','experimental-not-approved':'未完成・実験'};
+for(const a of legacy.assets){const c=el('article',null,'legacy-card');const img=el('img',null,'art');img.src=assetURL(`reference/${a.path}`);img.alt=a.path;img.loading='lazy';if(a.kind==='animated-webp'){img.dataset.animation=img.src;img.dataset.poster=assetURL(`reference/${a.path.replace('motion-drafts/rain_big.webp','candidates/rain.webp').replace('motion-drafts/bath_big.webp','candidates/bath.webp').replace('motion-drafts/porridge_scoop.webp','approved-style/meal_porridge.webp')}`);if(paused)img.src=img.dataset.poster}c.append(img,el('p',statusNames[a.status]),el('p',a.path),el('p',a.note));$('#legacy').append(c)}
+$('#summary').textContent=`静止 ${manifest.assets.filter(a=>a.kind==='illustration').length}枚 / 動画 ${manifest.assets.filter(a=>a.kind==='animation').length}本 / 技術検査 ${qa.technicalPassCount}/${qa.assetCount} / 動作画素 ${qa.actionPixelChecks.filter(c=>c.pass_).length}/${qa.actionPixelChecks.length} / ${qa.passed?'全技術項目 PASS':'動作詳細に不合格あり'} / 新規採用承認 0件`;
+function applyPause(){document.querySelectorAll('[data-animation]').forEach(img=>img.src=paused?img.dataset.poster:img.dataset.animation);$('#pause').textContent=paused?'すべて再生':'すべて停止';$('#pause').setAttribute('aria-pressed',String(paused));document.querySelectorAll('[data-playback]').forEach(b=>b.textContent=paused?'この動画を再生':'この動画を停止')}
+$('#pause').onclick=()=>{paused=!paused;applyPause()};media.addEventListener('change',e=>{paused=e.matches;applyPause()});applyPause();
+$('#filter').onchange=e=>document.querySelectorAll('.card').forEach(c=>c.hidden=!(e.target.value==='all'||c.dataset.kind===e.target.value||c.dataset.readiness===e.target.value||(e.target.value==='new'&&c.dataset.productionPass==='3')));
+$('#background').onchange=e=>document.body.dataset.background=e.target.value;
+$('#size').onchange=e=>document.documentElement.style.setProperty('--art-size',e.target.value+'px');
+$('#layout').onclick=()=>document.body.classList.toggle('single');
+if(location.hash)requestAnimationFrame(()=>$(location.hash)?.scrollIntoView());
+
+for(const a of manifest.archivedAssets||[]){const card=el('article',null,'legacy-card');card.append(el('h3',a.topic+'：旧試作・置換済み'),imageFigure(assetURL(a.poster),'旧試作の静止画',false),imageFigure(assetURL(a.animation),'旧試作の動作',true,assetURL(a.poster)),el('p','新しい候補で置換。完成候補数には含めません。'));$('#archive').append(card)}
+for(const c of manifest.concepts.filter(c=>c.kind==='avatar-state')){const card=el('article',null,'legacy-card');card.append(el('h3',c.primitive),el('p',c.reason));if(c.existingFile)card.append(imageFigure(assetURL('../../../'+c.existingFile),'既存Emma：流用評価対象',false));else card.append(el('p','既存の待機・発話表情では意味が足りず、専用表情の流用不可。評価は完了。'));$('#emma').append(card)}
+
+// Cue links reveal targets even when a production-pass filter is active.
+function revealHash(){const card=document.getElementById(location.hash.slice(1));if(card?.classList.contains('card')){if(card.hidden){$('#filter').value='all';$('#filter').dispatchEvent(new Event('change'))}card.scrollIntoView()}}
+window.addEventListener('hashchange',revealHash);

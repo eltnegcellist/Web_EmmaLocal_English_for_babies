@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "bundle_type": "Mitsukotoba Visual Cue production artwork handoff (non-runtime)",
+  "created_local_date": "2026-10-17",
+  "source_git_repo": "eltnegcellist/Web_EmmaLocal_English_for_babies",
+  "user_approval_policy": "Approval of style ≠ approval of final animation; never ship without full visual review",
+  "asset_count": 19,
+  "assets": [
+    {
+      "path": "artwork/approved/milk_bottle.webp",
+      "kind": "still",
+      "status": "approved-design-direction",
+      "original": "mitsukotoba_reference_style/milk_bottle.png",
+      "pixels": [
+        720,
+        720
+      ],
+      "alpha_range": [
+        0,
+        254
+      ],
+      "note": "SmartAngel-informed original imagery, transparent background; final animation not approved yet.",
+      "bytes": 25286
+    },
+    {
+      "path": "artwork/approved/picture_book.webp",
+      "kind": "still",
+      "status": "approved-design-direction",
+      "original": "mitsukotoba_reference_style/picture_book.png",
+      "pixels": [
+        720,
+        720
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "SmartAngel-informed original imagery, transparent background; final animation not approved yet.",
+      "bytes": 43342
+    },
+    {
+      "path": "artwork/approved/clapping_hands.webp",
+      "kind": "still",
+      "status": "approved-design-direction",
+      "original": "mitsukotoba_reference_style/clapping_hands.png",
+      "pixels": [
+        720,
+        720
+      ],
+      "alpha_range": [
+        0,
+        254
+      ],
+      "note": "SmartAngel-informed original imagery, transparent background; final animation not approved yet.",
+      "bytes": 34512
+    },
+    {
+      "path": "artwork/approved/kicking_feet.webp",
+      "kind": "still",
+      "status": "approved-design-direction",
+      "original": "mitsukotoba_reference_style/kicking_feet.png",
+      "pixels": [
+        720,
+        720
+      ],
+      "alpha_range": [
+        0,
+        254
+      ],
+      "note": "SmartAngel-informed original imagery, transparent background; final animation not approved yet.",
+      "bytes": 37162
+    },
+    {
+      "path": "artwork/candidates/bath.webp",
+      "kind": "still",
+      "status": "design-draft-needs-review",
+      "original": "mitsukotoba_visual_cue_candidates/bath.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "Candidate duck/bath; ensure tub clearly readable and movement actually represents bathing.",
+      "bytes": 37926
+    },
+    {
+      "path": "artwork/candidates/diaper.webp",
+      "kind": "still",
+      "status": "design-draft-needs-review",
+      "original": "mitsukotoba_visual_cue_candidates/diaper.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "Candidate diaper; retain leg opening and fasteners clear.",
+      "bytes": 25932
+    },
+    {
+      "path": "artwork/candidates/clothes.webp",
+      "kind": "still",
+      "status": "design-draft-needs-review",
+      "original": "mitsukotoba_visual_cue_candidates/clothes.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "Candidate clothes; do not imply dressing motion with mere bobbing.",
+      "bytes": 32248
+    },
+    {
+      "path": "artwork/candidates/hug.webp",
+      "kind": "still",
+      "status": "redesign-required",
+      "original": "mitsukotoba_visual_cue_candidates/hug.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "Ambiguous teddy/heart candidate: MUST REDESIGN, hugging should be unambiguous.",
+      "bytes": 23990
+    },
+    {
+      "path": "artwork/superseded/meal.webp",
+      "kind": "still",
+      "status": "rejected-color",
+      "original": "mitsukotoba_visual_cue_candidates/meal.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "REJECTED: food looked green; superseded by cream-colored porridge.",
+      "bytes": 33204
+    },
+    {
+      "path": "artwork/candidates/sleep.webp",
+      "kind": "still",
+      "status": "design-draft-needs-review",
+      "original": "mitsukotoba_visual_cue_candidates/sleep.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "Candidate bedtime still; animation must be calm.",
+      "bytes": 31408
+    },
+    {
+      "path": "artwork/candidates/rain.webp",
+      "kind": "still",
+      "status": "design-draft-needs-review",
+      "original": "mitsukotoba_visual_cue_candidates/rain.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "Candidate rain still; animation raindrops move perceptibly.",
+      "bytes": 37330
+    },
+    {
+      "path": "artwork/approved-style/meal_porridge.webp",
+      "kind": "still",
+      "status": "design-direction-accepted",
+      "original": "mitsukotoba_meal_porridge_fixed/meal_porridge_transparent.png",
+      "pixels": [
+        512,
+        512
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "White/cream porridge with matching spoon contents; corrected after green food feedback.",
+      "bytes": 32890
+    },
+    {
+      "path": "artwork/sprite-drafts/clothes.webp",
+      "kind": "three-pose-sheet",
+      "status": "experimental-not-approved",
+      "original": "ゆらゆら揺れるベビー服3コマ.png",
+      "pixels": [
+        1830,
+        610
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "3 pose costume strip; not 3 independent assets; extract carefully and review pose consistency.",
+      "bytes": 130518
+    },
+    {
+      "path": "artwork/sprite-drafts/diaper.webp",
+      "kind": "three-pose-sheet",
+      "status": "experimental-not-approved",
+      "original": "ふわふわベビーダイパー3コマセット.png",
+      "pixels": [
+        1830,
+        610
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "3 pose diaper strip; verify straps, buckles and no shape morph.",
+      "bytes": 125186
+    },
+    {
+      "path": "artwork/sprite-drafts/sleep_moon.webp",
+      "kind": "three-pose-sheet",
+      "status": "experimental-not-approved",
+      "original": "おやすみ三日月のフェルトアニメーション.png",
+      "pixels": [
+        1830,
+        610
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "3 poses sleep moon; ask if moon symbolism is understandable to young babies.",
+      "bytes": 143360
+    },
+    {
+      "path": "artwork/sprite-drafts/hug_bear.webp",
+      "kind": "three-pose-sheet",
+      "status": "experimental-not-approved",
+      "original": "ハートを抱くくまの三段アニメーション.png",
+      "pixels": [
+        1830,
+        610
+      ],
+      "alpha_range": [
+        0,
+        255
+      ],
+      "note": "3 pose teddy hugging heart; meaning of caregiver hug may remain unclear.",
+      "bytes": 178450
+    },
+    {
+      "path": "artwork/motion-drafts/rain_big.webp",
+      "kind": "animated-webp",
+      "status": "experimental-not-approved",
+      "original": "mitsukotoba_visual_cue_motion_v4/rain_big_motion.gif",
+      "pixels": [
+        474,
+        520
+      ],
+      "frames": 18,
+      "loop_seconds": 3.06,
+      "note": "large raindrop movement demo; transparent composite QA required",
+      "bytes": 90204
+    },
+    {
+      "path": "artwork/motion-drafts/bath_big.webp",
+      "kind": "animated-webp",
+      "status": "experimental-not-approved",
+      "original": "mitsukotoba_visual_cue_motion_v4/bath_big_motion.gif",
+      "pixels": [
+        474,
+        520
+      ],
+      "frames": 18,
+      "loop_seconds": 3.06,
+      "note": "large shower/bath water and duck motion demo; bath shape QA",
+      "bytes": 96648
+    },
+    {
+      "path": "artwork/motion-drafts/porridge_scoop.webp",
+      "kind": "animated-webp",
+      "status": "experimental-not-approved",
+      "original": "mitsukotoba_meal_porridge_fixed/meal_porridge_motion.gif",
+      "pixels": [
+        474,
+        520
+      ],
+      "frames": 22,
+      "loop_seconds": 3.08,
+      "note": "corrected cream-colored porridge scoop; motion composition still QA",
+      "bytes": 125108
+    }
+  ],
+  "qa_rules": [
+    "No infant body/face for object/action scenes",
+    "Transparent edge (actual alpha) and no opaque background",
+    "Felt/soft paper educational picture book; legible silhouettes and bright color",
+    "Keep 1 object/action per scene",
+    "No green porridge; spoon color and bowl contents must match",
+    "Avoid bobbing entire frame as sole animation",
+    "No uncontrolled rapid flashes or sudden movements",
+    "4 pose strips are EXPERIMENTAL, not production sprites",
+    "No changes to production UI or Ruri/TTS/English corpus"
+  ],
+  "statuses": [
+    "approved-design-direction",
+    "design-direction-accepted",
+    "design-draft-needs-review",
+    "redesign-required",
+    "rejected-color",
+    "experimental-not-approved"
+  ]
+}

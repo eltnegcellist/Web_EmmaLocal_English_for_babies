@@ -1,0 +1,105 @@
+{
+  "url": "file:///Users/itohidetaka/Documents/Codex/2026-10-17-eltnegcellist-web-emmalocal-english-for-babies/assets/visual-cue/artwork/preview-offline.html",
+  "browser": "155.0.8059.80",
+  "checks": [
+    {
+      "name": "css-size-220",
+      "pass": true
+    },
+    {
+      "name": "css-size-256",
+      "pass": true
+    },
+    {
+      "name": "css-size-320",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hand-open-close",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hand-count",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hand-tap",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-change-zipper",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hug-arms",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hand-squeeze-v3",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-change-clothes",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-change-diaper-exchange",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-wake-quilt",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-care-burp",
+      "pass": true
+    },
+    {
+      "name": "pause-uses-posters",
+      "pass": true
+    },
+    {
+      "name": "resume-uses-animations",
+      "pass": true
+    },
+    {
+      "name": "reduced-motion-static",
+      "pass": true
+    },
+    {
+      "name": "filter-draft",
+      "pass": true
+    },
+    {
+      "name": "filter-production-pass-three",
+      "pass": true
+    },
+    {
+      "name": "mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "58-cues-31-concepts",
+      "pass": true
+    },
+    {
+      "name": "old-drafts-separate-from-candidates",
+      "pass": true
+    },
+    {
+      "name": "emma-seven-evaluations",
+      "pass": true
+    },
+    {
+      "name": "all-images-decoded",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "badResponses": [],
+  "passed": true
+}

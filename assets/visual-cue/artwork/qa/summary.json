@@ -1,0 +1,18 @@
+{
+  "stills": 20,
+  "loops": 25,
+  "readiness": {
+    "candidate": 45
+  },
+  "coveredIllustrationConcepts": 14,
+  "animationConceptsWithArtifacts": 10,
+  "cueReadiness": {
+    "candidate": 37,
+    "evaluation-complete": 21
+  },
+  "animationConceptsWithCandidates": 10,
+  "newAccepted": 0,
+  "technicalPass": 45,
+  "technicalTotal": 45,
+  "sizeExceptions": []
+}
