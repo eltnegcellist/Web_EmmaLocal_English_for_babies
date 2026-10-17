@@ -1207,3 +1207,163 @@ body{
 .switch input {inset:0;width:100%;height:100%;}
 #semanticPanel textarea {position:relative;z-index:1;pointer-events:auto;user-select:text;-webkit-user-select:text;touch-action:manipulation;min-height:110px;resize:vertical;}
 .semantic-compact-setting small {font-size:.74rem;}
+
+
+/* Emma-first conversation: preserve the existing full-size animated avatar.
+   Parents can glance at all three English sentences without chat bubbles. */
+#homeScreen .conversation{display:block;margin-top:8px}
+#homeScreen .conversation.hidden{display:none!important}
+#homeScreen .emma-bubble{
+  justify-self:stretch;width:100%;border-radius:18px;padding:10px 12px;
+  background:rgba(255,255,255,.83);border:1px solid rgba(111,77,176,.12);
+  box-shadow:none;color:var(--on-surface)
+}
+#homeScreen .reply-topic{
+  font-size:.7rem;line-height:1.3;font-weight:700;color:var(--primary);
+  margin-bottom:5px;text-align:left
+}
+#homeScreen .emma-bubble .reply-english{
+  font-size:.88rem;line-height:1.38;font-weight:650;overflow-wrap:anywhere
+}
+#homeScreen .emma-bubble .reply-japanese{
+  margin-top:5px;font-size:.72rem;line-height:1.35;
+  color:var(--on-surface-variant);overflow-wrap:anywhere
+}
+
+/* The topic sits at the top-left of Emma's existing full-size face panel. */
+#homeScreen .avatar-wrap{position:relative}
+#homeScreen .avatar-wrap>.reply-topic{
+  position:absolute;left:12px;top:12px;z-index:2;
+  border-radius:999px;padding:5px 9px;
+  background:rgba(255,255,255,.90);
+  border:1px solid rgba(111,77,176,.12);
+  box-shadow:0 3px 9px rgba(30,12,58,.04);
+  font-size:.71rem;line-height:1.2;font-weight:700;color:var(--primary)
+}
+
+
+/* Compact Emma-first UI: one status badge in the former "Emma" slot.
+   Preserve the existing avatar dimensions and animation. */
+#homeScreen .avatar-wrap .avatar-status{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  margin:2px auto 12px;max-width:calc(100% - 24px);
+  min-height:31px;z-index:3
+}
+#homeScreen .avatar-status .status-chip{
+  padding:7px 15px;border-radius:999px;font-size:.81rem;
+  line-height:1.3;text-align:center;max-width:100%;overflow-wrap:anywhere
+}
+#homeScreen .avatar-status .mini-spinner{width:16px;height:16px;flex:none}
+#homeScreen .status-section{margin:0}
+#homeScreen .status-section #statusDetail{margin:6px 0 0;font-size:.78rem;line-height:1.35}
+#homeScreen .conversation{margin-top:9px}
+#homeScreen .emma-bubble{padding:10px 12px}
+#homeScreen .auto-reply-card{margin-top:10px;padding:10px 14px}
+/* Optional manual endpoint is a secondary action, not the dominant purple CTA. */
+#homeScreen .bottom-bar #manualReplyButton{
+  min-height:40px;border-radius:13px;padding:8px 12px;
+  font-size:.83rem;font-weight:700;box-shadow:none;
+  color:var(--primary);background:rgba(111,77,176,.055);
+  border:1px solid rgba(111,77,176,.22)
+}
+
+
+/* Emma-first warm conversation ornamentation. Keep the face full-size and
+   decorate the ONE supporting reply panel rather than adding stacked cards. */
+#homeScreen .avatar-wrap>.reply-topic {
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 12px 7px 10px;
+  border:1.5px solid rgba(144,96,187,.34);
+  border-radius:999px;
+  background:linear-gradient(115deg,rgba(255,249,255,.98),rgba(238,224,255,.96));
+  color:#7043a2;
+  font-weight:800;font-size:.73rem;
+  box-shadow:0 4px 13px rgba(112,67,162,.10);
+}
+#homeScreen .emma-bubble{
+  position:relative;overflow:hidden;
+  border:1.5px solid rgba(165,123,204,.3);
+  border-radius:22px;
+  background:linear-gradient(136deg,#fffefd 6%,#fff7fc 63%,#f8f2ff 100%);
+  box-shadow:0 5px 16px rgba(130,91,174,.09),inset 0 1px 0 rgba(255,255,255,.95);
+  padding:12px 15px 11px;
+}
+#homeScreen .emma-bubble .reply-english{
+  position:relative;z-index:1;
+  padding-right:12px;font-size:.90rem;line-height:1.43;
+  font-weight:670;color:#44304f;letter-spacing:.005em;
+}
+#homeScreen .emma-bubble .reply-japanese{
+  margin-top:8px;padding-top:7px;
+  border-top:1px dashed rgba(172,128,198,.30);
+  color:#826d91;font-size:.73rem;line-height:1.4;
+}
+#settingsScreen .auto-respond-setting{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#settingsScreen .auto-respond-setting>span:first-child{display:grid;gap:4px;flex:1;min-width:0}
+#settingsScreen .auto-respond-setting small{font-weight:400;color:var(--on-surface-variant);font-size:.78rem}
+#settingsScreen .auto-respond-setting .switch{flex:none}
+
+
+/* Eight-point compact conversation refresh. No gem/diamond motifs. */
+#homeScreen .avatar-wrap>.reply-topic::before,
+#homeScreen .emma-bubble::before{content:none!important;display:none!important}
+#homeScreen .avatar-wrap>.reply-topic{padding:7px 13px;gap:0}
+#homeScreen .emma-bubble .reply-english{padding-right:0}
+
+/* Top-right play entry takes the former '?' slot. */
+#homeScreen .app-actions .play-top-button{
+  width:auto;min-width:91px;height:46px;padding:0 9px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:16px;gap:1px;white-space:nowrap
+}
+#homeScreen .app-actions .play-top-button span{display:block;font-size:.67rem;font-weight:750;line-height:1.16}
+#homeScreen .app-actions .play-top-button span:first-child{font-size:1.05rem}
+#homeScreen .home-brand{min-width:0}
+#homeScreen .home-brand h1{font-size:clamp(1.05rem,4vw,1.28rem)}
+
+/* One large invitation while Emma is asleep; speech action dominates when running. */
+#homeScreen .bottom-bar{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(99px,27%);
+  gap:9px;align-items:stretch;
+}
+#homeScreen .bottom-bar #mainButton{
+  grid-column:1 / -1;grid-row:1;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  min-height:94px;padding:13px 16px;border-radius:23px;
+  background:var(--primary);color:var(--on-primary);
+  box-shadow:0 10px 25px rgba(111,77,176,.25)
+}
+#homeScreen .bottom-bar #mainButton .start-cta-hint{
+  display:block;font-size:.75rem;font-weight:500;line-height:1.4;margin-top:5px;opacity:.92
+}
+#homeScreen .bottom-bar #mainButton strong{font-size:1.18rem;line-height:1.3}
+#homeScreen .bottom-bar #manualReplyButton{
+  grid-column:1;grid-row:1;
+  min-width:0;min-height:66px;margin:0;border:0;border-radius:19px;
+  padding:11px 8px;
+  font-size:1rem;font-weight:800;
+  background:var(--primary);color:var(--on-primary);
+  box-shadow:0 8px 20px rgba(111,77,176,.22)
+}
+#homeScreen .bottom-bar #stopButton{
+  grid-column:2;grid-row:1;
+  min-height:66px;padding:9px 5px;border-radius:18px;
+  background:rgba(255,255,255,.94);
+  color:var(--primary);font-size:.78rem;font-weight:700;line-height:1.32
+}
+#homeScreen .bottom-bar #enableAudioButton{grid-column:1 / -1;grid-row:2}
+#homeScreen .screen-content.home-content{
+  padding-bottom:calc(132px + env(safe-area-inset-bottom))!important;
+}
+#homeScreen[data-session="active"] .screen-content.home-content{
+  padding-bottom:calc(103px + env(safe-area-inset-bottom))!important;
+}
+#settingsScreen label.history-save-toggle{
+  display:flex!important;flex-direction:row!important;align-items:center;
+  justify-content:space-between;gap:14px;min-width:0
+}
+#settingsScreen label.history-save-toggle>span{flex:1;min-width:0}
+#settingsScreen label.history-save-toggle input[type="checkbox"]{
+  flex:0 0 22px;width:22px!important;height:22px!important;
+  margin:0 0 0 auto;padding:0!important;border-radius:5px;accent-color:var(--primary)
+}
