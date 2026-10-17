@@ -1,0 +1,52 @@
+{
+  "status": "SYNTHETIC_PROVISIONAL_RECALL_PRIORITY_NOT_OBSERVED_FREQUENCY",
+  "phase": "PRE_INFERENCE_DESIGN",
+  "case_count": 202,
+  "strata": {
+    "ordinary": 170,
+    "routine_context": 12,
+    "plausible_absence": 20
+  },
+  "probability_thresholds": [
+    0.5,
+    0.45,
+    0.4,
+    0.35,
+    0.3
+  ],
+  "interaction_thresholds": [
+    0.5,
+    0.45,
+    0.4
+  ],
+  "topic_margins": [
+    0.05,
+    0.1
+  ],
+  "absence_prevalence_scenarios": [
+    0,
+    0.01,
+    0.03,
+    0.05,
+    0.1,
+    0.2
+  ],
+  "routine_prevalence_scenarios": [
+    0,
+    0.05,
+    0.1,
+    0.2
+  ],
+  "bad_reply_costs_relative_to_one_miss": [
+    1,
+    2,
+    5,
+    10
+  ],
+  "minor_mismatch_costs": [
+    0.25,
+    0.5
+  ],
+  "case_text_hash": "38177a35bd31efea8fe42a98c266c6490367698b96b6ace66696c8d1d3b2b272",
+  "review_policy": "Explicit per input/output judgments, no blanket rejection of negative Topic. Generic costs one when a useful target is clear. Short on-topic invitations are acceptable for ordinary observations. Strict contradictions and wrong topics have cost ratios above; mild pragmatic/temporal mismatch separately graded. No single-error veto. Frequency/cost scenarios are assumptions, not empirical estimates. Original unapproved head and all live thresholds remain unchanged."
+}

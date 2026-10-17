@@ -1,0 +1,51 @@
+name: Ruri recall research
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'research/ruri-recall-priority-20261017/**'
+      - 'scripts/*ruri-recall*.mjs'
+      - 'scripts/*ruri-guarded30.mjs'
+      - 'scripts/ruri-reevaluation-lib.mjs'
+      - 'scripts/validate-ruri-adoption.mjs'
+      - 'scripts/compare-ruri-adoption.mjs'
+      - 'src/interaction/**'
+      - 'research/ruri-adoption-20261018/**'
+      - '.github/workflows/ruri-recall-research.yml'
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '26'
+      - name: Run actual pinned Ruri on the 202 synthetic inputs
+        env:
+          RURI_RESEARCH_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: node scripts/evaluate-ruri-recall-priority.mjs --refresh
+      - name: Recompute frequency, cost and retrospective sampling sensitivity
+        run: node scripts/analyze-ruri-recall-tradeoffs.mjs
+      - name: Recompute guarded 30 percent user proposal from actual scores
+        run: node scripts/evaluate-ruri-guarded30.mjs
+      - name: Verify adopted production route on all 414 synthetic inputs
+        run: |
+          node scripts/validate-ruri-adoption.mjs
+          node scripts/compare-ruri-adoption.mjs
+      - name: Verify recall research and original safeguards
+        run: |
+          node --test scripts/test-ruri-recall-priority.mjs
+          node --test scripts/test-ruri-guarded30.mjs
+          node --test scripts/test-ruri-reevaluation.mjs
+      - name: Archive synthetic research outputs only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ruri-recall-priority-synthetic
+          path: |
+            research/ruri-recall-priority-20261017/
+            research/ruri-adoption-20261018/
+          retention-days: 14
