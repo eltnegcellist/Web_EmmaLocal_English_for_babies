@@ -8,7 +8,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=20260930-icon-r1" />
   <link rel="icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" sizes="192x192" />
-  <link rel="stylesheet" href="./styles.css?v=20261013-home-banner-r1" />
+  <link rel="stylesheet" href="./styles.css?v=20261017-emma-main-v1" />
   <title>みつことば Web</title>
 </head>
 <body>
@@ -103,7 +103,7 @@
       </div>
     </section>
 
-    <section id="homeScreen" class="screen hidden">
+    <section id="homeScreen" class="screen hidden" data-session="stopped">
       <div class="screen-content home-content">
         <header class="topbar app-topbar">
           <div class="home-brand">
@@ -114,12 +114,13 @@
             </div>
           </div>
           <nav class="app-actions">
-            <button id="aboutButton" class="icon-text-button" aria-label="みつことばについて">？<span>About</span></button>
+            <button id="playButton" class="icon-text-button play-top-button" aria-label="押して聞く"><span aria-hidden="true">☝</span><span>押して聞く</span></button>
             <button id="settingsButton" class="icon-text-button" aria-label="設定">⚙<span>設定</span></button>
           </nav>
         </header>
 
         <section class="avatar-wrap">
+          <span id="replyTopic" class="reply-topic" aria-label="今回の話題">ごあいさつ</span>
           <div id="avatar" class="avatar state-idle" aria-hidden="true">
             <div class="listening-ring"></div>
             <div id="aiAvatarFace" class="emma-face-frame" role="img" aria-label="Emma（みつことば AI）">
@@ -452,48 +453,36 @@
 </div>
             <div class="thinking-dots"><span></span><span></span><span></span></div>
           </div>
-          <div id="aiNameBadge" class="ai-name-badge">Emma</div>
-        </section>
-
-        <section id="tutorialStatusTarget" class="status-section" aria-live="polite">
-          <div class="status-row">
-            <span id="statusTitle" class="status-chip status-idle">みつことばはおやすみ中</span>
+          <div id="tutorialStatusTarget" class="avatar-status" aria-live="polite">
+            <span id="statusTitle" class="status-chip status-idle">Emmaはおやすみ中</span>
             <span id="busySpinner" class="mini-spinner hidden"></span>
           </div>
-          <p id="statusDetail" class="muted">「呼びかけを始める」を押すと、この端末で呼びかけを始めます。</p>
+        </section>
+
+        <section class="status-section" aria-live="polite">
+          <p id="statusDetail" class="muted hidden"></p>
           <div id="progressWrap" class="progress-wrap hidden" aria-hidden="true">
             <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
             <div id="progressText" class="progress-text"></div>
           </div>
         </section>
 
-        <section id="conversation" class="conversation hidden" aria-label="最近の会話">
-          <article id="parentBubble" class="bubble parent-bubble hidden">
-            <div class="bubble-label">あなた</div>
-            <p id="transcript"></p>
-          </article>
-          <article id="emmaBubble" class="bubble emma-bubble hidden">
-            <div id="aiBubbleLabel" class="bubble-label">Emma</div>
-            <p id="reply"></p>
+        <section id="conversation" class="conversation" aria-label="Emmaの英語">
+          <article id="emmaBubble" class="bubble emma-bubble">
+            <p id="reply" class="reply-english">Hi, I'm Emma.</p>
+            <p id="replyJapanese" class="reply-japanese" aria-label="日本語の目安">こんにちは、エマだよ。</p>
           </article>
         </section>
 
-        <article class="auto-reply-card">
-          <div>
-            <strong>自動で返事</strong>
-            <span>話し終わりを検出してAIが返します</span>
-          </div>
-          <label class="switch">
-            <input id="autoRespond" type="checkbox" checked />
-            <span></span>
-          </label>
-        </article>
+
       </div>
 
       <footer class="bottom-bar">
-        <button id="playButton" class="play-shortcut" aria-label="押して聞く・親子で遊ぶ"><span aria-hidden="true">☝</span><span>押して聞く</span></button>
+        <button id="mainButton" class="primary-button start-cta">
+          <strong>呼びかけを始める</strong>
+          <span class="start-cta-hint">ここを押してEmmaとおしゃべり</span>
+        </button>
         <button id="manualReplyButton" class="primary-button hidden">今すぐAIが返事する</button>
-        <button id="mainButton" class="primary-button">呼びかけを始める</button>
         <button id="stopButton" class="outline-button hidden">呼びかけを止める</button>
       </footer>
     </section>
@@ -527,10 +516,19 @@
           <button id="settingsAboutButton" class="text-button">英語学習に使える理由</button>
         </header>
 
+        <article class="card auto-reply-settings">
+          <h2>呼びかけの設定</h2>
+          <label class="toggle-line auto-respond-setting">
+            <span><strong>自動で返事</strong><small>話し終わりを検出してEmmaが返事をします</small></span>
+            <span class="switch"><input id="autoRespond" type="checkbox" checked aria-label="自動で返事" /><span></span></span>
+          </label>
+          <p class="small muted">オフの場合は、会話画面の「今すぐAIが返事する」で返答を開始できます。</p>
+        </article>
+
         <article class="card">
           <h2>会話履歴</h2>
           <p class="small muted">再生した会話をこのブラウザ内に保存し、あとから見たり聞いたりするための設定です。</p>
-          <label><input id="historyEnabled" type="checkbox" checked />端末内に会話履歴を残す</label>
+          <label class="history-save-toggle"><span>端末内に会話履歴を残す</span><input id="historyEnabled" type="checkbox" checked /></label>
           <p>音声の再生が始まった応答の日本語・英語を最大1,000件保存します。録音は保存しません。オフにしても以前の履歴は残ります。</p>
           <p id="historyWarning" role="status"></p>
           <button id="historyButton" class="outline-button">会話履歴を見る・聞く</button>
@@ -785,6 +783,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261014-gender-settings-removed-r3"></script>
+  <script type="module" src="./src/app.js?v=20261017-emma-main-v1"></script>
 </body>
 </html>
