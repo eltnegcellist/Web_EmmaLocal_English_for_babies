@@ -1,0 +1,312 @@
+{
+  "status": "RETROSPECTIVE_CHANGED_OUTPUT_PAIRS_ONLY_CODEX_PROVISIONAL",
+  "scope": "All differing English pairs under 42 policies; unchanged outputs cancel in paired differences. No assertion about absolute quality for unreviewed unchanged cases.",
+  "rows": [
+    {
+      "id": "new002",
+      "text": "ぐっすり寝てるね",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "睡眠に沿う短い呼びかけ。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new002",
+      "text": "ぐっすり寝てるね",
+      "english": "Do you hear that? That's my voice! Hello, baby!",
+      "verdict": "generic_miss",
+      "note": "睡眠の観察を取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new034",
+      "text": "お口がにこっとしたね",
+      "english": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+      "verdict": "generic_miss",
+      "note": "笑顔の観察を取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new034",
+      "text": "お口がにこっとしたね",
+      "english": "What a smile! I love seeing it. You're so sweet!",
+      "verdict": "appropriate",
+      "note": "笑顔に沿う呼びかけ。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new042",
+      "text": "いっしょにお風呂に入ろうね",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "入浴への誘いとして適切。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new042",
+      "text": "いっしょにお風呂に入ろうね",
+      "english": "Bath time, baby! Feel that water! I'll be gentle.",
+      "verdict": "appropriate",
+      "note": "入浴への誘い。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new049",
+      "text": "新しいお洋服に着替えようか",
+      "english": "Here comes your shirt! One arm first! In you go!",
+      "verdict": "appropriate",
+      "note": "着替えへの誘い。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new049",
+      "text": "新しいお洋服に着替えようか",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "appropriate",
+      "note": "着替えへの誘いとして適切。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new051",
+      "text": "お着替えは全部終わったかな",
+      "english": "All dressed now! Look at your outfit. Nice and cozy.",
+      "verdict": "unsupported_claim",
+      "note": "完了したか不明な質問なのにAll dressed nowと完了を言い切る。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new051",
+      "text": "お着替えは全部終わったかな",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "minor_mismatch",
+      "note": "着替えが終わったかを尋ねるのに着替えを促す。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new058",
+      "text": "おむつ替えはもうできたかな",
+      "english": "Diaper all done? Let's have a look. All clean now?",
+      "verdict": "appropriate",
+      "note": "おむつ替え完了を尋ねる。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new058",
+      "text": "おむつ替えはもうできたかな",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "minor_mismatch",
+      "note": "おむつ替えが終わったかの問いを交換の誘いにする。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new080",
+      "text": "あんよをばたばたさせてるね",
+      "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+      "verdict": "appropriate",
+      "note": "足に沿う呼びかけ。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new080",
+      "text": "あんよをばたばたさせてるね",
+      "english": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
+      "verdict": "generic_miss",
+      "note": "足が動く観察を取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new086",
+      "text": "おなかがぐるぐる鳴ってるね",
+      "english": "Baby, my little star! I love you. Hello, sweetheart!",
+      "verdict": "generic_miss",
+      "note": "お腹が鳴る観察を取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new086",
+      "text": "おなかがぐるぐる鳴ってるね",
+      "english": "How's your tummy? Do you feel full? I'm here!",
+      "verdict": "appropriate",
+      "note": "お腹に沿う呼びかけ。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new119",
+      "text": "いっぱいやったからおつかれさまだね",
+      "english": "I hear you crying. That was a lot. I'm here with you.",
+      "verdict": "unsupported_claim",
+      "note": "泣きへの言及がないのにI hear you cryingと断定。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new119",
+      "text": "いっぱいやったからおつかれさまだね",
+      "english": "You worked so hard. That's a lot. Rest if you like.",
+      "verdict": "appropriate",
+      "note": "労いに対して労いを返す。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new121",
+      "text": "心配しなくてもそばにいるよ",
+      "english": "I hear you crying. I'm right here. Come for a cuddle.",
+      "verdict": "unsupported_claim",
+      "note": "泣きへの言及がないのにI hear you cryingと断定。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new121",
+      "text": "心配しなくてもそばにいるよ",
+      "english": "I'm here with you. You're not alone. I'm staying close.",
+      "verdict": "appropriate",
+      "note": "安心させる意図に沿う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new123",
+      "text": "いったんお休みにしようね",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "minor_mismatch",
+      "note": "休憩を睡眠に狭める。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "new123",
+      "text": "いったんお休みにしようね",
+      "english": "Just a moment. I'll be right here. We can wait.",
+      "verdict": "appropriate",
+      "note": "休憩・待機の意図に沿う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa022",
+      "text": "どうしたんだろうね",
+      "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+      "verdict": "off_topic",
+      "note": "問いかけを足の観察へ変える。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa022",
+      "text": "どうしたんだろうね",
+      "english": "What's the matter? I'm right here. Can you show me?",
+      "verdict": "appropriate",
+      "note": "自然な問いかけに自然な問い返し。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa037",
+      "text": "ねむそうなお顔だね",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "睡眠の話題に沿う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa037",
+      "text": "ねむそうなお顔だね",
+      "english": "Baby, hello again! I'm happy you're here. Big hugs!",
+      "verdict": "generic_miss",
+      "note": "眠そうな観察を拾わず中立的な愛情表現のみ。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa037",
+      "text": "ねむそうなお顔だね",
+      "english": "Sleepy little sweetheart. I love you. I'm right here.",
+      "verdict": "appropriate",
+      "note": "睡眠の話題に沿う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa037",
+      "text": "ねむそうなお顔だね",
+      "english": "You're so cute! What a sweetheart! I love you.",
+      "verdict": "generic_miss",
+      "note": "かわいいという返答だけで眠気を拾わない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa039",
+      "text": "お外の景色が見えるね",
+      "english": "Baby, hello there! I'm here with you. Big hugs!",
+      "verdict": "generic_miss",
+      "note": "外の景色を拾わず中立的な愛情表現のみ。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa039",
+      "text": "お外の景色が見えるね",
+      "english": "The sun is shining! What a bright day. Hello, sunshine!",
+      "verdict": "unsupported_claim",
+      "note": "外の景色という発話だけでは日差しは不明なのにThe sun is shiningと断定。否定とは無関係。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa042",
+      "text": "おむつ替えをそろそろ始めようか",
+      "english": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+      "verdict": "appropriate",
+      "note": "おむつ替えへの誘い。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa042",
+      "text": "おむつ替えをそろそろ始めようか",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "appropriate",
+      "note": "おむつ替え開始の誘いとして適切。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa052",
+      "text": "お水を飲み終わったかな",
+      "english": "All done drinking? Want another sip? Let's see together.",
+      "verdict": "appropriate",
+      "note": "飲み終わりを確認する。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "qa052",
+      "text": "お水を飲み終わったかな",
+      "english": "Would you like some? Here's a little sip. There you go!",
+      "verdict": "minor_mismatch",
+      "note": "飲み終わりの確認が、飲む誘いになる。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    }
+  ]
+}

@@ -1,0 +1,2391 @@
+{
+  "status": "PROVISIONAL_REVIEWED_PAIRED_DIFFERENCES_NOT_ABSOLUTE_ACCURACY",
+  "changes": [
+    {
+      "policy": "T0.5_I0.5_M0.05",
+      "n": 131,
+      "rows": []
+    },
+    {
+      "policy": "T0.5_I0.45_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.5_I0.4_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "You're so cute! What a sweetheart! I love you.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "generic_miss"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.45_I0.5_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.45_I0.45_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.45_I0.4_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "You're so cute! What a sweetheart! I love you.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "generic_miss"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.4_I0.5_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.4_I0.45_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.4_I0.4_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Sleepy little sweetheart. I love you. I'm right here.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.35_I0.5_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.35_I0.45_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.35_I0.4_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Sleepy little sweetheart. I love you. I'm right here.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.3_I0.5_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new080",
+          "text": "あんよをばたばたさせてるね",
+          "before": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new119",
+          "text": "いっぱいやったからおつかれさまだね",
+          "before": "You worked so hard. That's a lot. Rest if you like.",
+          "after": "I hear you crying. That was a lot. I'm here with you.",
+          "before_verdict": "appropriate",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new121",
+          "text": "心配しなくてもそばにいるよ",
+          "before": "I'm here with you. You're not alone. I'm staying close.",
+          "after": "I hear you crying. I'm right here. Come for a cuddle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.3_I0.45_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new080",
+          "text": "あんよをばたばたさせてるね",
+          "before": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new119",
+          "text": "いっぱいやったからおつかれさまだね",
+          "before": "You worked so hard. That's a lot. Rest if you like.",
+          "after": "I hear you crying. That was a lot. I'm here with you.",
+          "before_verdict": "appropriate",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new121",
+          "text": "心配しなくてもそばにいるよ",
+          "before": "I'm here with you. You're not alone. I'm staying close.",
+          "after": "I hear you crying. I'm right here. Come for a cuddle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.3_I0.4_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Sleepy little sweetheart. I love you. I'm right here.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new080",
+          "text": "あんよをばたばたさせてるね",
+          "before": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new119",
+          "text": "いっぱいやったからおつかれさまだね",
+          "before": "You worked so hard. That's a lot. Rest if you like.",
+          "after": "I hear you crying. That was a lot. I'm here with you.",
+          "before_verdict": "appropriate",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new121",
+          "text": "心配しなくてもそばにいるよ",
+          "before": "I'm here with you. You're not alone. I'm staying close.",
+          "after": "I hear you crying. I'm right here. Come for a cuddle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "C_both0.45_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "D_topic0.45_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "C_both0.4_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Sleepy little sweetheart. I love you. I'm right here.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "D_topic0.4_M0.05",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa039",
+          "text": "お外の景色が見えるね",
+          "before": "Baby, hello there! I'm here with you. Big hugs!",
+          "after": "The sun is shining! What a bright day. Hello, sunshine!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.5_I0.5_M0.1",
+      "n": 131,
+      "rows": []
+    },
+    {
+      "policy": "T0.5_I0.45_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.5_I0.4_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "You're so cute! What a sweetheart! I love you.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "generic_miss"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.45_I0.5_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.45_I0.45_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.45_I0.4_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "You're so cute! What a sweetheart! I love you.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "generic_miss"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "T0.4_I0.5_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.4_I0.45_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.4_I0.4_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Sleepy little sweetheart. I love you. I'm right here.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.35_I0.5_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.35_I0.45_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.35_I0.4_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Sleepy little sweetheart. I love you. I'm right here.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.3_I0.5_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new080",
+          "text": "あんよをばたばたさせてるね",
+          "before": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new121",
+          "text": "心配しなくてもそばにいるよ",
+          "before": "I'm here with you. You're not alone. I'm staying close.",
+          "after": "I hear you crying. I'm right here. Come for a cuddle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.3_I0.45_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new080",
+          "text": "あんよをばたばたさせてるね",
+          "before": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new121",
+          "text": "心配しなくてもそばにいるよ",
+          "before": "I'm here with you. You're not alone. I'm staying close.",
+          "after": "I hear you crying. I'm right here. Come for a cuddle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "T0.3_I0.4_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Sleepy little sweetheart. I love you. I'm right here.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa042",
+          "text": "おむつ替えをそろそろ始めようか",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "qa052",
+          "text": "お水を飲み終わったかな",
+          "before": "Would you like some? Here's a little sip. There you go!",
+          "after": "All done drinking? Want another sip? Let's see together.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new034",
+          "text": "お口がにこっとしたね",
+          "before": "Ooh, ahh, ooh! I hear you! Hello, baby!",
+          "after": "What a smile! I love seeing it. You're so sweet!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new042",
+          "text": "いっしょにお風呂に入ろうね",
+          "before": "Bath time is here! Is the water warm? Splash, splash!",
+          "after": "Bath time, baby! Feel that water! I'll be gentle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new049",
+          "text": "新しいお洋服に着替えようか",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "Here comes your shirt! One arm first! In you go!",
+          "before_verdict": "appropriate",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new051",
+          "text": "お着替えは全部終わったかな",
+          "before": "Let's put clothes on. One arm first. Other arm next!",
+          "after": "All dressed now! Look at your outfit. Nice and cozy.",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new058",
+          "text": "おむつ替えはもうできたかな",
+          "before": "Time for a change. Let's get you dry. All fresh!",
+          "after": "Diaper all done? Let's have a look. All clean now?",
+          "before_verdict": "minor_mismatch",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new080",
+          "text": "あんよをばたばたさせてるね",
+          "before": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new121",
+          "text": "心配しなくてもそばにいるよ",
+          "before": "I'm here with you. You're not alone. I'm staying close.",
+          "after": "I hear you crying. I'm right here. Come for a cuddle.",
+          "before_verdict": "appropriate",
+          "after_verdict": "unsupported_claim"
+        },
+        {
+          "id": "new123",
+          "text": "いったんお休みにしようね",
+          "before": "Just a moment. I'll be right here. We can wait.",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "appropriate",
+          "after_verdict": "minor_mismatch"
+        }
+      ]
+    },
+    {
+      "policy": "C_topic0.45_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "C_both0.45_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "D_topic0.45_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "C_both0.4_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Sleepy little sweetheart. I love you. I'm right here.",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    },
+    {
+      "policy": "D_topic0.4_M0.1",
+      "n": 131,
+      "rows": [
+        {
+          "id": "qa022",
+          "text": "どうしたんだろうね",
+          "before": "What's the matter? I'm right here. Can you show me?",
+          "after": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+          "before_verdict": "appropriate",
+          "after_verdict": "off_topic"
+        },
+        {
+          "id": "qa037",
+          "text": "ねむそうなお顔だね",
+          "before": "Baby, hello again! I'm happy you're here. Big hugs!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new002",
+          "text": "ぐっすり寝てるね",
+          "before": "Do you hear that? That's my voice! Hello, baby!",
+          "after": "Are you sleepy? Let's get cozy. Night-night!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        },
+        {
+          "id": "new086",
+          "text": "おなかがぐるぐる鳴ってるね",
+          "before": "Baby, my little star! I love you. Hello, sweetheart!",
+          "after": "How's your tummy? Do you feel full? I'm here!",
+          "before_verdict": "generic_miss",
+          "after_verdict": "appropriate"
+        }
+      ]
+    }
+  ]
+}

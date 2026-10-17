@@ -364,5 +364,7 @@
         "unapproved_small_synthetic_training"
       ]
     }
-  ]
+  ],
+  "historical_initial_assessment": true,
+  "superseded_research_recommendation": "../ruri-recall-priority-20261017/recommendation.json"
 }

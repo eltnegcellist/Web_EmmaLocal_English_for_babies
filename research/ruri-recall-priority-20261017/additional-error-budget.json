@@ -1,0 +1,1054 @@
+{
+  "status": "HYPOTHETICAL_BREAK_EVEN_NOT_RATE_ESTIMATE",
+  "budgets": [
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 5.294117647058824,
+      "additional_bad_events_per_1000_at_break_even": 5.294117647058824,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 5.294117647058824,
+      "additional_bad_events_per_1000_at_break_even": 2.647058823529412,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 5.294117647058824,
+      "additional_bad_events_per_1000_at_break_even": 1.058823529411765,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 5.2941176470588385,
+      "additional_bad_events_per_1000_at_break_even": 0.5294117647058838,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 10.588235294117649,
+      "additional_bad_events_per_1000_at_break_even": 10.588235294117649,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 10.588235294117649,
+      "additional_bad_events_per_1000_at_break_even": 5.294117647058824,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 10.588235294117649,
+      "additional_bad_events_per_1000_at_break_even": 2.11764705882353,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 10.588235294117649,
+      "additional_bad_events_per_1000_at_break_even": 1.058823529411765,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 10.588235294117649,
+      "additional_bad_events_per_1000_at_break_even": 10.588235294117649,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 10.588235294117649,
+      "additional_bad_events_per_1000_at_break_even": 5.294117647058824,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 10.588235294117649,
+      "additional_bad_events_per_1000_at_break_even": 2.11764705882353,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 10.588235294117649,
+      "additional_bad_events_per_1000_at_break_even": 1.058823529411765,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 5.735294117647075,
+      "additional_bad_events_per_1000_at_break_even": 5.735294117647075,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 5.735294117647061,
+      "additional_bad_events_per_1000_at_break_even": 2.8676470588235303,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 5.735294117647075,
+      "additional_bad_events_per_1000_at_break_even": 1.147058823529415,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 5.735294117647088,
+      "additional_bad_events_per_1000_at_break_even": 0.5735294117647088,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 11.470588235294121,
+      "additional_bad_events_per_1000_at_break_even": 11.470588235294121,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 11.470588235294136,
+      "additional_bad_events_per_1000_at_break_even": 5.735294117647068,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 11.470588235294136,
+      "additional_bad_events_per_1000_at_break_even": 2.294117647058827,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 11.47058823529415,
+      "additional_bad_events_per_1000_at_break_even": 1.147058823529415,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 10.970588235294121,
+      "additional_bad_events_per_1000_at_break_even": 10.970588235294121,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 10.970588235294136,
+      "additional_bad_events_per_1000_at_break_even": 5.485294117647068,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 10.970588235294136,
+      "additional_bad_events_per_1000_at_break_even": 2.1941176470588273,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.01,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 10.970588235294148,
+      "additional_bad_events_per_1000_at_break_even": 1.0970588235294148,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 6.61764705882352,
+      "additional_bad_events_per_1000_at_break_even": 6.61764705882352,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 6.617647058823533,
+      "additional_bad_events_per_1000_at_break_even": 3.3088235294117667,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 6.617647058823533,
+      "additional_bad_events_per_1000_at_break_even": 1.3235294117647067,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 6.617647058823506,
+      "additional_bad_events_per_1000_at_break_even": 0.6617647058823506,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 13.235294117647067,
+      "additional_bad_events_per_1000_at_break_even": 13.235294117647067,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 13.235294117647053,
+      "additional_bad_events_per_1000_at_break_even": 6.617647058823526,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 13.235294117647067,
+      "additional_bad_events_per_1000_at_break_even": 2.6470588235294135,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 13.23529411764704,
+      "additional_bad_events_per_1000_at_break_even": 1.323529411764704,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 11.735294117647065,
+      "additional_bad_events_per_1000_at_break_even": 11.735294117647065,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 11.735294117647053,
+      "additional_bad_events_per_1000_at_break_even": 5.867647058823526,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 11.735294117647065,
+      "additional_bad_events_per_1000_at_break_even": 2.347058823529413,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.03,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 11.735294117647038,
+      "additional_bad_events_per_1000_at_break_even": 1.173529411764704,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 7.500000000000007,
+      "additional_bad_events_per_1000_at_break_even": 7.500000000000007,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 7.500000000000007,
+      "additional_bad_events_per_1000_at_break_even": 3.7500000000000036,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 7.500000000000007,
+      "additional_bad_events_per_1000_at_break_even": 1.5000000000000013,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 7.500000000000007,
+      "additional_bad_events_per_1000_at_break_even": 0.7500000000000007,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 15.000000000000014,
+      "additional_bad_events_per_1000_at_break_even": 15.000000000000014,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 15.000000000000014,
+      "additional_bad_events_per_1000_at_break_even": 7.500000000000007,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 15.000000000000014,
+      "additional_bad_events_per_1000_at_break_even": 3.0000000000000027,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 15.000000000000014,
+      "additional_bad_events_per_1000_at_break_even": 1.5000000000000013,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 12.50000000000001,
+      "additional_bad_events_per_1000_at_break_even": 12.50000000000001,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 12.50000000000001,
+      "additional_bad_events_per_1000_at_break_even": 6.250000000000005,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 12.50000000000001,
+      "additional_bad_events_per_1000_at_break_even": 2.500000000000002,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.05,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 12.50000000000001,
+      "additional_bad_events_per_1000_at_break_even": 1.250000000000001,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 9.705882352941176,
+      "additional_bad_events_per_1000_at_break_even": 9.705882352941176,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 9.705882352941202,
+      "additional_bad_events_per_1000_at_break_even": 4.852941176470601,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 9.705882352941176,
+      "additional_bad_events_per_1000_at_break_even": 1.941176470588235,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 9.70588235294112,
+      "additional_bad_events_per_1000_at_break_even": 0.9705882352941121,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 19.41176470588235,
+      "additional_bad_events_per_1000_at_break_even": 19.41176470588235,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 19.411764705882366,
+      "additional_bad_events_per_1000_at_break_even": 9.705882352941183,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 19.41176470588235,
+      "additional_bad_events_per_1000_at_break_even": 3.88235294117647,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 19.41176470588235,
+      "additional_bad_events_per_1000_at_break_even": 1.941176470588235,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 14.41176470588236,
+      "additional_bad_events_per_1000_at_break_even": 14.41176470588236,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 14.411764705882375,
+      "additional_bad_events_per_1000_at_break_even": 7.205882352941187,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 14.411764705882346,
+      "additional_bad_events_per_1000_at_break_even": 2.8823529411764692,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.1,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 14.411764705882346,
+      "additional_bad_events_per_1000_at_break_even": 1.4411764705882346,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 14.11764705882354,
+      "additional_bad_events_per_1000_at_break_even": 14.11764705882354,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 14.11764705882354,
+      "additional_bad_events_per_1000_at_break_even": 7.05882352941177,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 14.117647058823513,
+      "additional_bad_events_per_1000_at_break_even": 2.8235294117647025,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 14.117647058823513,
+      "additional_bad_events_per_1000_at_break_even": 1.4117647058823513,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 28.23529411764708,
+      "additional_bad_events_per_1000_at_break_even": 28.23529411764708,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 28.23529411764708,
+      "additional_bad_events_per_1000_at_break_even": 14.11764705882354,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 28.23529411764708,
+      "additional_bad_events_per_1000_at_break_even": 5.647058823529416,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 28.235294117647026,
+      "additional_bad_events_per_1000_at_break_even": 2.8235294117647025,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 1,
+      "gain_per_1000": 18.235294117647072,
+      "additional_bad_events_per_1000_at_break_even": 18.235294117647072,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 2,
+      "gain_per_1000": 18.235294117647072,
+      "additional_bad_events_per_1000_at_break_even": 9.117647058823536,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 5,
+      "gain_per_1000": 18.235294117647072,
+      "additional_bad_events_per_1000_at_break_even": 3.6470588235294144,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    },
+    {
+      "policy": "C_topic0.4_M0.1",
+      "absence_assumption": 0.2,
+      "routine_assumption": 0.1,
+      "badCost": 10,
+      "gain_per_1000": 18.235294117647015,
+      "additional_bad_events_per_1000_at_break_even": 1.8235294117647016,
+      "note": "Conservative: each extra bad event costs badCost relative to an otherwise appropriate baseline. This is a hypothetical rate, NOT an estimated occurrence rate."
+    }
+  ],
+  "sentinels": [
+    {
+      "policy": "T0.5_I0.5_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "One, two, three! Count with me! Again, again!",
+          "changed": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "changed": false
+        }
+      ]
+    },
+    {
+      "policy": "T0.5_I0.45_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "One, two, three! Count with me! Again, again!",
+          "changed": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "changed": false
+        }
+      ]
+    },
+    {
+      "policy": "T0.5_I0.4_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "One, two, three! Count with me! Again, again!",
+          "changed": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "changed": false
+        }
+      ]
+    },
+    {
+      "policy": "T0.45_I0.5_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "One, two, three! Count with me! Again, again!",
+          "changed": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.45_I0.45_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "One, two, three! Count with me! Again, again!",
+          "changed": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.45_I0.4_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "One, two, three! Count with me! Again, again!",
+          "changed": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.4_I0.5_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.4_I0.45_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.4_I0.4_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.35_I0.5_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.35_I0.45_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.35_I0.4_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.3_I0.5_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.3_I0.45_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "T0.3_I0.4_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "C_topic0.45_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "One, two, three! Count with me! Again, again!",
+          "changed": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "C_both0.45_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "One, two, three! Count with me! Again, again!",
+          "changed": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "D_topic0.45_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "One, two, three! Count with me! Again, again!",
+          "changed": false
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "C_topic0.4_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "C_both0.4_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    },
+    {
+      "policy": "D_topic0.4_M0.05",
+      "rows": [
+        {
+          "id": "new073",
+          "text": "まだ目を覚ましていないね",
+          "before": "One, two, three! Count with me! Again, again!",
+          "after": "You're awake! Hello, little one. It's nice seeing you!",
+          "changed": true
+        },
+        {
+          "id": "new085",
+          "text": "今は声を出していないね",
+          "before": "Baby, my sweetheart! You're so loved. Hello, baby!",
+          "after": "I hear your voice! Tell me more. I'm listening!",
+          "changed": true
+        }
+      ]
+    }
+  ]
+}

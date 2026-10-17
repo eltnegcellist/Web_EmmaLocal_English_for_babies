@@ -32,7 +32,8 @@ private fun classify(e: FloatArray,w: FloatArray,labels: List<String>): Score {
 }
 fun main(args: Array<String>) {
  val webRoot=File(args[0]);val output=File(args[1]);val assets=File(webRoot,"semantic-assets/ruri70-int8-bd500193")
- val input=JSONObject(File(webRoot,".semantic-research/android-web-input.json").readText()).getJSONArray("cases")
+ val inputFile=if(args.size>3)File(args[3]) else File(webRoot,".semantic-research/android-web-input.json")
+ val input=JSONObject(inputFile.readText()).getJSONArray("cases")
  val tokenizer=RuriSemanticTokenizer(File(assets,"tokenizer.json"))
  val th=head(File(assets,"head-topic.f32"));val ih=head(File(args[2],"app/src/main/assets/semantic/head-interaction.f32"))
  val rows=JSONArray();val env=OrtEnvironment.getEnvironment();val options=OrtSession.SessionOptions()
@@ -50,8 +51,19 @@ fun main(args: Array<String>) {
    val prediction=SemanticTopicPrediction(if(t.margin<.05)"generic" else t.raw,t.p,t.margin,interaction=i.raw,interactionProbability=i.p,interactionMargin=i.margin)
    val reply=LiteResponseEngine().respondRuri(text,"",prediction,true)
    val webIds=item.getJSONArray("tokenIds");val tokensMatch=ids.size==webIds.length()&&ids.indices.all{ids[it]==webIds.getLong(it)}
-   rows.put(JSONObject().put("id",item.getString("id")).put("text",text).put("tokenIdsMatch",tokensMatch)
-    .put("topic",t.json()).put("interaction",i.json()).put("route",reply.scene).put("english",reply.english).put("routingReason",reply.routingReason))
+   val record=JSONObject().put("id",item.getString("id")).put("text",text).put("tokenIdsMatch",tokensMatch)
+    .put("topic",t.json()).put("interaction",i.json()).put("route",reply.scene).put("english",reply.english).put("routingReason",reply.routingReason)
+   // Research projection only: neither live Android acceptance nor heads change.
+   // The current axes must both abstain; do not invent an Interaction on rescue.
+   val acceptedTopic=t.raw!="generic"&&t.p>=.5&&t.margin>=.05
+   val acceptedInteraction=i.raw!="none"&&i.p>=.5
+   for(threshold in listOf(.45,.4))for(rescueMargin in listOf(.05,.10)){
+    val rescue=!acceptedTopic&&!acceptedInteraction&&t.raw!="generic"&&t.p>=threshold&&t.margin>=rescueMargin
+    val selected=if(rescue)LiteResponseEngine().respondRuri(text,"",SemanticTopicPrediction(t.raw,1.0,1.0,interaction="none"),true) else reply
+    val field=(if(threshold==.45)"researchTopicRescue45" else "researchTopicRescue40")+(if(rescueMargin==.10)"Margin10" else "")
+    record.put(field,JSONObject().put("rescued",rescue).put("route",selected.scene).put("english",selected.english))
+   }
+   rows.put(record)
   }
  }
  options.close();output.parentFile.mkdirs()
