@@ -4,7 +4,7 @@ import {mkdir,writeFile} from 'node:fs/promises';
 const require=createRequire(import.meta.url);
 const {chromium}=process.env.VISUAL_CUE_PLAYWRIGHT_MODULE?require(process.env.VISUAL_CUE_PLAYWRIGHT_MODULE):require('playwright');
 const base=process.env.VISUAL_CUE_PREVIEW_URL||'http://127.0.0.1:8765/assets/visual-cue/artwork/preview.html';
-const output=new URL('../../assets/visual-cue/artwork/qa/browser/',import.meta.url);
+const output=new URL(process.env.VISUAL_CUE_CAPTURE_OUTPUT||'../../assets/visual-cue/artwork/qa/browser/',import.meta.url);
 await mkdir(output,{recursive:true});
 const browser=await chromium.launch({headless:true,...(process.env.VISUAL_CUE_CHROME_EXECUTABLE?{executablePath:process.env.VISUAL_CUE_CHROME_EXECUTABLE}:{})});
 const context=await browser.newContext({viewport:{width:1280,height:1000}});

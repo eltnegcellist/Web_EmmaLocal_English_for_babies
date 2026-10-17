@@ -6,6 +6,7 @@
 
 ## プレビューを開く
 
+- **[GitHub Pagesで動画プレビューを開く](https://eltnegcellist.github.io/visual-cue-artwork-preview/)**：インストールやサーバー起動は不要です。専用の公開リポジトリ `eltnegcellist/visual-cue-artwork-preview` の `gh-pages` から配信し、既存アプリのPages公開元・更新経路は変更しません。
 - **[preview-offline.html](preview-offline.html)**：動画を含む単一HTML。ダウンロード／ローカルのファイルをブラウザで開くだけで動作し、サーバーやネット接続は不要です。GitHubのコード表示では動画は動きません。
 - [ローカルHTTP版](http://127.0.0.1:8765/assets/visual-cue/artwork/preview.html)：リポジトリ直下で `python3 -m http.server 8765 --bind 127.0.0.1` を起動して開きます。
 
@@ -77,5 +78,7 @@ VISUAL_CUE_PREVIEW_URL="file://$PWD/assets/visual-cue/artwork/preview-offline.ht
 ```
 
 最終追加だけ再生成する場合は `build_artwork.py --only-final`、2回目以降は `--only-new`。Pillow/numpyで原画から再現し、再生成にAIサービスやAPIキーは不要です。MacでPython 3.14.4 / Pillow 12.3.0 / numpy 2.5.1 / Chrome 155を使用。ライブラリ差で容量や符号化バイトは変わり得ます。
+
+Pages再公開用のファイルは `python3 scripts/visual-cue/prepare_pages.py --output /tmp/visual-cue-pages-new` で新規フォルダに出力できます。`index.html`、`.nojekyll`、`deployment.json`、公開元説明だけを専用リポジトリの `gh-pages` へ反映します。アプリ本体や編集用原画は公開パッケージへ追加しません。
 
 CIは `.github/workflows/visual-cue-artwork.yml`。QA・プレビューをartifactとして保存します。採用承認、実機での最終確認、914英文の最終意味割当は引き続き人の審査工程です。今回の候補以外の新しい表現の制作や本体実装は行いません。
