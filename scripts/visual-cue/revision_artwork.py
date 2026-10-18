@@ -54,10 +54,12 @@ foot4=fit(read(GEN/'foot.png'),(130,250));fw,fh=foot4.size
 fl4=part('kick-left',place(blank(),ImageOps.mirror(foot4),(140-fw/2,414-fh)))
 fr4=part('kick-right',place(blank(),foot4,(372-fw/2,414-fh)))
 def kick4(t):
-    angle=12*math.sin(2*math.pi*t);im=rotate(fl4,angle,(140,380));im.alpha_composite(rotate(fr4,-angle,(372,380)))
+    # Review round 2: make alternating foot motion unambiguously visible at 220px.
+    # Wider 26-degree travel, while preserving inward big toes and ankle pivots.
+    angle=26*math.sin(2*math.pi*t);im=rotate(fl4,angle,(140,380));im.alpha_composite(rotate(fr4,-angle,(372,380)))
     return im,dict(leftAngle=angle,rightAngle=-angle,leftAnchor=[140,380],rightAnchor=[372,380],bigToes='inward')
 still('feet','scene.feet','足：親指が中央を向く左右',kick4(0)[0],'sources/generated/foot.png',note='左右の親指が内側に来るように、静止画と動画を統一。')
-animate('kick','motion.kick','キック：親指を内側に、足首で左右交互',kick4,'sources/generated/foot.png',['left foot at ankle','right foot at ankle'],note='左右を逆に配置していた旧版を撤回。親指の向きを画素と目視で確認。')
+animate('kick','motion.kick','キック：親指を内側に、足首で左右交互',kick4,'sources/generated/foot.png',['left foot at ankle','right foot at ankle'],frame_count=42,note='左右を逆に配置していた旧版を撤回。追レビュー：角度12→26度、36→42フレームにして左右交互の動きを見やすくする。再ビルドと目視確認が必要。')
 
 # Reuse the articulated rig with its thumb root moved from wrist to mid-palm.
 hand_code=(ROOT/'scripts/visual-cue/additional_artwork.py').read_text()
