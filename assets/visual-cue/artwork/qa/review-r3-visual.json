@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-19",
+  "reviewer": "Codex visual inspection",
+  "adoptionApproval": false,
+  "displayPixels": 220,
+  "items": [
+    {
+      "assetId": "hold-hands",
+      "evidence": [
+        "qa/browser/hold-hands.png",
+        "parts/r3-hold-whole-scene.png"
+      ],
+      "observations": "大人の中指が最長。人差し指は中指より短い。子の手が左から接触し4本の指が前を横切る。子の掌へ指が突き抜ける旧構図を撤回。人体の自然さの最終採用は利用者審査。",
+      "sha256": {
+        "qa/browser/hold-hands.png": "a99d00acd217b686ba5be544b3414f172581ed36f54342b93cd3c36af0ca0633",
+        "parts/r3-hold-whole-scene.png": "a69636e4ee9ad9329ff58cee65bd90c642a235fc35a46d5dbbcd85e669892acf"
+      }
+    },
+    {
+      "assetId": "hand-wave",
+      "evidence": [
+        "qa/r3-allframes/hand-wave.jpg"
+      ],
+      "observations": "復号40フレームを一覧で目視。5本の指の形が固定され、指の消失・分離なし。手首周辺を支点に左右へ。42原画フレームの同一連続画像を統合、時間は3486ms。",
+      "sha256": {
+        "qa/r3-allframes/hand-wave.jpg": "a60be1c9ad62dbb4b37a71edae94d56d04cb2ab3b4b6b9b92f64c4c96373f644"
+      }
+    },
+    {
+      "assetId": "cup-sip",
+      "evidence": [
+        "qa/r3-allframes/cup-sip.jpg"
+      ],
+      "observations": "復号42フレームを一覧で目視。水平な液面が独立して変化。容器の内側に収まり、縁と取っ手が途切れない。戻る部分で液体量も復元する繰り返し用表現。",
+      "sha256": {
+        "qa/r3-allframes/cup-sip.jpg": "cf23389a6602f430cc288d07013e11f77d69e00f5832175ea8d06e6af7f66a7f"
+      }
+    }
+  ]
+}

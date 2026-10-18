@@ -64,7 +64,8 @@ def rotate(layer,angle,pivot):return layer.rotate(angle,Image.Resampling.BICUBIC
 def slide(layer,x=0,y=0):return layer.transform(layer.size,Image.Transform.AFFINE,(1,0,-x,0,1,-y),Image.Resampling.BICUBIC)
 def q(t):return (1-math.cos(2*math.pi*t))/2
 
-ONLY_R2='--only-r2' in sys.argv
+ONLY_R3='--only-r3' in sys.argv
+ONLY_R2='--only-r2' in sys.argv or ONLY_R3
 ONLY_REVIEW='--only-review' in sys.argv or ONLY_R2
 ONLY_FINAL='--only-final' in sys.argv or ONLY_REVIEW
 ONLY_NEW='--only-new' in sys.argv or ONLY_FINAL
@@ -276,8 +277,11 @@ assets=[a for a in assets if a['id'] not in ['hand-squeeze','change-diaper']]
 currentPass=4
 if not ONLY_R2:exec(compile((ROOT/'scripts/visual-cue/revision_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/revision_artwork.py'),'exec'),globals())
 currentPass=5
-exec(compile((ROOT/'scripts/visual-cue/review_r2_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/review_r2_artwork.py'),'exec'),globals())
+if not ONLY_R3:exec(compile((ROOT/'scripts/visual-cue/review_r2_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/review_r2_artwork.py'),'exec'),globals())
+currentPass=6
+exec(compile((ROOT/'scripts/visual-cue/review_r3_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/review_r3_artwork.py'),'exec'),globals())
 for a in assets:
+    if a['id']=='hands-open-v2':a['note']='親指・母指球・掌・手首・袖口がつながる一枚の原画。静止画として保持。指を分割して曲げる旧動画はR3で撤回し、手振りは手全体の原画を使用。'
     if a['id']=='change-diaper-v2':a['note']='留め具の開閉variant。交換の全過程はchange-diaper-exchangeで別候補。'
     if a['id']=='change-zipper':a['note']='留め具操作variant。服の交換と袖通しはchange-clothes / dress-sleevesで別候補。'
 if SAMPLE_ONLY:
@@ -288,7 +292,7 @@ plan=json.loads((ROOT/'shared/visual-cue-asset-plan.json').read_text())
 missing={
  'scene.tummy':'年齢を特定しないおなかの部分図。採用審査待ち。',
  'scene.family':'養育者と子の頭・肩・胴・両腕がつながる抱っこへ再制作。採用審査待ち。',
- 'motion.hand':'拍手・手振り・開閉・数える・握る・タップ・指の独立動作を制作。',
+ 'motion.hand':'拍手・手振りを候補として維持。握る・開閉・数える・指の独立動作・ブロックタップはR3で撤回。',
  'motion.change':'上半身が連続する着替え、整合する寝具、背中へのケアへ修正。採用審査待ち。',
  'motion.hug':'養育者が子を支える場面の前腕と掌を動かす。旧毛布表現は撤回。'}
 concepts=[]
@@ -301,8 +305,8 @@ for p in plan['primitives']:
     else:concepts.append(dict(primitive=p['id'],kind=p['kind'],assetIds=ids,status='needs-review',readiness=('candidate' if any(a['id'] in ids and a['readiness']=='candidate' for a in assets) else 'draft') if ids else 'missing',reason=missing.get(p['id'],'採用審査前。詳細と意味の審査範囲はcueCoverageを参照。')))
 
 cueFiles={
-'action.open-close':['hand-open-close'],'action.count':['hand-count'],'action.wiggle':['hand-wiggle'],'action.squeeze':['hold-hands-squeeze'],'action.tap':['hand-tap'],'action.wipe':['care-wipe'],'action.dress':['change-clothes','dress-sleeves','change-zipper'],'action.clap':['hand-clap'],'action.wave':['hand-wave'],'action.kick':['kick'],'action.read':['page'],'action.turn-page':['page'],
-'action.sip':['sip'],'action.eat':['spoon'],'action.sing':['notes'],'action.peekaboo':['peekaboo'],'action.splash':['water-splash'],'action.wash':['water-shower'],
+'action.open-close':[],'action.count':[],'action.wiggle':[],'action.squeeze':[],'action.tap':[],'action.wipe':['care-wipe'],'action.dress':['change-clothes','dress-sleeves','change-zipper'],'action.clap':['hand-clap'],'action.wave':['hand-wave'],'action.kick':['kick'],'action.read':['page'],'action.turn-page':['page'],
+'action.sip':['sip','cup-sip'],'action.eat':['spoon'],'action.sing':['notes'],'action.peekaboo':['peekaboo'],'action.splash':['water-splash'],'action.wash':['water-shower'],
 'action.burp':['care-burp'],'action.wake':['wake-daylight'],'action.hug':['hug-arms'],'subject.tummy':['tummy'],'action.sleep':['sleep'],'subject.bath':['bath'],'subject.book':['book'],'subject.clothes':['clothes'],'subject.diaper':['diaper'],'subject.drink':['cup'],'subject.feet':['feet'],
 'subject.food':['meal'],'subject.hands':['hands'],'subject.milk':['milk'],'subject.music':['music'],'subject.outside':['outdoor'],'subject.rain':['rain','water-rain'],'subject.sun':['sun'],'subject.toy':['toy']}
 unmade={
@@ -316,14 +320,15 @@ for b in plan['bindings']:
     reason=unmade.get(b['cueId'],'Emma状態の評価のみ。アプリ統合・意味承認は未実施。' if not ids else '素材候補の審査待ち。914英文の割当品質を保証しない。')
     if ids and b['cueId'] in unmade:reason=next(a for a in assets if a['id']==ids[0]).get('note') or '追加制作した動作variant。採用審査待ち。'
     if not ids and all(p.startswith('emma.') for p in b['primitives']):ready='evaluation-complete';reason='既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。'
+    if b['cueId'] in ['action.open-close','action.count','action.wiggle','action.squeeze','action.tap']:reason='R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。'
     if b['cueId']=='subject.drink':reason='飲み物のコップを追加。scene.drinkという追加コンセプト案であり、哺乳瓶を飲み物全般に流用しない。原計画・runtimeは未変更。'
     if b['cueId']=='action.peekaboo':reason='玩具を布で隠すvariant。人物のいない部分図として採用審査待ち。'
     if b['cueId']=='action.wake':ready='draft';reason='掛け布団を動かす旧案は撤回。wake-daylightは空の寝床と外側の朝日による代案で、起きた本人や動作を描かないため意味の採用は保留。'
     coverage.append(dict(cueId=b['cueId'],primitives=b['primitives'],assetIds=ids,status='needs-review',readiness=ready,reason=reason))
-commonIds=['milk','cup','diaper-v2','clothes','family-care','sleep','wake-bed','book','toy','bath','hands-open-v2','feet','outdoor','rain','sun','music','hold-hands','hand-wave','kick','page','hug-arms','change-clothes']
+commonIds=['cup-sip','milk','cup','diaper-v2','clothes','family-care','sleep','wake-bed','book','toy','bath','hands-open-v2','feet','outdoor','rain','sun','music','hold-hands','hand-wave','kick','page','hug-arms','change-clothes']
 usage=json.loads((OUT/'qa/usage-audit.json').read_text())
 feedback=json.loads((OUT/'qa/revision-feedback.json').read_text())
-manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='b2536ab',productionPass=5,proposedConcepts=[dict(primitive='scene.drink',kind='illustration',assetIds=['cup'],readiness='proposal',reason='飲み物を哺乳瓶と区別する追加設計案。元計画31コンセプトは変更しない。')],commonAssetIds=commonIds,scenePriorities=usage['scenes'],usageMethod=usage['method'],limitedVariants=usage['limitedVariants'],reviewFeedback=feedback,archivedAssets=archived,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
+manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='b2536ab',productionPass=6,proposedConcepts=[dict(primitive='scene.drink',kind='illustration',assetIds=['cup'],readiness='proposal',reason='飲み物を哺乳瓶と区別する追加設計案。元計画31コンセプトは変更しない。')],commonAssetIds=commonIds,scenePriorities=usage['scenes'],usageMethod=usage['method'],limitedVariants=[r for r in usage['limitedVariants'] if r['assetId'] in {a['id'] for a in assets}],reviewFeedback=feedback,archivedAssets=archived,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
 (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
 (OUT/'qa/motion-traces.json').write_text(json.dumps(rigs,ensure_ascii=False,indent=2)+'\n')
 print(f'Built {sum(x["kind"]=="illustration" for x in assets)} stills, {sum(x["kind"]=="animation" for x in assets)} loops; {len(concepts)} concepts / {len(coverage)} Cues. Approval remains pending.')

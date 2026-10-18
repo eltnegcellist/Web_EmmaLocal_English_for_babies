@@ -34,7 +34,7 @@
 | scene.bath | candidate | bath 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | scene.milk | candidate | milk 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | scene.care | candidate | diaper, clothes, diaper-v2, clothes-open-v2 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
-| scene.hands | candidate | hands, hold-hands, hands-open-v2 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| scene.hands | candidate | hands, hands-open-v2, hold-hands 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | scene.feet | candidate | feet 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | scene.book | candidate | book 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | scene.toy | candidate | toy 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
@@ -45,9 +45,9 @@
 | scene.music | candidate | music 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | scene.sleep | candidate | sleep, wake-bed 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | scene.family | candidate | family-care 養育者と子の頭・肩・胴・両腕がつながる抱っこへ再制作。採用審査待ち。 |
-| motion.sip | candidate | sip 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
+| motion.sip | candidate | sip, cup-sip 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | motion.water | candidate | water-rain, water-shower, water-splash 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
-| motion.hand | candidate | hand-wave, hand-clap, hand-squeeze-v3, hold-hands-squeeze, hand-open-close, hand-count, hand-wiggle, hand-tap 拍手・手振り・開閉・数える・握る・タップ・指の独立動作を制作。 |
+| motion.hand | candidate | hand-clap, hand-wave 拍手・手振りを候補として維持。握る・開閉・数える・指の独立動作・ブロックタップはR3で撤回。 |
 | motion.kick | candidate | kick 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | motion.page | candidate | page 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | motion.change | candidate | care-wipe, change-diaper-v2, change-zipper, change-diaper-exchange, dress-sleeves, change-clothes, care-burp, wake-daylight 上半身が連続する着替え、整合する寝具、背中へのケアへ修正。採用審査待ち。 |
@@ -69,25 +69,25 @@
 | --- | --- | --- | --- |
 | action.burp | scene.tummy, motion.change | candidate | care-burp 腹部をさする旧版を却下。肩に頭を預けた縦抱きで背中に手を添える場面。NHSの頭・首を支える／背中への動作を参照。実際のげっぷの発生は描写しない。 |
 | action.clap | scene.hands, motion.hand | candidate | hand-clap 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.count | scene.hands, motion.hand | candidate | hand-count 親指を1本目にして、残る4本を順に伸ばす。母指球と掌は一体のまま。0本の握り拳とは表示しない。 |
+| action.count | scene.hands, motion.hand | missing |  R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。 |
 | action.dress | scene.care, motion.change | candidate | change-clothes, dress-sleeves, change-zipper 裸の腹部への服の貼り付けを撤回。顔の見えない後ろ姿で、頭・首・肩・肌着・腕を連続させ、服を替える。 |
 | action.eat | scene.meal, motion.spoon | candidate | spoon 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.hug | scene.family, motion.hug | candidate | hug-arms 頭と胴を保ち、前腕・掌の周囲だけを局所的に動かす。毛布や画像全体の上下揺れは使わない。 |
 | action.kick | scene.feet, motion.kick | candidate | kick 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.open-close | scene.hands, motion.hand | candidate | hand-open-close 親指・母指球・掌を固定して4本の指を曲げる。親指だけを貼る旧リグは使用しない。 |
+| action.open-close | scene.hands, motion.hand | missing |  R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。 |
 | action.peekaboo | scene.family, motion.peekaboo | candidate | peekaboo 玩具を布で隠すvariant。人物のいない部分図として採用審査待ち。 |
 | action.read | scene.book, motion.page | candidate | page 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.sing | scene.music, motion.notes | candidate | notes 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.sip | scene.milk, motion.sip | candidate | sip 素材候補の審査待ち。914英文の割当品質を保証しない。 |
+| action.sip | scene.milk, motion.sip | candidate | sip, cup-sip 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.sleep | scene.sleep, emma.calm | candidate | sleep 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.splash | scene.bath, motion.water | candidate | water-splash 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.squeeze | scene.hands, motion.hand | candidate | hold-hands-squeeze 原画の指の連続性を修正後、子の握り周辺だけを小さく動かす。大人の掌・手首・指の両端は固定。 |
-| action.tap | scene.hands, motion.hand | candidate | hand-tap 親指を含む指差し姿勢の手全体を原画から再制作。指先を切らず、ブロックへ接触させる。 |
+| action.squeeze | scene.hands, motion.hand | missing |  R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。 |
+| action.tap | scene.hands, motion.hand | missing |  R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。 |
 | action.turn-page | scene.book, motion.page | candidate | page 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.wake | scene.sleep, emma.smile | draft | wake-daylight 掛け布団を動かす旧案は撤回。wake-daylightは空の寝床と外側の朝日による代案で、起きた本人や動作を描かないため意味の採用は保留。 |
 | action.wash | scene.bath, motion.water | candidate | water-shower 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.wave | scene.hands, motion.hand | candidate | hand-wave 素材候補の審査待ち。914英文の割当品質を保証しない。 |
-| action.wiggle | scene.hands, motion.hand | candidate | hand-wiggle 親指・母指球・掌は一体の原画。4本の指の関節だけを動かす。 |
+| action.wiggle | scene.hands, motion.hand | missing |  R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。 |
 | action.wipe | scene.care, motion.change | candidate | care-wipe 手を拭くvariant。口や顔を拭く英文への割当は別途審査。 |
 | attention.listen | emma.listen | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
 | attention.look | emma.listen | evaluation-complete |  既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。 |
@@ -142,7 +142,6 @@
 | rain | candidate | 33.9 | 1 | 0.000 | — | — | PASS |
 | meal | candidate | 30.1 | 1 | 0.000 | — | — | PASS |
 | music | candidate | 26.2 | 1 | 0.000 | — | — | PASS |
-| hand-wave | candidate | 366.4 | 32 | 2.988 | 14585 | 1.0005 | PASS |
 | hand-clap | candidate | 357.3 | 24 | 2.988 | 15888 | 0.2786 | PASS |
 | sip | candidate | 370.0 | 36 | 2.988 | 14282 | 0.2593 | PASS |
 | water-rain | candidate | 251.8 | 36 | 2.988 | 2923 | 1.0054 | PASS |
@@ -162,19 +161,15 @@
 | page | candidate | 321.3 | 35 | 3.984 | 14386 | 0.2215 | PASS |
 | family-care | candidate | 20.5 | 1 | 0.000 | — | — | PASS |
 | hug-arms | candidate | 291.9 | 36 | 2.988 | 1754 | 0.9939 | PASS |
-| hand-squeeze-v3 | candidate | 384.3 | 36 | 2.988 | 1081 | 1.0126 | PASS |
 | dress-sleeves | candidate | 175.1 | 35 | 3.984 | 2385 | 0.4579 | PASS |
 | change-clothes | candidate | 349.3 | 40 | 3.984 | 19006 | 0.0494 | PASS |
 | care-burp | candidate | 244.2 | 36 | 2.988 | 1635 | 1.0854 | PASS |
 | cup | candidate | 16.5 | 1 | 0.000 | — | — | PASS |
-| hold-hands | candidate | 24.5 | 1 | 0.000 | — | — | PASS |
-| hold-hands-squeeze | candidate | 229.4 | 36 | 2.988 | 251 | 0.9874 | PASS |
 | hands-open-v2 | candidate | 21.9 | 1 | 0.000 | — | — | PASS |
-| hand-open-close | candidate | 281.7 | 35 | 2.988 | 6974 | 0.4324 | PASS |
-| hand-count | candidate | 191.7 | 42 | 3.984 | 6548 | 0.6062 | PASS |
-| hand-wiggle | candidate | 327.0 | 36 | 2.988 | 4551 | 1.1968 | PASS |
-| hand-tap | candidate | 187.3 | 20 | 2.988 | 4364 | 0.3041 | PASS |
 | sleep | candidate | 31.6 | 1 | 0.000 | — | — | PASS |
 | wake-bed | candidate | 35.0 | 1 | 0.000 | — | — | PASS |
 | wake-daylight | candidate | 307.6 | 36 | 2.988 | 837 | 0.1294 | PASS |
 | kick | candidate | 350.8 | 40 | 3.486 | 8240 | 1.0626 | PASS |
+| hold-hands | candidate | 25.4 | 1 | 0.000 | — | — | PASS |
+| hand-wave | candidate | 360.7 | 40 | 3.486 | 16709 | 0.9894 | PASS |
+| cup-sip | candidate | 366.5 | 42 | 3.486 | 11059 | 0.2815 | PASS |

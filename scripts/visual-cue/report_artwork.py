@@ -19,8 +19,8 @@ with (OUT/'inventory.csv').open('w') as f:
 summary=dict(stills=sum(a['kind']=='illustration' for a in m['assets']),loops=sum(a['kind']=='animation' for a in m['assets']),readiness=dict(collections.Counter(a['readiness'] for a in m['assets'])),coveredIllustrationConcepts=sum(c['kind']=='illustration' and bool(c['assetIds']) for c in m['concepts']),animationConceptsWithArtifacts=sum(c['kind']=='animation' and bool(c['assetIds']) for c in m['concepts']),cueReadiness=dict(collections.Counter(c['readiness'] for c in m['cueCoverage'])),animationConceptsWithCandidates=sum(c['kind']=='animation' and c['readiness']=='candidate' for c in m['concepts']),newAccepted=0,technicalPass=q['technicalPassCount'],technicalTotal=q['assetCount'],sizeExceptions=[r['id'] for r in q['results'] if r['bytes']>r['sizeTargetBytes']])
 (OUT/'qa/summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(json.dumps(summary,ensure_ascii=False,indent=2))
 
-for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg'),(4,'revision-keyframes-20261018.jpg'),(5,'review-r2-keyframes.jpg')]:
- if m.get('productionPass',0)>=5 and pass_id<5:continue # Keep prior review evidence historical.
+for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg'),(4,'revision-keyframes-20261018.jpg'),(5,'review-r2-keyframes.jpg'),(6,'review-r3-keyframes.jpg')]:
+ if m.get('productionPass',0)>=5 and pass_id<m['productionPass']:continue # Keep prior review evidence historical.
  added=[a for a in m['assets'] if a.get('productionPass')==pass_id and a['animation']]
  if added:
   sheet=Image.new('RGB',(1100,len(added)*250),'#f6f3eb');draw=ImageDraw.Draw(sheet)
@@ -29,8 +29,8 @@ for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg'
     frame=Image.open(OUT/'qa/keyframes'/f'{a["id"]}-{k:02d}.png');frame.thumbnail((220,220))
     sheet.paste(frame,(col*220,row*250),frame);draw.text((col*220+3,row*250+222),f'{a["id"]} {k}',fill='black')
   sheet.save(OUT/'qa'/filename,quality=90)
-  if pass_id==5:
-   allout=OUT/'qa/r2-allframes';allout.mkdir(exist_ok=True)
+  if pass_id>=5:
+   allout=OUT/('qa/r3-allframes' if pass_id==6 else 'qa/r2-allframes');allout.mkdir(exist_ok=True)
    for a in added:
     movie=Image.open(OUT/a['animation']);contact=Image.new('RGB',(1320,240*math.ceil(movie.n_frames/6)),'#f6f1e7');labels=ImageDraw.Draw(contact)
     for i in range(movie.n_frames):

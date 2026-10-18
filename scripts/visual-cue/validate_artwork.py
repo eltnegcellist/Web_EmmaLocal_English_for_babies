@@ -3,7 +3,7 @@
 from pathlib import Path
 import json, hashlib, statistics
 import numpy as np
-from PIL import Image, ImageChops, ImageDraw
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'assets/visual-cue/artwork'
 m=json.loads((OUT/'manifest.json').read_text());rigs=json.loads((OUT/'qa/motion-traces.json').read_text())
 results=[];failures=[]
@@ -80,23 +80,24 @@ invariants.append(dict(name='kick-feet-do-not-collide',pass_=max(overlap)==0,max
 if any(a.get('productionPass')==2 for a in m['assets']):
  def flood_connected(mask,seed):
   f=Image.fromarray((mask.astype(np.uint8)*255)).copy();ImageDraw.floodfill(f,seed,128);return np.asarray(f)==128
- hand=Image.open(OUT/'animations/hand-open-close.webp');detached=[];indexTops=[]
- for i in range(hand.n_frames):
-  hand.seek(i);a=np.asarray(hand.convert('RGBA'))[:,:,3]>100;connected=flood_connected(a,(256,430));detached.append(int((a&~connected).sum()))
-  ys=np.where(a[:,205:220] if m.get('productionPass',0)>=5 else a[:,179:194])[0];indexTops.append(int(ys.min()))
- invariants.append(dict(name='open-close-fingers-connected-to-palm',pass_=max(detached)<45,maxDetachedPixels=max(detached)))
- invariants.append(dict(name='index-finger-visible-joint-travel',pass_=max(indexTops)-min(indexTops)>70,travelPixels=max(indexTops)-min(indexTops)))
- counting=Image.open(OUT/'animations/hand-count.webp');counts=set()
- for i in range(counting.n_frames):
-  counting.seek(i);alpha=np.asarray(counting.convert('RGBA'))[:,:,3]>100
-  counts.add(sum(bool(alpha[:limit,x-6:x+6].any()) for x,limit in ([(215,174),(274,152),(326,166),(374,192)] if m.get('productionPass',0)>=5 else [(186,215),(236,215),(286,215),(333,215)])))
- invariants.append(dict(name='count-visible-zero-to-four-upright-fingers',pass_=counts==set(range(5)),observedCounts=sorted(counts)))
- tapping=Image.open(OUT/'animations/hand-tap.webp');connectedFrames=0;separatedFrames=0
- for i in range(tapping.n_frames):
-  tapping.seek(i);a=np.asarray(tapping.convert('RGBA'))[:,:,3]>100;connected=flood_connected(a,(256,420))
-  if connected[:250].any():connectedFrames+=1
-  else:separatedFrames+=1
- invariants.append(dict(name='tap-hand-contacts-and-leaves-target',pass_=connectedFrames>0 and separatedFrames>0,contactFrames=connectedFrames,separatedFrames=separatedFrames))
+ if m.get('productionPass',0)<6:
+  hand=Image.open(OUT/'animations/hand-open-close.webp');detached=[];indexTops=[]
+  for i in range(hand.n_frames):
+   hand.seek(i);a=np.asarray(hand.convert('RGBA'))[:,:,3]>100;connected=flood_connected(a,(256,430));detached.append(int((a&~connected).sum()))
+   ys=np.where(a[:,205:220] if m.get('productionPass',0)>=5 else a[:,179:194])[0];indexTops.append(int(ys.min()))
+  invariants.append(dict(name='open-close-fingers-connected-to-palm',pass_=max(detached)<45,maxDetachedPixels=max(detached)))
+  invariants.append(dict(name='index-finger-visible-joint-travel',pass_=max(indexTops)-min(indexTops)>70,travelPixels=max(indexTops)-min(indexTops)))
+  counting=Image.open(OUT/'animations/hand-count.webp');counts=set()
+  for i in range(counting.n_frames):
+   counting.seek(i);alpha=np.asarray(counting.convert('RGBA'))[:,:,3]>100
+   counts.add(sum(bool(alpha[:limit,x-6:x+6].any()) for x,limit in ([(215,174),(274,152),(326,166),(374,192)] if m.get('productionPass',0)>=5 else [(186,215),(236,215),(286,215),(333,215)])))
+  invariants.append(dict(name='count-visible-zero-to-four-upright-fingers',pass_=counts==set(range(5)),observedCounts=sorted(counts)))
+  tapping=Image.open(OUT/'animations/hand-tap.webp');connectedFrames=0;separatedFrames=0
+  for i in range(tapping.n_frames):
+   tapping.seek(i);a=np.asarray(tapping.convert('RGBA'))[:,:,3]>100;connected=flood_connected(a,(256,420))
+   if connected[:250].any():connectedFrames+=1
+   else:separatedFrames+=1
+  invariants.append(dict(name='tap-hand-contacts-and-leaves-target',pass_=connectedFrames>0 and separatedFrames>0,contactFrames=connectedFrames,separatedFrames=separatedFrames))
  intact=np.asarray(Image.open(OUT/'parts/v2-diaper-intact-body.png'))[:,:,3]>100
  diaper=Image.open(OUT/'animations/change-diaper-v2.webp');missing=[];loose=[]
  for i in range(diaper.n_frames):
@@ -131,10 +132,11 @@ if m.get('productionPass',0)>=4:
   c=a[225:345,90:215];pear.append(int(((c[:,:,1]>c[:,:,0]+15)&(c[:,:,1]>c[:,:,2]+25)&(c[:,:,3]>100)).sum()))
   c=a[165:310,290:430];fish.append(int(((c[:,:,0]>210)&(c[:,:,1]>80)&(c[:,:,1]<205)&(c[:,:,2]<115)&(c[:,:,3]>100)).sum()))
  invariants.append(dict(name='page-reveals-different-left-and-right-art',pass_=max(pear)>5000 and min(pear)<300 and max(fish)-min(fish)>8000,pearPixelsRange=[min(pear),max(pear)],fishPixelsRange=[min(fish),max(fish)]))
- grip=decoded4('hand-squeeze-v3');palmCounts=[]
- for a in grip:
-  mask=peach4(a);palmCounts.append(int(mask[290:365,150:300].sum()))
- invariants.append(dict(name='grip-lower-palm-remains-visible',pass_=min(palmCounts)>5000,lowerPalmPixelsRange=[min(palmCounts),max(palmCounts)]))
+ if m.get('productionPass',0)<6:
+  grip=decoded4('hand-squeeze-v3');palmCounts=[]
+  for a in grip:
+   mask=peach4(a);palmCounts.append(int(mask[290:365,150:300].sum()))
+  invariants.append(dict(name='grip-lower-palm-remains-visible',pass_=min(palmCounts)>5000,lowerPalmPixelsRange=[min(palmCounts),max(palmCounts)]))
  for key in ['hug-arms','care-burp']:
   fs=decoded4(key);heads=[]
   for a in fs:
@@ -166,12 +168,12 @@ if m.get('productionPass',0)>=4:
  invariants.append(dict(name='corpus-scene-review-covers-all-914-sets',pass_=json.loads((OUT/'qa/usage-audit.json').read_text())['totalSets']==914 and len(m['commonAssetIds'])>15))
 
 if m.get('productionPass',0)>=5:
- baseline=json.loads((OUT/'qa/review-r2-baseline.json').read_text());active={a['id']:a for a in m['assets']}
+ baseline=json.loads((OUT/('qa/review-r3-baseline.json' if m.get('productionPass',0)>=6 else 'qa/review-r2-baseline.json')).read_text());active={a['id']:a for a in m['assets']}
  changed=[]
  for key,files in baseline['unaffected'].items():
   for field,sha in files.items():
    if hashlib.sha256((OUT/active[key][field]).read_bytes()).hexdigest()!=sha:changed.append(key+':'+field)
- invariants.append(dict(name='R2-unaffected-candidates-byte-identical',pass_=not changed,checkedAssets=len(baseline['unaffected']),changed=changed))
+ invariants.append(dict(name=('R3' if m.get('productionPass',0)>=6 else 'R2')+'-unaffected-candidates-byte-identical',pass_=not changed,checkedAssets=len(baseline['unaffected']),changed=changed))
  r2archive=[a for a in m['archivedAssets'] if a.get('reviewBatch')=='2026-10-18-R2']
  invariants.append(dict(name='R2-old-quilt-withdrawn-not-an-active-candidate',pass_='wake-quilt' not in active and len(r2archive)==11 and any(a['originalId']=='wake-quilt' for a in r2archive)))
  bed=np.asarray(Image.open(OUT/'stills/sleep.webp').convert('RGBA')).astype(int)
@@ -198,11 +200,51 @@ if m.get('productionPass',0)>=5:
  mask=(master[:,:,3]>180);yy,xx=np.indices(mask.shape);mask&=(xx<190)&(yy>180)&(yy<355)
  error=float(np.abs(master[mask,:3]-hand[mask,:3]).mean())
  invariants.append(dict(name='R2-thumb-thenar-preserved-from-one-painted-source',pass_=error<5,meanRGBError=error,source='sources/generated/hand-r2.png',scope='単一原画との一致。人体の自然さを自動承認しない。'))
- hold=decoded4('hold-hands-squeeze');detached=[]
- for a in hold:
-  solid=a[:,:,3]>100;seed=tuple(np.argwhere(solid)[len(np.argwhere(solid))//2][::-1]);conn=flood_connected(solid,seed);detached.append(int((solid&~conn).sum()))
- invariants.append(dict(name='R2-holding-scene-connected-in-every-frame',pass_=max(detached)<50,maxDetachedPixels=max(detached),scope='画素の接続のみ。大人と子の各指の遮蔽・本数は全フレーム目視審査。'))
+ if m.get('productionPass',0)<6:
+  hold=decoded4('hold-hands-squeeze');detached=[]
+  for a in hold:
+   solid=a[:,:,3]>100;seed=tuple(np.argwhere(solid)[len(np.argwhere(solid))//2][::-1]);conn=flood_connected(solid,seed);detached.append(int((solid&~conn).sum()))
+  invariants.append(dict(name='R2-holding-scene-connected-in-every-frame',pass_=max(detached)<50,maxDetachedPixels=max(detached),scope='画素の接続のみ。大人と子の各指の遮蔽・本数は全フレーム目視審査。'))
 
+
+
+
+if m.get('productionPass',0)>=6:
+ retired={'hold-hands-squeeze','hand-open-close','hand-count','hand-wiggle','hand-squeeze-v3','hand-tap'}
+ old=[a for a in m['archivedAssets'] if a.get('reviewBatch')=='2026-10-19-R3']
+ invariants.append(dict(name='R3-six-withdrawn-loops-excluded-and-seven-versions-archived',pass_=not(retired&set(active)) and {a['originalId'] for a in old}==retired|{'hold-hands'},archived=len(old)))
+ for cue in ['action.open-close','action.count','action.wiggle','action.squeeze','action.tap']:
+  c=next(c for c in m['cueCoverage'] if c['cueId']==cue)
+  invariants.append(dict(name='R3-'+cue+'-not-misassigned-to-wave',pass_=c['assetIds']==[] and c['readiness']=='missing'))
+ def timed_r3(key):
+  movie=Image.open(OUT/'animations'/f'{key}.webp');pairs=[];elapsed=0
+  for i in range(movie.n_frames):
+   movie.seek(i);frame=np.asarray(movie.convert('RGBA')).astype(int);pairs.append((frame,rigs[key]['traces'][round(elapsed/83)]));elapsed+=movie.info['duration']
+  return pairs,elapsed
+ wave_pairs,wave_ms=timed_r3('hand-wave');fs=[a for a,t in wave_pairs];detached=[]
+ for a in fs:
+  solid=a[:,:,3]>100;conn=flood_connected(solid,(256,397));detached.append(int((solid&~conn).sum()))
+ angles=[t['angle'] for t in rigs['hand-wave']['traces']]
+ invariants.append(dict(name='R3-wave-whole-hand-connected-all-frames',pass_=max(detached)<50 and wave_ms==3486 and max(angles)>21 and min(angles)<-21,maxDetachedPixels=max(detached),angleRange=[min(angles),max(angles)],scope='画素接続と振幅。指の形の自然さは原画と目視で審査。'))
+ # Compare full alpha silhouette to rotated single-hand source; no finger segments can disappear.
+ source=Image.open(OUT/'parts/r3-wave-whole-hand.png').convert('RGBA');mismatch=[]
+ for a,t in wave_pairs:
+  expected=np.asarray(source.rotate(t['angle'],Image.Resampling.BICUBIC,center=(256,397)))[:,:,3]>100
+  actual=a[:,:,3]>100;mismatch.append(int((expected^actual).sum()))
+ invariants.append(dict(name='R3-wave-keeps-single-source-silhouette',pass_=max(mismatch)<100,maxDifferentPixels=max(mismatch)))
+ cup_pairs,cup_ms=timed_r3('cup-sip');water=[];leaks=[];exterior_deltas=[];cavity=Image.open(OUT/'parts/r3-cup-cavity-mask.png');cup_source=Image.open(OUT/'parts/r3-cup-empty.png').convert('RGBA')
+ for a,t in cup_pairs:
+  rotated=np.asarray(cavity.rotate(t['cupAngle'],Image.Resampling.BICUBIC,center=(256,285)))>30
+  # Cyan water is distinct from saturated blue exterior and cream interior.
+  liquid=(a[:,:,0]>60)&(a[:,:,0]<205)&(a[:,:,1]>170)&(a[:,:,2]>205)&(a[:,:,3]>100)
+  water.append(int((liquid&rotated).sum()))
+  expected=np.asarray(cup_source.rotate(t['cupAngle'],Image.Resampling.BICUBIC,center=(256,285))).astype(int)
+  outside=(expected[:,:,3]>180)&~np.asarray(Image.fromarray((rotated*255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5))).astype(bool)
+  delta=np.abs(a[:,:,:3]-expected[:,:,:3]);exterior_deltas.append(float(delta[outside].mean()))
+  leaks.append(int(((np.max(delta,axis=2)>80)&outside).sum()))
+ invariants.append(dict(name='R3-cup-liquid-changes-inside-cavity',pass_=max(water)-min(water)>3000 and max(leaks)<25 and max(exterior_deltas)<5,waterPixelRange=[min(water),max(water)],maxOutsideCavityLargeErrorPixels=max(leaks),maxExteriorMeanRGBError=max(exterior_deltas),scope='液体の可視量と容器外の変化。非可逆圧縮の縁の色にじみを許容し、80階調超の差分と平均誤差を独立測定。'))
+ audit=json.loads((OUT/'qa/review-r3-usage.json').read_text());src=ROOT/audit['source']
+ invariants.append(dict(name='R3-replacement-grounded-in-current-corpus',pass_=audit['sourceSHA256']==hashlib.sha256(src.read_bytes()).hexdigest() and audit['terms']['tap']['count']==12 and len(audit['drinkTopicRows'])==38 and not audit['blockTapContextRows'],scope='単語一致と人による12行の文脈監査。最終割当の適合保証ではない。'))
 
 for item in invariants:
  if not item['pass_']:failures.append(dict(id=item['name'],errors=['action-specific-pixel-check-failed']))

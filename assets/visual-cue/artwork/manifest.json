@@ -3,7 +3,7 @@
   "nonRuntime": true,
   "baseCommit": "03a5bcc",
   "latestMainInspected": "b2536ab",
-  "productionPass": 5,
+  "productionPass": 6,
   "proposedConcepts": [
     {
       "primitive": "scene.drink",
@@ -16,6 +16,7 @@
     }
   ],
   "commonAssetIds": [
+    "cup-sip",
     "milk",
     "cup",
     "diaper-v2",
@@ -556,14 +557,6 @@
   "usageMethod": "sourceKeyの先頭話題を集計。生成済みprimaryCueによる頻度を採用数として扱わない。本文への明示言及は別集計し、候補例を提示。確率・利用ログ・意味適合の測定ではない。",
   "limitedVariants": [
     {
-      "assetId": "hand-squeeze-v3",
-      "scope": "ボールを握る限定variant。本文にボールを握る指示は見つからない。設計サンプルとして保持し、汎用・自動割当の適合数には含めない。"
-    },
-    {
-      "assetId": "hand-count",
-      "scope": "count言及2件のうち1件は足の指。手を数える絵への適合候補はgenericの1件のみ。"
-    },
-    {
       "assetId": "care-burp",
       "scope": "burpへの明示言及3件。基本場面より低優先。腹部ケアを撤回し、背中への手の動きに修正。"
     }
@@ -660,6 +653,28 @@
     ],
     "careReference": "https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/",
     "followUp": {
+      "date": "2026-10-19",
+      "documentation": "assets/visual-cue/artwork/REVIEW_R3_RESULT.md",
+      "decision": "Three focused candidates; six loops withdrawn, no adoption approval",
+      "items": [
+        {
+          "assetId": "hold-hands",
+          "problem": "大人の人差し指が長すぎ、子の手が指へめり込む。通常の指の長さに子の手を近づける構図へ再制作。",
+          "status": "再制作候補・目視確認待ち"
+        },
+        {
+          "assetId": "hand-wave",
+          "problem": "握る・開閉・数える・指を動かす6動画を撤回。指を分割しない手振りへ。",
+          "status": "手振り候補・別の動作Cueは未制作"
+        },
+        {
+          "assetId": "cup-sip",
+          "problem": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。",
+          "status": "コップで飲む候補を追加・目視確認待ち"
+        }
+      ]
+    },
+    "previousFollowUpR2": {
       "date": "2026-10-18",
       "decision": "Focused replacements produced; no adoption approval",
       "documentation": "assets/visual-cue/artwork/REVIEW_REQUEST_20261018_R2.md",
@@ -1415,6 +1430,186 @@
       "originalId": "hold-hands-squeeze",
       "reviewBatch": "2026-10-18-R2",
       "rejectionReason": "握る手の前後関係と、大人の指の連続性を原画から修正。"
+    },
+    {
+      "id": "rejected-r3-hand-squeeze-v3",
+      "primitive": "motion.hand",
+      "topic": "ボールを握る：下の掌と親指も見せる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-19-r3/animations/hand-squeeze-v3.webp",
+      "poster": "archive/2026-10-19-r3/posters/hand-squeeze-v3.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/grip-v4.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "手全体が連続する新原画。球の下と右に掌を広く残す。球はこの物体専用variantで、Hold my handには手をつなぐ別素材を使う。",
+      "movingParts": [
+        "four fingers curl against ball",
+        "thumb supports ball"
+      ],
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "hand-squeeze-v3",
+      "reviewBatch": "2026-10-19-R3",
+      "rejectionReason": "握る・指を曲げる動作の不自然さが残るため撤回。手振りを別の意味の候補として制作。"
+    },
+    {
+      "id": "rejected-r3-hold-hands",
+      "primitive": "scene.hands",
+      "topic": "手をつなぐ：握りの先に大人の指先が見える",
+      "kind": "illustration",
+      "illustration": "archive/2026-10-19-r3/stills/hold-hands.webp",
+      "animation": null,
+      "poster": "archive/2026-10-19-r3/stills/hold-hands.webp",
+      "loopMs": 0,
+      "source": "sources/generated/hold-r2.png",
+      "origin": "generated",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 5,
+      "note": "大人の指の付け根・握られる部分・指先を同じ軸で描き直した単一原画。子の指による遮蔽を目視審査。",
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved",
+      "originalId": "hold-hands",
+      "reviewBatch": "2026-10-19-R3",
+      "rejectionReason": "大人の人差し指が長すぎ、子の手が指へめり込む。通常の指の長さに子の手を近づける構図へ再制作。"
+    },
+    {
+      "id": "rejected-r3-hold-hands-squeeze",
+      "primitive": "motion.hand",
+      "topic": "手をつなぐ：つながった指をやさしく握る",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-19-r3/animations/hold-hands-squeeze.webp",
+      "poster": "archive/2026-10-19-r3/posters/hold-hands-squeeze.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/hold-r2.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 5,
+      "note": "原画の指の連続性を修正後、子の握り周辺だけを小さく動かす。大人の掌・手首・指の両端は固定。",
+      "movingParts": [
+        "child curled fingers at grip"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved",
+      "originalId": "hold-hands-squeeze",
+      "reviewBatch": "2026-10-19-R3",
+      "rejectionReason": "握る・指を曲げる動作の不自然さが残るため撤回。手振りを別の意味の候補として制作。"
+    },
+    {
+      "id": "rejected-r3-hand-open-close",
+      "primitive": "motion.hand",
+      "topic": "手：指を曲げて開く",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-19-r3/animations/hand-open-close.webp",
+      "poster": "archive/2026-10-19-r3/posters/hand-open-close.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/hand-r2.png",
+        "sources/generated/hand-rig-v2.png"
+      ],
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 5,
+      "note": "親指・母指球・掌を固定して4本の指を曲げる。親指だけを貼る旧リグは使用しない。",
+      "movingParts": [
+        "four fingers bend at their joints"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved",
+      "originalId": "hand-open-close",
+      "reviewBatch": "2026-10-19-R3",
+      "rejectionReason": "握る・指を曲げる動作の不自然さが残るため撤回。手振りを別の意味の候補として制作。"
+    },
+    {
+      "id": "rejected-r3-hand-count",
+      "primitive": "motion.hand",
+      "topic": "指を数える：親指から1本→5本",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-19-r3/animations/hand-count.webp",
+      "poster": "archive/2026-10-19-r3/posters/hand-count.webp",
+      "loopMs": 3984,
+      "source": [
+        "sources/generated/hand-r2.png",
+        "sources/generated/hand-rig-v2.png"
+      ],
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 5,
+      "note": "親指を1本目にして、残る4本を順に伸ばす。母指球と掌は一体のまま。0本の握り拳とは表示しない。",
+      "movingParts": [
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved",
+      "originalId": "hand-count",
+      "reviewBatch": "2026-10-19-R3",
+      "rejectionReason": "握る・指を曲げる動作の不自然さが残るため撤回。手振りを別の意味の候補として制作。"
+    },
+    {
+      "id": "rejected-r3-hand-wiggle",
+      "primitive": "motion.hand",
+      "topic": "手：掌を保ち、指を1本ずつ動かす",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-19-r3/animations/hand-wiggle.webp",
+      "poster": "archive/2026-10-19-r3/posters/hand-wiggle.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/hand-r2.png",
+        "sources/generated/hand-rig-v2.png"
+      ],
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 5,
+      "note": "親指・母指球・掌は一体の原画。4本の指の関節だけを動かす。",
+      "movingParts": [
+        "four independent fingers"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved",
+      "originalId": "hand-wiggle",
+      "reviewBatch": "2026-10-19-R3",
+      "rejectionReason": "握る・指を曲げる動作の不自然さが残るため撤回。手振りを別の意味の候補として制作。"
+    },
+    {
+      "id": "rejected-r3-hand-tap",
+      "primitive": "motion.hand",
+      "topic": "指差す手：ブロックに触れて離れる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-19-r3/animations/hand-tap.webp",
+      "poster": "archive/2026-10-19-r3/posters/hand-tap.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/tap-r2.png",
+        "sources/generated/squeeze-block-v2.png"
+      ],
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 5,
+      "note": "親指を含む指差し姿勢の手全体を原画から再制作。指先を切らず、ブロックへ接触させる。",
+      "movingParts": [
+        "whole pointing hand approaching block"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved",
+      "originalId": "hand-tap",
+      "reviewBatch": "2026-10-19-R3",
+      "rejectionReason": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。"
     }
   ],
   "approval": "採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。",
@@ -1622,25 +1817,6 @@
       "readiness": "candidate",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
-    },
-    {
-      "id": "hand-wave",
-      "primitive": "motion.hand",
-      "topic": "手を振る",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-wave.webp",
-      "poster": "posters/hand-wave.webp",
-      "loopMs": 2988,
-      "source": "sources/generated/hand-wave.png",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 1,
-      "note": "",
-      "movingParts": [
-        "hand: wrist rotation"
-      ],
       "verification": "qa/validation.json"
     },
     {
@@ -2028,27 +2204,6 @@
       "humanReview": "revision-candidate-not-approved"
     },
     {
-      "id": "hand-squeeze-v3",
-      "primitive": "motion.hand",
-      "topic": "ボールを握る：下の掌と親指も見せる",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-squeeze-v3.webp",
-      "poster": "posters/hand-squeeze-v3.webp",
-      "loopMs": 2988,
-      "source": "sources/generated/grip-v4.png",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "手全体が連続する新原画。球の下と右に掌を広く残す。球はこの物体専用variantで、Hold my handには手をつなぐ別素材を使う。",
-      "movingParts": [
-        "four fingers curl against ball",
-        "thumb supports ball"
-      ],
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
       "id": "dress-sleeves",
       "primitive": "motion.change",
       "topic": "着替え：袖の出口から片腕ずつ",
@@ -2137,45 +2292,6 @@
       "humanReview": "revision-candidate-not-approved"
     },
     {
-      "id": "hold-hands",
-      "primitive": "scene.hands",
-      "topic": "手をつなぐ：握りの先に大人の指先が見える",
-      "kind": "illustration",
-      "illustration": "stills/hold-hands.webp",
-      "animation": null,
-      "poster": "stills/hold-hands.webp",
-      "loopMs": 0,
-      "source": "sources/generated/hold-r2.png",
-      "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 5,
-      "note": "大人の指の付け根・握られる部分・指先を同じ軸で描き直した単一原画。子の指による遮蔽を目視審査。",
-      "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
-    },
-    {
-      "id": "hold-hands-squeeze",
-      "primitive": "motion.hand",
-      "topic": "手をつなぐ：つながった指をやさしく握る",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hold-hands-squeeze.webp",
-      "poster": "posters/hold-hands-squeeze.webp",
-      "loopMs": 2988,
-      "source": "sources/generated/hold-r2.png",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 5,
-      "note": "原画の指の連続性を修正後、子の握り周辺だけを小さく動かす。大人の掌・手首・指の両端は固定。",
-      "movingParts": [
-        "child curled fingers at grip"
-      ],
-      "lossless": false,
-      "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
-    },
-    {
       "id": "hands-open-v2",
       "primitive": "scene.hands",
       "topic": "手：母指球から掌まで一体の原画",
@@ -2189,106 +2305,7 @@
       "status": "needs-review",
       "readiness": "candidate",
       "productionPass": 5,
-      "note": "親指を別部品で貼らない。親指・母指球・掌・手首・袖口は一枚の原画。静止画は手全体の一枚絵。動作では既存の4本の指の原画を関節位置で再利用。",
-      "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
-    },
-    {
-      "id": "hand-open-close",
-      "primitive": "motion.hand",
-      "topic": "手：指を曲げて開く",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-open-close.webp",
-      "poster": "posters/hand-open-close.webp",
-      "loopMs": 2988,
-      "source": [
-        "sources/generated/hand-r2.png",
-        "sources/generated/hand-rig-v2.png"
-      ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 5,
-      "note": "親指・母指球・掌を固定して4本の指を曲げる。親指だけを貼る旧リグは使用しない。",
-      "movingParts": [
-        "four fingers bend at their joints"
-      ],
-      "lossless": false,
-      "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
-    },
-    {
-      "id": "hand-count",
-      "primitive": "motion.hand",
-      "topic": "指を数える：親指から1本→5本",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-count.webp",
-      "poster": "posters/hand-count.webp",
-      "loopMs": 3984,
-      "source": [
-        "sources/generated/hand-r2.png",
-        "sources/generated/hand-rig-v2.png"
-      ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 5,
-      "note": "親指を1本目にして、残る4本を順に伸ばす。母指球と掌は一体のまま。0本の握り拳とは表示しない。",
-      "movingParts": [
-        "index",
-        "middle",
-        "ring",
-        "little"
-      ],
-      "lossless": false,
-      "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
-    },
-    {
-      "id": "hand-wiggle",
-      "primitive": "motion.hand",
-      "topic": "手：掌を保ち、指を1本ずつ動かす",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-wiggle.webp",
-      "poster": "posters/hand-wiggle.webp",
-      "loopMs": 2988,
-      "source": [
-        "sources/generated/hand-r2.png",
-        "sources/generated/hand-rig-v2.png"
-      ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 5,
-      "note": "親指・母指球・掌は一体の原画。4本の指の関節だけを動かす。",
-      "movingParts": [
-        "four independent fingers"
-      ],
-      "lossless": false,
-      "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
-    },
-    {
-      "id": "hand-tap",
-      "primitive": "motion.hand",
-      "topic": "指差す手：ブロックに触れて離れる",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-tap.webp",
-      "poster": "posters/hand-tap.webp",
-      "loopMs": 2988,
-      "source": [
-        "sources/generated/tap-r2.png",
-        "sources/generated/squeeze-block-v2.png"
-      ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 5,
-      "note": "親指を含む指差し姿勢の手全体を原画から再制作。指先を切らず、ブロックへ接触させる。",
-      "movingParts": [
-        "whole pointing hand approaching block"
-      ],
-      "lossless": false,
+      "note": "親指・母指球・掌・手首・袖口がつながる一枚の原画。静止画として保持。指を分割して曲げる旧動画はR3で撤回し、手振りは手全体の原画を使用。",
       "verification": "qa/validation.json",
       "humanReview": "R2-candidate-not-approved"
     },
@@ -2376,6 +2393,67 @@
       "lossless": false,
       "verification": "qa/validation.json",
       "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "hold-hands",
+      "primitive": "scene.hands",
+      "topic": "手をつなぐ：自然な長さの指に子の手を近づける",
+      "kind": "illustration",
+      "illustration": "stills/hold-hands.webp",
+      "animation": null,
+      "poster": "stills/hold-hands.webp",
+      "loopMs": 0,
+      "source": "sources/generated/hold-r3.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 6,
+      "note": "大人の中指が最も長い通常の開いた手を基準に再制作。子の手は左から近づき、人差し指を外側から包む。無理に指先を突き出さない静止画。人体・接触の自然さは目視採用審査待ち。",
+      "verification": "qa/validation.json",
+      "humanReview": "R3-candidate-not-approved"
+    },
+    {
+      "id": "hand-wave",
+      "primitive": "motion.hand",
+      "topic": "手を振る：手首を支点に左右へ",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-wave.webp",
+      "poster": "posters/hand-wave.webp",
+      "loopMs": 3486,
+      "source": "sources/generated/hand-r2.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 6,
+      "note": "親指・4本の指・掌・手首がつながる一枚の原画を、手首を支点に左右22度振る。指を分割・屈伸しない。握る・数える・タップへの意味の流用はしない。",
+      "movingParts": [
+        "one coherent hand rotating about wrist"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R3-candidate-not-approved"
+    },
+    {
+      "id": "cup-sip",
+      "primitive": "motion.sip",
+      "topic": "コップで飲む：傾きと液面が変わる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/cup-sip.webp",
+      "poster": "posters/cup-sip.webp",
+      "loopMs": 3486,
+      "source": "sources/generated/cup-empty-r3.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 6,
+      "note": "drinkの38行を参考に、哺乳瓶とは別の飲み方の候補を追加。コップが傾く間も液面は水平、見える液体量を減らして戻すループ。口・人物は描かない。飲み終えた結果の再現ではなく繰り返し用。",
+      "movingParts": [
+        "cup tilt",
+        "independent horizontal liquid surface inside cavity"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R3-candidate-not-approved"
     }
   ],
   "concepts": [
@@ -2417,8 +2495,8 @@
       "kind": "illustration",
       "assetIds": [
         "hands",
-        "hold-hands",
-        "hands-open-v2"
+        "hands-open-v2",
+        "hold-hands"
       ],
       "status": "needs-review",
       "readiness": "candidate",
@@ -2530,7 +2608,8 @@
       "primitive": "motion.sip",
       "kind": "animation",
       "assetIds": [
-        "sip"
+        "sip",
+        "cup-sip"
       ],
       "status": "needs-review",
       "readiness": "candidate",
@@ -2552,18 +2631,12 @@
       "primitive": "motion.hand",
       "kind": "animation",
       "assetIds": [
-        "hand-wave",
         "hand-clap",
-        "hand-squeeze-v3",
-        "hold-hands-squeeze",
-        "hand-open-close",
-        "hand-count",
-        "hand-wiggle",
-        "hand-tap"
+        "hand-wave"
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "拍手・手振り・開閉・数える・握る・タップ・指の独立動作を制作。"
+      "reason": "拍手・手振りを候補として維持。握る・開閉・数える・指の独立動作・ブロックタップはR3で撤回。"
     },
     {
       "primitive": "motion.kick",
@@ -2746,12 +2819,10 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [
-        "hand-count"
-      ],
+      "assetIds": [],
       "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "親指を1本目にして、残る4本を順に伸ばす。母指球と掌は一体のまま。0本の握り拳とは表示しない。"
+      "readiness": "missing",
+      "reason": "R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。"
     },
     {
       "cueId": "action.dress",
@@ -2813,12 +2884,10 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [
-        "hand-open-close"
-      ],
+      "assetIds": [],
       "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "親指・母指球・掌を固定して4本の指を曲げる。親指だけを貼る旧リグは使用しない。"
+      "readiness": "missing",
+      "reason": "R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。"
     },
     {
       "cueId": "action.peekaboo",
@@ -2866,7 +2935,8 @@
         "motion.sip"
       ],
       "assetIds": [
-        "sip"
+        "sip",
+        "cup-sip"
       ],
       "status": "needs-review",
       "readiness": "candidate",
@@ -2904,12 +2974,10 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [
-        "hold-hands-squeeze"
-      ],
+      "assetIds": [],
       "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "原画の指の連続性を修正後、子の握り周辺だけを小さく動かす。大人の掌・手首・指の両端は固定。"
+      "readiness": "missing",
+      "reason": "R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。"
     },
     {
       "cueId": "action.tap",
@@ -2917,12 +2985,10 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [
-        "hand-tap"
-      ],
+      "assetIds": [],
       "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "親指を含む指差し姿勢の手全体を原画から再制作。指先を切らず、ブロックへ接触させる。"
+      "readiness": "missing",
+      "reason": "R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。"
     },
     {
       "cueId": "action.turn-page",
@@ -2982,12 +3048,10 @@
         "scene.hands",
         "motion.hand"
       ],
-      "assetIds": [
-        "hand-wiggle"
-      ],
+      "assetIds": [],
       "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "親指・母指球・掌は一体の原画。4本の指の関節だけを動かす。"
+      "readiness": "missing",
+      "reason": "R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。"
     },
     {
       "cueId": "action.wipe",

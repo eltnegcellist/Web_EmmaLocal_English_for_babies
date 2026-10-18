@@ -19,6 +19,7 @@ jobs:
       - run: python -m pip install -r scripts/visual-cue/requirements.txt
       - run: python scripts/verify-visual-cue-handoff.py
       - run: python scripts/visual-cue/audit_scene_usage.py
+      - run: python scripts/visual-cue/audit_r3_usage.py
       - run: python scripts/visual-cue/validate_artwork.py
       - run: python scripts/visual-cue/report_artwork.py
       - run: python scripts/visual-cue/export_preview.py

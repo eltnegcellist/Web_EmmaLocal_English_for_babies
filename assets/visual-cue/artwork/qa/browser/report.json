@@ -1,5 +1,5 @@
 {
-  "url": "http://127.0.0.1:8767/assets/visual-cue/artwork/preview.html?filter=new#hold-hands",
+  "url": "http://127.0.0.1:8768/assets/visual-cue/artwork/preview.html?filter=new#hold-hands",
   "browser": "155.0.8059.80",
   "checks": [
     {
@@ -15,15 +15,11 @@
       "pass": true
     },
     {
-      "name": "browser-motion-hand-open-close",
+      "name": "browser-motion-hand-wave",
       "pass": true
     },
     {
-      "name": "browser-motion-hand-count",
-      "pass": true
-    },
-    {
-      "name": "browser-motion-hand-tap",
+      "name": "browser-motion-cup-sip",
       "pass": true
     },
     {
@@ -32,10 +28,6 @@
     },
     {
       "name": "browser-motion-hug-arms",
-      "pass": true
-    },
-    {
-      "name": "browser-motion-hand-squeeze-v3",
       "pass": true
     },
     {
@@ -67,7 +59,7 @@
       "pass": true
     },
     {
-      "name": "browser-motion-hold-hands-squeeze",
+      "name": "browser-motion-spoon",
       "pass": true
     },
     {
@@ -79,7 +71,7 @@
       "pass": true
     },
     {
-      "name": "R2-all-frames-open-at-220",
+      "name": "R3-all-frames-open-at-220",
       "pass": true
     },
     {

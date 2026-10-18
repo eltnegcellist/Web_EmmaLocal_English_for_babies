@@ -8,7 +8,7 @@ for a in m['assets']+m.get('archivedAssets',[]):
  for k in ['animation','illustration','poster']:
   if a.get(k):paths.add(a[k])
  if a.get('animation'):paths.add(f'qa/{a["id"]}-filmstrip.jpg')
- if a.get('productionPass')==5 and a.get('animation'):paths.add(f'qa/r2-allframes/{a["id"]}.jpg')
+ if a.get('productionPass',0)>=5 and a.get('animation'):paths.add(f'qa/{"r3" if a["productionPass"]==6 else "r2"}-allframes/{a["id"]}.jpg')
 for a in legacy['assets']:paths.add('reference/'+a['path'])
 for c in m['concepts']:
  if c.get('existingFile'):paths.add('../../../'+c['existingFile'])

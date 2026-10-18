@@ -26,7 +26,7 @@ for(const a of manifest.assets){
  await page.locator(`#${a.id}`).scrollIntoViewIfNeeded();
  await page.locator(`#${a.id}`).screenshot({path:new URL(`${a.id}.png`,output).pathname});
 }
-for(const id of ['hand-open-close','hand-count','hand-tap','change-zipper','hug-arms','hand-squeeze-v3','change-clothes','dress-sleeves','change-diaper-exchange','wake-daylight','care-burp','kick','page','hold-hands-squeeze']){
+for(const id of ['hand-wave','cup-sip','change-zipper','hug-arms','change-clothes','dress-sleeves','change-diaper-exchange','wake-daylight','care-burp','kick','page','spoon']){
  await page.locator(`#${id}`).scrollIntoViewIfNeeded();
  const signatures=[];
  for(let phase=0;phase<5;phase++){
@@ -37,7 +37,7 @@ for(const id of ['hand-open-close','hand-count','hand-tap','change-zipper','hug-
 }
 await page.locator('#hold-hands details summary').click();checks.push({name:'rejected-version-comparison-opens',pass:await page.locator('#hold-hands details[open] img').count()===1});await page.locator('#hold-hands details summary').click();
 await page.locator('#page > a').click();await page.locator('dialog[open] img').evaluate(img=>img.decode());checks.push({name:'filmstrip-opens-in-page',pass:await page.locator('dialog[open] img').evaluate(img=>img.naturalWidth===1100)});await page.locator('dialog[open] button').click();
-await page.locator('#kick [data-allframes]').click();await page.locator('dialog[open] img').evaluate(img=>img.decode());checks.push({name:'R2-all-frames-open-at-220',pass:await page.locator('dialog[open] img').evaluate(img=>img.naturalWidth===1320)});await page.screenshot({path:new URL('r2-allframes-dialog.png',output).pathname});await page.locator('dialog[open] button').click();
+await page.locator('#hand-wave [data-allframes]').click();await page.locator('dialog[open] img').evaluate(img=>img.decode());checks.push({name:'R3-all-frames-open-at-220',pass:await page.locator('dialog[open] img').evaluate(img=>img.naturalWidth===1320)});await page.screenshot({path:new URL('r3-allframes-dialog.png',output).pathname});await page.locator('dialog[open] button').click();
 await page.click('#pause');
 checks.push({name:'pause-uses-posters',pass:await page.locator('#gallery [data-animation]').evaluateAll(imgs=>imgs.every(i=>i.getAttribute('src')===i.dataset.poster))});
 await page.click('#pause');
@@ -46,7 +46,7 @@ await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=
 checks.push({name:'reduced-motion-static',pass:await page.locator('#gallery [data-animation]').evaluateAll(imgs=>imgs.every(i=>i.getAttribute('src')===i.dataset.poster))});
 await page.selectOption('#filter','draft');checks.push({name:'filter-draft',pass:await page.locator('#gallery .card:visible').count()===manifest.assets.filter(a=>a.readiness==='draft').length});
 await page.selectOption('#filter','new');checks.push({name:'filter-latest-production-pass',pass:await page.locator('#gallery .card:visible').count()===manifest.assets.filter(a=>a.productionPass===manifest.productionPass).length});await page.screenshot({path:new URL('final-pass-overview.png',output).pathname,fullPage:true});
-await page.locator('#cues a[href="#hand-wave"]').click();await page.waitForFunction(()=>document.querySelector('#filter').value==='all');checks.push({name:'cue-link-reveals-filtered-target',pass:await page.locator('#hand-wave').isVisible()});
+await page.locator('#cues a[href="#hand-clap"]').click();await page.waitForFunction(()=>document.querySelector('#filter').value==='all');checks.push({name:'cue-link-reveals-filtered-target',pass:await page.locator('#hand-clap').isVisible()});
 await page.selectOption('#filter','all');await page.selectOption('#background','dark');
 await page.locator('#hand-wave').screenshot({path:new URL('dark-background.png',output).pathname});
 await page.setViewportSize({width:390,height:844});await page.selectOption('#size','320');await page.locator('#hand-clap').scrollIntoViewIfNeeded();

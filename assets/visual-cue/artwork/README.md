@@ -1,39 +1,54 @@
-# Visual Cue 第2回修正候補（2026-10-18）
+# Visual Cue 第3回修正候補（2026-10-19）
 
-**静止22枚・動画26本、計48点の審査候補。採用承認は0件です。** [第2回評価](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/107#issuecomment-6249317494)を受けて11点を置換。修正対象外の37点の静止画・動画・ポスターはSHA256一致を検査します。
+**静止22枚・動画21本、計43点の審査候補。採用承認は0件です。** 第3回の指摘を受け、指を握る静止画と手振りを置換、コップで飲む動画を追加しました。不自然さが残る6動画を撤回。修正対象外40点の静止画・動画・ポスターはSHA256一致を検査します。
 
-**[GitHub Pagesで第2回修正版を開く](https://eltnegcellist.github.io/visual-cue-artwork-preview/?review=r2&filter=new#hold-hands)**
+**[GitHub Pagesで今回の3候補を開く](https://eltnegcellist.github.io/visual-cue-artwork-preview/?review=r3&filter=new#hold-hands)**
 
-[第2回の修正結果・5フェーズ・再現手順](REVIEW_R2_RESULT.md) / [受入条件](REVIEW_REQUEST_20261018_R2.md) / [全対応と実測](COVERAGE.md)
+[第3回の修正記録](REVIEW_R3_RESULT.md) / [全対応と実測](COVERAGE.md) / [英文の利用場面監査](qa/review-r3-usage.json)
 
 ## 今回の修正
 
-- **手をつなぐ**：大人の指先が子の握りの先へ見える、連続した一枚の原画へ再制作。小さな手の握り周辺だけを動かす。
-- **親指と掌**：母指球から掌へ一体の形を新しく描き、別の親指を貼る構成を廃止。静止画は手全体の一枚絵。動作は一体の掌・親指を保ち、従来の4本の指の部品を再利用。数える動画は親指から1本→5本と明示。タップは手全体の新しい指差し原画。
-- **寝床**：枕・掛け布団を含む旧原画を撤回。空のベビーベッドと平らなマットレス／フィットシーツへ原画から再制作。赤ちゃん、枕、掛け布団、玩具、バンパーを置かない。
-- **起床**：掛け布団を動かす `wake-quilt` を候補から撤回。空の寝床を固定し、外側の朝日だけが動く `wake-daylight` を別案として提示。本人が起きる動作は描かないため、**action.wakeはdraftへ戻し、意味の採用を保留**。
-- **キック**：内向きの親指と足首の支点を維持。26度・42フレーム・3.486秒へ再出力。左右同時の鏡像動作をやめ、片足ずつ交互に動かす。
+- **手をつなぐ静止画**：通常の開いた手を基準に、大人の中指が最も長い形へ。子の手を左から近づけ、人差し指を外側から包む構図へ再制作。大人の指を子の手へ向けて引き延ばさず、指先を無理に突き出さない。
+- **手振り**：親指・4本の指・掌・手首を含む一枚の原画を使い、手首を支点に左右22度動かす。指を分割して曲げる構成は使わない。42フレーム・3.486秒。
+- **ブロックタップを撤回**：実英文914行のtap12行は雨4・音楽7・足1で、ブロックに触れる指示はなし。代わりにdrinkの38行を参考に**コップで飲む**動画を追加。容器の傾きに合わせて液面は水平を保ち、見える液体量が変わる。口や人物は描かない。
 
-寝床の構成は[NHSの空で平らな寝床に関する説明](https://www.nhs.uk/baby/caring-for-a-newborn/sudden-infant-death-syndrome-sids/)を参照。イラストの適否や育児姿勢を技術テストで自動承認しません。
+`hold-hands-squeeze / hand-open-close / hand-count / hand-wiggle / hand-squeeze-v3 / hand-tap` は現行候補から除外。旧7版（上記6動画とhold-hands静止画）は不採用履歴へ保存しました。旧版のファイルが存在しても、現行候補には数えません。
 
-## 状態と比較プレビュー
+## 状態と残課題
 
-14基本イラスト・10動作には候補があります。58 Cueは物体・動作36件に候補、起床1件は代案の意味審査待ち、Emmaのみ21件は流用可否の評価済みです。Emma7状態は従来の評価のみです。**914英文の割当品質は承認していません。**
+14基本イラスト・10種類の動作コンセプトに候補があります。ただし、個々の動作Cueの完成とは別です。58 Cueは候補31、未制作5、起床draft1、Emma評価済み21。**握る・開閉・数える・指の独立動作・タップの5 Cueは未制作へ戻し、異なる意味の手振りで埋めません。** action.wakeは空の寝床と朝日の代案であり、本人が起きる動作の採用は保留です。
 
-既存ZIP19点の分類を保持。第1回で撤回した17点と旧試作2点、今回撤回した11点は別枠の不採用履歴です。候補48点へ重複計上しません。過去の[第1回修正記録](REVISION_20261018.md)と画像は当時の記録で、現行の寝床・手の判断は第2回の結果を優先します。
+既存ZIP19点の分類と原本を保持。旧不採用37版は候補と別枠です。全43素材は利用者の目視採用審査前で、人体・接触・動作の意味の自然さ、実機での見やすさ、914英文の個別割当が残ります。技術検査のPASSを採用承認へ読み替えません。
 
-Pagesでは「今回の修正・追加」で第2回の11点を比較できます。「日常の基本場面」「すべてのvariant」へ切替可能。静止画と動画を並べ、220/256/320px、明暗・透過背景、全停止・個別停止、Reduced Motion、スマホ表示に対応。カードの「指摘された旧版の静止画と比較」は直近の不採用版です。5フレーム一覧は同じページ内で開きます。
+過去の[第2回記録](REVIEW_R2_RESULT.md)と[第1回記録](REVISION_20261018.md)は当時の履歴です。現行の手の採否は第3回の判断を優先してください。
 
-[単一HTML](preview-offline.html)はダウンロードしてブラウザで直接開けます。HTTP版はリポジトリ直下で `python3 -m http.server 8765 --bind 127.0.0.1` → `assets/visual-cue/artwork/preview.html`。
+## プレビュー
 
-[素材検査](qa/validation.json) / [ブラウザー検査](qa/browser/report.json) / [オフライン検査](qa/browser/offline-report.json) / [対象外37点の比較元](qa/review-r2-baseline.json)
+GitHub Pagesの「今回の候補」は3点を表示します。静止と動画を並べ、220/256/320px、明暗・透過確認背景、全停止・個別再生、5フェーズと全フレームを比較できます。手をつなぐカードの「指摘された旧版の静止画と比較」で直前の旧版を表示できます。全候補はフィルターで選択してください。
 
-## 汎用性・出自・残課題
+サーバーなしでは [preview-offline.html](preview-offline.html) をダウンロードしてブラウザーで開けます。通常版はリポジトリ直下で次を実行します。
 
-[914セットからの再点検](USAGE_REVIEW_20261018.md)は継続。日常の物体・場面を優先し、球を握る・数える・げっぷは限定用途です。話題件数を素材適合数や実際の利用ログとして扱いません。コップは追加コンセプトscene.drinkの提案で、共有設計・アプリの割当は未変更です。
+```sh
+python3 -m http.server 8765 --bind 127.0.0.1
+# http://127.0.0.1:8765/assets/visual-cue/artwork/preview.html
+```
 
-原画34点（今回4点）は `sources/generated/`、[今回の指示全文と生成ID](sources/review-r2-prompts.json)を保存。組込みImageGenで生成・編集した原画と、PNG部品・再生成スクリプトが編集元です。元ZIP19点とSHA256 `73f04e328dc5aed60f810d6a3b4fcfa93f79e65030db2fb3c3b0c90165c6a700` は不変。[元素材棚卸し](inventory.csv)。
+## 再現
 
-制作ブランチ `codex/visual-cue-complete-assets`、[ドラフトPR #107](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/107)。公開元は専用リポジトリ `eltnegcellist/visual-cue-artwork-preview` の `gh-pages`。配信HTMLのSHA256と生成元コミットは [deployment.json](https://eltnegcellist.github.io/visual-cue-artwork-preview/deployment.json) で照合します。
+```sh
+python3 -m pip install -r scripts/visual-cue/requirements.txt
+python3 scripts/verify-visual-cue-handoff.py
+python3 scripts/visual-cue/audit_r3_usage.py
+python3 scripts/visual-cue/build_artwork.py --only-r3
+python3 scripts/visual-cue/compact_artwork.py
+python3 scripts/visual-cue/validate_artwork.py
+python3 scripts/visual-cue/report_artwork.py
+python3 scripts/visual-cue/export_preview.py
+# 上のHTTPサーバーを起動後
+node scripts/visual-cue/capture_preview.mjs
+VISUAL_CUE_PREVIEW_URL="file://$PWD/assets/visual-cue/artwork/preview-offline.html" node scripts/visual-cue/capture_preview.mjs
+```
 
-残る工程は、指の本数・関節・遮蔽、母指球、空の寝床、キックの動きの目視採用審査、実機での読み取りやすさ、起床の代案と914英文の個別意味割当です。**mainへマージしません。アプリ本体・Emma切替・本文・音声・既存アプリのPages設定は変更しません。**
+ImageGenで生成・編集した透過PNGは `sources/generated/hold-r3.png` と `cup-empty-r3.png`。不採用の最初の指描き直しも別ファイルで保存。[プロンプト全文・生成ID](sources/generation-r3.json)を記録しています。保存原画からのアニメーション再生成はAI/APIキーを使いません。
+
+制作ブランチは `codex/visual-cue-complete-assets`、[ドラフトPR #107](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/107)、進捗は[Issue #104](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/issues/104)。mainにマージせず、アプリ本体・Emma表示切替は実装しません。

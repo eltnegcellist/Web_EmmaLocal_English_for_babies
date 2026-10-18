@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-19",
+  "method": "Built-in ImageGen; raster sources; no SVG anatomy reconstruction",
+  "attempts": [
+    {
+      "id": "hold-attempt1",
+      "prompt": "Use case: illustration-story. Redraw the two hands from scratch in the same soft bright matte felt/paper children's picture book style as reference. Existing anatomy is WRONG, do not preserve it. Show an adult open hand with blue cuff in lower left, palm facing viewer, FIVE fingers with normal human relative lengths. CRITICAL adult index is SHORTER than adult middle finger, similar length to ring finger. Do NOT elongate index to reach the child's hand. Bring child's yellow-cuffed hand DOWN to meet the adult's naturally sized index tip at the height of the other fingertips. The child's small hand gently holds just the distal third of adult index. Physical external contact only: clearly separated surfaces, child's four fingers curl in FRONT of adult index and thumb on opposite side; adult index is correctly OCCLUDED behind those fingers, never merged through child's palm. Adult fingertip may be mostly hidden within the small grip; do NOT force a protruding extended tip. Child palm and wrist remain separate round volumes with a slight side angle so grip depth is clear. Exactly five digits per hand, natural hand-size ratio, no fused digits or long extra finger, no cut stumps, no fingernails, no text, no hearts. Keep peach skin, blue and yellow cuffs, true transparent background, no checkerboard or floor shadow. Whole single coherent painted scene, centered generous margin.",
+      "result": "rejected-index-still-too-long",
+      "generation": "exec-e4608adc-bb6b-4b93-99d3-4e7911f3163c"
+    },
+    {
+      "id": "hold-r3",
+      "prompt": "Edit this exact naturally proportioned adult open hand. Preserve ALL FIVE adult finger lengths and silhouette, especially the adult index must remain SHORTER than the middle finger. Adult palm upright toward viewer with blue cuff below. Add a small child's hand with yellow cuff entering from the upper LEFT edge, wrist coming from left, gently holding ONLY the distal third of the adult index at its CURRENT natural height. Child hand must move to the adult index, never stretch or lengthen the adult index. Adult middle remains visibly the tallest finger. Child four short fingers wrap across the FRONT of the adult index; small thumb on its far side with natural exterior contact and clear shadow/occlusion. Adult index tip may be completely hidden inside the grip, no protruding extra stalk. Separate external skin surfaces, no hand intersecting, no fused surfaces or detached fingers. Adult thumb below the grip is fully visible on left, other three adult fingers fully visible to right. Whole coherent single painted scene, soft matte felt children's educational book illustration, peach skin, blue/yellow cuffs, true transparent background with generous margins. No body, no text, no symbols, no background.",
+      "result": "candidate-human-review-pending",
+      "generation": "exec-a43bda47-b08d-4c4c-ae1a-34cc81336f6b",
+      "reference": "sources/generated/hand-r2.png",
+      "file": "sources/generated/hold-r3.png"
+    },
+    {
+      "id": "cup-empty-r3",
+      "prompt": "Use case: precise-object-edit. Edit target: blue two-handled cup in reference. Remove ONLY the water inside the cup to reveal an empty cream-colored inner bowl. Keep the same exact exterior shape, camera angle, rim, handles, proportions, position, pale cream rim, blue matte felt material and transparent background. The cavity is visibly EMPTY, with a smooth cream interior, no water, no shiny water highlight, no liquid ellipse. Preserve every exterior detail and true transparent alpha. No new objects, labels, people or shadow.",
+      "result": "candidate-motion-source",
+      "generation": "exec-175a16f5-839a-4815-9901-f35fa093ab9e",
+      "file": "sources/generated/cup-empty-r3.png"
+    }
+  ]
+}
