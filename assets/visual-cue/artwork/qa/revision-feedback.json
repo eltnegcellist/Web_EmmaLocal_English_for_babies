@@ -88,5 +88,47 @@
       "replacementStatus": "candidate-for-human-review"
     }
   ],
-  "careReference": "https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/"
+  "careReference": "https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/",
+  "followUp": {
+    "date": "2026-10-18",
+    "decision": "Existing candidates broadly acceptable as direction, but no artwork approved yet; request focused revisions",
+    "documentation": "assets/visual-cue/artwork/REVIEW_REQUEST_20261018_R2.md",
+    "items": [
+      {
+        "assetIds": [
+          "hold-hands",
+          "hold-hands-squeeze"
+        ],
+        "problem": "大人の指が途中で切れているように見える。小さな手の握る構図と自然な遮蔽を描き直す。",
+        "status": "requires-new-source-and-human-review"
+      },
+      {
+        "assetIds": [
+          "hands-open-v2",
+          "hand-open-close",
+          "hand-count",
+          "hand-wiggle",
+          "hand-tap"
+        ],
+        "problem": "親指の付け根に貼り付けたような継ぎ目が残る。母指球と掌の連続性を再制作。",
+        "status": "requires-new-source-and-human-review"
+      },
+      {
+        "assetIds": [
+          "sleep",
+          "wake-bed",
+          "wake-quilt"
+        ],
+        "problem": "乳児の寝床に枕と掛け布団を描かない。空のベビーベッドと平らなマットレスに見直し、旧quilt動作は取り下げる。",
+        "status": "requires-new-source-and-human-review"
+      },
+      {
+        "assetIds": [
+          "kick"
+        ],
+        "problem": "動作が目視で分かりにくい。左右交互の足の振り幅と速度を調整し、220pxで判定する。",
+        "status": "generator-updated-needs-rebuild-and-human-review"
+      }
+    ]
+  }
 }
