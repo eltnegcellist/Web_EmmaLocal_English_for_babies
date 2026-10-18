@@ -29,6 +29,9 @@ for(const item of audit.entries){
  const engine2=document.createElement('p');engine2.textContent='Whisper Base：'+item.whisperBase;
  section.append(heading,expected,engine1,engine2);
  const entry=byText.get(item.expected.trim().replace(/\s+/g,' '));
+ // A decision for the old wording/recording does not approve this revision.
+ const saved=stored[item.number];
+ if(saved&&(saved.expected!==item.expected||(entry?.repair&&saved.sha256!==entry.sha256)))delete stored[item.number];
  if(entry) {
   const audio=document.createElement('audio');audio.controls=true;audio.preload='none';
   audio.src=new URL('assets/voice-1202/'+entry.file,root).href;section.append(audio);
@@ -37,7 +40,7 @@ for(const item of audit.entries){
  [['pending','未確認'],['match','期待英文どおり'],['misread','実際の発音が異なる'],['unclear','判定不能']].forEach(([value,label])=>{const opt=document.createElement('option');opt.value=value;opt.textContent=label;select.append(opt);});
  const note=document.createElement('textarea');note.placeholder='再収録が必要な単語など';note.value=stored[item.number]?.note||'';
  select.value=stored[item.number]?.decision||'pending';
- function change(){stored[item.number]={decision:select.value,note:note.value,expected:item.expected};save();}
+ function change(){stored[item.number]={decision:select.value,note:note.value,expected:item.expected,sha256:entry?.sha256};save();}
  select.addEventListener('change',change);note.addEventListener('input',change);
  section.append(document.createElement('hr'),select,note);rootEl.append(section);
 }

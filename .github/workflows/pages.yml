@@ -46,6 +46,9 @@ jobs:
         run: |
           node test-asr-keyterm-bias.mjs
           node scripts/test-recorded-review-26.mjs
+          node scripts/test-apply-reviewed-voice-replacements.mjs
+          node scripts/test-five-voice-candidates.mjs
+          node scripts/test-voice-review-pages.mjs
           node test-voice-review-gate.mjs
           node scripts/test-audit-ruri-human-review.mjs
           node test-audible-latency-summary.mjs

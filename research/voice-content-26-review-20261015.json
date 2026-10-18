@@ -100,12 +100,14 @@
     },
     {
       "number": 11,
-      "expected": "Little sips, baby! Sip, sip, sip! High five!",
+      "expected": "Little sips, baby! Sip, sip! High five!",
       "whisperSmall": "Little sips, baby. Sip, sip. High five.",
       "whisperBase": "Little sips, baby. Sips, zip. High five.",
       "category": "repetition",
       "verification": "needs-listening",
-      "decision": null
+      "decision": null,
+      "originalExpected": "Little sips, baby! Sip, sip, sip! High five!",
+      "textResolution": "User chose two-repeat text to match the original natural recording; original audit wording is preserved in originalExpected."
     },
     {
       "number": 12,
@@ -127,12 +129,14 @@
     },
     {
       "number": 14,
-      "expected": "Sip, sip, sip! Nice little sips! No need to rush!",
+      "expected": "Sip, sip! Nice little sips! No need to rush!",
       "whisperSmall": "Sip, sip, nice little sips. No need to rush.",
       "whisperBase": "Sip, sip, nice little sips. No need to rush.",
       "category": "repetition",
       "verification": "needs-listening",
-      "decision": null
+      "decision": null,
+      "originalExpected": "Sip, sip, sip! Nice little sips! No need to rush!",
+      "textResolution": "User chose two-repeat text to match the original natural recording; original audit wording is preserved in originalExpected."
     },
     {
       "number": 15,
@@ -145,21 +149,25 @@
     },
     {
       "number": 16,
-      "expected": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+      "expected": "Cuddle, cuddle! My sweet baby! I love you!",
       "whisperSmall": "Cuddle, cuddle, my sweet baby, I love you!",
       "whisperBase": "Cuddle cuddle my sweet baby. I love you",
       "category": "repetition",
       "verification": "needs-listening",
-      "decision": null
+      "decision": null,
+      "originalExpected": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+      "textResolution": "User chose two-repeat text to match the original natural recording; original audit wording is preserved in originalExpected."
     },
     {
       "number": 17,
-      "expected": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+      "expected": "All done eating? Wipe, wipe? Let's have a look!",
       "whisperSmall": "All done eating? Wipe, wipe? Let's have a look!",
       "whisperBase": "All done eating? Wipe, wipe, let's have a look!",
       "category": "repetition",
       "verification": "needs-listening",
-      "decision": null
+      "decision": null,
+      "originalExpected": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+      "textResolution": "User chose two-repeat text to match the original natural recording; original audit wording is preserved in originalExpected."
     },
     {
       "number": 18,
@@ -242,5 +250,6 @@
       "verification": "needs-listening",
       "decision": null
     }
-  ]
+  ],
+  "textResolutionNote": "The four current expected phrases use the user-approved two-repeat wording. originalExpected retains the original three-repeat audit target."
 }

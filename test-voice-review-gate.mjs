@@ -27,5 +27,10 @@ assert.throws(()=>summarizeVoiceReview(ledger,{results:{...allMatch.results,999:
 const inconsistent=structuredClone(allMatch);
 inconsistent.results[1].expected='Wrong clip';
 assert.throws(()=>summarizeVoiceReview(ledger,inconsistent),/Mismatched/);
+for(const item of ledger.entries.filter(x=>x.originalExpected)){
+  const legacy=structuredClone(allMatch);
+  legacy.results[item.number].expected=item.originalExpected;
+  assert.throws(()=>summarizeVoiceReview(ledger,legacy),/Mismatched/,'Old three-repeat wording must not approve the current two-repeat text');
+}
 assert.ok(!JSON.stringify(output).includes(ledger.entries[0].expected));
 console.log('26-clip human verdict gate: synthetic tests PASS (not human listening)');
