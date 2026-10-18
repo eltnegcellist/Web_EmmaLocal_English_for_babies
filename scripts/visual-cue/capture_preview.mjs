@@ -26,7 +26,7 @@ for(const a of manifest.assets){
  await page.locator(`#${a.id}`).scrollIntoViewIfNeeded();
  await page.locator(`#${a.id}`).screenshot({path:new URL(`${a.id}.png`,output).pathname});
 }
-for(const id of ['hand-open-close','hand-count','hand-tap','change-zipper','hug-arms','hand-squeeze-v3','change-clothes','dress-sleeves','change-diaper-exchange','wake-quilt','care-burp','kick','page','hold-hands-squeeze']){
+for(const id of ['hand-open-close','hand-count','hand-tap','change-zipper','hug-arms','hand-squeeze-v3','change-clothes','dress-sleeves','change-diaper-exchange','wake-daylight','care-burp','kick','page','hold-hands-squeeze']){
  await page.locator(`#${id}`).scrollIntoViewIfNeeded();
  const signatures=[];
  for(let phase=0;phase<5;phase++){
@@ -35,8 +35,9 @@ for(const id of ['hand-open-close','hand-count','hand-tap','change-zipper','hug-
  }
  checks.push({name:`browser-motion-${id}`,pass:new Set(signatures).size>1});
 }
-await page.locator('#page details summary').click();checks.push({name:'rejected-version-comparison-opens',pass:await page.locator('#page details[open] img').count()===1});await page.locator('#page details summary').click();
+await page.locator('#hold-hands details summary').click();checks.push({name:'rejected-version-comparison-opens',pass:await page.locator('#hold-hands details[open] img').count()===1});await page.locator('#hold-hands details summary').click();
 await page.locator('#page > a').click();await page.locator('dialog[open] img').evaluate(img=>img.decode());checks.push({name:'filmstrip-opens-in-page',pass:await page.locator('dialog[open] img').evaluate(img=>img.naturalWidth===1100)});await page.locator('dialog[open] button').click();
+await page.locator('#kick [data-allframes]').click();await page.locator('dialog[open] img').evaluate(img=>img.decode());checks.push({name:'R2-all-frames-open-at-220',pass:await page.locator('dialog[open] img').evaluate(img=>img.naturalWidth===1320)});await page.screenshot({path:new URL('r2-allframes-dialog.png',output).pathname});await page.locator('dialog[open] button').click();
 await page.click('#pause');
 checks.push({name:'pause-uses-posters',pass:await page.locator('#gallery [data-animation]').evaluateAll(imgs=>imgs.every(i=>i.getAttribute('src')===i.dataset.poster))});
 await page.click('#pause');
@@ -55,6 +56,6 @@ checks.push({name:'58-cues-31-concepts',pass:await page.locator('#cues tr').coun
 checks.push({name:'old-drafts-separate-from-candidates',pass:await page.locator('#archive article').count()===manifest.archivedAssets.length&&await page.locator('#gallery .card[data-readiness="draft"]').count()===0});
 checks.push({name:'emma-seven-evaluations',pass:await page.locator('#emma article').count()===7});
 checks.push({name:'all-images-decoded',pass:await page.locator('#gallery img').evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth===512))});
-await page.selectOption('#filter','common');checks.push({name:'daily-scene-filter',pass:await page.locator('#gallery .card:visible').count()===manifest.commonAssetIds.length});checks.push({name:'human-feedback-and-usage-audit-visible',pass:await page.locator('#feedback tr').count()===manifest.reviewFeedback.items.length&&await page.locator('#usage tr').count()>15});
+await page.selectOption('#filter','common');checks.push({name:'daily-scene-filter',pass:await page.locator('#gallery .card:visible').count()===manifest.commonAssetIds.length});checks.push({name:'human-feedback-and-usage-audit-visible',pass:await page.locator('#feedback tr').count()===(manifest.reviewFeedback.followUp?.items||manifest.reviewFeedback.items).length&&await page.locator('#usage tr').count()>15});
 const report={url:base,browser:browser.version(),checks,errors,badResponses,passed:checks.every(c=>c.pass)&&!errors.length&&!badResponses.length};
 await writeFile(new URL(base.startsWith('file:')?'offline-report.json':'report.json',output),JSON.stringify(report,null,2)+'\n');await browser.close();console.log(JSON.stringify(report,null,2));if(!report.passed)process.exitCode=1;

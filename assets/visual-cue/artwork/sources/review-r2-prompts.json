@@ -1,0 +1,28 @@
+{
+  "review": "2026-10-18 R2",
+  "tool": "built-in image_gen",
+  "prompts": {
+    "tap": "Use case: precise-object-edit. Edit target is the single coherent open hand reference. Change the gesture to a natural pointing hand: index finger fully extended vertically UP, middle/ring/little fingers curled down together into palm, thumb folded naturally across the side of curled middle finger with broad thenar eminence still merging seamlessly into palm. Exactly one pointing index, one thumb and three curled fingers, all connected. Keep identical peach matte skin, bright blue sleeve cuff at bottom, soft children's picture-book sculpted felt/paper style, front palm view, no separate or pasted parts, no visible thumb-root sticker seam, no text. Centered upright complete hand including wrist and blue cuff, generous margin, transparent alpha background.",
+    "hold": "Use case: illustration-story. Asset: transparent original illustration for a baby English learning app, readable at 220px. Reference image is STYLE ONLY; redraw the anatomy. One adult hand with blue cuff rises diagonally from lower left, palm facing viewer, five coherent connected fingers. A small child's hand with yellow cuff enters from upper right and loosely wraps the adult index finger. CRITICAL: the adult index finger is one continuous slender finger from knuckle through the small hand, with its rounded fingertip clearly protruding ABOVE the child's grip. Put the child's grip around the MIDDLE phalanx, not over the fingertip. Clear continuous visible proximal index segment below grip and visible distal index segment above grip, aligned on the same axis. Child's four curled fingers wrap around the index, child thumb crosses on the near side with clear natural occlusion. Adult thumb and other three fingers are clearly separated to the right/left with a natural palm, no truncated stubs, no amputated digit impression. Fully connected adult and child wrists and palms. Soft bright matte sculpted paper/felt picture-book style matching reference, peach skin, blue/yellow cuffs, smooth broad continuous skin shading, no cutout seams, no fingernails, no dramatic wrinkles, no hearts, no text, no labels. Centered single coherent painted scene with generous transparent margin. True transparent alpha background. No checkerboard painted in.",
+    "hand": "Use case: illustration-story. Asset: transparent original single open hand for children's English visual cues. Reference STYLE ONLY. A single right human hand palm facing viewer, upright, blue sleeve cuff at bottom, 4 vertical fingers spread slightly, thumb angled outward to viewer's left. Draw the thumb, thenar eminence and palm as ONE continuous organic painted shape, with broad smoothly curved thumb web at natural mid-palm height. Thumb root blends continuously into the palm volume with identical skin texture: absolutely no pasted-on thumb patch, no outline or shadow encircling thumb root, no sticker seam, no separate thumb cutout. Exactly five digits with natural relative lengths, correct thumb branching below index knuckle and above wrist. Smooth rounded fingertips, fingers visibly separate with clear transparent gaps up to natural knuckle height. Palm broad, cuff small. Symmetric centered framing, flat front view, no foreshortening, no nails or labels. Warm peach, bright blue cuff, soft matte felt/paper 3D toddler picture-book style matching reference. Single coherent anatomy, no parts sheet. True transparent background, no floor shadow or painted checkerboard, ample margin.",
+    "crib": "Use case: illustration-story. Asset: transparent original empty infant cot for baby English app. Create a clearly recognizable EMPTY BABY COT, viewed slightly from above at a simple 3/4 angle so the entire flat sleeping surface is visible. Light warm wooden rounded cot frame with narrow evenly spaced vertical slats on sides, four sturdy legs. Inside it a single firm FLAT rectangular mattress, snugly fitted, covered only in a taut smooth pale blue fitted sheet, straight level top with no slope, no sagging, no raised cushion zones, no gaps around mattress. Absolutely NO PILLOW, duvet, quilt, blanket, bumpers, toys, stuffed animals, mobile, baby, person or mattress decoration. The light blue fitted sheet is the whole uniform mattress surface, not a loose cover or folded textile. Simple object silhouette legible at 220px, soft bright matte sculpted paper/felt picture-book illustration, same warm rounded materials and palette as prior assets. Single isolated cot centered with generous transparent margins. No room, floor, background, text, moon or sun; true transparent alpha."
+  },
+  "outputs": {
+    "crib": {
+      "file": "generated/crib-r2.png",
+      "generationId": "exec-41277a60-0aba-4951-96a5-0eb2abfd679b.png"
+    },
+    "hand": {
+      "file": "generated/hand-r2.png",
+      "generationId": "exec-80dfe1a6-20a3-4f06-bf4b-b83afcc1d17c.png"
+    },
+    "hold": {
+      "file": "generated/hold-r2.png",
+      "generationId": "exec-40e1abb9-afb0-4c45-8bae-216d0b597516.png"
+    },
+    "tap": {
+      "file": "generated/tap-r2.png",
+      "generationId": "exec-d660c336-ba05-4dab-a2f8-e57bfa4e38f5.png"
+    }
+  }
+}

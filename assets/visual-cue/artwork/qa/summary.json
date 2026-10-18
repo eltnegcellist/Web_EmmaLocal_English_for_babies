@@ -7,7 +7,8 @@
   "coveredIllustrationConcepts": 14,
   "animationConceptsWithArtifacts": 10,
   "cueReadiness": {
-    "candidate": 37,
+    "candidate": 36,
+    "draft": 1,
     "evaluation-complete": 21
   },
   "animationConceptsWithCandidates": 10,

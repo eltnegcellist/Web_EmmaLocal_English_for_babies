@@ -1,24 +1,13 @@
 [
   {
     "id": "kick",
-    "beforeBytes": 617606,
-    "afterBytes": 293262,
-    "alphaQuality": 70,
-    "meanRGBErrorAt220": 0.29,
+    "beforeBytes": 413146,
+    "afterBytes": 350784,
+    "alphaQuality": 90,
+    "meanRGBErrorAt220": 0.248,
     "p95RGBErrorAt220": 2.0,
-    "beforeSHA256": "4998256859f1c1880d40e3b59d3c88f0fba855f9f0880ecf086bae042ee82e3e",
-    "afterSHA256": "1ef5002f90ca25d916e81f64bd79ed04b3f7383de02958a4fcfe635648eab51d",
-    "timingAndDimensionsPreserved": true
-  },
-  {
-    "id": "change-clothes",
-    "beforeBytes": 657968,
-    "afterBytes": 349254,
-    "alphaQuality": 70,
-    "meanRGBErrorAt220": 0.387,
-    "p95RGBErrorAt220": 2.0,
-    "beforeSHA256": "2b3702794e5972014569f21e924af881dcabf42311f017352448bf9bc7eca8af",
-    "afterSHA256": "23e68049c18651e19076c37b82aa2840e517dd3e349d50246a5fdef99bd4d6ee",
+    "beforeSHA256": "aef4ae2fe2b4b70d1b4ad82b4763b2023b686a825c7e26c4c70d3f91c215eed1",
+    "afterSHA256": "f1f5ea318acea68c9778a99b809370def06a73975a1ec092ceda211e1e608749",
     "timingAndDimensionsPreserved": true
   }
 ]

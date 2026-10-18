@@ -16,7 +16,7 @@ sourceKeyの先頭話題を集計。生成済みprimaryCueによる頻度を採�
 | 就寝 | 38 | sleep | Are you sleepy? Let's get cozy. Night-night! |
 | 飲み物 | 38 | cup | Would you like some? Here's a little sip. There you go! |
 | 食事 | 37 | meal, spoon | Time for a bite! Here's your spoon. Open wide! |
-| 起床 | 33 | wake-bed, wake-quilt | You're awake! Hello, little one. It's nice seeing you! |
+| 起床 | 33 | wake-bed, wake-daylight | You're awake! Hello, little one. It's nice seeing you! |
 | 泣く・慰め | 33 | Emma等を別途審査 | I hear you crying. I'm right here. You're not alone. |
 | 衣服 | 31 | clothes, change-clothes, dress-sleeves | Let's put clothes on. One arm first. Other arm next! |
 | 一般会話 | 30 | Emma等を別途審査 | Hello, sweet baby! You're so loved. I'm right here. |
@@ -34,7 +34,7 @@ sourceKeyの先頭話題を集計。生成済みprimaryCueによる頻度を採�
 
 - 優先1 **飲み物のコップ**：drinkは38セット。ミルクの哺乳瓶を飲み物全般へ流用しない。
 - 優先1 **自然な養育者と子の抱っこ**：hug28セットと愛情・慰めの関連場面。毛布だけでは意味が伝わらず、人物のつながった場面へ。関連会話を一律に抱っこへ割り当てるものではない。
-- 優先1 **枕・ベッド・掛け物**：就寝38／起床33セット。整合する投影で共通部品を作り直す。
+- 優先1 **空のベビーベッドと平らなマットレス**：就寝38／起床33セット。R2で枕・掛け布団を撤回。空の寝床を基本とし、朝日の代案は起床動作そのものの承認とはしない。
 - 優先1 **頭・肩・胴のある着替え**：衣服31セット。腹部だけへの服の貼り付けを廃止。
 - 優先2 **手をつなぐ**：Hold my hand / Give me your handという明示文が2件。ボールより意味が合う。手の話題28セット全体への適合数とはしない。
 - 優先2 **遊びのおもちゃ**：遊び51セットのため基本物体を優先。ballの明示は1件、rattleの明示も1件なので、球専用の握りを遊び全般に割り当てない。

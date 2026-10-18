@@ -71,11 +71,9 @@ reveal=np.asarray(cloth.transform((512,512),Image.Transform.AFFINE,(1,0,0,0,1,22
 covered=float((toy&hide).sum()/toy.sum());uncovered=float((toy&~reveal).sum()/toy.sum())
 invariants.append(dict(name='peekaboo-hidden-and-revealed',pass_=covered>.99 and uncovered>.99,hiddenFraction=covered,revealedFraction=uncovered))
 left=Image.open(OUT/'parts/kick-left.png');right=Image.open(OUT/'parts/kick-right.png');overlap=[]
-for i in range(36):
- import math
- angle=12*math.sin(2*math.pi*i/36)
- la=np.asarray(left.rotate(angle,Image.Resampling.BICUBIC,center=(140,380)))[:,:,3]>100
- ra=np.asarray(right.rotate(-angle,Image.Resampling.BICUBIC,center=(372,380)))[:,:,3]>100
+for trace in rigs['kick']['traces']:
+ la=np.asarray(left.rotate(trace['leftAngle'],Image.Resampling.BICUBIC,center=(140,380)))[:,:,3]>100
+ ra=np.asarray(right.rotate(trace['rightAngle'],Image.Resampling.BICUBIC,center=(372,380)))[:,:,3]>100
  overlap.append(int((la&ra).sum()))
 invariants.append(dict(name='kick-feet-do-not-collide',pass_=max(overlap)==0,maxOverlapPixels=max(overlap)))
 # New articulated-hand and care rigs: inspect decoded foreground connectivity and contact.
@@ -85,18 +83,18 @@ if any(a.get('productionPass')==2 for a in m['assets']):
  hand=Image.open(OUT/'animations/hand-open-close.webp');detached=[];indexTops=[]
  for i in range(hand.n_frames):
   hand.seek(i);a=np.asarray(hand.convert('RGBA'))[:,:,3]>100;connected=flood_connected(a,(256,430));detached.append(int((a&~connected).sum()))
-  ys=np.where(a[:,179:194])[0];indexTops.append(int(ys.min()))
+  ys=np.where(a[:,205:220] if m.get('productionPass',0)>=5 else a[:,179:194])[0];indexTops.append(int(ys.min()))
  invariants.append(dict(name='open-close-fingers-connected-to-palm',pass_=max(detached)<45,maxDetachedPixels=max(detached)))
  invariants.append(dict(name='index-finger-visible-joint-travel',pass_=max(indexTops)-min(indexTops)>70,travelPixels=max(indexTops)-min(indexTops)))
  counting=Image.open(OUT/'animations/hand-count.webp');counts=set()
  for i in range(counting.n_frames):
   counting.seek(i);alpha=np.asarray(counting.convert('RGBA'))[:,:,3]>100
-  counts.add(sum(bool(alpha[:215,x-6:x+6].any()) for x in [186,236,286,333]))
+  counts.add(sum(bool(alpha[:limit,x-6:x+6].any()) for x,limit in ([(215,174),(274,152),(326,166),(374,192)] if m.get('productionPass',0)>=5 else [(186,215),(236,215),(286,215),(333,215)])))
  invariants.append(dict(name='count-visible-zero-to-four-upright-fingers',pass_=counts==set(range(5)),observedCounts=sorted(counts)))
  tapping=Image.open(OUT/'animations/hand-tap.webp');connectedFrames=0;separatedFrames=0
  for i in range(tapping.n_frames):
   tapping.seek(i);a=np.asarray(tapping.convert('RGBA'))[:,:,3]>100;connected=flood_connected(a,(256,420))
-  if connected[170,256]:connectedFrames+=1
+  if connected[:250].any():connectedFrames+=1
   else:separatedFrames+=1
  invariants.append(dict(name='tap-hand-contacts-and-leaves-target',pass_=connectedFrames>0 and separatedFrames>0,contactFrames=connectedFrames,separatedFrames=separatedFrames))
  intact=np.asarray(Image.open(OUT/'parts/v2-diaper-intact-body.png'))[:,:,3]>100
@@ -157,14 +155,54 @@ if m.get('productionPass',0)>=4:
   c=a[95:245,175:337];heads.append(int(((c[:,:,0]<155)&(c[:,:,1]<115)&(c[:,:,2]<95)&(c[:,:,3]>100)).sum()))
   c=a[320:390,220:290];undershirt.append(int(((c[:,:,0]>205)&(abs(c[:,:,0]-c[:,:,2])<18)&(c[:,:,3]>100)).sum()));teal.append(int(((c[:,:,1]>100)&(c[:,:,0]<120)&(c[:,:,2]>130)&(c[:,:,3]>100)).sum()))
  invariants.append(dict(name='dressing-head-and-covered-torso-remain',pass_=min(headRetained)>.99 and min(heads)>2000 and max(undershirt)>3500 and max(teal)>3500,headRange=[min(heads),max(heads)],headSilhouetteRetained=min(headRetained),undershirtRange=[min(undershirt),max(undershirt)],tealRange=[min(teal),max(teal)]))
- wake=decoded4('wake-quilt');outside=[];tops=[]
- for a in wake:
-  blue=(a[:,:,2]>a[:,:,0]+35)&(a[:,:,3]>100);roi=np.zeros_like(blue);roi[184:423,140:372]=True;outside.append(int((blue&~roi).sum()));tops.append(int(np.where(blue)[0].min()))
- invariants.append(dict(name='quilt-stays-on-mattress-inside-wood-frame',pass_=max(outside)<30 and max(tops)-min(tops)>85,maxBluePixelsOutsideMattress=max(outside),blueTopRange=[min(tops),max(tops)]))
+ if m.get('productionPass',0)<5:
+  wake=decoded4('wake-quilt');outside=[];tops=[]
+  for a in wake:
+   blue=(a[:,:,2]>a[:,:,0]+35)&(a[:,:,3]>100);roi=np.zeros_like(blue);roi[184:423,140:372]=True;outside.append(int((blue&~roi).sum()));tops.append(int(np.where(blue)[0].min()))
+  invariants.append(dict(name='quilt-stays-on-mattress-inside-wood-frame',pass_=max(outside)<30 and max(tops)-min(tops)>85,maxBluePixelsOutsideMattress=max(outside),blueTopRange=[min(tops),max(tops)]))
  for kind,total in [('illustration',14),('animation',10)]:
   cs=[c for c in m['concepts'] if c['kind']==kind];invariants.append(dict(name=f'all-{total}-{kind}-concepts-have-candidates',pass_=len(cs)==total and all(c['readiness']=='candidate' for c in cs)))
  invariants.append(dict(name='rejected-user-review-versions-excluded-from-active-gallery',pass_=sum(a.get('reviewBatch')=='2026-10-18' and a['status']=='rejected' for a in m['archivedAssets'])==17 and not any(a['status']=='rejected' for a in m['assets'])))
  invariants.append(dict(name='corpus-scene-review-covers-all-914-sets',pass_=json.loads((OUT/'qa/usage-audit.json').read_text())['totalSets']==914 and len(m['commonAssetIds'])>15))
+
+if m.get('productionPass',0)>=5:
+ baseline=json.loads((OUT/'qa/review-r2-baseline.json').read_text());active={a['id']:a for a in m['assets']}
+ changed=[]
+ for key,files in baseline['unaffected'].items():
+  for field,sha in files.items():
+   if hashlib.sha256((OUT/active[key][field]).read_bytes()).hexdigest()!=sha:changed.append(key+':'+field)
+ invariants.append(dict(name='R2-unaffected-candidates-byte-identical',pass_=not changed,checkedAssets=len(baseline['unaffected']),changed=changed))
+ r2archive=[a for a in m['archivedAssets'] if a.get('reviewBatch')=='2026-10-18-R2']
+ invariants.append(dict(name='R2-old-quilt-withdrawn-not-an-active-candidate',pass_='wake-quilt' not in active and len(r2archive)==11 and any(a['originalId']=='wake-quilt' for a in r2archive)))
+ bed=np.asarray(Image.open(OUT/'stills/sleep.webp').convert('RGBA')).astype(int)
+ morning=np.asarray(Image.open(OUT/'stills/wake-bed.webp').convert('RGBA')).astype(int)
+ # Cot pixels, including the flat sheet, must remain the same in both stills and every movie frame.
+ cot=np.asarray(Image.open(OUT/'parts/r2-clear-cot.png').convert('RGBA')).astype(int)
+ region=cot[:,:,3]>180;movie=decoded4('wake-daylight');cot_deltas=[];sun_tops=[]
+ for a in [bed,morning]+movie:
+  cot_deltas.append(float(np.abs(a[region,:3]-cot[region,:3]).mean()))
+ for a in movie:
+  sun=(a[:,:,0]>190)&(a[:,:,1]>100)&(a[:,:,3]>100);sun[:,:405]=False;sun[150:]=False
+  sun_tops.append(int(np.where(sun)[0].min()))
+ temporal=[float(np.abs(a[region,:3]-movie[0][region,:3]).mean()) for a in movie]
+ static=float(np.abs(bed[region,:3]-morning[region,:3]).mean())
+ retained=min(float((a[:,:,3][region]>100).mean()) for a in [bed,morning]+movie)
+ cot_fixed=max(temporal)<2 and static<2 and retained>.995
+ invariants.append(dict(name='R2-empty-cot-and-sheet-remain-fixed',pass_=cot_fixed,maxTemporalMeanRGBDelta=max(temporal),staticMeanRGBDelta=static,silhouetteRetained=retained,maxEncodingMeanRGBDeltaFromPNG=max(cot_deltas),scope='画素固定の回帰検出。枕や掛け布団がないこと・睡眠環境の適否は原画と目視で確認。'))
+ invariants.append(dict(name='R2-morning-sun-moves-outside-cot-only',pass_=max(sun_tops)-min(sun_tops)>20 and cot_fixed,sunTopRange=[min(sun_tops),max(sun_tops)]))
+ traces=rigs['kick']['traces'];left_angles=[r['leftAngle'] for r in traces];right_angles=[r['rightAngle'] for r in traces]
+ invariants.append(dict(name='R2-kick-26-degrees-one-foot-per-half-cycle',pass_=max(left_angles)>25 and min(right_angles)<-25 and all(abs(l)<.01 or abs(r)<.01 for l,r in zip(left_angles,right_angles)) and len(traces)==42,sourceFrames=len(traces),durationMs=active['kick']['loopMs'],leftAngleRange=[min(left_angles),max(left_angles)],rightAngleRange=[min(right_angles),max(right_angles)]))
+ # No cutout seam at the thumb: the delivered still's thumb and thenar must match the single painted master.
+ master=np.asarray(Image.open(OUT/'parts/r2-hand-whole-master.png').convert('RGBA')).astype(int)
+ hand=np.asarray(Image.open(OUT/'stills/hands-open-v2.webp').convert('RGBA')).astype(int)
+ mask=(master[:,:,3]>180);yy,xx=np.indices(mask.shape);mask&=(xx<190)&(yy>180)&(yy<355)
+ error=float(np.abs(master[mask,:3]-hand[mask,:3]).mean())
+ invariants.append(dict(name='R2-thumb-thenar-preserved-from-one-painted-source',pass_=error<5,meanRGBError=error,source='sources/generated/hand-r2.png',scope='単一原画との一致。人体の自然さを自動承認しない。'))
+ hold=decoded4('hold-hands-squeeze');detached=[]
+ for a in hold:
+  solid=a[:,:,3]>100;seed=tuple(np.argwhere(solid)[len(np.argwhere(solid))//2][::-1]);conn=flood_connected(solid,seed);detached.append(int((solid&~conn).sum()))
+ invariants.append(dict(name='R2-holding-scene-connected-in-every-frame',pass_=max(detached)<50,maxDetachedPixels=max(detached),scope='画素の接続のみ。大人と子の各指の遮蔽・本数は全フレーム目視審査。'))
+
 
 for item in invariants:
  if not item['pass_']:failures.append(dict(id=item['name'],errors=['action-specific-pixel-check-failed']))

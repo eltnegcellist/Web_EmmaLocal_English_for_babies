@@ -224,7 +224,7 @@
       "setCount": 33,
       "assetIds": [
         "wake-bed",
-        "wake-quilt"
+        "wake-daylight"
       ],
       "examples": [
         {
@@ -1198,14 +1198,14 @@
     },
     {
       "priority": 1,
-      "scene": "枕・ベッド・掛け物",
+      "scene": "空のベビーベッドと平らなマットレス",
       "action": "redraw",
       "assetIds": [
         "sleep",
         "wake-bed",
-        "wake-quilt"
+        "wake-daylight"
       ],
-      "reason": "就寝38／起床33セット。整合する投影で共通部品を作り直す。"
+      "reason": "就寝38／起床33セット。R2で枕・掛け布団を撤回。空の寝床を基本とし、朝日の代案は起床動作そのものの承認とはしない。"
     },
     {
       "priority": 1,

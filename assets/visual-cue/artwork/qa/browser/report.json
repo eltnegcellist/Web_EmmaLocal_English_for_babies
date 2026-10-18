@@ -1,5 +1,5 @@
 {
-  "url": "http://127.0.0.1:8766/assets/visual-cue/artwork/preview.html",
+  "url": "http://127.0.0.1:8767/assets/visual-cue/artwork/preview.html?filter=new#hold-hands",
   "browser": "155.0.8059.80",
   "checks": [
     {
@@ -51,7 +51,7 @@
       "pass": true
     },
     {
-      "name": "browser-motion-wake-quilt",
+      "name": "browser-motion-wake-daylight",
       "pass": true
     },
     {
@@ -76,6 +76,10 @@
     },
     {
       "name": "filmstrip-opens-in-page",
+      "pass": true
+    },
+    {
+      "name": "R2-all-frames-open-at-220",
       "pass": true
     },
     {

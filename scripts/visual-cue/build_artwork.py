@@ -64,7 +64,8 @@ def rotate(layer,angle,pivot):return layer.rotate(angle,Image.Resampling.BICUBIC
 def slide(layer,x=0,y=0):return layer.transform(layer.size,Image.Transform.AFFINE,(1,0,-x,0,1,-y),Image.Resampling.BICUBIC)
 def q(t):return (1-math.cos(2*math.pi*t))/2
 
-ONLY_REVIEW='--only-review' in sys.argv
+ONLY_R2='--only-r2' in sys.argv
+ONLY_REVIEW='--only-review' in sys.argv or ONLY_R2
 ONLY_FINAL='--only-final' in sys.argv or ONLY_REVIEW
 ONLY_NEW='--only-new' in sys.argv or ONLY_FINAL
 SAMPLE_ONLY=os.getenv('VISUAL_CUE_SAMPLE_ONLY')=='1'
@@ -82,7 +83,7 @@ def still(key,primitive,label,im,source,cues=None,origin='generated',note=''):
     assets.append(row);return im
 
 # All animation rigs keep complete source layers, and never warp a whole scene to imply action.
-def animate(key,primitive,label,render,source,moving,stationary=None,note='',readiness='candidate',frame_count=FRAMES):
+def animate(key,primitive,label,render,source,moving,stationary=None,note='',readiness='candidate',frame_count=FRAMES,lossless=False):
     if SAMPLE_ONLY:
         for i in sorted(set([0,5,13,18,27,frame_count//2])):
             im,_=render(i/frame_count);assert im.size==(512,512)
@@ -92,13 +93,13 @@ def animate(key,primitive,label,render,source,moving,stationary=None,note='',rea
     for i in range(frame_count):
         im,trace=render(i/frame_count);assert im.size==(512,512);frames.append(im);traces.append(trace)
     path=OUT/'animations'/f'{key}.webp'
-    if not SAMPLE_ONLY:frames[0].save(path,save_all=True,append_images=frames[1:],duration=MS,loop=0,quality=64,method=4,minimize_size=False,allow_mixed=False)
+    if not SAMPLE_ONLY:frames[0].save(path,save_all=True,append_images=frames[1:],duration=MS,loop=0,quality=64,method=6 if lossless else 4,minimize_size=lossless,allow_mixed=False,lossless=lossless)
     frames[0].save(OUT/'posters'/f'{key}.webp',quality=86,method=6)
     frames[0].save(OUT/'sources/normalized'/f'{key}-poster.png')
     # Keyframes are pixel evidence, not substitute animation deliverables.
     for i in [0,5,13,18,27]:frames[i].save(OUT/'qa/keyframes'/f'{key}-{i:02d}.png')
     rigs[key]=dict(movingParts=moving,stationaryRegion=stationary,traces=traces)
-    assets.append(dict(id=key,primitive=primitive,topic=label,kind='animation',illustration=None,animation=f'animations/{key}.webp',poster=f'posters/{key}.webp',loopMs=frame_count*MS,source=source,status='needs-review',readiness=readiness,productionPass=currentPass,note=note,movingParts=moving,verification='qa/validation.json'))
+    assets.append(dict(id=key,primitive=primitive,topic=label,kind='animation',illustration=None,animation=f'animations/{key}.webp',poster=f'posters/{key}.webp',loopMs=frame_count*MS,source=source,status='needs-review',readiness=readiness,productionPass=currentPass,note=note,movingParts=moving,lossless=lossless,verification='qa/validation.json'))
 
 
 if not ONLY_NEW:
@@ -273,7 +274,9 @@ archived=archived+[a for a in assets if a['id'] in ['hand-squeeze','change-diape
 archived=list({a['id']:a for a in archived}.values())
 assets=[a for a in assets if a['id'] not in ['hand-squeeze','change-diaper']]
 currentPass=4
-exec(compile((ROOT/'scripts/visual-cue/revision_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/revision_artwork.py'),'exec'),globals())
+if not ONLY_R2:exec(compile((ROOT/'scripts/visual-cue/revision_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/revision_artwork.py'),'exec'),globals())
+currentPass=5
+exec(compile((ROOT/'scripts/visual-cue/review_r2_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/review_r2_artwork.py'),'exec'),globals())
 for a in assets:
     if a['id']=='change-diaper-v2':a['note']='留め具の開閉variant。交換の全過程はchange-diaper-exchangeで別候補。'
     if a['id']=='change-zipper':a['note']='留め具操作variant。服の交換と袖通しはchange-clothes / dress-sleevesで別候補。'
@@ -300,7 +303,7 @@ for p in plan['primitives']:
 cueFiles={
 'action.open-close':['hand-open-close'],'action.count':['hand-count'],'action.wiggle':['hand-wiggle'],'action.squeeze':['hold-hands-squeeze'],'action.tap':['hand-tap'],'action.wipe':['care-wipe'],'action.dress':['change-clothes','dress-sleeves','change-zipper'],'action.clap':['hand-clap'],'action.wave':['hand-wave'],'action.kick':['kick'],'action.read':['page'],'action.turn-page':['page'],
 'action.sip':['sip'],'action.eat':['spoon'],'action.sing':['notes'],'action.peekaboo':['peekaboo'],'action.splash':['water-splash'],'action.wash':['water-shower'],
-'action.burp':['care-burp'],'action.wake':['wake-quilt'],'action.hug':['hug-arms'],'subject.tummy':['tummy'],'action.sleep':['sleep'],'subject.bath':['bath'],'subject.book':['book'],'subject.clothes':['clothes'],'subject.diaper':['diaper'],'subject.drink':['cup'],'subject.feet':['feet'],
+'action.burp':['care-burp'],'action.wake':['wake-daylight'],'action.hug':['hug-arms'],'subject.tummy':['tummy'],'action.sleep':['sleep'],'subject.bath':['bath'],'subject.book':['book'],'subject.clothes':['clothes'],'subject.diaper':['diaper'],'subject.drink':['cup'],'subject.feet':['feet'],
 'subject.food':['meal'],'subject.hands':['hands'],'subject.milk':['milk'],'subject.music':['music'],'subject.outside':['outdoor'],'subject.rain':['rain','water-rain'],'subject.sun':['sun'],'subject.toy':['toy']}
 unmade={
 'action.burp':'げっぷ動作は未制作。おむつの動きを流用不可。','action.dress':'服は静止のみ。着替え動作未制作。','action.wipe':'拭く部品と接触対象が未確定。',
@@ -315,11 +318,12 @@ for b in plan['bindings']:
     if not ids and all(p.startswith('emma.') for p in b['primitives']):ready='evaluation-complete';reason='既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。'
     if b['cueId']=='subject.drink':reason='飲み物のコップを追加。scene.drinkという追加コンセプト案であり、哺乳瓶を飲み物全般に流用しない。原計画・runtimeは未変更。'
     if b['cueId']=='action.peekaboo':reason='玩具を布で隠すvariant。人物のいない部分図として採用審査待ち。'
+    if b['cueId']=='action.wake':ready='draft';reason='掛け布団を動かす旧案は撤回。wake-daylightは空の寝床と外側の朝日による代案で、起きた本人や動作を描かないため意味の採用は保留。'
     coverage.append(dict(cueId=b['cueId'],primitives=b['primitives'],assetIds=ids,status='needs-review',readiness=ready,reason=reason))
-commonIds=['milk','cup','diaper-v2','clothes','family-care','sleep','wake-bed','book','toy','bath','hands-open-v2','feet','outdoor','rain','sun','music','hold-hands','hand-wave','kick','page','hug-arms','change-clothes','wake-quilt']
+commonIds=['milk','cup','diaper-v2','clothes','family-care','sleep','wake-bed','book','toy','bath','hands-open-v2','feet','outdoor','rain','sun','music','hold-hands','hand-wave','kick','page','hug-arms','change-clothes']
 usage=json.loads((OUT/'qa/usage-audit.json').read_text())
 feedback=json.loads((OUT/'qa/revision-feedback.json').read_text())
-manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='ff14407',productionPass=4,proposedConcepts=[dict(primitive='scene.drink',kind='illustration',assetIds=['cup'],readiness='proposal',reason='飲み物を哺乳瓶と区別する追加設計案。元計画31コンセプトは変更しない。')],commonAssetIds=commonIds,scenePriorities=usage['scenes'],usageMethod=usage['method'],limitedVariants=usage['limitedVariants'],reviewFeedback=feedback,archivedAssets=archived,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
+manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='b2536ab',productionPass=5,proposedConcepts=[dict(primitive='scene.drink',kind='illustration',assetIds=['cup'],readiness='proposal',reason='飲み物を哺乳瓶と区別する追加設計案。元計画31コンセプトは変更しない。')],commonAssetIds=commonIds,scenePriorities=usage['scenes'],usageMethod=usage['method'],limitedVariants=usage['limitedVariants'],reviewFeedback=feedback,archivedAssets=archived,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
 (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
 (OUT/'qa/motion-traces.json').write_text(json.dumps(rigs,ensure_ascii=False,indent=2)+'\n')
 print(f'Built {sum(x["kind"]=="illustration" for x in assets)} stills, {sum(x["kind"]=="animation" for x in assets)} loops; {len(concepts)} concepts / {len(coverage)} Cues. Approval remains pending.')

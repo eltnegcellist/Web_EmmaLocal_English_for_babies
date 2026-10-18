@@ -13,6 +13,7 @@ for a in m['assets']:
  if not a['animation']:continue
  p=OUT/a['animation'];original=p.read_bytes()
  if len(original)<=400000:continue
+ if a.get('lossless'):raise RuntimeError('Keep lossless static-scene encoding; optimize its keyframes instead: '+a['id'])
  im=Image.open(io.BytesIO(original));fs=[];dur=[]
  for i in range(im.n_frames):im.seek(i);fs.append(im.convert('RGBA'));dur.append(im.info['duration'])
  for alpha in [90,80,70,60]:

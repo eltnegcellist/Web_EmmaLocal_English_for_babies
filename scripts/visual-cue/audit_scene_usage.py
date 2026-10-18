@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'assets/visual-cue/artwork'
 source=ROOT/'shared/visual-cue-phrases.json';rows=json.loads(source.read_text())['rows']
 counts=Counter(r['sourceKey'].split('|')[0] for r in rows)
 names={'milk':'ミルク','diaper':'おむつ','play':'遊び','bath':'お風呂','book':'絵本','music':'音楽','sleep':'就寝','drink':'飲み物','food':'食事','wake':'起床','cry':'泣く・慰め','clothes':'衣服','generic':'一般会話','hug':'抱っこ','hands':'手','feet':'足','voice':'声','outside':'外','smile':'笑顔','rain':'雨','sun':'日差し','tummy':'おなか'}
-asset_map={'milk':['milk','sip'],'diaper':['diaper-v2','change-diaper-exchange'],'play':['toy'],'bath':['bath','water-shower'],'book':['book','page'],'music':['music','notes'],'sleep':['sleep'],'drink':['cup'],'food':['meal','spoon'],'wake':['wake-bed','wake-quilt'],'clothes':['clothes','change-clothes','dress-sleeves'],'hug':['family-care','hug-arms'],'hands':['hands-open-v2','hand-wave','hold-hands'],'feet':['feet','kick'],'outside':['outdoor'],'rain':['rain','water-rain'],'sun':['sun'],'tummy':['tummy']}
+asset_map={'milk':['milk','sip'],'diaper':['diaper-v2','change-diaper-exchange'],'play':['toy'],'bath':['bath','water-shower'],'book':['book','page'],'music':['music','notes'],'sleep':['sleep'],'drink':['cup'],'food':['meal','spoon'],'wake':['wake-bed','wake-daylight'],'clothes':['clothes','change-clothes','dress-sleeves'],'hug':['family-care','hug-arms'],'hands':['hands-open-v2','hand-wave','hold-hands'],'feet':['feet','kick'],'outside':['outdoor'],'rain':['rain','water-rain'],'sun':['sun'],'tummy':['tummy']}
 patterns={'burp':r'\bburp\b','count':r'\b(count|counting)\b','squeeze':r'\bsqueeze\b','ball':r'\bball\b','rattle':r'\brattle\b','hold-hand':r'\b(hold my hand|give me your hand)\b','listen-hear-voice':r'\b(listen|hear|sound|voice)\b','cup':r'\bcup\b'}
 mentions=[]
 for key,pattern in patterns.items():
@@ -21,7 +21,7 @@ for key,n in counts.most_common():
 proposals=[
  dict(priority=1,scene='飲み物のコップ',action='new-artwork',assetIds=['cup'],reason='drinkは38セット。ミルクの哺乳瓶を飲み物全般へ流用しない。'),
  dict(priority=1,scene='自然な養育者と子の抱っこ',action='redraw',assetIds=['family-care','hug-arms'],reason='hug28セットと愛情・慰めの関連場面。毛布だけでは意味が伝わらず、人物のつながった場面へ。関連会話を一律に抱っこへ割り当てるものではない。'),
- dict(priority=1,scene='枕・ベッド・掛け物',action='redraw',assetIds=['sleep','wake-bed','wake-quilt'],reason='就寝38／起床33セット。整合する投影で共通部品を作り直す。'),
+ dict(priority=1,scene='空のベビーベッドと平らなマットレス',action='redraw',assetIds=['sleep','wake-bed','wake-daylight'],reason='就寝38／起床33セット。R2で枕・掛け布団を撤回。空の寝床を基本とし、朝日の代案は起床動作そのものの承認とはしない。'),
  dict(priority=1,scene='頭・肩・胴のある着替え',action='redraw',assetIds=['change-clothes','dress-sleeves'],reason='衣服31セット。腹部だけへの服の貼り付けを廃止。'),
  dict(priority=2,scene='手をつなぐ',action='new-artwork',assetIds=['hold-hands','hold-hands-squeeze'],reason='Hold my hand / Give me your handという明示文が2件。ボールより意味が合う。手の話題28セット全体への適合数とはしない。'),
  dict(priority=2,scene='遊びのおもちゃ',action='reuse-existing',assetIds=['toy'],reason='遊び51セットのため基本物体を優先。ballの明示は1件、rattleの明示も1件なので、球専用の握りを遊び全般に割り当てない。'),

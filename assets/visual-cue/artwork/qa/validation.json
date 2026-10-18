@@ -27,7 +27,7 @@
     {
       "name": "index-finger-visible-joint-travel",
       "pass_": true,
-      "travelPixels": 76
+      "travelPixels": 146
     },
     {
       "name": "count-visible-zero-to-four-upright-fingers",
@@ -72,7 +72,7 @@
       "name": "thumb-protrusion-raised-away-from-wrist",
       "pass_": true,
       "oldY": 317.88,
-      "newY": 275.88
+      "newY": 236.23
     },
     {
       "name": "page-reveals-different-left-and-right-art",
@@ -147,15 +147,6 @@
       ]
     },
     {
-      "name": "quilt-stays-on-mattress-inside-wood-frame",
-      "pass_": true,
-      "maxBluePixelsOutsideMattress": 0,
-      "blueTopRange": [
-        234,
-        340
-      ]
-    },
-    {
       "name": "all-14-illustration-concepts-have-candidates",
       "pass_": true
     },
@@ -170,6 +161,60 @@
     {
       "name": "corpus-scene-review-covers-all-914-sets",
       "pass_": true
+    },
+    {
+      "name": "R2-unaffected-candidates-byte-identical",
+      "pass_": true,
+      "checkedAssets": 37,
+      "changed": []
+    },
+    {
+      "name": "R2-old-quilt-withdrawn-not-an-active-candidate",
+      "pass_": true
+    },
+    {
+      "name": "R2-empty-cot-and-sheet-remain-fixed",
+      "pass_": true,
+      "maxTemporalMeanRGBDelta": 0.0,
+      "staticMeanRGBDelta": 1.4778031150706532,
+      "silhouetteRetained": 1.0,
+      "maxEncodingMeanRGBDeltaFromPNG": 3.7047623094391646,
+      "scope": "画素固定の回帰検出。枕や掛け布団がないこと・睡眠環境の適否は原画と目視で確認。"
+    },
+    {
+      "name": "R2-morning-sun-moves-outside-cot-only",
+      "pass_": true,
+      "sunTopRange": [
+        55,
+        83
+      ]
+    },
+    {
+      "name": "R2-kick-26-degrees-one-foot-per-half-cycle",
+      "pass_": true,
+      "sourceFrames": 42,
+      "durationMs": 3486,
+      "leftAngleRange": [
+        0,
+        25.927298726710685
+      ],
+      "rightAngleRange": [
+        -25.927298726710685,
+        0
+      ]
+    },
+    {
+      "name": "R2-thumb-thenar-preserved-from-one-painted-source",
+      "pass_": true,
+      "meanRGBError": 1.5076312576312576,
+      "source": "sources/generated/hand-r2.png",
+      "scope": "単一原画との一致。人体の自然さを自動承認しない。"
+    },
+    {
+      "name": "R2-holding-scene-connected-in-every-frame",
+      "pass_": true,
+      "maxDetachedPixels": 0,
+      "scope": "画素の接続のみ。大人と子の各指の遮蔽・本数は全フレーム目視審査。"
     }
   ],
   "assetCount": 48,
@@ -774,154 +819,6 @@
       "technicalPass": true
     },
     {
-      "id": "kick",
-      "file": "animations/kick.webp",
-      "sha256": "1ef5002f90ca25d916e81f64bd79ed04b3f7383de02958a4fcfe635648eab51d",
-      "bytes": 293262,
-      "frames": 36,
-      "alphaRange": [
-        0,
-        255
-      ],
-      "errors": [],
-      "warnings": [],
-      "sizeTargetBytes": 400000,
-      "durationMs": 2988,
-      "loop": 0,
-      "renderFps": 12.048192771084338,
-      "decodedFramesPerSecond": 12.048192771084338,
-      "seamMeanRGBDelta": 1.4023,
-      "maxAdjacentMeanRGBDelta": 1.4052,
-      "seamToMaxAdjacentRatio": 0.9979,
-      "changedPixelsAt220": 7761,
-      "changedFractionAt220": 0.1604,
-      "maxFrameMeanLuminanceStep": 0.0325,
-      "technicalPass": true
-    },
-    {
-      "id": "hands-open-v2",
-      "file": "stills/hands-open-v2.webp",
-      "sha256": "939da496b81e43ac220cc68237d3d1e48558130c832b98d46401297f74416def",
-      "bytes": 17000,
-      "frames": 1,
-      "alphaRange": [
-        0,
-        255
-      ],
-      "errors": [],
-      "warnings": [],
-      "sizeTargetBytes": 150000,
-      "technicalPass": true
-    },
-    {
-      "id": "hand-open-close",
-      "file": "animations/hand-open-close.webp",
-      "sha256": "022071f9e223c5d68a17d80a10c6a2df91c43feba98f8cf494fb80b84f66b12e",
-      "bytes": 239698,
-      "frames": 36,
-      "alphaRange": [
-        0,
-        255
-      ],
-      "errors": [],
-      "warnings": [],
-      "sizeTargetBytes": 400000,
-      "durationMs": 2988,
-      "loop": 0,
-      "renderFps": 12.048192771084338,
-      "decodedFramesPerSecond": 12.048192771084338,
-      "seamMeanRGBDelta": 0.456,
-      "maxAdjacentMeanRGBDelta": 0.9403,
-      "seamToMaxAdjacentRatio": 0.485,
-      "changedPixelsAt220": 4511,
-      "changedFractionAt220": 0.0932,
-      "maxFrameMeanLuminanceStep": 0.5333,
-      "stationaryRegionMaxRGBDelta": 1.2908,
-      "stationaryRegionOpaquePixels": 2400,
-      "technicalPass": true
-    },
-    {
-      "id": "hand-count",
-      "file": "animations/hand-count.webp",
-      "sha256": "f56ecf59f47c3000f01e58d92430cda1f398af09e3eb06caaafd4320d443c237",
-      "bytes": 167352,
-      "frames": 46,
-      "alphaRange": [
-        0,
-        255
-      ],
-      "errors": [],
-      "warnings": [],
-      "sizeTargetBytes": 400000,
-      "durationMs": 3984,
-      "loop": 0,
-      "renderFps": 12.048192771084338,
-      "decodedFramesPerSecond": 11.546184738955823,
-      "seamMeanRGBDelta": 0.3491,
-      "maxAdjacentMeanRGBDelta": 0.7674,
-      "seamToMaxAdjacentRatio": 0.4549,
-      "changedPixelsAt220": 4334,
-      "changedFractionAt220": 0.0895,
-      "maxFrameMeanLuminanceStep": 0.4851,
-      "stationaryRegionMaxRGBDelta": 1.2024,
-      "stationaryRegionOpaquePixels": 2400,
-      "technicalPass": true
-    },
-    {
-      "id": "hand-wiggle",
-      "file": "animations/hand-wiggle.webp",
-      "sha256": "18071781e3ae7e6a18269cfb8d91c63ffbdb5a392970c83b0aba8076b0f529f6",
-      "bytes": 213426,
-      "frames": 36,
-      "alphaRange": [
-        0,
-        255
-      ],
-      "errors": [],
-      "warnings": [],
-      "sizeTargetBytes": 400000,
-      "durationMs": 2988,
-      "loop": 0,
-      "renderFps": 12.048192771084338,
-      "decodedFramesPerSecond": 12.048192771084338,
-      "seamMeanRGBDelta": 0.5908,
-      "maxAdjacentMeanRGBDelta": 0.5196,
-      "seamToMaxAdjacentRatio": 1.1369,
-      "changedPixelsAt220": 2957,
-      "changedFractionAt220": 0.0611,
-      "maxFrameMeanLuminanceStep": 0.0791,
-      "stationaryRegionMaxRGBDelta": 1.2935,
-      "stationaryRegionOpaquePixels": 2400,
-      "technicalPass": true
-    },
-    {
-      "id": "hand-tap",
-      "file": "animations/hand-tap.webp",
-      "sha256": "6a3cf7d7493cf78f7abeb427d12159510023eb7eb35fba10adeba9d6a29cf146",
-      "bytes": 193040,
-      "frames": 20,
-      "alphaRange": [
-        0,
-        255
-      ],
-      "errors": [],
-      "warnings": [],
-      "sizeTargetBytes": 400000,
-      "durationMs": 2988,
-      "loop": 0,
-      "renderFps": 12.048192771084338,
-      "decodedFramesPerSecond": 6.693440428380187,
-      "seamMeanRGBDelta": 0.7562,
-      "maxAdjacentMeanRGBDelta": 2.6099,
-      "seamToMaxAdjacentRatio": 0.2897,
-      "changedPixelsAt220": 4684,
-      "changedFractionAt220": 0.0968,
-      "maxFrameMeanLuminanceStep": 0.0418,
-      "stationaryRegionMaxRGBDelta": 1.6617,
-      "stationaryRegionOpaquePixels": 3000,
-      "technicalPass": true
-    },
-    {
       "id": "page",
       "file": "animations/page.webp",
       "sha256": "fc421e2137a89a36ca99e110967c6491f1f78e861b1b8f8862495093bf90824b",
@@ -1072,63 +969,6 @@
       "technicalPass": true
     },
     {
-      "id": "sleep",
-      "file": "stills/sleep.webp",
-      "sha256": "f3ca33ad5307c82f1d710843275b62aab176c3b861697a1e1b9b623ab74e5f93",
-      "bytes": 13882,
-      "frames": 1,
-      "alphaRange": [
-        0,
-        255
-      ],
-      "errors": [],
-      "warnings": [],
-      "sizeTargetBytes": 150000,
-      "technicalPass": true
-    },
-    {
-      "id": "wake-bed",
-      "file": "stills/wake-bed.webp",
-      "sha256": "7453fb63c490d8a08c1d9a8a029f2825b5c3c388831aa6112e409bc51efbb34b",
-      "bytes": 17750,
-      "frames": 1,
-      "alphaRange": [
-        0,
-        255
-      ],
-      "errors": [],
-      "warnings": [],
-      "sizeTargetBytes": 150000,
-      "technicalPass": true
-    },
-    {
-      "id": "wake-quilt",
-      "file": "animations/wake-quilt.webp",
-      "sha256": "4eb09e6b641285e79a745ba66c71af6fcea5240c65518b2259b07c0807d29bd1",
-      "bytes": 337278,
-      "frames": 36,
-      "alphaRange": [
-        0,
-        255
-      ],
-      "errors": [],
-      "warnings": [],
-      "sizeTargetBytes": 400000,
-      "durationMs": 2988,
-      "loop": 0,
-      "renderFps": 12.048192771084338,
-      "decodedFramesPerSecond": 12.048192771084338,
-      "seamMeanRGBDelta": 0.9401,
-      "maxAdjacentMeanRGBDelta": 2.0057,
-      "seamToMaxAdjacentRatio": 0.4687,
-      "changedPixelsAt220": 7676,
-      "changedFractionAt220": 0.1586,
-      "maxFrameMeanLuminanceStep": 0.3725,
-      "stationaryRegionMaxRGBDelta": 1.2791,
-      "stationaryRegionOpaquePixels": 3600,
-      "technicalPass": true
-    },
-    {
       "id": "care-burp",
       "file": "animations/care-burp.webp",
       "sha256": "ef1b17fcc7bdc0dd446b88209992aba594832a8dfac46a54574e7406d33456aa",
@@ -1173,8 +1013,8 @@
     {
       "id": "hold-hands",
       "file": "stills/hold-hands.webp",
-      "sha256": "b26ec3d2f7ac3ed2e7b62e614004bb895e4c569688c101380250c799354891a7",
-      "bytes": 23012,
+      "sha256": "b99df524eb8b7364cd300226ecda2af083c9fae744687e596db3d3d6f114ceda",
+      "bytes": 24506,
       "frames": 1,
       "alphaRange": [
         0,
@@ -1188,8 +1028,8 @@
     {
       "id": "hold-hands-squeeze",
       "file": "animations/hold-hands-squeeze.webp",
-      "sha256": "b47d231088a4e36e4a7e39c2be567ebd7ad3506f9c228e87f0fdebc3a1eb529b",
-      "bytes": 319260,
+      "sha256": "f86439f3e33af26cbe37bc287360cde66a22d918027547a55b0b05acdc6f5aaf",
+      "bytes": 229398,
       "frames": 36,
       "alphaRange": [
         0,
@@ -1202,14 +1042,219 @@
       "loop": 0,
       "renderFps": 12.048192771084338,
       "decodedFramesPerSecond": 12.048192771084338,
-      "seamMeanRGBDelta": 0.6251,
-      "maxAdjacentMeanRGBDelta": 0.6322,
-      "seamToMaxAdjacentRatio": 0.9888,
-      "changedPixelsAt220": 819,
-      "changedFractionAt220": 0.0169,
-      "maxFrameMeanLuminanceStep": 0.0136,
-      "stationaryRegionMaxRGBDelta": 1.297,
-      "stationaryRegionOpaquePixels": 900,
+      "seamMeanRGBDelta": 0.6248,
+      "maxAdjacentMeanRGBDelta": 0.6328,
+      "seamToMaxAdjacentRatio": 0.9874,
+      "changedPixelsAt220": 251,
+      "changedFractionAt220": 0.0052,
+      "maxFrameMeanLuminanceStep": 0.0121,
+      "stationaryRegionMaxRGBDelta": 1.2542,
+      "stationaryRegionOpaquePixels": 1200,
+      "technicalPass": true
+    },
+    {
+      "id": "hands-open-v2",
+      "file": "stills/hands-open-v2.webp",
+      "sha256": "b47a139d29d377c44d11c49ef170bf3e5829df8d1ffefa0196e010fb84fc5191",
+      "bytes": 21854,
+      "frames": 1,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "errors": [],
+      "warnings": [],
+      "sizeTargetBytes": 150000,
+      "technicalPass": true
+    },
+    {
+      "id": "hand-open-close",
+      "file": "animations/hand-open-close.webp",
+      "sha256": "f4ef824f4a7ace777c12dff48021a36a78d114bde429e0d866c686358e2d897f",
+      "bytes": 281676,
+      "frames": 35,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "errors": [],
+      "warnings": [],
+      "sizeTargetBytes": 400000,
+      "durationMs": 2988,
+      "loop": 0,
+      "renderFps": 12.048192771084338,
+      "decodedFramesPerSecond": 11.713520749665328,
+      "seamMeanRGBDelta": 0.4837,
+      "maxAdjacentMeanRGBDelta": 1.1187,
+      "seamToMaxAdjacentRatio": 0.4324,
+      "changedPixelsAt220": 6974,
+      "changedFractionAt220": 0.1441,
+      "maxFrameMeanLuminanceStep": 0.8277,
+      "stationaryRegionMaxRGBDelta": 1.2531,
+      "stationaryRegionOpaquePixels": 2450,
+      "technicalPass": true
+    },
+    {
+      "id": "hand-count",
+      "file": "animations/hand-count.webp",
+      "sha256": "19f367a4c8582e70fa339e2740a1e9b6d49352142227c82542b262d75c6566aa",
+      "bytes": 191706,
+      "frames": 42,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "errors": [],
+      "warnings": [],
+      "sizeTargetBytes": 400000,
+      "durationMs": 3984,
+      "loop": 0,
+      "renderFps": 12.048192771084338,
+      "decodedFramesPerSecond": 10.542168674698795,
+      "seamMeanRGBDelta": 0.627,
+      "maxAdjacentMeanRGBDelta": 1.0342,
+      "seamToMaxAdjacentRatio": 0.6062,
+      "changedPixelsAt220": 6548,
+      "changedFractionAt220": 0.1353,
+      "maxFrameMeanLuminanceStep": 0.6892,
+      "stationaryRegionMaxRGBDelta": 1.2218,
+      "stationaryRegionOpaquePixels": 2450,
+      "technicalPass": true
+    },
+    {
+      "id": "hand-wiggle",
+      "file": "animations/hand-wiggle.webp",
+      "sha256": "fa5d2d3d22fe7bb74daa1be8bcadcf0d87da91908abfbb4fcb37d1bd346ce4e4",
+      "bytes": 326978,
+      "frames": 36,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "errors": [],
+      "warnings": [],
+      "sizeTargetBytes": 400000,
+      "durationMs": 2988,
+      "loop": 0,
+      "renderFps": 12.048192771084338,
+      "decodedFramesPerSecond": 12.048192771084338,
+      "seamMeanRGBDelta": 0.7965,
+      "maxAdjacentMeanRGBDelta": 0.6655,
+      "seamToMaxAdjacentRatio": 1.1968,
+      "changedPixelsAt220": 4551,
+      "changedFractionAt220": 0.094,
+      "maxFrameMeanLuminanceStep": 0.0906,
+      "stationaryRegionMaxRGBDelta": 1.2468,
+      "stationaryRegionOpaquePixels": 2450,
+      "technicalPass": true
+    },
+    {
+      "id": "hand-tap",
+      "file": "animations/hand-tap.webp",
+      "sha256": "4a3f49460aeff356043ad8d73fb2dd6c9a46cc9dfcba3e216819334f11cd4057",
+      "bytes": 187286,
+      "frames": 20,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "errors": [],
+      "warnings": [],
+      "sizeTargetBytes": 400000,
+      "durationMs": 2988,
+      "loop": 0,
+      "renderFps": 12.048192771084338,
+      "decodedFramesPerSecond": 6.693440428380187,
+      "seamMeanRGBDelta": 0.8318,
+      "maxAdjacentMeanRGBDelta": 2.7353,
+      "seamToMaxAdjacentRatio": 0.3041,
+      "changedPixelsAt220": 4364,
+      "changedFractionAt220": 0.0902,
+      "maxFrameMeanLuminanceStep": 0.0123,
+      "stationaryRegionMaxRGBDelta": 1.567,
+      "stationaryRegionOpaquePixels": 3000,
+      "technicalPass": true
+    },
+    {
+      "id": "sleep",
+      "file": "stills/sleep.webp",
+      "sha256": "2fa7a057d2c852d237deabf14a2b40fdf0e9d300096df94ea51985fc8dc73620",
+      "bytes": 31650,
+      "frames": 1,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "errors": [],
+      "warnings": [],
+      "sizeTargetBytes": 150000,
+      "technicalPass": true
+    },
+    {
+      "id": "wake-bed",
+      "file": "stills/wake-bed.webp",
+      "sha256": "8c6d98074e58b44ed4279764a28007396d1577e6f80018ee3d1bec683fd86bea",
+      "bytes": 34960,
+      "frames": 1,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "errors": [],
+      "warnings": [],
+      "sizeTargetBytes": 150000,
+      "technicalPass": true
+    },
+    {
+      "id": "wake-daylight",
+      "file": "animations/wake-daylight.webp",
+      "sha256": "89535705a58d98a5f3545a286e51aa94ab07bbb433886551d1369476f1739641",
+      "bytes": 307642,
+      "frames": 36,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "errors": [],
+      "warnings": [],
+      "sizeTargetBytes": 400000,
+      "durationMs": 2988,
+      "loop": 0,
+      "renderFps": 12.048192771084338,
+      "decodedFramesPerSecond": 12.048192771084338,
+      "seamMeanRGBDelta": 0.0325,
+      "maxAdjacentMeanRGBDelta": 0.2511,
+      "seamToMaxAdjacentRatio": 0.1294,
+      "changedPixelsAt220": 837,
+      "changedFractionAt220": 0.0173,
+      "maxFrameMeanLuminanceStep": 0.0037,
+      "stationaryRegionMaxRGBDelta": 0.0,
+      "stationaryRegionOpaquePixels": 2450,
+      "technicalPass": true
+    },
+    {
+      "id": "kick",
+      "file": "animations/kick.webp",
+      "sha256": "f1f5ea318acea68c9778a99b809370def06a73975a1ec092ceda211e1e608749",
+      "bytes": 350784,
+      "frames": 40,
+      "alphaRange": [
+        0,
+        255
+      ],
+      "errors": [],
+      "warnings": [],
+      "sizeTargetBytes": 400000,
+      "durationMs": 3486,
+      "loop": 0,
+      "renderFps": 12.048192771084338,
+      "decodedFramesPerSecond": 11.474469305794607,
+      "seamMeanRGBDelta": 1.2783,
+      "maxAdjacentMeanRGBDelta": 1.203,
+      "seamToMaxAdjacentRatio": 1.0626,
+      "changedPixelsAt220": 8240,
+      "changedFractionAt220": 0.1702,
+      "maxFrameMeanLuminanceStep": 0.0295,
       "technicalPass": true
     }
   ]

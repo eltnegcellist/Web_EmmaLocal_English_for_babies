@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "nonRuntime": true,
   "baseCommit": "03a5bcc",
-  "latestMainInspected": "ff14407",
-  "productionPass": 4,
+  "latestMainInspected": "b2536ab",
+  "productionPass": 5,
   "proposedConcepts": [
     {
       "primitive": "scene.drink",
@@ -37,8 +37,7 @@
     "kick",
     "page",
     "hug-arms",
-    "change-clothes",
-    "wake-quilt"
+    "change-clothes"
   ],
   "scenePriorities": [
     {
@@ -260,7 +259,7 @@
       "setCount": 33,
       "assetIds": [
         "wake-bed",
-        "wake-quilt"
+        "wake-daylight"
       ],
       "examples": [
         {
@@ -659,7 +658,70 @@
         "replacementStatus": "candidate-for-human-review"
       }
     ],
-    "careReference": "https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/"
+    "careReference": "https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/",
+    "followUp": {
+      "date": "2026-10-18",
+      "decision": "Focused replacements produced; no adoption approval",
+      "documentation": "assets/visual-cue/artwork/REVIEW_REQUEST_20261018_R2.md",
+      "items": [
+        {
+          "assetId": "hold-hands",
+          "problem": "大人の指が途中で消える印象。指先を握りの先へ見せ、単一の整合する原画へ。",
+          "status": "replacement-candidate-human-review-pending"
+        },
+        {
+          "assetId": "hold-hands-squeeze",
+          "problem": "握る手の前後関係と、大人の指の連続性を原画から修正。",
+          "status": "replacement-candidate-human-review-pending"
+        },
+        {
+          "assetId": "hands-open-v2",
+          "problem": "別部品の親指を貼った継ぎ目。母指球・掌・親指を一体の原画へ。",
+          "status": "replacement-candidate-human-review-pending"
+        },
+        {
+          "assetId": "hand-open-close",
+          "problem": "共通の掌と親指の継ぎ目を撤回。",
+          "status": "replacement-candidate-human-review-pending"
+        },
+        {
+          "assetId": "hand-count",
+          "problem": "共通の掌と親指の継ぎ目を撤回。",
+          "status": "replacement-candidate-human-review-pending"
+        },
+        {
+          "assetId": "hand-wiggle",
+          "problem": "共通の掌と親指の継ぎ目を撤回。",
+          "status": "replacement-candidate-human-review-pending"
+        },
+        {
+          "assetId": "hand-tap",
+          "problem": "共通の掌と親指の継ぎ目を撤回。指差す手全体を再制作。",
+          "status": "replacement-candidate-human-review-pending"
+        },
+        {
+          "assetId": "sleep",
+          "problem": "乳児の寝床に枕・掛け布団を置いた旧原画を撤回。",
+          "status": "replacement-candidate-human-review-pending"
+        },
+        {
+          "assetId": "wake-bed",
+          "problem": "乳児の寝床に枕・掛け布団を置いた旧原画を撤回。",
+          "status": "replacement-candidate-human-review-pending"
+        },
+        {
+          "assetId": "wake-quilt",
+          "problem": "掛け布団をめくる起床演出は撤回。",
+          "status": "withdrawn-replaced-by-wake-daylight-proposal"
+        },
+        {
+          "assetId": "kick",
+          "problem": "足の向きは維持し、片足ずつの振り幅とテンポを明確に。",
+          "status": "replacement-candidate-human-review-pending"
+        }
+      ],
+      "sleepReference": "https://www.nhs.uk/baby/caring-for-a-newborn/sudden-infant-death-syndrome-sids/"
+    }
   },
   "archivedAssets": [
     {
@@ -1099,6 +1161,260 @@
       "originalId": "care-burp",
       "reviewBatch": "2026-10-18",
       "rejectionReason": "腹部への動きは誤り。縦抱きで背中に手を添える構図へ全再制作。"
+    },
+    {
+      "id": "rejected-r2-kick",
+      "primitive": "motion.kick",
+      "topic": "キック：親指を内側に、足首で左右交互",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-18-r2/animations/kick.webp",
+      "poster": "archive/2026-10-18-r2/posters/kick.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/foot.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "左右を逆に配置していた旧版を撤回。親指の向きを画素と目視で確認。",
+      "movingParts": [
+        "left foot at ankle",
+        "right foot at ankle"
+      ],
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "kick",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "足の向きは維持し、片足ずつの振り幅とテンポを明確に。"
+    },
+    {
+      "id": "rejected-r2-hands-open-v2",
+      "primitive": "scene.hands",
+      "topic": "手：5本の指・部品別原画",
+      "kind": "illustration",
+      "illustration": "archive/2026-10-18-r2/stills/hands-open-v2.webp",
+      "animation": null,
+      "poster": "archive/2026-10-18-r2/stills/hands-open-v2.webp",
+      "loopMs": 0,
+      "source": "sources/generated/hand-rig-v2.png",
+      "origin": "generated",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "hands-open-v2",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "別部品の親指を貼った継ぎ目。母指球・掌・親指を一体の原画へ。"
+    },
+    {
+      "id": "rejected-r2-hand-open-close",
+      "primitive": "motion.hand",
+      "topic": "手を開く・閉じる：指の関節を動かす",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-18-r2/animations/hand-open-close.webp",
+      "poster": "archive/2026-10-18-r2/posters/hand-open-close.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/hand-rig-v2.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
+      "movingParts": [
+        "four fingers: two phalanges each",
+        "thumb"
+      ],
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "hand-open-close",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "共通の掌と親指の継ぎ目を撤回。"
+    },
+    {
+      "id": "rejected-r2-hand-count",
+      "primitive": "motion.hand",
+      "topic": "指を順に伸ばして数える",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-18-r2/animations/hand-count.webp",
+      "poster": "archive/2026-10-18-r2/posters/hand-count.webp",
+      "loopMs": 3984,
+      "source": "sources/generated/hand-rig-v2.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
+      "movingParts": [
+        "index",
+        "middle",
+        "ring",
+        "little",
+        "thumb"
+      ],
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "hand-count",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "共通の掌と親指の継ぎ目を撤回。"
+    },
+    {
+      "id": "rejected-r2-hand-wiggle",
+      "primitive": "motion.hand",
+      "topic": "指を1本ずつ動かす",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-18-r2/animations/hand-wiggle.webp",
+      "poster": "archive/2026-10-18-r2/posters/hand-wiggle.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/hand-rig-v2.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
+      "movingParts": [
+        "four independent fingers"
+      ],
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "hand-wiggle",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "共通の掌と親指の継ぎ目を撤回。"
+    },
+    {
+      "id": "rejected-r2-hand-tap",
+      "primitive": "motion.hand",
+      "topic": "人差し指でブロックをトントン",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-18-r2/animations/hand-tap.webp",
+      "poster": "archive/2026-10-18-r2/posters/hand-tap.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/hand-rig-v2.png",
+        "sources/generated/squeeze-block-v2.png"
+      ],
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
+      "movingParts": [
+        "index hand contacts block"
+      ],
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "hand-tap",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "共通の掌と親指の継ぎ目を撤回。指差す手全体を再制作。"
+    },
+    {
+      "id": "rejected-r2-sleep",
+      "primitive": "scene.sleep",
+      "topic": "就寝：枕と掛け物があるベッド",
+      "kind": "illustration",
+      "illustration": "archive/2026-10-18-r2/stills/sleep.webp",
+      "animation": null,
+      "poster": "archive/2026-10-18-r2/stills/sleep.webp",
+      "loopMs": 0,
+      "source": "sources/generated/bed-v4.png",
+      "origin": "generated",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "マットレスと掛け物を同じ真上からの投影に統一。",
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "sleep",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "乳児の寝床に枕・掛け布団を置いた旧原画を撤回。"
+    },
+    {
+      "id": "rejected-r2-wake-bed",
+      "primitive": "scene.sleep",
+      "topic": "起床：掛け物を足元に折ったベッド",
+      "kind": "illustration",
+      "illustration": "archive/2026-10-18-r2/stills/wake-bed.webp",
+      "animation": null,
+      "poster": "archive/2026-10-18-r2/stills/wake-bed.webp",
+      "loopMs": 0,
+      "source": "sources/generated/bed-v4.png",
+      "origin": "generated",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "掛け物はマットレスの上面に置き、木枠・枕・足元と整合させる。",
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "wake-bed",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "乳児の寝床に枕・掛け布団を置いた旧原画を撤回。"
+    },
+    {
+      "id": "rejected-r2-wake-quilt",
+      "primitive": "motion.change",
+      "topic": "起床：掛け物を上面で足元へ折る",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-18-r2/animations/wake-quilt.webp",
+      "poster": "archive/2026-10-18-r2/posters/wake-quilt.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/bed-v4.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "斜めのベッドに別の透視の掛け物を重ねていた旧版を撤回。枕と木枠を固定し、掛け物だけが上面で折れる。",
+      "movingParts": [
+        "quilt top edge folds down mattress"
+      ],
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "wake-quilt",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "掛け布団をめくる起床演出は撤回。"
+    },
+    {
+      "id": "rejected-r2-hold-hands",
+      "primitive": "scene.hands",
+      "topic": "手をつなぐ：大人の指を小さな手で握る",
+      "kind": "illustration",
+      "illustration": "archive/2026-10-18-r2/stills/hold-hands.webp",
+      "animation": null,
+      "poster": "archive/2026-10-18-r2/stills/hold-hands.webp",
+      "loopMs": 0,
+      "source": "sources/generated/hold-v4.png",
+      "origin": "generated",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "Hold my hand / Give me your handに沿う汎用場面。ボール専用の握りをこれらの英文に流用しない。",
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "hold-hands",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "大人の指が途中で消える印象。指先を握りの先へ見せ、単一の整合する原画へ。"
+    },
+    {
+      "id": "rejected-r2-hold-hands-squeeze",
+      "primitive": "motion.hand",
+      "topic": "手をつなぐ：指をやさしく握る",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-18-r2/animations/hold-hands-squeeze.webp",
+      "poster": "archive/2026-10-18-r2/posters/hold-hands-squeeze.webp",
+      "loopMs": 2988,
+      "source": "sources/generated/hold-v4.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 4,
+      "note": "手をつなぐ英文向け。大人の掌と手首は固定し、握る部分だけを局所的に動かす。",
+      "movingParts": [
+        "child fingers gently close around adult index"
+      ],
+      "verification": "qa/validation.json",
+      "humanReview": "revision-candidate-not-approved",
+      "originalId": "hold-hands-squeeze",
+      "reviewBatch": "2026-10-18-R2",
+      "rejectionReason": "握る手の前後関係と、大人の指の連続性を原画から修正。"
     }
   ],
   "approval": "採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。",
@@ -1650,133 +1966,6 @@
       "humanReview": "revision-candidate-not-approved"
     },
     {
-      "id": "kick",
-      "primitive": "motion.kick",
-      "topic": "キック：親指を内側に、足首で左右交互",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/kick.webp",
-      "poster": "posters/kick.webp",
-      "loopMs": 2988,
-      "source": "sources/generated/foot.png",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "左右を逆に配置していた旧版を撤回。親指の向きを画素と目視で確認。",
-      "movingParts": [
-        "left foot at ankle",
-        "right foot at ankle"
-      ],
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
-      "id": "hands-open-v2",
-      "primitive": "scene.hands",
-      "topic": "手：5本の指・部品別原画",
-      "kind": "illustration",
-      "illustration": "stills/hands-open-v2.webp",
-      "animation": null,
-      "poster": "stills/hands-open-v2.webp",
-      "loopMs": 0,
-      "source": "sources/generated/hand-rig-v2.png",
-      "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
-      "id": "hand-open-close",
-      "primitive": "motion.hand",
-      "topic": "手を開く・閉じる：指の関節を動かす",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-open-close.webp",
-      "poster": "posters/hand-open-close.webp",
-      "loopMs": 2988,
-      "source": "sources/generated/hand-rig-v2.png",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
-      "movingParts": [
-        "four fingers: two phalanges each",
-        "thumb"
-      ],
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
-      "id": "hand-count",
-      "primitive": "motion.hand",
-      "topic": "指を順に伸ばして数える",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-count.webp",
-      "poster": "posters/hand-count.webp",
-      "loopMs": 3984,
-      "source": "sources/generated/hand-rig-v2.png",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
-      "movingParts": [
-        "index",
-        "middle",
-        "ring",
-        "little",
-        "thumb"
-      ],
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
-      "id": "hand-wiggle",
-      "primitive": "motion.hand",
-      "topic": "指を1本ずつ動かす",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-wiggle.webp",
-      "poster": "posters/hand-wiggle.webp",
-      "loopMs": 2988,
-      "source": "sources/generated/hand-rig-v2.png",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
-      "movingParts": [
-        "four independent fingers"
-      ],
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
-      "id": "hand-tap",
-      "primitive": "motion.hand",
-      "topic": "人差し指でブロックをトントン",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/hand-tap.webp",
-      "poster": "posters/hand-tap.webp",
-      "loopMs": 2988,
-      "source": [
-        "sources/generated/hand-rig-v2.png",
-        "sources/generated/squeeze-block-v2.png"
-      ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。",
-      "movingParts": [
-        "index hand contacts block"
-      ],
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
       "id": "page",
       "primitive": "motion.page",
       "topic": "絵本：りんご・太陽から、洋なし・魚へ",
@@ -1909,62 +2098,6 @@
       "humanReview": "revision-candidate-not-approved"
     },
     {
-      "id": "sleep",
-      "primitive": "scene.sleep",
-      "topic": "就寝：枕と掛け物があるベッド",
-      "kind": "illustration",
-      "illustration": "stills/sleep.webp",
-      "animation": null,
-      "poster": "stills/sleep.webp",
-      "loopMs": 0,
-      "source": "sources/generated/bed-v4.png",
-      "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "マットレスと掛け物を同じ真上からの投影に統一。",
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
-      "id": "wake-bed",
-      "primitive": "scene.sleep",
-      "topic": "起床：掛け物を足元に折ったベッド",
-      "kind": "illustration",
-      "illustration": "stills/wake-bed.webp",
-      "animation": null,
-      "poster": "stills/wake-bed.webp",
-      "loopMs": 0,
-      "source": "sources/generated/bed-v4.png",
-      "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "掛け物はマットレスの上面に置き、木枠・枕・足元と整合させる。",
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
-      "id": "wake-quilt",
-      "primitive": "motion.change",
-      "topic": "起床：掛け物を上面で足元へ折る",
-      "kind": "animation",
-      "illustration": null,
-      "animation": "animations/wake-quilt.webp",
-      "poster": "posters/wake-quilt.webp",
-      "loopMs": 2988,
-      "source": "sources/generated/bed-v4.png",
-      "status": "needs-review",
-      "readiness": "candidate",
-      "productionPass": 4,
-      "note": "斜めのベッドに別の透視の掛け物を重ねていた旧版を撤回。枕と木枠を固定し、掛け物だけが上面で折れる。",
-      "movingParts": [
-        "quilt top edge folds down mattress"
-      ],
-      "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
-    },
-    {
       "id": "care-burp",
       "primitive": "motion.change",
       "topic": "縦抱き：背中に手を添えてやさしく動かす",
@@ -2006,40 +2139,243 @@
     {
       "id": "hold-hands",
       "primitive": "scene.hands",
-      "topic": "手をつなぐ：大人の指を小さな手で握る",
+      "topic": "手をつなぐ：握りの先に大人の指先が見える",
       "kind": "illustration",
       "illustration": "stills/hold-hands.webp",
       "animation": null,
       "poster": "stills/hold-hands.webp",
       "loopMs": 0,
-      "source": "sources/generated/hold-v4.png",
+      "source": "sources/generated/hold-r2.png",
       "origin": "generated",
       "status": "needs-review",
       "readiness": "candidate",
-      "productionPass": 4,
-      "note": "Hold my hand / Give me your handに沿う汎用場面。ボール専用の握りをこれらの英文に流用しない。",
+      "productionPass": 5,
+      "note": "大人の指の付け根・握られる部分・指先を同じ軸で描き直した単一原画。子の指による遮蔽を目視審査。",
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "R2-candidate-not-approved"
     },
     {
       "id": "hold-hands-squeeze",
       "primitive": "motion.hand",
-      "topic": "手をつなぐ：指をやさしく握る",
+      "topic": "手をつなぐ：つながった指をやさしく握る",
       "kind": "animation",
       "illustration": null,
       "animation": "animations/hold-hands-squeeze.webp",
       "poster": "posters/hold-hands-squeeze.webp",
       "loopMs": 2988,
-      "source": "sources/generated/hold-v4.png",
+      "source": "sources/generated/hold-r2.png",
       "status": "needs-review",
       "readiness": "candidate",
-      "productionPass": 4,
-      "note": "手をつなぐ英文向け。大人の掌と手首は固定し、握る部分だけを局所的に動かす。",
+      "productionPass": 5,
+      "note": "原画の指の連続性を修正後、子の握り周辺だけを小さく動かす。大人の掌・手首・指の両端は固定。",
       "movingParts": [
-        "child fingers gently close around adult index"
+        "child curled fingers at grip"
       ],
+      "lossless": false,
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "hands-open-v2",
+      "primitive": "scene.hands",
+      "topic": "手：母指球から掌まで一体の原画",
+      "kind": "illustration",
+      "illustration": "stills/hands-open-v2.webp",
+      "animation": null,
+      "poster": "stills/hands-open-v2.webp",
+      "loopMs": 0,
+      "source": "sources/generated/hand-r2.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 5,
+      "note": "親指を別部品で貼らない。親指・母指球・掌・手首・袖口は一枚の原画。静止画は手全体の一枚絵。動作では既存の4本の指の原画を関節位置で再利用。",
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "hand-open-close",
+      "primitive": "motion.hand",
+      "topic": "手：指を曲げて開く",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-open-close.webp",
+      "poster": "posters/hand-open-close.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/hand-r2.png",
+        "sources/generated/hand-rig-v2.png"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 5,
+      "note": "親指・母指球・掌を固定して4本の指を曲げる。親指だけを貼る旧リグは使用しない。",
+      "movingParts": [
+        "four fingers bend at their joints"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "hand-count",
+      "primitive": "motion.hand",
+      "topic": "指を数える：親指から1本→5本",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-count.webp",
+      "poster": "posters/hand-count.webp",
+      "loopMs": 3984,
+      "source": [
+        "sources/generated/hand-r2.png",
+        "sources/generated/hand-rig-v2.png"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 5,
+      "note": "親指を1本目にして、残る4本を順に伸ばす。母指球と掌は一体のまま。0本の握り拳とは表示しない。",
+      "movingParts": [
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "hand-wiggle",
+      "primitive": "motion.hand",
+      "topic": "手：掌を保ち、指を1本ずつ動かす",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-wiggle.webp",
+      "poster": "posters/hand-wiggle.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/hand-r2.png",
+        "sources/generated/hand-rig-v2.png"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 5,
+      "note": "親指・母指球・掌は一体の原画。4本の指の関節だけを動かす。",
+      "movingParts": [
+        "four independent fingers"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "hand-tap",
+      "primitive": "motion.hand",
+      "topic": "指差す手：ブロックに触れて離れる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/hand-tap.webp",
+      "poster": "posters/hand-tap.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/tap-r2.png",
+        "sources/generated/squeeze-block-v2.png"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 5,
+      "note": "親指を含む指差し姿勢の手全体を原画から再制作。指先を切らず、ブロックへ接触させる。",
+      "movingParts": [
+        "whole pointing hand approaching block"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "sleep",
+      "primitive": "scene.sleep",
+      "topic": "眠る場所：空のベビーベッド",
+      "kind": "illustration",
+      "illustration": "stills/sleep.webp",
+      "animation": null,
+      "poster": "stills/sleep.webp",
+      "loopMs": 0,
+      "source": "sources/generated/crib-r2.png",
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 5,
+      "note": "枕・掛け布団・玩具のない、空のベビーベッドと平らなマットレス／フィットシーツ。赤ちゃんは描かない。",
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "wake-bed",
+      "primitive": "scene.sleep",
+      "topic": "朝の寝床：空のベビーベッドと外側の日差し",
+      "kind": "illustration",
+      "illustration": "stills/wake-bed.webp",
+      "animation": null,
+      "poster": "stills/wake-bed.webp",
+      "loopMs": 0,
+      "source": [
+        "sources/generated/crib-r2.png",
+        "sources/generated/sun.png"
+      ],
+      "origin": "generated",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 5,
+      "note": "寝床内は平らなフィットシーツだけ。朝日の記号は寝床の外。本人が起きたことを直接示す絵ではない。",
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "wake-daylight",
+      "primitive": "motion.change",
+      "topic": "起床の代案：寝床は動かさず、外側に朝日",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/wake-daylight.webp",
+      "poster": "posters/wake-daylight.webp",
+      "loopMs": 2988,
+      "source": [
+        "sources/generated/crib-r2.png",
+        "sources/generated/sun.png"
+      ],
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 5,
+      "note": "wake-quiltを撤回した別案。枕・掛け布団なし。空の寝床と朝の記号だけで、実際に起きる動作は表さない。action.wakeへの採用は保留。",
+      "movingParts": [
+        "sun symbol outside the empty cot"
+      ],
+      "lossless": true,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved"
+    },
+    {
+      "id": "kick",
+      "primitive": "motion.kick",
+      "topic": "キック：片足ずつ、大きく交互に動かす",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "animations/kick.webp",
+      "poster": "posters/kick.webp",
+      "loopMs": 3486,
+      "source": "sources/generated/foot.png",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 5,
+      "note": "内向きの親指を維持。26度・42フレーム・3.486秒。半周期ごとに片足だけ動き、左右同時の鏡像運動をやめた。220px実再生で目視審査。",
+      "movingParts": [
+        "left foot about fixed ankle",
+        "right foot about fixed ankle"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "R2-candidate-not-approved"
     }
   ],
   "concepts": [
@@ -2081,8 +2417,8 @@
       "kind": "illustration",
       "assetIds": [
         "hands",
-        "hands-open-v2",
-        "hold-hands"
+        "hold-hands",
+        "hands-open-v2"
       ],
       "status": "needs-review",
       "readiness": "candidate",
@@ -2218,12 +2554,12 @@
       "assetIds": [
         "hand-wave",
         "hand-clap",
+        "hand-squeeze-v3",
+        "hold-hands-squeeze",
         "hand-open-close",
         "hand-count",
         "hand-wiggle",
-        "hand-tap",
-        "hand-squeeze-v3",
-        "hold-hands-squeeze"
+        "hand-tap"
       ],
       "status": "needs-review",
       "readiness": "candidate",
@@ -2259,8 +2595,8 @@
         "change-diaper-exchange",
         "dress-sleeves",
         "change-clothes",
-        "wake-quilt",
-        "care-burp"
+        "care-burp",
+        "wake-daylight"
       ],
       "status": "needs-review",
       "readiness": "candidate",
@@ -2415,7 +2751,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。"
+      "reason": "親指を1本目にして、残る4本を順に伸ばす。母指球と掌は一体のまま。0本の握り拳とは表示しない。"
     },
     {
       "cueId": "action.dress",
@@ -2482,7 +2818,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。"
+      "reason": "親指・母指球・掌を固定して4本の指を曲げる。親指だけを貼る旧リグは使用しない。"
     },
     {
       "cueId": "action.peekaboo",
@@ -2573,7 +2909,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "手をつなぐ英文向け。大人の掌と手首は固定し、握る部分だけを局所的に動かす。"
+      "reason": "原画の指の連続性を修正後、子の握り周辺だけを小さく動かす。大人の掌・手首・指の両端は固定。"
     },
     {
       "cueId": "action.tap",
@@ -2586,7 +2922,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。"
+      "reason": "親指を含む指差し姿勢の手全体を原画から再制作。指先を切らず、ブロックへ接触させる。"
     },
     {
       "cueId": "action.turn-page",
@@ -2608,11 +2944,11 @@
         "emma.smile"
       ],
       "assetIds": [
-        "wake-quilt"
+        "wake-daylight"
       ],
       "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "斜めのベッドに別の透視の掛け物を重ねていた旧版を撤回。枕と木枠を固定し、掛け物だけが上面で折れる。"
+      "readiness": "draft",
+      "reason": "掛け布団を動かす旧案は撤回。wake-daylightは空の寝床と外側の朝日による代案で、起きた本人や動作を描かないため意味の採用は保留。"
     },
     {
       "cueId": "action.wash",
@@ -2651,7 +2987,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "2026-10-18修正：親指の付け根を42px上げ、掌の側面に連続させる。手首に親指を付けない。"
+      "reason": "親指・母指球・掌は一体の原画。4本の指の関節だけを動かす。"
     },
     {
       "cueId": "action.wipe",
