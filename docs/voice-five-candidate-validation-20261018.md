@@ -21,4 +21,12 @@
 
 APK: 143,625,999 bytes。SHA-256: `30e53ae669a30387883af72632a151faf56e6b196dc19673b79288839093370d`。
 
-人手再聴とWeb/Android実機受入の全完了は記録しておらず、`audioIssuesResolved` は `false` を維持しています。GitHub公開と新Draft PR作成は未実施です。
+人手再聴とWeb/Android実機受入の全完了は記録しておらず、`audioIssuesResolved` は `false` を維持しています。ユーザーよりこの方針のmain反映承認を受けています。
+
+## 2回反復の英文確認とmain反映承認
+
+2026-10-18、ユーザーから「2回でも英文として問題がなければmainへマージ」と承認を受けました。現在の4全文を確認し、`Sip, sip!`、`Cuddle, cuddle!` は動詞原形による短い声かけ、`Wipe, wipe?` は文脈のある短い問いかけとして意味が成立します。反復を2回にすることで文法的に欠落する要素はありません。3回との違いはリズムと強調です。
+
+一般文法の確認先はCambridge English Grammar Todayの [Imperative clauses](https://dictionary.cambridge.org/uk/grammar/british-grammar/imperative) と [Questions: short forms](https://dictionary.cambridge.org/grammar/british-grammar/questions-short-forms) です。これらの一般則に照らした今回の4全文の個別判断であり、当該ページがこの製品の英文を直接審査したという意味ではありません。
+
+mainへの反映承認と、Web/Android両方での実機受入完了は区別します。実機受入は未完了のため `audioIssuesResolved: false` を維持しています。

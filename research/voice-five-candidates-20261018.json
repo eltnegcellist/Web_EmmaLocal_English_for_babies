@@ -287,5 +287,23 @@
     "The text-derived IDs and filenames change for four entries. Their AAC bytes and original generation metadata remain the original ones.",
     "No new TTS, segment copying, trimming, fading or re-encoding is used for the four recordings.",
     "The other 1100 entries and recordings remain unchanged. Historical original wording is preserved in originalExpected/previousCanonicalText."
-  ]
+  ],
+  "grammarReview": {
+    "date": "2026-10-18",
+    "conclusion": "Two repetitions are grammatical in these four informal caregiver utterances; three repetitions are not required.",
+    "scope": [
+      11,
+      14,
+      16,
+      17
+    ],
+    "basis": "Editorial assessment checked against Cambridge imperative and informal short-question grammar."
+  },
+  "mainMergeApproval": {
+    "date": "2026-10-18",
+    "source": "User instruction in this task",
+    "condition": "Merge to main after confirming that two-repeat wording is acceptable",
+    "conditionSatisfied": true,
+    "physicalDeviceAcceptanceComplete": false
+  }
 }
