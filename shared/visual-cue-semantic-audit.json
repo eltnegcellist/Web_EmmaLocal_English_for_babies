@@ -661,7 +661,7 @@
       "phraseId": "vc_000626",
       "sourceKind": "combined",
       "sourceKey": "food|finish_check",
-      "text": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+      "text": "All done eating? Wipe, wipe? Let's have a look!",
       "detail": "Check whether composition, not one dominant action, is needed"
     },
     {

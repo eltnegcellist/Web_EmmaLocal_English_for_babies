@@ -13,7 +13,7 @@
   },
   "sampleRate": 24000,
   "textNormalization": "trim-collapse-whitespace-v1",
-  "totalBytes": 52804191,
+  "totalBytes": 52803843,
   "sourceCommits": {
     "android": "c50d671fbd9b3b0ee4b3c7b00b98bd3f11c1d911",
     "web": "811a0e6f5d709f410b7d720fd9113d13a669c3e4"
@@ -10771,29 +10771,35 @@
       ],
       "file": "clips/6f1379acf0fa492820c47bad.m4a",
       "original_file": "original/6f1379acf0fa492820c47bad.wav",
-      "sha256": "2de6e56ec5599c01884baf51f738580f689a16ef4f4cb17b0ab76996ec09a9bf",
-      "original_sha256": "d4f2b33e4849f561ccffdd03ddd6c41e2c432e26e8cc978980222e70b5ef8a32",
-      "bytes": 45662,
-      "duration_seconds": 3.6,
+      "sha256": "aa716dbe31e226525c0cdc07eac7bdd558b958c0a75b91c0d36e726079734f2f",
+      "original_sha256": "1494d406536e7365da0c2ea8afea9054f69451e31fb4b5839063cef7da178bfe",
+      "bytes": 45314,
+      "duration_seconds": 3.36,
       "sample_rate": 24000,
       "seed": 1202,
       "reference_sha256": "49e2939ab96482595d300d52135bc57234df4a019aca773f739d2f6f8be3a8d0",
-      "processing_seconds": 6.196842124918476,
-      "mlx_peak_memory_bytes": 6379448175,
+      "processing_seconds": 5.923890499863774,
       "waveform": {
-        "peak": 0.5230019092559814,
-        "rms": 0.0757087990641594,
+        "peak": 0.44117337465286255,
+        "rms": 0.06963790208101273,
         "samples_abs_ge_1": 0,
-        "leading_silence_seconds_approx": 0.12,
-        "trailing_silence_seconds_approx": 0.14,
-        "longest_silence_seconds_approx": 0.36,
+        "leading_silence_seconds_approx": 0.1,
+        "trailing_silence_seconds_approx": 0.1,
+        "longest_silence_seconds_approx": 0.26,
         "finite": true
       },
-      "lufs_before": -21.365242917614992,
-      "gain_db": 1.3652429176149923,
+      "lufs_before": -22.50225555579404,
+      "gain_db": 2.50225555579404,
       "lufs_target": -20,
       "codec": "AAC-LC",
-      "bitrate": 96000
+      "bitrate": 96000,
+      "repair": {
+        "date": "2026-10-18",
+        "reviewNumber": 9,
+        "previousSha256": "2de6e56ec5599c01884baf51f738580f689a16ef4f4cb17b0ab76996ec09a9bf",
+        "humanVerdict": "pending",
+        "generationRecord": "research/voice-five-candidates-20261018.json"
+      }
     },
     {
       "id": "1937a3b4316ee8d68e4fff9e",
@@ -12710,13 +12716,13 @@
       "bitrate": 96000
     },
     {
-      "id": "dc39c11f2e31fcb7871c2801",
-      "text": "Little sips, baby! Sip, sip, sip! High five!",
+      "id": "fbee3119165ce7ca7b270e38",
+      "text": "Little sips, baby! Sip, sip! High five!",
       "sources": [
         "web:combined:milk|praise:5",
         "android:RuriFrequentReplyVariants.kt"
       ],
-      "file": "clips/dc39c11f2e31fcb7871c2801.m4a",
+      "file": "clips/fbee3119165ce7ca7b270e38.m4a",
       "original_file": "original/dc39c11f2e31fcb7871c2801.wav",
       "sha256": "6bac6819ddc29079784d9f03d9642f18e29bbd32e8b5b5f55cd086251ad1a8f1",
       "original_sha256": "1db6610f531d0818157efe0a3773323a4bac3ae4bb4072c685db0240d338652d",
@@ -12740,7 +12746,18 @@
       "gain_db": 1.2945719896696595,
       "lufs_target": -20,
       "codec": "AAC-LC",
-      "bitrate": 96000
+      "bitrate": 96000,
+      "recordedFromText": "Little sips, baby! Sip, sip, sip! High five!",
+      "repair": {
+        "date": "2026-10-18",
+        "reviewNumber": 11,
+        "resolution": "text-aligned-to-original-two-repeats",
+        "previousText": "Little sips, baby! Sip, sip, sip! High five!",
+        "previousFile": "clips/dc39c11f2e31fcb7871c2801.m4a",
+        "previousSha256": "6bac6819ddc29079784d9f03d9642f18e29bbd32e8b5b5f55cd086251ad1a8f1",
+        "humanVerdict": "pending",
+        "generationRecord": "research/voice-five-candidates-20261018.json"
+      }
     },
     {
       "id": "f5031029fcade2c5a9595461",
@@ -19309,13 +19326,13 @@
       "bitrate": 96000
     },
     {
-      "id": "d8f6a13b412764408e02220d",
-      "text": "Sip, sip, sip! Nice little sips! No need to rush!",
+      "id": "721eb57f1eece0569ef93c78",
+      "text": "Sip, sip! Nice little sips! No need to rush!",
       "sources": [
         "web:combined:milk|effort:3",
         "android:RuriCompositeReplies.kt"
       ],
-      "file": "clips/d8f6a13b412764408e02220d.m4a",
+      "file": "clips/721eb57f1eece0569ef93c78.m4a",
       "original_file": "original/d8f6a13b412764408e02220d.wav",
       "sha256": "a7a24542bc4cb7c625ea9cd21f68c9b01d17fcede2142852e3decd5f9f99790f",
       "original_sha256": "e6a205b0ad607017a539a9442d9de65e244167557e74efb006e8905535f33d28",
@@ -19339,7 +19356,18 @@
       "gain_db": 1.1173003434144952,
       "lufs_target": -20,
       "codec": "AAC-LC",
-      "bitrate": 96000
+      "bitrate": 96000,
+      "recordedFromText": "Sip, sip, sip! Nice little sips! No need to rush!",
+      "repair": {
+        "date": "2026-10-18",
+        "reviewNumber": 14,
+        "resolution": "text-aligned-to-original-two-repeats",
+        "previousText": "Sip, sip, sip! Nice little sips! No need to rush!",
+        "previousFile": "clips/d8f6a13b412764408e02220d.m4a",
+        "previousSha256": "a7a24542bc4cb7c625ea9cd21f68c9b01d17fcede2142852e3decd5f9f99790f",
+        "humanVerdict": "pending",
+        "generationRecord": "research/voice-five-candidates-20261018.json"
+      }
     },
     {
       "id": "b7c9fe04375228e74974ec0a",
@@ -20166,13 +20194,13 @@
       "bitrate": 96000
     },
     {
-      "id": "79d79032653490ebe8df0bb3",
-      "text": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+      "id": "68ee524ad2dbb9499fbf8008",
+      "text": "Cuddle, cuddle! My sweet baby! I love you!",
       "sources": [
         "web:combined:hug|affection:2",
         "android:RuriCompositeReplies.kt"
       ],
-      "file": "clips/79d79032653490ebe8df0bb3.m4a",
+      "file": "clips/68ee524ad2dbb9499fbf8008.m4a",
       "original_file": "original/79d79032653490ebe8df0bb3.wav",
       "sha256": "4bc421cbcf6c2fa3d00f020f6a9744000ce1fbd1852092567d60689b8d040012",
       "original_sha256": "51e3b208c93bb88665b591968faa688caa5c3e3497584871271b2020ca4e1c46",
@@ -20196,7 +20224,18 @@
       "gain_db": 2.0148261133885654,
       "lufs_target": -20,
       "codec": "AAC-LC",
-      "bitrate": 96000
+      "bitrate": 96000,
+      "recordedFromText": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+      "repair": {
+        "date": "2026-10-18",
+        "reviewNumber": 16,
+        "resolution": "text-aligned-to-original-two-repeats",
+        "previousText": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+        "previousFile": "clips/79d79032653490ebe8df0bb3.m4a",
+        "previousSha256": "4bc421cbcf6c2fa3d00f020f6a9744000ce1fbd1852092567d60689b8d040012",
+        "humanVerdict": "pending",
+        "generationRecord": "research/voice-five-candidates-20261018.json"
+      }
     },
     {
       "id": "cc29a06c2562172a6e623911",
@@ -23631,13 +23670,13 @@
       "bitrate": 96000
     },
     {
-      "id": "4b607e78b6f7c3b4164392c6",
-      "text": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+      "id": "45884b4970331c0f39309d6a",
+      "text": "All done eating? Wipe, wipe? Let's have a look!",
       "sources": [
         "web:combined:food|finish_check:1",
         "android:RuriCompositeReplies.kt"
       ],
-      "file": "clips/4b607e78b6f7c3b4164392c6.m4a",
+      "file": "clips/45884b4970331c0f39309d6a.m4a",
       "original_file": "original/4b607e78b6f7c3b4164392c6.wav",
       "sha256": "4fd2362c2f02773e5edc3f68ac22b96b45e23d483d161092e650bf5a03b8918d",
       "original_sha256": "b61880ec388803a98b34bc0e8c64128d8b36f7dd721f1a5bb6fe037055cb5d4a",
@@ -23661,7 +23700,18 @@
       "gain_db": 1.9250561660794183,
       "lufs_target": -20,
       "codec": "AAC-LC",
-      "bitrate": 96000
+      "bitrate": 96000,
+      "recordedFromText": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+      "repair": {
+        "date": "2026-10-18",
+        "reviewNumber": 17,
+        "resolution": "text-aligned-to-original-two-repeats",
+        "previousText": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+        "previousFile": "clips/4b607e78b6f7c3b4164392c6.m4a",
+        "previousSha256": "4fd2362c2f02773e5edc3f68ac22b96b45e23d483d161092e650bf5a03b8918d",
+        "humanVerdict": "pending",
+        "generationRecord": "research/voice-five-candidates-20261018.json"
+      }
     },
     {
       "id": "518b5a9450a10e0d363b02c5",

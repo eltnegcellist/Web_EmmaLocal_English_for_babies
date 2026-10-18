@@ -1,0 +1,291 @@
+{
+  "audioIssuesResolved": false,
+  "candidates": [
+    {
+      "number": 9,
+      "canonicalText": "Was that a coo? I heard you! Hello, baby!",
+      "synthesisText": "Was that a koo?\nI heard you!\nHello, baby!",
+      "seed": 1202,
+      "referenceSha256": "49e2939ab96482595d300d52135bc57234df4a019aca773f739d2f6f8be3a8d0",
+      "modelId": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-8bit",
+      "modelRevision": "e7dd0585652209fa0d7783659aad4e8a324de11c",
+      "parameters": {
+        "temperature": 0.9,
+        "top_k": 50,
+        "top_p": 1.0,
+        "repetition_penalty": 1.05,
+        "max_tokens": 2048,
+        "verbose": false,
+        "stream": false
+      },
+      "effectiveIclRepetitionPenalty": 1.5,
+      "runtimeVersions": {
+        "mlx": "0.32.3",
+        "mlx-audio": "0.5.9",
+        "numpy": "2.5.4"
+      },
+      "sampleRate": 24000,
+      "durationSeconds": 3.36,
+      "processingSeconds": 5.923890499863774,
+      "rawSha256": "1494d406536e7365da0c2ea8afea9054f69451e31fb4b5839063cef7da178bfe",
+      "sha256": "aa716dbe31e226525c0cdc07eac7bdd558b958c0a75b91c0d36e726079734f2f",
+      "bytes": 45314,
+      "lufsBefore": -22.50225555579404,
+      "gainDb": 2.50225555579404,
+      "lufsTarget": -20,
+      "peakBefore": 0.44117337465286255,
+      "offlineInference": true,
+      "humanVerdict": "pending",
+      "tokenCount": 42,
+      "file": "clips/6f1379acf0fa492820c47bad.m4a",
+      "previousSha256": "2de6e56ec5599c01884baf51f738580f689a16ef4f4cb17b0ab76996ec09a9bf",
+      "previousBytes": 45662,
+      "asr": [
+        {
+          "model": "whisper-base.en",
+          "recognizedText": "Was that a coup? I heard you. Hello, baby!",
+          "exactWordsMatch": false,
+          "seconds": 0.33965304199955426
+        },
+        {
+          "model": "whisper-small.en",
+          "recognizedText": "Was that a coup? I heard you! Hello, baby!",
+          "exactWordsMatch": false,
+          "seconds": 0.5085489590001089
+        }
+      ],
+      "resolution": "rerecorded-coo",
+      "humanFeedback": "User reports that the coo pronunciation improved; full cross-platform acceptance remains pending."
+    },
+    {
+      "number": 11,
+      "canonicalText": "Little sips, baby! Sip, sip! High five!",
+      "previousCanonicalText": "Little sips, baby! Sip, sip, sip! High five!",
+      "synthesisText": "Little sips, baby! Sip, sip, sip! High five!",
+      "resolution": "text-aligned-to-original-two-repeats",
+      "assembly": null,
+      "audioEdited": false,
+      "file": "clips/fbee3119165ce7ca7b270e38.m4a",
+      "previousFile": "clips/dc39c11f2e31fcb7871c2801.m4a",
+      "sha256": "6bac6819ddc29079784d9f03d9642f18e29bbd32e8b5b5f55cd086251ad1a8f1",
+      "previousSha256": "6bac6819ddc29079784d9f03d9642f18e29bbd32e8b5b5f55cd086251ad1a8f1",
+      "bytes": 54009,
+      "previousBytes": 54009,
+      "rawSha256": "1db6610f531d0818157efe0a3773323a4bac3ae4bb4072c685db0240d338652d",
+      "durationSeconds": 4.16,
+      "sampleRate": 24000,
+      "seed": 1202,
+      "referenceSha256": "49e2939ab96482595d300d52135bc57234df4a019aca773f739d2f6f8be3a8d0",
+      "modelId": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-8bit",
+      "modelRevision": "e7dd0585652209fa0d7783659aad4e8a324de11c",
+      "parameters": {
+        "temperature": 0.9,
+        "top_k": 50,
+        "top_p": 1.0,
+        "repetition_penalty": 1.05,
+        "max_tokens": 2048,
+        "verbose": false,
+        "stream": false
+      },
+      "effectiveIclRepetitionPenalty": 1.5,
+      "runtimeVersions": {
+        "mlx-audio": "0.5.9",
+        "mlx": "0.32.3",
+        "numpy": "2.5.4"
+      },
+      "humanVerdict": "pending",
+      "asr": [
+        {
+          "model": "whisper-base.en",
+          "recognizedText": "Little sips, baby. Sips, zip. High five.",
+          "exactWordsMatch": false,
+          "seconds": 0.10160562499913794
+        },
+        {
+          "model": "whisper-small.en",
+          "recognizedText": "Little sips, baby. Sip, sip. High five.",
+          "exactWordsMatch": true,
+          "seconds": 0.2971077080001123
+        }
+      ],
+      "sourceEvidence": "Original human audit heard two repetitions; user explicitly chose to match the display text to the original recording."
+    },
+    {
+      "number": 14,
+      "canonicalText": "Sip, sip! Nice little sips! No need to rush!",
+      "previousCanonicalText": "Sip, sip, sip! Nice little sips! No need to rush!",
+      "synthesisText": "Sip, sip, sip! Nice little sips! No need to rush!",
+      "resolution": "text-aligned-to-original-two-repeats",
+      "assembly": null,
+      "audioEdited": false,
+      "file": "clips/721eb57f1eece0569ef93c78.m4a",
+      "previousFile": "clips/d8f6a13b412764408e02220d.m4a",
+      "sha256": "a7a24542bc4cb7c625ea9cd21f68c9b01d17fcede2142852e3decd5f9f99790f",
+      "previousSha256": "a7a24542bc4cb7c625ea9cd21f68c9b01d17fcede2142852e3decd5f9f99790f",
+      "bytes": 48265,
+      "previousBytes": 48265,
+      "rawSha256": "e6a205b0ad607017a539a9442d9de65e244167557e74efb006e8905535f33d28",
+      "durationSeconds": 3.52,
+      "sampleRate": 24000,
+      "seed": 1202,
+      "referenceSha256": "49e2939ab96482595d300d52135bc57234df4a019aca773f739d2f6f8be3a8d0",
+      "modelId": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-8bit",
+      "modelRevision": "e7dd0585652209fa0d7783659aad4e8a324de11c",
+      "parameters": {
+        "temperature": 0.9,
+        "top_k": 50,
+        "top_p": 1.0,
+        "repetition_penalty": 1.05,
+        "max_tokens": 2048,
+        "verbose": false,
+        "stream": false
+      },
+      "effectiveIclRepetitionPenalty": 1.5,
+      "runtimeVersions": {
+        "mlx-audio": "0.5.9",
+        "mlx": "0.32.3",
+        "numpy": "2.5.4"
+      },
+      "humanVerdict": "pending",
+      "asr": [
+        {
+          "model": "whisper-base.en",
+          "recognizedText": "Sip, sip, nice little sips. No need to rush.",
+          "exactWordsMatch": true,
+          "seconds": 0.09557224999934988
+        },
+        {
+          "model": "whisper-small.en",
+          "recognizedText": "Sip, sip, nice little sips. No need to rush.",
+          "exactWordsMatch": true,
+          "seconds": 0.2836218339998595
+        }
+      ],
+      "sourceEvidence": "Original human audit heard two repetitions; user explicitly chose to match the display text to the original recording."
+    },
+    {
+      "number": 16,
+      "canonicalText": "Cuddle, cuddle! My sweet baby! I love you!",
+      "previousCanonicalText": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+      "synthesisText": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+      "resolution": "text-aligned-to-original-two-repeats",
+      "assembly": null,
+      "audioEdited": false,
+      "file": "clips/68ee524ad2dbb9499fbf8008.m4a",
+      "previousFile": "clips/79d79032653490ebe8df0bb3.m4a",
+      "sha256": "4bc421cbcf6c2fa3d00f020f6a9744000ce1fbd1852092567d60689b8d040012",
+      "previousSha256": "4bc421cbcf6c2fa3d00f020f6a9744000ce1fbd1852092567d60689b8d040012",
+      "bytes": 48770,
+      "previousBytes": 48770,
+      "rawSha256": "51e3b208c93bb88665b591968faa688caa5c3e3497584871271b2020ca4e1c46",
+      "durationSeconds": 3.68,
+      "sampleRate": 24000,
+      "seed": 1202,
+      "referenceSha256": "49e2939ab96482595d300d52135bc57234df4a019aca773f739d2f6f8be3a8d0",
+      "modelId": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-8bit",
+      "modelRevision": "e7dd0585652209fa0d7783659aad4e8a324de11c",
+      "parameters": {
+        "temperature": 0.9,
+        "top_k": 50,
+        "top_p": 1.0,
+        "repetition_penalty": 1.05,
+        "max_tokens": 2048,
+        "verbose": false,
+        "stream": false
+      },
+      "effectiveIclRepetitionPenalty": 1.5,
+      "runtimeVersions": {
+        "mlx-audio": "0.5.9",
+        "mlx": "0.32.3",
+        "numpy": "2.5.4"
+      },
+      "humanVerdict": "pending",
+      "asr": [
+        {
+          "model": "whisper-base.en",
+          "recognizedText": "Cuddle cuddle my sweet baby. I love you",
+          "exactWordsMatch": true,
+          "seconds": 0.08658525000009831
+        },
+        {
+          "model": "whisper-small.en",
+          "recognizedText": "Cuddle, cuddle, my sweet baby, I love you!",
+          "exactWordsMatch": true,
+          "seconds": 0.2793600830000287
+        }
+      ],
+      "sourceEvidence": "Original human audit heard two repetitions; user explicitly chose to match the display text to the original recording."
+    },
+    {
+      "number": 17,
+      "canonicalText": "All done eating? Wipe, wipe? Let's have a look!",
+      "previousCanonicalText": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+      "synthesisText": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+      "resolution": "text-aligned-to-original-two-repeats",
+      "assembly": null,
+      "audioEdited": false,
+      "file": "clips/45884b4970331c0f39309d6a.m4a",
+      "previousFile": "clips/4b607e78b6f7c3b4164392c6.m4a",
+      "sha256": "4fd2362c2f02773e5edc3f68ac22b96b45e23d483d161092e650bf5a03b8918d",
+      "previousSha256": "4fd2362c2f02773e5edc3f68ac22b96b45e23d483d161092e650bf5a03b8918d",
+      "bytes": 46967,
+      "previousBytes": 46967,
+      "rawSha256": "b61880ec388803a98b34bc0e8c64128d8b36f7dd721f1a5bb6fe037055cb5d4a",
+      "durationSeconds": 3.84,
+      "sampleRate": 24000,
+      "seed": 1202,
+      "referenceSha256": "49e2939ab96482595d300d52135bc57234df4a019aca773f739d2f6f8be3a8d0",
+      "modelId": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-8bit",
+      "modelRevision": "e7dd0585652209fa0d7783659aad4e8a324de11c",
+      "parameters": {
+        "temperature": 0.9,
+        "top_k": 50,
+        "top_p": 1.0,
+        "repetition_penalty": 1.05,
+        "max_tokens": 2048,
+        "verbose": false,
+        "stream": false
+      },
+      "effectiveIclRepetitionPenalty": 1.5,
+      "runtimeVersions": {
+        "mlx-audio": "0.5.9",
+        "mlx": "0.32.3",
+        "numpy": "2.5.4"
+      },
+      "humanVerdict": "pending",
+      "asr": [
+        {
+          "model": "whisper-base.en",
+          "recognizedText": "All done eating? Wipe, wipe, let's have a look!",
+          "exactWordsMatch": true,
+          "seconds": 0.09584854199965775
+        },
+        {
+          "model": "whisper-small.en",
+          "recognizedText": "All done eating? Wipe, wipe? Let's have a look!",
+          "exactWordsMatch": true,
+          "seconds": 0.284150624999711
+        }
+      ],
+      "sourceEvidence": "Original human audit heard two repetitions; user explicitly chose to match the display text to the original recording."
+    }
+  ],
+  "webSourceCommit": "63ed8cf33ef96cdd066f83530dd40983cfa5c0e0",
+  "androidSourceCommit": "e0779d3244da01789f99350ed27b091f323ce248",
+  "scope": {
+    "total": 1105,
+    "reviewed": 5,
+    "audioRerecorded": 1,
+    "textAlignedToOriginalAudio": 4,
+    "untouched": 1100
+  },
+  "reviewStatus": "Coo improved per user feedback; four two-repeat text choices implemented, cross-platform acceptance pending.",
+  "notes": [
+    "User rejected identical single-word copy/paste repetition and the isolated sip quality.",
+    "No.9 keeps the improved coo recording unchanged.",
+    "No.11/14/16/17 restore the original full-utterance AAC byte-for-byte and change only the canonical displayed repetition from three to two.",
+    "The text-derived IDs and filenames change for four entries. Their AAC bytes and original generation metadata remain the original ones.",
+    "No new TTS, segment copying, trimming, fading or re-encoding is used for the four recordings.",
+    "The other 1100 entries and recordings remain unchanged. Historical original wording is preserved in originalExpected/previousCanonicalText."
+  ]
+}

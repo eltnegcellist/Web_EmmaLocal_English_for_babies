@@ -69,7 +69,7 @@ export class PrerecordedVoiceBank {
       await this.cache?.delete(url);
       this.memory.delete(url);
     }
-    const response = await this.fetcher(url);
+    const response = await this.fetcher(url, {cache: 'no-store'});
     if (!response.ok) throw Error('音声を取得できません。接続を確認して再試行してください。');
     const bytes = await response.arrayBuffer();
     if (!await this.valid(bytes, entry)) throw Error('音声ファイルの検証に失敗しました。');

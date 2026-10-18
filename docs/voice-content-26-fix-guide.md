@@ -1,56 +1,28 @@
-# 26件の実聴監査からの5音源修正（2026-10-18）
+# 音源と2回表記の同期（2026-10-18）
 
-## 判定と作業範囲
+ユーザーの方針に合わせ、No.9は改善したcooの音声を維持し、No.11/14/16/17は元の自然な音声へ戻して、英文を2回の反復に合わせました。4本は元AACとバイト単位で同一です。再合成・切り出し・接合・再エンコードはしていません。
 
-ユーザーが実際に試聴した結果、26件中21件は正常、5件は不具合、未判定は0件でした。判定の個人情報を含まない要約は `research/voice-content-26-human-verdicts-20261018.json` にあります。**実聴判定の完了と、音源修正の完了は別です。現時点で5件とも修正・再聴未完了です。**
+| No. | 現在の英文 | 対応 |
+|---|---|---|
+| 9 | Was that a coo? I heard you! Hello, baby! | 改善版を維持。ユーザーよりcooの発音改善との報告 |
+| 11 | Little sips, baby! Sip, sip! High five! | 元の音声を保持し、sipを2回表記 |
+| 14 | Sip, sip! Nice little sips! No need to rush! | 元の音声を保持し、sipを2回表記 |
+| 16 | Cuddle, cuddle! My sweet baby! I love you! | 元の音声を保持し、cuddleを2回表記 |
+| 17 | All done eating? Wipe, wipe? Let's have a look! | 元の音声を保持し、wipeを2回表記 |
 
-| No. | 期待英文 | 不具合／再聴ポイント |
-| --- | --- | --- |
-| 9 | Was that a coo? I heard you! Hello, baby! | coo は /kuː/（クー）。英字 C-O-O の読み上げは不合格 |
-| 11 | Little sips, baby! Sip, sip, sip! High five! | sip が2回しか発音されない。3回にする |
-| 14 | Sip, sip, sip! Nice little sips! No need to rush! | sip が2回しか発音されない。3回にする |
-| 16 | Cuddle, cuddle, cuddle! My sweet baby! I love you! | cuddle が2回しか発音されない。3回にする |
-| 17 | All done eating? Wipe, wipe, wipe? Let's have a look! | wipe が2回しか発音されない。3回にする |
+表示英文の変更に伴い、テキスト由来の4音源ID・ファイル名と両manifest、Web/Androidの該当発話、レビュー表示を同期。Visual Cueの4行も英文を同期し、IDと割当は維持しました。元の3回表記はレビュー台帳の `originalExpected` に保存し、旧判定を現行英文へ流用しません。
 
-## Mac / Codex で5候補を再生成する
+検証:
+- Web `npm test` と全音源SHA/1093表現のカバレッジ検証、26件review gate、音源キャッシュ更新、5件の現行対応とレビューDOM検証に成功。
+- Visual Cueの914件生成整合性・参照・意味監査・プロトタイプ検証成功。4行の表示同期だけでID・cue割当は不変。
+- Androidユニットテスト 106件、failure/error 0、skip 1件。`:app:assembleDebug` 成功。
+- APK内の全1105音源とmanifestはWeb/Androidのソースとバイト単位で一致。対象外1100音源・manifest行は不変。音源データを変更したのはcooの1本のみ。
+- Whisper Smallは4件すべて現在の英文の単語と一致。BaseはNo.11をSips/zipと誤転写し、他3件は一致。ASRを人手実聴の代用にはしていません。
 
-既存のQwen3-TTS音声生成環境と reference voice、seed 1202、model revision を流用してください。英文の表記・Topic/Interaction判定・他の1,100音源・Runtime TTS/Kiki廃止方針は変えません。必要に応じて生成時の句切り方やプロンプトを実験し、採用候補の生成条件を記録します。
+APK: 143,625,999 bytes。SHA-256: `30e53ae669a30387883af72632a151faf56e6b196dc19673b79288839093370d`。
 
-各候補について**耳で**必要な発音や3回の反復ができているか判断します。WhisperなどのASR転写だけで合格にしません。前後の語、余計な読み、声質、自然な間も確認します。
+人手再聴とWeb/Android実機受入の全完了は記録しておらず、`audioIssuesResolved` は `false` を維持しています。GitHub公開と新Draft PR作成は未実施です。
 
-採用した5音源をAAC-LC / 24 kHz / M4Aにして、専用ディレクトリに次の名前で保存してください。
+## 再聴
 
-    9.m4a
-    11.m4a
-    14.m4a
-    16.m4a
-    17.m4a
-
-## Web / Android の両方に安全に差し替える
-
-2つのリポジトリをローカルに置き、FFmpeg（ffprobe）をインストールします。Web側から以下を実行してください。初回は**dry run**で書き込みはありません。
-
-    node scripts/apply-reviewed-voice-replacements.mjs \
-      --web-root /path/to/Web_EmmaLocal_English_for_babies \
-      --android-root /path/to/Android_English_character_for_baby \
-      --replacement-dir /path/to/approved-five
-
-計画内容が意図通りなら、同じ引数に `--apply` を付けて実行します。スクリプトは5つの期待英文を既存manifestから正確に照合し、Web/Androidの古い音源が一致していること、候補がAAC-LC/24 kHzであることを確認してから、**5クリップのみ**を置換します。両manifestの `sha256`、`bytes`、`totalBytes` を同一内容に更新します。既存1105ファイルのうち1100ファイルは変更対象外です。
-
-事前テスト:
-
-    node scripts/test-apply-reviewed-voice-replacements.mjs
-
-差し替え後のテスト:
-
-    # Web
-    npm run verify:voice
-    node scripts/test-recorded-review-26.mjs
-    node test-voice-review-gate.mjs
-
-    # Android
-    python3 scripts/verify-prerecorded-voice.py
-
-変更を別PRでレビューし、Webのキャッシュ更新とAndroidのAPK同梱確認を行ってください。**最後にWebとAndroid両方でNo.9,11,14,16,17の修正版を再生し、5件が正常になったことを記録してください。** その時点まで `audioIssuesResolved: false` のままとします。
-
-ASR・Ruri・Visual Cueの開発PRをこの音声修正に混ぜず、Kiki/runtime TTSを復活させないこと。
+`voice-content-five-review.html` で現在の2回表記と音声を確認し、判定JSONを書き出せます。No.11/14/16/17の修正前・現在の音声は同一です。単語コピーによる3回化は不採用とし、生成ツールからも削除しました。
