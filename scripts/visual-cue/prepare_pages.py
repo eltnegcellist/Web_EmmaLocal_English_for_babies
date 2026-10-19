@@ -21,7 +21,7 @@ args.output.mkdir(parents=True, exist_ok=False)
 # Publish only the display-component demo, not the microphone/AI application.
 (args.output/'ui.html').write_text(committed('visual-cue-ui-preview.html').decode().replace('href="./visual-cue-test.html"','href="./test/"').replace('href="./visual-cue-coverage.html"','href="./coverage.html"'))
 (args.output/'coverage.html').write_text(committed('visual-cue-coverage.html').decode().replace('data-trial-url="./visual-cue-test.html"','data-trial-url="./test/"').replace('href="./visual-cue-test.html"','href="./test/"'))
-(args.output/'visual-cue-hug-face.html').write_text(committed('visual-cue-hug-face.html').decode().replace('href="./visual-cue-coverage.html"','href="./coverage.html"').replace('href="./visual-cue-test.html?target=hug-arms"','href="./test/?target=hug-arms"'))
+(args.output/'visual-cue-hug-face.html').write_text(committed('visual-cue-hug-face.html').decode().replace('href="./visual-cue-coverage.html"','href="./coverage.html"').replace('href="./visual-cue-test.html?target=hug-face-cuddle"','href="./test/?target=hug-face-cuddle"'))
 files=['src/visual-cue-ui-preview.js','src/visual-cue-controller.js','src/visual-cue-catalog.js','src/emma-background-cues.js','src/emma-preview-motion.js','shared/visual-cue-ui-examples.json',*['assets/emma-face/'+name for name in ['emma-face-idle-open.svg','emma-face-idle-half.svg','emma-face-idle-closed.svg']+['emma-face-talk-'+size+blink+'.svg' for size in ['small','medium','large'] for blink in ['', '-half','-closed']]]]
 for a in manifest['assets']:
  if a['status']=='accepted' and a['id']!='wake-daylight':
@@ -30,6 +30,7 @@ examples=json.loads(committed('shared/visual-cue-ui-examples.json'))
 files.extend(e['audio'] for e in examples)
 files += ['visual-cue-coverage.css','src/visual-cue-coverage.js','shared/visual-cue-trial-data.json','shared/visual-cue-coverage.json','shared/visual-cue-coverage.csv']
 files += ['assets/visual-cue/prototypes/hug-face/hug-face-v1.png','assets/visual-cue/prototypes/hug-face/manifest.json','assets/visual-cue/prototypes/hug-face/approval-20261020.json']
+files += [hug_face['motion']['animation'],hug_face['motion']['poster']]
 motion_manifest=json.loads(committed('assets/visual-cue/motion-variants/manifest.json'))
 files += ['assets/visual-cue/motion-variants/manifest.json']
 for a in motion_manifest['assets']:files.extend([a['animation'],a['poster']])
@@ -55,7 +56,7 @@ metadata = dict(sourceRepository='eltnegcellist/Web_EmmaLocal_English_for_babies
                 artifactSHA256=hashlib.sha256((args.output / 'index.html').read_bytes()).hexdigest(),
                 stills=sum(a['kind'] == 'illustration' for a in manifest['assets']) + hug_face_accepted,
                 animations=sum(a['kind'] == 'animation' for a in manifest['assets']),
-                accepted=sum(a['status']=='accepted' for a in manifest['assets']) + hug_face_accepted, artworkManifestAccepted=sum(a['status']=='accepted' for a in manifest['assets']), acceptedHugFaceStills=hug_face_accepted, nonRuntime=True, uiPreview='ui.html', trialApp='test/', coverageReport='coverage.html', hugFacePrototype='visual-cue-hug-face.html', hugFacePrototypeStatus='accepted-still-animation-pending', uiFileSHA256=ui_hashes, sceneMotionCandidates=len(motion_manifest['assets']), emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False, trialApplicationDeployed=True)
+                accepted=sum(a['status']=='accepted' for a in manifest['assets']) + hug_face_accepted, artworkManifestAccepted=sum(a['status']=='accepted' for a in manifest['assets']), acceptedHugFaceStills=hug_face_accepted, nonRuntime=True, uiPreview='ui.html', trialApp='test/', coverageReport='coverage.html', hugFacePrototype='visual-cue-hug-face.html', hugFacePrototypeStatus='accepted-still-motion-candidate-in-trial', uiFileSHA256=ui_hashes, sceneMotionCandidates=len(motion_manifest['assets'])+1, emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False, trialApplicationDeployed=True)
 (args.output / 'deployment.json').write_text(json.dumps(metadata, indent=2) + '\n')
 (args.output / 'README.md').write_text('''# Visual Cue イラスト・動画プレビュー
 

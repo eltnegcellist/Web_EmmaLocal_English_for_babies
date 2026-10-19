@@ -5,6 +5,9 @@ import {VISUAL_CUE_CATALOG as catalog} from './src/visual-cue-catalog.js';
 import {createVisualCueController,resolveVisualCue} from './src/visual-cue-controller.js';
 const art=JSON.parse(readFileSync('assets/visual-cue/artwork/manifest.json'));
 const motion=JSON.parse(readFileSync('assets/visual-cue/motion-variants/manifest.json'));
+const hug=JSON.parse(readFileSync('assets/visual-cue/prototypes/hug-face/manifest.json'));
+assert.equal(hug.status,'accepted-still');assert.equal(hug.humanApproval,true);
+art.assets.push({id:hug.id,status:'accepted',kind:'illustration'});motion.assets.push(hug.motion);
 const oldGestures=JSON.parse(readFileSync('assets/emma-gestures/manifest.json'));
 assert(oldGestures.states.every(s=>s.status==='withdrawn'));
 for(const state of ['calm','celebrate'])for(const suffix of ['', '-poster']){
@@ -18,6 +21,7 @@ for(const a of Object.values(catalog.assets)){
  assert(existsSync(a.image));assert(existsSync(a.poster));
 }
 assert(!catalog.assets['cup-sip']);assert(!catalog.assets['wake-daylight']);
+assert(!catalog.assets['hug-arms']);assert.equal(catalog.assets['hug-face-cuddle'].kind,'animation');
 assert.equal(resolveVisualCue('This text is unknown.'),null);
 assert.equal(resolveVisualCue(' All   done? Is that everything? Let’s have a look. ').state,'ask');
 assert.notDeepEqual(resolveVisualCue("All done? Is that everything? Let's have a look."),resolveVisualCue("Yes! You made it! That's wonderful!"));

@@ -166,7 +166,7 @@ function initVisualCues(){
   const mode=$('visualCueMode'),motion=$('visualCueMotion');
   if(!mode||!motion)return;
   try{mode.value=localStorage.getItem('emma_visual_cue_mode')==='visual'?'visual':'emma';motion.checked=localStorage.getItem('emma_visual_motion')!=='false';}catch{}
-  import('./visual-cue-controller.js?v=20261020-static-motion-v2').then(({createVisualCueController})=>{
+  import('./visual-cue-controller.js?v=20261020-hug-face-motion-v1').then(({createVisualCueController})=>{
     visualCue=createVisualCueController();
     const configure=()=>{visualCue.configure({mode:mode.value,motion:motion.checked});try{localStorage.setItem('emma_visual_cue_mode',mode.value);localStorage.setItem('emma_visual_motion',String(motion.checked));}catch{}};
     mode.addEventListener('change',configure);motion.addEventListener('change',configure);configure();

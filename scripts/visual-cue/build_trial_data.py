@@ -15,6 +15,10 @@ review = read('shared/visual-cue-runtime-review.json')
 phrases = read('shared/visual-cue-phrases.json')['rows']
 art = read('assets/visual-cue/artwork/manifest.json')['assets']
 motions = read('assets/visual-cue/motion-variants/manifest.json')['assets']
+hug = read('assets/visual-cue/prototypes/hug-face/manifest.json')
+art=art+[dict(id=hug['id'],topic='抱っこ：顔が見える採用済み静止原画',kind='illustration',status='accepted')]
+motions=motions+[hug['motion']]
+face_by_text={norm(r['text']):r for r in read('shared/visual-cue-hug-face-overrides.json')['rows']}
 conversions = read('shared/visual-cue-static-animation-overrides.json')['rows']
 conversion_by_text = {norm(r['text']):r for r in conversions}
 catalog = json.loads((ROOT / 'src/visual-cue-catalog.js').read_text().split('export const VISUAL_CUE_CATALOG=', 1)[1].rstrip(';\n'))
@@ -45,6 +49,9 @@ for r in review['rows'] + review['singleSentences']:
         if key in conversion_by_text:
             c=conversion_by_text[key]
             rows[key].update(previousTarget=c['assetId'],staticConverted=c['changed'],changeReason=c['reason'])
+        if key in face_by_text:
+            f=face_by_text[key]
+            rows[key].update(faceReplaced=True,facePreviousTarget=f['before']['assetId'],changeReason=rows[key].get('changeReason','')+' '+f['reason'])
     p = source_by_id.get(r.get('phraseId'))
     rows[key]['sources'].append(dict(kind=p['sourceKind'] if p else 'single',
                                     key=p['sourceKey'] if p else 'press-single',
@@ -65,7 +72,7 @@ for a in art + motions:
                        status=a['status'], runtimeEligible=a['id'] in catalog['assets'],
                        image=a['animation'] if a['status']=='motion-candidate' else 'assets/visual-cue/artwork/' + a['animation'],
                        poster=a['poster'] if a['status']=='motion-candidate' else 'assets/visual-cue/artwork/' + a['poster'],
-                       baseAssetId=a.get('baseAssetId')))
+                       baseAssetId=a.get('baseAssetId'),baseImage=a.get('baseImage','assets/visual-cue/artwork/stills/'+str(a.get('baseAssetId'))+'.webp'),runtimeExclusionReason='replaced-by-hug-face' if a['id']=='hug-arms' else None))
 movies.sort(key=lambda a: (-a['count'], a['id']))
 report = dict(schemaVersion=1, unit='重複を除いた録音原文。3文応答も再生1回＝1件。文中の個別文への割当ではない。',
               total=n, replySets=len(review['rows']), uniqueReplySets=len({norm(r['text']) for r in review['rows']}),
@@ -81,7 +88,8 @@ report = dict(schemaVersion=1, unit='重複を除いた録音原文。3文応答
               staticConversion=dict(before=len(conversions),converted=sum(r['changed'] for r in conversions),remaining=sum(not r['changed'] for r in conversions),baselineAnimationCount=174,baselineNoAddedAnimation=794),
               backgrounds=[dict(id=k, label=v, count=sum(r['category']=='background' and r['target']==k for r in items), status='candidate') for k,v in backgrounds.items()],
               animations=movies,
-              sourceSHA256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['shared/visual-cue-phrases.json','shared/visual-cue-runtime-review.json','src/visual-cue-catalog.js','assets/visual-cue/motion-variants/manifest.json','shared/visual-cue-static-animation-overrides.json']},
+              faceReplacement=dict(animation=sum(r.get('faceReplaced',False) and r['category']=='motionCandidate' for r in items),still=sum(r.get('faceReplaced',False) and r['category']=='still' for r in items)),
+              sourceSHA256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in ['shared/visual-cue-phrases.json','shared/visual-cue-runtime-review.json','src/visual-cue-catalog.js','assets/visual-cue/motion-variants/manifest.json','shared/visual-cue-static-animation-overrides.json','assets/visual-cue/prototypes/hug-face/manifest.json','shared/visual-cue-hug-face-overrides.json']},
               voiceBankReference=dict(total=len(voice),outsideResponseCorpus=[dict(text=e['text'],sources=e['sources']) for key,e in voice.items() if key not in rows],
                                       noAddedAnimation=len(voice)-counts['animation']-counts['motionCandidate']-counts['background'],
                                       noAddedAnimationPercent=round((len(voice)-counts['animation']-counts['motionCandidate']-counts['background'])/len(voice)*100,2)),
@@ -89,7 +97,7 @@ report = dict(schemaVersion=1, unit='重複を除いた録音原文。3文応答
                            '意味確認済みは元の21セット。新規割当や背景2案を承認済みと扱わない。',
                            '通常Emmaのまばたき・口パクは追加アニメーションの網羅数に含めない。',
                            '候補背景を含める場合と、採用済み物体動画だけの場合を別集計。',
-                           '承認済み静止原画から作った6つの部品別SVG動作は新規候補であり、素材採用済み動画20点に加算しない。',
+                           '承認済み静止原画から作ったSVG動作6種と顔あり抱っこ動画1種は新規候補であり、採用済み動画20点に加算しない。顔あり静止原画を加え、採用済み素材は43点。',
                            'コップ動画は再確認待ち、起床動画は意味対応未完成のため実行時対象外。'])
 assert sum(x['count'] for x in metrics.values()) == n
 assert sum(a['count'] for a in movies) == counts['animation']+counts['motionCandidate']
@@ -104,7 +112,7 @@ for r in items:
 lines=['# Visual Cueの英文割当数（テスト版）','',report['unit'],'',
        f'対象は **{n}件＝3文応答{report["uniqueReplySets"]}種類＋単文{report["singleSentences"]}種類**。元の914セットには同一原文1件の重複があります。','',
        '| 表示 | 原文数 | 全体比 |','| --- | ---: | ---: |']
-for key,label in [('animation','採用済み物体動画'),('motionCandidate','新しい部品別動作6候補'),('background','背景2候補'),('still','静止画'),('baseline','通常Emma')]:
+for key,label in [('animation','採用済み物体動画'),('motionCandidate','新しい動作7候補（顔あり抱っこを含む）'),('background','背景2候補'),('still','静止画'),('baseline','通常Emma')]:
     m=metrics[key];lines.append(f'| {label} | {m["count"]} | {m["percent"]:.2f}% |')
 lines += ['',f'以前の静止520件のうち**{report["staticConversion"]["converted"]}件を動作へ切替**。{report["staticConversion"]["remaining"]}件は終了・中断・保留・動作不一致等の理由付きで静止表示を維持。',
           '',f'採用済み物体動画が未割当：**{report["noObjectAnimation"]["count"]}件（{report["noObjectAnimation"]["percent"]:.2f}%）**。',
@@ -112,7 +120,7 @@ lines += ['',f'以前の静止520件のうち**{report["staticConversion"]["conv
           f'採用済み動画{report["approvedMovies"]}種類中、英文割当あり{report["usedApprovedMovies"]}種類。','',
           '| アニメーション | 原文数 | 全体比 | 状態 |','| --- | ---: | ---: | --- |']
 for a in movies:
-    status='新規動作・確認候補' if a['status']=='motion-candidate' else '保留' if a['status']!='accepted' else '意味対応未完成・実行時対象外' if not a['runtimeEligible'] else '割当あり' if a['count'] else '採用済み・英文割当なし'
+    status='顔ありへ差替済み・比較用' if a.get('runtimeExclusionReason') else '新規動作・確認候補' if a['status']=='motion-candidate' else '保留' if a['status']!='accepted' else '意味対応未完成・実行時対象外' if not a['runtimeEligible'] else '割当あり' if a['count'] else '採用済み・英文割当なし'
     lines.append(f'| {a["label"]} | {a["count"]} | {a["percent"]:.2f}% | {status} |')
 lines += ['','## 集計上の注意','']+['- '+s for s in report['limitations']]
 lines += ['',f'参考：音声バンク全体は{len(voice)}件。上の応答コーパス外にAndroid用・自己紹介・旧原文等14件があり、追加動画割当はありません。これらも含めると追加アニメーション未割当は{report["voiceBankReference"]["noAddedAnimation"]}件（{report["voiceBankReference"]["noAddedAnimationPercent"]:.2f}%）です。']

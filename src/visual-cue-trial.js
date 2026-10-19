@@ -4,10 +4,10 @@ import {createTrialStorage} from './visual-cue-trial-storage.js';
 for(const key of ['localStorage','sessionStorage'])Object.defineProperty(window,key,{configurable:true,value:createTrialStorage(window[key])});
 const defaults={emma_semantic_enabled:'false',emma_history_enabled:'false',emma_visual_cue_mode:'visual'};
 for(const [key,value] of Object.entries(defaults))if(localStorage.getItem(key)===null)localStorage.setItem(key,value);
-const {visualCueTrial:app}=await import('./app.js?v=20261020-static-motion-v2');
+const {visualCueTrial:app}=await import('./app.js?v=20261020-hug-face-motion-v1');
 if(!app)throw Error('テスト文書を開いてください');
 for(const id of ['fullResetButton','semanticEnabled','asrModel','endpointMode','onboardingHighPerformance']){const input=document.getElementById(id);if(input)input.disabled=true;}
-const data=await fetch(new URL('../shared/visual-cue-trial-data.json?v=20261020-static-motion-v2',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
+const data=await fetch(new URL('../shared/visual-cue-trial-data.json?v=20261020-hug-face-motion-v1',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
 const $=id=>document.getElementById(id);
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 const coverageUrl=document.documentElement.dataset.coverageUrl||'./visual-cue-coverage.html';

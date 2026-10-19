@@ -28,7 +28,7 @@ try{
   await page.evaluate(async path=>{const i=new Image();i.src=path;await i.decode();},a.image);
   await page.click('#trialPlay');await page.waitForSelector(`#avatar.has-visual-cue img[data-asset-id="${a.id}"]`);
   check('actual-worker-audio-'+a.id,await page.locator('#avatar').evaluate(n=>n.classList.contains('state-speaking')));
-  if(a.id==='hug-arms')check('quick-stop-visible-while-playing',await page.locator('#trialQuickStop').isVisible());
+  if(a.id==='hug-face-cuddle')check('quick-stop-visible-while-playing',await page.locator('#trialQuickStop').isVisible());
   if(a.status==='motion-candidate'){
    await page.uncheck('#trialMotion');await page.waitForFunction(path=>document.querySelector('#avatar img[data-asset-id]')?.src.endsWith(path),a.poster);
    check('static-poster-'+a.id,await page.locator('#avatar').evaluate(n=>n.classList.contains('state-speaking')));
@@ -37,6 +37,11 @@ try{
   if(a.id==='kick')await page.screenshot({path:out+'/trial-kick-desktop.png',fullPage:true});
   await page.click('#trialQuickStop');check('stop-clears-'+a.id,await page.locator('.has-visual-cue').count()===0);
  }
+ await page.selectOption('#trialFilter','still');await page.selectOption('#trialTarget','hug-face-v1');
+ check('two-resting-hug-posters',await page.locator('#trialPhrase option').count()===2);
+ await page.click('#trialPlay');await page.waitForSelector('#avatar img[data-asset-id="hug-face-v1"]');
+ check('resting-hug-does-not-animate',(await page.locator('#avatar img[data-asset-id="hug-face-v1"]').getAttribute('src')).endsWith('hug-face-cuddle-poster.webp'));
+ await page.click('#trialQuickStop');
  await page.selectOption('#trialFilter','background');await page.selectOption('#trialTarget','calm');
  await page.uncheck('#trialMotion');await page.click('#trialPlay');await page.waitForSelector('#avatar.has-emma-background');
  check('hearts-original-face-visible',await page.locator('#aiAvatarFace [data-avatar-frame]:not(.hidden)').evaluate(n=>getComputedStyle(n).visibility==='visible'));
@@ -51,14 +56,20 @@ try{
  await page.click('#settingsButton');await page.click('#historyButton');await page.getByText('履歴はまだありません。',{exact:true}).waitFor();check('trial-history-database-isolated',await page.evaluate(async()=>(await indexedDB.databases()).some(db=>db.name==='mitsukotoba-conversation-history-visual-cue-trial')));await page.click('#featureClose');
  await page.goto(base+coveragePath);await page.waitForSelector('#movies tr:nth-child('+data.report.animations.length+')');
  check('all-approved-held-and-candidate-movie-rows',await page.locator('#movies tr').count()===data.report.animations.length);
- check('only-wake-has-no-approved-assignment',await page.locator('#movies tr.zero:not(.held)').count()===1);
- check('six-before-after-motion-previews',await page.locator('#motionGallery .motion-card').count()===6&&await page.locator('#motionGallery img').count()===12);
- await page.click('#motionToggle');check('motion-gallery-can-pause',await page.locator('[data-motion-id]').evaluateAll(imgs=>imgs.every(i=>i.src.endsWith('-poster.svg'))));
- await page.click('#motionToggle');check('motion-gallery-can-resume',await page.locator('[data-motion-id]').evaluateAll(imgs=>imgs.every(i=>!i.src.endsWith('-poster.svg'))));
+ check('wake-held-and-old-hug-replaced',await page.locator('#movies tr.zero:not(.held)').count()===2&&(await page.locator('#movies tr[data-asset="hug-arms"]').textContent()).includes('差替済み'));
+ check('seven-before-after-motion-previews',await page.locator('#motionGallery .motion-card').count()===7&&await page.locator('#motionGallery img').count()===14);
+ await page.locator('#motionGallery img').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode())));check('all-motion-comparison-images-load',true);
+ await page.click('#motionToggle');check('motion-gallery-can-pause',await page.locator('[data-motion-id]').evaluateAll(imgs=>imgs.every(i=>i.src.includes('-poster.'))));
+ await page.click('#motionToggle');check('motion-gallery-can-resume',await page.locator('[data-motion-id]').evaluateAll(imgs=>imgs.every(i=>!i.src.includes('-poster.'))));
  check('held-cup-zero',await page.locator('#movies tr[data-asset="cup-sip"] td:nth-child(2)').textContent()==='0');
  await page.selectOption('#category','no-animation');check('no-added-animation-current-count',(await page.locator('#resultCount').textContent()).startsWith(data.report.noAddedAnimation.count+'件'));
  await page.screenshot({path:out+'/coverage-mobile.png',fullPage:true});check('coverage-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  const url=await page.locator('#movies tr[data-asset="kick"] a').getAttribute('href');await page.goto(url);await page.waitForSelector('#trialTarget');check('coverage-link-selects-kick',await page.locator('#trialTarget').inputValue()==='kick'&&await page.locator('#trialPhrase option').count()===data.report.animations.find(a=>a.id==='kick').count);
+ await page.goto(base+'/visual-cue-hug-face.html');await page.locator('#candidate').evaluate(i=>i.decode());
+ check('face-comparison-delivers-movie',(await page.locator('#candidate').getAttribute('src')).endsWith('hug-face-cuddle.webp'));
+ await page.click('#toggle');check('face-comparison-can-pause',(await page.locator('#candidate').getAttribute('src')).endsWith('hug-face-cuddle-poster.webp'));
+ await page.emulateMedia({reducedMotion:'reduce'});await page.reload();check('face-comparison-reduced-motion',(await page.locator('#candidate').getAttribute('src')).endsWith('hug-face-cuddle-poster.webp'));
+ await page.selectOption('#size','320');check('face-comparison-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:out+'/hug-face-motion-mobile.png',fullPage:true});
  const clips=requests.filter(s=>s.includes('/clips/'));check('on-demand-not-full-bank',clips.length>0&&clips.length<50);
  check('no-browser-errors',errors.length===0);passed=true;
 }finally{await writeFile(out+'/browser-report.json',JSON.stringify({passed,checks,errors},null,2)+'\n');await browser.close();}

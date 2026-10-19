@@ -2,16 +2,16 @@
 bb6d2cbef9faa091d996f94c,"Hello, sweet baby! You're so loved. I'm right here.",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
 0957ded8e73d9ee309e50750,"Hi, little one! Peekaboo! Hello again!",animation,peekaboo,False,False,英文と素材の意味対応は確認候補,,
 03cd9fd2e262bf7cd3512823,Look at you! What a sweet face. I'm glad you're here!,baseline,smile,True,True,英文と素材の意味対応は確認候補,,
-c09eedcd40d1fef25acc7e9a,"My sweet baby! Big, big hugs! Hello, sweetheart!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+c09eedcd40d1fef25acc7e9a,"My sweet baby! Big, big hugs! Hello, sweetheart!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 7f33c2d85bd941420b62b80a,"Hello again, baby! Hello, hello! Wave, wave, wave!",animation,hand-wave,False,False,英文と素材の意味対応は確認候補,,
-27a4bdbd121cc8579cefa1ab,You're my little sunshine. I love you. Big hugs!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+27a4bdbd121cc8579cefa1ab,You're my little sunshine. I love you. Big hugs!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 43a9f3d0db56a56b85b9cd43,Can you hear me? It's my voice. Hello there!,baseline,smile,True,True,英文と素材の意味対応は確認候補,,
 9a37d33a9aa8446ee45fe6f3,"Let's say hello! Hi, little one! Hello again!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
 d064743a4b6b1f0866b59f5b,"Here we are! You and me! Hello, sweetie!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
 ee7a514fa2be032c8b950206,"Hello, sweetheart! Look at my face. Here I am!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
 ba48961a8fe0d683ecf6dac7,"Let's chat, baby! Ooh, ahh, ooh! Your turn!",baseline,listen,True,True,英文と素材の意味対応は確認候補,,
 3d1ff422db60135344bc4989,"Ooh, ahh, ooh! I hear you! Hello, baby!",baseline,listen,True,True,英文と素材の意味対応は確認候補,,
-d4ee946e809b603ac7142b57,"Sweet little baby! Love, love, love! Big hugs!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+d4ee946e809b603ac7142b57,"Sweet little baby! Love, love, love! Big hugs!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 bb6e35b6757726aec787f083,"Hi there, baby! Peekaboo! Hello again!",animation,peekaboo,False,False,英文と素材の意味対応は確認候補,,
 e93e92381ec781423539c271,"Hello, little one! Can you hear me? Hi there!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
 4867b5ce1f2b135623e9d7c9,"Let's make a sound! Ba, ba, ba! Your turn!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
@@ -19,16 +19,16 @@ e93e92381ec781423539c271,"Hello, little one! Can you hear me? Hi there!",baselin
 3629c9363835572deaca06a6,"Wave hello, baby! Hi, hi, hi! My hand says hello!",animation,hand-wave,False,False,英文と素材の意味対応は確認候補,,
 689ce600c72ba6f8cf31bd6d,"Look at my hands! Let's wave hello. Hi, hi!",animation,hand-wave,False,False,英文と素材の意味対応は確認候補,,
 da0e6777ac2c64f3f4282965,"Let's say good morning! Hello, sweet baby. Hi there!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
-841ecc2e590ce5e497112cc9,My sweet baby! I'm right here! Big hugs!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+841ecc2e590ce5e497112cc9,My sweet baby! I'm right here! Big hugs!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 4ceff7aa067609d934957b68,"Can you see me? Here I am! Hello, hello!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
 d07332368ea75411d0f32a3f,"Ooh, ahh, ooh! Talk to me! I'm listening!",baseline,listen,True,True,英文と素材の意味対応は確認候補,,
 0e57fdc0025d831a7cac4255,"Do you hear that? That's my voice! Hello, baby!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
-617ad2ed7f8a8a283a6e9762,"Baby, hello there! I'm here with you. Big hugs!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+617ad2ed7f8a8a283a6e9762,"Baby, hello there! I'm here with you. Big hugs!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 df2eadb91b050319f6ed3bab,"Baby, my sweetheart! You're so loved. Hello, baby!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
 969ff308e96b2235d2a7d064,"Baby, look here! It's me again. Hello there!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
 0cb5d3ccf57c5c1999988c81,"Baby, hello, hello! Ooh, ahh, ooh! Your turn!",baseline,listen,True,True,英文と素材の意味対応は確認候補,,
 9d19628c8e22a9c694e82402,"Baby, my little star! I love you. Hello, sweetheart!",baseline,smile,True,True,英文と素材の意味対応は確認候補,,
-7dcd544685fe9bcb94936321,"Baby, hello again! I'm happy you're here. Big hugs!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+7dcd544685fe9bcb94936321,"Baby, hello again! I'm happy you're here. Big hugs!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 86810815b182b23c190e6e76,"Bath time is here! Is the water warm? Splash, splash!",animation,water-splash,False,False,英文と素材の意味対応は確認候補,bath,水しぶきを明示しており、浴槽の水しぶき動画へ。
 18500167468dc4c1daffe399,"Let's wash your hands. One, then the other. All clean!",motionCandidate,hand-wash,True,False,英文と素材の意味対応は確認候補,hands-open-v2,洗う手を明示。完全な手は変形せず、水滴と泡だけを動かす候補。
 95bd3ceda0e2708860103ff6,"Your little toes! Let's wash them gently. Splash, splash!",animation,water-splash,False,False,英文と素材の意味対応は確認候補,,
@@ -77,14 +77,14 @@ a0b7e73afe5fba916506aa8b,Time to get dressed. Arms through the sleeves. All read
 bb61945af7e957e9d2b62ca2,"Look, your little shirt! One arm in! Let's get dressed!",animation,dress-sleeves,False,False,英文と素材の意味対応は確認候補,,
 856db9b45390556f1aa757c4,"Baby, clothes on! One arm in. Looking lovely!",animation,dress-sleeves,False,False,英文と素材の意味対応は確認候補,,
 3f5ae7cc73aa89448366e1af,"Baby, let's get dressed. Socks on next. All ready!",animation,dress-sleeves,False,False,英文と素材の意味対応は確認候補,,
-8abfed65026892685f84d5e3,"Come here, baby. Let's have a cuddle. Big hugs!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-6234dfb2a781205a9da059b1,Up you go! Into my arms. I've got you!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-e9421474034e04f107374eda,A little cuddle? I'll hold you close. So cozy!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,family-care,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。
-fa8f09f79d7e358aa56e92ea,Let's have a hug. Close to my heart. I love you!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-a33929c5fa44ba2fc60e664d,"Here are my arms. Come close, sweetheart. Big hug!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-e4e518cf609caacd335408ec,Hug time! You're warm and cozy. I'm here!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-b898d4f278dbb4316cf0dd0a,"Baby, come here! A big warm hug. I love you!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-19218edc4c94e39c98224251,"Baby, cuddle time! I'll hold you close. So cozy!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+8abfed65026892685f84d5e3,"Come here, baby. Let's have a cuddle. Big hugs!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+6234dfb2a781205a9da059b1,Up you go! Into my arms. I've got you!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+e9421474034e04f107374eda,A little cuddle? I'll hold you close. So cozy!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,family-care,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+fa8f09f79d7e358aa56e92ea,Let's have a hug. Close to my heart. I love you!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+a33929c5fa44ba2fc60e664d,"Here are my arms. Come close, sweetheart. Big hug!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+e4e518cf609caacd335408ec,Hug time! You're warm and cozy. I'm here!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+b898d4f278dbb4316cf0dd0a,"Baby, come here! A big warm hug. I love you!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+19218edc4c94e39c98224251,"Baby, cuddle time! I'll hold you close. So cozy!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 f0ae0c3498da5e527bcbca46,"Look at your hands! Ten tiny fingers. Wiggle, wiggle!",still,hands-open-v2,True,True,英文と素材の意味対応は確認候補,hands-open-v2,指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。
 5143002cab24ea6bb5e75da1,Open your hands. Close them again. Good job!,still,hands-open-v2,True,True,英文と素材の意味対応は確認候補,hands-open-v2,指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。
 fd5785f9a389b7dd12e4f915,"Those little fingers! Can you wiggle them? Wiggle, wiggle!",still,hands-open-v2,True,True,英文と素材の意味対応は確認候補,hands-open-v2,指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。
@@ -127,12 +127,12 @@ b550f951466beb55838f2e29,You're making sounds! I love your voice. Talk to me!,ba
 5ba6f92e09fb87de252fd6ff,"Baby, your voice! I love hearing it. Hello, sweetheart!",baseline,listen,True,True,英文と素材の意味対応は確認候補,,
 0a0337c04b64cd96fbfd212a,How's your tummy? Do you feel full? I'm here!,still,tummy,True,True,英文と素材の意味対応は確認候補,tummy,腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。
 dadc8b3ed4c8a4e2350b614c,Let's pat your back. Maybe a little burp. There!,animation,care-burp,False,False,英文と素材の意味対応は確認候補,tummy,背中への手の動きを明示。腹部をさする旧案ではなく、縦抱きと背中の既存動画へ。
-eca77a8bb00ad1769cce172a,Your little tummy! Let's have a cuddle. So cozy!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+eca77a8bb00ad1769cce172a,Your little tummy! Let's have a cuddle. So cozy!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 080e86be732c317b36d8e5a9,Is that a burp? Let's take it slowly. I'm right here.,still,tummy,True,True,英文と素材の意味対応は確認候補,tummy,腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。
-3682666f95fe7c663b33b9b7,Let's get comfortable. I'll hold you close. Big hugs!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+3682666f95fe7c663b33b9b7,Let's get comfortable. I'll hold you close. Big hugs!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 4219ad5e38b3d583ad7ac748,Full tummy? We can rest now. I'm right here.,motionCandidate,sleep-stars,True,False,英文と素材の意味対応は確認候補,sleep,寝床を動かさず、外側の星だけがまたたく休息の場面候補。
-e99dd69a43e4166d7511487f,"Baby, little tummy! Let's get comfortable. Big hugs!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-7bfd1133109b3798c5f09ff1,"Baby, feeling full? I'll hold you close. So cozy!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,tummy,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。
+e99dd69a43e4166d7511487f,"Baby, little tummy! Let's get comfortable. Big hugs!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+7bfd1133109b3798c5f09ff1,"Baby, feeling full? I'll hold you close. So cozy!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,tummy,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 1ad230c6601b56e71cf44524,Let's play together! What should we try? Peekaboo!,animation,peekaboo,False,False,英文と素材の意味対応は確認候補,toy,いないいないばあへの誘い・質問と、隠して見せる動作を対応。
 1e21aaa4527a14a7e3d81253,Here's your toy! Can you see it? Look here!,motionCandidate,toy-rattle,True,False,英文と素材の意味対応は確認候補,toy,おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。
 670e31d946b84ea97a94a841,"Ready to play? Peek, peek, peek! Let's have fun!",animation,peekaboo,False,False,英文と素材の意味対応は確認候補,toy,いないいないばあへの誘い・質問と、隠して見せる動作を対応。
@@ -170,7 +170,7 @@ bd83c0fdbbd05daf58865b95,Let's try some food. One little bite. How is it?,animat
 553c5341d9a8884d1517644d,Ready to eat? A little spoonful. There you go!,animation,spoon,False,False,英文と素材の意味対応は確認候補,meal,食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。
 9e10d4e9dabd0c28a1e87de6,Do you like it? Want another bite? No need to hurry.,animation,spoon,False,False,英文と素材の意味対応は確認候補,meal,食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。
 6217aee05050a3c79153ed6a,"Here's a little bite. Let's taste it. Mmm, yummy!",animation,spoon,False,False,英文と素材の意味対応は確認候補,,
-640456810edfaa75a98e7859,"All done eating? Wipe, wipe, wipe! Nice and clean!",still,family-care,True,True,英文と素材の意味対応は確認候補,family-care,完了した場面。交換・入浴・着衣等をループで再開しない。
+640456810edfaa75a98e7859,"All done eating? Wipe, wipe, wipe! Nice and clean!",still,hug-face-v1,True,True,英文と素材の意味対応は確認候補,family-care,完了した場面。交換・入浴・着衣等をループで再開しない。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 ed91fec3cd2a2319a90d1373,"Baby, food time! One little spoonful. Is it yummy?",animation,spoon,False,False,英文と素材の意味対応は確認候補,meal,食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。
 e224ffd60c3c5a2737247108,"Baby, let's eat! Here's your spoon. Open wide!",animation,spoon,False,False,英文と素材の意味対応は確認候補,,
 14c1679b7f926f8846393076,Let's read a book! Look at the pictures. What's that?,animation,page,False,False,英文と素材の意味対応は確認候補,book,絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。
@@ -332,7 +332,7 @@ d369275c532087fffbb826d6,Milk is all done! You're finished now. Let's rest toget
 80a75aa2834b98cb37dc8bd6,We're all done drinking! That's all done. We can rest now.,animation,sip,False,False,英文と素材の意味対応は確認候補,,
 e97b7808913a871cb5493866,The last sip's done! Your tummy can rest. Time for cuddles.,animation,sip,False,False,英文と素材の意味対応は確認候補,milk,ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。
 7bba2e8cbb20ddb4f2f7f767,Milk time is finished. Put the bottle down. Let's get cozy.,still,milk,True,True,英文と素材の意味対応は確認候補,milk,完了した場面。交換・入浴・着衣等をループで再開しない。
-ff7e86d413271f0a5b577611,That was your milk. We're all done now. Here comes a cuddle.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+ff7e86d413271f0a5b577611,That was your milk. We're all done now. Here comes a cuddle.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 e89f0b2246be9a1b91816e02,No more milk now. What a lovely break. Let's rest a while.,still,sleep,True,True,英文と素材の意味対応は確認候補,sleep,中断・待機・否定。動作中の動画を流さない。
 09c6033a3a401122c8e46411,Your bottle is finished. Let's relax together. Snuggle up with me.,still,milk,True,True,英文と素材の意味対応は確認候補,milk,完了した場面。交換・入浴・着衣等をループで再開しない。
 ebfc39c0d289dbd8f8d98c61,Milk all done? One more sip? Let's have a look!,baseline,ask,True,True,英文と素材の意味対応は確認候補,,
@@ -361,7 +361,7 @@ ea4e775a9b45aa75af45f115,Let's get you clean. This won't take long. We'll do it 
 95275440c65882c9a92308d8,That change is complete! Let's get you dressed. There you go.,animation,dress-sleeves,False,False,英文と素材の意味対応は確認候補,,
 07dd64a81fb9e660f20c2149,Fresh and dry now! We put things away. Time for play.,still,diaper-v2,True,True,英文と素材の意味対応は確認候補,diaper-v2,完了した場面。交換・入浴・着衣等をループで再開しない。
 63d6e56768b5fa39b5970018,"Everything's nice and clean. Your diaper is changed. All done, sweetheart.",still,diaper-v2,True,True,英文と素材の意味対応は確認候補,diaper-v2,完了した場面。交換・入浴・着衣等をループで再開しない。
-970966f43db9f32f4697afc6,Finished the diaper change! Your little legs relax. Back to cuddles.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+970966f43db9f32f4697afc6,Finished the diaper change! Your little legs relax. Back to cuddles.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 cc29a06c2562172a6e623911,Diaper all done? Let's have a look. All clean now?,baseline,ask,True,True,英文と素材の意味対応は確認候補,,
 0314b2ba38ad2d5a9beeabf3,Fresh diaper on? Wiggle those toes! All done now?,baseline,ask,True,True,英文と素材の意味対応は確認候補,,
 704ccadb33427fc94f9c45dd,"Clean diaper now? Let's have a look! All done, baby?",baseline,ask,True,True,英文と素材の意味対応は確認候補,,
@@ -373,12 +373,12 @@ dc22e16491df119bb91a1a8c,Fresh diaper on? Ready for clothes? One arm first?,base
 1bff3a04200975303459facb,It's diaper time. I'll be gentle. I'm here with you.,animation,change-diaper-v2,False,False,英文と素材の意味対応は確認候補,diaper-v2,新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。
 8a4d06c76ef1426ade78a35d,Here's your fresh diaper. I'll change you gently. You'll feel cozy.,animation,change-diaper-exchange,False,False,英文と素材の意味対応は確認候補,diaper-v2,交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。
 f0aa5499a01eb25c68fe663d,A little diaper change. We have time. I'm here with you.,animation,change-diaper-exchange,False,False,英文と素材の意味対応は確認候補,diaper-v2,交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。
-07c30a1be361f3992b9a244b,"Want a little cuddle? Come here, sweetheart. I'm right here.",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,family-care,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。
-2f39000e276145abf7575072,"Want a cuddle? Arms open wide! Come here, sweetheart!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,family-care,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。
-e0943b0cd9fdb8c829dbe88b,"A gentle little hug. Would you like one? Come close, sweetheart.",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,family-care,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。
-e56be9fc87b4f9a04b531680,Come for a cuddle. I'm right here. I've got you.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-5c8ea669b061775049a6d052,Time for a cuddle. I'll stay close. You're not alone.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-078811c441700b1894e6d0bb,Here comes a hug. We have time. I'm here with you.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+07c30a1be361f3992b9a244b,"Want a little cuddle? Come here, sweetheart. I'm right here.",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,family-care,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+2f39000e276145abf7575072,"Want a cuddle? Arms open wide! Come here, sweetheart!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,family-care,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+e0943b0cd9fdb8c829dbe88b,"A gentle little hug. Would you like one? Come close, sweetheart.",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,family-care,抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+e56be9fc87b4f9a04b531680,Come for a cuddle. I'm right here. I've got you.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+5c8ea669b061775049a6d052,Time for a cuddle. I'll stay close. You're not alone.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+078811c441700b1894e6d0bb,Here comes a hug. We have time. I'm here with you.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 6ca5be6d1ede3a3ae3532a73,I hear you crying. I'm right here. Come for a cuddle.,background,calm,True,False,英文と素材の意味対応は確認候補,,
 c0f39bdc3bfc18c5b04dead1,I hear your crying. Let me hold you. My arms are warm.,background,calm,True,False,英文と素材の意味対応は確認候補,,
 fb0b9a04be1e1713a3b3d2ba,"I hear you, baby! Come close, sweetheart! I'll hold you.",background,calm,True,False,英文と素材の意味対応は確認候補,,
@@ -644,15 +644,15 @@ a4f1ed0202ac79169a25e2fd,"One little sip! Sip, sip, sip! Good job, baby!",still,
 a44c1b426af7051f4e244e51,That change is over. Let's get cozy. I'm with you.,still,diaper-v2,True,True,英文と素材の意味対応は確認候補,diaper-v2,完了した場面。交換・入浴・着衣等をループで再開しない。
 62edcc5de206d840c6e2dd28,Diaper time is over. Let's get cozy. I'm here with you.,still,diaper-v2,True,True,英文と素材の意味対応は確認候補,diaper-v2,完了した場面。交換・入浴・着衣等をループで再開しない。
 ce5218ab1e5a8bb0ee56c52e,A fresh diaper now. We can get cozy. I'll stay with you.,animation,change-diaper-v2,False,False,英文と素材の意味対応は確認候補,diaper-v2,新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。
-f4b7e322db527f08f98bbaf9,"I love this cuddle. You're my treasure. Stay close, little one.",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-68ee524ad2dbb9499fbf8008,"Cuddle, cuddle! My sweet baby! I love you!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-5304432113005b2d49af9c2a,A cuddle with you! You're warm and cozy. I love you!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-2de64ab26a5a42257bdc10c9,You've done a lot. Come for a cuddle. I'll hold you close.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-035e0180611f86b3ac108beb,"Come for a cuddle. You look tired, sweetheart. Let's rest together.",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-ee124dce4e23fd4981039063,A gentle little cuddle. You did a lot. I'll stay with you.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-65f6c57a6074349eedae3918,"You reached for hugs! How lovely, little one. Well done.",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-29b827e965bc097e0cd8a948,Such a warm cuddle! You're snuggled up close. I love you.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-9a4d264786a71c78261fc5ea,"Cuddle time! Snuggle, snuggle, snuggle! I love you!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+f4b7e322db527f08f98bbaf9,"I love this cuddle. You're my treasure. Stay close, little one.",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+68ee524ad2dbb9499fbf8008,"Cuddle, cuddle! My sweet baby! I love you!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+5304432113005b2d49af9c2a,A cuddle with you! You're warm and cozy. I love you!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+2de64ab26a5a42257bdc10c9,You've done a lot. Come for a cuddle. I'll hold you close.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+035e0180611f86b3ac108beb,"Come for a cuddle. You look tired, sweetheart. Let's rest together.",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+ee124dce4e23fd4981039063,A gentle little cuddle. You did a lot. I'll stay with you.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+65f6c57a6074349eedae3918,"You reached for hugs! How lovely, little one. Well done.",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+29b827e965bc097e0cd8a948,Such a warm cuddle! You're snuggled up close. I love you.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+9a4d264786a71c78261fc5ea,"Cuddle time! Snuggle, snuggle, snuggle! I love you!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 0b4cd10aceca0f9d92c41a93,Bath time is done! You're all clean now. Let's get cozy!,still,bath,True,True,英文と素材の意味対応は確認候補,bath,完了した場面。交換・入浴・着衣等をループで再開しない。
 eb8f491c7105d272df5ff3de,All done with baths. That was a lot. Let's rest together.,still,sleep,True,True,英文と素材の意味対応は確認候補,sleep,完了した場面。交換・入浴・着衣等をループで再開しない。
 ee04809c5144c28402ac37e0,Your bath is finished. Let's get cozy now. I'll stay with you.,still,bath,True,True,英文と素材の意味対応は確認候補,bath,完了した場面。交換・入浴・着衣等をループで再開しない。
@@ -730,8 +730,8 @@ bc43d6471d3e26750a3dcf1d,Playtime is over now. Let's take a break. That was love
 d99a9638e4a5d281b56ec816,"Milk is here! Sip, sip, sip! I love you!",animation,sip,False,False,英文と素材の意味対応は確認候補,,
 9abd18d41cbf0bc2eaff55ca,"Milk time, sweetheart! Sweet little eyes! I love you!",animation,sip,False,False,英文と素材の意味対応は確認候補,milk,ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。
 7be979a0b9c68187ee39e07a,Look at your cheeks! So soft and sweet. What a lovely moment.,animation,sip,False,False,英文と素材の意味対応は確認候補,milk,ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。
-61f27ec3baa41878ba0fb24b,A cuddle after milk. My happy little one. You're so dear.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-c610a530508639ac5c6993ea,Milk and gentle cuddles. Your smile warms me. What a sweet day.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+61f27ec3baa41878ba0fb24b,A cuddle after milk. My happy little one. You're so dear.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+c610a530508639ac5c6993ea,Milk and gentle cuddles. Your smile warms me. What a sweet day.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 26a21ab3ed1fe384ed368632,"Hello, precious little one. That milk was nice. I adore you.",animation,sip,False,False,英文と素材の意味対応は確認候補,milk,ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。
 c2fa5b86000bb98e69ab55b2,Here comes your milk. Let's get comfy. Ready for a sip?,animation,sip,False,False,英文と素材の意味対応は確認候補,milk,ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。
 0f01a647256a83b39a748b86,Milk time starts now. You're all cozy. Here we go!,animation,sip,False,False,英文と素材の意味対応は確認候補,milk,ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。
@@ -837,11 +837,11 @@ a70c513e1263633a42f38fe0,"Diaper change! Wipe, wipe! All clean.",animation,care-
 f46e0d6aa1145df9819eadfa,Getting dressed! Nice and easy. All ready.,animation,dress-sleeves,False,False,英文と素材の意味対応は確認候補,,
 ca533abea3a863edcd91f0a7,Clothes time! Arm goes in! All cozy.,animation,dress-sleeves,False,False,英文と素材の意味対応は確認候補,clothes,袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。
 c57f571482ea1af658a50689,"One arm, one leg. All ready! Ready!",animation,dress-sleeves,False,False,英文と素材の意味対応は確認候補,clothes,袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。
-2b871de566017d9976cfde17,"Big cuddle! Up, up! Nice and close.",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-eedddeb1803d376dfcf6d9c4,Cuddle time! Nice and close. Here we go!,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-1ee1ac432fa3ee090233536b,Up we go! Big hug. So cozy.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-5283d6eb3420b6907da71891,Big hug! Nice and close. Right here.,animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
-7ea58c812761613c47cd6f36,"Cuddle, cuddle! Warm and cozy. Big hug!",animation,hug-arms,False,False,英文と素材の意味対応は確認候補,,
+2b871de566017d9976cfde17,"Big cuddle! Up, up! Nice and close.",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+eedddeb1803d376dfcf6d9c4,Cuddle time! Nice and close. Here we go!,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+1ee1ac432fa3ee090233536b,Up we go! Big hug. So cozy.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+5283d6eb3420b6907da71891,Big hug! Nice and close. Right here.,motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
+7ea58c812761613c47cd6f36,"Cuddle, cuddle! Warm and cozy. Big hug!",motionCandidate,hug-face-cuddle,True,False,英文と素材の意味対応は確認候補,, 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 565d68e752ef1208d6cddfce,"Tiny hands! Squeeze, squeeze! Wiggle, wiggle!",still,hands-open-v2,True,True,英文と素材の意味対応は確認候補,hands-open-v2,指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。
 ba3592da323685a8933efd09,"Little hands! Open, close. Wiggle, wiggle!",still,hands-open-v2,True,True,英文と素材の意味対応は確認候補,hands-open-v2,指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。
 23ad056f58f88e74bcc67346,"Tiny fingers! Squeeze, squeeze! Little hands!",still,hands-open-v2,True,True,英文と素材の意味対応は確認候補,hands-open-v2,指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。
@@ -871,7 +871,7 @@ f5031029fcade2c5a9595461,Little tummy. Nice and easy. Take your time.,still,tumm
 e2567a3222a51bb98ad88454,Little tummy. Nice and gentle. Here we go.,still,tummy,True,True,英文と素材の意味対応は確認候補,tummy,腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。
 fc4db4558bacd6fd96bfe70a,Little sips. Happy tummy. There you go!,still,cup,True,True,英文と素材の意味対応は確認候補,cup,コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。
 7a651685554d3773b70d5398,"Easy, easy. Little tummy. Right here.",still,tummy,True,True,英文と素材の意味対応は確認候補,tummy,腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。
-4f6c4f6387f785b4137eb787,"Burp, burp! Little tummy. Nice and easy.",still,family-care,True,True,英文と素材の意味対応は確認候補,family-care,腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。
+4f6c4f6387f785b4137eb787,"Burp, burp! Little tummy. Nice and easy.",still,hug-face-v1,True,True,英文と素材の意味対応は確認候補,family-care,腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。
 5280fd6732a73a6baf0c806a,"Play time! Look, look! Here we go!",motionCandidate,toy-rattle,True,False,英文と素材の意味対応は確認候補,toy,おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。
 f4c5282aec681cf082945bec,Let's play! Look with me. Here we go!,motionCandidate,toy-rattle,True,False,英文と素材の意味対応は確認候補,toy,おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。
 1fb589d2fd8de4a20622de69,"Play, play! Look, look! So much fun!",motionCandidate,toy-rattle,True,False,英文と素材の意味対応は確認候補,toy,おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。

@@ -8,12 +8,12 @@
   "duplicateReplySets": 1,
   "metrics": {
     "animation": {
-      "count": 408,
-      "percent": 37.4
+      "count": 366,
+      "percent": 33.55
     },
     "motionCandidate": {
-      "count": 141,
-      "percent": 12.92
+      "count": 183,
+      "percent": 16.77
     },
     "background": {
       "count": 123,
@@ -29,8 +29,8 @@
     }
   },
   "noObjectAnimation": {
-    "count": 683,
-    "percent": 62.6
+    "count": 725,
+    "percent": 66.45
   },
   "noAddedAnimation": {
     "count": 419,
@@ -42,8 +42,8 @@
   },
   "missingBinding": 0,
   "approvedMovies": 20,
-  "usedApprovedMovies": 19,
-  "motionCandidateCount": 6,
+  "usedApprovedMovies": 18,
+  "motionCandidateCount": 7,
   "staticConversion": {
     "before": 520,
     "converted": 375,
@@ -75,7 +75,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/sip.webp",
       "poster": "assets/visual-cue/artwork/posters/sip.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "sleep-stars",
@@ -86,18 +88,22 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/motion-variants/sleep-stars.svg",
       "poster": "assets/visual-cue/motion-variants/sleep-stars-poster.svg",
-      "baseAssetId": "sleep"
+      "baseAssetId": "sleep",
+      "baseImage": "assets/visual-cue/artwork/stills/sleep.webp",
+      "runtimeExclusionReason": null
     },
     {
-      "id": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "id": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "count": 42,
       "percent": 3.85,
-      "status": "accepted",
+      "status": "motion-candidate",
       "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/hug-arms.webp",
-      "poster": "assets/visual-cue/artwork/posters/hug-arms.webp",
-      "baseAssetId": null
+      "image": "assets/visual-cue/motion-variants/hug-face-cuddle.webp",
+      "poster": "assets/visual-cue/motion-variants/hug-face-cuddle-poster.webp",
+      "baseAssetId": "hug-face-v1",
+      "baseImage": "assets/visual-cue/prototypes/hug-face/hug-face-v1.png",
+      "runtimeExclusionReason": null
     },
     {
       "id": "page",
@@ -108,7 +114,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/page.webp",
       "poster": "assets/visual-cue/artwork/posters/page.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "notes",
@@ -119,7 +127,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/notes.webp",
       "poster": "assets/visual-cue/artwork/posters/notes.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "spoon",
@@ -130,7 +140,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/spoon.webp",
       "poster": "assets/visual-cue/artwork/posters/spoon.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "toy-rattle",
@@ -141,7 +153,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/motion-variants/toy-rattle.svg",
       "poster": "assets/visual-cue/motion-variants/toy-rattle-poster.svg",
-      "baseAssetId": "toy"
+      "baseAssetId": "toy",
+      "baseImage": "assets/visual-cue/artwork/stills/toy.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "sun-rays",
@@ -152,7 +166,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/motion-variants/sun-rays.svg",
       "poster": "assets/visual-cue/motion-variants/sun-rays-poster.svg",
-      "baseAssetId": "sun"
+      "baseAssetId": "sun",
+      "baseImage": "assets/visual-cue/artwork/stills/sun.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "water-rain",
@@ -163,7 +179,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/water-rain.webp",
       "poster": "assets/visual-cue/artwork/posters/water-rain.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "outdoor-leaves",
@@ -174,7 +192,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/motion-variants/outdoor-leaves.svg",
       "poster": "assets/visual-cue/motion-variants/outdoor-leaves-poster.svg",
-      "baseAssetId": "outdoor"
+      "baseAssetId": "outdoor",
+      "baseImage": "assets/visual-cue/artwork/stills/outdoor.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "dress-sleeves",
@@ -185,7 +205,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/dress-sleeves.webp",
       "poster": "assets/visual-cue/artwork/posters/dress-sleeves.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "kick",
@@ -196,7 +218,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/kick.webp",
       "poster": "assets/visual-cue/artwork/posters/kick.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "water-splash",
@@ -207,7 +231,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/water-splash.webp",
       "poster": "assets/visual-cue/artwork/posters/water-splash.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "water-shower",
@@ -218,7 +244,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/water-shower.webp",
       "poster": "assets/visual-cue/artwork/posters/water-shower.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "change-diaper-v2",
@@ -229,7 +257,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/change-diaper-v2.webp",
       "poster": "assets/visual-cue/artwork/posters/change-diaper-v2.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "change-diaper-exchange",
@@ -240,7 +270,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/change-diaper-exchange.webp",
       "poster": "assets/visual-cue/artwork/posters/change-diaper-exchange.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "hand-wave",
@@ -251,7 +283,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/hand-wave.webp",
       "poster": "assets/visual-cue/artwork/posters/hand-wave.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "peekaboo",
@@ -262,7 +296,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/peekaboo.webp",
       "poster": "assets/visual-cue/artwork/posters/peekaboo.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "hand-clap",
@@ -273,7 +309,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/hand-clap.webp",
       "poster": "assets/visual-cue/artwork/posters/hand-clap.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "care-wipe",
@@ -284,7 +322,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/care-wipe.webp",
       "poster": "assets/visual-cue/artwork/posters/care-wipe.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "toy-roll",
@@ -295,7 +335,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/motion-variants/toy-roll.svg",
       "poster": "assets/visual-cue/motion-variants/toy-roll-poster.svg",
-      "baseAssetId": "toy"
+      "baseAssetId": "toy",
+      "baseImage": "assets/visual-cue/artwork/stills/toy.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "change-zipper",
@@ -306,7 +348,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/change-zipper.webp",
       "poster": "assets/visual-cue/artwork/posters/change-zipper.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "hand-wash",
@@ -317,7 +361,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/motion-variants/hand-wash.svg",
       "poster": "assets/visual-cue/motion-variants/hand-wash-poster.svg",
-      "baseAssetId": "hands-open-v2"
+      "baseAssetId": "hands-open-v2",
+      "baseImage": "assets/visual-cue/artwork/stills/hands-open-v2.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "care-burp",
@@ -328,7 +374,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/care-burp.webp",
       "poster": "assets/visual-cue/artwork/posters/care-burp.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "change-clothes",
@@ -339,7 +387,9 @@
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/change-clothes.webp",
       "poster": "assets/visual-cue/artwork/posters/change-clothes.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     },
     {
       "id": "cup-sip",
@@ -350,7 +400,22 @@
       "runtimeEligible": false,
       "image": "assets/visual-cue/artwork/animations/cup-sip.webp",
       "poster": "assets/visual-cue/artwork/posters/cup-sip.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "hug-arms",
+      "label": "抱っこ：支えたまま腕を寄せる",
+      "count": 0,
+      "percent": 0.0,
+      "status": "accepted",
+      "runtimeEligible": false,
+      "image": "assets/visual-cue/artwork/animations/hug-arms.webp",
+      "poster": "assets/visual-cue/artwork/posters/hug-arms.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": "replaced-by-hug-face"
     },
     {
       "id": "wake-daylight",
@@ -361,15 +426,23 @@
       "runtimeEligible": false,
       "image": "assets/visual-cue/artwork/animations/wake-daylight.webp",
       "poster": "assets/visual-cue/artwork/posters/wake-daylight.webp",
-      "baseAssetId": null
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
     }
   ],
+  "faceReplacement": {
+    "animation": 42,
+    "still": 2
+  },
   "sourceSHA256": {
     "shared/visual-cue-phrases.json": "41509cd2442209bcde77eae88c28c74a7b8776659d1f83149ed54aca131b67f1",
-    "shared/visual-cue-runtime-review.json": "925bc550faa4f8649aa1532a1680ee13e9b48f719eb85f5abf9bbe307635e5a5",
-    "src/visual-cue-catalog.js": "367343a06aee6a5b4bb9094df67e26280158fd6aa9f3f47a75dae3f0fbf3c863",
+    "shared/visual-cue-runtime-review.json": "2e6dce3ccea9758a21b9e451abe8a7b4ab73030ac003857aeba7475208eb771c",
+    "src/visual-cue-catalog.js": "a6086306a086af474fab07880a2719c30f2ed42273f078c3018e24d55cd89520",
     "assets/visual-cue/motion-variants/manifest.json": "30dc784f782a65022b96fdb518c88b684f29ed6f56c4f00f4d121267dccdcb0d",
-    "shared/visual-cue-static-animation-overrides.json": "ee3b6776ef4d847db1e700ee524c7c29d6017d2a2424b0856898340fcd54822f"
+    "shared/visual-cue-static-animation-overrides.json": "ee3b6776ef4d847db1e700ee524c7c29d6017d2a2424b0856898340fcd54822f",
+    "assets/visual-cue/prototypes/hug-face/manifest.json": "864d32db133eaa6e33c040fd9a6313387058c095837b5421743817e2268b7d91",
+    "shared/visual-cue-hug-face-overrides.json": "255b9c2c6afaa4d17b36da4969991ea2adc6ce9afcdca41bf2bb2d989bad6ddb"
   },
   "voiceBankReference": {
     "total": 1105,
@@ -467,7 +540,7 @@
     "意味確認済みは元の21セット。新規割当や背景2案を承認済みと扱わない。",
     "通常Emmaのまばたき・口パクは追加アニメーションの網羅数に含めない。",
     "候補背景を含める場合と、採用済み物体動画だけの場合を別集計。",
-    "承認済み静止原画から作った6つの部品別SVG動作は新規候補であり、素材採用済み動画20点に加算しない。",
+    "承認済み静止原画から作ったSVG動作6種と顔あり抱っこ動画1種は新規候補であり、採用済み動画20点に加算しない。顔あり静止原画を加え、採用済み素材は43点。",
     "コップ動画は再確認待ち、起床動画は意味対応未完成のため実行時対象外。"
   ]
 }

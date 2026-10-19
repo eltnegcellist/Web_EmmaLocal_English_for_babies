@@ -1,0 +1,17 @@
+{
+  "frameCount": 40,
+  "frameMs": 80,
+  "loopMs": 3200,
+  "sourceSHA256": "b454ed38252bf24b9c33c7df9c99a2ad476b316539e4588db046bef18beb3c78",
+  "movingParts": [
+    "connected forearm and hand across child back",
+    "connected lower supporting forearm and hand"
+  ],
+  "fixedParts": [
+    "both faces",
+    "heads and necks",
+    "shoulders",
+    "upper torso"
+  ],
+  "method": "SVG local displacement rendered in Chromium; no whole-image sway"
+}

@@ -58,11 +58,11 @@
       "pass": true
     },
     {
-      "name": "count-hug-arms",
+      "name": "count-hug-face-cuddle",
       "pass": true
     },
     {
-      "name": "actual-worker-audio-hug-arms",
+      "name": "actual-worker-audio-hug-face-cuddle",
       "pass": true
     },
     {
@@ -70,7 +70,11 @@
       "pass": true
     },
     {
-      "name": "stop-clears-hug-arms",
+      "name": "static-poster-hug-face-cuddle",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-hug-face-cuddle",
       "pass": true
     },
     {
@@ -358,6 +362,14 @@
       "pass": true
     },
     {
+      "name": "two-resting-hug-posters",
+      "pass": true
+    },
+    {
+      "name": "resting-hug-does-not-animate",
+      "pass": true
+    },
+    {
       "name": "hearts-original-face-visible",
       "pass": true
     },
@@ -402,11 +414,15 @@
       "pass": true
     },
     {
-      "name": "only-wake-has-no-approved-assignment",
+      "name": "wake-held-and-old-hug-replaced",
       "pass": true
     },
     {
-      "name": "six-before-after-motion-previews",
+      "name": "seven-before-after-motion-previews",
+      "pass": true
+    },
+    {
+      "name": "all-motion-comparison-images-load",
       "pass": true
     },
     {
@@ -431,6 +447,22 @@
     },
     {
       "name": "coverage-link-selects-kick",
+      "pass": true
+    },
+    {
+      "name": "face-comparison-delivers-movie",
+      "pass": true
+    },
+    {
+      "name": "face-comparison-can-pause",
+      "pass": true
+    },
+    {
+      "name": "face-comparison-reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "face-comparison-mobile-no-overflow",
       "pass": true
     },
     {

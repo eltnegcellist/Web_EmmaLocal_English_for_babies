@@ -10,12 +10,12 @@
     "duplicateReplySets": 1,
     "metrics": {
       "animation": {
-        "count": 408,
-        "percent": 37.4
+        "count": 366,
+        "percent": 33.55
       },
       "motionCandidate": {
-        "count": 141,
-        "percent": 12.92
+        "count": 183,
+        "percent": 16.77
       },
       "background": {
         "count": 123,
@@ -31,8 +31,8 @@
       }
     },
     "noObjectAnimation": {
-      "count": 683,
-      "percent": 62.6
+      "count": 725,
+      "percent": 66.45
     },
     "noAddedAnimation": {
       "count": 419,
@@ -44,8 +44,8 @@
     },
     "missingBinding": 0,
     "approvedMovies": 20,
-    "usedApprovedMovies": 19,
-    "motionCandidateCount": 6,
+    "usedApprovedMovies": 18,
+    "motionCandidateCount": 7,
     "staticConversion": {
       "before": 520,
       "converted": 375,
@@ -77,7 +77,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/sip.webp",
         "poster": "assets/visual-cue/artwork/posters/sip.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "sleep-stars",
@@ -88,18 +90,22 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/motion-variants/sleep-stars.svg",
         "poster": "assets/visual-cue/motion-variants/sleep-stars-poster.svg",
-        "baseAssetId": "sleep"
+        "baseAssetId": "sleep",
+        "baseImage": "assets/visual-cue/artwork/stills/sleep.webp",
+        "runtimeExclusionReason": null
       },
       {
-        "id": "hug-arms",
-        "label": "抱っこ：支えたまま腕を寄せる",
+        "id": "hug-face-cuddle",
+        "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
         "count": 42,
         "percent": 3.85,
-        "status": "accepted",
+        "status": "motion-candidate",
         "runtimeEligible": true,
-        "image": "assets/visual-cue/artwork/animations/hug-arms.webp",
-        "poster": "assets/visual-cue/artwork/posters/hug-arms.webp",
-        "baseAssetId": null
+        "image": "assets/visual-cue/motion-variants/hug-face-cuddle.webp",
+        "poster": "assets/visual-cue/motion-variants/hug-face-cuddle-poster.webp",
+        "baseAssetId": "hug-face-v1",
+        "baseImage": "assets/visual-cue/prototypes/hug-face/hug-face-v1.png",
+        "runtimeExclusionReason": null
       },
       {
         "id": "page",
@@ -110,7 +116,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/page.webp",
         "poster": "assets/visual-cue/artwork/posters/page.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "notes",
@@ -121,7 +129,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/notes.webp",
         "poster": "assets/visual-cue/artwork/posters/notes.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "spoon",
@@ -132,7 +142,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/spoon.webp",
         "poster": "assets/visual-cue/artwork/posters/spoon.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "toy-rattle",
@@ -143,7 +155,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/motion-variants/toy-rattle.svg",
         "poster": "assets/visual-cue/motion-variants/toy-rattle-poster.svg",
-        "baseAssetId": "toy"
+        "baseAssetId": "toy",
+        "baseImage": "assets/visual-cue/artwork/stills/toy.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "sun-rays",
@@ -154,7 +168,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/motion-variants/sun-rays.svg",
         "poster": "assets/visual-cue/motion-variants/sun-rays-poster.svg",
-        "baseAssetId": "sun"
+        "baseAssetId": "sun",
+        "baseImage": "assets/visual-cue/artwork/stills/sun.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "water-rain",
@@ -165,7 +181,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/water-rain.webp",
         "poster": "assets/visual-cue/artwork/posters/water-rain.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "outdoor-leaves",
@@ -176,7 +194,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/motion-variants/outdoor-leaves.svg",
         "poster": "assets/visual-cue/motion-variants/outdoor-leaves-poster.svg",
-        "baseAssetId": "outdoor"
+        "baseAssetId": "outdoor",
+        "baseImage": "assets/visual-cue/artwork/stills/outdoor.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "dress-sleeves",
@@ -187,7 +207,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/dress-sleeves.webp",
         "poster": "assets/visual-cue/artwork/posters/dress-sleeves.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "kick",
@@ -198,7 +220,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/kick.webp",
         "poster": "assets/visual-cue/artwork/posters/kick.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "water-splash",
@@ -209,7 +233,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/water-splash.webp",
         "poster": "assets/visual-cue/artwork/posters/water-splash.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "water-shower",
@@ -220,7 +246,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/water-shower.webp",
         "poster": "assets/visual-cue/artwork/posters/water-shower.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "change-diaper-v2",
@@ -231,7 +259,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/change-diaper-v2.webp",
         "poster": "assets/visual-cue/artwork/posters/change-diaper-v2.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "change-diaper-exchange",
@@ -242,7 +272,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/change-diaper-exchange.webp",
         "poster": "assets/visual-cue/artwork/posters/change-diaper-exchange.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "hand-wave",
@@ -253,7 +285,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/hand-wave.webp",
         "poster": "assets/visual-cue/artwork/posters/hand-wave.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "peekaboo",
@@ -264,7 +298,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/peekaboo.webp",
         "poster": "assets/visual-cue/artwork/posters/peekaboo.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "hand-clap",
@@ -275,7 +311,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/hand-clap.webp",
         "poster": "assets/visual-cue/artwork/posters/hand-clap.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "care-wipe",
@@ -286,7 +324,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/care-wipe.webp",
         "poster": "assets/visual-cue/artwork/posters/care-wipe.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "toy-roll",
@@ -297,7 +337,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/motion-variants/toy-roll.svg",
         "poster": "assets/visual-cue/motion-variants/toy-roll-poster.svg",
-        "baseAssetId": "toy"
+        "baseAssetId": "toy",
+        "baseImage": "assets/visual-cue/artwork/stills/toy.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "change-zipper",
@@ -308,7 +350,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/change-zipper.webp",
         "poster": "assets/visual-cue/artwork/posters/change-zipper.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "hand-wash",
@@ -319,7 +363,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/motion-variants/hand-wash.svg",
         "poster": "assets/visual-cue/motion-variants/hand-wash-poster.svg",
-        "baseAssetId": "hands-open-v2"
+        "baseAssetId": "hands-open-v2",
+        "baseImage": "assets/visual-cue/artwork/stills/hands-open-v2.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "care-burp",
@@ -330,7 +376,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/care-burp.webp",
         "poster": "assets/visual-cue/artwork/posters/care-burp.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "change-clothes",
@@ -341,7 +389,9 @@
         "runtimeEligible": true,
         "image": "assets/visual-cue/artwork/animations/change-clothes.webp",
         "poster": "assets/visual-cue/artwork/posters/change-clothes.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       },
       {
         "id": "cup-sip",
@@ -352,7 +402,22 @@
         "runtimeEligible": false,
         "image": "assets/visual-cue/artwork/animations/cup-sip.webp",
         "poster": "assets/visual-cue/artwork/posters/cup-sip.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
+      },
+      {
+        "id": "hug-arms",
+        "label": "抱っこ：支えたまま腕を寄せる",
+        "count": 0,
+        "percent": 0.0,
+        "status": "accepted",
+        "runtimeEligible": false,
+        "image": "assets/visual-cue/artwork/animations/hug-arms.webp",
+        "poster": "assets/visual-cue/artwork/posters/hug-arms.webp",
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": "replaced-by-hug-face"
       },
       {
         "id": "wake-daylight",
@@ -363,15 +428,23 @@
         "runtimeEligible": false,
         "image": "assets/visual-cue/artwork/animations/wake-daylight.webp",
         "poster": "assets/visual-cue/artwork/posters/wake-daylight.webp",
-        "baseAssetId": null
+        "baseAssetId": null,
+        "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+        "runtimeExclusionReason": null
       }
     ],
+    "faceReplacement": {
+      "animation": 42,
+      "still": 2
+    },
     "sourceSHA256": {
       "shared/visual-cue-phrases.json": "41509cd2442209bcde77eae88c28c74a7b8776659d1f83149ed54aca131b67f1",
-      "shared/visual-cue-runtime-review.json": "925bc550faa4f8649aa1532a1680ee13e9b48f719eb85f5abf9bbe307635e5a5",
-      "src/visual-cue-catalog.js": "367343a06aee6a5b4bb9094df67e26280158fd6aa9f3f47a75dae3f0fbf3c863",
+      "shared/visual-cue-runtime-review.json": "2e6dce3ccea9758a21b9e451abe8a7b4ab73030ac003857aeba7475208eb771c",
+      "src/visual-cue-catalog.js": "a6086306a086af474fab07880a2719c30f2ed42273f078c3018e24d55cd89520",
       "assets/visual-cue/motion-variants/manifest.json": "30dc784f782a65022b96fdb518c88b684f29ed6f56c4f00f4d121267dccdcb0d",
-      "shared/visual-cue-static-animation-overrides.json": "ee3b6776ef4d847db1e700ee524c7c29d6017d2a2424b0856898340fcd54822f"
+      "shared/visual-cue-static-animation-overrides.json": "ee3b6776ef4d847db1e700ee524c7c29d6017d2a2424b0856898340fcd54822f",
+      "assets/visual-cue/prototypes/hug-face/manifest.json": "864d32db133eaa6e33c040fd9a6313387058c095837b5421743817e2268b7d91",
+      "shared/visual-cue-hug-face-overrides.json": "255b9c2c6afaa4d17b36da4969991ea2adc6ce9afcdca41bf2bb2d989bad6ddb"
     },
     "voiceBankReference": {
       "total": 1105,
@@ -469,7 +542,7 @@
       "意味確認済みは元の21セット。新規割当や背景2案を承認済みと扱わない。",
       "通常Emmaのまばたき・口パクは追加アニメーションの網羅数に含めない。",
       "候補背景を含める場合と、採用済み物体動画だけの場合を別集計。",
-      "承認済み静止原画から作った6つの部品別SVG動作は新規候補であり、素材採用済み動画20点に加算しない。",
+      "承認済み静止原画から作ったSVG動作6種と顔あり抱っこ動画1種は新規候補であり、採用済み動画20点に加算しない。顔あり静止原画を加え、採用済み素材は43点。",
       "コップ動画は再確認待ち、起床動画は意味対応未完成のため実行時対象外。"
     ]
   },
@@ -528,9 +601,9 @@
     {
       "id": "c09eedcd40d1fef25acc7e9a",
       "text": "My sweet baby! Big, big hugs! Hello, sweetheart!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/c09eedcd40d1fef25acc7e9a.m4a",
       "audioSHA256": "da668997aa597f237cf51a99faaeddc1b0fec46751088f0ec706784f41280940",
       "sources": [
@@ -540,7 +613,10 @@
           "phraseId": "vc_000004"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "7f33c2d85bd941420b62b80a",
@@ -562,9 +638,9 @@
     {
       "id": "27a4bdbd121cc8579cefa1ab",
       "text": "You're my little sunshine. I love you. Big hugs!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/27a4bdbd121cc8579cefa1ab.m4a",
       "audioSHA256": "119a533698e5fa63b773c704ca66e1a76cbd9dfa8bfc0ffb73aa550505439bfc",
       "sources": [
@@ -574,7 +650,10 @@
           "phraseId": "vc_000006"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "43a9f3d0db56a56b85b9cd43",
@@ -681,9 +760,9 @@
     {
       "id": "d4ee946e809b603ac7142b57",
       "text": "Sweet little baby! Love, love, love! Big hugs!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/d4ee946e809b603ac7142b57.m4a",
       "audioSHA256": "f2503311d780738977b36a8ad4bcde08ff35fd1838e6496dbc08613ff7a5decf",
       "sources": [
@@ -693,7 +772,10 @@
           "phraseId": "vc_000013"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "bb6e35b6757726aec787f083",
@@ -817,9 +899,9 @@
     {
       "id": "841ecc2e590ce5e497112cc9",
       "text": "My sweet baby! I'm right here! Big hugs!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/841ecc2e590ce5e497112cc9.m4a",
       "audioSHA256": "bdca8db6156cc0ad8d312f373a42b41c114f309ff98c2ffccd34522c26beca2d",
       "sources": [
@@ -829,7 +911,10 @@
           "phraseId": "vc_000021"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "4ceff7aa067609d934957b68",
@@ -885,9 +970,9 @@
     {
       "id": "617ad2ed7f8a8a283a6e9762",
       "text": "Baby, hello there! I'm here with you. Big hugs!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/617ad2ed7f8a8a283a6e9762.m4a",
       "audioSHA256": "bc772e68f55f179d22cd9423a4648ca8fae4731dc7d7271f2f633d5718629357",
       "sources": [
@@ -897,7 +982,10 @@
           "phraseId": "vc_000025"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "df2eadb91b050319f6ed3bab",
@@ -970,9 +1058,9 @@
     {
       "id": "7dcd544685fe9bcb94936321",
       "text": "Baby, hello again! I'm happy you're here. Big hugs!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/7dcd544685fe9bcb94936321.m4a",
       "audioSHA256": "c1bace50e1116daee76a23563e1192c3933a4a27f5a00d11833dd188b545a973",
       "sources": [
@@ -982,7 +1070,10 @@
           "phraseId": "vc_000030"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "86810815b182b23c190e6e76",
@@ -1869,9 +1960,9 @@
     {
       "id": "8abfed65026892685f84d5e3",
       "text": "Come here, baby. Let's have a cuddle. Big hugs!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/8abfed65026892685f84d5e3.m4a",
       "audioSHA256": "3f7a00231cdd1e50ab88377c69e8c36cc7be192ce90bdefd1fb6fa0d69302468",
       "sources": [
@@ -1881,14 +1972,17 @@
           "phraseId": "vc_000079"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "6234dfb2a781205a9da059b1",
       "text": "Up you go! Into my arms. I've got you!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/6234dfb2a781205a9da059b1.m4a",
       "audioSHA256": "f410f29d8d6a8c862593981078e74ceed3c3ef216856c15b4e43e0f4c513b5e9",
       "sources": [
@@ -1898,14 +1992,17 @@
           "phraseId": "vc_000080"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "e9421474034e04f107374eda",
       "text": "A little cuddle? I'll hold you close. So cozy!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/e9421474034e04f107374eda.m4a",
       "audioSHA256": "56fa4c64c42eb0a7a11bb1cf7f42b46ede37da29140c72f5077d8f6cae7132b5",
       "sources": [
@@ -1918,14 +2015,16 @@
       "approval": "英文と素材の意味対応は確認候補",
       "previousTarget": "family-care",
       "staticConverted": true,
-      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。"
+      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms"
     },
     {
       "id": "fa8f09f79d7e358aa56e92ea",
       "text": "Let's have a hug. Close to my heart. I love you!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/fa8f09f79d7e358aa56e92ea.m4a",
       "audioSHA256": "a89b31fab743eb104be36d35ce5ec8f6992b5ee3c25d615c036577a91f351ca9",
       "sources": [
@@ -1935,14 +2034,17 @@
           "phraseId": "vc_000082"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "a33929c5fa44ba2fc60e664d",
       "text": "Here are my arms. Come close, sweetheart. Big hug!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/a33929c5fa44ba2fc60e664d.m4a",
       "audioSHA256": "69522ea1a2960767e2b7553c82452e135fef642e9817599e4eb655ca540e0d63",
       "sources": [
@@ -1952,14 +2054,17 @@
           "phraseId": "vc_000083"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "e4e518cf609caacd335408ec",
       "text": "Hug time! You're warm and cozy. I'm here!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/e4e518cf609caacd335408ec.m4a",
       "audioSHA256": "7f061f47c2019e6f917f479ce46ea725a348e4b1430125db666703bf18165ae5",
       "sources": [
@@ -1969,14 +2074,17 @@
           "phraseId": "vc_000084"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "b898d4f278dbb4316cf0dd0a",
       "text": "Baby, come here! A big warm hug. I love you!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/b898d4f278dbb4316cf0dd0a.m4a",
       "audioSHA256": "55169988ca7c96f35d905f351c24eee563b9072a9af7ab3e3cf93d4a4b5b5cf4",
       "sources": [
@@ -1986,14 +2094,17 @@
           "phraseId": "vc_000085"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "19218edc4c94e39c98224251",
       "text": "Baby, cuddle time! I'll hold you close. So cozy!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/19218edc4c94e39c98224251.m4a",
       "audioSHA256": "0cd200684ee0ed29a3c50b8b43adb0c16897c8dc9223b9764dbe6ca3f7347b59",
       "sources": [
@@ -2003,7 +2114,10 @@
           "phraseId": "vc_000086"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "f0ae0c3498da5e527bcbca46",
@@ -2755,9 +2869,9 @@
     {
       "id": "eca77a8bb00ad1769cce172a",
       "text": "Your little tummy! Let's have a cuddle. So cozy!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/eca77a8bb00ad1769cce172a.m4a",
       "audioSHA256": "5025165f50d449f20363419840570a5b9093a45c4af8020e2f93c16bedd6caf9",
       "sources": [
@@ -2767,7 +2881,10 @@
           "phraseId": "vc_000129"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "080e86be732c317b36d8e5a9",
@@ -2792,9 +2909,9 @@
     {
       "id": "3682666f95fe7c663b33b9b7",
       "text": "Let's get comfortable. I'll hold you close. Big hugs!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/3682666f95fe7c663b33b9b7.m4a",
       "audioSHA256": "c15537ecafbf8b65f7cba13fc45a6756c5e9895b65c1fcdc6f3ee6b2d617d8bc",
       "sources": [
@@ -2804,7 +2921,10 @@
           "phraseId": "vc_000131"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "4219ad5e38b3d583ad7ac748",
@@ -2829,9 +2949,9 @@
     {
       "id": "e99dd69a43e4166d7511487f",
       "text": "Baby, little tummy! Let's get comfortable. Big hugs!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/e99dd69a43e4166d7511487f.m4a",
       "audioSHA256": "b0976fb0f81e07f598030c368148f96d91ccbbd270c4cc86715c1970e04b5174",
       "sources": [
@@ -2841,14 +2961,17 @@
           "phraseId": "vc_000133"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "7bfd1133109b3798c5f09ff1",
       "text": "Baby, feeling full? I'll hold you close. So cozy!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/7bfd1133109b3798c5f09ff1.m4a",
       "audioSHA256": "ea1036215d1c6d3efe0446c58b99e3b8911b08d52dc72d08e1773ef99584a4f4",
       "sources": [
@@ -2861,7 +2984,9 @@
       "approval": "英文と素材の意味対応は確認候補",
       "previousTarget": "tummy",
       "staticConverted": true,
-      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。"
+      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms"
     },
     {
       "id": "1ad230c6601b56e71cf44524",
@@ -3601,8 +3726,8 @@
       "id": "640456810edfaa75a98e7859",
       "text": "All done eating? Wipe, wipe, wipe! Nice and clean!",
       "category": "still",
-      "target": "family-care",
-      "label": "抱っこ：養育者と子どもの上半身",
+      "target": "hug-face-v1",
+      "label": "抱っこ：顔が見える採用済み静止原画",
       "audio": "assets/voice-1202/clips/640456810edfaa75a98e7859.m4a",
       "audioSHA256": "242056031af75524502849d877149acd824ea0fc8159e672f4f6830b09c48068",
       "sources": [
@@ -3615,7 +3740,9 @@
       "approval": "英文と素材の意味対応は確認候補",
       "previousTarget": "family-care",
       "staticConverted": false,
-      "changeReason": "完了した場面。交換・入浴・着衣等をループで再開しない。"
+      "changeReason": "完了した場面。交換・入浴・着衣等をループで再開しない。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。",
+      "faceReplaced": true,
+      "facePreviousTarget": "family-care"
     },
     {
       "id": "ed91fec3cd2a2319a90d1373",
@@ -6452,9 +6579,9 @@
     {
       "id": "ff7e86d413271f0a5b577611",
       "text": "That was your milk. We're all done now. Here comes a cuddle.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/ff7e86d413271f0a5b577611.m4a",
       "audioSHA256": "0426633830f012869c21d29dbb7c0bc1853091a37ec12a7f017079ecd5d90dda",
       "sources": [
@@ -6464,7 +6591,10 @@
           "phraseId": "vc_000334"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "e89f0b2246be9a1b91816e02",
@@ -6999,9 +7129,9 @@
     {
       "id": "970966f43db9f32f4697afc6",
       "text": "Finished the diaper change! Your little legs relax. Back to cuddles.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/970966f43db9f32f4697afc6.m4a",
       "audioSHA256": "a23a6ec1103791747cc8689e683089ba6f5267951d510b8ad48df5ed085318b7",
       "sources": [
@@ -7011,7 +7141,10 @@
           "phraseId": "vc_000363"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "cc29a06c2562172a6e623911",
@@ -7212,9 +7345,9 @@
     {
       "id": "07c30a1be361f3992b9a244b",
       "text": "Want a little cuddle? Come here, sweetheart. I'm right here.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/07c30a1be361f3992b9a244b.m4a",
       "audioSHA256": "afc1d87ecd7b7fe9ce4b9dd369ad694187dab9493a03964161b29aa20a3b6cd0",
       "sources": [
@@ -7227,14 +7360,16 @@
       "approval": "英文と素材の意味対応は確認候補",
       "previousTarget": "family-care",
       "staticConverted": true,
-      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。"
+      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms"
     },
     {
       "id": "2f39000e276145abf7575072",
       "text": "Want a cuddle? Arms open wide! Come here, sweetheart!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/2f39000e276145abf7575072.m4a",
       "audioSHA256": "889fc142636287052156edb8d25226e0706a5fce46a76a3f20fff0178b6ce240",
       "sources": [
@@ -7247,14 +7382,16 @@
       "approval": "英文と素材の意味対応は確認候補",
       "previousTarget": "family-care",
       "staticConverted": true,
-      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。"
+      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms"
     },
     {
       "id": "e0943b0cd9fdb8c829dbe88b",
       "text": "A gentle little hug. Would you like one? Come close, sweetheart.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/e0943b0cd9fdb8c829dbe88b.m4a",
       "audioSHA256": "ce47eff220b6a47c51105d5de3950ce9cee742107319bb2b72d0c98b6b3fcd06",
       "sources": [
@@ -7267,14 +7404,16 @@
       "approval": "英文と素材の意味対応は確認候補",
       "previousTarget": "family-care",
       "staticConverted": true,
-      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。"
+      "changeReason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms"
     },
     {
       "id": "e56be9fc87b4f9a04b531680",
       "text": "Come for a cuddle. I'm right here. I've got you.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/e56be9fc87b4f9a04b531680.m4a",
       "audioSHA256": "760ae3e9bcb73426cf0c47742618b86dc8db90c781bb9d4a3f9479f74b5131dd",
       "sources": [
@@ -7284,14 +7423,17 @@
           "phraseId": "vc_000378"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "5c8ea669b061775049a6d052",
       "text": "Time for a cuddle. I'll stay close. You're not alone.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/5c8ea669b061775049a6d052.m4a",
       "audioSHA256": "5be651f46627f1363ebe3cd329e91c654018c37ee3504c22d5514d9ce06a42ce",
       "sources": [
@@ -7301,14 +7443,17 @@
           "phraseId": "vc_000379"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "078811c441700b1894e6d0bb",
       "text": "Here comes a hug. We have time. I'm here with you.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/078811c441700b1894e6d0bb.m4a",
       "audioSHA256": "afd626fcbe810bbb9d6d1fdd4d20ec2f99d96ff97115a03df3bc64c87445eefa",
       "sources": [
@@ -7318,7 +7463,10 @@
           "phraseId": "vc_000380"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "6ca5be6d1ede3a3ae3532a73",
@@ -12296,9 +12444,9 @@
     {
       "id": "f4b7e322db527f08f98bbaf9",
       "text": "I love this cuddle. You're my treasure. Stay close, little one.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/f4b7e322db527f08f98bbaf9.m4a",
       "audioSHA256": "561d84bb9aa368b56219636d131994341c96ca87d942a26d2bcc099d46a8ba8d",
       "sources": [
@@ -12308,14 +12456,17 @@
           "phraseId": "vc_000647"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "68ee524ad2dbb9499fbf8008",
       "text": "Cuddle, cuddle! My sweet baby! I love you!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/68ee524ad2dbb9499fbf8008.m4a",
       "audioSHA256": "4bc421cbcf6c2fa3d00f020f6a9744000ce1fbd1852092567d60689b8d040012",
       "sources": [
@@ -12325,14 +12476,17 @@
           "phraseId": "vc_000648"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "5304432113005b2d49af9c2a",
       "text": "A cuddle with you! You're warm and cozy. I love you!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/5304432113005b2d49af9c2a.m4a",
       "audioSHA256": "aff0c7a513291650acac5678833b30383d73440eb7fef71424232bb296f88b76",
       "sources": [
@@ -12342,14 +12496,17 @@
           "phraseId": "vc_000649"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "2de64ab26a5a42257bdc10c9",
       "text": "You've done a lot. Come for a cuddle. I'll hold you close.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/2de64ab26a5a42257bdc10c9.m4a",
       "audioSHA256": "74ee560933ab8d52747d75afb31b8b0508d9bffed2638818c54b8da8dbff290a",
       "sources": [
@@ -12359,14 +12516,17 @@
           "phraseId": "vc_000650"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "035e0180611f86b3ac108beb",
       "text": "Come for a cuddle. You look tired, sweetheart. Let's rest together.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/035e0180611f86b3ac108beb.m4a",
       "audioSHA256": "d021d77518231e4e3e5e9cf83b3ad13b606ab875c97eb44e3cf922094215ddb3",
       "sources": [
@@ -12376,14 +12536,17 @@
           "phraseId": "vc_000651"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "ee124dce4e23fd4981039063",
       "text": "A gentle little cuddle. You did a lot. I'll stay with you.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/ee124dce4e23fd4981039063.m4a",
       "audioSHA256": "7db27bf170b2a9a01c09285b538893355c61c9e7a4f06a9232e9b4d54ffac28f",
       "sources": [
@@ -12393,14 +12556,17 @@
           "phraseId": "vc_000652"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "65f6c57a6074349eedae3918",
       "text": "You reached for hugs! How lovely, little one. Well done.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/65f6c57a6074349eedae3918.m4a",
       "audioSHA256": "05614d6db87e90bd2c1515a192207de317885d8e5baa4d095154c4b96145f770",
       "sources": [
@@ -12410,14 +12576,17 @@
           "phraseId": "vc_000653"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "29b827e965bc097e0cd8a948",
       "text": "Such a warm cuddle! You're snuggled up close. I love you.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/29b827e965bc097e0cd8a948.m4a",
       "audioSHA256": "237f808c93e3f17f10e7a605c6be156e8087455215b4917258c75e236657f149",
       "sources": [
@@ -12427,14 +12596,17 @@
           "phraseId": "vc_000654"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "9a4d264786a71c78261fc5ea",
       "text": "Cuddle time! Snuggle, snuggle, snuggle! I love you!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/9a4d264786a71c78261fc5ea.m4a",
       "audioSHA256": "7fd9ddada301017e39214b8264c9a89f7c95dff0be9094d1ab58a9f4dc9b4f86",
       "sources": [
@@ -12444,7 +12616,10 @@
           "phraseId": "vc_000655"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "0b4cd10aceca0f9d92c41a93",
@@ -13938,9 +14113,9 @@
     {
       "id": "61f27ec3baa41878ba0fb24b",
       "text": "A cuddle after milk. My happy little one. You're so dear.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/61f27ec3baa41878ba0fb24b.m4a",
       "audioSHA256": "115c4412147b9f2922d53f7e4219a2b9835fefb6ad8e1dd186c66e8cc565799a",
       "sources": [
@@ -13950,14 +14125,17 @@
           "phraseId": "vc_000733"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "c610a530508639ac5c6993ea",
       "text": "Milk and gentle cuddles. Your smile warms me. What a sweet day.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/c610a530508639ac5c6993ea.m4a",
       "audioSHA256": "c8b552daa42f0e4c6cea10abc0815d11493659aaeff8f60a6691190c168034bc",
       "sources": [
@@ -13967,7 +14145,10 @@
           "phraseId": "vc_000734"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "26a21ab3ed1fe384ed368632",
@@ -15934,9 +16115,9 @@
     {
       "id": "2b871de566017d9976cfde17",
       "text": "Big cuddle! Up, up! Nice and close.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/2b871de566017d9976cfde17.m4a",
       "audioSHA256": "de006f1ed87b2c792b58e0c75cb811b8310e31113bd555b296c58873eb853e8a",
       "sources": [
@@ -15946,14 +16127,17 @@
           "phraseId": "vc_000840"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "eedddeb1803d376dfcf6d9c4",
       "text": "Cuddle time! Nice and close. Here we go!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/eedddeb1803d376dfcf6d9c4.m4a",
       "audioSHA256": "fec446236a3aa89892d8494a477b5d9c13d776754e5aa07eb7f7b39c172816b2",
       "sources": [
@@ -15963,14 +16147,17 @@
           "phraseId": "vc_000841"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "1ee1ac432fa3ee090233536b",
       "text": "Up we go! Big hug. So cozy.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/1ee1ac432fa3ee090233536b.m4a",
       "audioSHA256": "edf9b623152d80509e921eb5007f489b0d370e557394e97d577af1766f6d1b24",
       "sources": [
@@ -15980,14 +16167,17 @@
           "phraseId": "vc_000842"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "5283d6eb3420b6907da71891",
       "text": "Big hug! Nice and close. Right here.",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/5283d6eb3420b6907da71891.m4a",
       "audioSHA256": "f785ed03416ed1bcd5d102ba1917beb1b83b0d46c8ede84645d6c939e688d238",
       "sources": [
@@ -15997,14 +16187,17 @@
           "phraseId": "vc_000843"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "7ea58c812761613c47cd6f36",
       "text": "Cuddle, cuddle! Warm and cozy. Big hug!",
-      "category": "animation",
-      "target": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
+      "category": "motionCandidate",
+      "target": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
       "audio": "assets/voice-1202/clips/7ea58c812761613c47cd6f36.m4a",
       "audioSHA256": "8c00e62a4ac596990e8e113d018654ca8bd2626227468540f9c4ca48dec90032",
       "sources": [
@@ -16014,7 +16207,10 @@
           "phraseId": "vc_000844"
         }
       ],
-      "approval": "英文と素材の意味対応は確認候補"
+      "approval": "英文と素材の意味対応は確認候補",
+      "faceReplaced": true,
+      "facePreviousTarget": "hug-arms",
+      "changeReason": " 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
     },
     {
       "id": "565d68e752ef1208d6cddfce",
@@ -16537,8 +16733,8 @@
       "id": "4f6c4f6387f785b4137eb787",
       "text": "Burp, burp! Little tummy. Nice and easy.",
       "category": "still",
-      "target": "family-care",
-      "label": "抱っこ：養育者と子どもの上半身",
+      "target": "hug-face-v1",
+      "label": "抱っこ：顔が見える採用済み静止原画",
       "audio": "assets/voice-1202/clips/4f6c4f6387f785b4137eb787.m4a",
       "audioSHA256": "52597d0fce0aba0d2a67ce2bafce329d126df307b4e4d693bdd1ef4e2793b341",
       "sources": [
@@ -16551,7 +16747,9 @@
       "approval": "英文と素材の意味対応は確認候補",
       "previousTarget": "family-care",
       "staticConverted": false,
-      "changeReason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。"
+      "changeReason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。 顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。",
+      "faceReplaced": true,
+      "facePreviousTarget": "family-care"
     },
     {
       "id": "5280fd6732a73a6baf0c806a",

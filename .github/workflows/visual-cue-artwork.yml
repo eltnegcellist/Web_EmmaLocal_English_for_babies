@@ -8,6 +8,8 @@ on:
       - 'assets/emma-gestures/**'
       - 'assets/emma-background-cues/**'
       - 'assets/visual-cue/motion-variants/**'
+      - 'assets/visual-cue/prototypes/hug-face/**'
+      - 'visual-cue-hug-face.html'
       - 'src/emma-background-cues.js'
       - 'src/emma-preview-motion.js'
       - 'src/visual-cue-*.js'
@@ -53,6 +55,9 @@ jobs:
           VISUAL_CUE_UI_BASE=http://127.0.0.1:8765 node scripts/visual-cue/test_ui_browser.mjs
           node scripts/visual-cue/test_scene_motion.mjs
           python scripts/visual-cue/verify_scene_motion.py
+          python scripts/visual-cue/verify_hug_face_motion.py
+          node test-visual-cue-ui.mjs
+          node test-visual-cue-coverage.mjs
           VISUAL_CUE_TRIAL_BASE=http://127.0.0.1:8765 node scripts/visual-cue/test_trial_browser.mjs
           node scripts/visual-cue/capture_preview.mjs
           VISUAL_CUE_PREVIEW_URL="file://$PWD/assets/visual-cue/artwork/preview-offline.html" node scripts/visual-cue/capture_preview.mjs
@@ -65,6 +70,7 @@ jobs:
             assets/emma-background-cues/qa/
             assets/visual-cue/trial-qa/
             assets/visual-cue/motion-variants/qa/
+            assets/visual-cue/prototypes/hug-face/qa/
             assets/visual-cue/artwork/qa/
             assets/visual-cue/artwork/preview.*
             assets/visual-cue/artwork/preview-offline.html

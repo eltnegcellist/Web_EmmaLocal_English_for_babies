@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "encodedFrames": 26,
+  "durationMs": 3200,
+  "visibleFaceMaxDelta": 0,
+  "firstLastVisiblePixelsIdentical": true,
+  "posterMatchesFirstFrame": true,
+  "transparentCorners": true,
+  "originalPNGUnchanged": true,
+  "animationBytes": 553318
+}

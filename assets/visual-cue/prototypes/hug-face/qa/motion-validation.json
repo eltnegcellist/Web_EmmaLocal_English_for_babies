@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "frameCount": 40,
+  "encodedFrames": 26,
+  "durationMs": 3200,
+  "format": "lossless animated WebP RGBA",
+  "size": [
+    512,
+    512
+  ],
+  "bytes": 553318,
+  "posterBytes": 155340,
+  "sourceFaceMaxDelta": 0,
+  "encodedVisibleFaceMaxDelta": 0,
+  "movingPixels": 4981,
+  "loopEndpointsIdentical": true,
+  "transparentCorners": true,
+  "animationSHA256": "58cab265fac187595bdb832295b665b9f4e07f3b5e0261c798029e6d1bcbe6e8",
+  "animationApproval": "candidate; user approval pending"
+}

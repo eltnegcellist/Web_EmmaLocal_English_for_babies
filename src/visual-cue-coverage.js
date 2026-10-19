@@ -1,7 +1,7 @@
-const data=await fetch('./shared/visual-cue-trial-data.json?v=20261020-static-motion-v2').then(r=>{if(!r.ok)throw Error('対応表を読み込めません');return r.json();});
+const data=await fetch('./shared/visual-cue-trial-data.json?v=20261020-hug-face-motion-v1').then(r=>{if(!r.ok)throw Error('対応表を読み込めません');return r.json();});
 const report=data.report,$=id=>document.getElementById(id),trial=document.documentElement.dataset.trialUrl;
 const node=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
-const labels={animation:'採用済み物体動画',motionCandidate:'新しい部品別動作6候補',background:'背景2候補',still:'静止画',baseline:'通常Emma'};
+const labels={animation:'採用済み物体動画',motionCandidate:'新しい動作候補',background:'背景2候補',still:'静止画',baseline:'通常Emma'};
 const trialLink=(text,query)=>{const a=node('a',text);const url=new URL(trial,location.href);for(const [key,value] of Object.entries(query))url.searchParams.set(key,value);a.href=url.href;return a;};
 $('trialLink').href=trial;
 $('denominator').textContent=`全${report.total.toLocaleString()}件＝3文応答${report.uniqueReplySets}種類＋単文${report.singleSentences}種類（元914セットの重複1件を除外）`;
@@ -13,13 +13,13 @@ for(const movie of report.animations){
  const tr=node('tr');tr.dataset.asset=movie.id;tr.classList.toggle('zero',movie.count===0);tr.classList.toggle('held',movie.status!=='accepted'&&movie.status!=='motion-candidate');
  const title=node('td',movie.label),count=node('td');
  if(movie.count)count.append(trialLink(String(movie.count),{target:movie.id}));else count.textContent='0';
- const status=movie.status==='motion-candidate'?'新規動作・確認候補':movie.status!=='accepted'?'保留・実行時対象外':!movie.runtimeEligible?'意味対応未完成・対象外':movie.count?'素材採用済み・意味対応は候補':'素材採用済み・英文割当なし';
+ const status=movie.runtimeExclusionReason?'顔ありへ差替済み・比較用':movie.status==='motion-candidate'?'新規動作・確認候補':movie.status!=='accepted'?'保留・実行時対象外':!movie.runtimeEligible?'意味対応未完成・対象外':movie.count?'素材採用済み・意味対応は候補':'素材採用済み・英文割当なし';
  tr.append(title,count,node('td',`${movie.percent.toFixed(2)}%`),node('td',status));$('movies').append(tr);
 }
 for(const movie of report.animations.filter(a=>a.status==='motion-candidate')){
  const card=node('article');card.className='motion-card';card.dataset.motion=movie.id;
  const images=node('div');images.className='motion-pair';
- for(const [label,path] of [['静止原画','assets/visual-cue/artwork/stills/'+movie.baseAssetId+'.webp'],['動作候補',movie.image]]){const figure=node('figure'),img=node('img');img.src='./'+path;img.alt=movie.label+'：'+label;if(label==='動作候補')img.dataset.motionId=movie.id;img.width=220;img.height=220;figure.append(img,node('figcaption',label));images.append(figure);}
+ for(const [label,path] of [['静止原画',movie.baseImage],['動作候補',movie.image]]){const figure=node('figure'),img=node('img');img.src='./'+path;img.alt=movie.label+'：'+label;if(label==='動作候補')img.dataset.motionId=movie.id;img.width=220;img.height=220;figure.append(img,node('figcaption',label));images.append(figure);}
  card.append(node('h3',movie.label),images,trialLink(`${movie.count}件の英文で試す`,{target:movie.id}));$('motionGallery').append(card);
 }
 for(const b of report.backgrounds){const tr=node('tr'),count=node('td');count.append(trialLink(String(b.count),{target:b.id}));tr.append(node('td',b.label),count,node('td',`${(b.count/report.total*100).toFixed(2)}%`),node('td','意味の確認待ち'));$('backgrounds').append(tr);}

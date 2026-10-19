@@ -8,25 +8,26 @@
 </style>
 <main>
 <nav><a href="./visual-cue-coverage.html">← 動作の比較・英文の対応表</a></nav>
-<p class="badge">採用：顔が見える抱っこ／動画版は未制作</p>
+<p class="badge">顔あり原画を採用／動画版は確認候補</p>
 <h1>顔が見える抱っこを採用</h1>
-<p>大人と子どもの顔が両方見える斜め正面の構図です。表情と、背中・お尻を支える両腕を確認できます。この静止原画は採用済みです。顔あり版の「ぎゅっと寄せる動作」はまだ制作していません。</p>
+<p>大人と子どもの顔が両方見える斜め正面の構図です。表情と、背中・お尻を支える両腕を確認できます。静止原画は採用済みです。顔と上半身を保ち、背中の手と下の腕をそっと寄せる3.2秒の動画を制作・検証し、テスト版に導入しました。新しい動画の動きは確認候補です。</p>
 <div class="controls">
 <label>表示サイズ <select id="size"><option value="220">220px</option><option value="280" selected>280px</option><option value="320">320px</option></select></label>
 <label>背景 <select id="background"><option value="checker">透過を確認</option><option value="white">白</option><option value="dark">暗い色</option></select></label>
-<button id="toggle" type="button" aria-pressed="false">既存動画を静止画にする</button>
+<button id="toggle" type="button" aria-pressed="false">両方の動画を静止画にする</button>
 </div>
 <div class="comparison">
-<figure class="card"><h2>採用済み：顔を見せない抱っこ</h2><div class="stage"><img id="existing" src="./assets/visual-cue/artwork/animations/hug-arms.webp" alt="後ろ姿の大人が子どもを支え、腕を寄せる採用済みの抱っこ動画" width="512" height="512"></div><figcaption class="caption">既存の動作版。現在のテスト版で使っている素材です。</figcaption></figure>
-<figure class="card"><h2>採用：顔が見える抱っこ</h2><div class="stage"><img id="candidate" src="./assets/visual-cue/prototypes/hug-face/hug-face-v1.png" alt="青い服の大人と黄色い服の子どもが微笑み合い、大人が背中とお尻を支えて抱っこしている斜め正面の静止試作" width="1254" height="1254"></div><figcaption class="caption">顔ありの静止原画を採用しました。動画版はこの構図を基準に制作します。</figcaption></figure>
+<figure class="card"><h2>採用済み：顔を見せない抱っこ</h2><div class="stage"><img id="existing" src="./assets/visual-cue/artwork/animations/hug-arms.webp" alt="後ろ姿の大人が子どもを支え、腕を寄せる採用済みの抱っこ動画" width="512" height="512"></div><figcaption class="caption">既存の動作版。以前の表示を比較用に残しています。</figcaption></figure>
+<figure class="card"><h2>顔あり：原画採用・動画候補</h2><div class="stage"><img id="candidate" src="./assets/visual-cue/motion-variants/hug-face-cuddle.webp" alt="青い服の大人と黄色い服の子どもが微笑み合い、大人が背中とお尻を支えて抱っこしている斜め正面の抱っこ動画候補" width="512" height="512"></div><figcaption class="caption">採用した顔あり原画を使った新しい動画候補。現在のテスト版の抱っこ表示です。</figcaption></figure>
 </div>
-<footer><p>既存の採用済み42素材に、顔ありの静止原画1点を追加しました。顔ありの動画は未制作のため、英文の割当と実際の動作表示はまだ変更していません。コップなどの保留状態にも変更はありません。</p><p><a href="./visual-cue-test.html?target=hug-arms">採用済みの抱っこを音声と一緒に試す</a> · <a href="./assets/visual-cue/prototypes/hug-face/hug-face-v1.png">顔あり原画</a> · <a href="https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/issues/104">Issue #104</a></p></footer>
+<footer><p>既存の採用済み42素材に、顔ありの静止原画1点を追加しました。抱っこの42原文には顔あり動画候補を、静止表示だった2原文には顔ありポスターを割り当てました。新しい動画は採用済み動画数に加算していません。コップなどの保留状態にも変更はありません。</p><p><a href="./visual-cue-test.html?target=hug-face-cuddle">顔あり抱っこ動画を音声と一緒に試す</a> · <a href="./assets/visual-cue/prototypes/hug-face/hug-face-v1.png">顔あり原画</a> · <a href="https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/issues/104">Issue #104</a></p></footer>
 </main>
 <script>
 const stages=[...document.querySelectorAll('.stage')],existing=document.getElementById('existing'),toggle=document.getElementById('toggle');
 const animation='./assets/visual-cue/artwork/animations/hug-arms.webp',poster='./assets/visual-cue/artwork/posters/hug-arms.webp';
+const candidate=document.getElementById('candidate'),faceAnimation='./assets/visual-cue/motion-variants/hug-face-cuddle.webp',facePoster='./assets/visual-cue/motion-variants/hug-face-cuddle-poster.webp';
 let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function render(){existing.src=paused?poster:animation;toggle.textContent=paused?'既存動画を再生する':'既存動画を静止画にする';toggle.setAttribute('aria-pressed',String(paused));}
+function render(){existing.src=paused?poster:animation;candidate.src=paused?facePoster:faceAnimation;toggle.textContent=paused?'両方の動画を再生する':'両方の動画を静止画にする';toggle.setAttribute('aria-pressed',String(paused));}
 toggle.addEventListener('click',()=>{paused=!paused;render();});
 document.getElementById('size').addEventListener('change',e=>document.documentElement.style.setProperty('--art-size',e.target.value+'px'));
 document.getElementById('background').addEventListener('change',e=>stages.forEach(s=>s.dataset.background=e.target.value));render();
