@@ -7,8 +7,8 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   const originals=new WeakMap(),attributes=new WeakMap(),selectors=[];
   const wordmark=document.querySelector('#onboardingScreen .brand-wordmark');
   const japaneseWordmark=wordmark?.innerHTML;
-  const productNames={ja:'みつことば',en:'Mitsukotoba',de:'Mitsukotoba',
-    fr:'Mitsukotoba',ko:'미츠코토바',th:'มิตสึโคโตบะ'};
+  const productNames={ja:'みつことば',en:'Three Voices',de:'Drei Stimmen',
+    fr:'Trois voix',ko:'세 목소리',th:'สามเสียง'};
   const title='言語を選択';
   const status=document.createElement('p');status.className='small multilingual-status';status.setAttribute('aria-live','polite');
   status.id='languageModelStatus';
