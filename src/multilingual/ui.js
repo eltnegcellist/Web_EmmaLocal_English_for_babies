@@ -5,6 +5,10 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   let saved;try{saved=storage.getItem(LANGUAGE_KEY);}catch{}
   const initial=resolveLanguage({saved,languages});let language=initial.language,needsChoice=initial.needsChoice;
   const originals=new WeakMap(),attributes=new WeakMap(),selectors=[];
+  const wordmark=document.querySelector('#onboardingScreen .brand-wordmark');
+  const japaneseWordmark=wordmark?.innerHTML;
+  const productNames={ja:'みつことば',en:'Mitsukotoba',de:'Mitsukotoba',
+    fr:'Mitsukotoba',ko:'미츠코토바',th:'มิตสึโคโตบะ'};
   const title='言語を選択';
   const status=document.createElement('p');status.className='small multilingual-status';status.setAttribute('aria-live','polite');
   status.id='languageModelStatus';
@@ -69,6 +73,13 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   }
   function apply(){
     document.documentElement.lang=language;document.documentElement.dataset.appLanguage=language;
+    document.title=productNames[language]+' Web';
+    if(wordmark){
+      if(language==='ja'&&wordmark.dataset.localized==='true')wordmark.innerHTML=japaneseWordmark;
+      else if(language!=='ja')wordmark.textContent=productNames[language];
+      wordmark.dataset.localized=String(language!=='ja');
+      wordmark.classList.toggle('brand-wordmark-localized',language!=='ja');
+    }
     selectors.forEach(s=>s.value=needsChoice?'':language);
     note.textContent=translate(language==='en'?'英語表示で、さまざまな言語の音声を自動認識します。':'選択した言語で話しかけると、短い英語で返します。',language);
     const sub=document.querySelector('#prepareEmmaButton .button-sub');
