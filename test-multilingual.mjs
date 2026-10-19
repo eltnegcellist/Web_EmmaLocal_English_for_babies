@@ -53,7 +53,7 @@ for(const lang of LANGUAGES){
  const localized=research.querySelector('.localized-about-content');
  if(lang==='ja'){
    assert.equal(localized,null,'The complete original Japanese page should remain visible');
-   assert(!research.querySelector('h1').hidden);
+   assert(!research.querySelector(':scope > h1').hidden);
  }else{
    assert(localized,'A translated research page must be rendered');
    assert.equal(localized.querySelectorAll('article.card').length,16,'8 research sections, example, limitations and 6 references');
@@ -61,7 +61,7 @@ for(const lang of LANGUAGES){
    assert.equal(localized.querySelectorAll('.citation-link[href^="#localized-ref-"]').length>=4,true);
    assert.equal(localized.querySelector('h1').textContent,ABOUT_LOCALES[lang].title);
    assert.equal(localized.hidden,false);
-   assert.equal(research.querySelector('h1').hidden,true,'Do not show untranslated Japanese research');
+   assert.equal(research.querySelector(':scope > h1').hidden,true,'Do not show untranslated Japanese research');
  }
 
  assert.equal(ui.mode,'auto','First visit must use the browser locale');
@@ -91,7 +91,7 @@ for(const lang of LANGUAGES){
  assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').textContent.replace(/\s/g,''),'みつことば');
  assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').children.length,5);
  assert(research.querySelector('.localized-about-content').hidden,'Original Japanese research should be restored');
- assert.equal(research.querySelector('h1').hidden,false);
+ assert.equal(research.querySelector(':scope > h1').hidden,false);
 
  ui.dispose();dom.window.close();
 }
