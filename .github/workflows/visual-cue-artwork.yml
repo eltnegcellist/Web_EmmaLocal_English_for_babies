@@ -15,6 +15,12 @@ on:
       - 'test-visual-cue-ui.mjs'
       - 'shared/visual-cue-runtime-review.json'
       - 'shared/visual-cue-ui-examples.json'
+      - 'shared/visual-cue-coverage*'
+      - 'shared/visual-cue-trial-data.json'
+      - 'visual-cue-test.html'
+      - 'visual-cue-trial.css'
+      - 'visual-cue-coverage.*'
+      - 'test-visual-cue-coverage.mjs'
   workflow_dispatch:
 permissions:
   contents: read
@@ -44,6 +50,7 @@ jobs:
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
           VISUAL_CUE_UI_BASE=http://127.0.0.1:8765 node scripts/visual-cue/test_ui_browser.mjs
+          VISUAL_CUE_TRIAL_BASE=http://127.0.0.1:8765 node scripts/visual-cue/test_trial_browser.mjs
           node scripts/visual-cue/capture_preview.mjs
           VISUAL_CUE_PREVIEW_URL="file://$PWD/assets/visual-cue/artwork/preview-offline.html" node scripts/visual-cue/capture_preview.mjs
       - uses: actions/upload-artifact@v4
@@ -53,6 +60,7 @@ jobs:
           path: |
             assets/emma-gestures/qa/
             assets/emma-background-cues/qa/
+            assets/visual-cue/trial-qa/
             assets/visual-cue/artwork/qa/
             assets/visual-cue/artwork/preview.*
             assets/visual-cue/artwork/preview-offline.html

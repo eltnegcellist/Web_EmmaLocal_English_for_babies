@@ -12,6 +12,7 @@ import { replyDisplayHint } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 
 const $ = (id) => document.getElementById(id);
+const VISUAL_CUE_TRIAL = document.documentElement.dataset.visualCueTrial === 'true';
 const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
   onboardingHighPerformance:$('onboardingHighPerformance'),
@@ -177,6 +178,21 @@ function audioCacheKey(text){
 
 
 
+// Available only in the dedicated test document; normal app behavior is unchanged.
+export const visualCueTrial = VISUAL_CUE_TRIAL ? {
+  async play(text){
+    unlockPlaybackAudioFromGesture();
+    await stopEmma();
+    const epoch=conversationEpoch;
+    await initVoice();
+    if(epoch!==conversationEpoch)return;
+    showConversation('',text);
+    await speakResponse(text);
+  },
+  preload:text=>visualCue.preload(text),
+  stop:stopEmma
+} : null;
+
 initUi();
 
 function initUi() {
@@ -229,6 +245,12 @@ function initUi() {
   renderModelCacheHistoryStatus();
 
   startAvatarBlinkLoop();
+
+  if(VISUAL_CUE_TRIAL){
+    showScreen('home',{autoStart:false});
+    setState('idle','Visual Cue テスト版','「押して聞く」または下の英文を選んで、表示と音声を確認できます。');
+    return;
+  }
 
   const reloadedAsr=sessionStorage.getItem(STORAGE.asrReload);
   const needsMicGestureAfterIsolation=sessionStorage.getItem('emma_coi_manual_start')==='1';
@@ -466,7 +488,7 @@ function showScreen(name,{autoStart=true}={}) {
   window.scrollTo({top:0,behavior:'auto'});
 
   if(
-    autoStart &&
+    autoStart && !VISUAL_CUE_TRIAL &&
     tutorialStep===null &&
     name==='home' &&
     localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION &&
@@ -1071,7 +1093,7 @@ async function initVoice() {
       ttsWorker=new Worker(new URL('./tts-worker.js?v=20261015-recorded-only',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
-      ttsWorker.postMessage({ type:'init' });
+      ttsWorker.postMessage({ type:'init', preload:!VISUAL_CUE_TRIAL });
     });
   }
 
@@ -2092,7 +2114,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
 }
 
 window.addEventListener('load',()=>{
-  if('serviceWorker' in navigator) {
+  if(!VISUAL_CUE_TRIAL && 'serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
     navigator.serviceWorker.register('./service-worker.js?v=20261014-fixed-voice-lines-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));

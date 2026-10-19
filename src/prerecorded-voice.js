@@ -11,16 +11,16 @@ export class PrerecordedVoiceBank {
     this.memory = new Map();
   }
 
-  async init(onStatus = () => {}) {
+  async init(onStatus = () => {}, {preload = true} = {}) {
     if (this.initializing) return this.initializing;
-    this.initializing = this.prepare(onStatus).catch(error => {
+    this.initializing = this.prepare(onStatus, {preload}).catch(error => {
       this.initializing = null;
       throw error;
     });
     return this.initializing;
   }
 
-  async prepare(onStatus) {
+  async prepare(onStatus, {preload = true} = {}) {
     this.cache = this.cacheStorage ? await this.cacheStorage.open(VOICE_CACHE) : null;
     let response;
     try {
@@ -46,6 +46,9 @@ export class PrerecordedVoiceBank {
       this.byText.set(text, entry);
     }
     this.manifest = manifest;
+    // The public Visual Cue test downloads a verified clip only when played.
+    // The normal application retains its complete pre-download by default.
+    if (!preload) return manifest;
     let next = 0, completed = 0, bytes = 0;
     onStatus({progress: 1, message: '選んだ声を端末に準備しています…'});
     await Promise.all(Array.from({length: Math.min(4, manifest.entries.length)}, async () => {

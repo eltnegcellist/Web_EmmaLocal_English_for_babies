@@ -345,7 +345,7 @@ const context={state:'running',decodeAudioData:()=>new Promise(resolve=>decodedR
   createBufferSource:()=>({connect(node){return node;},start(){starts++;queueMicrotask(()=>this.onended?.());},stop(){this.onended?.();}}),
   createGain:()=>({gain:{value:1},connect(node){return node;}}),
   createAnalyser:()=>({connect(){},getByteTimeDomainData(data){data.fill(128);}}),destination:{}};
-let source=readFileSync(new URL('./src/app.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replaceAll('import.meta.url',"'https://example.test/src/app.js'").replace('\ninitUi();','\n');
+let source=readFileSync(new URL('./src/app.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replace(/^export /gm,'').replaceAll('import.meta.url',"'https://example.test/src/app.js'").replace('\ninitUi();','\n');
 assert(source.includes("const highPerformance = ui.onboardingHighPerformance?.checked !== false;"));
 assert(source.includes("const firstRunAsr = highPerformance ? 'small' : 'tiny';"));
 assert(source.includes("await semanticPanel.setEnabled(highPerformance,{prepare:false,mode:'semantic'});"));

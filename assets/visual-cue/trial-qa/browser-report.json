@@ -1,0 +1,234 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "real-home-with-no-onboarding",
+      "pass": true
+    },
+    {
+      "name": "no-voice-clips-on-entry",
+      "pass": true
+    },
+    {
+      "name": "all-1091-available",
+      "pass": true
+    },
+    {
+      "name": "no-auto-ASR-or-model-download",
+      "pass": true
+    },
+    {
+      "name": "174-animated-replies",
+      "pass": true
+    },
+    {
+      "name": "count-hug-arms",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-hug-arms",
+      "pass": true
+    },
+    {
+      "name": "quick-stop-visible-while-playing",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-hug-arms",
+      "pass": true
+    },
+    {
+      "name": "count-sip",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-sip",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-sip",
+      "pass": true
+    },
+    {
+      "name": "count-kick",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-kick",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-kick",
+      "pass": true
+    },
+    {
+      "name": "count-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "count-spoon",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-spoon",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-spoon",
+      "pass": true
+    },
+    {
+      "name": "count-water-splash",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-water-splash",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-water-splash",
+      "pass": true
+    },
+    {
+      "name": "count-notes",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-notes",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-notes",
+      "pass": true
+    },
+    {
+      "name": "count-page",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-page",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-page",
+      "pass": true
+    },
+    {
+      "name": "count-hand-wave",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-hand-wave",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-hand-wave",
+      "pass": true
+    },
+    {
+      "name": "count-care-wipe",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-care-wipe",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-care-wipe",
+      "pass": true
+    },
+    {
+      "name": "count-hand-clap",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-hand-clap",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-hand-clap",
+      "pass": true
+    },
+    {
+      "name": "count-peekaboo",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-peekaboo",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-peekaboo",
+      "pass": true
+    },
+    {
+      "name": "hearts-original-face-visible",
+      "pass": true
+    },
+    {
+      "name": "real-app-mouth-frame",
+      "pass": true
+    },
+    {
+      "name": "same-voice-baseline-comparison",
+      "pass": true
+    },
+    {
+      "name": "audio-end-clears",
+      "pass": true
+    },
+    {
+      "name": "empty-search-disables-play",
+      "pass": true
+    },
+    {
+      "name": "actual-press-to-listen-screen",
+      "pass": true
+    },
+    {
+      "name": "trial-mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "all-20-plus-held-movie-rows",
+      "pass": true
+    },
+    {
+      "name": "eight-approved-zero-use",
+      "pass": true
+    },
+    {
+      "name": "held-cup-zero",
+      "pass": true
+    },
+    {
+      "name": "794-with-no-added-animation",
+      "pass": true
+    },
+    {
+      "name": "coverage-mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "coverage-link-selects-kick",
+      "pass": true
+    },
+    {
+      "name": "on-demand-not-full-bank",
+      "pass": true
+    },
+    {
+      "name": "no-browser-errors",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

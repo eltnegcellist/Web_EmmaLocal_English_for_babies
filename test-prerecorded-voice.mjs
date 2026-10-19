@@ -38,4 +38,14 @@ await updated.init();
 assert.equal(refreshes,1);
 assert.deepEqual(Buffer.from(await (await updated.audioFor(entry.text)).arrayBuffer()),repaired);
 assert.equal(refreshes,1,'Repaired recording must be reused from its verified cache');
+// Trial init lists the bank without downloading every recording, but every
+// played AAC still passes the same length/hash checks as the ordinary app.
+let trialDownloads=0;
+const lazy=new PrerecordedVoiceBank({manifestUrl:'https://example.test/trial/manifest.json',cacheStorage:null,fetcher:async url=>{
+  if(String(url).endsWith('.json'))return new Response(JSON.stringify(manifest));
+  trialDownloads++;return new Response(audio);
+}});
+await lazy.init(()=>{},{preload:false});assert.equal(trialDownloads,0);
+assert.equal((await lazy.audioFor(entry.text)).size,audio.length);assert.equal(trialDownloads,1);
+assert.equal((await lazy.audioFor(entry.text)).size,audio.length);assert.equal(trialDownloads,1);
 console.log('Prerecorded voice: real AAC lookup, whitespace, verified cache, complete offline reload and corruption rejection PASS');

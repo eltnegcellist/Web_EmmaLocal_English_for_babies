@@ -10,7 +10,7 @@ self.onmessage = async event => {
       if (data.engine && data.engine !== 'qwen3-prerecorded') {
         throw Error('実行時の音声合成は廃止しました。事前収録音源を準備してください。');
       }
-      await bank.init(status => self.postMessage({type:'status', ...status}));
+      await bank.init(status => self.postMessage({type:'status', ...status}), {preload:data.preload!==false});
       self.postMessage({
         type:'ready', device:'prerecorded-local', engine:'qwen3-prerecorded',
         model:'Qwen3-TTS-1.7B-Base-8bit', voice:'Mitsukotoba-1202',
