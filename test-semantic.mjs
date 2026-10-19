@@ -34,6 +34,16 @@ const panel=installSemanticPanel({engine,storage,clientFactory:()=>fake});assert
 document.querySelector('[data-semantic="enabled"]').checked=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'sleep');rejectMode=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'generic');assert.equal(panel.enabled,false);
 rejectMode=false;document.querySelector('[data-semantic="prepare"]').click();await new Promise(r=>setTimeout(r,0));assert.equal(panel.enabled,true);
 fake.predict=()=>new Promise(resolve=>finish=resolve);const pending=panel.respond('ミルク','',{isCurrent:()=>false});await Promise.resolve();finish({topic:{id:'milk'},intent:{id:'observation'},state:{id:'ongoing'},elapsedMs:1});assert.equal(await pending,null);
+// The hidden diagnostic panel also subscribes to ordinary microphone replies.
+// E5 has Topic/Interaction only; rendering must not abort the production reply.
+fake.predict=async()=>({source:'e5',topic:{id:'milk',probability:.8,margin:.6},
+  interaction:{id:'inquiry',probability:.7,margin:.5},elapsedMs:12});
+const foreignReply=await panel.respond('Die Milch ist bereit. Möchtest du etwas trinken?','');
+assert(foreignReply.english.length>0);
+const foreignDiagnostic=document.querySelector('[data-semantic="result"]').textContent;
+assert.match(foreignDiagnostic,/milk/);
+assert(!foreignDiagnostic.includes('インテント（参考）'));
+assert(!foreignDiagnostic.includes('状態（参考）'));
 console.log('Semantic policies, catalog rendering, invalid data, cancellation/retry, failed-model fallback and stale reply checks passed.');
 
 // Semantic context consumes, rather than continually resets, one follow-up turn.

@@ -31,7 +31,13 @@ export function installSemanticPanel({controller,engine,beforeChange,storage=loc
         ['Ruri Interaction（生判定）',`${route.interactionRaw||'—'} / ${percent(route.interactionProbability)} / ${route.interactionStatus}`],
         ['英文の採用経路',route.route],['選択理由',route.reason]);
     }
-    if(result?.topic)lines.push(['意味で選んだ話題',`${result.topic.id}（分類スコア ${(result.topic.probability*100).toFixed(1)}%、候補差 ${(result.topic.margin*100).toFixed(1)}ポイント）`],['インテント（参考）',INTENT[result.intent.id]],['状態（参考）',STATE[result.state.id]],['判定時間',`${result.elapsedMs.toFixed(1)} ms`]);
+    if(result?.topic){
+      lines.push(['意味で選んだ話題',`${result.topic.id}（分類スコア ${(result.topic.probability*100).toFixed(1)}%、候補差 ${(result.topic.margin*100).toFixed(1)}ポイント）`]);
+      // E5 publishes only Topic and Interaction. These extra heads belong to Ruri.
+      if(result.intent)lines.push(['インテント（参考）',INTENT[result.intent.id]]);
+      if(result.state)lines.push(['状態（参考）',STATE[result.state.id]]);
+      if(Number.isFinite(result.elapsedMs))lines.push(['判定時間',`${result.elapsedMs.toFixed(1)} ms`]);
+    }
     for(const [label,value] of lines){const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=label+'：';p.append(strong,document.createTextNode(value||'—'));$('result').append(p);}
   });
   $('enabled').addEventListener('change',()=>controller.setEnabled($('enabled').checked,{prepare:true}));
