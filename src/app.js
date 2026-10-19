@@ -156,7 +156,7 @@ const diagnosticNow=()=>typeof performance!=='undefined'&&typeof performance.now
   ? performance.now()
   : Date.now();
 const audioQueues = new Map();
-const history = new ConversationHistory();
+const history = new ConversationHistory(VISUAL_CUE_TRIAL ? {open:(name,version)=>indexedDB.open(name+'-visual-cue-trial',version)} : globalThis.indexedDB);
 let sessionId='', conversationEpoch=0;
 const preparedAudio=new Map();
 let featureScreens;

@@ -15,7 +15,7 @@ manifest = json.loads(committed('assets/visual-cue/artwork/manifest.json'))
 qa = json.loads(committed('assets/visual-cue/artwork/qa/validation.json'))
 assert qa['passed'] and qa['assetCount'] == len(manifest['assets'])
 args.output.mkdir(parents=True, exist_ok=False)
-(args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"').replace('<body>','<body><nav style="padding:14px;text-align:center;background:#f4edf6"><a href="test/">テスト版アプリを開く</a> · <a href="coverage.html">英文の網羅率を見る</a></nav>'))
+(args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"').replace('<header>','<nav style="padding:14px;justify-content:center;background:#f4edf6"><a href="test/">テスト版アプリを開く</a> · <a href="coverage.html">英文の網羅率を見る</a></nav><header>',1))
 # Publish only the display-component demo, not the microphone/AI application.
 (args.output/'ui.html').write_text(committed('visual-cue-ui-preview.html').decode().replace('href="./visual-cue-test.html"','href="./test/"').replace('href="./visual-cue-coverage.html"','href="./coverage.html"'))
 (args.output/'coverage.html').write_text(committed('visual-cue-coverage.html').decode().replace('data-trial-url="./visual-cue-test.html"','data-trial-url="./test/"').replace('href="./visual-cue-test.html"','href="./test/"'))

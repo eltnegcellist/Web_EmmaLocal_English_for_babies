@@ -14,6 +14,14 @@
       "pass": true
     },
     {
+      "name": "production-preferences-untouched",
+      "pass": true
+    },
+    {
+      "name": "trial-has-own-visual-default",
+      "pass": true
+    },
+    {
       "name": "no-auto-ASR-or-model-download",
       "pass": true
     },
@@ -195,6 +203,10 @@
     },
     {
       "name": "trial-mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "trial-history-database-isolated",
       "pass": true
     },
     {

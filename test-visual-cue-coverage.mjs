@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {VISUAL_CUE_CATALOG as catalog} from './src/visual-cue-catalog.js';
 import {normalizeCueText} from './src/visual-cue-controller.js';
+import {createTrialStorage} from './src/visual-cue-trial-storage.js';
 const read=async p=>JSON.parse(await readFile(p,'utf8'));
 const {report,rows}=await read('shared/visual-cue-trial-data.json');
 const source=await read('shared/visual-cue-phrases.json');
@@ -32,4 +33,10 @@ assert.equal(report.animations.filter(a=>a.status==='accepted'&&a.count>0).lengt
 assert.equal(report.animations.find(a=>a.id==='cup-sip').count,0);
 assert.equal(report.voiceBankReference.total,1105);assert.equal(report.voiceBankReference.outsideResponseCorpus.length,14);
 assert.equal(report.voiceBankReference.noAddedAnimation,808);
+const stored=new Map([['emma_visual_cue_mode','emma'],['emma_history_enabled','true']]);
+const raw={get length(){return stored.size;},key:i=>[...stored.keys()][i]??null,getItem:k=>stored.get(k)??null,setItem:(k,v)=>stored.set(k,v),removeItem:k=>stored.delete(k)};
+const trial=createTrialStorage(raw);assert.equal(trial.getItem('emma_visual_cue_mode'),null);
+trial.setItem('emma_visual_cue_mode','visual');assert.equal(raw.getItem('emma_visual_cue_mode'),'emma');
+assert.equal(trial.length,1);assert.equal(trial.key(0),'emma_visual_cue_mode');
+trial.clear();assert.equal(raw.getItem('emma_visual_cue_mode'),'emma');assert.equal(raw.getItem('emma_history_enabled'),'true');
 console.log('Coverage: all 1091 exact bindings independently tallied; 20 approved movies including 8 zero-use, held exclusions, unique units and AAC hashes PASS');

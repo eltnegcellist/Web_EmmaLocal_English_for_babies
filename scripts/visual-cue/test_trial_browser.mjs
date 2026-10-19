@@ -8,6 +8,7 @@ const out=process.env.VISUAL_CUE_TRIAL_QA||'assets/visual-cue/trial-qa';await mk
 const data=JSON.parse(await readFile('shared/visual-cue-trial-data.json','utf8'));
 const browser=await chromium.launch({headless:true,...(process.env.VISUAL_CUE_CHROME_EXECUTABLE?{executablePath:process.env.VISUAL_CUE_CHROME_EXECUTABLE}:{})});
 const context=await browser.newContext({viewport:{width:1100,height:1100}}),page=await context.newPage();
+await context.addInitScript(()=>{window.productionStore=localStorage;productionStore.setItem('emma_visual_cue_mode','emma');productionStore.setItem('emma_history_enabled','true');});
 const errors=[],requests=[],checks=[];let passed=false;
 page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
 const check=(name,value)=>{checks.push({name,pass:!!value});assert(value,name);};
@@ -16,6 +17,8 @@ try{
  check('real-home-with-no-onboarding',await page.locator('#homeScreen').isVisible());
  check('no-voice-clips-on-entry',!requests.some(s=>s.includes('/clips/')));
  check('all-1091-available',await page.locator('#trialPhrase option').count()===1091);
+ check('production-preferences-untouched',await page.evaluate(()=>productionStore.getItem('emma_visual_cue_mode')==='emma'&&productionStore.getItem('emma_history_enabled')==='true'));
+ check('trial-has-own-visual-default',await page.locator('#trialMode').inputValue()==='visual');
  check('no-auto-ASR-or-model-download',!requests.some(s=>/huggingface|\.onnx|\.wasm|\.bin|service-worker\.js/.test(s)));
  await page.selectOption('#trialFilter','animation');check('174-animated-replies',await page.locator('#trialPhrase option').count()===174);
  for(const a of data.report.animations.filter(a=>a.count>0)){
@@ -37,6 +40,7 @@ try{
  await page.selectOption('#trialFilter','all');await page.fill('#trialSearch','zzzz-no-match');check('empty-search-disables-play',await page.locator('#trialPlay').isDisabled());await page.fill('#trialSearch','');
  await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])',{timeout:20000});await page.click('.play-topic-change');await page.getByRole('button',{name:'あし・あんよ',exact:true}).click();await page.getByRole('button',{name:'3文',exact:true}).click();await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-tap.is-speaking');check('actual-press-to-listen-screen',true);page.once('dialog',d=>d.accept());await page.click('#featureClose');
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:out+'/trial-mobile.png',fullPage:true});check('trial-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await page.click('#settingsButton');await page.click('#historyButton');await page.getByText('履歴はまだありません。',{exact:true}).waitFor();check('trial-history-database-isolated',await page.evaluate(async()=>(await indexedDB.databases()).some(db=>db.name==='mitsukotoba-conversation-history-visual-cue-trial')));await page.click('#featureClose');
  await page.goto(base+coveragePath);await page.waitForSelector('#movies tr:nth-child(21)');
  check('all-20-plus-held-movie-rows',await page.locator('#movies tr').count()===21);
  check('eight-approved-zero-use',await page.locator('#movies tr.zero:not(.held)').count()===8);
