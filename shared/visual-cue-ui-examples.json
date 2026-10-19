@@ -43,9 +43,9 @@
   },
   {
     "label": "milk",
-    "text": "Milk all gone! You did it! Hooray, hooray!",
-    "audio": "assets/voice-1202/clips/39ba7d6839d817b562643382.m4a",
-    "phraseId": "vc_000327"
+    "text": "More milk, baby? One tiny sip? We can wait!",
+    "audio": "assets/voice-1202/clips/3d785c0764b3472a5ad0d3da.m4a",
+    "phraseId": "vc_000744"
   },
   {
     "label": "kick",
@@ -67,9 +67,9 @@
   },
   {
     "label": "book",
-    "text": "Open the book. Look, look! What's next?",
-    "audio": "assets/voice-1202/clips/3963d384b6358f0a3db5c4c1.m4a",
-    "phraseId": "vc_000904"
+    "text": "Let's pause reading. We can read later. I'm right here.",
+    "audio": "assets/voice-1202/clips/5e92dee145df3622ae90d191.m4a",
+    "phraseId": "vc_000668"
   },
   {
     "label": "cup",
@@ -79,20 +79,20 @@
   },
   {
     "label": "sleep",
-    "text": "Sleepy eyes. Night-night. Rest, rest.",
-    "audio": "assets/voice-1202/clips/51961c77d0875b79033ff569.m4a",
-    "phraseId": "vc_000823"
+    "text": "Playtime all done? Bye-bye, toy! Time to rest!",
+    "audio": "assets/voice-1202/clips/1b0697bb90d017dd8715706c.m4a",
+    "phraseId": "vc_000673"
   },
   {
     "label": "toy",
-    "text": "Got the toy! You did it! Yay, yay!",
-    "audio": "assets/voice-1202/clips/50648ee10d5d2ebdff604c4a.m4a",
-    "phraseId": "vc_000608"
+    "text": "Playtime is over now. Let's take a break. That was lovely.",
+    "audio": "assets/voice-1202/clips/bc43d6471d3e26750a3dcf1d.m4a",
+    "phraseId": "vc_000726"
   },
   {
     "label": "diaper-v2",
-    "text": "Diaper time! Nice and easy. Here we go!",
-    "audio": "assets/voice-1202/clips/bf7c5a19e5c5f4f05cd4a70d.m4a",
-    "phraseId": "vc_000830"
+    "text": "Clean and fresh! Diaper time. All done.",
+    "audio": "assets/voice-1202/clips/07f4f275847730da62c1a24f.m4a",
+    "phraseId": "vc_000833"
   }
 ]

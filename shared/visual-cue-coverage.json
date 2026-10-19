@@ -8,16 +8,20 @@
   "duplicateReplySets": 1,
   "metrics": {
     "animation": {
-      "count": 174,
-      "percent": 15.95
+      "count": 408,
+      "percent": 37.4
+    },
+    "motionCandidate": {
+      "count": 141,
+      "percent": 12.92
     },
     "background": {
       "count": 123,
       "percent": 11.27
     },
     "still": {
-      "count": 520,
-      "percent": 47.66
+      "count": 145,
+      "percent": 13.29
     },
     "baseline": {
       "count": 274,
@@ -25,20 +29,28 @@
     }
   },
   "noObjectAnimation": {
-    "count": 917,
-    "percent": 84.05
+    "count": 683,
+    "percent": 62.6
   },
   "noAddedAnimation": {
-    "count": 794,
-    "percent": 72.78
+    "count": 419,
+    "percent": 38.41
   },
   "withCandidateBackground": {
-    "count": 297,
-    "percent": 27.22
+    "count": 672,
+    "percent": 61.59
   },
   "missingBinding": 0,
   "approvedMovies": 20,
-  "usedApprovedMovies": 12,
+  "usedApprovedMovies": 19,
+  "motionCandidateCount": 6,
+  "staticConversion": {
+    "before": 520,
+    "converted": 375,
+    "remaining": 145,
+    "baselineAnimationCount": 174,
+    "baselineNoAddedAnimation": 794
+  },
   "backgrounds": [
     {
       "id": "calm",
@@ -55,94 +67,213 @@
   ],
   "animations": [
     {
-      "id": "hug-arms",
-      "label": "抱っこ：支えたまま腕を寄せる",
-      "count": 37,
-      "percent": 3.39,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/hug-arms.webp",
-      "poster": "assets/visual-cue/artwork/posters/hug-arms.webp"
-    },
-    {
       "id": "sip",
       "label": "飲む：哺乳瓶を傾ける",
-      "count": 28,
-      "percent": 2.57,
+      "count": 63,
+      "percent": 5.77,
       "status": "accepted",
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/sip.webp",
-      "poster": "assets/visual-cue/artwork/posters/sip.webp"
+      "poster": "assets/visual-cue/artwork/posters/sip.webp",
+      "baseAssetId": null
     },
     {
-      "id": "kick",
-      "label": "キック：片足ずつ、大きく交互に動かす",
-      "count": 20,
-      "percent": 1.83,
-      "status": "accepted",
+      "id": "sleep-stars",
+      "label": "ねんね：寝床は静止し、外側の星がまたたく",
+      "count": 47,
+      "percent": 4.31,
+      "status": "motion-candidate",
       "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/kick.webp",
-      "poster": "assets/visual-cue/artwork/posters/kick.webp"
+      "image": "assets/visual-cue/motion-variants/sleep-stars.svg",
+      "poster": "assets/visual-cue/motion-variants/sleep-stars-poster.svg",
+      "baseAssetId": "sleep"
     },
     {
-      "id": "dress-sleeves",
-      "label": "着替え：袖の出口から片腕ずつ",
-      "count": 16,
-      "percent": 1.47,
+      "id": "hug-arms",
+      "label": "抱っこ：支えたまま腕を寄せる",
+      "count": 42,
+      "percent": 3.85,
       "status": "accepted",
       "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/dress-sleeves.webp",
-      "poster": "assets/visual-cue/artwork/posters/dress-sleeves.webp"
-    },
-    {
-      "id": "spoon",
-      "label": "白いおかゆ：すくう・上げる・戻す",
-      "count": 16,
-      "percent": 1.47,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/spoon.webp",
-      "poster": "assets/visual-cue/artwork/posters/spoon.webp"
-    },
-    {
-      "id": "water-splash",
-      "label": "浴槽から水しぶき",
-      "count": 14,
-      "percent": 1.28,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/water-splash.webp",
-      "poster": "assets/visual-cue/artwork/posters/water-splash.webp"
-    },
-    {
-      "id": "notes",
-      "label": "音楽：拍に合わせて音符が動く",
-      "count": 12,
-      "percent": 1.1,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/notes.webp",
-      "poster": "assets/visual-cue/artwork/posters/notes.webp"
+      "image": "assets/visual-cue/artwork/animations/hug-arms.webp",
+      "poster": "assets/visual-cue/artwork/posters/hug-arms.webp",
+      "baseAssetId": null
     },
     {
       "id": "page",
       "label": "絵本：りんご・太陽から、洋なし・魚へ",
-      "count": 9,
-      "percent": 0.82,
+      "count": 42,
+      "percent": 3.85,
       "status": "accepted",
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/page.webp",
-      "poster": "assets/visual-cue/artwork/posters/page.webp"
+      "poster": "assets/visual-cue/artwork/posters/page.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "notes",
+      "label": "音楽：拍に合わせて音符が動く",
+      "count": 39,
+      "percent": 3.57,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/notes.webp",
+      "poster": "assets/visual-cue/artwork/posters/notes.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "spoon",
+      "label": "白いおかゆ：すくう・上げる・戻す",
+      "count": 36,
+      "percent": 3.3,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/spoon.webp",
+      "poster": "assets/visual-cue/artwork/posters/spoon.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "toy-rattle",
+      "label": "ガラガラ：輪と柄は静止し、中の鈴が動く",
+      "count": 31,
+      "percent": 2.84,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/toy-rattle.svg",
+      "poster": "assets/visual-cue/motion-variants/toy-rattle-poster.svg",
+      "baseAssetId": "toy"
+    },
+    {
+      "id": "sun-rays",
+      "label": "太陽：中心を保ち、光の筋が順に明るくなる",
+      "count": 30,
+      "percent": 2.75,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/sun-rays.svg",
+      "poster": "assets/visual-cue/motion-variants/sun-rays-poster.svg",
+      "baseAssetId": "sun"
+    },
+    {
+      "id": "water-rain",
+      "label": "雨粒が雲から落ちる",
+      "count": 30,
+      "percent": 2.75,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/water-rain.webp",
+      "poster": "assets/visual-cue/artwork/posters/water-rain.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "outdoor-leaves",
+      "label": "外の木：幹は静止し、葉が風で舞う",
+      "count": 27,
+      "percent": 2.47,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/outdoor-leaves.svg",
+      "poster": "assets/visual-cue/motion-variants/outdoor-leaves-poster.svg",
+      "baseAssetId": "outdoor"
+    },
+    {
+      "id": "dress-sleeves",
+      "label": "着替え：袖の出口から片腕ずつ",
+      "count": 26,
+      "percent": 2.38,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/dress-sleeves.webp",
+      "poster": "assets/visual-cue/artwork/posters/dress-sleeves.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "kick",
+      "label": "キック：片足ずつ、大きく交互に動かす",
+      "count": 25,
+      "percent": 2.29,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/kick.webp",
+      "poster": "assets/visual-cue/artwork/posters/kick.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "water-splash",
+      "label": "浴槽から水しぶき",
+      "count": 19,
+      "percent": 1.74,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/water-splash.webp",
+      "poster": "assets/visual-cue/artwork/posters/water-splash.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "water-shower",
+      "label": "シャワー：水が浴槽へ落ちる",
+      "count": 17,
+      "percent": 1.56,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/water-shower.webp",
+      "poster": "assets/visual-cue/artwork/posters/water-shower.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "change-diaper-v2",
+      "label": "おむつ：留め具の接合部を改善",
+      "count": 15,
+      "percent": 1.37,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/change-diaper-v2.webp",
+      "poster": "assets/visual-cue/artwork/posters/change-diaper-v2.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "change-diaper-exchange",
+      "label": "おむつを外す→新しいおむつを置き留める",
+      "count": 14,
+      "percent": 1.28,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/change-diaper-exchange.webp",
+      "poster": "assets/visual-cue/artwork/posters/change-diaper-exchange.webp",
+      "baseAssetId": null
     },
     {
       "id": "hand-wave",
       "label": "手を振る：手首を支点に左右へ",
+      "count": 13,
+      "percent": 1.19,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/hand-wave.webp",
+      "poster": "assets/visual-cue/artwork/posters/hand-wave.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "peekaboo",
+      "label": "いないいないばあ：布で隠す・見せる",
+      "count": 9,
+      "percent": 0.82,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/peekaboo.webp",
+      "poster": "assets/visual-cue/artwork/posters/peekaboo.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "hand-clap",
+      "label": "拍手：両手が接触・離れる",
       "count": 7,
       "percent": 0.64,
       "status": "accepted",
       "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/hand-wave.webp",
-      "poster": "assets/visual-cue/artwork/posters/hand-wave.webp"
+      "image": "assets/visual-cue/artwork/animations/hand-clap.webp",
+      "poster": "assets/visual-cue/artwork/posters/hand-clap.webp",
+      "baseAssetId": null
     },
     {
       "id": "care-wipe",
@@ -152,77 +283,63 @@
       "status": "accepted",
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/care-wipe.webp",
-      "poster": "assets/visual-cue/artwork/posters/care-wipe.webp"
+      "poster": "assets/visual-cue/artwork/posters/care-wipe.webp",
+      "baseAssetId": null
     },
     {
-      "id": "hand-clap",
-      "label": "拍手：両手が接触・離れる",
-      "count": 5,
-      "percent": 0.46,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/hand-clap.webp",
-      "poster": "assets/visual-cue/artwork/posters/hand-clap.webp"
-    },
-    {
-      "id": "peekaboo",
-      "label": "いないいないばあ：布で隠す・見せる",
+      "id": "toy-roll",
+      "label": "ボール：床の上を左右に転がる",
       "count": 4,
       "percent": 0.37,
-      "status": "accepted",
+      "status": "motion-candidate",
       "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/peekaboo.webp",
-      "poster": "assets/visual-cue/artwork/posters/peekaboo.webp"
-    },
-    {
-      "id": "care-burp",
-      "label": "縦抱き：背中に手を添えてやさしく動かす",
-      "count": 0,
-      "percent": 0.0,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/care-burp.webp",
-      "poster": "assets/visual-cue/artwork/posters/care-burp.webp"
-    },
-    {
-      "id": "change-clothes",
-      "label": "着替え：上半身を保って別の服へ",
-      "count": 0,
-      "percent": 0.0,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/change-clothes.webp",
-      "poster": "assets/visual-cue/artwork/posters/change-clothes.webp"
-    },
-    {
-      "id": "change-diaper-exchange",
-      "label": "おむつを外す→新しいおむつを置き留める",
-      "count": 0,
-      "percent": 0.0,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/change-diaper-exchange.webp",
-      "poster": "assets/visual-cue/artwork/posters/change-diaper-exchange.webp"
-    },
-    {
-      "id": "change-diaper-v2",
-      "label": "おむつ：留め具の接合部を改善",
-      "count": 0,
-      "percent": 0.0,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/change-diaper-v2.webp",
-      "poster": "assets/visual-cue/artwork/posters/change-diaper-v2.webp"
+      "image": "assets/visual-cue/motion-variants/toy-roll.svg",
+      "poster": "assets/visual-cue/motion-variants/toy-roll-poster.svg",
+      "baseAssetId": "toy"
     },
     {
       "id": "change-zipper",
       "label": "前開き服：ファスナーを上げる・下げる",
-      "count": 0,
-      "percent": 0.0,
+      "count": 3,
+      "percent": 0.27,
       "status": "accepted",
       "runtimeEligible": true,
       "image": "assets/visual-cue/artwork/animations/change-zipper.webp",
-      "poster": "assets/visual-cue/artwork/posters/change-zipper.webp"
+      "poster": "assets/visual-cue/artwork/posters/change-zipper.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "hand-wash",
+      "label": "手洗い：手はそのまま、水滴と泡が流れる",
+      "count": 2,
+      "percent": 0.18,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/hand-wash.svg",
+      "poster": "assets/visual-cue/motion-variants/hand-wash-poster.svg",
+      "baseAssetId": "hands-open-v2"
+    },
+    {
+      "id": "care-burp",
+      "label": "縦抱き：背中に手を添えてやさしく動かす",
+      "count": 1,
+      "percent": 0.09,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/care-burp.webp",
+      "poster": "assets/visual-cue/artwork/posters/care-burp.webp",
+      "baseAssetId": null
+    },
+    {
+      "id": "change-clothes",
+      "label": "着替え：上半身を保って別の服へ",
+      "count": 1,
+      "percent": 0.09,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/change-clothes.webp",
+      "poster": "assets/visual-cue/artwork/posters/change-clothes.webp",
+      "baseAssetId": null
     },
     {
       "id": "cup-sip",
@@ -232,7 +349,8 @@
       "status": "needs-review",
       "runtimeEligible": false,
       "image": "assets/visual-cue/artwork/animations/cup-sip.webp",
-      "poster": "assets/visual-cue/artwork/posters/cup-sip.webp"
+      "poster": "assets/visual-cue/artwork/posters/cup-sip.webp",
+      "baseAssetId": null
     },
     {
       "id": "wake-daylight",
@@ -242,33 +360,16 @@
       "status": "accepted",
       "runtimeEligible": false,
       "image": "assets/visual-cue/artwork/animations/wake-daylight.webp",
-      "poster": "assets/visual-cue/artwork/posters/wake-daylight.webp"
-    },
-    {
-      "id": "water-rain",
-      "label": "雨粒が雲から落ちる",
-      "count": 0,
-      "percent": 0.0,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/water-rain.webp",
-      "poster": "assets/visual-cue/artwork/posters/water-rain.webp"
-    },
-    {
-      "id": "water-shower",
-      "label": "シャワー：水が浴槽へ落ちる",
-      "count": 0,
-      "percent": 0.0,
-      "status": "accepted",
-      "runtimeEligible": true,
-      "image": "assets/visual-cue/artwork/animations/water-shower.webp",
-      "poster": "assets/visual-cue/artwork/posters/water-shower.webp"
+      "poster": "assets/visual-cue/artwork/posters/wake-daylight.webp",
+      "baseAssetId": null
     }
   ],
   "sourceSHA256": {
     "shared/visual-cue-phrases.json": "41509cd2442209bcde77eae88c28c74a7b8776659d1f83149ed54aca131b67f1",
-    "shared/visual-cue-runtime-review.json": "8a66e08900baca8f735b76f0de9d5ad6a64931ea0b52e40ba1ea688ac3ae5aac",
-    "src/visual-cue-catalog.js": "7a9a1073c615ee551b4962a2399dff23b2dfee6a302b002663c6d0e58ca8ac65"
+    "shared/visual-cue-runtime-review.json": "925bc550faa4f8649aa1532a1680ee13e9b48f719eb85f5abf9bbe307635e5a5",
+    "src/visual-cue-catalog.js": "367343a06aee6a5b4bb9094df67e26280158fd6aa9f3f47a75dae3f0fbf3c863",
+    "assets/visual-cue/motion-variants/manifest.json": "30dc784f782a65022b96fdb518c88b684f29ed6f56c4f00f4d121267dccdcb0d",
+    "shared/visual-cue-static-animation-overrides.json": "ee3b6776ef4d847db1e700ee524c7c29d6017d2a2424b0856898340fcd54822f"
   },
   "voiceBankReference": {
     "total": 1105,
@@ -358,14 +459,15 @@
         ]
       }
     ],
-    "noAddedAnimation": 808,
-    "noAddedAnimationPercent": 73.12
+    "noAddedAnimation": 433,
+    "noAddedAnimationPercent": 39.19
   },
   "limitations": [
     "割当件数であり、意味の適合率・利用頻度ではない。",
     "意味確認済みは元の21セット。新規割当や背景2案を承認済みと扱わない。",
     "通常Emmaのまばたき・口パクは追加アニメーションの網羅数に含めない。",
     "候補背景を含める場合と、採用済み物体動画だけの場合を別集計。",
+    "承認済み静止原画から作った6つの部品別SVG動作は新規候補であり、素材採用済み動画20点に加算しない。",
     "コップ動画は再確認待ち、起床動画は意味対応未完成のため実行時対象外。"
   ]
 }

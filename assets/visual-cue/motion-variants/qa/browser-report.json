@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "id": "sun-rays",
+      "animatedParts": 8,
+      "reducedMotion": true,
+      "posterStatic": true,
+      "stationaryRegion": [
+        205,
+        205,
+        305,
+        305
+      ]
+    },
+    {
+      "id": "outdoor-leaves",
+      "animatedParts": 2,
+      "reducedMotion": true,
+      "posterStatic": true,
+      "stationaryRegion": [
+        240,
+        350,
+        275,
+        405
+      ]
+    },
+    {
+      "id": "sleep-stars",
+      "animatedParts": 3,
+      "reducedMotion": true,
+      "posterStatic": true,
+      "stationaryRegion": [
+        100,
+        220,
+        350,
+        390
+      ]
+    },
+    {
+      "id": "toy-rattle",
+      "animatedParts": 2,
+      "reducedMotion": true,
+      "posterStatic": true,
+      "stationaryRegion": [
+        130,
+        335,
+        170,
+        400
+      ]
+    },
+    {
+      "id": "toy-roll",
+      "animatedParts": 2,
+      "reducedMotion": true,
+      "posterStatic": true,
+      "stationaryRegion": [
+        240,
+        374,
+        270,
+        378
+      ]
+    },
+    {
+      "id": "hand-wash",
+      "animatedParts": 7,
+      "reducedMotion": true,
+      "posterStatic": true,
+      "stationaryRegion": [
+        230,
+        390,
+        275,
+        420
+      ]
+    }
+  ]
+}

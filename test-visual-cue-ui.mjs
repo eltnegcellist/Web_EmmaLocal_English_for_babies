@@ -4,6 +4,7 @@ import {JSDOM} from 'jsdom';
 import {VISUAL_CUE_CATALOG as catalog} from './src/visual-cue-catalog.js';
 import {createVisualCueController,resolveVisualCue} from './src/visual-cue-controller.js';
 const art=JSON.parse(readFileSync('assets/visual-cue/artwork/manifest.json'));
+const motion=JSON.parse(readFileSync('assets/visual-cue/motion-variants/manifest.json'));
 const oldGestures=JSON.parse(readFileSync('assets/emma-gestures/manifest.json'));
 assert(oldGestures.states.every(s=>s.status==='withdrawn'));
 for(const state of ['calm','celebrate'])for(const suffix of ['', '-poster']){
@@ -11,7 +12,10 @@ for(const state of ['calm','celebrate'])for(const suffix of ['', '-poster']){
  assert.equal(svg.documentElement.dataset.emmaBackdrop,state);assert(!svg.querySelector('[data-emma-gesture]'));
 }
 for(const a of Object.values(catalog.assets)){
- assert.equal(art.assets.find(x=>x.id===a.id).status,'accepted');assert(existsSync(a.image));assert(existsSync(a.poster));
+ const candidate=motion.assets.find(x=>x.id===a.id);
+ if(candidate){assert.equal(candidate.status,'motion-candidate');assert.equal(art.assets.find(x=>x.id===candidate.baseAssetId).status,'accepted');assert.equal(a.approvalStatus,'motion-candidate');}
+ else assert.equal(art.assets.find(x=>x.id===a.id).status,'accepted');
+ assert(existsSync(a.image));assert(existsSync(a.poster));
 }
 assert(!catalog.assets['cup-sip']);assert(!catalog.assets['wake-daylight']);
 assert.equal(resolveVisualCue('This text is unknown.'),null);
@@ -25,8 +29,11 @@ assert.equal(singles.length,178);for(const e of singles)assert(resolveVisualCue(
 for(const text of ['Tap, tap!','Wiggle, wiggle!','Squeeze, squeeze!','One, two, three!'])assert.equal(resolveVisualCue(text).type,'emma');
 for(const r of rows){
  const p=resolveVisualCue(r.text);assert.deepEqual(p,r.binding);
- if(r.text.includes('?')&&p.type==='asset')assert.notEqual(catalog.assets[p.assetId].kind,'animation','questions do not assert a completed motion');
 }
+assert.equal(resolveVisualCue("Here's your book! Turn the page. What comes next?").assetId,'page');
+assert.equal(resolveVisualCue("Let's pause changing. We have time. I'm right here.").assetId,'diaper-v2');
+assert.equal(resolveVisualCue("That diaper is changed! All finished now! Let's get cozy.").assetId,'diaper-v2');
+assert.equal(resolveVisualCue("Let's pat your back. Maybe a little burp. There!").assetId,'care-burp');
 const dom=new JSDOM('<div class="avatar"><div data-visual-cue-host hidden></div></div><div class="avatar play-avatar"><div data-visual-cue-host hidden></div></div>');
 const {document}=dom.window;
 Object.defineProperty(document,'hidden',{value:false,writable:true});

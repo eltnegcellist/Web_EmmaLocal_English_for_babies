@@ -20,14 +20,20 @@ try{
  check('production-preferences-untouched',await page.evaluate(()=>productionStore.getItem('emma_visual_cue_mode')==='emma'&&productionStore.getItem('emma_history_enabled')==='true'));
  check('trial-has-own-visual-default',await page.locator('#trialMode').inputValue()==='visual');
  check('no-auto-ASR-or-model-download',!requests.some(s=>/huggingface|\.onnx|\.wasm|\.bin|service-worker\.js/.test(s)));
- await page.selectOption('#trialFilter','animation');check('174-animated-replies',await page.locator('#trialPhrase option').count()===174);
+ await page.selectOption('#trialFilter','animation');check('approved-animation-reply-count',await page.locator('#trialPhrase option').count()===data.report.metrics.animation.count);
  for(const a of data.report.animations.filter(a=>a.count>0)){
+  await page.selectOption('#trialFilter',a.status==='motion-candidate'?'motionCandidate':'animation');
   await page.selectOption('#trialTarget',a.id);
   check('count-'+a.id,await page.locator('#trialPhrase option').count()===a.count);
   await page.evaluate(async path=>{const i=new Image();i.src=path;await i.decode();},a.image);
   await page.click('#trialPlay');await page.waitForSelector(`#avatar.has-visual-cue img[data-asset-id="${a.id}"]`);
   check('actual-worker-audio-'+a.id,await page.locator('#avatar').evaluate(n=>n.classList.contains('state-speaking')));
   if(a.id==='hug-arms')check('quick-stop-visible-while-playing',await page.locator('#trialQuickStop').isVisible());
+  if(a.status==='motion-candidate'){
+   await page.uncheck('#trialMotion');await page.waitForFunction(path=>document.querySelector('#avatar img[data-asset-id]')?.src.endsWith(path),a.poster);
+   check('static-poster-'+a.id,await page.locator('#avatar').evaluate(n=>n.classList.contains('state-speaking')));
+   await page.check('#trialMotion');await page.waitForFunction(path=>document.querySelector('#avatar img[data-asset-id]')?.src.endsWith(path),a.image);
+  }
   if(a.id==='kick')await page.screenshot({path:out+'/trial-kick-desktop.png',fullPage:true});
   await page.click('#trialQuickStop');check('stop-clears-'+a.id,await page.locator('.has-visual-cue').count()===0);
  }
@@ -37,17 +43,22 @@ try{
  check('real-app-mouth-frame',await page.locator('#aiAvatarFace [data-avatar-frame]:not(.hidden)').getAttribute('data-avatar-frame').then(f=>f.includes('-talk-')));
  await page.selectOption('#trialMode','emma');check('same-voice-baseline-comparison',await page.locator('.has-emma-background').count()===0&&await page.locator('#avatar').evaluate(n=>n.classList.contains('state-speaking')));
  await page.selectOption('#trialMode','visual');await page.waitForSelector('#avatar.has-emma-background');await page.waitForSelector('#trialPlay:not([disabled])',{timeout:15000});check('audio-end-clears',await page.locator('.has-emma-background').count()===0);
+ await page.selectOption('#trialFilter','converted');check('375-previously-static-replies',await page.locator('#trialPhrase option').count()===375);
+ await page.selectOption('#trialFilter','still');check('remaining-stills-have-reasons',(await page.locator('#trialBinding').textContent()).includes('／'));
  await page.selectOption('#trialFilter','all');await page.fill('#trialSearch','zzzz-no-match');check('empty-search-disables-play',await page.locator('#trialPlay').isDisabled());await page.fill('#trialSearch','');
  await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])',{timeout:20000});await page.click('.play-topic-change');await page.getByRole('button',{name:'あし・あんよ',exact:true}).click();await page.getByRole('button',{name:'3文',exact:true}).click();await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-tap.is-speaking');check('actual-press-to-listen-screen',true);page.once('dialog',d=>d.accept());await page.click('#featureClose');
  await page.setViewportSize({width:390,height:844});await page.screenshot({path:out+'/trial-mobile.png',fullPage:true});check('trial-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await page.click('#settingsButton');await page.click('#historyButton');await page.getByText('履歴はまだありません。',{exact:true}).waitFor();check('trial-history-database-isolated',await page.evaluate(async()=>(await indexedDB.databases()).some(db=>db.name==='mitsukotoba-conversation-history-visual-cue-trial')));await page.click('#featureClose');
- await page.goto(base+coveragePath);await page.waitForSelector('#movies tr:nth-child(21)');
- check('all-20-plus-held-movie-rows',await page.locator('#movies tr').count()===21);
- check('eight-approved-zero-use',await page.locator('#movies tr.zero:not(.held)').count()===8);
+ await page.goto(base+coveragePath);await page.waitForSelector('#movies tr:nth-child('+data.report.animations.length+')');
+ check('all-approved-held-and-candidate-movie-rows',await page.locator('#movies tr').count()===data.report.animations.length);
+ check('only-wake-has-no-approved-assignment',await page.locator('#movies tr.zero:not(.held)').count()===1);
+ check('six-before-after-motion-previews',await page.locator('#motionGallery .motion-card').count()===6&&await page.locator('#motionGallery img').count()===12);
+ await page.click('#motionToggle');check('motion-gallery-can-pause',await page.locator('[data-motion-id]').evaluateAll(imgs=>imgs.every(i=>i.src.endsWith('-poster.svg'))));
+ await page.click('#motionToggle');check('motion-gallery-can-resume',await page.locator('[data-motion-id]').evaluateAll(imgs=>imgs.every(i=>!i.src.endsWith('-poster.svg'))));
  check('held-cup-zero',await page.locator('#movies tr[data-asset="cup-sip"] td:nth-child(2)').textContent()==='0');
- await page.selectOption('#category','no-animation');check('794-with-no-added-animation',(await page.locator('#resultCount').textContent()).startsWith('794件'));
+ await page.selectOption('#category','no-animation');check('no-added-animation-current-count',(await page.locator('#resultCount').textContent()).startsWith(data.report.noAddedAnimation.count+'件'));
  await page.screenshot({path:out+'/coverage-mobile.png',fullPage:true});check('coverage-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
- const url=await page.locator('#movies tr[data-asset="kick"] a').getAttribute('href');await page.goto(url);await page.waitForSelector('#trialTarget');check('coverage-link-selects-kick',await page.locator('#trialTarget').inputValue()==='kick'&&await page.locator('#trialPhrase option').count()===20);
+ const url=await page.locator('#movies tr[data-asset="kick"] a').getAttribute('href');await page.goto(url);await page.waitForSelector('#trialTarget');check('coverage-link-selects-kick',await page.locator('#trialTarget').inputValue()==='kick'&&await page.locator('#trialPhrase option').count()===data.report.animations.find(a=>a.id==='kick').count);
  const clips=requests.filter(s=>s.includes('/clips/'));check('on-demand-not-full-bank',clips.length>0&&clips.length<50);
  check('no-browser-errors',errors.length===0);passed=true;
 }finally{await writeFile(out+'/browser-report.json',JSON.stringify({passed,checks,errors},null,2)+'\n');await browser.close();}

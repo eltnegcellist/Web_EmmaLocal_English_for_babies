@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "id": "sun-rays",
+      "changedPixels": 42074,
+      "stationaryMaxDelta": 0,
+      "transparentCorners": true
+    },
+    {
+      "id": "outdoor-leaves",
+      "changedPixels": 1725,
+      "stationaryMaxDelta": 0,
+      "transparentCorners": true
+    },
+    {
+      "id": "sleep-stars",
+      "changedPixels": 517,
+      "stationaryMaxDelta": 0,
+      "transparentCorners": true
+    },
+    {
+      "id": "toy-rattle",
+      "changedPixels": 8407,
+      "stationaryMaxDelta": 0,
+      "transparentCorners": true
+    },
+    {
+      "id": "toy-roll",
+      "changedPixels": 27344,
+      "stationaryMaxDelta": 0,
+      "transparentCorners": true
+    },
+    {
+      "id": "hand-wash",
+      "changedPixels": 2096,
+      "stationaryMaxDelta": 0,
+      "transparentCorners": true
+    }
+  ]
+}

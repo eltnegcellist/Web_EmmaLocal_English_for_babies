@@ -9,6 +9,10 @@ read=lambda p:json.loads((R/p).read_text())
 art=read('assets/visual-cue/artwork/manifest.json')['assets']
 # Approval holds and semantic withdrawals are authoritative even if a file exists.
 assets={a['id']:{'id':a['id'],'kind':a['kind'],'image':'assets/visual-cue/artwork/'+(a['animation'] or a['illustration']),'poster':'assets/visual-cue/artwork/'+a['poster']} for a in art if a['status']=='accepted' and a['id'] not in ['wake-daylight']}
+motions=read('assets/visual-cue/motion-variants/manifest.json')['assets']
+for a in motions:
+ assert a['status']=='motion-candidate' and any(x['id']==a['baseAssetId'] and x['status']=='accepted' and x['kind']=='illustration' for x in art)
+ assets[a['id']]={'id':a['id'],'kind':'animation','image':a['animation'],'poster':a['poster'],'approvalStatus':'motion-candidate','baseAssetId':a['baseAssetId']}
 subjects={'milk':'milk','diaper':'diaper-v2','toy':'toy','outside':'outdoor','rain':'rain','sun':'sun','bath':'bath','book':'book','music':'music','clothes':'clothes','drink':'cup','tummy':'tummy','hands':'hands-open-v2','food':'meal','feet':'feet'}
 actions={'sleep':'sleep','sip':'milk','hug':'hug-arms','eat':'spoon','kick':'kick','sing':'notes','splash':'water-splash','dress':'dress-sleeves','turn-page':'page','read':'book','peekaboo':'peekaboo','wipe':'care-wipe','clap':'hand-clap','wave':'hand-wave','wash':'water-shower','burp':'care-burp'}
 gestures={'social.greeting':'smile','social.reassurance':'calm','social.affection':'smile','social.praise':'celebrate','social.achievement':'celebrate','social.effort':'celebrate','social.encouragement':'invite','social.care':'calm','dialogue.invitation':'invite','dialogue.start':'invite','dialogue.finish':'calm','dialogue.finish-check':'ask','dialogue.inquiry':'ask','dialogue.repeat':'invite','dialogue.pause':'calm','observed.voice':'listen','observed.smile':'smile','attention.look':'invite','attention.listen':'listen','action.wake':'smile'}
@@ -81,6 +85,17 @@ for target,texts in single_groups.items():
 press_single={norm(e['text']) for e in voice.values() if any(x.startswith('web:press-single:') for x in e['sources'])}
 assert set(single_bindings)==press_single,sorted(press_single-set(single_bindings))
 bindings.update(single_bindings)
+# Explicit offline-reviewed static-to-animation decisions. Questions inside a
+# reply do not cancel an observed/illustrative action in another sentence.
+# Completion, pauses, held cups and withdrawn hand movements retain a still.
+motion_review=read('shared/visual-cue-static-animation-overrides.json')['rows']
+for r in motion_review:
+ key=norm(r['text']);assert bindings[key]=={'type':'asset','assetId':r['assetId']},r['text']
+ assert r['afterAssetId'] in assets
+ if r['changed']:
+  assert assets[r['afterAssetId']]['kind']=='animation'
+  bindings[key]={'type':'asset','assetId':r['afterAssetId']}
+single_bindings={key:bindings[key] for key in single_bindings}
 for row in review:row['binding']=bindings[norm(row['text'])]
 assert 'cup-sip' not in assets
 assert all(p['type']=='emma' or p['assetId'] in assets for p in bindings.values())

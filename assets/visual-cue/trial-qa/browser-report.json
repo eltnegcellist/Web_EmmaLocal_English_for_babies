@@ -26,7 +26,35 @@
       "pass": true
     },
     {
-      "name": "174-animated-replies",
+      "name": "approved-animation-reply-count",
+      "pass": true
+    },
+    {
+      "name": "count-sip",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-sip",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-sip",
+      "pass": true
+    },
+    {
+      "name": "count-sleep-stars",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-sleep-stars",
+      "pass": true
+    },
+    {
+      "name": "static-poster-sleep-stars",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-sleep-stars",
       "pass": true
     },
     {
@@ -46,63 +74,15 @@
       "pass": true
     },
     {
-      "name": "count-sip",
+      "name": "count-page",
       "pass": true
     },
     {
-      "name": "actual-worker-audio-sip",
+      "name": "actual-worker-audio-page",
       "pass": true
     },
     {
-      "name": "stop-clears-sip",
-      "pass": true
-    },
-    {
-      "name": "count-kick",
-      "pass": true
-    },
-    {
-      "name": "actual-worker-audio-kick",
-      "pass": true
-    },
-    {
-      "name": "stop-clears-kick",
-      "pass": true
-    },
-    {
-      "name": "count-dress-sleeves",
-      "pass": true
-    },
-    {
-      "name": "actual-worker-audio-dress-sleeves",
-      "pass": true
-    },
-    {
-      "name": "stop-clears-dress-sleeves",
-      "pass": true
-    },
-    {
-      "name": "count-spoon",
-      "pass": true
-    },
-    {
-      "name": "actual-worker-audio-spoon",
-      "pass": true
-    },
-    {
-      "name": "stop-clears-spoon",
-      "pass": true
-    },
-    {
-      "name": "count-water-splash",
-      "pass": true
-    },
-    {
-      "name": "actual-worker-audio-water-splash",
-      "pass": true
-    },
-    {
-      "name": "stop-clears-water-splash",
+      "name": "stop-clears-page",
       "pass": true
     },
     {
@@ -118,15 +98,147 @@
       "pass": true
     },
     {
-      "name": "count-page",
+      "name": "count-spoon",
       "pass": true
     },
     {
-      "name": "actual-worker-audio-page",
+      "name": "actual-worker-audio-spoon",
       "pass": true
     },
     {
-      "name": "stop-clears-page",
+      "name": "stop-clears-spoon",
+      "pass": true
+    },
+    {
+      "name": "count-toy-rattle",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-toy-rattle",
+      "pass": true
+    },
+    {
+      "name": "static-poster-toy-rattle",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-toy-rattle",
+      "pass": true
+    },
+    {
+      "name": "count-sun-rays",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-sun-rays",
+      "pass": true
+    },
+    {
+      "name": "static-poster-sun-rays",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-sun-rays",
+      "pass": true
+    },
+    {
+      "name": "count-water-rain",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-water-rain",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-water-rain",
+      "pass": true
+    },
+    {
+      "name": "count-outdoor-leaves",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-outdoor-leaves",
+      "pass": true
+    },
+    {
+      "name": "static-poster-outdoor-leaves",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-outdoor-leaves",
+      "pass": true
+    },
+    {
+      "name": "count-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "count-kick",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-kick",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-kick",
+      "pass": true
+    },
+    {
+      "name": "count-water-splash",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-water-splash",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-water-splash",
+      "pass": true
+    },
+    {
+      "name": "count-water-shower",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-water-shower",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-water-shower",
+      "pass": true
+    },
+    {
+      "name": "count-change-diaper-v2",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-change-diaper-v2",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-change-diaper-v2",
+      "pass": true
+    },
+    {
+      "name": "count-change-diaper-exchange",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-change-diaper-exchange",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-change-diaper-exchange",
       "pass": true
     },
     {
@@ -142,15 +254,15 @@
       "pass": true
     },
     {
-      "name": "count-care-wipe",
+      "name": "count-peekaboo",
       "pass": true
     },
     {
-      "name": "actual-worker-audio-care-wipe",
+      "name": "actual-worker-audio-peekaboo",
       "pass": true
     },
     {
-      "name": "stop-clears-care-wipe",
+      "name": "stop-clears-peekaboo",
       "pass": true
     },
     {
@@ -166,15 +278,83 @@
       "pass": true
     },
     {
-      "name": "count-peekaboo",
+      "name": "count-care-wipe",
       "pass": true
     },
     {
-      "name": "actual-worker-audio-peekaboo",
+      "name": "actual-worker-audio-care-wipe",
       "pass": true
     },
     {
-      "name": "stop-clears-peekaboo",
+      "name": "stop-clears-care-wipe",
+      "pass": true
+    },
+    {
+      "name": "count-toy-roll",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-toy-roll",
+      "pass": true
+    },
+    {
+      "name": "static-poster-toy-roll",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-toy-roll",
+      "pass": true
+    },
+    {
+      "name": "count-change-zipper",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-change-zipper",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-change-zipper",
+      "pass": true
+    },
+    {
+      "name": "count-hand-wash",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-hand-wash",
+      "pass": true
+    },
+    {
+      "name": "static-poster-hand-wash",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-hand-wash",
+      "pass": true
+    },
+    {
+      "name": "count-care-burp",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-care-burp",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-care-burp",
+      "pass": true
+    },
+    {
+      "name": "count-change-clothes",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-change-clothes",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-change-clothes",
       "pass": true
     },
     {
@@ -194,6 +374,14 @@
       "pass": true
     },
     {
+      "name": "375-previously-static-replies",
+      "pass": true
+    },
+    {
+      "name": "remaining-stills-have-reasons",
+      "pass": true
+    },
+    {
       "name": "empty-search-disables-play",
       "pass": true
     },
@@ -210,11 +398,23 @@
       "pass": true
     },
     {
-      "name": "all-20-plus-held-movie-rows",
+      "name": "all-approved-held-and-candidate-movie-rows",
       "pass": true
     },
     {
-      "name": "eight-approved-zero-use",
+      "name": "only-wake-has-no-approved-assignment",
+      "pass": true
+    },
+    {
+      "name": "six-before-after-motion-previews",
+      "pass": true
+    },
+    {
+      "name": "motion-gallery-can-pause",
+      "pass": true
+    },
+    {
+      "name": "motion-gallery-can-resume",
       "pass": true
     },
     {
@@ -222,7 +422,7 @@
       "pass": true
     },
     {
-      "name": "794-with-no-added-animation",
+      "name": "no-added-animation-current-count",
       "pass": true
     },
     {

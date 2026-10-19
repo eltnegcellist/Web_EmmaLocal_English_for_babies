@@ -26,6 +26,9 @@ for a in manifest['assets']:
 examples=json.loads(committed('shared/visual-cue-ui-examples.json'))
 files.extend(e['audio'] for e in examples)
 files += ['visual-cue-coverage.css','src/visual-cue-coverage.js','shared/visual-cue-trial-data.json','shared/visual-cue-coverage.json','shared/visual-cue-coverage.csv']
+motion_manifest=json.loads(committed('assets/visual-cue/motion-variants/manifest.json'))
+files += ['assets/visual-cue/motion-variants/manifest.json']
+for a in motion_manifest['assets']:files.extend([a['animation'],a['poster']])
 for file in sorted(set(files)):
  dest=args.output/file;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(committed(file))
 # Separate path for the actual app test, without installing a worker over the gallery.
@@ -36,7 +39,7 @@ trial_files=[p for p in tracked if '/vendor/kitten/' not in p and p not in ['src
 trial_files += ['styles.css','visual-cue-trial.css','shared/play-topics.json','shared/visual-cue-trial-data.json','assets/voice-1202/manifest.json']
 trial_files += ['assets/voice-1202/'+e['file'] for e in json.loads(committed('assets/voice-1202/manifest.json'))['entries']]
 trial_files += ['assets/mitsukotoba-'+s+'.png' for s in ['parent','baby','ai']]
-trial_files += [p for p in files if p.startswith(('assets/emma-face/','assets/visual-cue/artwork/'))]
+trial_files += [p for p in files if p.startswith(('assets/emma-face/','assets/visual-cue/'))]
 for file in sorted(set(trial_files)):
  dest=trial/file;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(committed(file))
 published=['ui.html','coverage.html','test/index.html']+sorted(set(files))+['test/'+p for p in sorted(set(trial_files))]
@@ -48,7 +51,7 @@ metadata = dict(sourceRepository='eltnegcellist/Web_EmmaLocal_English_for_babies
                 artifactSHA256=hashlib.sha256((args.output / 'index.html').read_bytes()).hexdigest(),
                 stills=sum(a['kind'] == 'illustration' for a in manifest['assets']),
                 animations=sum(a['kind'] == 'animation' for a in manifest['assets']),
-                accepted=sum(a['status']=='accepted' for a in manifest['assets']), nonRuntime=True, uiPreview='ui.html', trialApp='test/', coverageReport='coverage.html', uiFileSHA256=ui_hashes, emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False, trialApplicationDeployed=True)
+                accepted=sum(a['status']=='accepted' for a in manifest['assets']), nonRuntime=True, uiPreview='ui.html', trialApp='test/', coverageReport='coverage.html', uiFileSHA256=ui_hashes, sceneMotionCandidates=len(motion_manifest['assets']), emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False, trialApplicationDeployed=True)
 (args.output / 'deployment.json').write_text(json.dumps(metadata, indent=2) + '\n')
 (args.output / 'README.md').write_text('''# Visual Cue イラスト・動画プレビュー
 

@@ -7,6 +7,7 @@ on:
       - '.github/workflows/visual-cue-artwork.yml'
       - 'assets/emma-gestures/**'
       - 'assets/emma-background-cues/**'
+      - 'assets/visual-cue/motion-variants/**'
       - 'src/emma-background-cues.js'
       - 'src/emma-preview-motion.js'
       - 'src/visual-cue-*.js'
@@ -50,6 +51,8 @@ jobs:
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
           VISUAL_CUE_UI_BASE=http://127.0.0.1:8765 node scripts/visual-cue/test_ui_browser.mjs
+          node scripts/visual-cue/test_scene_motion.mjs
+          python scripts/visual-cue/verify_scene_motion.py
           VISUAL_CUE_TRIAL_BASE=http://127.0.0.1:8765 node scripts/visual-cue/test_trial_browser.mjs
           node scripts/visual-cue/capture_preview.mjs
           VISUAL_CUE_PREVIEW_URL="file://$PWD/assets/visual-cue/artwork/preview-offline.html" node scripts/visual-cue/capture_preview.mjs
@@ -61,6 +64,7 @@ jobs:
             assets/emma-gestures/qa/
             assets/emma-background-cues/qa/
             assets/visual-cue/trial-qa/
+            assets/visual-cue/motion-variants/qa/
             assets/visual-cue/artwork/qa/
             assets/visual-cue/artwork/preview.*
             assets/visual-cue/artwork/preview-offline.html

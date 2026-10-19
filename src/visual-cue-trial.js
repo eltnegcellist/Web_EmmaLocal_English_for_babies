@@ -4,10 +4,10 @@ import {createTrialStorage} from './visual-cue-trial-storage.js';
 for(const key of ['localStorage','sessionStorage'])Object.defineProperty(window,key,{configurable:true,value:createTrialStorage(window[key])});
 const defaults={emma_semantic_enabled:'false',emma_history_enabled:'false',emma_visual_cue_mode:'visual'};
 for(const [key,value] of Object.entries(defaults))if(localStorage.getItem(key)===null)localStorage.setItem(key,value);
-const {visualCueTrial:app}=await import('./app.js?v=20261020-trial-v1');
+const {visualCueTrial:app}=await import('./app.js?v=20261020-static-motion-v2');
 if(!app)throw Error('テスト文書を開いてください');
 for(const id of ['fullResetButton','semanticEnabled','asrModel','endpointMode','onboardingHighPerformance']){const input=document.getElementById(id);if(input)input.disabled=true;}
-const data=await fetch(new URL('../shared/visual-cue-trial-data.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
+const data=await fetch(new URL('../shared/visual-cue-trial-data.json?v=20261020-static-motion-v2',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
 const $=id=>document.getElementById(id);
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 const coverageUrl=document.documentElement.dataset.coverageUrl||'./visual-cue-coverage.html';
@@ -18,7 +18,7 @@ panel.append(make('h2','すべての英文で試す'),make('p','「押して聞�
 const controls=make('div',null,'trial-filters');
 const label=(text,node)=>{const l=make('label',text);l.append(node);return l;};
 const filter=make('select');filter.id='trialFilter';
-const categories=[['all','すべて'],['animation','採用済み動画'],['background','ハート・星（確認候補）'],['still','静止画'],['baseline','通常Emma（追加アニメーションなし）']];
+const categories=[['all','すべて'],['converted','以前の静止画から動作へ変更'],['animation','採用済み動画'],['motionCandidate','新しい部品別動作（確認候補）'],['background','ハート・星（確認候補）'],['still','静止画（残した理由も表示）'],['baseline','通常Emma（追加アニメーションなし）']];
 for(const [value,text] of categories){const o=make('option',text);o.value=value;filter.append(o);}
 const target=make('select');target.id='trialTarget';
 const search=make('input');search.id='trialSearch';search.type='search';search.placeholder='例：kick / book / milk';
@@ -41,21 +41,22 @@ const home=document.querySelector('#homeScreen .screen-content');home.append(pan
 let filtered=[],generation=0;
 const params=new URLSearchParams(location.search);
 const initial=data.rows.find(r=>r.id===params.get('phrase'));
+const matchesCategory=r=>filter.value==='all'||(filter.value==='converted'?r.staticConverted:r.category===filter.value);
 function options(){
  const previous=target.value;target.replaceChildren();const all=make('option','すべて');all.value='';target.append(all);
- const eligible=data.rows.filter(r=>filter.value==='all'||r.category===filter.value);
+ const eligible=data.rows.filter(matchesCategory);
  for(const key of [...new Set(eligible.map(r=>r.target))]){const rows=eligible.filter(r=>r.target===key);const o=make('option',`${rows[0].label}（${rows.length}件）`);o.value=key;target.append(o);}
  if([...target.options].some(o=>o.value===previous))target.value=previous;
 }
 function selection(){
  generation++;void app.stop();play.disabled=!select.value;
- const row=filtered.find(r=>r.id===select.value);sentence.textContent=row?.text||'該当する英文はありません。';detail.textContent=row?`${row.label} ・ ${row.category==='animation'?'採用済み素材／意味対応は候補':row.category==='background'?'背景は確認候補':'追加動画なし'}`:'';
+ const row=filtered.find(r=>r.id===select.value);sentence.textContent=row?.text||'該当する英文はありません。';detail.textContent=row?`${row.label} ・ ${row.category==='animation'?'採用済み素材／意味対応は候補':row.category==='motionCandidate'?'新しい部品別動作・確認候補':row.category==='background'?'背景は確認候補':'追加動画なし'}${row.changeReason?' ／ '+row.changeReason:''}`:'';
  if(row)app.preload(row.text);
  status.textContent='英文を選んで再生してください。';
 }
 function render(preferred){
  const query=search.value.trim().toLowerCase();
- filtered=data.rows.filter(r=>(filter.value==='all'||r.category===filter.value)&&(!target.value||r.target===target.value)&&r.text.toLowerCase().includes(query));
+ filtered=data.rows.filter(r=>matchesCategory(r)&&(!target.value||r.target===target.value)&&r.text.toLowerCase().includes(query));
  select.replaceChildren();for(const row of filtered){const o=make('option',row.text);o.value=row.id;select.append(o);}
  if(preferred&&filtered.some(r=>r.id===preferred))select.value=preferred;else select.selectedIndex=filtered.length?0:-1;
  count.textContent=`${filtered.length.toLocaleString()}件 / 全${data.rows.length.toLocaleString()}件`;selection();
