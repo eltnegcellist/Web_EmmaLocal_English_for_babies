@@ -1,0 +1,18 @@
+{
+  "transformers": "3.8.1",
+  "onnxruntime": "1.30.0",
+  "files": {
+    "transformers.mjs": {
+      "bytes": 566731,
+      "sha256": "b45314faf0b06930d5570e1712a231a6224cc90c559439ef134fdc392dbbfc63"
+    },
+    "ort-wasm-simd-threaded.mjs": {
+      "bytes": 24381,
+      "sha256": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b"
+    },
+    "ort-wasm-simd-threaded.wasm": {
+      "bytes": 14239897,
+      "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+    }
+  }
+}

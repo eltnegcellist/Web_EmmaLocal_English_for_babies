@@ -73,7 +73,7 @@ export function createSemanticController({ engine, storage = localStorage, befor
       // No keyword fallback; unset interaction preference defaults to ON.
       // An explicit saved OFF remains OFF.
       const interactionEnabled = true; // Both Ruri axes are always active in public Lite.
-      lastResponse=engine.respondRuri(text,name,prediction?.topic, prediction?.interaction, interactionEnabled);
+      lastResponse=engine.respondRuri(text,name,prediction?.topic, prediction?.interaction, interactionEnabled,prediction?.source);
       // Store only template IDs and hashed phrase shingles, never what the parent said.
       try {
         if(typeof engine.exportReplyDiversityState==='function')

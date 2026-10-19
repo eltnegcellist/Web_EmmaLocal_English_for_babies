@@ -95,15 +95,15 @@ for(const highPerformance of [true,false]) {
   requestMicrophonePermission:async()=>calls.push('microphone'),ensureMoonshineIsolation:async()=>true,
   ensurePersistentModelStorage:async()=>true,
   clearObsoleteModelCaches:async()=>{},initWorkers:async()=>calls.push('audio'),
-  semanticPanel:semanticStub,
+  semanticPanel:semanticStub,languageUI:{needsChoice:false,language:'ja',translate:s=>s,confirm:()=>true},
   showOnboardingProgress(){},showProgress(){},setBusy(){},showScreen(){},setState(){},updateAsrModelStatus(){},startTutorial:()=>calls.push('tutorial'),friendlyError:e=>e.message,console};
  runInNewContext(setupFunction+semanticSetup+'globalThis.runSetup=prepareFirstRun;',sandbox);
  await sandbox.runSetup();
- assert.deepEqual(calls,highPerformance ? ['microphone','audio','semantic','tutorial'] : ['microphone','audio','tutorial']);
- assert.equal(values.get('asr'),highPerformance ? 'small' : 'tiny');
- assert.equal(values.get('tiny'),String(!highPerformance));
- assert.equal(values.get('performance'),String(highPerformance));
- assert.equal(semanticStub.requested,highPerformance);
+ assert.deepEqual(calls,['microphone','audio','semantic','tutorial']);
+ assert.equal(values.get('asr'),'small');
+ assert.equal(values.get('tiny'),'false');
+ assert.equal(values.get('performance'),'true');
+ assert.equal(semanticStub.requested,true);
  assert.equal(values.get('emma_web_setup_revision'),'setup-test');
 }
 console.log('Actual first-setup permission/audio/Semantic order and opt-out checks passed.');

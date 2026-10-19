@@ -1,4 +1,5 @@
 import { selectRuriAxes, combinedCandidates } from './interaction/ruri-routing.js';
+import { selectE5Axes } from './multilingual/core.js';
 import { RuriReplyDiversity } from './interaction/diversity.js';
 import { selectInteraction, INTERACTION_REPLIES } from './interaction/response.js';
 import { matchPhoneticScene } from './lite-phonetic-scene-matcher.js';
@@ -831,8 +832,10 @@ export class LiteResponseEngine {
   // Sole live classification path: Topic and Interaction labels come exclusively
   // from their independent Ruri linear heads. Legacy respond() remains only for
   // diagnostic comparison of the old rule engine, never for live Lite playback.
-  respondRuri(transcript, spokenBabyName = "", topicPrediction = null, interactionPrediction = null, allowInteraction = true) {
-    const { topic, interaction } = selectRuriAxes(topicPrediction, interactionPrediction, allowInteraction);
+  respondRuri(transcript, spokenBabyName = "", topicPrediction = null, interactionPrediction = null, allowInteraction = true, source = 'ruri') {
+    const { topic, interaction } = source==='e5'
+      ? selectE5Axes(topicPrediction,interactionPrediction,allowInteraction)
+      : selectRuriAxes(topicPrediction, interactionPrediction, allowInteraction);
     const scene = findScene(topic);
     const pair = scene && interaction ? combinedCandidates(scene.id, interaction) : null;
     const selected=this.diversity.select({topic:scene?.id||null,interaction,pair,

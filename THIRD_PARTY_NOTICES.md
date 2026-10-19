@@ -203,3 +203,13 @@ the same hashes and license copies.
 - Bundled ONNX model: 2,327,524 bytes; SHA-256 `1a153a22f4509e292a94e67d6f9b85e8deb25b4988682b7e174c65279d8788e3`.
 - Model and notice are bundled together; see `assets/vad/model-provenance.json` and `LICENSE-SILERO-VAD-MIT.txt` in that directory.
 - Runs through the existing local ONNX Runtime Web 1.30.0 distribution used by Semantic. This adds no eSpeak or sherpa TTS dependency.
+
+## Multilingual Whisper Small and E5
+
+The non-Japanese mode uses pinned Xenova Whisper Small (OpenAI MIT;
+conversion model card Apache-2.0) and multilingual E5 Small (Microsoft MIT),
+Transformers.js 3.8.1 (Apache-2.0), and ONNX Runtime Web 1.30.0 (MIT).
+Full copies and pinned attribution are in `licenses/multilingual/NOTICE.md`
+and `multilingual-assets/runtime/`. Model weights download only when needed;
+all speech recognition and classification run locally. Japanese Moonshine/Ruri
+assets and their notices are preserved.
