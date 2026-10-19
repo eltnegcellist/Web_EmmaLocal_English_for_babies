@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "scope": "New gesture candidates, using established Emma robot geometry. No adoption implied.",
+  "states": [
+    {
+      "id": "emma.neutral",
+      "label": "待機",
+      "description": "両腕を下ろし、わずかに首と腕を動かして待機する。",
+      "animation": "assets/emma-gestures/neutral.svg",
+      "poster": "assets/emma-gestures/neutral-poster.svg",
+      "status": "needs-review",
+      "movingParts": [
+        "head",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 4800
+    },
+    {
+      "id": "emma.smile",
+      "label": "にっこり",
+      "description": "笑顔で小さくうなずき、両手を少し開く。",
+      "animation": "assets/emma-gestures/smile.svg",
+      "poster": "assets/emma-gestures/smile-poster.svg",
+      "status": "needs-review",
+      "movingParts": [
+        "head",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 3600
+    },
+    {
+      "id": "emma.calm",
+      "label": "安心させる",
+      "description": "両手を低く開き、ゆっくり手を下げる。",
+      "animation": "assets/emma-gestures/calm.svg",
+      "poster": "assets/emma-gestures/calm-poster.svg",
+      "status": "needs-review",
+      "movingParts": [
+        "head",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 4800
+    },
+    {
+      "id": "emma.celebrate",
+      "label": "ほめる",
+      "description": "両腕を上げ、左右の手をゆっくり動かす。",
+      "animation": "assets/emma-gestures/celebrate.svg",
+      "poster": "assets/emma-gestures/celebrate-poster.svg",
+      "status": "needs-review",
+      "movingParts": [
+        "head",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 3600
+    },
+    {
+      "id": "emma.listen",
+      "label": "聞く",
+      "description": "右手を耳のそばへ寄せ、首を傾ける。",
+      "animation": "assets/emma-gestures/listen.svg",
+      "poster": "assets/emma-gestures/listen-poster.svg",
+      "status": "needs-review",
+      "movingParts": [
+        "head",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 4800
+    },
+    {
+      "id": "emma.ask",
+      "label": "たずねる",
+      "description": "両手を上向きに開き、首を傾ける。完了の印は出さない。",
+      "animation": "assets/emma-gestures/ask.svg",
+      "poster": "assets/emma-gestures/ask-poster.svg",
+      "status": "needs-review",
+      "movingParts": [
+        "head",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 3600
+    },
+    {
+      "id": "emma.invite",
+      "label": "誘う",
+      "description": "右手を外へ開き、ゆっくり招く。",
+      "animation": "assets/emma-gestures/invite.svg",
+      "poster": "assets/emma-gestures/invite-poster.svg",
+      "status": "needs-review",
+      "movingParts": [
+        "head",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 3600
+    }
+  ]
+}

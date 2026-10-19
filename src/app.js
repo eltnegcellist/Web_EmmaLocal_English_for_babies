@@ -159,6 +159,18 @@ const history = new ConversationHistory();
 let sessionId='', conversationEpoch=0;
 const preparedAudio=new Map();
 let featureScreens;
+// Optional visual module failure must never prevent voice or the existing Emma face.
+let visualCue={begin(){},end(){},stop(){},preload(){}};
+function initVisualCues(){
+  const mode=$('visualCueMode'),motion=$('visualCueMotion');
+  if(!mode||!motion)return;
+  try{mode.value=localStorage.getItem('emma_visual_cue_mode')==='visual'?'visual':'emma';motion.checked=localStorage.getItem('emma_visual_motion')!=='false';}catch{}
+  import('./visual-cue-controller.js').then(({createVisualCueController})=>{
+    visualCue=createVisualCueController();
+    const configure=()=>{visualCue.configure({mode:mode.value,motion:motion.checked});try{localStorage.setItem('emma_visual_cue_mode',mode.value);localStorage.setItem('emma_visual_motion',String(motion.checked));}catch{}};
+    mode.addEventListener('change',configure);motion.addEventListener('change',configure);configure();
+  }).catch(error=>{mode.value='emma';mode.disabled=true;motion.disabled=true;recordRuntimeDiagnosticEvent('visual-cue-unavailable',error);});
+}
 function audioCacheKey(text){
   return [getTtsSignature(),String(text||'')].join('|');
 }
@@ -168,6 +180,7 @@ function audioCacheKey(text){
 initUi();
 
 function initUi() {
+  initVisualCues();
   semanticPanel=createSemanticController({engine,mode:'semantic',beforeChange:async()=>{if(running||preparingConversation||processing||speaking)await stopEmma();}});
   installSemanticPanel({controller:semanticPanel});
   semanticPanel.subscribe(({requested,status})=>{
@@ -897,6 +910,7 @@ async function prepareSemanticForConversation() {
 }
 
 async function stopEmma() {
+  visualCue.stop();
   conversationEpoch++;
   semanticPanel?.cancelPending();
   while(audioUnlockWaiters.length)audioUnlockWaiters.shift()?.();
@@ -1312,6 +1326,7 @@ async function restoreMicrophoneAfterEmmaVoice() {
 }
 
 async function speakResponse(text,{entry=null,revision=null}={}) {
+  visualCue.preload(text);
   const epoch=conversationEpoch;
   if(!ttsWorker)throw Error('AIの声がまだ準備されていません');
   const speculative=revision!==null;
@@ -1524,6 +1539,7 @@ async function playBlob(blob,requestId) {
   const ended=new Promise(resolve=>source.onended=resolve);
   source.start();
   const q=audioQueues.get(requestId);
+  const cueToken=visualCue.begin(q?.text);
   if(q && !q.firstAudioRecorded){
     q.firstAudioRecorded=true;
     lastTtsFirstAudioMillis=Math.round(diagnosticNow()-q.ttsRequestStartedAt);
@@ -1531,7 +1547,7 @@ async function playBlob(blob,requestId) {
   }
   if(q && !q.started){q.started=true;if(q.entry && historyEnabled(localStorage))history.append(q.entry).catch(error=>{ console.warn('履歴を保存できませんでした',error);$('historyWarning').textContent='履歴を保存できませんでした。端末の空き容量やブラウザ設定を確認してください。'; });}
   animate();
-  await ended;
+  try{await ended;}finally{visualCue.end(cueToken);}
   if(activeAudioSource===source) activeAudioSource=null;
   cancelAnimationFrame(raf);
   avatarMouthLevel='small';
@@ -1703,7 +1719,10 @@ function trimAudioSilence(buffer) {
 
 function setState(state,title,detail) {
   avatarVisualState=state;
+  const cueVisible=ui.avatar.classList.contains('has-visual-cue');
   ui.avatar.className=`avatar state-${state}`;
+  if(cueVisible)ui.avatar.classList.add('has-visual-cue');
+  if(state==='error')visualCue.stop();
   renderAvatarFrame();
   ui.statusTitle.textContent=title;
   ui.statusDetail.textContent=detail;

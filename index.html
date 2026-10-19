@@ -8,7 +8,7 @@
   <link rel="manifest" href="./manifest.webmanifest?v=20260930-icon-r1" />
   <link rel="icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" sizes="192x192" />
-  <link rel="stylesheet" href="./styles.css?v=20261017-emma-main-v1" />
+  <link rel="stylesheet" href="./styles.css?v=20261019-visual-cue-ui-v1" />
   <title>みつことば Web</title>
 </head>
 <body>
@@ -451,6 +451,7 @@
 <path fill="var(--blush, #e00000)" d="M512,950 C489,930 462,946 468,969 C473,986 495,997 512,1007 C529,997 551,986 556,969 C562,946 535,930 512,950 Z" />
 </svg>
 </div>
+            <div class="visual-cue-host" data-visual-cue-host hidden></div>
             <div class="thinking-dots"><span></span><span></span><span></span></div>
           </div>
           <div id="tutorialStatusTarget" class="avatar-status" aria-live="polite">
@@ -537,6 +538,14 @@
         
         <article class="card">
           <h2>見た目</h2>
+          <label>英語を話している間の表示
+            <select id="visualCueMode">
+              <option value="emma">Emma</option>
+              <option value="visual">イラストと動き</option>
+            </select>
+          </label>
+          <label class="history-save-toggle"><span>イラスト・Emmaの身振りを動かす</span><input id="visualCueMotion" type="checkbox" checked /></label>
+          <p class="small muted">英語に合う絵やEmmaの身振りを表示します。対応する絵がないときはEmmaが表示されます。端末の「視差効果を減らす」設定中は静止画になります。</p>
           <label>キャラクターの色
             <select id="colorMode">
               <option value="soft">やさしい色</option>
@@ -783,6 +792,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261017-emma-main-v1"></script>
+  <script type="module" src="./src/app.js?v=20261019-visual-cue-ui-v1"></script>
 </body>
 </html>

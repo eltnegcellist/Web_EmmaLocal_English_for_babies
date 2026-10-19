@@ -1,0 +1,98 @@
+[
+  {
+    "label": "Emma / neutral",
+    "text": "Try, try, try! No rush, baby! I'm here!",
+    "audio": "assets/voice-1202/clips/9d02f2ab091e39ef4cf22cb7.m4a",
+    "phraseId": "vc_000611"
+  },
+  {
+    "label": "Emma / smile",
+    "text": "Wake up! Hello, hello! Here we go!",
+    "audio": "assets/voice-1202/clips/190a6886b1a29798daf4980c.m4a",
+    "phraseId": "vc_000827"
+  },
+  {
+    "label": "Emma / calm",
+    "text": "I hear you. Right here. Nice and close.",
+    "audio": "assets/voice-1202/clips/dd7d85d9f96cde8534d401f8.m4a",
+    "phraseId": "vc_000861"
+  },
+  {
+    "label": "Emma / celebrate",
+    "text": "Yes! You made it! That's wonderful!",
+    "audio": "assets/voice-1202/clips/6fc0cea7a8896472bfbef74f.m4a",
+    "phraseId": "vc_000218"
+  },
+  {
+    "label": "Emma / listen",
+    "text": "Ooh, ahh! I hear you! Hello there!",
+    "audio": "assets/voice-1202/clips/c830048e499f42ca87edb0fb.m4a",
+    "phraseId": "vc_000122"
+  },
+  {
+    "label": "Emma / ask",
+    "text": "Song all done? One more note? La, la, la!",
+    "audio": "assets/voice-1202/clips/ab9d98fe8a8bef7e881d9c27.m4a",
+    "phraseId": "vc_000793"
+  },
+  {
+    "label": "Emma / invite",
+    "text": "Ready, baby? Here we go! You and me!",
+    "audio": "assets/voice-1202/clips/97a74bc19d37cd8a422f80bb.m4a",
+    "phraseId": "vc_000238"
+  },
+  {
+    "label": "milk",
+    "text": "Milk all gone! You did it! Hooray, hooray!",
+    "audio": "assets/voice-1202/clips/39ba7d6839d817b562643382.m4a",
+    "phraseId": "vc_000327"
+  },
+  {
+    "label": "kick",
+    "text": "Tap, tap! Little feet. Kick, kick!",
+    "audio": "assets/voice-1202/clips/08b4ff97d589fefa0f97ef60.m4a",
+    "phraseId": "vc_000854"
+  },
+  {
+    "label": "page",
+    "text": "Book time! Look, look! Turn the page.",
+    "audio": "assets/voice-1202/clips/b2f908db137966bf546bce5d.m4a",
+    "phraseId": "vc_000900"
+  },
+  {
+    "label": "hand-wave",
+    "text": "Hi there! Hello, little one! Wave hello!",
+    "audio": "assets/voice-1202/clips/f57248e951ac3c1f7db397a5.m4a",
+    "phraseId": "vc_000806"
+  },
+  {
+    "label": "book",
+    "text": "Open the book. Look, look! What's next?",
+    "audio": "assets/voice-1202/clips/3963d384b6358f0a3db5c4c1.m4a",
+    "phraseId": "vc_000904"
+  },
+  {
+    "label": "cup",
+    "text": "Little sips. Sip, sip! One at a time.",
+    "audio": "assets/voice-1202/clips/28fad2f1f20515aa5e2c38be.m4a",
+    "phraseId": "vc_000910"
+  },
+  {
+    "label": "sleep",
+    "text": "Sleepy eyes. Night-night. Rest, rest.",
+    "audio": "assets/voice-1202/clips/51961c77d0875b79033ff569.m4a",
+    "phraseId": "vc_000823"
+  },
+  {
+    "label": "toy",
+    "text": "Got the toy! You did it! Yay, yay!",
+    "audio": "assets/voice-1202/clips/50648ee10d5d2ebdff604c4a.m4a",
+    "phraseId": "vc_000608"
+  },
+  {
+    "label": "diaper-v2",
+    "text": "Diaper time! Nice and easy. Here we go!",
+    "audio": "assets/voice-1202/clips/bf7c5a19e5c5f4f05cd4a70d.m4a",
+    "phraseId": "vc_000830"
+  }
+]

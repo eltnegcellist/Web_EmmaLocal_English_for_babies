@@ -37,6 +37,7 @@ jobs:
           node test-avatar.mjs
           npm ci --ignore-scripts
           node test-features.mjs
+          node test-visual-cue-ui.mjs
           node test-semantic.mjs
           node test-interaction.mjs
           node test-silero.mjs
