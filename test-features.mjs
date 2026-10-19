@@ -345,7 +345,9 @@ const context={state:'running',decodeAudioData:()=>new Promise(resolve=>decodedR
   createGain:()=>({gain:{value:1},connect(node){return node;}}),
   createAnalyser:()=>({connect(){},getByteTimeDomainData(data){data.fill(128);}}),destination:{}};
 let source=readFileSync(new URL('./src/app.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replaceAll('import.meta.url',"'https://example.test/src/app.js'").replace('\ninitUi();','\n');
-assert(source.includes("const highPerformance = ui.onboardingHighPerformance?.checked !== false;"));
+// Multilingual setup always prepares semantic classification; Japanese Tiny
+// remains a separate existing setting, not a first-run language substitute.
+assert(source.includes("const highPerformance = true;"));
 assert(source.includes("const firstRunAsr = highPerformance ? 'small' : 'tiny';"));
 assert(source.includes("await semanticPanel.setEnabled(highPerformance,{prepare:false,mode:'semantic'});"));
 assert(source.includes('async function buildWebDiagnosticReport()'));

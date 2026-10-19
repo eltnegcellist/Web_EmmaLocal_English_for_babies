@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Local multilingual runtime</title>
+<body><p id="status">Local speech processing</p><script type="module">
+import {MultilingualClient} from './src/multilingual/client.js';
+const client=new MultilingualClient({onStatus:status=>{
+  document.getElementById('status').textContent=JSON.stringify(status);
+  window.AndroidMultilingual?.progress(JSON.stringify(status));
+}});
+const boot=async()=>{
+  window.localMultilingual={cancel:()=>client.cancel(),async request(id,type,payload){
+    try{
+      if(type==='transcribe'&&payload.base64){
+        const bytes=Uint8Array.from(atob(payload.base64),c=>c.charCodeAt(0));
+        payload={audio:bytes.buffer,language:payload.language};
+      }
+      let result;
+      if(type==='init'){await client.prepare();result={ready:true};}
+      else result=await client.request(type,payload);
+      window.AndroidMultilingual?.complete(String(id),JSON.stringify({result}));
+    }catch(error){window.AndroidMultilingual?.complete(String(id),JSON.stringify({error:error.message}));}
+  }};
+  window.AndroidMultilingual?.loaded();
+};boot();
+</script></body></html>

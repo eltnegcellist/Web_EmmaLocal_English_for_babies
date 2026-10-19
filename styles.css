@@ -1367,3 +1367,12 @@ body{
   flex:0 0 22px;width:22px!important;height:22px!important;
   margin:0 0 0 auto;padding:0!important;border-radius:5px;accent-color:var(--primary)
 }
+/* Language selection is available before setup, on Home and in Settings. */
+.language-picker{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0;font-size:.9rem;}
+.language-picker select{max-width:100%;min-width:180px;min-height:44px;padding:8px 12px;border:1px solid #b5afba;border-radius:12px;background:var(--surface,#fff);color:var(--text,#242028);font:inherit;}
+.language-picker:focus-within{outline:2px solid #8b386d;outline-offset:3px;border-radius:12px;}
+.multilingual-status{overflow-wrap:anywhere;}
+[hidden]{display:none!important;}
+html:not([lang="ja"]) .hero-copy{line-height:1.65;}
+html:not([lang="ja"]) .app-actions{flex-wrap:wrap;}
+html:not([lang="ja"]) .home-brand h1{font-size:1.2rem;}

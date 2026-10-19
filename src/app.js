@@ -10,6 +10,10 @@ import { LiteResponseEngine, isMeaningfulUtterance } from './lite-response-engin
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
 import { replyDisplayHint } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
+import { MultilingualClient } from './multilingual/client.js';
+import { LanguageSemanticClient } from './multilingual/semantic-client.js';
+import { installLanguageUI } from './multilingual/ui.js';
+import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -165,14 +169,48 @@ function audioCacheKey(text){
 
 
 
+let multilingualStatus=()=>{};
+let multilingual,languageUI;
+let modelSelectionEpoch=0;
+function initLanguages(){
+multilingual=new MultilingualClient({onStatus:data=>{
+  const key=data.stage==='loading'?'モデルを読み込んでいます…':'モデルを準備しています…';
+  languageUI.setStatus(key,data);
+  const message=languageUI.translate(key),percent=data.total?data.loaded/data.total*100:0;
+  showProgress(true,percent,message);showOnboardingProgress(true,percent,message);
+  multilingualStatus({...data,message});
+}});
+languageUI=installLanguageUI({onChange:async(next,{commit})=>{
+  const changedRoute=(languageUI.language==='ja')!==(next==='ja');
+  modelSelectionEpoch++;
+  await stopEmma();
+  if(changedRoute){moonshineTranscriber?.close?.();moonshineTranscriber=null;asrInfoCache=null;workersReady=false;
+    semanticPanel?.client.japanese?.cancel();multilingual.cancel();}
+  commit();
+  await semanticPanel.setEnabled(true,{prepare:false,mode:'semantic'});
+  if(localStorage.getItem(STORAGE.setupRevision)!==CURRENT_SETUP_REVISION){languageUI.setStatus('初回のみ必要なモデルを準備します');return;}
+  languageUI.setStatus('モデルを準備しています…');
+  try{await initWorkers();await prepareSemanticForConversation();languageUI.setStatus('モデルの準備ができました');}
+  catch(error){languageUI.setStatus('モデルを準備できませんでした。再試行してください。');throw error;}
+  finally{showProgress(false);showOnboardingProgress(false);}
+  setState('idle','準備できました','言語を変更しました。開始ボタンから再開してください。');
+}});
+}
 initUi();
 
 function initUi() {
-  semanticPanel=createSemanticController({engine,mode:'semantic',beforeChange:async()=>{if(running||preparingConversation||processing||speaking)await stopEmma();}});
+  initLanguages();
+  // A saved Japanese opt-out must not silently disable the foreign E5 route.
+  if(languageUI.language!=='ja')localStorage.setItem('emma_semantic_enabled','true');
+  semanticPanel=createSemanticController({engine,mode:'semantic',clientFactory:onStatus=>{
+    multilingualStatus=onStatus;
+    return new LanguageSemanticClient({language:()=>languageUI.language,multilingual,onStatus});
+  },beforeChange:async()=>{if(running||preparingConversation||processing||speaking)await stopEmma();}});
   installSemanticPanel({controller:semanticPanel});
   semanticPanel.subscribe(({requested,status})=>{
     ui.semanticEnabled.checked=requested;
     ui.semanticStatus.textContent=status.message;
+    if(languageUI.language!=='ja' && status.error)languageUI.setStatus('モデルを準備できませんでした。再試行してください。');
   });
   const historyCheckbox=$('historyEnabled');
   historyCheckbox.checked=historyEnabled(localStorage);
@@ -768,6 +806,8 @@ async function clearObsoleteModelCaches() {
 }
 
 async function prepareFirstRun() {
+  if(languageUI.needsChoice)return;
+  languageUI.confirm();
   const epoch=conversationEpoch;
   ui.prepareEmmaButton.disabled=true;
   showOnboardingProgress(true,0,'マイクの使用許可を確認しています…');
@@ -776,7 +816,7 @@ async function prepareFirstRun() {
     // active. Model preparation can take a long time, after which mobile
     // browsers may no longer show the permission prompt automatically.
     await requestMicrophonePermission();
-    const highPerformance = ui.onboardingHighPerformance?.checked !== false;
+    const highPerformance = true;
     const firstRunAsr = highPerformance ? 'small' : 'tiny';
     localStorage.setItem(STORAGE.highPerformance,String(highPerformance));
     localStorage.setItem(STORAGE.asrModel,firstRunAsr);
@@ -801,6 +841,7 @@ async function prepareFirstRun() {
     setState('idle','準備できました','使い方を3ステップで確認しましょう。');
     startTutorial();
   } catch(error) {
+    if(epoch!==conversationEpoch)return;
     console.error(error);
     showOnboardingProgress(true,0,friendlyError(error));
     ui.prepareEmmaButton.disabled=false;
@@ -808,6 +849,9 @@ async function prepareFirstRun() {
 }
 
 async function startEmma({ auto = false } = {}) {
+  if(languageUI.needsChoice){showScreen('onboarding');return;}
+  if(auto && !localStorage.getItem(LANGUAGE_KEY))return;
+  languageUI.confirm();
   if(running || preparingConversation || processing || speaking || featureScreens?.isOpen() || ui.mainButton.disabled) return;
   const epoch=++conversationEpoch;
   sessionId=crypto.randomUUID();
@@ -892,7 +936,7 @@ async function prepareSemanticForConversation() {
     showProgress(true,progress,status.message+size);
     showOnboardingProgress(true,progress,status.message+size);
   });
-  try {await semanticPanel.prepare({retry:true});}
+  try {const ready=await semanticPanel.prepare({retry:true});if(languageUI.language!=='ja'&&!ready)throw Error(languageUI.translate('モデルを準備できませんでした。再試行してください。'));}
   finally {unsubscribe();}
 }
 
@@ -1031,13 +1075,26 @@ async function startMoonshineCapture() {
 }
 
 async function initWorkers() {
+  const selectionEpoch=modelSelectionEpoch;
   if(!asrInfoCache){
     showProgress(true,0,'Moonshineを準備しています…');
     showOnboardingProgress(true,0,'Moonshineを準備しています…');
-    asrInfoCache=await initMoonshine();
+    if(languageUI.language==='ja'){
+      const info=await initMoonshine({selectionEpoch});
+      if(selectionEpoch!==modelSelectionEpoch)throw Error('Language operation cancelled');
+      asrInfoCache=info;
+    }
+    else {
+      await multilingual.prepare();
+      if(selectionEpoch!==modelSelectionEpoch)throw Error('Language operation cancelled');
+      moonshineTranscriber={transcribe:async audio=>(await multilingual.transcribe(audio,languageUI.language)).text,close:()=>multilingual.cancel()};
+      asrInfoCache={kind:'whisper',engine:'whisper-small',architecture:'whisper-small-multilingual',device:'wasm-cpu'};
+      languageUI.setStatus('モデルの準備ができました');
+    }
   }
 
   await initVoice();
+  if(selectionEpoch!==modelSelectionEpoch)throw Error('Language operation cancelled');
 
   workersReady=true;
   updateRuntimeBackend();
@@ -1065,7 +1122,7 @@ async function initVoice() {
   try { await voiceInitialization; } finally { voiceInitialization=null;showProgress(false); }
 }
 
-async function initMoonshine() {
+async function initMoonshine({selectionEpoch=modelSelectionEpoch}={}) {
   if(moonshineTranscriber && asrInfoCache?.kind==='moonshine')return asrInfoCache;
   const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny'?'tiny':'small';
   const modelLabel=selectedAsr==='tiny'?'Tiny':'Small';
@@ -1131,6 +1188,7 @@ async function initMoonshine() {
   }});
   try{
     const result=await client.init({model:selectedAsr});
+    if(selectionEpoch!==modelSelectionEpoch){client.close();throw Error('Language operation cancelled');}
     if(manifest){
       await refreshSelectedMoonshineCache(manifest,modelLabel,{repairAliases:true});
       diagnostics.cacheManifestAfter={
@@ -1257,7 +1315,7 @@ async function processTranscript(text,{manual=false,revision=null}={}) {
   processing=true;
   setBusy(true);
   const clean=String(text||'').replace(/\s+/g,' ').trim();
-  if(!isMeaningfulUtterance(clean)){
+  if(!(languageUI.language==='ja'?isMeaningfulUtterance(clean):meaningfulSpeech(clean))){
     processing=false;setBusy(false);
     if(revision!==null){restoreUnspokenTurn();turnRevisions.reset();}
     if(manual)await respondGenericallyToManualRequest();
@@ -1702,6 +1760,7 @@ function trimAudioSilence(buffer) {
 }
 
 function setState(state,title,detail) {
+  title=languageUI?.translate(title)??title;detail=languageUI?.translate(detail)??detail;
   avatarVisualState=state;
   ui.avatar.className=`avatar state-${state}`;
   renderAvatarFrame();
@@ -1956,6 +2015,7 @@ async function copyTextToClipboard(text) {
 }
 
 function updateRuntimeBackend() {
+  if(languageUI.language!=='ja'){ui.runtimeBackend.textContent='Whisper Small · multilingual / E5 · on-device WASM';return;}
   if(!asrInfoCache || !ttsInfoCache){
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
@@ -2028,6 +2088,7 @@ function withTimeout(promise,ms,message){
 
 async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterReload=false}={}) {
   if(!isCurrent())return false;
+  if(typeof languageUI!=='undefined' && languageUI.language!=='ja')return true;
   if(window.crossOriginIsolated && typeof SharedArrayBuffer === 'function') {
     sessionStorage.removeItem('emma_coi_reload_count');
     return true;
