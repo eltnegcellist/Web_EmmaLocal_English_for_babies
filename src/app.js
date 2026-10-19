@@ -936,7 +936,13 @@ async function prepareSemanticForConversation() {
     showProgress(true,progress,status.message+size);
     showOnboardingProgress(true,progress,status.message+size);
   });
-  try {const ready=await semanticPanel.prepare({retry:true});if(languageUI.language!=='ja'&&!ready)throw Error(languageUI.translate('モデルを準備できませんでした。再試行してください。'));}
+  try {
+    const ready=await semanticPanel.prepare({retry:true});
+    if(languageUI.language!=='ja'&&!ready) {
+      const detail=semanticPanel.snapshot.status?.message;
+      throw Error(detail||languageUI.translate('モデルを準備できませんでした。再試行してください。'));
+    }
+  }
   finally {unsubscribe();}
 }
 
