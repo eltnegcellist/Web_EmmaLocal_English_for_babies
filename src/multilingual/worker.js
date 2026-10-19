@@ -56,8 +56,13 @@ async function handle(data) {
   if(data.type==='transcribe'){
     const audio=new Float32Array(data.audio);
     if(!audio.length||audio.some(x=>!Number.isFinite(x)))throw Error('Invalid audio');
-    const language=speechLanguage(data.language)||await detectLanguage(audio);
-    const result=await recognizer(audio,{language,task:'transcribe',max_new_tokens:128,return_timestamps:false});
+    const specified=speechLanguage(data.language);
+    if(!specified)progress({stage:'detecting-language'});
+    const language=specified||await detectLanguage(audio);
+    progress({stage:'transcribing',detectedLanguage:language});
+    // Short caregiver utterances should not spend minutes generating a long
+    // hallucinated transcript on mobile CPU; allow up to 80 tokens.
+    const result=await recognizer(audio,{language,task:'transcribe',max_new_tokens:80,return_timestamps:false});
     return {text:result.text.trim(),detectedLanguage:language};
   }
   if(data.type==='predict'){
