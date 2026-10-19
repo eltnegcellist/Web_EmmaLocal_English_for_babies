@@ -839,6 +839,17 @@ body{
   padding-right:.12em;
   text-shadow:0 2px 0 rgba(255,255,255,.72);
 }
+.brand-wordmark.brand-wordmark-localized{
+  font-size:clamp(1.65rem,7.8vw,2.9rem);
+  font-weight:850;
+  letter-spacing:-.025em;
+  line-height:1.16;
+  padding-right:0;
+  color:var(--primary,#765548);
+  max-width:100%;
+  text-align:center;
+  overflow-wrap:anywhere;
+}
 .brand-mi{color:#f06e72}
 .brand-tsu{color:#8e6552}
 .brand-ko{color:#f3b943}

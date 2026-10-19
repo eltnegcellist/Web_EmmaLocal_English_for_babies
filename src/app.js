@@ -936,7 +936,13 @@ async function prepareSemanticForConversation() {
     showProgress(true,progress,status.message+size);
     showOnboardingProgress(true,progress,status.message+size);
   });
-  try {const ready=await semanticPanel.prepare({retry:true});if(languageUI.language!=='ja'&&!ready)throw Error(languageUI.translate('モデルを準備できませんでした。再試行してください。'));}
+  try {
+    const ready=await semanticPanel.prepare({retry:true});
+    if(languageUI.language!=='ja'&&!ready) {
+      const detail=semanticPanel.snapshot.status?.message;
+      throw Error(detail||languageUI.translate('モデルを準備できませんでした。再試行してください。'));
+    }
+  }
   finally {unsubscribe();}
 }
 
@@ -1857,12 +1863,6 @@ function updateAiNameUi() {
   if(ui.aiBubbleLabel) ui.aiBubbleLabel.textContent=name;
   // The former name badge now displays the live voice recognition / speaking status.
   if(ui.aiAvatarFace) ui.aiAvatarFace.setAttribute('aria-label',`${name}（みつことば AI）`);
-  if(ui.onboardingAiIntro) {
-    ui.onboardingAiIntro.innerHTML =
-      '<span class="ai-intro-label">AIキャラクター</span>' +
-      '<span class="ai-intro-copy">名前は <strong>' + name +
-      '</strong>。初回チュートリアルで自己紹介します。</span>';
-  }
 }
 
 function getTtsSignature() {
