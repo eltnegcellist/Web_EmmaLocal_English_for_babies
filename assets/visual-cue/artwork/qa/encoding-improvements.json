@@ -1,13 +1,13 @@
 [
   {
     "id": "cup-sip",
-    "beforeBytes": 571910,
-    "afterBytes": 307120,
+    "beforeBytes": 574706,
+    "afterBytes": 313352,
     "alphaQuality": 70,
-    "meanRGBErrorAt220": 0.352,
+    "meanRGBErrorAt220": 0.363,
     "p95RGBErrorAt220": 2.0,
-    "beforeSHA256": "e881d73d7fa058b9cda62bedf3e24936b2b131a1bdb360d0d47c8172f5855417",
-    "afterSHA256": "622be9388d671c9f7a4decc5c2ff8d8f1740e805e1a53330abd1fdcf8cdd6113",
+    "beforeSHA256": "ed7d3d65393c768f0a03fb8d72d118665fef581b11ee438ce8c60eeb2d451c70",
+    "afterSHA256": "5ca7a1001bf539cdb49ef35e3561670017cee3ab2327dcb15fc6d97ec45bfeb0",
     "timingAndDimensionsPreserved": true
   }
 ]

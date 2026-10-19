@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare only the standalone artwork review for the dedicated GitHub Pages repo."""
+"""Prepare artwork and voice-backed UI review for the dedicated GitHub Pages repo."""
 from pathlib import Path
 import argparse, hashlib, json, shutil, subprocess
 
@@ -8,19 +8,33 @@ ART = ROOT / 'assets/visual-cue/artwork'
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--output', type=Path, required=True, help='New directory for the publication package')
 args = parser.parse_args()
-manifest = json.loads((ART / 'manifest.json').read_text())
-qa = json.loads((ART / 'qa/validation.json').read_text())
-assert qa['passed'] and qa['assetCount'] == len(manifest['assets'])
 source_commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
+def committed(relative):
+    return subprocess.check_output(['git','show',source_commit+':'+relative],cwd=ROOT)
+manifest = json.loads(committed('assets/visual-cue/artwork/manifest.json'))
+qa = json.loads(committed('assets/visual-cue/artwork/qa/validation.json'))
+assert qa['passed'] and qa['assetCount'] == len(manifest['assets'])
 args.output.mkdir(parents=True, exist_ok=False)
-shutil.copyfile(ART / 'preview-offline.html', args.output / 'index.html')
+(args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"'))
+# Publish only the display-component demo, not the microphone/AI application.
+(args.output/'ui.html').write_bytes(committed('visual-cue-ui-preview.html'))
+files=['src/visual-cue-ui-preview.js','src/visual-cue-controller.js','src/visual-cue-catalog.js','src/emma-gestures.js','shared/visual-cue-ui-examples.json','assets/emma-face/emma-face-idle-open.svg']
+for a in manifest['assets']:
+ if a['status']=='accepted' and a['id']!='wake-daylight':
+  files.extend('assets/visual-cue/artwork/'+a[k] for k in ['animation','illustration','poster'] if a.get(k))
+examples=json.loads(committed('shared/visual-cue-ui-examples.json'))
+files.extend(e['audio'] for e in examples)
+for file in sorted(set(files)):
+ dest=args.output/file;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(committed(file))
+ui_hashes={file:hashlib.sha256((args.output/file).read_bytes()).hexdigest() for file in ['ui.html']+sorted(set(files))}
+
 (args.output / '.nojekyll').write_text('')
 metadata = dict(sourceRepository='eltnegcellist/Web_EmmaLocal_English_for_babies',
                 sourceCommit=source_commit, reviewPullRequest=107,
                 artifactSHA256=hashlib.sha256((args.output / 'index.html').read_bytes()).hexdigest(),
                 stills=sum(a['kind'] == 'illustration' for a in manifest['assets']),
                 animations=sum(a['kind'] == 'animation' for a in manifest['assets']),
-                accepted=sum(a['status']=='accepted' for a in manifest['assets']), nonRuntime=True)
+                accepted=sum(a['status']=='accepted' for a in manifest['assets']), nonRuntime=True, uiPreview='ui.html', uiFileSHA256=ui_hashes, emmaGestureCandidates=7, applicationDeployed=False)
 (args.output / 'deployment.json').write_text(json.dumps(metadata, indent=2) + '\n')
 (args.output / 'README.md').write_text('''# Visual Cue イラスト・動画プレビュー
 
@@ -28,7 +42,7 @@ metadata = dict(sourceRepository='eltnegcellist/Web_EmmaLocal_English_for_babies
 
 静止画と動作を比較する採用審査用ページです。制作元は
 [Web_EmmaLocal_English_for_babies / PR #107](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/107)。
-採用済み素材と旧版を区別するプレビューです。採用数はdeployment.jsonを参照してください。アプリ本体やEmmaの表示切替は含みません。
+採用済み素材と旧版を区別するプレビューです。採用数はdeployment.jsonを参照してください。\n\n[音声付きUIプレビュー](https://eltnegcellist.github.io/visual-cue-artwork-preview/ui.html)では、実際の表示部品と採用済み録音音声で切替を確認できます。新しいEmmaの7身振りと英文割当は確認候補です。マイク・AIモデル・アプリ本体の公開は含みません。
 
 公開元は `gh-pages` ブランチのルートです。`index.html` は動画を内包した単一HTMLで、
 GitHub Pagesでもローカルのファイルとしても閲覧できます。
@@ -37,4 +51,4 @@ GitHub Pagesでもローカルのファイルとしても閲覧できます。
 再公開は制作元の `scripts/visual-cue/prepare_pages.py` でパッケージを作成し、
 このリポジトリの `gh-pages` にコミット・pushします。
 ''')
-print(json.dumps(dict(output=str(args.output), **metadata), indent=2))
+print(json.dumps(dict(output=str(args.output), **{k:v for k,v in metadata.items() if k!='uiFileSHA256'}, uiFiles=len(ui_hashes)), indent=2))

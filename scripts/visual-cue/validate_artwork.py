@@ -261,6 +261,13 @@ if m.get('productionPass',0)>=7:
   amount=int(outside.sum());stream_pixels.append(amount)
   if t['streamParcels']==0:no_pour.append(amount)
  invariants.append(dict(name='cup-decoded-water-visibly-flows-outside-rim',pass_=max(stream_pixels)>250 and max(no_pour)<50,visibleWaterOutsideCupMax=max(stream_pixels),noPourOutsidePixelsMax=max(no_pour)))
+ if m.get('productionPass',0)>=8:
+  poster=np.asarray(Image.open(OUT/'posters/cup-sip.webp').convert('RGBA')).astype(int)
+  yy,xx=np.indices(poster.shape[:2]);water=(poster[:,:,0]>45)&(poster[:,:,0]<160)&(poster[:,:,1]>155)&(poster[:,:,2]>180)&(poster[:,:,3]>180)
+  water &= (xx>165)&(xx<350)&(yy>155)&(yy<245)
+  far_wall=(poster[:,:,0]>190)&(poster[:,:,1]>175)&(poster[:,:,2]>130)&(poster[:,:,3]>180)&(xx>220)&(xx<290)&(yy>165)&(yy<192)
+  top=int(np.where(water)[0].min());surface=traces[7]['projectedWaterEllipse']
+  invariants.append(dict(name='cup-poster-water-recessed-below-visible-inner-wall',pass_=top>=195 and int(far_wall.sum())>1500 and surface[1]>195 and traces[7]['initialFillFraction']==.70,waterTopY=top,visibleFarWallPixels=int(far_wall.sum()),projectedSurfaceEllipse=surface,scope='静止ポスターの内壁と液面の離れを画素で検査。奥行きの自然さは220pxで別途目視する。'))
  invariants.append(dict(name='cup-reset-only-during-invisible-serving-transition',pass_=total==3984 and int(pairs[0][0][:,:,3].max())==0 and int(pairs[-1][0][:,:,3].max())==0 and active['cup-sip']['status']!='accepted' and len(m['userApproval']['acceptedAssetIds'])==42,durationMs=total,decodedEndpointMaxAlpha=[int(pairs[0][0][:,:,3].max()),int(pairs[-1][0][:,:,3].max())],acceptedOtherAssets=len(m['userApproval']['acceptedAssetIds'])))
  approval=json.loads((OUT/'approval-20261019.json').read_text());changed=[]
  for approved in approval['assets']:

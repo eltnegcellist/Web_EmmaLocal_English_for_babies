@@ -19,7 +19,7 @@ with (OUT/'inventory.csv').open('w') as f:
 summary=dict(stills=sum(a['kind']=='illustration' for a in m['assets']),loops=sum(a['kind']=='animation' for a in m['assets']),readiness=dict(collections.Counter(a['readiness'] for a in m['assets'])),coveredIllustrationConcepts=sum(c['kind']=='illustration' and bool(c['assetIds']) for c in m['concepts']),animationConceptsWithArtifacts=sum(c['kind']=='animation' and bool(c['assetIds']) for c in m['concepts']),cueReadiness=dict(collections.Counter(c['readiness'] for c in m['cueCoverage'])),animationConceptsWithCandidates=sum(c['kind']=='animation' and c['readiness'] in ['candidate','accepted'] for c in m['concepts']),newAccepted=sum(a['status']=='accepted' for a in m['assets']),technicalPass=q['technicalPassCount'],technicalTotal=q['assetCount'],sizeExceptions=[r['id'] for r in q['results'] if r['bytes']>r['sizeTargetBytes']])
 (OUT/'qa/summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(json.dumps(summary,ensure_ascii=False,indent=2))
 
-for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg'),(4,'revision-keyframes-20261018.jpg'),(5,'review-r2-keyframes.jpg'),(6,'review-r3-keyframes.jpg'),(7,'cup-liquid-keyframes.jpg')]:
+for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg'),(4,'revision-keyframes-20261018.jpg'),(5,'review-r2-keyframes.jpg'),(6,'review-r3-keyframes.jpg'),(7,'cup-liquid-keyframes.jpg'),(8,'cup-depth-keyframes.jpg')]:
  if m.get('productionPass',0)>=5 and pass_id<m['productionPass']:continue # Keep prior review evidence historical.
  added=[a for a in m['assets'] if a.get('productionPass')==pass_id and a['animation']]
  if added:
@@ -30,7 +30,7 @@ for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg'
     sheet.paste(frame,(col*220,row*250),frame);draw.text((col*220+3,row*250+222),f'{a["id"]} {k}',fill='black')
   sheet.save(OUT/'qa'/filename,quality=90)
   if pass_id>=5:
-   allout=OUT/('qa/cup-liquid-allframes' if pass_id==7 else 'qa/r3-allframes' if pass_id==6 else 'qa/r2-allframes');allout.mkdir(exist_ok=True)
+   allout=OUT/('qa/cup-depth-allframes' if pass_id==8 else 'qa/cup-liquid-allframes' if pass_id==7 else 'qa/r3-allframes' if pass_id==6 else 'qa/r2-allframes');allout.mkdir(exist_ok=True)
    for a in added:
     movie=Image.open(OUT/a['animation']);contact=Image.new('RGB',(1320,240*math.ceil(movie.n_frames/6)),'#f6f1e7');labels=ImageDraw.Draw(contact)
     for i in range(movie.n_frames):

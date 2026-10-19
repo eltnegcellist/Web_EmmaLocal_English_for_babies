@@ -339,6 +339,7 @@ console.log('Features: play selector outside card, 1/3 sentence switching, speak
 const {runInNewContext}=await import('node:vm');
 const {TurnRevisions}=await import('./src/turn-revisions.js');
 let decodedResolve,starts=0,commits=0,lastRequest,micStops=0,micRestores=0;
+const cueBegins=[],cueEnds=[];
 const audioBuffer={length:128,sampleRate:24000,numberOfChannels:1,getChannelData:()=>new Float32Array(128).fill(.3)};
 const context={state:'running',decodeAudioData:()=>new Promise(resolve=>decodedResolve=resolve),
   createBufferSource:()=>({connect(node){return node;},start(){starts++;queueMicrotask(()=>this.onended?.());},stop(){this.onended?.();}}),
@@ -380,6 +381,7 @@ assert(source.includes("sessionStorage.getItem('emma_mic_session_granted')==='1'
 assert(source.includes("permission!=='granted'"));
 assert(source.includes('画面を一度タップすると音声を再開します'));
 source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=>{};renderAvatarFrame=()=>{};setBusy=()=>{};
+  visualCue={begin(text){captureCueBegin(text);return text;},end(token){captureCueEnd(token);},stop(){},preload(){}};
   audioContext=testAudio;ttsWorker={postMessage(message){captureRequest(message.requestId);}};
   history.append=async()=>{commitHistory();};
   globalThis.appTest={
@@ -392,7 +394,7 @@ source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=
   releaseMicrophoneForEmmaVoice=async()=>{if(!mic)return false;mic=null;captureMicStop();return true;};
   restoreMicrophoneAfterEmmaVoice=async()=>{captureMicRestore();};`;
 const sandbox={document,window,localStorage:storage,location:window.location,URL,URLSearchParams,console,crypto,
-  ConversationHistory,historyEnabled,createHistoryEntry,TurnRevisions,LiteResponseEngine:class{},testAudio:context,captureRequest:id=>lastRequest=id,commitHistory:()=>commits++,
+  ConversationHistory,historyEnabled,createHistoryEntry,TurnRevisions,LiteResponseEngine:class{},testAudio:context,captureRequest:id=>lastRequest=id,commitHistory:()=>commits++,captureCueBegin:text=>cueBegins.push(text),captureCueEnd:token=>cueEnds.push(token),
   requestAnimationFrame:()=>1,cancelAnimationFrame:()=>{},setTimeout,clearTimeout,navigator:{},Blob,Float32Array,Uint8Array,captureMicStop:()=>micStops++,captureMicRestore:()=>micRestores++};
 runInNewContext(source,sandbox);
 storage.setItem('emma_history_enabled','true');
@@ -401,17 +403,17 @@ const candidate=createHistoryEntry('test','足を見て','Hello, little feet!','
 let speech=app.speakResponse(candidate.englishText,{entry:candidate});
 app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await settle();
 await app.stopEmma();decodedResolve(audioBuffer);await speech;await settle();
-assert.equal(starts,0);assert.equal(commits,0);
+assert.equal(starts,0);assert.equal(commits,0);assert.equal(cueBegins.length,0,'stopped decode must never show a cue');
 speech=app.speakResponse(candidate.englishText,{entry:candidate});
 app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await settle();
 decodedResolve(audioBuffer);app.complete(lastRequest);await speech;
-assert.equal(starts,1);assert.equal(commits,1);
+assert.equal(starts,1);assert.equal(commits,1);assert.deepEqual(cueBegins,[candidate.englishText]);assert.deepEqual(cueEnds,[candidate.englishText],'audio end releases the same cue token');
 // Playback without a conversation candidate (history replay or play) never saves.
 speech=app.speakResponse('History replay phrase');
 app.enqueueAudio({requestId:lastRequest,index:0,blob:new Blob(['audio'])});await settle();decodedResolve(audioBuffer);app.complete(lastRequest);await speech;
 assert.equal(starts,2);assert.equal(commits,1);
 console.log('Playback: stop during decode prevents late audio/history; first audio saves once; replay saves nothing OK');
-const beforeSpecStarts=starts,beforeSpecCommits=commits;
+const beforeSpecStarts=starts,beforeSpecCommits=commits,beforeSpecCues=cueBegins.length;
 app.useTestMic();
 const firstTurn=app.appendTurn(Float32Array.of(.1));
 speech=app.speakResponse('First partial reply',{entry:candidate,revision:firstTurn.version});
@@ -424,6 +426,7 @@ app.complete(lastRequest);
 await speech;
 assert.equal(starts,beforeSpecStarts,'interrupted candidate must never play');
 assert.equal(commits,beforeSpecCommits,'interrupted candidate must never enter history');
+assert.equal(cueBegins.length,beforeSpecCues,'speculative TTS must not display an unspoken cue');
 assert.equal(micStops,0,'interrupted candidate must not release the microphone');
 
 const continued=app.appendTurn(Float32Array.of(.2));

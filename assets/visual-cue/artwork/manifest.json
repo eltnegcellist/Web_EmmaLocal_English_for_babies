@@ -3,7 +3,7 @@
   "nonRuntime": true,
   "baseCommit": "03a5bcc",
   "latestMainInspected": "b2536ab",
-  "productionPass": 7,
+  "productionPass": 8,
   "proposedConcepts": [
     {
       "primitive": "scene.drink",
@@ -659,7 +659,7 @@
       "items": [
         {
           "assetId": "cup-sip",
-          "problem": "傾けたコップの水が縁を超えるのに流出しない。",
+          "problem": "静止ポスターで水が溢れそうに見え、内壁・液面の奥行きが不明瞭。",
           "status": "液面の指摘を受け採用保留。修正版の再確認待ち。"
         }
       ]
@@ -1648,6 +1648,35 @@
       "originalId": "cup-sip",
       "reviewBatch": "2026-10-19-cup",
       "rejectionReason": "液面が低い側の縁を超えるのに流出しない。水量を戻す旧ループも撤回。"
+    },
+    {
+      "id": "rejected-cup-depth-r7",
+      "primitive": "motion.sip",
+      "topic": "コップを傾ける：縁から水が流れ、水量が減る",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-19-cup-depth/animations/cup-sip.webp",
+      "poster": "archive/2026-10-19-cup-depth/posters/cup-sip.webp",
+      "loopMs": 3984,
+      "source": "sources/generated/cup-empty-r3.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 7,
+      "note": "液面が低い側の縁に達すると水が流れ出し、その量だけ残量が減る。傾きを戻しても水は増えない。末尾のフェードで次の一杯に切り替える3.984秒ループ。口は描かないため「飲む」の意味の適合も再確認待ち。液面の指摘を受け、この1点だけ採用保留。",
+      "movingParts": [
+        "cup tilt",
+        "rim-limited horizontal surface",
+        "water flowing down from lower rim"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "loopTransition": "fade-between-servings",
+      "posterFrame": 7,
+      "humanReview": "user-approval-held",
+      "approvalState": "held",
+      "originalId": "cup-sip",
+      "reviewBatch": "2026-10-19-cup-depth",
+      "rejectionReason": "静止ポスターの液面が縁に接して溢れそうに見え、内壁と水面の奥行きが分かりにくい。"
     }
   ],
   "approval": "2026-10-19 利用者が現行42素材を採用。コップ1点は採用保留。撤回済み旧版・未制作Cue・アプリ統合・914英文割当は別管理。",
@@ -2585,7 +2614,7 @@
     {
       "id": "cup-sip",
       "primitive": "motion.sip",
-      "topic": "コップを傾ける：縁から水が流れ、水量が減る",
+      "topic": "コップを傾ける：内壁の奥に水面、縁に達すると流れる",
       "kind": "animation",
       "illustration": null,
       "animation": "animations/cup-sip.webp",
@@ -2594,8 +2623,8 @@
       "source": "sources/generated/cup-empty-r3.png",
       "status": "needs-review",
       "readiness": "candidate",
-      "productionPass": 7,
-      "note": "液面が低い側の縁に達すると水が流れ出し、その量だけ残量が減る。傾きを戻しても水は増えない。末尾のフェードで次の一杯に切り替える3.984秒ループ。口は描かないため「飲む」の意味の適合も再確認待ち。液面の指摘を受け、この1点だけ採用保留。",
+      "productionPass": 8,
+      "note": "液面が低い側の縁に達すると水が流れ出し、その量だけ残量が減る。傾きを戻しても水は増えない。初期水量を断面容量の70%に抑え、内壁の奥に楕円の水面を描く。末尾のフェードで次の一杯に切り替える3.984秒ループ。口は描かないため「飲む」の意味の適合も再確認待ち。液面の指摘を受け、この1点だけ採用保留。",
       "movingParts": [
         "cup tilt",
         "rim-limited horizontal surface",

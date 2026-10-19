@@ -5,6 +5,13 @@ on:
       - 'assets/visual-cue/artwork/**'
       - 'scripts/visual-cue/**'
       - '.github/workflows/visual-cue-artwork.yml'
+      - 'assets/emma-gestures/**'
+      - 'src/visual-cue-*.js'
+      - 'src/emma-gestures.js'
+      - 'visual-cue-ui-preview.html'
+      - 'test-visual-cue-ui.mjs'
+      - 'shared/visual-cue-runtime-review.json'
+      - 'shared/visual-cue-ui-examples.json'
   workflow_dispatch:
 permissions:
   contents: read
@@ -33,6 +40,7 @@ jobs:
           python -m http.server 8765 --bind 127.0.0.1 > /tmp/visual-cue-http.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
+          VISUAL_CUE_UI_BASE=http://127.0.0.1:8765 node scripts/visual-cue/test_ui_browser.mjs
           node scripts/visual-cue/capture_preview.mjs
           VISUAL_CUE_PREVIEW_URL="file://$PWD/assets/visual-cue/artwork/preview-offline.html" node scripts/visual-cue/capture_preview.mjs
       - uses: actions/upload-artifact@v4
@@ -40,6 +48,7 @@ jobs:
         with:
           name: visual-cue-raster-review
           path: |
+            assets/emma-gestures/qa/
             assets/visual-cue/artwork/qa/
             assets/visual-cue/artwork/preview.*
             assets/visual-cue/artwork/preview-offline.html

@@ -172,4 +172,4 @@
 | kick | accepted | 350.8 | 40 | 3.486 | 8240 | 1.0626 | PASS |
 | hold-hands | accepted | 25.4 | 1 | 0.000 | — | — | PASS |
 | hand-wave | accepted | 360.7 | 40 | 3.486 | 16709 | 0.9894 | PASS |
-| cup-sip | candidate | 307.1 | 43 | 3.984 | 15709 | 0.0 | PASS |
+| cup-sip | candidate | 313.4 | 43 | 3.984 | 15560 | 0.0 | PASS |

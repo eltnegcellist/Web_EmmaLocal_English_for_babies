@@ -2,11 +2,12 @@
   "schemaVersion": 1,
   "status": "candidate",
   "sourcePhraseSets": 914,
-  "uniqueBindings": 921,
+  "uniqueBindings": 1091,
+  "pressSingleBindings": 178,
   "sourceReviewed": 21,
   "bindingsByType": {
-    "emma": 309,
-    "asset": 612
+    "emma": 397,
+    "asset": 694
   },
   "heldAssets": [
     "cup-sip"
@@ -336,7 +337,7 @@
       "sourceAssignmentReview": "generated",
       "binding": {
         "type": "asset",
-        "assetId": "water-shower"
+        "assetId": "hands-open-v2"
       },
       "reviewStatus": "candidate"
     },
@@ -2286,7 +2287,7 @@
       "sourceAssignmentReview": "generated",
       "binding": {
         "type": "emma",
-        "state": "celebrate"
+        "state": "neutral"
       },
       "reviewStatus": "candidate"
     },
@@ -5036,7 +5037,7 @@
       "sourceAssignmentReview": "generated",
       "binding": {
         "type": "asset",
-        "assetId": "bath"
+        "assetId": "hands-open-v2"
       },
       "reviewStatus": "candidate"
     },
@@ -8136,7 +8137,7 @@
       "sourceAssignmentReview": "generated",
       "binding": {
         "type": "asset",
-        "assetId": "water-shower"
+        "assetId": "bath"
       },
       "reviewStatus": "candidate"
     },
@@ -8156,7 +8157,7 @@
       "sourceAssignmentReview": "generated",
       "binding": {
         "type": "asset",
-        "assetId": "water-shower"
+        "assetId": "feet"
       },
       "reviewStatus": "candidate"
     },
@@ -9159,6 +9160,1432 @@
         "assetId": "cup"
       },
       "reviewStatus": "candidate"
+    }
+  ],
+  "singleSentences": [
+    {
+      "text": "All clean!",
+      "binding": {
+        "type": "emma",
+        "state": "celebrate"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "All clean.",
+      "binding": {
+        "type": "emma",
+        "state": "celebrate"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "All cozy.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "All done.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "All ready!",
+      "binding": {
+        "type": "emma",
+        "state": "celebrate"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "All ready.",
+      "binding": {
+        "type": "emma",
+        "state": "celebrate"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Arm goes in!",
+      "binding": {
+        "type": "asset",
+        "assetId": "clothes"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Bath time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "bath"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Big cuddle!",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Big hug!",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Big hug.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Big smile!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Big, big smile!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Birds up high!",
+      "binding": {
+        "type": "emma",
+        "state": "neutral"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Book time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "book"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Book, book!",
+      "binding": {
+        "type": "asset",
+        "assetId": "book"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Bright day!",
+      "binding": {
+        "type": "asset",
+        "assetId": "sun"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Bright eyes.",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Bright, bright!",
+      "binding": {
+        "type": "asset",
+        "assetId": "sun"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Burp, burp!",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Chew, chew!",
+      "binding": {
+        "type": "asset",
+        "assetId": "meal"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Clap, clap!",
+      "binding": {
+        "type": "asset",
+        "assetId": "hand-clap"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Clean and fresh!",
+      "binding": {
+        "type": "emma",
+        "state": "celebrate"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Clothes on!",
+      "binding": {
+        "type": "asset",
+        "assetId": "clothes"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Clothes time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "clothes"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Cuddle time!",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Cuddle, cuddle!",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Diaper change!",
+      "binding": {
+        "type": "asset",
+        "assetId": "diaper-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Diaper time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "diaper-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Diaper time.",
+      "binding": {
+        "type": "asset",
+        "assetId": "diaper-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Dress time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "clothes"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Drink, drink!",
+      "binding": {
+        "type": "asset",
+        "assetId": "cup"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Drip, drop!",
+      "binding": {
+        "type": "asset",
+        "assetId": "rain"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Easy, easy.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Eyes open.",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Feet, feet!",
+      "binding": {
+        "type": "asset",
+        "assetId": "feet"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Flip that page!",
+      "binding": {
+        "type": "asset",
+        "assetId": "page"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Food time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "meal"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Food, food!",
+      "binding": {
+        "type": "asset",
+        "assetId": "meal"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Fresh air!",
+      "binding": {
+        "type": "asset",
+        "assetId": "outdoor"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Fresh and clean.",
+      "binding": {
+        "type": "emma",
+        "state": "celebrate"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Fresh diaper!",
+      "binding": {
+        "type": "asset",
+        "assetId": "diaper-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Getting dressed!",
+      "binding": {
+        "type": "asset",
+        "assetId": "clothes"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Good morning!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Good morning, little one!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Good night, little one.",
+      "binding": {
+        "type": "asset",
+        "assetId": "sleep"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Hands, hands!",
+      "binding": {
+        "type": "asset",
+        "assetId": "hands-open-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Happy smile!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Happy tummy.",
+      "binding": {
+        "type": "asset",
+        "assetId": "tummy"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Hello again!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Hello there!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Hello, hello!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Hello, little one!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Hello, little one.",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Hello, sunshine!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Here we go!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Here we go.",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Here you go.",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Hi there!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "I hear you!",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "I hear you.",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "I'm listening.",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Kick, kick!",
+      "binding": {
+        "type": "asset",
+        "assetId": "kick"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "La-la-la!",
+      "binding": {
+        "type": "asset",
+        "assetId": "music"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Let's drink.",
+      "binding": {
+        "type": "asset",
+        "assetId": "cup"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Let's play!",
+      "binding": {
+        "type": "asset",
+        "assetId": "toy"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Let's read!",
+      "binding": {
+        "type": "asset",
+        "assetId": "book"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Let's say hello!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Let's see!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Let's sing!",
+      "binding": {
+        "type": "asset",
+        "assetId": "music"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Listen closely.",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Listen with me.",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Listen, listen!",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little bite.",
+      "binding": {
+        "type": "asset",
+        "assetId": "meal"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little by little.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little feet!",
+      "binding": {
+        "type": "asset",
+        "assetId": "feet"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little feet.",
+      "binding": {
+        "type": "asset",
+        "assetId": "feet"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little hands!",
+      "binding": {
+        "type": "asset",
+        "assetId": "hands-open-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little sips.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little toes!",
+      "binding": {
+        "type": "asset",
+        "assetId": "feet"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little toes.",
+      "binding": {
+        "type": "asset",
+        "assetId": "feet"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little tummy.",
+      "binding": {
+        "type": "asset",
+        "assetId": "tummy"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Little voice!",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Look around!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Look around.",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Look with me.",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Look, look!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Milk time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "milk"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Milk, milk!",
+      "binding": {
+        "type": "asset",
+        "assetId": "milk"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Mmm, yummy!",
+      "binding": {
+        "type": "emma",
+        "state": "neutral"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Morning time.",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Morning, little one!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Music time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "music"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Music, music!",
+      "binding": {
+        "type": "asset",
+        "assetId": "music"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Nice and close.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Nice and cozy.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Nice and easy.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Nice and gentle.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Nice and quiet.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Nice and slow.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Night-night.",
+      "binding": {
+        "type": "asset",
+        "assetId": "sleep"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "One arm, one leg.",
+      "binding": {
+        "type": "asset",
+        "assetId": "clothes"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "One at a time.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "One little arm.",
+      "binding": {
+        "type": "asset",
+        "assetId": "clothes"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "One, two, three!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Ooh, ahh!",
+      "binding": {
+        "type": "emma",
+        "state": "neutral"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Open and close.",
+      "binding": {
+        "type": "asset",
+        "assetId": "hands-open-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Open the book.",
+      "binding": {
+        "type": "asset",
+        "assetId": "book"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Open, close.",
+      "binding": {
+        "type": "asset",
+        "assetId": "hands-open-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Out we go!",
+      "binding": {
+        "type": "asset",
+        "assetId": "outdoor"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Outside time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "outdoor"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Outside, outside!",
+      "binding": {
+        "type": "asset",
+        "assetId": "outdoor"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Peek-a-boo!",
+      "binding": {
+        "type": "asset",
+        "assetId": "peekaboo"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Pitter-patter!",
+      "binding": {
+        "type": "asset",
+        "assetId": "rain"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Play time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "toy"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Play, play!",
+      "binding": {
+        "type": "asset",
+        "assetId": "toy"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Rain outside!",
+      "binding": {
+        "type": "asset",
+        "assetId": "rain"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Rain, rain!",
+      "binding": {
+        "type": "asset",
+        "assetId": "rain"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Rainy day.",
+      "binding": {
+        "type": "asset",
+        "assetId": "rain"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Ready!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Rest, little one.",
+      "binding": {
+        "type": "asset",
+        "assetId": "sleep"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Rest, rest.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Rest.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Right here.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Sing with me!",
+      "binding": {
+        "type": "asset",
+        "assetId": "music"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Sing with me.",
+      "binding": {
+        "type": "asset",
+        "assetId": "music"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Sip, sip!",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Sleepy eyes.",
+      "binding": {
+        "type": "asset",
+        "assetId": "sleep"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Sleepy time.",
+      "binding": {
+        "type": "asset",
+        "assetId": "sleep"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Small sips.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Smile for me!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Smile, smile!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "So cozy.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "So much fun!",
+      "binding": {
+        "type": "emma",
+        "state": "celebrate"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "So sleepy.",
+      "binding": {
+        "type": "asset",
+        "assetId": "sleep"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "So sweet!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "So sweet.",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Song time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "music"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Splash, splash!",
+      "binding": {
+        "type": "asset",
+        "assetId": "water-splash"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Squeeze, squeeze!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Story time!",
+      "binding": {
+        "type": "asset",
+        "assetId": "book"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Sunny day!",
+      "binding": {
+        "type": "asset",
+        "assetId": "sun"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Sunshine!",
+      "binding": {
+        "type": "asset",
+        "assetId": "sun"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Take your time.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Talk, talk!",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Tap, tap!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "There it is!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "There you go!",
+      "binding": {
+        "type": "emma",
+        "state": "celebrate"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Time for milk!",
+      "binding": {
+        "type": "asset",
+        "assetId": "milk"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Time outside!",
+      "binding": {
+        "type": "asset",
+        "assetId": "outdoor"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Time to eat!",
+      "binding": {
+        "type": "asset",
+        "assetId": "meal"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Time to play!",
+      "binding": {
+        "type": "asset",
+        "assetId": "toy"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Time to sleep.",
+      "binding": {
+        "type": "asset",
+        "assetId": "sleep"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Tiny feet!",
+      "binding": {
+        "type": "asset",
+        "assetId": "feet"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Tiny fingers!",
+      "binding": {
+        "type": "asset",
+        "assetId": "hands-open-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Tiny hands!",
+      "binding": {
+        "type": "asset",
+        "assetId": "hands-open-v2"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Tiny little bites.",
+      "binding": {
+        "type": "asset",
+        "assetId": "meal"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Turn the page.",
+      "binding": {
+        "type": "asset",
+        "assetId": "page"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Up and down.",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Up we go!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Up, up!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Wake up!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Warm and bright.",
+      "binding": {
+        "type": "asset",
+        "assetId": "sun"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Warm and cozy.",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Warm bath!",
+      "binding": {
+        "type": "asset",
+        "assetId": "bath"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Warm water.",
+      "binding": {
+        "type": "asset",
+        "assetId": "bath"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Wash, wash!",
+      "binding": {
+        "type": "asset",
+        "assetId": "bath"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Wave hello!",
+      "binding": {
+        "type": "asset",
+        "assetId": "hand-wave"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Wave, wave!",
+      "binding": {
+        "type": "asset",
+        "assetId": "hand-wave"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "What a smile!",
+      "binding": {
+        "type": "emma",
+        "state": "smile"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "What a voice!",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "What's next?",
+      "binding": {
+        "type": "emma",
+        "state": "ask"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Wiggle, wiggle!",
+      "binding": {
+        "type": "emma",
+        "state": "invite"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Wipe, wipe!",
+      "binding": {
+        "type": "emma",
+        "state": "calm"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Your little voice.",
+      "binding": {
+        "type": "emma",
+        "state": "listen"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Yum, yum!",
+      "binding": {
+        "type": "emma",
+        "state": "neutral"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Yummy food!",
+      "binding": {
+        "type": "asset",
+        "assetId": "meal"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
+    },
+    {
+      "text": "Yummy milk!",
+      "binding": {
+        "type": "asset",
+        "assetId": "milk"
+      },
+      "reviewStatus": "implementation-reviewed; user review pending"
     }
   ]
 }

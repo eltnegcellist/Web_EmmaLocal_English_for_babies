@@ -13,8 +13,12 @@ assert.equal(resolveVisualCue(' All   done? Is that everything? Let’s have a l
 assert.notDeepEqual(resolveVisualCue("All done? Is that everything? Let's have a look."),resolveVisualCue("Yes! You made it! That's wonderful!"));
 const rows=JSON.parse(readFileSync('shared/visual-cue-runtime-review.json')).rows;
 assert.equal(rows.length,914);
+const voice=JSON.parse(readFileSync('assets/voice-1202/manifest.json'));
+const singles=voice.entries.filter(e=>e.sources.some(s=>s.startsWith('web:press-single:')));
+assert.equal(singles.length,178);for(const e of singles)assert(resolveVisualCue(e.text),e.text);
+for(const text of ['Tap, tap!','Wiggle, wiggle!','Squeeze, squeeze!','One, two, three!'])assert.equal(resolveVisualCue(text).type,'emma');
 for(const r of rows){
- const p=resolveVisualCue(r.text);assert(p);
+ const p=resolveVisualCue(r.text);assert.deepEqual(p,r.binding);
  if(r.text.includes('?')&&p.type==='asset')assert.notEqual(catalog.assets[p.assetId].kind,'animation','questions do not assert a completed motion');
 }
 const dom=new JSDOM('<div class="avatar"><div data-visual-cue-host hidden></div></div><div class="avatar play-avatar"><div data-visual-cue-host hidden></div></div>');

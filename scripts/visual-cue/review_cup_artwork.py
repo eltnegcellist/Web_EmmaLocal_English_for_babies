@@ -1,10 +1,10 @@
 """Cup-only correction: rim-limited surface, visible outflow and one-way volume loss."""
 import copy,shutil
 old=next(a for a in assets if a['id']=='cup-sip')
-if old.get('productionPass',0)<7 and not any(a['id']=='rejected-cup-liquid-r3' for a in archived):
- row=copy.deepcopy(old);row.update(id='rejected-cup-liquid-r3',originalId='cup-sip',status='rejected',readiness='rejected',reviewBatch='2026-10-19-cup',rejectionReason='液面が低い側の縁を超えるのに流出しない。水量を戻す旧ループも撤回。')
+if old.get('productionPass',0)<8 and not any(a['id']=='rejected-cup-depth-r7' for a in archived):
+ row=copy.deepcopy(old);row.update(id='rejected-cup-depth-r7',originalId='cup-sip',status='rejected',readiness='rejected',reviewBatch='2026-10-19-cup-depth',rejectionReason='静止ポスターの液面が縁に接して溢れそうに見え、内壁と水面の奥行きが分かりにくい。')
  for field in ['animation','poster']:
-  rel=Path('archive/2026-10-19-cup')/row[field];target=OUT/rel;target.parent.mkdir(parents=True,exist_ok=True)
+  rel=Path('archive/2026-10-19-cup-depth')/row[field];target=OUT/rel;target.parent.mkdir(parents=True,exist_ok=True)
   if not target.exists():shutil.copyfile(OUT/row[field],target)
   row[field]=str(rel)
  archived.append(row)
@@ -27,7 +27,7 @@ def below(poly,line):
  return result
 
 def smooth(v):v=max(0,min(1,v));return v*v*(3-2*v)
-count=48;states=[];volume=area(section)*.95
+count=48;states=[];volume=area(section)*.70
 for i in range(count):
  t=i/count
  rise=smooth((t-.18)/.27);fall=smooth((t-.60)/.20);angle=38*(rise-fall)
@@ -45,10 +45,23 @@ for i in range(count):
 water_color=(76,190,223,255)
 def sipping_cup(t):
  i=min(count-1,round(t*count));state=states[i];im=rotate(cup,state['cupAngle'],pivot);mask=rotate(cavity,state['cupAngle'],pivot)
- lower=Image.new('L',(512,512));ImageDraw.Draw(lower).rectangle((0,math.ceil(state['liquidSurfaceY']),511,511),fill=255)
- liquid=ImageChops.multiply(mask,lower);paint=Image.new('RGBA',(512,512),water_color);paint.putalpha(liquid);im.alpha_composite(paint)
- stripe=Image.new('L',(512,512));ImageDraw.Draw(stripe).rectangle((0,math.ceil(state['liquidSurfaceY']),511,math.ceil(state['liquidSurfaceY'])+2),fill=180)
- shine=Image.new('RGBA',(512,512),(180,232,246,255));shine.putalpha(ImageChops.multiply(liquid,stripe));im.alpha_composite(shine)
+ # A recessed ellipse shows the water's top surface, rather than painting the
+ # lower half of the entire opening. The visible inner wall remains above it.
+ poly=[transformed(p,state['clockwiseAngle']) for p in section]
+ cut=below(poly,state['liquidSurfaceY']);edge=[p[0] for p in cut if abs(p[1]-state['liquidSurfaceY'])<.01]
+ cx=(min(edge)+max(edge))/2 if edge else 256
+ rx=(max(edge)-min(edge))/2 if edge else 75
+ depth=24*math.cos(math.radians(state['clockwiseAngle']))
+ cy=state['liquidSurfaceY']-depth
+ surface=Image.new('L',(1024,1024));d=ImageDraw.Draw(surface)
+ d.ellipse(((cx-rx)*2,(cy-depth)*2,(cx+rx)*2,(cy+depth)*2),fill=255)
+ surface=surface.resize((512,512),Image.Resampling.LANCZOS)
+ liquid=ImageChops.multiply(mask,surface)
+ paint=Image.new('RGBA',(512,512),water_color);paint.putalpha(liquid);im.alpha_composite(paint)
+ # Curved highlights follow the far part of the ellipse and stay inside the cavity.
+ shine=Image.new('RGBA',(1024,1024));sd=ImageDraw.Draw(shine)
+ sd.arc(((cx-rx+4)*2,(cy-depth+3)*2,(cx+rx-4)*2,(cy+depth-3)*2),195,300,fill=(182,235,248,210),width=5)
+ shine=shine.resize((512,512),Image.Resampling.LANCZOS);shine.putalpha(ImageChops.multiply(shine.getchannel('A'),liquid));im.alpha_composite(shine)
  # Each discharged parcel travels outward and down under gravity. Old parcels detach
  # after the pour stops; nothing flows back into the cup on the return stroke.
  stream=Image.new('RGBA',(1024,1024));draw=ImageDraw.Draw(stream);particles=0
@@ -71,13 +84,13 @@ def sipping_cup(t):
   particles+=1
  stream=stream.resize((512,512),Image.Resampling.LANCZOS);im.alpha_composite(stream)
  im.putalpha(im.getchannel('A').point(lambda a:round(a*state['alpha'])))
- trace=dict(state);trace.update(streamParcels=particles,independentLiquid=True,resetOnlyWhileInvisible=True)
+ trace=dict(state);trace.update(projectedWaterEllipse=[cx-rx,cy-depth,cx+rx,cy+depth],initialFillFraction=.70,streamParcels=particles,independentLiquid=True,resetOnlyWhileInvisible=True)
  return im,trace
-animate('cup-sip','motion.sip','コップを傾ける：縁から水が流れ、水量が減る',sipping_cup,'sources/generated/cup-empty-r3.png',['cup tilt','rim-limited horizontal surface','water flowing down from lower rim'],frame_count=count,note='液面が低い側の縁に達すると水が流れ出し、その量だけ残量が減る。傾きを戻しても水は増えない。末尾のフェードで次の一杯に切り替える3.984秒ループ。口は描かないため「飲む」の意味の適合も再確認待ち。液面の指摘を受け、この1点だけ採用保留。')
+animate('cup-sip','motion.sip','コップを傾ける：内壁の奥に水面、縁に達すると流れる',sipping_cup,'sources/generated/cup-empty-r3.png',['cup tilt','rim-limited horizontal surface','water flowing down from lower rim'],frame_count=count,note='液面が低い側の縁に達すると水が流れ出し、その量だけ残量が減る。傾きを戻しても水は増えない。初期水量を断面容量の70%に抑え、内壁の奥に楕円の水面を描く。末尾のフェードで次の一杯に切り替える3.984秒ループ。口は描かないため「飲む」の意味の適合も再確認待ち。液面の指摘を受け、この1点だけ採用保留。')
 if not SAMPLE_ONLY:
  row=next(a for a in assets if a['id']=='cup-sip');row.update(loopTransition='fade-between-servings',posterFrame=7,humanReview='user-approval-held',approvalState='held')
 if not SAMPLE_ONLY:
  poster,_=sipping_cup(7/count);poster.save(OUT/'posters/cup-sip.webp',quality=86,method=6);poster.save(OUT/'sources/normalized/cup-sip-poster.png')
 feedback_path=OUT/'qa/revision-feedback.json';feedback=json.loads(feedback_path.read_text())
 if feedback.get('followUp',{}).get('documentation')!='assets/visual-cue/artwork/CUP_LIQUID_REVIEW_20261019.md':feedback['previousFollowUpR3']=feedback.get('followUp')
-feedback['followUp']=dict(date='2026-10-19',documentation='assets/visual-cue/artwork/CUP_LIQUID_REVIEW_20261019.md',decision='Cup-only correction; 42 other assets remain accepted',items=[dict(assetId='cup-sip',problem='傾けたコップの水が縁を超えるのに流出しない。',status='修正候補・採用保留。利用者の再確認待ち。')]);feedback_path.write_text(json.dumps(feedback,ensure_ascii=False,indent=2)+'\n')
+feedback['followUp']=dict(date='2026-10-19',documentation='assets/visual-cue/artwork/CUP_LIQUID_REVIEW_20261019.md',decision='Cup-only correction; 42 other assets remain accepted',items=[dict(assetId='cup-sip',problem='静止ポスターで水が溢れそうに見え、内壁・液面の奥行きが不明瞭。',status='修正候補・採用保留。利用者の再確認待ち。')]);feedback_path.write_text(json.dumps(feedback,ensure_ascii=False,indent=2)+'\n')

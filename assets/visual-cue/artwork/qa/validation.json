@@ -223,16 +223,29 @@
     {
       "name": "cup-water-level-clamped-to-lower-rim-and-volume-only-decreases",
       "pass_": true,
-      "initialVolume": 26932.5,
+      "initialVolume": 19845.0,
       "finalVolume": 16307.22353931313,
-      "dischargedVolume": 10625.27646068687,
+      "dischargedVolume": 3537.7764606868695,
       "scope": "2D断面モデルの容量と流出量。3D流体計算や飲む意味の自動承認ではない。"
     },
     {
       "name": "cup-decoded-water-visibly-flows-outside-rim",
       "pass_": true,
-      "visibleWaterOutsideCupMax": 1580,
+      "visibleWaterOutsideCupMax": 1017,
       "noPourOutsidePixelsMax": 0
+    },
+    {
+      "name": "cup-poster-water-recessed-below-visible-inner-wall",
+      "pass_": true,
+      "waterTopY": 200,
+      "visibleFarWallPixels": 1794,
+      "projectedSurfaceEllipse": [
+        170.00697703380138,
+        199.78277185978368,
+        341.9930229661986,
+        247.78277185978368
+      ],
+      "scope": "静止ポスターの内壁と液面の離れを画素で検査。奥行きの自然さは220pxで別途目視する。"
     },
     {
       "name": "cup-reset-only-during-invisible-serving-transition",
@@ -1131,8 +1144,8 @@
     {
       "id": "cup-sip",
       "file": "animations/cup-sip.webp",
-      "sha256": "622be9388d671c9f7a4decc5c2ff8d8f1740e805e1a53330abd1fdcf8cdd6113",
-      "bytes": 307120,
+      "sha256": "5ca7a1001bf539cdb49ef35e3561670017cee3ab2327dcb15fc6d97ec45bfeb0",
+      "bytes": 313352,
       "frames": 43,
       "alphaRange": [
         0,
@@ -1146,11 +1159,11 @@
       "renderFps": 12.048192771084338,
       "decodedFramesPerSecond": 10.793172690763052,
       "seamMeanRGBDelta": 0.0,
-      "maxAdjacentMeanRGBDelta": 5.7866,
+      "maxAdjacentMeanRGBDelta": 5.8206,
       "seamToMaxAdjacentRatio": 0.0,
-      "changedPixelsAt220": 15709,
-      "changedFractionAt220": 0.3246,
-      "maxFrameMeanLuminanceStep": 5.4218,
+      "changedPixelsAt220": 15560,
+      "changedFractionAt220": 0.3215,
+      "maxFrameMeanLuminanceStep": 5.451,
       "technicalPass": true
     }
   ]

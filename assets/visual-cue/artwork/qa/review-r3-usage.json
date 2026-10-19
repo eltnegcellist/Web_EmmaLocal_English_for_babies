@@ -1,6 +1,6 @@
 {
   "source": "shared/visual-cue-phrases.json",
-  "sourceSHA256": "cfff4385abaa6c67c4a86d96a7f3996ea2532313ab26a518157ffaa87c006807",
+  "sourceSHA256": "41509cd2442209bcde77eae88c28c74a7b8776659d1f83149ed54aca131b67f1",
   "totalRows": 914,
   "uniqueTexts": 913,
   "method": "大文字小文字を区別しない単語境界一致。set/行数であり発話回数・実際の利用頻度ではない。ブロックへのtapは全12行の文脈を人が確認。",
@@ -289,7 +289,7 @@
           "sourceKind": "combined",
           "sourceKey": "milk|praise",
           "sourceIndex": 5,
-          "text": "Little sips, baby! Sip, sip, sip! High five!"
+          "text": "Little sips, baby! Sip, sip! High five!"
         },
         {
           "phraseId": "vc_000332",
@@ -443,7 +443,7 @@
           "sourceKind": "combined",
           "sourceKey": "milk|effort",
           "sourceIndex": 3,
-          "text": "Sip, sip, sip! Nice little sips! No need to rush!"
+          "text": "Sip, sip! Nice little sips! No need to rush!"
         },
         {
           "phraseId": "vc_000730",
