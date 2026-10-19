@@ -1,7 +1,7 @@
 # Visual Cue 素材棚卸しと制作対応表
 
 基準main: `03a5bcc`。ZIP SHA256: `73f04e328dc5aed60f810d6a3b4fcfa93f79e65030db2fb3c3b0c90165c6a700`。
-2026-10-19 利用者が現行43素材を採用。撤回済み旧版・未制作Cue・アプリ統合・914英文割当は別管理。
+2026-10-19 利用者が現行42素材を採用。コップ1点は採用保留。撤回済み旧版・未制作Cue・アプリ統合・914英文割当は別管理。
 
 ## 既存19点
 
@@ -45,7 +45,7 @@
 | scene.music | accepted | music 素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。 |
 | scene.sleep | accepted | sleep, wake-bed 素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。 |
 | scene.family | accepted | family-care 養育者と子の頭・肩・胴・両腕がつながる抱っこへ再制作。素材は利用者が採用済み。 |
-| motion.sip | accepted | sip, cup-sip 素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。 |
+| motion.sip | candidate | sip, cup-sip 採用審査前。詳細と意味の審査範囲はcueCoverageを参照。 |
 | motion.water | accepted | water-rain, water-shower, water-splash 素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。 |
 | motion.hand | accepted | hand-clap, hand-wave 拍手・手振りを候補として維持。握る・開閉・数える・指の独立動作・ブロックタップはR3で撤回。 |
 | motion.kick | accepted | kick 素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。 |
@@ -78,7 +78,7 @@
 | action.peekaboo | scene.family, motion.peekaboo | candidate | peekaboo 玩具を布で隠すvariant。人物のいない部分図として素材は利用者が採用済み。 |
 | action.read | scene.book, motion.page | candidate | page 素材は利用者が採用済み。914英文の割当品質を保証しない。 |
 | action.sing | scene.music, motion.notes | candidate | notes 素材は利用者が採用済み。914英文の割当品質を保証しない。 |
-| action.sip | scene.milk, motion.sip | candidate | sip, cup-sip 素材は利用者が採用済み。914英文の割当品質を保証しない。 |
+| action.sip | scene.milk, motion.sip | candidate | sip, cup-sip 素材候補の審査待ち。914英文の割当品質を保証しない。 |
 | action.sleep | scene.sleep, emma.calm | candidate | sleep 素材は利用者が採用済み。914英文の割当品質を保証しない。 |
 | action.splash | scene.bath, motion.water | candidate | water-splash 素材は利用者が採用済み。914英文の割当品質を保証しない。 |
 | action.squeeze | scene.hands, motion.hand | missing |  R3評価で旧動画を撤回。手振りは動作の意味が異なるため代用せず、専用素材は未制作。 |
@@ -172,4 +172,4 @@
 | kick | accepted | 350.8 | 40 | 3.486 | 8240 | 1.0626 | PASS |
 | hold-hands | accepted | 25.4 | 1 | 0.000 | — | — | PASS |
 | hand-wave | accepted | 360.7 | 40 | 3.486 | 16709 | 0.9894 | PASS |
-| cup-sip | accepted | 366.5 | 42 | 3.486 | 11059 | 0.2815 | PASS |
+| cup-sip | candidate | 307.1 | 43 | 3.984 | 15709 | 0.0 | PASS |

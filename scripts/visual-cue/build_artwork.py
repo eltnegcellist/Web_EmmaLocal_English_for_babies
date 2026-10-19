@@ -64,7 +64,8 @@ def rotate(layer,angle,pivot):return layer.rotate(angle,Image.Resampling.BICUBIC
 def slide(layer,x=0,y=0):return layer.transform(layer.size,Image.Transform.AFFINE,(1,0,-x,0,1,-y),Image.Resampling.BICUBIC)
 def q(t):return (1-math.cos(2*math.pi*t))/2
 
-ONLY_R3='--only-r3' in sys.argv
+ONLY_CUP='--only-cup' in sys.argv
+ONLY_R3='--only-r3' in sys.argv or ONLY_CUP
 ONLY_R2='--only-r2' in sys.argv or ONLY_R3
 ONLY_REVIEW='--only-review' in sys.argv or ONLY_R2
 ONLY_FINAL='--only-final' in sys.argv or ONLY_REVIEW
@@ -279,7 +280,9 @@ if not ONLY_R2:exec(compile((ROOT/'scripts/visual-cue/revision_artwork.py').read
 currentPass=5
 if not ONLY_R3:exec(compile((ROOT/'scripts/visual-cue/review_r2_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/review_r2_artwork.py'),'exec'),globals())
 currentPass=6
-exec(compile((ROOT/'scripts/visual-cue/review_r3_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/review_r3_artwork.py'),'exec'),globals())
+if not ONLY_CUP:exec(compile((ROOT/'scripts/visual-cue/review_r3_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/review_r3_artwork.py'),'exec'),globals())
+currentPass=7
+exec(compile((ROOT/'scripts/visual-cue/review_cup_artwork.py').read_text(),str(ROOT/'scripts/visual-cue/review_cup_artwork.py'),'exec'),globals())
 for a in assets:
     if a['id']=='hands-open-v2':a['note']='親指・母指球・掌・手首・袖口がつながる一枚の原画。静止画として保持。指を分割して曲げる旧動画はR3で撤回し、手振りは手全体の原画を使用。'
     if a['id']=='change-diaper-v2':a['note']='留め具の開閉variant。交換の全過程はchange-diaper-exchangeで別候補。'
@@ -328,7 +331,7 @@ for b in plan['bindings']:
 commonIds=['cup-sip','milk','cup','diaper-v2','clothes','family-care','sleep','wake-bed','book','toy','bath','hands-open-v2','feet','outdoor','rain','sun','music','hold-hands','hand-wave','kick','page','hug-arms','change-clothes']
 usage=json.loads((OUT/'qa/usage-audit.json').read_text())
 feedback=json.loads((OUT/'qa/revision-feedback.json').read_text())
-manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='b2536ab',productionPass=6,proposedConcepts=[dict(primitive='scene.drink',kind='illustration',assetIds=['cup'],readiness='proposal',reason='飲み物を哺乳瓶と区別する追加設計案。元計画31コンセプトは変更しない。')],commonAssetIds=commonIds,scenePriorities=usage['scenes'],usageMethod=usage['method'],limitedVariants=[r for r in usage['limitedVariants'] if r['assetId'] in {a['id'] for a in assets}],reviewFeedback=feedback,archivedAssets=archived,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
+manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='b2536ab',productionPass=7,proposedConcepts=[dict(primitive='scene.drink',kind='illustration',assetIds=['cup'],readiness='proposal',reason='飲み物を哺乳瓶と区別する追加設計案。元計画31コンセプトは変更しない。')],commonAssetIds=commonIds,scenePriorities=usage['scenes'],usageMethod=usage['method'],limitedVariants=[r for r in usage['limitedVariants'] if r['assetId'] in {a['id'] for a in assets}],reviewFeedback=feedback,archivedAssets=archived,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
 from apply_approval import apply_approval
 apply_approval(manifest,OUT)
 (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')

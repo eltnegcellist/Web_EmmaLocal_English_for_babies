@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-19",
+  "authority": "direct-user-correction",
+  "quote": "コップで飲むについて、液面の表示が変ですね。水が溢れるはずなのに溢れていないです。こちらは見落としておりました。",
+  "assetIds": [
+    "cup-sip"
+  ],
+  "state": "held-until-user-reapproval",
+  "reason": "液面と縁の高さ・流出の表現を再制作。旧43点の一括採用からコップ1点を除外し、他42点の採用は維持。"
+}

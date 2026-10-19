@@ -9915,345 +9915,874 @@
   "cup-sip": {
     "movingParts": [
       "cup tilt",
-      "independent horizontal liquid surface inside cavity"
+      "rim-limited horizontal surface",
+      "water flowing down from lower rim"
     ],
     "stationaryRegion": null,
     "traces": [
       {
-        "cupAngle": -0.0,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 207.74478571256623,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 181,
-        "visibleFillFraction": 0.78,
-        "liquidPixels": 9392,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -0.21221430172255806,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 207.74478571256623,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 181,
-        "visibleFillFraction": 0.7772077065562821,
-        "liquidPixels": 9414,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.11212384259259257,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -0.844116690063325,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 207.74478571256623,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 182,
-        "visibleFillFraction": 0.7688932014465353,
-        "liquidPixels": 9244,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.3761574074074074,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -1.8815915098540361,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 207.74478571256623,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 183,
-        "visibleFillFraction": 0.7552422169756048,
-        "liquidPixels": 9083,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.68359375,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -3.301463287996097,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 207.74478571256623,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 184,
-        "visibleFillFraction": 0.7365596935789988,
-        "liquidPixels": 8917,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.9259259259259258,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -5.072014435233299,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 207.74478571256623,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 186,
-        "visibleFillFraction": 0.7132629679574566,
-        "liquidPixels": 8584,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -7.1536937646840615,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 207.74478571256623,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 188,
-        "visibleFillFraction": 0.6858724504646834,
-        "liquidPixels": 8264,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -9.499999999999998,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 207.74478571256623,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 190,
-        "visibleFillFraction": 0.655,
-        "liquidPixels": 7962,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -12.05852053703849,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 207.74478571256623,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 193,
-        "visibleFillFraction": 0.6213352560915988,
-        "liquidPixels": 7520,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -14.772102254830026,
+        "cupAngle": -0.0863340192043897,
+        "clockwiseAngle": 0.0863340192043897,
+        "liquidSurfaceY": 207.7448862782361,
+        "lowRimY": 200.13872322916666,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 196,
-        "visibleFillFraction": 0.5856302334890786,
-        "liquidPixels": 7132,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          360.1279609821164,
+          200.1568049770234
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -17.580128221857937,
+        "cupAngle": -1.1675482320709176,
+        "clockwiseAngle": 1.1675482320709176,
+        "liquidSurfaceY": 207.7632010209216,
+        "lowRimY": 201.89225315407384,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 200,
-        "visibleFillFraction": 0.5486825233966062,
-        "liquidPixels": 6647,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          361.71038080680427,
+          202.13676696097104
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -20.419871778142063,
+        "cupAngle": -3.3213180061380276,
+        "clockwiseAngle": 3.3213180061380276,
+        "liquidSurfaceY": 207.8937862688896,
+        "lowRimY": 205.4728357128096,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 204,
-        "visibleFillFraction": 0.5113174766033939,
-        "liquidPixels": 6218,
-        "independentLiquid": true
+        "remainingVolume": 26932.5,
+        "spilledVolume": 0,
+        "rim": [
+          364.7498296980294,
+          206.1680614176614
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -23.227897745169972,
+        "cupAngle": -6.338159833358734,
+        "clockwiseAngle": 6.338159833358734,
+        "liquidSurfaceY": 210.67600742669705,
+        "lowRimY": 210.6760074205662,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 209,
-        "visibleFillFraction": 0.47436976651092144,
-        "liquidPixels": 5704,
-        "independentLiquid": true
+        "remainingVolume": 26495.613026179642,
+        "spilledVolume": 436.8869738203575,
+        "rim": [
+          368.74799938018754,
+          212.0007627727164
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 1,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -25.941479462961507,
+        "cupAngle": -10.008590205686046,
+        "clockwiseAngle": 10.008590205686046,
+        "liquidSurfaceY": 217.28277084238772,
+        "lowRimY": 217.28277080958335,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 213,
-        "visibleFillFraction": 0.43866474390840127,
-        "liquidPixels": 5395,
-        "independentLiquid": true
+        "remainingVolume": 25427.362307263942,
+        "spilledVolume": 1068.2507189157004,
+        "rim": [
+          373.18994271726996,
+          219.36832071382767
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 2,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -28.499999999999996,
+        "cupAngle": -14.123125615072983,
+        "clockwiseAngle": 14.123125615072983,
+        "liquidSurfaceY": 225.01783666939218,
+        "lowRimY": 225.0178366341975,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 218,
-        "visibleFillFraction": 0.4050000000000001,
-        "liquidPixels": 4985,
-        "independentLiquid": true
+        "remainingVolume": 24221.311381745134,
+        "spilledVolume": 1206.050925518808,
+        "rim": [
+          377.59700355851504,
+          227.94591403246844
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 3,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -30.846306235315936,
+        "cupAngle": -18.472282553472542,
+        "clockwiseAngle": 18.472282553472542,
+        "liquidSurfaceY": 233.52927022294034,
+        "lowRimY": 233.52927017765623,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 223,
-        "visibleFillFraction": 0.3741275495353167,
-        "liquidPixels": 4605,
-        "independentLiquid": true
+        "remainingVolume": 22922.986621977063,
+        "spilledVolume": 1298.324759768071,
+        "rim": [
+          381.57351044490593,
+          237.33142046858214
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 4,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -32.92798556476669,
+        "cupAngle": -22.846577512837737,
+        "clockwiseAngle": 22.846577512837737,
+        "liquidSurfaceY": 242.38880299107927,
+        "lowRimY": 242.38880298059843,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 228,
-        "visibleFillFraction": 0.3467370320425435,
-        "liquidPixels": 4233,
-        "independentLiquid": true
+        "remainingVolume": 21576.67930893605,
+        "spilledVolume": 1346.307313041012,
+        "rim": [
+          384.84348755454295,
+          247.04798141360146
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 5,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -34.6985367120039,
+        "cupAngle": -27.036526985121593,
+        "clockwiseAngle": 27.036526985121593,
+        "liquidSurfaceY": 251.10843831812969,
+        "lowRimY": 251.10843840832976,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 232,
-        "visibleFillFraction": 0.3234403064210013,
-        "liquidPixels": 3975,
-        "independentLiquid": true
+        "remainingVolume": 20231.97219978404,
+        "spilledVolume": 1344.707109152012,
+        "rim": [
+          387.27202662635267,
+          256.56313967031247
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 6,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -36.11840849014596,
+        "cupAngle": -30.83264746227709,
+        "clockwiseAngle": 30.83264746227709,
+        "liquidSurfaceY": 259.1661851394168,
+        "lowRimY": 259.1661850542393,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 236,
-        "visibleFillFraction": 0.30475778302439527,
-        "liquidPixels": 3698,
-        "independentLiquid": true
+        "remainingVolume": 18951.083657674757,
+        "spilledVolume": 1280.8885421092818,
+        "rim": [
+          388.86671009347623,
+          265.31657171791085
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 7,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -37.15588330993668,
+        "cupAngle": -34.02545543625727,
+        "clockwiseAngle": 34.02545543625727,
+        "liquidSurfaceY": 266.0325585994476,
+        "lowRimY": 266.03255860493607,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 238,
-        "visibleFillFraction": 0.29110679855346483,
-        "liquidPixels": 3607,
-        "independentLiquid": true
+        "remainingVolume": 17815.13782803185,
+        "spilledVolume": 1135.9458296429075,
+        "rim": [
+          389.7567611886004,
+          272.74729269362376
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 8,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -37.78778569827744,
+        "cupAngle": -36.40546739901513,
+        "clockwiseAngle": 36.40546739901513,
+        "liquidSurfaceY": 271.19044421240704,
+        "lowRimY": 271.19044428284286,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 240,
-        "visibleFillFraction": 0.2827922934437179,
-        "liquidPixels": 3479,
-        "independentLiquid": true
+        "remainingVolume": 16926.135909524462,
+        "spilledVolume": 889.001918507387,
+        "rim": [
+          390.15019905611507,
+          278.31239256499765
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 9,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -38.0,
+        "cupAngle": -37.76319984250368,
+        "clockwiseAngle": 37.76319984250368,
+        "liquidSurfaceY": 274.14412361369364,
+        "lowRimY": 274.14412362877016,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 241,
-        "visibleFillFraction": 0.28,
-        "liquidPixels": 3399,
-        "independentLiquid": true
+        "remainingVolume": 16400.410538313296,
+        "spilledVolume": 525.7253712111669,
+        "rim": [
+          390.2709959998626,
+          281.49291670973037
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 10,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -37.78778569827744,
+        "cupAngle": -38,
+        "clockwiseAngle": 38,
+        "liquidSurfaceY": 274.65994168119227,
+        "lowRimY": 274.6599416733892,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 240,
-        "visibleFillFraction": 0.2827922934437179,
-        "liquidPixels": 3479,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 93.18699900016509,
+        "rim": [
+          390.28434377778,
+          282.04787937729714
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 10,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -37.15588330993667,
+        "cupAngle": -38,
+        "clockwiseAngle": 38,
+        "liquidSurfaceY": 274.65994168119227,
+        "lowRimY": 274.6599416733892,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 238,
-        "visibleFillFraction": 0.2911067985534649,
-        "liquidPixels": 3607,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          390.28434377778,
+          282.04787937729714
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 9,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -36.11840849014596,
+        "cupAngle": -38,
+        "clockwiseAngle": 38,
+        "liquidSurfaceY": 274.65994168119227,
+        "lowRimY": 274.6599416733892,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 236,
-        "visibleFillFraction": 0.30475778302439527,
-        "liquidPixels": 3698,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          390.28434377778,
+          282.04787937729714
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 8,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -34.6985367120039,
+        "cupAngle": -38,
+        "clockwiseAngle": 38,
+        "liquidSurfaceY": 274.65994168119227,
+        "lowRimY": 274.6599416733892,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 232,
-        "visibleFillFraction": 0.3234403064210013,
-        "liquidPixels": 3975,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          390.28434377778,
+          282.04787937729714
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 7,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -32.9279855647667,
+        "cupAngle": -38,
+        "clockwiseAngle": 38,
+        "liquidSurfaceY": 274.65994168119227,
+        "lowRimY": 274.6599416733892,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 228,
-        "visibleFillFraction": 0.34673703204254347,
-        "liquidPixels": 4233,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          390.28434377778,
+          282.04787937729714
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 5,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -30.84630623531594,
+        "cupAngle": -38,
+        "clockwiseAngle": 38,
+        "liquidSurfaceY": 274.65994168119227,
+        "lowRimY": 274.6599416733892,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 223,
-        "visibleFillFraction": 0.37412754953531663,
-        "liquidPixels": 4605,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          390.28434377778,
+          282.04787937729714
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 4,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -28.500000000000007,
+        "cupAngle": -38,
+        "clockwiseAngle": 38,
+        "liquidSurfaceY": 274.65994168119227,
+        "lowRimY": 274.6599416733892,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 218,
-        "visibleFillFraction": 0.4049999999999999,
-        "liquidPixels": 4985,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          390.28434377778,
+          282.04787937729714
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 3,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -25.941479462961503,
+        "cupAngle": -37.95120804398148,
+        "clockwiseAngle": 37.95120804398148,
+        "liquidSurfaceY": 274.6441820201462,
+        "lowRimY": 274.55364418930344,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 213,
-        "visibleFillFraction": 0.4386647439084013,
-        "liquidPixels": 5395,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          390.2817811196145,
+          281.93352656233134
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 2,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -23.227897745169976,
+        "cupAngle": -36.36718749999999,
+        "clockwiseAngle": 36.36718749999999,
+        "liquidSurfaceY": 274.14505810109404,
+        "lowRimY": 271.10727288449823,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 209,
-        "visibleFillFraction": 0.4743697665109214,
-        "liquidPixels": 5704,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          390.14570105680315,
+          278.2227669378414
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 1,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -20.419871778142053,
+        "cupAngle": -32.92769820601851,
+        "clockwiseAngle": 32.92769820601851,
+        "liquidSurfaceY": 273.14264368111867,
+        "lowRimY": 263.6640252211072,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 204,
-        "visibleFillFraction": 0.5113174766033941,
-        "liquidPixels": 6218,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          389.4974707347077,
+          270.18698857639475
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -17.580128221857954,
+        "cupAngle": -28.148148148148152,
+        "clockwiseAngle": 28.148148148148152,
+        "liquidSurfaceY": 271.92712112400795,
+        "lowRimY": 253.4541632909345,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 200,
-        "visibleFillFraction": 0.548682523396606,
-        "liquidPixels": 6647,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          387.79900263318905,
+          259.1151993460133
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -14.77210225483003,
+        "cupAngle": -22.543945312499993,
+        "clockwiseAngle": 22.543945312499993,
+        "liquidSurfaceY": 270.75411847295993,
+        "lowRimY": 241.76726880091255,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 196,
-        "visibleFillFraction": 0.5856302334890786,
-        "liquidPixels": 7132,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          384.64123136189943,
+          246.36797191844224
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -12.058520537038502,
+        "cupAngle": -16.63049768518517,
+        "clockwiseAngle": 16.63049768518517,
+        "liquidSurfaceY": 269.8029832320776,
+        "lowRimY": 229.88577380346567,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 193,
-        "visibleFillFraction": 0.6213352560915987,
-        "liquidPixels": 7520,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          379.97658494287634,
+          233.3201549353932
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -9.499999999999998,
+        "cupAngle": -10.923213252314818,
+        "clockwiseAngle": 10.923213252314818,
+        "liquidSurfaceY": 269.1593612114523,
+        "lowRimY": 218.9734087048837,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 190,
-        "visibleFillFraction": 0.655,
-        "liquidPixels": 7962,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          374.22265772406035,
+          221.24732789396467
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -7.153693764684066,
+        "cupAngle": -5.937499999999991,
+        "clockwiseAngle": 5.937499999999991,
+        "liquidSurfaceY": 268.815837402449,
+        "lowRimY": 209.97280349627277,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 188,
-        "visibleFillFraction": 0.6858724504646834,
-        "liquidPixels": 8264,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          368.2347753841308,
+          211.21412605062056
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -5.072014435233306,
+        "cupAngle": -2.1887659143518405,
+        "clockwiseAngle": 2.1887659143518405,
+        "liquidSurfaceY": 268.69142602434346,
+        "lowRimY": 203.57566702285146,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 186,
-        "visibleFillFraction": 0.7132629679574565,
-        "liquidPixels": 8584,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          363.1704339853386,
+          204.0339695959214
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -3.301463287996097,
+        "cupAngle": -0.1924189814814785,
+        "clockwiseAngle": 0.1924189814814785,
+        "liquidSurfaceY": 268.6720154882126,
+        "lowRimY": 200.3094464730087,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 184,
-        "visibleFillFraction": 0.7365596935789988,
-        "liquidPixels": 8917,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.2848722884872,
+          200.34974653449692
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -1.8815915098540383,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 268.67186430608854,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 183,
-        "visibleFillFraction": 0.7552422169756048,
-        "liquidPixels": 9083,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -0.8441166900633292,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 268.67186430608854,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 182,
-        "visibleFillFraction": 0.7688932014465352,
-        "liquidPixels": 9244,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       },
       {
-        "cupAngle": -0.21221430172256017,
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 268.67186430608854,
+        "lowRimY": 200.0,
         "liquidSurfaceAngle": 0,
-        "liquidSurfaceY": 181,
-        "visibleFillFraction": 0.7772077065562821,
-        "liquidPixels": 9414,
-        "independentLiquid": true
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 1,
+        "transition": false,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
+      },
+      {
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 268.67186430608854,
+        "lowRimY": 200.0,
+        "liquidSurfaceAngle": 0,
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.9570312499999999,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
+      },
+      {
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 268.67186430608854,
+        "lowRimY": 200.0,
+        "liquidSurfaceAngle": 0,
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.785747679826817,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
+      },
+      {
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 268.67186430608854,
+        "lowRimY": 200.0,
+        "liquidSurfaceAngle": 0,
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.5416237997256519,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
+      },
+      {
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 268.67186430608854,
+        "lowRimY": 200.0,
+        "liquidSurfaceAngle": 0,
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.28745298032407385,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
+      },
+      {
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 268.67186430608854,
+        "lowRimY": 200.0,
+        "liquidSurfaceAngle": 0,
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.08602859224965664,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
+      },
+      {
+        "cupAngle": 0,
+        "clockwiseAngle": 0,
+        "liquidSurfaceY": 268.67186430608854,
+        "lowRimY": 200.0,
+        "liquidSurfaceAngle": 0,
+        "remainingVolume": 16307.22353931313,
+        "spilledVolume": 0,
+        "rim": [
+          360.0,
+          200.0
+        ],
+        "alpha": 0.00014400612997256257,
+        "transition": true,
+        "streamParcels": 0,
+        "independentLiquid": true,
+        "resetOnlyWhileInvisible": true
       }
     ]
   }

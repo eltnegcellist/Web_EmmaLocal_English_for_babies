@@ -216,20 +216,38 @@
       "maxDifferentPixels": 75
     },
     {
-      "name": "R3-cup-liquid-changes-inside-cavity",
-      "pass_": true,
-      "waterPixelRange": [
-        3233,
-        9126
-      ],
-      "maxOutsideCavityLargeErrorPixels": 3,
-      "maxExteriorMeanRGBError": 3.1007687068210568,
-      "scope": "液体の可視量と容器外の変化。非可逆圧縮の縁の色にじみを許容し、80階調超の差分と平均誤差を独立測定。"
-    },
-    {
       "name": "R3-replacement-grounded-in-current-corpus",
       "pass_": true,
       "scope": "単語一致と人による12行の文脈監査。最終割当の適合保証ではない。"
+    },
+    {
+      "name": "cup-water-level-clamped-to-lower-rim-and-volume-only-decreases",
+      "pass_": true,
+      "initialVolume": 26932.5,
+      "finalVolume": 16307.22353931313,
+      "dischargedVolume": 10625.27646068687,
+      "scope": "2D断面モデルの容量と流出量。3D流体計算や飲む意味の自動承認ではない。"
+    },
+    {
+      "name": "cup-decoded-water-visibly-flows-outside-rim",
+      "pass_": true,
+      "visibleWaterOutsideCupMax": 1580,
+      "noPourOutsidePixelsMax": 0
+    },
+    {
+      "name": "cup-reset-only-during-invisible-serving-transition",
+      "pass_": true,
+      "durationMs": 3984,
+      "decodedEndpointMaxAlpha": [
+        0,
+        0
+      ],
+      "acceptedOtherAssets": 42
+    },
+    {
+      "name": "cup-only-change-other-42-adopted-media-unchanged",
+      "pass_": true,
+      "changed": []
     }
   ],
   "assetCount": 43,
@@ -1113,26 +1131,26 @@
     {
       "id": "cup-sip",
       "file": "animations/cup-sip.webp",
-      "sha256": "4d0f4568ef226f38ca4799c3b4b01973fef9f868f04ec960de696f6ef8b9be6c",
-      "bytes": 366538,
-      "frames": 42,
+      "sha256": "622be9388d671c9f7a4decc5c2ff8d8f1740e805e1a53330abd1fdcf8cdd6113",
+      "bytes": 307120,
+      "frames": 43,
       "alphaRange": [
         0,
-        255
+        0
       ],
       "errors": [],
       "warnings": [],
       "sizeTargetBytes": 400000,
-      "durationMs": 3486,
+      "durationMs": 3984,
       "loop": 0,
       "renderFps": 12.048192771084338,
-      "decodedFramesPerSecond": 12.048192771084336,
-      "seamMeanRGBDelta": 0.739,
-      "maxAdjacentMeanRGBDelta": 2.6255,
-      "seamToMaxAdjacentRatio": 0.2815,
-      "changedPixelsAt220": 11059,
-      "changedFractionAt220": 0.2285,
-      "maxFrameMeanLuminanceStep": 0.0846,
+      "decodedFramesPerSecond": 10.793172690763052,
+      "seamMeanRGBDelta": 0.0,
+      "maxAdjacentMeanRGBDelta": 5.7866,
+      "seamToMaxAdjacentRatio": 0.0,
+      "changedPixelsAt220": 15709,
+      "changedFractionAt220": 0.3246,
+      "maxFrameMeanLuminanceStep": 5.4218,
       "technicalPass": true
     }
   ]

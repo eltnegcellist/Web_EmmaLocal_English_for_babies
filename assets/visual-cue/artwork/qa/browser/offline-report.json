@@ -1,5 +1,5 @@
 {
-  "url": "file:///Users/itohidetaka/Documents/Codex/2026-10-17-eltnegcellist-web-emmalocal-english-for-babies/assets/visual-cue/artwork/preview-offline.html?filter=accepted",
+  "url": "file:///Users/itohidetaka/Documents/Codex/2026-10-17-eltnegcellist-web-emmalocal-english-for-babies/assets/visual-cue/artwork/preview-offline.html?filter=new#cup-sip",
   "browser": "155.0.8059.80",
   "checks": [
     {
@@ -71,7 +71,7 @@
       "pass": true
     },
     {
-      "name": "R3-all-frames-open-at-220",
+      "name": "latest-all-frames-open-at-220",
       "pass": true
     },
     {
@@ -132,6 +132,10 @@
     },
     {
       "name": "legacy-style-preferences-separate-from-finished-motion",
+      "pass": true
+    },
+    {
+      "name": "cup-held-and-other-media-adoption-retained",
       "pass": true
     }
   ],

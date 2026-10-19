@@ -3,7 +3,7 @@
   "nonRuntime": true,
   "baseCommit": "03a5bcc",
   "latestMainInspected": "b2536ab",
-  "productionPass": 6,
+  "productionPass": 7,
   "proposedConcepts": [
     {
       "primitive": "scene.drink",
@@ -654,23 +654,13 @@
     "careReference": "https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/",
     "followUp": {
       "date": "2026-10-19",
-      "documentation": "assets/visual-cue/artwork/REVIEW_R3_RESULT.md",
-      "decision": "Three focused candidates; six loops withdrawn, no adoption approval",
+      "documentation": "assets/visual-cue/artwork/CUP_LIQUID_REVIEW_20261019.md",
+      "decision": "Cup-only correction; 42 other assets remain accepted",
       "items": [
         {
-          "assetId": "hold-hands",
-          "problem": "大人の人差し指が長すぎ、子の手が指へめり込む。通常の指の長さに子の手を近づける構図へ再制作。",
-          "status": "2026-10-19 素材採用済み。未制作Cueは別管理。"
-        },
-        {
-          "assetId": "hand-wave",
-          "problem": "握る・開閉・数える・指を動かす6動画を撤回。指を分割しない手振りへ。",
-          "status": "2026-10-19 素材採用済み。未制作Cueは別管理。"
-        },
-        {
           "assetId": "cup-sip",
-          "problem": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。",
-          "status": "2026-10-19 素材採用済み。未制作Cueは別管理。"
+          "problem": "傾けたコップの水が縁を超えるのに流出しない。",
+          "status": "液面の指摘を受け採用保留。修正版の再確認待ち。"
         }
       ]
     },
@@ -736,6 +726,28 @@
         }
       ],
       "sleepReference": "https://www.nhs.uk/baby/caring-for-a-newborn/sudden-infant-death-syndrome-sids/"
+    },
+    "previousFollowUpR3": {
+      "date": "2026-10-19",
+      "documentation": "assets/visual-cue/artwork/REVIEW_R3_RESULT.md",
+      "decision": "Three focused candidates; six loops withdrawn, no adoption approval",
+      "items": [
+        {
+          "assetId": "hold-hands",
+          "problem": "大人の人差し指が長すぎ、子の手が指へめり込む。通常の指の長さに子の手を近づける構図へ再制作。",
+          "status": "再制作候補・目視確認待ち"
+        },
+        {
+          "assetId": "hand-wave",
+          "problem": "握る・開閉・数える・指を動かす6動画を撤回。指を分割しない手振りへ。",
+          "status": "手振り候補・別の動作Cueは未制作"
+        },
+        {
+          "assetId": "cup-sip",
+          "problem": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。",
+          "status": "コップで飲む候補を追加・目視確認待ち"
+        }
+      ]
     }
   },
   "archivedAssets": [
@@ -1610,9 +1622,35 @@
       "originalId": "hand-tap",
       "reviewBatch": "2026-10-19-R3",
       "rejectionReason": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。"
+    },
+    {
+      "id": "rejected-cup-liquid-r3",
+      "primitive": "motion.sip",
+      "topic": "コップで飲む：傾きと液面が変わる",
+      "kind": "animation",
+      "illustration": null,
+      "animation": "archive/2026-10-19-cup/animations/cup-sip.webp",
+      "poster": "archive/2026-10-19-cup/posters/cup-sip.webp",
+      "loopMs": 3486,
+      "source": "sources/generated/cup-empty-r3.png",
+      "status": "rejected",
+      "readiness": "rejected",
+      "productionPass": 6,
+      "note": "drinkの38行を参考に、哺乳瓶とは別の飲み方の候補を追加。コップが傾く間も液面は水平、見える液体量を減らして戻すループ。口・人物は描かない。飲み終えた結果の再現ではなく繰り返し用。",
+      "movingParts": [
+        "cup tilt",
+        "independent horizontal liquid surface inside cavity"
+      ],
+      "lossless": false,
+      "verification": "qa/validation.json",
+      "humanReview": "user-approval-held",
+      "approvalState": "held",
+      "originalId": "cup-sip",
+      "reviewBatch": "2026-10-19-cup",
+      "rejectionReason": "液面が低い側の縁を超えるのに流出しない。水量を戻す旧ループも撤回。"
     }
   ],
-  "approval": "2026-10-19 利用者が現行43素材を採用。撤回済み旧版・未制作Cue・アプリ統合・914英文割当は別管理。",
+  "approval": "2026-10-19 利用者が現行42素材を採用。コップ1点は採用保留。撤回済み旧版・未制作Cue・アプリ統合・914英文割当は別管理。",
   "handoffSHA256": "73f04e328dc5aed60f810d6a3b4fcfa93f79e65030db2fb3c3b0c90165c6a700",
   "assets": [
     {
@@ -2547,26 +2585,28 @@
     {
       "id": "cup-sip",
       "primitive": "motion.sip",
-      "topic": "コップで飲む：傾きと液面が変わる",
+      "topic": "コップを傾ける：縁から水が流れ、水量が減る",
       "kind": "animation",
       "illustration": null,
       "animation": "animations/cup-sip.webp",
       "poster": "posters/cup-sip.webp",
-      "loopMs": 3486,
+      "loopMs": 3984,
       "source": "sources/generated/cup-empty-r3.png",
-      "status": "accepted",
-      "readiness": "accepted",
-      "productionPass": 6,
-      "note": "drinkの38行を参考に、哺乳瓶とは別の飲み方の候補を追加。コップが傾く間も液面は水平、見える液体量を減らして戻すループ。口・人物は描かない。飲み終えた結果の再現ではなく繰り返し用。",
+      "status": "needs-review",
+      "readiness": "candidate",
+      "productionPass": 7,
+      "note": "液面が低い側の縁に達すると水が流れ出し、その量だけ残量が減る。傾きを戻しても水は増えない。末尾のフェードで次の一杯に切り替える3.984秒ループ。口は描かないため「飲む」の意味の適合も再確認待ち。液面の指摘を受け、この1点だけ採用保留。",
       "movingParts": [
         "cup tilt",
-        "independent horizontal liquid surface inside cavity"
+        "rim-limited horizontal surface",
+        "water flowing down from lower rim"
       ],
       "lossless": false,
       "verification": "qa/validation.json",
-      "humanReview": "user-approved",
-      "approvedDate": "2026-10-19",
-      "approvalRecord": "approval-20261019.json"
+      "loopTransition": "fade-between-servings",
+      "posterFrame": 7,
+      "humanReview": "user-approval-held",
+      "approvalState": "held"
     }
   ],
   "concepts": [
@@ -2724,9 +2764,9 @@
         "sip",
         "cup-sip"
       ],
-      "status": "accepted",
-      "readiness": "accepted",
-      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "needs-review",
+      "readiness": "candidate",
+      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "motion.water",
@@ -3053,7 +3093,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
+      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.sleep",
@@ -3571,10 +3611,22 @@
       "reason": "年齢を特定しない身体部位。顔・全身は描かない。"
     }
   ],
+  "approvalHolds": [
+    {
+      "date": "2026-10-19",
+      "authority": "direct-user-correction",
+      "quote": "コップで飲むについて、液面の表示が変ですね。水が溢れるはずなのに溢れていないです。こちらは見落としておりました。",
+      "assetIds": [
+        "cup-sip"
+      ],
+      "state": "held-until-user-reapproval",
+      "reason": "液面と縁の高さ・流出の表現を再制作。旧43点の一括採用からコップ1点を除外し、他42点の採用は維持。"
+    }
+  ],
   "userApproval": {
     "date": "2026-10-19",
     "quote": "今まで作ってくれた分は採用にします",
-    "scope": "現行の静止22枚・動画21本、計43素材の採用。撤回した旧37版・未制作5 Cue・起床の意味対応・Emma状態・アプリ統合・914英文の個別割当は含めない。",
+    "scope": "現在42素材を採用済み。コップ1点は液面の追加指摘により採用保留。",
     "record": "approval-20261019.json",
     "acceptedAssetIds": [
       "milk",
@@ -3618,8 +3670,7 @@
       "wake-daylight",
       "kick",
       "hold-hands",
-      "hand-wave",
-      "cup-sip"
+      "hand-wave"
     ]
   },
   "legacyStyleApprovals": [

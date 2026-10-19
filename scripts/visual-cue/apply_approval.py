@@ -9,10 +9,15 @@ def apply_approval(manifest,out=OUT):
  path=out/'approval-20261019.json'
  if not path.exists():return
  record=json.loads(path.read_text());accepted=[]
+ hold_path=out/'approval-hold-cup-20261019.json';hold=json.loads(hold_path.read_text()) if hold_path.exists() else None
+ held=set(hold['assetIds']) if hold else set()
  for asset in manifest['assets']:
   approved=next((a for a in record['assets'] if a['id']==asset['id']),None)
   matches=approved and all(asset.get(field)==f['path'] and (out/f['path']).exists() and hashlib.sha256((out/f['path']).read_bytes()).hexdigest()==f['sha256'] for field,f in approved['files'].items())
-  if matches:
+  if asset['id'] in held:
+   asset.update(status='needs-review',readiness='candidate',humanReview='user-approval-held',approvalState='held')
+   for key in ['approvedDate','approvalRecord']:asset.pop(key,None)
+  elif matches:
    asset.update(status='accepted',readiness='accepted',humanReview='user-approved',approvedDate=record['date'],approvalRecord='approval-20261019.json');accepted.append(asset['id'])
   elif asset.get('status')=='accepted':
    asset.update(status='needs-review',readiness='candidate',humanReview='changed-since-user-approval')
@@ -26,11 +31,13 @@ def apply_approval(manifest,out=OUT):
  for cue in manifest['cueCoverage']:
   if cue.get('assetIds') and all(i in accepted for i in cue['assetIds']) and cue['readiness']=='candidate':
    cue['reason']=cue['reason'].replace('素材候補の審査待ち。','素材は利用者が採用済み。').replace('採用審査待ち。','素材は利用者が採用済み。')
- manifest['userApproval']=dict(date=record['date'],quote=record['quote'],scope=record['scope'],record='approval-20261019.json',acceptedAssetIds=accepted)
+ manifest['approvalHolds']=[hold] if hold else []
+ manifest['userApproval']=dict(date=record['date'],quote=record['quote'],scope=('現在42素材を採用済み。コップ1点は液面の追加指摘により採用保留。' if held else record['scope']),record='approval-20261019.json',acceptedAssetIds=accepted)
  manifest['legacyStyleApprovals']=[a for a in record['legacyStyleApprovals'] if (out/'reference'/a['path']).exists() and hashlib.sha256((out/'reference'/a['path']).read_bytes()).hexdigest()==a['sha256']]
- manifest['approval']=f"2026-10-19 利用者が現行{len(accepted)}素材を採用。撤回済み旧版・未制作Cue・アプリ統合・914英文割当は別管理。"
- if len(accepted)==len(record['assets']):
-  for item in manifest.get('reviewFeedback',{}).get('followUp',{}).get('items',[]):item['status']='2026-10-19 素材採用済み。未制作Cueは別管理。'
+ manifest['approval']=f"2026-10-19 利用者が現行{len(accepted)}素材を採用。"+('コップ1点は採用保留。' if held else '')+'撤回済み旧版・未制作Cue・アプリ統合・914英文割当は別管理。'
+ for item in manifest.get('reviewFeedback',{}).get('followUp',{}).get('items',[]):
+  if item['assetId'] in accepted:item['status']='2026-10-19 素材採用済み。未制作Cueは別管理。'
+  elif item['assetId'] in held:item['status']='液面の指摘を受け採用保留。修正版の再確認待ち。'
 
 if __name__=='__main__':
  path=OUT/'manifest.json';manifest=json.loads(path.read_text());apply_approval(manifest);path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n');print(manifest.get('approval','No explicit user approval record.'))

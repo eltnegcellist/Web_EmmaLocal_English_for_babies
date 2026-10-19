@@ -16,9 +16,10 @@ for row in m['assets']:
   im.seek(i);frames.append(im.convert('RGBA'));dur.append(im.info.get('duration',0))
  errors=[];warn=[]
  if im.size!=(512,512):errors.append('not-512-square')
- for f in frames:
+ for frame_index,f in enumerate(frames):
   a=np.asarray(f)[:,:,3]
-  if a.min()!=0 or a.max()<240:errors.append('invalid-alpha')
+  transition=(row.get('loopTransition')=='fade-between-servings' and rigs[row['id']]['traces'][min(len(rigs[row['id']]['traces'])-1,round(sum(dur[:frame_index])/83))]['transition'])
+  if a.min()!=0 or (a.max()<240 and not transition):errors.append('invalid-alpha')
   if max(a[:4].max(),a[-4:].max(),a[:,:4].max(),a[:,-4:].max())>12:errors.append('clipped-at-border')
   if (a>32).mean()>.85:errors.append('possible-baked-background')
  r=dict(id=row['id'],file=str(path.relative_to(OUT)),sha256=hashlib.sha256(path.read_bytes()).hexdigest(),bytes=path.stat().st_size,frames=len(frames),alphaRange=list(frames[0].getchannel('A').getextrema()),errors=errors,warnings=warn)
@@ -232,19 +233,42 @@ if m.get('productionPass',0)>=6:
   expected=np.asarray(source.rotate(t['angle'],Image.Resampling.BICUBIC,center=(256,397)))[:,:,3]>100
   actual=a[:,:,3]>100;mismatch.append(int((expected^actual).sum()))
  invariants.append(dict(name='R3-wave-keeps-single-source-silhouette',pass_=max(mismatch)<100,maxDifferentPixels=max(mismatch)))
- cup_pairs,cup_ms=timed_r3('cup-sip');water=[];leaks=[];exterior_deltas=[];cavity=Image.open(OUT/'parts/r3-cup-cavity-mask.png');cup_source=Image.open(OUT/'parts/r3-cup-empty.png').convert('RGBA')
- for a,t in cup_pairs:
-  rotated=np.asarray(cavity.rotate(t['cupAngle'],Image.Resampling.BICUBIC,center=(256,285)))>30
-  # Cyan water is distinct from saturated blue exterior and cream interior.
-  liquid=(a[:,:,0]>60)&(a[:,:,0]<205)&(a[:,:,1]>170)&(a[:,:,2]>205)&(a[:,:,3]>100)
-  water.append(int((liquid&rotated).sum()))
-  expected=np.asarray(cup_source.rotate(t['cupAngle'],Image.Resampling.BICUBIC,center=(256,285))).astype(int)
-  outside=(expected[:,:,3]>180)&~np.asarray(Image.fromarray((rotated*255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5))).astype(bool)
-  delta=np.abs(a[:,:,:3]-expected[:,:,:3]);exterior_deltas.append(float(delta[outside].mean()))
-  leaks.append(int(((np.max(delta,axis=2)>80)&outside).sum()))
- invariants.append(dict(name='R3-cup-liquid-changes-inside-cavity',pass_=max(water)-min(water)>3000 and max(leaks)<25 and max(exterior_deltas)<5,waterPixelRange=[min(water),max(water)],maxOutsideCavityLargeErrorPixels=max(leaks),maxExteriorMeanRGBError=max(exterior_deltas),scope='液体の可視量と容器外の変化。非可逆圧縮の縁の色にじみを許容し、80階調超の差分と平均誤差を独立測定。'))
+ if active['cup-sip'].get('productionPass',0)<7:
+  cup_pairs,cup_ms=timed_r3('cup-sip');water=[];leaks=[];exterior_deltas=[];cavity=Image.open(OUT/'parts/r3-cup-cavity-mask.png');cup_source=Image.open(OUT/'parts/r3-cup-empty.png').convert('RGBA')
+  for a,t in cup_pairs:
+   rotated=np.asarray(cavity.rotate(t['cupAngle'],Image.Resampling.BICUBIC,center=(256,285)))>30
+   # Cyan water is distinct from saturated blue exterior and cream interior.
+   liquid=(a[:,:,0]>60)&(a[:,:,0]<205)&(a[:,:,1]>170)&(a[:,:,2]>205)&(a[:,:,3]>100)
+   water.append(int((liquid&rotated).sum()))
+   expected=np.asarray(cup_source.rotate(t['cupAngle'],Image.Resampling.BICUBIC,center=(256,285))).astype(int)
+   outside=(expected[:,:,3]>180)&~np.asarray(Image.fromarray((rotated*255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5))).astype(bool)
+   delta=np.abs(a[:,:,:3]-expected[:,:,:3]);exterior_deltas.append(float(delta[outside].mean()))
+   leaks.append(int(((np.max(delta,axis=2)>80)&outside).sum()))
+  invariants.append(dict(name='R3-cup-liquid-changes-inside-cavity',pass_=max(water)-min(water)>3000 and max(leaks)<25 and max(exterior_deltas)<5,waterPixelRange=[min(water),max(water)],maxOutsideCavityLargeErrorPixels=max(leaks),maxExteriorMeanRGBError=max(exterior_deltas),scope='液体の可視量と容器外の変化。非可逆圧縮の縁の色にじみを許容し、80階調超の差分と平均誤差を独立測定。'))
  audit=json.loads((OUT/'qa/review-r3-usage.json').read_text());src=ROOT/audit['source']
  invariants.append(dict(name='R3-replacement-grounded-in-current-corpus',pass_=audit['sourceSHA256']==hashlib.sha256(src.read_bytes()).hexdigest() and audit['terms']['tap']['count']==12 and len(audit['drinkTopicRows'])==38 and not audit['blockTapContextRows'],scope='単語一致と人による12行の文脈監査。最終割当の適合保証ではない。'))
+
+if m.get('productionPass',0)>=7:
+ pairs,total=timed_r3('cup-sip');traces=rigs['cup-sip']['traces'];volumes=[s['remainingVolume'] for s in traces]
+ loss=sum(s['spilledVolume'] for s in traces)
+ invariants.append(dict(name='cup-water-level-clamped-to-lower-rim-and-volume-only-decreases',pass_=all(s['liquidSurfaceY']>=s['lowRimY']-.1 for s in traces) and all(a>=b-.001 for a,b in zip(volumes,volumes[1:])) and abs(volumes[0]-volumes[-1]-loss)<.01 and loss>3000,initialVolume=volumes[0],finalVolume=volumes[-1],dischargedVolume=loss,scope='2D断面モデルの容量と流出量。3D流体計算や飲む意味の自動承認ではない。'))
+ stream_pixels=[];no_pour=[];source=Image.open(OUT/'parts/r3-cup-empty.png').convert('RGBA')
+ for a,t in pairs:
+  if t['alpha']<.99:continue
+  expected=np.asarray(source.rotate(t['cupAngle'],Image.Resampling.BICUBIC,center=(256,285)))[:,:,3]
+  water=(a[:,:,0]>35)&(a[:,:,0]<195)&(a[:,:,1]>135)&(a[:,:,2]>170)&(a[:,:,3]>120)
+  outside=(expected<20)&water
+  amount=int(outside.sum());stream_pixels.append(amount)
+  if t['streamParcels']==0:no_pour.append(amount)
+ invariants.append(dict(name='cup-decoded-water-visibly-flows-outside-rim',pass_=max(stream_pixels)>250 and max(no_pour)<50,visibleWaterOutsideCupMax=max(stream_pixels),noPourOutsidePixelsMax=max(no_pour)))
+ invariants.append(dict(name='cup-reset-only-during-invisible-serving-transition',pass_=total==3984 and int(pairs[0][0][:,:,3].max())==0 and int(pairs[-1][0][:,:,3].max())==0 and active['cup-sip']['status']!='accepted' and len(m['userApproval']['acceptedAssetIds'])==42,durationMs=total,decodedEndpointMaxAlpha=[int(pairs[0][0][:,:,3].max()),int(pairs[-1][0][:,:,3].max())],acceptedOtherAssets=len(m['userApproval']['acceptedAssetIds'])))
+ approval=json.loads((OUT/'approval-20261019.json').read_text());changed=[]
+ for approved in approval['assets']:
+  if approved['id']=='cup-sip':continue
+  asset=active[approved['id']]
+  for field,f in approved['files'].items():
+   if hashlib.sha256((OUT/asset[field]).read_bytes()).hexdigest()!=f['sha256']:changed.append(approved['id']+':'+field)
+ invariants.append(dict(name='cup-only-change-other-42-adopted-media-unchanged',pass_=not changed,changed=changed))
 
 for item in invariants:
  if not item['pass_']:failures.append(dict(id=item['name'],errors=['action-specific-pixel-check-failed']))
@@ -264,6 +288,7 @@ if any(r['status']=='accepted' for r in m['assets']):
   assert asset['readiness']=='accepted' and asset['approvedDate']==approval['date']
   for field,f in approved['files'].items():assert asset[field]==f['path'] and hashlib.sha256((OUT/f['path']).read_bytes()).hexdigest()==f['sha256']
  assert not any(a['status']=='accepted' for a in m['archivedAssets'])
+ held={i for h in m.get('approvalHolds',[]) for i in h['assetIds']};assert not any(a['id'] in held and a['status']=='accepted' for a in m['assets'])
 assert all('superseded' not in str(r['source']) and 'motion-drafts' not in str(r['source']) for r in m['assets'])
 # Compare masked cream pixels in bowl and loaded spoon; validate source color, not thumbnail background.
 meal=np.asarray(Image.open(OUT/'sources/generated/meal-layers.png').convert('RGBA'));h,w=meal.shape[:2]

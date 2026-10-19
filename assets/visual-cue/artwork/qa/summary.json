@@ -2,7 +2,8 @@
   "stills": 22,
   "loops": 21,
   "readiness": {
-    "accepted": 43
+    "accepted": 42,
+    "candidate": 1
   },
   "coveredIllustrationConcepts": 14,
   "animationConceptsWithArtifacts": 10,
@@ -13,7 +14,7 @@
     "evaluation-complete": 21
   },
   "animationConceptsWithCandidates": 10,
-  "newAccepted": 43,
+  "newAccepted": 42,
   "technicalPass": 43,
   "technicalTotal": 43,
   "sizeExceptions": []

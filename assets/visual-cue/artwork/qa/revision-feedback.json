@@ -91,23 +91,13 @@
   "careReference": "https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/",
   "followUp": {
     "date": "2026-10-19",
-    "documentation": "assets/visual-cue/artwork/REVIEW_R3_RESULT.md",
-    "decision": "Three focused candidates; six loops withdrawn, no adoption approval",
+    "documentation": "assets/visual-cue/artwork/CUP_LIQUID_REVIEW_20261019.md",
+    "decision": "Cup-only correction; 42 other assets remain accepted",
     "items": [
       {
-        "assetId": "hold-hands",
-        "problem": "大人の人差し指が長すぎ、子の手が指へめり込む。通常の指の長さに子の手を近づける構図へ再制作。",
-        "status": "再制作候補・目視確認待ち"
-      },
-      {
-        "assetId": "hand-wave",
-        "problem": "握る・開閉・数える・指を動かす6動画を撤回。指を分割しない手振りへ。",
-        "status": "手振り候補・別の動作Cueは未制作"
-      },
-      {
         "assetId": "cup-sip",
-        "problem": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。",
-        "status": "コップで飲む候補を追加・目視確認待ち"
+        "problem": "傾けたコップの水が縁を超えるのに流出しない。",
+        "status": "修正候補・採用保留。利用者の再確認待ち。"
       }
     ]
   },
@@ -173,5 +163,27 @@
       }
     ],
     "sleepReference": "https://www.nhs.uk/baby/caring-for-a-newborn/sudden-infant-death-syndrome-sids/"
+  },
+  "previousFollowUpR3": {
+    "date": "2026-10-19",
+    "documentation": "assets/visual-cue/artwork/REVIEW_R3_RESULT.md",
+    "decision": "Three focused candidates; six loops withdrawn, no adoption approval",
+    "items": [
+      {
+        "assetId": "hold-hands",
+        "problem": "大人の人差し指が長すぎ、子の手が指へめり込む。通常の指の長さに子の手を近づける構図へ再制作。",
+        "status": "再制作候補・目視確認待ち"
+      },
+      {
+        "assetId": "hand-wave",
+        "problem": "握る・開閉・数える・指を動かす6動画を撤回。指を分割しない手振りへ。",
+        "status": "手振り候補・別の動作Cueは未制作"
+      },
+      {
+        "assetId": "cup-sip",
+        "problem": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。",
+        "status": "コップで飲む候補を追加・目視確認待ち"
+      }
+    ]
   }
 }

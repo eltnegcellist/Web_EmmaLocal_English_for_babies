@@ -1,24 +1,13 @@
 [
   {
-    "id": "hand-wave",
-    "beforeBytes": 768654,
-    "afterBytes": 360732,
-    "alphaQuality": 70,
-    "meanRGBErrorAt220": 0.351,
-    "p95RGBErrorAt220": 2.0,
-    "beforeSHA256": "be36a2e483f274ba62bf9f2082b548d43ff63587b130641148a92cc25fcbd31e",
-    "afterSHA256": "471e6cf062de745c3cbe919d00dc79599b11b2cf796688bf4174b3325e0668ca",
-    "timingAndDimensionsPreserved": true
-  },
-  {
     "id": "cup-sip",
-    "beforeBytes": 706244,
-    "afterBytes": 366538,
+    "beforeBytes": 571910,
+    "afterBytes": 307120,
     "alphaQuality": 70,
-    "meanRGBErrorAt220": 0.421,
+    "meanRGBErrorAt220": 0.352,
     "p95RGBErrorAt220": 2.0,
-    "beforeSHA256": "6f7eb9aed009fec49b4b7fd5cbbf51f7d19fbe216b876032bcec17af31f56336",
-    "afterSHA256": "4d0f4568ef226f38ca4799c3b4b01973fef9f868f04ec960de696f6ef8b9be6c",
+    "beforeSHA256": "e881d73d7fa058b9cda62bedf3e24936b2b131a1bdb360d0d47c8172f5855417",
+    "afterSHA256": "622be9388d671c9f7a4decc5c2ff8d8f1740e805e1a53330abd1fdcf8cdd6113",
     "timingAndDimensionsPreserved": true
   }
 ]
