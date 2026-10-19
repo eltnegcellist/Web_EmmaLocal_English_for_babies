@@ -1,44 +1,43 @@
 {
   "schemaVersion": 1,
-  "scope": "New gesture candidates, using established Emma robot geometry. No adoption implied.",
+  "scope": "Bust-up gesture candidates; original Emma head/neck/chest geometry. No adoption implied.",
   "states": [
     {
       "id": "emma.neutral",
       "label": "待機",
-      "description": "両腕を下ろし、わずかに首と腕を動かして待機する。",
+      "description": "普段と同じバストアップで、小さくうなずいて待機する。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/neutral.svg",
       "poster": "assets/emma-gestures/neutral-poster.svg",
       "status": "needs-review",
       "movingParts": [
-        "head",
-        "left arm at shoulder",
-        "right arm at shoulder"
+        "head at neck"
       ],
       "durationMs": 4800
     },
     {
       "id": "emma.smile",
       "label": "にっこり",
-      "description": "笑顔で小さくうなずき、両手を少し開く。",
+      "description": "顔の大きさを保ち、笑顔で小さくうなずく。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/smile.svg",
       "poster": "assets/emma-gestures/smile-poster.svg",
       "status": "needs-review",
       "movingParts": [
-        "head",
-        "left arm at shoulder",
-        "right arm at shoulder"
+        "head at neck"
       ],
       "durationMs": 3600
     },
     {
       "id": "emma.calm",
       "label": "安心させる",
-      "description": "両手を低く開き、ゆっくり手を下げる。",
+      "description": "胸元の左右で手を低く開き、ゆっくり下げる。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/calm.svg",
       "poster": "assets/emma-gestures/calm-poster.svg",
       "status": "needs-review",
       "movingParts": [
-        "head",
+        "head at neck",
         "left arm at shoulder",
         "right arm at shoulder"
       ],
@@ -47,12 +46,13 @@
     {
       "id": "emma.celebrate",
       "label": "ほめる",
-      "description": "両腕を上げ、左右の手をゆっくり動かす。",
+      "description": "顔の横へ両手を上げ、小さく動かしてほめる。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/celebrate.svg",
       "poster": "assets/emma-gestures/celebrate-poster.svg",
       "status": "needs-review",
       "movingParts": [
-        "head",
+        "head at neck",
         "left arm at shoulder",
         "right arm at shoulder"
       ],
@@ -61,13 +61,13 @@
     {
       "id": "emma.listen",
       "label": "聞く",
-      "description": "右手を耳のそばへ寄せ、首を傾ける。",
+      "description": "右手を耳の下へ寄せ、わずかに首を傾ける。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/listen.svg",
       "poster": "assets/emma-gestures/listen-poster.svg",
       "status": "needs-review",
       "movingParts": [
-        "head",
-        "left arm at shoulder",
+        "head at neck",
         "right arm at shoulder"
       ],
       "durationMs": 4800
@@ -75,12 +75,13 @@
     {
       "id": "emma.ask",
       "label": "たずねる",
-      "description": "両手を上向きに開き、首を傾ける。完了の印は出さない。",
+      "description": "顔の下の左右で手を開き、わずかに首を傾ける。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/ask.svg",
       "poster": "assets/emma-gestures/ask-poster.svg",
       "status": "needs-review",
       "movingParts": [
-        "head",
+        "head at neck",
         "left arm at shoulder",
         "right arm at shoulder"
       ],
@@ -89,13 +90,13 @@
     {
       "id": "emma.invite",
       "label": "誘う",
-      "description": "右手を外へ開き、ゆっくり招く。",
+      "description": "右手を顔の横へ上げ、手首の向きをゆっくり変えて招く。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/invite.svg",
       "poster": "assets/emma-gestures/invite-poster.svg",
       "status": "needs-review",
       "movingParts": [
-        "head",
-        "left arm at shoulder",
+        "head at neck",
         "right arm at shoulder"
       ],
       "durationMs": 3600

@@ -1,5 +1,5 @@
 import { VISUAL_CUE_CATALOG } from './visual-cue-catalog.js';
-import { createEmmaGesture } from './emma-gestures.js';
+import { createEmmaGesture } from './emma-gestures.js?v=20261019-bust-v2';
 export const normalizeCueText=text=>String(text||'').replaceAll('’',"'").trim().replace(/\s+/g,' ').toLowerCase();
 export function resolveVisualCue(text,catalog=VISUAL_CUE_CATALOG){return catalog.bindings[normalizeCueText(text)]||null;}
 
@@ -7,7 +7,7 @@ export function resolveVisualCue(text,catalog=VISUAL_CUE_CATALOG){return catalog
 export function createVisualCueController({document=globalThis.document,baseUrl=new URL('../',import.meta.url),catalog=VISUAL_CUE_CATALOG,loadImage,media=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)'),onChange=()=>{}}={}){
  let mode='emma',motion=true,serial=0,generation=0,current=null,disposed=false;
  const hosts=()=>[...document.querySelectorAll('[data-visual-cue-host]')];
- const clear=()=>{for(const host of hosts()){host.replaceChildren();host.hidden=true;host.closest('.avatar')?.classList.remove('has-visual-cue');}onChange(null);};
+ const clear=()=>{for(const host of hosts()){host.replaceChildren();host.hidden=true;const avatar=host.closest('.avatar');avatar?.classList.remove('has-visual-cue','has-emma-gesture');if(avatar)delete avatar.dataset.visualMotion;}onChange(null);};
  const decode=loadImage||((url)=>new Promise((resolve,reject)=>{
   const img=new document.defaultView.Image();let timer=setTimeout(()=>reject(Error('Visual cue image timeout')),8000);
   img.onload=()=>{clearTimeout(timer);resolve(img);};img.onerror=()=>{clearTimeout(timer);reject(Error('Visual cue image unavailable'));};img.src=url;
@@ -28,7 +28,7 @@ export function createVisualCueController({document=globalThis.document,baseUrl=
    }
   }catch{return;}
   if(version!==generation||!current||disposed||mode!=='visual'||document.hidden)return;
-  for(const host of hosts()){host.replaceChildren(element.cloneNode(true));host.hidden=false;host.closest('.avatar')?.classList.add('has-visual-cue');}
+  for(const host of hosts()){host.replaceChildren(element.cloneNode(true));host.hidden=false;host.closest('.avatar')?.classList.add('has-visual-cue');const avatar=host.closest('.avatar');avatar?.classList.toggle('has-emma-gesture',p.type==='emma');if(avatar)avatar.dataset.visualMotion=animate?'on':'off';}
   onChange(p);
  }
  const stop=()=>{serial++;generation++;current=null;clear();};

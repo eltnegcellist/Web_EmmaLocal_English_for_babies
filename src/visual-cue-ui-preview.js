@@ -1,5 +1,5 @@
-import {createVisualCueController} from './visual-cue-controller.js';
-import {createEmmaGesture} from './emma-gestures.js';
+import {createVisualCueController} from './visual-cue-controller.js?v=20261019-bust-v2';
+import {createEmmaGesture} from './emma-gestures.js?v=20261019-bust-v2';
 const $=id=>document.getElementById(id);
 const examples=await fetch('./shared/visual-cue-ui-examples.json').then(r=>r.json());
 $('defaultEmma').innerHTML=await fetch('./assets/emma-face/emma-face-idle-open.svg').then(r=>r.text());

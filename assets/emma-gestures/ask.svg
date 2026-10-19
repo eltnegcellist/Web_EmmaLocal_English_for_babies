@@ -1,16 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-emma-gesture="ask" role="img" aria-label="Emma：たずねる"><title>Emma：たずねる</title><style>[data-emma-gesture="ask"] .eg-left{transform-origin:187px 312px;transform:rotate(58deg);animation:eg-left-ask 3.6s ease-in-out infinite}[data-emma-gesture="ask"] .eg-right{transform-origin:325px 312px;transform:rotate(-58deg);animation:eg-right-ask 3.6s ease-in-out infinite}[data-emma-gesture="ask"] .eg-head{transform-origin:256px 284px;transform:rotate(-7deg);animation:eg-head-ask 3.6s ease-in-out infinite}@keyframes eg-left-ask{50%{transform:rotate(60deg)}}@keyframes eg-right-ask{50%{transform:rotate(-60deg)}}@keyframes eg-head-ask{50%{transform:rotate(-5deg)}}@media(prefers-reduced-motion:reduce){.eg-arm,.eg-head{animation:none!important}}[data-motion="off"] .eg-arm,[data-motion="off"] .eg-head{animation:none!important}</style><g class="eg-arm eg-left"><g>
- <path d="M187 312 Q157 325 150 352 Q143 367 146 383" fill="none" stroke="var(--dark,#080808)" stroke-opacity=".65" stroke-width="34" stroke-linecap="round"/>
- <path d="M187 312 Q157 325 150 352 Q143 367 146 383" fill="none" stroke="var(--face,#fff)" stroke-width="29" stroke-linecap="round"/>
- <circle cx="187" cy="312" r="16" fill="color-mix(in srgb,var(--accent,#e00000) 30%,white)" stroke="var(--dark,#080808)" stroke-opacity=".4" stroke-width="2"/>
- <rect x="130" y="375" width="32" height="16" rx="7" fill="var(--accent,#e00000)"/>
- <path d="M128 392 Q126 379 139 381 Q149 378 156 387 Q172 379 173 391 Q173 402 163 406 Q163 420 147 423 Q128 424 125 408 Z" fill="var(--face,#fff)" stroke="var(--dark,#080808)" stroke-opacity=".65" stroke-width="2.5"/>
- </g></g><g class="eg-arm eg-right"><g transform="translate(512 0) scale(-1 1)">
- <path d="M187 312 Q157 325 150 352 Q143 367 146 383" fill="none" stroke="var(--dark,#080808)" stroke-opacity=".65" stroke-width="34" stroke-linecap="round"/>
- <path d="M187 312 Q157 325 150 352 Q143 367 146 383" fill="none" stroke="var(--face,#fff)" stroke-width="29" stroke-linecap="round"/>
- <circle cx="187" cy="312" r="16" fill="color-mix(in srgb,var(--accent,#e00000) 30%,white)" stroke="var(--dark,#080808)" stroke-opacity=".4" stroke-width="2"/>
- <rect x="130" y="375" width="32" height="16" rx="7" fill="var(--accent,#e00000)"/>
- <path d="M128 392 Q126 379 139 381 Q149 378 156 387 Q172 379 173 391 Q173 402 163 406 Q163 420 147 423 Q128 424 125 408 Z" fill="var(--face,#fff)" stroke="var(--dark,#080808)" stroke-opacity=".65" stroke-width="2.5"/>
- </g></g><rect x="239" y="278" width="34" height="35" rx="12" fill="var(--accent,#e00000)"/><path d="M194 305 Q220 294 256 306 Q292 294 318 305 Q340 343 340 447 Q340 473 315 476 L197 476 Q172 473 172 447 Q172 343 194 305Z" fill="var(--face,#fff)" stroke="var(--dark,#080808)" stroke-opacity=".65" stroke-width="3"/><path d="M256 371 C225 344 204 379 226 399 L256 423 L286 399 C308 379 287 344 256 371Z" fill="var(--accent,#e00000)"/><g class="eg-head"><g transform="translate(92.16 0) scale(.32)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-emma-framing="bust" data-emma-gesture="ask" role="img" aria-label="Emma：たずねる"><title>Emma：たずねる</title><style>[data-emma-gesture="ask"] .eg-left{transform-origin:172px 454px;transform:rotate(32deg);opacity:1;animation:eg-left-ask 3.6s ease-in-out infinite}@keyframes eg-left-ask{0%,100%{transform:rotate(0deg);opacity:0}20%,80%{transform:rotate(32deg);opacity:1}50%{transform:rotate(33deg);opacity:1}}[data-emma-gesture="ask"] .eg-right{transform-origin:340px 454px;transform:rotate(-32deg);opacity:1;animation:eg-right-ask 3.6s ease-in-out infinite}@keyframes eg-right-ask{0%,100%{transform:rotate(0deg);opacity:0}20%,80%{transform:rotate(-32deg);opacity:1}50%{transform:rotate(-33deg);opacity:1}}[data-emma-gesture="ask"] .eg-head{transform-origin:256px 436px;transform:rotate(0deg);opacity:1;animation:eg-head-ask 3.6s ease-in-out infinite}@keyframes eg-head-ask{0%,100%{transform:rotate(0deg);opacity:1}20%,80%{transform:rotate(0deg);opacity:1}50%{transform:rotate(-2deg);opacity:1}}@media(prefers-reduced-motion:reduce){.eg-arm,.eg-head{animation:none!important}}[data-motion="off"] .eg-arm,[data-motion="off"] .eg-head{animation:none!important}</style><g class="eg-head"><g data-emma-head-geometry transform="scale(.5)">
 <path fill="var(--accent, #e00000)" d="M486,152 L538,152 L538,245 L486,245 Z" />
 <path fill="var(--accent, #e00000)" d="M442,98 C442,59.3400675 473.34006750000003,28 512,28 C550.6599325,28 582,59.3400675 582,98 C582,136.6599325 550.6599325,168 512,168 C473.34006750000003,168 442,136.6599325 442,98 Z" />
 <path fill="color-mix(in srgb, var(--accent, #e00000) 35%, white)" d="M468,72 C468,63.71572875 476.954305,57 488,57 C499.045695,57 508,63.71572875 508,72 C508,80.28427125 499.045695,87 488,87 C476.954305,87 468,80.28427125 468,72 Z" />
@@ -32,4 +20,20 @@
 <path fill="#fff" d="M634,510 C634,502.82029825 638.4771525,497 644,497 C649.5228475,497 654,502.82029825 654,510 C654,517.17970175 649.5228475,523 644,523 C638.4771525,523 634,517.17970175 634,510 Z" />
 <path fill="var(--blush, #e00000)" d="M213,625 C213,602.90861 237.62433875,585 268,585 C298.37566125,585 323,602.90861 323,625 C323,647.09139 298.37566125,665 268,665 C237.62433875,665 213,647.09139 213,625 Z" /><path fill="var(--blush, #e00000)" d="M701,625 C701,602.90861 725.62433875,585 756,585 C786.37566125,585 811,602.90861 811,625 C811,647.09139 786.37566125,665 756,665 C725.62433875,665 701,647.09139 701,625 Z" />
 <ellipse cx="512" cy="663" rx="23" ry="27" fill="var(--dark, #080808)"/>
-</g></g></svg>
+</g></g><g class="eg-bust" transform="scale(.5)"><path fill="var(--accent, #e00000)" d="M418,852 C449,873 575,873 606,852 L622,912 L402,912 Z" />
+<path fill="var(--face, #ffffff)" d="M315,884 C385,851 443,858 512,887 C581,858 639,851 709,884 L772,1024 L252,1024 Z" stroke="var(--dark, #080808)" stroke-width="8" stroke-opacity="0.65" />
+<path fill="color-mix(in srgb, var(--accent, #e00000) 35%, white)" d="M512,934 C477,904 435,930 443,966 C449,993 484,1011 512,1027 C540,1011 575,993 581,966 C589,930 547,904 512,934 Z" />
+<path fill="var(--blush, #e00000)" d="M512,950 C489,930 462,946 468,969 C473,986 495,997 512,1007 C529,997 551,986 556,969 C562,946 535,930 512,950 Z" />
+</g><g class="eg-arm eg-left"><g>
+ <path d="M172 454 Q130 463 107 469 Q82 473 59 475" fill="none" stroke="var(--dark,#080808)" stroke-opacity=".65" stroke-width="24" stroke-linecap="round"/>
+ <path d="M172 454 Q130 463 107 469 Q82 473 59 475" fill="none" stroke="var(--face,#fff)" stroke-width="20" stroke-linecap="round"/>
+ <circle cx="172" cy="454" r="12" fill="color-mix(in srgb,var(--accent,#e00000) 30%,white)" stroke="var(--dark,#080808)" stroke-opacity=".4" stroke-width="2"/>
+ <rect x="54" y="463" width="15" height="25" rx="6" fill="var(--accent,#e00000)"/>
+ <path d="M58 466 Q51 456 38 458 Q22 457 21 470 Q16 480 25 488 Q34 498 48 491 L59 486Z" fill="var(--face,#fff)" stroke="var(--dark,#080808)" stroke-opacity=".65" stroke-width="2.5"/>
+ </g></g><g class="eg-arm eg-right"><g transform="translate(512 0) scale(-1 1)">
+ <path d="M172 454 Q130 463 107 469 Q82 473 59 475" fill="none" stroke="var(--dark,#080808)" stroke-opacity=".65" stroke-width="24" stroke-linecap="round"/>
+ <path d="M172 454 Q130 463 107 469 Q82 473 59 475" fill="none" stroke="var(--face,#fff)" stroke-width="20" stroke-linecap="round"/>
+ <circle cx="172" cy="454" r="12" fill="color-mix(in srgb,var(--accent,#e00000) 30%,white)" stroke="var(--dark,#080808)" stroke-opacity=".4" stroke-width="2"/>
+ <rect x="54" y="463" width="15" height="25" rx="6" fill="var(--accent,#e00000)"/>
+ <path d="M58 466 Q51 456 38 458 Q22 457 21 470 Q16 480 25 488 Q34 498 48 491 L59 486Z" fill="var(--face,#fff)" stroke="var(--dark,#080808)" stroke-opacity=".65" stroke-width="2.5"/>
+ </g></g></svg>

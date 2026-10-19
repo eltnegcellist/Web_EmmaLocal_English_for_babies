@@ -37,7 +37,8 @@ token=controller.begin(assetText);pending.shift().reject(Error('missing'));await
 token=controller.begin(assetText);pending.shift().resolve();await settle();assert(hosts.every(h=>!h.hidden&&h.querySelector('img')),'home and cloned play avatar both render');
 const oldToken=token;token=controller.begin("All done? Is that everything? Let's have a look.");await settle();controller.end(oldToken);assert(hosts.every(h=>h.querySelector('[data-emma-gesture="ask"]')),'stale ending cannot clear a newer clip');
 controller.configure({mode:'visual',motion:false});await settle();assert(hosts.every(h=>h.querySelector('svg').dataset.motion==='off'));
-controller.end(token);assert(hosts.every(h=>h.hidden),'settings change preserves the audio token for end');
+assert(hosts.every(h=>h.closest('.avatar').dataset.visualMotion==='off'));
+controller.end(token);assert(hosts.every(h=>!h.closest('.avatar').hasAttribute('data-visual-motion')));assert(hosts.every(h=>h.hidden),'settings change preserves the audio token for end');
 controller.configure({mode:'visual',motion:true});media.matches=true;media.listener();token=controller.begin(assetText);assert(pending.at(-1).url.includes('/posters/'));pending.shift().resolve();await settle();
 document.hidden=true;document.dispatchEvent(new dom.window.Event('visibilitychange'));assert(hosts.every(h=>h.hidden));document.hidden=false;media.listener();await settle();assert(hosts.every(h=>h.hidden),'returning to the tab does not restart stale animation');
 controller.begin('unknown');await settle();assert(hosts.every(h=>h.hidden));

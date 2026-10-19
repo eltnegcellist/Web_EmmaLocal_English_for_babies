@@ -1,12 +1,48 @@
 {
   "checks": [
     {
+      "name": "same-idle-head-framing-neutral-220",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607134038751776,
+          0.162109375,
+          0.8478575272993608,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-neutral-moves-220",
       "pass": true
     },
     {
       "name": "gesture-neutral-unclipped-220",
       "pass": true
+    },
+    {
+      "name": "same-idle-head-framing-smile-220",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.0760713057084517,
+          0.162109375,
+          0.8478575272993608,
+          0.701171875
+        ]
+      }
     },
     {
       "name": "gesture-smile-moves-220",
@@ -17,12 +53,48 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-calm-220",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.0760714444247159,
+          0.162109375,
+          0.8478573885830966,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-calm-moves-220",
       "pass": true
     },
     {
       "name": "gesture-calm-unclipped-220",
       "pass": true
+    },
+    {
+      "name": "same-idle-head-framing-celebrate-220",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607134038751776,
+          0.162109375,
+          0.8478575272993608,
+          0.701171875
+        ]
+      }
     },
     {
       "name": "gesture-celebrate-moves-220",
@@ -33,6 +105,24 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-listen-220",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.0760713057084517,
+          0.162109375,
+          0.8478575272993608,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-listen-moves-220",
       "pass": true
     },
@@ -41,12 +131,48 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-ask-220",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.0760714444247159,
+          0.162109375,
+          0.8478573885830966,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-ask-moves-220",
       "pass": true
     },
     {
       "name": "gesture-ask-unclipped-220",
       "pass": true
+    },
+    {
+      "name": "same-idle-head-framing-invite-220",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607134038751776,
+          0.162109375,
+          0.8478575272993608,
+          0.701171875
+        ]
+      }
     },
     {
       "name": "gesture-invite-moves-220",
@@ -61,12 +187,48 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-neutral-256",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.0760713517665863,
+          0.162109375,
+          0.8478573560714722,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-neutral-moves-256",
       "pass": true
     },
     {
       "name": "gesture-neutral-unclipped-256",
       "pass": true
+    },
+    {
+      "name": "same-idle-head-framing-smile-256",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607138156890869,
+          0.162109375,
+          0.8478573560714722,
+          0.701171875
+        ]
+      }
     },
     {
       "name": "gesture-smile-moves-256",
@@ -77,12 +239,48 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-calm-256",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607126235961914,
+          0.162109375,
+          0.8478574752807617,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-calm-moves-256",
       "pass": true
     },
     {
       "name": "gesture-calm-unclipped-256",
       "pass": true
+    },
+    {
+      "name": "same-idle-head-framing-celebrate-256",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.0760713517665863,
+          0.162109375,
+          0.8478573560714722,
+          0.701171875
+        ]
+      }
     },
     {
       "name": "gesture-celebrate-moves-256",
@@ -93,6 +291,24 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-listen-256",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607138156890869,
+          0.162109375,
+          0.8478573560714722,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-listen-moves-256",
       "pass": true
     },
@@ -101,12 +317,48 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-ask-256",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607126235961914,
+          0.162109375,
+          0.8478574752807617,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-ask-moves-256",
       "pass": true
     },
     {
       "name": "gesture-ask-unclipped-256",
       "pass": true
+    },
+    {
+      "name": "same-idle-head-framing-invite-256",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.0760713517665863,
+          0.162109375,
+          0.8478573560714722,
+          0.701171875
+        ]
+      }
     },
     {
       "name": "gesture-invite-moves-256",
@@ -121,12 +373,48 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-neutral-320",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-neutral-moves-320",
       "pass": true
     },
     {
       "name": "gesture-neutral-unclipped-320",
       "pass": true
+    },
+    {
+      "name": "same-idle-head-framing-smile-320",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478574752807617,
+          0.701171875
+        ]
+      }
     },
     {
       "name": "gesture-smile-moves-320",
@@ -137,12 +425,48 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-calm-320",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478574752807617,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-calm-moves-320",
       "pass": true
     },
     {
       "name": "gesture-calm-unclipped-320",
       "pass": true
+    },
+    {
+      "name": "same-idle-head-framing-celebrate-320",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ]
+      }
     },
     {
       "name": "gesture-celebrate-moves-320",
@@ -153,6 +477,24 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-listen-320",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478574752807617,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-listen-moves-320",
       "pass": true
     },
@@ -161,12 +503,48 @@
       "pass": true
     },
     {
+      "name": "same-idle-head-framing-ask-320",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478574752807617,
+          0.701171875
+        ]
+      }
+    },
+    {
       "name": "gesture-ask-moves-320",
       "pass": true
     },
     {
       "name": "gesture-ask-unclipped-320",
       "pass": true
+    },
+    {
+      "name": "same-idle-head-framing-invite-320",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607135772705079,
+          0.162109375,
+          0.8478573799133301,
+          0.701171875
+        ]
+      }
     },
     {
       "name": "gesture-invite-moves-320",
@@ -206,6 +584,28 @@
     },
     {
       "name": "setting-persists",
+      "pass": true
+    },
+    {
+      "name": "app-bust-head-keeps-idle-scale-and-anchor",
+      "pass": true,
+      "detail": {
+        "original": [
+          0.07607134650735294,
+          0.162109375,
+          0.847857395909215,
+          0.701171875
+        ],
+        "gesture": [
+          0.07607134650735294,
+          0.162109375,
+          0.847857395909215,
+          0.701171875
+        ]
+      }
+    },
+    {
+      "name": "motion-off-pauses-parent-avatar",
       "pass": true
     },
     {
