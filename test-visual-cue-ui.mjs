@@ -4,6 +4,11 @@ import {JSDOM} from 'jsdom';
 import {VISUAL_CUE_CATALOG as catalog} from './src/visual-cue-catalog.js';
 import {createVisualCueController,resolveVisualCue} from './src/visual-cue-controller.js';
 const art=JSON.parse(readFileSync('assets/visual-cue/artwork/manifest.json'));
+for(const state of ['neutral','smile','calm','celebrate','listen','ask','invite'])for(const suffix of ['', '-poster']){
+ const svg=new JSDOM(readFileSync(`assets/emma-gestures/${state}${suffix}.svg`,'utf8'),{contentType:'image/svg+xml'}).window.document;
+ assert.equal(svg.documentElement.dataset.emmaFraming,'bust');assert.equal(svg.querySelector('[data-emma-head-geometry]').getAttribute('transform'),'scale(.5)');
+}
+
 for(const a of Object.values(catalog.assets)){
  assert.equal(art.assets.find(x=>x.id===a.id).status,'accepted');assert(existsSync(a.image));assert(existsSync(a.poster));
 }

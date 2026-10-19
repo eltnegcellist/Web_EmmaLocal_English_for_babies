@@ -2,6 +2,7 @@
 """Build bust-up gestures without changing the established Emma camera/framing."""
 from pathlib import Path
 import json,re
+import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'assets/emma-gestures';OUT.mkdir(exist_ok=True)
 poses={
  'neutral':('待機','普段と同じバストアップで、小さくうなずいて待機する。',0,0,1),
@@ -49,7 +50,7 @@ for key,(label,description,left,right,tilt) in poses.items():
  head,bust=face_parts(key)
  # Both groups use exactly half of the original 1024px coordinates. The head,
  # neck, chest and viewport match the idle/talking avatar; no whole-body zoom.
- scene=f'<g class="eg-head"><g data-emma-head-geometry transform="scale(.5)">{head}</g></g><g class="eg-bust" transform="scale(.5)">{bust}</g>'+arm('left')+arm('right')
+ scene=f'<g class="eg-head"><g data-emma-head-geometry="true" transform="scale(.5)">{head}</g></g><g class="eg-bust" transform="scale(.5)">{bust}</g>'+arm('left')+arm('right')
  svg=f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-emma-framing="bust" data-emma-gesture="{key}" role="img" aria-label="Emma：{label}"><title>Emma：{label}</title><style>{css}</style>{scene}</svg>'
  static=f'{prefix} .eg-left{{transform-origin:172px 454px;transform:rotate({left}deg)}}{prefix} .eg-right{{transform-origin:340px 454px;transform:rotate({right}deg)}}'
  
@@ -57,6 +58,7 @@ for key,(label,description,left,right,tilt) in poses.items():
   active=key not in ['neutral','smile'] and (side=='right' or key not in ['listen','invite'])
   static+=f'{prefix} .eg-{side}{{opacity:{1 if active else 0}}}'
  poster=svg.replace(f'<style>{css}</style>',f'<style>{static}</style>')
+ ET.fromstring(svg);ET.fromstring(poster)
  (OUT/f'{key}.svg').write_text(svg+'\n');(OUT/f'{key}-poster.svg').write_text(poster+'\n');sources[key]=svg
  entries.append(dict(id='emma.'+key,label=label,description=description,framing='bust-up, identical head scale and anchor to the existing avatar',animation=f'assets/emma-gestures/{key}.svg',poster=f'assets/emma-gestures/{key}-poster.svg',status='needs-review',movingParts=['head at neck']+(['right arm at shoulder'] if key in ['listen','invite'] else [] if key in ['neutral','smile'] else ['left arm at shoulder','right arm at shoulder']),durationMs=round(duration*1000)))
 (OUT/'manifest.json').write_text(json.dumps(dict(schemaVersion=1,scope='Bust-up gesture candidates; original Emma head/neck/chest geometry. No adoption implied.',states=entries),ensure_ascii=False,indent=2)+'\n')
