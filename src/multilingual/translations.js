@@ -1,5 +1,6 @@
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
+['みつことば','Mitsukotoba','Mitsukotoba','Mitsukotoba','미츠코토바','มิตสึโคโตบะ'],
 ['みつことばの使い方','How Mitsukotoba works','So funktioniert Mitsukotoba','Comment utiliser Mitsukotoba','미츠코토바 사용 방법','วิธีใช้ Mitsukotoba'],
 ['みつことば — 親と赤ちゃんとAIの英語時間','Mitsukotoba — English time with your baby and Emma','Mitsukotoba — Englisch mit deinem Baby und Emma','Mitsukotoba — Un moment en anglais avec bébé et Emma','미츠코토바 — 아기·Emma와 함께하는 영어 시간','Mitsukotoba — ช่วงเวลาภาษาอังกฤษกับลูกน้อยและ Emma'],
 ['意味のある発話を聞き取れませんでした。','No clear speech was detected. Please try again.','Keine deutliche Sprache erkannt. Bitte erneut versuchen.','Aucune parole claire détectée. Veuillez réessayer.','뚜렷한 말을 인식하지 못했어요. 다시 말해 주세요.','ไม่พบคำพูดที่ชัดเจน โปรดลองอีกครั้ง'],
