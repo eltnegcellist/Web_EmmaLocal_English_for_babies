@@ -1,13 +1,29 @@
 import {classifyEmbedding,decodeHead} from '../semantic/core.js';
 export const LANGUAGES=['ja','de','fr','ko','th','en'];
 export const LANGUAGE_KEY='mitsukotoba_language_v1';
+// 'auto' follows browser preferences; 'manual' keeps the user's own choice.
+export const LANGUAGE_MODE_KEY='mitsukotoba_language_mode_v2';
+export function browserLanguages(navigatorInfo=globalThis.navigator,intl=globalThis.Intl) {
+  const tags=[];
+  // navigator.languages is ordered from most to least preferred.
+  for(const tag of navigatorInfo?.languages||[])if(tag&&!tags.includes(tag))tags.push(tag);
+  // Some embedded browsers expose navigator.language but not languages.
+  const primary=navigatorInfo?.language;
+  if(primary&&!tags.includes(primary))tags.push(primary);
+  // Use the browser's Intl locale only if Navigator supplies nothing.
+  if(!tags.length) {
+    try {const locale=intl?.DateTimeFormat?.().resolvedOptions().locale;if(locale)tags.push(locale);}catch{}
+  }
+  return tags;
+}
 export const LANGUAGE_NAMES={ja:'日本語',de:'Deutsch',fr:'Français',ko:'한국어',th:'ไทย',en:'English · Multilingual'};
 export function resolveLanguage({saved=null,languages=[],region=null}={}) {
   if(LANGUAGES.includes(saved))return {language:saved,needsChoice:false,source:'saved'};
   for(const tag of languages){const code=String(tag).toLowerCase().split(/[-_]/)[0];
     if(LANGUAGES.includes(code))return {language:code,needsChoice:false,source:'device'};}
   const candidate={JP:'ja',DE:'de',AT:'de',FR:'fr',KR:'ko',TH:'th',US:'en',GB:'en',AU:'en',NZ:'en',IE:'en'}[String(region||'').toUpperCase()];
-  return candidate ? {language:candidate,needsChoice:false,source:'region'} : {language:'en',needsChoice:true,source:'choice'};
+  // No supported browser locale: use English instead of blocking setup.
+  return candidate ? {language:candidate,needsChoice:false,source:'region'} : {language:'en',needsChoice:false,source:'fallback'};
 }
 export function modelRoute(language){return language==='ja'?'japanese':'multilingual';}
 export function speechLanguage(language){return language==='en'?null:language;}
