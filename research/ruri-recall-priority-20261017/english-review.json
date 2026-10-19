@@ -1,0 +1,2176 @@
+{
+  "status": "ALL_FROZEN_FIRST_OUTPUTS_CODEX_REVIEWED_NOT_HUMAN_APPROVAL",
+  "criteria": "Recall-priority conversational suitability, NOT literal translation. On-topic short invitation or reassurance may respond to observation or a negative question. Mild missing tense/intent is minor; explicit reversed facts or refusal constraints are contradictions. Unmentioned event asserted is unsupported; wrong concrete subject is off_topic. All provisional: alternative costs and case-level sensitivity are reported.",
+  "rows": [
+    {
+      "id": "natural001",
+      "text": "ぐっすりねんねしてるね",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural002",
+      "text": "すやすや眠っているね",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural003",
+      "text": "気持ちよさそうに寝てるね",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural004",
+      "text": "おめめがとろんとしてきたね",
+      "stratum": "ordinary",
+      "english": "Baby, look here! It's me again. Hello there!",
+      "verdict": "generic_miss",
+      "note": "眠気を示す観察に対応した返答がなく中立文のみ。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural005",
+      "text": "うとうとしているね",
+      "stratum": "ordinary",
+      "english": "Hi, little one! Peekaboo! Hello again!",
+      "verdict": "generic_miss",
+      "note": "うとうとの話題を拾わず中立文になる。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural005",
+      "text": "うとうとしているね",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural006",
+      "text": "お昼寝しようか",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural007",
+      "text": "そろそろお布団に入ろうね",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural008",
+      "text": "ねむくなってきたかな",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural009",
+      "text": "たくさんお昼寝できたね",
+      "stratum": "ordinary",
+      "english": "You look sleepy. Let's rest now. I'll stay close.",
+      "verdict": "minor_mismatch",
+      "note": "眠れた過去の観察を再度眠そうという返答へ。明示的矛盾とはしない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural010",
+      "text": "おやすみ、ゆっくり寝てね",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural011",
+      "text": "お布団でころんとしてねんねしようね",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural012",
+      "text": "寝息が聞こえてくるね",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural013",
+      "text": "おいしそうにミルク飲んでるね",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural013",
+      "text": "おいしそうにミルク飲んでるね",
+      "stratum": "ordinary",
+      "english": "Milk time, sweetheart! You're so lovely. I love you.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural014",
+      "text": "ミルクをごくごく上手に飲めてるね",
+      "stratum": "ordinary",
+      "english": "Those little sips! Look at you! Good job, baby!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural015",
+      "text": "おっぱいをたくさん飲めたね",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "minor_mismatch",
+      "note": "飲めたことへの賞賛を新しい一口の誘いにする。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural016",
+      "text": "ミルクの時間にしようか",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural016",
+      "text": "ミルクの時間にしようか",
+      "stratum": "ordinary",
+      "english": "Milk time, baby! Sip, sip, sip! I'm right here!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural017",
+      "text": "おっぱいにしようか",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural017",
+      "text": "おっぱいにしようか",
+      "stratum": "ordinary",
+      "english": "Milk time, baby! Sip, sip, sip! I'm right here!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural018",
+      "text": "ミルクを飲み終わったね",
+      "stratum": "ordinary",
+      "english": "Milk is all done! You're finished now. Let's rest together.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural019",
+      "text": "もうミルクはおしまいかな",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "minor_mismatch",
+      "note": "完了確認の質問を取りこぼすが、追加の一口の問いは矛盾ではない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural019",
+      "text": "もうミルクはおしまいかな",
+      "stratum": "ordinary",
+      "english": "Milk all done? One more sip? Let's have a look!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural020",
+      "text": "もうちょっとミルク飲む？",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural021",
+      "text": "おなかすいたね、ミルク飲もうか",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural022",
+      "text": "哺乳びんを持ってきたよ",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural023",
+      "text": "ミルクをゆっくり飲んでるね",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural024",
+      "text": "口をぱくぱくしてるね、おっぱいかな",
+      "stratum": "ordinary",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural025",
+      "text": "おむつぱんぱんだね",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural026",
+      "text": "おしっこいっぱい出たね",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural027",
+      "text": "うんち出たね、きれいにしようね",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural028",
+      "text": "新しいおむつにしようか",
+      "stratum": "ordinary",
+      "english": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural029",
+      "text": "おしりをきれいに拭こうね",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural030",
+      "text": "おむつ替えできたよ",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "minor_mismatch",
+      "note": "おむつ替え完了に再度交換の誘い。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural031",
+      "text": "すっきりしたね、おむつ替えたよ",
+      "stratum": "ordinary",
+      "english": "All done changing! Nice and fresh. Here we are.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural032",
+      "text": "おむつ濡れちゃったかな",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural033",
+      "text": "さらさらのおむつになったね",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "minor_mismatch",
+      "note": "さらさらになった観察を再交換の誘いにする。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural034",
+      "text": "きれいなおむつを持ってきたよ",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural035",
+      "text": "おむつ替えるよ、ころんしてね",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural036",
+      "text": "おしりを拭いているよ",
+      "stratum": "ordinary",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural037",
+      "text": "おふろ、あったかいね",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural038",
+      "text": "お風呂のお湯が気持ちいいね",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural039",
+      "text": "ぱちゃぱちゃお風呂で遊んでるね",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural040",
+      "text": "からだをきれいに洗おうね",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural041",
+      "text": "そろそろおふろの時間だよ",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural042",
+      "text": "お風呂に入ってさっぱりしようね",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural043",
+      "text": "お風呂あがったね",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "minor_mismatch",
+      "note": "入浴終了を入浴開始の呼びかけにする時点のずれ。入浴中の明示断定ではない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural044",
+      "text": "おふろ、もうあがろうか",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "minor_mismatch",
+      "note": "お風呂から上がる意向を入浴開始に寄せる。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural045",
+      "text": "お湯はちょうどいいかな",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural046",
+      "text": "お風呂であんよを洗ってるよ",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural047",
+      "text": "お風呂をちゃぷちゃぷしてるね",
+      "stratum": "ordinary",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural048",
+      "text": "泡でやさしく体を洗っているよ",
+      "stratum": "ordinary",
+      "english": "Here's the warm water. I'll wash your toes. Splish, splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural049",
+      "text": "お着替えしよっか",
+      "stratum": "ordinary",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural050",
+      "text": "こっちの服に着替えようね",
+      "stratum": "ordinary",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural051",
+      "text": "お洋服のお袖におててを通そうね",
+      "stratum": "ordinary",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural052",
+      "text": "シャツが着られたね",
+      "stratum": "ordinary",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "minor_mismatch",
+      "note": "シャツを着られたことへ新たな着衣の誘い。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural053",
+      "text": "ズボンもはけたね",
+      "stratum": "ordinary",
+      "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+      "verdict": "generic_miss",
+      "note": "ズボン着用の話題を取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural054",
+      "text": "お着替え全部できたよ",
+      "stratum": "ordinary",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "minor_mismatch",
+      "note": "全部着替えた完了を着衣の誘いにする。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural055",
+      "text": "かわいいお洋服だね",
+      "stratum": "ordinary",
+      "english": "Cozy little clothes! Soft, soft, soft! I love you!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural056",
+      "text": "肌着を着てあったかくしようね",
+      "stratum": "ordinary",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural057",
+      "text": "パジャマを着ようか",
+      "stratum": "ordinary",
+      "english": "Here comes your shirt! One arm first! In you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural058",
+      "text": "お着替えおしまいかな",
+      "stratum": "ordinary",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "minor_mismatch",
+      "note": "着替え完了確認への返答を着衣の誘いにする。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural059",
+      "text": "この服はふわふわだね",
+      "stratum": "ordinary",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural060",
+      "text": "お洋服を着ているところだね",
+      "stratum": "ordinary",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural061",
+      "text": "おもちゃ楽しいね",
+      "stratum": "ordinary",
+      "english": "Let's play together! What should we try? Peekaboo!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural062",
+      "text": "ボールをころころして遊んでるね",
+      "stratum": "ordinary",
+      "english": "Let's play together! What should we try? Peekaboo!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural063",
+      "text": "積み木をつかめたね",
+      "stratum": "ordinary",
+      "english": "Got the toy! You did it! Yay, yay!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural064",
+      "text": "いっしょにがらがらで遊ぼうね",
+      "stratum": "ordinary",
+      "english": "Playtime, little one! Pick a toy! Let's have fun!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural065",
+      "text": "おもちゃに手を伸ばしているね",
+      "stratum": "ordinary",
+      "english": "Let's play together! What should we try? Peekaboo!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural066",
+      "text": "ぬいぐるみと遊んでるね",
+      "stratum": "ordinary",
+      "english": "Let's play together! What should we try? Peekaboo!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural067",
+      "text": "もう一回このおもちゃで遊ぼうか",
+      "stratum": "ordinary",
+      "english": "Let's play again! One more turn? Here comes your toy!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural068",
+      "text": "遊ぶの上手だね",
+      "stratum": "ordinary",
+      "english": "Yay, you did it! Clap, clap, clap! Big cheers, baby!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural068",
+      "text": "遊ぶの上手だね",
+      "stratum": "ordinary",
+      "english": "Look at you playing! You're doing great. Well done, sweetheart.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural069",
+      "text": "がらがらを鳴らしてみようか",
+      "stratum": "ordinary",
+      "english": "Look at my hands! Let's wave hello. Hi, hi!",
+      "verdict": "generic_miss",
+      "note": "がらがら遊びへの誘いを拾わず手を振る呼びかけ。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural070",
+      "text": "おもちゃに夢中だね",
+      "stratum": "ordinary",
+      "english": "Playtime, baby! Look, look, look! I love you!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural071",
+      "text": "おもちゃを振るのがんばってるね",
+      "stratum": "ordinary",
+      "english": "Let's play together! What should we try? Peekaboo!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural072",
+      "text": "おもちゃで遊び始めようね",
+      "stratum": "ordinary",
+      "english": "Let's play together! What should we try? Peekaboo!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural073",
+      "text": "えんえん泣いちゃったね",
+      "stratum": "ordinary",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural074",
+      "text": "大きな声で泣いてるね",
+      "stratum": "ordinary",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural075",
+      "text": "涙がぽろぽろ出てるね",
+      "stratum": "ordinary",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural076",
+      "text": "泣いちゃったね、ママがいるよ",
+      "stratum": "ordinary",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural077",
+      "text": "泣いてるね、どうしたのかな",
+      "stratum": "ordinary",
+      "english": "I hear you crying. What's the matter? I'm listening, sweetheart.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural078",
+      "text": "泣いてもいいよ、そばにいるからね",
+      "stratum": "ordinary",
+      "english": "I hear you crying. I'm right here. Come for a cuddle.",
+      "verdict": "minor_mismatch",
+      "note": "泣いてもよいという許可から現在泣いていると推測。文脈次第なので明示反転とはしない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural079",
+      "text": "にっこりしてるね",
+      "stratum": "ordinary",
+      "english": "What a smile! I love seeing it. You're so sweet!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural080",
+      "text": "にこにこ笑っているね",
+      "stratum": "ordinary",
+      "english": "What a smile! I love seeing it. You're so sweet!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural080",
+      "text": "にこにこ笑っているね",
+      "stratum": "ordinary",
+      "english": "What a lovely smile! You're so sweet. I love you.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural081",
+      "text": "笑顔を見せてくれたね",
+      "stratum": "ordinary",
+      "english": "What a smile! I love seeing it. You're so sweet!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural082",
+      "text": "えへへって笑ったね",
+      "stratum": "ordinary",
+      "english": "What a smile! I love seeing it. You're so sweet!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural083",
+      "text": "うれしそうなお顔だね",
+      "stratum": "ordinary",
+      "english": "What a lovely smile! You're so sweet. I love you.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural084",
+      "text": "その笑顔、かわいいね",
+      "stratum": "ordinary",
+      "english": "What a lovely smile! You're so sweet. I love you.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural085",
+      "text": "お水を一口飲んでみようね",
+      "stratum": "ordinary",
+      "english": "Would you like some? Here's a little sip. There you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural086",
+      "text": "お茶をちびちび飲んでるね",
+      "stratum": "ordinary",
+      "english": "Would you like some? Here's a little sip. There you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural087",
+      "text": "お水飲めたね",
+      "stratum": "ordinary",
+      "english": "Would you like some? Here's a little sip. There you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural088",
+      "text": "コップでお水を飲んでるね",
+      "stratum": "ordinary",
+      "english": "Would you like some? Here's a little sip. There you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural089",
+      "text": "お昼寝から起きたね",
+      "stratum": "ordinary",
+      "english": "You're awake! Hello, little one. It's nice seeing you!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural090",
+      "text": "おめめがぱっちり開いたね",
+      "stratum": "ordinary",
+      "english": "You're awake! Hello, little one. It's nice seeing you!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural091",
+      "text": "起きたんだね、おはよう",
+      "stratum": "ordinary",
+      "english": "You're awake! Hello, little one. It's nice seeing you!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural092",
+      "text": "お目覚めだね",
+      "stratum": "ordinary",
+      "english": "You're awake! Hello, little one. It's nice seeing you!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural093",
+      "text": "だっこしてぎゅーしようね",
+      "stratum": "ordinary",
+      "english": "Come here, baby. Let's have a cuddle. Big hugs!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural094",
+      "text": "ママのだっこだよ",
+      "stratum": "ordinary",
+      "english": "Come here, baby. Let's have a cuddle. Big hugs!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural095",
+      "text": "ぎゅっと抱っこしているよ",
+      "stratum": "ordinary",
+      "english": "Come here, baby. Let's have a cuddle. Big hugs!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural096",
+      "text": "だっこでゆらゆらしようね",
+      "stratum": "ordinary",
+      "english": "Come here, baby. Let's have a cuddle. Big hugs!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural097",
+      "text": "おててをにぎにぎしてるね",
+      "stratum": "ordinary",
+      "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural098",
+      "text": "ちっちゃいおててだね",
+      "stratum": "ordinary",
+      "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural099",
+      "text": "指をぎゅっと握ったね",
+      "stratum": "ordinary",
+      "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural099",
+      "text": "指をぎゅっと握ったね",
+      "stratum": "ordinary",
+      "english": "Your fingers found it! Hooray, little one! You did that.",
+      "verdict": "minor_mismatch",
+      "note": "指を握った事実から対象を見つけたという余分な内容が加わる。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural100",
+      "text": "おててをぱあにしてみようね",
+      "stratum": "ordinary",
+      "english": "Baby, hello again! I'm happy you're here. Big hugs!",
+      "verdict": "generic_miss",
+      "note": "手を開く誘いを取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural100",
+      "text": "おててをぱあにしてみようね",
+      "stratum": "ordinary",
+      "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural101",
+      "text": "あんよがぴょこぴょこしてるね",
+      "stratum": "ordinary",
+      "english": "Look at you! What a sweet face. I'm glad you're here!",
+      "verdict": "generic_miss",
+      "note": "足を動かす観察を取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural102",
+      "text": "ちいさい足の指だね",
+      "stratum": "ordinary",
+      "english": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!",
+      "verdict": "off_topic",
+      "note": "足の指という発話へhands/fingersで手の話を返す。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural103",
+      "text": "あんよでキックしたね",
+      "stratum": "ordinary",
+      "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural104",
+      "text": "足をのびのびしてみようね",
+      "stratum": "ordinary",
+      "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural105",
+      "text": "あーあーって声が出てるね",
+      "stratum": "ordinary",
+      "english": "I hear your voice! Tell me more. I'm listening!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural106",
+      "text": "おしゃべりしてくれてるね",
+      "stratum": "ordinary",
+      "english": "I hear your voice! Tell me more. I'm listening!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural107",
+      "text": "かわいい声が聞こえるよ",
+      "stratum": "ordinary",
+      "english": "I hear your voice! Tell me more. I'm listening!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural108",
+      "text": "お声を聞かせてくれたね",
+      "stratum": "ordinary",
+      "english": "I hear your voice! Tell me more. I'm listening!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural109",
+      "text": "げっぷが出たんだね",
+      "stratum": "ordinary",
+      "english": "How's your tummy? Do you feel full? I'm here!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural110",
+      "text": "おなかがすいてきたね",
+      "stratum": "ordinary",
+      "english": "Time for a bite! Here's your spoon. Open wide!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural111",
+      "text": "お腹がぽこぽこ鳴ってるね",
+      "stratum": "ordinary",
+      "english": "How's your tummy? Do you feel full? I'm here!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural112",
+      "text": "おなかをさすっているよ",
+      "stratum": "ordinary",
+      "english": "Baby, hello again! I'm happy you're here. Big hugs!",
+      "verdict": "generic_miss",
+      "note": "おなかをさする話題を取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural112",
+      "text": "おなかをさすっているよ",
+      "stratum": "ordinary",
+      "english": "How's your tummy? Do you feel full? I'm here!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural113",
+      "text": "お外の空気が気持ちいいね",
+      "stratum": "ordinary",
+      "english": "Let's make a sound! Ba, ba, ba! Your turn!",
+      "verdict": "generic_miss",
+      "note": "外の空気という話題を取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural114",
+      "text": "お散歩に出かけようか",
+      "stratum": "ordinary",
+      "english": "Outside, outside! Look at the trees! See the sky?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural115",
+      "text": "ベビーカーで外に出たね",
+      "stratum": "ordinary",
+      "english": "Let's go outside! Look at the sky. What do you see?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural116",
+      "text": "公園をお散歩してるね",
+      "stratum": "ordinary",
+      "english": "Let's go outside! Look at the sky. What do you see?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural117",
+      "text": "お外に雨が降ってるね",
+      "stratum": "ordinary",
+      "english": "Rain is falling! Can you hear it? Pitter-patter!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural118",
+      "text": "ぽつぽつ雨が降り始めたね",
+      "stratum": "ordinary",
+      "english": "Rain is falling! Can you hear it? Pitter-patter!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural119",
+      "text": "雨が窓についてるね",
+      "stratum": "ordinary",
+      "english": "Rain is falling! Can you hear it? Pitter-patter!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural120",
+      "text": "雨の音を聞いてみようね",
+      "stratum": "ordinary",
+      "english": "Rain is falling! Can you hear it? Pitter-patter!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural121",
+      "text": "お日さまがぴかぴかだね",
+      "stratum": "ordinary",
+      "english": "The sun is shining! What a bright day. Hello, sunshine!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural122",
+      "text": "おひさまが顔を出したね",
+      "stratum": "ordinary",
+      "english": "The sun is shining! What a bright day. Hello, sunshine!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural123",
+      "text": "窓からお日さまの光が入るね",
+      "stratum": "ordinary",
+      "english": "The sun is shining! What a bright day. Hello, sunshine!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural124",
+      "text": "明るいお日さまを見ようね",
+      "stratum": "ordinary",
+      "english": "The sun is shining! What a bright day. Hello, sunshine!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural125",
+      "text": "おかゆをぱくぱく食べてるね",
+      "stratum": "ordinary",
+      "english": "Time for a bite! Here's your spoon. Open wide!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural126",
+      "text": "離乳食を食べようか",
+      "stratum": "ordinary",
+      "english": "Ready for food? One little bite! Look at your spoon!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural127",
+      "text": "ごはんを上手に食べられたね",
+      "stratum": "ordinary",
+      "english": "You took a bite! Good job, little one. That was lovely.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural128",
+      "text": "スプーンでごはんを食べてるね",
+      "stratum": "ordinary",
+      "english": "Time for a bite! Here's your spoon. Open wide!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural129",
+      "text": "絵本をいっしょに見ようね",
+      "stratum": "ordinary",
+      "english": "Let's read a book! Look at the pictures. What's that?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural130",
+      "text": "この本の絵を見ているね",
+      "stratum": "ordinary",
+      "english": "Let's read a book! Look at the pictures. What's that?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural131",
+      "text": "絵本のページがめくれたね",
+      "stratum": "ordinary",
+      "english": "Let's read a book! Look at the pictures. What's that?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural132",
+      "text": "本をもう一度読もうね",
+      "stratum": "ordinary",
+      "english": "One more page? Let's read again. Turn the page.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural133",
+      "text": "お歌が聞こえるね",
+      "stratum": "ordinary",
+      "english": "I hear your voice! Tell me more. I'm listening!",
+      "verdict": "minor_mismatch",
+      "note": "歌を聞く観察に赤ちゃんへもっと話すよう誘う。声が聞こえること自体の反転ではない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural134",
+      "text": "いっしょにお歌を歌ってみようね",
+      "stratum": "ordinary",
+      "english": "Let's sing together! La, la, la! Your turn!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural134",
+      "text": "いっしょにお歌を歌ってみようね",
+      "stratum": "ordinary",
+      "english": "Sing with me! La, la, la! Your turn, baby!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural135",
+      "text": "音楽に合わせて動いてるね",
+      "stratum": "ordinary",
+      "english": "Let's sing together! La, la, la! Your turn!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural136",
+      "text": "もう一回お歌を聞こうか",
+      "stratum": "ordinary",
+      "english": "One more song? Let's sing again. La, la, la!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural137",
+      "text": "今日もかわいいね",
+      "stratum": "ordinary",
+      "english": "You're so cute! What a sweetheart! I love you.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural138",
+      "text": "大好きだよ、ママの宝物だよ",
+      "stratum": "ordinary",
+      "english": "You're so cute! What a sweetheart! I love you.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural138",
+      "text": "大好きだよ、ママの宝物だよ",
+      "stratum": "ordinary",
+      "english": "I love this cuddle. You're my treasure. Stay close, little one.",
+      "verdict": "unsupported_claim",
+      "note": "抱っこが語られていない入力にI love this cuddleと現在の抱っこを加える。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural139",
+      "text": "上手にできてえらいね",
+      "stratum": "ordinary",
+      "english": "Yay, you did it! Clap, clap, clap! Big cheers, baby!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural140",
+      "text": "わあ、じょうずだったね",
+      "stratum": "ordinary",
+      "english": "Yay, you did it! Clap, clap, clap! Big cheers, baby!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural141",
+      "text": "やったね、できるようになったね",
+      "stratum": "ordinary",
+      "english": "You did it! Look what happened! Hooray for you!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural142",
+      "text": "自分でできたんだね",
+      "stratum": "ordinary",
+      "english": "You did it! Look what happened! Hooray for you!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural143",
+      "text": "いっしょうけんめいやってるね",
+      "stratum": "ordinary",
+      "english": "You're trying again! Look at you go! I'm here!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural144",
+      "text": "何回もやってがんばってるね",
+      "stratum": "ordinary",
+      "english": "You're trying again! Look at you go! I'm here!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural145",
+      "text": "あと少し、やってみてね",
+      "stratum": "ordinary",
+      "english": "You can try. I'm beside you. Go when you're ready.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural146",
+      "text": "ゆっくりでいいよ、がんばってね",
+      "stratum": "ordinary",
+      "english": "You can try. I'm beside you. Go when you're ready.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural147",
+      "text": "ママとやってみようか",
+      "stratum": "ordinary",
+      "english": "Ready, baby? Here we go! You and me!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural148",
+      "text": "一緒に遊んでみない？",
+      "stratum": "ordinary",
+      "english": "Playtime, little one! Pick a toy! Let's have fun!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural149",
+      "text": "さあ始めるよ、準備いいかな",
+      "stratum": "ordinary",
+      "english": "Here we go! We're beginning now. Ready, little one?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural150",
+      "text": "これから始めるからね",
+      "stratum": "ordinary",
+      "english": "Here we go! We're beginning now. Ready, little one?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural151",
+      "text": "ぜんぶ終わったよ",
+      "stratum": "ordinary",
+      "english": "It's all done! We finished. Well done, little one.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural152",
+      "text": "これでおしまいになったよ",
+      "stratum": "ordinary",
+      "english": "It's all done! We finished. Well done, little one.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural153",
+      "text": "もう終わりにできたかな",
+      "stratum": "ordinary",
+      "english": "All done? Is that everything? Let's have a look.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural154",
+      "text": "これでもうおしまいかな",
+      "stratum": "ordinary",
+      "english": "All done? Is that everything? Let's have a look.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural155",
+      "text": "たくさんがんばったね、おつかれさま",
+      "stratum": "ordinary",
+      "english": "You worked so hard. That's a lot. Rest if you like.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural156",
+      "text": "いっぱいやって疲れたね",
+      "stratum": "ordinary",
+      "english": "You worked so hard. That's a lot. Rest if you like.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural157",
+      "text": "どうしたの、何かあったかな",
+      "stratum": "ordinary",
+      "english": "What's the matter? I'm right here. Can you show me?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural158",
+      "text": "なにが気になったのかな",
+      "stratum": "ordinary",
+      "english": "What's the matter? I'm right here. Can you show me?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural159",
+      "text": "大丈夫だよ、ママここにいるよ",
+      "stratum": "ordinary",
+      "english": "I'm here with you. You're not alone. I'm staying close.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural160",
+      "text": "こわくないよ、そばにいるね",
+      "stratum": "ordinary",
+      "english": "I'm here with you. You're not alone. I'm staying close.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural161",
+      "text": "同じのをもう一回しようか",
+      "stratum": "ordinary",
+      "english": "One more time? Let's try again. Ready to go?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural162",
+      "text": "もう一度やってみようね",
+      "stratum": "ordinary",
+      "english": "One more time? Let's try again. Ready to go?",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural163",
+      "text": "ちょっと待っててね",
+      "stratum": "ordinary",
+      "english": "Just a moment. I'll be right here. We can wait.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural164",
+      "text": "少しお休みにしようか",
+      "stratum": "ordinary",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "minor_mismatch",
+      "note": "休憩の誘いが睡眠の誘いに狭まる。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural165",
+      "text": "赤いのが見えるね",
+      "stratum": "ordinary",
+      "english": "Let's say hello! Hi, little one! Hello again!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural166",
+      "text": "これふわふわだね",
+      "stratum": "ordinary",
+      "english": "Baby, my little star! I love you. Hello, sweetheart!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural167",
+      "text": "そこにあったんだね",
+      "stratum": "ordinary",
+      "english": "You did it! Look what happened! Hooray for you!",
+      "verdict": "minor_mismatch",
+      "note": "物があったことへの観察を達成の賞賛にする。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural168",
+      "text": "いろんな色があるね",
+      "stratum": "ordinary",
+      "english": "Hello again, baby! Hello, hello! Wave, wave, wave!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural169",
+      "text": "まあるい形だね",
+      "stratum": "ordinary",
+      "english": "Let's chat, baby! Ooh, ahh, ooh! Your turn!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural170",
+      "text": "パパが来たよ",
+      "stratum": "ordinary",
+      "english": "Look at my hands! Let's wave hello. Hi, hi!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural171",
+      "text": "おっぱいのあとでねんねしようね",
+      "stratum": "routine_context",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "minor_mismatch",
+      "note": "授乳後の睡眠計画に授乳のみを返す。前段階への誘いであり即時睡眠の反転ではない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural172",
+      "text": "お着替えしたらミルクにしようね",
+      "stratum": "routine_context",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "minor_mismatch",
+      "note": "着替え後という条件を落としてミルクへ誘う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural173",
+      "text": "起きたらおむつを替えようね",
+      "stratum": "routine_context",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "minor_mismatch",
+      "note": "起きてからという条件を落として交換へ誘う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural174",
+      "text": "ミルクを飲んでからお風呂にしようね",
+      "stratum": "routine_context",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "minor_mismatch",
+      "note": "ミルク後という条件を落として入浴へ誘う。現在入浴中との直接断定ではない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural175",
+      "text": "お風呂から出たらパジャマに着替えようね",
+      "stratum": "routine_context",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "minor_mismatch",
+      "note": "入浴後という条件を落として着衣へ誘う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural176",
+      "text": "お昼寝が終わったらおもちゃで遊ぼうね",
+      "stratum": "routine_context",
+      "english": "Let's play together! What should we try? Peekaboo!",
+      "verdict": "minor_mismatch",
+      "note": "お昼寝後という条件を落として遊びへ誘う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural177",
+      "text": "お着替えができたらお散歩に行こうね",
+      "stratum": "routine_context",
+      "english": "Let's go outside! Look at the sky. What do you see?",
+      "verdict": "minor_mismatch",
+      "note": "着替え後という条件を落として外出へ誘う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural178",
+      "text": "ミルクのあとに絵本を見ようね",
+      "stratum": "routine_context",
+      "english": "Let's read a book! Look at the pictures. What's that?",
+      "verdict": "minor_mismatch",
+      "note": "授乳後という条件を落として読書へ誘う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural179",
+      "text": "起きてからごはんにしようね",
+      "stratum": "routine_context",
+      "english": "Time for a bite! Here's your spoon. Open wide!",
+      "verdict": "minor_mismatch",
+      "note": "起床後という条件を落として食事へ誘う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural180",
+      "text": "さっきミルクをたくさん飲んだね",
+      "stratum": "routine_context",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "minor_mismatch",
+      "note": "飲んだ過去を追加の一口の誘いにする。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural181",
+      "text": "よく眠れたみたいだね",
+      "stratum": "routine_context",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "minor_mismatch",
+      "note": "よく眠れた観察を睡眠へ誘う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural182",
+      "text": "さっきのお風呂、気持ちよかったね",
+      "stratum": "routine_context",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "minor_mismatch",
+      "note": "過去の入浴を現在の入浴の呼びかけにする。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural182",
+      "text": "さっきのお風呂、気持ちよかったね",
+      "stratum": "routine_context",
+      "english": "Splash, splash, splash! Look at you! Yay, baby!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural183",
+      "text": "まだ寝てないのかな",
+      "stratum": "plausible_absence",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural184",
+      "text": "まだ眠くないのかな",
+      "stratum": "plausible_absence",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "minor_mismatch",
+      "note": "眠くないかという問いに眠いかを尋ね直す。明示的な睡眠中の断定ではない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural185",
+      "text": "ねんねしたいけど眠れないのかな",
+      "stratum": "plausible_absence",
+      "english": "Are you sleepy? Let's get cozy. Night-night!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural186",
+      "text": "おめめがぱっちりで眠くなさそうだね",
+      "stratum": "plausible_absence",
+      "english": "Sweet little baby! Love, love, love! Big hugs!",
+      "verdict": "generic_miss",
+      "note": "目がぱっちりで眠くなさそうな観察を拾わない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural186",
+      "text": "おめめがぱっちりで眠くなさそうだね",
+      "stratum": "plausible_absence",
+      "english": "You're awake! Hello, little one. It's nice seeing you!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural187",
+      "text": "あまりミルク飲みたくないのかな",
+      "stratum": "plausible_absence",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "minor_mismatch",
+      "note": "飲みたくないかを尋ねるのに、飲む準備はよいかと促す。断定や強制ではない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural188",
+      "text": "もうおっぱいはいらないのかな",
+      "stratum": "plausible_absence",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "minor_mismatch",
+      "note": "もう要らないかの確認へ、さらに飲む誘い。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural189",
+      "text": "まだミルクを飲み足りないかな",
+      "stratum": "plausible_absence",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural190",
+      "text": "ミルクがなかなか飲めないね",
+      "stratum": "plausible_absence",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural191",
+      "text": "ごはんはもう食べたくないのかな",
+      "stratum": "plausible_absence",
+      "english": "Time for a bite! Here's your spoon. Open wide!",
+      "verdict": "minor_mismatch",
+      "note": "食べたくないかを尋ねるのにOpen wideと促す。事実の断定とは分ける。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural192",
+      "text": "まだおなかいっぱいじゃないのかな",
+      "stratum": "plausible_absence",
+      "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+      "verdict": "generic_miss",
+      "note": "満腹ではないかという問いに食事/空腹の話題が返らない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural192",
+      "text": "まだおなかいっぱいじゃないのかな",
+      "stratum": "plausible_absence",
+      "english": "Time for a bite! Here's your spoon. Open wide!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural193",
+      "text": "泣きやまないね、抱っこしようか",
+      "stratum": "plausible_absence",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural194",
+      "text": "もう泣いてないね、落ち着いたね",
+      "stratum": "plausible_absence",
+      "english": "I hear you crying. I'm right here. You're not alone.",
+      "verdict": "contradiction",
+      "note": "もう泣いていないという明示にI hear you cryingと反転。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural195",
+      "text": "まだおしっこ出てないね",
+      "stratum": "plausible_absence",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "minor_mismatch",
+      "note": "排尿していない観察に交換・乾燥の誘い。排尿したと直接断定はしていない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural196",
+      "text": "おむつはまだ濡れてないみたいだね",
+      "stratum": "plausible_absence",
+      "english": "Time for a change. Let's get you dry. All fresh!",
+      "verdict": "minor_mismatch",
+      "note": "濡れていない観察に乾かす誘い。濡れたと直接断定はしていない。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural197",
+      "text": "お風呂のお湯は熱くないかな",
+      "stratum": "plausible_absence",
+      "english": "Bath time is here! Is the water warm? Splash, splash!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural198",
+      "text": "このお洋服はきつくないかな",
+      "stratum": "plausible_absence",
+      "english": "Let's put clothes on. One arm first. Other arm next!",
+      "verdict": "minor_mismatch",
+      "note": "衣服がきつくないかという確認に着衣へ誘う。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural199",
+      "text": "おもちゃにまだ手が届かないね",
+      "stratum": "plausible_absence",
+      "english": "Let's play together! What should we try? Peekaboo!",
+      "verdict": "appropriate",
+      "note": "発話の話題・働きかけに沿った短い英語。観察への同じ話題の誘い、愛情表現の付加は許容。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural200",
+      "text": "雨でお散歩には行けないね",
+      "stratum": "plausible_absence",
+      "english": "Let's go outside! Look at the sky. What do you see?",
+      "verdict": "contradiction",
+      "note": "雨で外出できないという入力に外出へ誘い、意図を反転。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural201",
+      "text": "寝たと思ったけど、まだ起きてたね",
+      "stratum": "plausible_absence",
+      "english": "Baby, look here! It's me again. Hello there!",
+      "verdict": "generic_miss",
+      "note": "まだ起きていたという観察への話題を取りこぼす。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    },
+    {
+      "id": "natural202",
+      "text": "ミルクはまだできてないから待っててね",
+      "stratum": "plausible_absence",
+      "english": "Here's your milk! Ready for a sip? Here you go!",
+      "verdict": "contradiction",
+      "note": "ミルクは未準備という入力にHere is your milkと準備済みを示唆。",
+      "reviewer": "Codex provisional semantic reading",
+      "human_approved": false
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>みつことば｜Ruri意味判定レビュー</title>
+<style>
+:root{font:16px/1.55 system-ui,-apple-system,sans-serif;color:#162438;background:#f6f8fc}
+body{max-width:1020px;margin:0 auto;padding:16px}
+h1{font-size:1.55rem}h2{font-size:1.15rem}p{margin:8px 0}
+header,article,section{background:white;border:1px solid #d6dce5;border-radius:12px;padding:16px;margin:12px 0}
+label{display:block;margin:8px 0;font-weight:600}
+input[type=file]{max-width:100%}select,textarea,button{font:inherit;padding:8px;border-radius:8px;border:1px solid #b1bed0}
+textarea{display:block;width:100%;box-sizing:border-box;min-height:55px;margin-top:7px}
+button{cursor:pointer;background:#163d68;color:#fff}
+button:disabled{opacity:.4;cursor:not-allowed}
+details{margin:12px 0}summary{cursor:pointer;font-weight:650}
+.field{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.text{font-size:1.1rem;font-weight:650;white-space:pre-wrap}
+.note{color:#536377;font-size:.875rem}
+#summary{position:sticky;top:0;background:#ecf3ff;border-radius:10px;padding:10px;z-index:3}
+.faded{opacity:.5} .critical{border-left:5px solid #ad6a27}
+small{font-weight:400}.inline{display:inline-flex;gap:5px;align-items:center}
+</style></head><body><header>
+<h1>Ruri・日本語意味／英文返答 人手レビュー</h1>
+<p>Issue #101の人手評価用。**研究データであり、本番の採用判断ではありません。** 全150文の話題・Interactionと、研究で選ばれた51組の英文を独立に評価します。自動評価はしません。</p>
+<p class="note">ファイルはこのブラウザ内で読み込みます。入力内容はサーバーに送信せず、このページは自動保存もしません。途中で中断する場合は必ずJSONを書き出してください。保護者の私的録音や実名は読み込まないでください。</p>
+<div class="field">
+<label>PR #109 evaluation.json <input id="evaluation" type="file" accept=".json,application/json"></label>
+<label>PR #109 english-meaning-review.json <input id="english" type="file" accept=".json,application/json"></label>
+<label>前回の審査JSON（任意） <input id="previous" type="file" accept=".json,application/json"></label>
+</div>
+<button id="load">ファイルを読み込む</button>
+<p id="status" role="status" class="note">元データを選択してください。</p>
+</header>
+<section id="toolbar" hidden>
+<div id="summary"></div>
+<div class="field">
+<label>表示対象 <select id="group"><option value="critical">重点ケースを先に</option><option value="cases">日本語150文</option><option value="english">英文51組</option><option value="remaining">未評価のみ</option></select></label>
+<label>検索 <input id="search" type="search" placeholder="日本語・英文・ID"></label>
+</div>
+<p><button id="export">現在の審査をJSONで保存</button></p>
+<p class="note">各日本語文は実際の状態・時制・主語を踏まえて、人がラベルを決めてください。Topic名が関連していても英文が正確とは限りません。迷ったら「判定保留」にします。</p>
+</section>
+<main id="items"></main>
+<script type="module">
+const $=id=>document.getElementById(id);
+const topics=['generic','bath','milk','sleep','wake','diaper','clothes','hug','hands','feet','smile','cry','voice','tummy','play','outside','rain','sun','food','book','music','drink'];
+const interactions=['none','affection','praise','achievement','effort','encouragement','invitation','start','finish','finish_check','care','inquiry','reassurance','repeat','pause'];
+const focusIds=new Set(['new002','new011','new031','new038','new039','new073','new085','new094','new097','new125','new126','new128','new129','new136']);
+let cases=[],phrases=[],answers={cases:{},english:{}},source={};
+async function read(id,required=true){const f=$(id).files[0];if(!f){if(required)throw Error(id+'が未選択です');return null;}return JSON.parse(await f.text());}
+function key(row){return row.id+'\u0000'+row.english;}
+function select(values,current,callback){
+ const el=document.createElement('select');
+ for(const [value,label] of values){const opt=document.createElement('option');opt.value=value;opt.textContent=label;el.append(opt);}
+ el.value=current;el.addEventListener('change',()=>callback(el.value));return el;
+}
+function caption(text){const e=document.createElement('p');e.className='note';e.textContent=text;return e;}
+function paragraph(text,cls){const el=document.createElement('p');el.className=cls||'';el.textContent=text;return el;}
+function summary(){
+ const a=cases.filter(c=>answers.cases[c.id]?.topic&&answers.cases[c.id]?.interaction).length;
+ const b=phrases.filter(c=>['appropriate','minor_mismatch','contradiction','undecidable'].includes(answers.english[key(c)]?.verdict)).length;
+ const problems=phrases.filter(c=>answers.english[key(c)]?.verdict==='contradiction').length;
+ $('summary').textContent='日本語判定 '+a+'/'+cases.length+'、英文評価 '+b+'/'+phrases.length+'、意味反転の人手指摘 '+problems+'件（未判定は0件として数えません）';
+}
+function notes(row,holder,where,field){
+ const label=document.createElement('label');label.textContent='理由・文脈・気になる語（任意）';
+ const textarea=document.createElement('textarea');textarea.value=where[field]||'';
+ textarea.addEventListener('input',()=>{where[field]=textarea.value;});
+ label.append(textarea);holder.append(label);
+}
+function caseCard(row){
+ const article=document.createElement('article');if(focusIds.has(row.id))article.classList.add('critical');
+ article.append(paragraph(row.id+' — '+row.category+' / '+row.split,'note'),paragraph(row.text,'text'));
+ if(row.meaning_note)article.append(caption('研究側の意味上の注意（正解ラベルではありません）：'+row.meaning_note));
+ const answer=answers.cases[row.id]??={topic:'',interaction:'',note:''};
+ const fields=document.createElement('div');fields.className='field';
+ for(const [name,values,label] of [['topic',topics,'Topic（genericも明示）'],['interaction',interactions,'Interaction（noneも明示）']]){
+  const item=document.createElement('label');item.textContent=label;
+  item.append(select([['','判定保留'],...values.map(v=>[v,v])],answer[name],x=>{answer[name]=x;summary();}));
+  fields.append(item);
+ }
+ article.append(fields);
+ notes(row,article,answer,'note');
+ return article;
+}
+function englishCard(row){
+ const article=document.createElement('article');if(focusIds.has(row.id))article.classList.add('critical');
+ article.append(paragraph(row.id+' ｜ '+row.text,'note'),paragraph(row.english,'text'));
+ const answer=answers.english[key(row)]??={verdict:'',note:''};
+ const label=document.createElement('label');label.textContent='英語の意味が元の日本語に合っているか';
+ label.append(select([['','未判定'],['appropriate','自然・適切'],['minor_mismatch','不自然／内容不足（重大な事実反転なし）'],['contradiction','事実・主語・時点の反転'],['undecidable','文脈不足で判定不能']],answer.verdict,x=>{answer.verdict=x;summary();}));
+ article.append(label);
+ notes(row,article,answer,'note');
+ return article;
+}
+function render(){
+ const group=$('group').value,s=$('search').value.toLowerCase().trim();
+ const items=group==='english'?[...phrases.map(r=>({kind:'english',row:r}))]:
+ group==='cases'?[...cases.map(r=>({kind:'case',row:r}))]:
+ group==='remaining'?[...cases.filter(r=>!answers.cases[r.id]?.topic||!answers.cases[r.id]?.interaction).map(r=>({kind:'case',row:r})),...phrases.filter(r=>!answers.english[key(r)]?.verdict).map(r=>({kind:'english',row:r}))]:
+ [...cases.filter(r=>focusIds.has(r.id)).map(r=>({kind:'case',row:r})),...phrases.filter(r=>focusIds.has(r.id)).map(r=>({kind:'english',row:r}))];
+ const root=$('items');root.replaceChildren();
+ for(const item of items.filter(x=>[x.row.id,x.row.text,x.row.english||''].join(' ').toLowerCase().includes(s)))root.append(item.kind==='case'?caseCard(item.row):englishCard(item.row));
+ summary();
+}
+$('load').addEventListener('click',async()=>{
+ try {
+  const a=await read('evaluation'),b=await read('english'),previous=await read('previous',false);
+  if(!Array.isArray(a.cases)||!Array.isArray(b.rows))throw Error('研究用JSONの形式が違います');
+  if(new Set(a.cases.map(x=>x.id)).size!==a.cases.length)throw Error('日本語IDが重複しています');
+  if(new Set(b.rows.map(key)).size!==b.rows.length)throw Error('英文IDと英文の組が重複しています');
+  const texts=new Map(a.cases.map(r=>[r.id,r.text]));
+  if(b.rows.some(r=>texts.get(r.id)!==r.text))throw Error('英文評価の入力ID・日本語が一致しません');
+  cases=a.cases;phrases=b.rows;
+  source={case_count:cases.length,english_count:phrases.length};
+  answers={cases:{},english:{}};
+  if(previous){
+   if(previous.schemaVersion!==1||previous.source?.case_count!==cases.length||previous.source?.english_count!==phrases.length)throw Error('以前の審査JSONと対象件数が異なります');
+   for(const r of previous.cases||[])if(texts.get(r.id)===r.text)answers.cases[r.id]={topic:r.topic,interaction:r.interaction,note:r.note};
+   for(const r of previous.english||[])if(texts.get(r.id)===r.text&&b.rows.some(x=>key(x)===key(r)))answers.english[key(r)]={verdict:r.verdict,note:r.note};
+  }
+  $('toolbar').hidden=false;$('status').textContent='研究データを読み込みました。元のAI暫定ラベルは表示していません。';
+  render();
+ }catch(e){$('status').textContent='読み込み失敗: '+(e?.message||e);$('toolbar').hidden=true;}
+});
+$('group').addEventListener('change',render);$('search').addEventListener('input',render);
+$('export').addEventListener('click',()=>{
+ const json={schemaVersion:1,status:'HUMAN_REVIEW_SUBMISSION_REQUIRES_INDEPENDENT_VALIDATION',
+  exportedAt:new Date().toISOString(),source,
+  cases:cases.map(r=>({id:r.id,text:r.text,topic:answers.cases[r.id]?.topic||'',interaction:answers.cases[r.id]?.interaction||'',note:answers.cases[r.id]?.note||''})),
+  english:phrases.map(r=>({id:r.id,text:r.text,english:r.english,verdict:answers.english[key(r)]?.verdict||'',note:answers.english[key(r)]?.note||''}))};
+ const blob=new Blob([JSON.stringify(json,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob);
+ const link=document.createElement('a');link.href=url;link.download='mitsukotoba-ruri-human-review.json';link.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+</script></body></html>

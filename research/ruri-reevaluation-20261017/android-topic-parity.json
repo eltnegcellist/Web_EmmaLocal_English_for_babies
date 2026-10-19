@@ -1,0 +1,1391 @@
+{
+  "androidRuntime": "onnxruntime-java-1.23.2",
+  "cases": [
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 4.756148808127136E-9,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new001",
+      "probabilityDrift": 2.1978557196433712E-8,
+      "embeddingCosine": 0.9999999999999867
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 3.008236937329656E-8,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new002",
+      "probabilityDrift": 1.7775719729495876E-8,
+      "embeddingCosine": 0.9999999999999939
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.51499056633142E-8,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new003",
+      "probabilityDrift": 2.2532190668833607E-8,
+      "embeddingCosine": 0.9999999999999684
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 1.1437269631375813E-7,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new004",
+      "probabilityDrift": 9.576764536944893E-8,
+      "embeddingCosine": 0.999999999999988
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 5.064112829078482E-8,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new005",
+      "probabilityDrift": 3.751890609304809E-8,
+      "embeddingCosine": 0.9999999999999831
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 7.826072678795981E-9,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new006",
+      "probabilityDrift": 1.97311955663082E-9,
+      "embeddingCosine": 0.9999999999999836
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 3.11218534276847E-8,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new007",
+      "probabilityDrift": 2.499198076266751E-8,
+      "embeddingCosine": 0.9999999999999944
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 2.463317794187958E-8,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new008",
+      "probabilityDrift": 1.8732646989150226E-8,
+      "embeddingCosine": 0.9999999999999873
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.3837369561287005E-7,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new009",
+      "probabilityDrift": 1.1435025248918151E-7,
+      "embeddingCosine": 0.9999999999999805
+    },
+    {
+      "embeddingMaxAbsDrift": 1.7881393432617188E-7,
+      "marginDrift": 5.605119071661058E-8,
+      "rawId": "cry",
+      "topic": "generic",
+      "id": "new010",
+      "probabilityDrift": 1.5013091797522193E-8,
+      "embeddingCosine": 0.9999999999999671
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.9119495009434218E-7,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new011",
+      "probabilityDrift": 1.4492872180138505E-7,
+      "embeddingCosine": 0.999999999999978
+    },
+    {
+      "embeddingMaxAbsDrift": 0.014033155515789986,
+      "marginDrift": 0.06735785647168696,
+      "rawId": "wake",
+      "topic": "wake",
+      "id": "new012",
+      "probabilityDrift": 0.04174280613983539,
+      "embeddingCosine": 0.9961088504525056
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 2.068540283506337E-9,
+      "rawId": "wake",
+      "topic": "wake",
+      "id": "new013",
+      "probabilityDrift": 2.3799007264901917E-8,
+      "embeddingCosine": 0.9999999999999793
+    },
+    {
+      "embeddingMaxAbsDrift": 8.940696716308594E-8,
+      "marginDrift": 8.530380279925254E-8,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new014",
+      "probabilityDrift": 9.759616514948277E-8,
+      "embeddingCosine": 0.9999999999999747
+    },
+    {
+      "embeddingMaxAbsDrift": 0.012529800646007061,
+      "marginDrift": 0.004525598982005441,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new015",
+      "probabilityDrift": 0.006638240815199203,
+      "embeddingCosine": 0.9980923898532972
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 8.367817161403224E-8,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new016",
+      "probabilityDrift": 7.546706060068686E-8,
+      "embeddingCosine": 0.9999999999999922
+    },
+    {
+      "embeddingMaxAbsDrift": 0.014755978947505355,
+      "marginDrift": 0.020959940619240836,
+      "rawId": "wake",
+      "topic": "wake",
+      "id": "new017",
+      "probabilityDrift": 0.008053188402276756,
+      "embeddingCosine": 0.9956596787731811
+    },
+    {
+      "embeddingMaxAbsDrift": 0.012246694415807724,
+      "marginDrift": 0.0710724283528194,
+      "rawId": "wake",
+      "topic": "wake",
+      "id": "new018",
+      "probabilityDrift": 0.036106645014661876,
+      "embeddingCosine": 0.9974496061858235
+    },
+    {
+      "embeddingMaxAbsDrift": 0.0056552886962890625,
+      "marginDrift": 6.966722489029076E-4,
+      "rawId": "milk",
+      "topic": "milk",
+      "id": "new019",
+      "probabilityDrift": 8.809824730415805E-5,
+      "embeddingCosine": 0.9996892040871427
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 3.365458445259151E-8,
+      "rawId": "milk",
+      "topic": "milk",
+      "id": "new020",
+      "probabilityDrift": 2.972376356158435E-8,
+      "embeddingCosine": 0.9999999999999896
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 3.0397682260208114E-8,
+      "rawId": "milk",
+      "topic": "milk",
+      "id": "new021",
+      "probabilityDrift": 2.7158671755955766E-8,
+      "embeddingCosine": 0.9999999999999878
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 7.022489678654154E-8,
+      "rawId": "milk",
+      "topic": "milk",
+      "id": "new022",
+      "probabilityDrift": 5.075033338020063E-8,
+      "embeddingCosine": 0.9999999999999872
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 2.55585398956093E-8,
+      "rawId": "milk",
+      "topic": "milk",
+      "id": "new023",
+      "probabilityDrift": 2.757894534965999E-8,
+      "embeddingCosine": 0.9999999999999795
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.045896702578375E-11,
+      "rawId": "milk",
+      "topic": "milk",
+      "id": "new024",
+      "probabilityDrift": 1.4510224133346128E-9,
+      "embeddingCosine": 0.9999999999999721
+    },
+    {
+      "embeddingMaxAbsDrift": 2.086162567138672E-7,
+      "marginDrift": 2.1483842482794557E-7,
+      "rawId": "milk",
+      "topic": "milk",
+      "id": "new025",
+      "probabilityDrift": 1.8030396342627597E-7,
+      "embeddingCosine": 0.999999999999934
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 7.970244464416965E-10,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new026",
+      "probabilityDrift": 2.4736668269298434E-10,
+      "embeddingCosine": 0.9999999999999947
+    },
+    {
+      "embeddingMaxAbsDrift": 0.012882099952548742,
+      "marginDrift": 0.0065063651427574865,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new027",
+      "probabilityDrift": 0.003187387131270425,
+      "embeddingCosine": 0.996073645186028
+    },
+    {
+      "embeddingMaxAbsDrift": 8.940696716308594E-8,
+      "marginDrift": 8.659963079971078E-9,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new028",
+      "probabilityDrift": 8.616124147486914E-9,
+      "embeddingCosine": 0.9999999999999931
+    },
+    {
+      "embeddingMaxAbsDrift": 0.01653254101984203,
+      "marginDrift": 0.09869065476321515,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new029",
+      "probabilityDrift": 0.07146202991080064,
+      "embeddingCosine": 0.9956809205496083
+    },
+    {
+      "embeddingMaxAbsDrift": 0.014396424405276775,
+      "marginDrift": 0.006170366816974582,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new030",
+      "probabilityDrift": 0.008815857927622961,
+      "embeddingCosine": 0.9950388727961477
+    },
+    {
+      "embeddingMaxAbsDrift": 1.862645149230957E-7,
+      "marginDrift": 3.629418541262197E-7,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new031",
+      "probabilityDrift": 2.1801418681466345E-7,
+      "embeddingCosine": 0.9999999999999193
+    },
+    {
+      "embeddingMaxAbsDrift": 0.016107458155602217,
+      "marginDrift": 0.006255855938033517,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new032",
+      "probabilityDrift": 0.007812606509998932,
+      "embeddingCosine": 0.9965954707639
+    },
+    {
+      "embeddingMaxAbsDrift": 0.0018639862537384033,
+      "marginDrift": 4.736599237087358E-4,
+      "rawId": "smile",
+      "topic": "smile",
+      "id": "new033",
+      "probabilityDrift": 4.514466720298982E-4,
+      "embeddingCosine": 0.9999734943205363
+    },
+    {
+      "embeddingMaxAbsDrift": 0.013183401199057698,
+      "marginDrift": 0.02491665865757378,
+      "rawId": "smile",
+      "topic": "smile",
+      "id": "new034",
+      "probabilityDrift": 0.04672820193414429,
+      "embeddingCosine": 0.9959147022601659
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 2.955066191745459E-9,
+      "rawId": "smile",
+      "topic": "smile",
+      "id": "new035",
+      "probabilityDrift": 2.565712753366256E-9,
+      "embeddingCosine": 0.9999999999999829
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 2.5820994342673487E-8,
+      "rawId": "smile",
+      "topic": "smile",
+      "id": "new036",
+      "probabilityDrift": 2.554977496238564E-8,
+      "embeddingCosine": 0.9999999999999858
+    },
+    {
+      "embeddingMaxAbsDrift": 0.007816046476364136,
+      "marginDrift": 0.0011885510372885433,
+      "rawId": "smile",
+      "topic": "smile",
+      "id": "new037",
+      "probabilityDrift": 1.7931296850504097E-4,
+      "embeddingCosine": 0.9996729043938024
+    },
+    {
+      "embeddingMaxAbsDrift": 3.5762786865234375E-7,
+      "marginDrift": 2.3341766441919987E-7,
+      "rawId": "smile",
+      "topic": "smile",
+      "id": "new038",
+      "probabilityDrift": 2.966177994334629E-7,
+      "embeddingCosine": 0.9999999999998594
+    },
+    {
+      "embeddingMaxAbsDrift": 8.940696716308594E-8,
+      "marginDrift": 2.308587569443965E-7,
+      "rawId": "smile",
+      "topic": "smile",
+      "id": "new039",
+      "probabilityDrift": 2.1018579754450428E-7,
+      "embeddingCosine": 0.9999999999999705
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 7.943046997915815E-8,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new040",
+      "probabilityDrift": 7.680055502667926E-8,
+      "embeddingCosine": 0.999999999999991
+    },
+    {
+      "embeddingMaxAbsDrift": 0.007037248462438583,
+      "marginDrift": 0.0032981157162204067,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new041",
+      "probabilityDrift": 0.003531952050787379,
+      "embeddingCosine": 0.998998322997112
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 2.6486507209710908E-8,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new042",
+      "probabilityDrift": 2.2769292673530117E-8,
+      "embeddingCosine": 0.9999999999999931
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 7.480193675579727E-8,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new043",
+      "probabilityDrift": 6.133330088253786E-8,
+      "embeddingCosine": 0.9999999999999882
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 5.4006564886854846E-8,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new044",
+      "probabilityDrift": 5.939749414540785E-8,
+      "embeddingCosine": 0.9999999999999898
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 2.3620964628712215E-8,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new045",
+      "probabilityDrift": 1.3155600164793668E-8,
+      "embeddingCosine": 0.9999999999999851
+    },
+    {
+      "embeddingMaxAbsDrift": 6.332993507385254E-8,
+      "marginDrift": 1.2710432373275182E-8,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new046",
+      "probabilityDrift": 1.1149534073773282E-8,
+      "embeddingCosine": 0.9999999999999845
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 1.788587722373336E-8,
+      "rawId": "clothes",
+      "topic": "clothes",
+      "id": "new047",
+      "probabilityDrift": 1.6297848404178694E-8,
+      "embeddingCosine": 0.9999999999999918
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 3.136012804993982E-8,
+      "rawId": "clothes",
+      "topic": "clothes",
+      "id": "new048",
+      "probabilityDrift": 2.7338454278158508E-8,
+      "embeddingCosine": 0.9999999999999828
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 3.939963910681854E-8,
+      "rawId": "clothes",
+      "topic": "clothes",
+      "id": "new049",
+      "probabilityDrift": 3.172385287797397E-8,
+      "embeddingCosine": 0.9999999999999761
+    },
+    {
+      "embeddingMaxAbsDrift": 0.010856764391064644,
+      "marginDrift": 0.0017401097245728359,
+      "rawId": "clothes",
+      "topic": "clothes",
+      "id": "new050",
+      "probabilityDrift": 0.0015098129842674446,
+      "embeddingCosine": 0.9978244541620351
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 7.724404560427445E-9,
+      "rawId": "clothes",
+      "topic": "clothes",
+      "id": "new051",
+      "probabilityDrift": 8.06361644123399E-11,
+      "embeddingCosine": 0.9999999999999862
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 2.7973848459872386E-8,
+      "rawId": "clothes",
+      "topic": "clothes",
+      "id": "new052",
+      "probabilityDrift": 1.1992630333246268E-8,
+      "embeddingCosine": 0.9999999999999853
+    },
+    {
+      "embeddingMaxAbsDrift": 2.384185791015625E-7,
+      "marginDrift": 4.039591423588007E-7,
+      "rawId": "clothes",
+      "topic": "clothes",
+      "id": "new053",
+      "probabilityDrift": 3.905814743854208E-7,
+      "embeddingCosine": 0.9999999999999274
+    },
+    {
+      "embeddingMaxAbsDrift": 0.00749812601134181,
+      "marginDrift": 0.004535999816806191,
+      "rawId": "diaper",
+      "topic": "diaper",
+      "id": "new054",
+      "probabilityDrift": 0.0060711049303323605,
+      "embeddingCosine": 0.9989969088932631
+    },
+    {
+      "embeddingMaxAbsDrift": 0.012304164469242096,
+      "marginDrift": 0.001337000227577878,
+      "rawId": "diaper",
+      "topic": "diaper",
+      "id": "new055",
+      "probabilityDrift": 0.0014374714282401335,
+      "embeddingCosine": 0.9969810077503779
+    },
+    {
+      "embeddingMaxAbsDrift": 0.0031435518758371472,
+      "marginDrift": 0.0031794563592081326,
+      "rawId": "diaper",
+      "topic": "diaper",
+      "id": "new056",
+      "probabilityDrift": 0.0028385733134396185,
+      "embeddingCosine": 0.9998143411827759
+    },
+    {
+      "embeddingMaxAbsDrift": 0.009426645934581757,
+      "marginDrift": 0.0034615964995989845,
+      "rawId": "diaper",
+      "topic": "diaper",
+      "id": "new057",
+      "probabilityDrift": 0.0028678734755894775,
+      "embeddingCosine": 0.9983641317614274
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 5.74858419755131E-8,
+      "rawId": "diaper",
+      "topic": "diaper",
+      "id": "new058",
+      "probabilityDrift": 5.2859550514483544E-8,
+      "embeddingCosine": 0.9999999999999768
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 5.524264956591196E-8,
+      "rawId": "diaper",
+      "topic": "diaper",
+      "id": "new059",
+      "probabilityDrift": 4.5378236834814345E-8,
+      "embeddingCosine": 0.9999999999999887
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 7.675063529166692E-8,
+      "rawId": "diaper",
+      "topic": "diaper",
+      "id": "new060",
+      "probabilityDrift": 6.917855177590582E-8,
+      "embeddingCosine": 0.9999999999999885
+    },
+    {
+      "embeddingMaxAbsDrift": 4.470348358154297E-8,
+      "marginDrift": 9.730220185133476E-9,
+      "rawId": "play",
+      "topic": "play",
+      "id": "new061",
+      "probabilityDrift": 7.586846373364153E-9,
+      "embeddingCosine": 0.9999999999999811
+    },
+    {
+      "embeddingMaxAbsDrift": 0.010934442281723022,
+      "marginDrift": 0.002861498466602108,
+      "rawId": "play",
+      "topic": "play",
+      "id": "new062",
+      "probabilityDrift": 0.0018296786094729178,
+      "embeddingCosine": 0.9979909473400005
+    },
+    {
+      "embeddingMaxAbsDrift": 7.608234882354736E-4,
+      "marginDrift": 1.6163909497468598E-4,
+      "rawId": "play",
+      "topic": "play",
+      "id": "new063",
+      "probabilityDrift": 1.3488140481643374E-4,
+      "embeddingCosine": 0.9999948166147818
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 9.167058379055959E-8,
+      "rawId": "play",
+      "topic": "play",
+      "id": "new064",
+      "probabilityDrift": 8.257100958530827E-8,
+      "embeddingCosine": 0.9999999999999845
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.9160167652465532E-7,
+      "rawId": "play",
+      "topic": "play",
+      "id": "new065",
+      "probabilityDrift": 1.654940536832683E-7,
+      "embeddingCosine": 0.999999999999972
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 3.655513869382787E-8,
+      "rawId": "wake",
+      "topic": "generic",
+      "id": "new066",
+      "probabilityDrift": 1.1821820239399372E-7,
+      "embeddingCosine": 0.9999999999999698
+    },
+    {
+      "embeddingMaxAbsDrift": 0.009579965844750404,
+      "marginDrift": 0.08182569614085672,
+      "rawId": "play",
+      "topic": "play",
+      "id": "new067",
+      "probabilityDrift": 0.039920888692553835,
+      "embeddingCosine": 0.9977967349197658
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 6.828314302875782E-8,
+      "rawId": "drink",
+      "topic": "drink",
+      "id": "new068",
+      "probabilityDrift": 4.669155462266872E-8,
+      "embeddingCosine": 0.9999999999999768
+    },
+    {
+      "embeddingMaxAbsDrift": 0.008838334819301963,
+      "marginDrift": 0.002266716539945368,
+      "rawId": "drink",
+      "topic": "drink",
+      "id": "new069",
+      "probabilityDrift": 0.0025180283470545017,
+      "embeddingCosine": 0.9983688358411968
+    },
+    {
+      "embeddingMaxAbsDrift": 2.384185791015625E-7,
+      "marginDrift": 6.83226275555171E-8,
+      "rawId": "drink",
+      "topic": "drink",
+      "id": "new070",
+      "probabilityDrift": 6.833459809119091E-8,
+      "embeddingCosine": 0.9999999999999508
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 9.67344360169875E-9,
+      "rawId": "wake",
+      "topic": "wake",
+      "id": "new071",
+      "probabilityDrift": 8.10806344286874E-9,
+      "embeddingCosine": 0.9999999999999861
+    },
+    {
+      "embeddingMaxAbsDrift": 0.01425948552787304,
+      "marginDrift": 0.06808355198244403,
+      "rawId": "wake",
+      "topic": "wake",
+      "id": "new072",
+      "probabilityDrift": 0.05428412311055025,
+      "embeddingCosine": 0.9954233151977445
+    },
+    {
+      "embeddingMaxAbsDrift": 8.940696716308594E-8,
+      "marginDrift": 3.021359890609254E-7,
+      "rawId": "wake",
+      "topic": "wake",
+      "id": "new073",
+      "probabilityDrift": 3.3565784879341365E-7,
+      "embeddingCosine": 0.9999999999999694
+    },
+    {
+      "embeddingMaxAbsDrift": 0.009126944234594703,
+      "marginDrift": 0.0026768637017940966,
+      "rawId": "hug",
+      "topic": "hug",
+      "id": "new074",
+      "probabilityDrift": 0.0014541132021438363,
+      "embeddingCosine": 0.9981499419940095
+    },
+    {
+      "embeddingMaxAbsDrift": 2.384185791015625E-7,
+      "marginDrift": 4.414971172539417E-7,
+      "rawId": "hug",
+      "topic": "hug",
+      "id": "new075",
+      "probabilityDrift": 3.574613492984824E-7,
+      "embeddingCosine": 0.9999999999999412
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 2.1488266055413874E-8,
+      "rawId": "hug",
+      "topic": "hug",
+      "id": "new076",
+      "probabilityDrift": 2.0533163502811647E-8,
+      "embeddingCosine": 0.9999999999999889
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 1.859729464870341E-7,
+      "rawId": "hands",
+      "topic": "hands",
+      "id": "new077",
+      "probabilityDrift": 1.4451654206659725E-7,
+      "embeddingCosine": 0.9999999999999888
+    },
+    {
+      "embeddingMaxAbsDrift": 1.7881393432617188E-7,
+      "marginDrift": 1.7307690614032367E-8,
+      "rawId": "hands",
+      "topic": "hands",
+      "id": "new078",
+      "probabilityDrift": 1.6670889002590172E-8,
+      "embeddingCosine": 0.9999999999999536
+    },
+    {
+      "embeddingMaxAbsDrift": 0.013499791617505252,
+      "marginDrift": 0.030388697122670894,
+      "rawId": "hands",
+      "topic": "hands",
+      "id": "new079",
+      "probabilityDrift": 0.007378594325808674,
+      "embeddingCosine": 0.9961844968698903
+    },
+    {
+      "embeddingMaxAbsDrift": 0.024414852261543274,
+      "marginDrift": 0.056519123637042035,
+      "rawId": "feet",
+      "topic": "generic",
+      "id": "new080",
+      "probabilityDrift": 0.05085253820238933,
+      "embeddingCosine": 0.9912976583904244
+    },
+    {
+      "embeddingMaxAbsDrift": 0.004420559853315353,
+      "marginDrift": 0.007801935388448422,
+      "rawId": "feet",
+      "topic": "feet",
+      "id": "new081",
+      "probabilityDrift": 0.006503621550162375,
+      "embeddingCosine": 0.9996193260592646
+    },
+    {
+      "embeddingMaxAbsDrift": 0.006124268285930157,
+      "marginDrift": 0.004181942395496074,
+      "rawId": "feet",
+      "topic": "feet",
+      "id": "new082",
+      "probabilityDrift": 0.0038709932931112467,
+      "embeddingCosine": 0.9989061683292431
+    },
+    {
+      "embeddingMaxAbsDrift": 0.01232989877462387,
+      "marginDrift": 0.02456570296830085,
+      "rawId": "voice",
+      "topic": "voice",
+      "id": "new083",
+      "probabilityDrift": 0.02154639941858072,
+      "embeddingCosine": 0.9971340844903648
+    },
+    {
+      "embeddingMaxAbsDrift": 0.0012401044368743896,
+      "marginDrift": 0.0015499412993471573,
+      "rawId": "voice",
+      "topic": "voice",
+      "id": "new084",
+      "probabilityDrift": 0.0014665364189913044,
+      "embeddingCosine": 0.999977905548046
+    },
+    {
+      "embeddingMaxAbsDrift": 0.0056783175095915794,
+      "marginDrift": 0.03215553416967265,
+      "rawId": "voice",
+      "topic": "voice",
+      "id": "new085",
+      "probabilityDrift": 0.01659184020258142,
+      "embeddingCosine": 0.9992198432145184
+    },
+    {
+      "embeddingMaxAbsDrift": 8.940696716308594E-8,
+      "marginDrift": 2.227991676706509E-7,
+      "rawId": "tummy",
+      "topic": "tummy",
+      "id": "new086",
+      "probabilityDrift": 1.6876545677613208E-7,
+      "embeddingCosine": 0.9999999999999842
+    },
+    {
+      "embeddingMaxAbsDrift": 0.008726431056857109,
+      "marginDrift": 0.0052279643582296975,
+      "rawId": "tummy",
+      "topic": "tummy",
+      "id": "new087",
+      "probabilityDrift": 0.005604666297773564,
+      "embeddingCosine": 0.9990271489393511
+    },
+    {
+      "embeddingMaxAbsDrift": 1.7881393432617188E-7,
+      "marginDrift": 2.1473107569836003E-8,
+      "rawId": "food",
+      "topic": "food",
+      "id": "new088",
+      "probabilityDrift": 6.176072486763218E-8,
+      "embeddingCosine": 0.9999999999999679
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 5.152626514348668E-8,
+      "rawId": "outside",
+      "topic": "outside",
+      "id": "new089",
+      "probabilityDrift": 4.497167438444194E-8,
+      "embeddingCosine": 0.9999999999999848
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 7.561842929604268E-9,
+      "rawId": "outside",
+      "topic": "outside",
+      "id": "new090",
+      "probabilityDrift": 6.413390152282261E-9,
+      "embeddingCosine": 0.9999999999999905
+    },
+    {
+      "embeddingMaxAbsDrift": 1.4901161193847656E-7,
+      "marginDrift": 1.807661037522834E-8,
+      "rawId": "outside",
+      "topic": "outside",
+      "id": "new091",
+      "probabilityDrift": 2.6064907787670677E-8,
+      "embeddingCosine": 0.9999999999999758
+    },
+    {
+      "embeddingMaxAbsDrift": 2.384185791015625E-7,
+      "marginDrift": 2.5635675804380753E-9,
+      "rawId": "rain",
+      "topic": "rain",
+      "id": "new092",
+      "probabilityDrift": 1.4018114447011953E-9,
+      "embeddingCosine": 0.9999999999999161
+    },
+    {
+      "embeddingMaxAbsDrift": 1.4901161193847656E-7,
+      "marginDrift": 1.6017326132100607E-8,
+      "rawId": "rain",
+      "topic": "rain",
+      "id": "new093",
+      "probabilityDrift": 1.3793174047371792E-8,
+      "embeddingCosine": 0.9999999999999667
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 2.634118014821496E-7,
+      "rawId": "rain",
+      "topic": "rain",
+      "id": "new094",
+      "probabilityDrift": 2.1163981178684566E-7,
+      "embeddingCosine": 0.9999999999999791
+    },
+    {
+      "embeddingMaxAbsDrift": 0.008799195289611816,
+      "marginDrift": 9.570624600681032E-4,
+      "rawId": "sun",
+      "topic": "sun",
+      "id": "new095",
+      "probabilityDrift": 0.0011885389563813797,
+      "embeddingCosine": 0.9991128412845778
+    },
+    {
+      "embeddingMaxAbsDrift": 1.7881393432617188E-7,
+      "marginDrift": 5.361594435093764E-8,
+      "rawId": "sun",
+      "topic": "sun",
+      "id": "new096",
+      "probabilityDrift": 2.9823643554749424E-8,
+      "embeddingCosine": 0.9999999999999785
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 1.9992168387439335E-7,
+      "rawId": "sun",
+      "topic": "sun",
+      "id": "new097",
+      "probabilityDrift": 1.671972446048997E-7,
+      "embeddingCosine": 0.9999999999999827
+    },
+    {
+      "embeddingMaxAbsDrift": 0.01264522597193718,
+      "marginDrift": 0.0036245103745360385,
+      "rawId": "food",
+      "topic": "food",
+      "id": "new098",
+      "probabilityDrift": 0.0023929465119167936,
+      "embeddingCosine": 0.997412448466114
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 4.788288121559958E-8,
+      "rawId": "food",
+      "topic": "food",
+      "id": "new099",
+      "probabilityDrift": 3.994951169872252E-8,
+      "embeddingCosine": 0.999999999999986
+    },
+    {
+      "embeddingMaxAbsDrift": 1.4901161193847656E-7,
+      "marginDrift": 2.5228404476607125E-8,
+      "rawId": "food",
+      "topic": "food",
+      "id": "new100",
+      "probabilityDrift": 2.0422634583461274E-8,
+      "embeddingCosine": 0.9999999999999636
+    },
+    {
+      "embeddingMaxAbsDrift": 0.005832776427268982,
+      "marginDrift": 0.002559995933190451,
+      "rawId": "book",
+      "topic": "book",
+      "id": "new101",
+      "probabilityDrift": 0.0018614530541106733,
+      "embeddingCosine": 0.9992170563554945
+    },
+    {
+      "embeddingMaxAbsDrift": 5.21540641784668E-8,
+      "marginDrift": 1.618177536411025E-8,
+      "rawId": "book",
+      "topic": "book",
+      "id": "new102",
+      "probabilityDrift": 1.4635564538068024E-8,
+      "embeddingCosine": 0.9999999999999896
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 4.968584210729432E-8,
+      "rawId": "book",
+      "topic": "book",
+      "id": "new103",
+      "probabilityDrift": 7.024663184473923E-9,
+      "embeddingCosine": 0.9999999999999849
+    },
+    {
+      "embeddingMaxAbsDrift": 8.940696716308594E-8,
+      "marginDrift": 1.3803980003501692E-7,
+      "rawId": "music",
+      "topic": "music",
+      "id": "new104",
+      "probabilityDrift": 1.082652674178064E-7,
+      "embeddingCosine": 0.9999999999999905
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 5.1843234261106375E-8,
+      "rawId": "music",
+      "topic": "music",
+      "id": "new105",
+      "probabilityDrift": 5.1118098531865996E-8,
+      "embeddingCosine": 0.999999999999974
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.3330495174379564E-7,
+      "rawId": "music",
+      "topic": "music",
+      "id": "new106",
+      "probabilityDrift": 1.2979706709437266E-7,
+      "embeddingCosine": 0.9999999999999707
+    },
+    {
+      "embeddingMaxAbsDrift": 0.007954847067594528,
+      "marginDrift": 0.011590335237678578,
+      "rawId": "rain",
+      "topic": "rain",
+      "id": "new107",
+      "probabilityDrift": 0.003996602727349474,
+      "embeddingCosine": 0.9987527220028997
+    },
+    {
+      "embeddingMaxAbsDrift": 2.384185791015625E-7,
+      "marginDrift": 5.5843989210657696E-8,
+      "rawId": "play",
+      "topic": "play",
+      "id": "new108",
+      "probabilityDrift": 3.254495165028182E-8,
+      "embeddingCosine": 0.9999999999999423
+    },
+    {
+      "embeddingMaxAbsDrift": 0.00922510027885437,
+      "marginDrift": 0.028749974361919284,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new109",
+      "probabilityDrift": 0.01959008053810024,
+      "embeddingCosine": 0.9992352755274156
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 2.064297555115502E-8,
+      "rawId": "hug",
+      "topic": "hug",
+      "id": "new110",
+      "probabilityDrift": 2.625869555128446E-8,
+      "embeddingCosine": 0.9999999999999831
+    },
+    {
+      "embeddingMaxAbsDrift": 0.013406045734882355,
+      "marginDrift": 0.0185303470876884,
+      "rawId": "smile",
+      "topic": "generic",
+      "id": "new111",
+      "probabilityDrift": 0.01756184360748647,
+      "embeddingCosine": 0.9968368057544795
+    },
+    {
+      "embeddingMaxAbsDrift": 0.003968477249145508,
+      "marginDrift": 0.007593211201296232,
+      "rawId": "hug",
+      "topic": "generic",
+      "id": "new112",
+      "probabilityDrift": 0.0036142911553573576,
+      "embeddingCosine": 0.9998206986723622
+    },
+    {
+      "embeddingMaxAbsDrift": 0.015544123947620392,
+      "marginDrift": 0.11647766506973592,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new113",
+      "probabilityDrift": 0.08506853699001576,
+      "embeddingCosine": 0.9949050572656347
+    },
+    {
+      "embeddingMaxAbsDrift": 2.682209014892578E-7,
+      "marginDrift": 1.222227337671633E-7,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new114",
+      "probabilityDrift": 2.5716620305482607E-8,
+      "embeddingCosine": 0.9999999999999085
+    },
+    {
+      "embeddingMaxAbsDrift": 7.430911064147949E-4,
+      "marginDrift": 0.002590772109885009,
+      "rawId": "hug",
+      "topic": "hug",
+      "id": "new115",
+      "probabilityDrift": 0.002257774094312298,
+      "embeddingCosine": 0.9999921190389465
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 1.5340474696090567E-8,
+      "rawId": "feet",
+      "topic": "generic",
+      "id": "new116",
+      "probabilityDrift": 1.5628102978393343E-9,
+      "embeddingCosine": 0.9999999999999893
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.2005073896093066E-7,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new117",
+      "probabilityDrift": 8.921595123778658E-8,
+      "embeddingCosine": 0.9999999999999818
+    },
+    {
+      "embeddingMaxAbsDrift": 0.01888231746852398,
+      "marginDrift": 0.001473623602221752,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new118",
+      "probabilityDrift": 0.0032931164967033855,
+      "embeddingCosine": 0.9959415749829502
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 2.19107540028185E-7,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new119",
+      "probabilityDrift": 8.170256915462915E-8,
+      "embeddingCosine": 0.999999999999985
+    },
+    {
+      "embeddingMaxAbsDrift": 0.011762917041778564,
+      "marginDrift": 0.014739870194392754,
+      "rawId": "feet",
+      "topic": "generic",
+      "id": "new120",
+      "probabilityDrift": 0.012291549815439895,
+      "embeddingCosine": 0.9971833930362503
+    },
+    {
+      "embeddingMaxAbsDrift": 3.129243850708008E-7,
+      "marginDrift": 6.667700863660642E-8,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new121",
+      "probabilityDrift": 9.120983118782178E-8,
+      "embeddingCosine": 0.9999999999992624
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.7816765007783175E-8,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new122",
+      "probabilityDrift": 3.302884971079223E-8,
+      "embeddingCosine": 0.9999999999999721
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 8.005754226214634E-8,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new123",
+      "probabilityDrift": 2.1027295404874025E-8,
+      "embeddingCosine": 0.9999999999999583
+    },
+    {
+      "embeddingMaxAbsDrift": 0.009247241541743279,
+      "marginDrift": 0.011871725647944142,
+      "rawId": "play",
+      "topic": "play",
+      "id": "new124",
+      "probabilityDrift": 0.015211171572092896,
+      "embeddingCosine": 0.9987820521461024
+    },
+    {
+      "embeddingMaxAbsDrift": 1.4901161193847656E-7,
+      "marginDrift": 8.508054749611915E-8,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new125",
+      "probabilityDrift": 3.987483276901571E-8,
+      "embeddingCosine": 0.9999999999999513
+    },
+    {
+      "embeddingMaxAbsDrift": 0.0014711841940879822,
+      "marginDrift": 1.0300434297985661E-4,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new126",
+      "probabilityDrift": 7.709585622561188E-4,
+      "embeddingCosine": 0.9999587610809314
+    },
+    {
+      "embeddingMaxAbsDrift": 0.006121670827269554,
+      "marginDrift": 0.012814000945246928,
+      "rawId": "book",
+      "topic": "book",
+      "id": "new127",
+      "probabilityDrift": 0.007362357442347922,
+      "embeddingCosine": 0.9992054374986715
+    },
+    {
+      "embeddingMaxAbsDrift": 8.940696716308594E-8,
+      "marginDrift": 5.730332092168666E-8,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new128",
+      "probabilityDrift": 5.7327449121125085E-8,
+      "embeddingCosine": 0.9999999999999831
+    },
+    {
+      "embeddingMaxAbsDrift": 2.384185791015625E-7,
+      "marginDrift": 1.4395662717436863E-7,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new129",
+      "probabilityDrift": 1.256532694560164E-7,
+      "embeddingCosine": 0.9999999999999414
+    },
+    {
+      "embeddingMaxAbsDrift": 0.006946690380573273,
+      "marginDrift": 0.006083757144176749,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new130",
+      "probabilityDrift": 0.005461793127167325,
+      "embeddingCosine": 0.9993635595196158
+    },
+    {
+      "embeddingMaxAbsDrift": 1.7881393432617188E-7,
+      "marginDrift": 9.908301368266592E-8,
+      "rawId": "clothes",
+      "topic": "clothes",
+      "id": "new131",
+      "probabilityDrift": 8.135405438203236E-8,
+      "embeddingCosine": 0.9999999999999589
+    },
+    {
+      "embeddingMaxAbsDrift": 0.0171244814991951,
+      "marginDrift": 0.015137524558639315,
+      "rawId": "milk",
+      "topic": "milk",
+      "id": "new132",
+      "probabilityDrift": 0.004742102453258568,
+      "embeddingCosine": 0.9953342079587006
+    },
+    {
+      "embeddingMaxAbsDrift": 0.011015504598617554,
+      "marginDrift": 0.022294466224653142,
+      "rawId": "bath",
+      "topic": "bath",
+      "id": "new133",
+      "probabilityDrift": 0.019354814471749582,
+      "embeddingCosine": 0.9984279855945687
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.4736034786855257E-7,
+      "rawId": "drink",
+      "topic": "drink",
+      "id": "new134",
+      "probabilityDrift": 5.838851419026625E-8,
+      "embeddingCosine": 0.9999999999999756
+    },
+    {
+      "embeddingMaxAbsDrift": 7.450580596923828E-8,
+      "marginDrift": 4.5977267437713465E-8,
+      "rawId": "sleep",
+      "topic": "sleep",
+      "id": "new135",
+      "probabilityDrift": 4.056467373114714E-8,
+      "embeddingCosine": 0.9999999999999833
+    },
+    {
+      "embeddingMaxAbsDrift": 1.4901161193847656E-7,
+      "marginDrift": 4.5932722181341035E-8,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new136",
+      "probabilityDrift": 3.140661086753482E-8,
+      "embeddingCosine": 0.9999999999999496
+    },
+    {
+      "embeddingMaxAbsDrift": 1.7881393432617188E-7,
+      "marginDrift": 2.2138888172706928E-7,
+      "rawId": "rain",
+      "topic": "rain",
+      "id": "new137",
+      "probabilityDrift": 1.5869515557209724E-7,
+      "embeddingCosine": 0.9999999999999587
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 3.7869788305222585E-8,
+      "rawId": "cry",
+      "topic": "cry",
+      "id": "new138",
+      "probabilityDrift": 5.203786845875413E-10,
+      "embeddingCosine": 0.9999999999999889
+    },
+    {
+      "embeddingMaxAbsDrift": 1.1920928955078125E-7,
+      "marginDrift": 1.1088128182290546E-7,
+      "rawId": "diaper",
+      "topic": "diaper",
+      "id": "new139",
+      "probabilityDrift": 9.100525866223563E-8,
+      "embeddingCosine": 0.9999999999999762
+    },
+    {
+      "embeddingMaxAbsDrift": 2.384185791015625E-7,
+      "marginDrift": 4.4786635333693425E-7,
+      "rawId": "clothes",
+      "topic": "clothes",
+      "id": "new140",
+      "probabilityDrift": 4.1447546583750494E-7,
+      "embeddingCosine": 0.9999999999999227
+    },
+    {
+      "embeddingMaxAbsDrift": 0.006953541189432144,
+      "marginDrift": 0.028393043658341388,
+      "rawId": "milk",
+      "topic": "milk",
+      "id": "new141",
+      "probabilityDrift": 0.021936603922002473,
+      "embeddingCosine": 0.9990721898760924
+    },
+    {
+      "embeddingMaxAbsDrift": 5.9604644775390625E-8,
+      "marginDrift": 9.637582487620477E-8,
+      "rawId": "outside",
+      "topic": "outside",
+      "id": "new142",
+      "probabilityDrift": 7.779611355118732E-8,
+      "embeddingCosine": 0.9999999999999899
+    },
+    {
+      "embeddingMaxAbsDrift": 0.009035858209244907,
+      "marginDrift": 0.01744888910386655,
+      "rawId": "book",
+      "topic": "book",
+      "id": "new143",
+      "probabilityDrift": 0.018670995310852367,
+      "embeddingCosine": 0.998693209141808
+    },
+    {
+      "embeddingMaxAbsDrift": 0.01374899037182331,
+      "marginDrift": 0.01313190862336,
+      "rawId": "food",
+      "topic": "food",
+      "id": "new144",
+      "probabilityDrift": 0.006542264837536171,
+      "embeddingCosine": 0.9965268565744491
+    },
+    {
+      "embeddingMaxAbsDrift": 0.008385978639125824,
+      "marginDrift": 0.014300504097135375,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new145",
+      "probabilityDrift": 0.02300745330283413,
+      "embeddingCosine": 0.9984796732512853
+    },
+    {
+      "embeddingMaxAbsDrift": 0.013531074859201908,
+      "marginDrift": 0.010425880485978312,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new146",
+      "probabilityDrift": 0.002020711208166326,
+      "embeddingCosine": 0.9983031927242342
+    },
+    {
+      "embeddingMaxAbsDrift": 2.384185791015625E-7,
+      "marginDrift": 4.885161960233031E-7,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new147",
+      "probabilityDrift": 4.118698335164872E-7,
+      "embeddingCosine": 0.9999999999999487
+    },
+    {
+      "embeddingMaxAbsDrift": 2.682209014892578E-7,
+      "marginDrift": 3.0207482765165494E-7,
+      "rawId": "cry",
+      "topic": "generic",
+      "id": "new148",
+      "probabilityDrift": 1.1398280358454471E-7,
+      "embeddingCosine": 0.9999999999999031
+    },
+    {
+      "embeddingMaxAbsDrift": 0.014063498834730126,
+      "marginDrift": 0.07560750393464347,
+      "rawId": "wake",
+      "topic": "wake",
+      "id": "new149",
+      "probabilityDrift": 0.04560481246362785,
+      "embeddingCosine": 0.9962402486325744
+    },
+    {
+      "embeddingMaxAbsDrift": 0.0058100465685129166,
+      "marginDrift": 0.023373655731452947,
+      "rawId": "generic",
+      "topic": "generic",
+      "id": "new150",
+      "probabilityDrift": 0.01942874489666127,
+      "embeddingCosine": 0.999551195729171
+    }
+  ],
+  "failures": [
+    "Raw topic mismatch for new012",
+    "Topic mismatch for new012",
+    "Probability drift for new012: 0.04174280613983539",
+    "Margin drift for new012: 0.06735785647168696",
+    "Topic mismatch for new018",
+    "Probability drift for new018: 0.036106645014661876",
+    "Margin drift for new018: 0.0710724283528194",
+    "Probability drift for new029: 0.07146202991080064",
+    "Margin drift for new029: 0.09869065476321515",
+    "Probability drift for new034: 0.04672820193414429",
+    "Probability drift for new067: 0.039920888692553835",
+    "Margin drift for new067: 0.08182569614085672",
+    "Raw topic mismatch for new072",
+    "Topic mismatch for new072",
+    "Probability drift for new072: 0.05428412311055025",
+    "Margin drift for new072: 0.06808355198244403",
+    "Embedding cosine for new080 is 0.9912976583904244",
+    "Topic mismatch for new080",
+    "Probability drift for new080: 0.05085253820238933",
+    "Margin drift for new080: 0.056519123637042035",
+    "Embedding cosine for new113 is 0.9949050572656347",
+    "Probability drift for new113: 0.08506853699001576",
+    "Margin drift for new113: 0.11647766506973592",
+    "Topic mismatch for new120",
+    "Probability drift for new149: 0.04560481246362785",
+    "Margin drift for new149: 0.07560750393464347"
+  ],
+  "webRuntime": "onnxruntime-web-1.30.0",
+  "minEmbeddingCosine": 0.9912976583904244,
+  "maxMarginDrift": 0.11647766506973592,
+  "modelSha": "bd500193003fdeaba8c5422a47b974b40b49a5e0c91285c76f6bd949d2205264",
+  "caseCount": 150,
+  "version": 1,
+  "maxEmbeddingAbsDrift": 0.024414852261543274,
+  "maxProbabilityDrift": 0.08506853699001576
+}

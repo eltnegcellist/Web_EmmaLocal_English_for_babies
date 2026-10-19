@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5本の音源・再聴レビュー</title>
+<style>
+body{font:16px/1.7 system-ui,sans-serif;background:#f4f6f8;color:#182c39;margin:0}main{max-width:880px;margin:auto;padding:28px 20px 70px}h1{font-size:clamp(24px,5vw,34px);margin:0 0 12px}h2{margin:0;font-size:21px}p{margin:10px 0}.notice{padding:16px 20px;background:#fff2ce;border-radius:12px}.card{background:white;border:1px solid #d9e2e7;border-radius:16px;padding:22px;margin:20px 0}.text{font-size:20px;font-weight:600}.players{display:grid;grid-template-columns:1fr 1fr;gap:20px}audio{display:block;width:100%;max-width:100%;margin:6px 0 14px}label{display:block}select,textarea,button{font:inherit;border:1px solid #8b9da8;border-radius:8px;padding:10px;box-sizing:border-box}select,textarea{width:100%;max-width:100%;background:white}textarea{min-height:76px;margin-top:12px}button{cursor:pointer;background:#146651;color:white;margin:10px 8px 0 0}button.secondary{background:white;color:#182c39}button:disabled{opacity:.5;cursor:wait}.status{font-size:14px;color:#526672}#summary{font-weight:600}@media(max-width:560px){.players{grid-template-columns:1fr;gap:0}.card{padding:16px}main{padding:20px 12px 50px}}
+</style>
+<main>
+<h1>5本の音源を、もう一度確認</h1>
+<p>No.9は改善した「クー」の音声です。No.11・14・16・17は元の自然な音声を保持し、表示英文を2回の反復に合わせました。</p>
+<p class="notice">単語音源を3回コピーした候補は不採用です。現在の4本は元の音声と同じです。表示英文と2回の発音が一致するか確認してください。</p>
+<button id="stop" class="secondary" type="button">すべて停止</button>
+<p id="status" role="status">音源を確認しています…</p>
+<div id="cards"></div>
+<p id="summary"></p><button id="export" type="button" disabled>再聴結果を書き出す</button>
+<p class="status">判定はこのブラウザ内に保存します。書き出したJSONには聴いた候補のハッシュを含めます。音源が変わると判定は引き継ぎません。</p>
+</main>
+<script type="module">
+const instructions={9:'改善した coo「クー」 /kuː/ の音声を維持しています。',11:'元の音声の「Sip」2回に表示を合わせています。',14:'元の音声の「Sip」2回に表示を合わせています。',16:'元の音声の「Cuddle」2回に表示を合わせています。',17:'元の音声の「Wipe」2回に表示を合わせています。'};
+const expectedNumbers=[9,11,14,16,17];
+const status=document.querySelector('#status'),cards=document.querySelector('#cards'),summary=document.querySelector('#summary');
+const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let candidates=[],results={},key='';
+document.querySelector('#stop').onclick=()=>document.querySelectorAll('audio').forEach(a=>a.pause());
+const hash=async bytes=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(b=>b.toString(16).padStart(2,'0')).join('');
+function update(){summary.textContent=`判定済み ${Object.values(results).filter(r=>r.decision!=='pending').length} / 5`;try{localStorage.setItem(key,JSON.stringify(results))}catch{status.textContent='この環境では判定を保存できません。最後に結果を書き出してください。'}}
+try{
+ const response=await fetch('./research/voice-five-candidates-20261018.json',{cache:'no-store'});
+ if(!response.ok)throw Error('候補一覧を取得できません。');
+ const report=await response.json();candidates=report.candidates;
+ if(JSON.stringify(candidates.map(r=>r.number))!==JSON.stringify(expectedNumbers))throw Error('候補の番号が一致しません。');
+ key='voice-five-review:'+candidates.map(r=>r.sha256).join(':');
+ let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch{}
+ // Verify both exact files before enabling any judgment or playback.
+ const clips=await Promise.all(candidates.map(async r=>{
+  const paths=[`./assets/voice-repair-review-20261018/original/${r.number}.m4a`,`./assets/voice-1202/${r.file}`];
+  const fingerprints=[r.previousSha256,r.sha256],urls=[];
+  for(let i=0;i<paths.length;i++){
+   const audio=await fetch(paths[i],{cache:'no-store'});if(!audio.ok)throw Error('音源を取得できません。');
+   const bytes=await audio.arrayBuffer();if(await hash(bytes)!==fingerprints[i])throw Error('音源が候補一覧と一致しません。再読み込みしてください。');
+   urls.push(URL.createObjectURL(new Blob([bytes],{type:'audio/mp4'})));
+  }
+  return {r,urls};
+ }));
+ for(const {r,urls} of clips){
+  results[r.number]={expected:r.canonicalText,sha256:r.sha256,previousSha256:r.previousSha256,decision:'pending',note:''};
+  if(saved[r.number]?.sha256===r.sha256&&['pending','match','misread','unclear'].includes(saved[r.number]?.decision))Object.assign(results[r.number],{decision:saved[r.number].decision,note:String(saved[r.number].note||'')});
+  const article=document.createElement('article');article.className='card';
+  article.innerHTML=`<h2>No.${r.number}</h2><p class="text">${escape(r.canonicalText)}</p><p>${escape(instructions[r.number])}</p>${r.previousCanonicalText?`<p class="status">旧表示：${escape(r.previousCanonicalText)}</p>`:""}<div class="players"><div><span>修正前</span><audio aria-label="No.${r.number} 修正前" controls preload="metadata" src="${urls[0]}"></audio></div><div><span>現在の候補</span><audio aria-label="No.${r.number} 現在の候補" controls preload="metadata" src="${urls[1]}"></audio></div></div><label>聴いた結果<select aria-label="No.${r.number} 判定"><option value="pending">未判定</option><option value="match">問題なし</option><option value="misread">修正が必要</option><option value="unclear">判断が難しい</option></select></label><label>気づいた点<textarea aria-label="No.${r.number} メモ" placeholder="任意で記入"></textarea></label>`;
+  cards.append(article);const select=article.querySelector('select'),note=article.querySelector('textarea');select.value=results[r.number].decision;note.value=results[r.number].note;
+  select.onchange=()=>{results[r.number].decision=select.value;update()};note.oninput=()=>{results[r.number].note=note.value;update()};
+ }
+ document.querySelectorAll('audio').forEach(a=>a.onplay=()=>document.querySelectorAll('audio').forEach(b=>{if(a!==b)b.pause()}));
+ status.textContent='5本の修正前・候補の音源を確認しました。再生して判定してください。';update();
+ document.querySelector('#export').disabled=false;
+ document.querySelector('#export').onclick=()=>{
+  const output={schemaVersion:1,reviewKind:'five-replacement-candidates',exportedAt:new Date().toISOString(),humanListeningComplete:Object.values(results).every(r=>r.decision!=='pending'),allFiveAccepted:Object.values(results).every(r=>r.decision==='match'),webAndroidAcceptanceComplete:false,audioIssuesResolved:false,results};
+  const url=URL.createObjectURL(new Blob([JSON.stringify(output,null,2)+'\n'],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='voice-five-human-relisten-20261018.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ };
+}catch(e){status.textContent=e.message;status.setAttribute('role','alert')}
+</script>
+</html>

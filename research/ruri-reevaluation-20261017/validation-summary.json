@@ -1,0 +1,72 @@
+{
+  "web_npm_test": "PASS",
+  "legacy67_real_onnx": "PASS_17_PROTECTED_ROUTES",
+  "legacy_rescue_reproduction": "PASS_NO_DIFFERENCES",
+  "research_regression_tests": {
+    "tests": 11,
+    "failures": 0
+  },
+  "android_jvm_suites": [
+    {
+      "name": "com.eltnegcellist.emma.ai.LiteWebTopicParityTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.LiteTopicGuideTest",
+      "tests": "1",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.BabySpeechStyleTest",
+      "tests": "1",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.InteractionReplyBankTest",
+      "tests": "10",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.LiteResponseEngineTest",
+      "tests": "27",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.eltnegcellist.emma.ai.MeaningfulJapaneseUtteranceTest",
+      "tests": "2",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0"
+    }
+  ],
+  "android_jvm_tests": 44,
+  "android_python_auditor_tests": 4,
+  "android_python_contract_tests": 3,
+  "android_public_copy_check": "PASS",
+  "android_native_topic_parity": "FAIL_RECORDED_NOT_WAIVED",
+  "unperformed": [
+    "Galaxy S25",
+    "caregiver audio",
+    "Moonshine ASR output robustness",
+    "human semantic approval",
+    "Android APK/Compose tests (SDK unavailable)",
+    "human listening to recorded audio"
+  ],
+  "initial_commit_web_ci": {
+    "commit": "446558e5f4be2df6354367211c2844bbf0a139a1",
+    "run": "38998596334",
+    "conclusion": "success",
+    "includes": "browser Silero, phoneme audit, voice bank integrity, existing Ruri ONNX regressions"
+  }
+}

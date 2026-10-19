@@ -1,4 +1,4 @@
-// Ruri-only decision policy. No Japanese keyword, rescue, negation, or regex
+// Ruri-only decision policy. No Japanese keyword, negation, or regex
 // classification is used in the Live Lite reply route.
 // The thresholds are independent per head and provisional, not calibrated on
 // real caregiver ASR. Fail closed on missing/low-confidence predictions.
@@ -9,6 +9,8 @@ import { FREQUENT_COMBINED_VARIANTS } from './frequent-replies.js';
 export const INTERACTION_ACCEPT_PROBABILITY = 0.50;
 export const TOPIC_ACCEPT_PROBABILITY = 0.50;
 export const TOPIC_ACCEPT_MARGIN = 0.05;
+export const TOPIC_RESCUE_PROBABILITY = 0.30;
+export const TOPIC_RESCUE_MARGIN = 0.10;
 
 const BASE_COMBINED_REPLIES = {
   "milk|invitation": [
@@ -397,7 +399,7 @@ const BASE_COMBINED_REPLIES = {
     "We're outside together. We have time. I'm here with you."
   ],
   "food|finish_check": [
-    "All done eating? Wipe, wipe, wipe? Let's have a look!",
+    "All done eating? Wipe, wipe? Let's have a look!",
     "Food all done? One last bite? All done, baby?",
     "All done eating? Last little bite? Let's have a look!"
   ],
@@ -433,7 +435,7 @@ const BASE_COMBINED_REPLIES = {
   ],
   "hug|affection": [
     "I love this cuddle. You're my treasure. Stay close, little one.",
-    "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+    "Cuddle, cuddle! My sweet baby! I love you!",
     "A cuddle with you! You're warm and cozy. I love you!"
   ],
   "hug|care": [
@@ -524,7 +526,7 @@ const BASE_COMBINED_REPLIES = {
   "milk|effort": [
     "Little sips, baby! Sip by sip! You're doing fine!",
     "One little sip! Then another? You can rest!",
-    "Sip, sip, sip! Nice little sips! No need to rush!"
+    "Sip, sip! Nice little sips! No need to rush!"
   ],
   "food|effort": [
     "One tiny bite! Taste, taste, taste! I'll stay close!",
@@ -576,7 +578,7 @@ export const COMBINED_REPLIES = Object.fromEntries(
 
 export function selectRuriAxes(topicPrediction, interactionPrediction, allowInteraction = true) {
   const topicId = topicPrediction?.id ?? topicPrediction?.topic ?? null;
-  const topic = topicId && topicId !== 'generic'
+  let topic = topicId && topicId !== 'generic'
     && (topicPrediction?.probability ?? 0) >= TOPIC_ACCEPT_PROBABILITY
     && (topicPrediction?.margin ?? 0) >= TOPIC_ACCEPT_MARGIN
     ? topicId : null;
@@ -585,6 +587,19 @@ export function selectRuriAxes(topicPrediction, interactionPrediction, allowInte
     && id && id !== 'none' && Object.hasOwn(INTERACTION_REPLIES,id)
     && (interactionPrediction?.probability ?? interactionPrediction?.interactionProbability ?? 0) >= INTERACTION_ACCEPT_PROBABILITY
     ? id : null;
+  // Only rescue after BOTH normal axes abstain. An accepted Interaction must
+  // never gain a speculative Topic. Missing/disabled heads do not qualify.
+  const rawTopic = topicPrediction?.rawId ?? topicId;
+  const interactionProbability = interactionPrediction?.probability ?? interactionPrediction?.interactionProbability;
+  if (!topic && !interaction && allowInteraction && id
+    && (id === 'none' || Object.hasOwn(INTERACTION_REPLIES,id))
+    && Number.isFinite(interactionProbability)
+    && rawTopic && rawTopic !== 'generic'
+    && Number.isFinite(topicPrediction?.probability) && Number.isFinite(topicPrediction?.margin)
+    && topicPrediction.probability >= TOPIC_RESCUE_PROBABILITY
+    && topicPrediction.margin >= TOPIC_RESCUE_MARGIN) {
+    topic = rawTopic;
+  }
   return {topic,interaction};
 }
 

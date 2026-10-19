@@ -8,7 +8,7 @@ import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createRuriTokenizer} from '../src/semantic/tokenize.js';
 import {classifyEmbedding,decodeHead} from '../src/semantic/core.js';
-import {selectRuriAxes} from '../src/interaction/ruri-routing.js';
+import {responseFor} from './ruri-reevaluation-lib.mjs';
 import {LiteResponseEngine} from '../src/lite-response-engine.js';
 import {Tokenizer,ort} from '../semantic-assets/runtime-ort1.30.0-tokenizers0.2.0/runtime.mjs';
 
@@ -117,10 +117,14 @@ try {
      interaction_top2:scores.interaction.candidates.map(x=>({id:x.id,p:+x.probability.toFixed(4)})),
      baseline:baseline(scores)};
    if(data.category==='content_risk'){
-     const outcome=new LiteResponseEngine().respondRuri(data.text,'',scores.topic,scores.interaction,true);
+     // Keep the historical baseline English paired with its historical axes.
+     const outcome=responseFor(baseline(scores),data.text);
+     const adopted=new LiteResponseEngine().respondRuri(data.text,'',scores.topic,scores.interaction,true);
      row.content_risk_note=data.note;
      row.baseline_selected_route=outcome.scene;
      row.baseline_selected_english=outcome.english;
+     row.adopted_selected_route=adopted.scene;
+     row.adopted_selected_english=adopted.english;
      row.requires_human_meaning_review=true;
    }
    for(const scenario of scenarios) {

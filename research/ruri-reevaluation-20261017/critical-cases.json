@@ -1,0 +1,2992 @@
+{
+  "status": "RESEARCH_ONLY_SYNTHETIC_PROVISIONAL_NOT_FIELD_ACCURACY",
+  "rows": [
+    {
+      "id": "qa061",
+      "category": "negative",
+      "text": "今は眠くないんだね",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "source": "legacy67",
+      "score_topic": true,
+      "score_interaction": true,
+      "scores": {
+        "topic": {
+          "id": "sleep",
+          "rawId": "sleep",
+          "probability": 0.6538889370163002,
+          "margin": 0.5544588473440685,
+          "candidates": [
+            {
+              "id": "sleep",
+              "probability": 0.6538889370163002
+            },
+            {
+              "id": "wake",
+              "probability": 0.0994300896722318
+            }
+          ],
+          "probabilities": [
+            0.00857925971463123,
+            0.020478015553273596,
+            0.012440276491781721,
+            0.6538889370163002,
+            0.0994300896722318,
+            0.005704763954184292,
+            0.0025256950198544593,
+            0.007546436361581943,
+            0.0018926632145655376,
+            0.018241173284349176,
+            0.011930454496115406,
+            0.04574858088706937,
+            0.004242269917323443,
+            0.023999606055243924,
+            0.004704025960357589,
+            0.004236381958144136,
+            0.00543821618680524,
+            0.029252039335545314,
+            0.02106427995041654,
+            0.004531437081253348,
+            0.006505899808280283,
+            0.0076194980806912616
+          ],
+          "rejected": false
+        },
+        "interaction": {
+          "id": "none",
+          "rawId": "none",
+          "probability": 0.39409535900584414,
+          "margin": 0.25074980394740887,
+          "candidates": [
+            {
+              "id": "none",
+              "probability": 0.39409535900584414
+            },
+            {
+              "id": "inquiry",
+              "probability": 0.14334555505843524
+            }
+          ],
+          "probabilities": [
+            0.03347062929321895,
+            0.008507474466295952,
+            0.01600014728734659,
+            0.05911336505717061,
+            0.007476782796506191,
+            0.013119396858976284,
+            0.007171738322737037,
+            0.008319804207585248,
+            0.0639433013050721,
+            0.055927071163927256,
+            0.14334555505843524,
+            0.06735760334388502,
+            0.013593979376270621,
+            0.10855779245672882,
+            0.39409535900584414
+          ],
+          "rejected": false
+        }
+      },
+      "outcomes": {
+        "A50_m05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "E_per_topic_m05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        }
+      }
+    },
+    {
+      "id": "qa062",
+      "category": "negative",
+      "text": "泣いてはいないんだよ",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "source": "legacy67",
+      "score_topic": true,
+      "score_interaction": true,
+      "scores": {
+        "topic": {
+          "id": "cry",
+          "rawId": "cry",
+          "probability": 0.6203961020372657,
+          "margin": 0.555423972782627,
+          "candidates": [
+            {
+              "id": "cry",
+              "probability": 0.6203961020372657
+            },
+            {
+              "id": "generic",
+              "probability": 0.06497212925463873
+            }
+          ],
+          "probabilities": [
+            0.004666144805722525,
+            0.008470590700941567,
+            0.008984620148721978,
+            0.011799498049644162,
+            0.015916466446937328,
+            0.0070849701128591295,
+            0.0036351650965038376,
+            0.05296873056709831,
+            0.010781585361278816,
+            0.017591549533377784,
+            0.043033261299125596,
+            0.6203961020372657,
+            0.024719668493940517,
+            0.005621933677224743,
+            0.03424236037838369,
+            0.00640124267201414,
+            0.022511160021011067,
+            0.014045788328935379,
+            0.0055164896631542,
+            0.006891085666862663,
+            0.009749457684358278,
+            0.06497212925463873
+          ],
+          "rejected": false
+        },
+        "interaction": {
+          "id": "reassurance",
+          "rawId": "reassurance",
+          "probability": 0.5548080078305644,
+          "margin": 0.4089410708606303,
+          "candidates": [
+            {
+              "id": "reassurance",
+              "probability": 0.5548080078305644
+            },
+            {
+              "id": "none",
+              "probability": 0.14586693696993408
+            }
+          ],
+          "probabilities": [
+            0.02110614122602753,
+            0.025472566493156972,
+            0.10197979082369693,
+            0.03336909219109455,
+            0.009215999265225254,
+            0.0033820083769200916,
+            0.01332997828880747,
+            0.02036220107279443,
+            0.0037958763259822825,
+            0.008170074419527842,
+            0.03882258448908373,
+            0.5548080078305644,
+            0.007765041927646972,
+            0.012553700299537453,
+            0.14586693696993408
+          ],
+          "rejected": false
+        }
+      },
+      "outcomes": {
+        "A50_m05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.45_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.4_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.35_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.3_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.45_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.4_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.35_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.3_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.45_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.4_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.35_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.3_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.45_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.4_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.35_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.3_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.45_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.45_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.4_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.4_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.45_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.45_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.4_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.4_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.45_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.45_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.4_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.4_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.45_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.45_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.4_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.4_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "E_per_topic_m05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        }
+      }
+    },
+    {
+      "id": "qa063",
+      "category": "negative",
+      "text": "笑っていないみたいだね",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "source": "legacy67",
+      "score_topic": true,
+      "score_interaction": true,
+      "scores": {
+        "topic": {
+          "id": "smile",
+          "rawId": "smile",
+          "probability": 0.3413481248808298,
+          "margin": 0.23008162221578557,
+          "candidates": [
+            {
+              "id": "smile",
+              "probability": 0.3413481248808298
+            },
+            {
+              "id": "feet",
+              "probability": 0.1112665026650442
+            }
+          ],
+          "probabilities": [
+            0.013563032263497057,
+            0.0060691398099170756,
+            0.006286410562702929,
+            0.04558313094181415,
+            0.022054898272511916,
+            0.015305718786766868,
+            0.013503098988070259,
+            0.010372511909023932,
+            0.0068132118627764445,
+            0.1112665026650442,
+            0.3413481248808298,
+            0.09186747922769127,
+            0.056119828521084464,
+            0.03752092857728618,
+            0.0529316171188424,
+            0.00907790397723786,
+            0.009166993840125133,
+            0.02445658449162104,
+            0.007616086021883836,
+            0.01201390157962444,
+            0.006693071899437407,
+            0.1003698238022115
+          ],
+          "rejected": false
+        },
+        "interaction": {
+          "id": "none",
+          "rawId": "none",
+          "probability": 0.6703014246707346,
+          "margin": 0.581742966948645,
+          "candidates": [
+            {
+              "id": "none",
+              "probability": 0.6703014246707346
+            },
+            {
+              "id": "inquiry",
+              "probability": 0.0885584577220896
+            }
+          ],
+          "probabilities": [
+            0.02187476236388355,
+            0.014647572134434655,
+            0.006737946068376573,
+            0.05122662210660153,
+            0.010068430107884446,
+            0.01243078920775773,
+            0.00598158766978995,
+            0.009126221371218152,
+            0.008162829648656637,
+            0.019188797428759903,
+            0.0885584577220896,
+            0.05070773016113099,
+            0.01198732621500413,
+            0.01899950312367752,
+            0.6703014246707346
+          ],
+          "rejected": false
+        }
+      },
+      "outcomes": {
+        "A50_m05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.45_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "E_per_topic_m05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        }
+      }
+    },
+    {
+      "id": "new011",
+      "text": "今は眠くないんだね",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "score_topic": false,
+      "score_interaction": false,
+      "category": "negation_or_temporal",
+      "family": "sleep_negation",
+      "split": "holdout",
+      "adjudicated": false,
+      "overlaps_legacy67": true,
+      "forbidden_topics": [
+        "sleep"
+      ],
+      "meaning_note": "眠い/睡眠中の断定禁止",
+      "source": "new150",
+      "scores": {
+        "topic": {
+          "id": "sleep",
+          "rawId": "sleep",
+          "probability": 0.6538889370163002,
+          "margin": 0.5544588473440685,
+          "candidates": [
+            {
+              "id": "sleep",
+              "probability": 0.6538889370163002
+            },
+            {
+              "id": "wake",
+              "probability": 0.0994300896722318
+            }
+          ],
+          "probabilities": [
+            0.00857925971463123,
+            0.020478015553273596,
+            0.012440276491781721,
+            0.6538889370163002,
+            0.0994300896722318,
+            0.005704763954184292,
+            0.0025256950198544593,
+            0.007546436361581943,
+            0.0018926632145655376,
+            0.018241173284349176,
+            0.011930454496115406,
+            0.04574858088706937,
+            0.004242269917323443,
+            0.023999606055243924,
+            0.004704025960357589,
+            0.004236381958144136,
+            0.00543821618680524,
+            0.029252039335545314,
+            0.02106427995041654,
+            0.004531437081253348,
+            0.006505899808280283,
+            0.0076194980806912616
+          ],
+          "rejected": false
+        },
+        "interaction": {
+          "id": "none",
+          "rawId": "none",
+          "probability": 0.39409535900584414,
+          "margin": 0.25074980394740887,
+          "candidates": [
+            {
+              "id": "none",
+              "probability": 0.39409535900584414
+            },
+            {
+              "id": "inquiry",
+              "probability": 0.14334555505843524
+            }
+          ],
+          "probabilities": [
+            0.03347062929321895,
+            0.008507474466295952,
+            0.01600014728734659,
+            0.05911336505717061,
+            0.007476782796506191,
+            0.013119396858976284,
+            0.007171738322737037,
+            0.008319804207585248,
+            0.0639433013050721,
+            0.055927071163927256,
+            0.14334555505843524,
+            0.06735760334388502,
+            0.013593979376270621,
+            0.10855779245672882,
+            0.39409535900584414
+          ],
+          "rejected": false
+        }
+      },
+      "outcomes": {
+        "A50_m05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.02": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.1": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        },
+        "E_per_topic_m05": {
+          "topic": "sleep",
+          "interaction": null,
+          "route": "sleep",
+          "english": "Are you sleepy? Let's get cozy. Night-night!",
+          "selectionReason": "topic_only"
+        }
+      }
+    },
+    {
+      "id": "new031",
+      "text": "泣いてはいないんだよ",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "score_topic": false,
+      "score_interaction": false,
+      "category": "negation",
+      "family": "cry_negation",
+      "split": "holdout",
+      "adjudicated": false,
+      "overlaps_legacy67": true,
+      "forbidden_topics": [
+        "cry"
+      ],
+      "meaning_note": "言及Topicと英文の行為・時制を分けて人手確認",
+      "source": "new150",
+      "scores": {
+        "topic": {
+          "id": "cry",
+          "rawId": "cry",
+          "probability": 0.6203961020372657,
+          "margin": 0.555423972782627,
+          "candidates": [
+            {
+              "id": "cry",
+              "probability": 0.6203961020372657
+            },
+            {
+              "id": "generic",
+              "probability": 0.06497212925463873
+            }
+          ],
+          "probabilities": [
+            0.004666144805722525,
+            0.008470590700941567,
+            0.008984620148721978,
+            0.011799498049644162,
+            0.015916466446937328,
+            0.0070849701128591295,
+            0.0036351650965038376,
+            0.05296873056709831,
+            0.010781585361278816,
+            0.017591549533377784,
+            0.043033261299125596,
+            0.6203961020372657,
+            0.024719668493940517,
+            0.005621933677224743,
+            0.03424236037838369,
+            0.00640124267201414,
+            0.022511160021011067,
+            0.014045788328935379,
+            0.0055164896631542,
+            0.006891085666862663,
+            0.009749457684358278,
+            0.06497212925463873
+          ],
+          "rejected": false
+        },
+        "interaction": {
+          "id": "reassurance",
+          "rawId": "reassurance",
+          "probability": 0.5548080078305644,
+          "margin": 0.4089410708606303,
+          "candidates": [
+            {
+              "id": "reassurance",
+              "probability": 0.5548080078305644
+            },
+            {
+              "id": "none",
+              "probability": 0.14586693696993408
+            }
+          ],
+          "probabilities": [
+            0.02110614122602753,
+            0.025472566493156972,
+            0.10197979082369693,
+            0.03336909219109455,
+            0.009215999265225254,
+            0.0033820083769200916,
+            0.01332997828880747,
+            0.02036220107279443,
+            0.0037958763259822825,
+            0.008170074419527842,
+            0.03882258448908373,
+            0.5548080078305644,
+            0.007765041927646972,
+            0.012553700299537453,
+            0.14586693696993408
+          ],
+          "rejected": false
+        }
+      },
+      "outcomes": {
+        "A50_m05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.45_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.4_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.35_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.3_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.45_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.4_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.35_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.3_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.45_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.4_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.35_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.3_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.45_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.4_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.35_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "B0.3_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.45_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.45_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.4_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.4_m0": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.45_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.45_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.4_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.4_m0.02": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.45_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.45_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.4_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.4_m0.05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.45_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.45_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "C0.4_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "D0.4_m0.1": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        },
+        "E_per_topic_m05": {
+          "topic": "cry",
+          "interaction": "reassurance",
+          "route": "combined:cry:reassurance",
+          "english": "I hear you crying. I'm right here. Come for a cuddle.",
+          "selectionReason": "combined"
+        }
+      }
+    },
+    {
+      "id": "new038",
+      "text": "笑っていないみたいだね",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "score_topic": false,
+      "score_interaction": false,
+      "category": "negation",
+      "family": "smile_negation",
+      "split": "holdout",
+      "adjudicated": false,
+      "overlaps_legacy67": true,
+      "forbidden_topics": [
+        "smile"
+      ],
+      "meaning_note": "言及Topicと英文の行為・時制を分けて人手確認",
+      "source": "new150",
+      "scores": {
+        "topic": {
+          "id": "smile",
+          "rawId": "smile",
+          "probability": 0.3413481248808298,
+          "margin": 0.23008162221578557,
+          "candidates": [
+            {
+              "id": "smile",
+              "probability": 0.3413481248808298
+            },
+            {
+              "id": "feet",
+              "probability": 0.1112665026650442
+            }
+          ],
+          "probabilities": [
+            0.013563032263497057,
+            0.0060691398099170756,
+            0.006286410562702929,
+            0.04558313094181415,
+            0.022054898272511916,
+            0.015305718786766868,
+            0.013503098988070259,
+            0.010372511909023932,
+            0.0068132118627764445,
+            0.1112665026650442,
+            0.3413481248808298,
+            0.09186747922769127,
+            0.056119828521084464,
+            0.03752092857728618,
+            0.0529316171188424,
+            0.00907790397723786,
+            0.009166993840125133,
+            0.02445658449162104,
+            0.007616086021883836,
+            0.01201390157962444,
+            0.006693071899437407,
+            0.1003698238022115
+          ],
+          "rejected": false
+        },
+        "interaction": {
+          "id": "none",
+          "rawId": "none",
+          "probability": 0.6703014246707346,
+          "margin": 0.581742966948645,
+          "candidates": [
+            {
+              "id": "none",
+              "probability": 0.6703014246707346
+            },
+            {
+              "id": "inquiry",
+              "probability": 0.0885584577220896
+            }
+          ],
+          "probabilities": [
+            0.02187476236388355,
+            0.014647572134434655,
+            0.006737946068376573,
+            0.05122662210660153,
+            0.010068430107884446,
+            0.01243078920775773,
+            0.00598158766978995,
+            0.009126221371218152,
+            0.008162829648656637,
+            0.019188797428759903,
+            0.0885584577220896,
+            0.05070773016113099,
+            0.01198732621500413,
+            0.01899950312367752,
+            0.6703014246707346
+          ],
+          "rejected": false
+        }
+      },
+      "outcomes": {
+        "A50_m05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.45_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        },
+        "E_per_topic_m05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "Do you hear that? That's my voice! Hello, baby!",
+          "selectionReason": "generic"
+        }
+      }
+    },
+    {
+      "id": "new039",
+      "text": "ご機嫌ななめだね",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "score_topic": false,
+      "score_interaction": false,
+      "category": "negation",
+      "family": "smile_negation",
+      "split": "holdout",
+      "adjudicated": false,
+      "overlaps_legacy67": false,
+      "forbidden_topics": [
+        "smile"
+      ],
+      "meaning_note": "言及Topicと英文の行為・時制を分けて人手確認",
+      "source": "new150",
+      "scores": {
+        "topic": {
+          "id": "smile",
+          "rawId": "smile",
+          "probability": 0.5387505922496799,
+          "margin": 0.4748999338990087,
+          "candidates": [
+            {
+              "id": "smile",
+              "probability": 0.5387505922496799
+            },
+            {
+              "id": "sun",
+              "probability": 0.0638506583506712
+            }
+          ],
+          "probabilities": [
+            0.009249464846738687,
+            0.00823275471969703,
+            0.00507003143714853,
+            0.01775840254918684,
+            0.015465553833042614,
+            0.019606906452711022,
+            0.008854957799591676,
+            0.05158347500351005,
+            0.013342891208016463,
+            0.03502489828079084,
+            0.5387505922496799,
+            0.06111702992289136,
+            0.021531681680594876,
+            0.030002785989056882,
+            0.018984113005298717,
+            0.01369285971173378,
+            0.017661566149629302,
+            0.0638506583506712,
+            0.02887018565116418,
+            0.004060257395392884,
+            0.011914857538602289,
+            0.005374076224850826
+          ],
+          "rejected": false
+        },
+        "interaction": {
+          "id": "none",
+          "rawId": "none",
+          "probability": 0.32582714723751927,
+          "margin": 0.061425969744007436,
+          "candidates": [
+            {
+              "id": "none",
+              "probability": 0.32582714723751927
+            },
+            {
+              "id": "affection",
+              "probability": 0.26440117749351183
+            }
+          ],
+          "probabilities": [
+            0.26440117749351183,
+            0.11831635748506146,
+            0.015064754300927054,
+            0.012361530415062326,
+            0.023750606237480654,
+            0.016773943830257754,
+            0.013938145986229377,
+            0.021113630777794157,
+            0.014971323987535605,
+            0.008183941075956151,
+            0.030215035440257918,
+            0.11119540249063159,
+            0.0032119753807100596,
+            0.020675027861064833,
+            0.32582714723751927
+          ],
+          "rejected": false
+        }
+      },
+      "outcomes": {
+        "A50_m05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.02": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.1": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        },
+        "E_per_topic_m05": {
+          "topic": "smile",
+          "interaction": null,
+          "route": "smile",
+          "english": "What a smile! I love seeing it. You're so sweet!",
+          "selectionReason": "topic_only"
+        }
+      }
+    },
+    {
+      "id": "new125",
+      "text": "ミルクを飲んだらお風呂に入ろうね",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "score_topic": false,
+      "score_interaction": false,
+      "category": "multi_or_ambiguous",
+      "family": "milk_bath_sequence",
+      "split": "holdout",
+      "adjudicated": false,
+      "overlaps_legacy67": false,
+      "forbidden_topics": [],
+      "meaning_note": "人手による時系列・主語・否定と最終英文の確認が必要",
+      "source": "new150",
+      "scores": {
+        "topic": {
+          "id": "bath",
+          "rawId": "bath",
+          "probability": 0.617158029155682,
+          "margin": 0.31968337022859017,
+          "candidates": [
+            {
+              "id": "bath",
+              "probability": 0.617158029155682
+            },
+            {
+              "id": "milk",
+              "probability": 0.2974746589270918
+            }
+          ],
+          "probabilities": [
+            0.017874894630762993,
+            0.617158029155682,
+            0.2974746589270918,
+            0.007823207198274526,
+            0.003824343383098727,
+            0.014290632973397586,
+            0.0017544990929507112,
+            0.004332587005604729,
+            0.0004171505450110465,
+            0.0007266331519313788,
+            0.0008021310141210588,
+            0.00863252099803245,
+            0.0005984301954485591,
+            0.004127621950791519,
+            0.0020749611873235926,
+            0.002695013959510219,
+            0.0010662722709702905,
+            0.0003647526280570002,
+            0.006436696788644068,
+            0.003889409893999123,
+            0.0026572821609125766,
+            0.0009782708883839593
+          ],
+          "rejected": false
+        },
+        "interaction": {
+          "id": "reassurance",
+          "rawId": "reassurance",
+          "probability": 0.15769698138171237,
+          "margin": 0.026330339223129995,
+          "candidates": [
+            {
+              "id": "reassurance",
+              "probability": 0.15769698138171237
+            },
+            {
+              "id": "none",
+              "probability": 0.13136664215858238
+            }
+          ],
+          "probabilities": [
+            0.08513994030480514,
+            0.03874494884415539,
+            0.041936326580431435,
+            0.010427294101202524,
+            0.026462106544965048,
+            0.10511059030948026,
+            0.09364121194823301,
+            0.07206350891556956,
+            0.0386294387554035,
+            0.05509620289491657,
+            0.015959853964810953,
+            0.15769698138171237,
+            0.03513740559218919,
+            0.09258754770354241,
+            0.13136664215858238
+          ],
+          "rejected": false
+        }
+      },
+      "outcomes": {
+        "A50_m05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.02": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.02": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.02": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.02": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.45_m0.1": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.4_m0.1": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.35_m0.1": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "B0.3_m0.1": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.02": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.02": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.02": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.02": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "C0.45_m0.1": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "D0.45_m0.1": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "C0.4_m0.1": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "D0.4_m0.1": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        },
+        "E_per_topic_m05": {
+          "topic": "bath",
+          "interaction": null,
+          "route": "bath",
+          "english": "Bath time is here! Is the water warm? Splash, splash!",
+          "selectionReason": "topic_only"
+        }
+      }
+    },
+    {
+      "id": "new126",
+      "text": "まだ終わっていないね",
+      "expected_topic": null,
+      "expected_interaction": null,
+      "score_topic": false,
+      "score_interaction": false,
+      "category": "multi_or_ambiguous",
+      "family": "incomplete",
+      "split": "holdout",
+      "adjudicated": false,
+      "overlaps_legacy67": false,
+      "forbidden_topics": [],
+      "meaning_note": "人手による時系列・主語・否定と最終英文の確認が必要",
+      "source": "new150",
+      "scores": {
+        "topic": {
+          "id": "generic",
+          "rawId": "generic",
+          "probability": 0.2305077939552282,
+          "margin": 0.09480934059204216,
+          "candidates": [
+            {
+              "id": "generic",
+              "probability": 0.2305077939552282
+            },
+            {
+              "id": "feet",
+              "probability": 0.13569845336318603
+            }
+          ],
+          "probabilities": [
+            0.014911090821822796,
+            0.026298809166215673,
+            0.0078122612182192595,
+            0.1181375827213031,
+            0.018098600631442117,
+            0.021830833252615433,
+            0.013145703258461264,
+            0.026546550263647474,
+            0.01413027320732618,
+            0.13569845336318603,
+            0.018991161621935555,
+            0.11877019176774926,
+            0.05263462517289153,
+            0.03019794078989367,
+            0.01556041755648477,
+            0.013681238261251186,
+            0.02109734824701232,
+            0.04250634426962429,
+            0.024350078436713836,
+            0.017310377128334754,
+            0.01778232488864141,
+            0.2305077939552282
+          ],
+          "rejected": false
+        },
+        "interaction": {
+          "id": "finish_check",
+          "rawId": "finish_check",
+          "probability": 0.1921170299131201,
+          "margin": 0.06679694138569339,
+          "candidates": [
+            {
+              "id": "finish_check",
+              "probability": 0.1921170299131201
+            },
+            {
+              "id": "none",
+              "probability": 0.1253200885274267
+            }
+          ],
+          "probabilities": [
+            0.024908800150463237,
+            0.009921166897245778,
+            0.024610876647067962,
+            0.10776080263093697,
+            0.04754547426610669,
+            0.014515406643252826,
+            0.03760080510080976,
+            0.10171063917160608,
+            0.1921170299131201,
+            0.024494130610580506,
+            0.08798656368579494,
+            0.04921227630052902,
+            0.029817018360868395,
+            0.12247892109419113,
+            0.1253200885274267
+          ],
+          "rejected": false
+        }
+      },
+      "outcomes": {
+        "A50_m05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.45_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.45_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.45_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.45_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.4_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.35_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "B0.3_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0.02": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0.05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "C0.45_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "D0.45_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "C0.4_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "D0.4_m0.1": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        },
+        "E_per_topic_m05": {
+          "topic": null,
+          "interaction": null,
+          "route": "generic",
+          "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+          "selectionReason": "generic"
+        }
+      }
+    }
+  ]
+}

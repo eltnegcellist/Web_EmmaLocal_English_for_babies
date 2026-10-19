@@ -8,6 +8,40 @@ import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhras
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './src/app-navigation.js';
 import { canonicalMoonshineModelAssetKey } from './src/vendor/moonshine/asset-downloader.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
+// Production home must have the same Emma-first UI that passed trial tests.
+{
+  const doc=new JSDOM(readFileSync(new URL('./index.html',import.meta.url),'utf8')).window.document;
+  const code=readFileSync(new URL('./src/app.js',import.meta.url),'utf8');
+  const css=readFileSync(new URL('./styles.css',import.meta.url),'utf8');
+  assert.equal(doc.querySelector('#reply')?.textContent,"Hi, I'm Emma.");
+  assert.equal(doc.querySelector('#replyTopic')?.textContent,'ごあいさつ');
+  assert.equal(doc.querySelector('#replyJapanese')?.textContent,'こんにちは、エマだよ。');
+  assert(!doc.querySelector('#conversation')?.classList.contains('hidden'));
+  assert(doc.querySelector('#homeScreen .app-actions #playButton'),'play shortcut is in header');
+  assert.equal(doc.querySelector('#homeScreen .bottom-bar #playButton'),null);
+  assert(doc.querySelector('#settingsScreen #autoRespond'),'automatic reply lives in settings');
+  assert.equal(doc.querySelector('#homeScreen #autoRespond'),null);
+  assert(doc.querySelector('#settingsScreen label.history-save-toggle input#historyEnabled'),'save-history checkbox aligned right');
+  assert(doc.querySelector('#mainButton .start-cta-hint'),'large first-talk invitation on idle screen');
+  assert(code.includes('if(!emmaText)return;'),'do not wipe card on interim empty ASR');
+  assert(!css.includes('content:"✦"'),'avoid sparkle marks on cards and topic tags');
+}
+
+
+// The intro card must be visible immediately (without any audio autoplay).
+// Empty interim ASR events must not erase it while the first turn is pending.
+{
+  const document=new JSDOM(readFileSync(new URL('./preview-emma.html',import.meta.url),'utf8')).window.document;
+  const script=readFileSync(new URL('./src/preview-emma-app.js',import.meta.url),'utf8');
+  assert.equal(document.querySelector('#replyTopic')?.textContent,'ごあいさつ');
+  assert.equal(document.querySelector('#reply')?.textContent,"Hi, I'm Emma.");
+  assert.equal(document.querySelector('#replyJapanese')?.textContent,'こんにちは、エマだよ。');
+  assert(!document.querySelector('#conversation')?.classList.contains('hidden'),'intro visible from first render');
+  assert(!document.querySelector('#emmaBubble')?.classList.contains('hidden'));
+  assert(script.includes('if(!emmaText)return;'),'intermediate empty replies must preserve last visible card');
+  assert(script.includes('await speakResponse("Hi, I\'m Emma.");'),'opening card agrees with tutorial audio');
+}
+
 
 // Eight-point Emma-first UI regression: startup CTA, manual-first recording
 // controls, header play shortcut, no sparkle decoration, compact scroll,
@@ -139,7 +173,7 @@ assert.equal(cancelledPlayback.finished,0,'cancelled/stopped sessions must not f
 
 
 // Guard the public callout labels as well as the removed Android promotion.
-assert(publicHtml.includes('id="mainButton" class="primary-button">呼びかけを始める</button>'));
+assert(publicHtml.includes('id="mainButton" class="primary-button start-cta">'));
 assert(publicHtml.includes('id="stopButton" class="outline-button hidden">呼びかけを止める</button>'));
 assert(!publicHtml.includes('>会話を始める</button>'));
 assert(!publicHtml.includes('>会話を止める</button>'));

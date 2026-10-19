@@ -15,6 +15,8 @@ Webでは初回準備時に全音源をSHA256検証してCacheStorageへ保存�
 
 ## 話し終わりの判定（Silero・従来方式）
 
+日本語Moonshineは、アプリ側で切り出した発話をそのまま認識するため、SDK内部VADを無効化しています（`vad_threshold=0`, `vad_max_segment_duration=1000`）。育児語のkeyterm誘導は使用せず、繰り返し生成を防ぐ出力上限は日本語向けの `max_tokens_per_second=13.0` です。13は音声1秒あたりの内部トークン数で、13文字・13秒という制限ではありません。Silero／従来の音量方式によるアプリ側の発話検出は引き続き使用します。
+
 Sileroを標準の発話開始・終了判定として追加しました。設定の「話し終わりの判定」から従来の音量方式へ戻せます。選択は保存され、終了待ちは1.1秒です。Moonshine Japanese Smallと既存のASR音声経路を維持します。 実装・固定モデル・検証範囲・実行方法は [SILERO_VAD.md](SILERO_VAD.md) を参照してください。
 
 

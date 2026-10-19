@@ -1,0 +1,236 @@
+{
+  "status": "MAC_NATIVE_JVM_NOT_GALAXY_S25",
+  "n": 414,
+  "web_score_drift": 0,
+  "all_web_match_adopted_policy": true,
+  "all_native_match_adopted_policy": true,
+  "topic_differences": 4,
+  "english_differences": 6,
+  "token_mismatches": 0,
+  "fresh202_topic_differences": 0,
+  "baseline50_topic_differences": 1,
+  "differences": [
+    {
+      "id": "natural031",
+      "text": "すっきりしたね、おむつ替えたよ",
+      "source": "fresh202",
+      "topic_same": true,
+      "english_same": false,
+      "token_ids_match": true,
+      "baseline_topic_same": true,
+      "web": {
+        "before": {
+          "topic": "diaper",
+          "interaction": "finish"
+        },
+        "accepted": {
+          "topic": "diaper",
+          "interaction": "finish"
+        },
+        "route": "combined:diaper:finish",
+        "english": "All done changing! Nice and fresh. Here we are.",
+        "probability": 0.9211190103364355,
+        "margin": 0.9099317744833771
+      },
+      "native": {
+        "before": {
+          "topic": "diaper",
+          "interaction": null
+        },
+        "accepted": {
+          "topic": "diaper",
+          "interaction": null
+        },
+        "route": "diaper",
+        "english": "Time for a change. Let's get you dry. All fresh!",
+        "probability": 0.9237379338555373,
+        "margin": 0.9123615786734295
+      }
+    },
+    {
+      "id": "new072",
+      "text": "そろそろ起きようか",
+      "source": "retrospective212",
+      "topic_same": false,
+      "english_same": false,
+      "token_ids_match": true,
+      "baseline_topic_same": true,
+      "web": {
+        "before": {
+          "topic": null,
+          "interaction": null
+        },
+        "accepted": {
+          "topic": null,
+          "interaction": null
+        },
+        "route": "generic",
+        "english": "You're my little sunshine. I love you. Big hugs!",
+        "probability": 0.42668966836303857,
+        "margin": 0.03296103333597805
+      },
+      "native": {
+        "before": {
+          "topic": null,
+          "interaction": null
+        },
+        "accepted": {
+          "topic": "wake",
+          "interaction": null
+        },
+        "route": "wake",
+        "english": "You're awake! Hello, little one. It's nice seeing you!",
+        "probability": 0.4809737914735888,
+        "margin": 0.10104458531842209
+      }
+    },
+    {
+      "id": "new080",
+      "text": "あんよをばたばたさせてるね",
+      "source": "retrospective212",
+      "topic_same": false,
+      "english_same": false,
+      "token_ids_match": true,
+      "baseline_topic_same": true,
+      "web": {
+        "before": {
+          "topic": null,
+          "interaction": null
+        },
+        "accepted": {
+          "topic": "feet",
+          "interaction": null
+        },
+        "route": "feet",
+        "english": "Look at your feet! Ten tiny toes. Wiggle, wiggle!",
+        "probability": 0.3199458727185191,
+        "margin": 0.10301641899800706
+      },
+      "native": {
+        "before": {
+          "topic": null,
+          "interaction": null
+        },
+        "accepted": {
+          "topic": null,
+          "interaction": null
+        },
+        "route": "generic",
+        "english": "Wave hello, baby! Hi, hi, hi! My hand says hello!",
+        "probability": 0.26909333451612977,
+        "margin": 0.04649729536096503
+      }
+    },
+    {
+      "id": "new124",
+      "text": "これは丸い形だよ",
+      "source": "retrospective212",
+      "topic_same": false,
+      "english_same": false,
+      "token_ids_match": true,
+      "baseline_topic_same": true,
+      "web": {
+        "before": {
+          "topic": null,
+          "interaction": null
+        },
+        "accepted": {
+          "topic": null,
+          "interaction": null
+        },
+        "route": "generic",
+        "english": "Look at my hands! Let's wave hello. Hi, hi!",
+        "probability": 0.28857846924460995,
+        "margin": 0.16489611668789958
+      },
+      "native": {
+        "before": {
+          "topic": null,
+          "interaction": null
+        },
+        "accepted": {
+          "topic": "play",
+          "interaction": null
+        },
+        "route": "play",
+        "english": "Let's play together! What should we try? Peekaboo!",
+        "probability": 0.30378964081670284,
+        "margin": 0.17676784233584372
+      }
+    },
+    {
+      "id": "new143",
+      "text": "お歌はもう終わったけど絵本はこれからだよ",
+      "source": "retrospective212",
+      "topic_same": true,
+      "english_same": false,
+      "token_ids_match": true,
+      "baseline_topic_same": true,
+      "web": {
+        "before": {
+          "topic": "book",
+          "interaction": "finish"
+        },
+        "accepted": {
+          "topic": "book",
+          "interaction": "finish"
+        },
+        "route": "combined:book:finish",
+        "english": "Our book is finished! That's the last page. Well done, sweetheart.",
+        "probability": 0.6640127082707423,
+        "margin": 0.6067522113671115
+      },
+      "native": {
+        "before": {
+          "topic": "book",
+          "interaction": null
+        },
+        "accepted": {
+          "topic": "book",
+          "interaction": null
+        },
+        "route": "book",
+        "english": "Let's read a book! Look at the pictures. What's that?",
+        "probability": 0.64534171295989,
+        "margin": 0.589303322263245
+      }
+    },
+    {
+      "id": "new149",
+      "text": "かわいいけど眠ってはいないね",
+      "source": "retrospective212",
+      "topic_same": false,
+      "english_same": false,
+      "token_ids_match": true,
+      "baseline_topic_same": true,
+      "web": {
+        "before": {
+          "topic": null,
+          "interaction": null
+        },
+        "accepted": {
+          "topic": null,
+          "interaction": null
+        },
+        "route": "generic",
+        "english": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+        "probability": 0.257161272368026,
+        "margin": 0.1130167756096643
+      },
+      "native": {
+        "before": {
+          "topic": null,
+          "interaction": null
+        },
+        "accepted": {
+          "topic": "wake",
+          "interaction": null
+        },
+        "route": "wake",
+        "english": "You're awake! Hello, little one. It's nice seeing you!",
+        "probability": 0.30276608483165385,
+        "margin": 0.18862427954430777
+      }
+    }
+  ]
+}

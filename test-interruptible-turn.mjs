@@ -36,8 +36,8 @@ class StubWorker {
 }
 const worker=new StubWorker();
 const client=new MoonshineAsrClient({workerFactory:()=>worker});
-const init=client.init({model:'small',keyterms:['ミルク']});
-assert.deepEqual(worker.messages[0],{type:'init',model:'small',keyterms:['ミルク']});
+const init=client.init({model:'small'});
+assert.deepEqual(worker.messages[0],{type:'init',model:'small'});
 worker.onmessage({data:{type:'ready',model:'small-streaming-ja'}});
 assert.equal((await init).model,'small-streaming-ja');
 const pcm=Float32Array.of(0.5,0.25);

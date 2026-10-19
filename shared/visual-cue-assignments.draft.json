@@ -3864,7 +3864,7 @@
       "phraseId": "vc_000322",
       "sourceKind": "combined",
       "sourceKey": "milk|praise",
-      "text": "Little sips, baby! Sip, sip, sip! High five!",
+      "text": "Little sips, baby! Sip, sip! High five!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
@@ -7857,7 +7857,7 @@
       "phraseId": "vc_000626",
       "sourceKind": "combined",
       "sourceKey": "food|finish_check",
-      "text": "All done eating? Wipe, wipe, wipe? Let's have a look!",
+      "text": "All done eating? Wipe, wipe? Let's have a look!",
       "primaryCue": "dialogue.finish-check",
       "secondaryCues": [
         "subject.food",
@@ -8151,7 +8151,7 @@
       "phraseId": "vc_000648",
       "sourceKind": "combined",
       "sourceKey": "hug|affection",
-      "text": "Cuddle, cuddle, cuddle! My sweet baby! I love you!",
+      "text": "Cuddle, cuddle! My sweet baby! I love you!",
       "primaryCue": "action.hug",
       "secondaryCues": [
         "social.affection"
@@ -8892,7 +8892,7 @@
       "phraseId": "vc_000703",
       "sourceKind": "combined",
       "sourceKey": "milk|effort",
-      "text": "Sip, sip, sip! Nice little sips! No need to rush!",
+      "text": "Sip, sip! Nice little sips! No need to rush!",
       "primaryCue": "action.sip",
       "secondaryCues": [
         "subject.milk",
