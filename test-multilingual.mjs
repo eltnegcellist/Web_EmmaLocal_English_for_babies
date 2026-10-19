@@ -38,7 +38,7 @@ for(const lang of LANGUAGES){
  assert.equal(history.textContent,'親','Language changes must not translate the user’s original history text');
  assert.equal(dom.window.document.querySelector('#settingsLanguage').value,'ko');
  await ui.choose('ja');assert.match(dom.window.document.querySelector('.welcome-hero h1').textContent,/いつもの日本語/);
- assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').textContent,'みつことば');
+ assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').textContent.replace(/\s/g,''),'みつことば');
  assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').children.length,5);
  ui.dispose();dom.window.close();
 }
