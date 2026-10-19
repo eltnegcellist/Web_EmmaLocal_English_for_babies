@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "hug-face-v1",
+  "primitive": "motion.hug",
+  "kind": "illustration",
+  "status": "prototype-static",
+  "readiness": "user-review-pending",
+  "animated": false,
+  "runtimeAssigned": false,
+  "replaces": null,
+  "comparisonAsset": "hug-arms",
+  "illustration": "assets/visual-cue/prototypes/hug-face/hug-face-v1.png",
+  "source": "built-in image_gen",
+  "prompt": "PROMPT.md",
+  "reference": "assets/visual-cue/artwork/sources/generated/hug-v4.png",
+  "humanApproval": false,
+  "note": "顔あり構図の静止試作。動作版は未制作。採用済み42素材・全英文割当・既存抱っこ動画を変更しない。今回のユーザー依頼により人物の顔を描く。",
+  "sha256": "b454ed38252bf24b9c33c7df9c99a2ad476b316539e4588db046bef18beb3c78",
+  "image": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "bytes": 1335128,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "borderAlphaMax": 1,
+    "note": "外周に最大alpha 1の微小な生成残差。角は完全透過。PNG原画を改変せず保存。"
+  },
+  "remaining": [
+    "表情・構図のユーザー確認",
+    "顔あり版の腕を寄せる動作の制作・検証"
+  ]
+}

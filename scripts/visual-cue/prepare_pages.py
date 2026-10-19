@@ -15,10 +15,11 @@ manifest = json.loads(committed('assets/visual-cue/artwork/manifest.json'))
 qa = json.loads(committed('assets/visual-cue/artwork/qa/validation.json'))
 assert qa['passed'] and qa['assetCount'] == len(manifest['assets'])
 args.output.mkdir(parents=True, exist_ok=False)
-(args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"').replace('<header>','<nav style="padding:14px;justify-content:center;background:#f4edf6"><a href="test/">テスト版アプリを開く</a> · <a href="coverage.html">英文の網羅率を見る</a></nav><header>',1))
+(args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"').replace('<header>','<nav style="padding:14px;justify-content:center;background:#f4edf6"><a href="test/">テスト版アプリを開く</a> · <a href="coverage.html">英文の網羅率を見る</a> · <a href="visual-cue-hug-face.html">顔が見える抱っこの試作</a></nav><header>',1))
 # Publish only the display-component demo, not the microphone/AI application.
 (args.output/'ui.html').write_text(committed('visual-cue-ui-preview.html').decode().replace('href="./visual-cue-test.html"','href="./test/"').replace('href="./visual-cue-coverage.html"','href="./coverage.html"'))
 (args.output/'coverage.html').write_text(committed('visual-cue-coverage.html').decode().replace('data-trial-url="./visual-cue-test.html"','data-trial-url="./test/"').replace('href="./visual-cue-test.html"','href="./test/"'))
+(args.output/'visual-cue-hug-face.html').write_text(committed('visual-cue-hug-face.html').decode().replace('href="./visual-cue-coverage.html"','href="./coverage.html"').replace('href="./visual-cue-test.html?target=hug-arms"','href="./test/?target=hug-arms"'))
 files=['src/visual-cue-ui-preview.js','src/visual-cue-controller.js','src/visual-cue-catalog.js','src/emma-background-cues.js','src/emma-preview-motion.js','shared/visual-cue-ui-examples.json',*['assets/emma-face/'+name for name in ['emma-face-idle-open.svg','emma-face-idle-half.svg','emma-face-idle-closed.svg']+['emma-face-talk-'+size+blink+'.svg' for size in ['small','medium','large'] for blink in ['', '-half','-closed']]]]
 for a in manifest['assets']:
  if a['status']=='accepted' and a['id']!='wake-daylight':
@@ -26,6 +27,7 @@ for a in manifest['assets']:
 examples=json.loads(committed('shared/visual-cue-ui-examples.json'))
 files.extend(e['audio'] for e in examples)
 files += ['visual-cue-coverage.css','src/visual-cue-coverage.js','shared/visual-cue-trial-data.json','shared/visual-cue-coverage.json','shared/visual-cue-coverage.csv']
+files += ['assets/visual-cue/prototypes/hug-face/hug-face-v1.png','assets/visual-cue/prototypes/hug-face/manifest.json']
 motion_manifest=json.loads(committed('assets/visual-cue/motion-variants/manifest.json'))
 files += ['assets/visual-cue/motion-variants/manifest.json']
 for a in motion_manifest['assets']:files.extend([a['animation'],a['poster']])
@@ -39,10 +41,10 @@ trial_files=[p for p in tracked if '/vendor/kitten/' not in p and p not in ['src
 trial_files += ['styles.css','visual-cue-trial.css','shared/play-topics.json','shared/visual-cue-trial-data.json','assets/voice-1202/manifest.json']
 trial_files += ['assets/voice-1202/'+e['file'] for e in json.loads(committed('assets/voice-1202/manifest.json'))['entries']]
 trial_files += ['assets/mitsukotoba-'+s+'.png' for s in ['parent','baby','ai']]
-trial_files += [p for p in files if p.startswith(('assets/emma-face/','assets/visual-cue/'))]
+trial_files += [p for p in files if p.startswith(('assets/emma-face/','assets/visual-cue/')) and not p.startswith('assets/visual-cue/prototypes/')]
 for file in sorted(set(trial_files)):
  dest=trial/file;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(committed(file))
-published=['ui.html','coverage.html','test/index.html']+sorted(set(files))+['test/'+p for p in sorted(set(trial_files))]
+published=['ui.html','coverage.html','visual-cue-hug-face.html','test/index.html']+sorted(set(files))+['test/'+p for p in sorted(set(trial_files))]
 ui_hashes={file:hashlib.sha256((args.output/file).read_bytes()).hexdigest() for file in published}
 
 (args.output / '.nojekyll').write_text('')
@@ -51,7 +53,7 @@ metadata = dict(sourceRepository='eltnegcellist/Web_EmmaLocal_English_for_babies
                 artifactSHA256=hashlib.sha256((args.output / 'index.html').read_bytes()).hexdigest(),
                 stills=sum(a['kind'] == 'illustration' for a in manifest['assets']),
                 animations=sum(a['kind'] == 'animation' for a in manifest['assets']),
-                accepted=sum(a['status']=='accepted' for a in manifest['assets']), nonRuntime=True, uiPreview='ui.html', trialApp='test/', coverageReport='coverage.html', uiFileSHA256=ui_hashes, sceneMotionCandidates=len(motion_manifest['assets']), emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False, trialApplicationDeployed=True)
+                accepted=sum(a['status']=='accepted' for a in manifest['assets']), nonRuntime=True, uiPreview='ui.html', trialApp='test/', coverageReport='coverage.html', hugFacePrototype='visual-cue-hug-face.html', hugFacePrototypeStatus='static-composition-candidate-not-animated', uiFileSHA256=ui_hashes, sceneMotionCandidates=len(motion_manifest['assets']), emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False, trialApplicationDeployed=True)
 (args.output / 'deployment.json').write_text(json.dumps(metadata, indent=2) + '\n')
 (args.output / 'README.md').write_text('''# Visual Cue イラスト・動画プレビュー
 
