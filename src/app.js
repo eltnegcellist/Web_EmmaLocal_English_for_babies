@@ -1857,12 +1857,6 @@ function updateAiNameUi() {
   if(ui.aiBubbleLabel) ui.aiBubbleLabel.textContent=name;
   // The former name badge now displays the live voice recognition / speaking status.
   if(ui.aiAvatarFace) ui.aiAvatarFace.setAttribute('aria-label',`${name}（みつことば AI）`);
-  if(ui.onboardingAiIntro) {
-    ui.onboardingAiIntro.innerHTML =
-      '<span class="ai-intro-label">AIキャラクター</span>' +
-      '<span class="ai-intro-copy">名前は <strong>' + name +
-      '</strong>。初回チュートリアルで自己紹介します。</span>';
-  }
 }
 
 function getTtsSignature() {
