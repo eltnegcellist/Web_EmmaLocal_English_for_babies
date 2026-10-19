@@ -1,5 +1,6 @@
 import {LANGUAGES,LANGUAGE_NAMES,LANGUAGE_KEY,LANGUAGE_MODE_KEY,resolveLanguage,browserLanguages} from './core.js';
 import {translate} from './translations.js';
+import {renderLocalizedAbout} from './about-page.js';
 export function installLanguageUI({document=globalThis.document,storage=globalThis.localStorage,
   languages=undefined,onChange=async()=>{}}={}) {
   let saved,savedMode;try{saved=storage.getItem(LANGUAGE_KEY);savedMode=storage.getItem(LANGUAGE_MODE_KEY);}catch{}
@@ -58,11 +59,7 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   const retry=document.createElement('button');retry.type='button';retry.className='outline-button';retry.textContent='準備する';
   retry.addEventListener('click',()=>choose(language));settingsCard.append(retry);settings?.after(settingsCard);
   const about=document.querySelector('#aboutScreen .screen-content');
-  const localizedAbout=document.createElement('article');localizedAbout.className='card translated-about';
-  for(const message of ['説明','会話は翻訳ではなく、親・赤ちゃん・Emmaが同じ時間を共有するためのものです。短い英語を日々の育児に添えます。','この端末で音声を処理します。モデルは必要なときだけ取得し、保存済みのものは再利用します。']){
-    const p=document.createElement(message==='説明'?'h2':'p');p.textContent=message;localizedAbout.append(p);
-  }
-  about?.querySelector('header')?.after(localizedAbout);
+  let localizedAbout=null,localizedAboutLanguage=null;
   function eligible(node){
     const parent=node.parentElement;
     if(parent?.closest('.history-japanese,.history-english')&&!parent.closest('.history-label'))return false;
@@ -104,8 +101,18 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     note.textContent=translate(language==='en'?'英語表示で、さまざまな言語の音声を自動認識します。':'選択した言語で話しかけると、短い英語で返します。',language);
     const sub=document.querySelector('#prepareEmmaButton .button-sub');
     if(sub)sub.textContent=translate('初回のみ必要なモデルを準備します',language)+(language==='ja'?'':' · ~387 MB');
-    localizedAbout.hidden=language==='ja';
-    if(about)for(const child of about.children)if(child!==localizedAbout&&child.tagName!=='HEADER')child.hidden=language!=='ja';
+    // Keep the original full Japanese research page intact, and render a
+    // substantial localized page (including all 6 source links) for other languages.
+    if(about&&language!=='ja'&&localizedAboutLanguage!==language){
+      localizedAbout?.remove();
+      localizedAbout=renderLocalizedAbout(document,language);
+      about.querySelector('header')?.after(localizedAbout);
+      localizedAboutLanguage=language;
+    }
+    if(localizedAbout)localizedAbout.hidden=language==='ja';
+    if(about)for(const child of about.children) {
+      if(child!==localizedAbout&&child.tagName!=='HEADER')child.hidden=language!=='ja';
+    }
     const firstButton=document.getElementById('prepareEmmaButton');if(firstButton&&!busy)firstButton.disabled=needsChoice;
     const high=document.querySelector('#onboardingHighPerformance')?.closest('.lite-compact-setting');if(high)high.hidden=true;
     const asrNote=document.getElementById('asrModelStatus')?.nextElementSibling;
