@@ -24,6 +24,13 @@ assert.equal(translate('みつことば','de'),'Drei Stimmen');
 assert.equal(translate('みつことば','fr'),'Trois voix');
 assert.equal(translate('みつことば','ko'),'세 목소리');
 assert.equal(translate('みつことば','th'),'สามเสียง');
+for(const language of LANGUAGES.filter(x=>x!=='ja')){
+  assert(!/[ぁ-んァ-ン一-龯]/u.test(translate('Whisperで音声を認識しています。',language)));
+  assert(!/[ぁ-んァ-ン一-龯]/u.test(translate('音声認識が時間内に完了しませんでした。通常のブラウザタブか短い発話で再試行してください。',language)));
+  assert(!/[ぁ-んァ-ン一-龯]/u.test(translate('Moonshineに必要なブラウザ分離を有効にできませんでした。通常のブラウザタブで開き直してください。',language)));
+  assert(!/[ぁ-んァ-ン一-龯]/u.test(translate('選択した言語で赤ちゃんに話しかけてください。',language)));
+}
+
 assert(!translate('みつことばの使い方','en').includes('Mitsukotoba'));
 
 assert.deepEqual(resolveLanguage({saved:'ko',languages:['ja-JP']}),{language:'ko',needsChoice:false,source:'saved'});
@@ -147,8 +154,24 @@ await prepareAssets({assets:[meta]},{fetcher,cacheStorage});await prepareAssets(
  stored=null;await prepareAssets({assets:[meta]},{...options,chunkThresholdBytes:0});
  assert.equal(cachePutFailures,1);
  
-const workers=[];const c=new MultilingualClient({workerFactory:()=>{const w={postMessage(data){this.last=data;},terminate(){this.closed=true;}};workers.push(w);return w;}});
+const workers=[];const c=new MultilingualClient({workerFactory:()=>{const w={postMessage(data,transfer){this.last=data;this.transfer=transfer;},terminate(){this.closed=true;}};workers.push(w);return w;}});
 const first=c.prepare();const firstHandled=first.catch(e=>e.message);c.cancel();const next=c.prepare();
 workers[1].onmessage({data:{type:'result',requestId:workers[1].last.requestId,result:{ready:true}}});
-await next;await firstHandled;assert(c.ready);assert.equal(workers[1].closed,undefined);c.cancel();
+await next;await firstHandled;assert(c.ready);assert.equal(workers[1].closed,undefined);
+const samples=new Float32Array([0.1,-0.2,0.3,0.4]);
+const transcribing=c.transcribe(samples,'en');
+await Promise.resolve();
+const request=workers[1].last;
+assert.equal(request.type,'transcribe');
+assert.equal(request.language,'en');
+assert.equal(request.audio.byteLength,samples.byteLength);
+assert.equal(workers[1].transfer[0],request.audio,'Audio PCM must be transferred rather than cloned');
+workers[1].onmessage({data:{type:'result',requestId:request.requestId,result:{text:'Hello',detectedLanguage:'en'}}});
+assert.equal((await transcribing).text,'Hello');
+c.cancel();
+const appSource=await readFile(new URL('./src/app.js',import.meta.url),'utf8');
+const switchFlow=appSource.slice(appSource.indexOf('languageUI=installLanguageUI'),appSource.indexOf('initUi();'));
+assert(switchFlow.indexOf("if(next==='ja' && changedRoute)")>=0);
+assert(switchFlow.indexOf('await ensureMoonshineIsolation')<switchFlow.indexOf('await initWorkers()'));
+assert(appSource.includes('multilingualAsrDiagnostic'),'Audio diagnosis must report private-mode ASR state');
 console.log('PASS: locale precedence, fallback setup, six UI languages, switch persistence, routing, short foreign speech, verified cache repair/reuse, stale worker cancellation.');
