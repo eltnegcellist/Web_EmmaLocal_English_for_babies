@@ -1,5 +1,8 @@
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
+['選んだ声を端末に準備しています…','Preparing recorded audio on your device…','Aufgenommene Audiodateien werden auf deinem Gerät vorbereitet…','Préparation des enregistrements audio sur votre appareil…','기기에 녹음 음성을 준비하고 있어요…','กำลังเตรียมเสียงที่บันทึกไว้ในอุปกรณ์…'],
+['選んだ声を準備しています…','Preparing recorded audio…','Aufgenommene Audiodateien werden vorbereitet…','Préparation des enregistrements audio…','녹음 음성을 준비하고 있어요…','กำลังเตรียมเสียงที่บันทึกไว้…'],
+['みつことばの声を準備しています…','Preparing English audio…','Englische Audiodateien werden vorbereitet…','Préparation des fichiers audio anglais…','영어 음성을 준비하고 있어요…','กำลังเตรียมไฟล์เสียงภาษาอังกฤษ…'],
 ['自動（ブラウザ設定）','Automatic (browser language)','Automatisch (Browsersprache)','Automatique (langue du navigateur)','자동 (브라우저 언어)','อัตโนมัติ (ภาษาของเบราว์เซอร์)'],
 ['みつことば','Three Voices','Drei Stimmen','Trois voix','세 목소리','สามเสียง'],
 ['モデル保存に失敗しました。空き容量を確認して再試行してください。','Model storage failed. Free some space and retry.','Modell konnte nicht gespeichert werden. Bitte Speicherplatz freigeben und erneut versuchen.','Impossible d’enregistrer les modèles. Libérez de l’espace et réessayez.','모델을 저장하지 못했어요. 저장 공간을 확보하고 다시 시도해 주세요.','บันทึกโมเดลไม่สำเร็จ โปรดเพิ่มพื้นที่ว่างแล้วลองอีกครั้ง'],
@@ -315,6 +318,10 @@ export function translate(text,language='ja') {
   const value=String(text??'');if(language==='ja')return value;
   const trimmed=value.trim(),row=lookup.get(trimmed);
   if(row)return value.replace(trimmed,row[LOCALE_INDEX[language]??1]);
+  // The recorded-voice worker sends a localized key followed by changing
+  // file counts and downloaded MB. Keep numbers intact and translate the key.
+  const voiceProgress=trimmed.match(/^(選んだ声を準備しています…)(\s+\d+\s*\/\s*\d+\s+\(\d+(?:\.\d+)?\s*MB\))$/u);
+  if(voiceProgress)return translate(voiceProgress[1],language)+voiceProgress[2];
   const step=trimmed.match(/^(\d+ \/ 3)[\s　]+(.+)$/u);
   if(step)return step[1]+' '+translate(step[2],language);
   for(const [pattern,key]of [[/^選択した(\d+)件の履歴を削除しますか？$/u,'選択した{count}件の履歴を削除しますか？'],[/^(\d+)件選択中$/u,'{count}件選択中'],[/^(\d+)件を削除$/u,'{count}件を削除']]){
