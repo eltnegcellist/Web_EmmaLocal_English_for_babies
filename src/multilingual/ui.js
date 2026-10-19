@@ -1,9 +1,15 @@
-import {LANGUAGES,LANGUAGE_NAMES,LANGUAGE_KEY,resolveLanguage} from './core.js';
+import {LANGUAGES,LANGUAGE_NAMES,LANGUAGE_KEY,LANGUAGE_MODE_KEY,resolveLanguage,browserLanguages} from './core.js';
 import {translate} from './translations.js';
 export function installLanguageUI({document=globalThis.document,storage=globalThis.localStorage,
-  languages=globalThis.navigator?.languages||[],onChange=async()=>{}}={}) {
-  let saved;try{saved=storage.getItem(LANGUAGE_KEY);}catch{}
-  const initial=resolveLanguage({saved,languages});let language=initial.language,needsChoice=initial.needsChoice;
+  languages=undefined,onChange=async()=>{}}={}) {
+  let saved,savedMode;try{saved=storage.getItem(LANGUAGE_KEY);savedMode=storage.getItem(LANGUAGE_MODE_KEY);}catch{}
+  // A pre-existing saved selection is treated as manual (legacy migration).
+  // New visitors and users who explicitly choose Auto follow the browser.
+  const initialMode=LANGUAGES.includes(saved)&&savedMode!=='auto'?'manual':'auto';
+  let mode=initialMode;
+  const detected=()=>resolveLanguage({languages:languages??browserLanguages()});
+  const initial=resolveLanguage({saved:mode==='manual'?saved:null,languages:languages??browserLanguages()});
+  let language=initial.language,needsChoice=initial.needsChoice;
   const originals=new WeakMap(),attributes=new WeakMap(),selectors=[];
   const wordmark=document.querySelector('#onboardingScreen .brand-wordmark');
   const japaneseWordmark=wordmark?.innerHTML;
@@ -19,9 +25,15 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     status.textContent=translate(key,language)+(total?` ${(loaded/1e6).toFixed(1)} / ${(total/1e6).toFixed(1)} MB`:'');
   }
   async function choose(next){
-    if(busy||!LANGUAGES.includes(next))return;busy=true;selectors.forEach(s=>s.disabled=true);
+    if(busy||(next!=='auto'&&!LANGUAGES.includes(next)))return;
+    const automatic=next==='auto',resolved=automatic?detected().language:next;
+    busy=true;selectors.forEach(s=>s.disabled=true);
     try{
-      await onChange(next,{commit:()=>{language=next;needsChoice=false;try{storage.setItem(LANGUAGE_KEY,next);}catch{}apply();}});
+      await onChange(resolved,{commit:()=>{
+        language=resolved;mode=automatic?'auto':'manual';needsChoice=false;
+        try{storage.setItem(LANGUAGE_KEY,resolved);storage.setItem(LANGUAGE_MODE_KEY,mode);}catch{}
+        apply();
+      }});
     }catch(error){
       console.error('Language preparation:',error);
       const storageFailure=/モデルを端末に保存できませんでした|QuotaExceeded|Unexpected internal error/i.test(String(error?.message));
@@ -34,9 +46,9 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     const wrap=document.createElement('label');wrap.className='language-picker';
     const label=document.createElement('span');label.textContent=title;wrap.append(label);
     const select=document.createElement('select');select.id=id;select.setAttribute('aria-label',title);
-    const placeholder=document.createElement('option');placeholder.value='';placeholder.textContent='Select language';placeholder.disabled=true;select.append(placeholder);
+    const automatic=document.createElement('option');automatic.value='auto';select.append(automatic);
     for(const code of LANGUAGES){const option=document.createElement('option');option.value=code;option.textContent=LANGUAGE_NAMES[code];select.append(option);}
-    select.value=needsChoice?'':language;select.addEventListener('change',()=>choose(select.value));selectors.push(select);wrap.append(select);return wrap;
+    select.value=mode==='auto'?'auto':language;select.addEventListener('change',()=>choose(select.value));selectors.push(select);wrap.append(select);return wrap;
   }
   document.querySelector('#onboardingScreen .brand-row')?.after(picker('onboardingLanguage'));
   document.querySelector('#homeScreen .topbar')?.after(picker('homeLanguage'));
@@ -85,7 +97,10 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
       wordmark.dataset.localized=String(language!=='ja');
       wordmark.classList.toggle('brand-wordmark-localized',language!=='ja');
     }
-    selectors.forEach(s=>s.value=needsChoice?'':language);
+    selectors.forEach(s=>{
+      s.value=mode==='auto'?'auto':language;
+      s.querySelector('option[value="auto"]').textContent=translate('自動（ブラウザ設定）',language)+' · '+LANGUAGE_NAMES[detected().language];
+    });
     note.textContent=translate(language==='en'?'英語表示で、さまざまな言語の音声を自動認識します。':'選択した言語で話しかけると、短い英語で返します。',language);
     const sub=document.querySelector('#prepareEmmaButton .button-sub');
     if(sub)sub.textContent=translate('初回のみ必要なモデルを準備します',language)+(language==='ja'?'':' · ~387 MB');
@@ -110,8 +125,10 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     for(const r of records){if(r.type==='characterData')text(r.target);else if(r.type==='childList')for(const n of r.addedNodes)walk(n);}
   });observer.observe(document.body,{subtree:true,childList:true,characterData:true});
   apply();
-  if(needsChoice)setStatus('はじめに言語を選んでください。');
-  return {get language(){return language;},get needsChoice(){return needsChoice;},apply,setStatus,choose,
-    confirm(){if(needsChoice)return false;try{storage.setItem(LANGUAGE_KEY,language);}catch{}return true;},
+  return {get language(){return language;},get needsChoice(){return needsChoice;},get mode(){return mode;},apply,setStatus,choose,
+    confirm(){
+      try{storage.setItem(LANGUAGE_KEY,language);storage.setItem(LANGUAGE_MODE_KEY,mode);}catch{}
+      return true;
+    },
     translate:text=>translate(text,language),dispose:()=>observer.disconnect()};
 }
