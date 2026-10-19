@@ -126,15 +126,14 @@ export async function prepareAssets(manifest,{
       if(!network.ok)throw Error('Model download failed ('+network.status+'): '+meta.model);
       let downloaded;
       if(network.body?.getReader) {
-        const reader=network.body.getReader(),chunks=[];let doneBytes=0;
+        const reader=network.body.getReader(),bytes=new Uint8Array(meta.bytes);let doneBytes=0;
         while(true) {
           const {value,done}=await reader.read();if(done)break;
-          chunks.push(value);doneBytes+=value.byteLength;
-          if(doneBytes>meta.bytes){await reader.cancel();throw Error('Model size mismatch');}
+          if(doneBytes+value.byteLength>meta.bytes){await reader.cancel();throw Error('Model size mismatch');}
+          bytes.set(value,doneBytes);doneBytes+=value.byteLength;
           progress({loaded:loaded+doneBytes,total,model:meta.model});
         }
-        const bytes=new Uint8Array(doneBytes);let offset=0;
-        for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength;}
+        if(doneBytes!==meta.bytes)throw Error('Model size mismatch');
         downloaded=bytes.buffer;
       }else downloaded=await network.arrayBuffer();
       if(downloaded.byteLength!==meta.bytes||await digest(downloaded)!==meta.sha256)
