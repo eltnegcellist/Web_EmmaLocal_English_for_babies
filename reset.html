@@ -59,7 +59,7 @@
           await Promise.all(keys.map(async key=>{
             const isEmmaCache=
               key.startsWith('emma-web-shell-') ||
-              (fullReset && (key.startsWith('mitsukotoba-qwen3-voice-') || key==='kitten-tts' || key==='moonshine-models-v1' || key==='mitsukotoba-background-model-meta-v1'));
+              (fullReset && (key.startsWith('mitsukotoba-qwen3-voice-') || key==='kitten-tts' || key==='moonshine-models-v1' || key==='mitsukotoba-multilingual-v1' || key==='mitsukotoba-background-model-meta-v1'));
 
             if(isEmmaCache){
               await caches.delete(key);
@@ -90,6 +90,9 @@
             if(key && key.startsWith('emma_')) sessionStorage.removeItem(key);
           }
 
+          // The new split-file ONNX store must also be cleared on browsers
+          // that do not implement indexedDB.databases().
+          await deleteDatabase('mitsukotoba-multilingual-chunks-v1');
           if(typeof indexedDB!=='undefined' && typeof indexedDB.databases==='function'){
             const databases=await indexedDB.databases().catch(()=>[]);
             await Promise.all(
