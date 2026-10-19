@@ -1,6 +1,6 @@
-# Visual Cue 第3回修正候補（2026-10-19）
+# Visual Cue 採用済み素材（2026-10-19）
 
-**静止22枚・動画21本、計43点の審査候補。採用承認は0件です。** 第3回の指摘を受け、指を握る静止画と手振りを置換、コップで飲む動画を追加しました。不自然さが残る6動画を撤回。修正対象外40点の静止画・動画・ポスターはSHA256一致を検査します。
+**静止22枚・動画21本、計43点は2026-10-19に利用者が採用しました。** [採用記録](ADOPTION_20261019.md) / [対象ファイルとSHA256](approval-20261019.json)。 第3回の指摘を受け、指を握る静止画と手振りを置換、コップで飲む動画を追加しました。不自然さが残る6動画を撤回。修正対象外40点の静止画・動画・ポスターはSHA256一致を検査します。
 
 **[GitHub Pagesで今回の3候補を開く](https://eltnegcellist.github.io/visual-cue-artwork-preview/?review=r3&filter=new#hold-hands)**
 
@@ -16,9 +16,9 @@
 
 ## 状態と残課題
 
-14基本イラスト・10種類の動作コンセプトに候補があります。ただし、個々の動作Cueの完成とは別です。58 Cueは候補31、未制作5、起床draft1、Emma評価済み21。**握る・開閉・数える・指の独立動作・タップの5 Cueは未制作へ戻し、異なる意味の手振りで埋めません。** action.wakeは空の寝床と朝日の代案であり、本人が起きる動作の採用は保留です。
+14基本イラスト・10種類の動作コンセプトに採用済み素材があります。ただし、個々の動作Cueの完成とは別です。58 Cueは候補31、未制作5、起床draft1、Emma評価済み21。**握る・開閉・数える・指の独立動作・タップの5 Cueは未制作へ戻し、異なる意味の手振りで埋めません。** action.wakeは空の寝床と朝日の代案であり、本人が起きる動作の採用は保留です。
 
-既存ZIP19点の分類と原本を保持。旧不採用37版は候補と別枠です。全43素材は利用者の目視採用審査前で、人体・接触・動作の意味の自然さ、実機での見やすさ、914英文の個別割当が残ります。技術検査のPASSを採用承認へ読み替えません。
+既存ZIP19点の分類と原本を保持。旧不採用37版は候補と別枠です。全43素材は利用者による採用済みです。実機での見やすさ、914英文の個別割当が残ります。技術検査のPASSを採用承認へ読み替えません。
 
 過去の[第2回記録](REVIEW_R2_RESULT.md)と[第1回記録](REVISION_20261018.md)は当時の履歴です。現行の手の採否は第3回の判断を優先してください。
 
@@ -41,6 +41,7 @@ python3 scripts/verify-visual-cue-handoff.py
 python3 scripts/visual-cue/audit_r3_usage.py
 python3 scripts/visual-cue/build_artwork.py --only-r3
 python3 scripts/visual-cue/compact_artwork.py
+python3 scripts/visual-cue/apply_approval.py
 python3 scripts/visual-cue/validate_artwork.py
 python3 scripts/visual-cue/report_artwork.py
 python3 scripts/visual-cue/export_preview.py

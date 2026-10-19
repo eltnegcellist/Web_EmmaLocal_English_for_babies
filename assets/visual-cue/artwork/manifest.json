@@ -660,17 +660,17 @@
         {
           "assetId": "hold-hands",
           "problem": "大人の人差し指が長すぎ、子の手が指へめり込む。通常の指の長さに子の手を近づける構図へ再制作。",
-          "status": "再制作候補・目視確認待ち"
+          "status": "2026-10-19 素材採用済み。未制作Cueは別管理。"
         },
         {
           "assetId": "hand-wave",
           "problem": "握る・開閉・数える・指を動かす6動画を撤回。指を分割しない手振りへ。",
-          "status": "手振り候補・別の動作Cueは未制作"
+          "status": "2026-10-19 素材採用済み。未制作Cueは別管理。"
         },
         {
           "assetId": "cup-sip",
           "problem": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。",
-          "status": "コップで飲む候補を追加・目視確認待ち"
+          "status": "2026-10-19 素材採用済み。未制作Cueは別管理。"
         }
       ]
     },
@@ -1612,7 +1612,7 @@
       "rejectionReason": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。"
     }
   ],
-  "approval": "採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。",
+  "approval": "2026-10-19 利用者が現行43素材を採用。撤回済み旧版・未制作Cue・アプリ統合・914英文割当は別管理。",
   "handoffSHA256": "73f04e328dc5aed60f810d6a3b4fcfa93f79e65030db2fb3c3b0c90165c6a700",
   "assets": [
     {
@@ -1626,11 +1626,14 @@
       "loopMs": 0,
       "source": "reference/artwork/approved/milk_bottle.webp",
       "origin": "approved-design-direction",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "book",
@@ -1643,11 +1646,14 @@
       "loopMs": 0,
       "source": "reference/artwork/approved/picture_book.webp",
       "origin": "approved-design-direction",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "hands",
@@ -1660,11 +1666,14 @@
       "loopMs": 0,
       "source": "reference/artwork/approved/clapping_hands.webp",
       "origin": "approved-design-direction",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "bath",
@@ -1677,11 +1686,14 @@
       "loopMs": 0,
       "source": "sources/generated/bath.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "diaper",
@@ -1694,11 +1706,14 @@
       "loopMs": 0,
       "source": "sources/generated/diaper.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "toy",
@@ -1711,11 +1726,14 @@
       "loopMs": 0,
       "source": "sources/generated/toy.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "outdoor",
@@ -1728,11 +1746,14 @@
       "loopMs": 0,
       "source": "sources/generated/outdoor.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "sun",
@@ -1745,11 +1766,14 @@
       "loopMs": 0,
       "source": "sources/generated/sun.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "clothes",
@@ -1762,11 +1786,14 @@
       "loopMs": 0,
       "source": "reference/artwork/candidates/clothes.webp",
       "origin": "handoff-candidate",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "rain",
@@ -1779,11 +1806,14 @@
       "loopMs": 0,
       "source": "reference/artwork/candidates/rain.webp",
       "origin": "handoff-candidate",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "meal",
@@ -1796,11 +1826,14 @@
       "loopMs": 0,
       "source": "reference/artwork/approved-style/meal_porridge.webp",
       "origin": "design-direction-accepted",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "music",
@@ -1813,11 +1846,14 @@
       "loopMs": 0,
       "source": "sources/generated/music.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "hand-clap",
@@ -1829,15 +1865,18 @@
       "poster": "posters/hand-clap.webp",
       "loopMs": 2988,
       "source": "sources/generated/hand-clap.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "接触位置と手の見え方は採用審査待ち。",
       "movingParts": [
         "left palm",
         "right palm"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "sip",
@@ -1849,15 +1888,18 @@
       "poster": "posters/sip.webp",
       "loopMs": 2988,
       "source": "reference/artwork/approved/milk_bottle.webp",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "乳首と液面の自然さは人の確認が必要。",
       "movingParts": [
         "bottle tilt",
         "horizontal milk surface"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "water-rain",
@@ -1869,14 +1911,17 @@
       "poster": "posters/water-rain.webp",
       "loopMs": 2988,
       "source": "reference/artwork/candidates/rain.webp",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
       "movingParts": [
         "rain drops"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "water-shower",
@@ -1891,14 +1936,17 @@
         "sources/generated/bath.png",
         "reference/artwork/candidates/bath.webp"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
       "movingParts": [
         "shower drops"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "water-splash",
@@ -1910,14 +1958,17 @@
       "poster": "posters/water-splash.webp",
       "loopMs": 2988,
       "source": "sources/generated/bath.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
       "movingParts": [
         "water splashes"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "spoon",
@@ -1929,14 +1980,17 @@
       "poster": "posters/spoon.webp",
       "loopMs": 2988,
       "source": "sources/generated/meal-layers.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "空のスプーンを器に沈め、白いおかゆを載せて持ち上げる。器の手前壁で自然に隠す。",
       "movingParts": [
         "loaded spoon"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "notes",
@@ -1948,14 +2002,17 @@
       "poster": "posters/notes.webp",
       "loopMs": 2988,
       "source": "sources/generated/music.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "",
       "movingParts": [
         "three notes"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "peekaboo",
@@ -1970,14 +2027,17 @@
         "sources/generated/toy.png",
         "sources/generated/cloth.png"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 1,
       "note": "scene.familyの代替承認ではなく、玩具を隠す独立variant。",
       "movingParts": [
         "handkerchief"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "care-wipe",
@@ -1992,14 +2052,17 @@
         "sources/generated/hand-wave.png",
         "sources/generated/cloth.png"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 2,
       "note": "手を拭くvariant。口や顔を拭く英文への割当は別途審査。",
       "movingParts": [
         "cloth across palm"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "diaper-v2",
@@ -2015,11 +2078,14 @@
         "sources/generated/diaper.png"
       ],
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 2,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "change-diaper-v2",
@@ -2034,14 +2100,17 @@
         "sources/generated/diaper-body-v2.png",
         "sources/generated/diaper.png"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 2,
       "note": "留め具の開閉variant。交換の全過程はchange-diaper-exchangeで別候補。",
       "movingParts": [
         "two hinged tabs"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "clothes-open-v2",
@@ -2054,11 +2123,14 @@
       "loopMs": 0,
       "source": "sources/generated/clothes-zipper-v2.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 2,
       "note": "",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "change-zipper",
@@ -2070,15 +2142,18 @@
       "poster": "posters/change-zipper.webp",
       "loopMs": 2988,
       "source": "sources/generated/clothes-zipper-v2.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 2,
       "note": "留め具操作variant。服の交換と袖通しはchange-clothes / dress-sleevesで別候補。",
       "movingParts": [
         "zipper pull",
         "front fabric panels"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "tummy",
@@ -2091,11 +2166,14 @@
       "loopMs": 0,
       "source": "sources/generated/tummy-v3.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 3,
       "note": "年齢を特定しない身体部位。顔・全身は描かない。",
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "change-diaper-exchange",
@@ -2111,8 +2189,8 @@
         "sources/generated/diaper.png",
         "sources/generated/cloth.png"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 3,
       "note": "同時に2枚を重ねず、旧→新の順で交換。身体を描かない物体操作の説明図。逆順で戻す。",
       "movingParts": [
@@ -2121,7 +2199,10 @@
         "clean diaper",
         "clean diaper tabs"
       ],
-      "verification": "qa/validation.json"
+      "verification": "qa/validation.json",
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "feet",
@@ -2134,12 +2215,14 @@
       "loopMs": 0,
       "source": "sources/generated/foot.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 4,
       "note": "左右の親指が内側に来るように、静止画と動画を統一。",
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "page",
@@ -2154,15 +2237,17 @@
         "reference/artwork/approved/picture_book.webp",
         "sources/generated/book-v4.png"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 4,
       "note": "めくる紙の表は太陽、裏は洋なし。下から魚のページが現れる。新しい見開きを保持してから逆に戻す。白紙の裏面や同じ見開きへの差し替えを廃止。",
       "movingParts": [
         "printed leaf around spine"
       ],
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "family-care",
@@ -2175,12 +2260,14 @@
       "loopMs": 0,
       "source": "sources/generated/hug-v4.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 4,
       "note": "毛布の記号を撤回。頭・首・肩・胴と支える両腕がつながった抱っこを再制作。顔は見せない。",
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "hug-arms",
@@ -2192,8 +2279,8 @@
       "poster": "posters/hug-arms.webp",
       "loopMs": 2988,
       "source": "sources/generated/hug-v4.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 4,
       "note": "頭と胴を保ち、前腕・掌の周囲だけを局所的に動かす。毛布や画像全体の上下揺れは使わない。",
       "movingParts": [
@@ -2201,7 +2288,9 @@
         "lower supporting forearm"
       ],
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "dress-sleeves",
@@ -2216,8 +2305,8 @@
         "sources/generated/dress-v4.png",
         "sources/generated/shirt-v4.png"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 4,
       "note": "頭・首・肩・胴を含む上半身。手全体を衣服の後ろから袖の軸に沿って出し、指を水平マスクで切断しない。",
       "movingParts": [
@@ -2225,7 +2314,9 @@
         "right complete arm through sleeve"
       ],
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "change-clothes",
@@ -2240,8 +2331,8 @@
         "sources/generated/dress-v4.png",
         "sources/generated/shirt-v4.png"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 4,
       "note": "裸の腹部への服の貼り付けを撤回。顔の見えない後ろ姿で、頭・首・肩・肌着・腕を連続させ、服を替える。",
       "movingParts": [
@@ -2250,7 +2341,9 @@
         "new shirt onto torso"
       ],
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "care-burp",
@@ -2262,8 +2355,8 @@
       "poster": "posters/care-burp.webp",
       "loopMs": 2988,
       "source": "sources/generated/burp-v4.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 4,
       "note": "腹部をさする旧版を却下。肩に頭を預けた縦抱きで背中に手を添える場面。NHSの頭・首を支える／背中への動作を参照。実際のげっぷの発生は描写しない。",
       "movingParts": [
@@ -2271,7 +2364,9 @@
         "connected forearm"
       ],
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "cup",
@@ -2284,12 +2379,14 @@
       "loopMs": 0,
       "source": "sources/generated/cup-v4.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 4,
       "note": "drink話題38セットのための物体候補。哺乳瓶と区別し、飲みたいかの質問には静止画を使う設計候補。割当は未実装。",
       "verification": "qa/validation.json",
-      "humanReview": "revision-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "hands-open-v2",
@@ -2302,12 +2399,14 @@
       "loopMs": 0,
       "source": "sources/generated/hand-r2.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 5,
       "note": "親指・母指球・掌・手首・袖口がつながる一枚の原画。静止画として保持。指を分割して曲げる旧動画はR3で撤回し、手振りは手全体の原画を使用。",
       "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "sleep",
@@ -2320,12 +2419,14 @@
       "loopMs": 0,
       "source": "sources/generated/crib-r2.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 5,
       "note": "枕・掛け布団・玩具のない、空のベビーベッドと平らなマットレス／フィットシーツ。赤ちゃんは描かない。",
       "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "wake-bed",
@@ -2341,12 +2442,14 @@
         "sources/generated/sun.png"
       ],
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 5,
       "note": "寝床内は平らなフィットシーツだけ。朝日の記号は寝床の外。本人が起きたことを直接示す絵ではない。",
       "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "wake-daylight",
@@ -2361,8 +2464,8 @@
         "sources/generated/crib-r2.png",
         "sources/generated/sun.png"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 5,
       "note": "wake-quiltを撤回した別案。枕・掛け布団なし。空の寝床と朝の記号だけで、実際に起きる動作は表さない。action.wakeへの採用は保留。",
       "movingParts": [
@@ -2370,7 +2473,9 @@
       ],
       "lossless": true,
       "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "kick",
@@ -2382,8 +2487,8 @@
       "poster": "posters/kick.webp",
       "loopMs": 3486,
       "source": "sources/generated/foot.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 5,
       "note": "内向きの親指を維持。26度・42フレーム・3.486秒。半周期ごとに片足だけ動き、左右同時の鏡像運動をやめた。220px実再生で目視審査。",
       "movingParts": [
@@ -2392,7 +2497,9 @@
       ],
       "lossless": false,
       "verification": "qa/validation.json",
-      "humanReview": "R2-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "hold-hands",
@@ -2405,12 +2512,14 @@
       "loopMs": 0,
       "source": "sources/generated/hold-r3.png",
       "origin": "generated",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 6,
       "note": "大人の中指が最も長い通常の開いた手を基準に再制作。子の手は左から近づき、人差し指を外側から包む。無理に指先を突き出さない静止画。人体・接触の自然さは目視採用審査待ち。",
       "verification": "qa/validation.json",
-      "humanReview": "R3-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "hand-wave",
@@ -2422,8 +2531,8 @@
       "poster": "posters/hand-wave.webp",
       "loopMs": 3486,
       "source": "sources/generated/hand-r2.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 6,
       "note": "親指・4本の指・掌・手首がつながる一枚の原画を、手首を支点に左右22度振る。指を分割・屈伸しない。握る・数える・タップへの意味の流用はしない。",
       "movingParts": [
@@ -2431,7 +2540,9 @@
       ],
       "lossless": false,
       "verification": "qa/validation.json",
-      "humanReview": "R3-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     },
     {
       "id": "cup-sip",
@@ -2443,8 +2554,8 @@
       "poster": "posters/cup-sip.webp",
       "loopMs": 3486,
       "source": "sources/generated/cup-empty-r3.png",
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "productionPass": 6,
       "note": "drinkの38行を参考に、哺乳瓶とは別の飲み方の候補を追加。コップが傾く間も液面は水平、見える液体量を減らして戻すループ。口・人物は描かない。飲み終えた結果の再現ではなく繰り返し用。",
       "movingParts": [
@@ -2453,7 +2564,9 @@
       ],
       "lossless": false,
       "verification": "qa/validation.json",
-      "humanReview": "R3-candidate-not-approved"
+      "humanReview": "user-approved",
+      "approvedDate": "2026-10-19",
+      "approvalRecord": "approval-20261019.json"
     }
   ],
   "concepts": [
@@ -2463,9 +2576,9 @@
       "assetIds": [
         "bath"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.milk",
@@ -2473,9 +2586,9 @@
       "assetIds": [
         "milk"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.care",
@@ -2486,9 +2599,9 @@
         "diaper-v2",
         "clothes-open-v2"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.hands",
@@ -2498,9 +2611,9 @@
         "hands-open-v2",
         "hold-hands"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.feet",
@@ -2508,9 +2621,9 @@
       "assetIds": [
         "feet"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.book",
@@ -2518,9 +2631,9 @@
       "assetIds": [
         "book"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.toy",
@@ -2528,9 +2641,9 @@
       "assetIds": [
         "toy"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.outdoor",
@@ -2538,9 +2651,9 @@
       "assetIds": [
         "outdoor"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.weather",
@@ -2549,9 +2662,9 @@
         "sun",
         "rain"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.meal",
@@ -2559,9 +2672,9 @@
       "assetIds": [
         "meal"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.tummy",
@@ -2569,9 +2682,9 @@
       "assetIds": [
         "tummy"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "年齢を特定しないおなかの部分図。採用審査待ち。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "年齢を特定しないおなかの部分図。素材は利用者が採用済み。"
     },
     {
       "primitive": "scene.music",
@@ -2579,9 +2692,9 @@
       "assetIds": [
         "music"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.sleep",
@@ -2590,9 +2703,9 @@
         "sleep",
         "wake-bed"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "scene.family",
@@ -2600,9 +2713,9 @@
       "assetIds": [
         "family-care"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "養育者と子の頭・肩・胴・両腕がつながる抱っこへ再制作。採用審査待ち。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "養育者と子の頭・肩・胴・両腕がつながる抱っこへ再制作。素材は利用者が採用済み。"
     },
     {
       "primitive": "motion.sip",
@@ -2611,9 +2724,9 @@
         "sip",
         "cup-sip"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "motion.water",
@@ -2623,9 +2736,9 @@
         "water-shower",
         "water-splash"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "motion.hand",
@@ -2634,8 +2747,8 @@
         "hand-clap",
         "hand-wave"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "reason": "拍手・手振りを候補として維持。握る・開閉・数える・指の独立動作・ブロックタップはR3で撤回。"
     },
     {
@@ -2644,9 +2757,9 @@
       "assetIds": [
         "kick"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "motion.page",
@@ -2654,9 +2767,9 @@
       "assetIds": [
         "page"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "motion.change",
@@ -2671,9 +2784,9 @@
         "care-burp",
         "wake-daylight"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "上半身が連続する着替え、整合する寝具、背中へのケアへ修正。採用審査待ち。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "上半身が連続する着替え、整合する寝具、背中へのケアへ修正。素材は利用者が採用済み。"
     },
     {
       "primitive": "motion.hug",
@@ -2681,8 +2794,8 @@
       "assetIds": [
         "hug-arms"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
+      "status": "accepted",
+      "readiness": "accepted",
       "reason": "養育者が子を支える場面の前腕と掌を動かす。旧毛布表現は撤回。"
     },
     {
@@ -2691,9 +2804,9 @@
       "assetIds": [
         "peekaboo"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "motion.spoon",
@@ -2701,9 +2814,9 @@
       "assetIds": [
         "spoon"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "motion.notes",
@@ -2711,9 +2824,9 @@
       "assetIds": [
         "notes"
       ],
-      "status": "needs-review",
-      "readiness": "candidate",
-      "reason": "採用審査前。詳細と意味の審査範囲はcueCoverageを参照。"
+      "status": "accepted",
+      "readiness": "accepted",
+      "reason": "素材は利用者が採用済み。詳細と意味の審査範囲はcueCoverageを参照。"
     },
     {
       "primitive": "emma.neutral",
@@ -2811,7 +2924,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.count",
@@ -2850,7 +2963,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.hug",
@@ -2876,7 +2989,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.open-close",
@@ -2900,7 +3013,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "玩具を布で隠すvariant。人物のいない部分図として採用審査待ち。"
+      "reason": "玩具を布で隠すvariant。人物のいない部分図として素材は利用者が採用済み。"
     },
     {
       "cueId": "action.read",
@@ -2913,7 +3026,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.sing",
@@ -2926,7 +3039,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.sip",
@@ -2940,7 +3053,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.sleep",
@@ -2953,7 +3066,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.splash",
@@ -2966,7 +3079,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.squeeze",
@@ -3001,7 +3114,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.wake",
@@ -3027,7 +3140,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.wave",
@@ -3040,7 +3153,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "action.wiggle",
@@ -3286,7 +3399,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.book",
@@ -3298,7 +3411,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.clothes",
@@ -3310,7 +3423,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.diaper",
@@ -3322,7 +3435,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.drink",
@@ -3346,7 +3459,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.food",
@@ -3358,7 +3471,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.hands",
@@ -3370,7 +3483,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.milk",
@@ -3382,7 +3495,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.music",
@@ -3394,7 +3507,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.outside",
@@ -3406,7 +3519,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.rain",
@@ -3419,7 +3532,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.sun",
@@ -3431,7 +3544,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.toy",
@@ -3443,7 +3556,7 @@
       ],
       "status": "needs-review",
       "readiness": "candidate",
-      "reason": "素材候補の審査待ち。914英文の割当品質を保証しない。"
+      "reason": "素材は利用者が採用済み。914英文の割当品質を保証しない。"
     },
     {
       "cueId": "subject.tummy",
@@ -3456,6 +3569,71 @@
       "status": "needs-review",
       "readiness": "candidate",
       "reason": "年齢を特定しない身体部位。顔・全身は描かない。"
+    }
+  ],
+  "userApproval": {
+    "date": "2026-10-19",
+    "quote": "今まで作ってくれた分は採用にします",
+    "scope": "現行の静止22枚・動画21本、計43素材の採用。撤回した旧37版・未制作5 Cue・起床の意味対応・Emma状態・アプリ統合・914英文の個別割当は含めない。",
+    "record": "approval-20261019.json",
+    "acceptedAssetIds": [
+      "milk",
+      "book",
+      "hands",
+      "bath",
+      "diaper",
+      "toy",
+      "outdoor",
+      "sun",
+      "clothes",
+      "rain",
+      "meal",
+      "music",
+      "hand-clap",
+      "sip",
+      "water-rain",
+      "water-shower",
+      "water-splash",
+      "spoon",
+      "notes",
+      "peekaboo",
+      "care-wipe",
+      "diaper-v2",
+      "change-diaper-v2",
+      "clothes-open-v2",
+      "change-zipper",
+      "tummy",
+      "change-diaper-exchange",
+      "feet",
+      "page",
+      "family-care",
+      "hug-arms",
+      "dress-sleeves",
+      "change-clothes",
+      "care-burp",
+      "cup",
+      "hands-open-v2",
+      "sleep",
+      "wake-bed",
+      "wake-daylight",
+      "kick",
+      "hold-hands",
+      "hand-wave",
+      "cup-sip"
+    ]
+  },
+  "legacyStyleApprovals": [
+    {
+      "path": "artwork/sprite-drafts/hug_bear.webp",
+      "sha256": "c2f34b026e3b441d67b9554e21d5bbefedb27d3fb3b65e2c9e86ec3242a90600",
+      "status": "style-accepted",
+      "scope": "くま・月の絵柄は利用者が好意的に評価し採用方向。3ポーズ原画の動画化・技術完成を承認した扱いにはしない。"
+    },
+    {
+      "path": "artwork/sprite-drafts/sleep_moon.webp",
+      "sha256": "89add271614a724c7766a3e43f9a99a1e87daf8f623cca292dbe790c5660d94c",
+      "status": "style-accepted",
+      "scope": "くま・月の絵柄は利用者が好意的に評価し採用方向。3ポーズ原画の動画化・技術完成を承認した扱いにはしない。"
     }
   ]
 }

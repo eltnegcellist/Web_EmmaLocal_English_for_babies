@@ -163,7 +163,7 @@ if m.get('productionPass',0)>=4:
    blue=(a[:,:,2]>a[:,:,0]+35)&(a[:,:,3]>100);roi=np.zeros_like(blue);roi[184:423,140:372]=True;outside.append(int((blue&~roi).sum()));tops.append(int(np.where(blue)[0].min()))
   invariants.append(dict(name='quilt-stays-on-mattress-inside-wood-frame',pass_=max(outside)<30 and max(tops)-min(tops)>85,maxBluePixelsOutsideMattress=max(outside),blueTopRange=[min(tops),max(tops)]))
  for kind,total in [('illustration',14),('animation',10)]:
-  cs=[c for c in m['concepts'] if c['kind']==kind];invariants.append(dict(name=f'all-{total}-{kind}-concepts-have-candidates',pass_=len(cs)==total and all(c['readiness']=='candidate' for c in cs)))
+  cs=[c for c in m['concepts'] if c['kind']==kind];invariants.append(dict(name=f'all-{total}-{kind}-concepts-have-candidates',pass_=len(cs)==total and all(c['readiness'] in ['candidate','accepted'] for c in cs)))
  invariants.append(dict(name='rejected-user-review-versions-excluded-from-active-gallery',pass_=sum(a.get('reviewBatch')=='2026-10-18' and a['status']=='rejected' for a in m['archivedAssets'])==17 and not any(a['status']=='rejected' for a in m['assets'])))
  invariants.append(dict(name='corpus-scene-review-covers-all-914-sets',pass_=json.loads((OUT/'qa/usage-audit.json').read_text())['totalSets']==914 and len(m['commonAssetIds'])>15))
 
@@ -254,7 +254,16 @@ plan=json.loads((ROOT/'shared/visual-cue-asset-plan.json').read_text())
 assert {r['primitive'] for r in m['concepts']}=={r['id'] for r in plan['primitives']}
 assert {r['cueId'] for r in m['cueCoverage']}=={r['cueId'] for r in plan['bindings']}
 assert len(m['concepts'])==31 and len(m['cueCoverage'])==58
-assert not any(r['status']=='accepted' for r in m['assets'])
+# Adoption must come from the explicit user record, never from technical PASS.
+approval_path=OUT/'approval-20261019.json'
+if any(r['status']=='accepted' for r in m['assets']):
+ approval=json.loads(approval_path.read_text());assert approval['authority']=='direct-user-message'
+ for asset in m['assets']:
+  if asset['status']!='accepted':continue
+  approved=next(r for r in approval['assets'] if r['id']==asset['id'])
+  assert asset['readiness']=='accepted' and asset['approvedDate']==approval['date']
+  for field,f in approved['files'].items():assert asset[field]==f['path'] and hashlib.sha256((OUT/f['path']).read_bytes()).hexdigest()==f['sha256']
+ assert not any(a['status']=='accepted' for a in m['archivedAssets'])
 assert all('superseded' not in str(r['source']) and 'motion-drafts' not in str(r['source']) for r in m['assets'])
 # Compare masked cream pixels in bowl and loaded spoon; validate source color, not thumbnail background.
 meal=np.asarray(Image.open(OUT/'sources/generated/meal-layers.png').convert('RGBA'));h,w=meal.shape[:2]

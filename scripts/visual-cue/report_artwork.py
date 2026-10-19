@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw
 ROOT=Path(__file__).resolve().parents[2];OUT=ROOT/'assets/visual-cue/artwork'
 m=json.loads((OUT/'manifest.json').read_text());q=json.loads((OUT/'qa/validation.json').read_text());old=json.loads((OUT/'reference/manifest.json').read_text())
 labels={'approved-design-direction':'承認済み（絵柄方向）','design-direction-accepted':'方向性承認済み','design-draft-needs-review':'未完成・候補','redesign-required':'再制作必要','rejected-color':'却下','experimental-not-approved':'未完成・試作'}
-lines=['# Visual Cue 素材棚卸しと制作対応表','',f'基準main: `{m["baseCommit"]}`。ZIP SHA256: `{m["handoffSHA256"]}`。','新規採用承認は0件。候補と未完成を区別し、914英文の意味品質・割当を保証しない。','','## 既存19点','', '| 素材 | 分類 | 備考 |','| --- | --- | --- |']
+lines=['# Visual Cue 素材棚卸しと制作対応表','',f'基準main: `{m["baseCommit"]}`。ZIP SHA256: `{m["handoffSHA256"]}`。',m['approval'],'','## 既存19点','', '| 素材 | 分類 | 備考 |','| --- | --- | --- |']
 for a in old['assets']:lines.append(f'| {a["path"]} | {labels[a["status"]]} | {a["note"]} |')
 lines+=['','## 31コンセプト（14イラスト / 10動作 / 7 Emma状態）','','| Primitive | 状態 | 制作物・残課題 |','| --- | --- | --- |']
 for c in m['concepts']:lines.append(f'| {c["primitive"]} | {c["readiness"]} | {", ".join(c["assetIds"])} {c["reason"]} |')
@@ -16,7 +16,7 @@ for a,r in zip(m['assets'],q['results']):lines.append(f'| {a["id"]} | {a["readin
 (OUT/'COVERAGE.md').write_text('\n'.join(lines)+'\n')
 with (OUT/'inventory.csv').open('w') as f:
  w=csv.writer(f,lineterminator="\n");w.writerow(['path','classification','original_status','note']);w.writerows([a['path'],labels[a['status']],a['status'],a['note']] for a in old['assets'])
-summary=dict(stills=sum(a['kind']=='illustration' for a in m['assets']),loops=sum(a['kind']=='animation' for a in m['assets']),readiness=dict(collections.Counter(a['readiness'] for a in m['assets'])),coveredIllustrationConcepts=sum(c['kind']=='illustration' and bool(c['assetIds']) for c in m['concepts']),animationConceptsWithArtifacts=sum(c['kind']=='animation' and bool(c['assetIds']) for c in m['concepts']),cueReadiness=dict(collections.Counter(c['readiness'] for c in m['cueCoverage'])),animationConceptsWithCandidates=sum(c['kind']=='animation' and c['readiness']=='candidate' for c in m['concepts']),newAccepted=0,technicalPass=q['technicalPassCount'],technicalTotal=q['assetCount'],sizeExceptions=[r['id'] for r in q['results'] if r['bytes']>r['sizeTargetBytes']])
+summary=dict(stills=sum(a['kind']=='illustration' for a in m['assets']),loops=sum(a['kind']=='animation' for a in m['assets']),readiness=dict(collections.Counter(a['readiness'] for a in m['assets'])),coveredIllustrationConcepts=sum(c['kind']=='illustration' and bool(c['assetIds']) for c in m['concepts']),animationConceptsWithArtifacts=sum(c['kind']=='animation' and bool(c['assetIds']) for c in m['concepts']),cueReadiness=dict(collections.Counter(c['readiness'] for c in m['cueCoverage'])),animationConceptsWithCandidates=sum(c['kind']=='animation' and c['readiness'] in ['candidate','accepted'] for c in m['concepts']),newAccepted=sum(a['status']=='accepted' for a in m['assets']),technicalPass=q['technicalPassCount'],technicalTotal=q['assetCount'],sizeExceptions=[r['id'] for r in q['results'] if r['bytes']>r['sizeTargetBytes']])
 (OUT/'qa/summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n');print(json.dumps(summary,ensure_ascii=False,indent=2))
 
 for pass_id,filename in [(2,'additional-keyframes.jpg'),(3,'final-keyframes.jpg'),(4,'revision-keyframes-20261018.jpg'),(5,'review-r2-keyframes.jpg'),(6,'review-r3-keyframes.jpg')]:

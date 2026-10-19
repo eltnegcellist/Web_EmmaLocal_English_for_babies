@@ -1,5 +1,5 @@
 {
-  "url": "file:///Users/itohidetaka/Documents/Codex/2026-10-17-eltnegcellist-web-emmalocal-english-for-babies/assets/visual-cue/artwork/preview-offline.html?filter=new#hold-hands",
+  "url": "file:///Users/itohidetaka/Documents/Codex/2026-10-17-eltnegcellist-web-emmalocal-english-for-babies/assets/visual-cue/artwork/preview-offline.html?filter=accepted",
   "browser": "155.0.8059.80",
   "checks": [
     {
@@ -124,6 +124,14 @@
     },
     {
       "name": "human-feedback-and-usage-audit-visible",
+      "pass": true
+    },
+    {
+      "name": "explicit-user-adoption-filter-and-badges",
+      "pass": true
+    },
+    {
+      "name": "legacy-style-preferences-separate-from-finished-motion",
       "pass": true
     }
   ],

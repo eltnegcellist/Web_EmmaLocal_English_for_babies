@@ -302,7 +302,7 @@ for p in plan['primitives']:
         reuse={'emma.neutral':('assets/emma-face/emma-face-idle-open.svg','待機表情は再利用候補。'), 'emma.calm':('assets/emma-face/emma-face-idle-closed.svg','目閉じは既存。安心・落ち着きの意味一致は要審査。')}
         f,reason=reuse.get(p['id'],(None,'既存の待機・発話・まばたきSVGのみでは状態固有の意味を保証できない。専用表情が必要で、今回の流用評価では不可（新表情制作は対象外）。'))
         concepts.append(dict(primitive=p['id'],kind=p['kind'],assetIds=[],status='needs-review',readiness='evaluation-complete',reuseAssessment='conditional' if f else 'unavailable',existingFile=f,reason=reason))
-    else:concepts.append(dict(primitive=p['id'],kind=p['kind'],assetIds=ids,status='needs-review',readiness=('candidate' if any(a['id'] in ids and a['readiness']=='candidate' for a in assets) else 'draft') if ids else 'missing',reason=missing.get(p['id'],'採用審査前。詳細と意味の審査範囲はcueCoverageを参照。')))
+    else:concepts.append(dict(primitive=p['id'],kind=p['kind'],assetIds=ids,status='needs-review',readiness=('candidate' if any(a['id'] in ids and a['readiness'] in ['candidate','accepted'] for a in assets) else 'draft') if ids else 'missing',reason=missing.get(p['id'],'採用審査前。詳細と意味の審査範囲はcueCoverageを参照。')))
 
 cueFiles={
 'action.open-close':[],'action.count':[],'action.wiggle':[],'action.squeeze':[],'action.tap':[],'action.wipe':['care-wipe'],'action.dress':['change-clothes','dress-sleeves','change-zipper'],'action.clap':['hand-clap'],'action.wave':['hand-wave'],'action.kick':['kick'],'action.read':['page'],'action.turn-page':['page'],
@@ -316,7 +316,7 @@ unmade={
 coverage=[]
 for b in plan['bindings']:
     ids=cueFiles.get(b['cueId'],[])
-    ready='candidate' if ids and all(next(x for x in assets if x['id']==i)['readiness']=='candidate' for i in ids) else 'draft' if ids else 'missing'
+    ready='candidate' if ids and all(next(x for x in assets if x['id']==i)['readiness'] in ['candidate','accepted'] for i in ids) else 'draft' if ids else 'missing'
     reason=unmade.get(b['cueId'],'Emma状態の評価のみ。アプリ統合・意味承認は未実施。' if not ids else '素材候補の審査待ち。914英文の割当品質を保証しない。')
     if ids and b['cueId'] in unmade:reason=next(a for a in assets if a['id']==ids[0]).get('note') or '追加制作した動作variant。採用審査待ち。'
     if not ids and all(p.startswith('emma.') for p in b['primitives']):ready='evaluation-complete';reason='既存Emma表情の流用可否を評価済み。新表情の制作・統合は対象外。意味の採用承認は別工程。'
@@ -329,6 +329,8 @@ commonIds=['cup-sip','milk','cup','diaper-v2','clothes','family-care','sleep','w
 usage=json.loads((OUT/'qa/usage-audit.json').read_text())
 feedback=json.loads((OUT/'qa/revision-feedback.json').read_text())
 manifest=dict(schemaVersion=1,nonRuntime=True,baseCommit='03a5bcc',latestMainInspected='b2536ab',productionPass=6,proposedConcepts=[dict(primitive='scene.drink',kind='illustration',assetIds=['cup'],readiness='proposal',reason='飲み物を哺乳瓶と区別する追加設計案。元計画31コンセプトは変更しない。')],commonAssetIds=commonIds,scenePriorities=usage['scenes'],usageMethod=usage['method'],limitedVariants=[r for r in usage['limitedVariants'] if r['assetId'] in {a['id'] for a in assets}],reviewFeedback=feedback,archivedAssets=archived,approval='採用候補の審査用。新規acceptedは0件。914英文割当とは別工程。',handoffSHA256=EXPECTED,assets=assets,concepts=concepts,cueCoverage=coverage)
+from apply_approval import apply_approval
+apply_approval(manifest,OUT)
 (OUT/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
 (OUT/'qa/motion-traces.json').write_text(json.dumps(rigs,ensure_ascii=False,indent=2)+'\n')
-print(f'Built {sum(x["kind"]=="illustration" for x in assets)} stills, {sum(x["kind"]=="animation" for x in assets)} loops; {len(concepts)} concepts / {len(coverage)} Cues. Approval remains pending.')
+print(f'Built {sum(x["kind"]=="illustration" for x in assets)} stills, {sum(x["kind"]=="animation" for x in assets)} loops; {len(concepts)} concepts / {len(coverage)} Cues. Approval follows the explicit user record and exact media hashes.')
