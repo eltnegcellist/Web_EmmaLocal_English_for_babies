@@ -441,22 +441,24 @@ function bindEvents() {
   });
   ui.tutorialSkipButton?.addEventListener('click',finishTutorial);
   ui.tutorialPrimaryButton?.addEventListener('click',async()=>{
-    if(tutorialStep!==0) return;
+    if(tutorialStep!==0 || tutorialIntroPlayed)return;
     unlockPlaybackAudioFromGesture();
-    if(!tutorialIntroPlayed){
-      ui.tutorialPrimaryButton.disabled=true;
-      try{
-        await ensureWorkersForDebug();
-        await speakResponse("Hi, I'm Emma.");
+    ui.tutorialPrimaryButton.disabled=true;
+    try{
+      await ensureWorkersForDebug();
+      // speakResponse resolves after actual audio playback, not when generation starts.
+      const played=await speakResponse("Hi, I'm Emma.");
+      if(played && tutorialStep===0){
         tutorialIntroPlayed=true;
-      }finally{
-        ui.tutorialPrimaryButton.disabled=false;
-        renderTutorial();
+        tutorialStep=1;
       }
-      return;
+    }catch(error){
+      // Keep step 1 visible so the user can retry if playback failed.
+      console.error('Tutorial self-introduction failed',error);
+    }finally{
+      ui.tutorialPrimaryButton.disabled=false;
+      renderTutorial();
     }
-    tutorialStep=1;
-    renderTutorial();
   });
   window.addEventListener('resize',()=>{ if(tutorialStep!==null) scheduleTutorialSpotlightSync(); });
   window.addEventListener('scroll',()=>{ if(tutorialStep!==null) scheduleTutorialSpotlightSync(); },{passive:true});
@@ -1463,6 +1465,7 @@ async function speakResponse(text,{entry=null,revision=null}={}) {
   if(!valid())return;
   if(running)setState('listening','AIが聞いています','いつもどおり日本語で赤ちゃんへ話しかけてください。');
   else setState('idle','Emmaはおやすみ中','大きな「呼びかけを始める」から会話を再開できます。');
+  return startedPlayback && queue.next>0;
 }
 
 function enqueueAudio(m) {
@@ -1692,10 +1695,8 @@ function renderTutorial(){
   ui.tutorialPrimaryButton.classList.add('hidden');
   if(tutorialStep===0){
     ui.tutorialTitle.textContent=`${name}と会おう`;
-    ui.tutorialBody.textContent=tutorialIntroPlayed
-      ? `${name}の自己紹介が終わりました。明るく表示されている顔が、赤ちゃんへ英語で話しかけます。`
-      : `まず${name}の自己紹介を聞きます。Webではブラウザの音声再生制限があるため、下のボタンを一度押してください。`;
-    ui.tutorialPrimaryButton.textContent=tutorialIntroPlayed?'次へ':'自己紹介を聞く';
+    ui.tutorialBody.textContent=`まず${name}の自己紹介を聞きます。再生が終わると自動で次のステップに進みます。`;
+    ui.tutorialPrimaryButton.textContent='自己紹介を聞く';
     ui.tutorialPrimaryButton.classList.remove('hidden');
   }else if(tutorialStep===1){
     ui.tutorialTitle.textContent='ここから呼びかけを始めます';
