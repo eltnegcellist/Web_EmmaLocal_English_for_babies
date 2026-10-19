@@ -1,6 +1,6 @@
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
-['みつことば','Mitsukotoba','Mitsukotoba','Mitsukotoba','미츠코토바','มิตสึโคโตบะ'],
+['みつことば','Three Voices','Drei Stimmen','Trois voix','세 목소리','สามเสียง'],
 ['モデル保存に失敗しました。空き容量を確認して再試行してください。','Model storage failed. Free some space and retry.','Modell konnte nicht gespeichert werden. Bitte Speicherplatz freigeben und erneut versuchen.','Impossible d’enregistrer les modèles. Libérez de l’espace et réessayez.','모델을 저장하지 못했어요. 저장 공간을 확보하고 다시 시도해 주세요.','บันทึกโมเดลไม่สำเร็จ โปรดเพิ่มพื้นที่ว่างแล้วลองอีกครั้ง'],
 ['みつことばの使い方','How Mitsukotoba works','So funktioniert Mitsukotoba','Comment utiliser Mitsukotoba','미츠코토바 사용 방법','วิธีใช้ Mitsukotoba'],
 ['みつことば — 親と赤ちゃんとAIの英語時間','Mitsukotoba — English time with your baby and Emma','Mitsukotoba — Englisch mit deinem Baby und Emma','Mitsukotoba — Un moment en anglais avec bébé et Emma','미츠코토바 — 아기·Emma와 함께하는 영어 시간','Mitsukotoba — ช่วงเวลาภาษาอังกฤษกับลูกน้อยและ Emma'],
@@ -299,6 +299,15 @@ const aliases={
  'オフの場合は、会話画面の「今すぐAIが返事する」を使えます。':'オフの場合は、会話画面の「今すぐAIが返事する」で返答を開始できます。',
 };
 for(const [source,target]of Object.entries(aliases)){const row=CATALOG.find(r=>r[0]===target);CATALOG.push([source,...row.slice(1)]);}
+// Product names convey the three-way parent–baby–AI conversation,
+// rather than transliterating the Japanese name into other languages.
+const LOCALIZED_PRODUCT_NAMES = {en:'Three Voices',de:'Drei Stimmen',
+  fr:'Trois voix',ko:'세 목소리',th:'สามเสียง'};
+for(const row of CATALOG) {
+  for(const [lang,index] of [['en',1],['de',2],['fr',3],['ko',4],['th',5]]) {
+    row[index]=row[index].replace(/Mitsukotoba|미츠코토바|มิตสึโคโตบะ/g,LOCALIZED_PRODUCT_NAMES[lang]);
+  }
+}
 export const LOCALE_INDEX={ja:0,en:1,de:2,fr:3,ko:4,th:5};
 const lookup=new Map(CATALOG.map(row=>[row[0],row]));
 export function translate(text,language='ja') {
