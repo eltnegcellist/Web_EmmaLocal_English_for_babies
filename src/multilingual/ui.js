@@ -37,9 +37,13 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
       }});
     }catch(error){
       console.error('Language preparation:',error);
-      const storageFailure=/モデルを端末に保存できませんでした|QuotaExceeded|Unexpected internal error/i.test(String(error?.message));
-      setStatus(storageFailure?'モデル保存に失敗しました。空き容量を確認して再試行してください。':'モデルを準備できませんでした。再試行してください。');
-      status.title=String(error?.message||'');
+      const details=String(error?.message||'');
+      const storageFailure=/モデルを端末に保存できませんでした|QuotaExceeded|Unexpected internal error/i.test(details);
+      const isolationFailure=['このブラウザではMoonshineに必要なService Workerを利用できません。','Moonshineに必要なブラウザ分離を有効にできませんでした。通常のブラウザタブで開き直してください。']
+        .find(message=>details.includes(message));
+      setStatus(isolationFailure||
+        (storageFailure?'モデル保存に失敗しました。空き容量を確認して再試行してください。':'モデルを準備できませんでした。再試行してください。'));
+      status.title=language==='ja'?details:translate(isolationFailure||'モデルを準備できませんでした。再試行してください。',language);
     }
     finally{busy=false;selectors.forEach(s=>s.disabled=false);apply();}
   }
