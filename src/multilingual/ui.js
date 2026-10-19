@@ -22,7 +22,12 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     if(busy||!LANGUAGES.includes(next))return;busy=true;selectors.forEach(s=>s.disabled=true);
     try{
       await onChange(next,{commit:()=>{language=next;needsChoice=false;try{storage.setItem(LANGUAGE_KEY,next);}catch{}apply();}});
-    }catch(error){console.error('Language preparation:',error);setStatus('モデルを準備できませんでした。再試行してください。');}
+    }catch(error){
+      console.error('Language preparation:',error);
+      const storageFailure=/モデルを端末に保存できませんでした|QuotaExceeded|Unexpected internal error/i.test(String(error?.message));
+      setStatus(storageFailure?'モデル保存に失敗しました。空き容量を確認して再試行してください。':'モデルを準備できませんでした。再試行してください。');
+      status.title=String(error?.message||'');
+    }
     finally{busy=false;selectors.forEach(s=>s.disabled=false);apply();}
   }
   function picker(id){
