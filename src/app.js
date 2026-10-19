@@ -1793,13 +1793,13 @@ function showProgress(show,value=0,text='') {
   ui.progressWrap.classList.toggle('hidden',!show);
   ui.progressWrap.setAttribute('aria-hidden',String(!show));
   ui.progressBar.style.width=`${Math.max(0,Math.min(100,value))}%`;
-  ui.progressText.textContent=text;
+  ui.progressText.textContent=languageUI?.translate(text)??text;
 }
 
 function showOnboardingProgress(show,value=0,text='') {
   ui.onboardingProgress.classList.toggle('hidden',!show);
   ui.onboardingProgressBar.style.width=`${Math.max(0,Math.min(100,value))}%`;
-  ui.onboardingProgressText.textContent=text;
+  ui.onboardingProgressText.textContent=languageUI?.translate(text)??text;
 }
 
 function showConversation(parentText,emmaText,route='generic') {
