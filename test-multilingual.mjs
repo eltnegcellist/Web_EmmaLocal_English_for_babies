@@ -8,7 +8,15 @@ import{indexedDB as fakeIndexedDB}from'fake-indexeddb';
 import{MultilingualClient}from'./src/multilingual/client.js';
 import{selectRuriAxes}from'./src/interaction/ruri-routing.js';
 import{CATALOG,translate}from'./src/multilingual/translations.js';
+import{renderLocalizedAbout,ABOUT_LOCALES}from'./src/multilingual/about-page.js';
 assert(CATALOG.every(row=>row.length===6&&row.every(v=>typeof v==='string')));
+assert.equal(translate('選んだ声を端末に準備しています…','en'),'Preparing recorded audio on your device…');
+assert.equal(translate('みつことばの声を準備しています…','en'),'Preparing English audio…');
+assert.equal(translate('選んだ声を準備しています… 350/1202 (32.6 MB)','en'),'Preparing recorded audio… 350/1202 (32.6 MB)');
+assert(!translate('選んだ声を準備しています… 350/1202 (32.6 MB)','de').includes('選んだ声'));
+assert(!translate('選んだ声を準備しています… 350/1202 (32.6 MB)','ko').includes('選んだ声'));
+assert.equal(translate('選んだ声を準備しています… 350/1202 (32.6 MB)','ja'),'選んだ声を準備しています… 350/1202 (32.6 MB)');
+
 assert.match(translate('3件選択中','en'),/3 selected/);
 assert.match(translate('1 / 3　Emmaと会おう','en'),/Meet Emma/);
 assert.equal(translate('みつことば','en'),'Three Voices');
@@ -41,6 +49,21 @@ for(const lang of LANGUAGES){
  const ui=installLanguageUI({document:dom.window.document,storage:dom.window.localStorage,languages:[lang],onChange:async(_,o)=>o.commit()});
  const history=dom.window.document.createElement('p');history.className='history-japanese';history.textContent='親';dom.window.document.body.append(history);
  assert.equal(dom.window.document.documentElement.lang,lang);
+ const research=dom.window.document.querySelector('#aboutScreen .screen-content');
+ const localized=research.querySelector('.localized-about-content');
+ if(lang==='ja'){
+   assert.equal(localized,null,'The complete original Japanese page should remain visible');
+   assert(!research.querySelector('h1').hidden);
+ }else{
+   assert(localized,'A translated research page must be rendered');
+   assert.equal(localized.querySelectorAll('article.card').length,16,'8 research sections, example, limitations and 6 references');
+   assert.equal(localized.querySelectorAll('article.reference-card a[href]').length,6);
+   assert.equal(localized.querySelectorAll('.citation-link[href^="#localized-ref-"]').length>=4,true);
+   assert.equal(localized.querySelector('h1').textContent,ABOUT_LOCALES[lang].title);
+   assert.equal(localized.hidden,false);
+   assert.equal(research.querySelector('h1').hidden,true,'Do not show untranslated Japanese research');
+ }
+
  assert.equal(ui.mode,'auto','First visit must use the browser locale');
  assert.equal(dom.window.document.querySelectorAll('.language-picker select').length,3);
  assert.equal(dom.window.document.querySelector('#onboardingLanguage').value,'auto');
@@ -50,6 +73,10 @@ for(const lang of LANGUAGES){
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_MODE_KEY),'auto');
  assert.equal(dom.window.document.querySelector('#prepareEmmaButton').disabled,false);
  await ui.choose('ko');assert.equal(dom.window.localStorage.getItem(LANGUAGE_KEY),'ko');
+ const korean=research.querySelector('.localized-about-content');
+ assert(korean && korean.querySelector('h1').textContent===ABOUT_LOCALES.ko.title);
+ assert.equal(korean.querySelectorAll('article.reference-card').length,6);
+
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_MODE_KEY),'manual');
  assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').textContent,'세 목소리');
  assert.equal(dom.window.document.querySelector('#homeScreen .home-brand h1').textContent,'세 목소리');
@@ -63,6 +90,9 @@ for(const lang of LANGUAGES){
  await ui.choose('ja');
  assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').textContent.replace(/\s/g,''),'みつことば');
  assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').children.length,5);
+ assert(research.querySelector('.localized-about-content').hidden,'Original Japanese research should be restored');
+ assert.equal(research.querySelector('h1').hidden,false);
+
  ui.dispose();dom.window.close();
 }
 assert(!html.includes('id="onboardingAiIntro"'),'Emma introduction should appear only in the tutorial');
