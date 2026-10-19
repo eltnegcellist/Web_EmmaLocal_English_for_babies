@@ -165,7 +165,7 @@ function initVisualCues(){
   const mode=$('visualCueMode'),motion=$('visualCueMotion');
   if(!mode||!motion)return;
   try{mode.value=localStorage.getItem('emma_visual_cue_mode')==='visual'?'visual':'emma';motion.checked=localStorage.getItem('emma_visual_motion')!=='false';}catch{}
-  import('./visual-cue-controller.js?v=20261019-bust-v2').then(({createVisualCueController})=>{
+  import('./visual-cue-controller.js?v=20261019-background-v3').then(({createVisualCueController})=>{
     visualCue=createVisualCueController();
     const configure=()=>{visualCue.configure({mode:mode.value,motion:motion.checked});try{localStorage.setItem('emma_visual_cue_mode',mode.value);localStorage.setItem('emma_visual_motion',String(motion.checked));}catch{}};
     mode.addEventListener('change',configure);motion.addEventListener('change',configure);configure();
@@ -1720,10 +1720,10 @@ function trimAudioSilence(buffer) {
 function setState(state,title,detail) {
   avatarVisualState=state;
   const cueVisible=ui.avatar.classList.contains('has-visual-cue');
-  const gestureVisible=ui.avatar.classList.contains('has-emma-gesture');
+  const backgroundVisible=ui.avatar.classList.contains('has-emma-background');
   ui.avatar.className=`avatar state-${state}`;
   if(cueVisible)ui.avatar.classList.add('has-visual-cue');
-  if(gestureVisible)ui.avatar.classList.add('has-emma-gesture');
+  if(backgroundVisible)ui.avatar.classList.add('has-emma-background');
   if(state==='error')visualCue.stop();
   renderAvatarFrame();
   ui.statusTitle.textContent=title;

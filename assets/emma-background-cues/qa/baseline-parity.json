@@ -1,0 +1,21 @@
+{
+  "mainCommit": "b2536ab3febb070365bab43a4af5b8fca7220766",
+  "canonicalFrameCount": 12,
+  "frameSHA256": {
+    "emma-face-talk-large-closed.svg": "aec87749d220ad300c762c79ca84971b47c6369aede3fe4adf3ffaf692e4697a",
+    "emma-face-talk-small-half.svg": "75fcadf5ac815586012fe31ed860abf28a5fc44bc9f6e54d26b4c916f626d9c5",
+    "emma-face-talk-small-closed.svg": "00d024e2d166f8ebd8b15627628a39ab9388571c9acf6c197b07b9ecf475ef74",
+    "emma-face-talk-medium-closed.svg": "20ce1cfec072cd486db96086066fb57eca6875f5bb24cb30207a8cb7b70f5497",
+    "emma-face-idle-closed.svg": "73a87090dc9f84efb61b3794061a73db560c5a703bba4dce9802b68f40691819",
+    "emma-face-talk-medium-half.svg": "649eae562400303a30e1d18ae8e52c1c97be67de7477a21d6d138d9afa9777cd",
+    "emma-face-idle-half.svg": "43dfa7efd9b0fe3d0b9a271dca7d3c4e60894e145f9606c8a0245e8d84c0891a",
+    "emma-face-talk-large-half.svg": "82bfecd071ac777701ed50a0583bc30a175d31559e993e12452cfe1866a8f8ea",
+    "emma-face-talk-large.svg": "3dc0add8806460c3de39b1560c3b27e9e0325f5b7bbdb5073064cc9cfbe32d93",
+    "emma-face-idle-open.svg": "2e82d8a84c4740a21ddfdf3c7c416b2a547908ded86b8618bd1c50534ae734b0",
+    "emma-face-talk-medium.svg": "200656436e07643be74136a284af9c11f01658dd9a8dc4c89c50703df93035ec",
+    "emma-face-talk-small.svg": "f94a3f168624a4104ed21cd4b7b24189957b1cd06fb42922c8571eddacab4a27"
+  },
+  "frameSelectionBlinkCodeSHA256": "2132f9e490fa5424897c97e855acdd60ed639732de6a06b90dc623cd94dbb1ee",
+  "matchesMain": true,
+  "semanticApproval": false
+}

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {selectEmmaFrame,mouthLevelFromSamples} from './src/emma-preview-motion.js';
 import { readFileSync, readdirSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './src/emma-color-palettes.js';
@@ -150,3 +151,10 @@ for(const state of ['idle','speaking']) for(const blink of ['open','half','close
   assert.equal(visible[0].dataset.avatarFrame,expected);
 }
 console.log('Avatar: 12 inline frames, palette defaults/selections/time shift, outlines, and mouth/blink combinations OK');
+
+for(const state of ['idle','speaking','understood'])for(const blink of ['open','half','closed'])for(const mouth of ['small','medium','large']){
+ Object.assign(context,{avatarVisualState:state,avatarBlinkFrame:blink,avatarMouthLevel:mouth});
+ assert.equal(selectEmmaFrame(state,blink,mouth),runInNewContext('avatarFrameName()',context),'preview uses the same existing main face selection');
+}
+for(const [sample,level] of [[128,'small'],[134,'medium'],[150,'large']])assert.equal(mouthLevelFromSamples(new Uint8Array(128).fill(sample)),level);
+console.log('Preview/main face selection parity and audio RMS thresholds: OK');

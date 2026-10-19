@@ -11,7 +11,7 @@ examples=[]
 for kind,key in targets:
  candidates=[r for r in rows if r['binding']['type']==kind and r['binding'].get('state' if kind=='emma' else 'assetId')==key and norm(r['text']) in voices]
  if not candidates:continue
- r=min(candidates,key=lambda r:len(r['text']));v=voices[norm(r['text'])]
+ r=next(r for r in candidates if r['text']=="It's okay, sweetheart. I'm here to listen. We have time.") if key=='calm' else min(candidates,key=lambda r:len(r['text']));v=voices[norm(r['text'])]
  examples.append(dict(label=('Emma / ' if kind=='emma' else '')+key,text=r['text'],audio='assets/voice-1202/'+v['file'],phraseId=r['phraseId']))
 (R/'shared/visual-cue-ui-examples.json').write_text(json.dumps(examples,ensure_ascii=False,indent=2)+'\n')
 print('Voice-backed examples:',len(examples))

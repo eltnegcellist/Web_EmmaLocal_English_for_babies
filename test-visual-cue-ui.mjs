@@ -4,11 +4,12 @@ import {JSDOM} from 'jsdom';
 import {VISUAL_CUE_CATALOG as catalog} from './src/visual-cue-catalog.js';
 import {createVisualCueController,resolveVisualCue} from './src/visual-cue-controller.js';
 const art=JSON.parse(readFileSync('assets/visual-cue/artwork/manifest.json'));
-for(const state of ['neutral','smile','calm','celebrate','listen','ask','invite'])for(const suffix of ['', '-poster']){
- const svg=new JSDOM(readFileSync(`assets/emma-gestures/${state}${suffix}.svg`,'utf8'),{contentType:'image/svg+xml'}).window.document;
- assert.equal(svg.documentElement.dataset.emmaFraming,'bust');assert.equal(svg.querySelector('[data-emma-head-geometry]').getAttribute('transform'),'scale(.5)');
+const oldGestures=JSON.parse(readFileSync('assets/emma-gestures/manifest.json'));
+assert(oldGestures.states.every(s=>s.status==='withdrawn'));
+for(const state of ['calm','celebrate'])for(const suffix of ['', '-poster']){
+ const svg=new JSDOM(readFileSync(`assets/emma-background-cues/${state}${suffix}.svg`,'utf8'),{contentType:'image/svg+xml'}).window.document;
+ assert.equal(svg.documentElement.dataset.emmaBackdrop,state);assert(!svg.querySelector('[data-emma-gesture]'));
 }
-
 for(const a of Object.values(catalog.assets)){
  assert.equal(art.assets.find(x=>x.id===a.id).status,'accepted');assert(existsSync(a.image));assert(existsSync(a.poster));
 }
@@ -40,12 +41,16 @@ controller.configure({mode:'visual'});assert.equal(pending.length,1);
 controller.stop();pending.shift().resolve();await settle();assert(hosts.every(h=>h.hidden),'stop invalidates a pending image');
 token=controller.begin(assetText);pending.shift().reject(Error('missing'));await settle();assert(hosts.every(h=>h.hidden),'broken image falls back');
 token=controller.begin(assetText);pending.shift().resolve();await settle();assert(hosts.every(h=>!h.hidden&&h.querySelector('img')),'home and cloned play avatar both render');
-const oldToken=token;token=controller.begin("All done? Is that everything? Let's have a look.");await settle();controller.end(oldToken);assert(hosts.every(h=>h.querySelector('[data-emma-gesture="ask"]')),'stale ending cannot clear a newer clip');
+const calmText=rows.find(r=>r.binding.state==='calm').text;
+const oldToken=token;token=controller.begin(calmText);await settle();controller.end(oldToken);assert(hosts.every(h=>h.querySelector('[data-emma-backdrop="calm"]')),'stale ending cannot clear a newer clip');
+const paintIds=hosts.flatMap(h=>[...h.querySelectorAll('[id]')].map(n=>n.id));assert.equal(new Set(paintIds).size,paintIds.length,'background paint IDs are unique across home/play');
+assert(hosts.every(h=>!h.closest('.avatar').classList.contains('has-visual-cue')&&h.closest('.avatar').classList.contains('has-emma-background')),'background never hides canonical Emma');
 controller.configure({mode:'visual',motion:false});await settle();assert(hosts.every(h=>h.querySelector('svg').dataset.motion==='off'));
-assert(hosts.every(h=>h.closest('.avatar').dataset.visualMotion==='off'));
+assert(hosts.every(h=>!h.closest('.avatar').hasAttribute('data-visual-motion')),'background motion setting never overrides canonical Emma');
 controller.end(token);assert(hosts.every(h=>!h.closest('.avatar').hasAttribute('data-visual-motion')));assert(hosts.every(h=>h.hidden),'settings change preserves the audio token for end');
 controller.configure({mode:'visual',motion:true});media.matches=true;media.listener();token=controller.begin(assetText);assert(pending.at(-1).url.includes('/posters/'));pending.shift().resolve();await settle();
 document.hidden=true;document.dispatchEvent(new dom.window.Event('visibilitychange'));assert(hosts.every(h=>h.hidden));document.hidden=false;media.listener();await settle();assert(hosts.every(h=>h.hidden),'returning to the tab does not restart stale animation');
+for(const state of ['neutral','smile','listen','ask','invite']){controller.begin(rows.find(r=>r.binding.state===state).text);await settle();assert(hosts.every(h=>h.hidden),state+' keeps baseline Emma');}
 controller.begin('unknown');await settle();assert(hosts.every(h=>h.hidden));
 controller.dispose();
 console.log('Visual Cue UI: approval holds, exact phrases, questions, unknown fallback, async cancellation, two avatar surfaces, settings, reduced motion and visibility PASS');

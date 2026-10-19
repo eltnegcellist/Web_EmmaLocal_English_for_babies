@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Bust-up gesture candidates; original Emma head/neck/chest geometry. No adoption implied.",
+  "scope": "Withdrawn: unclear hand gestures replaced main blinking/audio mouth. Historical assets only; no runtime use.",
   "states": [
     {
       "id": "emma.neutral",
@@ -9,7 +9,7 @@
       "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/neutral.svg",
       "poster": "assets/emma-gestures/neutral-poster.svg",
-      "status": "needs-review",
+      "status": "withdrawn",
       "movingParts": [
         "head at neck"
       ],
@@ -22,7 +22,7 @@
       "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/smile.svg",
       "poster": "assets/emma-gestures/smile-poster.svg",
-      "status": "needs-review",
+      "status": "withdrawn",
       "movingParts": [
         "head at neck"
       ],
@@ -35,7 +35,7 @@
       "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/calm.svg",
       "poster": "assets/emma-gestures/calm-poster.svg",
-      "status": "needs-review",
+      "status": "withdrawn",
       "movingParts": [
         "head at neck",
         "left arm at shoulder",
@@ -50,7 +50,7 @@
       "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/celebrate.svg",
       "poster": "assets/emma-gestures/celebrate-poster.svg",
-      "status": "needs-review",
+      "status": "withdrawn",
       "movingParts": [
         "head at neck",
         "left arm at shoulder",
@@ -65,7 +65,7 @@
       "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/listen.svg",
       "poster": "assets/emma-gestures/listen-poster.svg",
-      "status": "needs-review",
+      "status": "withdrawn",
       "movingParts": [
         "head at neck",
         "right arm at shoulder"
@@ -79,7 +79,7 @@
       "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/ask.svg",
       "poster": "assets/emma-gestures/ask-poster.svg",
-      "status": "needs-review",
+      "status": "withdrawn",
       "movingParts": [
         "head at neck",
         "left arm at shoulder",
@@ -94,7 +94,7 @@
       "framing": "bust-up, identical head scale and anchor to the existing avatar",
       "animation": "assets/emma-gestures/invite.svg",
       "poster": "assets/emma-gestures/invite-poster.svg",
-      "status": "needs-review",
+      "status": "withdrawn",
       "movingParts": [
         "head at neck",
         "right arm at shoulder"

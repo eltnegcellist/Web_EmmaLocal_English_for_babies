@@ -18,7 +18,7 @@ args.output.mkdir(parents=True, exist_ok=False)
 (args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"'))
 # Publish only the display-component demo, not the microphone/AI application.
 (args.output/'ui.html').write_bytes(committed('visual-cue-ui-preview.html'))
-files=['src/visual-cue-ui-preview.js','src/visual-cue-controller.js','src/visual-cue-catalog.js','src/emma-gestures.js','shared/visual-cue-ui-examples.json','assets/emma-face/emma-face-idle-open.svg']
+files=['src/visual-cue-ui-preview.js','src/visual-cue-controller.js','src/visual-cue-catalog.js','src/emma-background-cues.js','src/emma-preview-motion.js','shared/visual-cue-ui-examples.json',*['assets/emma-face/'+name for name in ['emma-face-idle-open.svg','emma-face-idle-half.svg','emma-face-idle-closed.svg']+['emma-face-talk-'+size+blink+'.svg' for size in ['small','medium','large'] for blink in ['', '-half','-closed']]]]
 for a in manifest['assets']:
  if a['status']=='accepted' and a['id']!='wake-daylight':
   files.extend('assets/visual-cue/artwork/'+a[k] for k in ['animation','illustration','poster'] if a.get(k))
@@ -34,7 +34,7 @@ metadata = dict(sourceRepository='eltnegcellist/Web_EmmaLocal_English_for_babies
                 artifactSHA256=hashlib.sha256((args.output / 'index.html').read_bytes()).hexdigest(),
                 stills=sum(a['kind'] == 'illustration' for a in manifest['assets']),
                 animations=sum(a['kind'] == 'animation' for a in manifest['assets']),
-                accepted=sum(a['status']=='accepted' for a in manifest['assets']), nonRuntime=True, uiPreview='ui.html', uiFileSHA256=ui_hashes, emmaGestureCandidates=7, applicationDeployed=False)
+                accepted=sum(a['status']=='accepted' for a in manifest['assets']), nonRuntime=True, uiPreview='ui.html', uiFileSHA256=ui_hashes, emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False)
 (args.output / 'deployment.json').write_text(json.dumps(metadata, indent=2) + '\n')
 (args.output / 'README.md').write_text('''# Visual Cue イラスト・動画プレビュー
 
@@ -42,7 +42,7 @@ metadata = dict(sourceRepository='eltnegcellist/Web_EmmaLocal_English_for_babies
 
 静止画と動作を比較する採用審査用ページです。制作元は
 [Web_EmmaLocal_English_for_babies / PR #107](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/107)。
-採用済み素材と旧版を区別するプレビューです。採用数はdeployment.jsonを参照してください。\n\n[音声付きUIプレビュー](https://eltnegcellist.github.io/visual-cue-artwork-preview/ui.html)では、実際の表示部品と採用済み録音音声で切替を確認できます。新しいEmmaの7身振りと英文割当は確認候補です。マイク・AIモデル・アプリ本体の公開は含みません。
+採用済み素材と旧版を区別するプレビューです。採用数はdeployment.jsonを参照してください。\n\n[音声付きUIプレビュー](https://eltnegcellist.github.io/visual-cue-artwork-preview/ui.html)では、実際の表示部品と採用済み録音音声で切替を確認できます。mainのまばたき・口パクを維持し、ハート・星を背景に出す2案を確認できます。7種類の差し替え身振りは撤回済みで、英文割当と背景の意味は確認候補です。マイク・AIモデル・アプリ本体の公開は含みません。
 
 公開元は `gh-pages` ブランチのルートです。`index.html` は動画を内包した単一HTMLで、
 GitHub Pagesでもローカルのファイルとしても閲覧できます。

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "avatar": "Existing main face, blinking and audio-driven mouth remain unchanged.",
+  "candidates": [
+    {
+      "id": "calm",
+      "label": "安心：ハート案",
+      "status": "candidate",
+      "meaningReview": "user-review-pending; hearts/stars are supplementary and do not assert a specific feeling",
+      "animation": "assets/emma-background-cues/calm.svg",
+      "poster": "assets/emma-background-cues/calm-poster.svg"
+    },
+    {
+      "id": "celebrate",
+      "label": "ほめる：星案",
+      "status": "candidate",
+      "meaningReview": "user-review-pending; hearts/stars are supplementary and do not assert a specific feeling",
+      "animation": "assets/emma-background-cues/celebrate.svg",
+      "poster": "assets/emma-background-cues/celebrate-poster.svg"
+    }
+  ],
+  "baselineOnlyStates": [
+    "neutral",
+    "smile",
+    "listen",
+    "ask",
+    "invite"
+  ]
+}

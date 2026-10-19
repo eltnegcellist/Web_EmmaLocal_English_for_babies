@@ -6,6 +6,9 @@ on:
       - 'scripts/visual-cue/**'
       - '.github/workflows/visual-cue-artwork.yml'
       - 'assets/emma-gestures/**'
+      - 'assets/emma-background-cues/**'
+      - 'src/emma-background-cues.js'
+      - 'src/emma-preview-motion.js'
       - 'src/visual-cue-*.js'
       - 'src/emma-gestures.js'
       - 'visual-cue-ui-preview.html'
@@ -49,6 +52,7 @@ jobs:
           name: visual-cue-raster-review
           path: |
             assets/emma-gestures/qa/
+            assets/emma-background-cues/qa/
             assets/visual-cue/artwork/qa/
             assets/visual-cue/artwork/preview.*
             assets/visual-cue/artwork/preview-offline.html
