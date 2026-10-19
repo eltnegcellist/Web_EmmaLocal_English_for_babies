@@ -11,6 +11,13 @@ import{CATALOG,translate}from'./src/multilingual/translations.js';
 assert(CATALOG.every(row=>row.length===6&&row.every(v=>typeof v==='string')));
 assert.match(translate('3件選択中','en'),/3 selected/);
 assert.match(translate('1 / 3　Emmaと会おう','en'),/Meet Emma/);
+assert.equal(translate('みつことば','en'),'Three Voices');
+assert.equal(translate('みつことば','de'),'Drei Stimmen');
+assert.equal(translate('みつことば','fr'),'Trois voix');
+assert.equal(translate('みつことば','ko'),'세 목소리');
+assert.equal(translate('みつことば','th'),'สามเสียง');
+assert(!translate('みつことばの使い方','en').includes('Mitsukotoba'));
+
 assert.deepEqual(resolveLanguage({saved:'ko',languages:['ja-JP']}),{language:'ko',needsChoice:false,source:'saved'});
 assert.equal(resolveLanguage({languages:['de-AT','en-US']}).language,'de');
 assert.equal(resolveLanguage({languages:['zh-CN'],region:'TH'}).language,'th');
@@ -32,9 +39,9 @@ for(const lang of LANGUAGES){
  assert.equal(dom.window.document.querySelectorAll('.language-picker select').length,3);
  assert.equal(dom.window.document.querySelector('#prepareEmmaButton').disabled,false);
  await ui.choose('ko');assert.equal(dom.window.localStorage.getItem(LANGUAGE_KEY),'ko');
- assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').textContent,'미츠코토바');
- assert.equal(dom.window.document.querySelector('#homeScreen .home-brand h1').textContent,'미츠코토바');
- assert.equal(dom.window.document.title,'미츠코토바 Web');
+ assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').textContent,'세 목소리');
+ assert.equal(dom.window.document.querySelector('#homeScreen .home-brand h1').textContent,'세 목소리');
+ assert.equal(dom.window.document.title,'세 목소리 Web');
  assert.equal(history.textContent,'親','Language changes must not translate the user’s original history text');
  assert.equal(dom.window.document.querySelector('#settingsLanguage').value,'ko');
  await ui.choose('ja');assert.match(dom.window.document.querySelector('.welcome-hero h1').textContent,/いつもの日本語/);
