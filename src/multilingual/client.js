@@ -2,7 +2,7 @@ export class MultilingualClient {
   constructor({workerFactory=()=>new Worker(new URL('./worker.js',import.meta.url),{type:'module'}),onStatus=()=>{}}={}) {
     this.workerFactory=workerFactory;this.onStatus=onStatus;this.worker=null;this.pending=new Map();this.seq=0;this.ready=false;this.preparing=null;this.generation=0;
   }
-  request(type,payload={},timeout=900000) {
+  request(type,payload={},timeout=900000,transfer=[]) {
     if(!this.worker){const worker=this.worker=this.workerFactory();worker.onmessage=({data})=>{
       if(worker!==this.worker)return;
       if(data.type==='progress'){this.onStatus(data);return;}
@@ -12,7 +12,7 @@ export class MultilingualClient {
     return new Promise((resolve,reject)=>{const requestId=++this.seq;
       const timer=setTimeout(()=>this.cancel('Model preparation timed out. Retry.'),timeout);
       this.pending.set(requestId,{resolve,reject,timer});
-      try{this.worker.postMessage({type,requestId,...payload});}catch(e){clearTimeout(timer);this.pending.delete(requestId);reject(e);}
+      try{this.worker.postMessage({type,requestId,...payload},transfer);}catch(e){clearTimeout(timer);this.pending.delete(requestId);reject(e);}
     });
   }
   prepare(){if(this.ready)return Promise.resolve();if(this.preparing)return this.preparing;
@@ -21,7 +21,13 @@ export class MultilingualClient {
     this.preparing=op;return op;
   }
   async predict(text,options={}){await this.prepare();return this.request('predict',{text,...options},60000);}
-  async transcribe(audio,language){await this.prepare();return this.request('transcribe',{audio:audio.buffer.slice(audio.byteOffset,audio.byteOffset+audio.byteLength),language},180000);}
+  async transcribe(audio,language){
+    await this.prepare();
+    // Transfer (rather than clone) a fresh PCM buffer to avoid doubling the
+    // main-thread memory cost of each mobile Whisper transcription.
+    const buffer=audio.buffer.slice(audio.byteOffset,audio.byteOffset+audio.byteLength);
+    return this.request('transcribe',{audio:buffer,language},90000,[buffer]);
+  }
   cancel(message='Language operation cancelled'){
     this.generation++;
     this.worker?.terminate();this.worker=null;this.ready=false;this.preparing=null;
