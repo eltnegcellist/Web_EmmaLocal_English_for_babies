@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-20",
+  "assetId": "hug-face-v1",
+  "userStatement": "抱っこに関しては顔が見えた方がいいです。",
+  "decision": "顔ありの静止原画を採用し、今後の抱っこ表現の基準とする。",
+  "approvedScope": "still illustration / composition",
+  "animationApproved": false,
+  "animationStatus": "not-created",
+  "runtimeReplacement": "after face-visible motion production and verification",
+  "retainedComparison": "hug-arms",
+  "mainMergeAuthorized": false
+}

@@ -12,10 +12,12 @@ source_commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, 
 def committed(relative):
     return subprocess.check_output(['git','show',source_commit+':'+relative],cwd=ROOT)
 manifest = json.loads(committed('assets/visual-cue/artwork/manifest.json'))
+hug_face = json.loads(committed('assets/visual-cue/prototypes/hug-face/manifest.json'))
+hug_face_accepted = int(hug_face['status'] == 'accepted-still' and hug_face['humanApproval'])
 qa = json.loads(committed('assets/visual-cue/artwork/qa/validation.json'))
 assert qa['passed'] and qa['assetCount'] == len(manifest['assets'])
 args.output.mkdir(parents=True, exist_ok=False)
-(args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"').replace('<header>','<nav style="padding:14px;justify-content:center;background:#f4edf6"><a href="test/">テスト版アプリを開く</a> · <a href="coverage.html">英文の網羅率を見る</a> · <a href="visual-cue-hug-face.html">顔が見える抱っこの試作</a></nav><header>',1))
+(args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"').replace('<header>','<nav style="padding:14px;justify-content:center;background:#f4edf6"><a href="test/">テスト版アプリを開く</a> · <a href="coverage.html">英文の網羅率を見る</a> · <a href="visual-cue-hug-face.html">採用した顔あり抱っこ</a></nav><header>',1))
 # Publish only the display-component demo, not the microphone/AI application.
 (args.output/'ui.html').write_text(committed('visual-cue-ui-preview.html').decode().replace('href="./visual-cue-test.html"','href="./test/"').replace('href="./visual-cue-coverage.html"','href="./coverage.html"'))
 (args.output/'coverage.html').write_text(committed('visual-cue-coverage.html').decode().replace('data-trial-url="./visual-cue-test.html"','data-trial-url="./test/"').replace('href="./visual-cue-test.html"','href="./test/"'))
@@ -27,7 +29,7 @@ for a in manifest['assets']:
 examples=json.loads(committed('shared/visual-cue-ui-examples.json'))
 files.extend(e['audio'] for e in examples)
 files += ['visual-cue-coverage.css','src/visual-cue-coverage.js','shared/visual-cue-trial-data.json','shared/visual-cue-coverage.json','shared/visual-cue-coverage.csv']
-files += ['assets/visual-cue/prototypes/hug-face/hug-face-v1.png','assets/visual-cue/prototypes/hug-face/manifest.json']
+files += ['assets/visual-cue/prototypes/hug-face/hug-face-v1.png','assets/visual-cue/prototypes/hug-face/manifest.json','assets/visual-cue/prototypes/hug-face/approval-20261020.json']
 motion_manifest=json.loads(committed('assets/visual-cue/motion-variants/manifest.json'))
 files += ['assets/visual-cue/motion-variants/manifest.json']
 for a in motion_manifest['assets']:files.extend([a['animation'],a['poster']])
@@ -51,9 +53,9 @@ ui_hashes={file:hashlib.sha256((args.output/file).read_bytes()).hexdigest() for 
 metadata = dict(sourceRepository='eltnegcellist/Web_EmmaLocal_English_for_babies',
                 sourceCommit=source_commit, reviewPullRequest=107,
                 artifactSHA256=hashlib.sha256((args.output / 'index.html').read_bytes()).hexdigest(),
-                stills=sum(a['kind'] == 'illustration' for a in manifest['assets']),
+                stills=sum(a['kind'] == 'illustration' for a in manifest['assets']) + hug_face_accepted,
                 animations=sum(a['kind'] == 'animation' for a in manifest['assets']),
-                accepted=sum(a['status']=='accepted' for a in manifest['assets']), nonRuntime=True, uiPreview='ui.html', trialApp='test/', coverageReport='coverage.html', hugFacePrototype='visual-cue-hug-face.html', hugFacePrototypeStatus='static-composition-candidate-not-animated', uiFileSHA256=ui_hashes, sceneMotionCandidates=len(motion_manifest['assets']), emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False, trialApplicationDeployed=True)
+                accepted=sum(a['status']=='accepted' for a in manifest['assets']) + hug_face_accepted, artworkManifestAccepted=sum(a['status']=='accepted' for a in manifest['assets']), acceptedHugFaceStills=hug_face_accepted, nonRuntime=True, uiPreview='ui.html', trialApp='test/', coverageReport='coverage.html', hugFacePrototype='visual-cue-hug-face.html', hugFacePrototypeStatus='accepted-still-animation-pending', uiFileSHA256=ui_hashes, sceneMotionCandidates=len(motion_manifest['assets']), emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False, trialApplicationDeployed=True)
 (args.output / 'deployment.json').write_text(json.dumps(metadata, indent=2) + '\n')
 (args.output / 'README.md').write_text('''# Visual Cue イラスト・動画プレビュー
 

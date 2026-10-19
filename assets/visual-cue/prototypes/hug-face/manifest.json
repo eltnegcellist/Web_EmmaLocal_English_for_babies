@@ -3,8 +3,8 @@
   "id": "hug-face-v1",
   "primitive": "motion.hug",
   "kind": "illustration",
-  "status": "prototype-static",
-  "readiness": "user-review-pending",
+  "status": "accepted-still",
+  "readiness": "animation-pending",
   "animated": false,
   "runtimeAssigned": false,
   "replaces": null,
@@ -13,8 +13,8 @@
   "source": "built-in image_gen",
   "prompt": "PROMPT.md",
   "reference": "assets/visual-cue/artwork/sources/generated/hug-v4.png",
-  "humanApproval": false,
-  "note": "顔あり構図の静止試作。動作版は未制作。採用済み42素材・全英文割当・既存抱っこ動画を変更しない。今回のユーザー依頼により人物の顔を描く。",
+  "humanApproval": true,
+  "note": "ユーザーは顔ありの抱っこ静止原画を採用。顔あり版の腕を寄せる動画は未制作で、アニメーションの承認ではない。実行時割当と既存の顔なし動画は動画制作・検証まで維持する。",
   "sha256": "b454ed38252bf24b9c33c7df9c99a2ad476b316539e4588db046bef18beb3c78",
   "image": {
     "width": 1254,
@@ -35,7 +35,10 @@
     "note": "外周に最大alpha 1の微小な生成残差。角は完全透過。PNG原画を改変せず保存。"
   },
   "remaining": [
-    "表情・構図のユーザー確認",
-    "顔あり版の腕を寄せる動作の制作・検証"
-  ]
+    "顔あり版の腕を寄せる動作の制作・検証",
+    "配信用512px/WebPの最適化",
+    "顔あり動作の検証後に実行時表示を差し替える"
+  ],
+  "approvedDate": "2026-10-20",
+  "approvalRecord": "approval-20261020.json"
 }
