@@ -1,5 +1,6 @@
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
+['自動（ブラウザ設定）','Automatic (browser language)','Automatisch (Browsersprache)','Automatique (langue du navigateur)','자동 (브라우저 언어)','อัตโนมัติ (ภาษาของเบราว์เซอร์)'],
 ['みつことば','Three Voices','Drei Stimmen','Trois voix','세 목소리','สามเสียง'],
 ['モデル保存に失敗しました。空き容量を確認して再試行してください。','Model storage failed. Free some space and retry.','Modell konnte nicht gespeichert werden. Bitte Speicherplatz freigeben und erneut versuchen.','Impossible d’enregistrer les modèles. Libérez de l’espace et réessayez.','모델을 저장하지 못했어요. 저장 공간을 확보하고 다시 시도해 주세요.','บันทึกโมเดลไม่สำเร็จ โปรดเพิ่มพื้นที่ว่างแล้วลองอีกครั้ง'],
 ['みつことばの使い方','How Mitsukotoba works','So funktioniert Mitsukotoba','Comment utiliser Mitsukotoba','미츠코토바 사용 방법','วิธีใช้ Mitsukotoba'],
