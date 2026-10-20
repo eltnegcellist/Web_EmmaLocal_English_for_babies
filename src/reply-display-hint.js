@@ -35,6 +35,12 @@ export function replyDisplayHint(route = '') {
     topicLabel: topic?.[0] || interaction?.[0] || 'ふだんのことば',
     // A short Japanese contextual note; exact sentence translations need
     // separately reviewed, per-recorded-phrase assets.
+    // Keep context fragments separate so each is translated independently.
+    // This is a topic/interaction paraphrase, never a translation of the actual
+    // recorded English sentence or the parent transcript.
+    noteParts: [topic?.[1], interaction?.[1]].filter(Boolean).length
+      ? [topic?.[1], interaction?.[1]].filter(Boolean)
+      : ['赤ちゃんへのやさしい呼びかけ。'],
     japaneseNote: [topic?.[1], interaction?.[1]].filter(Boolean).join(' ') || '赤ちゃんへのやさしい呼びかけ。',
   };
 }
