@@ -6,6 +6,9 @@ import{installLanguageUI}from'./src/multilingual/ui.js';
 import{prepareAssets,digest,MODEL_CACHE,openChunkStore}from'./src/multilingual/assets.js';
 import{indexedDB as fakeIndexedDB}from'fake-indexeddb';
 import{MultilingualClient}from'./src/multilingual/client.js';
+import{WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection,
+ resolveWhisperThreads}from'./src/multilingual/performance.js';
+import{installWhisperPerformanceControls}from'./src/multilingual/performance-controls.js';
 import{selectRuriAxes}from'./src/interaction/ruri-routing.js';
 import{CATALOG,translate}from'./src/multilingual/translations.js';
 import{renderLocalizedAbout,ABOUT_LOCALES}from'./src/multilingual/about-page.js';
@@ -45,6 +48,17 @@ assert.equal(resolveLanguage({languages:['xx-XX','fr-FR','de-DE']}).language,'fr
 assert.equal(resolveLanguage({languages:['de-AT'],saved:'ko'}).language,'ko');
 assert.equal(modelRoute('ja'),'japanese');for(const l of LANGUAGES.filter(l=>l!=='ja'))assert.equal(modelRoute(l),'multilingual');
 assert.equal(speechLanguage('en'),null);assert.equal(speechLanguage('ko'),'ko');
+assert.equal(normalizeThreads('9'),'auto');
+assert.equal(normalizeThreads('4'),'4');
+assert.equal(normalizeLanguageDetection(null),'once');
+assert.equal(normalizeLanguageDetection('every'),'every');
+assert.equal(normalizeLanguageDetection('fixed'),'fixed');
+assert.equal(resolveWhisperThreads('auto',{hardwareConcurrency:8,crossOriginIsolated:true,sharedArrayBuffer:true}),4);
+assert.equal(resolveWhisperThreads('2',{hardwareConcurrency:8,crossOriginIsolated:true,sharedArrayBuffer:true}),2);
+assert.equal(resolveWhisperThreads('1',{hardwareConcurrency:8,crossOriginIsolated:true,sharedArrayBuffer:true}),1);
+assert.equal(resolveWhisperThreads('4',{hardwareConcurrency:2,crossOriginIsolated:true,sharedArrayBuffer:true}),2);
+assert.equal(resolveWhisperThreads('4',{hardwareConcurrency:8,crossOriginIsolated:false,sharedArrayBuffer:true}),1);
+assert.equal(resolveWhisperThreads('4',{hardwareConcurrency:8,crossOriginIsolated:true,sharedArrayBuffer:false}),1);
 for(const text of ['물','นม','Ja','Yes','Lait'])assert(meaningfulSpeech(text));assert(!meaningfulSpeech('...'));
 const topic={id:'milk',probability:.2,margin:.01},inter={id:'praise',probability:.15,margin:.02};
 assert.deepEqual(selectRuriAxes(topic,inter),{topic:null,interaction:null});
@@ -199,6 +213,81 @@ for(const route of [...topicRoutes,...interactionRoutes,'combined:bath:praise','
  assert(/\p{Script=Han}/u.test(explainReplyContext(hint,'zh')),'Chinese note missing for '+route);
  assert.equal(explainReplyContext(hint,'en',k=>translate(k,'en')),'');
 }
+// Developer comparisons change only Whisper CPU thread and language policy.
+const developerDom=new JSDOM(html,{url:'https://whisper-controls.test'});
+const actions=[];
+const devControls=installWhisperPerformanceControls({
+ document:developerDom.window.document,storage:developerDom.window.localStorage,
+ onChange:options=>actions.push(options),onForgetLanguage:()=>actions.push('reset')
+});
+assert.equal(devControls.threads.value,'auto');
+assert.equal(devControls.detection.value,'once');
+devControls.threads.value='4';
+devControls.threads.dispatchEvent(new developerDom.window.Event('change'));
+assert.equal(developerDom.window.localStorage.getItem(WHISPER_THREAD_KEY),'4');
+assert.deepEqual(actions.at(-1),{threads:'4',languageDetection:'once'});
+devControls.detection.value='every';
+devControls.detection.dispatchEvent(new developerDom.window.Event('change'));
+assert.equal(developerDom.window.localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY),'every');
+assert.deepEqual(actions.at(-1),{threads:'4',languageDetection:'every'});
+devControls.apply('ja');assert.equal(developerDom.window.document.getElementById('whisperPerformanceControls').hidden,true);
+devControls.apply('en');assert.equal(developerDom.window.document.getElementById('whisperPerformanceControls').hidden,false);
+developerDom.window.document.querySelector('#whisperPerformanceControls button').click();
+assert.equal(actions.at(-1),'reset');
+developerDom.window.close();
+
+const cacheWorkers=[];
+const sticky=new MultilingualClient({threads:'4',languageDetection:'once',workerFactory:()=>{
+ const w={postMessage(data){this.last=data;},terminate(){this.closed=true;}};
+ cacheWorkers.push(w);return w;
+}});
+const initSticky=sticky.prepare();
+assert.equal(cacheWorkers[0].last.threads,'4');
+cacheWorkers[0].onmessage({data:{type:'result',requestId:cacheWorkers[0].last.requestId,
+ result:{ready:true,threads:4,isolated:true}}});
+await initSticky;
+assert.equal(sticky.runtimeInfo.threads,4);
+const voice=new Float32Array([0.25,-0.1]);
+const firstSpeech=sticky.transcribe(voice,'en');
+await Promise.resolve();
+const firstRequest=cacheWorkers[0].last;
+assert.equal(firstRequest.language,'en','First utterance should detect spoken language');
+cacheWorkers[0].onmessage({data:{type:'result',requestId:firstRequest.requestId,
+ result:{text:'Hello',detectedLanguage:'en'}}});
+await firstSpeech;
+assert.equal(sticky.cachedSpokenLanguage,'en');
+const secondSpeech=sticky.transcribe(voice,'en');
+await Promise.resolve();
+const secondRequest=cacheWorkers[0].last;
+assert.equal(secondRequest.language,'en-fixed','Cached English must not repeat autodetection');
+cacheWorkers[0].onmessage({data:{type:'result',requestId:secondRequest.requestId,
+ result:{text:'Hi',detectedLanguage:'en'}}});
+await secondSpeech;
+sticky.resetSpeechLanguage();
+assert.equal(sticky.cachedSpokenLanguage,null);
+sticky.setPerformance({threads:'4',languageDetection:'every'});
+const allSpeech=sticky.transcribe(voice,'en');await Promise.resolve();
+const eachRequest=cacheWorkers[0].last;
+assert.equal(eachRequest.language,'en','Every-turn mode must force a fresh detection');
+cacheWorkers[0].onmessage({data:{type:'result',requestId:eachRequest.requestId,
+ result:{text:'Hello',detectedLanguage:'en'}}});
+await allSpeech;
+sticky.setPerformance({threads:'4',languageDetection:'fixed'});
+const fixedSpeech=sticky.transcribe(voice,'en');await Promise.resolve();
+const fixedRequest=cacheWorkers[0].last;
+assert.equal(fixedRequest.language,'en-fixed','Fixed language must omit detection altogether');
+cacheWorkers[0].onmessage({data:{type:'result',requestId:fixedRequest.requestId,
+ result:{text:'Hello',detectedLanguage:'en'}}});
+await fixedSpeech;
+sticky.setPerformance({threads:'2',languageDetection:'once'});
+assert.equal(cacheWorkers[0].closed,true,'Changing CPU pool must restart worker');
+assert.equal(sticky.ready,false);
+const reinit=sticky.prepare();
+assert.equal(cacheWorkers[1].last.threads,'2');
+cacheWorkers[1].onmessage({data:{type:'result',requestId:cacheWorkers[1].last.requestId,
+ result:{ready:true,threads:2,isolated:true}}});
+await reinit;
+sticky.cancel();
 const workers=[];const c=new MultilingualClient({workerFactory:()=>{const w={postMessage(data,transfer){this.last=data;this.transfer=transfer;},terminate(){this.closed=true;}};workers.push(w);return w;}});
 const first=c.prepare();const firstHandled=first.catch(e=>e.message);c.cancel();const next=c.prepare();
 workers[1].onmessage({data:{type:'result',requestId:workers[1].last.requestId,result:{ready:true}}});
@@ -226,5 +315,11 @@ for(const key of ['audioSeconds','languageMs','transcribeMs','totalMs','realTime
  assert(appSource.includes('multilingual.'+key+'='),'Diagnostic export must include '+key);
 }
 assert(appSource.includes("if(data.stage==='asr-timing')"),'ASR timing progress must not show model download state');
+assert(appSource.includes("if(nonJapanese)return true"),'Unavailable browser isolation must fall back to 1-thread foreign Whisper');
+assert(appSource.includes("multilingual?.resetSpeechLanguage()"),'Conversation start/stop must invalidate language cache');
+assert(appSource.includes("WHISPER_THREAD_KEY"),'Application must persist CPU thread preference');
+assert(workerSource.includes('env.backends.onnx.wasm.numThreads=effectiveThreads'),'Worker must enable ONNX multi-thread runtime');
+assert(workerSource.includes("data.language==='en-fixed'"),'Worker must bypass detection for cached English');
+
 
 console.log('PASS: locale precedence, fallback setup, six UI languages, switch persistence, routing, short foreign speech, verified cache repair/reuse, stale worker cancellation.');
