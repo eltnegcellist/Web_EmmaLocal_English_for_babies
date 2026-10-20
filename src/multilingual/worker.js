@@ -69,7 +69,7 @@ async function handle(data) {
     if(!audio.length||audio.some(x=>!Number.isFinite(x)))throw Error('Invalid audio');
     const audioSeconds=audio.length/16000;
     const asrStarted=performance.now();
-    const specified=speechLanguage(data.language);
+    const specified=data.language==='en-fixed'?'en':speechLanguage(data.language);
     if(!specified)progress({stage:'detecting-language'});
     const language=specified||await detectLanguage(audio);
     const languageMs=performance.now()-asrStarted;
