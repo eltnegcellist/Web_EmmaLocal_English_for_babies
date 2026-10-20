@@ -19,11 +19,11 @@ assert.equal(translate('選んだ声を準備しています… 350/1202 (32.6 M
 
 assert.match(translate('3件選択中','en'),/3 selected/);
 assert.match(translate('1 / 3　Emmaと会おう','en'),/Meet Emma/);
-assert.equal(translate('みつことば','en'),'Three Voices');
-assert.equal(translate('みつことば','de'),'Drei Stimmen');
-assert.equal(translate('みつことば','fr'),'Trois voix');
-assert.equal(translate('みつことば','ko'),'세 목소리');
-assert.equal(translate('みつことば','th'),'สามเสียง');
+assert.equal(translate('みつことば','en'),'CooTrio');
+assert.equal(translate('みつことば','de'),'CooTrio');
+assert.equal(translate('みつことば','fr'),'CooTrio');
+assert.equal(translate('みつことば','ko'),'CooTrio');
+assert.equal(translate('みつことば','th'),'CooTrio');
 for(const language of LANGUAGES.filter(x=>x!=='ja')){
   assert(!/[ぁ-んァ-ン一-龯]/u.test(translate('Whisperで音声を認識しています。',language)));
   assert(!/[ぁ-んァ-ン一-龯]/u.test(translate('音声認識が時間内に完了しませんでした。通常のブラウザタブか短い発話で再試行してください。',language)));
@@ -56,6 +56,9 @@ for(const lang of LANGUAGES){
  const ui=installLanguageUI({document:dom.window.document,storage:dom.window.localStorage,languages:[lang],onChange:async(_,o)=>o.commit()});
  const history=dom.window.document.createElement('p');history.className='history-japanese';history.textContent='親';dom.window.document.body.append(history);
  assert.equal(dom.window.document.documentElement.lang,lang);
+ assert.equal(dom.window.document.title,lang==='ja'?'みつことば':'CooTrio');
+ assert(dom.window.document.querySelector('link[rel="manifest"]').getAttribute('href').includes(
+   lang==='ja'?'manifest.webmanifest':'manifest.intl.webmanifest'));
  const research=dom.window.document.querySelector('#aboutScreen .screen-content');
  const localized=research.querySelector('.localized-about-content');
  if(lang==='ja'){
@@ -85,12 +88,14 @@ for(const lang of LANGUAGES){
  assert.equal(korean.querySelectorAll('article.reference-card').length,6);
 
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_MODE_KEY),'manual');
- assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').textContent,'세 목소리');
- assert.equal(dom.window.document.querySelector('#homeScreen .home-brand h1').textContent,'세 목소리');
- assert.equal(dom.window.document.title,'세 목소리 Web');
+ assert.equal(dom.window.document.querySelector('#onboardingScreen .brand-wordmark').textContent,'CooTrio');
+ assert.equal(dom.window.document.querySelector('#homeScreen .home-brand h1').textContent,'CooTrio');
+ assert.equal(dom.window.document.title,'CooTrio');
  assert.equal(history.textContent,'親','Language changes must not translate the user’s original history text');
  assert.equal(dom.window.document.querySelector('#settingsLanguage').value,'ko');
  await ui.choose('ja');assert.match(dom.window.document.querySelector('.welcome-hero h1').textContent,/いつもの日本語/);
+ assert.equal(dom.window.document.title,'みつことば');
+ assert(dom.window.document.querySelector('link[rel="manifest"]').getAttribute('href').includes('manifest.webmanifest'));
  await ui.choose('auto');assert.equal(ui.language,lang);
  assert.equal(ui.mode,'auto');
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_MODE_KEY),'auto');

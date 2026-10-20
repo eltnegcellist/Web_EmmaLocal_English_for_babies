@@ -14,8 +14,7 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   const originals=new WeakMap(),attributes=new WeakMap(),selectors=[];
   const wordmark=document.querySelector('#onboardingScreen .brand-wordmark');
   const japaneseWordmark=wordmark?.innerHTML;
-  const productNames={ja:'みつことば',en:'Three Voices',de:'Drei Stimmen',
-    fr:'Trois voix',ko:'세 목소리',th:'สามเสียง'};
+  const productNames=Object.fromEntries(LANGUAGES.map(code=>[code,code==='ja'?'みつことば':'CooTrio']));
   const title='言語を選択';
   const status=document.createElement('p');status.className='small multilingual-status';status.setAttribute('aria-live','polite');
   status.id='languageModelStatus';
@@ -91,7 +90,17 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   }
   function apply(){
     document.documentElement.lang=language;document.documentElement.dataset.appLanguage=language;
-    document.title=productNames[language]+' Web';
+    document.title=productNames[language];
+    const manifest=document.querySelector('link[rel="manifest"]');
+    if(manifest)manifest.setAttribute('href',language==='ja'
+      ? './manifest.webmanifest?v=20261020-cootrio-r1'
+      : './manifest.intl.webmanifest?v=20261020-cootrio-r1');
+    const description=document.querySelector('meta[name="description"]');
+    if(description)description.setAttribute('content',language==='ja'
+      ? '親と赤ちゃんとAI、3人でつくる英語アプリ'
+      : 'CooTrio — English moments for parents and babies, with AI.');
+    const appleTitle=document.querySelector('meta[name="apple-mobile-web-app-title"]');
+    if(appleTitle)appleTitle.setAttribute('content',productNames[language]);
     if(wordmark){
       if(language==='ja'&&wordmark.dataset.localized==='true')wordmark.innerHTML=japaneseWordmark;
       else if(language!=='ja')wordmark.textContent=productNames[language];

@@ -43,14 +43,14 @@ export const CATALOG = [
 ["話題が曖昧な場合は、直前の話題を最大6回使います。明確な別の話題が来たら切り替えます。","An unclear topic may briefly reuse the previous one. A clear new topic starts a new response.","Bei unklarem Thema wird kurz das vorherige fortgesetzt. Ein klares neues Thema wird übernommen.","Si le sujet est imprécis, le précédent peut être repris brièvement. Un nouveau sujet clair le remplace.","주제가 모호하면 이전 주제를 잠시 이어갈 수 있어요. 새로운 주제가 명확하면 전환해요.","เมื่อหัวข้อไม่ชัดเจนอาจใช้หัวข้อก่อนหน้าชั่วคราว และเปลี่ยนเมื่อพบหัวข้อใหม่ที่ชัดเจน"],
 ["話題の判定方法・話題一覧を見る ↗","View topic detection and supported topics ↗","Themenerkennung und Themenliste ansehen ↗","Voir la détection des sujets et la liste ↗","주제 감지 방식 및 목록 보기 ↗","ดูการตรวจจับหัวข้อและรายการ ↗"],
 ["別のタブで開きます。","Opens in another tab.","Öffnet in einem neuen Tab.","S’ouvre dans un nouvel onglet.","새 탭에서 열려요.","เปิดในแท็บใหม่"],
-["みつことば Web","Three Voices Web","Drei Stimmen Web","Trois voix Web","세 목소리 웹","สามเสียง เว็บ"],
+["みつことば Web","CooTrio Web","CooTrio Web","CooTrio Web","CooTrio 웹","CooTrio เว็บ"],
 ["このブラウザではMoonshineに必要なService Workerを利用できません。","This browser cannot use the Service Worker required for Japanese Moonshine. Try a regular tab.","Dieser Browser unterstützt den für Moonshine nötigen Service Worker nicht. Versuche einen normalen Tab.","Ce navigateur ne permet pas le Service Worker nécessaire à Moonshine. Essayez un onglet classique.","이 브라우저에서 Moonshine에 필요한 서비스 워커를 사용할 수 없어요. 일반 탭에서 시도하세요.","เบราว์เซอร์นี้ใช้ Service Worker ที่ Moonshine ต้องการไม่ได้ โปรดลองแท็บปกติ"],
 ["Moonshineに必要なブラウザ分離を有効にできませんでした。通常のブラウザタブで開き直してください。","Could not enable browser isolation for Japanese Moonshine. Please reopen in a regular tab.","Browser-Isolierung für Moonshine fehlgeschlagen. Bitte in einem normalen Tab öffnen.","Impossible d’activer l’isolation nécessaire à Moonshine. Ouvrez un onglet classique.","Moonshine용 브라우저 격리를 설정하지 못했어요. 일반 탭에서 열어 주세요.","เปิดใช้งานการแยกเบราว์เซอร์สำหรับ Moonshine ไม่สำเร็จ โปรดเปิดในแท็บปกติ"],
 ['選んだ声を端末に準備しています…','Preparing recorded audio on your device…','Aufgenommene Audiodateien werden auf deinem Gerät vorbereitet…','Préparation des enregistrements audio sur votre appareil…','기기에 녹음 음성을 준비하고 있어요…','กำลังเตรียมเสียงที่บันทึกไว้ในอุปกรณ์…'],
 ['選んだ声を準備しています…','Preparing recorded audio…','Aufgenommene Audiodateien werden vorbereitet…','Préparation des enregistrements audio…','녹음 음성을 준비하고 있어요…','กำลังเตรียมเสียงที่บันทึกไว้…'],
 ['みつことばの声を準備しています…','Preparing English audio…','Englische Audiodateien werden vorbereitet…','Préparation des fichiers audio anglais…','영어 음성을 준비하고 있어요…','กำลังเตรียมไฟล์เสียงภาษาอังกฤษ…'],
 ['自動（ブラウザ設定）','Automatic (browser language)','Automatisch (Browsersprache)','Automatique (langue du navigateur)','자동 (브라우저 언어)','อัตโนมัติ (ภาษาของเบราว์เซอร์)'],
-['みつことば','Three Voices','Drei Stimmen','Trois voix','세 목소리','สามเสียง'],
+['みつことば','CooTrio','CooTrio','CooTrio','CooTrio','CooTrio'],
 ['モデル保存に失敗しました。空き容量を確認して再試行してください。','Model storage failed. Free some space and retry.','Modell konnte nicht gespeichert werden. Bitte Speicherplatz freigeben und erneut versuchen.','Impossible d’enregistrer les modèles. Libérez de l’espace et réessayez.','모델을 저장하지 못했어요. 저장 공간을 확보하고 다시 시도해 주세요.','บันทึกโมเดลไม่สำเร็จ โปรดเพิ่มพื้นที่ว่างแล้วลองอีกครั้ง'],
 ['みつことばの使い方','How Mitsukotoba works','So funktioniert Mitsukotoba','Comment utiliser Mitsukotoba','미츠코토바 사용 방법','วิธีใช้ Mitsukotoba'],
 ['みつことば — 親と赤ちゃんとAIの英語時間','Mitsukotoba — English time with your baby and Emma','Mitsukotoba — Englisch mit deinem Baby und Emma','Mitsukotoba — Un moment en anglais avec bébé et Emma','미츠코토바 — 아기·Emma와 함께하는 영어 시간','Mitsukotoba — ช่วงเวลาภาษาอังกฤษกับลูกน้อยและ Emma'],
@@ -349,13 +349,10 @@ const aliases={
  'オフの場合は、会話画面の「今すぐAIが返事する」を使えます。':'オフの場合は、会話画面の「今すぐAIが返事する」で返答を開始できます。',
 };
 for(const [source,target]of Object.entries(aliases)){const row=CATALOG.find(r=>r[0]===target);CATALOG.push([source,...row.slice(1)]);}
-// Product names convey the three-way parent–baby–AI conversation,
-// rather than transliterating the Japanese name into other languages.
-const LOCALIZED_PRODUCT_NAMES = {en:'Three Voices',de:'Drei Stimmen',
-  fr:'Trois voix',ko:'세 목소리',th:'สามเสียง'};
+// CooTrio is the shared brand name in every non-Japanese locale.
 for(const row of CATALOG) {
   for(const [lang,index] of [['en',1],['de',2],['fr',3],['ko',4],['th',5]]) {
-    row[index]=row[index].replace(/Mitsukotoba|미츠코토바|มิตสึโคโตบะ/g,LOCALIZED_PRODUCT_NAMES[lang]);
+    row[index]=row[index].replace(/Mitsukotoba|미츠코토바|มิตสึโคโตบะ/g,'CooTrio');
   }
 }
 export const LOCALE_INDEX={ja:0,en:1,de:2,fr:3,ko:4,th:5};
