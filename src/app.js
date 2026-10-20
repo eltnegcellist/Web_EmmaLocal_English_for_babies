@@ -326,6 +326,7 @@ function initUi() {
 
   if(VISUAL_CUE_TRIAL){
     showScreen('home',{autoStart:false});
+    window.history.replaceState(appHistoryState('home'),'',location.href);
     setState('idle','Visual Cue テスト版','「押して聞く」または下の英文を選んで、表示と音声を確認できます。');
     return;
   }
