@@ -14,6 +14,7 @@ import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
 import { installLanguageUI } from './multilingual/ui.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
+import { chooseJapaneseResumeGreeting } from './resume-greeting.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -105,6 +106,9 @@ let moonshineTranscriber, ttsWorker, mic, wakeLock;
 let moonshineStage='idle';
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
+let hasStartedConversation=false;
+let previousJapaneseResumeGreeting=null;
+let cancelJapaneseResumeGreeting=null;
 let requestSeq=0;
 let audioContext=null;
 let activeAudioSource=null;
@@ -906,6 +910,12 @@ async function startEmma({ auto = false } = {}) {
     setBusy(false);
     showProgress(false);
     if(ui.keepAwake.checked) await requestWakeLock();
+    const isRestart=hasStartedConversation;
+    hasStartedConversation=true;
+    if(isRestart && languageUI.language==='ja' && tutorialStep===null) {
+      await speakJapaneseResumeGreeting(epoch);
+      if(epoch!==conversationEpoch)return;
+    }
     setState('listening',`${getAiName()}が聞いています`,'いつもどおり日本語で赤ちゃんへ話しかけてください。必要なら「今すぐAIが返事する」で区切れます。');
   } catch(error) {
     if(epoch!==conversationEpoch)return;
@@ -928,6 +938,63 @@ async function startEmma({ auto = false } = {}) {
   }
 }
 
+/**
+ * The existing Qwen3 recorded voice bank contains English-only clips.
+ * The Japanese resume-only greeting uses the device's Japanese voice instead
+ * of inventing a recording or altering English reply playback.
+ */
+async function speakJapaneseResumeGreeting(epoch) {
+  const synthesis=globalThis.speechSynthesis;
+  const Utterance=globalThis.SpeechSynthesisUtterance;
+  if(!synthesis || !Utterance)return;
+  const greeting=chooseJapaneseResumeGreeting(previousJapaneseResumeGreeting);
+  previousJapaneseResumeGreeting=greeting;
+  speaking=true;
+  setState('speaking','Emmaが挨拶しています',greeting);
+  let micReleased=false;
+  try {
+    micReleased=await releaseMicrophoneForEmmaVoice();
+    if(epoch!==conversationEpoch || !running)return;
+    await new Promise(resolve=>{
+      const utterance=new Utterance(greeting);
+      utterance.lang='ja-JP';
+      utterance.rate=1.0;
+      const japaneseVoice=synthesis.getVoices?.().find(voice=>/^ja(?:-|_)/i.test(voice.lang));
+      if(japaneseVoice) utterance.voice=japaneseVoice;
+      let settled=false;
+      let timeout;
+      const finish=()=>{
+        if(settled)return;
+        settled=true;
+        clearTimeout(timeout);
+        cancelJapaneseResumeGreeting=null;
+        resolve();
+      };
+      utterance.onend=finish;
+      utterance.onerror=finish;
+      cancelJapaneseResumeGreeting=()=>{
+        synthesis.cancel();
+        finish();
+      };
+      // Some browser/OS combinations never fire onend when SpeechSynthesis
+      // is blocked. Always restore listening even if audio is unavailable.
+      timeout=setTimeout(()=>{
+        synthesis.cancel();
+        finish();
+      },7000);
+      try { synthesis.speak(utterance); } catch(error) {
+        console.warn('Japanese resume greeting unavailable',error);
+        finish();
+      }
+    });
+  } finally {
+    if(epoch===conversationEpoch) {
+      speaking=false;
+      if(micReleased && running)await restoreMicrophoneAfterEmmaVoice();
+    }
+  }
+}
+
 async function prepareSemanticForConversation() {
   if(!semanticPanel.requested)return;
   const unsubscribe=semanticPanel.subscribe(({status})=>{
@@ -942,6 +1009,7 @@ async function prepareSemanticForConversation() {
 
 async function stopEmma() {
   conversationEpoch++;
+  cancelJapaneseResumeGreeting?.();
   semanticPanel?.cancelPending();
   while(audioUnlockWaiters.length)audioUnlockWaiters.shift()?.();
   running=false;
