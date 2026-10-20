@@ -1,5 +1,9 @@
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
+["英文の場面説明","English phrase context","Kontext der englischen Wendung","Contexte de la phrase anglaise","영어 표현 상황 설명","คำอธิบายบริบทของประโยคอังกฤษ"],
+["表示言語に合わせる","Follow display language","Anzeigesprache verwenden","Suivre la langue d’affichage","표시 언어에 맞추기","ใช้ภาษาเดียวกับหน้าจอ"],
+["中文（説明のみ）","中文 (context notes only)","中文 (nur Erläuterung)","中文 (explications uniquement)","中文 (설명만)","中文 (เฉพาะคำอธิบาย)"],
+["説明を表示しない","Hide explanations","Erläuterungen ausblenden","Masquer les explications","설명 숨기기","ซ่อนคำอธิบาย"],
 ["お風呂に入ろうね。","Let's have a bath.","Zeit fürs Baden.","On va prendre un bain.","목욕하자.","ไปอาบน้ำกันนะ"],
 ["ミルクの時間だよ。","It's milk time.","Es ist Zeit für Milch.","C'est l'heure du lait.","우유 먹을 시간이야.","ถึงเวลากินนมแล้วนะ"],
 ["ゆっくり休もうね。","Let's rest.","Ruh dich ein wenig aus.","Reposons-nous un peu.","푹 쉬자.","พักผ่อนกันนะ"],
