@@ -14,8 +14,7 @@ import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
 import { installLanguageUI } from './multilingual/ui.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
-import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,
-  normalizeThreads,normalizeLanguageDetection} from './multilingual/performance.js';
+import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection} from './multilingual/performance.js';
 import {installWhisperPerformanceControls} from './multilingual/performance-controls.js';
 
 const $ = (id) => document.getElementById(id);
