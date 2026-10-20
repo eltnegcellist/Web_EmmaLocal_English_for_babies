@@ -8,7 +8,7 @@ import { MoonshineAsrClient } from './asr-client.js';
 import { TurnRevisions } from './turn-revisions.js';
 import { LiteResponseEngine, isMeaningfulUtterance } from './lite-response-engine.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
-import { replyDisplayHint } from './reply-display-hint.js';
+import { replyDisplayHint, explainReplyContext } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
@@ -171,6 +171,22 @@ function audioCacheKey(text){
 
 let multilingualStatus=()=>{};
 let multilingual,languageUI;
+let currentReplyRoute=null;
+function refreshReplyContext(){
+  if(!languageUI||!ui.replyJapanese)return;
+  // The initial on-screen greeting is a real recorded phrase; later response
+  // notes are contextual cues, not literal translations of their sentences.
+  const language=languageUI.explanationLanguage;
+  if(currentReplyRoute===null){
+    ui.replyJapanese.textContent=language==='zh'?'你好，我是 Emma。':
+      languageUI.translate('こんにちは、エマだよ。');
+  }else{
+    const hint=replyDisplayHint(currentReplyRoute);
+    ui.replyTopic.textContent=languageUI.translate(hint.topicLabel);
+    ui.replyJapanese.textContent=explainReplyContext(hint,language,languageUI.translate);
+  }
+  ui.replyJapanese.hidden=language==='en'||language==='none';
+}
 let modelSelectionEpoch=0;
 let multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
 function initLanguages(){
@@ -191,13 +207,14 @@ multilingual=new MultilingualClient({onStatus:data=>{
     multilingualStatus({...data,message});
   }
 }});
-languageUI=installLanguageUI({onChange:async(next,{commit})=>{
+languageUI=installLanguageUI({onExplanationsChange:refreshReplyContext,onChange:async(next,{commit})=>{
   const changedRoute=(languageUI.language==='ja')!==(next==='ja');
   modelSelectionEpoch++;
   await stopEmma();
   if(changedRoute){moonshineTranscriber?.close?.();moonshineTranscriber=null;asrInfoCache=null;workersReady=false;
     semanticPanel?.client.japanese?.cancel();multilingual.cancel();}
   commit();
+  refreshReplyContext();
   await semanticPanel.setEnabled(true,{prepare:false,mode:'semantic'});
   // Moonshine requires an isolated page before its worker downloads/initializes.
   // Switching from a non-Japanese Whisper session used to skip this check.
@@ -217,6 +234,7 @@ initUi();
 
 function initUi() {
   initLanguages();
+  refreshReplyContext();
   // A saved Japanese opt-out must not silently disable the foreign E5 route.
   if(languageUI.language!=='ja')localStorage.setItem('emma_semantic_enabled','true');
   semanticPanel=createSemanticController({engine,mode:'semantic',clientFactory:onStatus=>{
@@ -1862,13 +1880,9 @@ function showConversation(parentText,emmaText,route='generic') {
   ui.conversation.classList.remove('hidden');
   ui.emmaBubble.classList.remove('hidden');
   ui.replyTopic.classList.remove('hidden');
-  const hint=replyDisplayHint(route);
-  ui.replyTopic.textContent=languageUI.translate(hint.topicLabel);
+  currentReplyRoute=route;
   ui.reply.textContent=emmaText;
-  // Topic/interaction explanations, NOT line-by-line translations of the
-  // actual prerecorded English. Translate each note before joining the parts.
-  ui.replyJapanese.textContent=hint.noteParts.map(part=>languageUI.translate(part)).join(' ');
-  ui.replyJapanese.hidden=languageUI.language==='en';
+  refreshReplyContext();
 }
 
 function onRuntimeError(message) {
