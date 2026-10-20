@@ -58,10 +58,12 @@ const paintIds=hosts.flatMap(h=>[...h.querySelectorAll('[id]')].map(n=>n.id));as
 assert(hosts.every(h=>!h.closest('.avatar').classList.contains('has-visual-cue')&&h.closest('.avatar').classList.contains('has-emma-background')),'background never hides canonical Emma');
 controller.configure({mode:'visual',motion:false});await settle();assert(hosts.every(h=>h.querySelector('svg').dataset.motion==='off'));
 assert(hosts.every(h=>!h.closest('.avatar').hasAttribute('data-visual-motion')),'background motion setting never overrides canonical Emma');
-controller.end(token);assert(hosts.every(h=>!h.closest('.avatar').hasAttribute('data-visual-motion')));assert(hosts.every(h=>h.hidden),'settings change preserves the audio token for end');
+controller.end(token);assert(hosts.every(h=>!h.closest('.avatar').hasAttribute('data-visual-motion')));assert(hosts.every(h=>h.querySelector('[data-emma-backdrop="calm"]')),'audio end leaves current illustration visible');
+controller.nextUtteranceFinished();assert(hosts.every(h=>h.hidden),'parent utterance completion clears the held illustration');
 controller.configure({mode:'visual',motion:true});media.matches=true;media.listener();token=controller.begin(assetText);assert(pending.at(-1).url.includes('/posters/'));pending.shift().resolve();await settle();
 document.hidden=true;document.dispatchEvent(new dom.window.Event('visibilitychange'));assert(hosts.every(h=>h.hidden));document.hidden=false;media.listener();await settle();assert(hosts.every(h=>h.hidden),'returning to the tab does not restart stale animation');
 for(const state of ['neutral','smile','listen','ask','invite']){controller.begin(rows.find(r=>r.binding.state===state).text);await settle();assert(hosts.every(h=>h.hidden),state+' keeps baseline Emma');}
 controller.begin('unknown');await settle();assert(hosts.every(h=>h.hidden));
+const appSource=readFileSync('src/app.js','utf8');assert.match(appSource,/function handleCapturedUtterance\(audio\)\s*\{[\s\S]*?visualCue\.nextUtteranceFinished\(\);/,'VAD endpoint clears the previous visual cue');
 controller.dispose();
 console.log('Visual Cue UI: approval holds, exact phrases, questions, unknown fallback, async cancellation, two avatar surfaces, settings, reduced motion and visibility PASS');
