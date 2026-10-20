@@ -43,7 +43,9 @@ assert.equal(resolveLanguage({languages:browserLanguages({languages:[],language:
 assert.equal(resolveLanguage({languages:['xx-XX','fr-FR','de-DE']}).language,'fr');
 assert.equal(resolveLanguage({languages:['de-AT'],saved:'ko'}).language,'ko');
 assert.equal(modelRoute('ja'),'japanese');for(const l of LANGUAGES.filter(l=>l!=='ja'))assert.equal(modelRoute(l),'multilingual');
-assert.equal(speechLanguage('en'),null);assert.equal(speechLanguage('ko'),'ko');
+assert.equal(speechLanguage('en'),'en','English must bypass extra language detection');
+assert.equal(speechLanguage('auto'),null,'Automatic speech detection is opt-in');
+assert.equal(speechLanguage('ko'),'ko');
 for(const text of ['물','นม','Ja','Yes','Lait'])assert(meaningfulSpeech(text));assert(!meaningfulSpeech('...'));
 const topic={id:'milk',probability:.2,margin:.01},inter={id:'praise',probability:.15,margin:.02};
 assert.deepEqual(selectRuriAxes(topic,inter),{topic:null,interaction:null});
@@ -74,6 +76,21 @@ for(const lang of LANGUAGES){
    assert.equal(research.querySelector(':scope > h1').hidden,true,'Do not show untranslated Japanese research');
  }
 
+ assert.equal(ui.speechLanguage,lang,'Browser-language auto selection must not trigger Whisper speech detection');
+ const speechPreference=dom.window.document.querySelector('#speechDetectionMode');
+ assert(speechPreference,'Spoken-language preference must be visible in Settings');
+ assert.equal(speechPreference.value,'fixed');
+ assert.equal(speechPreference.closest('label').hidden,lang!=='en');
+ if(lang==='en'){
+   speechPreference.value='auto';
+   speechPreference.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+   assert.equal(ui.speechLanguage,'auto');
+   assert.equal(dom.window.localStorage.getItem('mitsukotoba_speech_detection_v1'),'auto');
+   speechPreference.value='fixed';
+   speechPreference.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+   assert.equal(ui.speechLanguage,'en');
+   assert.equal(dom.window.localStorage.getItem('mitsukotoba_speech_detection_v1'),'fixed');
+ }
  assert.equal(ui.mode,'auto','First visit must use the browser locale');
  assert.equal(dom.window.document.querySelectorAll('.language-picker select').length,3);
  assert.equal(dom.window.document.querySelector('#onboardingLanguage').value,'auto');
@@ -179,4 +196,7 @@ const switchFlow=appSource.slice(appSource.indexOf('languageUI=installLanguageUI
 assert(switchFlow.indexOf("if(next==='ja' && changedRoute)")>=0);
 assert(switchFlow.indexOf('await ensureMoonshineIsolation')<switchFlow.indexOf('await initWorkers()'));
 assert(appSource.includes('multilingualAsrDiagnostic'),'Audio diagnosis must report private-mode ASR state');
+assert(appSource.includes('multilingual.transcribe(audio,languageUI.speechLanguage)'),
+ 'ASR must use the chosen spoken-language hint, not UI locale alone');
+
 console.log('PASS: locale precedence, fallback setup, six UI languages, switch persistence, routing, short foreign speech, verified cache repair/reuse, stale worker cancellation.');
