@@ -50,10 +50,11 @@ try{
  await page.selectOption('#example',{label:'足のキック'});await page.click('#play');await page.waitForSelector('.has-visual-cue img[data-asset-id="kick"]');await page.click('#stop');check('accepted-artwork-still-switches-and-stops',await page.locator('.has-visual-cue').count()===0);
  await page.setViewportSize({width:390,height:844});await page.reload();await page.waitForSelector('.comparison-card:nth-child(3)');check('mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:out+'/preview-mobile.png',fullPage:true});
  // The actual app retains its own original frame/blink/RMS code, not the preview helper.
- await context.addInitScript(()=>{localStorage.setItem('emma_web_setup_revision','moonshine-streaming-qwen3-prerecorded-1202-v11');localStorage.setItem('emma_web_tutorial_completed_v1','true');localStorage.setItem('emma_semantic_enabled','false');});
+ await context.addInitScript(()=>{localStorage.setItem('emma_web_setup_revision','moonshine-streaming-qwen3-prerecorded-1202-v11');localStorage.setItem('emma_web_tutorial_completed_v1','true');localStorage.setItem('emma_semantic_enabled','false');localStorage.setItem('emma_visual_motion','false');});
  await page.goto(base+'/index.html');await page.waitForSelector('#homeScreen:not(.hidden)');await page.click('#settingsButton');
  check('production-visual-cue-default-on',await page.locator('#visualCueEnabled').isChecked());
- check('production-motion-default-on',await page.locator('#visualCueMotion').isChecked()&&await page.locator('#visualCueMotion').isEnabled());
+ check('production-illustrations-have-own-section',await page.locator('#englishIllustrationSettings h2').textContent()==='英語のイラスト');
+ check('production-no-static-animation-selector',await page.locator('#visualCueMotion').count()===0);
  await page.locator('#visualCueEnabled').scrollIntoViewIfNeeded();await page.screenshot({path:out+'/app-visual-cue-settings-mobile.png',fullPage:false});
  await page.click('#settingsBackButton');
  await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])',{timeout:120000});await page.click('.play-topic-change');await page.getByRole('button',{name:'泣く・ぐずぐず',exact:true}).click();await page.waitForSelector('.play-tap:not([disabled])');await page.getByRole('button',{name:'3文',exact:true}).click();await page.click('.play-tap');await page.waitForSelector('.play-avatar.has-emma-background');
@@ -64,14 +65,14 @@ try{
  await page.click('#settingsButton');await page.uncheck('#visualCueEnabled');await page.click('#settingsBackButton');await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-tap.is-speaking');check('baseline-mode-has-no-extra-visuals',await page.locator('.has-emma-background,.has-visual-cue').count()===0);page.once('dialog',d=>d.accept());await page.click('#featureClose');
  await page.reload();await page.waitForSelector('#homeScreen:not(.hidden)');await page.click('#settingsButton');
  check('production-opt-out-survives-reload',!await page.locator('#visualCueEnabled').isChecked());
- check('production-off-disables-motion-control',await page.locator('#visualCueMotion').isDisabled());
- await page.check('#visualCueEnabled');await page.uncheck('#visualCueMotion');await page.reload();await page.waitForSelector('#homeScreen:not(.hidden)');await page.click('#settingsButton');
+ check('production-single-display-setting',await page.locator('#englishIllustrationSettings input,#englishIllustrationSettings select').count()===1);
+ await page.check('#visualCueEnabled');await page.reload();await page.waitForSelector('#homeScreen:not(.hidden)');await page.click('#settingsButton');
  check('production-on-survives-reload',await page.locator('#visualCueEnabled').isChecked());
- check('production-independent-motion-preference',!await page.locator('#visualCueMotion').isChecked()&&await page.locator('#visualCueMotion').isEnabled());
+ check('production-legacy-still-preference-unused',await page.evaluate(()=>localStorage.getItem('emma_visual_motion')==='false'));
  check('production-settings-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await page.click('#settingsBackButton');await page.waitForSelector('#homeScreen:not(.hidden)');check('production-settings-back-after-reload',await page.locator('#homeScreen').isVisible());
  await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-topic-change');await page.getByRole('button',{name:'泣く・ぐずぐず',exact:true}).click();await page.getByRole('button',{name:'3文',exact:true}).click();await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-avatar.has-emma-background');
- check('production-motion-off-retains-static-cue',await page.locator('.play-avatar [data-emma-backdrop]').getAttribute('data-motion')==='off');
+ check('production-animation-always-enabled',await page.locator('.play-avatar [data-emma-backdrop]').getAttribute('data-motion')==='on');
  page.once('dialog',d=>d.accept());await page.click('#featureClose');
  check('no-browser-errors',errors.length===0,errors);completed=true;
 }catch(error){errors.push(error.message);throw error;}finally{

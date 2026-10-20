@@ -9,9 +9,9 @@
   <meta name="apple-mobile-web-app-title" content="みつことば" />
   <link rel="icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" sizes="192x192" />
-  <link rel="stylesheet" href="./styles.css?v=20261020-visual-cue-default-on-v1" />
+  <link rel="stylesheet" href="./styles.css?v=20261020-english-illustrations-v2" />
   <title>みつことば｜Visual Cue テスト版</title>
-<link rel="stylesheet" href="./visual-cue-trial.css?v=20261020-visual-cue-default-on-v1">
+<link rel="stylesheet" href="./visual-cue-trial.css?v=20261020-english-illustrations-v2">
 </head>
 <body>
   <main class="app-shell">
@@ -531,13 +531,14 @@
           <button id="historyButton" class="outline-button">会話履歴を見る・聞く</button>
         </article>
 
+        <article id="englishIllustrationSettings" class="card">
+          <h2>英語のイラスト</h2>
+          <label class="history-save-toggle"><span>英語の内容を表すイラストを表示する</span><input id="visualCueEnabled" type="checkbox" checked aria-describedby="visualCueHelp" /></label>
+          <p id="visualCueHelp" class="small muted">話している英語に合うイラストや動きを表示します。対応するイラストがない場合はEmmaを表示します。</p>
+        </article>
 
         <article class="card">
           <h2>見た目</h2>
-          <label class="history-save-toggle"><span>ビジュアルキューを表示</span><input id="visualCueEnabled" type="checkbox" checked aria-describedby="visualCueHelp" /></label>
-          <p id="visualCueHelp" class="small muted">英語に合うイラストやアニメーション、Emmaの後ろのハート・星を表示します。オフにするとEmmaだけを表示します。</p>
-          <label class="history-save-toggle"><span>イラスト・背景を動かす</span><input id="visualCueMotion" type="checkbox" checked aria-describedby="visualCueMotionHelp" /></label>
-          <p id="visualCueMotionHelp" class="small muted">動きをオフにすると静止画で表示します。端末の「動きを減らす」設定も反映します。対応する絵がない英文ではEmmaを表示します。</p>
           <label>キャラクターの色
             <select id="colorMode">
               <option value="soft">やさしい色</option>
@@ -784,6 +785,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/visual-cue-trial.js?v=20261020-visual-cue-default-on-v1"></script>
+  <script type="module" src="./src/visual-cue-trial.js?v=20261020-english-illustrations-v2"></script>
 </body>
 </html>

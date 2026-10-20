@@ -7,25 +7,31 @@ import {bindVisualCueSettings} from './src/visual-cue-settings.js';
 // Exercise the real settings binding, including persistence and preview migration.
 function settingsFixture(saved={}, storageOverride){
  const dom=new JSDOM(readFileSync('index.html','utf8'),{url:'https://settings.test/'});
- const enabled=dom.window.document.getElementById('visualCueEnabled'),motion=dom.window.document.getElementById('visualCueMotion');
+ const enabled=dom.window.document.getElementById('visualCueEnabled');
  const storage=storageOverride||dom.window.localStorage;
  for(const [key,value] of Object.entries(saved))storage.setItem(key,value);
  const applied=[];
- const binding=bindVisualCueSettings({enabled,motion,storage,configure:p=>applied.push(p)});
+ const binding=bindVisualCueSettings({enabled,storage,configure:p=>applied.push(p)});
  const change=(input,checked)=>{input.checked=checked;input.dispatchEvent(new dom.window.Event('change'));};
- return {enabled,motion,storage,applied,binding,change};
+ return {enabled,storage,applied,binding,change,document:dom.window.document};
 }
 {
  const f=settingsFixture();
- assert(f.enabled.checked,'new installation enables Visual Cue');assert(f.motion.checked&&!f.motion.disabled);
+ assert(f.enabled.checked,'new installation enables English illustrations');
+ const section=f.enabled.closest('article');assert.equal(section.id,'englishIllustrationSettings');assert.equal(section.querySelector('h2').textContent,'英語のイラスト');
+ assert.equal(section.querySelector('label span').textContent,'英語の内容を表すイラストを表示する');
+ assert.equal(section.querySelectorAll('input,select').length,1,'one display preference only');
+ assert.equal(f.document.getElementById('visualCueMotion'),null);
+ assert.notEqual(f.document.getElementById('colorMode').closest('article'),section,'illustration settings are separate from appearance');
  assert.deepEqual(f.applied.at(-1),{mode:'visual',motion:true});
- f.change(f.motion,false);f.change(f.enabled,false);
+ f.change(f.enabled,false);
  assert.equal(f.storage.getItem('emma_visual_cue_enabled'),'false');assert.equal(f.storage.getItem('emma_visual_cue_mode'),'emma');
- assert(f.motion.disabled);assert.deepEqual(f.applied.at(-1),{mode:'emma',motion:false});
+ assert.deepEqual(f.applied.at(-1),{mode:'emma',motion:true});
  const reloaded=settingsFixture(Object.fromEntries(Object.entries(f.storage)));
- assert(!reloaded.enabled.checked&&!reloaded.motion.checked&&reloaded.motion.disabled,'reload preserves opt-out and independent motion preference');
- reloaded.change(reloaded.enabled,true);assert(!reloaded.motion.disabled&&!reloaded.motion.checked);
- assert.deepEqual(reloaded.applied.at(-1),{mode:'visual',motion:false});
+ assert(!reloaded.enabled.checked,'reload preserves opt-out');
+ reloaded.change(reloaded.enabled,true);
+ assert.deepEqual(reloaded.applied.at(-1),{mode:'visual',motion:true});
+ assert.deepEqual(settingsFixture({emma_visual_motion:'false'}).applied.at(-1),{mode:'visual',motion:true},'obsolete still-image preference no longer stops animations');
  for(const mode of ['emma','visual'])assert.equal(settingsFixture({emma_visual_cue_mode:mode}).enabled.checked,mode==='visual','legacy selection is respected');
  assert(settingsFixture({emma_visual_cue_enabled:'true',emma_visual_cue_mode:'emma'}).enabled.checked,'new preference takes precedence');
  const blocked=settingsFixture({}, {getItem(){throw Error('blocked');},setItem(){throw Error('blocked');}});

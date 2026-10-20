@@ -1,14 +1,14 @@
 // Dedicated public test entry. Uses the application's real worker, voice bank,
 // playback cancellation, face animation, play screen and Visual Cue controller.
 import {createTrialStorage} from './visual-cue-trial-storage.js';
-import {VISUAL_CUE_CATALOG} from './visual-cue-catalog.js?v=20261020-visual-cue-default-on-v1';
+import {VISUAL_CUE_CATALOG} from './visual-cue-catalog.js?v=20261020-english-illustrations-v2';
 for(const key of ['localStorage','sessionStorage'])Object.defineProperty(window,key,{configurable:true,value:createTrialStorage(window[key])});
 const defaults={emma_semantic_enabled:'false',emma_history_enabled:'false',mitsukotoba_language_v1:'ja',mitsukotoba_language_mode_v2:'manual'};
 for(const [key,value] of Object.entries(defaults))if(localStorage.getItem(key)===null)localStorage.setItem(key,value);
-const {visualCueTrial:app}=await import('./app.js?v=20261020-visual-cue-default-on-v1');
+const {visualCueTrial:app}=await import('./app.js?v=20261020-english-illustrations-v2');
 if(!app)throw Error('テスト文書を開いてください');
 for(const id of ['fullResetButton','semanticEnabled','asrModel','endpointMode','onboardingHighPerformance']){const input=document.getElementById(id);if(input)input.disabled=true;}
-const data=await fetch(new URL('../shared/visual-cue-trial-data.json?v=20261020-visual-cue-default-on-v1',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
+const data=await fetch(new URL('../shared/visual-cue-trial-data.json?v=20261020-english-illustrations-v2',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
 const $=id=>document.getElementById(id);
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 const coverageUrl=document.documentElement.dataset.coverageUrl||'./visual-cue-coverage.html';
@@ -40,8 +40,7 @@ const stop=make('button','停止','outline-button');stop.id='trialStop';
 const next=make('button','次の英文','outline-button');next.id='trialNext';buttons.append(play,stop,next);panel.append(buttons);
 const compare=make('div',null,'trial-filters');const mode=make('select');mode.id='trialMode';
 for(const [value,text] of [['visual','イラスト・背景あり'],['emma','従来のEmmaのみ']]){const o=make('option',text);o.value=value;mode.append(o);}
-const motion=make('input');motion.type='checkbox';motion.id='trialMotion';const motionLabel=label('イラスト・背景を動かす ',motion);
-compare.append(label('同じ音声で表示を比較',mode),motionLabel);panel.append(compare);
+compare.append(label('同じ音声で表示を比較',mode));panel.append(compare);
 const status=make('p','英文を選んで再生してください。','trial-note');status.id='trialStatus';status.setAttribute('role','status');panel.append(status);
 panel.append(make('p','3文の録音には全体で1つの表示を使います。英文との意味対応とハート・星は確認候補です。コップ動画・起床動画・撤回した手の動作は自動表示しません。','trial-note'));
 const home=document.querySelector('#homeScreen .screen-content');home.append(panel);
@@ -50,12 +49,12 @@ const reduction=matchMedia('(prefers-reduced-motion: reduce)');
 function renderPreview(){
  const row=filtered.find(r=>r.id===select.value),asset=VISUAL_CUE_CATALOG.assets[row?.target];
  preview.hidden=!asset;if(!asset){previewImage.removeAttribute('src');return;}
- const animate=asset.kind==='animation'&&motion.checked&&!reduction.matches&&!previewPaused;
+ const animate=asset.kind==='animation'&&!reduction.matches&&!previewPaused;
  const path=animate?asset.image:asset.poster;
  previewImage.alt=row.label;previewImage.dataset.assetId=asset.id;
  previewImage.src=new URL('../'+path,import.meta.url).href;
- previewCaption.textContent=animate?'動画プレビュー：音声なしで繰り返し表示しています。':reduction.matches?'端末の「動きを減らす」設定に合わせて静止表示しています。':!motion.checked?'「イラスト・背景を動かす」がオフのため静止表示しています。':'静止画プレビュー';
- previewToggle.hidden=asset.kind!=='animation';previewToggle.disabled=!motion.checked||reduction.matches;
+ previewCaption.textContent=animate?'動画プレビュー：音声なしで繰り返し表示しています。':reduction.matches?'端末の「動きを減らす」設定に合わせて静止表示しています。':'静止画プレビュー';
+ previewToggle.hidden=asset.kind!=='animation';previewToggle.disabled=reduction.matches;
  previewToggle.textContent=previewPaused?'プレビューを再生':'プレビューを停止';
  previewHint.textContent=mode.value==='emma'?'音声再生中にもこの絵を表示するには、「同じ音声で表示を比較」を「イラスト・背景あり」にしてください。':asset.kind==='animation'?'音声終了後も確認できます。上の表示は「停止」、この欄は「プレビューを停止」で止められます。':'選択した静止画です。音声終了後も確認できます。';
 }
@@ -97,10 +96,9 @@ play.addEventListener('click',async()=>{
 stop.addEventListener('click',()=>{generation++;void app.stop();play.disabled=!select.value;status.textContent='停止しました。';});
 quickStop.addEventListener('click',()=>stop.click());
 next.addEventListener('click',()=>{if(!filtered.length)return;select.selectedIndex=(select.selectedIndex+1)%filtered.length;selection();});
-const actualEnabled=$('visualCueEnabled'),actualMotion=$('visualCueMotion');mode.value=actualEnabled.checked?'visual':'emma';motion.checked=actualMotion.checked;
+const actualEnabled=$('visualCueEnabled');mode.value=actualEnabled.checked?'visual':'emma';
 mode.addEventListener('change',()=>{actualEnabled.checked=mode.value==='visual';actualEnabled.dispatchEvent(new Event('change'));});
-motion.addEventListener('change',()=>{actualMotion.checked=motion.checked;actualMotion.dispatchEvent(new Event('change'));});
-actualEnabled.addEventListener('change',()=>{mode.value=actualEnabled.checked?'visual':'emma';renderPreview();});actualMotion.addEventListener('change',()=>{motion.checked=actualMotion.checked;renderPreview();});
+actualEnabled.addEventListener('change',()=>{mode.value=actualEnabled.checked?'visual':'emma';renderPreview();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){generation++;void app.stop();play.disabled=!select.value;status.textContent='停止しました。';}});
 options();if(initial){filter.value=initial.category;options();target.value=initial.target;}else if(params.get('target'))target.value=params.get('target');
 render(initial?.id);

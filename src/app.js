@@ -49,7 +49,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261020-visual-cue-default-on-v1';
+const WEB_BUILD = '20261020-english-illustrations-v2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -168,13 +168,13 @@ let featureScreens;
 // Optional visual module failure must never prevent voice or the existing Emma face.
 let visualCue={begin(){},end(){},nextUtteranceFinished(){},stop(){},preload(){}};
 function initVisualCues(){
-  const enabled=$('visualCueEnabled'),motion=$('visualCueMotion');
-  if(!enabled||!motion)return;
-  const settings=bindVisualCueSettings({enabled,motion,storage:localStorage,configure:preferences=>visualCue.configure?.(preferences)});
-  import('./visual-cue-controller.js?v=20261020-visual-cue-default-on-v1').then(({createVisualCueController})=>{
+  const enabled=$('visualCueEnabled');
+  if(!enabled)return;
+  const settings=bindVisualCueSettings({enabled,storage:localStorage,configure:preferences=>visualCue.configure?.(preferences)});
+  import('./visual-cue-controller.js?v=20261020-english-illustrations-v2').then(({createVisualCueController})=>{
     visualCue=createVisualCueController();
     settings.apply();
-  }).catch(error=>{enabled.checked=false;enabled.disabled=true;motion.disabled=true;recordRuntimeDiagnosticEvent('visual-cue-unavailable',error);});
+  }).catch(error=>{enabled.checked=false;enabled.disabled=true;recordRuntimeDiagnosticEvent('visual-cue-unavailable',error);});
 }
 function audioCacheKey(text){
   return [getTtsSignature(),String(text||'')].join('|');

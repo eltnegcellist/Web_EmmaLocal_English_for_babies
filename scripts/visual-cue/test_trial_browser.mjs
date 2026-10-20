@@ -30,9 +30,9 @@ try{
   check('actual-worker-audio-'+a.id,await page.locator('#avatar').evaluate(n=>n.classList.contains('state-speaking')));
   if(a.id==='hug-face-cuddle')check('quick-stop-visible-while-playing',await page.locator('#trialQuickStop').isVisible());
   if(a.status==='motion-candidate'){
-   await page.uncheck('#trialMotion');await page.waitForFunction(path=>document.querySelector('#avatar img[data-asset-id]')?.src.endsWith(path),a.poster);
+   await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(path=>document.querySelector('#avatar img[data-asset-id]')?.src.endsWith(path),a.poster);
    check('static-poster-'+a.id,await page.locator('#avatar').evaluate(n=>n.classList.contains('state-speaking')));
-   await page.check('#trialMotion');await page.waitForFunction(path=>document.querySelector('#avatar img[data-asset-id]')?.src.endsWith(path),a.image);
+   await page.emulateMedia({reducedMotion:'no-preference'});await page.waitForFunction(path=>document.querySelector('#avatar img[data-asset-id]')?.src.endsWith(path),a.image);
   }
   if(a.id==='kick')await page.screenshot({path:out+'/trial-kick-desktop.png',fullPage:true});
   await page.click('#trialQuickStop');check('stop-clears-'+a.id,await page.locator('.has-visual-cue').count()===0);
@@ -43,7 +43,7 @@ try{
  check('resting-hug-does-not-animate',(await page.locator('#avatar img[data-asset-id="hug-face-v1"]').getAttribute('src')).endsWith('hug-face-cuddle-poster.webp'));
  await page.click('#trialQuickStop');
  await page.selectOption('#trialFilter','background');await page.selectOption('#trialTarget','calm');
- await page.uncheck('#trialMotion');await page.click('#trialPlay');await page.waitForSelector('#avatar.has-emma-background');
+ await page.click('#trialPlay');await page.waitForSelector('#avatar.has-emma-background');
  check('hearts-original-face-visible',await page.locator('#aiAvatarFace [data-avatar-frame]:not(.hidden)').evaluate(n=>getComputedStyle(n).visibility==='visible'));
  check('real-app-mouth-frame',await page.locator('#aiAvatarFace [data-avatar-frame]:not(.hidden)').getAttribute('data-avatar-frame').then(f=>f.includes('-talk-')));
  await page.selectOption('#trialMode','emma');check('same-voice-baseline-comparison',await page.locator('.has-emma-background').count()===0&&await page.locator('#avatar').evaluate(n=>n.classList.contains('state-speaking')));
@@ -65,7 +65,6 @@ try{
  await page.selectOption('#category','no-animation');check('no-added-animation-current-count',(await page.locator('#resultCount').textContent()).startsWith(data.report.noAddedAnimation.count+'件'));
  await page.screenshot({path:out+'/coverage-mobile.png',fullPage:true});check('coverage-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  const url=await page.locator('#movies tr[data-asset="kick"] a').getAttribute('href');await page.goto(url);await page.waitForSelector('#trialTarget');check('coverage-link-selects-kick',await page.locator('#trialTarget').inputValue()==='kick'&&await page.locator('#trialPhrase option').count()===data.report.animations.find(a=>a.id==='kick').count);
- await page.check('#trialMotion');
  const hugUrl=new URL(base+trialPath);hugUrl.searchParams.set('target','hug-face-cuddle');
  const clipsBeforePreview=requests.filter(s=>s.includes('/clips/')).length;
  await page.goto(hugUrl.href);await page.waitForSelector('#trialPreviewImage[data-asset-id="hug-face-cuddle"]');await page.locator('#trialPreviewImage').evaluate(i=>i.decode());
@@ -76,7 +75,7 @@ try{
  await page.click('#trialPreviewToggle');check('persistent-preview-can-resume',(await page.locator('#trialPreviewImage').getAttribute('src')).endsWith('hug-face-cuddle.webp'));
  await page.click('#trialPlay');await page.waitForSelector('#avatar img[data-asset-id="hug-face-cuddle"]');await page.waitForSelector('#trialPlay:not([disabled])',{timeout:15000});
  check('movie-and-main-animation-remain-after-audio-end',await page.locator('#trialPreview').isVisible()&&(await page.locator('#trialPreviewImage').getAttribute('src')).endsWith('hug-face-cuddle.webp')&&await page.locator('#avatar.has-visual-cue img[data-asset-id="hug-face-cuddle"]').count()===1);
- await page.uncheck('#trialMotion');check('preview-explains-motion-off',(await page.locator('#trialPreviewCaption').textContent()).includes('オフ')&&(await page.locator('#trialPreviewImage').getAttribute('src')).endsWith('-poster.webp'));await page.check('#trialMotion');
+ check('no-static-animation-selector',await page.locator('#trialMotion,#visualCueMotion').count()===0);
  await page.selectOption('#trialMode','emma');check('preview-explains-emma-only',(await page.locator('#trialPreviewHint').textContent()).includes('イラスト・背景あり'));await page.selectOption('#trialMode','visual');
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.waitForFunction(()=>document.querySelector('#trialPreviewCaption')?.textContent.includes('端末')&&document.querySelector('#trialPreviewImage')?.getAttribute('src').endsWith('-poster.webp'));
