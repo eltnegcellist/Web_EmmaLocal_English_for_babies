@@ -12,6 +12,8 @@ export class EmmaMicrophone {
     this.context = null;
     this.node = null;
     this.vad = new AdaptiveEndpointDetector();
+    // Aggregate levels only: diagnostics never retain or export microphone PCM.
+    this.captureStats = {frames:0,samples:0,lastRms:0,peakRms:0};
   }
 
   async start() {
@@ -69,12 +71,24 @@ export class EmmaMicrophone {
   }
 
   handleFrame(frame) {
+    let power=0;
+    for(const sample of frame)power+=sample*sample;
+    const rms=frame.length?Math.sqrt(power/frame.length):0;
+    this.captureStats.frames++;this.captureStats.samples+=frame.length;
+    this.captureStats.lastRms=rms;this.captureStats.peakRms=Math.max(this.captureStats.peakRms,rms);
     if (this.shouldIgnore?.()) {
       this.vad.resetSpeechOnly();
       return;
     }
     const result = this.vad.push(frame, this.context.sampleRate, performance.now());
     this.handleResult(result);
+  }
+
+  getDiagnostics() {
+    const tracks=this.stream?.getAudioTracks?.()||[];
+    return {...this.captureStats,contextState:this.context?.state||'closed',
+      liveTracks:tracks.filter(track=>track.readyState==='live').length,
+      mutedTracks:tracks.filter(track=>track.muted).length};
   }
 
   handleResult(result) {

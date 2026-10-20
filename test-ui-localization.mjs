@@ -34,7 +34,7 @@ for(const lang of ['en','de','fr','ko','th','ja']){
   const assertLocalized=root=>{if(lang!=='ja')assert.deepEqual(stockText(root).filter(value=>japanese.test(value)),[],`${lang}: untranslated product UI`);};
   // The actual first-run/home/settings/tutorial markup, including accessible
   // names. Language names and Japanese-only model controls are intentional.
-  const excluded='.language-picker option,#replyJapanese,#onboardingHighPerformance,#asrModel,#asrModelStatus,#semanticEnabled,#storageProtectionStatus,#modelCacheStatus,#modelCacheHistoryStatus,#developerTools,#developerUnlockTrigger';
+  const excluded='.language-picker option,#replyJapanese,#onboardingHighPerformance,#asrModel,#asrModelStatus,#semanticEnabled,#storageProtectionStatus,#modelCacheStatus,#modelCacheHistoryStatus,#developerTools';
   const copy=document.body.cloneNode(true);
   for(const el of copy.querySelectorAll('#aboutScreen,script,style,svg'))el.remove();
   copy.querySelector('#onboardingHighPerformance')?.closest('.lite-compact-setting')?.remove();
@@ -107,6 +107,20 @@ for(const lang of ['en','de','fr','ko','th','ja']){
 // Exercise actual application boundaries, including error paths that a
 // real browser cannot reliably force without altering device permissions.
 const app=readFileSync(new URL('./src/app.js',import.meta.url),'utf8');
+const stopFunction=app.slice(app.indexOf('async function stopEmma('),app.indexOf('\nfunction handleCapturedUtterance('));
+for(const ready of [true,false]){
+  const statuses=[],progress=[];
+  const buttons=()=>({classList:{add:()=>{},remove:()=>{}},disabled:false});
+  const state={conversationEpoch:1,languageUI:{language:'en',setStatus:value=>statuses.push(value)},
+    multilingual:{ready,pending:new Map(ready?[]:[[1,{}]])},semanticPanel:{cancelPending:()=>{}},
+    showProgress:visible=>progress.push(visible),showOnboardingProgress:visible=>progress.push(visible),
+    audioUnlockWaiters:[],running:true,preparingConversation:true,processing:false,speaking:false,pendingUtterance:null,
+    restoreUnspokenTurn:()=>{},turnRevisions:{reset:()=>{}},audioQueues:new Map(),activeAudioSource:null,mic:null,wakeLock:null,lastMicrophoneDiagnostics:null,
+    ui:{manualReplyButton:buttons(),stopButton:buttons(),mainButton:buttons()},setBusy:()=>{},setState:()=>{}};
+  await vm.runInNewContext(stopFunction+'\nstopEmma();',state);
+  assert.deepEqual(progress,[false,false]);
+  assert.equal(statuses.at(-1),ready?'モデルの準備ができました':'準備を中断しました。準備するボタンで再開できます。');
+}
 const navigationFunction=app.slice(app.indexOf('function openSubpage('),app.indexOf('\nfunction backFromSubpage('));
 const entries=[appHistoryState('settings')]; // stale entry after tutorial replay
 const navigation={currentScreen:'home',location:{href:'https://ui-audit.test/'},appHistoryState,

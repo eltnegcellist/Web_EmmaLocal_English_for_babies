@@ -469,3 +469,19 @@ const capture=new EmmaMicrophone({});const pendingStart=capture.start();await ca
 grant({getTracks:()=>[{stop(){trackStops++;}}]});await pendingStart;
 assert(trackStops>0);assert.equal(contexts,0);assert.equal(capture.stream,null);
 console.log('Microphone: late permission after stop cannot reopen capture OK');
+// Diagnose missing microphone signal without retaining audio or changing the
+// speech detector. Frames ignored during preparation still count as capture.
+let detectorFrames=0;
+const metered=new EmmaMicrophone({shouldIgnore:()=>false});
+metered.context={sampleRate:16000,state:'running'};
+metered.stream={getAudioTracks:()=>[{readyState:'live',muted:false}]};
+metered.vad={push:()=>{detectorFrames++;return {event:'none'};},resetSpeechOnly:()=>{}};
+metered.handleFrame(new Float32Array(160).fill(0));
+metered.handleFrame(new Float32Array(160).fill(.25));
+assert.equal(detectorFrames,2);
+const levels=metered.getDiagnostics();assert.equal(levels.frames,2);assert.equal(levels.samples,320);
+assert.equal(levels.peakRms,.25);assert.equal(levels.liveTracks,1);
+assert(Object.values(levels).every(value=>typeof value==='string'||typeof value==='number'),'Diagnostic output must not expose PCM');
+metered.shouldIgnore=()=>true;metered.handleFrame(new Float32Array(160));
+assert.equal(detectorFrames,2);assert.equal(metered.getDiagnostics().frames,3);
+console.log('Microphone: aggregate signal diagnostics preserve detector routing and expose no PCM OK');

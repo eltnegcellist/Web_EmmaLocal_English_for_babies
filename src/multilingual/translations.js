@@ -1,4 +1,4 @@
-import {appendOperationalMessages} from './operational-messages.js';
+import {appendOperationalMessages} from './operational-messages.js?v=20261020-ui-audit-v3';
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
 ["おはよう","Good morning","Guten Morgen","Bonjour","좋은 아침","อรุณสวัสดิ์"],

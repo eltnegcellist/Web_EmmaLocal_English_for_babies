@@ -3,7 +3,7 @@ import { createSemanticController } from './semantic/controller.js';
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
 import { installFeatureScreens } from './feature-screens.js';
 import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './emma-color-palettes.js';
-import { EmmaMicrophone } from './audio-capture.js';
+import { EmmaMicrophone } from './audio-capture.js?v=20261020-ui-audit-v3';
 import { MoonshineAsrClient } from './asr-client.js';
 import { TurnRevisions } from './turn-revisions.js';
 import { LiteResponseEngine, isMeaningfulUtterance } from './lite-response-engine.js';
@@ -12,8 +12,8 @@ import { replyDisplayHint, explainReplyContext } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
-import { installLanguageUI } from './multilingual/ui.js';
-import { describeError } from './multilingual/translations.js';
+import { installLanguageUI } from './multilingual/ui.js?v=20261020-ui-audit-v3';
+import { describeError } from './multilingual/translations.js?v=20261020-ui-audit-v3';
 import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 
@@ -104,6 +104,7 @@ let preparingConversation=false;
 // The official v0.1.5 release archive contains the split-frontend WASM build;
 // the v0.1.5 npm tarball's WASM does not.
 let moonshineTranscriber, ttsWorker, mic, wakeLock;
+let lastMicrophoneDiagnostics=null;
 let moonshineStage='idle';
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
@@ -1003,7 +1004,13 @@ async function prepareSemanticForConversation() {
 
 async function stopEmma() {
   conversationEpoch++;
+  const hadMultilingualWork=languageUI?.language!=='ja'&&multilingual?.pending?.size>0;
   semanticPanel?.cancelPending();
+  showProgress(false);showOnboardingProgress(false);
+  if(languageUI?.language&&languageUI.language!=='ja'){
+    if(multilingual?.ready)languageUI.setStatus('モデルの準備ができました');
+    else if(hadMultilingualWork)languageUI.setStatus('準備を中断しました。準備するボタンで再開できます。');
+  }
   while(audioUnlockWaiters.length)audioUnlockWaiters.shift()?.();
   running=false;
   preparingConversation=false;
@@ -1019,6 +1026,7 @@ async function stopEmma() {
     activeAudioSource=null;
   }
   await mic?.stop().catch(()=>{});
+  lastMicrophoneDiagnostics=mic?.getDiagnostics?.()||lastMicrophoneDiagnostics;
   mic=null;
   wakeLock?.release?.().catch(()=>{});
   wakeLock=null;
@@ -1996,6 +2004,7 @@ async function buildWebDiagnosticReport() {
     if(typeof navigator.storage?.persisted==='function') storagePersisted=await navigator.storage.persisted();
   } catch {}
   const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny'?'Tiny':'Small';
+  const capture=mic?.getDiagnostics?.()||lastMicrophoneDiagnostics||{};
   const lines=[
     'Mitsukotoba Web diagnostics',
     `created=${new Date().toISOString()}`,
@@ -2008,6 +2017,14 @@ async function buildWebDiagnosticReport() {
     `language=${navigator.language}`,
     `app.language=${languageUI.language}`,
     `app.languageMode=${languageUI.mode}`,
+    `mic.active=${Boolean(mic)}`,
+    `mic.contextState=${capture.contextState??'unknown'}`,
+    `mic.frames=${capture.frames??'unknown'}`,
+    `mic.samples=${capture.samples??'unknown'}`,
+    `mic.lastRms=${capture.lastRms??'unknown'}`,
+    `mic.peakRms=${capture.peakRms??'unknown'}`,
+    `mic.liveTracks=${capture.liveTracks??'unknown'}`,
+    `mic.mutedTracks=${capture.mutedTracks??'unknown'}`,
     `multilingual.asrStage=${multilingualAsrDiagnostic.stage}`,
     `multilingual.asrLanguage=${multilingualAsrDiagnostic.detectedLanguage??'unknown'}`,
     `multilingual.asrElapsedMs=${multilingualAsrDiagnostic.elapsedMs??'unknown'}`,

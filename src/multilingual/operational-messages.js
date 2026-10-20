@@ -1,6 +1,8 @@
 // UI messages only. Never run user transcripts or English voice-bank text
 // through these mappings. Japanese source messages remain unchanged.
 export const OPERATIONAL_MESSAGES = [
+['準備を中断しました。準備するボタンで再開できます。','Preparation stopped. Use Prepare models to resume.','Vorbereitung angehalten. Mit Modelle vorbereiten fortsetzen.','Préparation arrêtée. Utilisez Préparer les modèles pour reprendre.','준비를 중단했어요. 모델 준비 버튼으로 다시 시작할 수 있어요.','หยุดการเตรียมแล้ว ใช้ปุ่มเตรียมโมเดลเพื่อดำเนินการต่อ'],
+['詳細診断を開く: ここを5回タップ','Developer diagnostics: tap here five times','Entwicklerdiagnose: hier fünfmal tippen','Diagnostic développeur : touchez ici cinq fois','개발자 진단: 여기를 다섯 번 누르세요','การวินิจฉัยสำหรับนักพัฒนา: แตะที่นี่ห้าครั้ง'],
 ['確認','Confirmation','Bestätigung','Confirmation','확인','การยืนยัน'],
 ['続ける','Continue','Fortfahren','Continuer','계속','ดำเนินการต่อ'],
 ['グラデーション：ピーチ→ミント→そら→ラベンダー→ピーチの順に、顔と飾りの色が滑らかに変わり、60秒で一周します。','Gradient: the face and decorations cycle through peach, mint, sky and lavender every 60 seconds.','Farbverlauf: Gesicht und Verzierungen wechseln in 60 Sekunden durch Pfirsich, Minze, Himmelblau und Lavendel.','Dégradé : le visage et les décorations passent par pêche, menthe, bleu ciel et lavande en 60 secondes.','그라데이션: 얼굴과 장식이 60초마다 복숭아색, 민트, 하늘색, 라벤더색으로 바뀌어요.','ไล่สี: ใบหน้าและของตกแต่งจะวนผ่านสีพีช มินต์ ฟ้า และลาเวนเดอร์ทุก 60 วินาที'],
