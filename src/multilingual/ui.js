@@ -133,7 +133,15 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     for(const id of ['asrModel','asrModelStatus','semanticEnabled']){
       const el=document.getElementById(id);const row=el?.closest('label')||el;if(row)row.hidden=language!=='ja';
     }
-    for(const id of ['replyJapanese','storageProtectionStatus','modelCacheStatus','modelCacheHistoryStatus']){
+    const hint=document.getElementById('replyJapanese');
+    if(hint){
+      // Context notes also appear in supported non-English UI locales.
+      // English requires no same-language explanation; the underlying reply
+      // remains available in its original English text.
+      hint.hidden=language==='en';
+      hint.setAttribute('aria-label',translate('日本語の目安',language));
+    }
+    for(const id of ['storageProtectionStatus','modelCacheStatus','modelCacheHistoryStatus']){
       const el=document.getElementById(id);if(el)el.hidden=language!=='ja';
     }
     const semanticHelp=document.querySelector('a[href*="topic-guide.html"]')?.closest('article');
