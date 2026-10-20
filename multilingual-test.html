@@ -1,0 +1,93 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Multilingual local runtime verification</title><body>
+<h1>Multilingual runtime verification</h1>
+<p>Development checks on this device. These are functional checks, not a new accuracy benchmark. No microphone is used.</p>
+<button id="seed">Use locally verified model fixtures</button>
+<button id="run">Run actual E5 and Whisper WASM</button>
+<button id="retry">Restart worker from cache</button>
+<button id="backend">Compare all known E5 text diagnostics</button>
+<button id="english">Check English input in Multilingual mode</button>
+<pre id="status" aria-live="polite">Ready for checks</pre><pre id="result"></pre>
+<script type="module">
+import{MultilingualClient}from'./src/multilingual/client.js';
+import{MODEL_CACHE,verifiedResponse}from'./src/multilingual/assets.js';
+import{LiteResponseEngine}from'./src/lite-response-engine.js';
+const status=document.getElementById('status'),output=document.getElementById('result');
+let client;
+function make(){return new MultilingualClient({onStatus:p=>{status.textContent=JSON.stringify(p);}});}
+document.getElementById('seed').onclick=async()=>{
+ try{
+  const manifest=await(await fetch('./src/multilingual/assets.json')).json(),cache=await caches.open(MODEL_CACHE);
+  for(const meta of manifest.assets){
+   status.textContent='Checking local fixture '+meta.model+'/'+meta.file;
+   const cached=await verifiedResponse(await cache.match(meta.url),meta);if(cached)continue;
+   const local=await fetch('./multilingual-assets/models/'+meta.model+'/'+meta.file);
+   const r=await verifiedResponse(local,meta);if(!r)throw Error('Fixture is missing or corrupt: '+meta.file);await cache.put(meta.url,r);
+  }
+  status.textContent='Local model fixtures verified and cached';
+ }catch(e){status.textContent='FAIL: '+e.message;}
+};
+document.getElementById('run').onclick=async()=>{
+ try{
+  const report={kind:'functional_only_known_synthetic_probes',inference:'actual_browser_WASM',e5:[],errors:[]};
+  client ||= make();const start=performance.now();await client.prepare();report.initMs=performance.now()-start;
+  const fixtures=await(await fetch('./.multilingual-test-results/e5-probes.json?fixture=tokens-v2')).json();
+  for(const f of fixtures){
+   status.textContent='E5 '+f.language;
+   const result=await client.predict(f.text,{diagnostics:true});
+   const maxDifference=Math.max(...f.embedding.map((v,i)=>Math.abs(v-result.embedding[i])));
+   const item={language:f.language,topic:result.topic.id,interaction:result.interaction.id,expectedTopic:f.topic,expectedInteraction:f.interaction,maxEmbeddingDifference:maxDifference,tokenIds:result.tokenIds,expectedTokenIds:f.tokenIds};
+   if(!result.embedding.every(Number.isFinite)||result.embedding.length!==384)report.errors.push('Invalid E5 embedding '+f.language);
+   item.cpuPredictionParity=item.topic===f.topic&&item.interaction===f.interaction;
+   report.e5.push(item);output.textContent=JSON.stringify(report,null,2);
+  }
+  status.textContent='Whisper Small: German speech, language auto-detection with English interface';
+  const context=new AudioContext({sampleRate:16000});
+  try{
+   const bytes=await(await fetch('./.multilingual-test-results/german.wav?fixture=valid-v2')).arrayBuffer();
+   const pcm=await context.decodeAudioData(bytes);
+   report.whisper=await client.transcribe(pcm.getChannelData(0),'en');
+   if(report.whisper.detectedLanguage!=='de'||!report.whisper.text)report.errors.push('Whisper auto language detection');
+   const semantic=await client.predict(report.whisper.text),engine=new LiteResponseEngine();
+   const reply=engine.respondRuri(report.whisper.text,'',semantic.topic,semantic.interaction,true,'e5');
+   report.whisper.topic=semantic.topic.id;report.whisper.interaction=semantic.interaction.id;report.whisper.englishReply=reply.english;
+  }finally{await context.close();}
+  report.completed=true;report.passed=report.errors.length===0;report.fullCpuPredictionParity=report.e5.every(r=>r.cpuPredictionParity);
+  output.textContent=JSON.stringify(report,null,2);status.textContent=report.passed?'PASS: actual E5 and Whisper WASM':'FAIL: inspect results';
+ }catch(e){status.textContent='FAIL: '+e.message;output.textContent+='\n'+(e.stack||String(e));}
+};
+document.getElementById('retry').onclick=async()=>{client?.cancel();client=make();try{await client.prepare();status.textContent='PASS: worker restarted from verified model cache';}catch(e){status.textContent='FAIL: '+e.message;}};
+document.getElementById('backend').onclick=async()=>{
+ const report={kind:'known_diagnostics_backend_compatibility_only',rows:[],counts:{}};
+ try{
+  client ||= make();await client.prepare();
+  const rows=await(await fetch('./.multilingual-test-results/e5-all.json?fixture=v1')).json();
+  for(const f of rows){
+   const p=await client.predict(f.text);
+   report.rows.push({id:f.id,language:f.language,topic:p.topic.id,interaction:p.interaction.id,
+    originalTopic:f.originalTopic,originalInteraction:f.originalInteraction,
+    cpuTopic:f.cpuTopic,cpuInteraction:f.cpuInteraction});
+   status.textContent='Known E5 diagnostics '+report.rows.length+'/'+rows.length;
+  }
+  for(const language of ['ja','foreign5']){
+   const pp=report.rows.filter(r=>language==='ja'?r.language==='ja':r.language!=='ja');
+   const specific=pp.filter(r=>r.originalTopic!=='generic'),generic=pp.filter(r=>r.originalTopic==='generic'),joint=pp.filter(r=>r.originalInteraction!==null);
+   report.counts[language]={n:pp.length,topicCorrect:pp.filter(r=>r.topic===r.originalTopic).length,
+    nSpecific:specific.length,specificCorrect:specific.filter(r=>r.topic===r.originalTopic).length,
+    nGeneric:generic.length,falseTopic:generic.filter(r=>r.topic!=='generic').length,
+    nJoint:joint.length,interactionCorrect:joint.filter(r=>r.interaction===r.originalInteraction).length,
+    jointCorrect:joint.filter(r=>r.topic===r.originalTopic&&r.interaction===r.originalInteraction).length,
+    cpuTopicDifferences:pp.filter(r=>r.topic!==r.cpuTopic).length,cpuInteractionDifferences:pp.filter(r=>r.interaction!==r.cpuInteraction).length};
+  }
+  output.textContent=JSON.stringify(report,null,2);status.textContent='COMPLETE: known backend comparison; no classifier tuning';
+ }catch(e){status.textContent='FAIL: '+e.message;output.textContent=JSON.stringify(report,null,2)+'\n'+String(e);}
+};
+document.getElementById('english').onclick=async()=>{
+ try{
+  client ||= make();await client.prepare();const rows=[];
+  for(const text of ['The baby is drinking milk.','Let us change your diaper.','You just woke up from your nap.']){
+   const p=await client.predict(text);rows.push({text,topic:p.topic.id,interaction:p.interaction.id});
+  }output.textContent=JSON.stringify({scope:'functional English text probes; human review zero',rows},null,2);status.textContent='COMPLETE: English semantic input check';
+ }catch(e){status.textContent='FAIL: '+e.message;}
+};
+</script></body></html>

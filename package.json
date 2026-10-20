@@ -2,13 +2,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node test-lite.mjs && node test-topic-detection.mjs && node test-avatar.mjs && node test-features.mjs && node test-visual-cue-ui.mjs && node test-visual-cue-coverage.mjs && node test-semantic.mjs && node test-silero.mjs && node test-interaction.mjs && node scripts/review-infant-english.mjs --check && node test-prerecorded-voice.mjs && node test-tts-prerecorded.mjs",
+    "test": "node test-lite.mjs && node test-topic-detection.mjs && node test-avatar.mjs && node test-features.mjs && node test-visual-cue-ui.mjs && node test-visual-cue-coverage.mjs && node test-semantic.mjs && node test-silero.mjs && node test-interaction.mjs && node scripts/review-infant-english.mjs --check && node test-prerecorded-voice.mjs && node test-tts-prerecorded.mjs && node test-multilingual.mjs",
     "prepare:semantic": "node scripts/prepare-semantic.mjs",
     "serve:semantic": "python3 scripts/serve-semantic-test.py",
     "package:semantic": "node scripts/package-semantic-test.mjs",
     "test:semantic-browser": "node scripts/browser-semantic-smoke.mjs",
     "test:vad-browser": "node scripts/browser-silero-smoke.mjs",
-    "verify:voice": "node scripts/verify-prerecorded-voice.mjs"
+    "verify:voice": "node scripts/verify-prerecorded-voice.mjs",
+    "prepare:multilingual": "python3 scripts/prepare-multilingual.py",
+    "test:multilingual": "node test-multilingual.mjs"
   },
   "devDependencies": {
     "@huggingface/tokenizers": "0.2.0",
@@ -16,6 +18,10 @@
     "fake-indexeddb": "6.2.5",
     "jsdom": "30.1.1",
     "onnxruntime-web": "1.30.0",
-    "playwright": "1.62.1"
+    "playwright": "1.62.1",
+    "@huggingface/transformers": "3.8.1"
+  },
+  "overrides": {
+    "sharp": "0.35.5"
   }
 }

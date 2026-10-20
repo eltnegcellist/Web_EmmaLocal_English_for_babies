@@ -1,5 +1,5 @@
-const CACHE='emma-web-shell-v142-moonshine-utterance-vad';
-const SHELL=['./src/prerecorded-voice.js?v=20261015-recorded-only','./src/prerecorded-voice.js','./assets/voice-1202/manifest.json','./semantic-test.html','./src/semantic/panel.js','./src/semantic/controller.js','./src/semantic/core.js','./src/semantic/client.js','./src/semantic/worker.js','./src/semantic/download.js', './src/semantic/tokenize.js','./src/semantic-assets-manifest.json','./src/conversation-history.js','./src/feature-screens.js','./src/app-navigation.js','./shared/play-topics.json','./','./index.html','./topic-guide.html','./reset.html','./styles.css','./manifest.webmanifest','./icons/mitsukotoba-baby-abc-v2-192.png','./assets/mitsukotoba-parent.png','./assets/mitsukotoba-baby.png','./assets/mitsukotoba-ai.png','./assets/emma-face/emma-face-idle-open.svg','./assets/emma-face/emma-face-idle-half.svg','./assets/emma-face/emma-face-idle-closed.svg','./assets/emma-face/emma-face-talk-small.svg','./assets/emma-face/emma-face-talk-medium.svg','./assets/emma-face/emma-face-talk-large.svg','./assets/emma-face/emma-face-talk-small-half.svg','./assets/emma-face/emma-face-talk-small-closed.svg','./assets/emma-face/emma-face-talk-medium-half.svg','./assets/emma-face/emma-face-talk-medium-closed.svg','./assets/emma-face/emma-face-talk-large-half.svg','./assets/emma-face/emma-face-talk-large-closed.svg','./src/app.js','./src/asr-worker.js','./src/moonshine-keyterm-bias.js','./src/asr-client.js','./src/turn-revisions.js','./src/emma-color-palettes.js','./src/resumable-download.js','./src/moonshine-module.js','./src/audio-capture.js','./src/silero-capture.js','./src/silero-endpoint.js','./src/silero-worker.js','./src/lite-response-engine.js','./src/interaction/diagnostics.js','./src/interaction/diversity.js','./src/interaction/frequent-replies.js','./src/interaction/supplemental-replies.js','./src/interaction/ruri-routing.js','./src/interaction/response.js','./src/lite-topic-matcher.js','./src/lite-phonetic-scene-matcher.js','./src/tts-worker.js','./worklets/pcm-capture-worklet.js'];
+const CACHE='emma-web-shell-v151-whisper-stage-diagnostics';
+const SHELL=['./src/multilingual/core.js','./src/multilingual/translations.js','./src/multilingual/ui.js','./src/multilingual/about-page.js','./src/multilingual/client.js','./src/multilingual/worker.js','./src/multilingual/assets.js','./src/multilingual/assets.json','./src/multilingual/semantic-client.js','./src/prerecorded-voice.js?v=20261015-recorded-only','./src/prerecorded-voice.js','./assets/voice-1202/manifest.json','./semantic-test.html','./src/semantic/panel.js','./src/semantic/controller.js','./src/semantic/core.js','./src/semantic/client.js','./src/semantic/worker.js','./src/semantic/download.js', './src/semantic/tokenize.js','./src/semantic-assets-manifest.json','./src/conversation-history.js','./src/feature-screens.js','./src/app-navigation.js','./shared/play-topics.json','./','./index.html','./topic-guide.html','./reset.html','./styles.css','./manifest.webmanifest','./manifest.intl.webmanifest','./icons/mitsukotoba-baby-abc-v2-192.png','./assets/mitsukotoba-parent.png','./assets/mitsukotoba-baby.png','./assets/mitsukotoba-ai.png','./assets/emma-face/emma-face-idle-open.svg','./assets/emma-face/emma-face-idle-half.svg','./assets/emma-face/emma-face-idle-closed.svg','./assets/emma-face/emma-face-talk-small.svg','./assets/emma-face/emma-face-talk-medium.svg','./assets/emma-face/emma-face-talk-large.svg','./assets/emma-face/emma-face-talk-small-half.svg','./assets/emma-face/emma-face-talk-small-closed.svg','./assets/emma-face/emma-face-talk-medium-half.svg','./assets/emma-face/emma-face-talk-medium-closed.svg','./assets/emma-face/emma-face-talk-large-half.svg','./assets/emma-face/emma-face-talk-large-closed.svg','./src/app.js','./src/asr-worker.js','./src/moonshine-keyterm-bias.js','./src/asr-client.js','./src/turn-revisions.js','./src/emma-color-palettes.js','./src/resumable-download.js','./src/moonshine-module.js','./src/audio-capture.js','./src/silero-capture.js','./src/silero-endpoint.js','./src/silero-worker.js','./src/lite-response-engine.js','./src/interaction/diagnostics.js','./src/interaction/diversity.js','./src/interaction/frequent-replies.js','./src/interaction/supplemental-replies.js','./src/interaction/ruri-routing.js','./src/interaction/response.js','./src/lite-topic-matcher.js','./src/lite-phonetic-scene-matcher.js','./src/tts-worker.js','./worklets/pcm-capture-worklet.js'];
 
 self.addEventListener('install',event=>event.waitUntil(
   caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())
@@ -44,7 +44,7 @@ self.addEventListener('fetch',event=>{
 
   // These are opt-in, SHA-256-verified assets cached by the semantic worker.
   // Do not duplicate ~93 MB into the ordinary shell cache.
-  if(url.pathname.includes('/semantic-assets/')) {
+  if(url.pathname.includes('/semantic-assets/') || url.pathname.includes('/multilingual-assets/')) {
     event.respondWith(caches.match(event.request).then(cached=>cached ? withIsolationHeaders(cached) : fetch(event.request).then(withIsolationHeaders)));
     return;
   }
@@ -143,7 +143,7 @@ async function startTrackedBackgroundDownloads(){
       await self.registration.backgroundFetch.fetch(
         meta.id,
         [request],
-        {title:'みつことばのモデルを準備中'}
+        {title:meta.title||'Preparing speech models'}
       );
     }catch(error){
       console.warn('Background Fetch start skipped',meta.url,error);
@@ -158,8 +158,9 @@ self.addEventListener('message',event=>{
     const cacheName=String(message.cacheName||'');
     const cacheKey=String(message.cacheKey||'');
     if(!url||!cacheName||!cacheKey) return;
+    const title=String(message.title||'Preparing speech models').slice(0,110);
     const id='mitsukotoba-model-'+bgHash(url);
-    event.waitUntil(saveBgMeta({id,url,cacheName,cacheKey}));
+    event.waitUntil(saveBgMeta({id,url,cacheName,cacheKey,title}));
     return;
   }
   if(message.type==='start-background-downloads'){

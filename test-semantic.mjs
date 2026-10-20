@@ -34,6 +34,16 @@ const panel=installSemanticPanel({engine,storage,clientFactory:()=>fake});assert
 document.querySelector('[data-semantic="enabled"]').checked=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'sleep');rejectMode=true;assert.equal((await panel.respond('お風呂に入ろうね','')).scene,'generic');assert.equal(panel.enabled,false);
 rejectMode=false;document.querySelector('[data-semantic="prepare"]').click();await new Promise(r=>setTimeout(r,0));assert.equal(panel.enabled,true);
 fake.predict=()=>new Promise(resolve=>finish=resolve);const pending=panel.respond('ミルク','',{isCurrent:()=>false});await Promise.resolve();finish({topic:{id:'milk'},intent:{id:'observation'},state:{id:'ongoing'},elapsedMs:1});assert.equal(await pending,null);
+// The hidden diagnostic panel also subscribes to ordinary microphone replies.
+// E5 has Topic/Interaction only; rendering must not abort the production reply.
+fake.predict=async()=>({source:'e5',topic:{id:'milk',probability:.8,margin:.6},
+  interaction:{id:'inquiry',probability:.7,margin:.5},elapsedMs:12});
+const foreignReply=await panel.respond('Die Milch ist bereit. Möchtest du etwas trinken?','');
+assert(foreignReply.english.length>0);
+const foreignDiagnostic=document.querySelector('[data-semantic="result"]').textContent;
+assert.match(foreignDiagnostic,/milk/);
+assert(!foreignDiagnostic.includes('インテント（参考）'));
+assert(!foreignDiagnostic.includes('状態（参考）'));
 console.log('Semantic policies, catalog rendering, invalid data, cancellation/retry, failed-model fallback and stale reply checks passed.');
 
 // Semantic context consumes, rather than continually resets, one follow-up turn.
@@ -95,15 +105,15 @@ for(const highPerformance of [true,false]) {
   requestMicrophonePermission:async()=>calls.push('microphone'),ensureMoonshineIsolation:async()=>true,
   ensurePersistentModelStorage:async()=>true,
   clearObsoleteModelCaches:async()=>{},initWorkers:async()=>calls.push('audio'),
-  semanticPanel:semanticStub,
+  semanticPanel:semanticStub,languageUI:{needsChoice:false,language:'ja',translate:s=>s,confirm:()=>true},
   showOnboardingProgress(){},showProgress(){},setBusy(){},showScreen(){},setState(){},updateAsrModelStatus(){},startTutorial:()=>calls.push('tutorial'),friendlyError:e=>e.message,console};
  runInNewContext(setupFunction+semanticSetup+'globalThis.runSetup=prepareFirstRun;',sandbox);
  await sandbox.runSetup();
- assert.deepEqual(calls,highPerformance ? ['microphone','audio','semantic','tutorial'] : ['microphone','audio','tutorial']);
- assert.equal(values.get('asr'),highPerformance ? 'small' : 'tiny');
- assert.equal(values.get('tiny'),String(!highPerformance));
- assert.equal(values.get('performance'),String(highPerformance));
- assert.equal(semanticStub.requested,highPerformance);
+ assert.deepEqual(calls,['microphone','audio','semantic','tutorial']);
+ assert.equal(values.get('asr'),'small');
+ assert.equal(values.get('tiny'),'false');
+ assert.equal(values.get('performance'),'true');
+ assert.equal(semanticStub.requested,true);
  assert.equal(values.get('emma_web_setup_revision'),'setup-test');
 }
 console.log('Actual first-setup permission/audio/Semantic order and opt-out checks passed.');

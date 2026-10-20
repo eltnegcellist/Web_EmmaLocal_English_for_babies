@@ -39,7 +39,7 @@ const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.
   assert(!document.querySelector('#conversation')?.classList.contains('hidden'),'intro visible from first render');
   assert(!document.querySelector('#emmaBubble')?.classList.contains('hidden'));
   assert(script.includes('if(!emmaText)return;'),'intermediate empty replies must preserve last visible card');
-  assert(script.includes('await speakResponse("Hi, I\'m Emma.");'),'opening card agrees with tutorial audio');
+  assert(script.includes('const played=await speakResponse("Hi, I\'m Emma.");'),'opening card agrees with tutorial audio');
 }
 
 
@@ -96,6 +96,16 @@ assert(!publicHtml.includes('Android_English_character_for_baby'));
 
 const previewHtml=readFileSync(new URL('./preview-emma.html',import.meta.url),'utf8');
 const previewCode=readFileSync(new URL('./src/preview-emma-app.js',import.meta.url),'utf8');
+for (const appFile of ['./src/app.js', './src/preview-emma-app.js']) {
+  const code=readFileSync(new URL(appFile,import.meta.url),'utf8');
+  const first=code.indexOf("ui.tutorialPrimaryButton?.addEventListener('click'");
+  const last=code.indexOf("window.addEventListener('resize'",first);
+  const clickHandler=code.slice(first,last);
+  assert(first>=0 && last>first, 'tutorial introduction click handler exists');
+  assert(clickHandler.includes("if(played && tutorialStep===0)"), 'only completed introduction auto-advances');
+  assert(clickHandler.includes("tutorialStep=1;"), 'completed introduction opens step 2');
+  assert(code.includes("return startedPlayback && queue.next>0;"), 'introduction waits for audible completion');
+}
 assert(previewHtml.includes('src="./src/preview-emma-app.js'), 'trial must load an isolated app entrypoint');
 assert(previewHtml.includes('id="replyTopic"') && previewHtml.includes('id="replyJapanese"'));
 assert(!previewHtml.includes('id="parentBubble"'), 'do not display parent ASR transcript');
@@ -158,18 +168,21 @@ async function simulateTutorialPlayback({revision=null,haveAudio=true,cancel=fal
     },
     finishTutorial:()=>{state.finished++;state.tutorialStep=null;},
   };
-  await vm.runInNewContext(speechFunction+'\nspeakResponse("Hi!",{revision:'+String(revision)+'});',state);
-  return state;
+  const played=await vm.runInNewContext(speechFunction+'\nspeakResponse("Hi!",{revision:'+String(revision)+'});',state);
+  return {...state,played};
 }
 const speculativePlayback=await simulateTutorialPlayback({revision:7});
 assert.equal(speculativePlayback.revisionValid,false, 'speculative playback resets ASR revision');
 assert.equal(speculativePlayback.finished,1,'tutorial must finish after successful speculative audio');
 const directPlayback=await simulateTutorialPlayback();
 assert.equal(directPlayback.finished,1,'tutorial must finish after successful manual audio');
+assert.equal(directPlayback.played,true,'completed audio must allow introduction auto-advance');
 const noAudioPlayback=await simulateTutorialPlayback({haveAudio:false});
 assert.equal(noAudioPlayback.finished,0,'no audible response must not finish the tutorial');
+assert.equal(noAudioPlayback.played,false,'empty audio must not advance introduction');
 const cancelledPlayback=await simulateTutorialPlayback({cancel:true});
 assert.equal(cancelledPlayback.finished,0,'cancelled/stopped sessions must not finish the tutorial');
+assert.equal(cancelledPlayback.played,undefined,'cancelled audio must not advance introduction');
 
 
 // Guard the public callout labels as well as the removed Android promotion.
@@ -346,7 +359,9 @@ const context={state:'running',decodeAudioData:()=>new Promise(resolve=>decodedR
   createGain:()=>({gain:{value:1},connect(node){return node;}}),
   createAnalyser:()=>({connect(){},getByteTimeDomainData(data){data.fill(128);}}),destination:{}};
 let source=readFileSync(new URL('./src/app.js',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replace(/^export /gm,'').replaceAll('import.meta.url',"'https://example.test/src/app.js'").replace('\ninitUi();','\n');
-assert(source.includes("const highPerformance = ui.onboardingHighPerformance?.checked !== false;"));
+// Multilingual setup always prepares semantic classification; Japanese Tiny
+// remains a separate existing setting, not a first-run language substitute.
+assert(source.includes("const highPerformance = true;"));
 assert(source.includes("const firstRunAsr = highPerformance ? 'small' : 'tiny';"));
 assert(source.includes("await semanticPanel.setEnabled(highPerformance,{prepare:false,mode:'semantic'});"));
 assert(source.includes('async function buildWebDiagnosticReport()'));

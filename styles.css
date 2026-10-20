@@ -839,6 +839,17 @@ body{
   padding-right:.12em;
   text-shadow:0 2px 0 rgba(255,255,255,.72);
 }
+.brand-wordmark.brand-wordmark-localized{
+  font-size:clamp(1.65rem,7.8vw,2.9rem);
+  font-weight:850;
+  letter-spacing:-.025em;
+  line-height:1.16;
+  padding-right:0;
+  color:var(--primary,#765548);
+  max-width:100%;
+  text-align:center;
+  overflow-wrap:anywhere;
+}
 .brand-mi{color:#f06e72}
 .brand-tsu{color:#8e6552}
 .brand-ko{color:#f3b943}
@@ -1382,3 +1393,12 @@ body{
 .avatar.has-emma-background{isolation:isolate}
 .visual-cue-host[data-layer="background"]{z-index:-1}
 .visual-cue-background{display:block;width:100%;height:100%;pointer-events:none}
+/* Language selection is available before setup, on Home and in Settings. */
+.language-picker{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0;font-size:.9rem;}
+.language-picker select{max-width:100%;min-width:180px;min-height:44px;padding:8px 12px;border:1px solid #b5afba;border-radius:12px;background:var(--surface,#fff);color:var(--text,#242028);font:inherit;}
+.language-picker:focus-within{outline:2px solid #8b386d;outline-offset:3px;border-radius:12px;}
+.multilingual-status{overflow-wrap:anywhere;}
+[hidden]{display:none!important;}
+html:not([lang="ja"]) .hero-copy{line-height:1.65;}
+html:not([lang="ja"]) .app-actions{flex-wrap:wrap;}
+html:not([lang="ja"]) .home-brand h1{font-size:1.2rem;}

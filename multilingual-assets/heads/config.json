@@ -1,0 +1,78 @@
+{
+  "encoder_revision": "761b726dd34fb83930e26aab4e9ac3899aa1fa78",
+  "prefix": "query: ",
+  "max_length": 512,
+  "pooling": "mean",
+  "normalize": true,
+  "threshold": 0,
+  "margin": 0,
+  "heads": {
+    "topic": {
+      "file": "topic.f32",
+      "sha256": "a7a408808cad64269c10759f67ad805a37daf86cb5f92d3a4bbb9270fa7708ab",
+      "shape": [
+        22,
+        385
+      ],
+      "bytes": 33880,
+      "classes": [
+        "bath",
+        "book",
+        "clothes",
+        "cry",
+        "diaper",
+        "drink",
+        "feet",
+        "food",
+        "generic",
+        "hands",
+        "hug",
+        "milk",
+        "music",
+        "outside",
+        "play",
+        "rain",
+        "sleep",
+        "smile",
+        "sun",
+        "tummy",
+        "voice",
+        "wake"
+      ]
+    },
+    "interaction": {
+      "file": "interaction.f32",
+      "sha256": "e8cee3cc7855732e95fdd36c6c3c78df3e479f488ec5a920b2e6f0872d9d5f04",
+      "bytes": 23100,
+      "shape": [
+        15,
+        385
+      ],
+      "classes": [
+        "achievement",
+        "affection",
+        "care",
+        "effort",
+        "encouragement",
+        "finish",
+        "finish_check",
+        "inquiry",
+        "invitation",
+        "none",
+        "pause",
+        "praise",
+        "reassurance",
+        "repeat",
+        "start"
+      ]
+    }
+  },
+  "provenance": {
+    "topic_run": "20261019-e5-c10-controlled-v1",
+    "topic_file": "heads/expanded_c10.f32",
+    "interaction_run": "20261018-e5-text-v2",
+    "encoder_frozen": true,
+    "human_review_count": 0,
+    "labels": "synthetic_unreviewed_not_product_accuracy"
+  }
+}
