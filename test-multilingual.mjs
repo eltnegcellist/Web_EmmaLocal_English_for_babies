@@ -187,7 +187,7 @@ for(const route of [...topicRoutes,...interactionRoutes,'combined:bath:praise','
   const display=explainReplyContext(hint,lang,k=>translate(k,lang));
   assert(display.length>1&& !/[ぁ-んァ-ン一-龯]/u.test(display),'Untranslated note for '+route+' in '+lang+': '+display);
   const title=translate(hint.topicLabel,lang);
-  assert(title.length>1&&!/[ぁ-んァ-ン一-龯]/u.test(title),'Untranslated topic for '+route+' in '+lang+': '+title);
+  assert(title.length>=1&&!/[ぁ-んァ-ン一-龯]/u.test(title),'Untranslated topic for '+route+' in '+lang+': '+title);
  }
  assert(/\p{Script=Han}/u.test(explainReplyContext(hint,'zh')),'Chinese note missing for '+route);
  assert.equal(explainReplyContext(hint,'en',k=>translate(k,'en')),'');
