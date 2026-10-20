@@ -3,7 +3,7 @@ import { createSemanticController } from './semantic/controller.js';
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
 import { installFeatureScreens } from './feature-screens.js';
 import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './emma-color-palettes.js';
-import { EmmaMicrophone } from './audio-capture.js?v=20261020-ui-audit-v3';
+import { EmmaMicrophone } from './audio-capture.js?v=20261021-ui-audit-v4';
 import { MoonshineAsrClient } from './asr-client.js';
 import { TurnRevisions } from './turn-revisions.js';
 import { LiteResponseEngine, isMeaningfulUtterance } from './lite-response-engine.js';
@@ -12,10 +12,12 @@ import { replyDisplayHint, explainReplyContext } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
-import { installLanguageUI } from './multilingual/ui.js?v=20261020-ui-audit-v3';
-import { describeError } from './multilingual/translations.js?v=20261020-ui-audit-v3';
+import { installLanguageUI } from './multilingual/ui.js?v=20261021-ui-audit-v4';
+import { describeError } from './multilingual/translations.js?v=20261021-ui-audit-v4';
 import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
+import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection} from './multilingual/performance.js';
+import {installWhisperPerformanceControls} from './multilingual/performance-controls.js';
 
 const $ = (id) => document.getElementById(id);
 const ui = {
@@ -49,7 +51,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261020-private-asr-i18n-r1';
+const WEB_BUILD = '20261020-whisper-threads-sticky-language-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -173,7 +175,11 @@ function audioCacheKey(text){
 
 
 let multilingualStatus=()=>{};
-let multilingual,languageUI;
+let multilingual,languageUI,whisperPerformanceControls;
+function whisperPerformanceSettings(){
+  return {threads:normalizeThreads(localStorage.getItem(WHISPER_THREAD_KEY)),
+    languageDetection:normalizeLanguageDetection(localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY))};
+}
 const confirmAction=createConfirmation({translate:value=>languageUI.translate(value)});
 let currentReplyRoute=null;
 function refreshReplyContext(){
@@ -194,7 +200,16 @@ function refreshReplyContext(){
 let modelSelectionEpoch=0;
 let multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
 function initLanguages(){
-multilingual=new MultilingualClient({onStatus:data=>{
+multilingual=new MultilingualClient({...whisperPerformanceSettings(),onStatus:data=>{
+  if(data.stage==='runtime-ready'){
+    multilingualAsrDiagnostic.threads=data.threads;
+    multilingualAsrDiagnostic.isolated=data.isolated;
+    updateWebTimingDiagnostics();return;
+  }
+  if(data.stage==='speech-language-cached'){
+    multilingualAsrDiagnostic.cachedLanguage=data.detectedLanguage;
+    return;
+  }
   if(data.stage==='asr-timing'){
     Object.assign(multilingualAsrDiagnostic,data.timings||{});
     updateWebTimingDiagnostics();
@@ -223,6 +238,7 @@ languageUI=installLanguageUI({onExplanationsChange:refreshReplyContext,onChange:
   if(changedRoute){moonshineTranscriber?.close?.();moonshineTranscriber=null;asrInfoCache=null;workersReady=false;
     semanticPanel?.client.japanese?.cancel();multilingual.cancel();}
   commit();
+  whisperPerformanceControls?.apply(next);
   refreshReplyContext();
   await semanticPanel.setEnabled(true,{prepare:false,mode:'semantic'});
   // Moonshine requires an isolated page before its worker downloads/initializes.
@@ -243,6 +259,25 @@ initUi();
 
 function initUi() {
   initLanguages();
+  whisperPerformanceControls=installWhisperPerformanceControls({
+    onChange:async options=>{
+      await stopEmma();
+      const oldThreads=multilingual.threadPreference;
+      multilingual.setPerformance(options);
+      multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
+      if(oldThreads!==multilingual.threadPreference){
+        // The ONNX WASM thread pool is created during model initialization.
+        asrInfoCache=null;workersReady=false;moonshineTranscriber=null;
+      }
+      setState('idle','準備できました','Whisperの設定を変更しました。次の会話で適用されます。');
+      updateRuntimeBackend();updateWebTimingDiagnostics();
+    },
+    onForgetLanguage:()=>{
+      multilingual.resetSpeechLanguage();
+      multilingualAsrDiagnostic.cachedLanguage=null;
+    }
+  });
+  whisperPerformanceControls.apply(languageUI.language);
   refreshReplyContext();
   // A saved Japanese opt-out must not silently disable the foreign E5 route.
   if(languageUI.language!=='ja')localStorage.setItem('emma_semantic_enabled','true');
@@ -907,6 +942,8 @@ async function startEmma({ auto = false } = {}) {
   languageUI.confirm();
   if(running || preparingConversation || processing || speaking || featureScreens?.isOpen() || ui.mainButton.disabled) return;
   const epoch=++conversationEpoch;
+  multilingual?.resetSpeechLanguage();
+  multilingualAsrDiagnostic.cachedLanguage=null;
   sessionId=crypto.randomUUID();
   ui.mainButton.disabled=true;
   preparingConversation=true;
@@ -1005,6 +1042,8 @@ async function prepareSemanticForConversation() {
 async function stopEmma() {
   conversationEpoch++;
   const hadMultilingualWork=languageUI?.language!=='ja'&&multilingual?.pending?.size>0;
+  multilingual?.resetSpeechLanguage();
+  multilingualAsrDiagnostic.cachedLanguage=null;
   semanticPanel?.cancelPending();
   showProgress(false);showOnboardingProgress(false);
   if(languageUI?.language&&languageUI.language!=='ja'){
@@ -1160,7 +1199,8 @@ async function initWorkers() {
       await multilingual.prepare();
       if(selectionEpoch!==modelSelectionEpoch)throw Error('Language operation cancelled');
       moonshineTranscriber={transcribe:async audio=>(await multilingual.transcribe(audio,languageUI.language)).text,close:()=>multilingual.cancel()};
-      asrInfoCache={kind:'whisper',engine:'whisper-small',architecture:'whisper-small-multilingual',device:'wasm-cpu'};
+      asrInfoCache={kind:'whisper',engine:'whisper-small',architecture:'whisper-small-multilingual',
+        device:'wasm-cpu',threads:multilingual.runtimeInfo?.threads??1};
       languageUI.setStatus('モデルの準備ができました');
     }
   }
@@ -1989,7 +2029,7 @@ function updateWebTimingDiagnostics() {
     ? `ASR 端末読込 ${format(asr.cacheReadMs)} / ${formatMb(asr.cacheReadBytes)} / 通信 ${format(asr.networkDownloadMs)} / ${formatMb(asr.networkDownloadBytes)} / WASM ${format(asr.wasmInitMs)} / モデル構築 ${format(asr.modelBuildMs)} / 合計 ${format(asr.totalInitMs)} ｜ `
     : '';
   const foreignAsr=multilingualAsrDiagnostic?.totalMs!=null
-    ? `Whisper 音声${multilingualAsrDiagnostic.audioSeconds}s / 言語判定${multilingualAsrDiagnostic.languageMs}ms / 文字起こし${multilingualAsrDiagnostic.transcribeMs}ms / 実時間比${multilingualAsrDiagnostic.realTimeFactor}x ｜ `
+    ? `Whisper ${multilingualAsrDiagnostic.threads??'?'}スレッド / 音声${multilingualAsrDiagnostic.audioSeconds}s / 言語判定${multilingualAsrDiagnostic.languageMs}ms / 文字起こし${multilingualAsrDiagnostic.transcribeMs}ms / 実時間比${multilingualAsrDiagnostic.realTimeFactor}x ｜ `
     : '';
   ui.webTimingDiagnostics.textContent=
     `直近計測: ${asrText}${foreignAsr}TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
@@ -2026,6 +2066,11 @@ async function buildWebDiagnosticReport() {
     `mic.liveTracks=${capture.liveTracks??'unknown'}`,
     `mic.mutedTracks=${capture.mutedTracks??'unknown'}`,
     `multilingual.asrStage=${multilingualAsrDiagnostic.stage}`,
+    `multilingual.threadPreference=${multilingual.threadPreference}`,
+    `multilingual.effectiveThreads=${multilingual.runtimeInfo?.threads??multilingualAsrDiagnostic.threads??'unknown'}`,
+    `multilingual.threadIsolation=${multilingual.runtimeInfo?.isolated??'unknown'}`,
+    `multilingual.languageDetectionMode=${multilingual.languageDetection}`,
+    `multilingual.cachedSpokenLanguage=${multilingual.cachedSpokenLanguage??'none'}`,
     `multilingual.asrLanguage=${multilingualAsrDiagnostic.detectedLanguage??'unknown'}`,
     `multilingual.asrElapsedMs=${multilingualAsrDiagnostic.elapsedMs??'unknown'}`,
     `multilingual.audioSeconds=${multilingualAsrDiagnostic.audioSeconds??'unknown'}`,
@@ -2137,7 +2182,10 @@ async function copyTextToClipboard(text) {
 }
 
 function updateRuntimeBackend() {
-  if(languageUI.language!=='ja'){ui.runtimeBackend.textContent='Whisper Small · multilingual / E5 · on-device WASM';return;}
+  if(languageUI.language!=='ja'){
+    ui.runtimeBackend.textContent=`Whisper Small · multilingual / E5 · WASM CPU ${multilingual?.runtimeInfo?.threads??'?'} threads`;
+    return;
+  }
   if(!asrInfoCache || !ttsInfoCache){
     ui.runtimeBackend.textContent='推論: 未初期化';
     return;
@@ -2210,16 +2258,18 @@ function withTimeout(promise,ms,message){
 
 async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterReload=false}={}) {
   if(!isCurrent())return false;
-  if(typeof languageUI!=='undefined' && languageUI.language!=='ja')return true;
+  const nonJapanese=typeof languageUI!=='undefined' && languageUI.language!=='ja';
+  if(nonJapanese && whisperPerformanceSettings().threads==='1')return true;
   if(window.crossOriginIsolated && typeof SharedArrayBuffer === 'function') {
     sessionStorage.removeItem('emma_coi_reload_count');
     return true;
   }
   if(!('serviceWorker' in navigator)) {
+    if(nonJapanese)return true; // WASM CPU single-thread fallback.
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261020-incognito-asr-i18n-v1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261020-whisper-multithreading-v1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -2250,6 +2300,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     return false;
   }
 
+  if(nonJapanese)return true; // Worker uses one CPU thread without isolation.
   throw new Error('Moonshineに必要なブラウザ分離を有効にできませんでした。通常のブラウザタブで開き直してください。');
 }
 
@@ -2257,6 +2308,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261020-incognito-asr-i18n-v1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261020-whisper-multithreading-v1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });

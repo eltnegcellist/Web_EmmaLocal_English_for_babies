@@ -112,7 +112,7 @@ for(const ready of [true,false]){
   const statuses=[],progress=[];
   const buttons=()=>({classList:{add:()=>{},remove:()=>{}},disabled:false});
   const state={conversationEpoch:1,languageUI:{language:'en',setStatus:value=>statuses.push(value)},
-    multilingual:{ready,pending:new Map(ready?[]:[[1,{}]])},semanticPanel:{cancelPending:()=>{}},
+    multilingualAsrDiagnostic:{cachedLanguage:null},multilingual:{resetSpeechLanguage:()=>{},ready,pending:new Map(ready?[]:[[1,{}]])},semanticPanel:{cancelPending:()=>{}},
     showProgress:visible=>progress.push(visible),showOnboardingProgress:visible=>progress.push(visible),
     audioUnlockWaiters:[],running:true,preparingConversation:true,processing:false,speaking:false,pendingUtterance:null,
     restoreUnspokenTurn:()=>{},turnRevisions:{reset:()=>{}},audioQueues:new Map(),activeAudioSource:null,mic:null,wakeLock:null,lastMicrophoneDiagnostics:null,
