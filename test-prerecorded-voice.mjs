@@ -63,4 +63,6 @@ assert.equal(backgroundRequests,3);
 assert.equal(statuses.at(-1).stage,'complete');
 await background.audioFor(entries[2].text);
 assert.equal(backgroundRequests,3,'Finished clips are reused from cache');
+await background.prefetchAll();
+assert.equal(backgroundRequests,3,'Completing the bank should not restart a full scan');
 console.log('Prerecorded voice: manifest-only first run, requested clips and progressive cache fill PASS');
