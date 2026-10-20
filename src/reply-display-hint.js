@@ -35,6 +35,58 @@ export function replyDisplayHint(route = '') {
     topicLabel: topic?.[0] || interaction?.[0] || 'ふだんのことば',
     // A short Japanese contextual note; exact sentence translations need
     // separately reviewed, per-recorded-phrase assets.
+    // Keep context fragments separate so each is translated independently.
+    // This is a topic/interaction paraphrase, never a translation of the actual
+    // recorded English sentence or the parent transcript.
+    noteParts: [topic?.[1], interaction?.[1]].filter(Boolean).length
+      ? [topic?.[1], interaction?.[1]].filter(Boolean)
+      : ['赤ちゃんへのやさしい呼びかけ。'],
     japaneseNote: [topic?.[1], interaction?.[1]].filter(Boolean).join(' ') || '赤ちゃんへのやさしい呼びかけ。',
   };
+}
+
+// Chinese explanations can be selected separately from the interface language.
+// The full app has no Chinese UI locale yet; this does not change the speech
+// or display language.
+const CHINESE_CONTEXT_NOTES = {
+  "お風呂に入ろうね。": "我们来洗澡吧。",
+  "ミルクの時間だよ。": "该喝奶啦。",
+  "ゆっくり休もうね。": "好好休息一下吧。",
+  "おはよう、起きたね。": "早上好，醒来啦。",
+  "おむつを替えようね。": "我们来换尿布吧。",
+  "お着替えしようね。": "我们来换衣服吧。",
+  "ぎゅっと抱っこしよう。": "来抱抱你。",
+  "小さなおててだね。": "小手真可爱。",
+  "あんよを動かそうね。": "动动小脚吧。",
+  "いい笑顔だね。": "笑得真好看。",
+  "そばにいるよ。": "我就在你身边。",
+  "かわいい声だね。": "声音真可爱。",
+  "おなかのことだよ。": "我们在说小肚肚的事。",
+  "一緒に遊ぼう。": "我们一起玩吧。",
+  "お外を見てみよう。": "一起看看外面吧。",
+  "雨の音を聞こうね。": "来听听雨声。",
+  "おひさまが出ているね。": "太阳出来啦。",
+  "ごはんの時間だよ。": "到吃饭时间啦。",
+  "絵本を読もうね。": "一起读绘本吧。",
+  "歌を楽しもうね。": "一起听首歌吧。",
+  "少しずつ飲もうね。": "慢慢喝，一小口一小口来。",
+  "大好きだよ。": "我爱你。",
+  "よくできたね。": "做得真棒！",
+  "できたね！": "你做到了！",
+  "がんばっているね。": "你很努力呢。",
+  "ゆっくりでいいよ。": "慢慢来就好。",
+  "一緒にやってみよう。": "我们一起试试吧。",
+  "さあ、始めよう。": "我们开始吧。",
+  "おしまいだよ。": "结束啦。",
+  "もう終わりかな？": "已经结束了吗？",
+  "少し休もうね。": "休息一下吧。",
+  "どうしたのかな？": "怎么了呀？",
+  "もう一回やってみる？": "要再试一次吗？",
+  "赤ちゃんへのやさしい呼びかけ。": "对宝宝说的温柔话语。"
+};
+export function explainReplyContext(hint,language,translate=x=>x) {
+  if(language==='none'||language==='en')return '';
+  return hint.noteParts.map(part=>language==='zh'
+    ? (CHINESE_CONTEXT_NOTES[part]||CHINESE_CONTEXT_NOTES['赤ちゃんへのやさしい呼びかけ。'])
+    : translate(part)).join(' ');
 }
