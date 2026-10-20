@@ -69,7 +69,7 @@ try{
  check('production-on-survives-reload',await page.locator('#visualCueEnabled').isChecked());
  check('production-independent-motion-preference',!await page.locator('#visualCueMotion').isChecked()&&await page.locator('#visualCueMotion').isEnabled());
  check('production-settings-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
- await page.click('#settingsBackButton');await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-avatar.has-emma-background');
+ await page.click('#settingsBackButton');await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-topic-change');await page.getByRole('button',{name:'泣く・ぐずぐず',exact:true}).click();await page.getByRole('button',{name:'3文',exact:true}).click();await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-avatar.has-emma-background');
  check('production-motion-off-retains-static-cue',await page.locator('.play-avatar [data-emma-backdrop]').getAttribute('data-motion')==='off');
  page.once('dialog',d=>d.accept());await page.click('#featureClose');
  check('no-browser-errors',errors.length===0,errors);completed=true;
