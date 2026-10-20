@@ -161,7 +161,7 @@ let sessionId='', conversationEpoch=0;
 const preparedAudio=new Map();
 let featureScreens;
 // Optional visual module failure must never prevent voice or the existing Emma face.
-let visualCue={begin(){},end(){},stop(){},preload(){}};
+let visualCue={begin(){},end(){},nextUtteranceFinished(){},stop(){},preload(){}};
 function initVisualCues(){
   const mode=$('visualCueMode'),motion=$('visualCueMotion');
   if(!mode||!motion)return;
@@ -963,6 +963,9 @@ async function stopEmma() {
 
 function handleCapturedUtterance(audio) {
   if(!running||preparingConversation||speaking)return;
+  // Keep the previous English illustration through listening, including the parent's speech.
+  // Clear it only when VAD has captured the end of that next utterance.
+  visualCue.nextUtteranceFinished();
   if(tutorialStep===2){
     tutorialUserSpoke=true;
     // Tutorial must honor the same auto-reply preference as ordinary speech.
@@ -1569,6 +1572,7 @@ async function playBlob(blob,requestId) {
   }
   if(q && !q.started){q.started=true;if(q.entry && historyEnabled(localStorage))history.append(q.entry).catch(error=>{ console.warn('履歴を保存できませんでした',error);$('historyWarning').textContent='履歴を保存できませんでした。端末の空き容量やブラウザ設定を確認してください。'; });}
   animate();
+  // Only the speaking mouth stops here. The visual cue stays until the next parent utterance ends.
   try{await ended;}finally{visualCue.end(cueToken);}
   if(activeAudioSource===source) activeAudioSource=null;
   cancelAnimationFrame(raf);
