@@ -16,7 +16,7 @@ export function browserLanguages(navigatorInfo=globalThis.navigator,intl=globalT
   }
   return tags;
 }
-export const LANGUAGE_NAMES={ja:'日本語',de:'Deutsch',fr:'Français',ko:'한국어',th:'ไทย',en:'English · Multilingual'};
+export const LANGUAGE_NAMES={ja:'日本語',de:'Deutsch',fr:'Français',ko:'한국어',th:'ไทย',en:'English'};
 export function resolveLanguage({saved=null,languages=[],region=null}={}) {
   if(LANGUAGES.includes(saved))return {language:saved,needsChoice:false,source:'saved'};
   for(const tag of languages){const code=String(tag).toLowerCase().split(/[-_]/)[0];
@@ -26,7 +26,13 @@ export function resolveLanguage({saved=null,languages=[],region=null}={}) {
   return candidate ? {language:candidate,needsChoice:false,source:'region'} : {language:'en',needsChoice:false,source:'fallback'};
 }
 export function modelRoute(language){return language==='ja'?'japanese':'multilingual';}
-export function speechLanguage(language){return language==='en'?null:language;}
+// UI language and microphone language are separate. A selected language is
+// always a direct Whisper language hint; only the explicit experimental option
+// opts into an extra language-detection model pass.
+export const SPEECH_DETECTION_KEY='mitsukotoba_speech_detection_v1';
+export function speechLanguage(language){
+  return language==='auto' ? null : language;
+}
 export function meaningfulSpeech(text){return /[\p{L}\p{N}]/u.test(String(text||'').trim());}
 export function decodeE5Heads(buffers,config) {
   return Object.fromEntries(Object.entries(config.heads).map(([name,meta])=>[name,decodeHead(buffers[name],meta)]));
