@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {JSDOM} from 'jsdom';
+
+const directory=process.argv[2];assert(directory,'Pass the packaged app directory');
+const script=await readFile(directory+'/app-instance.js','utf8');
+const dom=new JSDOM('<!doctype html>',{url:'https://example.test/app/',runScripts:'outside-only'});
+const w=dom.window,raw=w.localStorage,session=w.sessionStorage;
+raw.setItem('emma_visual_cue_enabled','false');raw.setItem('emma_web_setup_revision','production');
+session.setItem('emma_mic_session_granted','1');
+const opened=[];const factory={marker:42,open(name,version){assert.equal(this.marker,42);opened.push([name,version]);},databases(){assert.equal(this.marker,42);return Promise.resolve([]);}};
+Object.defineProperty(w,'indexedDB',{configurable:true,value:factory});
+w.eval(script);
+assert.equal(w.localStorage.getItem('emma_visual_cue_enabled'),null);
+assert.equal(w.localStorage.getItem('emma_web_setup_revision'),null,'normal setup is not bypassed');
+assert.equal(w.sessionStorage.getItem('emma_mic_session_granted'),null,'microphone consent is not copied');
+w.localStorage.setItem('emma_visual_cue_enabled','true');
+assert.equal(raw.getItem('emma_visual_cue_enabled'),'false');assert.equal(raw.getItem('emma_visual_cue_app_v1:emma_visual_cue_enabled'),'true');
+w.indexedDB.open('mitsukotoba-conversation-history',1);w.indexedDB.open('mitsukotoba-multilingual-chunks-v1',1);await w.indexedDB.databases();
+assert.deepEqual(opened,[['mitsukotoba-conversation-history-visual-cue-app-v1',1],['mitsukotoba-multilingual-chunks-v1',1]]);
+w.localStorage.clear();assert.equal(raw.getItem('emma_visual_cue_enabled'),'false');assert.equal(raw.getItem('emma_web_setup_revision'),'production');
+console.log('Live app instance: isolated settings/history, normal setup, independent microphone consent and shared public model store PASS');

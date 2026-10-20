@@ -2,6 +2,7 @@
 """Prepare artwork and voice-backed UI review for the dedicated GitHub Pages repo."""
 from pathlib import Path
 import argparse, hashlib, json, shutil, subprocess
+from live_app_package import prepare_live_app
 
 ROOT = Path(__file__).resolve().parents[2]
 ART = ROOT / 'assets/visual-cue/artwork'
@@ -17,7 +18,7 @@ hug_face_accepted = int(hug_face['status'] == 'accepted-still' and hug_face['hum
 qa = json.loads(committed('assets/visual-cue/artwork/qa/validation.json'))
 assert qa['passed'] and qa['assetCount'] == len(manifest['assets'])
 args.output.mkdir(parents=True, exist_ok=False)
-(args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"').replace('<header>','<nav style="padding:14px;justify-content:center;background:#f4edf6"><a href="test/">テスト版アプリを開く</a> · <a href="coverage.html">英文の網羅率を見る</a> · <a href="visual-cue-hug-face.html">採用した顔あり抱っこ</a></nav><header>',1))
+(args.output/'index.html').write_text(committed('assets/visual-cue/artwork/preview-offline.html').decode().replace('href="../../../visual-cue-ui-preview.html"','href="ui.html"').replace('<header>','<nav style="padding:14px;justify-content:center;background:#f4edf6"><a href="app/">実装したアプリを開く</a> · <a href="test/">素材の確認用ページ</a> · <a href="coverage.html">英文の網羅率を見る</a> · <a href="visual-cue-hug-face.html">採用した顔あり抱っこ</a></nav><header>',1))
 # Publish only the display-component demo, not the microphone/AI application.
 (args.output/'ui.html').write_text(committed('visual-cue-ui-preview.html').decode().replace('href="./visual-cue-test.html"','href="./test/"').replace('href="./visual-cue-coverage.html"','href="./coverage.html"'))
 (args.output/'coverage.html').write_text(committed('visual-cue-coverage.html').decode().replace('data-trial-url="./visual-cue-test.html"','data-trial-url="./test/"').replace('href="./visual-cue-test.html"','href="./test/"'))
@@ -47,7 +48,9 @@ trial_files += ['assets/mitsukotoba-'+s+'.png' for s in ['parent','baby','ai']]
 trial_files += [p for p in files if p.startswith(('assets/emma-face/','assets/visual-cue/')) and not p.startswith('assets/visual-cue/prototypes/')]
 for file in sorted(set(trial_files)):
  dest=trial/file;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(committed(file))
-published=['ui.html','coverage.html','visual-cue-hug-face.html','test/index.html']+sorted(set(files))+['test/'+p for p in sorted(set(trial_files))]
+app_tracked=subprocess.check_output(['git','ls-tree','-r','--name-only',source_commit,'--','semantic-assets','multilingual-assets','assets/vad','licenses'],cwd=ROOT,text=True).splitlines()
+live_files=prepare_live_app(args.output, committed, app_tracked, trial_files, source_commit)
+published=['ui.html','coverage.html','visual-cue-hug-face.html','test/index.html']+sorted(set(files))+['test/'+p for p in sorted(set(trial_files))]+live_files
 ui_hashes={file:hashlib.sha256((args.output/file).read_bytes()).hexdigest() for file in published}
 
 (args.output / '.nojekyll').write_text('')
@@ -56,11 +59,18 @@ metadata = dict(sourceRepository='eltnegcellist/Web_EmmaLocal_English_for_babies
                 artifactSHA256=hashlib.sha256((args.output / 'index.html').read_bytes()).hexdigest(),
                 stills=sum(a['kind'] == 'illustration' for a in manifest['assets']) + hug_face_accepted,
                 animations=sum(a['kind'] == 'animation' for a in manifest['assets']),
-                accepted=sum(a['status']=='accepted' for a in manifest['assets']) + hug_face_accepted, artworkManifestAccepted=sum(a['status']=='accepted' for a in manifest['assets']), acceptedHugFaceStills=hug_face_accepted, nonRuntime=True, uiPreview='ui.html', trialApp='test/', coverageReport='coverage.html', hugFacePrototype='visual-cue-hug-face.html', hugFacePrototypeStatus='accepted-still-motion-candidate-in-trial', uiFileSHA256=ui_hashes, sceneMotionCandidates=len(motion_manifest['assets'])+1, emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=False, trialApplicationDeployed=True)
+                accepted=sum(a['status']=='accepted' for a in manifest['assets']) + hug_face_accepted, artworkManifestAccepted=sum(a['status']=='accepted' for a in manifest['assets']), acceptedHugFaceStills=hug_face_accepted, nonRuntime=False, uiPreview='ui.html', trialApp='test/', fullApplication='app/', coverageReport='coverage.html', hugFacePrototype='visual-cue-hug-face.html', hugFacePrototypeStatus='accepted-still-motion-candidate-in-trial', uiFileSHA256=ui_hashes, sceneMotionCandidates=len(motion_manifest['assets'])+1, emmaGestureCandidates=0,withdrawnEmmaGestures=7,emmaBackgroundCandidates=2, applicationDeployed=True, productionApplicationDeployed=False, trialApplicationDeployed=True, mainMerged=False)
 (args.output / 'deployment.json').write_text(json.dumps(metadata, indent=2) + '\n')
 (args.output / 'README.md').write_text('''# Visual Cue イラスト・動画プレビュー
 
 [プレビューを開く](https://eltnegcellist.github.io/visual-cue-artwork-preview/)
+
+[実装したアプリ本体を開く](https://eltnegcellist.github.io/visual-cue-artwork-preview/app/)
+
+`app/` は通常の初回準備、マイク会話、押して聞く、設定を使える本体です。
+英文選択パネルやテスト専用の起動処理はありません。Visual Cueは初期オンです。
+同一ドメインの本番アプリと設定・履歴が混ざらない保存先を使います。
+mainを変更せず、作業ブランチの本体をこの専用URLへ公開しています。
 
 静止画と動作を比較する採用審査用ページです。制作元は
 [Web_EmmaLocal_English_for_babies / PR #107](https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/pull/107)。

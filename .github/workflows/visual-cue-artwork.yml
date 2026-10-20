@@ -52,6 +52,9 @@ jobs:
           python -m http.server 8765 --bind 127.0.0.1 > /tmp/visual-cue-http.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
+          python scripts/visual-cue/prepare_pages.py --output dist/visual-cue-full-app
+          node scripts/visual-cue/test_live_app_storage.mjs dist/visual-cue-full-app/app
+          VISUAL_CUE_LIVE_URL=http://127.0.0.1:8765/dist/visual-cue-full-app/app/ node scripts/visual-cue/test_live_app_browser.mjs
           VISUAL_CUE_UI_BASE=http://127.0.0.1:8765 node scripts/visual-cue/test_ui_browser.mjs
           node scripts/visual-cue/test_scene_motion.mjs
           python scripts/visual-cue/verify_scene_motion.py
@@ -69,6 +72,7 @@ jobs:
             assets/emma-gestures/qa/
             assets/emma-background-cues/qa/
             assets/visual-cue/trial-qa/
+            assets/visual-cue/live-app-qa/
             assets/visual-cue/motion-variants/qa/
             assets/visual-cue/prototypes/hug-face/qa/
             assets/visual-cue/artwork/qa/
