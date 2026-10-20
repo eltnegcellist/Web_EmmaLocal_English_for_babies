@@ -9,6 +9,7 @@ import{MultilingualClient}from'./src/multilingual/client.js';
 import{selectRuriAxes}from'./src/interaction/ruri-routing.js';
 import{CATALOG,translate}from'./src/multilingual/translations.js';
 import{renderLocalizedAbout,ABOUT_LOCALES}from'./src/multilingual/about-page.js';
+import{replyDisplayHint,explainReplyContext}from'./src/reply-display-hint.js';
 assert(CATALOG.every(row=>row.length===6&&row.every(v=>typeof v==='string')));
 assert.equal(translate('選んだ声を端末に準備しています…','en'),'Preparing recorded audio on your device…');
 assert.equal(translate('みつことばの声を準備しています…','en'),'Preparing English audio…');
@@ -75,13 +76,29 @@ for(const lang of LANGUAGES){
  }
 
  assert.equal(ui.mode,'auto','First visit must use the browser locale');
- assert.equal(dom.window.document.querySelectorAll('.language-picker select').length,3);
+ assert.equal(dom.window.document.querySelectorAll('.language-picker select').length,4);
+ assert.equal(ui.explanationLanguage,lang);
+ assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,lang==='en');
  assert.equal(dom.window.document.querySelector('#onboardingLanguage').value,'auto');
  assert(!dom.window.document.querySelector('#prepareEmmaButton').disabled);
  assert.equal(ui.confirm(),true);
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_KEY),lang);
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_MODE_KEY),'auto');
  assert.equal(dom.window.document.querySelector('#prepareEmmaButton').disabled,false);
+ const explanationPicker=dom.window.document.querySelector('#explanationLanguage');
+ assert(explanationPicker);
+ explanationPicker.value='zh';
+ explanationPicker.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+ assert.equal(ui.explanationLanguage,'zh');
+ assert.equal(dom.window.localStorage.getItem('mitsukotoba_explanation_language_v1'),'zh');
+ assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,false);
+ explanationPicker.value='none';
+ explanationPicker.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+ assert.equal(ui.explanationLanguage,'none');
+ assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,true);
+ explanationPicker.value='follow';
+ explanationPicker.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+ assert.equal(ui.explanationLanguage,lang);
  await ui.choose('ko');assert.equal(dom.window.localStorage.getItem(LANGUAGE_KEY),'ko');
  const korean=research.querySelector('.localized-about-content');
  assert(korean && korean.querySelector('h1').textContent===ABOUT_LOCALES.ko.title);
@@ -159,6 +176,22 @@ await prepareAssets({assets:[meta]},{fetcher,cacheStorage});await prepareAssets(
  stored=null;await prepareAssets({assets:[meta]},{...options,chunkThresholdBytes:0});
  assert.equal(cachePutFailures,1);
  
+const topicRoutes=['bath','milk','sleep','wake','diaper','clothes','hug','hands','feet','smile',
+ 'cry','voice','tummy','play','outside','rain','sun','food','book','music','drink'];
+const interactionRoutes=['affection','praise','achievement','effort','encouragement','invitation',
+ 'start','finish','finish_check','care','inquiry','reassurance','repeat','pause'].map(x=>'interaction:'+x);
+for(const route of [...topicRoutes,...interactionRoutes,'combined:bath:praise','generic']){
+ const hint=replyDisplayHint(route);
+ assert.equal(hint.noteParts.join(' '),hint.japaneseNote);
+ for(const lang of ['de','fr','ko','th']){
+  const display=explainReplyContext(hint,lang,k=>translate(k,lang));
+  assert(display.length>1&& !/[ぁ-んァ-ン一-龯]/u.test(display),'Untranslated note for '+route+' in '+lang+': '+display);
+  const title=translate(hint.topicLabel,lang);
+  assert(title.length>1&&!/[ぁ-んァ-ン一-龯]/u.test(title),'Untranslated topic for '+route+' in '+lang+': '+title);
+ }
+ assert(/\p{Script=Han}/u.test(explainReplyContext(hint,'zh')),'Chinese note missing for '+route);
+ assert.equal(explainReplyContext(hint,'en',k=>translate(k,'en')),'');
+}
 const workers=[];const c=new MultilingualClient({workerFactory:()=>{const w={postMessage(data,transfer){this.last=data;this.transfer=transfer;},terminate(){this.closed=true;}};workers.push(w);return w;}});
 const first=c.prepare();const firstHandled=first.catch(e=>e.message);c.cancel();const next=c.prepare();
 workers[1].onmessage({data:{type:'result',requestId:workers[1].last.requestId,result:{ready:true}}});
