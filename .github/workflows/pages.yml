@@ -39,6 +39,7 @@ jobs:
           node test-features.mjs
           node test-semantic.mjs
           node test-multilingual.mjs
+          node test-ui-localization.mjs
           node test-interaction.mjs
           node test-silero.mjs
           node test-interruptible-turn.mjs

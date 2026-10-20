@@ -54,6 +54,7 @@ export class EmmaMicrophone {
         this.vad=detector;
       } catch(error) {
         if(generation!==this.generation)return;
+        console.warn('Silero preparation failed; using volume-based detection.',error);
         this.vad=new AdaptiveEndpointDetector();
         this.onWarning?.('声の判定を準備できなかったため、今回は従来方式で会話します。設定で判定方式を変更できます。');
       }

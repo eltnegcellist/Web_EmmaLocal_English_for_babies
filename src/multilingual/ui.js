@@ -133,8 +133,8 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     if(status.dataset.message)setStatus(status.dataset.message,{loaded:Number(status.dataset.loaded),total:Number(status.dataset.total)});
   }
   const observer=new MutationObserver(records=>{
-    for(const r of records){if(r.type==='characterData')text(r.target);else if(r.type==='childList')for(const n of r.addedNodes)walk(n);}
-  });observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+    for(const r of records){if(r.type==='characterData')text(r.target);else if(r.type==='attributes')walk(r.target);else if(r.type==='childList')for(const n of r.addedNodes)walk(n);}
+  });observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title','alt']});
   apply();
   return {get language(){return language;},get needsChoice(){return needsChoice;},get mode(){return mode;},apply,setStatus,choose,
     confirm(){

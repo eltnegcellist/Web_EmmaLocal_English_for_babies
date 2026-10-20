@@ -1,3 +1,4 @@
+import {appendOperationalMessages} from './operational-messages.js';
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
 ["まずEmmaの自己紹介を聞きます。再生が終わると自動で次のステップに進みます。","Listen to Emma introduce herself. The next step opens automatically when playback finishes.","Höre dir Emmas Vorstellung an. Nach der Wiedergabe beginnt der nächste Schritt automatisch.","Écoutez Emma se présenter. L’étape suivante s’ouvrira automatiquement à la fin de l’audio.","Emma의 자기소개를 들어 보세요. 재생이 끝나면 다음 단계로 자동 이동해요.","ฟัง Emma แนะนำตัว เมื่อเสียงจบจะไปขั้นตอนต่อไปโดยอัตโนมัติ"],
@@ -359,6 +360,7 @@ for(const row of CATALOG) {
   }
 }
 export const LOCALE_INDEX={ja:0,en:1,de:2,fr:3,ko:4,th:5};
+appendOperationalMessages(CATALOG);
 const lookup=new Map(CATALOG.map(row=>[row[0],row]));
 export function translate(text,language='ja') {
   const value=String(text??'');if(language==='ja')return value;
@@ -373,5 +375,22 @@ export function translate(text,language='ja') {
   for(const [pattern,key]of [[/^選択した(\d+)件の履歴を削除しますか？$/u,'選択した{count}件の履歴を削除しますか？'],[/^(\d+)件選択中$/u,'{count}件選択中'],[/^(\d+)件を削除$/u,'{count}件を削除']]){
     const match=trimmed.match(pattern);if(match)return translate(key,language).replace('{count}',match[1]);
   }
+  const historyTime=trimmed.match(/^(.+)の履歴を選択$/u);
+  if(historyTime)return translate('{time}の履歴を選択',language).replace('{time}',historyTime[1]);
+  for(const prefix of ['準備できませんでした：','再生できませんでした：','削除できませんでした：','履歴を開けませんでした：','音声再生に失敗しました: ']) {
+    if(trimmed.startsWith(prefix))return translate(prefix==='音声再生に失敗しました: '?'再生できませんでした：':prefix,language)+describeError(trimmed.slice(prefix.length),language);
+  }
   return value;
+}
+
+// Low-level messages stay in console/diagnostics. The UI always offers a
+// translated recovery message, including workers that reject with ErrorEvent.
+export function describeError(error,language='ja') {
+  const message=typeof error==='string'?error:error?.message;
+  const source=String(message||'処理中に不明なエラーが発生しました。');
+  const translated=translate(source,language);
+  if(language==='ja'||translated!==source)return translated;
+  // It may already have been localized at an earlier boundary.
+  if(CATALOG.some(row=>row[LOCALE_INDEX[language]]===source))return source;
+  return translate('処理中に不明なエラーが発生しました。',language);
 }

@@ -13,6 +13,7 @@ import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from '.
 import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
 import { installLanguageUI } from './multilingual/ui.js';
+import { describeError } from './multilingual/translations.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 
 const $ = (id) => document.getElementById(id);
@@ -238,6 +239,8 @@ function initUi() {
     speak:speakResponse,
     history,
     isSpeaking:()=>speaking,
+    translate:value=>languageUI.translate(value),
+    describeError:error=>{console.error('Feature screen:',error);return describeError(error,languageUI.language);},
     playSentenceCount:()=>localStorage.getItem(STORAGE.playSentenceCount)==='3'?3:1,
     setPlaySentenceCount:count=>localStorage.setItem(STORAGE.playSentenceCount,count===3?'3':'1'),
     avatar:()=>{ const avatar=ui.avatar.cloneNode(true); avatar.removeAttribute('id'); avatar.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id')); return avatar; }
@@ -447,7 +450,7 @@ function bindEvents() {
 
   ui.fullResetButton?.addEventListener('click',()=>{
     const confirmed=window.confirm(
-      'みつことばを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、保存音声とモデルのキャッシュを削除します。次回は音声とモデルの再取得が必要です。\n\n実行しますか？'
+      languageUI.translate('みつことばを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、保存音声とモデルのキャッシュを削除します。次回は音声とモデルの再取得が必要です。\n\n実行しますか？')
     );
     if(confirmed) location.href='./reset.html?full=1';
   });
@@ -530,7 +533,13 @@ function showScreen(name,{autoStart=true}={}) {
 }
 
 function openSubpage(name) {
-  if(currentScreen!==name) window.history.pushState(appHistoryState(name),'',location.href);
+  if(currentScreen!==name) {
+    // Tutorial replay and startup can show Home without navigating. Keep the
+    // current history entry in sync before adding Settings/About, so Back
+    // returns to the screen the user actually came from.
+    window.history.replaceState(appHistoryState(currentScreen),'',location.href);
+    window.history.pushState(appHistoryState(name),'',location.href);
+  }
   showScreen(name,{autoStart:false});
 }
 
@@ -1142,7 +1151,10 @@ async function initVoice() {
     ttsInfoCache=await new Promise((resolve,reject)=>{
       ttsWorker=new Worker(new URL('./tts-worker.js?v=20261015-recorded-only',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
-      ttsWorker.onerror=reject;
+      ttsWorker.onerror=event=>{
+        console.error('Recorded audio worker failed:',event);
+        reject(new Error('音声の準備または再生に失敗しました。'));
+      };
       ttsWorker.postMessage({ type:'init' });
     });
   }
@@ -1343,6 +1355,7 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
       multilingualAsrDiagnostic.elapsedMs=Math.round(diagnosticNow()-asrStart);
     }
     if(!isLiveTurn(revision,epoch))return;
+    if(!japanese)languageUI.setStatus('モデルの準備ができました');
     await processTranscript(text,{manual,revision});
   }catch(error){
     if(!isLiveTurn(revision,epoch))return;
@@ -1360,6 +1373,7 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
       // a fresh worker instead of sitting behind the failed queued request.
       multilingual.cancel('ASR timeout; worker restarted for the next attempt');
     }
+    if(!japanese)languageUI.setStatus('モデルを準備できませんでした。再試行してください。');
     setState('error','音声認識でエラーが発生しました',friendlyError(error));
   }
 }
@@ -1872,7 +1886,7 @@ function onRuntimeError(message) {
   processing=false;
   speaking=false;
   setBusy(false);
-  setState('error','処理中に問題が起きました',message||'もう一度お試しください。');
+  setState('error','処理中に問題が起きました',describeError(message,languageUI.language));
 }
 
 function friendlyError(error) {
@@ -1891,7 +1905,7 @@ function friendlyError(error) {
     const stage=stageLabels[moonshineStage]||moonshineStage;
     return `Moonshineの${stage}でネイティブエラーが発生しました（内部アドレス: ${trimmed}）。`;
   }
-  return trimmed || '処理中に不明なエラーが発生しました。';
+  return describeError(trimmed,languageUI.language);
 }
 
 async function requestWakeLock() {
