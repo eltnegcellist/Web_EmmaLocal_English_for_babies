@@ -3,7 +3,7 @@ import { createEmmaBackground } from './emma-background-cues.js?v=20261020-hug-p
 export const normalizeCueText=text=>String(text||'').replaceAll('’',"'").trim().replace(/\s+/g,' ').toLowerCase();
 export function resolveVisualCue(text,catalog=VISUAL_CUE_CATALOG){return catalog.bindings[normalizeCueText(text)]||null;}
 
-/** Optional, audio-owned overlay. Playback tokens and decode generations are separate. */
+/** Optional turn-owned visual. Audio may end before the next parent utterance finishes. */
 export function createVisualCueController({document=globalThis.document,baseUrl=new URL('../',import.meta.url),catalog=VISUAL_CUE_CATALOG,loadImage,media=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)'),onChange=()=>{}}={}){
  let mode='emma',motion=true,serial=0,generation=0,current=null,disposed=false;
  const hosts=()=>[...document.querySelectorAll('[data-visual-cue-host]')];
@@ -45,8 +45,11 @@ export function createVisualCueController({document=globalThis.document,baseUrl=
  document.addEventListener('visibilitychange',visibility);media?.addEventListener?.('change',reduction);
  return {
   configure(settings={}){mode=settings.mode==='visual'?'visual':'emma';motion=settings.motion!==false;void render();},
-  begin(text){const token=++serial;current={token,plan:resolveVisualCue(text,catalog)};void render();return token;},
-  end(token){if(current?.token===token)stop();},stop,
+  begin(text){const token=++serial;current={token,plan:resolveVisualCue(text,catalog),playbackFinished:false};void render();return token;},
+  // End of Emma's voice does not end the illustration: hold it while the parent speaks.
+  end(token){if(current?.token===token)current.playbackFinished=true;},
+  // The microphone/VAD decides when the parent's next utterance has ended.
+  nextUtteranceFinished(){stop();},stop,
   preload(text){const p=resolveVisualCue(text,catalog);if(mode!=='visual'||p?.type!=='asset')return;const a=catalog.assets[p.assetId];if(a)decode(new URL(motion&&!media?.matches?a.image:a.poster,baseUrl).href).catch(()=>{});},
   dispose(){stop();disposed=true;document.removeEventListener('visibilitychange',visibility);media?.removeEventListener?.('change',reduction);}
  };
