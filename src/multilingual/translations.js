@@ -1,5 +1,17 @@
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
+["おはよう","Good morning","Guten Morgen","Bonjour","좋은 아침","อรุณสวัสดิ์"],
+["お着替え","Getting dressed","Anziehen","Habillage","옷 갈아입기","แต่งตัว"],
+["抱っこ","Cuddles","Kuscheln","Câlin","안아 주기","กอด"],
+["おてて","Little hands","Händchen","Petites mains","작은 손","มือน้อย"],
+["あんよ","Little feet","Füßchen","Petits pieds","작은 발","เท้าน้อย"],
+["おしゃべり","Baby sounds","Babylaute","Babillements","옹알이","เสียงอ้อแอ้"],
+["おなか・げっぷ","Tummy and burps","Bauch und Bäuerchen","Ventre et rots","배와 트림","ท้องและการเรอ"],
+["あそぼう","Let's play","Spielen","Jouons","놀이","เล่นกัน"],
+["おさんぽ","A walk","Spaziergang","Promenade","산책","เดินเล่น"],
+["おひさま","Sunshine","Sonnenschein","Soleil","햇살","แสงแดด"],
+["ごはん","Mealtime","Essen","Repas","식사","อาหาร"],
+["音楽","Music","Musik","Musique","음악","ดนตรี"],
 ["英文の場面説明","English phrase context","Kontext der englischen Wendung","Contexte de la phrase anglaise","영어 표현 상황 설명","คำอธิบายบริบทของประโยคอังกฤษ"],
 ["表示言語に合わせる","Follow display language","Anzeigesprache verwenden","Suivre la langue d’affichage","표시 언어에 맞추기","ใช้ภาษาเดียวกับหน้าจอ"],
 ["中文（説明のみ）","中文 (context notes only)","中文 (nur Erläuterung)","中文 (explications uniquement)","中文 (설명만)","中文 (เฉพาะคำอธิบาย)"],
