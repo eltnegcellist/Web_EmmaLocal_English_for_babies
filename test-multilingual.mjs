@@ -212,4 +212,12 @@ const switchFlow=appSource.slice(appSource.indexOf('languageUI=installLanguageUI
 assert(switchFlow.indexOf("if(next==='ja' && changedRoute)")>=0);
 assert(switchFlow.indexOf('await ensureMoonshineIsolation')<switchFlow.indexOf('await initWorkers()'));
 assert(appSource.includes('multilingualAsrDiagnostic'),'Audio diagnosis must report private-mode ASR state');
+const workerSource=await readFile(new URL('./src/multilingual/worker.js',import.meta.url),'utf8');
+assert(workerSource.includes("progress({stage:'asr-timing',timings})"),'Worker must report separate language and decode timing');
+for(const key of ['audioSeconds','languageMs','transcribeMs','totalMs','realTimeFactor','languagePass']){
+ assert(workerSource.includes(key),'Whisper runtime must capture '+key);
+ assert(appSource.includes('multilingual.'+key+'='),'Diagnostic export must include '+key);
+}
+assert(appSource.includes("if(data.stage==='asr-timing')"),'ASR timing progress must not show model download state');
+
 console.log('PASS: locale precedence, fallback setup, six UI languages, switch persistence, routing, short foreign speech, verified cache repair/reuse, stale worker cancellation.');
