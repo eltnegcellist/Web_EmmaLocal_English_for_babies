@@ -1,9 +1,10 @@
 import {prepareAssets,digest} from './assets.js';
 import {classifyE5,decodeE5Heads,speechLanguage} from './core.js';
-let recognizer,extractor,heads,runtime,preparing;
+import {resolveWhisperThreads} from './performance.js';
+let recognizer,extractor,heads,runtime,preparing,effectiveThreads=1;
 let queue=Promise.resolve();
 const progress=data=>self.postMessage({type:'progress',...data});
-async function initialize() {
+async function initialize({threadPreference='auto'}={}) {
   const response=await fetch(new URL('./assets.json',import.meta.url));
   if(!response.ok)throw Error('Multilingual model manifest is missing');
   const manifest=await response.json();
@@ -17,7 +18,16 @@ async function initialize() {
   env.customCache={match:async key=>allowed.has(String(key))?(await cache.match(String(key)))||undefined:undefined,
     put:async()=>{throw Error('Unexpected model asset request');}};
   env.backends.onnx.wasm.wasmPaths=new URL('../../multilingual-assets/runtime/',import.meta.url).href;
-  env.backends.onnx.wasm.numThreads=1;env.backends.onnx.wasm.proxy=false;
+  effectiveThreads=resolveWhisperThreads(threadPreference,{
+    hardwareConcurrency:self.navigator?.hardwareConcurrency??1,
+    crossOriginIsolated:self.crossOriginIsolated===true,
+    sharedArrayBuffer:typeof SharedArrayBuffer==='function'
+  });
+  env.backends.onnx.wasm.numThreads=effectiveThreads;
+  // Already running inside an application-owned Worker; ONNX proxy adds another.
+  env.backends.onnx.wasm.proxy=false;
+  progress({stage:'runtime-policy',threads:effectiveThreads,
+    threadPreference,isolated:self.crossOriginIsolated===true});
   const opt=key=>({revision:manifest.models[key].revision,device:'wasm',dtype:'q8',local_files_only:true});
   progress({stage:'loading'});
   recognizer=await pipeline('automatic-speech-recognition',manifest.models.whisper.id,opt('whisper'));
@@ -51,8 +61,9 @@ async function detectLanguage(audio) {
   }finally{disposeTensors(out);disposeTensors(features);ids?.dispose();}
 }
 async function handle(data) {
-  preparing ||= initialize().catch(error=>{preparing=null;throw error;});await preparing;
-  if(data.type==='init')return {provider:'wasm',source:'whisper-small-e5',ready:true};
+  preparing ||= initialize({threadPreference:data.threads}).catch(error=>{preparing=null;throw error;});await preparing;
+  if(data.type==='init')return {provider:'wasm',source:'whisper-small-e5',ready:true,
+    threads:effectiveThreads,isolated:self.crossOriginIsolated===true};
   if(data.type==='transcribe'){
     const audio=new Float32Array(data.audio);
     if(!audio.length||audio.some(x=>!Number.isFinite(x)))throw Error('Invalid audio');
@@ -79,7 +90,8 @@ async function handle(data) {
       realTimeFactor:Number(((performance.now()-asrStarted)/1000/audioSeconds).toFixed(2)),
       spokenLanguage:language,
       languagePass:!specified,
-      model:'whisper-small-q8-wasm-1-thread'
+      threads:effectiveThreads,
+      model:`whisper-small-q8-wasm-${effectiveThreads}-thread`
     };
     progress({stage:'asr-timing',timings});
     return {text:result.text.trim(),detectedLanguage:language,timings};
