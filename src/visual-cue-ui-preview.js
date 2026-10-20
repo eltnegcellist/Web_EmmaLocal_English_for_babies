@@ -1,8 +1,8 @@
-import {createVisualCueController} from './visual-cue-controller.js?v=20261020-hug-preview-v3';
-import {createEmmaBackground} from './emma-background-cues.js?v=20261020-hug-preview-v3';
-import {loadEmmaFrames,createEmmaPreviewMotion} from './emma-preview-motion.js?v=20261020-hug-preview-v3';
+import {createVisualCueController} from './visual-cue-controller.js?v=20261020-visual-cue-default-on-v1';
+import {createEmmaBackground} from './emma-background-cues.js?v=20261020-visual-cue-default-on-v1';
+import {loadEmmaFrames,createEmmaPreviewMotion} from './emma-preview-motion.js?v=20261020-visual-cue-default-on-v1';
 const $=id=>document.getElementById(id);
-const examples=await fetch('./shared/visual-cue-ui-examples.json?v=20261020-hug-preview-v3').then(r=>r.json());
+const examples=await fetch('./shared/visual-cue-ui-examples.json?v=20261020-visual-cue-default-on-v1').then(r=>r.json());
 await loadEmmaFrames($('defaultEmma'));
 const emma=createEmmaPreviewMotion($('defaultEmma'));
 const labels={neutral:'待機（通常のEmma）',smile:'にっこり（通常のEmma）',calm:'安心：ハート案',celebrate:'ほめる：星案',listen:'聞く（追加表現なし）',ask:'たずねる（追加表現なし）',invite:'誘う（追加表現なし）'};

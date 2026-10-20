@@ -1,4 +1,4 @@
-const data=await fetch('./shared/visual-cue-trial-data.json?v=20261020-hug-preview-v3').then(r=>{if(!r.ok)throw Error('対応表を読み込めません');return r.json();});
+const data=await fetch('./shared/visual-cue-trial-data.json?v=20261020-visual-cue-default-on-v1').then(r=>{if(!r.ok)throw Error('対応表を読み込めません');return r.json();});
 const report=data.report,$=id=>document.getElementById(id),trial=document.documentElement.dataset.trialUrl;
 const node=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 const labels={animation:'採用済み物体動画',motionCandidate:'新しい動作候補',background:'背景2候補',still:'静止画',baseline:'通常Emma'};

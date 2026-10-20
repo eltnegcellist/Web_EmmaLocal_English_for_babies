@@ -1,14 +1,14 @@
 // Dedicated public test entry. Uses the application's real worker, voice bank,
 // playback cancellation, face animation, play screen and Visual Cue controller.
 import {createTrialStorage} from './visual-cue-trial-storage.js';
-import {VISUAL_CUE_CATALOG} from './visual-cue-catalog.js?v=20261020-hug-preview-v3';
+import {VISUAL_CUE_CATALOG} from './visual-cue-catalog.js?v=20261020-visual-cue-default-on-v1';
 for(const key of ['localStorage','sessionStorage'])Object.defineProperty(window,key,{configurable:true,value:createTrialStorage(window[key])});
-const defaults={emma_semantic_enabled:'false',emma_history_enabled:'false',emma_visual_cue_mode:'visual'};
+const defaults={emma_semantic_enabled:'false',emma_history_enabled:'false',mitsukotoba_language_v1:'ja',mitsukotoba_language_mode_v2:'manual'};
 for(const [key,value] of Object.entries(defaults))if(localStorage.getItem(key)===null)localStorage.setItem(key,value);
-const {visualCueTrial:app}=await import('./app.js?v=20261020-hug-preview-v3');
+const {visualCueTrial:app}=await import('./app.js?v=20261020-visual-cue-default-on-v1');
 if(!app)throw Error('テスト文書を開いてください');
 for(const id of ['fullResetButton','semanticEnabled','asrModel','endpointMode','onboardingHighPerformance']){const input=document.getElementById(id);if(input)input.disabled=true;}
-const data=await fetch(new URL('../shared/visual-cue-trial-data.json?v=20261020-hug-preview-v3',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
+const data=await fetch(new URL('../shared/visual-cue-trial-data.json?v=20261020-visual-cue-default-on-v1',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
 const $=id=>document.getElementById(id);
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 const coverageUrl=document.documentElement.dataset.coverageUrl||'./visual-cue-coverage.html';
@@ -97,10 +97,10 @@ play.addEventListener('click',async()=>{
 stop.addEventListener('click',()=>{generation++;void app.stop();play.disabled=!select.value;status.textContent='停止しました。';});
 quickStop.addEventListener('click',()=>stop.click());
 next.addEventListener('click',()=>{if(!filtered.length)return;select.selectedIndex=(select.selectedIndex+1)%filtered.length;selection();});
-const actualMode=$('visualCueMode'),actualMotion=$('visualCueMotion');mode.value=actualMode.value;motion.checked=actualMotion.checked;
-mode.addEventListener('change',()=>{actualMode.value=mode.value;actualMode.dispatchEvent(new Event('change'));});
+const actualEnabled=$('visualCueEnabled'),actualMotion=$('visualCueMotion');mode.value=actualEnabled.checked?'visual':'emma';motion.checked=actualMotion.checked;
+mode.addEventListener('change',()=>{actualEnabled.checked=mode.value==='visual';actualEnabled.dispatchEvent(new Event('change'));});
 motion.addEventListener('change',()=>{actualMotion.checked=motion.checked;actualMotion.dispatchEvent(new Event('change'));});
-actualMode.addEventListener('change',()=>{mode.value=actualMode.value;renderPreview();});actualMotion.addEventListener('change',()=>{motion.checked=actualMotion.checked;renderPreview();});
+actualEnabled.addEventListener('change',()=>{mode.value=actualEnabled.checked?'visual':'emma';renderPreview();});actualMotion.addEventListener('change',()=>{motion.checked=actualMotion.checked;renderPreview();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){generation++;void app.stop();play.disabled=!select.value;status.textContent='停止しました。';}});
 options();if(initial){filter.value=initial.category;options();target.value=initial.target;}else if(params.get('target'))target.value=params.get('target');
 render(initial?.id);

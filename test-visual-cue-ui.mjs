@@ -3,6 +3,34 @@ import {readFileSync,existsSync} from 'node:fs';
 import {JSDOM} from 'jsdom';
 import {VISUAL_CUE_CATALOG as catalog} from './src/visual-cue-catalog.js';
 import {createVisualCueController,resolveVisualCue} from './src/visual-cue-controller.js';
+import {bindVisualCueSettings} from './src/visual-cue-settings.js';
+// Exercise the real settings binding, including persistence and preview migration.
+function settingsFixture(saved={}, storageOverride){
+ const dom=new JSDOM(readFileSync('index.html','utf8'),{url:'https://settings.test/'});
+ const enabled=dom.window.document.getElementById('visualCueEnabled'),motion=dom.window.document.getElementById('visualCueMotion');
+ const storage=storageOverride||dom.window.localStorage;
+ for(const [key,value] of Object.entries(saved))storage.setItem(key,value);
+ const applied=[];
+ const binding=bindVisualCueSettings({enabled,motion,storage,configure:p=>applied.push(p)});
+ const change=(input,checked)=>{input.checked=checked;input.dispatchEvent(new dom.window.Event('change'));};
+ return {enabled,motion,storage,applied,binding,change};
+}
+{
+ const f=settingsFixture();
+ assert(f.enabled.checked,'new installation enables Visual Cue');assert(f.motion.checked&&!f.motion.disabled);
+ assert.deepEqual(f.applied.at(-1),{mode:'visual',motion:true});
+ f.change(f.motion,false);f.change(f.enabled,false);
+ assert.equal(f.storage.getItem('emma_visual_cue_enabled'),'false');assert.equal(f.storage.getItem('emma_visual_cue_mode'),'emma');
+ assert(f.motion.disabled);assert.deepEqual(f.applied.at(-1),{mode:'emma',motion:false});
+ const reloaded=settingsFixture(Object.fromEntries(Object.entries(f.storage)));
+ assert(!reloaded.enabled.checked&&!reloaded.motion.checked&&reloaded.motion.disabled,'reload preserves opt-out and independent motion preference');
+ reloaded.change(reloaded.enabled,true);assert(!reloaded.motion.disabled&&!reloaded.motion.checked);
+ assert.deepEqual(reloaded.applied.at(-1),{mode:'visual',motion:false});
+ for(const mode of ['emma','visual'])assert.equal(settingsFixture({emma_visual_cue_mode:mode}).enabled.checked,mode==='visual','legacy selection is respected');
+ assert(settingsFixture({emma_visual_cue_enabled:'true',emma_visual_cue_mode:'emma'}).enabled.checked,'new preference takes precedence');
+ const blocked=settingsFixture({}, {getItem(){throw Error('blocked');},setItem(){throw Error('blocked');}});
+ assert(blocked.enabled.checked);blocked.change(blocked.enabled,false);assert.equal(blocked.applied.at(-1).mode,'emma','storage failure still allows session opt-out');
+}
 const art=JSON.parse(readFileSync('assets/visual-cue/artwork/manifest.json'));
 const motion=JSON.parse(readFileSync('assets/visual-cue/motion-variants/manifest.json'));
 const hug=JSON.parse(readFileSync('assets/visual-cue/prototypes/hug-face/manifest.json'));
@@ -49,6 +77,9 @@ const settle=async()=>{await Promise.resolve();await Promise.resolve();};
 const assetText=rows.find(r=>r.binding.assetId==='kick').text;
 let token=controller.begin(assetText);assert(hosts.every(h=>h.hidden));assert.equal(pending.length,0,'default Emma causes no media loading');
 controller.configure({mode:'visual'});assert.equal(pending.length,1);
+controller.configure({mode:'emma'});pending.shift().resolve();await settle();assert(hosts.every(h=>h.hidden),'switching off cancels in-flight media without hiding Emma');
+controller.preload(assetText);assert.equal(pending.length,0,'off does not preload illustrations');
+controller.configure({mode:'visual'});assert.equal(pending.length,1,'switching back on renders current cue');
 controller.stop();pending.shift().resolve();await settle();assert(hosts.every(h=>h.hidden),'stop invalidates a pending image');
 token=controller.begin(assetText);pending.shift().reject(Error('missing'));await settle();assert(hosts.every(h=>h.hidden),'broken image falls back');
 token=controller.begin(assetText);pending.shift().resolve();await settle();assert(hosts.every(h=>!h.hidden&&h.querySelector('img')),'home and cloned play avatar both render');

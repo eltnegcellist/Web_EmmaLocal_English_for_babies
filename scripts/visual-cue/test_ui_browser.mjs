@@ -6,7 +6,7 @@ const out='assets/emma-background-cues/qa';await mkdir(out,{recursive:true});
 const browser=await chromium.launch({headless:true,...(process.env.VISUAL_CUE_CHROME_EXECUTABLE?{executablePath:process.env.VISUAL_CUE_CHROME_EXECUTABLE}:{})});
 const checks=[],errors=[];let completed=false;
 const check=(name,pass,detail)=>{checks.push({name,pass:!!pass,...(detail?{detail}:{})});assert(pass,name);};
-const context=await browser.newContext({viewport:{width:1200,height:1100},serviceWorkers:'block'});
+const context=await browser.newContext({viewport:{width:1200,height:1100},serviceWorkers:'block',locale:'ja-JP'});
 await context.addInitScript(()=>{Math.random=()=>0;});
 const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
 const visibleFrame='#defaultEmma [data-avatar-frame]:not(.hidden)';
@@ -51,13 +51,27 @@ try{
  await page.setViewportSize({width:390,height:844});await page.reload();await page.waitForSelector('.comparison-card:nth-child(3)');check('mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:out+'/preview-mobile.png',fullPage:true});
  // The actual app retains its own original frame/blink/RMS code, not the preview helper.
  await context.addInitScript(()=>{localStorage.setItem('emma_web_setup_revision','moonshine-streaming-qwen3-prerecorded-1202-v11');localStorage.setItem('emma_web_tutorial_completed_v1','true');localStorage.setItem('emma_semantic_enabled','false');});
- await page.goto(base+'/index.html');await page.waitForSelector('#homeScreen:not(.hidden)');await page.click('#settingsButton');await page.selectOption('#visualCueMode','visual');await page.click('#settingsBackButton');
+ await page.goto(base+'/index.html');await page.waitForSelector('#homeScreen:not(.hidden)');await page.click('#settingsButton');
+ check('production-visual-cue-default-on',await page.locator('#visualCueEnabled').isChecked());
+ check('production-motion-default-on',await page.locator('#visualCueMotion').isChecked()&&await page.locator('#visualCueMotion').isEnabled());
+ await page.locator('#visualCueEnabled').scrollIntoViewIfNeeded();await page.screenshot({path:out+'/app-visual-cue-settings-mobile.png',fullPage:false});
+ await page.click('#settingsBackButton');
  await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])',{timeout:120000});await page.click('.play-topic-change');await page.getByRole('button',{name:'泣く・ぐずぐず',exact:true}).click();await page.waitForSelector('.play-tap:not([disabled])');await page.getByRole('button',{name:'3文',exact:true}).click();await page.click('.play-tap');await page.waitForSelector('.play-avatar.has-emma-background');
  check('actual-app-calming-hearts-behind-canonical-face',await page.locator('.play-avatar .emma-face-frame [data-avatar-frame]:not(.hidden)').evaluate(n=>getComputedStyle(n).visibility==='visible'));
  check('actual-app-original-mouth-still-moving',await page.locator('.play-avatar [data-avatar-frame]:not(.hidden)').getAttribute('data-avatar-frame').then(x=>x.startsWith('emma-face-talk-')));
  check('actual-app-no-new-arms',await page.locator('#featureDialog [data-emma-gesture]').count()===0);await page.screenshot({path:out+'/app-calming-mobile.png',fullPage:true});
  await page.click('.play-topic-change');check('topic-change-cancels-background',await page.locator('.has-emma-background').count()===0);page.once('dialog',d=>d.accept());await page.click('#featureClose');
- await page.click('#settingsButton');await page.selectOption('#visualCueMode','emma');await page.click('#settingsBackButton');await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-tap.is-speaking');check('baseline-mode-has-no-extra-visuals',await page.locator('.has-emma-background,.has-visual-cue').count()===0);page.once('dialog',d=>d.accept());await page.click('#featureClose');
+ await page.click('#settingsButton');await page.uncheck('#visualCueEnabled');await page.click('#settingsBackButton');await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-tap.is-speaking');check('baseline-mode-has-no-extra-visuals',await page.locator('.has-emma-background,.has-visual-cue').count()===0);page.once('dialog',d=>d.accept());await page.click('#featureClose');
+ await page.reload();await page.waitForSelector('#homeScreen:not(.hidden)');await page.click('#settingsButton');
+ check('production-opt-out-survives-reload',!await page.locator('#visualCueEnabled').isChecked());
+ check('production-off-disables-motion-control',await page.locator('#visualCueMotion').isDisabled());
+ await page.check('#visualCueEnabled');await page.uncheck('#visualCueMotion');await page.reload();await page.waitForSelector('#homeScreen:not(.hidden)');await page.click('#settingsButton');
+ check('production-on-survives-reload',await page.locator('#visualCueEnabled').isChecked());
+ check('production-independent-motion-preference',!await page.locator('#visualCueMotion').isChecked()&&await page.locator('#visualCueMotion').isEnabled());
+ check('production-settings-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await page.click('#settingsBackButton');await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-avatar.has-emma-background');
+ check('production-motion-off-retains-static-cue',await page.locator('.play-avatar [data-emma-backdrop]').getAttribute('data-motion')==='off');
+ page.once('dialog',d=>d.accept());await page.click('#featureClose');
  check('no-browser-errors',errors.length===0,errors);completed=true;
 }catch(error){errors.push(error.message);throw error;}finally{
  await writeFile(out+'/browser-report.json',JSON.stringify({checks,errors,passed:completed&&checks.every(c=>c.pass)&&!errors.length},null,2)+'\n');await browser.close();

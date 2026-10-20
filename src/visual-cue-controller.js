@@ -1,5 +1,5 @@
-import { VISUAL_CUE_CATALOG } from './visual-cue-catalog.js?v=20261020-hug-preview-v3';
-import { createEmmaBackground } from './emma-background-cues.js?v=20261020-hug-preview-v3';
+import { VISUAL_CUE_CATALOG } from './visual-cue-catalog.js?v=20261020-visual-cue-default-on-v1';
+import { createEmmaBackground } from './emma-background-cues.js?v=20261020-visual-cue-default-on-v1';
 export const normalizeCueText=text=>String(text||'').replaceAll('’',"'").trim().replace(/\s+/g,' ').toLowerCase();
 export function resolveVisualCue(text,catalog=VISUAL_CUE_CATALOG){return catalog.bindings[normalizeCueText(text)]||null;}
 

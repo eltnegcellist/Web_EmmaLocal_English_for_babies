@@ -6,11 +6,12 @@
   <meta name="theme-color" content="#fffbff" />
   <meta name="description" content="みつことば Web — 親と赤ちゃんとAI、3人でつくるローカル英語アプリ" />
 
+  <meta name="apple-mobile-web-app-title" content="みつことば" />
   <link rel="icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" sizes="192x192" />
-  <link rel="stylesheet" href="./styles.css?v=20261020-hug-preview-v3" />
+  <link rel="stylesheet" href="./styles.css?v=20261020-visual-cue-default-on-v1" />
   <title>みつことば｜Visual Cue テスト版</title>
-<link rel="stylesheet" href="./visual-cue-trial.css?v=20261020-hug-preview-v3">
+<link rel="stylesheet" href="./visual-cue-trial.css?v=20261020-visual-cue-default-on-v1">
 </head>
 <body>
   <main class="app-shell">
@@ -59,15 +60,9 @@
             </div>
           </div>
 
-          <div id="onboardingAiIntro" class="ai-intro">
-            <img class="ai-intro-character" src="./assets/emma-face/emma-face-idle-open.svg?v=20260930-layout-r7" alt="" aria-hidden="true" />
-            <span class="ai-intro-label">AIキャラクター</span>
-            <span class="ai-intro-copy">名前は <strong>Emma</strong>。初回チュートリアルで自己紹介します。</span>
-          </div>
-
           <div class="hero-example">
             <span class="example-parent">「お風呂入ろうね」</span>
-            <span class="example-reply">AI → “Bath time! Splash, splash!”</span>
+            <span class="example-reply">AI → “Bath time is here! Is the water warm? Splash, splash!”</span>
           </div>
         </section>
 
@@ -472,7 +467,7 @@
         <section id="conversation" class="conversation" aria-label="Emmaの英語">
           <article id="emmaBubble" class="bubble emma-bubble">
             <p id="reply" class="reply-english">Hi, I'm Emma.</p>
-            <p id="replyJapanese" class="reply-japanese" aria-label="日本語の目安">こんにちは、エマだよ。</p>
+            <p id="replyJapanese" class="reply-japanese" aria-label="場面の説明">こんにちは、エマだよ。</p>
           </article>
         </section>
 
@@ -539,14 +534,10 @@
 
         <article class="card">
           <h2>見た目</h2>
-          <label>英語を話している間の表示
-            <select id="visualCueMode">
-              <option value="emma">Emma</option>
-              <option value="visual">イラストと背景の合図</option>
-            </select>
-          </label>
-          <label class="history-save-toggle"><span>イラスト・背景を動かす</span><input id="visualCueMotion" type="checkbox" checked /></label>
-          <p class="small muted">英語に合う絵や、Emmaの後ろにハート・星の補助表現を表示します。対応する絵がないときはEmmaが表示されます。端末の「視差効果を減らす」設定中は静止画になります。</p>
+          <label class="history-save-toggle"><span>ビジュアルキューを表示</span><input id="visualCueEnabled" type="checkbox" checked aria-describedby="visualCueHelp" /></label>
+          <p id="visualCueHelp" class="small muted">英語に合うイラストやアニメーション、Emmaの後ろのハート・星を表示します。オフにするとEmmaだけを表示します。</p>
+          <label class="history-save-toggle"><span>イラスト・背景を動かす</span><input id="visualCueMotion" type="checkbox" checked aria-describedby="visualCueMotionHelp" /></label>
+          <p id="visualCueMotionHelp" class="small muted">動きをオフにすると静止画で表示します。端末の「動きを減らす」設定も反映します。対応する絵がない英文ではEmmaを表示します。</p>
           <label>キャラクターの色
             <select id="colorMode">
               <option value="soft">やさしい色</option>
@@ -793,6 +784,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/visual-cue-trial.js?v=20261020-hug-preview-v3"></script>
+  <script type="module" src="./src/visual-cue-trial.js?v=20261020-visual-cue-default-on-v1"></script>
 </body>
 </html>
