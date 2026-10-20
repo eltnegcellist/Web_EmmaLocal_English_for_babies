@@ -14,6 +14,7 @@ globalThis.fetch=async url=>{
 await import('./src/tts-worker.js');
 await self.onmessage({data:{type:'init'}});
 assert.equal(events.at(-1).type,'ready');assert.equal(events.at(-1).generationSeed,1202);
+assert.equal(requests.length,1,'Ready must not wait for audio bank');
 await self.onmessage({data:{type:'speak',requestId:7,text:fixture.text}});
 const clip=events.find(event=>event.type==='audio');
 assert.equal(clip.requestId,7);assert.equal(clip.engine,'qwen3-prerecorded');
@@ -29,5 +30,7 @@ await self.onmessage({data:{type:'init',engine:'kitten-tts'}});
 assert.equal(events.at(-1).type,'error');
 assert.match(events.at(-1).message,/廃止/);
 assert.equal(requests.length,2);
+await self.onmessage({data:{type:'prefetch'}});
+assert.equal(requests.length,2,'No duplicate request for cached audio');
 assert.ok(events.length>prior);
 console.log('TTS worker: real adopted AAC, init/speak protocol, no Kitten/CDN dependency PASS');

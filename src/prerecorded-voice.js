@@ -9,6 +9,8 @@ export class PrerecordedVoiceBank {
     this.fetcher = fetcher;
     this.cacheStorage = cacheStorage;
     this.memory = new Map();
+    this.inFlight = new Map();
+    this.prefetchPromise = null;
   }
 
   async init(onStatus = () => {}) {
@@ -46,22 +48,20 @@ export class PrerecordedVoiceBank {
       this.byText.set(text, entry);
     }
     this.manifest = manifest;
-    let next = 0, completed = 0, bytes = 0;
-    onStatus({progress: 1, message: '選んだ声を端末に準備しています…'});
-    await Promise.all(Array.from({length: Math.min(4, manifest.entries.length)}, async () => {
-      while (next < manifest.entries.length) {
-        const entry = manifest.entries[next++];
-        await this.clip(entry);
-        completed++; bytes += entry.bytes;
-        onStatus({progress: Math.round(completed / manifest.entries.length * 100),
-          message: `選んだ声を準備しています… ${completed}/${manifest.entries.length} (${(bytes / 1e6).toFixed(1)} MB)`});
-      }
-    }));
+    // Do not make the tutorial wait for the complete bank.
     return manifest;
   }
 
-  async clip(entry) {
+  async clip(entry, {background = false} = {}) {
     const url = new URL(entry.file, this.manifestUrl).href;
+    if (this.inFlight.has(url)) return this.inFlight.get(url);
+    const pending = this.loadClip(entry, url, {background})
+      .finally(() => this.inFlight.delete(url));
+    this.inFlight.set(url, pending);
+    return pending;
+  }
+
+  async loadClip(entry, url, {background = false} = {}) {
     const existing = this.memory.get(url) || await this.cache?.match(url);
     if (existing) {
       const bytes = await existing.clone().arrayBuffer();
@@ -74,9 +74,55 @@ export class PrerecordedVoiceBank {
     const bytes = await response.arrayBuffer();
     if (!await this.valid(bytes, entry)) throw Error('音声ファイルの検証に失敗しました。');
     const stored = new Response(bytes, {headers: {'Content-Type': 'audio/mp4'}});
-    if (this.cache) await this.cache.put(url, stored);
-    else this.memory.set(url, stored);
+    try {
+      if (this.cache) await this.cache.put(url, stored.clone());
+      else if (!background) this.memory.set(url, stored);
+    } catch (error) {
+      // On-demand playback should work even when persistence is unavailable.
+      if (background) throw error;
+      console.warn('音声を保存できませんでした。今回の再生は続行します。', error);
+    }
     return new Blob([bytes], {type: 'audio/mp4'});
+  }
+
+  /** Background caching starts only after the tutorial becomes visible. */
+  async prefetchAll(onStatus = () => {}) {
+    await this.init();
+    if (this.prefetchPromise) return this.prefetchPromise;
+    if (!this.cache) {
+      onStatus({stage: 'paused', message: '保存できない環境のため音声は再生時に取得します。'});
+      return;
+    }
+    const entries = this.manifest.entries;
+    let next = 0, completed = 0, failed = 0, bytes = 0;
+    let consecutiveFailures = 0, paused = false;
+    onStatus({stage: 'progress', completed, total: entries.length, bytes});
+    this.prefetchPromise = Promise.all(
+      Array.from({length: Math.min(2, entries.length)}, async () => {
+        while (next < entries.length && !paused) {
+          const entry = entries[next++];
+          try {
+            await this.clip(entry, {background: true});
+            completed++;
+            bytes += entry.bytes;
+            consecutiveFailures = 0;
+          } catch (error) {
+            failed++;
+            consecutiveFailures++;
+            if (error?.name === 'QuotaExceededError' ||
+                /quota|storage|容量/i.test(String(error?.message || '')) ||
+                consecutiveFailures >= 3) paused = true;
+          }
+          if ((completed + failed) % 20 === 0 || next >= entries.length || paused) {
+            onStatus({stage: 'progress', completed, failed, total: entries.length, bytes});
+          }
+        }
+      })
+    ).then(() => {
+      onStatus({stage: paused ? 'paused' : failed ? 'partial' : 'complete',
+        completed, failed, total: entries.length, bytes});
+    }).finally(() => { this.prefetchPromise = null; });
+    return this.prefetchPromise;
   }
 
   async valid(bytes, entry) {
