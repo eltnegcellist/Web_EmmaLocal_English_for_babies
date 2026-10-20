@@ -1,14 +1,14 @@
 // Dedicated public test entry. Uses the application's real worker, voice bank,
 // playback cancellation, face animation, play screen and Visual Cue controller.
 import {createTrialStorage} from './visual-cue-trial-storage.js';
-import {VISUAL_CUE_CATALOG} from './visual-cue-catalog.js?v=20261020-hug-preview-v2';
+import {VISUAL_CUE_CATALOG} from './visual-cue-catalog.js?v=20261020-hug-preview-v3';
 for(const key of ['localStorage','sessionStorage'])Object.defineProperty(window,key,{configurable:true,value:createTrialStorage(window[key])});
 const defaults={emma_semantic_enabled:'false',emma_history_enabled:'false',emma_visual_cue_mode:'visual'};
 for(const [key,value] of Object.entries(defaults))if(localStorage.getItem(key)===null)localStorage.setItem(key,value);
-const {visualCueTrial:app}=await import('./app.js?v=20261020-hug-preview-v2');
+const {visualCueTrial:app}=await import('./app.js?v=20261020-hug-preview-v3');
 if(!app)throw Error('テスト文書を開いてください');
 for(const id of ['fullResetButton','semanticEnabled','asrModel','endpointMode','onboardingHighPerformance']){const input=document.getElementById(id);if(input)input.disabled=true;}
-const data=await fetch(new URL('../shared/visual-cue-trial-data.json?v=20261020-hug-preview-v2',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
+const data=await fetch(new URL('../shared/visual-cue-trial-data.json?v=20261020-hug-preview-v3',import.meta.url)).then(r=>{if(!r.ok)throw Error('英文一覧を読み込めません');return r.json();});
 const $=id=>document.getElementById(id);
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 const coverageUrl=document.documentElement.dataset.coverageUrl||'./visual-cue-coverage.html';
@@ -57,7 +57,7 @@ function renderPreview(){
  previewCaption.textContent=animate?'動画プレビュー：音声なしで繰り返し表示しています。':reduction.matches?'端末の「動きを減らす」設定に合わせて静止表示しています。':!motion.checked?'「イラスト・背景を動かす」がオフのため静止表示しています。':'静止画プレビュー';
  previewToggle.hidden=asset.kind!=='animation';previewToggle.disabled=!motion.checked||reduction.matches;
  previewToggle.textContent=previewPaused?'プレビューを再生':'プレビューを停止';
- previewHint.textContent=mode.value==='emma'?'音声再生中にもこの絵を表示するには、「同じ音声で表示を比較」を「イラスト・背景あり」にしてください。':'音声終了後もここで確認できます。上のEmmaの表示は音声再生中だけ切り替わります。';
+ previewHint.textContent=mode.value==='emma'?'音声再生中にもこの絵を表示するには、「同じ音声で表示を比較」を「イラスト・背景あり」にしてください。':asset.kind==='animation'?'音声終了後も確認できます。上の表示は「停止」、この欄は「プレビューを停止」で止められます。':'選択した静止画です。音声終了後も確認できます。';
 }
 previewToggle.addEventListener('click',()=>{previewPaused=!previewPaused;renderPreview();});
 previewImage.addEventListener('error',()=>{previewCaption.textContent='素材を読み込めませんでした。ページを再読み込みしてください。';});
