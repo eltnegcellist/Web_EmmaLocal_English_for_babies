@@ -1863,9 +1863,12 @@ function showConversation(parentText,emmaText,route='generic') {
   ui.emmaBubble.classList.remove('hidden');
   ui.replyTopic.classList.remove('hidden');
   const hint=replyDisplayHint(route);
-  ui.replyTopic.textContent=hint.topicLabel;
+  ui.replyTopic.textContent=languageUI.translate(hint.topicLabel);
   ui.reply.textContent=emmaText;
-  ui.replyJapanese.textContent=hint.japaneseNote;
+  // Topic/interaction explanations, NOT line-by-line translations of the
+  // actual prerecorded English. Translate each note before joining the parts.
+  ui.replyJapanese.textContent=hint.noteParts.map(part=>languageUI.translate(part)).join(' ');
+  ui.replyJapanese.hidden=languageUI.language==='en';
 }
 
 function onRuntimeError(message) {
