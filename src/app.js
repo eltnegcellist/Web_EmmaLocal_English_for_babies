@@ -1116,7 +1116,13 @@ async function initWorkers() {
     else {
       await multilingual.prepare();
       if(selectionEpoch!==modelSelectionEpoch)throw Error('Language operation cancelled');
-      moonshineTranscriber={transcribe:async audio=>(await multilingual.transcribe(audio,languageUI.language)).text,close:()=>multilingual.cancel()};
+      moonshineTranscriber={
+        // Browser display language and spoken language are distinct settings.
+        // English takes the direct Whisper route unless explicitly opted into
+        // experimental automatic spoken-language detection.
+        transcribe:async audio=>(await multilingual.transcribe(audio,languageUI.speechLanguage)).text,
+        close:()=>multilingual.cancel()
+      };
       asrInfoCache={kind:'whisper',engine:'whisper-small',architecture:'whisper-small-multilingual',device:'wasm-cpu'};
       languageUI.setStatus('モデルの準備ができました');
     }
@@ -1965,6 +1971,7 @@ async function buildWebDiagnosticReport() {
     `userAgent=${navigator.userAgent}`,
     `language=${navigator.language}`,
     `app.language=${languageUI.language}`,
+    `app.speechLanguage=${languageUI.speechLanguage}`,
     `app.languageMode=${languageUI.mode}`,
     `multilingual.asrStage=${multilingualAsrDiagnostic.stage}`,
     `multilingual.asrLanguage=${multilingualAsrDiagnostic.detectedLanguage??'unknown'}`,
