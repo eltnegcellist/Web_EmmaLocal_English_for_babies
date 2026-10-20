@@ -7,6 +7,7 @@ import { ConversationHistory, createHistoryEntry, historyEnabled } from './src/c
 import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhrases, phrasesForSentenceCount, localHistoryStamp } from './src/feature-screens.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './src/app-navigation.js';
 import { canonicalMoonshineModelAssetKey } from './src/vendor/moonshine/asset-downloader.js';
+import { createConfirmation } from './src/multilingual/confirmation.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
 // Production home must have the same Emma-first UI that passed trial tests.
 {
@@ -407,6 +408,7 @@ source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=
   releaseMicrophoneForEmmaVoice=async()=>{if(!mic)return false;mic=null;captureMicStop();return true;};
   restoreMicrophoneAfterEmmaVoice=async()=>{captureMicRestore();};`;
 const sandbox={document,window,localStorage:storage,location:window.location,URL,URLSearchParams,console,crypto,
+  createConfirmation:options=>createConfirmation({document,...options}),
   ConversationHistory,historyEnabled,createHistoryEntry,TurnRevisions,LiteResponseEngine:class{},testAudio:context,captureRequest:id=>lastRequest=id,commitHistory:()=>commits++,
   requestAnimationFrame:()=>1,cancelAnimationFrame:()=>{},setTimeout,clearTimeout,navigator:{},Blob,Float32Array,Uint8Array,captureMicStop:()=>micStops++,captureMicRestore:()=>micRestores++};
 runInNewContext(source,sandbox);

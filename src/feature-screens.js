@@ -33,7 +33,7 @@ export function localHistoryStamp(value,locale=undefined) {
   };
 }
 
-export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,avatar,translate=value=>value,describeError=error=>error?.message||'音声の準備または再生に失敗しました。',playSentenceCount=()=>1,setPlaySentenceCount=()=>{}}) {
+export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,avatar,translate=value=>value,confirmAction=message=>globalThis.confirm(message),describeError=error=>error?.message||'音声の準備または再生に失敗しました。',playSentenceCount=()=>1,setPlaySentenceCount=()=>{}}) {
   const $=id=>document.getElementById(id);
   const dialog=$('featureDialog'), body=$('featureBody'), title=$('featureTitle');
   let generation=0,kind='';
@@ -42,7 +42,7 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
   };
   const text=(value,tag='p',className='')=>{const el=document.createElement(tag);el.textContent=value;if(className)el.className=className;return el;};
   async function close(){generation++;kind='';await stop();dialog.close();}
-  function requestClose(){if(kind!=='play'||confirm(translate('おとなの方へ：遊びを終えて戻りますか？会話は自動で始まりません。')))close();}
+  async function requestClose(){if(kind!=='play'||await confirmAction(translate('おとなの方へ：遊びを終えて戻りますか？会話は自動で始まりません。'),{confirmLabel:'戻る',cancelLabel:'遊びを続ける'}))close();}
   $('featureClose').addEventListener('click',requestClose);
   dialog.addEventListener('cancel',event=>{event.preventDefault();requestClose();});
   document.addEventListener('visibilitychange',()=>{
@@ -78,7 +78,7 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
       },'text-button');
       const removeButton=button('0件を削除',async()=>{
         if(!selectedIds.size)return;
-        if(!confirm(translate(`選択した${selectedIds.size}件の履歴を削除しますか？`)))return;
+        if(!await confirmAction(translate(`選択した${selectedIds.size}件の履歴を削除しますか？`),{confirmLabel:'削除'}))return;
         try {
           await stop();
           if(token!==generation)return;

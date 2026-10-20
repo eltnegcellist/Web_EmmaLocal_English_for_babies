@@ -7,6 +7,7 @@ import {translate,describeError} from './src/multilingual/translations.js';
 import {installFeatureScreens} from './src/feature-screens.js';
 import {GRADIENT_DESCRIPTIONS,SOFT_PALETTES,VIVID_PALETTES,FILLED_PALETTES} from './src/emma-color-palettes.js';
 import {appHistoryState,resolveAppPopScreen} from './src/app-navigation.js';
+import {createConfirmation} from './src/multilingual/confirmation.js';
 const html=readFileSync(new URL('./index.html',import.meta.url),'utf8');
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url),'utf8'));
 const capture=readFileSync(new URL('./src/audio-capture.js',import.meta.url),'utf8');
@@ -27,6 +28,8 @@ for(const lang of ['en','de','fr','ko','th','ja']){
   const dom=new JSDOM(html,{url:'https://ui-audit.test'});
   globalThis.document=dom.window.document;globalThis.MutationObserver=dom.window.MutationObserver;
   const $=id=>document.getElementById(id);
+  dom.window.HTMLDialogElement.prototype.showModal=function(){this.open=true;};
+  dom.window.HTMLDialogElement.prototype.close=function(){this.open=false;this.dispatchEvent(new dom.window.Event('close'));};
   const ui=installLanguageUI({document,storage:dom.window.localStorage,languages:[lang],onChange:async(_,change)=>change.commit()});
   const assertLocalized=root=>{if(lang!=='ja')assert.deepEqual(stockText(root).filter(value=>japanese.test(value)),[],`${lang}: untranslated product UI`);};
   // The actual first-run/home/settings/tutorial markup, including accessible
@@ -55,12 +58,25 @@ for(const lang of ['en','de','fr','ko','th','ja']){
   // An attribute changed on an existing node must be translated too.
   $('playButton').setAttribute('aria-label','もう一度聞く');await settle();assertLocalized($('playButton'));
   let confirmation='',allowClose=false,preparations=0,failPreparation=true,failPlayback=true,deleted=0,spoken='';
-  globalThis.confirm=value=>{confirmation=value;return allowClose;};
+  const confirmUI=createConfirmation({document,translate:ui.translate});
+  const confirmAction=(message,options)=>{
+    confirmation=message;
+    const result=confirmUI(message,options);
+    const dialog=$('appConfirmDialog');assert(dialog.open);assertLocalized(dialog);
+    assert.equal(document.activeElement,dialog.querySelector('button'),'Cancel must have initial focus');
+    dialog.querySelectorAll('button')[allowClose?1:0].click();
+    return result;
+  };
+  $('playButton').focus();
+  const escapeTest=confirmUI('おとなの方へ：遊びを終えて戻りますか？会話は自動で始まりません。');
+  assert.equal(await confirmUI('確認'),false,'Concurrent confirmation must not replace the active one');
+  $('appConfirmDialog').dispatchEvent(new dom.window.Event('cancel',{cancelable:true}));
+  assert.equal(await escapeTest,false);assert.equal(document.activeElement,$('playButton'));assert.equal($('appConfirmDialog'),null);
   globalThis.fetch=async()=>({ok:true,json:async()=>topics});
   $('featureDialog').showModal=function(){this.open=true;};$('featureDialog').close=function(){this.open=false;};
   const features=installFeatureScreens({stop:async()=>{},prepare:async()=>{preparations++;if(failPreparation)throw {};},
     speak:async value=>{spoken=value;if(failPlayback)throw Error('音声を取得できません。接続を確認して再試行してください。');},
-    translate:ui.translate,describeError:error=>describeError(error,ui.language),isSpeaking:()=>false,avatar:()=>document.createElement('div'),
+    translate:ui.translate,confirmAction,describeError:error=>describeError(error,ui.language),isSpeaking:()=>false,avatar:()=>document.createElement('div'),
     history:{list:async()=>[{id:'one',createdAt:'2026-10-20T01:02:00Z',japaneseText:'おはよう',englishText:'Good morning!'}],deleteMany:async()=>{deleted++;}}});
   $('playButton').click();await settle();await settle();assert(features.isOpen());
   assertLocalized($('featureDialog'));assert(!$('featureBody').textContent.includes('undefined'));
@@ -113,7 +129,7 @@ for(const failure of [false,true]){
   assert.equal(state.multilingualAsrDiagnostic.stage,failure?'error':'complete');
   assert.equal(transcripts.length,failure?0:1);
 }
-const resetConfirmation=app.match(/const confirmed=window.confirm\(\s+languageUI.translate\(('(?:[^'\\]|\\.)*')\)/)[1];
+const resetConfirmation=app.match(/const confirmed=await confirmAction\(\s+languageUI.translate\(('(?:[^'\\]|\\.)*')\)/)[1];
 for(const lang of ['en','de','fr','ko','th']){
   const message=vm.runInNewContext(resetConfirmation);
   assert(!japanese.test(translate(message,lang)),'The reset confirmation must use the selected language');
@@ -121,6 +137,7 @@ for(const lang of ['en','de','fr','ko','th']){
     assert(!japanese.test(describeError(error,lang)));assert(!describeError(error,lang).includes('undefined'));
   }
 }
-console.log('PASS: six-language stock UI, warning producer, gradients, dynamic aria labels, play preparation failure/retry/playback, native Back/cancel and history-delete confirmations, history dates and raw speech preservation.');
+console.log('PASS: six-language stock UI, warning producer, gradients, dynamic aria labels, play preparation failure/retry/playback, app Back/cancel and history-delete confirmations, history dates and raw speech preservation.');
+console.log('PASS: confirmation body/buttons, cancel-first focus, Escape cancellation, focus restoration and duplicate-open protection in six languages.');
 console.log('PASS: actual ASR completion/timeout status, localized reset confirmation (no deletion), and worker-error fallback.');
 console.log('PASS: Settings Back returns to Home after tutorial replay with stale browser history.');

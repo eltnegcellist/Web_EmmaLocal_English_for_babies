@@ -14,6 +14,7 @@ import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
 import { installLanguageUI } from './multilingual/ui.js';
 import { describeError } from './multilingual/translations.js';
+import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 
 const $ = (id) => document.getElementById(id);
@@ -172,6 +173,7 @@ function audioCacheKey(text){
 
 let multilingualStatus=()=>{};
 let multilingual,languageUI;
+const confirmAction=createConfirmation({translate:value=>languageUI.translate(value)});
 let currentReplyRoute=null;
 function refreshReplyContext(){
   if(!languageUI||!ui.replyJapanese)return;
@@ -263,6 +265,7 @@ function initUi() {
     history,
     isSpeaking:()=>speaking,
     translate:value=>languageUI.translate(value),
+    confirmAction,
     describeError:error=>{console.error('Feature screen:',error);return describeError(error,languageUI.language);},
     playSentenceCount:()=>localStorage.getItem(STORAGE.playSentenceCount)==='3'?3:1,
     setPlaySentenceCount:count=>localStorage.setItem(STORAGE.playSentenceCount,count===3?'3':'1'),
@@ -471,9 +474,9 @@ function bindEvents() {
     if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent='直近の診断記録をクリアしました。';
   });
 
-  ui.fullResetButton?.addEventListener('click',()=>{
-    const confirmed=window.confirm(
-      languageUI.translate('みつことばを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、保存音声とモデルのキャッシュを削除します。次回は音声とモデルの再取得が必要です。\n\n実行しますか？')
+  ui.fullResetButton?.addEventListener('click',async()=>{
+    const confirmed=await confirmAction(
+      languageUI.translate('みつことばを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、保存音声とモデルのキャッシュを削除します。次回は音声とモデルの再取得が必要です。\n\n実行しますか？'),{confirmLabel:'すべて削除'}
     );
     if(confirmed) location.href='./reset.html?full=1';
   });
