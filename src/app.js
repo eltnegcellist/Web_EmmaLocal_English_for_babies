@@ -191,6 +191,11 @@ let modelSelectionEpoch=0;
 let multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
 function initLanguages(){
 multilingual=new MultilingualClient({onStatus:data=>{
+  if(data.stage==='asr-timing'){
+    Object.assign(multilingualAsrDiagnostic,data.timings||{});
+    updateWebTimingDiagnostics();
+    return;
+  }
   const recognition=data.stage==='detecting-language'||data.stage==='transcribing';
   if(recognition)multilingualAsrDiagnostic.stage=data.stage;
   if(data.detectedLanguage)multilingualAsrDiagnostic.detectedLanguage=data.detectedLanguage;
@@ -1958,8 +1963,11 @@ function updateWebTimingDiagnostics() {
   const asrText=asr
     ? `ASR 端末読込 ${format(asr.cacheReadMs)} / ${formatMb(asr.cacheReadBytes)} / 通信 ${format(asr.networkDownloadMs)} / ${formatMb(asr.networkDownloadBytes)} / WASM ${format(asr.wasmInitMs)} / モデル構築 ${format(asr.modelBuildMs)} / 合計 ${format(asr.totalInitMs)} ｜ `
     : '';
+  const foreignAsr=multilingualAsrDiagnostic?.totalMs!=null
+    ? `Whisper 音声${multilingualAsrDiagnostic.audioSeconds}s / 言語判定${multilingualAsrDiagnostic.languageMs}ms / 文字起こし${multilingualAsrDiagnostic.transcribeMs}ms / 実時間比${multilingualAsrDiagnostic.realTimeFactor}x ｜ `
+    : '';
   ui.webTimingDiagnostics.textContent=
-    `直近計測: ${asrText}TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
+    `直近計測: ${asrText}${foreignAsr}TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
 }
 
 async function buildWebDiagnosticReport() {
@@ -1986,6 +1994,13 @@ async function buildWebDiagnosticReport() {
     `multilingual.asrStage=${multilingualAsrDiagnostic.stage}`,
     `multilingual.asrLanguage=${multilingualAsrDiagnostic.detectedLanguage??'unknown'}`,
     `multilingual.asrElapsedMs=${multilingualAsrDiagnostic.elapsedMs??'unknown'}`,
+    `multilingual.audioSeconds=${multilingualAsrDiagnostic.audioSeconds??'unknown'}`,
+    `multilingual.languagePass=${multilingualAsrDiagnostic.languagePass??'unknown'}`,
+    `multilingual.languageMs=${multilingualAsrDiagnostic.languageMs??'unknown'}`,
+    `multilingual.transcribeMs=${multilingualAsrDiagnostic.transcribeMs??'unknown'}`,
+    `multilingual.totalMs=${multilingualAsrDiagnostic.totalMs??'unknown'}`,
+    `multilingual.realTimeFactor=${multilingualAsrDiagnostic.realTimeFactor??'unknown'}`,
+    `multilingual.model=${multilingualAsrDiagnostic.model??'unknown'}`,
     `multilingual.asrError=${multilingualAsrDiagnostic.error??'none'}`,
     `hardwareConcurrency=${navigator.hardwareConcurrency??'unknown'}`,
     `deviceMemory=${navigator.deviceMemory??'unknown'}`,
