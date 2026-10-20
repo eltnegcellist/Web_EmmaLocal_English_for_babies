@@ -1,4 +1,4 @@
-import {LANGUAGES,LANGUAGE_NAMES,LANGUAGE_KEY,LANGUAGE_MODE_KEY,resolveLanguage,browserLanguages} from './core.js';
+import {LANGUAGES,LANGUAGE_NAMES,LANGUAGE_KEY,LANGUAGE_MODE_KEY,SPEECH_DETECTION_KEY,resolveLanguage,browserLanguages} from './core.js';
 import {translate} from './translations.js';
 import {renderLocalizedAbout} from './about-page.js';
 export function installLanguageUI({document=globalThis.document,storage=globalThis.localStorage,
@@ -11,6 +11,8 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   const detected=()=>resolveLanguage({languages:languages??browserLanguages()});
   const initial=resolveLanguage({saved:mode==='manual'?saved:null,languages:languages??browserLanguages()});
   let language=initial.language,needsChoice=initial.needsChoice;
+  let speechDetection='fixed';
+  try{if(storage.getItem(SPEECH_DETECTION_KEY)==='auto')speechDetection='auto';}catch{}
   const originals=new WeakMap(),attributes=new WeakMap(),selectors=[];
   const wordmark=document.querySelector('#onboardingScreen .brand-wordmark');
   const japaneseWordmark=wordmark?.innerHTML;
@@ -59,6 +61,26 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   const settings=document.querySelector('#settingsScreen .subpage-header');
   const settingsCard=document.createElement('article');settingsCard.className='card language-settings';
   settingsCard.append(picker('settingsLanguage'),note,status);
+  // Display-language auto-selection must not trigger a separate, expensive
+  // Whisper language inference. Keep that optional and visibly experimental.
+  const speechSetting=document.createElement('label');
+  speechSetting.className='language-picker speech-detection-setting';
+  const speechLabel=document.createElement('span');speechSetting.append(speechLabel);
+  const speechSelect=document.createElement('select');
+  speechSelect.id='speechDetectionMode';
+  speechSelect.setAttribute('data-no-i18n','');
+  for(const value of ['fixed','auto']){
+    const option=document.createElement('option');option.value=value;speechSelect.append(option);
+  }
+  speechSelect.value=speechDetection;
+  speechSelect.addEventListener('change',()=>{
+    speechDetection=speechSelect.value==='auto'?'auto':'fixed';
+    try{storage.setItem(SPEECH_DETECTION_KEY,speechDetection);}catch{}
+    apply();
+  });
+  speechSetting.append(speechSelect);settingsCard.append(speechSetting);
+  const speechNote=document.createElement('p');speechNote.className='small multilingual-mode-note';
+  speechNote.setAttribute('data-no-i18n','');settingsCard.append(speechNote);
   const retry=document.createElement('button');retry.type='button';retry.className='outline-button';retry.textContent='準備する';
   retry.addEventListener('click',()=>choose(language));settingsCard.append(retry);settings?.after(settingsCard);
   const about=document.querySelector('#aboutScreen .screen-content');
@@ -111,7 +133,19 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
       s.value=mode==='auto'?'auto':language;
       s.querySelector('option[value="auto"]').textContent=translate('自動（ブラウザ設定）',language)+' · '+LANGUAGE_NAMES[detected().language];
     });
-    note.textContent=translate(language==='en'?'英語表示で、さまざまな言語の音声を自動認識します。':'選択した言語で話しかけると、短い英語で返します。',language);
+    speechSetting.hidden=language!=='en';
+    speechNote.hidden=language!=='en';
+    speechLabel.textContent=translate('音声認識の言語',language);
+    speechSelect.options[0].textContent=translate('英語（推奨・高速）',language);
+    speechSelect.options[1].textContent=translate('自動言語判定（試験的・低速）',language);
+    speechSelect.value=speechDetection;
+    speechNote.textContent=translate(speechDetection==='auto'
+      ? '自動言語判定を使用します。端末によっては遅くなる場合があります。'
+      : '英語の音声を直接認識します。外国語の自動判定は設定から試せます。',language);
+    note.textContent=translate(language==='en'
+      ? (speechDetection==='auto'?'英語表示で、さまざまな言語の音声を自動認識します。':
+          '英語の音声を直接認識します。外国語の自動判定は設定から試せます。')
+      : '選択した言語で話しかけると、短い英語で返します。',language);
     const sub=document.querySelector('#prepareEmmaButton .button-sub');
     if(sub)sub.textContent=translate('初回のみ必要なモデルを準備します',language)+(language==='ja'?'':' · ~387 MB');
     // Keep the original full Japanese research page intact, and render a
@@ -145,7 +179,8 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     for(const r of records){if(r.type==='characterData')text(r.target);else if(r.type==='childList')for(const n of r.addedNodes)walk(n);}
   });observer.observe(document.body,{subtree:true,childList:true,characterData:true});
   apply();
-  return {get language(){return language;},get needsChoice(){return needsChoice;},get mode(){return mode;},apply,setStatus,choose,
+  return {get language(){return language;},get speechLanguage(){return language==='en'&&speechDetection==='auto'?'auto':language;},
+    get needsChoice(){return needsChoice;},get mode(){return mode;},apply,setStatus,choose,
     confirm(){
       try{storage.setItem(LANGUAGE_KEY,language);storage.setItem(LANGUAGE_MODE_KEY,mode);}catch{}
       return true;
