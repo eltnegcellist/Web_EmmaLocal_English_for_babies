@@ -40,7 +40,7 @@ export class MultilingualClient {
     const requested=language==='en' && this.languageDetection==='fixed'
       ? 'en-fixed'
       : language==='en' && this.languageDetection==='once' && this.cachedSpokenLanguage
-        ? this.cachedSpokenLanguage : language;
+        ? (this.cachedSpokenLanguage==='en'?'en-fixed':this.cachedSpokenLanguage) : language;
     const result=await this.request('transcribe',{audio:buffer,language:requested},90000,[buffer]);
     if(language==='en' && this.languageDetection==='once' && !this.cachedSpokenLanguage &&
        result?.text?.trim() && /^[a-z]{2,3}(?:-[a-z]+)?$/i.test(result.detectedLanguage||'')){
