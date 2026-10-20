@@ -78,7 +78,10 @@ try{
  check('movie-and-main-animation-remain-after-audio-end',await page.locator('#trialPreview').isVisible()&&(await page.locator('#trialPreviewImage').getAttribute('src')).endsWith('hug-face-cuddle.webp')&&await page.locator('#avatar.has-visual-cue img[data-asset-id="hug-face-cuddle"]').count()===1);
  await page.uncheck('#trialMotion');check('preview-explains-motion-off',(await page.locator('#trialPreviewCaption').textContent()).includes('オフ')&&(await page.locator('#trialPreviewImage').getAttribute('src')).endsWith('-poster.webp'));await page.check('#trialMotion');
  await page.selectOption('#trialMode','emma');check('preview-explains-emma-only',(await page.locator('#trialPreviewHint').textContent()).includes('イラスト・背景あり'));await page.selectOption('#trialMode','visual');
- await page.emulateMedia({reducedMotion:'reduce'});check('preview-explains-os-reduction',(await page.locator('#trialPreviewCaption').textContent()).includes('端末')&&(await page.locator('#trialPreviewImage').getAttribute('src')).endsWith('-poster.webp'));await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.waitForFunction(()=>document.querySelector('#trialPreviewCaption')?.textContent.includes('端末')&&document.querySelector('#trialPreviewImage')?.getAttribute('src').endsWith('-poster.webp'));
+ check('preview-explains-os-reduction',(await page.locator('#trialPreviewCaption').textContent()).includes('端末')&&(await page.locator('#trialPreviewImage').getAttribute('src')).endsWith('-poster.webp'));await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.waitForFunction(()=>document.querySelector('#trialPreviewImage')?.getAttribute('src').endsWith('hug-face-cuddle.webp'));
  check('persistent-preview-mobile-no-overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.locator('#trialPreview').scrollIntoViewIfNeeded();await page.screenshot({path:out+'/hug-preview-mobile.png',fullPage:false});
  await page.goto(base+'/visual-cue-hug-face.html');await page.locator('#candidate').evaluate(i=>i.decode());
  check('face-comparison-delivers-movie',(await page.locator('#candidate').getAttribute('src')).endsWith('hug-face-cuddle.webp'));
