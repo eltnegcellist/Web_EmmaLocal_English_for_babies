@@ -109,7 +109,7 @@ for(const failure of [false,true]){
     withTimeout:promise=>promise,processTranscript:async value=>transcripts.push(value),
     friendlyError:error=>describeError(error,'en'),multilingual:{cancel:()=>{}},console:{error:()=>{}}};
   await vm.runInNewContext(asrFunction+'\ntranscribeUtterance(new Float32Array(16000));',state);
-  assert.equal(statuses.at(-1),failure?'モデルを準備できませんでした。再試行してください。':'モデルの準備ができました');
+  assert.equal(statuses.at(-1),failure?'音声認識でエラーが発生しました':'モデルの準備ができました');
   assert.equal(state.multilingualAsrDiagnostic.stage,failure?'error':'complete');
   assert.equal(transcripts.length,failure?0:1);
 }

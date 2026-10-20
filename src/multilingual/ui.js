@@ -2,7 +2,7 @@ import {LANGUAGES,LANGUAGE_NAMES,LANGUAGE_KEY,LANGUAGE_MODE_KEY,resolveLanguage,
 import {translate} from './translations.js';
 import {renderLocalizedAbout} from './about-page.js';
 export function installLanguageUI({document=globalThis.document,storage=globalThis.localStorage,
-  languages=undefined,onChange=async()=>{}}={}) {
+  languages=undefined,onChange=async()=>{},onExplanationsChange=()=>{}}={}) {
   let saved,savedMode;try{saved=storage.getItem(LANGUAGE_KEY);savedMode=storage.getItem(LANGUAGE_MODE_KEY);}catch{}
   // A pre-existing saved selection is treated as manual (legacy migration).
   // New visitors and users who explicitly choose Auto follow the browser.
@@ -11,11 +11,16 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   const detected=()=>resolveLanguage({languages:languages??browserLanguages()});
   const initial=resolveLanguage({saved:mode==='manual'?saved:null,languages:languages??browserLanguages()});
   let language=initial.language,needsChoice=initial.needsChoice;
+  const explanationKey='mitsukotoba_explanation_language_v1';
+  let explanationPreference='follow';
+  try{
+    const savedExplanation=storage.getItem(explanationKey);
+    if(['follow','zh','none'].includes(savedExplanation))explanationPreference=savedExplanation;
+  }catch{}
   const originals=new WeakMap(),attributes=new WeakMap(),selectors=[];
   const wordmark=document.querySelector('#onboardingScreen .brand-wordmark');
   const japaneseWordmark=wordmark?.innerHTML;
-  const productNames={ja:'みつことば',en:'Three Voices',de:'Drei Stimmen',
-    fr:'Trois voix',ko:'세 목소리',th:'สามเสียง'};
+  const productNames=Object.fromEntries(LANGUAGES.map(code=>[code,code==='ja'?'みつことば':'CooTrio']));
   const title='言語を選択';
   const status=document.createElement('p');status.className='small multilingual-status';status.setAttribute('aria-live','polite');
   status.id='languageModelStatus';
@@ -33,7 +38,7 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
       await onChange(resolved,{commit:()=>{
         language=resolved;mode=automatic?'auto':'manual';needsChoice=false;
         try{storage.setItem(LANGUAGE_KEY,resolved);storage.setItem(LANGUAGE_MODE_KEY,mode);}catch{}
-        apply();
+        apply();onExplanationsChange();
       }});
     }catch(error){
       console.error('Language preparation:',error);
@@ -60,6 +65,22 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   const settings=document.querySelector('#settingsScreen .subpage-header');
   const settingsCard=document.createElement('article');settingsCard.className='card language-settings';
   settingsCard.append(picker('settingsLanguage'),note,status);
+  const explanationSetting=document.createElement('label');
+  explanationSetting.className='language-picker explanation-language-setting';
+  const explanationLabel=document.createElement('span');
+  const explanationSelect=document.createElement('select');
+  explanationSelect.id='explanationLanguage';
+  for(const value of ['follow','zh','none']){
+    const option=document.createElement('option');option.value=value;explanationSelect.append(option);
+  }
+  explanationSelect.value=explanationPreference;
+  explanationSelect.addEventListener('change',()=>{
+    explanationPreference=explanationSelect.value;
+    try{storage.setItem(explanationKey,explanationPreference);}catch{}
+    apply();onExplanationsChange();
+  });
+  explanationSetting.append(explanationLabel,explanationSelect);
+  settingsCard.append(explanationSetting);
   const retry=document.createElement('button');retry.type='button';retry.className='outline-button';retry.textContent='準備する';
   retry.addEventListener('click',()=>choose(language));settingsCard.append(retry);settings?.after(settingsCard);
   const about=document.querySelector('#aboutScreen .screen-content');
@@ -91,7 +112,17 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   }
   function apply(){
     document.documentElement.lang=language;document.documentElement.dataset.appLanguage=language;
-    document.title=productNames[language]+' Web';
+    document.title=productNames[language];
+    const manifest=document.querySelector('link[rel="manifest"]');
+    if(manifest)manifest.setAttribute('href',language==='ja'
+      ? './manifest.webmanifest?v=20261020-cootrio-r1'
+      : './manifest.intl.webmanifest?v=20261020-cootrio-r1');
+    const description=document.querySelector('meta[name="description"]');
+    if(description)description.setAttribute('content',language==='ja'
+      ? '親と赤ちゃんとAI、3人でつくる英語アプリ'
+      : 'CooTrio — English moments for parents and babies, with AI.');
+    const appleTitle=document.querySelector('meta[name="apple-mobile-web-app-title"]');
+    if(appleTitle)appleTitle.setAttribute('content',productNames[language]);
     if(wordmark){
       if(language==='ja'&&wordmark.dataset.localized==='true')wordmark.innerHTML=japaneseWordmark;
       else if(language!=='ja')wordmark.textContent=productNames[language];
@@ -102,6 +133,10 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
       s.value=mode==='auto'?'auto':language;
       s.querySelector('option[value="auto"]').textContent=translate('自動（ブラウザ設定）',language)+' · '+LANGUAGE_NAMES[detected().language];
     });
+    explanationLabel.textContent=translate('英文の場面説明',language);
+    explanationSelect.options[0].textContent=translate('表示言語に合わせる',language);
+    explanationSelect.options[1].textContent=translate('中文（説明のみ）',language);
+    explanationSelect.options[2].textContent=translate('説明を表示しない',language);
     note.textContent=translate(language==='en'?'英語表示で、さまざまな言語の音声を自動認識します。':'選択した言語で話しかけると、短い英語で返します。',language);
     const sub=document.querySelector('#prepareEmmaButton .button-sub');
     if(sub)sub.textContent=translate('初回のみ必要なモデルを準備します',language)+(language==='ja'?'':' · ~387 MB');
@@ -124,7 +159,15 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     for(const id of ['asrModel','asrModelStatus','semanticEnabled']){
       const el=document.getElementById(id);const row=el?.closest('label')||el;if(row)row.hidden=language!=='ja';
     }
-    for(const id of ['replyJapanese','storageProtectionStatus','modelCacheStatus','modelCacheHistoryStatus']){
+    const hint=document.getElementById('replyJapanese');
+    if(hint){
+      // Context notes also appear in supported non-English UI locales.
+      // English requires no same-language explanation; the underlying reply
+      // remains available in its original English text.
+      hint.hidden=(explanationPreference==='none'||(explanationPreference==='follow'&&language==='en'));
+      hint.setAttribute('aria-label',translate('英文の場面説明',language));
+    }
+    for(const id of ['storageProtectionStatus','modelCacheStatus','modelCacheHistoryStatus']){
       const el=document.getElementById(id);if(el)el.hidden=language!=='ja';
     }
     const semanticHelp=document.querySelector('a[href*="topic-guide.html"]')?.closest('article');
@@ -136,7 +179,9 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     for(const r of records){if(r.type==='characterData')text(r.target);else if(r.type==='attributes')walk(r.target);else if(r.type==='childList')for(const n of r.addedNodes)walk(n);}
   });observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title','alt']});
   apply();
-  return {get language(){return language;},get needsChoice(){return needsChoice;},get mode(){return mode;},apply,setStatus,choose,
+  return {get language(){return language;},
+    get explanationLanguage(){return explanationPreference==='follow'?language:explanationPreference;},
+    get needsChoice(){return needsChoice;},get mode(){return mode;},apply,setStatus,choose,
     confirm(){
       try{storage.setItem(LANGUAGE_KEY,language);storage.setItem(LANGUAGE_MODE_KEY,mode);}catch{}
       return true;

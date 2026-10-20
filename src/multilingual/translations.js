@@ -1,6 +1,58 @@
 import {appendOperationalMessages} from './operational-messages.js';
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
+["おはよう","Good morning","Guten Morgen","Bonjour","좋은 아침","อรุณสวัสดิ์"],
+["お着替え","Getting dressed","Anziehen","Habillage","옷 갈아입기","แต่งตัว"],
+["抱っこ","Cuddles","Kuscheln","Câlin","안아 주기","กอด"],
+["おてて","Little hands","Händchen","Petites mains","작은 손","มือน้อย"],
+["あんよ","Little feet","Füßchen","Petits pieds","작은 발","เท้าน้อย"],
+["おしゃべり","Baby sounds","Babylaute","Babillements","옹알이","เสียงอ้อแอ้"],
+["おなか・げっぷ","Tummy and burps","Bauch und Bäuerchen","Ventre et rots","배와 트림","ท้องและการเรอ"],
+["あそぼう","Let's play","Spielen","Jouons","놀이","เล่นกัน"],
+["おさんぽ","A walk","Spaziergang","Promenade","산책","เดินเล่น"],
+["おひさま","Sunshine","Sonnenschein","Soleil","햇살","แสงแดด"],
+["ごはん","Mealtime","Essen","Repas","식사","อาหาร"],
+["音楽","Music","Musik","Musique","음악","ดนตรี"],
+["英文の場面説明","English phrase context","Kontext der englischen Wendung","Contexte de la phrase anglaise","영어 표현 상황 설명","คำอธิบายบริบทของประโยคอังกฤษ"],
+["表示言語に合わせる","Follow display language","Anzeigesprache verwenden","Suivre la langue d’affichage","표시 언어에 맞추기","ใช้ภาษาเดียวกับหน้าจอ"],
+["中文（説明のみ）","中文 (context notes only)","中文 (nur Erläuterung)","中文 (explications uniquement)","中文 (설명만)","中文 (เฉพาะคำอธิบาย)"],
+["説明を表示しない","Hide explanations","Erläuterungen ausblenden","Masquer les explications","설명 숨기기","ซ่อนคำอธิบาย"],
+["お風呂に入ろうね。","Let's have a bath.","Zeit fürs Baden.","On va prendre un bain.","목욕하자.","ไปอาบน้ำกันนะ"],
+["ミルクの時間だよ。","It's milk time.","Es ist Zeit für Milch.","C'est l'heure du lait.","우유 먹을 시간이야.","ถึงเวลากินนมแล้วนะ"],
+["ゆっくり休もうね。","Let's rest.","Ruh dich ein wenig aus.","Reposons-nous un peu.","푹 쉬자.","พักผ่อนกันนะ"],
+["おはよう、起きたね。","Good morning! You're awake.","Guten Morgen! Du bist wach.","Bonjour ! Tu es réveillé.","좋은 아침! 일어났구나.","อรุณสวัสดิ์ ตื่นแล้วนะ"],
+["おむつを替えようね。","Let's change your diaper.","Wir wechseln deine Windel.","On va changer ta couche.","기저귀 갈자.","มาเปลี่ยนผ้าอ้อมกันนะ"],
+["お着替えしようね。","Let's get dressed.","Wir ziehen dich um.","On va t'habiller.","옷 갈아입자.","มาเปลี่ยนเสื้อผ้ากันนะ"],
+["ぎゅっと抱っこしよう。","Let's have a big cuddle.","Komm, wir kuscheln.","Viens faire un gros câlin.","꼭 안아 줄게.","มากอดกันแน่น ๆ นะ"],
+["小さなおててだね。","Such little hands!","So kleine Händchen!","Quelles petites mains !","작은 손이네!","มือน้อย ๆ น่ารักจัง"],
+["あんよを動かそうね。","Let's move your little feet.","Beweg deine kleinen Füßchen.","Bougeons tes petits pieds.","발을 움직여 보자.","ขยับเท้าน้อย ๆ กันนะ"],
+["いい笑顔だね。","What a lovely smile!","Was für ein schönes Lächeln!","Quel joli sourire !","정말 예쁜 미소야!","ยิ้มสวยจังเลย"],
+["そばにいるよ。","I'm here with you.","Ich bin bei dir.","Je suis là, près de toi.","곁에 있어 줄게.","อยู่ข้าง ๆ นะ"],
+["かわいい声だね。","What a sweet little voice!","Was für eine süße Stimme!","Quelle jolie petite voix !","목소리가 참 귀엽네!","เสียงน่ารักจังเลย"],
+["おなかのことだよ。","It's about your tummy.","Es geht um deinen Bauch.","On parle de ton petit ventre.","배에 관한 이야기야.","เกี่ยวกับท้องน้อย ๆ ของหนูนะ"],
+["一緒に遊ぼう。","Let's play together.","Lass uns zusammen spielen.","Jouons ensemble.","같이 놀자.","มาเล่นด้วยกันนะ"],
+["お外を見てみよう。","Let's look outside.","Schauen wir nach draußen.","Regardons dehors.","밖을 보자.","มองข้างนอกกันนะ"],
+["雨の音を聞こうね。","Let's listen to the rain.","Hören wir dem Regen zu.","Écoutons la pluie.","빗소리를 들어 보자.","ฟังเสียงฝนกันนะ"],
+["おひさまが出ているね。","The sun is shining.","Die Sonne scheint.","Le soleil brille.","해가 떴네.","แดดออกแล้วนะ"],
+["ごはんの時間だよ。","It's mealtime.","Es ist Essenszeit.","C'est l'heure de manger.","밥 먹을 시간이야.","ได้เวลากินข้าวแล้วนะ"],
+["絵本を読もうね。","Let's read a book.","Lesen wir ein Bilderbuch.","Lisons un livre ensemble.","그림책 읽자.","มาอ่านหนังสือนิทานกันนะ"],
+["歌を楽しもうね。","Let's enjoy a song.","Lass uns ein Lied genießen.","Écoutons une chanson.","노래를 즐겨 보자.","มาฟังเพลงกันนะ"],
+["少しずつ飲もうね。","Let's take little sips.","Trink in kleinen Schlucken.","Prenons de petites gorgées.","조금씩 마시자.","จิบทีละนิดนะ"],
+["大好きだよ。","I love you.","Ich hab dich lieb.","Je t'aime.","사랑해.","รักหนูนะ"],
+["よくできたね。","Well done!","Gut gemacht!","Bravo !","잘했어!","เก่งมากเลย"],
+["できたね！","You did it!","Du hast es geschafft!","Tu as réussi !","해냈구나!","ทำได้แล้วนะ"],
+["がんばっているね。","You're trying so hard.","Du gibst dir große Mühe.","Tu fais de ton mieux.","열심히 하고 있구나.","พยายามเก่งมากเลย"],
+["ゆっくりでいいよ。","Take your time.","Lass dir Zeit.","Prends ton temps.","천천히 해도 돼.","ค่อย ๆ ทำก็ได้นะ"],
+["一緒にやってみよう。","Let's try it together.","Probieren wir es zusammen.","Essayons ensemble.","같이 해 보자.","ลองทำด้วยกันนะ"],
+["さあ、始めよう。","Let's begin.","Los geht's!","Allez, on commence.","자, 시작하자.","เริ่มกันเลย"],
+["おしまいだよ。","All done.","Wir sind fertig.","C'est fini.","다 끝났어.","เสร็จแล้วนะ"],
+["もう終わりかな？","Are we all done?","Sind wir schon fertig?","C'est déjà fini ?","이제 다 끝났을까?","เสร็จแล้วหรือยังนะ"],
+["少し休もうね。","Let's take a little break.","Machen wir eine kleine Pause.","Faisons une petite pause.","잠깐 쉬자.","พักกันสักหน่อยนะ"],
+["どうしたのかな？","What's the matter?","Was ist denn los?","Qu'est-ce qui se passe ?","무슨 일이니?","เป็นอะไรหรือเปล่า"],
+["もう一回やってみる？","Want to try again?","Möchtest du es noch einmal versuchen?","Tu veux réessayer ?","한 번 더 해 볼까?","ลองอีกครั้งไหม"],
+["赤ちゃんへのやさしい呼びかけ。","A gentle phrase for your baby.","Ein liebevoller Satz für dein Baby.","Une petite phrase douce pour votre bébé.","아기에게 건네는 다정한 말.","คำพูดอ่อนโยนสำหรับลูกน้อย"],
+["日本語の目安","Context note","Hinweis zum Kontext","Indication de contexte","상황 설명","คำอธิบายบริบท"],
+["今回の話題","Topic","Thema","Sujet","주제","หัวข้อ"],
 ["まずEmmaの自己紹介を聞きます。再生が終わると自動で次のステップに進みます。","Listen to Emma introduce herself. The next step opens automatically when playback finishes.","Höre dir Emmas Vorstellung an. Nach der Wiedergabe beginnt der nächste Schritt automatisch.","Écoutez Emma se présenter. L’étape suivante s’ouvrira automatiquement à la fin de l’audio.","Emma의 자기소개를 들어 보세요. 재생이 끝나면 다음 단계로 자동 이동해요.","ฟัง Emma แนะนำตัว เมื่อเสียงจบจะไปขั้นตอนต่อไปโดยอัตโนมัติ"],
 ["日時不明","Unknown date","Datum unbekannt","Date inconnue","날짜 알 수 없음","ไม่ทราบวันที่"],
 ["おとなの方へ：遊びを終えて戻りますか？会話は自動で始まりません。","For adults: Leave play mode? Conversation will not restart automatically.","Für Erwachsene: Spiel beenden? Das Gespräch startet nicht automatisch.","Pour les adultes : quitter le jeu ? La conversation ne reprendra pas automatiquement.","보호자님, 놀이를 종료할까요? 대화는 자동으로 다시 시작되지 않아요.","สำหรับผู้ปกครอง: ออกจากโหมดเล่นหรือไม่? การสนทนาจะไม่เริ่มเอง"],
@@ -44,14 +96,14 @@ export const CATALOG = [
 ["話題が曖昧な場合は、直前の話題を最大6回使います。明確な別の話題が来たら切り替えます。","An unclear topic may briefly reuse the previous one. A clear new topic starts a new response.","Bei unklarem Thema wird kurz das vorherige fortgesetzt. Ein klares neues Thema wird übernommen.","Si le sujet est imprécis, le précédent peut être repris brièvement. Un nouveau sujet clair le remplace.","주제가 모호하면 이전 주제를 잠시 이어갈 수 있어요. 새로운 주제가 명확하면 전환해요.","เมื่อหัวข้อไม่ชัดเจนอาจใช้หัวข้อก่อนหน้าชั่วคราว และเปลี่ยนเมื่อพบหัวข้อใหม่ที่ชัดเจน"],
 ["話題の判定方法・話題一覧を見る ↗","View topic detection and supported topics ↗","Themenerkennung und Themenliste ansehen ↗","Voir la détection des sujets et la liste ↗","주제 감지 방식 및 목록 보기 ↗","ดูการตรวจจับหัวข้อและรายการ ↗"],
 ["別のタブで開きます。","Opens in another tab.","Öffnet in einem neuen Tab.","S’ouvre dans un nouvel onglet.","새 탭에서 열려요.","เปิดในแท็บใหม่"],
-["みつことば Web","Three Voices Web","Drei Stimmen Web","Trois voix Web","세 목소리 웹","สามเสียง เว็บ"],
+["みつことば Web","CooTrio Web","CooTrio Web","CooTrio Web","CooTrio 웹","CooTrio เว็บ"],
 ["このブラウザではMoonshineに必要なService Workerを利用できません。","This browser cannot use the Service Worker required for Japanese Moonshine. Try a regular tab.","Dieser Browser unterstützt den für Moonshine nötigen Service Worker nicht. Versuche einen normalen Tab.","Ce navigateur ne permet pas le Service Worker nécessaire à Moonshine. Essayez un onglet classique.","이 브라우저에서 Moonshine에 필요한 서비스 워커를 사용할 수 없어요. 일반 탭에서 시도하세요.","เบราว์เซอร์นี้ใช้ Service Worker ที่ Moonshine ต้องการไม่ได้ โปรดลองแท็บปกติ"],
 ["Moonshineに必要なブラウザ分離を有効にできませんでした。通常のブラウザタブで開き直してください。","Could not enable browser isolation for Japanese Moonshine. Please reopen in a regular tab.","Browser-Isolierung für Moonshine fehlgeschlagen. Bitte in einem normalen Tab öffnen.","Impossible d’activer l’isolation nécessaire à Moonshine. Ouvrez un onglet classique.","Moonshine용 브라우저 격리를 설정하지 못했어요. 일반 탭에서 열어 주세요.","เปิดใช้งานการแยกเบราว์เซอร์สำหรับ Moonshine ไม่สำเร็จ โปรดเปิดในแท็บปกติ"],
 ['選んだ声を端末に準備しています…','Preparing recorded audio on your device…','Aufgenommene Audiodateien werden auf deinem Gerät vorbereitet…','Préparation des enregistrements audio sur votre appareil…','기기에 녹음 음성을 준비하고 있어요…','กำลังเตรียมเสียงที่บันทึกไว้ในอุปกรณ์…'],
 ['選んだ声を準備しています…','Preparing recorded audio…','Aufgenommene Audiodateien werden vorbereitet…','Préparation des enregistrements audio…','녹음 음성을 준비하고 있어요…','กำลังเตรียมเสียงที่บันทึกไว้…'],
 ['みつことばの声を準備しています…','Preparing English audio…','Englische Audiodateien werden vorbereitet…','Préparation des fichiers audio anglais…','영어 음성을 준비하고 있어요…','กำลังเตรียมไฟล์เสียงภาษาอังกฤษ…'],
 ['自動（ブラウザ設定）','Automatic (browser language)','Automatisch (Browsersprache)','Automatique (langue du navigateur)','자동 (브라우저 언어)','อัตโนมัติ (ภาษาของเบราว์เซอร์)'],
-['みつことば','Three Voices','Drei Stimmen','Trois voix','세 목소리','สามเสียง'],
+['みつことば','CooTrio','CooTrio','CooTrio','CooTrio','CooTrio'],
 ['モデル保存に失敗しました。空き容量を確認して再試行してください。','Model storage failed. Free some space and retry.','Modell konnte nicht gespeichert werden. Bitte Speicherplatz freigeben und erneut versuchen.','Impossible d’enregistrer les modèles. Libérez de l’espace et réessayez.','모델을 저장하지 못했어요. 저장 공간을 확보하고 다시 시도해 주세요.','บันทึกโมเดลไม่สำเร็จ โปรดเพิ่มพื้นที่ว่างแล้วลองอีกครั้ง'],
 ['みつことばの使い方','How Mitsukotoba works','So funktioniert Mitsukotoba','Comment utiliser Mitsukotoba','미츠코토바 사용 방법','วิธีใช้ Mitsukotoba'],
 ['みつことば — 親と赤ちゃんとAIの英語時間','Mitsukotoba — English time with your baby and Emma','Mitsukotoba — Englisch mit deinem Baby und Emma','Mitsukotoba — Un moment en anglais avec bébé et Emma','미츠코토바 — 아기·Emma와 함께하는 영어 시간','Mitsukotoba — ช่วงเวลาภาษาอังกฤษกับลูกน้อยและ Emma'],
@@ -350,13 +402,10 @@ const aliases={
  'オフの場合は、会話画面の「今すぐAIが返事する」を使えます。':'オフの場合は、会話画面の「今すぐAIが返事する」で返答を開始できます。',
 };
 for(const [source,target]of Object.entries(aliases)){const row=CATALOG.find(r=>r[0]===target);CATALOG.push([source,...row.slice(1)]);}
-// Product names convey the three-way parent–baby–AI conversation,
-// rather than transliterating the Japanese name into other languages.
-const LOCALIZED_PRODUCT_NAMES = {en:'Three Voices',de:'Drei Stimmen',
-  fr:'Trois voix',ko:'세 목소리',th:'สามเสียง'};
+// CooTrio is the shared brand name in every non-Japanese locale.
 for(const row of CATALOG) {
   for(const [lang,index] of [['en',1],['de',2],['fr',3],['ko',4],['th',5]]) {
-    row[index]=row[index].replace(/Mitsukotoba|미츠코토바|มิตสึโคโตบะ/g,LOCALIZED_PRODUCT_NAMES[lang]);
+    row[index]=row[index].replace(/Mitsukotoba|미츠코토바|มิตสึโคโตบะ/g,'CooTrio');
   }
 }
 export const LOCALE_INDEX={ja:0,en:1,de:2,fr:3,ko:4,th:5};

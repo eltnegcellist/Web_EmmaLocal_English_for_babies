@@ -56,14 +56,33 @@ async function handle(data) {
   if(data.type==='transcribe'){
     const audio=new Float32Array(data.audio);
     if(!audio.length||audio.some(x=>!Number.isFinite(x)))throw Error('Invalid audio');
+    const audioSeconds=audio.length/16000;
+    const asrStarted=performance.now();
     const specified=speechLanguage(data.language);
     if(!specified)progress({stage:'detecting-language'});
     const language=specified||await detectLanguage(audio);
-    progress({stage:'transcribing',detectedLanguage:language});
+    const languageMs=performance.now()-asrStarted;
+    progress({stage:'transcribing',detectedLanguage:language,audioSeconds,languageMs});
+    // Measure decoding independently from the optional language-detection pass.
+    // Timings include preprocessing/encoding/generation for the pipeline call,
+    // and do not claim to separate its internal ONNX graph operations.
+    const decodeStarted=performance.now();
     // Short caregiver utterances should not spend minutes generating a long
     // hallucinated transcript on mobile CPU; allow up to 80 tokens.
     const result=await recognizer(audio,{language,task:'transcribe',max_new_tokens:80,return_timestamps:false});
-    return {text:result.text.trim(),detectedLanguage:language};
+    const transcribeMs=performance.now()-decodeStarted;
+    const timings={
+      audioSeconds:Number(audioSeconds.toFixed(2)),
+      languageMs:Math.round(languageMs),
+      transcribeMs:Math.round(transcribeMs),
+      totalMs:Math.round(performance.now()-asrStarted),
+      realTimeFactor:Number(((performance.now()-asrStarted)/1000/audioSeconds).toFixed(2)),
+      spokenLanguage:language,
+      languagePass:!specified,
+      model:'whisper-small-q8-wasm-1-thread'
+    };
+    progress({stage:'asr-timing',timings});
+    return {text:result.text.trim(),detectedLanguage:language,timings};
   }
   if(data.type==='predict'){
     const start=performance.now();

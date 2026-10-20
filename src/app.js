@@ -8,7 +8,7 @@ import { MoonshineAsrClient } from './asr-client.js';
 import { TurnRevisions } from './turn-revisions.js';
 import { LiteResponseEngine, isMeaningfulUtterance } from './lite-response-engine.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './app-navigation.js';
-import { replyDisplayHint } from './reply-display-hint.js';
+import { replyDisplayHint, explainReplyContext } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
@@ -172,10 +172,31 @@ function audioCacheKey(text){
 
 let multilingualStatus=()=>{};
 let multilingual,languageUI;
+let currentReplyRoute=null;
+function refreshReplyContext(){
+  if(!languageUI||!ui.replyJapanese)return;
+  // The initial on-screen greeting is a real recorded phrase; later response
+  // notes are contextual cues, not literal translations of their sentences.
+  const language=languageUI.explanationLanguage;
+  if(currentReplyRoute===null){
+    ui.replyJapanese.textContent=language==='zh'?'你好，我是 Emma。':
+      languageUI.translate('こんにちは、エマだよ。');
+  }else{
+    const hint=replyDisplayHint(currentReplyRoute);
+    ui.replyTopic.textContent=languageUI.translate(hint.topicLabel);
+    ui.replyJapanese.textContent=explainReplyContext(hint,language,languageUI.translate);
+  }
+  ui.replyJapanese.hidden=language==='en'||language==='none';
+}
 let modelSelectionEpoch=0;
 let multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
 function initLanguages(){
 multilingual=new MultilingualClient({onStatus:data=>{
+  if(data.stage==='asr-timing'){
+    Object.assign(multilingualAsrDiagnostic,data.timings||{});
+    updateWebTimingDiagnostics();
+    return;
+  }
   const recognition=data.stage==='detecting-language'||data.stage==='transcribing';
   if(recognition)multilingualAsrDiagnostic.stage=data.stage;
   if(data.detectedLanguage)multilingualAsrDiagnostic.detectedLanguage=data.detectedLanguage;
@@ -192,13 +213,14 @@ multilingual=new MultilingualClient({onStatus:data=>{
     multilingualStatus({...data,message});
   }
 }});
-languageUI=installLanguageUI({onChange:async(next,{commit})=>{
+languageUI=installLanguageUI({onExplanationsChange:refreshReplyContext,onChange:async(next,{commit})=>{
   const changedRoute=(languageUI.language==='ja')!==(next==='ja');
   modelSelectionEpoch++;
   await stopEmma();
   if(changedRoute){moonshineTranscriber?.close?.();moonshineTranscriber=null;asrInfoCache=null;workersReady=false;
     semanticPanel?.client.japanese?.cancel();multilingual.cancel();}
   commit();
+  refreshReplyContext();
   await semanticPanel.setEnabled(true,{prepare:false,mode:'semantic'});
   // Moonshine requires an isolated page before its worker downloads/initializes.
   // Switching from a non-Japanese Whisper session used to skip this check.
@@ -218,6 +240,7 @@ initUi();
 
 function initUi() {
   initLanguages();
+  refreshReplyContext();
   // A saved Japanese opt-out must not silently disable the foreign E5 route.
   if(languageUI.language!=='ja')localStorage.setItem('emma_semantic_enabled','true');
   semanticPanel=createSemanticController({engine,mode:'semantic',clientFactory:onStatus=>{
@@ -1373,7 +1396,7 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
       // a fresh worker instead of sitting behind the failed queued request.
       multilingual.cancel('ASR timeout; worker restarted for the next attempt');
     }
-    if(!japanese)languageUI.setStatus('モデルを準備できませんでした。再試行してください。');
+    if(!japanese)languageUI.setStatus('音声認識でエラーが発生しました');
     setState('error','音声認識でエラーが発生しました',friendlyError(error));
   }
 }
@@ -1876,10 +1899,9 @@ function showConversation(parentText,emmaText,route='generic') {
   ui.conversation.classList.remove('hidden');
   ui.emmaBubble.classList.remove('hidden');
   ui.replyTopic.classList.remove('hidden');
-  const hint=replyDisplayHint(route);
-  ui.replyTopic.textContent=hint.topicLabel;
+  currentReplyRoute=route;
   ui.reply.textContent=emmaText;
-  ui.replyJapanese.textContent=hint.japaneseNote;
+  refreshReplyContext();
 }
 
 function onRuntimeError(message) {
@@ -1955,8 +1977,11 @@ function updateWebTimingDiagnostics() {
   const asrText=asr
     ? `ASR 端末読込 ${format(asr.cacheReadMs)} / ${formatMb(asr.cacheReadBytes)} / 通信 ${format(asr.networkDownloadMs)} / ${formatMb(asr.networkDownloadBytes)} / WASM ${format(asr.wasmInitMs)} / モデル構築 ${format(asr.modelBuildMs)} / 合計 ${format(asr.totalInitMs)} ｜ `
     : '';
+  const foreignAsr=multilingualAsrDiagnostic?.totalMs!=null
+    ? `Whisper 音声${multilingualAsrDiagnostic.audioSeconds}s / 言語判定${multilingualAsrDiagnostic.languageMs}ms / 文字起こし${multilingualAsrDiagnostic.transcribeMs}ms / 実時間比${multilingualAsrDiagnostic.realTimeFactor}x ｜ `
+    : '';
   ui.webTimingDiagnostics.textContent=
-    `直近計測: ${asrText}TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
+    `直近計測: ${asrText}${foreignAsr}TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
 }
 
 async function buildWebDiagnosticReport() {
@@ -1983,6 +2008,13 @@ async function buildWebDiagnosticReport() {
     `multilingual.asrStage=${multilingualAsrDiagnostic.stage}`,
     `multilingual.asrLanguage=${multilingualAsrDiagnostic.detectedLanguage??'unknown'}`,
     `multilingual.asrElapsedMs=${multilingualAsrDiagnostic.elapsedMs??'unknown'}`,
+    `multilingual.audioSeconds=${multilingualAsrDiagnostic.audioSeconds??'unknown'}`,
+    `multilingual.languagePass=${multilingualAsrDiagnostic.languagePass??'unknown'}`,
+    `multilingual.languageMs=${multilingualAsrDiagnostic.languageMs??'unknown'}`,
+    `multilingual.transcribeMs=${multilingualAsrDiagnostic.transcribeMs??'unknown'}`,
+    `multilingual.totalMs=${multilingualAsrDiagnostic.totalMs??'unknown'}`,
+    `multilingual.realTimeFactor=${multilingualAsrDiagnostic.realTimeFactor??'unknown'}`,
+    `multilingual.model=${multilingualAsrDiagnostic.model??'unknown'}`,
     `multilingual.asrError=${multilingualAsrDiagnostic.error??'none'}`,
     `hardwareConcurrency=${navigator.hardwareConcurrency??'unknown'}`,
     `deviceMemory=${navigator.deviceMemory??'unknown'}`,
