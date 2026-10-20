@@ -359,6 +359,9 @@ function initUi() {
       queueMicrotask(()=>startTutorial());
     }
   } else showScreen('onboarding');
+  // Reload renders Home/onboarding again, even when the previous history entry
+  // was Settings. Align that entry before pushing the next settings screen.
+  window.history.replaceState(appHistoryState(currentScreen),'',location.href);
 }
 
 function bindEvents() {
