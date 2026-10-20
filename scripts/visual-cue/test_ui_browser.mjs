@@ -43,7 +43,8 @@ try{
  const frames=await page.evaluate(()=>{frameProbe.disconnect();return [...new Set(frameLog)];});
  check('real-audio-drives-small-medium-large-mouth',['small','medium','large'].every(x=>frames.some(f=>f.startsWith(`emma-face-talk-${x}`))),frames);
  check('blink-half-and-closed-preserved-during-audio',['half','closed'].every(x=>frames.some(f=>f.includes('-talk-')&&f.endsWith('-'+x+'.svg'))),frames);
- check('audio-end-removes-background',await page.locator('.has-emma-background').count()===0);
+ check('audio-end-keeps-background',await page.locator('.has-emma-background').count()===1);
+  check('audio-end-restores-idle-mouth',(await page.locator(visibleFrame).getAttribute('data-avatar-frame')).startsWith('emma-face-idle-'));
  await page.check('#motion');await page.selectOption('#example',{label:'ほめる：星案'});await page.click('#play');await page.waitForSelector('.has-emma-background [data-emma-backdrop="celebrate"]');await page.screenshot({path:out+'/stars-audio.png',fullPage:true});await page.click('#stop');check('stop-removes-background',await page.locator('.has-emma-background').count()===0);
  await page.selectOption('#example',{label:'聞く（追加表現なし）'});await page.click('#play');await page.waitForFunction(()=>document.querySelector('#defaultEmma [data-avatar-frame]:not(.hidden)')?.dataset.avatarFrame.startsWith('emma-face-talk-'));check('listen-retains-baseline-without-extra-symbol',await page.locator('[data-visual-cue-host]:not([hidden])').count()===0);await page.click('#stop');
  await page.selectOption('#example',{label:'足のキック'});await page.click('#play');await page.waitForSelector('.has-visual-cue img[data-asset-id="kick"]');await page.click('#stop');check('accepted-artwork-still-switches-and-stops',await page.locator('.has-visual-cue').count()===0);
