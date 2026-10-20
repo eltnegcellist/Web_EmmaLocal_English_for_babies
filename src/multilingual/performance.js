@@ -3,7 +3,7 @@
 export const WHISPER_THREAD_KEY='mitsukotoba_whisper_threads_v1';
 export const WHISPER_LANGUAGE_MODE_KEY='mitsukotoba_whisper_language_mode_v1';
 export const THREAD_OPTIONS=['auto','1','2','4'];
-export const LANGUAGE_DETECTION_OPTIONS=['once','every'];
+export const LANGUAGE_DETECTION_OPTIONS=['once','every','fixed'];
 
 export function normalizeThreads(value){
   return THREAD_OPTIONS.includes(String(value))?String(value):'auto';
