@@ -11,6 +11,8 @@ export class PrerecordedVoiceBank {
     this.memory = new Map();
     this.inFlight = new Map();
     this.prefetchPromise = null;
+    this.prefetchComplete = false;
+    this.prefetchStorageFailed = false;
   }
 
   async init(onStatus = () => {}) {
@@ -23,12 +25,14 @@ export class PrerecordedVoiceBank {
   }
 
   async prepare(onStatus) {
-    this.cache = this.cacheStorage ? await this.cacheStorage.open(VOICE_CACHE) : null;
+    this.cache = this.cacheStorage ? await this.cacheStorage.open(VOICE_CACHE).catch(() => null) : null;
     let response;
     try {
       response = await this.fetcher(this.manifestUrl, {cache: 'no-store'});
       if (!response.ok) throw Error('音声一覧を取得できません。');
-      await this.cache?.put(this.manifestUrl, response.clone());
+      await this.cache?.put(this.manifestUrl, response.clone()).catch(error => {
+        console.warn('音声一覧のキャッシュ保存をスキップします', error);
+      });
     } catch (error) {
       // Web is online-first. A stale, previously cached manifest must not
       // silently map new English to obsolete audio when fetching fails.
@@ -79,8 +83,8 @@ export class PrerecordedVoiceBank {
       else if (!background) this.memory.set(url, stored);
     } catch (error) {
       // On-demand playback should work even when persistence is unavailable.
-      if (background) throw error;
-      console.warn('音声を保存できませんでした。今回の再生は続行します。', error);
+      if (background) this.prefetchStorageFailed = true;
+      else console.warn('音声を保存できませんでした。今回の再生は続行します。', error);
     }
     return new Blob([bytes], {type: 'audio/mp4'});
   }
@@ -88,11 +92,13 @@ export class PrerecordedVoiceBank {
   /** Background caching starts only after the tutorial becomes visible. */
   async prefetchAll(onStatus = () => {}) {
     await this.init();
+    if (this.prefetchComplete) return;
     if (this.prefetchPromise) return this.prefetchPromise;
     if (!this.cache) {
       onStatus({stage: 'paused', message: '保存できない環境のため音声は再生時に取得します。'});
       return;
     }
+    this.prefetchStorageFailed = false;
     const entries = this.manifest.entries;
     let next = 0, completed = 0, failed = 0, bytes = 0;
     let consecutiveFailures = 0, paused = false;
@@ -103,9 +109,14 @@ export class PrerecordedVoiceBank {
           const entry = entries[next++];
           try {
             await this.clip(entry, {background: true});
-            completed++;
-            bytes += entry.bytes;
-            consecutiveFailures = 0;
+            if (this.prefetchStorageFailed) {
+              failed++;
+              paused = true;
+            } else {
+              completed++;
+              bytes += entry.bytes;
+              consecutiveFailures = 0;
+            }
           } catch (error) {
             failed++;
             consecutiveFailures++;
@@ -119,6 +130,7 @@ export class PrerecordedVoiceBank {
         }
       })
     ).then(() => {
+      this.prefetchComplete = !paused && failed === 0;
       onStatus({stage: paused ? 'paused' : failed ? 'partial' : 'complete',
         completed, failed, total: entries.length, bytes});
     }).finally(() => { this.prefetchPromise = null; });
