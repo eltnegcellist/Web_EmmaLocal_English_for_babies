@@ -1,7 +1,26 @@
 // Production voice playback is exclusively the fixed-seed Qwen3 recorded bank.
 // Never silently synthesize missing or stale English with another voice.
-import { PrerecordedVoiceBank } from './prerecorded-voice.js?v=20261021-progressive-voice-v1';
+import { PrerecordedVoiceBank } from './prerecorded-voice.js?v=20261021-audio-recovery-v2';
 const bank = new PrerecordedVoiceBank();
+let recoveryRounds = 0, recoveryTimer = null;
+function reportPrefetch(status) {
+  self.postMessage({type:'prefetch-status', ...status});
+  if (status.stage === 'complete') {
+    recoveryRounds = 0;
+    if (recoveryTimer) clearTimeout(recoveryTimer);
+    recoveryTimer = null;
+  } else if (status.stage === 'partial' && status.failed > 0 && recoveryRounds < 2 && !recoveryTimer) {
+    // One missing clip must not hold the application hostage. Retry the
+    // incomplete cache later while keeping already verified voices available.
+    recoveryRounds++;
+    recoveryTimer = setTimeout(() => {
+      recoveryTimer = null;
+      void bank.prefetchAll(reportPrefetch).catch(error => reportPrefetch({
+        stage:'paused',message:String(error?.message||error)
+      }));
+    }, recoveryRounds * 15000);
+  }
+}
 
 self.onmessage = async event => {
   const data = event.data || {};
@@ -20,8 +39,8 @@ self.onmessage = async event => {
     }
     if (data.type === 'prefetch') {
       // Cache filling must not block playback or turn into a fatal voice error.
-      void bank.prefetchAll(status => self.postMessage({type:'prefetch-status', ...status}))
-        .catch(error => self.postMessage({type:'prefetch-status', stage:'paused',
+      void bank.prefetchAll(reportPrefetch)
+        .catch(error => reportPrefetch({stage:'paused',
           message:error?.message || String(error)}));
       return;
     }
