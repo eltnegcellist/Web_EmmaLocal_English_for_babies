@@ -90,7 +90,12 @@ for(const lang of LANGUAGES){
  }
 
  assert.equal(ui.mode,'auto','First visit must use the browser locale');
- assert.equal(dom.window.document.querySelectorAll('.language-picker select').length,4);
+ assert.equal(dom.window.document.querySelectorAll('.language-picker select').length,2);
+ assert.equal(dom.window.document.querySelector('#homeLanguage'),null,'No language selector on the conversation screen');
+ assert.equal(dom.window.document.querySelector('#explanationLanguage'),null,'No separate language setting for explanation');
+ const settingsContainer=dom.window.document.querySelector('#settingsScreen .settings-content');
+ assert.equal(settingsContainer.lastElementChild,dom.window.document.querySelector('.language-settings'),
+   'Language settings card must be at the bottom of Settings');
  assert.equal(ui.explanationLanguage,lang);
  assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,lang==='en');
  assert.equal(dom.window.document.querySelector('#onboardingLanguage').value,'auto');
@@ -99,21 +104,11 @@ for(const lang of LANGUAGES){
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_KEY),lang);
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_MODE_KEY),'auto');
  assert.equal(dom.window.document.querySelector('#prepareEmmaButton').disabled,false);
- const explanationPicker=dom.window.document.querySelector('#explanationLanguage');
- assert(explanationPicker);
- explanationPicker.value='zh';
- explanationPicker.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
- assert.equal(ui.explanationLanguage,'zh');
- assert.equal(dom.window.localStorage.getItem('mitsukotoba_explanation_language_v1'),'zh');
- assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,false);
- explanationPicker.value='none';
- explanationPicker.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
- assert.equal(ui.explanationLanguage,'none');
- assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,true);
- explanationPicker.value='follow';
- explanationPicker.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+ // Context notes always follow the display locale; no Chinese-only override is offered.
  assert.equal(ui.explanationLanguage,lang);
  await ui.choose('ko');assert.equal(dom.window.localStorage.getItem(LANGUAGE_KEY),'ko');
+ assert.equal(ui.explanationLanguage,'ko');
+ assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,false);
  const korean=research.querySelector('.localized-about-content');
  assert(korean && korean.querySelector('h1').textContent===ABOUT_LOCALES.ko.title);
  assert.equal(korean.querySelectorAll('article.reference-card').length,6);
@@ -138,6 +133,18 @@ for(const lang of LANGUAGES){
 
  ui.dispose();dom.window.close();
 }
+// Legacy explicit explanation choices are ignored after the selector is removed.
+const legacyDom=new JSDOM(html,{url:'https://legacy-context.test'});
+globalThis.MutationObserver=legacyDom.window.MutationObserver;
+legacyDom.window.localStorage.setItem('mitsukotoba_explanation_language_v1','zh');
+const legacyUI=installLanguageUI({
+ document:legacyDom.window.document,storage:legacyDom.window.localStorage,
+ languages:['ja-JP'],onChange:async(_,o)=>o.commit()
+});
+assert.equal(legacyUI.explanationLanguage,'ja');
+assert.equal(legacyDom.window.document.querySelector('#explanationLanguage'),null);
+assert.equal(legacyDom.window.document.querySelector('#replyJapanese').hidden,false);
+legacyUI.dispose();legacyDom.window.close();
 assert(!html.includes('id="onboardingAiIntro"'),'Emma introduction should appear only in the tutorial');
  assert(html.includes('Bath time is here! Is the water warm? Splash, splash!'),'The first-page bath example should match a real reply');
  const unsupported=new JSDOM(html,{url:'https://unknown.test'});globalThis.MutationObserver=unsupported.window.MutationObserver;
