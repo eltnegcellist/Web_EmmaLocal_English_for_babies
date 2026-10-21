@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node test-lite.mjs && node test-topic-detection.mjs && node test-avatar.mjs && node test-features.mjs && node test-semantic.mjs && node test-silero.mjs && node test-interaction.mjs && node scripts/review-infant-english.mjs --check && node test-prerecorded-voice.mjs && node test-tts-prerecorded.mjs && node test-multilingual.mjs && node test-ui-localization.mjs",
+    "test": "node test-lite.mjs && node test-topic-detection.mjs && node test-avatar.mjs && node test-features.mjs && node test-semantic.mjs && node test-silero.mjs && node test-interaction.mjs && node scripts/review-infant-english.mjs --check && node test-prerecorded-voice.mjs && node test-tts-prerecorded.mjs && node scripts/verify-prerecorded-voice.mjs && node test-multilingual.mjs && node test-ui-localization.mjs",
     "prepare:semantic": "node scripts/prepare-semantic.mjs",
     "serve:semantic": "python3 scripts/serve-semantic-test.py",
     "package:semantic": "node scripts/package-semantic-test.mjs",
