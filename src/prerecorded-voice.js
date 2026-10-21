@@ -17,6 +17,7 @@ export class PrerecordedVoiceBank {
     this.prefetchStorageFailed = false;
     this.prefetchLastError = null;
     this.prefetchLastFile = null;
+    this.prefetchVerifiedUrls = new Set();
   }
 
   async init(onStatus = () => {}) {
@@ -145,14 +146,20 @@ export class PrerecordedVoiceBank {
       Array.from({length: Math.min(2, entries.length)}, async () => {
         while (next < entries.length && !paused) {
           const entry = entries[next++];
+          const url = new URL(entry.file, this.manifestUrl).href;
           try {
-            await this.clip(entry, {background: true});
+            // Successful files from this worker's prior pass need no repeat
+            // fetch or SHA verification just because one other clip failed.
+            if (!this.prefetchVerifiedUrls.has(url)) {
+              await this.clip(entry, {background: true});
+            }
             if (this.prefetchStorageFailed) {
               failed++;
               paused = true;
             } else {
               completed++;
               bytes += entry.bytes;
+              this.prefetchVerifiedUrls.add(url);
               consecutiveFailures = 0;
             }
           } catch (error) {
