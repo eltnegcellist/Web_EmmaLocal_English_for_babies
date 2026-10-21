@@ -29,6 +29,7 @@ const ui = {
   onboardingProgress:$('onboardingProgress'), onboardingProgressBar:$('onboardingProgressBar'), onboardingProgressText:$('onboardingProgressText'),
   avatar:$('avatar'), statusTitle:$('statusTitle'), statusDetail:$('statusDetail'), busySpinner:$('busySpinner'), tutorialStatusTarget:$('tutorialStatusTarget'),
   progressWrap:$('progressWrap'), progressBar:$('progressBar'), progressText:$('progressText'),
+  voiceDownloadStatus:$('voiceDownloadStatus'),
   conversation:$('conversation'), emmaBubble:$('emmaBubble'), reply:$('reply'),
   replyTopic:$('replyTopic'), replyJapanese:$('replyJapanese'),
   mainButton:$('mainButton'), stopButton:$('stopButton'), manualReplyButton:$('manualReplyButton'), enableAudioButton:$('enableAudioButton'),
@@ -53,7 +54,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261021-english-illustrations-merged-v1';
+const WEB_BUILD = '20261021-english-illustrations-audio-recovery-v2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -227,6 +228,27 @@ function refreshReplyContext(){
 }
 let modelSelectionEpoch=0;
 let multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
+let voicePrefetchDiagnostic={stage:'idle',completed:0,total:0,failed:0,lastFile:null,reason:null};
+function renderVoicePrefetchStatus() {
+  if(!ui.voiceDownloadStatus)return;
+  const state=voicePrefetchDiagnostic,language=languageUI?.language??'ja';
+  if(state.stage==='complete'||state.stage==='idle'){
+    ui.voiceDownloadStatus.classList.add('hidden');return;
+  }
+  const labels={
+    ja:['録音音声を保存中','音声の一部を取得できませんでした。取得済み音声は使用できます。残りは再試行します。','音声の保存を中断しました。保存容量・通信状態をご確認ください。'],
+    en:['Saving recorded audio','Some recordings are missing. Downloaded audio is usable; remaining clips will retry.','Audio caching paused. Check storage space or your connection.'],
+    de:['Aufnahmen werden gespeichert','Einige Aufnahmen fehlen. Vorhandene Audios sind nutzbar; fehlende werden erneut versucht.','Audiospeicherung pausiert. Speicherplatz und Verbindung prüfen.'],
+    fr:['Enregistrement des voix','Quelques enregistrements manquent. Les voix téléchargées restent disponibles; nouvelle tentative prévue.','Stockage audio interrompu. Vérifiez la mémoire et la connexion.'],
+    ko:['녹음된 음성 저장 중','일부 음성이 없습니다. 받은 음성은 사용할 수 있고 나머지는 다시 시도합니다.','음성 저장이 중단되었습니다. 저장 공간과 연결을 확인하세요.'],
+    th:['กำลังบันทึกเสียง','เสียงบางรายการยังไม่พร้อม ใช้ไฟล์ที่ดาวน์โหลดแล้วได้ และจะลองอีกครั้ง','หยุดบันทึกเสียงชั่วคราว โปรดตรวจสอบพื้นที่เก็บข้อมูลและการเชื่อมต่อ']
+  }[language] || ['Saving recorded audio','Some recordings are missing; retrying.','Audio caching paused.'];
+  const index=state.stage==='partial'?1:state.stage==='paused'?2:0;
+  ui.voiceDownloadStatus.textContent=index===0
+    ? `${labels[0]}: ${state.completed}/${state.total}`
+    : `${labels[index]} (${state.completed}/${state.total})`;
+  ui.voiceDownloadStatus.classList.remove('hidden');
+}
 function initLanguages(){
 multilingual=new MultilingualClient({...whisperPerformanceSettings(),onStatus:data=>{
   if(data.stage==='runtime-ready'){
@@ -1266,7 +1288,7 @@ async function initVoice() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261021-progressive-voice-v1',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261021-audio-recovery-v2',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=event=>{
         console.error('Recorded audio worker failed:',event);
@@ -1417,7 +1439,18 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     forwardBackgroundDownload(m);
     return;
   }
-  if (m.type === 'prefetch-status') return;
+  if(m.type==='prefetch-status'){
+    voicePrefetchDiagnostic={
+      stage:m.stage||'unknown',completed:Number(m.completed)||0,
+      total:Number(m.total)||0,failed:Number(m.failed)||0,
+      lastFile:m.lastFile||null,reason:m.reason||m.message||null
+    };
+    renderVoicePrefetchStatus();
+    if(m.stage==='partial'||m.stage==='paused'){
+      console.warn('Nonfatal recorded-audio prefetch issue:',voicePrefetchDiagnostic);
+    }
+    return; // Never show a fatal AI/voice error for background cache filling.
+  }
   if(m.type==='status') {
     showProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
     showOnboardingProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
@@ -2162,6 +2195,12 @@ async function buildWebDiagnosticReport() {
     `asr.modelBuildMs=${lastMoonshineDiagnostics?.modelBuildMs??'unmeasured'}`,
     `asr.totalInitMs=${lastMoonshineDiagnostics?.totalInitMs??'unmeasured'}`,
     `tts.ready=${Boolean(ttsWorker&&ttsInfoCache)}`,
+    `tts.prefetchStage=${voicePrefetchDiagnostic.stage}`,
+    `tts.prefetchCompleted=${voicePrefetchDiagnostic.completed}`,
+    `tts.prefetchTotal=${voicePrefetchDiagnostic.total}`,
+    `tts.prefetchFailed=${voicePrefetchDiagnostic.failed}`,
+    `tts.prefetchLastFile=${voicePrefetchDiagnostic.lastFile??'none'}`,
+    `tts.prefetchReason=${String(voicePrefetchDiagnostic.reason??'none').replace(/[\r\n]/g,' ').slice(0,160)}`,
     'tts.model=Qwen3-TTS pre-generated',
     'tts.voice=Mitsukotoba-1202',
     'tts.generationSeed=1202',
@@ -2332,7 +2371,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261021-progressive-voice-v1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261021-illustrations-audio-recovery-v2',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -2371,6 +2410,6 @@ window.addEventListener('load',()=>{
   if(!VISUAL_CUE_TRIAL && 'serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261021-progressive-voice-v1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261021-illustrations-audio-recovery-v2',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });
