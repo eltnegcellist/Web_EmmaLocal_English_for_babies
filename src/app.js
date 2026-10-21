@@ -12,7 +12,7 @@ import { replyDisplayHint, explainReplyContext } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
-import { installLanguageUI } from './multilingual/ui.js?v=20261022-settings-language-only-v1';
+import { installLanguageUI } from './multilingual/ui.js?v=20261022-consolidated-main-v1';
 import { describeError } from './multilingual/translations.js?v=20261021-ui-audit-v4';
 import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
@@ -55,7 +55,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261022-english-resume-greeting-settings-v2';
+const WEB_BUILD = '20261022-consolidated-main-v1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -291,6 +291,7 @@ languageUI=installLanguageUI({onExplanationsChange:refreshReplyContext,onChange:
   if(changedRoute){moonshineTranscriber?.close?.();moonshineTranscriber=null;asrInfoCache=null;workersReady=false;
     semanticPanel?.client.japanese?.cancel();multilingual.cancel();}
   commit();
+  updateRuntimeBackend();
   whisperPerformanceControls?.apply(next);
   refreshReplyContext();
   await semanticPanel.setEnabled(true,{prepare:false,mode:'semantic'});
@@ -2311,7 +2312,8 @@ async function copyTextToClipboard(text) {
 
 function updateRuntimeBackend() {
   if(languageUI.language!=='ja'){
-    ui.runtimeBackend.textContent=`Whisper Small · multilingual / E5 · WASM CPU ${multilingual?.runtimeInfo?.threads??'?'} threads`;
+    const threads=multilingual?.runtimeInfo?.threads;
+    ui.runtimeBackend.textContent=`Whisper Small · multilingual / E5 · WASM CPU${threads?` ${threads} threads`:''}`;
     return;
   }
   if(!asrInfoCache || !ttsInfoCache){
@@ -2397,7 +2399,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261021-illustrations-audio-recovery-v2',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261022-consolidated-main-v1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -2436,6 +2438,6 @@ window.addEventListener('load',()=>{
   if(!VISUAL_CUE_TRIAL && 'serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261021-illustrations-audio-recovery-v2',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261022-consolidated-main-v1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });
