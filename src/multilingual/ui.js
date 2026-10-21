@@ -11,12 +11,6 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   const detected=()=>resolveLanguage({languages:languages??browserLanguages()});
   const initial=resolveLanguage({saved:mode==='manual'?saved:null,languages:languages??browserLanguages()});
   let language=initial.language,needsChoice=initial.needsChoice;
-  const explanationKey='mitsukotoba_explanation_language_v1';
-  let explanationPreference='follow';
-  try{
-    const savedExplanation=storage.getItem(explanationKey);
-    if(['follow','zh','none'].includes(savedExplanation))explanationPreference=savedExplanation;
-  }catch{}
   const originals=new WeakMap(),attributes=new WeakMap(),selectors=[];
   const wordmark=document.querySelector('#onboardingScreen .brand-wordmark');
   const japaneseWordmark=wordmark?.innerHTML;
@@ -61,28 +55,15 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     select.value=mode==='auto'?'auto':language;select.addEventListener('change',()=>choose(select.value));selectors.push(select);wrap.append(select);return wrap;
   }
   document.querySelector('#onboardingScreen .brand-row')?.after(picker('onboardingLanguage'));
-  document.querySelector('#homeScreen .topbar')?.after(picker('homeLanguage'));
-  const settings=document.querySelector('#settingsScreen .subpage-header');
+  // Language changes belong in Settings; keep the initial onboarding choice.
+  const settings=document.querySelector('#settingsScreen .settings-content');
   const settingsCard=document.createElement('article');settingsCard.className='card language-settings';
   settingsCard.append(picker('settingsLanguage'),note,status);
-  const explanationSetting=document.createElement('label');
-  explanationSetting.className='language-picker explanation-language-setting';
-  const explanationLabel=document.createElement('span');
-  const explanationSelect=document.createElement('select');
-  explanationSelect.id='explanationLanguage';
-  for(const value of ['follow','zh','none']){
-    const option=document.createElement('option');option.value=value;explanationSelect.append(option);
-  }
-  explanationSelect.value=explanationPreference;
-  explanationSelect.addEventListener('change',()=>{
-    explanationPreference=explanationSelect.value;
-    try{storage.setItem(explanationKey,explanationPreference);}catch{}
-    apply();onExplanationsChange();
-  });
-  explanationSetting.append(explanationLabel,explanationSelect);
-  settingsCard.append(explanationSetting);
   const retry=document.createElement('button');retry.type='button';retry.className='outline-button';retry.textContent='準備する';
-  retry.addEventListener('click',()=>choose(language));settingsCard.append(retry);settings?.after(settingsCard);
+  retry.addEventListener('click',()=>choose(mode==='auto'?'auto':language));
+  settingsCard.append(retry);
+  // The language card is intentionally the last item in the settings screen.
+  settings?.append(settingsCard);
   const about=document.querySelector('#aboutScreen .screen-content');
   let localizedAbout=null,localizedAboutLanguage=null;
   function eligible(node){
@@ -133,10 +114,6 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
       s.value=mode==='auto'?'auto':language;
       s.querySelector('option[value="auto"]').textContent=translate('自動（ブラウザ設定）',language)+' · '+LANGUAGE_NAMES[detected().language];
     });
-    explanationLabel.textContent=translate('英文の場面説明',language);
-    explanationSelect.options[0].textContent=translate('表示言語に合わせる',language);
-    explanationSelect.options[1].textContent=translate('中文（説明のみ）',language);
-    explanationSelect.options[2].textContent=translate('説明を表示しない',language);
     note.textContent=translate(language==='en'?'英語表示で、さまざまな言語の音声を自動認識します。':'選択した言語で話しかけると、短い英語で返します。',language);
     const sub=document.querySelector('#prepareEmmaButton .button-sub');
     if(sub)sub.textContent=translate('初回のみ必要なモデルを準備します',language)+(language==='ja'?'':' · ~387 MB');
@@ -164,7 +141,7 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
       // Context notes also appear in supported non-English UI locales.
       // English requires no same-language explanation; the underlying reply
       // remains available in its original English text.
-      hint.hidden=(explanationPreference==='none'||(explanationPreference==='follow'&&language==='en'));
+      hint.hidden=language==='en';
       hint.setAttribute('aria-label',translate('英文の場面説明',language));
     }
     for(const id of ['storageProtectionStatus','modelCacheStatus','modelCacheHistoryStatus']){
@@ -180,7 +157,7 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   });observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title','alt']});
   apply();
   return {get language(){return language;},
-    get explanationLanguage(){return explanationPreference==='follow'?language:explanationPreference;},
+    get explanationLanguage(){return language;},
     get needsChoice(){return needsChoice;},get mode(){return mode;},apply,setStatus,choose,
     confirm(){
       try{storage.setItem(LANGUAGE_KEY,language);storage.setItem(LANGUAGE_MODE_KEY,mode);}catch{}
