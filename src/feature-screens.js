@@ -22,18 +22,18 @@ export function phrasesForSentenceCount(phrases,sentenceCount) {
   return Number(sentenceCount)===3 ? phrases : singleSentencePhrases(phrases);
 }
 
-export function localHistoryStamp(value) {
+export function localHistoryStamp(value,locale=undefined) {
   const date=new Date(value);
   if(Number.isNaN(date.getTime())) return {key:'unknown',dateLabel:'日時不明',timeLabel:'--:--'};
   const year=date.getFullYear(),month=date.getMonth()+1,day=date.getDate();
   return {
     key:`${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`,
-    dateLabel:new Intl.DateTimeFormat(undefined,{year:'numeric',month:'long',day:'numeric',weekday:'short'}).format(date),
-    timeLabel:new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',hour12:false}).format(date)
+    dateLabel:new Intl.DateTimeFormat(locale,{year:'numeric',month:'long',day:'numeric',weekday:'short'}).format(date),
+    timeLabel:new Intl.DateTimeFormat(locale,{hour:'2-digit',minute:'2-digit',hour12:false}).format(date)
   };
 }
 
-export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,avatar,playSentenceCount=()=>1,setPlaySentenceCount=()=>{}}) {
+export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,avatar,translate=value=>value,confirmAction=message=>globalThis.confirm(message),describeError=error=>error?.message||'音声の準備または再生に失敗しました。',playSentenceCount=()=>1,setPlaySentenceCount=()=>{}}) {
   const $=id=>document.getElementById(id);
   const dialog=$('featureDialog'), body=$('featureBody'), title=$('featureTitle');
   let generation=0,kind='';
@@ -42,7 +42,7 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
   };
   const text=(value,tag='p',className='')=>{const el=document.createElement(tag);el.textContent=value;if(className)el.className=className;return el;};
   async function close(){generation++;kind='';await stop();dialog.close();}
-  function requestClose(){if(kind!=='play'||confirm('おとなの方へ：遊びを終えて戻りますか？会話は自動で始まりません。'))close();}
+  async function requestClose(){if(kind!=='play'||await confirmAction(translate('おとなの方へ：遊びを終えて戻りますか？会話は自動で始まりません。'),{confirmLabel:'戻る',cancelLabel:'遊びを続ける'}))close();}
   $('featureClose').addEventListener('click',requestClose);
   dialog.addEventListener('cancel',event=>{event.preventDefault();requestClose();});
   document.addEventListener('visibilitychange',()=>{
@@ -78,13 +78,13 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
       },'text-button');
       const removeButton=button('0件を削除',async()=>{
         if(!selectedIds.size)return;
-        if(!confirm(`選択した${selectedIds.size}件の履歴を削除しますか？`))return;
+        if(!await confirmAction(translate(`選択した${selectedIds.size}件の履歴を削除しますか？`),{confirmLabel:'削除'}))return;
         try {
           await stop();
           if(token!==generation)return;
           await history.deleteMany([...selectedIds]);
           if(token===generation)showHistory();
-        }catch(error){if(token===generation)body.prepend(text(`削除できませんでした：${error.message}`));}
+        }catch(error){if(token===generation)body.prepend(text(translate('削除できませんでした：')+describeError(error)));}
       },'outline-button');
       if(selecting){
         toolbar.append(count,selectAll,removeButton,button('キャンセル',()=>showHistory(),'text-button'));
@@ -98,7 +98,7 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
       if(!entries.length){body.append(text('履歴はまだありません。'));return;}
       let currentDay='';
       for(const entry of entries){
-        const stamp=localHistoryStamp(entry.createdAt);
+        const stamp=localHistoryStamp(entry.createdAt,document.documentElement.lang||undefined);
         if(stamp.key!==currentDay){
           currentDay=stamp.key;
           body.append(text(stamp.dateLabel,'h2','history-date-heading'));
@@ -135,7 +135,7 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
               if(token!==generation||ticket!==replayTicket)return;
               await speak(entry.englishText);
             }catch(error){
-              if(token===generation&&ticket===replayTicket)card.append(text(`再生できませんでした：${error.message}`));
+              if(token===generation&&ticket===replayTicket)card.append(text(translate('再生できませんでした：')+describeError(error)));
             }finally{
               if(token===generation&&ticket===replayTicket){
                 replayId=null;replayButton=null;
@@ -152,7 +152,7 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
         card.append(header,jp,en);
         body.append(card);
       }
-    }catch(error){if(token===generation)body.append(text(`履歴を開けませんでした：${error.message}`));}
+    }catch(error){if(token===generation)body.append(text(translate('履歴を開けませんでした：')+describeError(error)));}
   }
 
   let topics;
@@ -170,7 +170,7 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
       const data=await loadTopics();if(token!==generation)return;
       body.append(button('すべての話題',()=>playTopic(null),'primary-button'));
       for(const topic of data.topics)body.append(button(topic.label,()=>playTopic(topic),'outline-button'));
-    }catch(error){body.append(text(error.message));}
+    }catch(error){if(token===generation)body.append(text(describeError(error)));}
   }
   async function startAllTopics(){
     const token=++generation;
@@ -178,7 +178,7 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
     try{
       const data=await loadTopics();if(token!==generation)return;
       await playTopic(null,data);
-    }catch(error){if(token===generation)body.append(text(error.message));}
+    }catch(error){if(token===generation)body.append(text(describeError(error)));}
   }
   async function playTopic(topic,loadedData=null){
     const token=++generation;await stop();
@@ -221,7 +221,7 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
       englishText.textContent=phrase;
       actionLabel.textContent='一緒に聞こう';
       tap.classList.add('is-speaking');
-      try{await speak(phrase);}catch(error){if(token===generation)englishText.textContent=`再生できませんでした：${error.message}`;}
+      try{await speak(phrase);}catch(error){if(token===generation)englishText.textContent=translate('再生できませんでした：')+describeError(error);}
       finally{
         if(token===generation){
           tap.classList.remove('is-speaking');
@@ -246,7 +246,10 @@ export function installFeatureScreens({stop,prepare,speak,history,isSpeaking,ava
     try{
       await prepare();if(token!==generation)return;
       actionLabel.textContent='押して聞く';tap.disabled=false;
-    }catch(error){if(token===generation)actionLabel.textContent=`準備できませんでした：${error.message}`;}
+    }catch(error){if(token===generation){
+      actionLabel.textContent=translate('準備できませんでした：')+describeError(error);
+      body.append(button('再試行',()=>playTopic(topic, data)));
+    }}
   }
   $('playButton').addEventListener('click',async()=>{await open('play');startAllTopics();});
   $('historyButton').addEventListener('click',async()=>{await open('history');showHistory();});

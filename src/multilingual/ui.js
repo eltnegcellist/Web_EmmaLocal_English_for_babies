@@ -1,5 +1,5 @@
 import {LANGUAGES,LANGUAGE_NAMES,LANGUAGE_KEY,LANGUAGE_MODE_KEY,resolveLanguage,browserLanguages} from './core.js';
-import {translate} from './translations.js';
+import {translate} from './translations.js?v=20261020-ui-audit-v3';
 import {renderLocalizedAbout} from './about-page.js';
 export function installLanguageUI({document=globalThis.document,storage=globalThis.localStorage,
   languages=undefined,onChange=async()=>{},onExplanationsChange=()=>{}}={}) {
@@ -176,8 +176,8 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
     if(status.dataset.message)setStatus(status.dataset.message,{loaded:Number(status.dataset.loaded),total:Number(status.dataset.total)});
   }
   const observer=new MutationObserver(records=>{
-    for(const r of records){if(r.type==='characterData')text(r.target);else if(r.type==='childList')for(const n of r.addedNodes)walk(n);}
-  });observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+    for(const r of records){if(r.type==='characterData')text(r.target);else if(r.type==='attributes')walk(r.target);else if(r.type==='childList')for(const n of r.addedNodes)walk(n);}
+  });observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','placeholder','title','alt']});
   apply();
   return {get language(){return language;},
     get explanationLanguage(){return explanationPreference==='follow'?language:explanationPreference;},

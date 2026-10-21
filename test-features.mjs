@@ -7,6 +7,7 @@ import { ConversationHistory, createHistoryEntry, historyEnabled } from './src/c
 import { installFeatureScreens, nextPhrase, allTopicPhrases, singleSentencePhrases, phrasesForSentenceCount, localHistoryStamp } from './src/feature-screens.js';
 import { appHistoryState, resolveAppPopScreen, shouldUseBrowserBack } from './src/app-navigation.js';
 import { canonicalMoonshineModelAssetKey } from './src/vendor/moonshine/asset-downloader.js';
+import { createConfirmation } from './src/multilingual/confirmation.js';
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url)));
 // Production home must have the same Emma-first UI that passed trial tests.
 {
@@ -407,6 +408,7 @@ source+=`\ngetTtsNameHints=()=>[];waitForPlaybackAudio=async()=>{}; setState=()=
   releaseMicrophoneForEmmaVoice=async()=>{if(!mic)return false;mic=null;captureMicStop();return true;};
   restoreMicrophoneAfterEmmaVoice=async()=>{captureMicRestore();};`;
 const sandbox={document,window,localStorage:storage,location:window.location,URL,URLSearchParams,console,crypto,
+  createConfirmation:options=>createConfirmation({document,...options}),
   ConversationHistory,historyEnabled,createHistoryEntry,TurnRevisions,LiteResponseEngine:class{},testAudio:context,captureRequest:id=>lastRequest=id,commitHistory:()=>commits++,
   requestAnimationFrame:()=>1,cancelAnimationFrame:()=>{},setTimeout,clearTimeout,navigator:{},Blob,Float32Array,Uint8Array,captureMicStop:()=>micStops++,captureMicRestore:()=>micRestores++};
 runInNewContext(source,sandbox);
@@ -467,3 +469,19 @@ const capture=new EmmaMicrophone({});const pendingStart=capture.start();await ca
 grant({getTracks:()=>[{stop(){trackStops++;}}]});await pendingStart;
 assert(trackStops>0);assert.equal(contexts,0);assert.equal(capture.stream,null);
 console.log('Microphone: late permission after stop cannot reopen capture OK');
+// Diagnose missing microphone signal without retaining audio or changing the
+// speech detector. Frames ignored during preparation still count as capture.
+let detectorFrames=0;
+const metered=new EmmaMicrophone({shouldIgnore:()=>false});
+metered.context={sampleRate:16000,state:'running'};
+metered.stream={getAudioTracks:()=>[{readyState:'live',muted:false}]};
+metered.vad={push:()=>{detectorFrames++;return {event:'none'};},resetSpeechOnly:()=>{}};
+metered.handleFrame(new Float32Array(160).fill(0));
+metered.handleFrame(new Float32Array(160).fill(.25));
+assert.equal(detectorFrames,2);
+const levels=metered.getDiagnostics();assert.equal(levels.frames,2);assert.equal(levels.samples,320);
+assert.equal(levels.peakRms,.25);assert.equal(levels.liveTracks,1);
+assert(Object.values(levels).every(value=>typeof value==='string'||typeof value==='number'),'Diagnostic output must not expose PCM');
+metered.shouldIgnore=()=>true;metered.handleFrame(new Float32Array(160));
+assert.equal(detectorFrames,2);assert.equal(metered.getDiagnostics().frames,3);
+console.log('Microphone: aggregate signal diagnostics preserve detector routing and expose no PCM OK');
