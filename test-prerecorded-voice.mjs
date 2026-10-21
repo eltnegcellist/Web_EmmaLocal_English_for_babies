@@ -74,4 +74,86 @@ await background.audioFor(entries[2].text);
 assert.equal(backgroundRequests,3,'Finished clips are reused from cache');
 await background.prefetchAll();
 assert.equal(backgroundRequests,3,'Completing the bank should not restart a full scan');
+// A transient HTTP failure or a corrupt response must be retried before a
+// user-facing playback error; good audio must never be replaced by bad data.
+let transientAttempts=0;
+const transient=new PrerecordedVoiceBank({
+  manifestUrl:'https://example.test/transient/manifest.json',cacheStorage,
+  wait:async()=>{},
+  fetcher:async url=>{
+    if(String(url).endsWith('.json'))return new Response(JSON.stringify(manifest));
+    transientAttempts++;
+    if(transientAttempts===1)return new Response('temporary error',{status:503});
+    if(transientAttempts===2)return new Response('truncated');
+    return new Response(audio);
+  }
+});
+await transient.init();
+assert.equal((await transient.audioFor(entry.text)).size,audio.length);
+assert.equal(transientAttempts,3,'Transient HTTP and checksum failures get bounded retries');
+await transient.audioFor(entry.text);
+assert.equal(transientAttempts,3,'The verified audio is reused after a successful retry');
+
+// Reproduce "1104/1105": one broken file should leave the other files usable.
+// The next prefetch pass only revisits missing files in the same Worker.
+const retryCache=new Map();
+const retryStorage={async open(){return {
+  async match(k){return retryCache.get(String(k))?.clone();},
+  async put(k,v){retryCache.set(String(k),v.clone());},
+  async delete(k){return retryCache.delete(String(k));}
+};}};
+const flakyEntries=Array.from({length:3},(_,i)=>({...entry,text:'Recover '+i+'.',
+  file:'clips/'+String(i+4).repeat(24)+'.m4a'}));
+let missing=true,clipAttempts=0;
+const recovery=new PrerecordedVoiceBank({
+ manifestUrl:'https://example.test/recovery/manifest.json',cacheStorage:retryStorage,
+ wait:async()=>{},
+ fetcher:async url=>{
+   if(String(url).endsWith('.json'))return new Response(JSON.stringify({...manifest,entries:flakyEntries}));
+   clipAttempts++;
+   if(missing && String(url).includes('/clips/'+String(6).repeat(24)+'.m4a'))
+     return new Response('temporarily unavailable',{status:503});
+   return new Response(audio);
+ }
+});
+await recovery.init();
+const statuses1=[];
+await recovery.prefetchAll(status=>statuses1.push(status));
+assert.equal(statuses1.at(-1).stage,'partial');
+assert.equal(statuses1.at(-1).completed,2);
+assert.equal(statuses1.at(-1).failed,1);
+assert.match(statuses1.at(-1).reason,/503/);
+assert.equal((await recovery.audioFor(flakyEntries[0].text)).size,audio.length,
+  'Already downloaded voices must play despite missing clips');
+const beforeRepair=clipAttempts;
+missing=false;
+const statuses2=[];
+await recovery.prefetchAll(status=>statuses2.push(status));
+assert.equal(statuses2.at(-1).stage,'complete');
+assert.equal(statuses2.at(-1).completed,3);
+assert.equal(statuses2.at(-1).failed,0);
+assert.equal(clipAttempts,beforeRepair+1,'Only the failed file is downloaded again');
+await recovery.prefetchAll();
+assert.equal(clipAttempts,beforeRepair+1,'Fully completed bank must not redownload');
+
+// A private-browser CacheStorage quota failure must be identified separately
+// from a network error; on-demand playback must remain possible.
+const quota=new PrerecordedVoiceBank({
+ manifestUrl:'https://example.test/quota/manifest.json',wait:async()=>{},
+ cacheStorage:{async open(){return {
+  async match(){return null;},
+  async put(){throw new DOMException('The quota has been exceeded','QuotaExceededError');},
+  async delete(){return false;}
+ };}},
+ fetcher:async url=>String(url).endsWith('.json')
+   ?new Response(JSON.stringify(manifest)):new Response(audio)
+});
+await quota.init();
+const quotaStatus=[];
+await quota.prefetchAll(status=>quotaStatus.push(status));
+assert.equal(quotaStatus.at(-1).stage,'paused');
+assert.match(quotaStatus.at(-1).message,/保存容量/);
+assert.equal((await quota.audioFor(entry.text)).size,audio.length,
+  'CacheStorage quota must not block on-demand speech');
+
 console.log('Prerecorded voice: manifest-only first run, requested clips and progressive cache fill PASS');
