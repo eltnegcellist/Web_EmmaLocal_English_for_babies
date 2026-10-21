@@ -61,8 +61,8 @@ try{
  check('actual-app-calming-hearts-behind-canonical-face',await page.locator('.play-avatar .emma-face-frame [data-avatar-frame]:not(.hidden)').evaluate(n=>getComputedStyle(n).visibility==='visible'));
  check('actual-app-original-mouth-still-moving',await page.locator('.play-avatar [data-avatar-frame]:not(.hidden)').getAttribute('data-avatar-frame').then(x=>x.startsWith('emma-face-talk-')));
  check('actual-app-no-new-arms',await page.locator('#featureDialog [data-emma-gesture]').count()===0);await page.screenshot({path:out+'/app-calming-mobile.png',fullPage:true});
- await page.click('.play-topic-change');check('topic-change-cancels-background',await page.locator('.has-emma-background').count()===0);page.once('dialog',d=>d.accept());await page.click('#featureClose');
- await page.click('#settingsButton');await page.uncheck('#visualCueEnabled');await page.click('#settingsBackButton');await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-tap.is-speaking');check('baseline-mode-has-no-extra-visuals',await page.locator('.has-emma-background,.has-visual-cue').count()===0);page.once('dialog',d=>d.accept());await page.click('#featureClose');
+ await page.click('.play-topic-change');check('topic-change-cancels-background',await page.locator('.has-emma-background').count()===0);await page.click('#featureClose');await page.locator('#appConfirmDialog .primary-button').click();await page.waitForSelector('#featureDialog',{state:'hidden'});
+ await page.click('#settingsButton');await page.uncheck('#visualCueEnabled');await page.click('#settingsBackButton');await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-tap.is-speaking');check('baseline-mode-has-no-extra-visuals',await page.locator('.has-emma-background,.has-visual-cue').count()===0);await page.click('#featureClose');await page.locator('#appConfirmDialog .primary-button').click();await page.waitForSelector('#featureDialog',{state:'hidden'});
  await page.reload();await page.waitForSelector('#homeScreen:not(.hidden)');await page.click('#settingsButton');
  check('production-opt-out-survives-reload',!await page.locator('#visualCueEnabled').isChecked());
  check('production-single-display-setting',await page.locator('#englishIllustrationSettings input,#englishIllustrationSettings select').count()===1);
@@ -73,7 +73,7 @@ try{
  await page.click('#settingsBackButton');await page.waitForSelector('#homeScreen:not(.hidden)');check('production-settings-back-after-reload',await page.locator('#homeScreen').isVisible());
  await page.click('#playButton');await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-topic-change');await page.getByRole('button',{name:'泣く・ぐずぐず',exact:true}).click();await page.getByRole('button',{name:'3文',exact:true}).click();await page.waitForSelector('.play-tap:not([disabled])');await page.click('.play-tap');await page.waitForSelector('.play-avatar.has-emma-background');
  check('production-animation-always-enabled',await page.locator('.play-avatar [data-emma-backdrop]').getAttribute('data-motion')==='on');
- page.once('dialog',d=>d.accept());await page.click('#featureClose');
+ await page.click('#featureClose');await page.locator('#appConfirmDialog .primary-button').click();await page.waitForSelector('#featureDialog',{state:'hidden'});
  check('no-browser-errors',errors.length===0,errors);completed=true;
 }catch(error){errors.push(error.message);throw error;}finally{
  await writeFile(out+'/browser-report.json',JSON.stringify({checks,errors,passed:completed&&checks.every(c=>c.pass)&&!errors.length},null,2)+'\n');await browser.close();
