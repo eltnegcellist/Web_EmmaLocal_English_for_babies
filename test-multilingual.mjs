@@ -71,6 +71,13 @@ for(const lang of LANGUAGES){
  const ui=installLanguageUI({document:dom.window.document,storage:dom.window.localStorage,languages:[lang],onChange:async(_,o)=>o.commit()});
  const history=dom.window.document.createElement('p');history.className='history-japanese';history.textContent='親';dom.window.document.body.append(history);
  assert.equal(dom.window.document.documentElement.lang,lang);
+ const visualLabel=dom.window.document.querySelector('#visualCueEnabled').closest('label').querySelector('span').textContent;
+ assert.equal(visualLabel,translate('英語の内容を表すイラストを表示する',lang));
+ assert.equal(dom.window.document.querySelector('#englishIllustrationSettings h2').textContent,translate('英語のイラスト',lang));
+ if(lang!=='ja'){
+  assert(!/[ぁ-んァ-ン一-龯]/u.test(visualLabel));
+  assert(!/[ぁ-んァ-ン一-龯]/u.test(dom.window.document.querySelector('#visualCueHelp').textContent));
+ }
  assert.equal(dom.window.document.title,lang==='ja'?'みつことば':'CooTrio');
  assert(dom.window.document.querySelector('link[rel="manifest"]').getAttribute('href').includes(
    lang==='ja'?'manifest.webmanifest':'manifest.intl.webmanifest'));

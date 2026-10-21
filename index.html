@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="みつことば" />
   <link rel="icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" type="image/png" sizes="192x192" />
   <link rel="apple-touch-icon" href="./icons/mitsukotoba-baby-abc-v2-192.png?v=20260930-icon-r1" sizes="192x192" />
-  <link rel="stylesheet" href="./styles.css?v=20261020-ui-audit-v3" />
+  <link rel="stylesheet" href="./styles.css?v=20261021-english-illustrations-merged-v1" />
   <title>みつことば</title>
 </head>
 <body>
@@ -446,6 +446,7 @@
 <path fill="var(--blush, #e00000)" d="M512,950 C489,930 462,946 468,969 C473,986 495,997 512,1007 C529,997 551,986 556,969 C562,946 535,930 512,950 Z" />
 </svg>
 </div>
+            <div class="visual-cue-host" data-visual-cue-host hidden></div>
             <div class="thinking-dots"><span></span><span></span><span></span></div>
           </div>
           <div id="tutorialStatusTarget" class="avatar-status" aria-live="polite">
@@ -529,7 +530,12 @@
           <button id="historyButton" class="outline-button">会話履歴を見る・聞く</button>
         </article>
 
-        
+        <article id="englishIllustrationSettings" class="card">
+          <h2>英語のイラスト</h2>
+          <label class="history-save-toggle"><span>英語の内容を表すイラストを表示する</span><input id="visualCueEnabled" type="checkbox" checked aria-describedby="visualCueHelp" /></label>
+          <p id="visualCueHelp" class="small muted">話している英語に合うイラストや動きを表示します。対応するイラストがない場合はEmmaを表示します。</p>
+        </article>
+
         <article class="card">
           <h2>見た目</h2>
           <label>キャラクターの色
@@ -778,6 +784,6 @@
     </div>
   </main>
 
-  <script type="module" src="./src/app.js?v=20261021-progressive-voice-v1"></script>
+  <script type="module" src="./src/app.js?v=20261021-english-illustrations-merged-v1"></script>
 </body>
 </html>

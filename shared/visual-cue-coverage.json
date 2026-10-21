@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "unit": "重複を除いた録音原文。3文応答も再生1回＝1件。文中の個別文への割当ではない。",
+  "total": 1091,
+  "replySets": 914,
+  "uniqueReplySets": 913,
+  "singleSentences": 178,
+  "duplicateReplySets": 1,
+  "metrics": {
+    "animation": {
+      "count": 366,
+      "percent": 33.55
+    },
+    "motionCandidate": {
+      "count": 183,
+      "percent": 16.77
+    },
+    "background": {
+      "count": 123,
+      "percent": 11.27
+    },
+    "still": {
+      "count": 145,
+      "percent": 13.29
+    },
+    "baseline": {
+      "count": 274,
+      "percent": 25.11
+    }
+  },
+  "noObjectAnimation": {
+    "count": 725,
+    "percent": 66.45
+  },
+  "noAddedAnimation": {
+    "count": 419,
+    "percent": 38.41
+  },
+  "withCandidateBackground": {
+    "count": 672,
+    "percent": 61.59
+  },
+  "missingBinding": 0,
+  "approvedMovies": 20,
+  "usedApprovedMovies": 18,
+  "motionCandidateCount": 7,
+  "staticConversion": {
+    "before": 520,
+    "converted": 375,
+    "remaining": 145,
+    "baselineAnimationCount": 174,
+    "baselineNoAddedAnimation": 794
+  },
+  "backgrounds": [
+    {
+      "id": "calm",
+      "label": "安心：ハート（確認候補）",
+      "count": 92,
+      "status": "candidate"
+    },
+    {
+      "id": "celebrate",
+      "label": "ほめる：星（確認候補）",
+      "count": 31,
+      "status": "candidate"
+    }
+  ],
+  "animations": [
+    {
+      "id": "sip",
+      "label": "飲む：哺乳瓶を傾ける",
+      "count": 63,
+      "percent": 5.77,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/sip.webp",
+      "poster": "assets/visual-cue/artwork/posters/sip.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "sleep-stars",
+      "label": "ねんね：寝床は静止し、外側の星がまたたく",
+      "count": 47,
+      "percent": 4.31,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/sleep-stars.svg",
+      "poster": "assets/visual-cue/motion-variants/sleep-stars-poster.svg",
+      "baseAssetId": "sleep",
+      "baseImage": "assets/visual-cue/artwork/stills/sleep.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "hug-face-cuddle",
+      "label": "抱っこ：顔を見せ、支える腕をそっと寄せる",
+      "count": 42,
+      "percent": 3.85,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/hug-face-cuddle.webp",
+      "poster": "assets/visual-cue/motion-variants/hug-face-cuddle-poster.webp",
+      "baseAssetId": "hug-face-v1",
+      "baseImage": "assets/visual-cue/prototypes/hug-face/hug-face-v1.png",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "page",
+      "label": "絵本：りんご・太陽から、洋なし・魚へ",
+      "count": 42,
+      "percent": 3.85,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/page.webp",
+      "poster": "assets/visual-cue/artwork/posters/page.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "notes",
+      "label": "音楽：拍に合わせて音符が動く",
+      "count": 39,
+      "percent": 3.57,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/notes.webp",
+      "poster": "assets/visual-cue/artwork/posters/notes.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "spoon",
+      "label": "白いおかゆ：すくう・上げる・戻す",
+      "count": 36,
+      "percent": 3.3,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/spoon.webp",
+      "poster": "assets/visual-cue/artwork/posters/spoon.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "toy-rattle",
+      "label": "ガラガラ：輪と柄は静止し、中の鈴が動く",
+      "count": 31,
+      "percent": 2.84,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/toy-rattle.svg",
+      "poster": "assets/visual-cue/motion-variants/toy-rattle-poster.svg",
+      "baseAssetId": "toy",
+      "baseImage": "assets/visual-cue/artwork/stills/toy.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "sun-rays",
+      "label": "太陽：中心を保ち、光の筋が順に明るくなる",
+      "count": 30,
+      "percent": 2.75,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/sun-rays.svg",
+      "poster": "assets/visual-cue/motion-variants/sun-rays-poster.svg",
+      "baseAssetId": "sun",
+      "baseImage": "assets/visual-cue/artwork/stills/sun.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "water-rain",
+      "label": "雨粒が雲から落ちる",
+      "count": 30,
+      "percent": 2.75,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/water-rain.webp",
+      "poster": "assets/visual-cue/artwork/posters/water-rain.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "outdoor-leaves",
+      "label": "外の木：幹は静止し、葉が風で舞う",
+      "count": 27,
+      "percent": 2.47,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/outdoor-leaves.svg",
+      "poster": "assets/visual-cue/motion-variants/outdoor-leaves-poster.svg",
+      "baseAssetId": "outdoor",
+      "baseImage": "assets/visual-cue/artwork/stills/outdoor.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "dress-sleeves",
+      "label": "着替え：袖の出口から片腕ずつ",
+      "count": 26,
+      "percent": 2.38,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/dress-sleeves.webp",
+      "poster": "assets/visual-cue/artwork/posters/dress-sleeves.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "kick",
+      "label": "キック：片足ずつ、大きく交互に動かす",
+      "count": 25,
+      "percent": 2.29,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/kick.webp",
+      "poster": "assets/visual-cue/artwork/posters/kick.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "water-splash",
+      "label": "浴槽から水しぶき",
+      "count": 19,
+      "percent": 1.74,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/water-splash.webp",
+      "poster": "assets/visual-cue/artwork/posters/water-splash.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "water-shower",
+      "label": "シャワー：水が浴槽へ落ちる",
+      "count": 17,
+      "percent": 1.56,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/water-shower.webp",
+      "poster": "assets/visual-cue/artwork/posters/water-shower.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "change-diaper-v2",
+      "label": "おむつ：留め具の接合部を改善",
+      "count": 15,
+      "percent": 1.37,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/change-diaper-v2.webp",
+      "poster": "assets/visual-cue/artwork/posters/change-diaper-v2.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "change-diaper-exchange",
+      "label": "おむつを外す→新しいおむつを置き留める",
+      "count": 14,
+      "percent": 1.28,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/change-diaper-exchange.webp",
+      "poster": "assets/visual-cue/artwork/posters/change-diaper-exchange.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "hand-wave",
+      "label": "手を振る：手首を支点に左右へ",
+      "count": 13,
+      "percent": 1.19,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/hand-wave.webp",
+      "poster": "assets/visual-cue/artwork/posters/hand-wave.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "peekaboo",
+      "label": "いないいないばあ：布で隠す・見せる",
+      "count": 9,
+      "percent": 0.82,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/peekaboo.webp",
+      "poster": "assets/visual-cue/artwork/posters/peekaboo.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "hand-clap",
+      "label": "拍手：両手が接触・離れる",
+      "count": 7,
+      "percent": 0.64,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/hand-clap.webp",
+      "poster": "assets/visual-cue/artwork/posters/hand-clap.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "care-wipe",
+      "label": "手を布で拭く",
+      "count": 6,
+      "percent": 0.55,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/care-wipe.webp",
+      "poster": "assets/visual-cue/artwork/posters/care-wipe.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "toy-roll",
+      "label": "ボール：床の上を左右に転がる",
+      "count": 4,
+      "percent": 0.37,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/toy-roll.svg",
+      "poster": "assets/visual-cue/motion-variants/toy-roll-poster.svg",
+      "baseAssetId": "toy",
+      "baseImage": "assets/visual-cue/artwork/stills/toy.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "change-zipper",
+      "label": "前開き服：ファスナーを上げる・下げる",
+      "count": 3,
+      "percent": 0.27,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/change-zipper.webp",
+      "poster": "assets/visual-cue/artwork/posters/change-zipper.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "hand-wash",
+      "label": "手洗い：手はそのまま、水滴と泡が流れる",
+      "count": 2,
+      "percent": 0.18,
+      "status": "motion-candidate",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/motion-variants/hand-wash.svg",
+      "poster": "assets/visual-cue/motion-variants/hand-wash-poster.svg",
+      "baseAssetId": "hands-open-v2",
+      "baseImage": "assets/visual-cue/artwork/stills/hands-open-v2.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "care-burp",
+      "label": "縦抱き：背中に手を添えてやさしく動かす",
+      "count": 1,
+      "percent": 0.09,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/care-burp.webp",
+      "poster": "assets/visual-cue/artwork/posters/care-burp.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "change-clothes",
+      "label": "着替え：上半身を保って別の服へ",
+      "count": 1,
+      "percent": 0.09,
+      "status": "accepted",
+      "runtimeEligible": true,
+      "image": "assets/visual-cue/artwork/animations/change-clothes.webp",
+      "poster": "assets/visual-cue/artwork/posters/change-clothes.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "cup-sip",
+      "label": "コップを傾ける：内壁の奥に水面、縁に達すると流れる",
+      "count": 0,
+      "percent": 0.0,
+      "status": "needs-review",
+      "runtimeEligible": false,
+      "image": "assets/visual-cue/artwork/animations/cup-sip.webp",
+      "poster": "assets/visual-cue/artwork/posters/cup-sip.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    },
+    {
+      "id": "hug-arms",
+      "label": "抱っこ：支えたまま腕を寄せる",
+      "count": 0,
+      "percent": 0.0,
+      "status": "accepted",
+      "runtimeEligible": false,
+      "image": "assets/visual-cue/artwork/animations/hug-arms.webp",
+      "poster": "assets/visual-cue/artwork/posters/hug-arms.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": "replaced-by-hug-face"
+    },
+    {
+      "id": "wake-daylight",
+      "label": "起床の代案：寝床は動かさず、外側に朝日",
+      "count": 0,
+      "percent": 0.0,
+      "status": "accepted",
+      "runtimeEligible": false,
+      "image": "assets/visual-cue/artwork/animations/wake-daylight.webp",
+      "poster": "assets/visual-cue/artwork/posters/wake-daylight.webp",
+      "baseAssetId": null,
+      "baseImage": "assets/visual-cue/artwork/stills/None.webp",
+      "runtimeExclusionReason": null
+    }
+  ],
+  "faceReplacement": {
+    "animation": 42,
+    "still": 2
+  },
+  "sourceSHA256": {
+    "shared/visual-cue-phrases.json": "41509cd2442209bcde77eae88c28c74a7b8776659d1f83149ed54aca131b67f1",
+    "shared/visual-cue-runtime-review.json": "2e6dce3ccea9758a21b9e451abe8a7b4ab73030ac003857aeba7475208eb771c",
+    "src/visual-cue-catalog.js": "a6086306a086af474fab07880a2719c30f2ed42273f078c3018e24d55cd89520",
+    "assets/visual-cue/motion-variants/manifest.json": "30dc784f782a65022b96fdb518c88b684f29ed6f56c4f00f4d121267dccdcb0d",
+    "shared/visual-cue-static-animation-overrides.json": "ee3b6776ef4d847db1e700ee524c7c29d6017d2a2424b0856898340fcd54822f",
+    "assets/visual-cue/prototypes/hug-face/manifest.json": "864d32db133eaa6e33c040fd9a6313387058c095837b5421743817e2268b7d91",
+    "shared/visual-cue-hug-face-overrides.json": "255b9c2c6afaa4d17b36da4969991ea2adc6ce9afcdca41bf2bb2d989bad6ddb"
+  },
+  "voiceBankReference": {
+    "total": 1105,
+    "outsideResponseCorpus": [
+      {
+        "text": "Big hugs!",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "All fresh!",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "Is it tasty?",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "Is it yummy?",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "Hi, I'm Emma.",
+        "sources": [
+          "app:introduction-preview"
+        ]
+      },
+      {
+        "text": "I'm with you.",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "I'm right here.",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "Let's have fun!",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "Let's get clean!",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "What do you see?",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "Let's change you!",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "Let's get dressed!",
+        "sources": [
+          "android:LiteResponseEngine.kt"
+        ]
+      },
+      {
+        "text": "Hi, I'm Emma. Hello, little one!",
+        "sources": [
+          "app:introduction-preview"
+        ]
+      },
+      {
+        "text": "Baby, how are you? I'm listening, baby. Your turn!",
+        "sources": [
+          "web:topic:generic:28"
+        ]
+      }
+    ],
+    "noAddedAnimation": 433,
+    "noAddedAnimationPercent": 39.19
+  },
+  "limitations": [
+    "割当件数であり、意味の適合率・利用頻度ではない。",
+    "意味確認済みは元の21セット。新規割当や背景2案を承認済みと扱わない。",
+    "通常Emmaのまばたき・口パクは追加アニメーションの網羅数に含めない。",
+    "候補背景を含める場合と、採用済み物体動画だけの場合を別集計。",
+    "承認済み静止原画から作ったSVG動作6種と顔あり抱っこ動画1種は新規候補であり、採用済み動画20点に加算しない。顔あり静止原画を加え、採用済み素材は43点。",
+    "コップ動画は再確認待ち、起床動画は意味対応未完成のため実行時対象外。"
+  ]
+}

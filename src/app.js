@@ -16,10 +16,12 @@ import { installLanguageUI } from './multilingual/ui.js?v=20261021-ui-audit-v4';
 import { describeError } from './multilingual/translations.js?v=20261021-ui-audit-v4';
 import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
+import { bindVisualCueSettings } from './visual-cue-settings.js';
 import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection} from './multilingual/performance.js';
 import {installWhisperPerformanceControls} from './multilingual/performance-controls.js';
 
 const $ = (id) => document.getElementById(id);
+const VISUAL_CUE_TRIAL = document.documentElement.dataset.visualCueTrial === 'true';
 const ui = {
   onboardingScreen:$('onboardingScreen'), homeScreen:$('homeScreen'), settingsScreen:$('settingsScreen'), aboutScreen:$('aboutScreen'),
   onboardingHighPerformance:$('onboardingHighPerformance'),
@@ -51,7 +53,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261021-progressive-voice-threads-r1';
+const WEB_BUILD = '20261021-english-illustrations-merged-v1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -164,15 +166,41 @@ const diagnosticNow=()=>typeof performance!=='undefined'&&typeof performance.now
   ? performance.now()
   : Date.now();
 const audioQueues = new Map();
-const history = new ConversationHistory();
+const history = new ConversationHistory(VISUAL_CUE_TRIAL ? {open:(name,version)=>indexedDB.open(name+'-visual-cue-trial',version)} : globalThis.indexedDB);
 let sessionId='', conversationEpoch=0;
 const preparedAudio=new Map();
 let featureScreens;
+// Optional visual module failure must never prevent voice or the existing Emma face.
+let visualCue={begin(){},end(){},nextUtteranceFinished(){},stop(){},preload(){}};
+function initVisualCues(){
+  const enabled=$('visualCueEnabled');
+  if(!enabled)return;
+  const settings=bindVisualCueSettings({enabled,storage:localStorage,configure:preferences=>visualCue.configure?.(preferences)});
+  import('./visual-cue-controller.js?v=20261020-english-illustrations-v2').then(({createVisualCueController})=>{
+    visualCue=createVisualCueController();
+    settings.apply();
+  }).catch(error=>{enabled.checked=false;enabled.disabled=true;recordRuntimeDiagnosticEvent('visual-cue-unavailable',error);});
+}
 function audioCacheKey(text){
   return [getTtsSignature(),String(text||'')].join('|');
 }
 
 
+
+// Available only in the dedicated test document; normal app behavior is unchanged.
+export const visualCueTrial = VISUAL_CUE_TRIAL ? {
+  async play(text){
+    unlockPlaybackAudioFromGesture();
+    await stopEmma();
+    const epoch=conversationEpoch;
+    await initVoice();
+    if(epoch!==conversationEpoch)return;
+    showConversation('',text);
+    await speakResponse(text);
+  },
+  preload:text=>visualCue.preload(text),
+  stop:stopEmma
+} : null;
 
 let multilingualStatus=()=>{};
 let multilingual,languageUI,whisperPerformanceControls;
@@ -258,6 +286,7 @@ languageUI=installLanguageUI({onExplanationsChange:refreshReplyContext,onChange:
 initUi();
 
 function initUi() {
+  initVisualCues();
   initLanguages();
   whisperPerformanceControls=installWhisperPerformanceControls({
     onChange:async options=>{
@@ -337,6 +366,13 @@ function initUi() {
 
   startAvatarBlinkLoop();
 
+  if(VISUAL_CUE_TRIAL){
+    showScreen('home',{autoStart:false});
+    window.history.replaceState(appHistoryState('home'),'',location.href);
+    setState('idle','Visual Cue テスト版','「押して聞く」または下の英文を選んで、表示と音声を確認できます。');
+    return;
+  }
+
   const reloadedAsr=sessionStorage.getItem(STORAGE.asrReload);
   const needsMicGestureAfterIsolation=sessionStorage.getItem('emma_coi_manual_start')==='1';
   if (localStorage.getItem(STORAGE.setupRevision) === CURRENT_SETUP_REVISION) {
@@ -366,6 +402,9 @@ function initUi() {
       queueMicrotask(()=>startTutorial());
     }
   } else showScreen('onboarding');
+  // Reload renders Home/onboarding again, even when the previous history entry
+  // was Settings. Align that entry before pushing the next settings screen.
+  window.history.replaceState(appHistoryState(currentScreen),'',location.href);
 }
 
 function bindEvents() {
@@ -573,7 +612,7 @@ function showScreen(name,{autoStart=true}={}) {
   window.scrollTo({top:0,behavior:'auto'});
 
   if(
-    autoStart &&
+    autoStart && !VISUAL_CUE_TRIAL &&
     tutorialStep===null &&
     name==='home' &&
     localStorage.getItem(STORAGE.setupRevision)===CURRENT_SETUP_REVISION &&
@@ -1040,6 +1079,7 @@ async function prepareSemanticForConversation() {
 }
 
 async function stopEmma() {
+  visualCue.stop();
   conversationEpoch++;
   const hadMultilingualWork=languageUI?.language!=='ja'&&multilingual?.pending?.size>0;
   multilingual?.resetSpeechLanguage();
@@ -1079,6 +1119,9 @@ async function stopEmma() {
 
 function handleCapturedUtterance(audio) {
   if(!running||preparingConversation||speaking)return;
+  // Keep the previous English illustration through listening, including the parent's speech.
+  // Clear it only when VAD has captured the end of that next utterance.
+  visualCue.nextUtteranceFinished();
   if(tutorialStep===2){
     tutorialUserSpoke=true;
     // Tutorial must honor the same auto-reply preference as ordinary speech.
@@ -1518,6 +1561,7 @@ async function restoreMicrophoneAfterEmmaVoice() {
 }
 
 async function speakResponse(text,{entry=null,revision=null}={}) {
+  visualCue.preload(text);
   const epoch=conversationEpoch;
   if(!ttsWorker)throw Error('AIの声がまだ準備されていません');
   const speculative=revision!==null;
@@ -1733,6 +1777,7 @@ async function playBlob(blob,requestId) {
   const ended=new Promise(resolve=>source.onended=resolve);
   source.start();
   const q=audioQueues.get(requestId);
+  const cueToken=visualCue.begin(q?.text);
   if(q && !q.firstAudioRecorded){
     q.firstAudioRecorded=true;
     lastTtsFirstAudioMillis=Math.round(diagnosticNow()-q.ttsRequestStartedAt);
@@ -1740,7 +1785,8 @@ async function playBlob(blob,requestId) {
   }
   if(q && !q.started){q.started=true;if(q.entry && historyEnabled(localStorage))history.append(q.entry).catch(error=>{ console.warn('履歴を保存できませんでした',error);$('historyWarning').textContent='履歴を保存できませんでした。端末の空き容量やブラウザ設定を確認してください。'; });}
   animate();
-  await ended;
+  // Only the speaking mouth stops here. The visual cue stays until the next parent utterance ends.
+  try{await ended;}finally{visualCue.end(cueToken);}
   if(activeAudioSource===source) activeAudioSource=null;
   cancelAnimationFrame(raf);
   avatarMouthLevel='small';
@@ -1918,7 +1964,12 @@ function trimAudioSilence(buffer) {
 function setState(state,title,detail) {
   title=languageUI?.translate(title)??title;detail=languageUI?.translate(detail)??detail;
   avatarVisualState=state;
+  const cueVisible=ui.avatar.classList.contains('has-visual-cue');
+  const backgroundVisible=ui.avatar.classList.contains('has-emma-background');
   ui.avatar.className=`avatar state-${state}`;
+  if(cueVisible)ui.avatar.classList.add('has-visual-cue');
+  if(backgroundVisible)ui.avatar.classList.add('has-emma-background');
+  if(state==='error')visualCue.stop();
   renderAvatarFrame();
   ui.statusTitle.textContent=title;
   ui.statusDetail.textContent=detail;
@@ -2317,7 +2368,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
 }
 
 window.addEventListener('load',()=>{
-  if('serviceWorker' in navigator) {
+  if(!VISUAL_CUE_TRIAL && 'serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
     navigator.serviceWorker.register('./service-worker.js?v=20261021-progressive-voice-v1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));

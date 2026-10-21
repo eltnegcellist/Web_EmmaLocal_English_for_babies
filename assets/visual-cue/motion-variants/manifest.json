@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "status": "candidate-motion-over-approved-illustrations",
+  "approval": "Original illustrations remain approved; new motion is user-review-pending.",
+  "assets": [
+    {
+      "rasterSources": [
+        {
+          "path": "assets/visual-cue/artwork/stills/sun.webp",
+          "sha256": "1c0aa8155642862e6b78d238fd96983a23e233a899fed713a5d5109324bdad13"
+        }
+      ],
+      "id": "sun-rays",
+      "topic": "太陽：中心を保ち、光の筋が順に明るくなる",
+      "kind": "animation",
+      "status": "motion-candidate",
+      "readiness": "user-review-pending",
+      "baseAssetId": "sun",
+      "animation": "assets/visual-cue/motion-variants/sun-rays.svg",
+      "poster": "assets/visual-cue/motion-variants/sun-rays-poster.svg",
+      "movingParts": [
+        "eight sun rays: independent opacity"
+      ],
+      "stationaryRegion": [
+        205,
+        205,
+        305,
+        305
+      ],
+      "loopMs": 3600,
+      "sourceSHA256": "1c0aa8155642862e6b78d238fd96983a23e233a899fed713a5d5109324bdad13"
+    },
+    {
+      "rasterSources": [
+        {
+          "path": "assets/visual-cue/artwork/stills/outdoor.webp",
+          "sha256": "cefcb0e5e4242c617434928967133ae4a501b156478753a4343a8bd382241743"
+        }
+      ],
+      "id": "outdoor-leaves",
+      "topic": "外の木：幹は静止し、葉が風で舞う",
+      "kind": "animation",
+      "status": "motion-candidate",
+      "readiness": "user-review-pending",
+      "baseAssetId": "outdoor",
+      "animation": "assets/visual-cue/motion-variants/outdoor-leaves.svg",
+      "poster": "assets/visual-cue/motion-variants/outdoor-leaves-poster.svg",
+      "movingParts": [
+        "two falling leaves outside the tree"
+      ],
+      "stationaryRegion": [
+        240,
+        350,
+        275,
+        405
+      ],
+      "loopMs": 5000,
+      "sourceSHA256": "cefcb0e5e4242c617434928967133ae4a501b156478753a4343a8bd382241743"
+    },
+    {
+      "rasterSources": [
+        {
+          "path": "assets/visual-cue/artwork/stills/sleep.webp",
+          "sha256": "2fa7a057d2c852d237deabf14a2b40fdf0e9d300096df94ea51985fc8dc73620"
+        }
+      ],
+      "id": "sleep-stars",
+      "topic": "ねんね：寝床は静止し、外側の星がまたたく",
+      "kind": "animation",
+      "status": "motion-candidate",
+      "readiness": "user-review-pending",
+      "baseAssetId": "sleep",
+      "animation": "assets/visual-cue/motion-variants/sleep-stars.svg",
+      "poster": "assets/visual-cue/motion-variants/sleep-stars-poster.svg",
+      "movingParts": [
+        "three stars outside the empty cot"
+      ],
+      "stationaryRegion": [
+        100,
+        220,
+        350,
+        390
+      ],
+      "loopMs": 4800,
+      "sourceSHA256": "2fa7a057d2c852d237deabf14a2b40fdf0e9d300096df94ea51985fc8dc73620"
+    },
+    {
+      "rasterSources": [
+        {
+          "path": "assets/visual-cue/artwork/stills/toy.webp",
+          "sha256": "1996c6196ed298aba52b33a43beba08f9781c51b146558bfd3b49a0d77c2207d"
+        }
+      ],
+      "id": "toy-rattle",
+      "topic": "ガラガラ：輪と柄は静止し、中の鈴が動く",
+      "kind": "animation",
+      "status": "motion-candidate",
+      "readiness": "user-review-pending",
+      "baseAssetId": "toy",
+      "animation": "assets/visual-cue/motion-variants/toy-rattle.svg",
+      "poster": "assets/visual-cue/motion-variants/toy-rattle-poster.svg",
+      "movingParts": [
+        "inner bell rotates about its top attachment",
+        "sound arcs"
+      ],
+      "stationaryRegion": [
+        130,
+        335,
+        170,
+        400
+      ],
+      "loopMs": 1600,
+      "sourceSHA256": "1996c6196ed298aba52b33a43beba08f9781c51b146558bfd3b49a0d77c2207d"
+    },
+    {
+      "rasterSources": [
+        {
+          "path": "assets/visual-cue/artwork/parts/v3-grip-ball.png",
+          "sha256": "b7e22542a48a71f7efcaa3ae25274da5a4791744172e57fc81fa1c75cd719d14"
+        }
+      ],
+      "id": "toy-roll",
+      "topic": "ボール：床の上を左右に転がる",
+      "kind": "animation",
+      "status": "motion-candidate",
+      "readiness": "user-review-pending",
+      "baseAssetId": "toy",
+      "animation": "assets/visual-cue/motion-variants/toy-roll.svg",
+      "poster": "assets/visual-cue/motion-variants/toy-roll-poster.svg",
+      "movingParts": [
+        "ball translation along a fixed floor",
+        "ball rotation follows travel"
+      ],
+      "stationaryRegion": [
+        240,
+        374,
+        270,
+        378
+      ],
+      "loopMs": 4000,
+      "sourceSHA256": "1996c6196ed298aba52b33a43beba08f9781c51b146558bfd3b49a0d77c2207d"
+    },
+    {
+      "rasterSources": [
+        {
+          "path": "assets/visual-cue/artwork/stills/hands-open-v2.webp",
+          "sha256": "b47a139d29d377c44d11c49ef170bf3e5829df8d1ffefa0196e010fb84fc5191"
+        }
+      ],
+      "id": "hand-wash",
+      "topic": "手洗い：手はそのまま、水滴と泡が流れる",
+      "kind": "animation",
+      "status": "motion-candidate",
+      "readiness": "user-review-pending",
+      "baseAssetId": "hands-open-v2",
+      "animation": "assets/visual-cue/motion-variants/hand-wash.svg",
+      "poster": "assets/visual-cue/motion-variants/hand-wash-poster.svg",
+      "movingParts": [
+        "water drops descend over the intact hand",
+        "three soap bubbles"
+      ],
+      "stationaryRegion": [
+        230,
+        390,
+        275,
+        420
+      ],
+      "loopMs": 2800,
+      "sourceSHA256": "b47a139d29d377c44d11c49ef170bf3e5829df8d1ffefa0196e010fb84fc5191"
+    }
+  ]
+}

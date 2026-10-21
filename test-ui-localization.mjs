@@ -109,9 +109,9 @@ for(const lang of ['en','de','fr','ko','th','ja']){
 const app=readFileSync(new URL('./src/app.js',import.meta.url),'utf8');
 const stopFunction=app.slice(app.indexOf('async function stopEmma('),app.indexOf('\nfunction handleCapturedUtterance('));
 for(const ready of [true,false]){
-  const statuses=[],progress=[];
+  const statuses=[],progress=[];let visualStops=0;
   const buttons=()=>({classList:{add:()=>{},remove:()=>{}},disabled:false});
-  const state={conversationEpoch:1,languageUI:{language:'en',setStatus:value=>statuses.push(value)},
+  const state={visualCue:{stop:()=>visualStops++},conversationEpoch:1,languageUI:{language:'en',setStatus:value=>statuses.push(value)},
     multilingualAsrDiagnostic:{cachedLanguage:null},multilingual:{resetSpeechLanguage:()=>{},ready,pending:new Map(ready?[]:[[1,{}]])},semanticPanel:{cancelPending:()=>{}},
     showProgress:visible=>progress.push(visible),showOnboardingProgress:visible=>progress.push(visible),
     audioUnlockWaiters:[],running:true,preparingConversation:true,processing:false,speaking:false,pendingUtterance:null,
@@ -119,6 +119,7 @@ for(const ready of [true,false]){
     ui:{manualReplyButton:buttons(),stopButton:buttons(),mainButton:buttons()},setBusy:()=>{},setState:()=>{}};
   await vm.runInNewContext(stopFunction+'\nstopEmma();',state);
   assert.deepEqual(progress,[false,false]);
+  assert.equal(visualStops,1,'Stopping Emma also clears the English illustration');
   assert.equal(statuses.at(-1),ready?'モデルの準備ができました':'準備を中断しました。準備するボタンで再開できます。');
 }
 const navigationFunction=app.slice(app.indexOf('function openSubpage('),app.indexOf('\nfunction backFromSubpage('));

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "hug-face-v1",
+  "primitive": "motion.hug",
+  "kind": "illustration",
+  "status": "accepted-still",
+  "readiness": "static-approved; motion-implementation-candidate",
+  "animated": false,
+  "runtimeAssigned": true,
+  "replaces": null,
+  "comparisonAsset": "hug-arms",
+  "illustration": "assets/visual-cue/prototypes/hug-face/hug-face-v1.png",
+  "source": "built-in image_gen",
+  "prompt": "PROMPT.md",
+  "reference": "assets/visual-cue/artwork/sources/generated/hug-v4.png",
+  "humanApproval": true,
+  "note": "顔あり静止原画は採用済み。検証した腕の動作をテスト版に導入する。動画のユーザー採用承認は未取得。",
+  "sha256": "b454ed38252bf24b9c33c7df9c99a2ad476b316539e4588db046bef18beb3c78",
+  "image": {
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "bytes": 1335128,
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "cornerAlpha": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "borderAlphaMax": 1,
+    "note": "外周に最大alpha 1の微小な生成残差。角は完全透過。PNG原画を改変せず保存。"
+  },
+  "remaining": [
+    "顔あり動画のユーザー確認"
+  ],
+  "approvedDate": "2026-10-20",
+  "approvalRecord": "approval-20261020.json",
+  "motion": {
+    "id": "hug-face-cuddle",
+    "topic": "抱っこ：顔を見せ、支える腕をそっと寄せる",
+    "kind": "animation",
+    "status": "motion-candidate",
+    "readiness": "user-motion-review-pending",
+    "baseAssetId": "hug-face-v1",
+    "baseImage": "assets/visual-cue/prototypes/hug-face/hug-face-v1.png",
+    "animation": "assets/visual-cue/motion-variants/hug-face-cuddle.webp",
+    "poster": "assets/visual-cue/motion-variants/hug-face-cuddle-poster.webp",
+    "loopMs": 3200,
+    "movingParts": [
+      "forearm and hand supporting the back",
+      "lower supporting forearm and hand"
+    ],
+    "stationaryRegion": [
+      100,
+      80,
+      420,
+      280
+    ],
+    "sourceSHA256": "b454ed38252bf24b9c33c7df9c99a2ad476b316539e4588db046bef18beb3c78",
+    "verification": "assets/visual-cue/prototypes/hug-face/qa/motion-validation.json"
+  }
+}

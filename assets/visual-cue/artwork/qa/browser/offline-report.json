@@ -1,0 +1,145 @@
+{
+  "url": "file:///Users/itohidetaka/Documents/Codex/2026-10-17-eltnegcellist-web-emmalocal-english-for-babies/assets/visual-cue/artwork/preview-offline.html",
+  "browser": "155.0.8059.80",
+  "checks": [
+    {
+      "name": "css-size-220",
+      "pass": true
+    },
+    {
+      "name": "css-size-256",
+      "pass": true
+    },
+    {
+      "name": "css-size-320",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hand-wave",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-cup-sip",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-change-zipper",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-hug-arms",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-change-clothes",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-change-diaper-exchange",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-wake-daylight",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-care-burp",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-kick",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-page",
+      "pass": true
+    },
+    {
+      "name": "browser-motion-spoon",
+      "pass": true
+    },
+    {
+      "name": "rejected-version-comparison-opens",
+      "pass": true
+    },
+    {
+      "name": "filmstrip-opens-in-page",
+      "pass": true
+    },
+    {
+      "name": "latest-all-frames-open-at-220",
+      "pass": true
+    },
+    {
+      "name": "pause-uses-posters",
+      "pass": true
+    },
+    {
+      "name": "resume-uses-animations",
+      "pass": true
+    },
+    {
+      "name": "reduced-motion-static",
+      "pass": true
+    },
+    {
+      "name": "filter-draft",
+      "pass": true
+    },
+    {
+      "name": "filter-latest-production-pass",
+      "pass": true
+    },
+    {
+      "name": "cue-link-reveals-filtered-target",
+      "pass": true
+    },
+    {
+      "name": "mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "58-cues-31-concepts",
+      "pass": true
+    },
+    {
+      "name": "old-drafts-separate-from-candidates",
+      "pass": true
+    },
+    {
+      "name": "emma-seven-evaluations",
+      "pass": true
+    },
+    {
+      "name": "all-images-decoded",
+      "pass": true
+    },
+    {
+      "name": "daily-scene-filter",
+      "pass": true
+    },
+    {
+      "name": "human-feedback-and-usage-audit-visible",
+      "pass": true
+    },
+    {
+      "name": "explicit-user-adoption-filter-and-badges",
+      "pass": true
+    },
+    {
+      "name": "legacy-style-preferences-separate-from-finished-motion",
+      "pass": true
+    },
+    {
+      "name": "cup-held-and-other-media-adoption-retained",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "badResponses": [],
+  "passed": true
+}

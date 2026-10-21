@@ -1,0 +1,478 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "real-home-with-no-onboarding",
+      "pass": true
+    },
+    {
+      "name": "no-voice-clips-on-entry",
+      "pass": true
+    },
+    {
+      "name": "all-1091-available",
+      "pass": true
+    },
+    {
+      "name": "production-preferences-untouched",
+      "pass": true
+    },
+    {
+      "name": "trial-has-own-visual-default",
+      "pass": true
+    },
+    {
+      "name": "no-auto-ASR-or-model-download",
+      "pass": true
+    },
+    {
+      "name": "approved-animation-reply-count",
+      "pass": true
+    },
+    {
+      "name": "count-sip",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-sip",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-sip",
+      "pass": true
+    },
+    {
+      "name": "count-sleep-stars",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-sleep-stars",
+      "pass": true
+    },
+    {
+      "name": "static-poster-sleep-stars",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-sleep-stars",
+      "pass": true
+    },
+    {
+      "name": "count-hug-face-cuddle",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-hug-face-cuddle",
+      "pass": true
+    },
+    {
+      "name": "quick-stop-visible-while-playing",
+      "pass": true
+    },
+    {
+      "name": "static-poster-hug-face-cuddle",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-hug-face-cuddle",
+      "pass": true
+    },
+    {
+      "name": "count-page",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-page",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-page",
+      "pass": true
+    },
+    {
+      "name": "count-notes",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-notes",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-notes",
+      "pass": true
+    },
+    {
+      "name": "count-spoon",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-spoon",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-spoon",
+      "pass": true
+    },
+    {
+      "name": "count-toy-rattle",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-toy-rattle",
+      "pass": true
+    },
+    {
+      "name": "static-poster-toy-rattle",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-toy-rattle",
+      "pass": true
+    },
+    {
+      "name": "count-sun-rays",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-sun-rays",
+      "pass": true
+    },
+    {
+      "name": "static-poster-sun-rays",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-sun-rays",
+      "pass": true
+    },
+    {
+      "name": "count-water-rain",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-water-rain",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-water-rain",
+      "pass": true
+    },
+    {
+      "name": "count-outdoor-leaves",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-outdoor-leaves",
+      "pass": true
+    },
+    {
+      "name": "static-poster-outdoor-leaves",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-outdoor-leaves",
+      "pass": true
+    },
+    {
+      "name": "count-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-dress-sleeves",
+      "pass": true
+    },
+    {
+      "name": "count-kick",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-kick",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-kick",
+      "pass": true
+    },
+    {
+      "name": "count-water-splash",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-water-splash",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-water-splash",
+      "pass": true
+    },
+    {
+      "name": "count-water-shower",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-water-shower",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-water-shower",
+      "pass": true
+    },
+    {
+      "name": "count-change-diaper-v2",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-change-diaper-v2",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-change-diaper-v2",
+      "pass": true
+    },
+    {
+      "name": "count-change-diaper-exchange",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-change-diaper-exchange",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-change-diaper-exchange",
+      "pass": true
+    },
+    {
+      "name": "count-hand-wave",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-hand-wave",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-hand-wave",
+      "pass": true
+    },
+    {
+      "name": "count-peekaboo",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-peekaboo",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-peekaboo",
+      "pass": true
+    },
+    {
+      "name": "count-hand-clap",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-hand-clap",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-hand-clap",
+      "pass": true
+    },
+    {
+      "name": "count-care-wipe",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-care-wipe",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-care-wipe",
+      "pass": true
+    },
+    {
+      "name": "count-toy-roll",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-toy-roll",
+      "pass": true
+    },
+    {
+      "name": "static-poster-toy-roll",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-toy-roll",
+      "pass": true
+    },
+    {
+      "name": "count-change-zipper",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-change-zipper",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-change-zipper",
+      "pass": true
+    },
+    {
+      "name": "count-hand-wash",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-hand-wash",
+      "pass": true
+    },
+    {
+      "name": "static-poster-hand-wash",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-hand-wash",
+      "pass": true
+    },
+    {
+      "name": "count-care-burp",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-care-burp",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-care-burp",
+      "pass": true
+    },
+    {
+      "name": "count-change-clothes",
+      "pass": true
+    },
+    {
+      "name": "actual-worker-audio-change-clothes",
+      "pass": true
+    },
+    {
+      "name": "stop-clears-change-clothes",
+      "pass": true
+    },
+    {
+      "name": "two-resting-hug-posters",
+      "pass": true
+    },
+    {
+      "name": "resting-hug-does-not-animate",
+      "pass": true
+    },
+    {
+      "name": "hearts-original-face-visible",
+      "pass": true
+    },
+    {
+      "name": "real-app-mouth-frame",
+      "pass": true
+    },
+    {
+      "name": "same-voice-baseline-comparison",
+      "pass": true
+    },
+    {
+      "name": "audio-end-clears",
+      "pass": true
+    },
+    {
+      "name": "375-previously-static-replies",
+      "pass": true
+    },
+    {
+      "name": "remaining-stills-have-reasons",
+      "pass": true
+    },
+    {
+      "name": "empty-search-disables-play",
+      "pass": true
+    },
+    {
+      "name": "actual-press-to-listen-screen",
+      "pass": true
+    },
+    {
+      "name": "trial-mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "trial-history-database-isolated",
+      "pass": true
+    },
+    {
+      "name": "all-approved-held-and-candidate-movie-rows",
+      "pass": true
+    },
+    {
+      "name": "wake-held-and-old-hug-replaced",
+      "pass": true
+    },
+    {
+      "name": "seven-before-after-motion-previews",
+      "pass": true
+    },
+    {
+      "name": "all-motion-comparison-images-load",
+      "pass": true
+    },
+    {
+      "name": "motion-gallery-can-pause",
+      "pass": true
+    },
+    {
+      "name": "motion-gallery-can-resume",
+      "pass": true
+    },
+    {
+      "name": "held-cup-zero",
+      "pass": true
+    },
+    {
+      "name": "no-added-animation-current-count",
+      "pass": true
+    },
+    {
+      "name": "coverage-mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "coverage-link-selects-kick",
+      "pass": true
+    },
+    {
+      "name": "face-comparison-delivers-movie",
+      "pass": true
+    },
+    {
+      "name": "face-comparison-can-pause",
+      "pass": true
+    },
+    {
+      "name": "face-comparison-reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "face-comparison-mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "on-demand-not-full-bank",
+      "pass": true
+    },
+    {
+      "name": "no-browser-errors",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "scope": "Withdrawn: unclear hand gestures replaced main blinking/audio mouth. Historical assets only; no runtime use.",
+  "states": [
+    {
+      "id": "emma.neutral",
+      "label": "待機",
+      "description": "普段と同じバストアップで、小さくうなずいて待機する。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
+      "animation": "assets/emma-gestures/neutral.svg",
+      "poster": "assets/emma-gestures/neutral-poster.svg",
+      "status": "withdrawn",
+      "movingParts": [
+        "head at neck"
+      ],
+      "durationMs": 4800
+    },
+    {
+      "id": "emma.smile",
+      "label": "にっこり",
+      "description": "顔の大きさを保ち、笑顔で小さくうなずく。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
+      "animation": "assets/emma-gestures/smile.svg",
+      "poster": "assets/emma-gestures/smile-poster.svg",
+      "status": "withdrawn",
+      "movingParts": [
+        "head at neck"
+      ],
+      "durationMs": 3600
+    },
+    {
+      "id": "emma.calm",
+      "label": "安心させる",
+      "description": "胸元の左右で手を低く開き、ゆっくり下げる。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
+      "animation": "assets/emma-gestures/calm.svg",
+      "poster": "assets/emma-gestures/calm-poster.svg",
+      "status": "withdrawn",
+      "movingParts": [
+        "head at neck",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 4800
+    },
+    {
+      "id": "emma.celebrate",
+      "label": "ほめる",
+      "description": "顔の横へ両手を上げ、小さく動かしてほめる。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
+      "animation": "assets/emma-gestures/celebrate.svg",
+      "poster": "assets/emma-gestures/celebrate-poster.svg",
+      "status": "withdrawn",
+      "movingParts": [
+        "head at neck",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 3600
+    },
+    {
+      "id": "emma.listen",
+      "label": "聞く",
+      "description": "右手を耳の下へ寄せ、わずかに首を傾ける。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
+      "animation": "assets/emma-gestures/listen.svg",
+      "poster": "assets/emma-gestures/listen-poster.svg",
+      "status": "withdrawn",
+      "movingParts": [
+        "head at neck",
+        "right arm at shoulder"
+      ],
+      "durationMs": 4800
+    },
+    {
+      "id": "emma.ask",
+      "label": "たずねる",
+      "description": "顔の下の左右で手を開き、わずかに首を傾ける。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
+      "animation": "assets/emma-gestures/ask.svg",
+      "poster": "assets/emma-gestures/ask-poster.svg",
+      "status": "withdrawn",
+      "movingParts": [
+        "head at neck",
+        "left arm at shoulder",
+        "right arm at shoulder"
+      ],
+      "durationMs": 3600
+    },
+    {
+      "id": "emma.invite",
+      "label": "誘う",
+      "description": "右手を顔の横へ上げ、手首の向きをゆっくり変えて招く。",
+      "framing": "bust-up, identical head scale and anchor to the existing avatar",
+      "animation": "assets/emma-gestures/invite.svg",
+      "poster": "assets/emma-gestures/invite-poster.svg",
+      "status": "withdrawn",
+      "movingParts": [
+        "head at neck",
+        "right arm at shoulder"
+      ],
+      "durationMs": 3600
+    }
+  ]
+}

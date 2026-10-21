@@ -1,0 +1,13 @@
+[
+  {
+    "id": "cup-sip",
+    "beforeBytes": 574706,
+    "afterBytes": 313352,
+    "alphaQuality": 70,
+    "meanRGBErrorAt220": 0.363,
+    "p95RGBErrorAt220": 2.0,
+    "beforeSHA256": "ed7d3d65393c768f0a03fb8d72d118665fef581b11ee438ce8c60eeb2d451c70",
+    "afterSHA256": "5ca7a1001bf539cdb49ef35e3561670017cee3ab2327dcb15fc6d97ec45bfeb0",
+    "timingAndDimensionsPreserved": true
+  }
+]

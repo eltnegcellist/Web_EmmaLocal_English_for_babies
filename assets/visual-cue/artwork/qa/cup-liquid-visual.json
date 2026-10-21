@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-19",
+  "adoptionApproval": false,
+  "displayPixels": 220,
+  "artifact": "animations/cup-sip.webp",
+  "sha256": "5ca7a1001bf539cdb49ef35e3561670017cee3ab2327dcb15fc6d97ec45bfeb0",
+  "evidence": "qa/cup-depth-allframes/cup-sip.jpg",
+  "observations": [
+    "43復号フレームを220pxの一覧で目視。静止ポスターは水面を楕円にし、奥の内壁と水面の間に余白を残す。",
+    "液面上端はポスターのY=200。奥の内壁の明るい領域1794画素を残し、開口部を横断する旧い直線の塗りを撤回。",
+    "水が低い側の縁を越えて流出し、流出後に戻しても水量が増えない。",
+    "最初と最後は透明なフェード境界。ユーザーによる奥行きの自然さ・飲む意味の再確認待ち。"
+  ],
+  "posterSHA256": "c4dad7d4eb2b0e33985b7f6b1f9fa800910f15ba71016c210727d930ef024e23",
+  "productionPass": 8
+}

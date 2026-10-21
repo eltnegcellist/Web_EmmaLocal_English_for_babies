@@ -1,0 +1,4687 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "a1eb6aaca02a3609f00ff3a3bd09248530a81d00",
+  "scope": "Only the 520 previously static exact-text bindings. Existing animation/Emma assignments remain unchanged.",
+  "rows": [
+    {
+      "id": "86810815b182b23c190e6e76",
+      "text": "Bath time is here! Is the water warm? Splash, splash!",
+      "assetId": "bath",
+      "afterAssetId": "water-splash",
+      "changed": true,
+      "reason": "水しぶきを明示しており、浴槽の水しぶき動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "18500167468dc4c1daffe399",
+      "text": "Let's wash your hands. One, then the other. All clean!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-wash",
+      "changed": true,
+      "reason": "洗う手を明示。完全な手は変形せず、水滴と泡だけを動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "799af35cef9b7e156a79abdb",
+      "text": "Feel the warm water. Can you hear it? Splish, splash!",
+      "assetId": "bath",
+      "afterAssetId": "water-splash",
+      "changed": true,
+      "reason": "水しぶきを明示しており、浴槽の水しぶき動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3ee15303ce8593a07c71f12d",
+      "text": "Here's your milk! Ready for a sip? Here you go!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "096835f85398b0ffb0107c96",
+      "text": "Can you taste it? A little milk. Mmm, yummy!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e99e6a26c743b6d5bb2cd139",
+      "text": "Are you still hungry? We can have more. I'm here!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2e181737a5b1f34ca2e50528",
+      "text": "Milk time! Are you hungry? Let's have some!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9699fc184de4508718bf4f34",
+      "text": "Are you sleepy? Let's get cozy. Night-night!",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "61ec1d461b0c8304c3554d54",
+      "text": "Time to rest. Let's get cozy now. I'll stay close.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ddf4f00fd3af408149f5660b",
+      "text": "Let's close our eyes. I'll stay nearby. Sleep well!",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "75b05272976595e9f6b6e461",
+      "text": "Shh, little one. Let's have quiet time. I'm right here.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a075387604ea1e134e7dbf1a",
+      "text": "Getting sleepy? I'll stay with you. Rest well!",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9aa887267c4bbabeb52760fc",
+      "text": "Rest well, baby. I'll stay close by. Sweet dreams!",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "11339d14321cfc7c91bdcd4a",
+      "text": "Baby, sleep well. I'm right here. Sweet dreams!",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7e809a8bfc3b0ee86470b7c5",
+      "text": "Baby, night-night! Let's get cozy. Rest well!",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "33a8e113edae8d59744d88e5",
+      "text": "Time for a change. Let's get you dry. All fresh!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b89218e0888a111a45982cae",
+      "text": "Off comes your diaper. Let's clean you up. There!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b57db5b089031412f4c449d3",
+      "text": "Let's change your diaper. I'll be gentle. Nice and fresh!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "16e7b2494c6a0fb767031104",
+      "text": "Diaper change! I'll be gentle. You're doing great!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "25914bcf54d303de038a72ba",
+      "text": "Baby, diaper time! Let's get you clean. All fresh!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "104fdf9e9cfc52ff973f2ea4",
+      "text": "Your little shirt! Let's put it on. One arm goes in!",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1dedb37c094f746afb3b87ff",
+      "text": "Let's change your clothes. This arm first. There you go!",
+      "assetId": "clothes",
+      "afterAssetId": "change-clothes",
+      "changed": true,
+      "reason": "別の服へ着替える明示。上半身を保った服交換の既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e9421474034e04f107374eda",
+      "text": "A little cuddle? I'll hold you close. So cozy!",
+      "assetId": "family-care",
+      "afterAssetId": "hug-arms",
+      "changed": true,
+      "reason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f0ae0c3498da5e527bcbca46",
+      "text": "Look at your hands! Ten tiny fingers. Wiggle, wiggle!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5143002cab24ea6bb5e75da1",
+      "text": "Open your hands. Close them again. Good job!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "fd5785f9a389b7dd12e4f915",
+      "text": "Those little fingers! Can you wiggle them? Wiggle, wiggle!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9b26ffe2ca9b8d9ba934628f",
+      "text": "Here's your little hand. Hold my finger. So tiny!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "08d72f5b0953d7495d95fdd0",
+      "text": "Your fingers are moving! Open and close. Look at that!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c1991b4bb9bf971b4d82a161",
+      "text": "Baby, tiny hands! Hold my finger. Hello there!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b72537435818c41d9fbbddca",
+      "text": "Baby, look! Your hands are moving. Wiggle, wiggle!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c74c9ac793dd2fb3b8c6e0aa",
+      "text": "Your toes are moving! One, two, three. So tiny!",
+      "assetId": "feet",
+      "afterAssetId": "feet",
+      "changed": false,
+      "reason": "足の指・伸ばす・数える表現はキックと異なる。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e63723f6aac4436c8fd009a2",
+      "text": "Can you kick? There go your feet! Good job!",
+      "assetId": "feet",
+      "afterAssetId": "kick",
+      "changed": true,
+      "reason": "足の一般的な呼びかけ・キックへの誘いを、採用済みの交互キックで示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0a0337c04b64cd96fbfd212a",
+      "text": "How's your tummy? Do you feel full? I'm here!",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "dadc8b3ed4c8a4e2350b614c",
+      "text": "Let's pat your back. Maybe a little burp. There!",
+      "assetId": "tummy",
+      "afterAssetId": "care-burp",
+      "changed": true,
+      "reason": "背中への手の動きを明示。腹部をさする旧案ではなく、縦抱きと背中の既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "080e86be732c317b36d8e5a9",
+      "text": "Is that a burp? Let's take it slowly. I'm right here.",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4219ad5e38b3d583ad7ac748",
+      "text": "Full tummy? We can rest now. I'm right here.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7bfd1133109b3798c5f09ff1",
+      "text": "Baby, feeling full? I'll hold you close. So cozy!",
+      "assetId": "tummy",
+      "afterAssetId": "hug-arms",
+      "changed": true,
+      "reason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1ad230c6601b56e71cf44524",
+      "text": "Let's play together! What should we try? Peekaboo!",
+      "assetId": "toy",
+      "afterAssetId": "peekaboo",
+      "changed": true,
+      "reason": "いないいないばあへの誘い・質問と、隠して見せる動作を対応。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1e21aaa4527a14a7e3d81253",
+      "text": "Here's your toy! Can you see it? Look here!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "670e31d946b84ea97a94a841",
+      "text": "Ready to play? Peek, peek, peek! Let's have fun!",
+      "assetId": "toy",
+      "afterAssetId": "peekaboo",
+      "changed": true,
+      "reason": "いないいないばあへの誘い・質問と、隠して見せる動作を対応。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "56f10109b960ba6f60df404e",
+      "text": "Peekaboo! Where did I go? Here I am!",
+      "assetId": "toy",
+      "afterAssetId": "peekaboo",
+      "changed": true,
+      "reason": "いないいないばあへの誘い・質問と、隠して見せる動作を対応。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "facf0c5058c704facb8f43ee",
+      "text": "Let's shake the rattle. Can you hear it? Shake, shake!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "02ba21b7e25afda49ea7d22f",
+      "text": "Look at this toy! It's here for you. Let's play!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f9cb394fed362c39687d8e94",
+      "text": "Baby, let's play! Here's your toy. Look at that!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0b19a098b572e9d2af97460e",
+      "text": "Baby, peekaboo! Where am I? Here I am!",
+      "assetId": "toy",
+      "afterAssetId": "peekaboo",
+      "changed": true,
+      "reason": "いないいないばあへの誘い・質問と、隠して見せる動作を対応。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ad3a8d451fd3773e0fab1453",
+      "text": "Let's go outside! Look at the sky. What do you see?",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "8fe84bc820c121652e8a81af",
+      "text": "Fresh air outside! Can you feel it? Hello, world!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a755817e2948d7f00152e7f8",
+      "text": "Time for a stroll. Let's look around. What's over there?",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "35f99f4f46f7254a91fb4496",
+      "text": "We're going outside! Let's look all around. What do you see?",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0ad6ffedafaac4de54854eb7",
+      "text": "Look up, baby! There's the sky. So big!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "012b65477d202e61b96c7b7c",
+      "text": "Out we go! What can you hear? Let's listen!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0f31e94423c25c355b842cf8",
+      "text": "Baby, outside time! Look at the sky. Hello, world!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "8eafe5c1bd37a9c953d99bbf",
+      "text": "Baby, let's stroll! What can you see? Look around!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1c028745bfd110b2c37c4c83",
+      "text": "Rain is falling! Can you hear it? Pitter-patter!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "cdb142e2e8041c8ae014dd62",
+      "text": "Listen to the rain. Drip, drop! Drip, drop!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4a7ba71c2841d3a6fd3c5687",
+      "text": "Rain on the window! Tap, tap, tap. Can you hear?",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f24ec906c7fdfb7066f61121",
+      "text": "It's raining outside. Look at the drops. Drip, drop!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "751930debcabe1be6b17b0df",
+      "text": "The rain sounds soft. Listen with me. Pitter-patter!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7d17a0e1ded8e7a8de59686b",
+      "text": "Raindrops are falling. Listen to their sound. Drip, drop!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b5e3fb094a35284448e4a529",
+      "text": "Baby, it's raining! Listen to the drops. Drip, drop!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3516cb233449506ce0252ac9",
+      "text": "Baby, hear that? It's the rain. Pitter-patter!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "caf0802118ea484b6aec28a6",
+      "text": "The sun is shining! What a bright day. Hello, sunshine!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "aa21c9dfe75af7fa5a69eb27",
+      "text": "Look at the sunlight! It's bright outside. So lovely!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ee30127dd1716947a2502da8",
+      "text": "Hello, sunshine! The sky is bright. Look up!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3ce7caaa2b0b6b19af7126dd",
+      "text": "A sunny day! Let's look outside. Can you see?",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3f629deaaa80848df8c7240b",
+      "text": "See the bright sky? The sun is out. Hello, sunshine!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5883cdb8c2a2eea82dc6adb9",
+      "text": "Look at the sunshine! Can you see it? So bright!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d311c15b64e70acb6195e1e6",
+      "text": "Baby, it's sunny! Look at the light. So bright!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "408ffdb3af597c4a46ca6be2",
+      "text": "Baby, sunshine today! The sky is bright. Hello, sunshine!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bd83c0fdbbd05daf58865b95",
+      "text": "Let's try some food. One little bite. How is it?",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "553c5341d9a8884d1517644d",
+      "text": "Ready to eat? A little spoonful. There you go!",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9e10d4e9dabd0c28a1e87de6",
+      "text": "Do you like it? Want another bite? No need to hurry.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "640456810edfaa75a98e7859",
+      "text": "All done eating? Wipe, wipe, wipe! Nice and clean!",
+      "assetId": "family-care",
+      "afterAssetId": "family-care",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ed91fec3cd2a2319a90d1373",
+      "text": "Baby, food time! One little spoonful. Is it yummy?",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "14c1679b7f926f8846393076",
+      "text": "Let's read a book! Look at the pictures. What's that?",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4c95aef1b35d182dd4951642",
+      "text": "Here's your book! Turn the page. What comes next?",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "75832e53c7f8187c8aac0f0d",
+      "text": "Look at this picture! What can you see? Let's look together!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "889fa044b15bd57671bbd616",
+      "text": "One more page! Let's see what's there. Turn, turn!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "275b0ff87ef4fab1579ff9cb",
+      "text": "Story time! Listen to my voice. Here comes a story!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "047636d9fdec14cbdff52b5e",
+      "text": "Look at this! See that picture? Look, look, look!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3076b77fd5634f288025c665",
+      "text": "Baby, book time! Look at the pictures. What's that?",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ac4209adf14824c21722e49a",
+      "text": "Baby, let's read! Turn the page. What comes next?",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d1047db6b5af041fa81ffeb2",
+      "text": "Here's a little song. Listen with me. La, la!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "17e9ce35efd6238250b497dd",
+      "text": "Hear the music? Tap, tap! Let's sing!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6311059f6d34baee3eb6e687",
+      "text": "Would you like some? Here's a little sip. There you go!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "146e3c2a09f2afb37938a213",
+      "text": "Here's your drink! Ready for a sip? Here you are!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6465c9d6306dafd00e6a03cc",
+      "text": "Drink time! One little sip. How does it taste?",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f9ae4973ac50dcd692b735f4",
+      "text": "Want a little sip? Here's your drink. Sip if you like!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "18ee1fef38c64d15f08d62a8",
+      "text": "Want another sip? No need to hurry. Here you go!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f89ec442fa91f7e594b74350",
+      "text": "Baby, your drink! Here's a little sip. There you go!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0539c6d26dcedda264e46bd4",
+      "text": "Baby, thirsty? Let's have a drink. Sip when you're ready!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5e68b8604b9b609e11a04ff3",
+      "text": "A little milk! Want some, baby? One tiny sip!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b0e7658c91c566e40ebcad66",
+      "text": "Milk time, baby! Bottle is ready! Here we go!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f0bda35c47fabf397f8020c4",
+      "text": "Come here, baby! Milk time, milk time! Cozy together!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "518ae57b7b8e3db24f0bca93",
+      "text": "Hungry, little one? Milk is ready! One little sip?",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "dc44d9d5eaf776879bc267dc",
+      "text": "Would milk sound good? Take a little look. We can start.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e5ee2494273b51b34fb0a23a",
+      "text": "Let's sit together now. Your bottle is ready. Want a little sip?",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "044bb96f06f4903cb69b500f",
+      "text": "See what you did! Milk time went well. What a happy moment!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "39ba7d6839d817b562643382",
+      "text": "Milk all gone! You did it! Hooray, hooray!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d369275c532087fffbb826d6",
+      "text": "Milk is all done! You're finished now. Let's rest together.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5b61e0ccb339f96e89b7437c",
+      "text": "Milk time is over! All finished now! Let's get cozy.",
+      "assetId": "milk",
+      "afterAssetId": "milk",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e97b7808913a871cb5493866",
+      "text": "The last sip's done! Your tummy can rest. Time for cuddles.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7bba2e8cbb20ddb4f2f7f767",
+      "text": "Milk time is finished. Put the bottle down. Let's get cozy.",
+      "assetId": "milk",
+      "afterAssetId": "milk",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e89f0b2246be9a1b91816e02",
+      "text": "No more milk now. What a lovely break. Let's rest a while.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "09c6033a3a401122c8e46411",
+      "text": "Your bottle is finished. Let's relax together. Snuggle up with me.",
+      "assetId": "milk",
+      "afterAssetId": "milk",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5374fbb00cfdab0d20057587",
+      "text": "Here's your milk. Give it a try! I'm right here.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "09d9d221f5daca57b8ded319",
+      "text": "Milk time together. Try when you're ready. We can take time.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e81e4e953d494879d44c9876",
+      "text": "Diaper time, baby! Fresh and clean! Gentle, gentle hands!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "99d32ce6aec443320fe2760c",
+      "text": "Fresh diaper, baby! Ready to change? Soft, gentle hands!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d847492457d838631c2282a9",
+      "text": "Let's change your diaper. I'll go very slowly. Are you ready?",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b6c2cb334a178713b313fac1",
+      "text": "Ready for fresh clothes? Let's change that diaper. I'll be gentle.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c450b7f6700b75ab989be0ea",
+      "text": "Diaper time, baby! Fresh and clean! Here we go!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3fc52fdd488e76043347e123",
+      "text": "Come to the mat. Let's change you gently. Ready for me?",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "34563f3901078b7992f2e2ba",
+      "text": "Your fresh diaper's here! Want to get changed? Let's do it.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ea4e775a9b45aa75af45f115",
+      "text": "Let's get you clean. This won't take long. We'll do it together.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "92a9d714658b35a88f6c3d91",
+      "text": "All done changing! Nice and fresh. Here we are.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1f070a2b331ff96e10723fad",
+      "text": "That diaper is changed! All finished now! Let's get cozy.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "898eea8b6cb8d2d8cad91d36",
+      "text": "Diaper change is finished! That's all done. We can rest now.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "01459ad887d4866e0379f050",
+      "text": "Clean diaper, fresh start! Your bottom feels cozy. We're all finished.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "07dd64a81fb9e660f20c2149",
+      "text": "Fresh and dry now! We put things away. Time for play.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "63d6e56768b5fa39b5970018",
+      "text": "Everything's nice and clean. Your diaper is changed. All done, sweetheart.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1bff3a04200975303459facb",
+      "text": "It's diaper time. I'll be gentle. I'm here with you.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "8a4d06c76ef1426ade78a35d",
+      "text": "Here's your fresh diaper. I'll change you gently. You'll feel cozy.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f0aa5499a01eb25c68fe663d",
+      "text": "A little diaper change. We have time. I'm here with you.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "07c30a1be361f3992b9a244b",
+      "text": "Want a little cuddle? Come here, sweetheart. I'm right here.",
+      "assetId": "family-care",
+      "afterAssetId": "hug-arms",
+      "changed": true,
+      "reason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2f39000e276145abf7575072",
+      "text": "Want a cuddle? Arms open wide! Come here, sweetheart!",
+      "assetId": "family-care",
+      "afterAssetId": "hug-arms",
+      "changed": true,
+      "reason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e0943b0cd9fdb8c829dbe88b",
+      "text": "A gentle little hug. Would you like one? Come close, sweetheart.",
+      "assetId": "family-care",
+      "afterAssetId": "hug-arms",
+      "changed": true,
+      "reason": "抱っこへの誘い・抱く表現を、つながった人物の腕を寄せる既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7d4db0fb1f17dd90223eb1f1",
+      "text": "Ready for your nap? Let's get cozy. I'll sing softly.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0f4fdd0cb57fea0a51037d4f",
+      "text": "Let's rest for now. Here's a cozy spot. I'll sit beside you.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a6b75497e7e29449baf45da7",
+      "text": "Feel like resting now? Let's get comfortable. I'll stay with you.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c326a42a8e453ad395c5e9b1",
+      "text": "Let's close our eyes. The room feels calm. Let's rest together.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6ebb4919c43cf9f735daec14",
+      "text": "Ready for a nap? Your bed feels cozy. Settle in, sweetheart.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "8cc7e714cf66e7bdabc6ff6d",
+      "text": "Let's settle down now. We can rest now. Sweet dreams, baby.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f9f6744417b35eaff7d988d6",
+      "text": "Would you like sleep? I'll sing softly. Let's get peaceful.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6cdd5ac3cbfa26aa2d887c1f",
+      "text": "Time to slow down. Let's snuggle up. Ready to dream?",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d00fab7a37090a47c158f4df",
+      "text": "Ready for a rest? I'm right here. We have time.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "be87b36a2694dad3450875dc",
+      "text": "Time for a rest. Your bed feels soft. I'll sit nearby.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "72d5db4fc587f582dae84557",
+      "text": "Let's rest a little. We have time. I'm here with you.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b55547b2a58a323bd0aaf3a4",
+      "text": "I'm close by, darling. The night is quiet. Rest easy, sweetheart.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "72433117482f56ea177cd510",
+      "text": "Hear my gentle voice. Nothing needs doing now. You're safe here.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a2ab97da9f56c87739a054a8",
+      "text": "Little eyes can close. I'll stay nearby. Sleep when you're ready.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "58b52b3cceb0a8d1cf1ace66",
+      "text": "Everything feels peaceful now. Your bed is cozy. I'll be close.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "deb2c0091515c47a10ec680b",
+      "text": "Take your own time. No rush to sleep. I'm beside you.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0e539d9b653f9eed171c2806",
+      "text": "Book time, baby! Open the book! Look inside!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "cb5046710f88e2ea327c0980",
+      "text": "Look at this book! See the pictures? Story time, baby!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2d375247f8bc108994d5e4d7",
+      "text": "Here's a colorful book. Can you see it? Let's start reading.",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d5680a7d0f9cb15b21bcd46b",
+      "text": "Look at this picture! What do you see? Let's explore together.",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9148c10dc09b79929e7a26b7",
+      "text": "Ready for storytime, baby? Pick a little book. We'll read aloud.",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "632bf76eba70c066c3ea634f",
+      "text": "One more page? Let's read again. Turn the page.",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c51b4e0c95df84d85dfbe968",
+      "text": "Let's open our book. See that little bird? Turn the page!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "84edddb7206ee6ec0323b600",
+      "text": "Look at the book! One more page? Let's read, baby!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1d15faf52b129902fe7bbe74",
+      "text": "Here comes our book. Let's begin reading. What comes next?",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f42b2f3e285ff3281c27a07b",
+      "text": "Open the book! See page one? Let's read, baby!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ba4611fd743f9824737540d3",
+      "text": "See this book? Open, open, open! Let's read together!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3b48018bab1f11517b3fd576",
+      "text": "Playtime, little one! Pick a toy! Let's have fun!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6698bd9b951215382733b8ed",
+      "text": "Let's start a game. Can you see this? It looks fun.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2e339d87d99499bed13b8225",
+      "text": "Here's your little toy! Roll it along! Play with me!",
+      "assetId": "toy",
+      "afterAssetId": "toy-roll",
+      "changed": true,
+      "reason": "転がす・ボールの明示。ボールが床を移動し、回転も追従する候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b5b40aaa7dec70eec46a94fb",
+      "text": "Roll, roll, roll! Here comes the ball! Look, baby, look!",
+      "assetId": "toy",
+      "afterAssetId": "toy-roll",
+      "changed": true,
+      "reason": "転がす・ボールの明示。ボールが床を移動し、回転も追従する候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2718e1860909f97c96b1827c",
+      "text": "Want to play peekaboo? Where did I go? Here I am!",
+      "assetId": "toy",
+      "afterAssetId": "peekaboo",
+      "changed": true,
+      "reason": "いないいないばあへの誘い・質問と、隠して見せる動作を対応。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b70b6fcf63e1a68072090d46",
+      "text": "Let's watch that toy. It moves so slowly. Your turn now.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1c6a50f7e21a859931041b7b",
+      "text": "Ready for some fun? I'll show a toy. Take a look.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9691df8ff2fe6a327892ab56",
+      "text": "Let's play again! One more turn? Here comes your toy!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f2adef456769c91ce29b2ae9",
+      "text": "Here's our little game. Want another turn? Let's play together.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7cc5c5f59eb6e6817b20a2d2",
+      "text": "Play it again? Roll, roll, roll! Your turn, baby!",
+      "assetId": "toy",
+      "afterAssetId": "toy-roll",
+      "changed": true,
+      "reason": "転がす・ボールの明示。ボールが床を移動し、回転も追従する候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "718555c60f3b9ffe559edc66",
+      "text": "Ready to play? Let's get started. Here we go.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "87ddb035f5c80cf23b11d6af",
+      "text": "Look at this toy! Ready for a game? Let's begin together.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "663ff768f217699ecac9d3ef",
+      "text": "A toy for you! Ready, steady, go! Let's play!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d5e5702ed22f0f9f9c1e5f75",
+      "text": "Ready for food? One little bite! Look at your spoon!",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "35872438c407bbe854c2bdfd",
+      "text": "Ready for some food? Here's a little bite. We can go slowly.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c68e3cc28f7e126545e9d90b",
+      "text": "Would you like food? One little bite now. I'll stay near.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "70e69ce0c5fba9ccb70187e8",
+      "text": "Outside, outside! Look at the trees! See the sky?",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d3599c9cfd5643d6cba06ca6",
+      "text": "Out we go! Look left, look right! I'll hold you.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "01763dd2b3200fb1df0a2f36",
+      "text": "Want some fresh air? We can go together. Let's look around.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e9024d058cfb81aa210eb6d5",
+      "text": "Outside we go! Let's look around. What can you see?",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6b5c4639d43bd0ccc000672a",
+      "text": "We're going outside. Here we go! Let's begin gently.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "38bab69563ae7d8b716e248c",
+      "text": "Look outside, baby! See those leaves? Let's go!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "66a48e019b38ff3858513d28",
+      "text": "A little tune! Listen, listen, listen! La, la, la!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a7d1ef8b0bb27a80268903de",
+      "text": "Hear that song? Sing along, baby! La, la, la!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9c3dfd11a8e4fe018d34b05d",
+      "text": "Want a little song? Listen to this rhythm. Let's clap together.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-clap",
+      "changed": true,
+      "reason": "拍手への誘いを明示。疑問文でも既存の両手の接触・離れる動作へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "557ec8502e763c4f9dcea5a7",
+      "text": "Here's our happy music! Can you hear drums? Let's sway slowly.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "743312df0c09e347f23fddbb",
+      "text": "Ready to hear music? I'll sing the start. You can listen.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2be39fc8632379d087411027",
+      "text": "Here's a little song. Here we go! Let's begin gently.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "783bfeab5eb8933dfb471faa",
+      "text": "Music time, baby! La, la, la! Here we go!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ea7423de599d5308ad0f63cd",
+      "text": "One more song? Let's sing again. La, la, la!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "040b94e88ac447c21ef1650a",
+      "text": "Here's a little song. Can you hear it? Let's hum together.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "204ec2c2da81db8c6643e6a2",
+      "text": "Hear that music? Another little song? La, la, la!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "41347e5cb210f6558be7b54b",
+      "text": "Want a little sip? Here is your drink. Sip if you like.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "53f69cd10a6bf3722b2ae700",
+      "text": "Ready for a sip? Little by little! Here comes your drink!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "435d4f40f6101bf658bf1460",
+      "text": "Here's a little drink. Take it slowly now. I'm here, sweetheart.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ad19d7f202d9f2b581426a50",
+      "text": "Want some water? Here's your little cup! One small sip?",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2b54364549af0f016485a2a6",
+      "text": "Sit with me! Ready for a sip? Here you go!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1114e2033681ff7d7a188f2f",
+      "text": "Feeling a little thirsty? Let's get your drink. Here you go.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "749da50441943fc4cb3d28df",
+      "text": "Drink time, baby! Sip, sip, sip! Here we go!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3618ed6b0a66bb49259f01b0",
+      "text": "Let's take a break. Here's your little drink. Want a little sip?",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ba55ea201ede5640d7357196",
+      "text": "Look at those hands! You're doing great. Well done, little one.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-wave",
+      "changed": true,
+      "reason": "手の一般的な呼びかけ・手が動く場面。採用済みの手首を支点に振る動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a703e53dbd439f397eaafcf6",
+      "text": "Your fingers are moving! Open and close them. Look at you!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c35ce71187735682857043b9",
+      "text": "Wiggle, wiggle, wiggle! Look at those fingers! Yay, baby!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a448d754ee4944f87b74c5e4",
+      "text": "Look at those feet! You're doing great. Well done, little one.",
+      "assetId": "feet",
+      "afterAssetId": "feet",
+      "changed": false,
+      "reason": "足の指・伸ばす・数える表現はキックと異なる。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6708991982b18f0155baf958",
+      "text": "Bath time, baby! Feel that water! I'll be gentle.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0cd6590a41bac53d8917f3b0",
+      "text": "Warm water, baby! Splash, splash, splash! Ready to wash?",
+      "assetId": "bath",
+      "afterAssetId": "water-splash",
+      "changed": true,
+      "reason": "水しぶきを明示しており、浴槽の水しぶき動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7265fc53b735b0f096a0a1b4",
+      "text": "Splish, splash, splish! Warm water, baby! Ready to wash?",
+      "assetId": "bath",
+      "afterAssetId": "water-splash",
+      "changed": true,
+      "reason": "水しぶきを明示しており、浴槽の水しぶき動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c6aa41158f8a0debba2b4359",
+      "text": "Ready for the bubbles? Come feel the water. Let's wash gently.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "dd7627367248bbf2edac9392",
+      "text": "Ready for bath time? Towel is waiting! Here comes water!",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3de37c453069b3712fb23a15",
+      "text": "Let's get all clean. Here comes warm water. Ready, little toes?",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3da2c0ea7ec89a3ed62f2654",
+      "text": "Would you like splashes? We'll wash your hands. Let's begin slowly.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-wash",
+      "changed": true,
+      "reason": "洗う手を明示。完全な手は変形せず、水滴と泡だけを動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5c7288ae9e93f2efe61d790b",
+      "text": "Here comes bath time! Let's begin gently. I'm with you.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5e09643fa7da7f08802353cb",
+      "text": "Bath time begins! Here we go! Let's begin gently.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "802a615b1b39da7d4d5b1ce4",
+      "text": "Bath time is finished! All done now. Let's get dry.",
+      "assetId": "bath",
+      "afterAssetId": "bath",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9ad00eeaee5958788a1e9cfe",
+      "text": "Bath time is over! All finished now! Let's get cozy.",
+      "assetId": "bath",
+      "afterAssetId": "bath",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7d070032df34d413dc783452",
+      "text": "All done with baths! That's all done. We can rest now.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1fe0ed53a9354f979930ed64",
+      "text": "Bath time together. My hands are gentle. Your toes are warm.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bb732631010860ddd6a1ca09",
+      "text": "In the bath together. We have time. I'm here with you.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "531348bfbfdc16833a4286f0",
+      "text": "Here comes your shirt! One arm first! In you go!",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "35f6d5f104756fc510546bc2",
+      "text": "Here's your little shirt! One arm goes in. Here comes the other!",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4d5d62846630d7ef060384c2",
+      "text": "Here come your clothes! Here we go! Let's begin gently.",
+      "assetId": "clothes",
+      "afterAssetId": "change-zipper",
+      "changed": true,
+      "reason": "一般的な服の準備を前開き服の留め具の動きで示す。腕の挿入や服の交換の明示文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0001a83a59970958c31ed38d",
+      "text": "Your clothes are on! That's all done. We can rest now.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c4c54b1537d31facf25ef773",
+      "text": "Look at you helping! Your shirt is on. Good job, little one.",
+      "assetId": "clothes",
+      "afterAssetId": "clothes",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f93c9dade8d7d3c341b49395",
+      "text": "One arm through! Your shirt is on. Nice and cozy now!",
+      "assetId": "clothes",
+      "afterAssetId": "clothes",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4f9926f77487aa0a0db16b73",
+      "text": "Little hands together! Squeeze, squeeze, squeeze! Hold my hand!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a0fec3099ecc21d86c325b77",
+      "text": "Give me your hand. Let's feel those fingers. Squeeze, squeeze!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d53c7bd17324fc4abd276150",
+      "text": "See those fingers? Wiggle, wiggle, wiggle! Let's play!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e092c15d48eb44ef944b9065",
+      "text": "Your hands are moving. You're trying so hard. I see you.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-wave",
+      "changed": true,
+      "reason": "手の一般的な呼びかけ・手が動く場面。採用済みの手首を支点に振る動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a6cb4b15826bbea68d2e1436",
+      "text": "Look at those hands! Reach, reach, reach! I'm here, baby!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bd96b4b10193805e8c2ae9a4",
+      "text": "Little fingers! Wiggle, wiggle, wiggle! I'm right here!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "20180165cda61826047c5fe1",
+      "text": "Your fingers found it! Hooray, little one! You did that.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b262e6a4e235ab205b96aeff",
+      "text": "Those little hands! You did it! High five, baby!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b98f9e20f28fcb8adbe89e90",
+      "text": "Your little fingers moved! You did it! Wiggle them again!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "56b8fe1f264f94c1dcf63b34",
+      "text": "Look at your feet! Stretch those toes! I'm here, baby!",
+      "assetId": "feet",
+      "afterAssetId": "feet",
+      "changed": false,
+      "reason": "足の指・伸ばす・数える表現はキックと異なる。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bbef21c5025ef1e0252a97f5",
+      "text": "How's your tummy? Are you comfortable? I'm listening, sweetheart.",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6ff15094edb2eb0675f2f5d4",
+      "text": "Little tummy! How's it feeling? I'm right here!",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1c17488d27663c859661979c",
+      "text": "How's your tummy? Little gurgle sounds! I'm right here!",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "fe208cec70389aad321a44cd",
+      "text": "Let's rest a little. I'll hold you close. You're not alone.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b47f6bdbe047af19b33bcddf",
+      "text": "I'm here, sweetheart. I'll stay close. You're not alone.",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "8ddc54660380d6f0a6f3199e",
+      "text": "Let's rest your tummy. We have time. I'm here with you.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a1f7028e40ff383a37f926f2",
+      "text": "That was a lot. Let's rest your tummy. I'm right here.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b4e633fc7f5b75a6c9c0e843",
+      "text": "Let's rest your tummy. We can rest together. I'll stay with you.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1d8a3cd132edc6872461daac",
+      "text": "Your tummy can rest. I'm here with you. Let's take time.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "dee9a4693dded7e56486b001",
+      "text": "Can you hear rain? What's that sound? Let's listen together.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "12f67bebfc9ca567118bb75c",
+      "text": "Hear the rain? Drip, drop, drip! Tap, tap, tap!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "32a94e1561bd1bc964aee6fb",
+      "text": "Hear the raindrops? Tap, tap, tap! They're on the window.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "04b60502f500be1231d85b89",
+      "text": "Rain is falling outside. I'm here with you. I love these moments.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2754256bbdef3a32f215af73",
+      "text": "Listen, listen! Drip, drop, drip! I love you!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f0b43133680962f755f0d9e5",
+      "text": "Rain taps the window. I love you, sweetheart. Let's listen together.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "aa1f3805c312fde03b63879b",
+      "text": "Rain on the window! Drip, drop, drip! Listen with me!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7ee977bd51bbc0a7c5627c16",
+      "text": "Listen to the rain! Drip, drop, drip. Can you hear it?",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "46e990bcff7415b33ade3a7e",
+      "text": "See those raindrops? Tap, tap, tap! Look with me!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "aedd2c7384cc1fc77911f03c",
+      "text": "Hello, sunshine! Look outside, baby! So bright today!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c2d76a7ca9d58625260b2d5f",
+      "text": "Look at the sunshine! It's bright and warm. See that glow?",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6e10a94b86f307709aa6402e",
+      "text": "Look at the sun! Bright, bright, bright! See that light?",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b4f90f0e9422137f7e719457",
+      "text": "Sunshine is so bright! I'm here with you. I love this moment.",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "78fcf2b931a17978250c4197",
+      "text": "Hello, sunshine! Bright, bright, bright! Hello, baby!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6e9121f80bea20216379d03a",
+      "text": "Look at the sunshine! Your face looks bright. I love you!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "56167b179dd41e84607106dc",
+      "text": "Can you see sunshine? Look at the light. Isn't it bright?",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "860b69679f70e86938a49e33",
+      "text": "Where's the sunshine? Look up, baby! There it is!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c86cc72445a202212ed96d0f",
+      "text": "Can you see sunshine? Look at that light. It's so bright!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4350c36bbe41adccecce7a94",
+      "text": "Look at you playing! You're doing great. Well done, sweetheart.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ee01ffe168b8fd67ce06daa8",
+      "text": "You're playing with me! That toy goes round. Look at it!",
+      "assetId": "toy",
+      "afterAssetId": "toy-roll",
+      "changed": true,
+      "reason": "転がす・ボールの明示。ボールが床を移動し、回転も追従する候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "739d633e7b03bb2ff4878758",
+      "text": "Play, play, play! Look at that toy! Yay, baby!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "50648ee10d5d2ebdff604c4a",
+      "text": "Got the toy! You did it! Yay, yay!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ac9f11ce235c9310459f9ed2",
+      "text": "You're playing this game. You keep trying! I'm watching you.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "40b3d7a1c2b3fa769ed1c20a",
+      "text": "Try, try, try! That little toy! I'm right here!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bb74e178779b9a6ab44edf0a",
+      "text": "What's in the book? Let's turn a page. What do you see?",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "354075520e6f7339fb8a7112",
+      "text": "See this book? Look, look, look! Turn the page!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "eb49b2c934e070e16aa56f97",
+      "text": "Look at this picture! What do you see? Let's look again!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "07e13637979a4f36be985302",
+      "text": "You looked at pictures! That's lovely, sweetheart. Well done.",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a7ce97dadc535b9fdf064b4a",
+      "text": "You turned the page! Look at that picture. What comes next?",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "91e08280a5454eecb432a7a8",
+      "text": "Look, look, look! A pretty picture! Yay, baby!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7f0f73ddb6f1eee67b3a001f",
+      "text": "La, la, la! I hear you! Yay, baby!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "852fcd6eed01bd3d5286ffb9",
+      "text": "We're going outside together. I'll stay close. I've got you.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3432cd6edc75406620e081e5",
+      "text": "Out here with me. I'll stay close. You're not alone.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3006a72e4ffbc5d137da86ed",
+      "text": "We're outside together. We have time. I'm here with you.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5a1584fc5541335a3f9d1987",
+      "text": "It's food time, sweetheart. I'll stay beside you. We can go slowly.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6a9b2158c9d6d2b1fb38fd25",
+      "text": "Food time together. I'll stay close. You're not alone.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2b30bbf56bd8f3dd27c88c01",
+      "text": "That was milk time. You did a lot. Let's rest together.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1b939187f614ef8d3cc898e3",
+      "text": "Milk time is over. I'll stay with you. Let's rest together.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d32be0a65f6415b7bc3dc5bf",
+      "text": "It's milk time, sweetheart. Let's get comfy. I'm beside you.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e4dae6d8f28421ffd2b08ef0",
+      "text": "Here's a little milk. We have time. I'm here with you.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "52975c58c74af6e992e743fa",
+      "text": "You took a sip! Well done, little one. That's lovely.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "29fa2dcc91177a1c45f8b396",
+      "text": "You took a sip! Little by little now. Good job, baby!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a4f1ed0202ac79169a25e2fd",
+      "text": "One little sip! Sip, sip, sip! Good job, baby!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a44c1b426af7051f4e244e51",
+      "text": "That change is over. Let's get cozy. I'm with you.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "62edcc5de206d840c6e2dd28",
+      "text": "Diaper time is over. Let's get cozy. I'm here with you.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ce5218ab1e5a8bb0ee56c52e",
+      "text": "A fresh diaper now. We can get cozy. I'll stay with you.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0b4cd10aceca0f9d92c41a93",
+      "text": "Bath time is done! You're all clean now. Let's get cozy!",
+      "assetId": "bath",
+      "afterAssetId": "bath",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "eb8f491c7105d272df5ff3de",
+      "text": "All done with baths. That was a lot. Let's rest together.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ee04809c5144c28402ac37e0",
+      "text": "Your bath is finished. Let's get cozy now. I'll stay with you.",
+      "assetId": "bath",
+      "afterAssetId": "bath",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7a5c532bc3262fab9b719820",
+      "text": "Let's pause feeding. We can wait now. I'll stay with you.",
+      "assetId": "milk",
+      "afterAssetId": "milk",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3636a783459c8f6d292f943e",
+      "text": "Milk time can wait. There's no hurry. I'm right here.",
+      "assetId": "milk",
+      "afterAssetId": "milk",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ccb79d42b8d76e1fcedac543",
+      "text": "Let's pause changing. We have time. I'm right here.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "fcb705e8d3166e144a01b798",
+      "text": "Diaper time can wait. No need to rush. I'll stay beside you.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "02445e3df50be859a1bfffac",
+      "text": "A moment during changing. We'll take it slowly. I'm here, sweetheart.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1d19ae8314a5336851a7c3c4",
+      "text": "Let's pause bath time. No need to rush. I'll stay close.",
+      "assetId": "bath",
+      "afterAssetId": "bath",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ea5b77dab62c37a97eedd287",
+      "text": "Bath time can wait. We'll go gently. I'm here with you.",
+      "assetId": "bath",
+      "afterAssetId": "bath",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bff8bf8d9356bd4059e243f8",
+      "text": "Let's slow down now. We have time. I'll stay with you.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5e92dee145df3622ae90d191",
+      "text": "Let's pause reading. We can read later. I'm right here.",
+      "assetId": "book",
+      "afterAssetId": "book",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4c121dfe09fa3cf35a5a0c4a",
+      "text": "A pause in reading. Let's rest a moment. We'll return soon.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "fdd984dd1acd47c741e66b70",
+      "text": "Let's stop this page. No need to rush. I'll stay with you.",
+      "assetId": "book",
+      "afterAssetId": "book",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "24091124eba5a96cad11c222",
+      "text": "Let's pause our game. We can rest now. I'm right here.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ed5bf85ee5c97ded16511023",
+      "text": "Playtime can wait. Let's take a break. I'll stay beside you.",
+      "assetId": "toy",
+      "afterAssetId": "toy",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1b0697bb90d017dd8715706c",
+      "text": "Playtime all done? Bye-bye, toy! Time to rest!",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "eae82f2548de48229794c627",
+      "text": "Let's stop a moment. Our walk can wait. I'll stay near.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7504782c64b46348347c160c",
+      "text": "Pause our little walk. Let's look around. We have time.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c9d81736bcd6331413adfbc4",
+      "text": "A break while outside. We can wait here. I'm with you.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "58b85b8b17689ad06fe3087b",
+      "text": "Food time can wait. No need to hurry. I'm right here.",
+      "assetId": "meal",
+      "afterAssetId": "meal",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "cf7168de0e5292c347a1c16c",
+      "text": "Let's pause drinking. More sips can wait. I'm right here.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "df647e9b91e5683628d01482",
+      "text": "No more sips yet. We can wait. I'll stay with you.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c7ea32eb928943836e0e4f5a",
+      "text": "Your drink can wait. Let's rest a little. I'm right here.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "688219fb8afa449570f9736b",
+      "text": "Let's pause our song. We can listen later. I'll stay close.",
+      "assetId": "music",
+      "afterAssetId": "music",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "22c8d9aa4af5ef01bfacdb5b",
+      "text": "A little music break. We have time. I'm here with you.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "af24c3731b777af02a1ef47a",
+      "text": "Try reaching your hand. I'm right here. You can go slowly.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7b90041d6bd54fc98cbca1a5",
+      "text": "Those hands can try. Just one little reach. I'll stay close.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "cb3576bee493881cd61ab9c8",
+      "text": "Give your hand time. You can try again. I'm cheering you on.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-wave",
+      "changed": true,
+      "reason": "手の一般的な呼びかけ・手が動く場面。採用済みの手首を支点に振る動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e4141ca737541cb43cca69c0",
+      "text": "One little kick? Give it a try! I'll stay close.",
+      "assetId": "feet",
+      "afterAssetId": "feet",
+      "changed": false,
+      "reason": "足の指・伸ばす・数える表現はキックと異なる。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "19594ed4062109c42f7decc0",
+      "text": "Those little toes! Try moving them. I'm cheering you on.",
+      "assetId": "feet",
+      "afterAssetId": "feet",
+      "changed": false,
+      "reason": "足の指・伸ばす・数える表現はキックと異なる。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c11f3f369b7fdd0ec3b5887f",
+      "text": "Try the game again. You can do this. I'm here with you.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "083768f65751fdebc2e6709c",
+      "text": "Let's try that toy. Go at your pace. I'll stay close.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d089767d46221265a3571f09",
+      "text": "Playing takes practice. Give it a try. I'm right here.",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b343f8919f5d95a1da06f0ad",
+      "text": "One little sip! Then another? You can rest!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "12f8967c00bd3493efa08824",
+      "text": "New food, baby! Just a little taste! Nice and gentle!",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "08399b6b7af0eb0877ac3cec",
+      "text": "Rain is starting now. Can you hear it? Let's listen together.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "57c2be74c7ed4a9ecb1c4bb3",
+      "text": "Here comes the rain! Drip, drop, drip. Let's listen together.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "44fd536b94d62f3a371834a9",
+      "text": "The first raindrops fall. Can you hear them? Come listen with me.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "34cf01a4aa69b529af6e8583",
+      "text": "Here comes the sunshine! Look at that light. Let's look together.",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "516e48780bb7eb5f5ff879d2",
+      "text": "Here comes the sun! Warm, warm light! Look outside, baby!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b8300f6e4d78df8a862548fc",
+      "text": "Sunlight is showing now. Look at the sky. Here it comes.",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4471ca814aef42e045fcccd5",
+      "text": "Music time is over. That was lovely. I'm right here.",
+      "assetId": "music",
+      "afterAssetId": "music",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "26ab7945a44b8ec4ca3b64af",
+      "text": "That's the last note! We finished our song. Hooray for us.",
+      "assetId": "music",
+      "afterAssetId": "music",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "cb4d0db06de1eb0438a16d5f",
+      "text": "Our book is finished! That's the last page. Well done, sweetheart.",
+      "assetId": "book",
+      "afterAssetId": "book",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "82d59864604d6bc88c4f773b",
+      "text": "Story time is over. We read together. What a lovely book.",
+      "assetId": "book",
+      "afterAssetId": "book",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "70e5e1e4ba143e55ab5100b4",
+      "text": "All done reading now! Let's close the book. We can rest.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "943a514f9fdc7fa2fde85488",
+      "text": "Our walk is over! Here we are. Let's get cozy.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5e9fb0b9196811ce6456b162",
+      "text": "Outside time is over. We're back together. I'm right here.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3863ef7f3707ad265c66ced5",
+      "text": "Our outing is finished. Let's take a rest. Here we are.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "69be8c84a3b185e153804ec7",
+      "text": "All done drinking now! You're finished here. Let's rest together.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "37cc86f98f8448b399308129",
+      "text": "Drinking time is over. We can pause now. I'm right here.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f45e4e4edc54069a1bb73302",
+      "text": "No more sips now. Drinking time is done. Let's relax together.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2a26d574ffbf335d8b8104f4",
+      "text": "Our game is finished! All done playing now. Well done, sweetheart.",
+      "assetId": "toy",
+      "afterAssetId": "toy",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bc43d6471d3e26750a3dcf1d",
+      "text": "Playtime is over now. Let's take a break. That was lovely.",
+      "assetId": "toy",
+      "afterAssetId": "toy",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2788b8948fec68202e37dfd3",
+      "text": "That's the last game. We're all finished. Time for a rest.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "01fc9d48664a04f671fb4c28",
+      "text": "Milk time, sweetheart! You're so lovely. I love you.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "603103b46760c1708f14e1af",
+      "text": "Milk time with you. My sweet little one. I love you.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9abd18d41cbf0bc2eaff55ca",
+      "text": "Milk time, sweetheart! Sweet little eyes! I love you!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7be979a0b9c68187ee39e07a",
+      "text": "Look at your cheeks! So soft and sweet. What a lovely moment.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "26a21ab3ed1fe384ed368632",
+      "text": "Hello, precious little one. That milk was nice. I adore you.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c2fa5b86000bb98e69ab55b2",
+      "text": "Here comes your milk. Let's get comfy. Ready for a sip?",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0f01a647256a83b39a748b86",
+      "text": "Milk time starts now. You're all cozy. Here we go!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5d07e9dcc3cd491d392e0b31",
+      "text": "Time for your milk! Let's sit together. Here it comes.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6702a63cb366c9a07d9867d5",
+      "text": "Want some more milk? Are you still hungry? Let's check together.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "402d570d0336d5e114533335",
+      "text": "How is your milk? Is it yummy? Smack those little lips!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3ce09de06662da18cc0e1e73",
+      "text": "One more little sip? Want to try? I'm with you!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "46e48c936a3665f2d08f6f51",
+      "text": "Want another sip? We can try. No need to hurry.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "19ce810c94bb1f1b010ece00",
+      "text": "More milk, little one? Only if you like. I'm right here.",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3d785c0764b3472a5ad0d3da",
+      "text": "More milk, baby? One tiny sip? We can wait!",
+      "assetId": "milk",
+      "afterAssetId": "milk",
+      "changed": false,
+      "reason": "中断・待機・否定。動作中の動画を流さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e0f67e949280c91e3e7549e9",
+      "text": "A drink with you. My sweet little one. I love you.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "cae01c66f1432bc615744788",
+      "text": "Here is your drink! Sip, sip, sip! I love you!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2550572d242bc9694a1c8bd9",
+      "text": "A little drink! Sip, sip, sip! I'm right here!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7ae4334411101a446f0d124a",
+      "text": "Want some water? Feeling thirsty, baby? Here you go!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b3edb2f7224deaba21b423d0",
+      "text": "Another sip for you? Do you want more? It's up to you.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c633cc23af263bad598c4c46",
+      "text": "How is your drink? Is that enough? I'm here with you.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e9edd04195bf93eba854cf0f",
+      "text": "Fresh and cozy now. My sweet little one. I love you.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4a5fb8ef392a0f63804dac54",
+      "text": "Your little diaper, sweetheart. I'm here with you. I love you.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "368b7115cb5ec2f77e06ab11",
+      "text": "Diaper change, all done! We did it! Well done, sweetheart.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b82278f76ff83ab07ebca346",
+      "text": "Look at you! All clean now. You did great!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "737e40deaf2c69e0ab8fa4fc",
+      "text": "A fresh diaper now. We did that. Good job, little one!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "cfe0e0f66891b074c9b1cbff",
+      "text": "Let's change your diaper. We'll be gentle. Here we go!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c51809f1a62e08af821c57fb",
+      "text": "Time for a change. I'll be gentle. Ready, little one?",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ef6e8df8bd53bfc8d59823c9",
+      "text": "A fresh diaper now. Let's get ready. I'm right here.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0b47f010a34bf248eaf53c40",
+      "text": "Sleepy little sweetheart. I love you. I'm right here.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "927340109b50ec082fd64065",
+      "text": "Cozy little baby! Night-night, night-night! I love you!",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6023a647029cbd9846b5b2cf",
+      "text": "Sweet dreams, little one. You're so loved. I'm beside you.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a9b022c815639808f58e4506",
+      "text": "You look sleepy. Let's rest now. I'll stay close.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5be8b685859593eb9b438a5e",
+      "text": "Rest those little eyes. Your bed is cozy. I'll stay beside you.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "eb38dc27c76b0bacbc82f6a6",
+      "text": "Time for a break. Let's get cozy. I'll stay nearby.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1277adb885c8f6b2945d2ccd",
+      "text": "Warm water together. My sweet little one. I love you.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "57d3736d8f0278882e036810",
+      "text": "Bath time, sweetheart! You're so lovely. I'm right here.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ae9dccec8aac7fa255065697",
+      "text": "Look at you! What lovely splashes! You're doing great.",
+      "assetId": "bath",
+      "afterAssetId": "water-splash",
+      "changed": true,
+      "reason": "水しぶきを明示しており、浴槽の水しぶき動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "8477c2ed52d33c0987e99a42",
+      "text": "You're enjoying bath time! That's so lovely. Well done, sweetheart.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a71b4cc0fc55e216ebb8ecb4",
+      "text": "Snack time with you. My sweet little one. I love you.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "784090891fc5df03b82c90a4",
+      "text": "A meal together. My darling little one. I love you.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a3877642b9a6877729ce12da",
+      "text": "You've finished your food. Well done, sweetheart. Let's rest now.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c29cf3e185a9f4e409f71cd1",
+      "text": "Those bites are finished. We are done. Let's clean up.",
+      "assetId": "meal",
+      "afterAssetId": "meal",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "046f55c269ce730826ec225c",
+      "text": "Story time with you. My sweet little one. I love you.",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "44c75af5c72fdf7d566d9e81",
+      "text": "This story is ours. I love you. Stay close, sweetheart.",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "935417c8820a67e99281c28e",
+      "text": "A song for you. My sweet little one. I love you.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "61b9e126a2558abeb05edb5b",
+      "text": "Music time, baby! La, la, la! I'm right here!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "eb512bcc5875b790b138b237",
+      "text": "This song is yours. I love you. Let's listen together.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "43a01a4ffc7bb5d250f7e2ae",
+      "text": "Playtime, baby! Look, look, look! I love you!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6e161371dcbaa76dbd72ff70",
+      "text": "Play, play, play! My sweet baby! What fun!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "af4e8c2164ba1c49d0bb0ec1",
+      "text": "Cozy little clothes! Soft, soft, soft! I love you!",
+      "assetId": "clothes",
+      "afterAssetId": "clothes",
+      "changed": false,
+      "reason": "暖かさ・柔らかさの話で、着替える動作の指定がない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5857b62fb1735d3de5a34385",
+      "text": "All snug and warm. My sweet little one. I'm right here.",
+      "assetId": "clothes",
+      "afterAssetId": "clothes",
+      "changed": false,
+      "reason": "暖かさ・柔らかさの話で、着替える動作の指定がない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6a8d78c200cce6225020e4f9",
+      "text": "A little outfit today. You're so lovely. I love you.",
+      "assetId": "clothes",
+      "afterAssetId": "change-zipper",
+      "changed": true,
+      "reason": "一般的な服の準備を前開き服の留め具の動きで示す。腕の挿入や服の交換の明示文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "031b41b4c5890893129819de",
+      "text": "Bath time! Wash, wash! All clean.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4bdbe8ef68073936d2b1ab1c",
+      "text": "Wash, wash! Little toes. All clean.",
+      "assetId": "feet",
+      "afterAssetId": "feet",
+      "changed": false,
+      "reason": "足の指・伸ばす・数える表現はキックと異なる。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "299a9906c4163c64206487d0",
+      "text": "So sleepy. Night-night. Rest, little one.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "87233a2105c4907c943bd1df",
+      "text": "Sleepy time. Nice and quiet. Night-night.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "72b0c1309487eb1562fd05fc",
+      "text": "Time to sleep. Rest, rest. Nice and cozy.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "51961c77d0875b79033ff569",
+      "text": "Sleepy eyes. Night-night. Rest, rest.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "950ee63fb589fc4a4a7c7782",
+      "text": "Good night, little one. Nice and cozy. Rest.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bf7c5a19e5c5f4f05cd4a70d",
+      "text": "Diaper time! Nice and easy. Here we go!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "07f4f275847730da62c1a24f",
+      "text": "Clean and fresh! Diaper time. All done.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "diaper-v2",
+      "changed": false,
+      "reason": "完了した場面。交換・入浴・着衣等をループで再開しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ca533abea3a863edcd91f0a7",
+      "text": "Clothes time! Arm goes in! All cozy.",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c57f571482ea1af658a50689",
+      "text": "One arm, one leg. All ready! Ready!",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "565d68e752ef1208d6cddfce",
+      "text": "Tiny hands! Squeeze, squeeze! Wiggle, wiggle!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ba3592da323685a8933efd09",
+      "text": "Little hands! Open, close. Wiggle, wiggle!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "23ad056f58f88e74bcc67346",
+      "text": "Tiny fingers! Squeeze, squeeze! Little hands!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "44eec9c6bfbd7ed7c6f10ad1",
+      "text": "Hands, hands! Open and close. Wiggle, wiggle!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f5031029fcade2c5a9595461",
+      "text": "Little tummy. Nice and easy. Take your time.",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e2567a3222a51bb98ad88454",
+      "text": "Little tummy. Nice and gentle. Here we go.",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "fc4db4558bacd6fd96bfe70a",
+      "text": "Little sips. Happy tummy. There you go!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7a651685554d3773b70d5398",
+      "text": "Easy, easy. Little tummy. Right here.",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4f6c4f6387f785b4137eb787",
+      "text": "Burp, burp! Little tummy. Nice and easy.",
+      "assetId": "family-care",
+      "afterAssetId": "family-care",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5280fd6732a73a6baf0c806a",
+      "text": "Play time! Look, look! Here we go!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f4c5282aec681cf082945bec",
+      "text": "Let's play! Look with me. Here we go!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1fb589d2fd8de4a20622de69",
+      "text": "Play, play! Look, look! So much fun!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1f07af4c863e346f75c05a4e",
+      "text": "Time to play! Hello, hello! Let's play!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "469dcd96d836e0167b8b2d04",
+      "text": "Outside time! Look around! Here we go!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f6c082e5ea3ea629ca6f9414",
+      "text": "Out we go! Look, look! Listen with me.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "251ecea67e638822d7f89542",
+      "text": "Outside, outside! Birds up high! Look around!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7272a7ec8b72743ae77c2997",
+      "text": "Time outside! Look with me. Listen, listen!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3a2d9a25a52713b21b54072d",
+      "text": "Fresh air! Look around. Listen with me.",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "06cb046bb88be457cdec02b1",
+      "text": "Rain, rain! Pitter-patter! Listen, listen!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "88936c980f006a003bbc908a",
+      "text": "Rain outside! Drip, drop! Listen with me.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "31b27aee6e20a3beef4e4bbf",
+      "text": "Pitter-patter! Rain, rain! Drip, drop!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4b1c2492933385aec1e6b0c9",
+      "text": "Listen, listen! Rain outside! Pitter-patter!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bf0815c3894f015afca32631",
+      "text": "Drip, drop! Rainy day. Listen closely.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "258eb37bb90897a8d32d1bd1",
+      "text": "Bright day! Hello, sunshine! Look, look!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b4cb9ac23d3ebafe02e2ff96",
+      "text": "Sunshine! Bright, bright! Look with me.",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c59a8a3a8f8433ccb4366d46",
+      "text": "Hello, sunshine! Bright day! Look, look!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d83e22202087911afa90750b",
+      "text": "Bright, bright! Sunshine! Here we go!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e0849f99548d444bc0ce28e4",
+      "text": "Sunny day! Warm and bright. Look around!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "498efa5d9af57c0088e70830",
+      "text": "Food time! Yum, yum! Tiny little bites.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3963d384b6358f0a3db5c4c1",
+      "text": "Open the book. Look, look! What's next?",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "70e56eab769676a62f4990dc",
+      "text": "Music time! La-la-la! Listen, listen!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "c4f0ee67e4c34270b1d1225c",
+      "text": "Song time! La-la-la! Listen, listen!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2fc2391a6864c0027d0731bf",
+      "text": "Clap, clap! Tap, tap! Sing with me.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-clap",
+      "changed": true,
+      "reason": "拍手への誘いを明示。疑問文でも既存の両手の接触・離れる動作へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "28fad2f1f20515aa5e2c38be",
+      "text": "Little sips. Sip, sip! One at a time.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a7e7746b410f580bc83c0ed4",
+      "text": "Let's drink. Little sips. Nice and slow.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a5467022ac4840a67bccb86d",
+      "text": "Sip, sip! Take your time. Little sips.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3ee6da3ddbaaeab24556ec6f",
+      "text": "Small sips. Nice and easy. Take your time.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "832aa13ab81919ba66958de0",
+      "text": "Drink, drink! Little sips. Here you go.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b7a6b6b41215742080b77264",
+      "text": "Arm goes in!",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "742cbac2f56f00c966e9d1ad",
+      "text": "Bath time!",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1e37fba471f35c9eedf2a37e",
+      "text": "Book time!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a8fb88fa5e6e3f04a35f6a36",
+      "text": "Book, book!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "86bd1e87109da5830c92fc2e",
+      "text": "Bright day!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7eb989e19aff13c2847da546",
+      "text": "Bright, bright!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0d910b90ff12882282cbdeae",
+      "text": "Chew, chew!",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f65744c9b9241684f03297c3",
+      "text": "Clothes on!",
+      "assetId": "clothes",
+      "afterAssetId": "clothes",
+      "changed": false,
+      "reason": "暖かさ・柔らかさの話で、着替える動作の指定がない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "801b2242357faa4fb00fb268",
+      "text": "Clothes time!",
+      "assetId": "clothes",
+      "afterAssetId": "change-zipper",
+      "changed": true,
+      "reason": "一般的な服の準備を前開き服の留め具の動きで示す。腕の挿入や服の交換の明示文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3e391aeda45fd0d7f774ac3a",
+      "text": "Diaper change!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-exchange",
+      "changed": true,
+      "reason": "交換する・外す・交換への誘いを、外す→新しいおむつ→留める既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4b9d235445a2834c8fa8cfec",
+      "text": "Diaper time!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "98e8e73c63828d7dbd95587d",
+      "text": "Diaper time.",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5cbeb765d9252d75463fbc88",
+      "text": "Dress time!",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ca093b4fa4edf655f9fe2f41",
+      "text": "Drink, drink!",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5538ad94e3e44a9ceb47a4b1",
+      "text": "Drip, drop!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "679d38e17cfafac32a80be15",
+      "text": "Feet, feet!",
+      "assetId": "feet",
+      "afterAssetId": "kick",
+      "changed": true,
+      "reason": "足の一般的な呼びかけ・キックへの誘いを、採用済みの交互キックで示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "73e606d14c2ce2eabf4f2fea",
+      "text": "Food time!",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7c9c533986c642b543503436",
+      "text": "Food, food!",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "aaa0983fe6712729f86756d1",
+      "text": "Fresh air!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "666a3cbdb538bd9f707372ea",
+      "text": "Fresh diaper!",
+      "assetId": "diaper-v2",
+      "afterAssetId": "change-diaper-v2",
+      "changed": true,
+      "reason": "新しいおむつ・おむつの準備を、留め具の開閉で示す。交換全体の指定文とは分ける。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5812f0c6a61b5949429f43cd",
+      "text": "Getting dressed!",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7e7458fc1817dc5aad2c19d1",
+      "text": "Good night, little one.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "da10a74676ca8f066972e30f",
+      "text": "Hands, hands!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-wave",
+      "changed": true,
+      "reason": "手の一般的な呼びかけ・手が動く場面。採用済みの手首を支点に振る動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "df93f9d52cb575163cf3640a",
+      "text": "Happy tummy.",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "90122341f50f8e03f9d3b7ea",
+      "text": "La-la-la!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3dba22231a9dd78f84f34c57",
+      "text": "Let's drink.",
+      "assetId": "cup",
+      "afterAssetId": "cup",
+      "changed": false,
+      "reason": "コップ動画の液面はユーザー再確認待ち。保留を自動解除しない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "1be3bab5f6b515ee15d19b6b",
+      "text": "Let's play!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "7b41b467173f344f2cc078c1",
+      "text": "Let's read!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "496d752c012f8faec57623ff",
+      "text": "Let's sing!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "73837c470874a35f7cb38592",
+      "text": "Little bite.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "fc5e398839f3cb848d077814",
+      "text": "Little feet!",
+      "assetId": "feet",
+      "afterAssetId": "kick",
+      "changed": true,
+      "reason": "足の一般的な呼びかけ・キックへの誘いを、採用済みの交互キックで示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a7818faf1b8d4fe72f3973a1",
+      "text": "Little feet.",
+      "assetId": "feet",
+      "afterAssetId": "kick",
+      "changed": true,
+      "reason": "足の一般的な呼びかけ・キックへの誘いを、採用済みの交互キックで示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f0a6ea06198d33e5d117a080",
+      "text": "Little hands!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-wave",
+      "changed": true,
+      "reason": "手の一般的な呼びかけ・手が動く場面。採用済みの手首を支点に振る動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "03d03375d287bce0e5c61980",
+      "text": "Little toes!",
+      "assetId": "feet",
+      "afterAssetId": "feet",
+      "changed": false,
+      "reason": "足の指・伸ばす・数える表現はキックと異なる。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "8a7b4f32af8539bd1073949f",
+      "text": "Little toes.",
+      "assetId": "feet",
+      "afterAssetId": "feet",
+      "changed": false,
+      "reason": "足の指・伸ばす・数える表現はキックと異なる。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "74de2686f8cfe4e0b3e0c821",
+      "text": "Little tummy.",
+      "assetId": "tummy",
+      "afterAssetId": "tummy",
+      "changed": false,
+      "reason": "腹部への質問・慰めを、根拠なく背中のケアや手拭きの動作へ変えない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b080a7cff4ce2bdf1557f666",
+      "text": "Milk time!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "9585c3564d423da596e7171f",
+      "text": "Milk, milk!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "fdacbb160934df7f7b26bf48",
+      "text": "Music time!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "2a1f45bc49434fa2e0fc5138",
+      "text": "Music, music!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "feb13a5c3437d901ef56dfb7",
+      "text": "Night-night.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d5f44fe25826bf92594a4474",
+      "text": "One arm, one leg.",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "fc9a0edc9dec4db12c75f77d",
+      "text": "One little arm.",
+      "assetId": "clothes",
+      "afterAssetId": "dress-sleeves",
+      "changed": true,
+      "reason": "袖へ腕を入れる・服を着る場面を、袖から腕が出る既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e3144435c4ed5b157bbb214b",
+      "text": "Open and close.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b9e0d8ef785a1107e7cfc9e1",
+      "text": "Open the book.",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "70fc24e8668028169c992319",
+      "text": "Open, close.",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "a8e6849a2229edeed45d41af",
+      "text": "Out we go!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f9ccebf8892383fc582af359",
+      "text": "Outside time!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d12f04a881f79e5a167e324b",
+      "text": "Outside, outside!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "de424dd218239078199d8300",
+      "text": "Pitter-patter!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b780ae6af27505bac36e673e",
+      "text": "Play time!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bff6e5f68f74c9103e0ea9bb",
+      "text": "Play, play!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "4dbfb28faaad51d01d1200b9",
+      "text": "Rain outside!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "90c741f9b0b5f3714841982b",
+      "text": "Rain, rain!",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "d1a3208131a5d8a4227e98b1",
+      "text": "Rainy day.",
+      "assetId": "rain",
+      "afterAssetId": "water-rain",
+      "changed": true,
+      "reason": "雨の場面を、雲から雨粒が落ちる既存動画で示す。会話の疑問符で観察中の雨を止めない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5f282bcf5e4581b3c924cba2",
+      "text": "Rest, little one.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "3957c4f2d8756ac96374d489",
+      "text": "Sing with me!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "86f2c905747fa16aea90868e",
+      "text": "Sing with me.",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "02d0ceeb0af0e20bd2add860",
+      "text": "Sleepy eyes.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "cfa1eb03d354ee8b98accaeb",
+      "text": "Sleepy time.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "0e15d83b953a4e29f0bcbab9",
+      "text": "So sleepy.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ef0e28d060e4aefb8bba47ce",
+      "text": "Song time!",
+      "assetId": "music",
+      "afterAssetId": "notes",
+      "changed": true,
+      "reason": "歌・音楽の場面を音符が動く既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "ec68be0d8aa783b847bb2f12",
+      "text": "Story time!",
+      "assetId": "book",
+      "afterAssetId": "page",
+      "changed": true,
+      "reason": "絵本・読み聞かせの場面をページがめくれる既存動画へ。質問文を含んでもページへの誘いを妨げない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "f9125f492237415f5d4fd6e9",
+      "text": "Sunny day!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "14487fccbf7c027940c08449",
+      "text": "Sunshine!",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "e52d95459488c1e7a04e7f89",
+      "text": "Time for milk!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "50ebed91e08988e3f8ff6ddc",
+      "text": "Time outside!",
+      "assetId": "outdoor",
+      "afterAssetId": "outdoor-leaves",
+      "changed": true,
+      "reason": "木・幹・地面を保ち、葉が風で舞う場面候補。歩行を実行済みとは表さない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "eacd0e6209f18861610cd2d4",
+      "text": "Time to eat!",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "bdebf00034785b8d7e787dac",
+      "text": "Time to play!",
+      "assetId": "toy",
+      "afterAssetId": "toy-rattle",
+      "changed": true,
+      "reason": "おもちゃの場面。既存ガラガラの輪と柄を固定し、中の鈴を動かす候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "b23165ad8dbac16d240ad899",
+      "text": "Time to sleep.",
+      "assetId": "sleep",
+      "afterAssetId": "sleep-stars",
+      "changed": true,
+      "reason": "寝床を動かさず、外側の星だけがまたたく休息の場面候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "857c5f5cd4a6ed02235f1d96",
+      "text": "Tiny feet!",
+      "assetId": "feet",
+      "afterAssetId": "kick",
+      "changed": true,
+      "reason": "足の一般的な呼びかけ・キックへの誘いを、採用済みの交互キックで示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "30b236dbc59e138fd7fcfc49",
+      "text": "Tiny fingers!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hands-open-v2",
+      "changed": false,
+      "reason": "指の開閉・握る・指を持つ・指の細かな動作は既存動画と異なる。撤回した手を復活させない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "5b12fa873ab64c1ca0eeeda6",
+      "text": "Tiny hands!",
+      "assetId": "hands-open-v2",
+      "afterAssetId": "hand-wave",
+      "changed": true,
+      "reason": "手の一般的な呼びかけ・手が動く場面。採用済みの手首を支点に振る動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "66f6c4e9597aba6a99a55125",
+      "text": "Tiny little bites.",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6fd082bab86a4eb21e3b5f03",
+      "text": "Warm and bright.",
+      "assetId": "sun",
+      "afterAssetId": "sun-rays",
+      "changed": true,
+      "reason": "太陽の中心を保ち、光の筋だけが明るくなる動作候補。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "da22e654ba7f52d0e57337a7",
+      "text": "Warm bath!",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "556dbeafb9454636a85eed11",
+      "text": "Warm water.",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "893cab83e8d9841c73b2e30c",
+      "text": "Wash, wash!",
+      "assetId": "bath",
+      "afterAssetId": "water-shower",
+      "changed": true,
+      "reason": "入浴・温かい水の場面を、水が浴槽へ流れる既存動画で示す。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "6773d6de0a1941291fbcd61a",
+      "text": "Yummy food!",
+      "assetId": "meal",
+      "afterAssetId": "spoon",
+      "changed": true,
+      "reason": "食事・ひとくちの場面を、おかゆをすくうスプーンの既存動画へ。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    },
+    {
+      "id": "85899bbac6e61e578b03f79d",
+      "text": "Yummy milk!",
+      "assetId": "milk",
+      "afterAssetId": "sip",
+      "changed": true,
+      "reason": "ミルクの場面を、哺乳瓶内の液体と傾きが連動する既存動画で示す。哺乳の実行認定ではない。",
+      "reviewStatus": "implementation-reviewed; user-semantic-review-pending"
+    }
+  ]
+}

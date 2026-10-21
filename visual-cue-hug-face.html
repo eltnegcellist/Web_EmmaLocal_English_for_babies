@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>抱っこ｜顔が見える構図の試作</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#353938;background:#f8f7f2;line-height:1.7}*{box-sizing:border-box}body{margin:0}main{max-width:980px;margin:auto;padding:24px}a{color:#21685d}h1{font-size:clamp(1.5rem,4vw,2rem);line-height:1.4}h2{font-size:1.15rem}p{max-width:72ch}.badge{display:inline-block;padding:4px 12px;border-radius:20px;background:#fff0c7;color:#705011;font-weight:700}.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:24px 0}button,select{font:inherit;border:1px solid #bdc8c1;border-radius:10px;padding:9px 12px;background:white;color:inherit}button{cursor:pointer}.comparison{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{min-width:0;background:white;border:1px solid #dfe5df;border-radius:20px;padding:20px;margin:0}.stage{display:flex;align-items:center;justify-content:center;background-color:#f8f8f2;background-image:linear-gradient(45deg,#e1e6df 25%,transparent 25%),linear-gradient(-45deg,#e1e6df 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e1e6df 75%),linear-gradient(-45deg,transparent 75%,#e1e6df 75%);background-size:24px 24px;background-position:0 0,0 12px,12px -12px,-12px 0;border-radius:12px;min-height:340px;overflow:hidden}.stage img{display:block;width:var(--art-size,280px);max-width:100%;height:auto}.stage[data-background=white]{background:white}.stage[data-background=dark]{background:#293c40}.caption{font-size:.95rem;color:#58625c}footer{margin-top:32px;border-top:1px solid #dfe5df;padding-top:20px}@media(max-width:650px){main{padding:16px}.comparison{grid-template-columns:1fr}.card{padding:16px}}
+</style>
+<main>
+<nav><a href="./visual-cue-coverage.html">← 動作の比較・英文の対応表</a></nav>
+<p class="badge">顔あり原画を採用／動画版は確認候補</p>
+<h1>顔が見える抱っこを採用</h1>
+<p>大人と子どもの顔が両方見える斜め正面の構図です。表情と、背中・お尻を支える両腕を確認できます。静止原画は採用済みです。顔と上半身を保ち、背中の手と下の腕をそっと寄せる3.2秒の動画を制作・検証し、テスト版に導入しました。新しい動画の動きは確認候補です。</p>
+<div class="controls">
+<label>表示サイズ <select id="size"><option value="220">220px</option><option value="280" selected>280px</option><option value="320">320px</option></select></label>
+<label>背景 <select id="background"><option value="checker">透過を確認</option><option value="white">白</option><option value="dark">暗い色</option></select></label>
+<button id="toggle" type="button" aria-pressed="false">両方の動画を静止画にする</button>
+</div>
+<div class="comparison">
+<figure class="card"><h2>採用済み：顔を見せない抱っこ</h2><div class="stage"><img id="existing" src="./assets/visual-cue/artwork/animations/hug-arms.webp" alt="後ろ姿の大人が子どもを支え、腕を寄せる採用済みの抱っこ動画" width="512" height="512"></div><figcaption class="caption">既存の動作版。以前の表示を比較用に残しています。</figcaption></figure>
+<figure class="card"><h2>顔あり：原画採用・動画候補</h2><div class="stage"><img id="candidate" src="./assets/visual-cue/motion-variants/hug-face-cuddle.webp" alt="青い服の大人と黄色い服の子どもが微笑み合い、大人が背中とお尻を支えて抱っこしている斜め正面の抱っこ動画候補" width="512" height="512"></div><figcaption class="caption">採用した顔あり原画を使った新しい動画候補。現在のテスト版の抱っこ表示です。</figcaption></figure>
+</div>
+<footer><p>既存の採用済み42素材に、顔ありの静止原画1点を追加しました。抱っこの42原文には顔あり動画候補を、静止表示だった2原文には顔ありポスターを割り当てました。新しい動画は採用済み動画数に加算していません。コップなどの保留状態にも変更はありません。</p><p><a href="./visual-cue-test.html?target=hug-face-cuddle">顔あり抱っこ動画を音声と一緒に試す</a> · <a href="./assets/visual-cue/prototypes/hug-face/hug-face-v1.png">顔あり原画</a> · <a href="https://github.com/eltnegcellist/Web_EmmaLocal_English_for_babies/issues/104">Issue #104</a></p></footer>
+</main>
+<script>
+const stages=[...document.querySelectorAll('.stage')],existing=document.getElementById('existing'),toggle=document.getElementById('toggle');
+const animation='./assets/visual-cue/artwork/animations/hug-arms.webp',poster='./assets/visual-cue/artwork/posters/hug-arms.webp';
+const candidate=document.getElementById('candidate'),faceAnimation='./assets/visual-cue/motion-variants/hug-face-cuddle.webp',facePoster='./assets/visual-cue/motion-variants/hug-face-cuddle-poster.webp';
+let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function render(){existing.src=paused?poster:animation;candidate.src=paused?facePoster:faceAnimation;toggle.textContent=paused?'両方の動画を再生する':'両方の動画を静止画にする';toggle.setAttribute('aria-pressed',String(paused));}
+toggle.addEventListener('click',()=>{paused=!paused;render();});
+document.getElementById('size').addEventListener('change',e=>document.documentElement.style.setProperty('--art-size',e.target.value+'px'));
+document.getElementById('background').addEventListener('change',e=>stages.forEach(s=>s.dataset.background=e.target.value));render();
+</script>
+</html>

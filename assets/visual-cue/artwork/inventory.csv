@@ -1,0 +1,20 @@
+path,classification,original_status,note
+artwork/approved/milk_bottle.webp,承認済み（絵柄方向）,approved-design-direction,"SmartAngel-informed original imagery, transparent background; final animation not approved yet."
+artwork/approved/picture_book.webp,承認済み（絵柄方向）,approved-design-direction,"SmartAngel-informed original imagery, transparent background; final animation not approved yet."
+artwork/approved/clapping_hands.webp,承認済み（絵柄方向）,approved-design-direction,"SmartAngel-informed original imagery, transparent background; final animation not approved yet."
+artwork/approved/kicking_feet.webp,承認済み（絵柄方向）,approved-design-direction,"SmartAngel-informed original imagery, transparent background; final animation not approved yet."
+artwork/candidates/bath.webp,未完成・候補,design-draft-needs-review,Candidate duck/bath; ensure tub clearly readable and movement actually represents bathing.
+artwork/candidates/diaper.webp,未完成・候補,design-draft-needs-review,Candidate diaper; retain leg opening and fasteners clear.
+artwork/candidates/clothes.webp,未完成・候補,design-draft-needs-review,Candidate clothes; do not imply dressing motion with mere bobbing.
+artwork/candidates/hug.webp,再制作必要,redesign-required,"Ambiguous teddy/heart candidate: MUST REDESIGN, hugging should be unambiguous."
+artwork/superseded/meal.webp,却下,rejected-color,REJECTED: food looked green; superseded by cream-colored porridge.
+artwork/candidates/sleep.webp,未完成・候補,design-draft-needs-review,Candidate bedtime still; animation must be calm.
+artwork/candidates/rain.webp,未完成・候補,design-draft-needs-review,Candidate rain still; animation raindrops move perceptibly.
+artwork/approved-style/meal_porridge.webp,方向性承認済み,design-direction-accepted,White/cream porridge with matching spoon contents; corrected after green food feedback.
+artwork/sprite-drafts/clothes.webp,未完成・試作,experimental-not-approved,3 pose costume strip; not 3 independent assets; extract carefully and review pose consistency.
+artwork/sprite-drafts/diaper.webp,未完成・試作,experimental-not-approved,"3 pose diaper strip; verify straps, buckles and no shape morph."
+artwork/sprite-drafts/sleep_moon.webp,未完成・試作,experimental-not-approved,3 poses sleep moon; ask if moon symbolism is understandable to young babies.
+artwork/sprite-drafts/hug_bear.webp,未完成・試作,experimental-not-approved,3 pose teddy hugging heart; meaning of caregiver hug may remain unclear.
+artwork/motion-drafts/rain_big.webp,未完成・試作,experimental-not-approved,large raindrop movement demo; transparent composite QA required
+artwork/motion-drafts/bath_big.webp,未完成・試作,experimental-not-approved,large shower/bath water and duck motion demo; bath shape QA
+artwork/motion-drafts/porridge_scoop.webp,未完成・試作,experimental-not-approved,corrected cream-colored porridge scoop; motion composition still QA

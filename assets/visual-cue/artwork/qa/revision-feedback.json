@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-18",
+  "scope": "ユーザー指摘の旧版は撤回。修正版も採用承認前。",
+  "items": [
+    {
+      "assetId": "kick",
+      "problem": "親指が外側。左右を修正し、親指が中央を向くようにする。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "feet",
+      "problem": "静止画と動画で足の向きをそろえる。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "page",
+      "problem": "めくった後も同じ図、裏面が白紙。新しい左右の絵柄を用意。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hands-open-v2",
+      "problem": "親指の付け根が手首側へ下がり、不自然。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-open-close",
+      "problem": "共通の親指の付け根を掌の側面へ修正。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-count",
+      "problem": "共通の親指の付け根を掌の側面へ修正。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-wiggle",
+      "problem": "共通の親指の付け根を掌の側面へ修正。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-tap",
+      "problem": "共通の親指の付け根を掌の側面へ修正。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "family-care",
+      "problem": "毛布と手では意味不明瞭。養育者と子の抱っこを全再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hug-arms",
+      "problem": "毛布と手では意味不明瞭。養育者と子の抱っこを全再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "hand-squeeze-v3",
+      "problem": "下の掌が隠れ、握っていると分からない。手全体を再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "change-clothes",
+      "problem": "腹部しかなく不自然。頭・首・肩・上半身・腕をつなげる。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "dress-sleeves",
+      "problem": "袖の出口と腕が一致せず、指先も切れる。袖の形で遮蔽する。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "wake-bed",
+      "problem": "掛け物の位置とベッドの透視が不一致。真上からの整合する原画に再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "wake-quilt",
+      "problem": "掛け物がマットレスへめり込む。上面に置き、端を折る。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "sleep",
+      "problem": "就寝・起床で整合した寝具を使う。",
+      "replacementStatus": "candidate-for-human-review"
+    },
+    {
+      "assetId": "care-burp",
+      "problem": "腹部への動きは誤り。縦抱きで背中に手を添える構図へ全再制作。",
+      "replacementStatus": "candidate-for-human-review"
+    }
+  ],
+  "careReference": "https://www.nhs.uk/best-start-in-life/baby/feeding-your-baby/bottle-feeding/bottle-feeding-your-baby/how-to-burp-your-baby/",
+  "followUp": {
+    "date": "2026-10-19",
+    "documentation": "assets/visual-cue/artwork/CUP_LIQUID_REVIEW_20261019.md",
+    "decision": "Cup-only correction; 42 other assets remain accepted",
+    "items": [
+      {
+        "assetId": "cup-sip",
+        "problem": "静止ポスターで水が溢れそうに見え、内壁・液面の奥行きが不明瞭。",
+        "status": "修正候補・採用保留。利用者の再確認待ち。"
+      }
+    ]
+  },
+  "previousFollowUpR2": {
+    "date": "2026-10-18",
+    "decision": "Focused replacements produced; no adoption approval",
+    "documentation": "assets/visual-cue/artwork/REVIEW_REQUEST_20261018_R2.md",
+    "items": [
+      {
+        "assetId": "hold-hands",
+        "problem": "大人の指が途中で消える印象。指先を握りの先へ見せ、単一の整合する原画へ。",
+        "status": "replacement-candidate-human-review-pending"
+      },
+      {
+        "assetId": "hold-hands-squeeze",
+        "problem": "握る手の前後関係と、大人の指の連続性を原画から修正。",
+        "status": "replacement-candidate-human-review-pending"
+      },
+      {
+        "assetId": "hands-open-v2",
+        "problem": "別部品の親指を貼った継ぎ目。母指球・掌・親指を一体の原画へ。",
+        "status": "replacement-candidate-human-review-pending"
+      },
+      {
+        "assetId": "hand-open-close",
+        "problem": "共通の掌と親指の継ぎ目を撤回。",
+        "status": "replacement-candidate-human-review-pending"
+      },
+      {
+        "assetId": "hand-count",
+        "problem": "共通の掌と親指の継ぎ目を撤回。",
+        "status": "replacement-candidate-human-review-pending"
+      },
+      {
+        "assetId": "hand-wiggle",
+        "problem": "共通の掌と親指の継ぎ目を撤回。",
+        "status": "replacement-candidate-human-review-pending"
+      },
+      {
+        "assetId": "hand-tap",
+        "problem": "共通の掌と親指の継ぎ目を撤回。指差す手全体を再制作。",
+        "status": "replacement-candidate-human-review-pending"
+      },
+      {
+        "assetId": "sleep",
+        "problem": "乳児の寝床に枕・掛け布団を置いた旧原画を撤回。",
+        "status": "replacement-candidate-human-review-pending"
+      },
+      {
+        "assetId": "wake-bed",
+        "problem": "乳児の寝床に枕・掛け布団を置いた旧原画を撤回。",
+        "status": "replacement-candidate-human-review-pending"
+      },
+      {
+        "assetId": "wake-quilt",
+        "problem": "掛け布団をめくる起床演出は撤回。",
+        "status": "withdrawn-replaced-by-wake-daylight-proposal"
+      },
+      {
+        "assetId": "kick",
+        "problem": "足の向きは維持し、片足ずつの振り幅とテンポを明確に。",
+        "status": "replacement-candidate-human-review-pending"
+      }
+    ],
+    "sleepReference": "https://www.nhs.uk/baby/caring-for-a-newborn/sudden-infant-death-syndrome-sids/"
+  },
+  "previousFollowUpR3": {
+    "date": "2026-10-19",
+    "documentation": "assets/visual-cue/artwork/REVIEW_R3_RESULT.md",
+    "decision": "Three focused candidates; six loops withdrawn, no adoption approval",
+    "items": [
+      {
+        "assetId": "hold-hands",
+        "problem": "大人の人差し指が長すぎ、子の手が指へめり込む。通常の指の長さに子の手を近づける構図へ再制作。",
+        "status": "再制作候補・目視確認待ち"
+      },
+      {
+        "assetId": "hand-wave",
+        "problem": "握る・開閉・数える・指を動かす6動画を撤回。指を分割しない手振りへ。",
+        "status": "手振り候補・別の動作Cueは未制作"
+      },
+      {
+        "assetId": "cup-sip",
+        "problem": "実英文のtap12行は雨4・音楽7・足1。ブロック接触を指示する行がなく、汎用動作として撤回。",
+        "status": "コップで飲む候補を追加・目視確認待ち"
+      }
+    ]
+  }
+}

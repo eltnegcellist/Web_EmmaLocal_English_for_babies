@@ -1383,6 +1383,21 @@ body{
   flex:0 0 22px;width:22px!important;height:22px!important;
   margin:0 0 0 auto;padding:0!important;border-radius:5px;accent-color:var(--primary)
 }
+
+/* Optional audio-owned Visual Cue overlay; retain the established avatar footprint. */
+.visual-cue-host[hidden]{display:none!important}
+.visual-cue-host{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.visual-cue-image{display:block;width:100%;height:100%;max-width:320px;max-height:320px;object-fit:contain}
+.avatar.has-visual-cue{animation:none!important}
+.avatar.has-visual-cue>.emma-face-frame,.avatar.has-visual-cue>.listening-ring,.avatar.has-visual-cue>.thinking-dots{visibility:hidden}
+
+
+
+
+
+.avatar.has-emma-background{isolation:isolate}
+.visual-cue-host[data-layer="background"]{z-index:-1}
+.visual-cue-background{display:block;width:100%;height:100%;pointer-events:none}
 /* Language selection is available before setup, on Home and in Settings. */
 .language-picker{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:12px 0;font-size:.9rem;}
 .language-picker select{max-width:100%;min-width:180px;min-height:44px;padding:8px 12px;border:1px solid #b5afba;border-radius:12px;background:var(--surface,#fff);color:var(--text,#242028);font:inherit;}

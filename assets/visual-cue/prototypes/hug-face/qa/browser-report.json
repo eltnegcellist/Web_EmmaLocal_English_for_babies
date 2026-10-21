@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "images-loaded",
+      "passed": true
+    },
+    {
+      "name": "static-prototype-clearly-labelled",
+      "passed": true
+    },
+    {
+      "name": "two-alternatives",
+      "passed": true
+    },
+    {
+      "name": "display-size-220",
+      "passed": true
+    },
+    {
+      "name": "display-size-280",
+      "passed": true
+    },
+    {
+      "name": "display-size-320",
+      "passed": true
+    },
+    {
+      "name": "background-white",
+      "passed": true
+    },
+    {
+      "name": "background-dark",
+      "passed": true
+    },
+    {
+      "name": "background-checker",
+      "passed": true
+    },
+    {
+      "name": "existing-animation-can-stop",
+      "passed": true
+    },
+    {
+      "name": "existing-animation-can-resume",
+      "passed": true
+    },
+    {
+      "name": "reduced-motion-existing-poster",
+      "passed": true
+    },
+    {
+      "name": "mobile-no-horizontal-overflow",
+      "passed": true
+    },
+    {
+      "name": "review-candidate-visible",
+      "passed": true
+    },
+    {
+      "name": "no-browser-errors",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

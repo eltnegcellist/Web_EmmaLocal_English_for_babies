@@ -1,0 +1,163 @@
+{
+  "checks": [
+    {
+      "name": "twelve-canonical-frames-in-player",
+      "pass": true
+    },
+    {
+      "name": "no-gesture-replacement-svg",
+      "pass": true
+    },
+    {
+      "name": "canonical-face-unchanged-calm-220",
+      "pass": true
+    },
+    {
+      "name": "background-symbols-move-calm-220",
+      "pass": true
+    },
+    {
+      "name": "canonical-face-unchanged-celebrate-220",
+      "pass": true
+    },
+    {
+      "name": "background-symbols-move-celebrate-220",
+      "pass": true
+    },
+    {
+      "name": "canonical-face-unchanged-calm-256",
+      "pass": true
+    },
+    {
+      "name": "background-symbols-move-calm-256",
+      "pass": true
+    },
+    {
+      "name": "canonical-face-unchanged-celebrate-256",
+      "pass": true
+    },
+    {
+      "name": "background-symbols-move-celebrate-256",
+      "pass": true
+    },
+    {
+      "name": "canonical-face-unchanged-calm-320",
+      "pass": true
+    },
+    {
+      "name": "background-symbols-move-calm-320",
+      "pass": true
+    },
+    {
+      "name": "canonical-face-unchanged-celebrate-320",
+      "pass": true
+    },
+    {
+      "name": "background-symbols-move-celebrate-320",
+      "pass": true
+    },
+    {
+      "name": "background-motion-off",
+      "pass": true
+    },
+    {
+      "name": "os-reduction-stops-background",
+      "pass": true
+    },
+    {
+      "name": "background-keeps-existing-face-visible",
+      "pass": true
+    },
+    {
+      "name": "background-is-behind-face",
+      "pass": true
+    },
+    {
+      "name": "background-static-while-speaking",
+      "pass": true
+    },
+    {
+      "name": "baseline-comparison-has-no-background",
+      "pass": true
+    },
+    {
+      "name": "comparison-does-not-stop-mouth",
+      "pass": true
+    },
+    {
+      "name": "real-audio-drives-small-medium-large-mouth",
+      "pass": true,
+      "detail": [
+        "emma-face-talk-small.svg",
+        "emma-face-talk-large.svg",
+        "emma-face-talk-medium.svg",
+        "emma-face-talk-medium-half.svg",
+        "emma-face-talk-large-half.svg",
+        "emma-face-talk-large-closed.svg",
+        "emma-face-talk-medium-closed.svg",
+        "emma-face-idle-open.svg"
+      ]
+    },
+    {
+      "name": "blink-half-and-closed-preserved-during-audio",
+      "pass": true,
+      "detail": [
+        "emma-face-talk-small.svg",
+        "emma-face-talk-large.svg",
+        "emma-face-talk-medium.svg",
+        "emma-face-talk-medium-half.svg",
+        "emma-face-talk-large-half.svg",
+        "emma-face-talk-large-closed.svg",
+        "emma-face-talk-medium-closed.svg",
+        "emma-face-idle-open.svg"
+      ]
+    },
+    {
+      "name": "audio-end-removes-background",
+      "pass": true
+    },
+    {
+      "name": "stop-removes-background",
+      "pass": true
+    },
+    {
+      "name": "listen-retains-baseline-without-extra-symbol",
+      "pass": true
+    },
+    {
+      "name": "accepted-artwork-still-switches-and-stops",
+      "pass": true
+    },
+    {
+      "name": "mobile-no-overflow",
+      "pass": true
+    },
+    {
+      "name": "actual-app-calming-hearts-behind-canonical-face",
+      "pass": true
+    },
+    {
+      "name": "actual-app-original-mouth-still-moving",
+      "pass": true
+    },
+    {
+      "name": "actual-app-no-new-arms",
+      "pass": true
+    },
+    {
+      "name": "topic-change-cancels-background",
+      "pass": true
+    },
+    {
+      "name": "baseline-mode-has-no-extra-visuals",
+      "pass": true
+    },
+    {
+      "name": "no-browser-errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

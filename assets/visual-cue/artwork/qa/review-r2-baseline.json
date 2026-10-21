@@ -1,0 +1,166 @@
+{
+  "reviewSourceCommit": "ef4ec9f",
+  "targetIds": [
+    "hand-count",
+    "hand-open-close",
+    "hand-tap",
+    "hand-wiggle",
+    "hands-open-v2",
+    "hold-hands",
+    "hold-hands-squeeze",
+    "kick",
+    "sleep",
+    "wake-bed",
+    "wake-quilt"
+  ],
+  "unaffected": {
+    "milk": {
+      "illustration": "386610d86a812ec4b1fd0fb7b08a9345e3272f682eca759559bb407e8eec59fb",
+      "poster": "386610d86a812ec4b1fd0fb7b08a9345e3272f682eca759559bb407e8eec59fb"
+    },
+    "book": {
+      "illustration": "d5a2daac381bca5c19aa62134b783fb04ddf670f11a9f5bceaf057fad69c3e4f",
+      "poster": "d5a2daac381bca5c19aa62134b783fb04ddf670f11a9f5bceaf057fad69c3e4f"
+    },
+    "hands": {
+      "illustration": "c94330e589ab475ee79e2397b1fd231449e964d4401b2ade12251195d1c1c3d9",
+      "poster": "c94330e589ab475ee79e2397b1fd231449e964d4401b2ade12251195d1c1c3d9"
+    },
+    "bath": {
+      "illustration": "899f17325399a9d225010db29e38a060b4b31ef9f7cb28ccc865deaf5cad1cd9",
+      "poster": "899f17325399a9d225010db29e38a060b4b31ef9f7cb28ccc865deaf5cad1cd9"
+    },
+    "diaper": {
+      "illustration": "ac444d4b477d16f7ed01d899c3d2ba2bdf75cb3d403589b1b7af7a038e195873",
+      "poster": "ac444d4b477d16f7ed01d899c3d2ba2bdf75cb3d403589b1b7af7a038e195873"
+    },
+    "toy": {
+      "illustration": "1996c6196ed298aba52b33a43beba08f9781c51b146558bfd3b49a0d77c2207d",
+      "poster": "1996c6196ed298aba52b33a43beba08f9781c51b146558bfd3b49a0d77c2207d"
+    },
+    "outdoor": {
+      "illustration": "cefcb0e5e4242c617434928967133ae4a501b156478753a4343a8bd382241743",
+      "poster": "cefcb0e5e4242c617434928967133ae4a501b156478753a4343a8bd382241743"
+    },
+    "sun": {
+      "illustration": "1c0aa8155642862e6b78d238fd96983a23e233a899fed713a5d5109324bdad13",
+      "poster": "1c0aa8155642862e6b78d238fd96983a23e233a899fed713a5d5109324bdad13"
+    },
+    "clothes": {
+      "illustration": "0b63d92f29fd3b0e5bbf9713b8bb7e039196c02dce1ec90600548ea8c2c7b47e",
+      "poster": "0b63d92f29fd3b0e5bbf9713b8bb7e039196c02dce1ec90600548ea8c2c7b47e"
+    },
+    "rain": {
+      "illustration": "2d7fd5089b836fcdb97b52fd85ed5bbb46ec4be3870bb32450f1b9132a4f8e24",
+      "poster": "2d7fd5089b836fcdb97b52fd85ed5bbb46ec4be3870bb32450f1b9132a4f8e24"
+    },
+    "meal": {
+      "illustration": "2b51b0cb8eabbb4da0d9837a9a6cffe8cdb37e1a3393488544362cd8ce01ed31",
+      "poster": "2b51b0cb8eabbb4da0d9837a9a6cffe8cdb37e1a3393488544362cd8ce01ed31"
+    },
+    "music": {
+      "illustration": "6bc12c34e54dae0498c540adab77290b57ea290cbc7220df886219c8736432e2",
+      "poster": "6bc12c34e54dae0498c540adab77290b57ea290cbc7220df886219c8736432e2"
+    },
+    "hand-wave": {
+      "animation": "9d1817005e34a670579a6b942b883115aecf7e2f5d9ac8261b25af5db74125aa",
+      "poster": "2ca3bf48c3d345be0859a8ac659bbc22c1ed470ab507eee3bbaa67da72ffa87e"
+    },
+    "hand-clap": {
+      "animation": "b9c71aa03ae40f1a42e7e9f89b9983f381fe9886e78dd55b7c875878c6710f52",
+      "poster": "420f3ee4f1711d3a7a4171f20021f16d520fc09efca0283f1b6f32aded3e3931"
+    },
+    "sip": {
+      "animation": "8f2a5527392cd2c014b5267be1e7fabf0307ce541c1057b445816f84a0b1f855",
+      "poster": "6d1abe6fb600ae25a24eceb7b5c45a98af4e42d6cb7adc406b0066c9083457cb"
+    },
+    "water-rain": {
+      "animation": "ef63e0d0157f4b866869a8ab58775973508307fd84f3b56626c45bd8cf374b25",
+      "poster": "303b52081eab288c76cfe593eaf0247a6da2cd5273d8bef7418e9b5448e98094"
+    },
+    "water-shower": {
+      "animation": "9e4f666a32cf0d05f164afd0d49fa298b3ccd0d9b0f214209955fd87aa40265e",
+      "poster": "8b6b399424cc1edfe86f6a1a8b179917d7ebf7888d23c310d1c40a88aa94b658"
+    },
+    "water-splash": {
+      "animation": "636df22931224b584eaf0babdceafa088e731185a63b465d0fe2421ff9056dc2",
+      "poster": "b0ec5c736bbeee7bce979b830d7278c1418c313f1017655137d5e616c20cda2e"
+    },
+    "spoon": {
+      "animation": "b8b53fad3e37626c78721a24e0104bc69edaab8a4c48f86df271f7ef3d09ea5a",
+      "poster": "9822a54785f1b23592bbcd81340e7c24a680318916c73e4be34a2fd97335a94b"
+    },
+    "notes": {
+      "animation": "4453ebd0b575f220db85198f401ec7d94861f47a2319d723202f017f3793d11a",
+      "poster": "c123bdfa3c9eba562f1dad0e59ac9281a72573caa9719bfab925aa5754dbf4e1"
+    },
+    "peekaboo": {
+      "animation": "3b00c10daad8f1f1bdb841f9fb5301445a8bc77bf95f9c596e8524f30ac19cea",
+      "poster": "69db2f4f294ab3808d11a9d65bbcc68fcef2f209225079bab94e9a6023da7b25"
+    },
+    "care-wipe": {
+      "animation": "beb3c60f75bb250556a4a7f1680b31f5ccfde3df7671a4174ff6a845196c5dba",
+      "poster": "93e9a41d1be0fddc30c67d0671fdca3ba9ab8116592d7b36cd7c834898625113"
+    },
+    "diaper-v2": {
+      "illustration": "b5fd186c9d973f61c1bea7c1905a6e08141c19b1e535073bf90c0141937b1443",
+      "poster": "b5fd186c9d973f61c1bea7c1905a6e08141c19b1e535073bf90c0141937b1443"
+    },
+    "change-diaper-v2": {
+      "animation": "646b7fe05d10d0bd674ab52201dccb421286c8d9286266f5daa45a0b4ff52689",
+      "poster": "b5fd186c9d973f61c1bea7c1905a6e08141c19b1e535073bf90c0141937b1443"
+    },
+    "clothes-open-v2": {
+      "illustration": "95a480edbe24af67bb5ac3160f35b3378c90ffa655f2c0637eddb69422576a70",
+      "poster": "95a480edbe24af67bb5ac3160f35b3378c90ffa655f2c0637eddb69422576a70"
+    },
+    "change-zipper": {
+      "animation": "5ab340ef65ff3a46e19a6121814f11142a440cc923b0e2fe9d03b90d7ae3c087",
+      "poster": "12df22d16115e6dc7ad1dbef0fdcdf03d6934f3a1b36630ba5140b54662bf0fc"
+    },
+    "tummy": {
+      "illustration": "3ac95b3e6615d95fc4ca7f8c32d3d5d9ac98da154555e4fbcc087d2e32a7bd10",
+      "poster": "3ac95b3e6615d95fc4ca7f8c32d3d5d9ac98da154555e4fbcc087d2e32a7bd10"
+    },
+    "change-diaper-exchange": {
+      "animation": "de91c8c4d50900e3c879eca0b90159e745511c8871dd85bc01c3e46725b064c8",
+      "poster": "30ca18a6b50b26657bdd723451a31cfddd7c96136e47a3dead4bc6183525f376"
+    },
+    "feet": {
+      "illustration": "c0df6a4620ab791b200a95a119bad1b9f9886d9c41536e71892175ec022b62f9",
+      "poster": "c0df6a4620ab791b200a95a119bad1b9f9886d9c41536e71892175ec022b62f9"
+    },
+    "page": {
+      "animation": "fc421e2137a89a36ca99e110967c6491f1f78e861b1b8f8862495093bf90824b",
+      "poster": "c787af25aeb728332f3fc6309662542576666738b806f73812eeded16f831c8f"
+    },
+    "family-care": {
+      "illustration": "f41e13bfbe915d41767ab74f497171bbcc638e9ef430852f5669ec4e2a5c2f33",
+      "poster": "f41e13bfbe915d41767ab74f497171bbcc638e9ef430852f5669ec4e2a5c2f33"
+    },
+    "hug-arms": {
+      "animation": "1526ba3bea1e1545f0811e56a078b96cfedcbd5ac9accc9b3a7fe2b5ffa7899d",
+      "poster": "3fe9739eeee3c89daee93e29f9b5a5f414ed554b04583152fb0eba9bb07368b2"
+    },
+    "hand-squeeze-v3": {
+      "animation": "cb375877a3f6bd2fb70ee635823628b8c680ced190d4b001eac2375758f2a922",
+      "poster": "f065cd61223ce3576150bc7190f9f14ddba9783e61e069c4273cff4f7a289782"
+    },
+    "dress-sleeves": {
+      "animation": "a0366d4ebad65653adacc5ee5a3640eeac3e6c94e304c7fa77f86ac11189e9bf",
+      "poster": "9876f76e25c21edf14ae503f8b511e3a13ef2ec3079c27d6f3708d63d845dbca"
+    },
+    "change-clothes": {
+      "animation": "23e68049c18651e19076c37b82aa2840e517dd3e349d50246a5fdef99bd4d6ee",
+      "poster": "7c8843332ec9885b03729b2d98fd1171634cf041ef7003b8a1bcbcd58276a293"
+    },
+    "care-burp": {
+      "animation": "ef1b17fcc7bdc0dd446b88209992aba594832a8dfac46a54574e7406d33456aa",
+      "poster": "72ed198471c7c6ee0db4270b903f9186f1462f37cf87068253f6e67c9b52e98a"
+    },
+    "cup": {
+      "illustration": "95eddbefc2c32aee315566480851d1a2e26f8280800873e90d703fb9da4d1103",
+      "poster": "95eddbefc2c32aee315566480851d1a2e26f8280800873e90d703fb9da4d1103"
+    }
+  }
+}

@@ -1,0 +1,535 @@
+{
+  "schemaVersion": 1,
+  "status": "static-approved; motion-candidate",
+  "baselineCommit": "2faff558c71665872808cacf74361c8d3367b54b",
+  "rows": [
+    {
+      "text": "My sweet baby! Big, big hugs! Hello, sweetheart!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "You're my little sunshine. I love you. Big hugs!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Sweet little baby! Love, love, love! Big hugs!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "My sweet baby! I'm right here! Big hugs!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Baby, hello there! I'm here with you. Big hugs!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Baby, hello again! I'm happy you're here. Big hugs!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Come here, baby. Let's have a cuddle. Big hugs!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Up you go! Into my arms. I've got you!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "A little cuddle? I'll hold you close. So cozy!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Let's have a hug. Close to my heart. I love you!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Here are my arms. Come close, sweetheart. Big hug!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Hug time! You're warm and cozy. I'm here!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Baby, come here! A big warm hug. I love you!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Baby, cuddle time! I'll hold you close. So cozy!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Your little tummy! Let's have a cuddle. So cozy!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Let's get comfortable. I'll hold you close. Big hugs!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Baby, little tummy! Let's get comfortable. Big hugs!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Baby, feeling full? I'll hold you close. So cozy!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "All done eating? Wipe, wipe, wipe! Nice and clean!",
+      "before": {
+        "type": "asset",
+        "assetId": "family-care"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-v1"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "That was your milk. We're all done now. Here comes a cuddle.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Finished the diaper change! Your little legs relax. Back to cuddles.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Want a little cuddle? Come here, sweetheart. I'm right here.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Want a cuddle? Arms open wide! Come here, sweetheart!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "A gentle little hug. Would you like one? Come close, sweetheart.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Come for a cuddle. I'm right here. I've got you.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Time for a cuddle. I'll stay close. You're not alone.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Here comes a hug. We have time. I'm here with you.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "I love this cuddle. You're my treasure. Stay close, little one.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Cuddle, cuddle! My sweet baby! I love you!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "A cuddle with you! You're warm and cozy. I love you!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "You've done a lot. Come for a cuddle. I'll hold you close.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Come for a cuddle. You look tired, sweetheart. Let's rest together.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "A gentle little cuddle. You did a lot. I'll stay with you.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "You reached for hugs! How lovely, little one. Well done.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Such a warm cuddle! You're snuggled up close. I love you.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Cuddle time! Snuggle, snuggle, snuggle! I love you!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "A cuddle after milk. My happy little one. You're so dear.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Milk and gentle cuddles. Your smile warms me. What a sweet day.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Big cuddle! Up, up! Nice and close.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Cuddle time! Nice and close. Here we go!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Up we go! Big hug. So cozy.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Big hug! Nice and close. Right here.",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Cuddle, cuddle! Warm and cozy. Big hug!",
+      "before": {
+        "type": "asset",
+        "assetId": "hug-arms"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-cuddle"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    },
+    {
+      "text": "Burp, burp! Little tummy. Nice and easy.",
+      "before": {
+        "type": "asset",
+        "assetId": "family-care"
+      },
+      "after": {
+        "type": "asset",
+        "assetId": "hug-face-v1"
+      },
+      "reason": "顔あり抱っこへ差し替え。元が静止表示なら顔あり静止、元が動作なら検証済みの顔あり動画候補。"
+    }
+  ]
+}

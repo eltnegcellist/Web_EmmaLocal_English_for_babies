@@ -1,0 +1,996 @@
+{
+  "source": "shared/visual-cue-phrases.json",
+  "sourceSHA256": "41509cd2442209bcde77eae88c28c74a7b8776659d1f83149ed54aca131b67f1",
+  "totalRows": 914,
+  "uniqueTexts": 913,
+  "method": "大文字小文字を区別しない単語境界一致。set/行数であり発話回数・実際の利用頻度ではない。ブロックへのtapは全12行の文脈を人が確認。",
+  "terms": {
+    "tap": {
+      "count": 12,
+      "topics": {
+        "rain": 4,
+        "music": 7,
+        "feet": 1
+      },
+      "rows": [
+        {
+          "phraseId": "vc_000153",
+          "sourceKind": "topic",
+          "sourceKey": "rain",
+          "sourceIndex": 3,
+          "text": "Rain on the window! Tap, tap, tap. Can you hear?"
+        },
+        {
+          "phraseId": "vc_000184",
+          "sourceKind": "topic",
+          "sourceKey": "music",
+          "sourceIndex": 2,
+          "text": "Listen to the music. Can you hear it? Tap, tap!"
+        },
+        {
+          "phraseId": "vc_000186",
+          "sourceKind": "topic",
+          "sourceKey": "music",
+          "sourceIndex": 4,
+          "text": "Hear the music? Tap, tap! Let's sing!"
+        },
+        {
+          "phraseId": "vc_000190",
+          "sourceKind": "topic",
+          "sourceKey": "music",
+          "sourceIndex": 8,
+          "text": "Baby, hear that song? Let's listen together. Tap, tap!"
+        },
+        {
+          "phraseId": "vc_000473",
+          "sourceKind": "combined",
+          "sourceKey": "music|invitation",
+          "sourceIndex": 7,
+          "text": "Tap, tap, tap! Listen to that! Your turn, baby!"
+        },
+        {
+          "phraseId": "vc_000570",
+          "sourceKind": "combined",
+          "sourceKey": "rain|inquiry",
+          "sourceIndex": 2,
+          "text": "Hear the rain? Drip, drop, drip! Tap, tap, tap!"
+        },
+        {
+          "phraseId": "vc_000571",
+          "sourceKind": "combined",
+          "sourceKey": "rain|inquiry",
+          "sourceIndex": 3,
+          "text": "Hear the raindrops? Tap, tap, tap! They're on the window."
+        },
+        {
+          "phraseId": "vc_000577",
+          "sourceKind": "combined",
+          "sourceKey": "rain|invitation",
+          "sourceIndex": 3,
+          "text": "See those raindrops? Tap, tap, tap! Look with me!"
+        },
+        {
+          "phraseId": "vc_000621",
+          "sourceKind": "combined",
+          "sourceKey": "music|praise",
+          "sourceIndex": 2,
+          "text": "You're moving to music! Your little feet bounce. Tap, tap, tap!"
+        },
+        {
+          "phraseId": "vc_000854",
+          "sourceKind": "press",
+          "sourceKey": "feet",
+          "sourceIndex": 5,
+          "text": "Tap, tap! Little feet. Kick, kick!"
+        },
+        {
+          "phraseId": "vc_000907",
+          "sourceKind": "press",
+          "sourceKey": "music",
+          "sourceIndex": 3,
+          "text": "Music, music! Tap, tap! Sing with me!"
+        },
+        {
+          "phraseId": "vc_000909",
+          "sourceKind": "press",
+          "sourceKey": "music",
+          "sourceIndex": 5,
+          "text": "Clap, clap! Tap, tap! Sing with me."
+        }
+      ]
+    },
+    "wave": {
+      "count": 6,
+      "topics": {
+        "generic": 3,
+        "hands": 2,
+        "greeting": 1
+      },
+      "rows": [
+        {
+          "phraseId": "vc_000005",
+          "sourceKind": "topic",
+          "sourceKey": "generic",
+          "sourceIndex": 5,
+          "text": "Hello again, baby! Hello, hello! Wave, wave, wave!"
+        },
+        {
+          "phraseId": "vc_000018",
+          "sourceKind": "topic",
+          "sourceKey": "generic",
+          "sourceIndex": 18,
+          "text": "Wave hello, baby! Hi, hi, hi! My hand says hello!"
+        },
+        {
+          "phraseId": "vc_000019",
+          "sourceKind": "topic",
+          "sourceKey": "generic",
+          "sourceIndex": 19,
+          "text": "Look at my hands! Let's wave hello. Hi, hi!"
+        },
+        {
+          "phraseId": "vc_000091",
+          "sourceKind": "topic",
+          "sourceKey": "hands",
+          "sourceIndex": 5,
+          "text": "One hand, two hands! Let's wave hello. Hi there!"
+        },
+        {
+          "phraseId": "vc_000806",
+          "sourceKind": "press",
+          "sourceKey": "greeting",
+          "sourceIndex": 2,
+          "text": "Hi there! Hello, little one! Wave hello!"
+        },
+        {
+          "phraseId": "vc_000849",
+          "sourceKind": "press",
+          "sourceKey": "hands",
+          "sourceIndex": 5,
+          "text": "Clap, clap! Wave, wave! Little hands!"
+        }
+      ]
+    },
+    "sip": {
+      "count": 54,
+      "topics": {
+        "milk": 31,
+        "drink": 23
+      },
+      "rows": [
+        {
+          "phraseId": "vc_000039",
+          "sourceKind": "topic",
+          "sourceKey": "milk",
+          "sourceIndex": 1,
+          "text": "Here's your milk! Ready for a sip? Here you go!"
+        },
+        {
+          "phraseId": "vc_000041",
+          "sourceKind": "topic",
+          "sourceKey": "milk",
+          "sourceIndex": 3,
+          "text": "Milk for you! One little sip. Then another!"
+        },
+        {
+          "phraseId": "vc_000045",
+          "sourceKind": "topic",
+          "sourceKey": "milk",
+          "sourceIndex": 7,
+          "text": "Baby, your milk! Here's a little sip. Mmm, yummy!"
+        },
+        {
+          "phraseId": "vc_000046",
+          "sourceKind": "topic",
+          "sourceKey": "milk",
+          "sourceIndex": 8,
+          "text": "Baby, milk time! Take a little sip. I'm here!"
+        },
+        {
+          "phraseId": "vc_000191",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 1,
+          "text": "Would you like some? Here's a little sip. There you go!"
+        },
+        {
+          "phraseId": "vc_000192",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 2,
+          "text": "Here's your drink! Ready for a sip? Here you are!"
+        },
+        {
+          "phraseId": "vc_000193",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 3,
+          "text": "Drink time! One little sip. How does it taste?"
+        },
+        {
+          "phraseId": "vc_000194",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 4,
+          "text": "Want a little sip? Here's your drink. Sip if you like!"
+        },
+        {
+          "phraseId": "vc_000195",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 5,
+          "text": "Want another sip? No need to hurry. Here you go!"
+        },
+        {
+          "phraseId": "vc_000196",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 6,
+          "text": "Baby, your drink! Here's a little sip. There you go!"
+        },
+        {
+          "phraseId": "vc_000197",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 7,
+          "text": "Baby, thirsty? Let's have a drink. Sip when you're ready!"
+        },
+        {
+          "phraseId": "vc_000310",
+          "sourceKind": "combined",
+          "sourceKey": "milk|invitation",
+          "sourceIndex": 1,
+          "text": "Milk time, baby! Sip, sip, sip! I'm right here!"
+        },
+        {
+          "phraseId": "vc_000311",
+          "sourceKind": "combined",
+          "sourceKey": "milk|invitation",
+          "sourceIndex": 2,
+          "text": "Milk is ready! Sip, sip, sip! Nice and easy!"
+        },
+        {
+          "phraseId": "vc_000312",
+          "sourceKind": "combined",
+          "sourceKey": "milk|invitation",
+          "sourceIndex": 3,
+          "text": "A little milk! Want some, baby? One tiny sip!"
+        },
+        {
+          "phraseId": "vc_000315",
+          "sourceKind": "combined",
+          "sourceKey": "milk|invitation",
+          "sourceIndex": 6,
+          "text": "Hungry, little one? Milk is ready! One little sip?"
+        },
+        {
+          "phraseId": "vc_000317",
+          "sourceKind": "combined",
+          "sourceKey": "milk|invitation",
+          "sourceIndex": 8,
+          "text": "Let's sit together now. Your bottle is ready. Want a little sip?"
+        },
+        {
+          "phraseId": "vc_000320",
+          "sourceKind": "combined",
+          "sourceKey": "milk|praise",
+          "sourceIndex": 3,
+          "text": "Sip, sip, sip! Look at you! Good job, baby!"
+        },
+        {
+          "phraseId": "vc_000321",
+          "sourceKind": "combined",
+          "sourceKey": "milk|praise",
+          "sourceIndex": 4,
+          "text": "One more sip! Sip, sip, sip! Hooray, baby!"
+        },
+        {
+          "phraseId": "vc_000322",
+          "sourceKind": "combined",
+          "sourceKey": "milk|praise",
+          "sourceIndex": 5,
+          "text": "Little sips, baby! Sip, sip! High five!"
+        },
+        {
+          "phraseId": "vc_000332",
+          "sourceKind": "combined",
+          "sourceKey": "milk|finish",
+          "sourceIndex": 4,
+          "text": "The last sip's done! Your tummy can rest. Time for cuddles."
+        },
+        {
+          "phraseId": "vc_000337",
+          "sourceKind": "combined",
+          "sourceKey": "milk|finish_check",
+          "sourceIndex": 1,
+          "text": "Milk all done? One more sip? Let's have a look!"
+        },
+        {
+          "phraseId": "vc_000338",
+          "sourceKind": "combined",
+          "sourceKey": "milk|finish_check",
+          "sourceIndex": 2,
+          "text": "Milk time all done? One more sip? Let me see!"
+        },
+        {
+          "phraseId": "vc_000341",
+          "sourceKind": "combined",
+          "sourceKey": "milk|finish_check",
+          "sourceIndex": 5,
+          "text": "All done with milk? Want another small sip? You can choose."
+        },
+        {
+          "phraseId": "vc_000342",
+          "sourceKind": "combined",
+          "sourceKey": "milk|finish_check",
+          "sourceIndex": 6,
+          "text": "Last little sip? All done now? Let me see!"
+        },
+        {
+          "phraseId": "vc_000345",
+          "sourceKind": "combined",
+          "sourceKey": "milk|encouragement",
+          "sourceIndex": 1,
+          "text": "Try a little sip. There's no hurry. I'm right here."
+        },
+        {
+          "phraseId": "vc_000481",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 1,
+          "text": "Want a little sip? Here is your drink. Sip if you like."
+        },
+        {
+          "phraseId": "vc_000482",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 2,
+          "text": "Ready for a sip? Little by little! Here comes your drink!"
+        },
+        {
+          "phraseId": "vc_000484",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 4,
+          "text": "Want some water? Here's your little cup! One small sip?"
+        },
+        {
+          "phraseId": "vc_000485",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 5,
+          "text": "Sit with me! Ready for a sip? Here you go!"
+        },
+        {
+          "phraseId": "vc_000487",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 7,
+          "text": "Drink time, baby! Sip, sip, sip! Here we go!"
+        },
+        {
+          "phraseId": "vc_000488",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 8,
+          "text": "Let's take a break. Here's your little drink. Want a little sip?"
+        },
+        {
+          "phraseId": "vc_000635",
+          "sourceKind": "combined",
+          "sourceKey": "milk|reassurance",
+          "sourceIndex": 1,
+          "text": "Here comes your milk. I'll hold your bottle. One little sip."
+        },
+        {
+          "phraseId": "vc_000638",
+          "sourceKind": "combined",
+          "sourceKey": "drink|finish_check",
+          "sourceIndex": 1,
+          "text": "All done drinking? Want another sip? Let's see together."
+        },
+        {
+          "phraseId": "vc_000639",
+          "sourceKind": "combined",
+          "sourceKey": "drink|finish_check",
+          "sourceIndex": 2,
+          "text": "Drink all done? One more sip? Let's have a look!"
+        },
+        {
+          "phraseId": "vc_000641",
+          "sourceKind": "combined",
+          "sourceKey": "drink|praise",
+          "sourceIndex": 1,
+          "text": "You took a sip! Well done, little one. That's lovely."
+        },
+        {
+          "phraseId": "vc_000642",
+          "sourceKind": "combined",
+          "sourceKey": "drink|praise",
+          "sourceIndex": 2,
+          "text": "You took a sip! Little by little now. Good job, baby!"
+        },
+        {
+          "phraseId": "vc_000643",
+          "sourceKind": "combined",
+          "sourceKey": "drink|praise",
+          "sourceIndex": 3,
+          "text": "One little sip! Sip, sip, sip! Good job, baby!"
+        },
+        {
+          "phraseId": "vc_000661",
+          "sourceKind": "combined",
+          "sourceKey": "milk|pause",
+          "sourceIndex": 3,
+          "text": "Another sip can wait. Let's take a break. I'll be close."
+        },
+        {
+          "phraseId": "vc_000701",
+          "sourceKind": "combined",
+          "sourceKey": "milk|effort",
+          "sourceIndex": 1,
+          "text": "Little sips, baby! Sip by sip! You're doing fine!"
+        },
+        {
+          "phraseId": "vc_000702",
+          "sourceKind": "combined",
+          "sourceKey": "milk|effort",
+          "sourceIndex": 2,
+          "text": "One little sip! Then another? You can rest!"
+        },
+        {
+          "phraseId": "vc_000703",
+          "sourceKind": "combined",
+          "sourceKey": "milk|effort",
+          "sourceIndex": 3,
+          "text": "Sip, sip! Nice little sips! No need to rush!"
+        },
+        {
+          "phraseId": "vc_000730",
+          "sourceKind": "combined",
+          "sourceKey": "milk|affection",
+          "sourceIndex": 3,
+          "text": "Milk is here! Sip, sip, sip! I love you!"
+        },
+        {
+          "phraseId": "vc_000736",
+          "sourceKind": "combined",
+          "sourceKey": "milk|start",
+          "sourceIndex": 1,
+          "text": "Here comes your milk. Let's get comfy. Ready for a sip?"
+        },
+        {
+          "phraseId": "vc_000741",
+          "sourceKind": "combined",
+          "sourceKey": "milk|inquiry",
+          "sourceIndex": 3,
+          "text": "One more little sip? Want to try? I'm with you!"
+        },
+        {
+          "phraseId": "vc_000742",
+          "sourceKind": "combined",
+          "sourceKey": "milk|repeat",
+          "sourceIndex": 1,
+          "text": "Want another sip? We can try. No need to hurry."
+        },
+        {
+          "phraseId": "vc_000744",
+          "sourceKind": "combined",
+          "sourceKey": "milk|repeat",
+          "sourceIndex": 3,
+          "text": "More milk, baby? One tiny sip? We can wait!"
+        },
+        {
+          "phraseId": "vc_000746",
+          "sourceKind": "combined",
+          "sourceKey": "drink|affection",
+          "sourceIndex": 2,
+          "text": "Here is your drink! Sip, sip, sip! I love you!"
+        },
+        {
+          "phraseId": "vc_000747",
+          "sourceKind": "combined",
+          "sourceKey": "drink|affection",
+          "sourceIndex": 3,
+          "text": "A little drink! Sip, sip, sip! I'm right here!"
+        },
+        {
+          "phraseId": "vc_000749",
+          "sourceKind": "combined",
+          "sourceKey": "drink|inquiry",
+          "sourceIndex": 2,
+          "text": "Another sip for you? Do you want more? It's up to you."
+        },
+        {
+          "phraseId": "vc_000815",
+          "sourceKind": "press",
+          "sourceKey": "milk",
+          "sourceIndex": 1,
+          "text": "Milk time! Sip, sip! Little by little."
+        },
+        {
+          "phraseId": "vc_000816",
+          "sourceKind": "press",
+          "sourceKey": "milk",
+          "sourceIndex": 2,
+          "text": "Yummy milk! Sip, sip! Mmm, yummy!"
+        },
+        {
+          "phraseId": "vc_000818",
+          "sourceKind": "press",
+          "sourceKey": "milk",
+          "sourceIndex": 4,
+          "text": "Time for milk! Sip, sip! All done."
+        },
+        {
+          "phraseId": "vc_000910",
+          "sourceKind": "press",
+          "sourceKey": "drink",
+          "sourceIndex": 1,
+          "text": "Little sips. Sip, sip! One at a time."
+        },
+        {
+          "phraseId": "vc_000912",
+          "sourceKind": "press",
+          "sourceKey": "drink",
+          "sourceIndex": 3,
+          "text": "Sip, sip! Take your time. Little sips."
+        }
+      ]
+    },
+    "drink": {
+      "count": 20,
+      "topics": {
+        "drink": 20
+      },
+      "rows": [
+        {
+          "phraseId": "vc_000192",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 2,
+          "text": "Here's your drink! Ready for a sip? Here you are!"
+        },
+        {
+          "phraseId": "vc_000193",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 3,
+          "text": "Drink time! One little sip. How does it taste?"
+        },
+        {
+          "phraseId": "vc_000194",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 4,
+          "text": "Want a little sip? Here's your drink. Sip if you like!"
+        },
+        {
+          "phraseId": "vc_000196",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 6,
+          "text": "Baby, your drink! Here's a little sip. There you go!"
+        },
+        {
+          "phraseId": "vc_000197",
+          "sourceKind": "topic",
+          "sourceKey": "drink",
+          "sourceIndex": 7,
+          "text": "Baby, thirsty? Let's have a drink. Sip when you're ready!"
+        },
+        {
+          "phraseId": "vc_000481",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 1,
+          "text": "Want a little sip? Here is your drink. Sip if you like."
+        },
+        {
+          "phraseId": "vc_000482",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 2,
+          "text": "Ready for a sip? Little by little! Here comes your drink!"
+        },
+        {
+          "phraseId": "vc_000483",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 3,
+          "text": "Here's a little drink. Take it slowly now. I'm here, sweetheart."
+        },
+        {
+          "phraseId": "vc_000486",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 6,
+          "text": "Feeling a little thirsty? Let's get your drink. Here you go."
+        },
+        {
+          "phraseId": "vc_000487",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 7,
+          "text": "Drink time, baby! Sip, sip, sip! Here we go!"
+        },
+        {
+          "phraseId": "vc_000488",
+          "sourceKind": "combined",
+          "sourceKey": "drink|invitation",
+          "sourceIndex": 8,
+          "text": "Let's take a break. Here's your little drink. Want a little sip?"
+        },
+        {
+          "phraseId": "vc_000639",
+          "sourceKind": "combined",
+          "sourceKey": "drink|finish_check",
+          "sourceIndex": 2,
+          "text": "Drink all done? One more sip? Let's have a look!"
+        },
+        {
+          "phraseId": "vc_000640",
+          "sourceKind": "combined",
+          "sourceKey": "drink|finish_check",
+          "sourceIndex": 3,
+          "text": "Had enough to drink? Let's check together. Are we finished?"
+        },
+        {
+          "phraseId": "vc_000682",
+          "sourceKind": "combined",
+          "sourceKey": "drink|pause",
+          "sourceIndex": 3,
+          "text": "Your drink can wait. Let's rest a little. I'm right here."
+        },
+        {
+          "phraseId": "vc_000745",
+          "sourceKind": "combined",
+          "sourceKey": "drink|affection",
+          "sourceIndex": 1,
+          "text": "A drink with you. My sweet little one. I love you."
+        },
+        {
+          "phraseId": "vc_000746",
+          "sourceKind": "combined",
+          "sourceKey": "drink|affection",
+          "sourceIndex": 2,
+          "text": "Here is your drink! Sip, sip, sip! I love you!"
+        },
+        {
+          "phraseId": "vc_000747",
+          "sourceKind": "combined",
+          "sourceKey": "drink|affection",
+          "sourceIndex": 3,
+          "text": "A little drink! Sip, sip, sip! I'm right here!"
+        },
+        {
+          "phraseId": "vc_000750",
+          "sourceKind": "combined",
+          "sourceKey": "drink|inquiry",
+          "sourceIndex": 3,
+          "text": "How is your drink? Is that enough? I'm here with you."
+        },
+        {
+          "phraseId": "vc_000911",
+          "sourceKind": "press",
+          "sourceKey": "drink",
+          "sourceIndex": 2,
+          "text": "Let's drink. Little sips. Nice and slow."
+        },
+        {
+          "phraseId": "vc_000914",
+          "sourceKind": "press",
+          "sourceKey": "drink",
+          "sourceIndex": 5,
+          "text": "Drink, drink! Little sips. Here you go."
+        }
+      ]
+    },
+    "squeeze": {
+      "count": 4,
+      "topics": {
+        "hands": 4
+      },
+      "rows": [
+        {
+          "phraseId": "vc_000530",
+          "sourceKind": "combined",
+          "sourceKey": "hands|invitation",
+          "sourceIndex": 1,
+          "text": "Little hands together! Squeeze, squeeze, squeeze! Hold my hand!"
+        },
+        {
+          "phraseId": "vc_000531",
+          "sourceKind": "combined",
+          "sourceKey": "hands|invitation",
+          "sourceIndex": 2,
+          "text": "Give me your hand. Let's feel those fingers. Squeeze, squeeze!"
+        },
+        {
+          "phraseId": "vc_000845",
+          "sourceKind": "press",
+          "sourceKey": "hands",
+          "sourceIndex": 1,
+          "text": "Tiny hands! Squeeze, squeeze! Wiggle, wiggle!"
+        },
+        {
+          "phraseId": "vc_000847",
+          "sourceKind": "press",
+          "sourceKey": "hands",
+          "sourceIndex": 3,
+          "text": "Tiny fingers! Squeeze, squeeze! Little hands!"
+        }
+      ]
+    }
+  },
+  "drinkTopicRows": [
+    {
+      "phraseId": "vc_000191",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 1,
+      "text": "Would you like some? Here's a little sip. There you go!"
+    },
+    {
+      "phraseId": "vc_000192",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 2,
+      "text": "Here's your drink! Ready for a sip? Here you are!"
+    },
+    {
+      "phraseId": "vc_000193",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 3,
+      "text": "Drink time! One little sip. How does it taste?"
+    },
+    {
+      "phraseId": "vc_000194",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 4,
+      "text": "Want a little sip? Here's your drink. Sip if you like!"
+    },
+    {
+      "phraseId": "vc_000195",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 5,
+      "text": "Want another sip? No need to hurry. Here you go!"
+    },
+    {
+      "phraseId": "vc_000196",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 6,
+      "text": "Baby, your drink! Here's a little sip. There you go!"
+    },
+    {
+      "phraseId": "vc_000197",
+      "sourceKind": "topic",
+      "sourceKey": "drink",
+      "sourceIndex": 7,
+      "text": "Baby, thirsty? Let's have a drink. Sip when you're ready!"
+    },
+    {
+      "phraseId": "vc_000481",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 1,
+      "text": "Want a little sip? Here is your drink. Sip if you like."
+    },
+    {
+      "phraseId": "vc_000482",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 2,
+      "text": "Ready for a sip? Little by little! Here comes your drink!"
+    },
+    {
+      "phraseId": "vc_000483",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 3,
+      "text": "Here's a little drink. Take it slowly now. I'm here, sweetheart."
+    },
+    {
+      "phraseId": "vc_000484",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 4,
+      "text": "Want some water? Here's your little cup! One small sip?"
+    },
+    {
+      "phraseId": "vc_000485",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 5,
+      "text": "Sit with me! Ready for a sip? Here you go!"
+    },
+    {
+      "phraseId": "vc_000486",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 6,
+      "text": "Feeling a little thirsty? Let's get your drink. Here you go."
+    },
+    {
+      "phraseId": "vc_000487",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 7,
+      "text": "Drink time, baby! Sip, sip, sip! Here we go!"
+    },
+    {
+      "phraseId": "vc_000488",
+      "sourceKind": "combined",
+      "sourceKey": "drink|invitation",
+      "sourceIndex": 8,
+      "text": "Let's take a break. Here's your little drink. Want a little sip?"
+    },
+    {
+      "phraseId": "vc_000638",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish_check",
+      "sourceIndex": 1,
+      "text": "All done drinking? Want another sip? Let's see together."
+    },
+    {
+      "phraseId": "vc_000639",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish_check",
+      "sourceIndex": 2,
+      "text": "Drink all done? One more sip? Let's have a look!"
+    },
+    {
+      "phraseId": "vc_000640",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish_check",
+      "sourceIndex": 3,
+      "text": "Had enough to drink? Let's check together. Are we finished?"
+    },
+    {
+      "phraseId": "vc_000641",
+      "sourceKind": "combined",
+      "sourceKey": "drink|praise",
+      "sourceIndex": 1,
+      "text": "You took a sip! Well done, little one. That's lovely."
+    },
+    {
+      "phraseId": "vc_000642",
+      "sourceKind": "combined",
+      "sourceKey": "drink|praise",
+      "sourceIndex": 2,
+      "text": "You took a sip! Little by little now. Good job, baby!"
+    },
+    {
+      "phraseId": "vc_000643",
+      "sourceKind": "combined",
+      "sourceKey": "drink|praise",
+      "sourceIndex": 3,
+      "text": "One little sip! Sip, sip, sip! Good job, baby!"
+    },
+    {
+      "phraseId": "vc_000680",
+      "sourceKind": "combined",
+      "sourceKey": "drink|pause",
+      "sourceIndex": 1,
+      "text": "Let's pause drinking. More sips can wait. I'm right here."
+    },
+    {
+      "phraseId": "vc_000681",
+      "sourceKind": "combined",
+      "sourceKey": "drink|pause",
+      "sourceIndex": 2,
+      "text": "No more sips yet. We can wait. I'll stay with you."
+    },
+    {
+      "phraseId": "vc_000682",
+      "sourceKind": "combined",
+      "sourceKey": "drink|pause",
+      "sourceIndex": 3,
+      "text": "Your drink can wait. Let's rest a little. I'm right here."
+    },
+    {
+      "phraseId": "vc_000722",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish",
+      "sourceIndex": 1,
+      "text": "All done drinking now! You're finished here. Let's rest together."
+    },
+    {
+      "phraseId": "vc_000723",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish",
+      "sourceIndex": 2,
+      "text": "Drinking time is over. We can pause now. I'm right here."
+    },
+    {
+      "phraseId": "vc_000724",
+      "sourceKind": "combined",
+      "sourceKey": "drink|finish",
+      "sourceIndex": 3,
+      "text": "No more sips now. Drinking time is done. Let's relax together."
+    },
+    {
+      "phraseId": "vc_000745",
+      "sourceKind": "combined",
+      "sourceKey": "drink|affection",
+      "sourceIndex": 1,
+      "text": "A drink with you. My sweet little one. I love you."
+    },
+    {
+      "phraseId": "vc_000746",
+      "sourceKind": "combined",
+      "sourceKey": "drink|affection",
+      "sourceIndex": 2,
+      "text": "Here is your drink! Sip, sip, sip! I love you!"
+    },
+    {
+      "phraseId": "vc_000747",
+      "sourceKind": "combined",
+      "sourceKey": "drink|affection",
+      "sourceIndex": 3,
+      "text": "A little drink! Sip, sip, sip! I'm right here!"
+    },
+    {
+      "phraseId": "vc_000748",
+      "sourceKind": "combined",
+      "sourceKey": "drink|inquiry",
+      "sourceIndex": 1,
+      "text": "Want some water? Feeling thirsty, baby? Here you go!"
+    },
+    {
+      "phraseId": "vc_000749",
+      "sourceKind": "combined",
+      "sourceKey": "drink|inquiry",
+      "sourceIndex": 2,
+      "text": "Another sip for you? Do you want more? It's up to you."
+    },
+    {
+      "phraseId": "vc_000750",
+      "sourceKind": "combined",
+      "sourceKey": "drink|inquiry",
+      "sourceIndex": 3,
+      "text": "How is your drink? Is that enough? I'm here with you."
+    },
+    {
+      "phraseId": "vc_000910",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 1,
+      "text": "Little sips. Sip, sip! One at a time."
+    },
+    {
+      "phraseId": "vc_000911",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 2,
+      "text": "Let's drink. Little sips. Nice and slow."
+    },
+    {
+      "phraseId": "vc_000912",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 3,
+      "text": "Sip, sip! Take your time. Little sips."
+    },
+    {
+      "phraseId": "vc_000913",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 4,
+      "text": "Small sips. Nice and easy. Take your time."
+    },
+    {
+      "phraseId": "vc_000914",
+      "sourceKind": "press",
+      "sourceKey": "drink",
+      "sourceIndex": 5,
+      "text": "Drink, drink! Little sips. Here you go."
+    }
+  ],
+  "blockTapContextRows": [],
+  "decision": "tap12行は雨4・音楽7・足1。ブロックに触れる指示は0行。手振り6行とdrink38行を優先し、ブロックタップを撤回。握る等のCueを手振りに自動で割り当てない。"
+}

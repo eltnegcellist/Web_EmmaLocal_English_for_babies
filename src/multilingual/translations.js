@@ -1,6 +1,9 @@
 import {appendOperationalMessages} from './operational-messages.js?v=20261020-ui-audit-v3';
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
+["英語のイラスト", "English illustrations", "Illustrationen zum Englischen", "Illustrations en anglais", "영어 내용 그림", "ภาพประกอบภาษาอังกฤษ"],
+["英語の内容を表すイラストを表示する", "Show illustrations that match the English", "Illustrationen passend zum englischen Inhalt anzeigen", "Afficher des illustrations correspondant au contenu en anglais", "영어 내용에 맞는 그림 표시", "แสดงภาพประกอบที่ตรงกับเนื้อหาภาษาอังกฤษ"],
+["話している英語に合うイラストや動きを表示します。対応するイラストがない場合はEmmaを表示します。", "Show illustrations and animations that match the spoken English. Emma appears when no matching illustration is available.", "Passende Illustrationen und Animationen zum gesprochenen Englisch anzeigen. Wenn keine passende Illustration verfügbar ist, erscheint Emma.", "Affiche des illustrations et animations adaptées à l’anglais parlé. Emma apparaît si aucune illustration ne correspond.", "말하는 영어에 맞는 그림과 애니메이션을 표시해요. 맞는 그림이 없으면 Emma를 표시해요.", "แสดงภาพประกอบและภาพเคลื่อนไหวที่ตรงกับภาษาอังกฤษที่กำลังพูด หากไม่มีภาพที่ตรงกันจะแสดง Emma"],
 ["おはよう","Good morning","Guten Morgen","Bonjour","좋은 아침","อรุณสวัสดิ์"],
 ["お着替え","Getting dressed","Anziehen","Habillage","옷 갈아입기","แต่งตัว"],
 ["抱っこ","Cuddles","Kuscheln","Câlin","안아 주기","กอด"],
