@@ -3,7 +3,7 @@ import { createSemanticController } from './semantic/controller.js';
 import { ConversationHistory, historyEnabled, createHistoryEntry } from './conversation-history.js';
 import { installFeatureScreens } from './feature-screens.js';
 import { SOFT_PALETTES, VIVID_PALETTES, FILLED_PALETTES, normalizeFilledPalette, normalizeSoftPalette, normalizeVividPalette, normalizeColorSettings, shiftingPalette, GRADIENT_CYCLE_MS, GRADIENT_DESCRIPTIONS } from './emma-color-palettes.js';
-import { EmmaMicrophone } from './audio-capture.js';
+import { EmmaMicrophone } from './audio-capture.js?v=20261021-ui-audit-v4';
 import { MoonshineAsrClient } from './asr-client.js';
 import { TurnRevisions } from './turn-revisions.js';
 import { LiteResponseEngine, isMeaningfulUtterance } from './lite-response-engine.js';
@@ -12,7 +12,9 @@ import { replyDisplayHint, explainReplyContext } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
-import { installLanguageUI } from './multilingual/ui.js';
+import { installLanguageUI } from './multilingual/ui.js?v=20261021-ui-audit-v4';
+import { describeError } from './multilingual/translations.js?v=20261021-ui-audit-v4';
+import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 import { bindVisualCueSettings } from './visual-cue-settings.js';
 import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection} from './multilingual/performance.js';
@@ -51,7 +53,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261020-english-illustrations-v2';
+const WEB_BUILD = '20261021-english-illustrations-merged-v1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -106,6 +108,7 @@ let preparingConversation=false;
 // The official v0.1.5 release archive contains the split-frontend WASM build;
 // the v0.1.5 npm tarball's WASM does not.
 let moonshineTranscriber, ttsWorker, mic, wakeLock;
+let lastMicrophoneDiagnostics=null;
 let moonshineStage='idle';
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
@@ -205,6 +208,7 @@ function whisperPerformanceSettings(){
   return {threads:normalizeThreads(localStorage.getItem(WHISPER_THREAD_KEY)),
     languageDetection:normalizeLanguageDetection(localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY))};
 }
+const confirmAction=createConfirmation({translate:value=>languageUI.translate(value)});
 let currentReplyRoute=null;
 function refreshReplyContext(){
   if(!languageUI||!ui.replyJapanese)return;
@@ -325,6 +329,9 @@ function initUi() {
     speak:speakResponse,
     history,
     isSpeaking:()=>speaking,
+    translate:value=>languageUI.translate(value),
+    confirmAction,
+    describeError:error=>{console.error('Feature screen:',error);return describeError(error,languageUI.language);},
     playSentenceCount:()=>localStorage.getItem(STORAGE.playSentenceCount)==='3'?3:1,
     setPlaySentenceCount:count=>localStorage.setItem(STORAGE.playSentenceCount,count===3?'3':'1'),
     avatar:()=>{ const avatar=ui.avatar.cloneNode(true); avatar.removeAttribute('id'); avatar.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id')); return avatar; }
@@ -542,9 +549,9 @@ function bindEvents() {
     if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent='直近の診断記録をクリアしました。';
   });
 
-  ui.fullResetButton?.addEventListener('click',()=>{
-    const confirmed=window.confirm(
-      'みつことばを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、保存音声とモデルのキャッシュを削除します。次回は音声とモデルの再取得が必要です。\n\n実行しますか？'
+  ui.fullResetButton?.addEventListener('click',async()=>{
+    const confirmed=await confirmAction(
+      languageUI.translate('みつことばを初期状態に戻します。\n\n赤ちゃんの設定、見た目、初回準備情報、保存音声とモデルのキャッシュを削除します。次回は音声とモデルの再取得が必要です。\n\n実行しますか？'),{confirmLabel:'すべて削除'}
     );
     if(confirmed) location.href='./reset.html?full=1';
   });
@@ -627,7 +634,13 @@ function showScreen(name,{autoStart=true}={}) {
 }
 
 function openSubpage(name) {
-  if(currentScreen!==name) window.history.pushState(appHistoryState(name),'',location.href);
+  if(currentScreen!==name) {
+    // Tutorial replay and startup can show Home without navigating. Keep the
+    // current history entry in sync before adding Settings/About, so Back
+    // returns to the screen the user actually came from.
+    window.history.replaceState(appHistoryState(currentScreen),'',location.href);
+    window.history.pushState(appHistoryState(name),'',location.href);
+  }
   showScreen(name,{autoStart:false});
 }
 
@@ -1068,9 +1081,15 @@ async function prepareSemanticForConversation() {
 async function stopEmma() {
   visualCue.stop();
   conversationEpoch++;
+  const hadMultilingualWork=languageUI?.language!=='ja'&&multilingual?.pending?.size>0;
   multilingual?.resetSpeechLanguage();
   multilingualAsrDiagnostic.cachedLanguage=null;
   semanticPanel?.cancelPending();
+  showProgress(false);showOnboardingProgress(false);
+  if(languageUI?.language&&languageUI.language!=='ja'){
+    if(multilingual?.ready)languageUI.setStatus('モデルの準備ができました');
+    else if(hadMultilingualWork)languageUI.setStatus('準備を中断しました。準備するボタンで再開できます。');
+  }
   while(audioUnlockWaiters.length)audioUnlockWaiters.shift()?.();
   running=false;
   preparingConversation=false;
@@ -1086,6 +1105,7 @@ async function stopEmma() {
     activeAudioSource=null;
   }
   await mic?.stop().catch(()=>{});
+  lastMicrophoneDiagnostics=mic?.getDiagnostics?.()||lastMicrophoneDiagnostics;
   mic=null;
   wakeLock?.release?.().catch(()=>{});
   wakeLock=null;
@@ -1246,15 +1266,22 @@ async function initVoice() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261015-recorded-only',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261021-progressive-voice-v1',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
-      ttsWorker.onerror=reject;
-      ttsWorker.postMessage({ type:'init', preload:!VISUAL_CUE_TRIAL });
+      ttsWorker.onerror=event=>{
+        console.error('Recorded audio worker failed:',event);
+        reject(new Error('音声の準備または再生に失敗しました。'));
+      };
+      ttsWorker.postMessage({ type:'init' });
     });
   }
 
   })();
-  try { await voiceInitialization; } finally { voiceInitialization=null;showProgress(false); }
+  try {
+    await voiceInitialization;
+    if (currentScreen === 'home' && tutorialStep === null &&
+        localStorage.getItem(STORAGE.tutorialDone) === 'true') requestVoicePrefetch();
+  } finally { voiceInitialization=null;showProgress(false); }
 }
 
 async function initMoonshine({selectionEpoch=modelSelectionEpoch}={}) {
@@ -1390,6 +1417,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     forwardBackgroundDownload(m);
     return;
   }
+  if (m.type === 'prefetch-status') return;
   if(m.type==='status') {
     showProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
     showOnboardingProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
@@ -1449,6 +1477,7 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
       multilingualAsrDiagnostic.elapsedMs=Math.round(diagnosticNow()-asrStart);
     }
     if(!isLiveTurn(revision,epoch))return;
+    if(!japanese)languageUI.setStatus('モデルの準備ができました');
     await processTranscript(text,{manual,revision});
   }catch(error){
     if(!isLiveTurn(revision,epoch))return;
@@ -1466,6 +1495,7 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
       // a fresh worker instead of sitting behind the failed queued request.
       multilingual.cancel('ASR timeout; worker restarted for the next attempt');
     }
+    if(!japanese)languageUI.setStatus('音声認識でエラーが発生しました');
     setState('error','音声認識でエラーが発生しました',friendlyError(error));
   }
 }
@@ -1872,12 +1902,19 @@ function renderTutorial(){
   }
   scheduleTutorialSpotlightSync();
 }
+function requestVoicePrefetch() {
+  if (ttsWorker && ttsInfoCache) ttsWorker.postMessage({type:'prefetch'});
+}
+
 function startTutorial({replay=false}={}){
   tutorialStep=0;
   tutorialIntroPlayed=false;
   tutorialUserSpoke=false;
   if(replay) setState('idle','チュートリアル','使い方を3ステップで確認します。');
   renderTutorial();
+  // Begin the background cache fill only after the tutorial is visible.
+  void initVoice().then(requestVoicePrefetch).catch(error =>
+    console.warn('背景音声の準備を後で再試行します', error));
 }
 function finishTutorial(){
   localStorage.setItem(STORAGE.tutorialDone,'true');
@@ -1985,7 +2022,7 @@ function onRuntimeError(message) {
   processing=false;
   speaking=false;
   setBusy(false);
-  setState('error','処理中に問題が起きました',message||'もう一度お試しください。');
+  setState('error','処理中に問題が起きました',describeError(message,languageUI.language));
 }
 
 function friendlyError(error) {
@@ -2004,7 +2041,7 @@ function friendlyError(error) {
     const stage=stageLabels[moonshineStage]||moonshineStage;
     return `Moonshineの${stage}でネイティブエラーが発生しました（内部アドレス: ${trimmed}）。`;
   }
-  return trimmed || '処理中に不明なエラーが発生しました。';
+  return describeError(trimmed,languageUI.language);
 }
 
 async function requestWakeLock() {
@@ -2070,6 +2107,7 @@ async function buildWebDiagnosticReport() {
     if(typeof navigator.storage?.persisted==='function') storagePersisted=await navigator.storage.persisted();
   } catch {}
   const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny'?'Tiny':'Small';
+  const capture=mic?.getDiagnostics?.()||lastMicrophoneDiagnostics||{};
   const lines=[
     'Mitsukotoba Web diagnostics',
     `created=${new Date().toISOString()}`,
@@ -2082,6 +2120,14 @@ async function buildWebDiagnosticReport() {
     `language=${navigator.language}`,
     `app.language=${languageUI.language}`,
     `app.languageMode=${languageUI.mode}`,
+    `mic.active=${Boolean(mic)}`,
+    `mic.contextState=${capture.contextState??'unknown'}`,
+    `mic.frames=${capture.frames??'unknown'}`,
+    `mic.samples=${capture.samples??'unknown'}`,
+    `mic.lastRms=${capture.lastRms??'unknown'}`,
+    `mic.peakRms=${capture.peakRms??'unknown'}`,
+    `mic.liveTracks=${capture.liveTracks??'unknown'}`,
+    `mic.mutedTracks=${capture.mutedTracks??'unknown'}`,
     `multilingual.asrStage=${multilingualAsrDiagnostic.stage}`,
     `multilingual.threadPreference=${multilingual.threadPreference}`,
     `multilingual.effectiveThreads=${multilingual.runtimeInfo?.threads??multilingualAsrDiagnostic.threads??'unknown'}`,
@@ -2286,7 +2332,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261020-whisper-multithreading-v1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261021-progressive-voice-v1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -2325,6 +2371,6 @@ window.addEventListener('load',()=>{
   if(!VISUAL_CUE_TRIAL && 'serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261020-whisper-multithreading-v1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261021-progressive-voice-v1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });

@@ -1056,7 +1056,7 @@ async function initVoice() {
     ttsInfoCache=null;
     ttsWorkerSignature=signature;
     ttsInfoCache=await new Promise((resolve,reject)=>{
-      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261015-recorded-only',import.meta.url),{type:'module'});
+      ttsWorker=new Worker(new URL('./tts-worker.js?v=20261021-progressive-voice-v1',import.meta.url),{type:'module'});
       ttsWorker.onmessage=(event)=>handleTtsMessage(event,resolve,reject);
       ttsWorker.onerror=reject;
       ttsWorker.postMessage({ type:'init' });
@@ -1064,7 +1064,11 @@ async function initVoice() {
   }
 
   })();
-  try { await voiceInitialization; } finally { voiceInitialization=null;showProgress(false); }
+  try {
+    await voiceInitialization;
+    if (currentScreen === 'home' && tutorialStep === null &&
+        localStorage.getItem(STORAGE.tutorialDone) === 'true') requestVoicePrefetch();
+  } finally { voiceInitialization=null;showProgress(false); }
 }
 
 async function initMoonshine() {
@@ -1197,6 +1201,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     forwardBackgroundDownload(m);
     return;
   }
+  if (m.type === 'prefetch-status') return;
   if(m.type==='status') {
     showProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
     showOnboardingProgress(true,m.progress??0,m.message||'みつことばの声を準備しています…');
@@ -1650,12 +1655,19 @@ function renderTutorial(){
   }
   scheduleTutorialSpotlightSync();
 }
+function requestVoicePrefetch() {
+  if (ttsWorker && ttsInfoCache) ttsWorker.postMessage({type:'prefetch'});
+}
+
 function startTutorial({replay=false}={}){
   tutorialStep=0;
   tutorialIntroPlayed=false;
   tutorialUserSpoke=false;
   if(replay) setState('idle','チュートリアル','使い方を3ステップで確認します。');
   renderTutorial();
+  // Begin the background cache fill only after the tutorial is visible.
+  void initVoice().then(requestVoicePrefetch).catch(error =>
+    console.warn('背景音声の準備を後で再試行します', error));
 }
 function finishTutorial(){
   localStorage.setItem(STORAGE.tutorialDone,'true');
@@ -2037,7 +2049,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
-  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261014-fixed-voice-lines-r1',{updateViaCache:'none'});
+  const registration=await navigator.serviceWorker.register('./service-worker.js?v=20261021-progressive-voice-v1',{updateViaCache:'none'});
   await registration.update().catch(()=>{});
 
   const candidate=registration.installing || registration.waiting;
@@ -2075,6 +2087,6 @@ window.addEventListener('load',()=>{
   if('serviceWorker' in navigator) {
     // Register for offline assets now. Reload for isolation only when ASR starts,
     // so background setup cannot discard settings or Japanese text being edited.
-    navigator.serviceWorker.register('./service-worker.js?v=20261014-fixed-voice-lines-r1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
+    navigator.serviceWorker.register('./service-worker.js?v=20261021-progressive-voice-v1',{updateViaCache:'none'}).catch(error=>console.warn('Service Worker setup:',error));
   }
 });

@@ -253,6 +253,11 @@ body.debug .debug-panel{display:block}
   word-break:break-word;
 }
 .modal-open{overflow:hidden}
+.app-confirm-dialog{box-sizing:border-box;width:calc(100vw - 32px);max-width:480px;max-height:85dvh;overflow:auto;border:0;border-radius:28px;padding:28px 22px;background:#fff;color:var(--on-surface);box-shadow:0 24px 70px rgba(33,26,36,.26)}
+.app-confirm-dialog::backdrop{background:rgba(30,24,32,.38);backdrop-filter:blur(3px)}
+.app-confirm-dialog p{white-space:pre-line;overflow-wrap:anywhere;line-height:1.6}
+.app-confirm-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
+.app-confirm-actions button{min-width:0;white-space:normal;overflow-wrap:anywhere}
 .dialog-close{position:absolute;right:14px;top:14px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(124,116,127,.28);background:#fff;font-size:1.2rem}
 @keyframes blink{0%,84%,90%,100%{transform:scaleY(1)}87%{transform:scaleY(.08)}}
 @keyframes avatarBob{0%,100%{transform:translateY(-2px)}50%{transform:translateY(4px)}}
