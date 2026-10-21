@@ -107,6 +107,35 @@ for(const lang of ['en','de','fr','ko','th','ja']){
 // Exercise actual application boundaries, including error paths that a
 // real browser cannot reliably force without altering device permissions.
 const app=readFileSync(new URL('./src/app.js',import.meta.url),'utf8');
+// A route switch must replace the previous locale's runtime label while the
+// newly selected models are still loading, not only after preparation ends.
+const changeMarker='onChange:async(next,{commit})=>';
+const changeStart=app.indexOf(changeMarker)+changeMarker.length;
+const changeBody=app.slice(changeStart,app.indexOf('\n}});',changeStart)+2);
+const runtimeFunction=app.slice(app.indexOf('function updateRuntimeBackend('),app.indexOf('\nfunction updateAppearanceSettings('));
+for(const next of ['en','de','fr','ko','th','ja']){
+  let releaseModels,enteredModels;
+  const modelGate=new Promise(resolve=>releaseModels=resolve);
+  const modelEntered=new Promise(resolve=>enteredModels=resolve);
+  const runtimeLabel={textContent:next==='ja'?'Whisper Small':'ASR: Moonshine / 端末内WASM / 保存済み音声'};
+  const state={next,modelSelectionEpoch:0,workersReady:true,
+    languageUI:{language:next==='ja'?'en':'ja',setStatus:()=>{}},
+    moonshineTranscriber:{close:()=>{}},asrInfoCache:{architecture:'small_streaming'},ttsInfoCache:{},
+    ui:{runtimeBackend:runtimeLabel},stopEmma:async()=>{},
+    multilingual:{cancel:()=>{},runtimeInfo:null},
+    semanticPanel:{client:{japanese:{cancel:()=>{}}},setEnabled:async()=>{}},
+    whisperPerformanceControls:{apply:()=>{}},refreshReplyContext:()=>{},ensureMoonshineIsolation:async()=>true,
+    STORAGE:{setupRevision:'revision'},CURRENT_SETUP_REVISION:'test',localStorage:{getItem:()=> 'test'},
+    initWorkers:()=>{enteredModels();return modelGate;},prepareSemanticForConversation:async()=>{},
+    showProgress:()=>{},showOnboardingProgress:()=>{},setState:()=>{}};
+  state.commit=()=>{state.languageUI.language=next;};
+  const changed=vm.runInNewContext(runtimeFunction+'\nasync function changeLanguage(next,{commit})'+changeBody+'\nchangeLanguage(next,{commit});',state);
+  await modelEntered;
+  if(next==='ja')assert.equal(runtimeLabel.textContent,'推論: 未初期化');
+  else{assert.equal(runtimeLabel.textContent,'Whisper Small · multilingual / E5 · WASM CPU',`${next}: previous runtime label remains during preparation`);assert(!japanese.test(runtimeLabel.textContent));}
+  releaseModels();await changed;
+}
+console.log('PASS: runtime label follows all six committed locales before asynchronous model preparation completes.');
 const stopFunction=app.slice(app.indexOf('async function stopEmma('),app.indexOf('\nfunction handleCapturedUtterance('));
 for(const ready of [true,false]){
   const statuses=[],progress=[];

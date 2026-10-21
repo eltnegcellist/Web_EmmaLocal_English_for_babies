@@ -238,6 +238,7 @@ languageUI=installLanguageUI({onExplanationsChange:refreshReplyContext,onChange:
   if(changedRoute){moonshineTranscriber?.close?.();moonshineTranscriber=null;asrInfoCache=null;workersReady=false;
     semanticPanel?.client.japanese?.cancel();multilingual.cancel();}
   commit();
+  updateRuntimeBackend();
   whisperPerformanceControls?.apply(next);
   refreshReplyContext();
   await semanticPanel.setEnabled(true,{prepare:false,mode:'semantic'});
@@ -2183,7 +2184,8 @@ async function copyTextToClipboard(text) {
 
 function updateRuntimeBackend() {
   if(languageUI.language!=='ja'){
-    ui.runtimeBackend.textContent=`Whisper Small · multilingual / E5 · WASM CPU ${multilingual?.runtimeInfo?.threads??'?'} threads`;
+    const threads=multilingual?.runtimeInfo?.threads;
+    ui.runtimeBackend.textContent=`Whisper Small · multilingual / E5 · WASM CPU${threads?` ${threads} threads`:''}`;
     return;
   }
   if(!asrInfoCache || !ttsInfoCache){
