@@ -19,6 +19,7 @@ import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 import { bindVisualCueSettings } from './visual-cue-settings.js';
 import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection} from './multilingual/performance.js';
 import {installWhisperPerformanceControls} from './multilingual/performance-controls.js';
+import {chooseEnglishResumeGreeting} from './resume-greeting.js';
 
 const $ = (id) => document.getElementById(id);
 const VISUAL_CUE_TRIAL = document.documentElement.dataset.visualCueTrial === 'true';
@@ -54,7 +55,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261021-english-illustrations-audio-recovery-v2';
+const WEB_BUILD = '20261022-english-resume-greeting-v1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -113,6 +114,8 @@ let lastMicrophoneDiagnostics=null;
 let moonshineStage='idle';
 let asrInfoCache=null, ttsInfoCache=null, ttsWorkerSignature='';
 let running=false, workersReady=false, processing=false, speaking=false;
+let hasStartedConversation=false;
+let previousEnglishResumeGreeting=null;
 let requestSeq=0;
 let audioContext=null;
 let activeAudioSource=null;
@@ -1057,6 +1060,29 @@ async function startEmma({ auto = false } = {}) {
     setBusy(false);
     showProgress(false);
     if(ui.keepAwake.checked) await requestWakeLock();
+    const isRestart=hasStartedConversation;
+    hasStartedConversation=true;
+    if(isRestart && tutorialStep===null) {
+      try {
+        const response=await fetch(new URL('../shared/play-topics.json',import.meta.url));
+        if(!response.ok) throw Error('挨拶カテゴリの読み込みに失敗しました。');
+        const topics=await response.json();
+        if(epoch!==conversationEpoch)return;
+        const greeting=chooseEnglishResumeGreeting(topics,previousEnglishResumeGreeting);
+        if(greeting) {
+          // Greeting and regular replies both use the same Qwen3 recorded English clips.
+          // No Japanese voice or platform speech-synthesis fallback.
+          previousEnglishResumeGreeting=greeting;
+          showConversation('',greeting,'greeting');
+          await speakResponse(greeting);
+          if(epoch!==conversationEpoch)return;
+        }
+      }catch(error) {
+        if(epoch!==conversationEpoch)return;
+        console.warn('Recorded English resume greeting unavailable',error);
+        // Greeting playback failure must never block resuming microphone capture.
+      }
+    }
     setState('listening',`${getAiName()}が聞いています`,
       languageUI.language==='ja'?'いつもどおり日本語で赤ちゃんへ話しかけてください。必要なら「今すぐAIが返事する」で区切れます。':
         '選択した言語で赤ちゃんに話しかけてください。');
