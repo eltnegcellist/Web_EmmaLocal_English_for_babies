@@ -525,7 +525,7 @@
         <article class="card">
           <h2>会話履歴</h2>
           <p class="small muted">再生した会話をこのブラウザ内に保存し、あとから見たり聞いたりするための設定です。</p>
-          <label class="history-save-toggle"><span>端末内に会話履歴を残す</span><input id="historyEnabled" type="checkbox" checked /></label>
+          <label class="toggle-line"><span>端末内に会話履歴を残す</span><span class="switch"><input id="historyEnabled" type="checkbox" checked /><span></span></span></label>
           <p>音声の再生が始まった応答の日本語・英語を最大1,000件保存します。録音は保存しません。オフにしても以前の履歴は残ります。</p>
           <p id="historyWarning" role="status"></p>
           <button id="historyButton" class="outline-button">会話履歴を見る・聞く</button>
@@ -533,7 +533,7 @@
 
         <article id="englishIllustrationSettings" class="card">
           <h2>英語のイラスト</h2>
-          <label class="history-save-toggle"><span>英語の内容を表すイラストを表示する</span><input id="visualCueEnabled" type="checkbox" checked aria-describedby="visualCueHelp" /></label>
+          <label class="toggle-line"><span>英語の内容を表すイラストを表示する</span><span class="switch"><input id="visualCueEnabled" type="checkbox" checked aria-describedby="visualCueHelp" /><span></span></span></label>
           <p id="visualCueHelp" class="small muted">話している英語に合うイラストや動きを表示します。対応するイラストがない場合はEmmaを表示します。</p>
         </article>
 
