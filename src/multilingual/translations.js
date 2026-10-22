@@ -218,6 +218,8 @@ export const CATALOG = [
 ['閉じる','Close','Schließen','Fermer','닫기','ปิด'],
 ['再試行','Retry','Erneut versuchen','Réessayer','다시 시도','ลองอีกครั้ง'],
 ['準備する','Prepare models','Modelle vorbereiten','Préparer les modèles','모델 준비','เตรียมโมเดล'],
+['音声言語を再判定','Redetect spoken language','Gesprochene Sprache erneut erkennen','Redétecter la langue parlée','음성 언어 다시 감지','ตรวจจับภาษาที่พูดอีกครั้ง'],
+['次の発話で音声言語を自動判定します。','Speech language will be detected automatically from your next utterance.','Die gesprochene Sprache wird bei der nächsten Äußerung neu erkannt.','La langue parlée sera redétectée automatiquement à votre prochaine intervention.','다음 발화에서 음성 언어를 자동으로 다시 감지합니다.','ระบบจะตรวจจับภาษาที่พูดใหม่โดยอัตโนมัติในคำพูดครั้งถัดไป'],
 ['モデルを準備しています…','Preparing models…','Modelle vorbereiten…','Préparation des modèles…','모델을 준비하고 있어요…','กำลังเตรียมโมเดล…'],
 ['モデルを読み込んでいます…','Loading models…','Modelle laden…','Chargement des modèles…','모델을 불러오고 있어요…','กำลังโหลดโมเดล…'],
 ['モデルを準備できませんでした。再試行してください。','Models could not be prepared. Please retry.','Modelle konnten nicht vorbereitet werden. Bitte erneut versuchen.','Impossible de préparer les modèles. Réessayez.','모델을 준비하지 못했어요. 다시 시도해 주세요.','เตรียมโมเดลไม่สำเร็จ โปรดลองอีกครั้ง'],
