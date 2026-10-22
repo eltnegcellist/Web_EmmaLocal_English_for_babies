@@ -39,10 +39,10 @@ try{
   assert.equal(await page.locator('#visualCueEnabled').isChecked(),true);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.screenshot({path:new URL(`settings-${locale}.png`,output).pathname});
-  await page.uncheck('#visualCueEnabled');
+  await page.locator('#visualCueEnabled + span').click();
   await page.reload();await page.click('#settingsButton');
   assert.equal(await page.locator('#visualCueEnabled').isChecked(),false);
-  await page.check('#visualCueEnabled');
+  await page.locator('#visualCueEnabled + span').click();
   await page.click('#settingsBackButton');
   await page.locator('#homeScreen:not(.hidden)').waitFor();
   if(locale==='ja-JP'){
