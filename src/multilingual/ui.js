@@ -1,8 +1,8 @@
 import {LANGUAGES,LANGUAGE_NAMES,LANGUAGE_KEY,LANGUAGE_MODE_KEY,resolveLanguage,browserLanguages} from './core.js';
-import {translate} from './translations.js?v=20261020-ui-audit-v3';
+import {translate} from './translations.js?v=20261022-speech-language-redetect-r1';
 import {renderLocalizedAbout} from './about-page.js';
 export function installLanguageUI({document=globalThis.document,storage=globalThis.localStorage,
-  languages=undefined,onChange=async()=>{},onExplanationsChange=()=>{}}={}) {
+  languages=undefined,onChange=async()=>{},onExplanationsChange=()=>{},onRedetectSpeechLanguage=()=>{}}={}) {
   let saved,savedMode;try{saved=storage.getItem(LANGUAGE_KEY);savedMode=storage.getItem(LANGUAGE_MODE_KEY);}catch{}
   // A pre-existing saved selection is treated as manual (legacy migration).
   // New visitors and users who explicitly choose Auto follow the browser.
@@ -58,8 +58,16 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
   const settings=document.querySelector('#settingsScreen .settings-content');
   const settingsCard=document.createElement('article');settingsCard.className='card language-settings';
   settingsCard.append(picker('settingsLanguage'),note,status);
-  const retry=document.createElement('button');retry.type='button';retry.className='outline-button';retry.textContent='準備する';
-  retry.addEventListener('click',()=>choose(mode==='auto'?'auto':language));settingsCard.append(retry);
+  const redetectSpeechLanguage=document.createElement('button');
+  redetectSpeechLanguage.id='redetectSpeechLanguage';
+  redetectSpeechLanguage.type='button';redetectSpeechLanguage.className='outline-button';
+  redetectSpeechLanguage.textContent='音声言語を再判定';
+  redetectSpeechLanguage.addEventListener('click',()=>{
+    if(language!=='en')return;
+    onRedetectSpeechLanguage();
+    setStatus('次の発話で音声言語を自動判定します。');
+  });
+  settingsCard.append(redetectSpeechLanguage);
   // Preserve setup selection, but keep the only in-app language picker at the bottom of Settings.
   settings?.append(settingsCard);
   const about=document.querySelector('#aboutScreen .screen-content');
@@ -113,6 +121,7 @@ export function installLanguageUI({document=globalThis.document,storage=globalTh
       s.querySelector('option[value="auto"]').textContent=translate('自動（ブラウザ設定）',language)+' · '+LANGUAGE_NAMES[detected().language];
     });
     note.textContent=translate(language==='en'?'英語表示で、さまざまな言語の音声を自動認識します。':'選択した言語で話しかけると、短い英語で返します。',language);
+    redetectSpeechLanguage.hidden=language!=='en';
     const sub=document.querySelector('#prepareEmmaButton .button-sub');
     if(sub)sub.textContent=translate('初回のみ必要なモデルを準備します',language)+(language==='ja'?'':' · ~387 MB');
     // Keep the original full Japanese research page intact, and render a
