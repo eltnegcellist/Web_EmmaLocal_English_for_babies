@@ -12,7 +12,7 @@ import { replyDisplayHint, explainReplyContext } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
-import { installLanguageUI } from './multilingual/ui.js?v=20261021-ui-audit-v4';
+import { installLanguageUI } from './multilingual/ui.js?v=20261022-settings-language-only-v1';
 import { describeError } from './multilingual/translations.js?v=20261021-ui-audit-v4';
 import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
@@ -55,7 +55,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261022-english-resume-greeting-v1';
+const WEB_BUILD = '20261022-english-resume-greeting-settings-v2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
