@@ -97,7 +97,11 @@ for(const lang of LANGUAGES){
  }
 
  assert.equal(ui.mode,'auto','First visit must use the browser locale');
- assert.equal(dom.window.document.querySelectorAll('.language-picker select').length,4);
+ assert.equal(dom.window.document.querySelectorAll('.language-picker select').length,2);
+ assert.equal(dom.window.document.querySelector('#homeLanguage'),null,'Never show language selector on conversation home');
+ assert.equal(dom.window.document.querySelector('#explanationLanguage'),null,'Remove the obsolete explanation language selector');
+ const settingsBody=dom.window.document.querySelector('#settingsScreen .settings-content');
+ assert.equal(settingsBody.lastElementChild,dom.window.document.querySelector('.language-settings'),'Language must be the last Settings card');
  assert.equal(ui.explanationLanguage,lang);
  assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,lang==='en');
  assert.equal(dom.window.document.querySelector('#onboardingLanguage').value,'auto');
@@ -106,20 +110,11 @@ for(const lang of LANGUAGES){
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_KEY),lang);
  assert.equal(dom.window.localStorage.getItem(LANGUAGE_MODE_KEY),'auto');
  assert.equal(dom.window.document.querySelector('#prepareEmmaButton').disabled,false);
- const explanationPicker=dom.window.document.querySelector('#explanationLanguage');
- assert(explanationPicker);
- explanationPicker.value='zh';
- explanationPicker.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
- assert.equal(ui.explanationLanguage,'zh');
- assert.equal(dom.window.localStorage.getItem('mitsukotoba_explanation_language_v1'),'zh');
- assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,false);
- explanationPicker.value='none';
- explanationPicker.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
- assert.equal(ui.explanationLanguage,'none');
- assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,true);
- explanationPicker.value='follow';
- explanationPicker.dispatchEvent(new dom.window.Event('change',{bubbles:true}));
+ // Legacy explanation-language preferences no longer change display behavior.
+ dom.window.localStorage.setItem('mitsukotoba_explanation_language_v1','none');
+ ui.apply();
  assert.equal(ui.explanationLanguage,lang);
+ assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,lang==='en');
  await ui.choose('ko');assert.equal(dom.window.localStorage.getItem(LANGUAGE_KEY),'ko');
  const korean=research.querySelector('.localized-about-content');
  assert(korean && korean.querySelector('h1').textContent===ABOUT_LOCALES.ko.title);
