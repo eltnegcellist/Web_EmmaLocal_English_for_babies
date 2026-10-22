@@ -160,10 +160,26 @@ legacy.dispose();existing.window.close();
 const auto=new JSDOM(html,{url:'https://autodetect.test'});globalThis.MutationObserver=auto.window.MutationObserver;
 auto.window.localStorage.setItem(LANGUAGE_KEY,'de');
 auto.window.localStorage.setItem(LANGUAGE_MODE_KEY,'auto');
-const redetect=installLanguageUI({document:auto.window.document,storage:auto.window.localStorage,languages:['fr-FR']});
+let retried;
+const redetect=installLanguageUI({document:auto.window.document,storage:auto.window.localStorage,languages:['fr-FR'],
+ onChange:async(next,{commit})=>{retried=next;commit();}});
 assert.equal(redetect.language,'fr','Browser locale changes are honored while in auto mode');
 assert.equal(redetect.mode,'auto');
+auto.window.document.querySelector('.language-settings button').click();
+await new Promise(resolve=>setImmediate(resolve));
+assert.equal(retried,'fr');
+assert.equal(redetect.mode,'auto','Preparing again must preserve automatic language selection');
+assert.equal(auto.window.localStorage.getItem(LANGUAGE_MODE_KEY),'auto');
 redetect.dispose();auto.window.close();
+for(const savedExplanation of ['zh','none']){
+ const migrated=new JSDOM(html,{url:'https://explanation-migration.test'});
+ globalThis.MutationObserver=migrated.window.MutationObserver;
+ migrated.window.localStorage.setItem('mitsukotoba_explanation_language_v1',savedExplanation);
+ const migratedUI=installLanguageUI({document:migrated.window.document,storage:migrated.window.localStorage,languages:['ko-KR']});
+ assert.equal(migratedUI.explanationLanguage,'ko');
+ assert.equal(migrated.window.document.querySelector('#replyJapanese').hidden,false);
+ migratedUI.dispose();migrated.window.close();
+}
 let network=0;const store=new Map();const bytes=new TextEncoder().encode('verified test model'),meta={model:'test',file:'model.onnx',url:'https://models.test/pinned/model',bytes:bytes.length,sha256:await digest(bytes)};
 store.set(meta.url,new Response('corrupt cache'));
 const cache={match:async k=>store.get(k)?.clone(),put:async(k,v)=>store.set(k,v),delete:async k=>store.delete(k)};

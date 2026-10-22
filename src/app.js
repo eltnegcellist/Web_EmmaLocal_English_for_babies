@@ -314,6 +314,7 @@ initUi();
 function initUi() {
   initVisualCues();
   initLanguages();
+  if(ui.webBuild)ui.webBuild.textContent=`Web build: ${WEB_BUILD}`;
   whisperPerformanceControls=installWhisperPerformanceControls({
     onChange:async options=>{
       await stopEmma();

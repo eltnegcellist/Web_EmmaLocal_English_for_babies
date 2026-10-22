@@ -1,0 +1,1669 @@
+{
+  "mainAtAudit": "e2130ac9c59df3de256a92f8cd150328b4be9997",
+  "originalMain": "813c41fb",
+  "branches": [
+    {
+      "branch": "chore/default-supertonic-f3",
+      "sha": "6fb9801e3da4de811e8cab4facaa876fdbe02e6b",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        15
+      ],
+      "archiveTag": "archive/20261022/chore/default-supertonic-f3",
+      "ahead": 3,
+      "behind": 636
+    },
+    {
+      "branch": "chore/gpl-free-web-audit",
+      "sha": "99497a91f86f64fbf1bc48ccf33dae02f1c4a289",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        52
+      ],
+      "archiveTag": "archive/20261022/chore/gpl-free-web-audit",
+      "ahead": 1,
+      "behind": 348
+    },
+    {
+      "branch": "chore/remove-tts-name-placeholders-20261014",
+      "sha": "4c087ba7be45d086f3c23b9fec841e451a9b8343",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        93
+      ],
+      "archiveTag": "archive/20261022/chore/remove-tts-name-placeholders-20261014",
+      "ahead": 14,
+      "behind": 122
+    },
+    {
+      "branch": "chore/trigger-pages",
+      "sha": "813c41fb933cb38a00db3fd43bdb0ff93f8a45ab",
+      "status": "deployment",
+      "reason": "GitHub Pagesの公開ソース。main CIが成功したSHAへ自動追従する運用ブランチ。",
+      "pullRequests": [
+        1
+      ],
+      "archiveTag": null,
+      "ahead": 0,
+      "behind": 1
+    },
+    {
+      "branch": "chore/web-standalone-no-android-promo-20261013",
+      "sha": "d85c0641940e5d3f2df2d426b30362c264c5d18d",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        81
+      ],
+      "archiveTag": "archive/20261022/chore/web-standalone-no-android-promo-20261013",
+      "ahead": 2,
+      "behind": 132
+    },
+    {
+      "branch": "codex/adopt-qwen3-voice1202",
+      "sha": "9a2f1a49b02d27b082cad007629ddd49a6ca308f",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        97
+      ],
+      "archiveTag": "archive/20261022/codex/adopt-qwen3-voice1202",
+      "ahead": 2,
+      "behind": 117
+    },
+    {
+      "branch": "codex/auto-start-after-setup-only",
+      "sha": "884239bdaf818712246f8f442af89adf19d18b5b",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        45
+      ],
+      "archiveTag": "archive/20261022/codex/auto-start-after-setup-only",
+      "ahead": 2,
+      "behind": 582
+    },
+    {
+      "branch": "codex/auto-start-every-open",
+      "sha": "0f9c7996090d48b010e5adc4c66d02273091c50d",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        46
+      ],
+      "archiveTag": "archive/20261022/codex/auto-start-every-open",
+      "ahead": 2,
+      "behind": 581
+    },
+    {
+      "branch": "codex/settings-scroll-and-deploy-fix",
+      "sha": "b4454af99a4135ad6c8f1e2e8238bf6f608f8742",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        48
+      ],
+      "archiveTag": "archive/20261022/codex/settings-scroll-and-deploy-fix",
+      "ahead": 2,
+      "behind": 579
+    },
+    {
+      "branch": "codex/settings-vertical-scroll-only",
+      "sha": "5ef7c03fde01fa3d404708deff8ae2d22bacbd35",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        47
+      ],
+      "archiveTag": "archive/20261022/codex/settings-vertical-scroll-only",
+      "ahead": 2,
+      "behind": 580
+    },
+    {
+      "branch": "codex/silero-vad-settings",
+      "sha": "b22971da3ff23e7abf167e10139f57751a5f9756",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        69
+      ],
+      "archiveTag": "archive/20261022/codex/silero-vad-settings",
+      "ahead": 0,
+      "behind": 215
+    },
+    {
+      "branch": "codex/visual-cue-complete-assets",
+      "sha": "51345cbd3789a66c35a36b90e513f782050ff4ca",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        107
+      ],
+      "archiveTag": "archive/20261022/codex/visual-cue-complete-assets",
+      "ahead": 0,
+      "behind": 4
+    },
+    {
+      "branch": "codex/voice-progressive-prefetch-20261020",
+      "sha": "010a20e2029cc787025c3519e39c642ddb713193",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        127
+      ],
+      "archiveTag": "archive/20261022/codex/voice-progressive-prefetch-20261020",
+      "ahead": 4,
+      "behind": 49
+    },
+    {
+      "branch": "codex/web-lite-asr-rescue",
+      "sha": "259c401a77d172f1f2a73d0230c79facabec6b77",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        43
+      ],
+      "archiveTag": "archive/20261022/codex/web-lite-asr-rescue",
+      "ahead": 4,
+      "behind": 584
+    },
+    {
+      "branch": "codex/web-milk-rescue-auto-start",
+      "sha": "206193b1265c42ff4fccc94db9d8151f082a5e3c",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        44
+      ],
+      "archiveTag": "archive/20261022/codex/web-milk-rescue-auto-start",
+      "ahead": 4,
+      "behind": 583
+    },
+    {
+      "branch": "deploy/pages-bootstrap",
+      "sha": "890f06108b5dabc54ed99aba216145e20e53c636",
+      "status": "superseded",
+      "reason": "旧公開準備。現行Pagesソースchore/trigger-pagesとCI公開経路を維持。",
+      "pullRequests": [
+        2
+      ],
+      "archiveTag": "archive/20261022/deploy/pages-bootstrap",
+      "ahead": 4,
+      "behind": 658
+    },
+    {
+      "branch": "diag/whisper-stage-latency-20261020",
+      "sha": "f0236535a0211653d6ef3a26cf836ae1bff182a6",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        128
+      ],
+      "archiveTag": "archive/20261022/diag/whisper-stage-latency-20261020",
+      "ahead": 5,
+      "behind": 58
+    },
+    {
+      "branch": "docs/android-companion-v1.9.21",
+      "sha": "443e997a2052777f9a04f18c65eca91bad9b0143",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        54
+      ],
+      "archiveTag": "archive/20261022/docs/android-companion-v1.9.21",
+      "ahead": 1,
+      "behind": 340
+    },
+    {
+      "branch": "docs/android-companion-v1.9.22",
+      "sha": "4b6dcbac09adff2f3eb26f1c432a4a6e8d932e98",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        55
+      ],
+      "archiveTag": "archive/20261022/docs/android-companion-v1.9.22",
+      "ahead": 1,
+      "behind": 339
+    },
+    {
+      "branch": "docs/android-companion-v1.9.23",
+      "sha": "d0796c4cb58a11441d66f09373ce26f39e57e0a1",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        56
+      ],
+      "archiveTag": "archive/20261022/docs/android-companion-v1.9.23",
+      "ahead": 1,
+      "behind": 338
+    },
+    {
+      "branch": "docs/semantic-parity-complete",
+      "sha": "c3dbb3291f3a54c4dd65f115729ac142f3037526",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        68
+      ],
+      "archiveTag": "archive/20261022/docs/semantic-parity-complete",
+      "ahead": 0,
+      "behind": 217
+    },
+    {
+      "branch": "docs/web-lite-positioning",
+      "sha": "9868c2e3fdcce00705b3f81fc8cd04ca274ae480",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        34
+      ],
+      "archiveTag": "archive/20261022/docs/web-lite-positioning",
+      "ahead": 4,
+      "behind": 618
+    },
+    {
+      "branch": "docs/web-readme-license-sync-2026-10-02",
+      "sha": "d1af8dec6da283461426fdfa807d299c77d611b3",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        53
+      ],
+      "archiveTag": "archive/20261022/docs/web-readme-license-sync-2026-10-02",
+      "ahead": 1,
+      "behind": 341
+    },
+    {
+      "branch": "english/rhythm-first-20261014-105sets",
+      "sha": "405d49ae9fdcfc9f380c9603f2525f005ec85551",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        91
+      ],
+      "archiveTag": "archive/20261022/english/rhythm-first-20261014-105sets",
+      "ahead": 11,
+      "behind": 121
+    },
+    {
+      "branch": "experiment/non-gpl-phonemizer",
+      "sha": "e68a228332a85ab62dbc5aedd756d06ec1ba3256",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        49
+      ],
+      "archiveTag": "archive/20261022/experiment/non-gpl-phonemizer",
+      "ahead": 1,
+      "behind": 397
+    },
+    {
+      "branch": "experiment/semantic-lite-web-test",
+      "sha": "ea7c40c72445e2fdae4b6b32c5985a0e0edc79a1",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [],
+      "archiveTag": "archive/20261022/experiment/semantic-lite-web-test",
+      "ahead": 0,
+      "behind": 268
+    },
+    {
+      "branch": "feat/compact-history-replay-bulk-delete-20261012",
+      "sha": "bd9363c071f1aad67a26bee2b0f2f5302da78c70",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        74
+      ],
+      "archiveTag": "archive/20261022/feat/compact-history-replay-bulk-delete-20261012",
+      "ahead": 9,
+      "behind": 213
+    },
+    {
+      "branch": "feat/diverse-ruri-replies-20261013",
+      "sha": "79eed46aba0cebd6dba18f0afc86cf4f70b8cacd",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        80
+      ],
+      "archiveTag": "archive/20261022/feat/diverse-ruri-replies-20261013",
+      "ahead": 16,
+      "behind": 132
+    },
+    {
+      "branch": "feat/infant-english-naturalness-review-20261013",
+      "sha": "fa297e4eba7a444b22efdf726fa0cd615f021a67",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        82
+      ],
+      "archiveTag": "archive/20261022/feat/infant-english-naturalness-review-20261013",
+      "ahead": 24,
+      "behind": 130
+    },
+    {
+      "branch": "feat/interaction-default-on-20261013",
+      "sha": "a112cee80e427e4dda8b9354f96facaff46e7520",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        76
+      ],
+      "archiveTag": "archive/20261022/feat/interaction-default-on-20261013",
+      "ahead": 0,
+      "behind": 135
+    },
+    {
+      "branch": "feat/interruptible-web-listening",
+      "sha": "81e3fd8abea3a1cdb889a988ab371d7f8f854d6f",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        70
+      ],
+      "archiveTag": "archive/20261022/feat/interruptible-web-listening",
+      "ahead": 20,
+      "behind": 214
+    },
+    {
+      "branch": "feat/japanese-restart-greeting-20261020",
+      "sha": "f95873397ab48c33a7bdf4ec1ff6f1c75777bb64",
+      "status": "superseded",
+      "reason": "旧日本語挨拶は廃止。PR #136の録音英語1文の再開挨拶を採用。",
+      "pullRequests": [
+        126
+      ],
+      "archiveTag": "archive/20261022/feat/japanese-restart-greeting-20261020",
+      "ahead": 2,
+      "behind": 68
+    },
+    {
+      "branch": "feat/kitten-kiki-voice",
+      "sha": "c0722ae473f561e1d7539a8096d319e4d9066174",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        32
+      ],
+      "archiveTag": "archive/20261022/feat/kitten-kiki-voice",
+      "ahead": 3,
+      "behind": 620
+    },
+    {
+      "branch": "feat/lite-meaningful-phrase-variety-20261012",
+      "sha": "6fb80782ae2c1072b1c78d1e91b3877dc7bd4bb8",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        72
+      ],
+      "archiveTag": "archive/20261022/feat/lite-meaningful-phrase-variety-20261012",
+      "ahead": 0,
+      "behind": 200
+    },
+    {
+      "branch": "feat/low-frequency-paired-baby-name-20261013",
+      "sha": "2fc690fdec838ea90c3907cd91abae4c76a119fc",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        88
+      ],
+      "archiveTag": "archive/20261022/feat/low-frequency-paired-baby-name-20261013",
+      "ahead": 10,
+      "behind": 127
+    },
+    {
+      "branch": "feat/main-recorded-restart-greeting-20261022",
+      "sha": "a7003a4fbcf81f7604ddba81e71834ba7ede350c",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        136
+      ],
+      "archiveTag": "archive/20261022/feat/main-recorded-restart-greeting-20261022",
+      "ahead": 5,
+      "behind": 2
+    },
+    {
+      "branch": "feat/moonshine-small-streaming-ja",
+      "sha": "f911df3eb1208bbe256a59c022935f3542e4b16d",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        30
+      ],
+      "archiveTag": "archive/20261022/feat/moonshine-small-streaming-ja",
+      "ahead": 7,
+      "behind": 623
+    },
+    {
+      "branch": "feat/moonshine-tiny-kitten-nano",
+      "sha": "1677f70248484f26396dd9ec9b20195f1af278ee",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        31
+      ],
+      "archiveTag": "archive/20261022/feat/moonshine-tiny-kitten-nano",
+      "ahead": 7,
+      "behind": 621
+    },
+    {
+      "branch": "feat/multilingual-20261019",
+      "sha": "f95873397ab48c33a7bdf4ec1ff6f1c75777bb64",
+      "status": "superseded",
+      "reason": "6言語本体はPR #116ほかでmainへ導入済み。枝先の旧再開挨拶は後発PR #136に置換済み。",
+      "pullRequests": [
+        116
+      ],
+      "archiveTag": "archive/20261022/feat/multilingual-20261019",
+      "ahead": 2,
+      "behind": 68
+    },
+    {
+      "branch": "feat/ruri-pairs-routing-diagnostics-20261013",
+      "sha": "32e097a0fedb9cf9fbf7e6ba965edeecaa0d4eed",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        79
+      ],
+      "archiveTag": "archive/20261022/feat/ruri-pairs-routing-diagnostics-20261013",
+      "ahead": 14,
+      "behind": 133
+    },
+    {
+      "branch": "feat/whisper-small-wasm-multithread-sticky-language-20261020",
+      "sha": "5557cf0d285850aa733c175674fa98c2dcf2384b",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        131
+      ],
+      "archiveTag": "archive/20261022/feat/whisper-small-wasm-multithread-sticky-language-20261020",
+      "ahead": 13,
+      "behind": 57
+    },
+    {
+      "branch": "feature/android-parity-v02",
+      "sha": "ff191f9ad1be5cb64a8459f3c4e105f82312d1b4",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        4
+      ],
+      "archiveTag": "archive/20261022/feature/android-parity-v02",
+      "ahead": 9,
+      "behind": 652
+    },
+    {
+      "branch": "feature/emma-first-compact-reply-ui",
+      "sha": "78cb5034dbc850227a245796058145d6c366b108",
+      "status": "superseded",
+      "reason": "本番用PR #108およびPR #107の最終UIへ置換済み。",
+      "pullRequests": [
+        105
+      ],
+      "archiveTag": "archive/20261022/feature/emma-first-compact-reply-ui",
+      "ahead": 31,
+      "behind": 112
+    },
+    {
+      "branch": "feature/emma-first-main-final-20261017",
+      "sha": "ac76ec20aad76632d3e30dbcc8297e5dbda171b5",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        108
+      ],
+      "archiveTag": "archive/20261022/feature/emma-first-main-final-20261017",
+      "ahead": 4,
+      "behind": 81
+    },
+    {
+      "branch": "feature/interaction-default-on-20261013",
+      "sha": "5ce24e63500f144fe9d6ee66b134f8b068efadfe",
+      "status": "superseded",
+      "reason": "PR #76、その後PR #90の常時ONを採用。",
+      "pullRequests": [
+        77
+      ],
+      "archiveTag": "archive/20261022/feature/interaction-default-on-20261013",
+      "ahead": 8,
+      "behind": 140
+    },
+    {
+      "branch": "feature/interaction-phase-a-gemma-handoff-20261012",
+      "sha": "9be0c2209bf1772f6db54017a1afbb1c3bd5cb16",
+      "status": "research",
+      "reason": "初期研究ヘッド・暫定指標。後発PR #73以降の採用済みInteraction実装を維持し、研究成果はタグで保存。",
+      "pullRequests": [
+        71
+      ],
+      "archiveTag": "archive/20261022/feature/interaction-phase-a-gemma-handoff-20261012",
+      "ahead": 20,
+      "behind": 213
+    },
+    {
+      "branch": "feature/interaction-prd-web-integration-20261012",
+      "sha": "cd2704a03309f355a3ed754169fba91a2c8ebdb1",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        73
+      ],
+      "archiveTag": "archive/20261022/feature/interaction-prd-web-integration-20261012",
+      "ahead": 0,
+      "behind": 142
+    },
+    {
+      "branch": "feature/kitten-nano-speed-compare",
+      "sha": "3c01e57338036738f6399367d0451ab9febdb66d",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        18
+      ],
+      "archiveTag": "archive/20261022/feature/kitten-nano-speed-compare",
+      "ahead": 5,
+      "behind": 633
+    },
+    {
+      "branch": "feature/kitten-tts-experiment",
+      "sha": "78399e2ad7c6aae9abdf0f0cac5e7e0c990d6340",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        13
+      ],
+      "archiveTag": "archive/20261022/feature/kitten-tts-experiment",
+      "ahead": 5,
+      "behind": 638
+    },
+    {
+      "branch": "feature/native-local-asr-first",
+      "sha": "1776f5d35745a4c9e829045856b0b09c717019b6",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        26
+      ],
+      "archiveTag": "archive/20261022/feature/native-local-asr-first",
+      "ahead": 5,
+      "behind": 627
+    },
+    {
+      "branch": "feature/play-lite-vocabulary-110",
+      "sha": "4ab27f2b7baacd6fa34b1e6d271c6e02ca9f9eaf",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        58
+      ],
+      "archiveTag": "archive/20261022/feature/play-lite-vocabulary-110",
+      "ahead": 0,
+      "behind": 311
+    },
+    {
+      "branch": "feature/play-sentence-count",
+      "sha": "e643471196ec4c4029c6fc41a2c3476feea36421",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        59
+      ],
+      "archiveTag": "archive/20261022/feature/play-sentence-count",
+      "ahead": 0,
+      "behind": 295
+    },
+    {
+      "branch": "feature/resumable-background-model-downloads",
+      "sha": "ceb73b851adfe0a5922d58d47c3cf36179fa4fdb",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        51
+      ],
+      "archiveTag": "archive/20261022/feature/resumable-background-model-downloads",
+      "ahead": 1,
+      "behind": 352
+    },
+    {
+      "branch": "feature/ruri-polarity-experiment-20261013",
+      "sha": "4293aa2fac969185c939a91ca47ed69a406b3835",
+      "status": "research",
+      "reason": "独立難問評価68.6%の否定判定研究。枝内の結論どおり本番ヘッドへは不採用。研究成果はタグで保存。",
+      "pullRequests": [
+        75
+      ],
+      "archiveTag": "archive/20261022/feature/ruri-polarity-experiment-20261013",
+      "ahead": 29,
+      "behind": 213
+    },
+    {
+      "branch": "feature/shared-play-history",
+      "sha": "da6cbeffa3244084ca03b2b26ed67d50228a18f4",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        57
+      ],
+      "archiveTag": "archive/20261022/feature/shared-play-history",
+      "ahead": 0,
+      "behind": 319
+    },
+    {
+      "branch": "feature/tts-comparison-lab",
+      "sha": "17ba0cf44a93e1bddc9fecbb80c8bbb1f6537246",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        14
+      ],
+      "archiveTag": "archive/20261022/feature/tts-comparison-lab",
+      "ahead": 6,
+      "behind": 637
+    },
+    {
+      "branch": "feature/visual-cue-12-prototypes-20261014",
+      "sha": "f2824e1708f81a653c69dbbe63017ba528b9ea1b",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        96
+      ],
+      "archiveTag": "archive/20261022/feature/visual-cue-12-prototypes-20261014",
+      "ahead": 5,
+      "behind": 118
+    },
+    {
+      "branch": "feature/visual-cue-914-corpus-20261014",
+      "sha": "08bf2a1cbfc3e1331f9acce5630ca307d6e18c5d",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        94
+      ],
+      "archiveTag": "archive/20261022/feature/visual-cue-914-corpus-20261014",
+      "ahead": 11,
+      "behind": 120
+    },
+    {
+      "branch": "feature/visual-cue-artwork-handoff-20261017",
+      "sha": "4e3c216bbccaf3bcd4be46d808d1e4948b9a37fb",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        106
+      ],
+      "archiveTag": "archive/20261022/feature/visual-cue-artwork-handoff-20261017",
+      "ahead": 1,
+      "behind": 86
+    },
+    {
+      "branch": "feature/visual-cue-main-face-replacement-20261016",
+      "sha": "238d6eaa8fc25a48bbd26389269937f2ee547756",
+      "status": "superseded",
+      "reason": "旧顔差替え案は撤回。PR #107の採用素材・表示制御を維持。",
+      "pullRequests": [
+        102
+      ],
+      "archiveTag": "archive/20261022/feature/visual-cue-main-face-replacement-20261016",
+      "ahead": 10,
+      "behind": 112
+    },
+    {
+      "branch": "feature/visual-cue-semantic-audit-20261014",
+      "sha": "3ed9062992cb8c7cb0317a09d55b5efb3a01ae2e",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        95
+      ],
+      "archiveTag": "archive/20261022/feature/visual-cue-semantic-audit-20261014",
+      "ahead": 13,
+      "behind": 119
+    },
+    {
+      "branch": "feature/visual-cue-semireal-motion-20261015",
+      "sha": "b288e6bcd674fb178019379ad8cf7754d97b262f",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        99
+      ],
+      "archiveTag": "archive/20261022/feature/visual-cue-semireal-motion-20261015",
+      "ahead": 4,
+      "behind": 115
+    },
+    {
+      "branch": "fix/asr-init-stall",
+      "sha": "592e2df90c12c690649cab1659475d360c74de6f",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        28
+      ],
+      "archiveTag": "archive/20261022/fix/asr-init-stall",
+      "ahead": 4,
+      "behind": 625
+    },
+    {
+      "branch": "fix/avatar-color-full-link",
+      "sha": "00e341a2f95972030c1d1d129218767cd9860ef4",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        5
+      ],
+      "archiveTag": "archive/20261022/fix/avatar-color-full-link",
+      "ahead": 3,
+      "behind": 651
+    },
+    {
+      "branch": "fix/browser-locale-auto-select-20261020",
+      "sha": "12430c040c9eaf2390e7b40f579342560c4b0afe",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        118
+      ],
+      "archiveTag": "archive/20261022/fix/browser-locale-auto-select-20261020",
+      "ahead": 6,
+      "behind": 66
+    },
+    {
+      "branch": "fix/cache-bust-kitten-worker",
+      "sha": "72505da29c2c93a738ff486ed2279d6229ee9960",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        36
+      ],
+      "archiveTag": "archive/20261022/fix/cache-bust-kitten-worker",
+      "ahead": 3,
+      "behind": 616
+    },
+    {
+      "branch": "fix/e5-panel-two-heads-20261020",
+      "sha": "5c2e3e472d1a546c0fed40388fe0fce4863314be",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        123
+      ],
+      "archiveTag": "archive/20261022/fix/e5-panel-two-heads-20261020",
+      "ahead": 0,
+      "behind": 64
+    },
+    {
+      "branch": "fix/english-bypass-whisper-language-detect-20261020",
+      "sha": "900f06b15732f236d2108513cb455de489d3628c",
+      "status": "superseded",
+      "reason": "後発PR #131の会話単位の言語判定キャッシュと開発者向け英語固定モードを採用。古い英語固定既定には戻さない。",
+      "pullRequests": [
+        124
+      ],
+      "archiveTag": "archive/20261022/fix/english-bypass-whisper-language-detect-20261020",
+      "ahead": 7,
+      "behind": 59
+    },
+    {
+      "branch": "fix/force-service-worker-refresh",
+      "sha": "afcf9bff5507f7bacc294cbc0395c2271ca9b82c",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        41
+      ],
+      "archiveTag": "archive/20261022/fix/force-service-worker-refresh",
+      "ahead": 4,
+      "behind": 611
+    },
+    {
+      "branch": "fix/full-modal-overflow",
+      "sha": "a63f9fad8ef011052e6fd6566702a9220c388de6",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        12
+      ],
+      "archiveTag": "archive/20261022/fix/full-modal-overflow",
+      "ahead": 2,
+      "behind": 639
+    },
+    {
+      "branch": "fix/full-modal-position",
+      "sha": "c0cc96c9764e0c888f7904abdb3b49fe7e96157e",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        11
+      ],
+      "archiveTag": "archive/20261022/fix/full-modal-position",
+      "ahead": 4,
+      "behind": 640
+    },
+    {
+      "branch": "fix/infant-english-phrases-and-v1944-20261013",
+      "sha": "3fc946af21d72204dcfad2338455f205463bda07",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        83
+      ],
+      "archiveTag": "archive/20261022/fix/infant-english-phrases-and-v1944-20261013",
+      "ahead": 5,
+      "behind": 129
+    },
+    {
+      "branch": "fix/infant-phrases-v1944-20261013",
+      "sha": "7f0d64e6c5f2cee7ce157ec2547b9c9834b1c28c",
+      "status": "superseded",
+      "reason": "PR #83の同等修正版を採用。後発の音源・英文同期も維持。",
+      "pullRequests": [
+        84
+      ],
+      "archiveTag": "archive/20261022/fix/infant-phrases-v1944-20261013",
+      "ahead": 5,
+      "behind": 129
+    },
+    {
+      "branch": "fix/interaction-always-on-english-review-20261014",
+      "sha": "6a22720e5fdf22be797da44dcbff890a09a492f2",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        90
+      ],
+      "archiveTag": "archive/20261022/fix/interaction-always-on-english-review-20261014",
+      "ahead": 16,
+      "behind": 124
+    },
+    {
+      "branch": "fix/interaction-toggle-developer-settings-20261013",
+      "sha": "5d2c18100b316e95fdfea8d2f582cae64b6c3159",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        78
+      ],
+      "archiveTag": "archive/20261022/fix/interaction-toggle-developer-settings-20261013",
+      "ahead": 5,
+      "behind": 134
+    },
+    {
+      "branch": "fix/kitten-fp32-stable-nano",
+      "sha": "d0140cffdfa35e058f8994d91ed4e1c2e8b0222b",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        40
+      ],
+      "archiveTag": "archive/20261022/fix/kitten-fp32-stable-nano",
+      "ahead": 6,
+      "behind": 612
+    },
+    {
+      "branch": "fix/kitten-module-cdn",
+      "sha": "5326e62ce285fa1d5af7bbf81e73718ceee29662",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        35
+      ],
+      "archiveTag": "archive/20261022/fix/kitten-module-cdn",
+      "ahead": 2,
+      "behind": 617
+    },
+    {
+      "branch": "fix/kitten-progress-diagnostics",
+      "sha": "5455b0adc6fb0417de8065b7baad81d866be2eab",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        39
+      ],
+      "archiveTag": "archive/20261022/fix/kitten-progress-diagnostics",
+      "ahead": 6,
+      "behind": 613
+    },
+    {
+      "branch": "fix/kitten-supported-nano-model",
+      "sha": "886d808e2c72a24101448c4b83b64186dc4bc315",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        37
+      ],
+      "archiveTag": "archive/20261022/fix/kitten-supported-nano-model",
+      "ahead": 6,
+      "behind": 615
+    },
+    {
+      "branch": "fix/kitten-wasm-direct-loader",
+      "sha": "d9fa4b14c60ffd9c598df67c3cb5d6cab8c2ba23",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        23
+      ],
+      "archiveTag": "archive/20261022/fix/kitten-wasm-direct-loader",
+      "ahead": 2,
+      "behind": 630
+    },
+    {
+      "branch": "fix/kitten-wasm-fair-compare",
+      "sha": "e38f767ab8ca1ec65e2e236aec95be0b441c9da4",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        20
+      ],
+      "archiveTag": "archive/20261022/fix/kitten-wasm-fair-compare",
+      "ahead": 5,
+      "behind": 632
+    },
+    {
+      "branch": "fix/kitten-wasm-module-url",
+      "sha": "1b29b9614b02fab94b54140ff0662ce32f22e818",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        22
+      ],
+      "archiveTag": "archive/20261022/fix/kitten-wasm-module-url",
+      "ahead": 2,
+      "behind": 631
+    },
+    {
+      "branch": "fix/language-settings-bottom-20261021",
+      "sha": "3044525f9a176b5c1524eb78d5d83c7874174a85",
+      "status": "superseded",
+      "reason": "PR #137の同等の配置修正を採用。旧ブランチ全体は戻さない。",
+      "pullRequests": [
+        133
+      ],
+      "archiveTag": "archive/20261022/fix/language-settings-bottom-20261021",
+      "ahead": 4,
+      "behind": 48
+    },
+    {
+      "branch": "fix/localize-voice-progress-about-page-20261020",
+      "sha": "213f9fd44ef6c925949179792004963c334ba6ed",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        119
+      ],
+      "archiveTag": "archive/20261022/fix/localize-voice-progress-about-page-20261020",
+      "ahead": 8,
+      "behind": 65
+    },
+    {
+      "branch": "fix/localized-reply-context-hints-20261020",
+      "sha": "f2a498e8415696904e4c32e83cbba86243972efb",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        125
+      ],
+      "archiveTag": "archive/20261022/fix/localized-reply-context-hints-20261020",
+      "ahead": 14,
+      "behind": 59
+    },
+    {
+      "branch": "fix/main-language-controls-location-20261022",
+      "sha": "a3c45f8425d7864c09b99441e9bff274f6e183ab",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        137
+      ],
+      "archiveTag": "archive/20261022/fix/main-language-controls-location-20261022",
+      "ahead": 5,
+      "behind": 1
+    },
+    {
+      "branch": "fix/mic-start-after-isolation-reload",
+      "sha": "a28004f8a764c1c5ff9db32488191959fc400863",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        62
+      ],
+      "archiveTag": "archive/20261022/fix/mic-start-after-isolation-reload",
+      "ahead": 0,
+      "behind": 257
+    },
+    {
+      "branch": "fix/moonshine-japanese-decoding",
+      "sha": "ce824851b8bf5723faaf1785820a24ce3d242cf0",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        113
+      ],
+      "archiveTag": "archive/20261022/fix/moonshine-japanese-decoding",
+      "ahead": 1,
+      "behind": 79
+    },
+    {
+      "branch": "fix/moonshine-official-worker-host",
+      "sha": "ff5dd223ce33c072ed9c4a30d196b1539543e1c8",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        42
+      ],
+      "archiveTag": "archive/20261022/fix/moonshine-official-worker-host",
+      "ahead": 3,
+      "behind": 610
+    },
+    {
+      "branch": "fix/multilingual-cache-onboarding-brand-20261019",
+      "sha": "b1d4c35ef4835bf8e585c820fb455644611cfd30",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        117
+      ],
+      "archiveTag": "archive/20261022/fix/multilingual-cache-onboarding-brand-20261019",
+      "ahead": 19,
+      "behind": 67
+    },
+    {
+      "branch": "fix/parent-button-and-sentence-gap",
+      "sha": "c9c59d63e6e7a7ede80c2df09bae666975914793",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        7
+      ],
+      "archiveTag": "archive/20261022/fix/parent-button-and-sentence-gap",
+      "ahead": 3,
+      "behind": 648
+    },
+    {
+      "branch": "fix/preauthored-baby-name-templates-20261014",
+      "sha": "8b2c046eb792379eaef3dfa793e50ed4351a5e82",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        89
+      ],
+      "archiveTag": "archive/20261022/fix/preauthored-baby-name-templates-20261014",
+      "ahead": 8,
+      "behind": 125
+    },
+    {
+      "branch": "fix/private-session-asr-integrated-20261020",
+      "sha": "338445564e6665f8874499edf5aa2c463e18306a",
+      "status": "superseded",
+      "reason": "同じSHAのPR #122がmainへ導入済み。",
+      "pullRequests": [],
+      "archiveTag": "archive/20261022/fix/private-session-asr-integrated-20261020",
+      "ahead": 9,
+      "behind": 63
+    },
+    {
+      "branch": "fix/private-session-asr-language-switch-i18n-20261020",
+      "sha": "338445564e6665f8874499edf5aa2c463e18306a",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        122
+      ],
+      "archiveTag": "archive/20261022/fix/private-session-asr-language-switch-i18n-20261020",
+      "ahead": 9,
+      "behind": 63
+    },
+    {
+      "branch": "fix/recorded-audio-download-retry-and-recovery-20261021",
+      "sha": "4a342db3e72ddd7370c851789cbbcdbf4ddab1cb",
+      "status": "superseded",
+      "reason": "PR #135の最新イラスト対応の統合版を採用。",
+      "pullRequests": [
+        134
+      ],
+      "archiveTag": "archive/20261022/fix/recorded-audio-download-retry-and-recovery-20261021",
+      "ahead": 10,
+      "behind": 48
+    },
+    {
+      "branch": "fix/recorded-audio-recovery-integrated-20261021",
+      "sha": "8c976fba7cf336c0c2159baaa65918cc686b9988",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        135
+      ],
+      "archiveTag": "archive/20261022/fix/recorded-audio-recovery-integrated-20261021",
+      "ahead": 7,
+      "behind": 3
+    },
+    {
+      "branch": "fix/recorded-english-resume-greetings-20261020",
+      "sha": "8da928c387d117a7e734c36998f269fba86b4cae",
+      "status": "superseded",
+      "reason": "後発PR #136の本番用録音英語挨拶を採用。",
+      "pullRequests": [
+        130
+      ],
+      "archiveTag": "archive/20261022/fix/recorded-english-resume-greetings-20261020",
+      "ahead": 5,
+      "behind": 68
+    },
+    {
+      "branch": "fix/recorded-only-ruri-asr-audit-20261015",
+      "sha": "a2d29fb2a25adffb0cfb6d28c5007941e3fea6bf",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        100
+      ],
+      "archiveTag": "archive/20261022/fix/recorded-only-ruri-asr-audit-20261015",
+      "ahead": 27,
+      "behind": 114
+    },
+    {
+      "branch": "fix/runtime-language-switch-20261021",
+      "sha": "2dbcd445ff8fe60c416f5a9d906fdf8a409492c1",
+      "status": "integrated",
+      "reason": "言語確定直後のruntime表示更新と6言語回帰テストを本統合へ取り込み。",
+      "pullRequests": [
+        132
+      ],
+      "archiveTag": "archive/20261022/fix/runtime-language-switch-20261021",
+      "ahead": 1,
+      "behind": 49
+    },
+    {
+      "branch": "fix/serialized-model-initialization",
+      "sha": "a77a8f7ea8808e4ca03a3b196d8ecc87db8205b9",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        27
+      ],
+      "archiveTag": "archive/20261022/fix/serialized-model-initialization",
+      "ahead": 3,
+      "behind": 626
+    },
+    {
+      "branch": "fix/settings-flow-mobile-full",
+      "sha": "39858d017756e408347f7586095731af143e0b23",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        10
+      ],
+      "archiveTag": "archive/20261022/fix/settings-flow-mobile-full",
+      "ahead": 5,
+      "behind": 641
+    },
+    {
+      "branch": "fix/setup-revision-after-model-change",
+      "sha": "4d13066e7ac924d2c888a3b0b78ddab6f4e638b1",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        33
+      ],
+      "archiveTag": "archive/20261022/fix/setup-revision-after-model-change",
+      "ahead": 2,
+      "behind": 619
+    },
+    {
+      "branch": "fix/tighter-kokoro-gap-and-chan",
+      "sha": "a6a1ea5d9b4812345c83197f43e0c8954fa168b9",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        8
+      ],
+      "archiveTag": "archive/20261022/fix/tighter-kokoro-gap-and-chan",
+      "ahead": 6,
+      "behind": 647
+    },
+    {
+      "branch": "fix/topic-context-one-followup-20261010",
+      "sha": "6007685cd74ee854465c4222a4a7b5a2d699d64c",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        67
+      ],
+      "archiveTag": "archive/20261022/fix/topic-context-one-followup-20261010",
+      "ahead": 8,
+      "behind": 220
+    },
+    {
+      "branch": "fix/topic-context-two-followups-20261010",
+      "sha": "eaa3d1ec3f999bb6a5b470672d5ae659a28f91fc",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        65
+      ],
+      "archiveTag": "archive/20261022/fix/topic-context-two-followups-20261010",
+      "ahead": 8,
+      "behind": 221
+    },
+    {
+      "branch": "fix/tutorial-intro-auto-advance-20261020",
+      "sha": "ee386e420c1eb8e665fc2a41c49a6badfe5baabe",
+      "status": "superseded",
+      "reason": "最新多言語対応のPR #121へ置換済み。",
+      "pullRequests": [
+        120
+      ],
+      "archiveTag": "archive/20261022/fix/tutorial-intro-auto-advance-20261020",
+      "ahead": 6,
+      "behind": 65
+    },
+    {
+      "branch": "fix/tutorial-intro-auto-advance-rebased-20261020",
+      "sha": "2faea61d4d3103f1f7c362b395a44d3067ef0bd7",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        121
+      ],
+      "archiveTag": "archive/20261022/fix/tutorial-intro-auto-advance-rebased-20261020",
+      "ahead": 6,
+      "behind": 64
+    },
+    {
+      "branch": "fix/ui-language-audit-20261020",
+      "sha": "f447b7143f84b9eda807e409cc1342218d3a114a",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        129
+      ],
+      "archiveTag": "archive/20261022/fix/ui-language-audit-20261020",
+      "ahead": 0,
+      "behind": 50
+    },
+    {
+      "branch": "fix/vendor-kitten-browser-runtime",
+      "sha": "3a0903d1f60e12129ba405efdede1a06d42c5813",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        38
+      ],
+      "archiveTag": "archive/20261022/fix/vendor-kitten-browser-runtime",
+      "ahead": 14,
+      "behind": 614
+    },
+    {
+      "branch": "fix/voice-human-audit-five-20261018",
+      "sha": "1dbe634675d6df312c8d449ce69402e3f3c2bb6b",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        114
+      ],
+      "archiveTag": "archive/20261022/fix/voice-human-audit-five-20261018",
+      "ahead": 0,
+      "behind": 70
+    },
+    {
+      "branch": "fix/voice-preview-hana",
+      "sha": "ab9e39d1f9f37a8d97fdc3f93fafbb5752b278d6",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        17
+      ],
+      "archiveTag": "archive/20261022/fix/voice-preview-hana",
+      "ahead": 2,
+      "behind": 634
+    },
+    {
+      "branch": "fix/web-callout-copy-after-banner-removal-20261013",
+      "sha": "7cc7b55d409af4450ea24462be23687a73f41cc9",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        87
+      ],
+      "archiveTag": "archive/20261022/fix/web-callout-copy-after-banner-removal-20261013",
+      "ahead": 4,
+      "behind": 127
+    },
+    {
+      "branch": "fix/web-public-callout-copy-20261013",
+      "sha": "48ace7d9b00652628129c135e0f19a44afa37b74",
+      "status": "superseded",
+      "reason": "PR #87のmain追従版へ置換済み。",
+      "pullRequests": [
+        86
+      ],
+      "archiveTag": "archive/20261022/fix/web-public-callout-copy-20261013",
+      "ahead": 4,
+      "behind": 128
+    },
+    {
+      "branch": "fix/web-subpage-back-navigation",
+      "sha": "1619f5c3087764b912f43554f0a6512c149ac882",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        61
+      ],
+      "archiveTag": "archive/20261022/fix/web-subpage-back-navigation",
+      "ahead": 0,
+      "behind": 276
+    },
+    {
+      "branch": "icon/baby-abc-20260930",
+      "sha": "cd49ddbf6bb584e8e55948c15a611da35a0fc0f6",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        50
+      ],
+      "archiveTag": "archive/20261022/icon/baby-abc-20260930",
+      "ahead": 1,
+      "behind": 353
+    },
+    {
+      "branch": "issue101-human-review-gate-20261016",
+      "sha": "eb8c907f9f01abcf03a6475e95e718b2a2b9df47",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        103
+      ],
+      "archiveTag": "archive/20261022/issue101-human-review-gate-20261016",
+      "ahead": 8,
+      "behind": 113
+    },
+    {
+      "branch": "local-asr-native-first",
+      "sha": "3ab4019750f7432ba2089d8306bf431232b68f2d",
+      "status": "superseded",
+      "reason": "後発のローカルWASM ASRへ置換済み。Web Speech既定には戻さない。",
+      "pullRequests": [],
+      "archiveTag": "archive/20261022/local-asr-native-first",
+      "ahead": 9,
+      "behind": 632
+    },
+    {
+      "branch": "local-asr-native-first-final",
+      "sha": "ae4c2244acca9411b3a0f967571c980c6d05f91b",
+      "status": "superseded",
+      "reason": "後発のローカルWASM ASRへ置換済み。Web Speech既定には戻さない。",
+      "pullRequests": [],
+      "archiveTag": "archive/20261022/local-asr-native-first-final",
+      "ahead": 6,
+      "behind": 631
+    },
+    {
+      "branch": "main",
+      "sha": "e2130ac9c59df3de256a92f8cd150328b4be9997",
+      "status": "main",
+      "reason": "統合先。本体の唯一の開発基準。",
+      "pullRequests": [
+        21,
+        3
+      ],
+      "archiveTag": null,
+      "ahead": 0,
+      "behind": 0
+    },
+    {
+      "branch": "native-local-asr",
+      "sha": "fab7b2bc5064029a298d93ca88672b89727d05ea",
+      "status": "superseded",
+      "reason": "後発のローカルWASM ASRへ置換済み。Web Speech既定には戻さない。",
+      "pullRequests": [],
+      "archiveTag": "archive/20261022/native-local-asr",
+      "ahead": 10,
+      "behind": 633
+    },
+    {
+      "branch": "native-local-asr-v2",
+      "sha": "93b2c6696f1694f4d50db75527a5c1bd1bbe0815",
+      "status": "superseded",
+      "reason": "後発のローカルWASM ASRへ置換済み。Web Speech既定には戻さない。",
+      "pullRequests": [
+        19
+      ],
+      "archiveTag": "archive/20261022/native-local-asr-v2",
+      "ahead": 8,
+      "behind": 632
+    },
+    {
+      "branch": "perf/kokoro-streaming-playback",
+      "sha": "7cec9aa299c15ceee9025150c14245afedf8faa2",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        9
+      ],
+      "archiveTag": "archive/20261022/perf/kokoro-streaming-playback",
+      "ahead": 3,
+      "behind": 642
+    },
+    {
+      "branch": "refactor/minimal-supertonic-f3-ui",
+      "sha": "e484f5c6739b82b458d34540b9876b5a9b1c331b",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        25
+      ],
+      "archiveTag": "archive/20261022/refactor/minimal-supertonic-f3-ui",
+      "ahead": 5,
+      "behind": 628
+    },
+    {
+      "branch": "refactor/remove-kitten-comparison",
+      "sha": "e0552e253b7efc5464684380a15ee77745b4727b",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        24
+      ],
+      "archiveTag": "archive/20261022/refactor/remove-kitten-comparison",
+      "ahead": 6,
+      "behind": 629
+    },
+    {
+      "branch": "refactor/supertonic-wasm-only",
+      "sha": "98d1965b9254cc44769dde4441c2affb95962247",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        16
+      ],
+      "archiveTag": "archive/20261022/refactor/supertonic-wasm-only",
+      "ahead": 7,
+      "behind": 635
+    },
+    {
+      "branch": "refactor/whisper-only-asr",
+      "sha": "3da6bdced26322963a3a640b358f945ff8f4b3a2",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        29
+      ],
+      "archiveTag": "archive/20261022/refactor/whisper-only-asr",
+      "ahead": 4,
+      "behind": 624
+    },
+    {
+      "branch": "remove-unused-baby-gender-setting-20261014",
+      "sha": "f3d32d6af36462807a8962893efecc0daee268f5",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        98
+      ],
+      "archiveTag": "archive/20261022/remove-unused-baby-gender-setting-20261014",
+      "ahead": 3,
+      "behind": 116
+    },
+    {
+      "branch": "research/issue101-human-semantic-review-20261017",
+      "sha": "0edc520442143feba51b0dc7b2a1b9fb44a3f728",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        110
+      ],
+      "archiveTag": "archive/20261022/research/issue101-human-semantic-review-20261017",
+      "ahead": 5,
+      "behind": 80
+    },
+    {
+      "branch": "research/ruri-generic-rescue-sweep-20261014",
+      "sha": "3fc5dc52d7bf51ed420e8840acc3b1bb2d70c806",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        92
+      ],
+      "archiveTag": "archive/20261022/research/ruri-generic-rescue-sweep-20261014",
+      "ahead": 3,
+      "behind": 123
+    },
+    {
+      "branch": "research/ruri-threshold-reevaluation-20261017",
+      "sha": "f0baff50c138ff814cd6cda481bc4e1fe090b24c",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        109
+      ],
+      "archiveTag": "archive/20261022/research/ruri-threshold-reevaluation-20261017",
+      "ahead": 8,
+      "behind": 79
+    },
+    {
+      "branch": "stable/2026-09-25",
+      "sha": "0b9db12d96eecf797bd33dae8be1af8f39c454ec",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [],
+      "archiveTag": "archive/20261022/stable/2026-09-25",
+      "ahead": 0,
+      "behind": 527
+    },
+    {
+      "branch": "sync/android-lite-bank-20260922",
+      "sha": "ced7d9b64521e59bb6c98f62507525f7aa59d3c5",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        6
+      ],
+      "archiveTag": "archive/20261022/sync/android-lite-bank-20260922",
+      "ahead": 6,
+      "behind": 650
+    },
+    {
+      "branch": "sync/android-play-ui-20261005",
+      "sha": "c937438da395c695c1fa5178ef152a0173e45395",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        60
+      ],
+      "archiveTag": "archive/20261022/sync/android-play-ui-20261005",
+      "ahead": 0,
+      "behind": 285
+    },
+    {
+      "branch": "temp/gemma-canonical-generation-20260922",
+      "sha": "327d4f50fa88341a2c80189639a12f2cd2860cbd",
+      "status": "superseded",
+      "reason": "一時英文生成実験。後発の914セットと音源1105本の検証済み対応を維持。",
+      "pullRequests": [],
+      "archiveTag": "archive/20261022/temp/gemma-canonical-generation-20260922",
+      "ahead": 3,
+      "behind": 650
+    },
+    {
+      "branch": "test/semantic-runtime-parity",
+      "sha": "fe8e93f8adb03c49ffce27bf5f1dd917798c6820",
+      "status": "ancestor",
+      "reason": "mainの祖先。コミット履歴に統合済み。",
+      "pullRequests": [
+        63
+      ],
+      "archiveTag": "archive/20261022/test/semantic-runtime-parity",
+      "ahead": 0,
+      "behind": 224
+    },
+    {
+      "branch": "test/semantic-runtime-parity-trigger",
+      "sha": "5a17de0d5863ad076d9ce8f8fc1c46bb8725fbc1",
+      "status": "deferred-ci",
+      "reason": "未統合PR #64のAndroid別リポジトリ参照CI。Web実推論baselineは現行pages.ymlに存在。追加のクロスリポジトリCI案はタグで保存し、本体の最新機能とは分離。",
+      "pullRequests": [
+        64
+      ],
+      "archiveTag": "archive/20261022/test/semantic-runtime-parity-trigger",
+      "ahead": 3,
+      "behind": 223
+    },
+    {
+      "branch": "tmp/gemma-canonical-20260922",
+      "sha": "48e75f3e3b132fd0c051cc2406e350cfddcd0f36",
+      "status": "superseded",
+      "reason": "一時英文生成実験。後発の914セットと音源1105本の検証済み対応を維持。",
+      "pullRequests": [],
+      "archiveTag": "archive/20261022/tmp/gemma-canonical-20260922",
+      "ahead": 20,
+      "behind": 650
+    },
+    {
+      "branch": "ui/remove-persistent-privacy-banner-20261013",
+      "sha": "333ae4d76c045211b9f926229f893e7f28653c25",
+      "status": "merged",
+      "reason": "対応PRがマージ済み。squashにより枝のコミットSHAとmainのSHAが異なる。後発の採用済み実装を維持。",
+      "pullRequests": [
+        85
+      ],
+      "archiveTag": "archive/20261022/ui/remove-persistent-privacy-banner-20261013",
+      "ahead": 4,
+      "behind": 128
+    },
+    {
+      "branch": "visual-cue-extensible-foundation",
+      "sha": "9dd626b17b59b110d651a9158fde8c96cf63942b",
+      "status": "superseded",
+      "reason": "PR #94〜107の最終コーパス・採用素材・実装へ置換済み。",
+      "pullRequests": [
+        66
+      ],
+      "archiveTag": "archive/20261022/visual-cue-extensible-foundation",
+      "ahead": 7,
+      "behind": 220
+    }
+  ],
+  "counts": {
+    "merged": 94,
+    "deployment": 1,
+    "ancestor": 18,
+    "superseded": 21,
+    "research": 2,
+    "integrated": 1,
+    "main": 1,
+    "deferred-ci": 1
+  }
+}
