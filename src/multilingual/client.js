@@ -5,7 +5,7 @@ export class MultilingualClient {
     this.workerFactory=workerFactory;this.onStatus=onStatus;this.worker=null;this.pending=new Map();this.seq=0;this.ready=false;this.preparing=null;this.generation=0;
     this.threadPreference=normalizeThreads(threads);
     this.languageDetection=normalizeLanguageDetection(languageDetection);
-    this.cachedSpokenLanguage=null;this.runtimeInfo=null;
+    this.cachedSpokenLanguage=null;this.languageCacheEpoch=0;this.runtimeInfo=null;
   }
   request(type,payload={},timeout=900000,transfer=[]) {
     if(!this.worker){const worker=this.worker=this.workerFactory();worker.onmessage=({data})=>{
@@ -41,15 +41,16 @@ export class MultilingualClient {
       ? 'en-fixed'
       : language==='en' && this.languageDetection==='once' && this.cachedSpokenLanguage
         ? (this.cachedSpokenLanguage==='en'?'en-fixed':this.cachedSpokenLanguage) : language;
+    const languageCacheEpoch=this.languageCacheEpoch;
     const result=await this.request('transcribe',{audio:buffer,language:requested},90000,[buffer]);
-    if(language==='en' && this.languageDetection==='once' && !this.cachedSpokenLanguage &&
+    if(languageCacheEpoch===this.languageCacheEpoch && language==='en' && this.languageDetection==='once' && !this.cachedSpokenLanguage &&
        result?.text?.trim() && /^[a-z]{2,3}(?:-[a-z]+)?$/i.test(result.detectedLanguage||'')){
       this.cachedSpokenLanguage=result.detectedLanguage;
       this.onStatus({stage:'speech-language-cached',detectedLanguage:this.cachedSpokenLanguage});
     }
     return result;
   }
-  resetSpeechLanguage(){this.cachedSpokenLanguage=null;}
+  resetSpeechLanguage(){this.cachedSpokenLanguage=null;this.languageCacheEpoch++;}
   setPerformance({threads=this.threadPreference,languageDetection=this.languageDetection}={}){
     const nextThreads=normalizeThreads(threads),nextDetection=normalizeLanguageDetection(languageDetection);
     if(nextThreads!==this.threadPreference){
