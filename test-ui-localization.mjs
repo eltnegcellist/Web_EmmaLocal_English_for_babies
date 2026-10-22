@@ -9,6 +9,13 @@ import {GRADIENT_DESCRIPTIONS,SOFT_PALETTES,VIVID_PALETTES,FILLED_PALETTES} from
 import {appHistoryState,resolveAppPopScreen} from './src/app-navigation.js';
 import {createConfirmation} from './src/multilingual/confirmation.js';
 const html=readFileSync(new URL('./index.html',import.meta.url),'utf8');
+const settingsDocument=new JSDOM(html).window.document;
+const settingToggles=[...settingsDocument.querySelectorAll('#settingsScreen input[type="checkbox"]')];
+assert(settingToggles.length>=5,'Settings screen must expose the expected binary controls');
+for(const toggle of settingToggles){
+  assert(toggle.closest('.switch'),`Settings toggle ${toggle.id} must use the shared switch UI`);
+  assert(toggle.closest('label'),`Settings toggle ${toggle.id} must have a tappable label`);
+}
 const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.meta.url),'utf8'));
 const capture=readFileSync(new URL('./src/audio-capture.js',import.meta.url),'utf8');
 const warning=capture.match(/this.onWarning\?\.\('([^']+)'\)/)[1];
