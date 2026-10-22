@@ -5,13 +5,15 @@
 
 Webでは初回準備で音声一覧だけを確認してチュートリアルへ進み、表示中からSHA-256検証済みの音源をバックグラウンドで順次CacheStorageへ保存します。未取得の音声は再生時に優先取得し、保存済み音声は次回以降も再利用できます。未保存の音声はオフライン再生できず、ブラウザによりキャッシュが削除される場合があります。AndroidではAPKへ同梱し、Lite初回準備でKittenモデルの取得を省きます。停止・中断・口の動き・履歴再生は既存処理を使用します。
 
-登録済みの固定英文は採用声を優先します。登録外の自由文（旧履歴・開発者向け自由入力等）は、必要時に従来のKittenモデルを準備して生成します。明示的なKiki比較診断も従来の生成条件を維持しています。Qwen3のモデル本体はブラウザへ入れません。
+登録済みの固定英文は採用声を優先します。登録外の自由文（旧履歴・開発者向け自由入力等）は、本番では別の声で合成せず、未収録のエラーを表示します。Kitten/Kikiは旧比較診断の資料・依存として残っています。Qwen3のモデル本体はブラウザへ入れません。
 
 生成条件・モデルrevision・参照SHA256・元英文と音源の対応はmanifest.jsonに記録しています。アプリ用音源は-20 LUFSを目標とした音量調整版をAACへ変換したものです。元の無加工FLOAT WAVはMacの実験成果物に保存しています。
 
 音声バンクの整合性・現行英文の収録漏れは `npm run verify:voice`、キャッシュと録音再生の回帰検証は `npm test` で確認します。英文セットを変更した場合は、このチェックを通るよう採用条件で対応音声を生成して同梱してください。
 
 # みつことば Web — 親と赤ちゃんとAI、3人でつくる英語の時間
+
+現在の本体は `main` です。6言語UI・ビジュアルキュー・録音音声の復旧・英語の再開挨拶を統合しています。[2026-10-22の統合と全ブランチの整理記録](docs/MAIN_CONSOLIDATION_20261022_JA.md)を参照してください。
 
 ## 話し終わりの判定（Silero・従来方式）
 
@@ -127,14 +129,14 @@ Web版は、ブラウザで完結する呼びかけアプリとして提供し�
 ```text
 マイク
 ↓
-Moonshine Japanese Small / Tiny Streaming
-  └─ Smallが既定、Tinyは軽量オプション
+日本語: Moonshine Japanese Small / Tiny Streaming
+その他の表示言語: Whisper Small q8（端末内WASM）
 ↓
-LiteResponseEngine
+日本語: Ruri / その他: E5 → LiteResponseEngine
 ↓
-Kitten TTS Nano 0.8 / Kiki
+Qwen3 seed1202の事前収録AAC（端末で再生）
 ↓
-みつことばアバター + PCM連動口パク
+みつことばアバター + 口パク + 英語の内容を表すイラスト
 ```
 
 ### 話題の判定
@@ -155,24 +157,19 @@ Web版は21種類の育児の話題を端末内で判定します。「寝まし
 - ブラウザ標準のWeb Speech / SpeechRecognition APIは使用しません
 - Moonshine 0.1.5のブラウザ用アセットを `src/vendor/moonshine/` に固定しています
 
-### 音声合成
+### 音声再生
 
-- Kitten TTS Nano 0.8 FP32 / Kikiをブラウザ内でローカル実行します
-- 発音処理は **CMUDict + みつことば独自phonemizer** を使用します
-- eSpeak NGランタイムは使用しません
-- みつことば側で固定したブラウザ専用ランタイムを使用します
-- Node.jsの `fs` に依存しないブラウザ経路を使用します
-- 既知のeSpeak NG / GPL系TTS経路（Piper Web / kokoro-js比較）はmodel-labから削除済みです
+- 本番はQwen3 seed1202の事前収録AACだけを再生します。ブラウザで音声を合成しません
+- 未収録の英文を別の声で合成するフォールバックはありません
+- 初回は音声一覧だけを確認し、チュートリアルと並行して検証済み音声を順次保存します
+- 一時的な取得失敗は再試行し、取得済みの正常な音声は保持します
+- 会話を再開すると、挨拶カテゴリから短い英語1文を録音音声で再生します。初回開始・チュートリアルでは追加の再開挨拶を出しません
 
 ### モデル取得
 
-初回起動時に、選択した構成に必要なモデルを取得します。
+日本語は既定のMoonshine Small StreamingとRuri、その他の表示言語はWhisper Small q8とE5を端末内で使用します。英語UIは会話の最初に発話言語を自動判定し、その会話中は結果を再利用します。モデルの準備後も、まだ保存していない録音音声には通信が必要です。
 
-標準構成はMoonshine Small Streaming + Kitten TTS Nanoです。Tiny Streamingはモデルサイズを優先したい場合に選べる軽量オプションです。具体的な育児トピックは最大1ターン保持し、明確な別話題が出れば即時に切り替えます。
-
-Moonshine / Kittenの大きなファイルは途中データをIndexedDBへ保存し、配布元が対応する場合はHTTP Rangeで続きから再開します。Background Fetch対応ブラウザではバックグラウンド継続も試みます。非対応ブラウザでも、停止後に再度開いた際は保存済み地点からの再開を優先します。
-
-モデル準備後、音声認識・応答選択・音声合成はブラウザ内でローカル実行する設計です。
+大きなモデルはIndexedDBに分割保存し、対応する配布元ではHTTP Rangeで取得を再開します。録音音声はSHA-256を検証してCacheStorageへ保存します。Kittenモデルの取得は通常利用には必要ありません。
 
 ### Web版の位置づけ
 
@@ -236,7 +233,8 @@ Web版の主要な第三者依存は次のとおりです。
 | コンポーネント | 用途 | 主なライセンス |
 | --- | --- | --- |
 | Moonshine Voice 0.1.5 / Japanese Streaming | ブラウザASR | MIT |
-| Kitten TTS Nano 0.8 FP32 | 英語TTSモデル | Apache-2.0 |
+| Qwen3 seed1202 事前収録音声 | 本番の英語再生 | Apache-2.0 |
+| Kitten TTS Nano 0.8 FP32 | 旧比較診断 | Apache-2.0 |
 | CMUDict | phonemizer辞書 | BSD-style |
 | ONNX Runtime Web | TTS / model-lab推論 | MIT |
 | Eigen（Moonshine / ORT由来） | 数値計算 | MPL-2.0 |
@@ -361,7 +359,7 @@ Moonshine Japanese Small / Tiny Streaming
 ↓
 LiteResponseEngine
 ↓
-Kitten TTS Nano 0.8 / Kiki
+Qwen3 seed1202 prerecorded AAC
 ↓
 Mitsukotoba avatar + PCM-linked lip sync
 ```
@@ -384,24 +382,11 @@ Run `node test-topic-detection.mjs` for phrase variations, simulated transcript 
 - The browser Web Speech / SpeechRecognition API is not used
 - Moonshine 0.1.5 browser assets are pinned in `src/vendor/moonshine/`
 
-### TTS
+### Recorded voice and model downloads
 
-- Kitten TTS Nano 0.8 FP32 / Kiki runs locally in the browser
-- Pronunciation uses **CMUDict + Mitsukotoba's local phonemizer**
-- No eSpeak NG runtime is used in the production TTS path
-- The Web edition uses the browser-specific runtime bundled/pinned by Mitsukotoba
-- The browser path does not depend on Node.js `fs`
-- Known eSpeak-backed comparison paths (Piper Web / kokoro-js) were removed from model-lab
+Production playback uses the Qwen3 seed1202 prerecorded AAC bank. Missing recordings produce an error rather than a different synthesized voice. Setup checks the manifest, then verified clips download progressively alongside the tutorial. Failed downloads retry without discarding verified audio. Uncached clips still require a connection.
 
-### Model Download
-
-The first launch downloads the models required by the selected configuration.
-
-The default configuration uses Moonshine Small Streaming plus Kitten TTS Nano. Tiny Streaming is an optional lightweight alternative. Concrete childcare topics remain active for up to one follow-up turn unless a new explicit topic appears.
-
-Large Moonshine / Kitten files are checkpointed in IndexedDB. When the origin supports it, HTTP Range resumes from the saved position. Browsers with Background Fetch support can also continue tracked downloads in the background; unsupported browsers still prefer persisted resume on reopen.
-
-After model setup, recognition, response selection, and speech synthesis are designed to run locally in the browser.
+Japanese uses local Moonshine Small/Tiny and Ruri; other UI locales use Whisper Small q8 and E5 on WASM CPU. English UI detects the spoken language on the first successful utterance and reuses it within that conversation. Large model files use IndexedDB and resumable downloads where supported. Normal use does not download Kitten models.
 
 ### Why the Web edition stays lightweight
 
@@ -465,7 +450,8 @@ Major third-party components include:
 | Component | Purpose | Main license |
 | --- | --- | --- |
 | Moonshine Voice 0.1.5 / Japanese Streaming | Browser ASR | MIT |
-| Kitten TTS Nano 0.8 FP32 | English TTS model | Apache-2.0 |
+| Qwen3 seed1202 prerecorded audio | Production English playback | Apache-2.0 |
+| Kitten TTS Nano 0.8 FP32 | Legacy comparison diagnostics | Apache-2.0 |
 | CMUDict | Phonemizer lexicon | BSD-style |
 | ONNX Runtime Web | TTS / model-lab inference | MIT |
 | Eigen provenance (Moonshine / ORT) | Numerical routines | MPL-2.0 |

@@ -41,6 +41,7 @@ jobs:
           node test-semantic.mjs
           node test-multilingual.mjs
           node test-ui-localization.mjs
+          node test-resume-greeting.mjs
           node test-interaction.mjs
           node test-silero.mjs
           node test-interruptible-turn.mjs
@@ -92,6 +93,20 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           VAD_BROWSER_CHANNEL=chromium npm run test:vad-browser
+      - name: Verify consolidated product UI, recorded voice and illustrations
+        run: |
+          python3 scripts/serve-semantic-test.py --port 8765 > /tmp/main-integration-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          MAIN_TEST_URL=http://127.0.0.1:8765/ node scripts/browser-main-integration.mjs
+      - name: Archive consolidated product checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-integration-browser
+          path: tests/generated/main-integration/
+          if-no-files-found: warn
+          retention-days: 14
       - name: Screenshot 12 Visual Cue prototypes (desktop and mobile)
         run: node scripts/browser-visual-cue-prototypes.mjs
       - name: Archive Visual Cue prototype screenshots
