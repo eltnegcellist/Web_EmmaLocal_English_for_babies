@@ -102,6 +102,10 @@ for(const lang of LANGUAGES){
  assert.equal(dom.window.document.querySelector('#explanationLanguage'),null,'Remove the obsolete explanation language selector');
  const settingsBody=dom.window.document.querySelector('#settingsScreen .settings-content');
  assert.equal(settingsBody.lastElementChild,dom.window.document.querySelector('.language-settings'),'Language must be the last Settings card');
+ const redetectButton=dom.window.document.getElementById('redetectSpeechLanguage');
+ assert(redetectButton,'Settings should provide a speech-language redetection control');
+ assert.equal(redetectButton.hidden,lang!=='en','Only English multilingual mode shows the redetection button');
+ assert.equal(redetectButton.textContent,translate('音声言語を再判定',lang));
  assert.equal(ui.explanationLanguage,lang);
  assert.equal(dom.window.document.querySelector('#replyJapanese').hidden,lang==='en');
  assert.equal(dom.window.document.querySelector('#onboardingLanguage').value,'auto');
@@ -165,12 +169,25 @@ const redetect=installLanguageUI({document:auto.window.document,storage:auto.win
  onChange:async(next,{commit})=>{retried=next;commit();}});
 assert.equal(redetect.language,'fr','Browser locale changes are honored while in auto mode');
 assert.equal(redetect.mode,'auto');
-auto.window.document.querySelector('.language-settings button').click();
-await new Promise(resolve=>setImmediate(resolve));
+assert.equal(auto.window.document.getElementById('redetectSpeechLanguage').hidden,true);
+await redetect.choose('auto');
 assert.equal(retried,'fr');
-assert.equal(redetect.mode,'auto','Preparing again must preserve automatic language selection');
+assert.equal(redetect.mode,'auto','Browser language reselection must preserve automatic mode');
 assert.equal(auto.window.localStorage.getItem(LANGUAGE_MODE_KEY),'auto');
 redetect.dispose();auto.window.close();
+const multilingualDom=new JSDOM(html,{url:'https://speech-redetect.test'});globalThis.MutationObserver=multilingualDom.window.MutationObserver;
+let redetectCalls=0,languageChanges=0;
+const multilingualUI=installLanguageUI({document:multilingualDom.window.document,storage:multilingualDom.window.localStorage,languages:['en-US'],
+ onChange:async()=>{languageChanges++;},onRedetectSpeechLanguage:()=>{redetectCalls++;}});
+const redetectSpeechButton=multilingualDom.window.document.getElementById('redetectSpeechLanguage');
+assert.equal(redetectSpeechButton.hidden,false);
+redetectSpeechButton.click();
+assert.equal(redetectCalls,1,'Redetection must invoke the cache-reset action');
+assert.equal(languageChanges,0,'Redetection must not trigger model preparation or change the UI locale');
+assert.equal(multilingualUI.language,'en');assert.equal(multilingualUI.mode,'auto');
+assert.equal(multilingualDom.window.document.getElementById('languageModelStatus').textContent,
+ translate('次の発話で音声言語を自動判定します。','en'));
+multilingualUI.dispose();multilingualDom.window.close();
 for(const savedExplanation of ['zh','none']){
  const migrated=new JSDOM(html,{url:'https://explanation-migration.test'});
  globalThis.MutationObserver=migrated.window.MutationObserver;
@@ -276,6 +293,27 @@ cacheWorkers[0].onmessage({data:{type:'result',requestId:secondRequest.requestId
 await secondSpeech;
 sticky.resetSpeechLanguage();
 assert.equal(sticky.cachedSpokenLanguage,null);
+const retrySpeech=sticky.transcribe(voice,'en');await Promise.resolve();
+const retryRequest=cacheWorkers[0].last;
+assert.equal(retryRequest.language,'en','Manual redetection must use Whisper language inference again');
+cacheWorkers[0].onmessage({data:{type:'result',requestId:retryRequest.requestId,
+ result:{text:'Bonjour',detectedLanguage:'fr'}}});
+await retrySpeech;
+assert.equal(sticky.cachedSpokenLanguage,'fr','Redetection must store the newly inferred language');
+const inFlight=sticky.transcribe(voice,'en');await Promise.resolve();
+const inFlightRequest=cacheWorkers[0].last;
+assert.equal(inFlightRequest.language,'fr');
+sticky.resetSpeechLanguage();
+cacheWorkers[0].onmessage({data:{type:'result',requestId:inFlightRequest.requestId,
+ result:{text:'Bonjour',detectedLanguage:'fr'}}});
+await inFlight;
+assert.equal(sticky.cachedSpokenLanguage,null,'An in-flight response must not restore a cleared language cache');
+const nextSpeech=sticky.transcribe(voice,'en');await Promise.resolve();
+const nextRequest=cacheWorkers[0].last;
+assert.equal(nextRequest.language,'en','Language detection must run on the first utterance after reset');
+cacheWorkers[0].onmessage({data:{type:'result',requestId:nextRequest.requestId,
+ result:{text:'Hello',detectedLanguage:'en'}}});
+await nextSpeech;
 sticky.setPerformance({threads:'4',languageDetection:'every'});
 const allSpeech=sticky.transcribe(voice,'en');await Promise.resolve();
 const eachRequest=cacheWorkers[0].last;
