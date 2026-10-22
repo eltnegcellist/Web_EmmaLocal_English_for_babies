@@ -1374,14 +1374,9 @@ body{
 #homeScreen[data-session="active"] .screen-content.home-content{
   padding-bottom:calc(103px + env(safe-area-inset-bottom))!important;
 }
-#settingsScreen label.history-save-toggle{
-  display:flex!important;flex-direction:row!important;align-items:center;
-  justify-content:space-between;gap:14px;min-width:0
-}
-#settingsScreen label.history-save-toggle>span{flex:1;min-width:0}
-#settingsScreen label.history-save-toggle input[type="checkbox"]{
-  flex:0 0 22px;width:22px!important;height:22px!important;
-  margin:0 0 0 auto;padding:0!important;border-radius:5px;accent-color:var(--primary)
+/* Use the same switch for every binary setting; keep a visible keyboard focus ring. */
+#settingsScreen .switch input:focus-visible+span{
+  outline:3px solid var(--primary);outline-offset:3px
 }
 
 /* Optional audio-owned Visual Cue overlay; retain the established avatar footprint. */
