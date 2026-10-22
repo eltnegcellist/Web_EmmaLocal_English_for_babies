@@ -12,8 +12,8 @@ import { replyDisplayHint, explainReplyContext } from './reply-display-hint.js';
 import { inspectMoonshineCacheInventory, inspectMoonshineManifestCache } from './vendor/moonshine/asset-downloader.js';
 import { MultilingualClient } from './multilingual/client.js';
 import { LanguageSemanticClient } from './multilingual/semantic-client.js';
-import { installLanguageUI } from './multilingual/ui.js?v=20261022-consolidated-main-v1';
-import { describeError } from './multilingual/translations.js?v=20261021-ui-audit-v4';
+import { installLanguageUI } from './multilingual/ui.js?v=20261022-speech-language-redetect-r1';
+import { describeError } from './multilingual/translations.js?v=20261022-speech-language-redetect-r1';
 import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 import { bindVisualCueSettings } from './visual-cue-settings.js';
@@ -55,7 +55,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261022-consolidated-main-v1';
+const WEB_BUILD = '20261022-speech-language-redetect-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -284,7 +284,12 @@ multilingual=new MultilingualClient({...whisperPerformanceSettings(),onStatus:da
     multilingualStatus({...data,message});
   }
 }});
-languageUI=installLanguageUI({onExplanationsChange:refreshReplyContext,onChange:async(next,{commit})=>{
+languageUI=installLanguageUI({onExplanationsChange:refreshReplyContext,onRedetectSpeechLanguage:()=>{
+  multilingual.resetSpeechLanguage();
+  multilingualAsrDiagnostic.cachedLanguage=null;
+  multilingualAsrDiagnostic.detectedLanguage=null;
+  updateWebTimingDiagnostics();
+},onChange:async(next,{commit})=>{
   const changedRoute=(languageUI.language==='ja')!==(next==='ja');
   modelSelectionEpoch++;
   await stopEmma();
