@@ -22,7 +22,7 @@ const topics=JSON.parse(readFileSync(new URL('./shared/play-topics.json',import.
   assert.equal(doc.querySelector('#homeScreen .bottom-bar #playButton'),null);
   assert(doc.querySelector('#settingsScreen #autoRespond'),'automatic reply lives in settings');
   assert.equal(doc.querySelector('#homeScreen #autoRespond'),null);
-  assert(doc.querySelector('#settingsScreen label.history-save-toggle input#historyEnabled'),'save-history checkbox aligned right');
+  assert(doc.querySelector('#settingsScreen label.toggle-line .switch input#historyEnabled'),'save-history toggle uses the shared settings switch');
   assert(doc.querySelector('#mainButton .start-cta-hint'),'large first-talk invitation on idle screen');
   assert(code.includes('if(!emmaText)return;'),'do not wipe card on interim empty ASR');
   assert(!css.includes('content:"✦"'),'avoid sparkle marks on cards and topic tags');
