@@ -58,3 +58,10 @@ Sources:
 
 ## 現段階の判断
 現行Whisper Small q8・30秒入力のWeb CPUは、10秒前後の文字起こしという実測のため、実用候補としての優先度が低い。単なるスレッド数変更より**短窓対応モデル＋専用高速CPUランタイム**のA/Bを優先する。GPU/WebGPUは今回の主計画に入れない。実機実測前に倍速や精度を約束しない。
+
+## 2026-10-23 ACFT専用CPU Encoder実測ページ
+- `whisper-acft-benchmark.html` を実験ブランチの独立ページとして追加。LiteRT.js 2.5.3 CPU/WASM、GPUなしで `litert-community/whisper-acft` Base 5/10秒とSmall 5/10秒の4構成を測る。
+- Modelを直接Hugging Faceから読み込む。CORS等で取得できない場合は選択モデルと同じファイル名のローカル `.tflite` をアップロードして計測できる。モデル取得には100～275 MB程度が必要。
+- Encode signatureをモデルから確認し `[1,80,500]` または `[1,80,1000]` の合成（非音声）log-mel特徴を投入。ウォームアップ1回＋5回実測の中央値のみ表示。Decoder/音声認識/言語自動判定/総ASRはこのページでは一切測らず、旧Encoder中央値8200msはモデル・ランタイムの違う参考値であると明記。
+- `test-acft-encoder.mjs` はモデルURL選択、テンソルshape、計測値の中央値、WASM-onlyルーティングをテストする。**実機のLiteRTモデル推論成功や精度を証明するものではない。**
+- 推論の実機成功が確認できた後、次段階として `decode` signature、log-mel抽出、トークナイザー、言語自動判定を実装し、実音声を使って認識速度・文字起こしの正確性を比較する。
