@@ -1,0 +1,60 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#fafbfe">
+<title>みつことば 非Whisper高速ASR：Moonshine Streaming実機評価</title>
+<style>
+:root{font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,sans-serif;background:#f4f6fb;color:#18243a}
+*{box-sizing:border-box}body{margin:0;padding:16px}main{max-width:780px;margin:auto}
+h1{font-size:1.45rem;margin-bottom:8px}h2{font-size:1.1rem}
+section{padding:16px;background:#fff;border:1px solid #d8dfe9;border-radius:12px;margin:14px 0}
+select,textarea{border:1px solid #bcc7d7;border-radius:8px;padding:10px;font:inherit;width:100%;background:#fff;color:inherit}
+label{font-weight:650;display:block;margin:8px 0}
+button{font:inherit;font-weight:650;border:0;border-radius:8px;padding:11px 15px;background:#2757b8;color:white;margin:6px 6px 6px 0}
+button.secondary{background:#546783}button:disabled{background:#b6bfcb}
+small,.muted{color:#53637b}pre{background:#f3f5f9;white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;border-radius:8px;font:12px/1.5 ui-monospace,monospace}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#partial{color:#4e6383;min-height:36px}#transcript{min-height:55px;white-space:pre-wrap;font-weight:600}
+#status{padding:8px 0;font-weight:650}a{color:#2359c2}td,th{text-align:left;border-bottom:1px solid #e5e9f0;padding:7px;font-size:.87rem}table{border-collapse:collapse;width:100%}
+@media(max-width:530px){.grid{grid-template-columns:1fr}}
+</style></head><body><main>
+<h1>Moonshine Streaming — 非Whisper高速ASR実機テスト</h1>
+<p>みつことばの<strong>Whisper代替候補</strong>を、Galaxy S25などのブラウザで比較する独立実験です。公式 <a href="https://github.com/moonshine-ai/moonshine">Moonshine Voice</a> のMITライセンスのストリーミングモデルを端末内のWASM CPUで実行します。</p>
+<section><h2>① 言語・モデルを選択</h2>
+<div class="grid"><div><label for="language">入力音声の言語</label><select id="language">
+<option value="ja">日本語（ja）</option><option value="de">ドイツ語（de）</option><option value="en">英語（en）</option></select>
+</div><div><label for="size">モデルの大きさ</label><select id="size">
+<option value="tiny">Tiny Streaming・34M（速度重視）</option><option value="small" selected>Small Streaming・123M（精度重視）</option></select></div></div>
+<p class="muted">韓国語・タイ語・フランス語は今回のMoonshine Streamingテストの対象外です。下記のsherpa-onnx候補で別途検証します。</p>
+<button id="prepare">モデルを準備</button> <span class="muted">読み込み時間：<span id="loadTime">未測定</span></span>
+<p class="muted">初回のみモデルを取得して端末で処理します。音声はアップロードしません。大量のモデルを切り替えるとRAM消費が増える可能性があります。</p>
+</section>
+<section><h2>② 話しかけて速度を測る</h2>
+<button id="start" disabled>録音・ストリーミング認識を開始</button>
+<button id="stop" class="secondary" disabled>録音を終了</button>
+<p>録音長：<span id="captureSeconds">—</span> ／ 録音開始までの準備：<span id="startLatency">—</span></p>
+<p class="muted">5秒窓で打ち切るWhisper実験とは異なり、Moonshineのストリーミング方式は発話中も解析します。<strong>完成文が出るまでの遅延</strong>と長い発話の処理を確認してください。途中表示は確定結果ではありません。</p>
+<div id="status" aria-live="polite"></div>
+<div id="partial" aria-live="polite"></div>
+<div id="transcript" aria-live="polite"></div>
+</section>
+<section><h2>③ 精度・診断結果</h2>
+<label for="reference">正解文（1発話の場合・任意）</label>
+<textarea id="reference" rows="2" placeholder="例：ミルクを飲もうね"></textarea>
+<p>CER：<strong id="cer">未計測</strong></p>
+<button id="copy" class="secondary">結果をコピー</button>
+<pre id="report"></pre>
+<small>Moonshine公式から受け取る <code>lastTranscriptionLatencyMs</code> は、発話確定前後の遅延指標であり、録音開始からの総経過時間ではありません。既存Whisper実験の <code>asrTotalMs</code> と直接比較しないでください。比較には同一録音データと統一した測定定義が必要です。</small>
+</section>
+<section><h2>6言語の代替候補</h2>
+<table><thead><tr><th>言語</th><th>探索対象</th><th>段階</th></tr></thead>
+<tbody>
+<tr><td>日本語</td><td>Moonshine Tiny / Small Streaming</td><td>このページ</td></tr>
+<tr><td>ドイツ語</td><td>Moonshine Tiny / Small Streaming</td><td>このページ</td></tr>
+<tr><td>英語</td><td>Moonshine Tiny / Small Streaming</td><td>このページ</td></tr>
+<tr><td>フランス語</td><td>sherpa-onnx Streaming Zipformer</td><td>次の検証対象</td></tr>
+<tr><td>韓国語</td><td>sherpa-onnx Streaming Zipformer</td><td>次の検証対象</td></tr>
+<tr><td>タイ語</td><td>sherpa-onnx Offline Zipformer</td><td>次の検証対象</td></tr>
+</tbody></table>
+<p class="muted">他言語のライセンス・モデルデータはまだ実機確認していません。6言語をすべて置き換えられるとの主張ではありません。</p>
+</section>
+<p class="muted">Build: <span id="build"></span>. Browser WASM dependency: <code id="package"></code>.</p>
+<p><a href="./whisper-acft-cached-benchmark.html">前回のACFT Small実音声テスト</a> · <a href="https://moonshine.ai">Moonshine公式デモ</a> · <a href="https://github.com/k2-fsa/sherpa-onnx">sherpa-onnx</a></p>
+</main><script type="module" src="./experimental/asr-alternatives/moonshine-live.js?v=20261024-moonshine-streaming-research-v1"></script></body></html>
