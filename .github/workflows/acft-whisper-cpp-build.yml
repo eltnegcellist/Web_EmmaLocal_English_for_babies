@@ -71,4 +71,8 @@ jobs:
             exit 0
           fi
           git commit -m "Build pinned whisper.cpp ACFT small WASM runtime (experimental)"
+          # The research page may receive changes while this slow compiler runs.
+          # Rebase only the generated-artifact commit before pushing.
+          git fetch origin experiment/whisper-stage-profile-20261023
+          git rebase origin/experiment/whisper-stage-profile-20261023
           git push origin HEAD:refs/heads/experiment/whisper-stage-profile-20261023
