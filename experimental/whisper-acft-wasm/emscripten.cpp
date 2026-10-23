@@ -20,6 +20,14 @@ whisper_context * context = nullptr;
 std::atomic<bool> running(false);
 std::atomic<bool> finished(false);
 std::atomic<int> run_result(-1);
+std::atomic<int> encoder_passes(0);
+
+// Called before each real encoder call (language auto-detection and ASR).
+// Used for diagnostics only; never changes model output.
+bool encoder_begin_probe(whisper_context *, whisper_state *, void * data) {
+    static_cast<std::atomic<int> *>(data)->fetch_add(1, std::memory_order_relaxed);
+    return true;
+}
 
 int thread_count(int requested) {
     unsigned available = std::thread::hardware_concurrency();
@@ -77,6 +85,9 @@ EMSCRIPTEN_BINDINGS(acft_research) {
         params.no_context=true;
         params.max_tokens=96;
         params.offset_ms=0;
+        params.encoder_begin_callback=encoder_begin_probe;
+        params.encoder_begin_callback_user_data=&encoder_passes;
+        encoder_passes.store(0, std::memory_order_relaxed);
         params.language=language.c_str();
         // params.language must outlive the asynchronous worker.
         const std::string language_owned=language;
@@ -118,10 +129,16 @@ EMSCRIPTEN_BINDINGS(acft_research) {
         join_completed();
         const whisper_timings * t=whisper_get_timings(context);
         if(!t)return std::string("");
-        char info[240]={0};
+        const int passes=encoder_passes.load(std::memory_order_relaxed);
+        // The upstream whisper_get_timings() numbers are mean time PER call,
+        // not cumulative time. The callback counts actual encoder invocations.
+        const float encode_total_ms=t->encode_ms*passes;
+        char info[320]={0};
         std::snprintf(info,sizeof(info),
-          "{\"sampleMs\":%.2f,\"encodeMs\":%.2f,\"decodeMs\":%.2f,\"batchdMs\":%.2f,\"promptMs\":%.2f}",
-          t->sample_ms,t->encode_ms,t->decode_ms,t->batchd_ms,t->prompt_ms);
+          "{\"sampleMs\":%.2f,\"encodeMs\":%.2f,\"encodeRuns\":%d,\"encodeTotalMs\":%.2f,\"decodeMs\":%.2f,\"batchdMs\":%.2f,\"promptMs\":%.2f}",
+          t->sample_ms,t->encode_ms,passes,encode_total_ms,
+          t->decode_ms,t->batchd_ms,t->prompt_ms);
+        delete t;
         return std::string(info);
     }));
 
