@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {getSpec,checkedEncoderInput,sampleMel,median} from './src/multilingual/acft-encoder-benchmark.js';
+import {inspectDecoderSignature,fakeDecoderInputs} from './src/multilingual/acft-decoder-probe.js';
 import {wasmMagic,wasmFileLocator,probeWasmFile,selectValidLiteRtWasm}
   from './src/multilingual/acft-wasm-source.js';
 for(const id of ['base5','base10','small5','small10']){
@@ -15,6 +16,24 @@ for(const id of ['base5','base10','small5','small10']){
 assert.throws(()=>getSpec('base.en5'));
 assert.equal(median([8,2,4]),4);
 assert.equal(median([4,1,3,2]),2.5);
+const decodeSpec=inspectDecoderSignature([
+ {name:'serving_default_mask:0',dtype:'float32',shape:[1,128,128]},
+ {name:'serving_default_audio:0',dtype:'float32',shape:[1,250,512]},
+ {name:'serving_default_tokens:0',dtype:'int32',shape:[1,128]}
+],[{name:'logits',dtype:'float32',shape:[1,128,51865]}],[1,250,512]);
+assert.equal(decodeSpec.audio.name,'serving_default_audio:0');
+assert.equal(decodeSpec.tokens.name,'serving_default_tokens:0');
+assert.equal(decodeSpec.mask.name,'serving_default_mask:0');
+assert.equal(decodeSpec.outputs[0].shape[2],51865);
+const dummy=fakeDecoderInputs(decodeSpec);
+assert.deepEqual(Array.from(dummy.tokens.slice(0,4)),[50258,50259,50359,50363]);
+assert.equal(dummy.mask[0],0);
+assert.equal(dummy.mask[1],-1e9);
+assert.equal(dummy.mask[128],0);
+assert.throws(()=>inspectDecoderSignature([
+ {name:'mask',dtype:'float32',shape:[1,128,128]},
+ {name:'audio',dtype:'float32',shape:[1,1500,512]},
+ {name:'tokens',dtype:'int32',shape:[1,128]}],[],[1,250,512]),/Unrecognized/);
 const binary=new Uint8Array([0,97,115,109,1,0,0,0]);
 assert(wasmMagic(binary));
 assert(!wasmMagic(new TextEncoder().encode('<!DOCTYPE html>')));
@@ -49,5 +68,7 @@ assert(worker.includes("accelerator:'wasm'"));
 assert(!worker.includes("accelerator:'webgpu'"));
 assert(worker.includes("model.signatures?.encode"));
 assert(worker.includes("runner.run({[input.name]:tensor})"));
+assert(worker.includes('inspectDecoderSignature'),'Optional Decoder probe must be wired');
+assert(page.includes('probeDecoder'),'Decoder option must be explicitly opt-in');
 assert(html.includes('文字起こし・言語判定・Decoderの測定ではありません'));
 console.log('ACFT CPU-only encoder benchmark scaffolding PASS');
