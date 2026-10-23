@@ -1,0 +1,35 @@
+name: Non-Whisper ASR alternative research smoke
+on:
+  push:
+    branches: [experiment/whisper-stage-profile-20261023]
+    paths:
+      - 'experimental/asr-alternatives/**'
+      - 'moonshine-streaming-benchmark.html'
+      - 'scripts/test-nonwhisper-asr-research.mjs'
+      - 'scripts/browser-moonshine-alternative-smoke.mjs'
+      - '.github/workflows/nonwhisper-asr-research-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source and supported language matrix
+        run: |
+          node --check experimental/asr-alternatives/moonshine-live.js
+          node --check experimental/asr-alternatives/model-matrix.js
+          node scripts/test-nonwhisper-asr-research.mjs
+      - name: Install Node dependencies
+        run: npm ci --ignore-scripts
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Check isolated browser page and Moonshine package exports
+        run: |
+          python3 -m http.server 8766 --bind 127.0.0.1 > /tmp/asr-alt-browser.log 2>&1 &
+          ORIGIN=http://127.0.0.1:8766 TEST_MOONSHINE_CDN=1 node scripts/browser-moonshine-alternative-smoke.mjs
