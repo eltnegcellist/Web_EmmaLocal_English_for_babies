@@ -3,7 +3,7 @@ name: Emma Web CI
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ main, experiment/whisper-stage-profile-20261023 ]
   pull_request:
     branches: [ main ]
     types: [opened, synchronize, reopened]
@@ -180,7 +180,7 @@ jobs:
           fi
 
   publish:
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: test
     runs-on: ubuntu-latest
     steps:
