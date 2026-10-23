@@ -4,7 +4,7 @@
 // Emscripten importScripts() to load its WASM glue and module Workers forbid
 // that API. Use dynamic import() (supported in dedicated classic workers)
 // for our own ES module helper; do NOT add top-level static import here.
-const WORKER_BUILD='20261023-acft-decoder-probe-v4';
+const WORKER_BUILD='20261023-acft-decoder-mask4d-v5';
 const notify=message=>self.postMessage(message);
 self.onmessage=async({data})=>{
   if(data?.action==='capabilities') {
@@ -115,7 +115,7 @@ self.onmessage=async({data})=>{
           inputs:decoder.getInputDetails().map(d=>({name:d.name,dtype:d.dtype,shape:Array.from(d.shape)})),
           outputs:schema.outputs,encoderOutputShape:encodedShape};
       }catch(e){
-        decoderProbe={status:'unsupported',reason:String(e?.message||e)};
+        decoderProbe={status:'failed',stage,reason:String(e?.stack||e)};
         notify({type:'status',text:'Decoder計測をスキップ: '+decoderProbe.reason});
       }finally{
         for(const t of Object.values(encoded||{}))t.delete?.();
