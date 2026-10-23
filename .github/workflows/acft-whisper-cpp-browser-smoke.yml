@@ -6,6 +6,8 @@ on:
     paths:
       - 'whisper-acft-cached-benchmark.html'
       - 'experimental/whisper-acft-wasm/test-page.js'
+      - 'experimental/whisper-acft-wasm/runtime/main.js'
+      - 'experimental/whisper-acft-wasm/quality.js'
       - 'scripts/browser-whisper-acft-wasm-smoke.mjs'
       - '.github/workflows/acft-whisper-cpp-browser-smoke.yml'
   workflow_dispatch:
