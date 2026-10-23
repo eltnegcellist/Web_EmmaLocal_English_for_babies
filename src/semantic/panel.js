@@ -32,13 +32,19 @@ export function installSemanticPanel({controller,engine,beforeChange,storage=loc
         ['英文の採用経路',route.route],['選択理由',route.reason]);
     }
     if(result?.topic){
-      lines.push(['意味で選んだ話題',`${result.topic.id}（分類スコア ${(result.topic.probability*100).toFixed(1)}%、候補差 ${(result.topic.margin*100).toFixed(1)}ポイント）`]);
+      const scoreDetail=document.createElement('span');
+      scoreDetail.append(result.topic.id,' (',document.createTextNode('分類スコア'),' ',(result.topic.probability*100).toFixed(1),'%, ',document.createTextNode('候補差'),' ',(result.topic.margin*100).toFixed(1),' ',document.createTextNode('ポイント'),')');
+      lines.push(['意味で選んだ話題',scoreDetail]);
       // E5 publishes only Topic and Interaction. These extra heads belong to Ruri.
       if(result.intent)lines.push(['インテント（参考）',INTENT[result.intent.id]]);
       if(result.state)lines.push(['状態（参考）',STATE[result.state.id]]);
       if(Number.isFinite(result.elapsedMs))lines.push(['判定時間',`${result.elapsedMs.toFixed(1)} ms`]);
     }
-    for(const [label,value] of lines){const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=label+'：';p.append(strong,document.createTextNode(value||'—'));$('result').append(p);}
+    for(const [label,value] of lines){
+      const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=label;
+      p.append(strong,document.createTextNode(': '),value?.nodeType ? value : document.createTextNode(value||'—'));
+      $('result').append(p);
+    }
   });
   $('enabled').addEventListener('change',()=>controller.setEnabled($('enabled').checked,{prepare:true}));
   $('mode').addEventListener('change',()=>controller.setMode($('mode').value));
