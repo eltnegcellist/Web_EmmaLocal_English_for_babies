@@ -1,0 +1,71 @@
+<!doctype html><html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f8fc">
+<title>みつことば・Whisper以外のASR比較（Moonshine Streaming）</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:18px;background:#f5f7fa;color:#18263b;font-family:system-ui,-apple-system,sans-serif}
+main{max-width:780px;margin:auto}h1{font-size:1.5rem}h2{font-size:1.1rem;margin:0 0 10px}
+p,li{line-height:1.65}section{background:#fff;border:1px solid #d6dfeb;border-radius:14px;padding:18px;margin:15px 0}
+label{display:block;font-weight:650;margin:10px 0 5px}select,input,textarea,button{font:inherit}
+input[type=file],select,textarea{width:100%;padding:11px;border:1px solid #bac6d3;border-radius:9px}
+button{background:#215db7;color:white;padding:12px 15px;border:0;border-radius:9px;font-weight:650;margin:10px 6px 8px 0}
+button.secondary{background:#526783}button:disabled{background:#a6b4c5}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.muted,small{color:#56697f}pre{white-space:pre-wrap;overflow-wrap:anywhere;border-radius:8px;background:#f2f5f9;padding:12px;font-size:12px}
+#status{font-weight:650;overflow-wrap:anywhere}#transcript{min-height:48px;font-size:1.1rem;white-space:pre-wrap}
+table{border-collapse:collapse;width:100%;font-size:.9rem}td,th{padding:8px;border-bottom:1px solid #dce2ed;text-align:left}
+a{color:#255bab}.warn{border-left:4px solid #d09031;padding:10px 14px;background:#fff9eb}
+</style></head><body><main>
+<h1>みつことば・Whisper代替ASR実測</h1>
+<p>**実験専用**：Moonshine Voiceのストリーミングモデルを、Galaxy S25のブラウザCPUで確認します。5秒・10秒の窓は不要です。実際の録音ファイルを使い、認識精度、モデルロード、推論時間と実時間比率を測定できます。</p>
+<p class="muted">録音・音声ファイル・認識テキストは端末内だけで処理します。モデルファイルのみMoonshine公式配布元から取得します。録音を外部サーバーへ送る仕組みはありません。</p>
+<section>
+<h2>1. モデルを選択・準備</h2>
+<div class="grid"><div><label for="language">発話の言語</label><select id="language">
+<option value="ja">日本語</option><option value="de">Deutsch（ドイツ語）</option>
+<option value="en">English（英語）</option><option value="es">Español（追加調査）</option></select></div>
+<div><label for="arch">モデル</label><select id="arch"></select></div></div>
+<button id="load">Moonshineモデルを読み込む</button>
+<p id="modelStatus" class="muted">モデル未読み込み</p>
+<p class="muted">本テストではMITのStreamingモデルのみを選択できます。旧Moonshineの日本語／韓国語モデル（非商用ライセンス）は採用検証に含めません。</p>
+</section>
+<section><h2>2A. 同じ音声ファイルで速度・精度比較</h2>
+<label for="file">手元の音声ファイル（WAV、m4a、WebM等）</label>
+<input id="file" type="file" accept="audio/*,.wav,.m4a,.webm,.mp3">
+<p id="fileStatus" class="muted">音声未選択。ファイルは端末外へ送信されません。</p>
+<button id="transcribe" disabled>ファイル音声をストリーミング方式で認識</button>
+<p class="muted">再生待ちを入れず0.5秒ずつ音声を投入する<strong>オフライン高速リプレイ測定</strong>です。「録音終了後の遅延」ではありません。推論中のすべての計算時間を測ります。</p>
+</section>
+<section><h2>2B. 実会話に近いライブテスト</h2>
+<button id="startMic" disabled>マイクでライブ認識を開始</button>
+<button id="stopMic" class="secondary" disabled>停止・結果を確定</button>
+<p class="muted">発話中にも認識が進みます。確定テキストの内部遅延: <strong id="liveLatency">未測定</strong>。ライブの合計経過時間は録音時間を含むため、オフラインASRの処理時間と直接比較しません。</p>
+</section>
+<section><h2>3. 結果</h2>
+<p id="status" aria-live="polite">準備中</p>
+<div id="transcript">(認識結果)</div>
+<label for="reference">正解文（任意、句読点などを無視してCERを計算）</label>
+<textarea id="reference" rows="2" placeholder="例：ミルク飲もうね"></textarea>
+<p>文字誤り率 CER：<strong id="cer">未計測</strong></p>
+<button id="copy" class="secondary">診断JSONをコピー</button>
+<pre id="report"></pre>
+<p class="muted">実験ビルド <span id="build"></span>。モデルの読み込み時間は推論時間と分けて表示します。</p>
+</section>
+<section><h2>6言語への適用方針</h2>
+<table><thead><tr><th>言語</th><th>検証する候補</th></tr></thead><tbody>
+<tr><td>日本語</td><td>既存Moonshine／新Streaming Tiny・Small</td></tr>
+<tr><td>ドイツ語</td><td>Moonshine Streaming Tiny・Small</td></tr>
+<tr><td>英語</td><td>Moonshine Streaming Tiny・Small</td></tr>
+<tr><td>フランス語</td><td>sherpa-onnx Zipformer Streaming（別エンジン）</td></tr>
+<tr><td>韓国語</td><td>sherpa-onnx Zipformer Streaming（別エンジン）</td></tr>
+<tr><td>タイ語</td><td>sherpa-onnx Zipformer・非Streaming（別エンジン）</td></tr>
+</tbody></table>
+<p class="warn">このテストページで実装したのはMoonshineの4言語候補のみです。フランス語・韓国語・タイ語のZipformerは調査段階で、ここではまだ動作しません。モデル提供条件と実機精度の確認なしに本番へ切り替えません。</p>
+</section>
+<p class="muted"><a href="./whisper-acft-cached-benchmark.html">従来のACFT Small比較ページ</a> |
+<a href="https://moonshine-voice.readthedocs.io/en/stable/models/available-models/">Moonshine公式モデル一覧</a> |
+<a href="https://k2-fsa.github.io/sherpa/onnx/pretrained_models/">sherpa-onnxモデル一覧</a></p>
+</main>
+<script type="module" src="./moonshine-alternative-benchmark.js?v=20261024-moonshine-multilingual-research-v1"></script>
+</body></html>
