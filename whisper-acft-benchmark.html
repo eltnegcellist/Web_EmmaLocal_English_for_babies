@@ -1,0 +1,40 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>みつことば ACFT CPU Encoder速度テスト</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:20px;background:#f3f6fa;color:#172235;font-family:system-ui,-apple-system,sans-serif}
+main{max-width:640px;margin:10px auto}h1{font-size:1.5rem}
+p{line-height:1.65}section{background:white;border:1px solid #d7dce8;border-radius:16px;padding:18px;margin:16px 0}
+label{display:block;font-weight:700;margin:0 0 8px}
+select,button{width:100%;font:inherit;padding:12px;border-radius:10px;margin:5px 0}
+select{border:1px solid #aab6c5}button{border:0;background:#2755af;color:white;font-weight:700}
+button:disabled{opacity:.45}button.secondary{background:#556983}
+small{color:#526177}pre{background:#f0f4fa;border-radius:8px;padding:12px;white-space:pre-wrap;overflow-wrap:anywhere}
+#context{font-size:.9rem;color:#526177}
+</style></head><body><main>
+<h1>Whisper ACFT：短窓Encoder速度テスト</h1>
+<p>みつことばの実験専用ページです。FUTOの短窓モデルをLiteRT.jsの<strong>CPU/WASMのみ</strong>で実行し、Encoder時間を計測します。<strong>文字起こし・言語判定・Decoderの測定ではありません。</strong> 通常アプリの設定には影響しません。</p>
+<section>
+<label for="acftChoice">計測モデル（初回は大容量ダウンロード）</label>
+<select id="acftChoice">
+<option value="base5">ACFT Base / 5秒窓（最初に推奨）</option>
+<option value="base10">ACFT Base / 10秒窓</option>
+<option value="small5">ACFT Small / 5秒窓</option>
+<option value="small10">ACFT Small / 10秒窓</option>
+</select>
+<small id="acftModelInfo"></small>
+<button id="runAcft">Encoder速度を測定</button>
+<button id="copyAcft" class="secondary" disabled>結果をコピー</button>
+</section>
+<section>
+<strong>結果</strong>
+<pre id="acftResults">未測定</pre>
+<pre id="acftLog" aria-live="polite"></pre>
+</section>
+<section id="context">
+<p><strong>計測条件：</strong>合成した80帯の特徴量をモデルEncoderへ投入し、ウォームアップ1回＋5回の推論中央値を求めます。音声は収集・送信しません。精度や実際の文字起こし時間は評価できません。</p>
+<p><strong>通信量：</strong>Base約100MB、Small約275MB。Hugging Faceへのダウンロードとモデルの準備は計測時間とは別に記録します。失敗したら診断エラーが表示されます。</p>
+<p>モデル配布元：<a href="https://huggingface.co/litert-community/whisper-acft">litert-community/whisper-acft（Apache-2.0）</a></p>
+<p><a href="./index.html">通常の会話テストに戻る</a></p>
+</section></main>
+<script type="module" src="./src/multilingual/acft-encoder-page.js"></script>
+</body></html>
