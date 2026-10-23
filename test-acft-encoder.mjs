@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {getSpec,checkedEncoderInput,sampleMel,median} from './src/multilingual/acft-encoder-benchmark.js';
+import {wasmMagic,wasmFileLocator,probeWasmFile,selectValidLiteRtWasm}
+  from './src/multilingual/acft-wasm-source.js';
 for(const id of ['base5','base10','small5','small10']){
  const s=getSpec(id);
  assert.equal(s.frames,s.seconds*100);
@@ -13,7 +15,29 @@ for(const id of ['base5','base10','small5','small10']){
 assert.throws(()=>getSpec('base.en5'));
 assert.equal(median([8,2,4]),4);
 assert.equal(median([4,1,3,2]),2.5);
+const binary=new Uint8Array([0,97,115,109,1,0,0,0]);
+assert(wasmMagic(binary));
+assert(!wasmMagic(new TextEncoder().encode('<!DOCTYPE html>')));
+assert.equal(wasmFileLocator('https://example.test/wasm/').locateFile('litert_wasm_internal.wasm'),
+  'https://example.test/wasm/litert_wasm_internal.wasm');
+await probeWasmFile('https://example.test/wasm/litert_wasm_internal.wasm',
+  async()=>new Response(binary));
+await assert.rejects(()=>probeWasmFile('https://example.test/bad.wasm',
+  async()=>new Response('<!DOCTYPE html>')),/Invalid WASM magic 3c 21 44 4f/);
+const touched=[];
+const alternative=await selectValidLiteRtWasm({
+ bases:['https://bad.test/wasm/','https://good.test/wasm/'],
+ fetcher:async url=>{
+   touched.push(String(url));
+   return String(url).includes('bad.test')?new Response('<!DOCTYPE html>'):new Response(binary);
+ }
+});
+assert.equal(alternative.base,'https://good.test/wasm/');
+assert.equal(touched.length,3);
 const worker=await readFile('./src/multilingual/acft-encoder-worker.js','utf8');
+assert(worker.includes("self.Module=locator"),'Emscripten must resolve WASM relative to CDN, not GitHub Pages worker URL');
+assert(worker.includes("selectValidLiteRtWasm"),'Validate fetched WASM file before runtime initialization');
+assert(worker.includes("data.action==='runtime-smoke'"),'Real browser runtime-only check should not fetch models');
 const page=await readFile('./src/multilingual/acft-encoder-page.js','utf8');
 assert(page.includes("{type:'classic'}"),'LiteRT requires classic Web Worker');
 assert(!page.includes("{type:'module'}"),'Module workers cannot call importScripts');
