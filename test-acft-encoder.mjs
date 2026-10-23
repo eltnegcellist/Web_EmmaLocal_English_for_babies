@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {characterErrorRate,normalizedChars} from './experimental/whisper-acft-wasm/quality.js';
 import {readFile} from 'node:fs/promises';
 import {getSpec,checkedEncoderInput,sampleMel,median} from './src/multilingual/acft-encoder-benchmark.js';
 import {inspectDecoderSignature,fakeDecoderInputs} from './src/multilingual/acft-decoder-probe.js';
@@ -55,6 +56,19 @@ assert.throws(()=>inspectDecoderSignature([
  {name:'mask',dtype:'float32',shape:[1,128,128]},
  {name:'audio',dtype:'float32',shape:[1,1500,512]},
  {name:'tokens',dtype:'int32',shape:[1,128]}],[],[1,250,512]),/Unrecognized/);
+// Regression against reported false CER 0.2 for identical Japanese greeting.
+assert.deepEqual(normalizedChars('こんにちは。'),Array.from('こんにちは'));
+assert.equal(characterErrorRate('こんにちは','こんにちは。'),0);
+assert.equal(characterErrorRate('こんにちは',' こんにちは! '),0);
+assert.equal(characterErrorRate('ミルク','ミラク'),1/3);
+assert.equal(characterErrorRate('  ', 'こんにちは'),null);
+const oldPage=(await readFile('./experimental/whisper-acft-wasm/test-page.js','utf8'));
+assert(oldPage.includes("from './quality.js'"),'Web benchmark must use tested CER normalizer');
+assert(oldPage.includes('encoderTotalMs'),'Must distinguish mean encoder time from total');
+assert(oldPage.includes("nativeTimings:timings"),'Must preserve native timing details');
+const native=(await readFile('./experimental/whisper-acft-wasm/emscripten.cpp','utf8'));
+assert(native.includes('encoder_begin_callback=encoder_begin_probe'),'Observe each actual encoder pass');
+assert(native.includes('t->encode_ms*passes'),'Total encoded time must multiply mean by measured count');
 const binary=new Uint8Array([0,97,115,109,1,0,0,0]);
 assert(wasmMagic(binary));
 assert(!wasmMagic(new TextEncoder().encode('<!DOCTYPE html>')));
