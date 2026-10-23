@@ -27,10 +27,11 @@ start.addEventListener('click',async()=>{
  }
  // LiteRT.js invokes importScripts() inside its WASM loader. A module Worker
  // always throws; a classic worker can still dynamic-import ES modules.
- worker=new Worker(new URL('./acft-encoder-worker.js?v=20261023-acft-wasm-path-v3',import.meta.url),{type:'classic'});
+ worker=new Worker(new URL('./acft-encoder-worker.js?v=20261023-acft-decoder-probe-v4',import.meta.url),{type:'classic'});
  const finish=()=>{worker?.terminate();worker=null;start.disabled=false;};
  worker.onerror=e=>{log('Worker エラー: '+(e.message||'unknown'));finish();};
- worker.postMessage({action:'benchmark',model:spec.id,bytes},bytes?[bytes]:[]);
+ worker.postMessage({action:'benchmark',model:spec.id,bytes,
+    decoderProbe:$('probeDecoder').checked},bytes?[bytes]:[]);
  worker.onmessage=({data})=>{
   if(data.type==='status')log(data.text);
   else if(data.type==='sample')log(`計測 ${data.sample}/5：${data.ms} ms`);
@@ -41,7 +42,12 @@ start.addEventListener('click',async()=>{
   }
   else if(data.type==='complete'){
    latest=data;copy.disabled=false;
-   result.textContent=`Encoder中央値: ${data.medianMs} ms / モデル取得と準備: ${data.loadingMs} ms\n旧Whisper Small 30秒窓Encoder中央値: 8200 ms（異なるモデル・実装の参考値）`;
+   const decodeInfo=data.decoderProbe?.status==='complete'
+      ? '\nDecoder 1回中央値: '+data.decoderProbe.medianMs+' ms（合成トークン、文字起こしではありません）'
+      : data.decoderProbe?.status==='unsupported'
+      ? '\nDecoder測定未完了: '+data.decoderProbe.reason
+      : '';
+   result.textContent=`Encoder中央値: ${data.medianMs} ms / モデル取得と準備: ${data.loadingMs} ms\n旧Whisper Small 30秒窓Encoder中央値: 8200 ms（異なるモデル・実装の参考値）`+decodeInfo;
    log('完了。診断結果をコピーしてください。');
    finish();
   }
