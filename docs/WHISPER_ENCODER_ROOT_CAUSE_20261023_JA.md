@@ -206,3 +206,32 @@ Galaxy S25 Chrome 155提供ログ `build=20261023-whispercpp-acft-kv-v1`:
 - https://github.com/ggml-org/whisper.cpp/blob/master/src/whisper.cpp (`whisper_get_timings`, `whisper_full_with_state`, `whisper_lang_auto_detect_internal`)
 - https://github.com/ggml-org/whisper.cpp/issues/3954 (2026-07-25: 言語自動判定がEncoderを再実行する実測)
 - https://github.com/ggml-org/whisper.cpp/blob/master/ggml/src/ggml-cpu/CMakeLists.txt (wasm特殊量子化ルート)
+
+## 2026-10-24実機結果: WASM専用量子化カーネル適用後のACFT Small ASR
+
+Galaxy S25 / Chrome 155 / FUTO ACFT Small q8 `small_acft_q8_0.bin` / CPU pthreads 4 / 5秒窓 (`audioContext=250`) / `language=auto` / `crossOriginIsolated=true`:
+
+| 測定 | v1 (最適化前) | v2 (WASM専用量子化) |
+|---|---:|---:|
+| 音声の長さ | 3.84秒 | 2.88秒 |
+| ASR総時間 | 49,882ms | **9,420ms** |
+| Encoder平均／回 | 24,371.66ms | **4,193.86ms** |
+| Encoder回数 | 推定2回 | **実測2回** |
+| Encoder累計 | 約48,743.32ms（推定） | **8,387.72ms** |
+| Encoder以外（差分） | 約1,139ms | **1,032ms** |
+| 内容 | こんにちは。 | こんにちは。 |
+| 正解文 | こんにちは | こんにちは |
+| 正規化CER | 0%（旧コードの表示は20%誤り） | **0%** |
+
+v2生ログには `nativeTimings={sampleMs:14.69,encodeMs:4193.86,encodeRuns:2,encodeTotalMs:8387.72,decodeMs:17.5,batchdMs:8.3,promptMs:0}`、`preprocessMs=381`、`modelLoadMs=473`（それぞれASR本体の9.42秒の外で計測）が含まれる。
+
+**結論**: 総ASR約5.3倍、Encoder回平均約5.8倍短縮。WASM専用量子化カーネル選択が寄与した可能性は高いが、異なる長さの録音を使用しているため厳密なA/B因果測定ではない。最適化済み新WASM実体をビルド・Chromium起動CIで確認。
+
+`auto` では言語判定と通常転写の2回Encoderを実行。固定 `ja` での単純な期待値は **9420 - 4193.86 = 5226.14ms ≈ 5.2秒**。ただし未測定で、エンコード数/その他処理が変われば変動する。音声の無音、時間、再実行/ウォームアップ、電池/発熱を揃えて同じ録音で比較すること。
+
+**次の実験**:
+1. **v2の同じ2.88秒録音**を `ja` 固定・4スレッド・5秒窓で3回測定し `encodePasses=1` とASR中央値を確認。
+2. 同じ録音で `auto` でも3回測定し、言語判定による追加4秒程度を定量化。
+3. 多言語仕様では最初に一度だけ言語検出→以降固定の運用を検討するが初回の遅延も評価が必要。
+4. 短文日本語/多言語、否定、赤ちゃん関連語で現行Whisper SmallとのCER・意味誤り率を比較。今回のCER 0%は1文のみで汎化を保証しない。
+5. 5秒前後の実ASRでも2～3秒目標に未達。WASMの今後の最適化余地（スレッド/量子化/エンコード）を精査。無根拠に本番置換しない。
