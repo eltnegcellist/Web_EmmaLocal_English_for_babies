@@ -25,6 +25,8 @@ small{color:#526177}pre{background:#f0f4fa;border-radius:8px;padding:12px;white-
 <label for="acftLocalModel" style="margin-top:14px">任意：モデルファイル (.tflite) を直接選択</label>
 <input type="file" id="acftLocalModel" accept=".tflite,application/octet-stream">
 <small>通常は自動取得。ブラウザからHugging Faceの取得に失敗する場合は、モデル配布ページから選択した種類と秒数の .tflite を保存し、ここで指定してください。</small>
+<label style="margin-top:12px;font-weight:500"><input type="checkbox" id="probeDecoder" style="width:auto;vertical-align:middle;margin-right:8px">Decoderの入力構造と処理時間も測定（追加実験）</label>
+<small>チェック時だけ、同じモデルでDecoderをウォームアップ1回＋3回実行します。実際の文字起こしはまだ行いません。</small>
 <button id="runAcft">Encoder速度を測定</button>
 <button id="copyAcft" class="secondary" disabled>結果をコピー</button>
 </section>
@@ -34,10 +36,10 @@ small{color:#526177}pre{background:#f0f4fa;border-radius:8px;padding:12px;white-
 <pre id="acftLog" aria-live="polite"></pre>
 </section>
 <section id="context">
-<p><strong>計測条件：</strong>合成した80帯の特徴量をモデルEncoderへ投入し、ウォームアップ1回＋5回の推論中央値を求めます。音声は収集・送信しません。精度や実際の文字起こし時間は評価できません。</p>
+<p><strong>計測条件：</strong>合成した80帯の特徴量をモデルEncoderへ投入し、ウォームアップ1回＋5回の推論中央値を求めます。追加チェック時のみ、合成入力でDecoderを3回測ります。音声は収集・送信しません。精度や実際の文字起こし時間は評価できません。</p>
 <p><strong>通信量：</strong>Base約100MB、Small約275MB。Hugging Faceへのダウンロードとモデルの準備は計測時間とは別に記録します。失敗したら診断エラーが表示されます。</p>
 <p>モデル配布元：<a href="https://huggingface.co/litert-community/whisper-acft">litert-community/whisper-acft（Apache-2.0）</a></p>
 <p><a href="./index.html">通常の会話テストに戻る</a></p>
 </section></main>
-<script type="module" src="./src/multilingual/acft-encoder-page.js?v=20261023-acft-wasm-path-v3"></script>
+<script type="module" src="./src/multilingual/acft-encoder-page.js?v=20261023-acft-decoder-probe-v4"></script>
 </body></html>
