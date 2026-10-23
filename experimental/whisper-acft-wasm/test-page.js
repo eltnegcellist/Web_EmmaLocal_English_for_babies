@@ -126,12 +126,13 @@ $('startTranscribe').addEventListener('click',async()=>{
  try{
   checkCompatible();
   setStatus('ASR開始。音声窓'+windowSeconds+'秒、KVキャッシュ付きDecoder、CPU '+nthreads+'スレッド');
-  const code=window.Module.acft_run(instance,pcm,lang,nthreads,ctx);
+  const code=window.Module.acft_run(pcm,lang,nthreads,ctx);
   if(code!==0)throw Error('whisper.cppの実行開始に失敗しました。コード='+code);
-  const poll=async()=>{
-   const st=window.Module.acft_status();
+  const poll=()=>{
+   let st;
+   try{st=window.Module.acft_status();}catch(e){busy=false;error(e.stack||e);return;}
    if(st===0){setTimeout(poll,200);return;}
-   if(st!==1)throw Error('whisper.cpp推論失敗。状態='+st);
+   if(st!==1){busy=false;error('whisper.cpp推論失敗。状態='+st);return;}
    const elapsed=performance.now()-started;
    const output=window.Module.acft_result().trim();
    const native=window.Module.acft_timings();
@@ -149,11 +150,8 @@ $('startTranscribe').addEventListener('click',async()=>{
    setStatus('実音声ASR完了: '+Math.round(elapsed)+'ms');
    busy=false;enable();
   };
-  const promisePoll=()=>{
-    try{return poll()}catch(e){error(e.stack||e);busy=false;enable();}
-  };
-  // poll() handles asynchronous transcription without blocking the UI.
-  await promisePoll();
+  // poll() handles asynchronous native inference without blocking the UI.
+  poll();
  }catch(e){busy=false;error(e.stack||e);}finally{enable();}
 });
 $('copy').addEventListener('click',async()=>{
