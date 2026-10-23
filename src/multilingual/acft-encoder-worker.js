@@ -4,7 +4,7 @@
 // Emscripten importScripts() to load its WASM glue and module Workers forbid
 // that API. Use dynamic import() (supported in dedicated classic workers)
 // for our own ES module helper; do NOT add top-level static import here.
-const WORKER_BUILD='20261023-acft-classic-worker-v2';
+const WORKER_BUILD='20261023-acft-wasm-path-v3';
 const notify=message=>self.postMessage(message);
 self.onmessage=async({data})=>{
   if(data?.action==='capabilities') {
@@ -25,8 +25,18 @@ self.onmessage=async({data})=>{
     notify({type:'status',text:'LiteRT.js WASM CPUを準備しています'});
     stage='import-litert';
     const {loadLiteRt,loadAndCompile,Tensor}=await import('https://cdn.jsdelivr.net/npm/@litertjs/core@2.5.3/+esm');
+    stage='verify-wasm-files';
+    const {selectValidLiteRtWasm}=await import('./acft-wasm-source.js');
+    const {base,locator}=await selectValidLiteRtWasm({
+      onCandidate:base=>notify({type:'status',text:'WASMファイルの検証: '+base})
+    });
+    // The glue script is loaded using importScripts() but Emscripten may use
+    // the Worker URL as its base for .wasm. Explicitly pass locateFile into
+    // the upstream ModuleFactory via self.Module (wasm-utils createWasmLib).
+    self.Module=locator;
+    notify({type:'status',text:'WASMの実体を確認済み。バイナリ読込先: '+base});
     stage='init-wasm';
-    await loadLiteRt('https://cdn.jsdelivr.net/npm/@litertjs/core@2.5.3/wasm/');
+    await loadLiteRt(base);
     notify({type:'status',text:data.bytes?'ローカルのACFTモデルをコンパイル中':`ACFT ${spec.tier} ${spec.seconds}s を取得・コンパイル中（約${spec.approxMB}MB）`});
     const loadStart=tick();
     stage='load-model';
