@@ -8,15 +8,27 @@ function modelLabel(){
  $('acftModelInfo').textContent=`${spec.tier} / ${spec.seconds}秒窓 / 約${spec.approxMB} MB（初回ダウンロード）`;
 }
 select.addEventListener('change',modelLabel);modelLabel();
-start.addEventListener('click',()=>{
+start.addEventListener('click',async()=>{
  if(worker)return;
  start.disabled=true;copy.disabled=true;latest=null;
  status.textContent='';result.textContent='';
  const spec=getSpec(select.value);
  log(`開始: ${spec.id}。CPUのみ、実音声なし。`);
+ let bytes=null;
+ const file=$('acftLocalModel').files?.[0];
+ if(file){
+  const expectedName='acft_whisper_'+spec.tier+'_'+spec.seconds+'s_drq.tflite';
+  if(file.name!==expectedName){
+    log('ファイル名が選択と一致しません: '+expectedName);
+    start.disabled=false;return;
+  }
+  try{bytes=await file.arrayBuffer();}
+  catch(e){log('モデルファイルを読めませんでした: '+e.message);start.disabled=false;return;}
+ }
  worker=new Worker(new URL('./acft-encoder-worker.js',import.meta.url),{type:'module'});
  const finish=()=>{worker?.terminate();worker=null;start.disabled=false;};
  worker.onerror=e=>{log('Worker エラー: '+(e.message||'unknown'));finish();};
+ worker.postMessage({action:'benchmark',model:spec.id,bytes},bytes?[bytes]:[]);
  worker.onmessage=({data})=>{
   if(data.type==='status')log(data.text);
   else if(data.type==='sample')log(`計測 ${data.sample}/5：${data.ms} ms`);
