@@ -21,7 +21,7 @@ try{
   assert.equal(values.type,'capabilities');
   assert.equal(values.classicImportScripts,true,'Classic Worker must support importScripts');
   assert.equal(values.dynamicModuleImport,true,'Dynamic import of ES helper must succeed');
-  assert.match(values.build,/wasm-path-v3/);
+  assert.match(values.build,/decoder-probe-v4/);
   console.log('PASS: Classic Worker supports importScripts and ES module dynamic import in Chromium');
   if(process.env.ACFT_RUNTIME_SMOKE==='1'){
     const runtime=await page.evaluate(()=>new Promise((resolve,reject)=>{
@@ -39,7 +39,7 @@ try{
     }));
     assert.equal(runtime.type,'runtime-ready');
     assert.equal(runtime.classicImportScripts,true);
-    assert.match(runtime.build,/wasm-path-v3/);
+    assert.match(runtime.build,/decoder-probe-v4/);
     console.log('PASS: actual LiteRT 2.5.3 WASM successfully initialized in Chromium, base='+runtime.wasmBase);
   }
 }finally{await browser.close();}
