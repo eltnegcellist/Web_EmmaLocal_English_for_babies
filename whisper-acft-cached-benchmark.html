@@ -1,0 +1,68 @@
+<!doctype html><html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CooTrio ACFT Small + KVキャッシュ WASM実音声テスト</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;background:#f4f6fa;color:#172437}
+*{box-sizing:border-box}body{margin:0;padding:18px}main{max-width:700px;margin:auto}h1{font-size:1.45rem;line-height:1.4}
+p,li{line-height:1.6}section{background:#fff;padding:18px;border:1px solid #d6dfeb;border-radius:14px;margin:15px 0}
+label{display:block;font-weight:650;margin:12px 0 6px}
+input,select,button{font:inherit;max-width:100%}
+input[type=file],select{width:100%;padding:12px;border:1px solid #b5c2d2;border-radius:8px}
+button{padding:12px 14px;border:0;border-radius:9px;background:#2358bd;color:white;font-weight:650;margin:7px 5px 7px 0}
+button:disabled{background:#aab6c7}button.secondary{background:#526783}
+details{font-size:.92rem}pre{background:#f1f4f9;padding:12px;white-space:pre-wrap;overflow-wrap:anywhere;border-radius:8px}
+#transcript{min-height:70px;white-space:pre-wrap;font-size:1.05rem}
+#status{font-weight:650}.muted,small{color:#58677b}a{color:#2358bd}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(max-width:480px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body><main>
+<h1>ACFT Small + whisper.cpp WASM</h1>
+<p>みつことば実験ブランチの<strong>実音声の認識精度・速度テスト</strong>です。5秒／10秒の短い音声窓を使い、whisper.cppのKVキャッシュ付きDecoderで文字起こしします。CPUのみ、WebGPUは使いません。</p>
+<p class="muted">プライバシー：モデルファイル、録音、解析音声はブラウザ内で処理されます。音声は送信されません。<strong>本人が同意した録音だけ</strong>を使用してください。</p>
+<section>
+<strong>① モデルの準備</strong>
+<p>多言語版のFUTO ACFT Small（GGML / q8）。この形式は以前計測したLiteRTの <code>.tflite</code> とは別物です。</p>
+<p><a id="modelDownload" rel="noopener noreferrer" target="_blank">FUTO公式モデルを保存</a>（容量は約260MB）。ダウンロード後、下で選択してください。</p>
+<label for="modelFile">ACFT Small .bin ファイル</label>
+<input id="modelFile" type="file" accept=".bin,application/octet-stream">
+<button id="loadModel">モデルを読み込む</button>
+<small>初期化時はメモリを大きく使います。空きメモリが少ない場合、他のタブを閉じてください。モデルはサーバーにはアップロードされません。</small>
+</section>
+<section>
+<strong>② 録音または音声ファイル</strong>
+<label for="audioFile">ローカル音声ファイル</label>
+<input id="audioFile" type="file" accept="audio/*,.wav,.mp3,.m4a,.webm">
+<div><button id="startRecord">マイク録音を開始</button><button id="stopRecord" class="secondary" disabled>録音を停止</button></div>
+<p class="muted">音声の長さ：<span id="duration">未選択</span>。ブラウザで16kHz PCMへ変換します。</p>
+</section>
+<section>
+<strong>③ 音声認識・計測</strong>
+<div class="grid">
+<div><label for="window">短い音声窓</label>
+<select id="window"><option value="5">5秒（audio_ctx=250）</option><option value="10">10秒（audio_ctx=500）</option></select></div>
+<div><label for="language">音声の言語</label><select id="language">
+<option value="auto">自動判定</option><option value="ja">日本語（ja）</option><option value="en">英語（en）</option>
+<option value="es">スペイン語（es）</option><option value="fr">フランス語（fr）</option>
+<option value="de">ドイツ語（de）</option><option value="zh">中国語（zh）</option></select></div>
+<div><label for="threads">WASM CPUスレッド数</label><select id="threads">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option></select></div>
+</div>
+<button id="startTranscribe" disabled>実音声を文字起こし・時間計測</button>
+<p class="muted">5秒窓を超える音声は切り捨てずエラーにします。必要なら10秒窓を選択してください。推論が長時間続く場合はタブの再読み込みで中断できます。</p>
+<p id="status" aria-live="polite">準備中</p>
+<pre id="runtime"></pre>
+</section>
+<section>
+<strong>④ 認識結果と診断</strong>
+<div id="transcript" aria-live="polite">まだ文字起こししていません。</div>
+<p class="muted">音声前処理: <span id="preprocessMs">-</span> / モデル準備: <span id="modelMs">-</span></p>
+<button id="copy" class="secondary">結果をコピー</button>
+<pre id="report"></pre>
+<details><summary>詳細ログ</summary><pre id="log"></pre></details>
+<small>ビルド: <span id="build"></span>。エンコード・デコード時間はwhisper.cppネイティブ統計。時間と認識結果は実測ですが、比較には同じ音声ファイルを使用してください。</small>
+</section>
+<p class="muted"><a href="./whisper-acft-benchmark.html">以前のLiteRT Encoder＋Decoder単体テスト</a> | <a href="https://github.com/futo-org/whisper-acft">FUTO ACFT公式</a> | <a href="https://github.com/ggml-org/whisper.cpp">whisper.cpp MIT</a></p>
+</main>
+<script type="module" src="./experimental/whisper-acft-wasm/test-page.js?v=20261023-whispercpp-acft-kv-v1"></script>
+</body></html>
