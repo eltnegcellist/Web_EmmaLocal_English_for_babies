@@ -28,7 +28,7 @@ try {
   assert.equal(actual.isolated,true);
   assert.equal(actual.sharedArrayBuffer,'function');
   assert(actual.modelFileField&&actual.audioFileField&&actual.timeWindowField);
-  assert.match(actual.build,/whispercpp-acft-kv-v1/);
+  assert.match(actual.build,/acft-cpp-encoder-profile-v2/);
   assert.match(actual.wasmReady,/WASM起動完了/);
   assert.deepEqual(errors,[]);
   console.log('PASS: native whisper.cpp WASM runtime initialized in COI Chromium:',JSON.stringify(actual));
