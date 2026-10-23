@@ -74,3 +74,22 @@ Galaxy S25のBase/5秒実機テストで、(1) Module WorkerでEmscripten `impor
 検証根拠: LiteRT.js `load.ts` は`createWasmLib`にJSパスを渡し、`wasm-utils/wasm_loader.ts`の`createWasmLib` は`self.Module`を`ModuleFactory`に渡す仕様。
 - https://github.com/google-ai-edge/LiteRT/blob/main/litert/js/packages/core/src/load.ts
 - https://github.com/google-ai-edge/LiteRT/blob/main/litert/js/packages/wasm_utils/src/wasm_loader.ts
+
+## Galaxy S25実機のACFT Encoder速度（2026-10-23 JST）
+ユーザー提供の実測。Chrome 155、LiteRT.js 2.5.3 WASM CPU、合成log-mel、各5サンプル。**文字起こし精度やDecoderは未測定**。
+
+| Model | 5サンプル (ms) | Median (ms) | モデル取得・準備 (ms) |
+|---|---|---:|---:|
+| ACFT Base 5秒 | 174.21, 174.64, 174.53, 175.41, 178.87 | 175 | 33457 |
+| ACFT Small 5秒 | 898.62, 897.80, 897.58, 897.41, 897.55 | 898 | 25316 |
+| ACFT Small 10秒 | 1635.26, 1640.89, 1656.56, 1679.02, 1678.79 | 1657 | 27575 |
+| 従来 Xenova Whisper Small 30秒 | 旧診断における実音声のEncoder計測 | 8200 | モデル準備は別 |
+
+短い発話ではACFT Small 5秒でもEncoder中央値が旧方式の約1/9.1である。ただし**モデルの重み、時間窓、ランタイム、特徴量入力が異なるため、厳密な同条件速度比ではない**。ACFT Small 10秒は5秒に比べ約1.85倍のEncoder時間。6秒以上の発話を5秒窓で単純に切り捨てると認識内容が欠けるため、音声長に応じて別窓またはオーバーラップチャンクを使う必要がある。
+
+### 新しい優先課題：Decoder
+litert-community/whisper-acft配布モデルのDecoderは **KV cacheなし、最大128トークンのフルシーケンスを毎トークン実行する**。従来Whisper SmallのDecoder時間（中央値1439ms）をACFTへ直接適用することはできない。Encoderの高速化だけでは総ASRが高速とは限らない。
+
+独立ページの任意チェック「Decoderの入力構造と処理時間も測定」は合成melと固定Whisperプロンプトでdecode signatureを実行し、ウォームアップ1回＋3回の1ステップ相当の時間を計測する。音声内容や精度は評価しない。実Decoderが高速でも、言語判定・STFT/mel・Tokenizer・連続トークン生成を含む完成ASRの計測が次に必要。
+
+参照: https://huggingface.co/litert-community/whisper-acft
