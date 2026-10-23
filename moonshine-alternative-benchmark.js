@@ -4,6 +4,7 @@ import {Transcriber} from './src/vendor/moonshine/transcriber.js';
 import {MicTranscriber} from './src/vendor/moonshine/mic-transcriber.js';
 import {ModelArch} from './src/vendor/moonshine/enums.js';
 import {characterErrorRate} from './experimental/whisper-acft-wasm/quality.js';
+import {loadEmmaMoonshineModule} from './src/moonshine-module.js';
 
 const BUILD='20261024-moonshine-multilingual-research-v1';
 const models={
@@ -75,8 +76,9 @@ $('load').addEventListener('click',async()=>{
  try{
   status('Moonshineモデルを準備中（初回のみダウンロード）');
   const start=now();
+  const module=await loadEmmaMoonshineModule();
   next=await Transcriber.load({
-   language,modelArch:ModelArch[arch],
+   module,language,modelArch:ModelArch[arch],
    ...(language==='ja'?{options:{max_tokens_per_second:'13.0'}}:{}),
    onProgress:(loadedBytes,totalBytes,file)=>{
     const percent=totalBytes?Math.round(100*loadedBytes/totalBytes):0;
