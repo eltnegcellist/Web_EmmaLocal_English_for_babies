@@ -17,7 +17,7 @@ import { describeError } from './multilingual/translations.js?v=20261022-speech-
 import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 import { bindVisualCueSettings } from './visual-cue-settings.js';
-import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection} from './multilingual/performance.js';
+import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,WHISPER_MAX_TOKENS_KEY,normalizeThreads,normalizeLanguageDetection,normalizeMaxNewTokens} from './multilingual/performance.js';
 import {installWhisperPerformanceControls} from './multilingual/performance-controls.js';
 import {chooseEnglishResumeGreeting} from './resume-greeting.js';
 
@@ -210,7 +210,8 @@ let multilingualStatus=()=>{};
 let multilingual,languageUI,whisperPerformanceControls;
 function whisperPerformanceSettings(){
   return {threads:normalizeThreads(localStorage.getItem(WHISPER_THREAD_KEY)),
-    languageDetection:normalizeLanguageDetection(localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY))};
+    languageDetection:normalizeLanguageDetection(localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY)),
+    maxNewTokens:normalizeMaxNewTokens(localStorage.getItem(WHISPER_MAX_TOKENS_KEY))};
 }
 const confirmAction=createConfirmation({translate:value=>languageUI.translate(value)});
 let currentReplyRoute=null;
@@ -2158,7 +2159,7 @@ function updateWebTimingDiagnostics() {
     ? `ASR 端末読込 ${format(asr.cacheReadMs)} / ${formatMb(asr.cacheReadBytes)} / 通信 ${format(asr.networkDownloadMs)} / ${formatMb(asr.networkDownloadBytes)} / WASM ${format(asr.wasmInitMs)} / モデル構築 ${format(asr.modelBuildMs)} / 合計 ${format(asr.totalInitMs)} ｜ `
     : '';
   const foreignAsr=multilingualAsrDiagnostic?.totalMs!=null
-    ? `Whisper ${multilingualAsrDiagnostic.threads??'?'}スレッド / 音声${multilingualAsrDiagnostic.audioSeconds}s / 言語判定${multilingualAsrDiagnostic.languageMs}ms / 文字起こし${multilingualAsrDiagnostic.transcribeMs}ms / 実時間比${multilingualAsrDiagnostic.realTimeFactor}x ｜ `
+    ? `Whisper ${multilingualAsrDiagnostic.threads??'?'}スレッド / 音声${multilingualAsrDiagnostic.audioSeconds}s / 言語判定${multilingualAsrDiagnostic.languageMs}ms / 文字起こし${multilingualAsrDiagnostic.transcribeMs}ms / Encoder ${format(multilingualAsrDiagnostic.whisperEncoderMs)} / Decoder ${format(multilingualAsrDiagnostic.whisperDecoderMs)}（${multilingualAsrDiagnostic.whisperDecoderRuns??'?'}回） / Other ${format(multilingualAsrDiagnostic.whisperOtherMs)} / 実時間比${multilingualAsrDiagnostic.realTimeFactor}x ｜ `
     : '';
   ui.webTimingDiagnostics.textContent=
     `直近計測: ${asrText}${foreignAsr}TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
@@ -2199,6 +2200,7 @@ async function buildWebDiagnosticReport() {
     `multilingual.effectiveThreads=${multilingual.runtimeInfo?.threads??multilingualAsrDiagnostic.threads??'unknown'}`,
     `multilingual.threadIsolation=${multilingual.runtimeInfo?.isolated??'unknown'}`,
     `multilingual.languageDetectionMode=${multilingual.languageDetection}`,
+    `multilingual.maxNewTokens=${multilingual.maxNewTokens}`,
     `multilingual.cachedSpokenLanguage=${multilingual.cachedSpokenLanguage??'none'}`,
     `multilingual.asrLanguage=${multilingualAsrDiagnostic.detectedLanguage??'unknown'}`,
     `multilingual.asrElapsedMs=${multilingualAsrDiagnostic.elapsedMs??'unknown'}`,
@@ -2206,6 +2208,14 @@ async function buildWebDiagnosticReport() {
     `multilingual.languagePass=${multilingualAsrDiagnostic.languagePass??'unknown'}`,
     `multilingual.languageMs=${multilingualAsrDiagnostic.languageMs??'unknown'}`,
     `multilingual.transcribeMs=${multilingualAsrDiagnostic.transcribeMs??'unknown'}`,
+    `multilingual.whisperProfileAvailable=${multilingualAsrDiagnostic.whisperProfileAvailable??'unknown'}`,
+    `multilingual.whisperEncoderMs=${multilingualAsrDiagnostic.whisperEncoderMs??'unknown'}`,
+    `multilingual.whisperDecoderMs=${multilingualAsrDiagnostic.whisperDecoderMs??'unknown'}`,
+    `multilingual.whisperOtherMs=${multilingualAsrDiagnostic.whisperOtherMs??'unknown'}`,
+    `multilingual.whisperEncoderRuns=${multilingualAsrDiagnostic.whisperEncoderRuns??'unknown'}`,
+    `multilingual.whisperDecoderRuns=${multilingualAsrDiagnostic.whisperDecoderRuns??'unknown'}`,
+    `multilingual.whisperLanguageEncoderMs=${multilingualAsrDiagnostic.whisperLanguageEncoderMs??'unknown'}`,
+    `multilingual.maxNewTokens=${multilingualAsrDiagnostic.maxNewTokens??'unknown'}`,
     `multilingual.totalMs=${multilingualAsrDiagnostic.totalMs??'unknown'}`,
     `multilingual.realTimeFactor=${multilingualAsrDiagnostic.realTimeFactor??'unknown'}`,
     `multilingual.model=${multilingualAsrDiagnostic.model??'unknown'}`,

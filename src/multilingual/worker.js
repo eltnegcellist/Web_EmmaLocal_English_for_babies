@@ -1,7 +1,8 @@
 import {prepareAssets,digest} from './assets.js';
 import {classifyE5,decodeE5Heads,speechLanguage} from './core.js';
-import {resolveWhisperThreads} from './performance.js';
-let recognizer,extractor,heads,runtime,preparing,effectiveThreads=1;
+import {resolveWhisperThreads,normalizeMaxNewTokens} from './performance.js';
+import {attachWhisperSessionProfiler} from './whisper-profile.js';
+let recognizer,extractor,heads,runtime,preparing,effectiveThreads=1,whisperProfiler;
 let queue=Promise.resolve();
 const progress=data=>self.postMessage({type:'progress',...data});
 async function initialize({threadPreference='auto'}={}) {
@@ -31,6 +32,7 @@ async function initialize({threadPreference='auto'}={}) {
   const opt=key=>({revision:manifest.models[key].revision,device:'wasm',dtype:'q8',local_files_only:true});
   progress({stage:'loading'});
   recognizer=await pipeline('automatic-speech-recognition',manifest.models.whisper.id,opt('whisper'));
+  whisperProfiler=attachWhisperSessionProfiler(recognizer.model);
   extractor=await pipeline('feature-extraction',manifest.models.e5.id,opt('e5'));
   const base=new URL('../../multilingual-assets/heads/',import.meta.url);
   const config=await (await fetch(new URL('config.json',base))).json(),buffers={};
@@ -69,10 +71,13 @@ async function handle(data) {
     if(!audio.length||audio.some(x=>!Number.isFinite(x)))throw Error('Invalid audio');
     const audioSeconds=audio.length/16000;
     const asrStarted=performance.now();
+    whisperProfiler?.start();
     const specified=data.language==='en-fixed'?'en':speechLanguage(data.language);
     if(!specified)progress({stage:'detecting-language'});
     const language=specified||await detectLanguage(audio);
     const languageMs=performance.now()-asrStarted;
+    const languageProfile=whisperProfiler?.stop();
+    whisperProfiler?.start();
     progress({stage:'transcribing',detectedLanguage:language,audioSeconds,languageMs});
     // Measure decoding independently from the optional language-detection pass.
     // Timings include preprocessing/encoding/generation for the pipeline call,
@@ -80,8 +85,20 @@ async function handle(data) {
     const decodeStarted=performance.now();
     // Short caregiver utterances should not spend minutes generating a long
     // hallucinated transcript on mobile CPU; allow up to 80 tokens.
-    const result=await recognizer(audio,{language,task:'transcribe',max_new_tokens:80,return_timestamps:false});
+    const maxNewTokens=Number(normalizeMaxNewTokens(data.maxNewTokens));
+    const result=await recognizer(audio,{language,task:'transcribe',max_new_tokens:maxNewTokens,return_timestamps:false});
     const transcribeMs=performance.now()-decodeStarted;
+    const profile=whisperProfiler?.stop();
+    const whisperProfileAvailable=Boolean(profile);
+    const stageDetails=profile?{
+      whisperEncoderMs:profile.encoderMs,whisperDecoderMs:profile.decoderMs,
+      whisperOtherMs:Math.max(0,Math.round(transcribeMs-profile.encoderMs-profile.decoderMs)),
+      whisperEncoderRuns:profile.encoderRuns,whisperDecoderRuns:profile.decoderRuns,
+      whisperLanguageEncoderMs:languageProfile?.encoderMs??0
+    }:{
+      whisperEncoderMs:null,whisperDecoderMs:null,whisperOtherMs:null,
+      whisperEncoderRuns:null,whisperDecoderRuns:null,whisperLanguageEncoderMs:null
+    };
     const timings={
       audioSeconds:Number(audioSeconds.toFixed(2)),
       languageMs:Math.round(languageMs),
@@ -91,6 +108,7 @@ async function handle(data) {
       spokenLanguage:language,
       languagePass:!specified,
       threads:effectiveThreads,
+      maxNewTokens,whisperProfileAvailable,...stageDetails,
       model:`whisper-small-q8-wasm-${effectiveThreads}-thread`
     };
     progress({stage:'asr-timing',timings});
