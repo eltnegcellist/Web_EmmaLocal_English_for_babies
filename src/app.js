@@ -232,7 +232,7 @@ function refreshReplyContext(){
 }
 let modelSelectionEpoch=0;
 let multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
-let voicePrefetchDiagnostic={stage:'idle',completed:0,total:0,failed:0,lastFile:null,reason:null};
+let voicePrefetchDiagnostic={stage:'idle',completed:0,total:0,failed:0,lastFile:null,reason:null,heldForAsr:false};
 function renderVoicePrefetchStatus() {
   if(!ui.voiceDownloadStatus)return;
   const state=voicePrefetchDiagnostic,language=languageUI?.language??'ja';
@@ -1473,6 +1473,10 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     forwardBackgroundDownload(m);
     return;
   }
+  if(m.type==='prefetch-control'){
+    voicePrefetchDiagnostic.heldForAsr=Boolean(m.held);
+    return;
+  }
   if(m.type==='prefetch-status'){
     voicePrefetchDiagnostic={
       stage:m.stage||'unknown',completed:Number(m.completed)||0,
@@ -1533,6 +1537,7 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
   try{
     // A separate worker keeps the UI responsive; avoid an endless "Transcribing"
     // state on memory-constrained private browsing sessions.
+    if(!japanese)ttsWorker?.postMessage({type:'asr-prefetch-hold',hold:true});
     const text=await withTimeout(
       moonshineTranscriber.transcribe(audio),
       japanese?120000:90000,
@@ -1564,6 +1569,8 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
     }
     if(!japanese)languageUI.setStatus('音声認識でエラーが発生しました');
     setState('error','音声認識でエラーが発生しました',friendlyError(error));
+  }finally{
+    if(!japanese)ttsWorker?.postMessage({type:'asr-prefetch-hold',hold:false});
   }
 }
 
@@ -2239,6 +2246,7 @@ async function buildWebDiagnosticReport() {
     `asr.totalInitMs=${lastMoonshineDiagnostics?.totalInitMs??'unmeasured'}`,
     `tts.ready=${Boolean(ttsWorker&&ttsInfoCache)}`,
     `tts.prefetchStage=${voicePrefetchDiagnostic.stage}`,
+    `tts.prefetchHeldForAsr=${voicePrefetchDiagnostic.heldForAsr}`,
     `tts.prefetchCompleted=${voicePrefetchDiagnostic.completed}`,
     `tts.prefetchTotal=${voicePrefetchDiagnostic.total}`,
     `tts.prefetchFailed=${voicePrefetchDiagnostic.failed}`,
