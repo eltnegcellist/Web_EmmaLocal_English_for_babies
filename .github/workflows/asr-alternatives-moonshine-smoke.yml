@@ -1,0 +1,33 @@
+name: ASR Alternatives Moonshine WASM catalog smoke
+on:
+  push:
+    branches: [experiment/whisper-stage-profile-20261023]
+    paths:
+      - asr-alternatives-benchmark.html
+      - moonshine-alternative-benchmark.js
+      - scripts/browser-asr-alternatives-smoke.mjs
+      - .github/workflows/asr-alternatives-moonshine-smoke.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install JS dependencies
+        run: npm ci --ignore-scripts
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Verify JS and native Moonshine v0.1.5 language catalog
+        run: |
+          node --check moonshine-alternative-benchmark.js
+          test -s src/vendor/moonshine/moonshine.wasm.gz
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/asr-alt-http.log 2>&1 &
+          node scripts/browser-asr-alternatives-smoke.mjs
