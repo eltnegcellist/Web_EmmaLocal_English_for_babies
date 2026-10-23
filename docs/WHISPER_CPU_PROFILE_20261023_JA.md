@@ -18,3 +18,29 @@ Transformers.js 3.8.1 の `recognizer.model.sessions.model.run`（エンコー�
 - デコーダー支配なら逐次生成が律速。スレッドを増やすだけでは解決しにくく、モデル/実行方式変更を検討。
 - 目標は3～5秒発話の認識後処理を数秒以内に収めること。2秒を理想、3秒程度を暫定許容とするのは**製品要件案**であって、実測成功値ではない。
 - 同一端末で実測するまで、Whisper Smallの速度改善や別モデルの高速性を断定しない。
+
+## 2026年10月時点の代替候補（実測前の技術評価）
+
+| 候補 | 同一モデルで6言語と自動判定 | モバイル速度の見通し | 制限 |
+| --- | --- | --- | --- |
+| 現行 Whisper Small q8 / Transformers.js WASM | 対応 | Galaxy S25の既存実測は3.17 RTF | 30秒入力と自己回帰デコーダー。4スレッドへの変更だけで約6倍の高速化は期待しづらい |
+| Whisper Base / Tiny (量子化) | 対応 | パラメータ数が小さくなるためA/B候補 | 短文でも30秒入力、精度の低下。既定置換しない |
+| SenseVoice Small / sherpa-onnx | **非対応**（英語、日本語、韓国語など5言語） | 非自己回帰で高い高速化余地 | ドイツ語・フランス語・タイ語が欠ける。モデル重みの独自利用条件要確認 |
+| Moonshine各言語モデル | **非対応**（単一の自動多言語モデルではない） | 一部言語で高速 | 言語別モデルの管理が必要。フランス語・タイ語が欠け、韓国語既存モデルはCommunityライセンス |
+| Qwen3-ASR-0.6B / sherpa-onnx | 対応 | **Galaxy S25 Web/WASMでは未測定** | 約6億パラメータ、モデル容量・RAM・実行負荷が大きい可能性。単純な高速化目的には不確実 |
+| Nemotron-3.5 ASR Streaming 0.6B | **現状では非対応**（タイ語は追加学習が必要） | ストリーミング向け | 大容量、タイ語が使用可能な完成チェックポイントではない |
+| Whisper Small / Android native optimized runtime | モデル仕様上は対応 | WASMのオーバーヘッドを減らせる可能性 | Androidネイティブ版のみの候補。Web同等動作と実測速度は未確認 |
+
+参照:
+- https://huggingface.co/docs/transformers/en/model_doc/whisper
+- https://k2-fsa.github.io/sherpa/onnx/sense-voice/index.html
+- https://moonshine-voice.readthedocs.io/en/latest/models/available-models/
+- https://github.com/QwenLM/Qwen3-ASR
+- https://k2-fsa.github.io/sherpa/onnx/nemo/nemotron-streaming.html
+- https://github.com/ggml-org/whisper.cpp/blob/master/examples/whisper.wasm/README.md
+
+### 推奨の段取り
+1. **現行のWASMの限界を計測**：1/2/4スレッドとONNX encoder/decoder内訳、直近に取得していた1105件の録音音声ダウンロードを完了させて再測定。
+2. **Whisperの小型モデル / ネイティブ実装を研究専用として比較**：6言語維持、出力精度/幻覚/全体応答時間/温度/電池消費を同条件で評価する。安易な自動置換はしない。
+3. 3～5秒発話でRTFが約0.5以下（認識2秒程度）の要件を満たさない場合、Whisper Smallを実用経路に採用する方針を再検討。軽量単言語モデル＋言語判定器との組合せも検証するが、合計モデルサイズを必ず報告する。
+4. **CIのみではS25の実測を代替できない**。PRのマージは端末測定と文字起こし精度を確認した後。
