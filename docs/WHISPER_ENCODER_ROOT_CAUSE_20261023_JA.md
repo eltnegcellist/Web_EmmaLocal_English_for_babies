@@ -1,5 +1,8 @@
 # Whisper Small q8 / Galaxy S25: Encoder遅延の原因分析 (2026-10-23)
 
+> **精度優先の判断修正（2026-10-23、GitHub既存検証と日本語公開評価を再確認）:** 以下の本文にある「ACFT Base 5s/10sを第一候補／実音声試験を最優先」は、速度実測後の暫定案であり、**現時点での採用推奨ではない**。現行Smallを精度ベースラインに保ち、Small ACFTのKVキャッシュ付きDecoderやwhisper.cpp等の高速化を優先研究する。Base ACFTは比較用の実験条件として残すが、精度確認前に既定化しない。詳細は文末の「精度を踏まえた改訂方針」を参照。
+
+
 ## 目的・固定条件
 Web版 English · Multilingual、Whisper Small q8 CPU/WASM、端末実測に基づいて性能を判断する。発話言語はモデル選択の理由にしない。3スレッドか4スレッドかの設定追跡は優先しない。
 
@@ -153,3 +156,35 @@ Decoder probe は計算前に `Unrecognized decoder signature` を返してお�
 - 実装候補: ブラウザファイル音声→WebAudio 16kHz PCM→Whisper 80帯log-mel（窓500/1000フレーム）→ LiteRT encode→mask [1,1,128,128]を使うgreedy autoregressive decode→multilingual Whisper tokenizer。実音声の文字起こしと各段階の時間を保存しない診断に表示する。Whisperの音声前処理はTransformers.js `AutoProcessor` の出力と一致を検証する。
 
 裏付け: https://huggingface.co/litert-community/whisper-acft (モデルとdecoder構造)、https://huggingface.co/docs/transformers.js/en/api/processors (実音声前処理)。
+
+## 精度を踏まえた改訂方針（2026-10-23、今回の最終判断）
+
+### 再確認した過去のGitHub記録
+- `research/voice-content-26-review-20261015.json`: 事前録音の**英語**音声をWhisper Small/Baseで照合し、両エンジンと表示原稿に差異のある26例を集めた選別済みデータ。無作為抽出ではないので、単純なBase/Small全体CER・WER比較の母集団ではない。
+- 例 No.11（現在の英文は2回反復）ではSmallは `Sip, sip`、Baseは `Sips, zip`。No.22はSmallの `Little sips add up` に対しBaseは `Little sips that up`。部分的にはBaseの方が近いケースもある。
+- `research/voice-content-26-human-verdicts-20261018.json`: 26音源を人手確認した21 match/5 misreadは**収録英文と音声の一致検証**であり、Whisper BaseのASR正解率21/26等ではない。
+- `docs/voice-content-26-fix-guide.md`: No.11のBase誤転写とSmallとの違いを具体的に記録。これは話題・Interaction判定に影響する短い育児表現での危険を示す質的証拠。
+- `issues/101`: 日本語保護者録音によるMoonshine評価と26英語音源レビューが独立した課題。**Whisper Baseの日本語CER/WERをアプリ独自に確定した記録は、この資料群からは見つからない。**
+
+### 外部の同データセット比較に基づく精度上の懸念
+通常Whisper（**ACFTではない**）の日本語CER、低いほど良い。
+
+| データセット | Whisper Base | Whisper Small |
+|---|---:|---:|
+| CommonVoice 8 Japanese | 28.6% | 15.1% |
+| JSUT Basic 5000 | 24.9% | 14.2% |
+| ReazonSpeech held-out | 70.4% | 41.5% |
+
+出典 `japanese-asr` 日本語比較: https://huggingface.co/japanese-asr 。別のWASM CPU比較では日本語CER Base 26.0%、Small 13.4%、英語WER Base 10.6%、Small 6.8%（https://bytescope.dev/ja/speech-models/）。
+異なるデータセット同士の値は横断比較しない。データ収集・前処理も異なるためこれらの絶対値を**みつことばの実録音の予想CER**として使わない。
+FUTO ACFTは音声コンテキストを短くしても元モデルの挙動を保つための追加学習で、BaseをSmall同等の認識精度へ改善したとは実証していない。https://github.com/futo-org/whisper-acft
+
+### 採用の意思決定（速度より精度）
+1. 現行Whisper Smallは精度ベースライン（現時点で一般公開を置き換えない）。モデルを小さくするだけでは日本語・他言語の認識誤りが増え、誤Topic・Interactionに波及しうる。
+2. **第一研究候補は短窓ACFT Small＋KVキャッシュを活用できるDecoder**（whisper.cpp WASMの動的audio context / KV、またはSmall ACFTのwith-past ONNX）。この構成の実機速度・メモリ・CERは未測定。CPU優先、WebGPUを前提にしない。
+3. **ACFT Baseは速度比較・品質評価用の比較条件**。合成入力ではEncoder 175ms/Decoder 237msだが、*認識結果*がSmallと比べて許容できない場合、速度が高くても採用しない。
+4. 専用の**同一録音を使ったA/B**で、現行Whisper Small、ACFT Base 5/10s、ACFT Small 5/10s＋最適化Decoder（完成時）、日本語版Moonshine（別条件）を比較。言語ごとに分けて報告する。5秒超音声は切り捨てず10秒窓か分割を使う。
+5. 全体CER/WERだけでなく、短文の否定/時制（「飲む／飲まない」「寝た／寝る」）、反復、育児語、初回言語判定、話題/Interaction誤りを人手レビューする。実機の中央値・p95、初回DL、再利用、RAMも併記。
+6. **品質の非劣性確認を満たさなければBaseを実装既定にしない。** 速度だけでのモデル移行は禁止。多言語UIの音声入力を単純に日本語固定にせず、現在の言語認識機能を保持する。
+
+この段落が本文中の旧「ACFT Base最優先」の暫定方針より優先される。
