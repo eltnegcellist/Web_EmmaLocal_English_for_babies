@@ -56,6 +56,9 @@ details{font-size:.92rem}pre{background:#f1f4f9;padding:12px;white-space:pre-wra
 <section>
 <strong>④ 認識結果と診断</strong>
 <div id="transcript" aria-live="polite">まだ文字起こししていません。</div>
+<label for="reference">正解文（任意・同じ音声のCER評価用）</label>
+<textarea id="reference" rows="2" placeholder="例：ミルク飲もうね" style="width:100%;font:inherit;border:1px solid #b5c2d2;border-radius:8px;padding:10px"></textarea>
+<p class="muted">参考文字誤り率（CER）: <strong id="cer">未計測</strong>。空白・句読点を除いた文字で比較します。</p>
 <p class="muted">音声前処理: <span id="preprocessMs">-</span> / モデル準備: <span id="modelMs">-</span></p>
 <button id="copy" class="secondary">結果をコピー</button>
 <pre id="report"></pre>
