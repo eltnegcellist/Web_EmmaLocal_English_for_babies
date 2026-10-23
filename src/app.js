@@ -17,7 +17,7 @@ import { describeError } from './multilingual/translations.js?v=20261022-speech-
 import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 import { bindVisualCueSettings } from './visual-cue-settings.js';
-import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,WHISPER_MAX_TOKENS_KEY,normalizeThreads,normalizeLanguageDetection,normalizeMaxNewTokens} from './multilingual/performance.js';
+import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,WHISPER_MAX_TOKENS_KEY,normalizeThreads,normalizeLanguageDetection,normalizeMaxNewTokens,resolveWhisperThreads} from './multilingual/performance.js';
 import {installWhisperPerformanceControls} from './multilingual/performance-controls.js';
 import {chooseEnglishResumeGreeting} from './resume-greeting.js';
 
@@ -209,9 +209,26 @@ export const visualCueTrial = VISUAL_CUE_TRIAL ? {
 let multilingualStatus=()=>{};
 let multilingual,languageUI,whisperPerformanceControls;
 function whisperPerformanceSettings(){
-  return {threads:normalizeThreads(localStorage.getItem(WHISPER_THREAD_KEY)),
-    languageDetection:normalizeLanguageDetection(localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY)),
-    maxNewTokens:normalizeMaxNewTokens(localStorage.getItem(WHISPER_MAX_TOKENS_KEY))};
+  // The visible developer choice must win even when an earlier Worker is still
+  // alive or localStorage has not reflected the latest selection.
+  const controls=whisperPerformanceControls;
+  return {
+    threads:normalizeThreads(controls?.threads?.value??localStorage.getItem(WHISPER_THREAD_KEY)),
+    languageDetection:normalizeLanguageDetection(controls?.detection?.value??localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY)),
+    maxNewTokens:normalizeMaxNewTokens(controls?.tokens?.value??localStorage.getItem(WHISPER_MAX_TOKENS_KEY))
+  };
+}
+function syncWhisperPerformanceBeforePrepare(){
+  if(!multilingual||languageUI?.language==='ja')return;
+  const chosen=whisperPerformanceSettings();
+  const oldThreads=multilingual.threadPreference;
+  if(oldThreads===chosen.threads && multilingual.languageDetection===chosen.languageDetection &&
+     multilingual.maxNewTokens===chosen.maxNewTokens)return;
+  multilingual.setPerformance(chosen);
+  if(oldThreads!==chosen.threads){
+    // A loaded ONNX session cannot have its thread pool changed in place.
+    asrInfoCache=null;workersReady=false;moonshineTranscriber=null;
+  }
 }
 const confirmAction=createConfirmation({translate:value=>languageUI.translate(value)});
 let currentReplyRoute=null;
@@ -346,9 +363,11 @@ function initUi() {
   if(ui.webBuild)ui.webBuild.textContent=`Web build: ${WEB_BUILD}`;
   whisperPerformanceControls=installWhisperPerformanceControls({
     onChange:async options=>{
-      await stopEmma();
+      // Apply synchronously: previously the await above let a still-running
+      // Worker keep "auto" even when the selector already showed "4".
       const oldThreads=multilingual.threadPreference;
       multilingual.setPerformance(options);
+      await stopEmma();
       multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
       if(oldThreads!==multilingual.threadPreference){
         // The ONNX WASM thread pool is created during model initialization.
@@ -1307,6 +1326,9 @@ async function startMoonshineCapture() {
 }
 
 async function initWorkers() {
+  // Reconcile visible controls, saved preference and the prepared Worker on
+  // every start. Never silently reuse a 3-thread "auto" pool for a chosen 4.
+  syncWhisperPerformanceBeforePrepare();
   const selectionEpoch=modelSelectionEpoch;
   if(!asrInfoCache){
     const asrPreparing=languageUI.language==='ja'?'Moonshineを準備しています…':'Whisperを準備しています…';
@@ -2204,6 +2226,15 @@ async function buildWebDiagnosticReport() {
     if(typeof navigator.storage?.persisted==='function') storagePersisted=await navigator.storage.persisted();
   } catch {}
   const selectedAsr=localStorage.getItem(STORAGE.asrModel)==='tiny'?'Tiny':'Small';
+  const selectedWhisperSettings=whisperPerformanceSettings();
+  const expectedWhisperThreads=resolveWhisperThreads(selectedWhisperSettings.threads,{
+    hardwareConcurrency:navigator.hardwareConcurrency??1,
+    crossOriginIsolated:window.crossOriginIsolated===true,
+    sharedArrayBuffer:typeof SharedArrayBuffer==='function'
+  });
+  const actualWhisperThreads=multilingual.runtimeInfo?.threads??null;
+  const whisperThreadMismatch=multilingual.threadPreference!==selectedWhisperSettings.threads ||
+    (actualWhisperThreads!==null&&actualWhisperThreads!==expectedWhisperThreads);
   const capture=mic?.getDiagnostics?.()||lastMicrophoneDiagnostics||{};
   const lines=[
     'Mitsukotoba Web diagnostics',
@@ -2227,6 +2258,11 @@ async function buildWebDiagnosticReport() {
     `mic.mutedTracks=${capture.mutedTracks??'unknown'}`,
     `multilingual.asrStage=${multilingualAsrDiagnostic.stage}`,
     `multilingual.threadPreference=${multilingual.threadPreference}`,
+    `multilingual.threadPreferenceUI=${whisperPerformanceControls?.threads?.value??'not-mounted'}`,
+    `multilingual.threadPreferenceStored=${localStorage.getItem(WHISPER_THREAD_KEY)??'not-saved'}`,
+    `multilingual.threadPreferenceExpected=${selectedWhisperSettings.threads}`,
+    `multilingual.expectedThreads=${expectedWhisperThreads}`,
+    `multilingual.threadMismatch=${whisperThreadMismatch}`,
     `multilingual.effectiveThreads=${multilingual.runtimeInfo?.threads??multilingualAsrDiagnostic.threads??'unknown'}`,
     `multilingual.threadIsolation=${multilingual.runtimeInfo?.isolated??'unknown'}`,
     `multilingual.languageDetectionMode=${multilingual.languageDetection}`,
