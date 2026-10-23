@@ -23,10 +23,12 @@ try {
     audioFileField:!!document.getElementById('audioFile'),
     timeWindowField:!!document.getElementById('window'),
     build:document.getElementById('build').textContent,
-    wasmReady:document.getElementById('status').textContent
+    wasmReady:document.getElementById('status').textContent,
+    beforeModelTimings:window.Module.acft_timings()
   }));
   assert.equal(actual.isolated,true);
   assert.equal(actual.sharedArrayBuffer,'function');
+  assert.equal(actual.beforeModelTimings,'','Native timing API should safely return empty before model load');
   assert(actual.modelFileField&&actual.audioFileField&&actual.timeWindowField);
   assert.match(actual.build,/acft-cpp-encoder-profile-v2/);
   assert.match(actual.wasmReady,/WASM起動完了/);
