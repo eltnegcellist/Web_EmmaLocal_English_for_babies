@@ -12,6 +12,24 @@ const log=(line)=>{
  $('log').textContent=logLines.join('\n');
 };
 function setStatus(message){$('status').textContent=message;log(message);}
+function normalizedChars(s){
+ return Array.from(String(s).normalize('NFKC').toLowerCase()
+   .replace(/[\\p{P}\\p{S}\\s]/gu,''));
+}
+function characterErrorRate(expected,actual){
+ const a=normalizedChars(expected),b=normalizedChars(actual);
+ if(!a.length)return null;
+ const d=Array.from({length:b.length+1},(_,i)=>i);
+ for(let i=1;i<=a.length;i++){
+  let prev=d[0];d[0]=i;
+  for(let j=1;j<=b.length;j++){
+   const old=d[j];
+   d[j]=Math.min(d[j]+1,d[j-1]+1,prev+(a[i-1]===b[j-1]?0:1));
+   prev=old;
+  }
+ }
+ return d[b.length]/a.length;
+}
 function enable(){
  $('startTranscribe').disabled=!wasmReady||!loaded||!pcm||busy;
  $('startRecord').disabled=recording||busy;
@@ -155,12 +173,16 @@ $('startTranscribe').addEventListener('click',async()=>{
    let timings={};
    try{timings=JSON.parse(native)}catch{}
    $('transcript').textContent=output||'(空文字列：無音・言語判定・モデル品質を確認)';
+   const reference=$('reference').value.trim();
+   const cer=characterErrorRate(reference,output);
+   $('cer').textContent=cer===null?'未計測':(cer*100).toFixed(1)+'%';
    const report={build:BUILD,model:MODEL_NAME,backend:'whisper.cpp WASM CPU pthreads + KV cache',
      audioSeconds:Number(pcmDuration.toFixed(2)),audioContext:ctx,
      languageSetting:lang,nthreads,asrTotalMs:Math.round(elapsed),
      preprocessMs:Number(($('preprocessMs').textContent||'').replace(/[^0-9]/g,'')),
      modelLoadMs:Number(($('modelMs').textContent||'').replace(/[^0-9]/g,'')),
-     nativeTimings:timings,transcript:output,hardwareConcurrency:navigator.hardwareConcurrency,
+     nativeTimings:timings,transcript:output,reference:reference||null,cer,
+     hardwareConcurrency:navigator.hardwareConcurrency,
      crossOriginIsolated:self.crossOriginIsolated};
    $('report').textContent=JSON.stringify(report,null,2);
    setStatus('実音声ASR完了: '+Math.round(elapsed)+'ms');
