@@ -1,0 +1,74 @@
+name: Build ACFT Small whisper.cpp WASM (isolated experiment)
+on:
+  push:
+    branches:
+      - experiment/whisper-stage-profile-20261023
+    paths:
+      - experimental/whisper-acft-wasm/emscripten.cpp
+      - .github/workflows/acft-whisper-cpp-build.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: acft-whispercpp-wasm-builder
+  cancel-in-progress: false
+
+jobs:
+  build-wasm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout experiment branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install Emscripten SDK
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 3.1.74
+      - name: Verify SDK
+        run: |
+          emcc --version
+          node --version
+      - name: Checkout pinned whisper.cpp source
+        run: |
+          git clone --filter=blob:none https://github.com/ggml-org/whisper.cpp.git /tmp/whisper-cpp
+          git -C /tmp/whisper-cpp checkout --detach 231638a0717b7822784297e5980965ffcec05810
+          cp experimental/whisper-acft-wasm/emscripten.cpp /tmp/whisper-cpp/examples/whisper.wasm/emscripten.cpp
+      - name: Build custom browser bindings and WASM
+        run: |
+          emcmake cmake -S /tmp/whisper-cpp -B /tmp/whisper-cpp/build-wasm \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DWHISPER_WASM_SINGLE_FILE=ON \
+            -DWHISPER_BUILD_EXAMPLES=ON \
+            -DGGML_NATIVE=OFF
+          cmake --build /tmp/whisper-cpp/build-wasm --target libmain --parallel 4
+          test -s /tmp/whisper-cpp/build-wasm/bin/libmain.js
+          ls -lh /tmp/whisper-cpp/build-wasm/bin/libmain.js
+      - name: Run compiler-output and API checks
+        run: |
+          mkdir -p experimental/whisper-acft-wasm/runtime
+          cp /tmp/whisper-cpp/build-wasm/bin/libmain.js experimental/whisper-acft-wasm/runtime/main.js
+          node --check experimental/whisper-acft-wasm/runtime/main.js
+          grep -q 'acft_run' experimental/whisper-acft-wasm/runtime/main.js
+          grep -q 'acft_status' experimental/whisper-acft-wasm/runtime/main.js
+          grep -q 'acft_timings' experimental/whisper-acft-wasm/runtime/main.js
+      - name: Attach experimental compiler output
+        uses: actions/upload-artifact@v4
+        with:
+          name: acft-small-whispercpp-wasm
+          path: experimental/whisper-acft-wasm/runtime/main.js
+          retention-days: 7
+      - name: Publish WASM to experiment branch only
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add -f experimental/whisper-acft-wasm/runtime/main.js
+          if git diff --cached --quiet; then
+            echo "Runtime unchanged"
+            exit 0
+          fi
+          git commit -m "Build pinned whisper.cpp ACFT small WASM runtime (experimental)"
+          git push origin HEAD:refs/heads/experiment/whisper-stage-profile-20261023
