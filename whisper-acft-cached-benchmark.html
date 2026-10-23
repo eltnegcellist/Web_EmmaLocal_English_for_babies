@@ -50,6 +50,7 @@ details{font-size:.92rem}pre{background:#f1f4f9;padding:12px;white-space:pre-wra
 </div>
 <button id="startTranscribe" disabled>実音声を文字起こし・時間計測</button>
 <p class="muted">5秒窓を超える音声は切り捨てずエラーにします。必要なら10秒窓を選択してください。推論が長時間続く場合はタブの再読み込みで中断できます。</p>
+<p class="muted"><strong>速度比較の注意：</strong>言語「自動判定」は同じ音声のEncoderを2回実行するため、1回目は日本語などの固定言語でも測ってください。診断は1回の平均Encoder時間と全Encoder回の合計を別々に表示します。</p>
 <p id="status" aria-live="polite">準備中</p>
 <pre id="runtime"></pre>
 </section>
@@ -67,5 +68,5 @@ details{font-size:.92rem}pre{background:#f1f4f9;padding:12px;white-space:pre-wra
 </section>
 <p class="muted"><a href="./whisper-acft-benchmark.html">以前のLiteRT Encoder＋Decoder単体テスト</a> | <a href="https://github.com/futo-org/whisper-acft">FUTO ACFT公式</a> | <a href="https://github.com/ggml-org/whisper.cpp">whisper.cpp MIT</a></p>
 </main>
-<script type="module" src="./experimental/whisper-acft-wasm/test-page.js?v=20261023-whispercpp-acft-kv-v1"></script>
+<script type="module" src="./experimental/whisper-acft-wasm/test-page.js?v=20261023-acft-cpp-encoder-profile-v2"></script>
 </body></html>
