@@ -11,7 +11,7 @@ export function installSemanticPanel({controller,engine,beforeChange,storage=loc
     <label>比較する判定方式<select data-semantic="mode"><option value="semantic">意味で判定（標準）</option><option value="guard">既存ルールを優先して意味で補う</option><option value="lite">従来Liteで判定</option></select></label>
     <div class="semantic-actions"><button data-semantic="prepare" class="outline-button compact-button">モデルを準備・再試行</button><button data-semantic="cancel" class="text-button">準備・判定を中止</button></div>
     <p data-semantic="status" class="small" role="status"></p><progress data-semantic="progress" class="hidden" max="100" value="0"></progress>
-    <details ${openInput ? 'open' : ''}><summary>日本語テキストで比較する</summary><label for="${inputId}">日本語</label><textarea id="${inputId}" data-semantic="input" name="parent-speech" rows="3" inputmode="text" autocomplete="off" spellcheck="false" placeholder="ここに日本語を入力してください"></textarea><button data-semantic="try" class="outline-button compact-button">この内容で判定する</button><button data-semantic="reset" class="text-button">直前の話題をクリア</button></details>
+    <details ${openInput ? 'open' : ''}><summary>日本語テキストで比較する</summary><label for="${inputId}">入力言語：日本語</label><textarea id="${inputId}" data-semantic="input" name="parent-speech" rows="3" inputmode="text" autocomplete="off" spellcheck="false" placeholder="ここに日本語を入力してください"></textarea><button data-semantic="try" class="outline-button compact-button">この内容で判定する</button><button data-semantic="reset" class="text-button">直前の話題をクリア</button></details>
     <div data-semantic="result" class="semantic-result" aria-live="polite"></div><a class="text-button" href="./semantic-test.html">日本語でSemanticを試すページを開く</a>`;
   const $=key=>mount.querySelector(`[data-semantic="${key}"]`);
   let renderedResponse;
@@ -32,13 +32,19 @@ export function installSemanticPanel({controller,engine,beforeChange,storage=loc
         ['英文の採用経路',route.route],['選択理由',route.reason]);
     }
     if(result?.topic){
-      lines.push(['意味で選んだ話題',`${result.topic.id}（分類スコア ${(result.topic.probability*100).toFixed(1)}%、候補差 ${(result.topic.margin*100).toFixed(1)}ポイント）`]);
+      const scoreDetail=document.createElement('span');
+      scoreDetail.append(result.topic.id,' (',document.createTextNode('分類スコア'),' ',(result.topic.probability*100).toFixed(1),'%, ',document.createTextNode('候補差'),' ',(result.topic.margin*100).toFixed(1),' ',document.createTextNode('ポイント'),')');
+      lines.push(['意味で選んだ話題',scoreDetail]);
       // E5 publishes only Topic and Interaction. These extra heads belong to Ruri.
       if(result.intent)lines.push(['インテント（参考）',INTENT[result.intent.id]]);
       if(result.state)lines.push(['状態（参考）',STATE[result.state.id]]);
       if(Number.isFinite(result.elapsedMs))lines.push(['判定時間',`${result.elapsedMs.toFixed(1)} ms`]);
     }
-    for(const [label,value] of lines){const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=label+'：';p.append(strong,document.createTextNode(value||'—'));$('result').append(p);}
+    for(const [label,value] of lines){
+      const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=label;
+      p.append(strong,document.createTextNode(': '),value?.nodeType ? value : document.createTextNode(value||'—'));
+      $('result').append(p);
+    }
   });
   $('enabled').addEventListener('change',()=>controller.setEnabled($('enabled').checked,{prepare:true}));
   $('mode').addEventListener('change',()=>controller.setMode($('mode').value));

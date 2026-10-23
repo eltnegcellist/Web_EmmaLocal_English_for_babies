@@ -54,7 +54,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261022-speech-language-redetect-r1';
+const WEB_BUILD = '20261023-developer-i18n-r1';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
@@ -276,6 +276,7 @@ languageUI=installLanguageUI({onExplanationsChange:refreshReplyContext,onRedetec
     semanticPanel?.client.japanese?.cancel();multilingual.cancel();}
   commit();
   updateRuntimeBackend();
+  updateWebTimingDiagnostics();
   whisperPerformanceControls?.apply(next);
   refreshReplyContext();
   await semanticPanel.setEnabled(true,{prepare:false,mode:'semantic'});
@@ -533,7 +534,8 @@ function bindEvents() {
       await copyTextToClipboard(report);
       if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent='診断情報をコピーしました。';
     }catch(error){
-      if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent=`コピーできませんでした: ${error.message||error}`;
+      console.error('Diagnostic copy failed:',error);
+      if(ui.diagnosticsStatus)ui.diagnosticsStatus.textContent='診断情報をコピーできませんでした。';
     }
   });
   ui.downloadDiagnosticsButton?.addEventListener('click',async()=>{
@@ -2129,17 +2131,18 @@ function updateAsrModelStatus() {
 
 function updateWebTimingDiagnostics() {
   if(!ui.webTimingDiagnostics)return;
-  const format=value=>Number.isFinite(value)?`${Math.round(value)}ms`:'未計測';
-  const formatMb=value=>Number.isFinite(value)?`${(value/1_000_000).toFixed(1)}MB`:'未計測';
+  const t=key=>languageUI?.translate?.(key)??key;
+  const format=value=>Number.isFinite(value)?`${Math.round(value)}ms`:t('未計測');
+  const formatMb=value=>Number.isFinite(value)?`${(value/1_000_000).toFixed(1)}MB`:t('未計測');
   const asr=lastMoonshineDiagnostics;
   const asrText=asr
-    ? `ASR 端末読込 ${format(asr.cacheReadMs)} / ${formatMb(asr.cacheReadBytes)} / 通信 ${format(asr.networkDownloadMs)} / ${formatMb(asr.networkDownloadBytes)} / WASM ${format(asr.wasmInitMs)} / モデル構築 ${format(asr.modelBuildMs)} / 合計 ${format(asr.totalInitMs)} ｜ `
+    ? `ASR ${t('端末読込')} ${format(asr.cacheReadMs)} / ${formatMb(asr.cacheReadBytes)} / ${t('通信')} ${format(asr.networkDownloadMs)} / ${formatMb(asr.networkDownloadBytes)} / WASM ${format(asr.wasmInitMs)} / ${t('モデル構築')} ${format(asr.modelBuildMs)} / ${t('合計')} ${format(asr.totalInitMs)} | `
     : '';
   const foreignAsr=multilingualAsrDiagnostic?.totalMs!=null
-    ? `Whisper ${multilingualAsrDiagnostic.threads??'?'}スレッド / 音声${multilingualAsrDiagnostic.audioSeconds}s / 言語判定${multilingualAsrDiagnostic.languageMs}ms / 文字起こし${multilingualAsrDiagnostic.transcribeMs}ms / 実時間比${multilingualAsrDiagnostic.realTimeFactor}x ｜ `
+    ? `Whisper ${multilingualAsrDiagnostic.threads??'?'} ${t('スレッド')} / ${t('音声')} ${multilingualAsrDiagnostic.audioSeconds}s / ${t('言語判定')} ${multilingualAsrDiagnostic.languageMs}ms / ${t('文字起こし')} ${multilingualAsrDiagnostic.transcribeMs}ms / ${t('実時間比')} ${multilingualAsrDiagnostic.realTimeFactor}x | `
     : '';
   ui.webTimingDiagnostics.textContent=
-    `直近計測: ${asrText}${foreignAsr}TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
+    `${t('直近計測')}: ${asrText}${foreignAsr}${t('TTS初チャンク')} ${format(lastTtsFirstChunkMillis)} / ${t('生成完了')} ${format(lastTtsGenerationCompleteMillis)} / ${t('初音')} ${format(lastTtsFirstAudioMillis)} / ${t('全体')} ${format(lastTtsTotalMillis)}`;
 }
 
 async function buildWebDiagnosticReport() {

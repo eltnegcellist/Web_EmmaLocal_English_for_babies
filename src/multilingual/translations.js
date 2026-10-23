@@ -1,3 +1,4 @@
+import {DEVELOPER_TRANSLATIONS} from './developer-translations.js';
 import {appendOperationalMessages} from './operational-messages.js?v=20261020-ui-audit-v3';
 // Shared with Android. These are UI strings, never translations of user speech.
 export const CATALOG = [
@@ -388,6 +389,7 @@ CATALOG.push(
 ['みつことばの声を試す','Preview Emma’s voice','Emmas Stimme anhören','Écouter la voix d’Emma','Emma 목소리 미리 듣기','ฟังตัวอย่างเสียง Emma'],
 ['会話中は設定を変更できません。','Stop the conversation before changing settings.','Vor Änderungen das Gespräch beenden.','Arrêtez la conversation avant de modifier les réglages.','설정을 바꾸려면 대화를 먼저 중지해 주세요.','หยุดการสนทนาก่อนเปลี่ยนการตั้งค่า'],
 );
+CATALOG.push(...DEVELOPER_TRANSLATIONS);
 const aliases={
  'みつことばのモデルを準備しています…':'モデルを準備しています…',
  'みつことば Liteを準備しています…':'モデルを準備しています…',

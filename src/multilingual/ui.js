@@ -1,5 +1,5 @@
 import {LANGUAGES,LANGUAGE_NAMES,LANGUAGE_KEY,LANGUAGE_MODE_KEY,resolveLanguage,browserLanguages} from './core.js';
-import {translate} from './translations.js?v=20261022-speech-language-redetect-r1';
+import {translate} from './translations.js?v=20261023-developer-i18n-r1';
 import {renderLocalizedAbout} from './about-page.js';
 export function installLanguageUI({document=globalThis.document,storage=globalThis.localStorage,
   languages=undefined,onChange=async()=>{},onExplanationsChange=()=>{},onRedetectSpeechLanguage=()=>{}}={}) {

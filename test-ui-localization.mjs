@@ -5,6 +5,7 @@ import vm from 'node:vm';
 import {installLanguageUI} from './src/multilingual/ui.js';
 import {translate,describeError} from './src/multilingual/translations.js';
 import {installFeatureScreens} from './src/feature-screens.js';
+import {installSemanticPanel} from './src/semantic/panel.js';
 import {GRADIENT_DESCRIPTIONS,SOFT_PALETTES,VIVID_PALETTES,FILLED_PALETTES} from './src/emma-color-palettes.js';
 import {appHistoryState,resolveAppPopScreen} from './src/app-navigation.js';
 import {createConfirmation} from './src/multilingual/confirmation.js';
@@ -41,7 +42,7 @@ for(const lang of ['en','de','fr','ko','th','ja']){
   const assertLocalized=root=>{if(lang!=='ja')assert.deepEqual(stockText(root).filter(value=>japanese.test(value)),[],`${lang}: untranslated product UI`);};
   // The actual first-run/home/settings/tutorial markup, including accessible
   // names. Language names and Japanese-only model controls are intentional.
-  const excluded='.language-picker option,#replyJapanese,#onboardingHighPerformance,#asrModel,#asrModelStatus,#semanticEnabled,#storageProtectionStatus,#modelCacheStatus,#modelCacheHistoryStatus,#developerTools';
+  const excluded='.language-picker option,#replyJapanese,#onboardingHighPerformance,#asrModel,#asrModelStatus,#semanticEnabled,#storageProtectionStatus,#modelCacheStatus,#modelCacheHistoryStatus';
   const copy=document.body.cloneNode(true);
   for(const el of copy.querySelectorAll('#aboutScreen,script,style,svg'))el.remove();
   copy.querySelector('#onboardingHighPerformance')?.closest('.lite-compact-setting')?.remove();
@@ -51,6 +52,31 @@ for(const lang of ['en','de','fr','ko','th','ja']){
   // Additional Japanese-only model help is deliberately hidden outside ja.
   for(const el of copy.querySelectorAll('.small.muted'))if(el.textContent.includes('Small推奨'))el.remove();
   assertLocalized(copy);
+  // Developer tools are part of the product UI and must follow all six locales.
+  // Do not exclude the hidden panel from the localization audit.
+  let publishSemantic;
+  const semanticController={
+    subscribe:callback=>{publishSemantic=callback;callback({
+      requested:true,mode:'semantic',status:{message:'意味で話題を判定できます。',ready:true,total:0},
+      lastResponse:null,result:null,routingHistory:[],
+    });},
+  };
+  installSemanticPanel({controller:semanticController,mount:$('semanticPanel'),storage:dom.window.localStorage});
+  await settle();
+  assertLocalized($('developerTools'));
+  assert.equal($('settingsLanguage').querySelector('option[value="ja"]').textContent,'日本語','Language picker keeps native language names');
+  publishSemantic({
+    requested:true,mode:'semantic',status:{message:'意味で話題を判定できます。',ready:true,total:0},
+    lastResponse:{scene:'milk',english:'Hello!',contextUsed:true},
+    result:{topic:{id:'milk',probability:.42,margin:.12},intent:{id:'question'},state:{id:'ongoing'},elapsedMs:12.5},
+    routingHistory:[],
+  });
+  await settle();
+  assertLocalized($('developerTools'));
+  $('diagnosticsStatus').textContent='診断情報をコピーしました。';
+  await settle();assertLocalized($('diagnosticsStatus'));
+  $('diagnosticsStatus').textContent='診断情報をコピーできませんでした。';
+  await settle();assertLocalized($('diagnosticsStatus'));
   // Actual warning producer, not a separately maintained test translation.
   $('noticeBody').textContent=warning;
   $('noticeTitle').textContent='従来方式で会話します';
@@ -109,6 +135,7 @@ for(const lang of ['en','de','fr','ko','th','ja']){
   assert.equal(confirmation,translate('選択した1件の履歴を削除しますか？',lang));assert.equal(deleted,0);
   // Restore original Japanese after successive language changes.
   await ui.choose('ja');await settle();assert.equal($('noticeBody').textContent,warning);
+  assert.equal($('developerTools').querySelector('p').textContent,'開発者向け：Semantic比較・モデル診断・音声確認・診断情報・完全リセット');
   ui.dispose();dom.window.close();
 }
 // Exercise actual application boundaries, including error paths that a
@@ -131,7 +158,7 @@ for(const next of ['en','de','fr','ko','th','ja']){
     ui:{runtimeBackend:runtimeLabel},stopEmma:async()=>{},
     multilingual:{cancel:()=>{},runtimeInfo:null},
     semanticPanel:{client:{japanese:{cancel:()=>{}}},setEnabled:async()=>{}},
-    whisperPerformanceControls:{apply:()=>{}},refreshReplyContext:()=>{},ensureMoonshineIsolation:async()=>true,
+    whisperPerformanceControls:{apply:()=>{}},refreshReplyContext:()=>{},ensureMoonshineIsolation:async()=>true,updateWebTimingDiagnostics:()=>{},
     STORAGE:{setupRevision:'revision'},CURRENT_SETUP_REVISION:'test',localStorage:{getItem:()=> 'test'},
     initWorkers:()=>{enteredModels();return modelGate;},prepareSemanticForConversation:async()=>{},
     showProgress:()=>{},showOnboardingProgress:()=>{},setState:()=>{}};
