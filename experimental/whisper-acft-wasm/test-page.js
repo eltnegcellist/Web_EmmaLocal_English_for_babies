@@ -1,7 +1,8 @@
 // FUTO ACFT Small + whisper.cpp WASM research UI. No audio sent to server.
+import {characterErrorRate} from './quality.js';
 // MIT: ggml-org/whisper.cpp; Apache-2.0: FUTO ACFT model.
 const $=id=>document.getElementById(id);
-const BUILD='20261023-whispercpp-acft-kv-v1';
+const BUILD='20261023-acft-cpp-encoder-profile-v2';
 const MODEL_NAME='small_acft_q8_0.bin';
 let wasmReady=false,loaded=false,busy=false,recording=false,stream=null,recorder=null;
 let recordingChunks=[],pcm=null,pcmDuration=0,modelName='',instance=false,logLines=[];
@@ -12,24 +13,6 @@ const log=(line)=>{
  $('log').textContent=logLines.join('\n');
 };
 function setStatus(message){$('status').textContent=message;log(message);}
-function normalizedChars(s){
- return Array.from(String(s).normalize('NFKC').toLowerCase()
-   .replace(/[\\p{P}\\p{S}\\s]/gu,''));
-}
-function characterErrorRate(expected,actual){
- const a=normalizedChars(expected),b=normalizedChars(actual);
- if(!a.length)return null;
- const d=Array.from({length:b.length+1},(_,i)=>i);
- for(let i=1;i<=a.length;i++){
-  let prev=d[0];d[0]=i;
-  for(let j=1;j<=b.length;j++){
-   const old=d[j];
-   d[j]=Math.min(d[j]+1,d[j-1]+1,prev+(a[i-1]===b[j-1]?0:1));
-   prev=old;
-  }
- }
- return d[b.length]/a.length;
-}
 function enable(){
  $('startTranscribe').disabled=!wasmReady||!loaded||!pcm||busy;
  $('startRecord').disabled=recording||busy;
@@ -176,16 +159,21 @@ $('startTranscribe').addEventListener('click',async()=>{
    const reference=$('reference').value.trim();
    const cer=characterErrorRate(reference,output);
    $('cer').textContent=cer===null?'未計測':(cer*100).toFixed(1)+'%';
+   const encodePasses=Number.isInteger(timings.encodeRuns)?timings.encodeRuns:null;
+   const encodeTotalMs=Number.isFinite(timings.encodeTotalMs)?timings.encodeTotalMs:null;
+   const nonEncoderMs=encodeTotalMs!==null?Math.round(elapsed-encodeTotalMs):null;
    const report={build:BUILD,model:MODEL_NAME,backend:'whisper.cpp WASM CPU pthreads + KV cache',
      audioSeconds:Number(pcmDuration.toFixed(2)),audioContext:ctx,
      languageSetting:lang,nthreads,asrTotalMs:Math.round(elapsed),
+     encodePasses,encoderTotalMs:encodeTotalMs,nonEncoderMs,
      preprocessMs:Number(($('preprocessMs').textContent||'').replace(/[^0-9]/g,'')),
      modelLoadMs:Number(($('modelMs').textContent||'').replace(/[^0-9]/g,'')),
      nativeTimings:timings,transcript:output,reference:reference||null,cer,
      hardwareConcurrency:navigator.hardwareConcurrency,
      crossOriginIsolated:self.crossOriginIsolated};
    $('report').textContent=JSON.stringify(report,null,2);
-   setStatus('実音声ASR完了: '+Math.round(elapsed)+'ms');
+   setStatus('実音声ASR完了: '+Math.round(elapsed)+'ms / Encoder '+(encodePasses??'?')+
+     '回・合計 '+(encodeTotalMs===null?'未測定':Math.round(encodeTotalMs)+'ms'));
    busy=false;enable();
   };
   // poll() handles asynchronous native inference without blocking the UI.
