@@ -27,7 +27,7 @@ start.addEventListener('click',async()=>{
  }
  // LiteRT.js invokes importScripts() inside its WASM loader. A module Worker
  // always throws; a classic worker can still dynamic-import ES modules.
- worker=new Worker(new URL('./acft-encoder-worker.js?v=20261023-acft-classic-worker-v2',import.meta.url),{type:'classic'});
+ worker=new Worker(new URL('./acft-encoder-worker.js?v=20261023-acft-wasm-path-v3',import.meta.url),{type:'classic'});
  const finish=()=>{worker?.terminate();worker=null;start.disabled=false;};
  worker.onerror=e=>{log('Worker エラー: '+(e.message||'unknown'));finish();};
  worker.postMessage({action:'benchmark',model:spec.id,bytes},bytes?[bytes]:[]);
