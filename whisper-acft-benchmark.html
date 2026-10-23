@@ -22,6 +22,9 @@ small{color:#526177}pre{background:#f0f4fa;border-radius:8px;padding:12px;white-
 <option value="small10">ACFT Small / 10秒窓</option>
 </select>
 <small id="acftModelInfo"></small>
+<label for="acftLocalModel" style="margin-top:14px">任意：モデルファイル (.tflite) を直接選択</label>
+<input type="file" id="acftLocalModel" accept=".tflite,application/octet-stream">
+<small>通常は自動取得。ブラウザからHugging Faceの取得に失敗する場合は、モデル配布ページから選択した種類と秒数の .tflite を保存し、ここで指定してください。</small>
 <button id="runAcft">Encoder速度を測定</button>
 <button id="copyAcft" class="secondary" disabled>結果をコピー</button>
 </section>
