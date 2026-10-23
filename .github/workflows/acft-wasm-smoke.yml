@@ -1,0 +1,35 @@
+name: ACFT LiteRT WASM browser smoke (experimental)
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - experiment/whisper-stage-profile-20261023
+    paths:
+      - 'src/multilingual/acft-*'
+      - 'scripts/browser-acft-classic-smoke.mjs'
+      - 'whisper-acft-benchmark.html'
+      - '.github/workflows/acft-wasm-smoke.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test-wasm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout experimental branch
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser smoke test dependencies
+        run: npm ci --ignore-scripts
+      - name: Install Chromium runtime
+        run: npx playwright install --with-deps chromium
+      - name: Run real LiteRT 2.5.3 WASM initialization in Chromium
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/acft-smoke.log 2>&1 &
+          ACFT_TEST_ORIGIN=http://127.0.0.1:8765 ACFT_RUNTIME_SMOKE=1 node scripts/browser-acft-classic-smoke.mjs
