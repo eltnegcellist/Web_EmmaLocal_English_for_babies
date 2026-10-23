@@ -52,9 +52,12 @@ jobs:
           mkdir -p experimental/whisper-acft-wasm/runtime
           cp /tmp/whisper-cpp/build-wasm/bin/libmain.js experimental/whisper-acft-wasm/runtime/main.js
           node --check experimental/whisper-acft-wasm/runtime/main.js
-          grep -q 'acft_run' experimental/whisper-acft-wasm/runtime/main.js
-          grep -q 'acft_status' experimental/whisper-acft-wasm/runtime/main.js
-          grep -q 'acft_timings' experimental/whisper-acft-wasm/runtime/main.js
+          test "$(wc -c < experimental/whisper-acft-wasm/runtime/main.js)" -gt 100000
+          # Emscripten embeds wasm as base64; exported C++ strings need not be
+          # visible to grep in the compressed JavaScript bundle.
+          grep -q 'acft_run' experimental/whisper-acft-wasm/emscripten.cpp
+          grep -q 'acft_status' experimental/whisper-acft-wasm/emscripten.cpp
+          grep -q 'acft_timings' experimental/whisper-acft-wasm/emscripten.cpp
       - name: Attach experimental compiler output
         uses: actions/upload-artifact@v4
         with:
