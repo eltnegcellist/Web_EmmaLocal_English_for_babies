@@ -232,6 +232,28 @@ function refreshReplyContext(){
 }
 let modelSelectionEpoch=0;
 let multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
+// Session-only numeric Whisper A/B results; never record audio or the transcript.
+const whisperBenchSamples=[];
+function recordWhisperBenchSample(timings) {
+  const fields=['threads','audioSeconds','languageMs','transcribeMs','totalMs','realTimeFactor',
+    'whisperProfileAvailable','whisperEncoderMs','whisperDecoderMs','whisperOtherMs',
+    'whisperEncoderRuns','whisperDecoderRuns','maxNewTokens'];
+  if(!Number.isFinite(Number(timings?.transcribeMs)))return;
+  const sample={at:new Date().toISOString()};
+  for(const key of fields){
+    const value=timings?.[key];
+    if(typeof value==='boolean')sample[key]=value;
+    else if(value!==null&&Number.isFinite(Number(value)))sample[key]=Number(value);
+  }
+  whisperBenchSamples.push(sample);
+  if(whisperBenchSamples.length>30)whisperBenchSamples.shift();
+}
+function whisperBenchMedian(values) {
+  const ordered=values.filter(Number.isFinite).sort((a,b)=>a-b);
+  if(!ordered.length)return 'unmeasured';
+  const mid=Math.floor(ordered.length/2);
+  return Math.round(ordered.length%2?ordered[mid]:(ordered[mid-1]+ordered[mid])/2);
+}
 let voicePrefetchDiagnostic={stage:'idle',completed:0,total:0,failed:0,lastFile:null,reason:null,heldForAsr:false};
 function renderVoicePrefetchStatus() {
   if(!ui.voiceDownloadStatus)return;
@@ -265,6 +287,7 @@ multilingual=new MultilingualClient({...whisperPerformanceSettings(),onStatus:da
     return;
   }
   if(data.stage==='asr-timing'){
+    recordWhisperBenchSample(data.timings);
     Object.assign(multilingualAsrDiagnostic,data.timings||{});
     updateWebTimingDiagnostics();
     return;
@@ -2299,6 +2322,17 @@ async function buildWebDiagnosticReport() {
     lines.push('routing.turns.begin');
     for(const entry of routingHistory)lines.push('routing.turn='+JSON.stringify(entry));
     lines.push('routing.turns.end');
+  }
+  // Raw numeric samples and per-thread medians make one diagnostic export
+  // sufficient for repeated 1/2/4-thread comparisons.
+  for(const sample of whisperBenchSamples)lines.push('multilingual.benchmarkSample='+JSON.stringify(sample));
+  for(const threads of [1,2,3,4]){
+    const group=whisperBenchSamples.filter(s=>s.threads===threads);
+    if(!group.length)continue;
+    lines.push(`multilingual.benchmark.${threads}threads.count=${group.length}`);
+    lines.push(`multilingual.benchmark.${threads}threads.medianTranscribeMs=${whisperBenchMedian(group.map(s=>s.transcribeMs))}`);
+    lines.push(`multilingual.benchmark.${threads}threads.medianEncoderMs=${whisperBenchMedian(group.map(s=>s.whisperEncoderMs))}`);
+    lines.push(`multilingual.benchmark.${threads}threads.medianDecoderMs=${whisperBenchMedian(group.map(s=>s.whisperDecoderMs))}`);
   }
   if(runtimeDiagnosticEvents.length){
     lines.push('runtimeErrors.begin');
