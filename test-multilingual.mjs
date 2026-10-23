@@ -394,6 +394,10 @@ for(const key of ['whisperEncoderMs','whisperDecoderMs','whisperOtherMs','whispe
 }
 assert(workerSource.includes('max_new_tokens:maxNewTokens'),'Experimental token cap must reach the pipeline');
 assert(appSource.includes('multilingual.maxNewTokens='),'Diagnostics must export token cap');
+assert(appSource.includes('multilingual.benchmarkSample='),'Report must export numeric per-turn latency history');
+assert(appSource.includes('medianEncoderMs'),'Report must aggregate encoder latency for 1/2/4 threads');
+assert(appSource.includes('whisperBenchSamples.length>30'),'Benchmarks must be bounded in memory');
+
 assert(workerSource.includes('env.backends.onnx.wasm.numThreads=effectiveThreads'),'Worker must enable ONNX multi-thread runtime');
 assert(workerSource.includes("data.language==='en-fixed'"),'Worker must bypass detection for cached English');
 
