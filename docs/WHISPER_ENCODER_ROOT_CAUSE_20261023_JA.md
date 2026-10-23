@@ -188,3 +188,21 @@ FUTO ACFTは音声コンテキストを短くしても元モデルの挙動を�
 6. **品質の非劣性確認を満たさなければBaseを実装既定にしない。** 速度だけでのモデル移行は禁止。多言語UIの音声入力を単純に日本語固定にせず、現在の言語認識機能を保持する。
 
 この段落が本文中の旧「ACFT Base最優先」の暫定方針より優先される。
+
+## 2026-10-23: whisper.cpp WASM実音声（ACFT Small Q8）のボトルネック発見と修正
+
+Galaxy S25 Chrome 155提供ログ `build=20261023-whispercpp-acft-kv-v1`:
+- `audioSeconds=3.84`, `audioContext=250` (5秒窓), `nthreads=4`, `crossOriginIsolated=true`
+- `asrTotalMs=49882`, `nativeTimings.encodeMs=24371.66`, `decodeMs=30.84`, `batchdMs=16.66`, `sampleMs=4.71`
+- 正解「こんにちは」 vs ASR「こんにちは。」。正規化（空白・句読点を無視）ならCER **0%**。旧 `cer=0.2` はJS regex `/[\\p{P}\\p{S}\\s]/gu` とエスケープを重複した結果、句点「。」を除外できていないバグ。2026-10-23 v2で `/[\p{P}\p{S}\s]/gu` に修正し単体回帰テストを追加。
+- **重要な誤認:** `whisper_get_timings` の `encode_ms` は *Encoder処理の累計ではなく回あたり平均* (`t_encode_us/n_encode`)。現行 `language=auto` の `whisper_full_with_state()` は言語判定で `whisper_lang_auto_detect_internal()`→Encoder一回、通常認識のメインループでEncoder一回、合計2回。したがって旧ログのEncoder累計推定は `24371.66 × 2 ≈ 48743.32ms`、その他は差引約 `1138.68ms` であり、旧ログの約25秒の「不明時間」はほぼ二重Encoder実行で説明可能。
+- ネイティブv2では `encoder_begin_callback` により実際のEncoder呼出回数を記録し、`encodeRuns`、`encodeTotalMs`（平均×実回数）を別々に公開。JSも `encoderTotalMs` と `nonEncoderMs` を区別。言語自動判定時の遅延を隠さない。
+- 5秒音声で `ja` 固定したときの推定総時間は **約25秒**（1回Encoder分削除）。実測ではなく、実機で同一音声を再実行して確認が必要。
+- LiteRT ACFT Small/5秒の合成melでEncoder **約760ms** に対しwhisper.cpp WASMの音声Encoderは平均 **約24秒**。モデルとランタイムが異なり単純倍率ではないが、WASM推論エンジンが大きな律速。2026-10-23 CMakeログ `CMAKE_SYSTEM_PROCESSOR=x86`, `GGML_SYSTEM_ARCH=UNKNOWN` のため汎用量子化CPUカーネルへフォールバックしていた。v2ビルドではCMakeに `-DCMAKE_SYSTEM_PROCESSOR=wasm32` を追加し、`ggml-cpu/arch/wasm/quants.c` のWASM SIMD量子化ルートを選択してから再実機計測する。CMake自体の一部に `-msimd128` は元から存在しており、単に「SIMD全体が無効だった」とは断定しない。
+- 性能改善は未確認。トレードオフ: Browser whisper.cppは公称でモバイル性能が弱い (https://github.com/ggml-org/whisper.cpp/blob/master/examples/whisper.wasm/README.md )。WASM用量子化ルートでも遅い場合は、**高速LiteRT 5秒EncoderとKVキャッシュ付きDecoderを同じランタイムで結ぶ必要**がある。現行のLiteRT DecoderはKVキャッシュなし、同等性能にできるか不明。
+- 独立デプロイ環境 `whisper-acft-cached-benchmark.html` のみ更新。本番みつことばのASRは不変更。
+
+上流根拠:
+- https://github.com/ggml-org/whisper.cpp/blob/master/src/whisper.cpp (`whisper_get_timings`, `whisper_full_with_state`, `whisper_lang_auto_detect_internal`)
+- https://github.com/ggml-org/whisper.cpp/issues/3954 (2026-07-25: 言語自動判定がEncoderを再実行する実測)
+- https://github.com/ggml-org/whisper.cpp/blob/master/ggml/src/ggml-cpu/CMakeLists.txt (wasm特殊量子化ルート)
