@@ -55,7 +55,7 @@ const ui = {
 };
 
 const CURRENT_SETUP_REVISION = 'moonshine-streaming-qwen3-prerecorded-1202-v11';
-const WEB_BUILD = '20261022-speech-language-redetect-r1';
+const WEB_BUILD = '20261023-whisper-thread-sync-r2';
 
 const STORAGE = {
   setupRevision:'emma_web_setup_revision',
