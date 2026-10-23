@@ -105,3 +105,22 @@ Decoder probe は計算前に `Unrecognized decoder signature` を返してお�
 旧検証コードがマスクを `[1,128,128]` の3次元形状に限定していた。v5では `[1,1,L,L]` の4次元に加え、旧3次元もサポート。メモリ上の要素数はどちらも `L*L`。実機と同じ入力メタデータを使った回帰テストを追加。さらに失敗時のstack全文を診断に含める。
 
 **未確認**: 現物TFLiteのDecoder実行時間、Decoder出力のshape、実音声の精度/総レイテンシ。Encoder中央値770msと合成Decoder計測を含む別測定であることに注意。
+
+## Galaxy S25 ACFT Small 5秒: Decoderが律速 (2026-10-23 JST)
+ユーザー実機のLiteRT.js 2.5.3 CPU/WASM benchmark `build=20261023-acft-decoder-mask4d-v5`:
+- Encoder (合成mel) `sampleMs=[749.47,752.00,759.85,765.62,774.19]`, 中央値 **760ms**
+- Decoder固定プロンプト・フル128トークン幅グラフで `sampleMs=[735.17,735.58,735.87]`, 中央値 **736ms/呼び出し**
+- Decoder signature: `args_2` float32 `[1,1,128,128]`, `args_0` float32 `[1,250,768]`, `args_1` int32 `[1,128]`; `output_0` float32 `[1,128,51865]`
+- モデル取得・準備 `loadingMs=27481`。3-step Decoder計測は同じEncoder出力を再利用、実音声・実トークン列ではない。Decoder loop では256? ではなく固定128 token全処理。配布仕様によると **KV cacheなしで毎トークンfull sequence re-run**。1回のDecoder呼び出しから実際に1トークンを選択し、ループして文字列を生成する必要がある。
+- **条件付き試算**: Encoder 0.760s + Decoder 0.736s×10ステップ＝**8.12s**、20ステップなら **15.48s**（前処理/言語判定/IPC/音声再生は含まず）。実際の音声認識時間でも将来実装の確定値でもない。仮に短文が5トークンでも約4.44s。2–3秒目標のSmall LiteRT現行フル再実行Decoderは厳しい。
+
+### 更新後の技術方針
+1. **短窓Encoderの成果を生かすにはキャッシュ付きDecoderが必要**。候補は (a) FUTO ACFT GGML重みを`whisper.cpp`のWASMで実行して動的`audio_ctx`とKV cacheを活用する、(b) FUTO ACFTチェックポイントから`decoder_with_past`/KV入出力を持つONNXグラフを再エクスポートする方式。ただしどちらもブラウザCPU上での速度と精度は要実測で、移植コストやフォーマット/メモリの検証が必要。
+2. **現行LiteRTモデルのままでできる低コスト比較**として、既存Pages実験の `ACFT Base 5s` + `Decoderの入力構造と処理時間も測定` を実行してDecoder単位コストを把握する。短窓Baseは多言語対応を維持するが認識精度悪化の可能性がある。
+3. 現行のDecoderを小さなマスクやパディングにするだけでは固定グラフのサイズやKV再計算を回避できない。過剰なトークン上限調整は途中打ち切りとなりうる。
+4. **候補決定後**、実音声で5～10秒短文と日本語以外も含む対象言語の認識内容、言語自動判定、応答遅延（中央値とp95）を確認。
+
+根拠:
+- https://huggingface.co/litert-community/whisper-acft (KV-cacheなしfull re-run)
+- https://github.com/ggml-org/whisper.cpp/blob/master/src/whisper.cpp (self/cross-attention KV cache)
+- https://github.com/futo-org/whisper-acft (whisper.cpp audio_ctxに対応したACFT学習済み重み)
