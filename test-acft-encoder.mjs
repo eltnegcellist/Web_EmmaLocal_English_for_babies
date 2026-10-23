@@ -91,5 +91,5 @@ assert(worker.includes("model.signatures?.encode"));
 assert(worker.includes("runner.run({[input.name]:tensor})"));
 assert(worker.includes('inspectDecoderSignature'),'Optional Decoder probe must be wired');
 assert(page.includes('probeDecoder'),'Decoder option must be explicitly opt-in');
-assert(html.includes('文字起こし・言語判定・Decoderの測定ではありません'));
+assert(html.includes('Decoderの1回あたりの実行時間は任意で測定できます'));
 console.log('ACFT CPU-only encoder benchmark scaffolding PASS');
