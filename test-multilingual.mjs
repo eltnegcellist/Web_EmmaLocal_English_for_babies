@@ -394,6 +394,11 @@ for(const key of ['whisperEncoderMs','whisperDecoderMs','whisperOtherMs','whispe
 }
 assert(workerSource.includes('max_new_tokens:maxNewTokens'),'Experimental token cap must reach the pipeline');
 assert(appSource.includes('multilingual.maxNewTokens='),'Diagnostics must export token cap');
+assert(appSource.includes('syncWhisperPerformanceBeforePrepare();'),'Whisper worker startup must reconcile the visible thread selector');
+assert(appSource.includes('multilingual.threadPreferenceUI='),'Diagnosis must expose selector value');
+assert(appSource.includes('multilingual.threadPreferenceStored='),'Diagnosis must expose persisted value');
+assert(appSource.includes('multilingual.expectedThreads='),'Diagnosis must expose predicted thread count');
+assert(appSource.includes('multilingual.threadMismatch='),'Diagnosis must flag incorrect pool size');
 assert(appSource.includes('multilingual.benchmarkSample='),'Report must export numeric per-turn latency history');
 assert(appSource.includes('medianEncoderMs'),'Report must aggregate encoder latency for 1/2/4 threads');
 assert(appSource.includes('whisperBenchSamples.length>30'),'Benchmarks must be bounded in memory');
