@@ -14,7 +14,7 @@ const models={
  es:{label:'Español（追加調査）',arches:['TinyStreaming','SmallStreaming']}
 };
 const $=id=>document.getElementById(id);
-let transcriber=null,live=null,loaded=null,busy=false,loading=false,pcm=null,audioSeconds=0;
+let transcriber=null,live=null,loaded=null,busy=false,loading=false,pcm=null,audioSeconds=0,ready=false;
 let modelLoadMs=0,preprocessMs=0,lastText='',liveLines=[],liveStarted=0,liveFinal=0;
 const now=()=>performance.now();
 function status(message){$('status').textContent=message;}
@@ -32,10 +32,10 @@ function renderModelOptions(){
  updateButtons();
 }
 function updateButtons(){
- $('load').disabled=busy||loading||!!live;
+ $('load').disabled=!ready||busy||loading||!!live;
  $('file').disabled=busy||!!live;
- $('transcribe').disabled=busy||!!live||!pcm||!transcriber;
- $('startMic').disabled=busy||!!live||!transcriber;
+ $('transcribe').disabled=!ready||busy||!!live||!pcm||!transcriber;
+ $('startMic').disabled=!ready||busy||!!live||!transcriber;
  $('stopMic').disabled=!live;
  $('language').disabled=busy||loading||!!live;
  $('arch').disabled=busy||loading||!!live;
@@ -198,4 +198,24 @@ $('copy').addEventListener('click',async()=>{
  try{await navigator.clipboard.writeText($('report').textContent);status('診断JSONをコピーしました');}
  catch(err){fail(err)}
 });
-renderModelOptions();status('先に言語とモデルを選択して準備してください。音声は端末外に送信されません');
+async function bootstrap(){
+ renderModelOptions();
+ try{
+  if(!self.crossOriginIsolated || typeof SharedArrayBuffer==='undefined'){
+   if(!navigator.serviceWorker)throw new Error('WASMスレッドにはService Workerが必要です');
+   await navigator.serviceWorker.register('./service-worker.js?v=20261024-moonshine-asr-alt-coi-v1',{updateViaCache:'none'});
+   await navigator.serviceWorker.ready;
+   const key='asr_alt_moonshine_isolated_v1';
+   if(!sessionStorage.getItem(key)){
+    sessionStorage.setItem(key,'1');
+    status('Moonshine WASM用にブラウザを再読み込みします');
+    location.reload();
+    return;
+   }
+   if(!self.crossOriginIsolated)throw new Error('crossOriginIsolatedを有効にできませんでした');
+  }
+  ready=true;updateButtons();
+  status('WASM実行環境の準備完了。MIT Streamingモデルを読み込んでください');
+ }catch(e){fail(e);updateButtons();}
+}
+bootstrap();
