@@ -124,3 +124,32 @@ Decoder probe は計算前に `Unrecognized decoder signature` を返してお�
 - https://huggingface.co/litert-community/whisper-acft (KV-cacheなしfull re-run)
 - https://github.com/ggml-org/whisper.cpp/blob/master/src/whisper.cpp (self/cross-attention KV cache)
 - https://github.com/futo-org/whisper-acft (whisper.cpp audio_ctxに対応したACFT学習済み重み)
+
+## 2026-10-23 Galaxy S25: ACFT Base 5秒のEncoder＋Decoder実測と意思決定
+
+追加実測 `build=20261023-acft-decoder-mask4d-v5`、Galaxy S25 Chrome、LiteRT.js 2.5.3 WASM CPU、合成mel＋固定トークン、モデル `base5`:
+- Encoder: `sampleMs=[176,173.99,174.26,175.45,175.92]`; 中央値 **175 ms**
+- Decoder: `sampleMs=[236.82,234.61,238.78]`; 1回のフルシーケンス再推論中央値 **237 ms**
+- Decoder signature: mask float32 `[1,1,128,128]`、encoder hidden float32 `[1,250,512]`、token IDs int32 `[1,128]`、logits float32 `[1,128,51865]`
+- `loadingMs=12462` は今回のモデル取得・コンパイル時間。**既存のモデルキャッシュ再利用を保証する値ではない**。
+
+同一ブラウザ・Galaxy S25の `small5` 追加実測は Encoder **760 ms**、Decoder **736 ms/回**。Baseは Encoder約4.3倍、Decoder約3.1倍高速（ただし音声・トークンに依存するため、実際のASR速度比ではない）。
+
+| Decoderステップ数（仮定） | Base 5s (0.175+0.237n) | Small 5s (0.760+0.736n) |
+|---:|---:|---:|
+| 5 | 1.36秒 | 4.44秒 |
+| 10 | 2.55秒 | 8.12秒 |
+| 15 | 3.73秒 | 11.80秒 |
+| 20 | 4.92秒 | 15.48秒 |
+
+上記は合成固定テンソルによる単純加算の**参考試算**。実音声ではトークン数、言語検出（追加decode）、前処理、IPC、推論再初期化、モデル常駐、正答の有無が異なる。Decoder出力はトークンごとの full 128 token グラフで、現行TFLiteにはKV cacheが無い。
+
+### 実装方針の変更
+**ACFT Base 5s/10sの実音声ベンチマークを最優先**。特に普段の短い日本語呼びかけのCER、否定/時系列、話題判定に影響する語、誤認識と繰り返しを測り、現行Whisper Smallの同じ録音と同時比較する。多言語仕様により外国語音声にも対応する必要があるため、日本語だけに固定しない。5秒を超える音声を切り捨てないよう10秒版を併用する。
+
+- Baseが十分な精度なら、通常LiteRT CPUでは短文5～10生成トークンで2～3秒前後のASRが成立する**可能性**がある。
+- Baseの精度が足りなければ、Small ACFT重み＋KV cacheのあるwhisper.cpp/WASMあるいはdecoder-with-past ONNXを検証。Decoder 1回736msの現行Smallフル再実行をそのまま実用配布しない。
+- 認識精度と総ASR速度を実測するまで、音声認識の既定モデルは変更せず、本番版も変更しない。
+- 実装候補: ブラウザファイル音声→WebAudio 16kHz PCM→Whisper 80帯log-mel（窓500/1000フレーム）→ LiteRT encode→mask [1,1,128,128]を使うgreedy autoregressive decode→multilingual Whisper tokenizer。実音声の文字起こしと各段階の時間を保存しない診断に表示する。Whisperの音声前処理はTransformers.js `AutoProcessor` の出力と一致を検証する。
+
+裏付け: https://huggingface.co/litert-community/whisper-acft (モデルとdecoder構造)、https://huggingface.co/docs/transformers.js/en/api/processors (実音声前処理)。
