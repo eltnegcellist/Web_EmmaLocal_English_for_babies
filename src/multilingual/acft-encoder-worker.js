@@ -11,9 +11,9 @@ self.onmessage=async({data})=>{
     notify({type:'status',text:'LiteRT.js WASM CPUを準備しています'});
     const {loadLiteRt,loadAndCompile,Tensor}=await import('https://cdn.jsdelivr.net/npm/@litertjs/core@2.5.3/+esm');
     await loadLiteRt('https://cdn.jsdelivr.net/npm/@litertjs/core@2.5.3/wasm/');
-    notify({type:'status',text:`ACFT ${spec.tier} ${spec.seconds}s を取得・コンパイル中（約${spec.approxMB}MB）`});
+    notify({type:'status',text:data.bytes?'ローカルのACFTモデルをコンパイル中':`ACFT ${spec.tier} ${spec.seconds}s を取得・コンパイル中（約${spec.approxMB}MB）`});
     const loadStart=tick();
-    model=await loadAndCompile(spec.url,{accelerator:'wasm'});
+    model=await loadAndCompile(data.bytes?new Uint8Array(data.bytes):spec.url,{accelerator:'wasm'});
     const loadingMs=Math.round(tick()-loadStart);
     const runner=model.signatures?.encode;
     if(!runner)throw Error('The model does not provide an encode signature');
