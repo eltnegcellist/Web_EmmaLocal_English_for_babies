@@ -25,14 +25,20 @@ start.addEventListener('click',async()=>{
   try{bytes=await file.arrayBuffer();}
   catch(e){log('モデルファイルを読めませんでした: '+e.message);start.disabled=false;return;}
  }
- worker=new Worker(new URL('./acft-encoder-worker.js',import.meta.url),{type:'module'});
+ // LiteRT.js invokes importScripts() inside its WASM loader. A module Worker
+ // always throws; a classic worker can still dynamic-import ES modules.
+ worker=new Worker(new URL('./acft-encoder-worker.js?v=20261023-acft-classic-worker-v2',import.meta.url),{type:'classic'});
  const finish=()=>{worker?.terminate();worker=null;start.disabled=false;};
  worker.onerror=e=>{log('Worker エラー: '+(e.message||'unknown'));finish();};
  worker.postMessage({action:'benchmark',model:spec.id,bytes},bytes?[bytes]:[]);
  worker.onmessage=({data})=>{
   if(data.type==='status')log(data.text);
   else if(data.type==='sample')log(`計測 ${data.sample}/5：${data.ms} ms`);
-  else if(data.type==='error'){log('エラー：'+data.error);finish();}
+  else if(data.type==='error'){
+    log('エラー：'+data.error+'\nstage='+data.stage+'\nbuild='+data.build+
+      '\nclassicImportScripts='+data.classicImportScripts);
+    finish();
+  }
   else if(data.type==='complete'){
    latest=data;copy.disabled=false;
    result.textContent=`Encoder中央値: ${data.medianMs} ms / モデル取得と準備: ${data.loadingMs} ms\n旧Whisper Small 30秒窓Encoder中央値: 8200 ms（異なるモデル・実装の参考値）`;
