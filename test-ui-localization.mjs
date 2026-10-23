@@ -64,6 +64,7 @@ for(const lang of ['en','de','fr','ko','th','ja']){
   installSemanticPanel({controller:semanticController,mount:$('semanticPanel'),storage:dom.window.localStorage});
   await settle();
   assertLocalized($('developerTools'));
+  assert.equal($('settingsLanguage').querySelector('option[value="ja"]').textContent,'日本語','Language picker keeps native language names');
   publishSemantic({
     requested:true,mode:'semantic',status:{message:'意味で話題を判定できます。',ready:true,total:0},
     lastResponse:{scene:'milk',english:'Hello!',contextUsed:true},
