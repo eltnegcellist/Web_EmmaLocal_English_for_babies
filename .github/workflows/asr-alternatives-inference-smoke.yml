@@ -1,0 +1,30 @@
+name: ASR Alternatives real Moonshine inference (experimental)
+on:
+  push:
+    branches: [experiment/whisper-stage-profile-20261023]
+    paths:
+      - scripts/browser-asr-alternatives-inference-smoke.mjs
+      - .github/workflows/asr-alternatives-inference-smoke.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  wasm-inference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright test dependencies
+        run: |
+          npm ci --ignore-scripts
+          npx playwright install --with-deps chromium
+      - name: Real Moonshine German streaming WASM inference smoke
+        run: |
+          node --check moonshine-alternative-benchmark.js
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/asr-alt-model-load.log 2>&1 &
+          node scripts/browser-asr-alternatives-inference-smoke.mjs
