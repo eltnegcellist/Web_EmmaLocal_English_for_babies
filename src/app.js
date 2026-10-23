@@ -1502,7 +1502,7 @@ function handleTtsMessage(event,readyResolve,readyReject) {
   }
   if(m.type==='prefetch-status'){
     voicePrefetchDiagnostic={
-      stage:m.stage||'unknown',completed:Number(m.completed)||0,
+      stage:m.stage||'unknown',heldForAsr:voicePrefetchDiagnostic.heldForAsr,completed:Number(m.completed)||0,
       total:Number(m.total)||0,failed:Number(m.failed)||0,
       lastFile:m.lastFile||null,reason:m.reason||m.message||null
     };
