@@ -41,6 +41,7 @@ jobs:
           node test-semantic.mjs
           node test-multilingual.mjs
           node scripts/test-whisper-ort-hook.mjs
+          node test-acft-encoder.mjs
           node test-ui-localization.mjs
           node test-resume-greeting.mjs
           node test-interaction.mjs
