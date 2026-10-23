@@ -1560,7 +1560,7 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
   try{
     // A separate worker keeps the UI responsive; avoid an endless "Transcribing"
     // state on memory-constrained private browsing sessions.
-    if(!japanese)ttsWorker?.postMessage({type:'asr-prefetch-hold',hold:true});
+    if(!japanese && typeof ttsWorker!=='undefined')ttsWorker?.postMessage({type:'asr-prefetch-hold',hold:true});
     const text=await withTimeout(
       moonshineTranscriber.transcribe(audio),
       japanese?120000:90000,
@@ -1593,7 +1593,7 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
     if(!japanese)languageUI.setStatus('音声認識でエラーが発生しました');
     setState('error','音声認識でエラーが発生しました',friendlyError(error));
   }finally{
-    if(!japanese)ttsWorker?.postMessage({type:'asr-prefetch-hold',hold:false});
+    if(!japanese && typeof ttsWorker!=='undefined')ttsWorker?.postMessage({type:'asr-prefetch-hold',hold:false});
   }
 }
 
