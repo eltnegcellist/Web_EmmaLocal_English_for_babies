@@ -34,8 +34,10 @@ function renderModelOptions(){
 function updateButtons(){
  $('load').disabled=!ready||busy||loading||!!live;
  $('file').disabled=busy||!!live;
- $('transcribe').disabled=!ready||busy||!!live||!pcm||!transcriber;
- $('startMic').disabled=!ready||busy||!!live||!transcriber;
+ $('transcribe').disabled=!ready||busy||!!live||!pcm||!transcriber||
+   loaded?.language!==$('language').value||loaded?.arch!==$('arch').value;
+ $('startMic').disabled=!ready||busy||!!live||!transcriber||
+   loaded?.language!==$('language').value||loaded?.arch!==$('arch').value;
  $('stopMic').disabled=!live;
  $('language').disabled=busy||loading||!!live;
  $('arch').disabled=busy||loading||!!live;
@@ -52,7 +54,8 @@ function setReport(entry) {
   inferenceMs:entry.inferenceMs,
   lastTranscriptionLatencyMs:entry.lastTranscriptionLatencyMs,
   transcript:entry.transcript,reference:ref||null,cer,
-  rtFactor:entry.audioSeconds?Number((entry.inferenceMs/1000/entry.audioSeconds).toFixed(3)):null,
+  rtFactor:entry.mode==='file'&&entry.audioSeconds?
+   Number((entry.inferenceMs/1000/entry.audioSeconds).toFixed(3)):null,
   hardwareConcurrency:navigator.hardwareConcurrency,
   crossOriginIsolated:crossOriginIsolated
  };
