@@ -74,6 +74,31 @@ await background.audioFor(entries[2].text);
 assert.equal(backgroundRequests,3,'Finished clips are reused from cache');
 await background.prefetchAll();
 assert.equal(backgroundRequests,3,'Completing the bank should not restart a full scan');
+// The background queue must stop at an ASR hold without blocking requested audio.
+const heldStore=new Map();
+let heldAudioRequests=0;
+const heldStorage={async open(){return {
+  async match(key){return heldStore.get(String(key))?.clone();},
+  async put(key,value){heldStore.set(String(key),value.clone());},
+  async delete(key){return heldStore.delete(String(key));}
+};}};
+const heldBank=new PrerecordedVoiceBank({manifestUrl:'https://example.test/held/manifest.json',
+  cacheStorage:heldStorage,fetcher:async url=>{
+    if(String(url).endsWith('.json'))return new Response(JSON.stringify({...manifest,entries}));
+    heldAudioRequests++;return new Response(audio);
+  }});
+await heldBank.init();
+heldBank.setPrefetchPausedForAsr(true);
+const prefetchWhileHeld=heldBank.prefetchAll();
+await new Promise(resolve=>setTimeout(resolve,0));
+assert.equal(heldAudioRequests,0,'ASR pause must prevent new background requests');
+await heldBank.audioFor(entries[0].text);
+assert.equal(heldAudioRequests,1,'On-demand voice must not wait for background queue');
+heldBank.setPrefetchPausedForAsr(false);
+await prefetchWhileHeld;
+assert.equal(heldAudioRequests,3,'Prefetch should resume and reuse the on-demand clip');
+assert.equal(heldBank.prefetchComplete,true);
+
 // A transient HTTP failure or a corrupt response must be retried before a
 // user-facing playback error; good audio must never be replaced by bad data.
 let transientAttempts=0;
