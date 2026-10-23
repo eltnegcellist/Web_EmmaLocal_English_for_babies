@@ -101,7 +101,7 @@ jobs:
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
           MAIN_TEST_URL=http://127.0.0.1:8765/ node scripts/browser-main-integration.mjs
-          ACFT_TEST_ORIGIN=http://127.0.0.1:8765 node scripts/browser-acft-classic-smoke.mjs
+          ACFT_TEST_ORIGIN=http://127.0.0.1:8765 ACFT_RUNTIME_SMOKE=1 node scripts/browser-acft-classic-smoke.mjs
       - name: Archive consolidated product checks
         if: always()
         uses: actions/upload-artifact@v4
