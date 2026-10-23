@@ -12,7 +12,7 @@ small{color:#526177}pre{background:#f0f4fa;border-radius:8px;padding:12px;white-
 #context{font-size:.9rem;color:#526177}
 </style></head><body><main>
 <h1>Whisper ACFT：短窓Encoder速度テスト</h1>
-<p>みつことばの実験専用ページです。FUTOの短窓モデルをLiteRT.jsの<strong>CPU/WASMのみ</strong>で実行し、Encoder時間を計測します。<strong>文字起こし・言語判定・Decoderの測定ではありません。</strong> 通常アプリの設定には影響しません。</p>
+<p>みつことばの実験専用ページです。FUTOの短窓モデルをLiteRT.jsの<strong>CPU/WASMのみ</strong>で実行し、Encoder時間を計測します。<strong>文字起こし・言語判定には未対応です。Decoderの1回あたりの実行時間は任意で測定できます。</strong> 通常アプリの設定には影響しません。</p>
 <section>
 <label for="acftChoice">計測モデル（初回は大容量ダウンロード）</label>
 <select id="acftChoice">
@@ -41,5 +41,5 @@ small{color:#526177}pre{background:#f0f4fa;border-radius:8px;padding:12px;white-
 <p>モデル配布元：<a href="https://huggingface.co/litert-community/whisper-acft">litert-community/whisper-acft（Apache-2.0）</a></p>
 <p><a href="./index.html">通常の会話テストに戻る</a></p>
 </section></main>
-<script type="module" src="./src/multilingual/acft-encoder-page.js?v=20261023-acft-decoder-probe-v4"></script>
+<script type="module" src="./src/multilingual/acft-encoder-page.js?v=20261023-acft-decoder-mask4d-v5"></script>
 </body></html>
