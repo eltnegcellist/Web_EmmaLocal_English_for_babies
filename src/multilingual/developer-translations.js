@@ -274,12 +274,12 @@ export const DEVELOPER_TRANSLATIONS=[
     "เปรียบเทียบด้วยข้อความภาษาญี่ปุ่น"
   ],
   [
-    "日本語",
-    "Japanese",
-    "Japanisch",
-    "Japonais",
-    "일본어",
-    "ภาษาญี่ปุ่น"
+    "入力言語：日本語",
+    "Input language: Japanese",
+    "Eingabesprache: Japanisch",
+    "Langue de saisie : japonais",
+    "입력 언어: 일본어",
+    "ภาษาที่ป้อน: ภาษาญี่ปุ่น"
   ],
   [
     "ここに日本語を入力してください",
