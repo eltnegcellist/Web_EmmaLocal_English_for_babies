@@ -1,10 +1,11 @@
-import {normalizeThreads,normalizeLanguageDetection} from './performance.js';
+import {normalizeThreads,normalizeLanguageDetection,normalizeMaxNewTokens} from './performance.js';
 export class MultilingualClient {
   constructor({workerFactory=()=>new Worker(new URL('./worker.js',import.meta.url),{type:'module'}),onStatus=()=>{},
-    threads='auto',languageDetection='once'}={}) {
+    threads='auto',languageDetection='once',maxNewTokens='80'}={}) {
     this.workerFactory=workerFactory;this.onStatus=onStatus;this.worker=null;this.pending=new Map();this.seq=0;this.ready=false;this.preparing=null;this.generation=0;
     this.threadPreference=normalizeThreads(threads);
     this.languageDetection=normalizeLanguageDetection(languageDetection);
+    this.maxNewTokens=normalizeMaxNewTokens(maxNewTokens);
     this.cachedSpokenLanguage=null;this.languageCacheEpoch=0;this.runtimeInfo=null;
   }
   request(type,payload={},timeout=900000,transfer=[]) {
@@ -42,7 +43,7 @@ export class MultilingualClient {
       : language==='en' && this.languageDetection==='once' && this.cachedSpokenLanguage
         ? (this.cachedSpokenLanguage==='en'?'en-fixed':this.cachedSpokenLanguage) : language;
     const languageCacheEpoch=this.languageCacheEpoch;
-    const result=await this.request('transcribe',{audio:buffer,language:requested},90000,[buffer]);
+    const result=await this.request('transcribe',{audio:buffer,language:requested,maxNewTokens:this.maxNewTokens},90000,[buffer]);
     if(languageCacheEpoch===this.languageCacheEpoch && language==='en' && this.languageDetection==='once' && !this.cachedSpokenLanguage &&
        result?.text?.trim() && /^[a-z]{2,3}(?:-[a-z]+)?$/i.test(result.detectedLanguage||'')){
       this.cachedSpokenLanguage=result.detectedLanguage;
@@ -51,12 +52,13 @@ export class MultilingualClient {
     return result;
   }
   resetSpeechLanguage(){this.cachedSpokenLanguage=null;this.languageCacheEpoch++;}
-  setPerformance({threads=this.threadPreference,languageDetection=this.languageDetection}={}){
+  setPerformance({threads=this.threadPreference,languageDetection=this.languageDetection,maxNewTokens=this.maxNewTokens}={}){
     const nextThreads=normalizeThreads(threads),nextDetection=normalizeLanguageDetection(languageDetection);
     if(nextThreads!==this.threadPreference){
       this.cancel('Whisper thread configuration changed');
     }else if(nextDetection!==this.languageDetection){this.resetSpeechLanguage();}
     this.threadPreference=nextThreads;this.languageDetection=nextDetection;
+    this.maxNewTokens=normalizeMaxNewTokens(maxNewTokens);
   }
   cancel(message='Language operation cancelled'){
     this.resetSpeechLanguage();this.runtimeInfo=null;

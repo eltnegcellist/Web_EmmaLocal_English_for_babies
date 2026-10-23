@@ -17,7 +17,7 @@ import { describeError } from './multilingual/translations.js?v=20261022-speech-
 import { createConfirmation } from './multilingual/confirmation.js';
 import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 import { bindVisualCueSettings } from './visual-cue-settings.js';
-import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection} from './multilingual/performance.js';
+import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,WHISPER_MAX_TOKENS_KEY,normalizeThreads,normalizeLanguageDetection,normalizeMaxNewTokens} from './multilingual/performance.js';
 import {installWhisperPerformanceControls} from './multilingual/performance-controls.js';
 import {chooseEnglishResumeGreeting} from './resume-greeting.js';
 
@@ -210,7 +210,8 @@ let multilingualStatus=()=>{};
 let multilingual,languageUI,whisperPerformanceControls;
 function whisperPerformanceSettings(){
   return {threads:normalizeThreads(localStorage.getItem(WHISPER_THREAD_KEY)),
-    languageDetection:normalizeLanguageDetection(localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY))};
+    languageDetection:normalizeLanguageDetection(localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY)),
+    maxNewTokens:normalizeMaxNewTokens(localStorage.getItem(WHISPER_MAX_TOKENS_KEY))};
 }
 const confirmAction=createConfirmation({translate:value=>languageUI.translate(value)});
 let currentReplyRoute=null;
@@ -231,7 +232,29 @@ function refreshReplyContext(){
 }
 let modelSelectionEpoch=0;
 let multilingualAsrDiagnostic={stage:'idle',detectedLanguage:null,elapsedMs:null,error:null};
-let voicePrefetchDiagnostic={stage:'idle',completed:0,total:0,failed:0,lastFile:null,reason:null};
+// Session-only numeric Whisper A/B results; never record audio or the transcript.
+const whisperBenchSamples=[];
+function recordWhisperBenchSample(timings) {
+  const fields=['threads','audioSeconds','languageMs','transcribeMs','totalMs','realTimeFactor',
+    'whisperProfileAvailable','whisperEncoderMs','whisperDecoderMs','whisperOtherMs',
+    'whisperEncoderRuns','whisperDecoderRuns','maxNewTokens'];
+  if(!Number.isFinite(Number(timings?.transcribeMs)))return;
+  const sample={at:new Date().toISOString()};
+  for(const key of fields){
+    const value=timings?.[key];
+    if(typeof value==='boolean')sample[key]=value;
+    else if(value!==null&&Number.isFinite(Number(value)))sample[key]=Number(value);
+  }
+  whisperBenchSamples.push(sample);
+  if(whisperBenchSamples.length>30)whisperBenchSamples.shift();
+}
+function whisperBenchMedian(values) {
+  const ordered=values.filter(Number.isFinite).sort((a,b)=>a-b);
+  if(!ordered.length)return 'unmeasured';
+  const mid=Math.floor(ordered.length/2);
+  return Math.round(ordered.length%2?ordered[mid]:(ordered[mid-1]+ordered[mid])/2);
+}
+let voicePrefetchDiagnostic={stage:'idle',completed:0,total:0,failed:0,lastFile:null,reason:null,heldForAsr:false};
 function renderVoicePrefetchStatus() {
   if(!ui.voiceDownloadStatus)return;
   const state=voicePrefetchDiagnostic,language=languageUI?.language??'ja';
@@ -264,6 +287,7 @@ multilingual=new MultilingualClient({...whisperPerformanceSettings(),onStatus:da
     return;
   }
   if(data.stage==='asr-timing'){
+    recordWhisperBenchSample(data.timings);
     Object.assign(multilingualAsrDiagnostic,data.timings||{});
     updateWebTimingDiagnostics();
     return;
@@ -1472,9 +1496,13 @@ function handleTtsMessage(event,readyResolve,readyReject) {
     forwardBackgroundDownload(m);
     return;
   }
+  if(m.type==='prefetch-control'){
+    voicePrefetchDiagnostic.heldForAsr=Boolean(m.held);
+    return;
+  }
   if(m.type==='prefetch-status'){
     voicePrefetchDiagnostic={
-      stage:m.stage||'unknown',completed:Number(m.completed)||0,
+      stage:m.stage||'unknown',heldForAsr:voicePrefetchDiagnostic.heldForAsr,completed:Number(m.completed)||0,
       total:Number(m.total)||0,failed:Number(m.failed)||0,
       lastFile:m.lastFile||null,reason:m.reason||m.message||null
     };
@@ -1532,6 +1560,7 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
   try{
     // A separate worker keeps the UI responsive; avoid an endless "Transcribing"
     // state on memory-constrained private browsing sessions.
+    if(!japanese && typeof ttsWorker!=='undefined')ttsWorker?.postMessage({type:'asr-prefetch-hold',hold:true});
     const text=await withTimeout(
       moonshineTranscriber.transcribe(audio),
       japanese?120000:90000,
@@ -1563,6 +1592,8 @@ async function transcribeUtterance(audio,{manual=false,revision=null}={}) {
     }
     if(!japanese)languageUI.setStatus('音声認識でエラーが発生しました');
     setState('error','音声認識でエラーが発生しました',friendlyError(error));
+  }finally{
+    if(!japanese && typeof ttsWorker!=='undefined')ttsWorker?.postMessage({type:'asr-prefetch-hold',hold:false});
   }
 }
 
@@ -2158,7 +2189,7 @@ function updateWebTimingDiagnostics() {
     ? `ASR 端末読込 ${format(asr.cacheReadMs)} / ${formatMb(asr.cacheReadBytes)} / 通信 ${format(asr.networkDownloadMs)} / ${formatMb(asr.networkDownloadBytes)} / WASM ${format(asr.wasmInitMs)} / モデル構築 ${format(asr.modelBuildMs)} / 合計 ${format(asr.totalInitMs)} ｜ `
     : '';
   const foreignAsr=multilingualAsrDiagnostic?.totalMs!=null
-    ? `Whisper ${multilingualAsrDiagnostic.threads??'?'}スレッド / 音声${multilingualAsrDiagnostic.audioSeconds}s / 言語判定${multilingualAsrDiagnostic.languageMs}ms / 文字起こし${multilingualAsrDiagnostic.transcribeMs}ms / 実時間比${multilingualAsrDiagnostic.realTimeFactor}x ｜ `
+    ? `Whisper ${multilingualAsrDiagnostic.threads??'?'}スレッド / 音声${multilingualAsrDiagnostic.audioSeconds}s / 言語判定${multilingualAsrDiagnostic.languageMs}ms / 文字起こし${multilingualAsrDiagnostic.transcribeMs}ms / Encoder ${format(multilingualAsrDiagnostic.whisperEncoderMs)} / Decoder ${format(multilingualAsrDiagnostic.whisperDecoderMs)}（${multilingualAsrDiagnostic.whisperDecoderRuns??'?'}回） / Other ${format(multilingualAsrDiagnostic.whisperOtherMs)} / 実時間比${multilingualAsrDiagnostic.realTimeFactor}x ｜ `
     : '';
   ui.webTimingDiagnostics.textContent=
     `直近計測: ${asrText}${foreignAsr}TTS初チャンク ${format(lastTtsFirstChunkMillis)} / 生成完了 ${format(lastTtsGenerationCompleteMillis)} / 初音 ${format(lastTtsFirstAudioMillis)} / 全体 ${format(lastTtsTotalMillis)}`;
@@ -2199,6 +2230,7 @@ async function buildWebDiagnosticReport() {
     `multilingual.effectiveThreads=${multilingual.runtimeInfo?.threads??multilingualAsrDiagnostic.threads??'unknown'}`,
     `multilingual.threadIsolation=${multilingual.runtimeInfo?.isolated??'unknown'}`,
     `multilingual.languageDetectionMode=${multilingual.languageDetection}`,
+    `multilingual.maxNewTokens=${multilingual.maxNewTokens}`,
     `multilingual.cachedSpokenLanguage=${multilingual.cachedSpokenLanguage??'none'}`,
     `multilingual.asrLanguage=${multilingualAsrDiagnostic.detectedLanguage??'unknown'}`,
     `multilingual.asrElapsedMs=${multilingualAsrDiagnostic.elapsedMs??'unknown'}`,
@@ -2206,6 +2238,14 @@ async function buildWebDiagnosticReport() {
     `multilingual.languagePass=${multilingualAsrDiagnostic.languagePass??'unknown'}`,
     `multilingual.languageMs=${multilingualAsrDiagnostic.languageMs??'unknown'}`,
     `multilingual.transcribeMs=${multilingualAsrDiagnostic.transcribeMs??'unknown'}`,
+    `multilingual.whisperProfileAvailable=${multilingualAsrDiagnostic.whisperProfileAvailable??'unknown'}`,
+    `multilingual.whisperEncoderMs=${multilingualAsrDiagnostic.whisperEncoderMs??'unknown'}`,
+    `multilingual.whisperDecoderMs=${multilingualAsrDiagnostic.whisperDecoderMs??'unknown'}`,
+    `multilingual.whisperOtherMs=${multilingualAsrDiagnostic.whisperOtherMs??'unknown'}`,
+    `multilingual.whisperEncoderRuns=${multilingualAsrDiagnostic.whisperEncoderRuns??'unknown'}`,
+    `multilingual.whisperDecoderRuns=${multilingualAsrDiagnostic.whisperDecoderRuns??'unknown'}`,
+    `multilingual.whisperLanguageEncoderMs=${multilingualAsrDiagnostic.whisperLanguageEncoderMs??'unknown'}`,
+    `multilingual.maxNewTokens=${multilingualAsrDiagnostic.maxNewTokens??'unknown'}`,
     `multilingual.totalMs=${multilingualAsrDiagnostic.totalMs??'unknown'}`,
     `multilingual.realTimeFactor=${multilingualAsrDiagnostic.realTimeFactor??'unknown'}`,
     `multilingual.model=${multilingualAsrDiagnostic.model??'unknown'}`,
@@ -2229,6 +2269,7 @@ async function buildWebDiagnosticReport() {
     `asr.totalInitMs=${lastMoonshineDiagnostics?.totalInitMs??'unmeasured'}`,
     `tts.ready=${Boolean(ttsWorker&&ttsInfoCache)}`,
     `tts.prefetchStage=${voicePrefetchDiagnostic.stage}`,
+    `tts.prefetchHeldForAsr=${voicePrefetchDiagnostic.heldForAsr}`,
     `tts.prefetchCompleted=${voicePrefetchDiagnostic.completed}`,
     `tts.prefetchTotal=${voicePrefetchDiagnostic.total}`,
     `tts.prefetchFailed=${voicePrefetchDiagnostic.failed}`,
@@ -2281,6 +2322,17 @@ async function buildWebDiagnosticReport() {
     lines.push('routing.turns.begin');
     for(const entry of routingHistory)lines.push('routing.turn='+JSON.stringify(entry));
     lines.push('routing.turns.end');
+  }
+  // Raw numeric samples and per-thread medians make one diagnostic export
+  // sufficient for repeated 1/2/4-thread comparisons.
+  for(const sample of whisperBenchSamples)lines.push('multilingual.benchmarkSample='+JSON.stringify(sample));
+  for(const threads of [1,2,3,4]){
+    const group=whisperBenchSamples.filter(s=>s.threads===threads);
+    if(!group.length)continue;
+    lines.push(`multilingual.benchmark.${threads}threads.count=${group.length}`);
+    lines.push(`multilingual.benchmark.${threads}threads.medianTranscribeMs=${whisperBenchMedian(group.map(s=>s.transcribeMs))}`);
+    lines.push(`multilingual.benchmark.${threads}threads.medianEncoderMs=${whisperBenchMedian(group.map(s=>s.whisperEncoderMs))}`);
+    lines.push(`multilingual.benchmark.${threads}threads.medianDecoderMs=${whisperBenchMedian(group.map(s=>s.whisperDecoderMs))}`);
   }
   if(runtimeDiagnosticEvents.length){
     lines.push('runtimeErrors.begin');

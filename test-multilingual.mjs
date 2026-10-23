@@ -6,8 +6,9 @@ import{installLanguageUI}from'./src/multilingual/ui.js';
 import{prepareAssets,digest,MODEL_CACHE,openChunkStore}from'./src/multilingual/assets.js';
 import{indexedDB as fakeIndexedDB}from'fake-indexeddb';
 import{MultilingualClient}from'./src/multilingual/client.js';
-import{WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection,
+import{WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection,normalizeMaxNewTokens,
  resolveWhisperThreads}from'./src/multilingual/performance.js';
+import{attachWhisperSessionProfiler}from'./src/multilingual/whisper-profile.js';
 import{installWhisperPerformanceControls}from'./src/multilingual/performance-controls.js';
 import{selectRuriAxes}from'./src/interaction/ruri-routing.js';
 import{CATALOG,translate}from'./src/multilingual/translations.js';
@@ -50,6 +51,8 @@ assert.equal(modelRoute('ja'),'japanese');for(const l of LANGUAGES.filter(l=>l!=
 assert.equal(speechLanguage('en'),null);assert.equal(speechLanguage('ko'),'ko');
 assert.equal(normalizeThreads('9'),'auto');
 assert.equal(normalizeThreads('4'),'4');
+assert.equal(normalizeMaxNewTokens(null),'80');
+assert.equal(normalizeMaxNewTokens('24'),'24');
 assert.equal(normalizeLanguageDetection(null),'once');
 assert.equal(normalizeLanguageDetection('every'),'every');
 assert.equal(normalizeLanguageDetection('fixed'),'fixed');
@@ -253,11 +256,14 @@ assert.equal(devControls.detection.value,'once');
 devControls.threads.value='4';
 devControls.threads.dispatchEvent(new developerDom.window.Event('change'));
 assert.equal(developerDom.window.localStorage.getItem(WHISPER_THREAD_KEY),'4');
-assert.deepEqual(actions.at(-1),{threads:'4',languageDetection:'once'});
+assert.deepEqual(actions.at(-1),{threads:'4',languageDetection:'once',maxNewTokens:'80'});
 devControls.detection.value='every';
 devControls.detection.dispatchEvent(new developerDom.window.Event('change'));
 assert.equal(developerDom.window.localStorage.getItem(WHISPER_LANGUAGE_MODE_KEY),'every');
-assert.deepEqual(actions.at(-1),{threads:'4',languageDetection:'every'});
+assert.deepEqual(actions.at(-1),{threads:'4',languageDetection:'every',maxNewTokens:'80'});
+devControls.tokens.value='40';
+devControls.tokens.dispatchEvent(new developerDom.window.Event('change'));
+assert.deepEqual(actions.at(-1),{threads:'4',languageDetection:'every',maxNewTokens:'40'});
 devControls.apply('ja');assert.equal(developerDom.window.document.getElementById('whisperPerformanceControls').hidden,true);
 devControls.apply('en');assert.equal(developerDom.window.document.getElementById('whisperPerformanceControls').hidden,false);
 developerDom.window.document.querySelector('#whisperPerformanceControls button').click();
@@ -347,11 +353,25 @@ await Promise.resolve();
 const request=workers[1].last;
 assert.equal(request.type,'transcribe');
 assert.equal(request.language,'en');
+assert.equal(request.maxNewTokens,'80');
 assert.equal(request.audio.byteLength,samples.byteLength);
 assert.equal(workers[1].transfer[0],request.audio,'Audio PCM must be transferred rather than cloned');
 workers[1].onmessage({data:{type:'result',requestId:request.requestId,result:{text:'Hello',detectedLanguage:'en'}}});
 assert.equal((await transcribing).text,'Hello');
 c.cancel();
+let ticks=0;
+const encode={async run(){ticks+=7;return 'encoded';}};
+const decode={async run(){ticks+=11;return 'decoded';}};
+const profile=attachWhisperSessionProfiler({sessions:{model:encode,decoder_model_merged:decode}},{now:()=>ticks});
+assert(profile.available);
+profile.start();
+assert.equal(await encode.run(),'encoded');
+assert.equal(await decode.run(),'decoded');
+assert.equal(await decode.run(),'decoded');
+assert.deepEqual(profile.stop(),{encoderMs:7,decoderMs:22,encoderRuns:1,decoderRuns:2});
+assert.equal(profile.snapshot().decoderRuns,2);
+const missingProfile=attachWhisperSessionProfiler({sessions:{}},{now:()=>ticks});
+missingProfile.start();assert.equal(missingProfile.stop(),null);
 const appSource=await readFile(new URL('./src/app.js',import.meta.url),'utf8');
 const switchFlow=appSource.slice(appSource.indexOf('languageUI=installLanguageUI'),appSource.indexOf('initUi();'));
 assert(switchFlow.indexOf("if(next==='ja' && changedRoute)")>=0);
@@ -367,6 +387,17 @@ assert(appSource.includes("if(data.stage==='asr-timing')"),'ASR timing progress 
 assert(appSource.includes("if(nonJapanese)return true"),'Unavailable browser isolation must fall back to 1-thread foreign Whisper');
 assert(appSource.includes("multilingual?.resetSpeechLanguage()"),'Conversation start/stop must invalidate language cache');
 assert(appSource.includes("WHISPER_THREAD_KEY"),'Application must persist CPU thread preference');
+assert(workerSource.includes('attachWhisperSessionProfiler(recognizer.model)'),'Whisper must instrument its ONNX sessions');
+for(const key of ['whisperEncoderMs','whisperDecoderMs','whisperOtherMs','whisperProfileAvailable']){
+ assert(workerSource.includes(key),'Worker must capture '+key);
+ assert(appSource.includes('multilingual.'+key+'='),'Diagnostics must export '+key);
+}
+assert(workerSource.includes('max_new_tokens:maxNewTokens'),'Experimental token cap must reach the pipeline');
+assert(appSource.includes('multilingual.maxNewTokens='),'Diagnostics must export token cap');
+assert(appSource.includes('multilingual.benchmarkSample='),'Report must export numeric per-turn latency history');
+assert(appSource.includes('medianEncoderMs'),'Report must aggregate encoder latency for 1/2/4 threads');
+assert(appSource.includes('whisperBenchSamples.length>30'),'Benchmarks must be bounded in memory');
+
 assert(workerSource.includes('env.backends.onnx.wasm.numThreads=effectiveThreads'),'Worker must enable ONNX multi-thread runtime');
 assert(workerSource.includes("data.language==='en-fixed'"),'Worker must bypass detection for cached English');
 

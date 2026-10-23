@@ -37,6 +37,11 @@ self.onmessage = async event => {
       });
       return;
     }
+    if (data.type === 'asr-prefetch-hold') {
+      bank.setPrefetchPausedForAsr(data.hold);
+      self.postMessage({type:'prefetch-control',held:Boolean(data.hold)});
+      return;
+    }
     if (data.type === 'prefetch') {
       // Cache filling must not block playback or turn into a fatal voice error.
       void bank.prefetchAll(reportPrefetch)

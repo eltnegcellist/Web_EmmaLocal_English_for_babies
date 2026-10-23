@@ -18,6 +18,8 @@ export class PrerecordedVoiceBank {
     this.prefetchLastError = null;
     this.prefetchLastFile = null;
     this.prefetchVerifiedUrls = new Set();
+    this.prefetchPausedForAsr = false;
+    this.prefetchResumeWaiters = [];
   }
 
   async init(onStatus = () => {}) {
@@ -126,6 +128,19 @@ export class PrerecordedVoiceBank {
       String(lastError?.message || lastError) + '）。接続を確認して再試行してください。');
   }
 
+  // Hold only the background queue; requested English audio still plays immediately.
+  setPrefetchPausedForAsr(paused) {
+    this.prefetchPausedForAsr=Boolean(paused);
+    if(!this.prefetchPausedForAsr){
+      for(const resume of this.prefetchResumeWaiters.splice(0))resume();
+    }
+  }
+  async waitForBackgroundPrefetch() {
+    while(this.prefetchPausedForAsr){
+      await new Promise(resolve=>this.prefetchResumeWaiters.push(resolve));
+    }
+  }
+
   /** Background caching starts only after the tutorial becomes visible. */
   async prefetchAll(onStatus = () => {}) {
     await this.init();
@@ -145,6 +160,8 @@ export class PrerecordedVoiceBank {
     this.prefetchPromise = Promise.all(
       Array.from({length: Math.min(2, entries.length)}, async () => {
         while (next < entries.length && !paused) {
+          await this.waitForBackgroundPrefetch();
+          if(paused || next>=entries.length)break;
           const entry = entries[next++];
           const url = new URL(entry.file, this.manifestUrl).href;
           try {

@@ -1,5 +1,6 @@
 import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,
-  THREAD_OPTIONS,LANGUAGE_DETECTION_OPTIONS,normalizeThreads,normalizeLanguageDetection}
+  WHISPER_MAX_TOKENS_KEY,THREAD_OPTIONS,LANGUAGE_DETECTION_OPTIONS,
+  normalizeThreads,normalizeLanguageDetection,normalizeMaxNewTokens}
   from './performance.js';
 
 // Developer-only A/B controls; never switch to a smaller Whisper model or GPU.
@@ -27,7 +28,7 @@ export function installWhisperPerformanceControls({
     select.addEventListener('change',()=>{
       const value=normalize(select.value);
       try{storage.setItem(key,value);}catch{}
-      onChange({threads:getThreads(),languageDetection:getDetection()});
+      onChange({threads:getThreads(),languageDetection:getDetection(),maxNewTokens:getMaxNewTokens()});
     });
     label.append(select);block.append(label);return select;
   };
@@ -38,6 +39,10 @@ export function installWhisperPerformanceControls({
     [['once','初回だけ判定（推奨）'],['every','毎回判定（比較用）'],
       ['fixed','英語固定（比較用）']],
     WHISPER_LANGUAGE_MODE_KEY,normalizeLanguageDetection);
+  const tokens=makeSelect('whisperMaxNewTokens','最大生成トークン数（実験）',
+    [['80','80（従来どおり）'],['40','40（短文比較）'],['24','24（短文・欠落リスクあり）']],
+    WHISPER_MAX_TOKENS_KEY,normalizeMaxNewTokens);
+  const getMaxNewTokens=()=>normalizeMaxNewTokens(tokens.value);
   const getThreads=()=>normalizeThreads(threads.value);
   const getDetection=()=>normalizeLanguageDetection(detection.value);
   const button=document.createElement('button');button.type='button';
@@ -46,6 +51,7 @@ export function installWhisperPerformanceControls({
   button.addEventListener('click',()=>onForgetLanguage());
   const label=document.createElement('p');label.className='small muted';
   label.textContent='言語キャッシュは会話終了時にも破棄します。再測定は同じ音声長・発話内容で行ってください。';
+  label.textContent+=' トークン上限を下げても通常の短文が速くなるとは限らず、文の欠落リスクがあります。';
   block.append(button,label);host.prepend(block);
-  return {apply(language){block.hidden=language==='ja';},threads,detection};
+  return {apply(language){block.hidden=language==='ja';},threads,detection,tokens};
 }

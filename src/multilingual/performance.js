@@ -2,14 +2,19 @@
 // change the pinned Whisper Small model.
 export const WHISPER_THREAD_KEY='mitsukotoba_whisper_threads_v1';
 export const WHISPER_LANGUAGE_MODE_KEY='mitsukotoba_whisper_language_mode_v1';
+export const WHISPER_MAX_TOKENS_KEY='mitsukotoba_whisper_max_tokens_v1';
 export const THREAD_OPTIONS=['auto','1','2','4'];
 export const LANGUAGE_DETECTION_OPTIONS=['once','every','fixed'];
+export const MAX_NEW_TOKENS_OPTIONS=['80','40','24'];
 
 export function normalizeThreads(value){
   return THREAD_OPTIONS.includes(String(value))?String(value):'auto';
 }
 export function normalizeLanguageDetection(value){
   return LANGUAGE_DETECTION_OPTIONS.includes(String(value))?String(value):'once';
+}
+export function normalizeMaxNewTokens(value){
+  return MAX_NEW_TOKENS_OPTIONS.includes(String(value))?String(value):'80';
 }
 export function resolveWhisperThreads(preference='auto',{
   hardwareConcurrency=1,crossOriginIsolated=false,sharedArrayBuffer=false
