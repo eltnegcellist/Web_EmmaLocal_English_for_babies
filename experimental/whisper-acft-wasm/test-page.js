@@ -27,6 +27,21 @@ const details=()=>{
  $('runtime').textContent='Model '+(loaded?'読み込み済み':'未読み込み')+' / Audio '+t+
    ' / CPU Threads '+$('threads').value+' / COI '+String(self.crossOriginIsolated);
 };
+async function prepareIsolation(){
+ if(self.crossOriginIsolated && typeof SharedArrayBuffer==='function')return true;
+ if(!navigator.serviceWorker)throw Error('ブラウザのService Workerが使えないため、WASM pthreadsの隔離ができません');
+ await navigator.serviceWorker.register('./service-worker.js?v=20261023-acft-whispercpp-coi-v1',
+   {updateViaCache:'none'});
+ await navigator.serviceWorker.ready;
+ const reloadKey='mitsukotoba_whispercpp_coi_reloaded_v1';
+ if(sessionStorage.getItem(reloadKey)!=='1'){
+   sessionStorage.setItem(reloadKey,'1');
+   setStatus('WASMマルチスレッドの隔離を準備しました。ページを自動再読込します');
+   location.reload();
+   return false;
+ }
+ throw Error('crossOriginIsolated=falseのままです。再読込後も改善しない場合、Service Worker/ブラウザ設定を確認してください');
+}
 function checkCompatible(){
  if(!self.crossOriginIsolated||typeof SharedArrayBuffer!=='function'){
   throw Error('Whisper WASM pthreadsにはcrossOriginIsolatedが必要です。再読込し、それでもfalseならGitHub Pagesの隔離設定を確認してください。');
@@ -36,6 +51,7 @@ function checkCompatible(){
 async function loadWasm(){
  try{
   setStatus('whisper.cpp WASMを読み込みます');
+  if(!(await prepareIsolation()))return;
   checkCompatible();
   const module={print:(...x)=>log(x.join(' ')),printErr:(...x)=>log('stderr: '+x.join(' ')),
    setStatus:()=>{},onRuntimeInitialized:()=>{wasmReady=true;setStatus('whisper.cpp WASM起動完了。ACFTモデルを選択してください。');enable();}};
