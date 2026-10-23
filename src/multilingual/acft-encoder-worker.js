@@ -15,7 +15,7 @@ self.onmessage=async({data})=>{
     }catch(e){notify({type:'error',stage:'capabilities',build:WORKER_BUILD,error:String(e?.stack||e)});}
     return;
   }
-  if(data?.action!=='benchmark')return;
+  if(data?.action!=='benchmark' && data?.action!=='runtime-smoke')return;
   let model=null,stage='startup';
   const tick=()=>performance.now(),start=tick();
   try{
@@ -37,6 +37,11 @@ self.onmessage=async({data})=>{
     notify({type:'status',text:'WASMの実体を確認済み。バイナリ読込先: '+base});
     stage='init-wasm';
     await loadLiteRt(base);
+    if(data.action==='runtime-smoke'){
+      notify({type:'runtime-ready',build:WORKER_BUILD,wasmBase:base,
+        classicImportScripts:typeof self.importScripts==='function'});
+      return;
+    }
     notify({type:'status',text:data.bytes?'ローカルのACFTモデルをコンパイル中':`ACFT ${spec.tier} ${spec.seconds}s を取得・コンパイル中（約${spec.approxMB}MB）`});
     const loadStart=tick();
     stage='load-model';
