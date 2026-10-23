@@ -93,3 +93,15 @@ litert-community/whisper-acft配布モデルのDecoderは **KV cacheなし、最
 独立ページの任意チェック「Decoderの入力構造と処理時間も測定」は合成melと固定Whisperプロンプトでdecode signatureを実行し、ウォームアップ1回＋3回の1ステップ相当の時間を計測する。音声内容や精度は評価しない。実Decoderが高速でも、言語判定・STFT/mel・Tokenizer・連続トークン生成を含む完成ASRの計測が次に必要。
 
 参照: https://huggingface.co/litert-community/whisper-acft
+
+## Galaxy S25 ACFT Small 5s Decoder診断の形状修正
+実機の2026-10-23測定: `build=20261023-acft-decoder-probe-v4`, Small/5s Encoder `sampleMs=[766.11,766.88,770.02,780.59,784.28]`, 中央値 `770ms`, モデル準備 `40181ms`。
+
+Decoder probe は計算前に `Unrecognized decoder signature` を返しており、Decoder性能の不良は示さない。実際に返却された入力メタデータ:
+- `args_2`: float32 `[1,1,128,128]`（自己回帰マスク）
+- `args_0`: float32 `[1,250,768]`（Encoder出力）
+- `args_1`: int32 `[1,128]`（トークンID）
+
+旧検証コードがマスクを `[1,128,128]` の3次元形状に限定していた。v5では `[1,1,L,L]` の4次元に加え、旧3次元もサポート。メモリ上の要素数はどちらも `L*L`。実機と同じ入力メタデータを使った回帰テストを追加。さらに失敗時のstack全文を診断に含める。
+
+**未確認**: 現物TFLiteのDecoder実行時間、Decoder出力のshape、実音声の精度/総レイテンシ。Encoder中央値770msと合成Decoder計測を含む別測定であることに注意。
