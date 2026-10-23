@@ -25,6 +25,27 @@ assert.equal(decodeSpec.audio.name,'serving_default_audio:0');
 assert.equal(decodeSpec.tokens.name,'serving_default_tokens:0');
 assert.equal(decodeSpec.mask.name,'serving_default_mask:0');
 assert.equal(decodeSpec.outputs[0].shape[2],51865);
+const realS25DecoderDetails=[
+ {name:'args_2',dtype:'float32',shape:[1,1,128,128]},
+ {name:'args_0',dtype:'float32',shape:[1,250,768]},
+ {name:'args_1',dtype:'int32',shape:[1,128]}
+];
+const realS25Spec=inspectDecoderSignature(realS25DecoderDetails,
+ [{name:'logits',dtype:'float32',shape:[1,128,51865]}],[1,250,768]);
+assert.equal(realS25Spec.mask.name,'args_2');
+assert.deepEqual(realS25Spec.mask.shape,[1,1,128,128]);
+assert.equal(realS25Spec.audio.name,'args_0');
+assert.equal(realS25Spec.tokens.name,'args_1');
+const realS25Inputs=fakeDecoderInputs(realS25Spec);
+assert.equal(realS25Inputs.mask.length,1*1*128*128);
+assert.equal(realS25Inputs.mask[127*128+127],0);
+assert.equal(realS25Inputs.mask[126*128+127],-1e9);
+assert.deepEqual(Array.from(realS25Inputs.tokens.slice(0,4)),[50258,50259,50359,50363]);
+assert.throws(()=>inspectDecoderSignature([
+ {name:'args_2',dtype:'float32',shape:[1,2,128,128]},
+ {name:'args_0',dtype:'float32',shape:[1,250,768]},
+ {name:'args_1',dtype:'int32',shape:[1,128]}
+],[],[1,250,768]),/Unrecognized/);
 const dummy=fakeDecoderInputs(decodeSpec);
 assert.deepEqual(Array.from(dummy.tokens.slice(0,4)),[50258,50259,50359,50363]);
 assert.equal(dummy.mask[0],0);
