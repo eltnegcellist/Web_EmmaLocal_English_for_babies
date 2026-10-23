@@ -65,3 +65,12 @@ Sources:
 - Encode signatureをモデルから確認し `[1,80,500]` または `[1,80,1000]` の合成（非音声）log-mel特徴を投入。ウォームアップ1回＋5回実測の中央値のみ表示。Decoder/音声認識/言語自動判定/総ASRはこのページでは一切測らず、旧Encoder中央値8200msはモデル・ランタイムの違う参考値であると明記。
 - `test-acft-encoder.mjs` はモデルURL選択、テンソルshape、計測値の中央値、WASM-onlyルーティングをテストする。**実機のLiteRTモデル推論成功や精度を証明するものではない。**
 - 推論の実機成功が確認できた後、次段階として `decode` signature、log-mel抽出、トークナイザー、言語自動判定を実装し、実音声を使って認識速度・文字起こしの正確性を比較する。
+
+## 2026-10-23 LiteRT.jsブラウザ動作の修正（v3）
+Galaxy S25のBase/5秒実機テストで、(1) Module WorkerでEmscripten `importScripts` 非対応（v2でClassic Worker化して解消）、(2) `WebAssembly.instantiate` で `expected magic 00 61 73 6d, found 3c 21 44 4f`（`<!DO`、HTMLの先頭）が出た。v3ではWASMのバイナリ取得先を単にSDKへ渡すだけでなく、`self.Module.locateFile` をCDN配布ディレクトリへ明示して、Worker URL（Pages内）基準の誤った相対解決を避ける。さらに `litert_wasm_internal.wasm` と `litert_wasm_compat_internal.wasm` に Range要求を送り先頭4byteのmagicを検証、jsDelivrが無効ならunpkgを検証して代替する。
+
+`scripts/browser-acft-classic-smoke.mjs` は本物のChromium Workerで`runtime-smoke`を実行する（モデル取得不要のWASM初期化まで）。UI本体は異常時に`stage`と具体的なURL/バイナリ先頭文字を表示する。WASM起動成功≠ACFTモデル実機推論成功である点は引き続き注意。
+
+検証根拠: LiteRT.js `load.ts` は`createWasmLib`にJSパスを渡し、`wasm-utils/wasm_loader.ts`の`createWasmLib` は`self.Module`を`ModuleFactory`に渡す仕様。
+- https://github.com/google-ai-edge/LiteRT/blob/main/litert/js/packages/core/src/load.ts
+- https://github.com/google-ai-edge/LiteRT/blob/main/litert/js/packages/wasm_utils/src/wasm_loader.ts
