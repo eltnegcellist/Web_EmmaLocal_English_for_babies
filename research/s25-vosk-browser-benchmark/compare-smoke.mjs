@@ -28,6 +28,31 @@ try{
 const isolated=await page.evaluate(()=>crossOriginIsolated);
 console.log('COI state:',isolated,'UI:',await page.locator('#isolation').textContent());
 if(!isolated)throw Error('Compare page cannot turn on isolation in Chromium through service worker.');
+// Critical regression check: every module Worker must actually launch, resolve
+// its nested imports, and return a structured error or success to the caller.
+for(const kind of ['moonshine','whisper']){
+  const outcome=await page.evaluate(async(kind)=>{
+    const url='./'+kind+'-bench-worker.js';
+    const worker=new Worker(url,{type:'module'});
+    try {
+      const reply=await new Promise((resolve,reject)=>{
+        const timeout=setTimeout(()=>reject(Error(kind+' Worker probe timeout')),90000);
+        worker.onerror=e=>{clearTimeout(timeout);reject(Error('Worker startup '+(e.message||'unknown')+' at '+(e.filename||'?')))};
+        worker.onmessage=({data})=>{
+          if(data.id!==778 || !['reply','error'].includes(data.type))return;
+          clearTimeout(timeout);
+          if(data.type==='error')reject(Error(data.message));else resolve(data);
+        };
+        worker.postMessage({id:778,type:'probe'});
+      });
+      return {success:true,reply};
+    }catch(error){return {success:false,message:String(error)};}
+    finally{worker.terminate();}
+  },kind);
+  console.log('Worker import probe',kind,JSON.stringify(outcome));
+  if(!outcome.success||!outcome.reply?.probed)
+    throw new Error('Nested module imports failed for '+kind+': '+JSON.stringify(outcome));
+}
 const response=await fetch('https://raw.githubusercontent.com/alphacep/vosk-api/master/python/example/test.wav');
 if(!response.ok)throw Error('Test audio unavailable: '+response.status);
 const bytes=Buffer.from(await response.arrayBuffer());
