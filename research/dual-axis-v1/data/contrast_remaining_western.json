@@ -1,0 +1,303 @@
+{
+  "schema": 1,
+  "source": "assistant_synthetic_unreviewed",
+  "topic_interaction_order": {
+    "clothes": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "finish_check"
+    ],
+    "cry": [
+      "inquiry",
+      "care",
+      "reassurance",
+      "finish_check"
+    ],
+    "drink": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "finish_check"
+    ],
+    "feet": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "praise"
+    ],
+    "generic": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "finish_check"
+    ],
+    "hands": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "praise"
+    ],
+    "hug": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "finish_check"
+    ],
+    "rain": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "finish_check"
+    ],
+    "smile": [
+      "inquiry",
+      "praise",
+      "achievement",
+      "repeat"
+    ],
+    "sun": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "finish_check"
+    ],
+    "voice": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "praise"
+    ],
+    "wake": [
+      "inquiry",
+      "invitation",
+      "repeat",
+      "finish_check"
+    ]
+  },
+  "by_language": {
+    "en": {
+      "clothes": [
+        "Are your socks feeling tight?",
+        "Shall we put on your little jacket?",
+        "Shall I pull your sleeve through again?",
+        "Have we finished getting dressed?"
+      ],
+      "cry": [
+        "Are those tears because you're tired?",
+        "I'll gently wipe your tears.",
+        "It's okay to cry; I'm staying close.",
+        "Have your tears stopped now?"
+      ],
+      "drink": [
+        "Does this water taste nice?",
+        "Would you like a drink of water?",
+        "Do you want another little sip?",
+        "Have you finished drinking your water?"
+      ],
+      "feet": [
+        "Are your little feet cold?",
+        "Shall we wiggle your toes together?",
+        "Can you kick those little feet again?",
+        "What strong little kicks!"
+      ],
+      "generic": [
+        "What are you looking at over there?",
+        "Shall we spend some time together?",
+        "Would you like to do that once more?",
+        "Are we all finished with that?"
+      ],
+      "hands": [
+        "Are your tiny hands warm?",
+        "Shall we clap our hands together?",
+        "Can we clap our hands once again?",
+        "You're moving your hands so well!"
+      ],
+      "hug": [
+        "Do you feel cozy in my arms?",
+        "Would you like a cuddle?",
+        "Shall I give you another hug?",
+        "Are you ready to come out of the hug?"
+      ],
+      "rain": [
+        "Can you hear the raindrops?",
+        "Shall we watch the rain through the window?",
+        "Shall we listen to the rain again?",
+        "Has the rain stopped outside?"
+      ],
+      "smile": [
+        "What made you smile just now?",
+        "That's such a lovely smile!",
+        "You gave me your first big grin today!",
+        "Can you show me that smile again?"
+      ],
+      "sun": [
+        "Is the sunlight bright by the window?",
+        "Shall we sit in the gentle morning light?",
+        "Would you like to look at the sunlit room again?",
+        "Has the sunlight moved away from the window?"
+      ],
+      "voice": [
+        "Was that your little voice I heard?",
+        "Shall we make some sounds together?",
+        "Can you make that sound again?",
+        "What a lovely clear little voice!"
+      ],
+      "wake": [
+        "Are you fully awake now?",
+        "Shall we open the curtains now that you're awake?",
+        "Want to stretch again after waking up?",
+        "Have you finished waking up and stretching?"
+      ]
+    },
+    "de": {
+      "clothes": [
+        "Sind deine Socken zu eng?",
+        "Sollen wir deine kleine Jacke anziehen?",
+        "Soll ich deinen Ärmel noch einmal durchziehen?",
+        "Sind wir mit dem Anziehen fertig?"
+      ],
+      "cry": [
+        "Weinst du, weil du müde bist?",
+        "Ich wische dir vorsichtig die Tränen ab.",
+        "Du darfst weinen; ich bleibe bei dir.",
+        "Haben deine Tränen jetzt aufgehört?"
+      ],
+      "drink": [
+        "Schmeckt dir das Wasser?",
+        "Möchtest du etwas Wasser trinken?",
+        "Möchtest du noch einen kleinen Schluck?",
+        "Hast du dein Wasser ausgetrunken?"
+      ],
+      "feet": [
+        "Sind deine kleinen Füße kalt?",
+        "Wollen wir zusammen mit den Zehen wackeln?",
+        "Kannst du noch einmal mit den Füßen strampeln?",
+        "Was für kräftige kleine Tritte!"
+      ],
+      "generic": [
+        "Was schaust du dir dort an?",
+        "Wollen wir ein bisschen Zeit zusammen verbringen?",
+        "Möchtest du das noch einmal machen?",
+        "Sind wir damit jetzt ganz fertig?"
+      ],
+      "hands": [
+        "Sind deine kleinen Hände warm?",
+        "Wollen wir gemeinsam in die Hände klatschen?",
+        "Können wir noch einmal klatschen?",
+        "Du bewegst deine Hände schon so toll!"
+      ],
+      "hug": [
+        "Fühlst du dich in meinen Armen geborgen?",
+        "Möchtest du kuscheln?",
+        "Soll ich dich noch einmal umarmen?",
+        "Möchtest du jetzt wieder aus der Umarmung heraus?"
+      ],
+      "rain": [
+        "Kannst du die Regentropfen hören?",
+        "Wollen wir den Regen am Fenster beobachten?",
+        "Wollen wir dem Regen noch einmal zuhören?",
+        "Hat der Regen draußen aufgehört?"
+      ],
+      "smile": [
+        "Was hat dich gerade zum Lächeln gebracht?",
+        "Was für ein wunderschönes Lächeln!",
+        "Du hast mir heute dein erstes großes Grinsen gezeigt!",
+        "Kannst du mir das Lächeln noch einmal zeigen?"
+      ],
+      "sun": [
+        "Ist das Sonnenlicht am Fenster hell?",
+        "Wollen wir im sanften Morgenlicht sitzen?",
+        "Möchtest du dir den sonnigen Raum noch einmal ansehen?",
+        "Ist das Sonnenlicht vom Fenster weitergezogen?"
+      ],
+      "voice": [
+        "War das gerade deine kleine Stimme?",
+        "Wollen wir zusammen ein paar Laute machen?",
+        "Kannst du diesen Laut noch einmal machen?",
+        "Was für eine schöne, klare kleine Stimme!"
+      ],
+      "wake": [
+        "Bist du jetzt richtig wach?",
+        "Sollen wir die Vorhänge öffnen, wo du jetzt wach bist?",
+        "Möchtest du dich nach dem Aufwachen noch einmal strecken?",
+        "Bist du mit dem Aufwachen und Strecken fertig?"
+      ]
+    },
+    "fr": {
+      "clothes": [
+        "Tes chaussettes te serrent ?",
+        "On enfile ta petite veste ?",
+        "Je repasse ton bras dans la manche ?",
+        "On a fini de t'habiller ?"
+      ],
+      "cry": [
+        "Tu pleures parce que tu es fatigué ?",
+        "Je vais essuyer doucement tes larmes.",
+        "Tu peux pleurer, je reste tout près.",
+        "Tes larmes se sont arrêtées ?"
+      ],
+      "drink": [
+        "Cette eau a bon goût ?",
+        "Tu veux boire un peu d'eau ?",
+        "Tu veux encore une petite gorgée ?",
+        "Tu as fini de boire ton eau ?"
+      ],
+      "feet": [
+        "Tes petits pieds sont froids ?",
+        "On remue les orteils ensemble ?",
+        "Tu peux donner encore des petits coups de pied ?",
+        "Quels coups de pied énergiques !"
+      ],
+      "generic": [
+        "Qu'est-ce que tu regardes là-bas ?",
+        "On passe un peu de temps ensemble ?",
+        "Tu veux refaire ça une fois ?",
+        "On a complètement terminé ?"
+      ],
+      "hands": [
+        "Tes petites mains sont chaudes ?",
+        "On tape dans les mains ensemble ?",
+        "On tape encore dans les mains ?",
+        "Tu bouges tellement bien tes petites mains !"
+      ],
+      "hug": [
+        "Tu es bien dans mes bras ?",
+        "Tu veux un câlin ?",
+        "Tu veux encore un câlin ?",
+        "Tu es prêt à sortir de mes bras ?"
+      ],
+      "rain": [
+        "Tu entends les gouttes de pluie ?",
+        "On regarde la pluie par la fenêtre ?",
+        "On écoute encore la pluie ?",
+        "Il s'est arrêté de pleuvoir dehors ?"
+      ],
+      "smile": [
+        "Qu'est-ce qui t'a fait sourire ?",
+        "Quel adorable sourire !",
+        "Tu m'as offert ton premier grand sourire aujourd'hui !",
+        "Tu me montres encore ce sourire ?"
+      ],
+      "sun": [
+        "La lumière du soleil est forte près de la fenêtre ?",
+        "On s'assoit dans la douce lumière du matin ?",
+        "Tu veux regarder encore la pièce ensoleillée ?",
+        "Le soleil a quitté la fenêtre ?"
+      ],
+      "voice": [
+        "C'était ta petite voix que j'ai entendue ?",
+        "On fait des petits sons ensemble ?",
+        "Tu peux refaire ce petit son ?",
+        "Quelle jolie petite voix bien claire !"
+      ],
+      "wake": [
+        "Tu es bien réveillé maintenant ?",
+        "On ouvre les rideaux maintenant que tu es réveillé ?",
+        "Tu veux encore t'étirer après le réveil ?",
+        "Tu as fini de te réveiller et de t'étirer ?"
+      ]
+    }
+  },
+  "note": "Provisional 12 remaining topics and 4 naturally compatible intentions each; require native review"
+}
