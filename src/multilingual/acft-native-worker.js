@@ -1,5 +1,10 @@
 /* Classic worker: isolate FUTO Whisper ACFT Small GGML and whisper.cpp WASM
    away from the main UI and E5 embedding worker. Audio never leaves device. */
+// Marker for browser smoke to distinguish Worker load errors from WASM init.
+self.postMessage({kind:'bootstrap',text:'ACFT classic Worker script loaded'});
+self.addEventListener('error',e=>{
+  self.postMessage({kind:'native-log',text:'Worker error: '+String(e.message||'unknown')});
+});
 const MODEL='small_acft_q8_0.bin';
 let initialized=false,failed=null,runtimePromise=null,active=false;
 function fail(e){return String(e?.stack||e?.message||e)}
