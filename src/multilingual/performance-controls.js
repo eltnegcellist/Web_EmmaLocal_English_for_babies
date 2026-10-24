@@ -5,7 +5,7 @@ import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,
 // Developer-only A/B controls; never switch to a smaller Whisper model or GPU.
 export function installWhisperPerformanceControls({
   document=globalThis.document,storage=globalThis.localStorage,onChange=()=>{},
-  onForgetLanguage=()=>{}
+  onForgetLanguage=()=>{},onImportAcftFile=async()=>{},hasAcftModel=async()=>false
 }={}){
   const host=document.getElementById('developerTools');
   if(!host)return {apply:()=>{}};
@@ -46,6 +46,29 @@ export function installWhisperPerformanceControls({
   button.addEventListener('click',()=>onForgetLanguage());
   const label=document.createElement('p');label.className='small muted';
   label.textContent='言語キャッシュは会話終了時にも破棄します。再測定は同じ音声長・発話内容で行ってください。';
-  block.append(button,label);host.prepend(block);
-  return {apply(language){block.hidden=language==='ja';},threads,detection};
+  block.append(button,label);
+  const modelInfo=document.createElement('p');modelInfo.className='small muted';
+  modelInfo.textContent='ACFT Small（5/10秒窓）実験版：公式のsmall_acft_q8_0.bin（約264MB）を一度保存すると、多言語ASRが短窓版に切り替わります。音声は端末内だけで処理します。';
+  const link=document.createElement('a');link.href='https://voiceinput.futo.org/VoiceInput/small_acft_q8_0.bin';
+  link.target='_blank';link.rel='noopener noreferrer';link.textContent='FUTO公式モデルを保存';
+  const modelInput=document.createElement('input');modelInput.type='file';
+  modelInput.accept='.bin,application/octet-stream';modelInput.id='acftSmallModelImport';
+  modelInput.setAttribute('aria-label','ACFT Small model (GGML)');
+  const modelStatus=document.createElement('p');modelStatus.className='small muted';
+  modelStatus.id='acftSmallModelStatus';modelStatus.textContent='モデル状態を確認中…';
+  const refreshModelStatus=async()=>{
+    try{modelStatus.textContent=(await hasAcftModel())?'ACFT Small：端末内に保存済み（5/10秒窓が有効）':'ACFT Small：未保存。取り込むまでは従来Whisper Smallを使用';}
+    catch(e){modelStatus.textContent='保存状態を確認できませんでした：'+e.message;}
+  };
+  modelInput.addEventListener('change',async()=>{
+    const file=modelInput.files?.[0];if(!file)return;
+    modelInput.disabled=true;modelStatus.textContent='ACFTモデルのSHA-256を確認して端末内へ保存しています…';
+    try{await onImportAcftFile(file);await refreshModelStatus();}
+    catch(e){modelStatus.textContent='保存に失敗：'+e.message;}
+    finally{modelInput.value='';modelInput.disabled=false;}
+  });
+  block.append(modelInfo,link,modelInput,modelStatus);
+  host.prepend(block);
+  refreshModelStatus();
+  return {apply(language){block.hidden=language==='ja';if(!block.hidden)refreshModelStatus();},threads,detection,refreshModelStatus};
 }
