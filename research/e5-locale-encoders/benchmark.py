@@ -131,31 +131,60 @@ def main():
                         / counts[r["language"]] for r in train],dtype=np.float64)
     weights*=len(train)/weights.sum()
     B_weighted=train_head(train,e5_features,labels,weights)
+    # Always keep A/B results if the optional dedicated model is unavailable.
+    # In particular, model download, license rejection, and incompatible
+    # architectures must not make a valid E5 local-head measurement disappear.
     model_id,allow_license=CANDIDATES[language]
-    from huggingface_hub import HfApi
-    info=HfApi().model_info(model_id)
-    license_name=(info.card_data.license or "").lower() if info.card_data else ""
-    if license_name!=allow_license or license_name not in ("mit","apache-2.0"):
-        raise ValueError(f"Disallowed or changed model license: {model_id}: {license_name!r}")
-    if not info.sha or len(info.sha)!=40:raise ValueError("No immutable Hugging Face model revision")
-    from sentence_transformers import SentenceTransformer
-    import torch
-    torch.set_num_threads(2)
-    tic=time.monotonic()
-    encoder=SentenceTransformer(model_id,revision=info.sha,device="cpu",trust_remote_code=False)
-    localtexts=list(dict.fromkeys(r["text"] for r in local_train+local_val+oracle+asr))
-    modeltexts=[("query: "+s if language in ("ko","th") else s) for s in localtexts]
-    embs=encoder.encode(modeltexts, batch_size=16,convert_to_numpy=True,
-                        normalize_embeddings=True,show_progress_bar=False)
-    dedicated_features={s:np.asarray(v,dtype=np.float32) for s,v in zip(localtexts,embs)}
-    encoder_elapsed=round(time.monotonic()-tic,2)
-    del encoder
-    if not np.isfinite(embs).all():raise ValueError("Dedicated encoder generated NaN")
-    C_local=train_head(local_train,dedicated_features,labels)
+    model_revision=None
+    license_name=None
+    encoder_elapsed=None
+    dedicated_error=None
+    dedicated_status="FAILED"
     methods={"A_shared_v2":(heads["interaction"],e5_features),
              "B_e5_local":(B_local,e5_features),
-             "B_e5_weighted":(B_weighted,e5_features),
-             "C_dedicated_encoder":(C_local,dedicated_features)}
+             "B_e5_weighted":(B_weighted,e5_features)}
+    candidate_weights={"B_e5_local":B_local,"B_e5_weighted":B_weighted}
+    try:
+        from huggingface_hub import HfApi
+        info=HfApi().model_info(model_id)
+        raw_license=info.card_data.license if info.card_data else None
+        license_name=str(raw_license or "").strip().lower()
+        if license_name!=allow_license or license_name not in ("mit","apache-2.0"):
+            dedicated_status="EXCLUDED_LICENSE"
+            raise ValueError(f"Non-approved or changed model license: {model_id}: {license_name!r}")
+        if not info.sha or len(info.sha)!=40:raise ValueError("No immutable Hugging Face model revision")
+        model_revision=info.sha
+        from sentence_transformers import SentenceTransformer
+        import torch
+        torch.set_num_threads(2)
+        tic=time.monotonic()
+        encoder=SentenceTransformer(model_id,revision=info.sha,device="cpu",trust_remote_code=False)
+        localtexts=list(dict.fromkeys(r["text"] for r in local_train+local_val+oracle+asr))
+        modeltexts=[("query: "+s if language in ("ko","th") else s) for s in localtexts]
+        embs=encoder.encode(modeltexts,batch_size=16,convert_to_numpy=True,
+                            normalize_embeddings=True,show_progress_bar=False)
+        dedicated_features={s:np.asarray(v,dtype=np.float32) for s,v in zip(localtexts,embs)}
+        encoder_elapsed=round(time.monotonic()-tic,2)
+        del encoder
+        if not np.isfinite(embs).all():raise ValueError("Dedicated encoder generated NaN")
+        C_local=train_head(local_train,dedicated_features,labels)
+        methods["C_dedicated_encoder"]=(C_local,dedicated_features)
+        candidate_weights["C_dedicated_encoder"]=C_local
+        dedicated_status="COMPLETED"
+    except Exception as exc:
+        if dedicated_status!="EXCLUDED_LICENSE":dedicated_status="FAILED"
+        dedicated_error=f"{type(exc).__name__}: {exc}"
+        print(f"DEDICATED MODEL {dedicated_status} ({language}): {dedicated_error}",file=sys.stderr)
+    # Research-only weights in isolated outputs, never in production head assets.
+    weight_manifest={}
+    for arm,weights in candidate_weights.items():
+        filename=arm+".f32"
+        blob=np.asarray(weights,dtype="<f4").tobytes()
+        (out/filename).write_bytes(blob)
+        weight_manifest[arm]={"file":filename,"sha256":HASH(blob),
+                              "shape":list(weights.shape),"classes":labels}
+    (out/"candidate_weights.json").write_text(
+        json.dumps(weight_manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     comparison={}
     predictions=[]
     for name,(head,features) in methods.items():
@@ -182,7 +211,8 @@ def main():
               "gold":r["interaction"],"predicted":q})
     payload={"status":"RESEARCH_ONLY_NOT_APPROVED","language":language,
              "e5_model_sha256":e5.model_sha,"dedicated_model":model_id,
-             "dedicated_model_revision":info.sha,"dedicated_license":license_name,
+             "dedicated_model_revision":model_revision,"dedicated_license":license_name,
+             "dedicated_status":dedicated_status,"dedicated_error":dedicated_error,
              "training_examples":len(local_train),"validation_examples":len(local_val),
              "frozen_oracle_examples":len(oracle),"frozen_asr_examples":len(asr),
              "synthetic_labels_not_reviewed":True,"topic_head_unchanged":True,
