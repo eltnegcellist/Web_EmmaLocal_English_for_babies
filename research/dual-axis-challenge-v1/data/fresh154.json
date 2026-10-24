@@ -1,0 +1,1548 @@
+{
+  "schema": 1,
+  "training_excluded": true,
+  "source": "assistant-generated synthetic speech - unreviewed, not native-speaker validated",
+  "decision": "Evaluate 3 previously frozen models only. Never use this set to choose hyperparameters and rerun as unbiased held-out data.",
+  "rows": [
+    {
+      "id": "fresh154-en-bath",
+      "language": "en",
+      "text": "Does that splash tickle your tummy?",
+      "topic": "bath",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-0",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-book",
+      "language": "en",
+      "text": "Shall we find the rabbit in this book?",
+      "topic": "book",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-1",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-clothes",
+      "language": "en",
+      "text": "Are both your arms through the sleeves now?",
+      "topic": "clothes",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-2",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-cry",
+      "language": "en",
+      "text": "I hear your cries; I'm staying with you.",
+      "topic": "cry",
+      "interaction": "reassurance",
+      "semantic_family": "frozen-challenge-meaning-3",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-diaper",
+      "language": "en",
+      "text": "This diaper seems uncomfortable; I'll change it gently.",
+      "topic": "diaper",
+      "interaction": "care",
+      "semantic_family": "frozen-challenge-meaning-4",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-drink",
+      "language": "en",
+      "text": "Want another little sip from the cup?",
+      "topic": "drink",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-5",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-feet",
+      "language": "en",
+      "text": "What lovely moving little toes!",
+      "topic": "feet",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-6",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-food",
+      "language": "en",
+      "text": "That was the last spoonful of your meal.",
+      "topic": "food",
+      "interaction": "finish",
+      "semantic_family": "frozen-challenge-meaning-7",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-generic",
+      "language": "en",
+      "text": "Our room is very quiet this afternoon.",
+      "topic": "generic",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-8",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-hands",
+      "language": "en",
+      "text": "Reach a little farther with your hands!",
+      "topic": "hands",
+      "interaction": "encouragement",
+      "semantic_family": "frozen-challenge-meaning-9",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-hug",
+      "language": "en",
+      "text": "I love keeping you close in my arms.",
+      "topic": "hug",
+      "interaction": "affection",
+      "semantic_family": "frozen-challenge-meaning-10",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-milk",
+      "language": "en",
+      "text": "Let's rest before having more milk.",
+      "topic": "milk",
+      "interaction": "pause",
+      "semantic_family": "frozen-challenge-meaning-11",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-music",
+      "language": "en",
+      "text": "Here comes our lullaby.",
+      "topic": "music",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-12",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-outside",
+      "language": "en",
+      "text": "Does the fresh air feel cool on your cheeks?",
+      "topic": "outside",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-13",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-play",
+      "language": "en",
+      "text": "You reached that soft ball by yourself!",
+      "topic": "play",
+      "interaction": "achievement",
+      "semantic_family": "frozen-challenge-meaning-14",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-rain",
+      "language": "en",
+      "text": "Raindrops are running down the window.",
+      "topic": "rain",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-15",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-sleep",
+      "language": "en",
+      "text": "Would you like a short nap in your crib?",
+      "topic": "sleep",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-16",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-smile",
+      "language": "en",
+      "text": "What a wonderful bright smile!",
+      "topic": "smile",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-17",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-sun",
+      "language": "en",
+      "text": "Has the patch of sunlight gone away now?",
+      "topic": "sun",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-18",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-tummy",
+      "language": "en",
+      "text": "You're working hard to lift your head during tummy time.",
+      "topic": "tummy",
+      "interaction": "effort",
+      "semantic_family": "frozen-challenge-meaning-19",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-voice",
+      "language": "en",
+      "text": "Can you make that little sound once more?",
+      "topic": "voice",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-20",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-en-wake",
+      "language": "en",
+      "text": "Good morning; we're waking up now!",
+      "topic": "wake",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-21",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-bath",
+      "language": "de",
+      "text": "Kitzelt dich das Spritzen am Bauch?",
+      "topic": "bath",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-0",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-book",
+      "language": "de",
+      "text": "Sollen wir in diesem Buch das Kaninchen finden?",
+      "topic": "book",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-1",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-clothes",
+      "language": "de",
+      "text": "Sind beide Arme jetzt durch die Ärmel?",
+      "topic": "clothes",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-2",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-cry",
+      "language": "de",
+      "text": "Ich höre dich weinen; ich bleibe bei dir.",
+      "topic": "cry",
+      "interaction": "reassurance",
+      "semantic_family": "frozen-challenge-meaning-3",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-diaper",
+      "language": "de",
+      "text": "Diese Windel drückt wohl; ich wechsle sie vorsichtig.",
+      "topic": "diaper",
+      "interaction": "care",
+      "semantic_family": "frozen-challenge-meaning-4",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-drink",
+      "language": "de",
+      "text": "Willst du noch einen kleinen Schluck aus dem Becher?",
+      "topic": "drink",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-5",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-feet",
+      "language": "de",
+      "text": "Was für wunderbar bewegliche kleine Zehen!",
+      "topic": "feet",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-6",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-food",
+      "language": "de",
+      "text": "Das war der letzte Löffel deiner Mahlzeit.",
+      "topic": "food",
+      "interaction": "finish",
+      "semantic_family": "frozen-challenge-meaning-7",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-generic",
+      "language": "de",
+      "text": "Heute Nachmittag ist es ganz still im Zimmer.",
+      "topic": "generic",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-8",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-hands",
+      "language": "de",
+      "text": "Streck deine Hände noch ein Stück weiter aus!",
+      "topic": "hands",
+      "interaction": "encouragement",
+      "semantic_family": "frozen-challenge-meaning-9",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-hug",
+      "language": "de",
+      "text": "Ich halte dich so gern in meinen Armen.",
+      "topic": "hug",
+      "interaction": "affection",
+      "semantic_family": "frozen-challenge-meaning-10",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-milk",
+      "language": "de",
+      "text": "Wir machen eine Pause, bevor es mehr Milch gibt.",
+      "topic": "milk",
+      "interaction": "pause",
+      "semantic_family": "frozen-challenge-meaning-11",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-music",
+      "language": "de",
+      "text": "Jetzt beginnt unser Schlaflied.",
+      "topic": "music",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-12",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-outside",
+      "language": "de",
+      "text": "Fühlt sich die frische Luft kühl an deinen Wangen an?",
+      "topic": "outside",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-13",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-play",
+      "language": "de",
+      "text": "Du hast den weichen Ball ganz allein erreicht!",
+      "topic": "play",
+      "interaction": "achievement",
+      "semantic_family": "frozen-challenge-meaning-14",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-rain",
+      "language": "de",
+      "text": "Regentropfen laufen am Fenster hinunter.",
+      "topic": "rain",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-15",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-sleep",
+      "language": "de",
+      "text": "Möchtest du ein kurzes Schläfchen im Bettchen machen?",
+      "topic": "sleep",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-16",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-smile",
+      "language": "de",
+      "text": "Was für ein strahlendes Lächeln!",
+      "topic": "smile",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-17",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-sun",
+      "language": "de",
+      "text": "Ist der Sonnenfleck jetzt schon weg?",
+      "topic": "sun",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-18",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-tummy",
+      "language": "de",
+      "text": "Du strengst dich an, bei der Bauchlage den Kopf zu heben.",
+      "topic": "tummy",
+      "interaction": "effort",
+      "semantic_family": "frozen-challenge-meaning-19",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-voice",
+      "language": "de",
+      "text": "Kannst du den kleinen Laut noch einmal machen?",
+      "topic": "voice",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-20",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-de-wake",
+      "language": "de",
+      "text": "Guten Morgen, jetzt werden wir wach!",
+      "topic": "wake",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-21",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-bath",
+      "language": "fr",
+      "text": "Cette éclaboussure te chatouille le ventre ?",
+      "topic": "bath",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-0",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-book",
+      "language": "fr",
+      "text": "On cherche le lapin dans ce livre ?",
+      "topic": "book",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-1",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-clothes",
+      "language": "fr",
+      "text": "Tes deux bras sont bien dans les manches ?",
+      "topic": "clothes",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-2",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-cry",
+      "language": "fr",
+      "text": "Je t'entends pleurer ; je reste avec toi.",
+      "topic": "cry",
+      "interaction": "reassurance",
+      "semantic_family": "frozen-challenge-meaning-3",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-diaper",
+      "language": "fr",
+      "text": "Cette couche te gêne ; je vais la changer doucement.",
+      "topic": "diaper",
+      "interaction": "care",
+      "semantic_family": "frozen-challenge-meaning-4",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-drink",
+      "language": "fr",
+      "text": "Tu veux encore une petite gorgée du gobelet ?",
+      "topic": "drink",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-5",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-feet",
+      "language": "fr",
+      "text": "Comme tes petits orteils bougent bien !",
+      "topic": "feet",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-6",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-food",
+      "language": "fr",
+      "text": "C'était la dernière cuillerée du repas.",
+      "topic": "food",
+      "interaction": "finish",
+      "semantic_family": "frozen-challenge-meaning-7",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-generic",
+      "language": "fr",
+      "text": "Notre chambre est très calme cet après-midi.",
+      "topic": "generic",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-8",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-hands",
+      "language": "fr",
+      "text": "Tends encore un peu tes petites mains !",
+      "topic": "hands",
+      "interaction": "encouragement",
+      "semantic_family": "frozen-challenge-meaning-9",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-hug",
+      "language": "fr",
+      "text": "J'aime te garder tout près dans mes bras.",
+      "topic": "hug",
+      "interaction": "affection",
+      "semantic_family": "frozen-challenge-meaning-10",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-milk",
+      "language": "fr",
+      "text": "On fait une pause avant de reprendre le lait.",
+      "topic": "milk",
+      "interaction": "pause",
+      "semantic_family": "frozen-challenge-meaning-11",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-music",
+      "language": "fr",
+      "text": "Voici notre berceuse qui commence.",
+      "topic": "music",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-12",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-outside",
+      "language": "fr",
+      "text": "L'air frais est un peu froid sur tes joues ?",
+      "topic": "outside",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-13",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-play",
+      "language": "fr",
+      "text": "Tu as attrapé la balle douce tout seul !",
+      "topic": "play",
+      "interaction": "achievement",
+      "semantic_family": "frozen-challenge-meaning-14",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-rain",
+      "language": "fr",
+      "text": "Les gouttes de pluie coulent le long de la fenêtre.",
+      "topic": "rain",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-15",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-sleep",
+      "language": "fr",
+      "text": "Tu veux faire une petite sieste dans ton lit ?",
+      "topic": "sleep",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-16",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-smile",
+      "language": "fr",
+      "text": "Quel sourire lumineux tu nous fais !",
+      "topic": "smile",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-17",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-sun",
+      "language": "fr",
+      "text": "La tache de soleil a déjà disparu ?",
+      "topic": "sun",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-18",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-tummy",
+      "language": "fr",
+      "text": "Tu fais beaucoup d'efforts pour lever la tête sur le ventre.",
+      "topic": "tummy",
+      "interaction": "effort",
+      "semantic_family": "frozen-challenge-meaning-19",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-voice",
+      "language": "fr",
+      "text": "Tu peux refaire ce petit son une fois ?",
+      "topic": "voice",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-20",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-fr-wake",
+      "language": "fr",
+      "text": "Bonjour, on se réveille maintenant !",
+      "topic": "wake",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-21",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-bath",
+      "language": "ko",
+      "text": "물방울이 배에 닿으니 간지럽니?",
+      "topic": "bath",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-0",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-book",
+      "language": "ko",
+      "text": "이 책에서 토끼를 함께 찾아볼까?",
+      "topic": "book",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-1",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-clothes",
+      "language": "ko",
+      "text": "이제 두 팔이 모두 소매에 들어갔니?",
+      "topic": "clothes",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-2",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-cry",
+      "language": "ko",
+      "text": "우는 소리가 들려, 내가 곁에 있을게.",
+      "topic": "cry",
+      "interaction": "reassurance",
+      "semantic_family": "frozen-challenge-meaning-3",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-diaper",
+      "language": "ko",
+      "text": "기저귀가 불편하겠구나, 살살 갈아 줄게.",
+      "topic": "diaper",
+      "interaction": "care",
+      "semantic_family": "frozen-challenge-meaning-4",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-drink",
+      "language": "ko",
+      "text": "컵에서 한 모금 더 마실래?",
+      "topic": "drink",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-5",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-feet",
+      "language": "ko",
+      "text": "작은 발가락이 정말 귀엽게 움직이는구나!",
+      "topic": "feet",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-6",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-food",
+      "language": "ko",
+      "text": "이번 식사의 마지막 한 숟가락이야.",
+      "topic": "food",
+      "interaction": "finish",
+      "semantic_family": "frozen-challenge-meaning-7",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-generic",
+      "language": "ko",
+      "text": "오늘 오후에는 방이 조용하네.",
+      "topic": "generic",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-8",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-hands",
+      "language": "ko",
+      "text": "작은 손을 조금 더 뻗어 봐!",
+      "topic": "hands",
+      "interaction": "encouragement",
+      "semantic_family": "frozen-challenge-meaning-9",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-hug",
+      "language": "ko",
+      "text": "이렇게 너를 품에 안는 게 정말 좋아.",
+      "topic": "hug",
+      "interaction": "affection",
+      "semantic_family": "frozen-challenge-meaning-10",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-milk",
+      "language": "ko",
+      "text": "우유를 더 마시기 전에 잠깐 쉬자.",
+      "topic": "milk",
+      "interaction": "pause",
+      "semantic_family": "frozen-challenge-meaning-11",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-music",
+      "language": "ko",
+      "text": "이제 자장가가 시작될 거야.",
+      "topic": "music",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-12",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-outside",
+      "language": "ko",
+      "text": "밖의 공기가 뺨에 시원하게 느껴지니?",
+      "topic": "outside",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-13",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-play",
+      "language": "ko",
+      "text": "부드러운 공을 혼자 잡았구나!",
+      "topic": "play",
+      "interaction": "achievement",
+      "semantic_family": "frozen-challenge-meaning-14",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-rain",
+      "language": "ko",
+      "text": "창문에 빗방울이 흘러내리고 있네.",
+      "topic": "rain",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-15",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-sleep",
+      "language": "ko",
+      "text": "침대에서 잠깐 낮잠을 자 볼까?",
+      "topic": "sleep",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-16",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-smile",
+      "language": "ko",
+      "text": "정말 환하게 웃는구나!",
+      "topic": "smile",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-17",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-sun",
+      "language": "ko",
+      "text": "햇살이 비치던 자리가 벌써 사라졌니?",
+      "topic": "sun",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-18",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-tummy",
+      "language": "ko",
+      "text": "엎드려서 고개를 들려고 애쓰는구나.",
+      "topic": "tummy",
+      "interaction": "effort",
+      "semantic_family": "frozen-challenge-meaning-19",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-voice",
+      "language": "ko",
+      "text": "그 작은 소리를 다시 한번 내 볼래?",
+      "topic": "voice",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-20",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-ko-wake",
+      "language": "ko",
+      "text": "좋은 아침이야, 이제 일어나자!",
+      "topic": "wake",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-21",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-bath",
+      "language": "th",
+      "text": "น้ำกระเซ็นโดนท้องแล้วจั๊กจี้ไหม?",
+      "topic": "bath",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-0",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-book",
+      "language": "th",
+      "text": "มาหากระต่ายในหนังสือเล่มนี้กันไหม?",
+      "topic": "book",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-1",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-clothes",
+      "language": "th",
+      "text": "ตอนนี้สอดแขนเข้าเสื้อครบสองข้างแล้วหรือยัง?",
+      "topic": "clothes",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-2",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-cry",
+      "language": "th",
+      "text": "ได้ยินหนูร้องไห้แล้วนะ ฉันอยู่ตรงนี้กับหนู",
+      "topic": "cry",
+      "interaction": "reassurance",
+      "semantic_family": "frozen-challenge-meaning-3",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-diaper",
+      "language": "th",
+      "text": "ผ้าอ้อมคงไม่สบายตัว เดี๋ยวเปลี่ยนให้อย่างเบามือนะ",
+      "topic": "diaper",
+      "interaction": "care",
+      "semantic_family": "frozen-challenge-meaning-4",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-drink",
+      "language": "th",
+      "text": "อยากจิบจากแก้วอีกนิดไหม?",
+      "topic": "drink",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-5",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-feet",
+      "language": "th",
+      "text": "นิ้วเท้าน้อย ๆ ขยับได้น่ารักจังเลย!",
+      "topic": "feet",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-6",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-food",
+      "language": "th",
+      "text": "นี่เป็นอาหารคำสุดท้ายของมื้อนี้แล้วนะ",
+      "topic": "food",
+      "interaction": "finish",
+      "semantic_family": "frozen-challenge-meaning-7",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-generic",
+      "language": "th",
+      "text": "บ่ายนี้ในห้องของเราเงียบสงบดีจัง",
+      "topic": "generic",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-8",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-hands",
+      "language": "th",
+      "text": "ลองเหยียดมือออกไปอีกนิดนะ!",
+      "topic": "hands",
+      "interaction": "encouragement",
+      "semantic_family": "frozen-challenge-meaning-9",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-hug",
+      "language": "th",
+      "text": "ชอบกอดหนูไว้ใกล้ ๆ แบบนี้จัง",
+      "topic": "hug",
+      "interaction": "affection",
+      "semantic_family": "frozen-challenge-meaning-10",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-milk",
+      "language": "th",
+      "text": "พักสักครู่ก่อนดื่มนมต่อนะ",
+      "topic": "milk",
+      "interaction": "pause",
+      "semantic_family": "frozen-challenge-meaning-11",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-music",
+      "language": "th",
+      "text": "เพลงกล่อมนอนกำลังเริ่มแล้วนะ",
+      "topic": "music",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-12",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-outside",
+      "language": "th",
+      "text": "ลมข้างนอกเย็นโดนแก้มหนูไหม?",
+      "topic": "outside",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-13",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-play",
+      "language": "th",
+      "text": "หนูหยิบลูกบอลนุ่ม ๆ ได้ด้วยตัวเองแล้ว!",
+      "topic": "play",
+      "interaction": "achievement",
+      "semantic_family": "frozen-challenge-meaning-14",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-rain",
+      "language": "th",
+      "text": "หยดฝนกำลังไหลลงมาตามกระจกหน้าต่าง",
+      "topic": "rain",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-15",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-sleep",
+      "language": "th",
+      "text": "อยากนอนงีบในเตียงสักหน่อยไหม?",
+      "topic": "sleep",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-16",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-smile",
+      "language": "th",
+      "text": "หนูยิ้มสดใสจังเลย!",
+      "topic": "smile",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-17",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-sun",
+      "language": "th",
+      "text": "แสงแดดตรงนั้นหายไปแล้วหรือยัง?",
+      "topic": "sun",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-18",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-tummy",
+      "language": "th",
+      "text": "หนูพยายามยกหัวตอนนอนคว่ำอย่างเต็มที่เลย",
+      "topic": "tummy",
+      "interaction": "effort",
+      "semantic_family": "frozen-challenge-meaning-19",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-voice",
+      "language": "th",
+      "text": "ลองทำเสียงเล็ก ๆ แบบนั้นอีกครั้งได้ไหม?",
+      "topic": "voice",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-20",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-th-wake",
+      "language": "th",
+      "text": "สวัสดีตอนเช้า ตอนนี้เราตื่นแล้วนะ!",
+      "topic": "wake",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-21",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-bath",
+      "language": "zh",
+      "text": "小水花溅到肚子上会痒吗？",
+      "topic": "bath",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-0",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-book",
+      "language": "zh",
+      "text": "我们从书里找找小兔子，好不好？",
+      "topic": "book",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-1",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-clothes",
+      "language": "zh",
+      "text": "两只小胳膊都穿进袖子了吗？",
+      "topic": "clothes",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-2",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-cry",
+      "language": "zh",
+      "text": "听见你哭了，我会一直陪着你。",
+      "topic": "cry",
+      "interaction": "reassurance",
+      "semantic_family": "frozen-challenge-meaning-3",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-diaper",
+      "language": "zh",
+      "text": "尿布好像不舒服，我轻轻给你换。",
+      "topic": "diaper",
+      "interaction": "care",
+      "semantic_family": "frozen-challenge-meaning-4",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-drink",
+      "language": "zh",
+      "text": "还想从杯子里再喝一小口吗？",
+      "topic": "drink",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-5",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-feet",
+      "language": "zh",
+      "text": "小脚趾动来动去，真可爱！",
+      "topic": "feet",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-6",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-food",
+      "language": "zh",
+      "text": "这是这顿饭最后一小勺啦。",
+      "topic": "food",
+      "interaction": "finish",
+      "semantic_family": "frozen-challenge-meaning-7",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-generic",
+      "language": "zh",
+      "text": "今天下午房间里安安静静的。",
+      "topic": "generic",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-8",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-hands",
+      "language": "zh",
+      "text": "小手再向前伸一点！",
+      "topic": "hands",
+      "interaction": "encouragement",
+      "semantic_family": "frozen-challenge-meaning-9",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-hug",
+      "language": "zh",
+      "text": "我真喜欢这样把你抱在怀里。",
+      "topic": "hug",
+      "interaction": "affection",
+      "semantic_family": "frozen-challenge-meaning-10",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-milk",
+      "language": "zh",
+      "text": "再喝奶之前，我们先休息一下。",
+      "topic": "milk",
+      "interaction": "pause",
+      "semantic_family": "frozen-challenge-meaning-11",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-music",
+      "language": "zh",
+      "text": "小小的摇篮曲要开始啦。",
+      "topic": "music",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-12",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-outside",
+      "language": "zh",
+      "text": "外面的风吹在脸颊上有点凉吗？",
+      "topic": "outside",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-13",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-play",
+      "language": "zh",
+      "text": "你自己够到了软软的小球！",
+      "topic": "play",
+      "interaction": "achievement",
+      "semantic_family": "frozen-challenge-meaning-14",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-rain",
+      "language": "zh",
+      "text": "小雨滴顺着窗户玻璃往下流。",
+      "topic": "rain",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-15",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-sleep",
+      "language": "zh",
+      "text": "想去小床上睡一小会儿吗？",
+      "topic": "sleep",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-16",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-smile",
+      "language": "zh",
+      "text": "你笑得真灿烂！",
+      "topic": "smile",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-17",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-sun",
+      "language": "zh",
+      "text": "那块明亮的阳光已经消失了吗？",
+      "topic": "sun",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-18",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-tummy",
+      "language": "zh",
+      "text": "你正在努力把头抬离垫子。",
+      "topic": "tummy",
+      "interaction": "effort",
+      "semantic_family": "frozen-challenge-meaning-19",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-voice",
+      "language": "zh",
+      "text": "刚才那个小声音，再来一次好吗？",
+      "topic": "voice",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-20",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-zh-wake",
+      "language": "zh",
+      "text": "早上好，我们现在醒来啦！",
+      "topic": "wake",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-21",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-bath",
+      "language": "hi",
+      "text": "क्या पानी की छोटी छींट तुम्हारे पेट में गुदगुदी कर रही है?",
+      "topic": "bath",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-0",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-book",
+      "language": "hi",
+      "text": "क्या हम किताब में छोटे खरगोश को ढूँढ़ें?",
+      "topic": "book",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-1",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-clothes",
+      "language": "hi",
+      "text": "क्या दोनों हाथ अब आस्तीनों में आ गए हैं?",
+      "topic": "clothes",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-2",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-cry",
+      "language": "hi",
+      "text": "तुम्हारे रोने की आवाज़ सुन रहा हूँ, मैं पास हूँ।",
+      "topic": "cry",
+      "interaction": "reassurance",
+      "semantic_family": "frozen-challenge-meaning-3",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-diaper",
+      "language": "hi",
+      "text": "नैपी असहज लग रही होगी, मैं धीरे से बदल दूँगा।",
+      "topic": "diaper",
+      "interaction": "care",
+      "semantic_family": "frozen-challenge-meaning-4",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-drink",
+      "language": "hi",
+      "text": "क्या अपने कप से एक घूँट और लोगे?",
+      "topic": "drink",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-5",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-feet",
+      "language": "hi",
+      "text": "तुम्हारे छोटे पैर की उँगलियाँ कितनी प्यारी हिल रही हैं!",
+      "topic": "feet",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-6",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-food",
+      "language": "hi",
+      "text": "यह खाने का आख़िरी छोटा चम्मच है।",
+      "topic": "food",
+      "interaction": "finish",
+      "semantic_family": "frozen-challenge-meaning-7",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-generic",
+      "language": "hi",
+      "text": "आज दोपहर हमारे कमरे में बहुत शांति है।",
+      "topic": "generic",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-8",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-hands",
+      "language": "hi",
+      "text": "उँगलियाँ थोड़ा और आगे बढ़ाओ!",
+      "topic": "hands",
+      "interaction": "encouragement",
+      "semantic_family": "frozen-challenge-meaning-9",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-hug",
+      "language": "hi",
+      "text": "तुम्हें इस तरह गोद में रखना मुझे अच्छा लगता है।",
+      "topic": "hug",
+      "interaction": "affection",
+      "semantic_family": "frozen-challenge-meaning-10",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-milk",
+      "language": "hi",
+      "text": "दूध पीने से पहले थोड़ी देर आराम करें।",
+      "topic": "milk",
+      "interaction": "pause",
+      "semantic_family": "frozen-challenge-meaning-11",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-music",
+      "language": "hi",
+      "text": "अब छोटी-सी लोरी शुरू हो रही है।",
+      "topic": "music",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-12",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-outside",
+      "language": "hi",
+      "text": "क्या बाहर की हवा तुम्हारे गालों पर ठंडी लग रही है?",
+      "topic": "outside",
+      "interaction": "inquiry",
+      "semantic_family": "frozen-challenge-meaning-13",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-play",
+      "language": "hi",
+      "text": "तुमने अपने आप उस मुलायम गेंद को छू लिया!",
+      "topic": "play",
+      "interaction": "achievement",
+      "semantic_family": "frozen-challenge-meaning-14",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-rain",
+      "language": "hi",
+      "text": "बारिश की छोटी बूँदें खिड़की से बह रही हैं।",
+      "topic": "rain",
+      "interaction": "none",
+      "semantic_family": "frozen-challenge-meaning-15",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-sleep",
+      "language": "hi",
+      "text": "क्या अपनी छोटी खाट पर थोड़ी देर सोना चाहोगे?",
+      "topic": "sleep",
+      "interaction": "invitation",
+      "semantic_family": "frozen-challenge-meaning-16",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-smile",
+      "language": "hi",
+      "text": "कितनी सुंदर मुस्कान है तुम्हारी!",
+      "topic": "smile",
+      "interaction": "praise",
+      "semantic_family": "frozen-challenge-meaning-17",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-sun",
+      "language": "hi",
+      "text": "क्या धूप वाला चमकीला हिस्सा पहले ही हट गया?",
+      "topic": "sun",
+      "interaction": "finish_check",
+      "semantic_family": "frozen-challenge-meaning-18",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-tummy",
+      "language": "hi",
+      "text": "तुम पेट के बल सिर उठाने की बहुत कोशिश कर रहे हो।",
+      "topic": "tummy",
+      "interaction": "effort",
+      "semantic_family": "frozen-challenge-meaning-19",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-voice",
+      "language": "hi",
+      "text": "क्या तुम वह छोटी आवाज़ एक बार और निकाल सकते हो?",
+      "topic": "voice",
+      "interaction": "repeat",
+      "semantic_family": "frozen-challenge-meaning-20",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    },
+    {
+      "id": "fresh154-hi-wake",
+      "language": "hi",
+      "text": "सुप्रभात, अब हम जाग रहे हैं!",
+      "topic": "wake",
+      "interaction": "start",
+      "semantic_family": "frozen-challenge-meaning-21",
+      "reviewed": false,
+      "source": "newly-authored-synthetic-unreviewed"
+    }
+  ]
+}
