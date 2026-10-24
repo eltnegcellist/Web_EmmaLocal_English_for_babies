@@ -14,6 +14,9 @@ EXPECTED_TOPIC=22
 EXPECTED_INTERACTION=15
 MIN_FAMILIES=30
 TARGET_FAMILIES=50
+HOLDOUT_TOPICS=frozenset(('milk','food','outside','cry','sun'))
+def scene_split(topic):
+    return 'validation' if topic in HOLDOUT_TOPICS else 'train'
 NORMALIZE=lambda s: ''.join(c for c in unicodedata.normalize('NFKC',s).casefold() if c.isalnum())
 
 def checked_json(path):
@@ -96,8 +99,8 @@ def load_paired_contrasts(heads):
                     'language':lang,'text':value.strip(),
                     'topic':topic,'interaction':interaction,'supervision_axis':'both',
                     'semantic_family':f'contrast-v1-{topic}-{interaction}',
-                    'contrast_group':f'contrast-v1-{topic}',
-                    'split':'validation' if a%5==0 else 'train',
+                    'contrast_group':f'paired-scene-{topic}',
+                    'split':scene_split(topic),
                     'source':'assistant_authored_dual_axis_unreviewed',
                     'label_reviewed':False,'native_speaker_reviewed':False,
                     'caution':'Both axes provisional; review labels and naturalness before fitting.'
@@ -146,13 +149,50 @@ def load_remaining_topic_contrasts(heads):
                     'language':lang,'text':sentence.strip(),
                     'topic':topic,'interaction':intent,'supervision_axis':'both',
                     'semantic_family':f'contrast-v2-{topic}-{intent}',
-                    'contrast_group':f'contrast-v2-{topic}',
-                    'split':'validation' if (topic_index+10)%5==0 else 'train',
+                    'contrast_group':f'paired-scene-{topic}',
+                    'split':scene_split(topic),
                     'source':'assistant_authored_remaining_topic_unreviewed',
                     'label_reviewed':False,'native_speaker_reviewed':False,
                     'caution':'Unreviewed natural-language dual-axis contrast; do not count as independent human speech.'
                 })
     if len(rows)!=336:raise ValueError('Expected 336 translated contrast strings')
+    return rows
+
+
+
+def load_remaining_interaction_contrasts(heads):
+    """Four underrepresented intentions across four natural topics each."""
+    data=checked_json(HERE/'data/contrast_remaining_intents.json')
+    if data.get('schema')!=1:raise ValueError('Unexpected additional intent schema')
+    specs=data['interaction_topic_order']
+    if len(specs)!=4 or sum(map(len,specs.values()))!=16:
+        raise ValueError('Expected four intentions with four compatible topics each')
+    if not set(specs).issubset(heads['interaction']['classes']):
+        raise ValueError('Unknown additional Interaction')
+    if any(len(topics)!=4 or not set(topics).issubset(heads['topic']['classes']) for topics in specs.values()):
+        raise ValueError('Unknown additional Topic')
+    if set(data['by_language'])!=set(LANGUAGES):raise ValueError('Missing locale')
+    rows=[]
+    for lang in LANGUAGES:
+        entry=data['by_language'][lang]
+        if set(entry)!=set(specs):raise ValueError(f'Missing intent coverage in {lang}')
+        for intent,topics in specs.items():
+            samples=entry[intent]
+            if len(samples)!=len(topics):raise ValueError(f'Invalid additional intent examples for {lang}/{intent}')
+            for topic,text in zip(topics,samples):
+                if not isinstance(text,str) or len(text.strip())<5:raise ValueError('Empty additional example')
+                rows.append({
+                    'id':f'contrast-v3-{lang}-{topic}-{intent}',
+                    'language':lang,'text':text.strip(),
+                    'topic':topic,'interaction':intent,'supervision_axis':'both',
+                    'semantic_family':f'contrast-v3-{topic}-{intent}',
+                    'contrast_group':f'paired-scene-{topic}',
+                    'split':scene_split(topic),
+                    'source':'assistant_authored_remaining_intent_unreviewed',
+                    'label_reviewed':False,'native_speaker_reviewed':False,
+                    'caution':'One provisional independent meaning pattern, native review required.'
+                })
+    assert len(rows)==112
     return rows
 
 
@@ -275,7 +315,7 @@ def main():
     heads=checked_json(CFG)['heads']
     labels={axis:heads[axis]['classes'] for axis in ('topic','interaction')}
     assert len(labels['topic'])==22 and len(labels['interaction'])==15
-    rows=make_rows(heads)+load_legacy_interaction()+load_paired_contrasts(heads)+load_remaining_topic_contrasts(heads)+collect_external(args.additional_jsonl,heads)
+    rows=make_rows(heads)+load_legacy_interaction()+load_paired_contrasts(heads)+load_remaining_topic_contrasts(heads)+load_remaining_interaction_contrasts(heads)+collect_external(args.additional_jsonl,heads)
     kept,skipped,coverage=audit(rows,labels,load_frozen_inputs())
     args.output.mkdir(parents=True,exist_ok=True)
     (args.output/'starter_corpus.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in kept),encoding='utf-8')
@@ -310,6 +350,7 @@ def main():
         'by_axis':dict(total),'excluded_overlap_or_duplicate':len(skipped),
         'paired_dual_axis_contrasts_imported':sum(r['source']=='assistant_authored_dual_axis_unreviewed' for r in kept),
         'remaining_topic_dual_axis_contrasts_imported':sum(r['source']=='assistant_authored_remaining_topic_unreviewed' for r in kept),
+        'remaining_interaction_dual_axis_contrasts_imported':sum(r['source']=='assistant_authored_remaining_intent_unreviewed' for r in kept),
         'human_and_native_reviewed_rows':reviewed,
         'ready_for_production':False,
         'meaning_family_target_per_axis_per_language':TARGET_FAMILIES,
