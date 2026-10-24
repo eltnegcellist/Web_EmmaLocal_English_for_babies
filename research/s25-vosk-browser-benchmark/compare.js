@@ -31,8 +31,15 @@ async function enableIsolation(){
  const attempts=Number(sessionStorage.getItem('coi-benchmark-reloads')||0);
  try{
    if(!('serviceWorker' in navigator))throw Error('Service Worker未対応');
-   const registration=await navigator.serviceWorker.register('./coi-service-worker.js',{scope:'./',updateViaCache:'none'});
-   await navigator.serviceWorker.ready;
+   $('isolation').textContent='ブラウザ分離を初期化しています（失敗してもVoskは使用可能）。';
+   const registration=await Promise.race([
+     navigator.serviceWorker.register('./coi-service-worker.js',{scope:'./',updateViaCache:'none'}),
+     new Promise((_,reject)=>setTimeout(()=>reject(Error('Service Workerの登録が10秒で完了しませんでした')),10000))
+   ]);
+   await Promise.race([
+     navigator.serviceWorker.ready,
+     new Promise((_,reject)=>setTimeout(()=>reject(Error('Service Workerが8秒で有効になりませんでした')),8000))
+   ]);
    if(attempts<2){
      sessionStorage.setItem('coi-benchmark-reloads',String(attempts+1));
      if(!navigator.serviceWorker.controller){
