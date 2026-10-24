@@ -7,10 +7,11 @@ The actual production label configuration has **22 Topic classes** (including `g
 - Topic seeds: 22 labels × 7 languages × 2 authored sentences = **308**.
 - Interaction seeds: 15 labels × 7 languages × 2 authored sentences = **210**.
 - Total newly authored utterances **518** before overlap/duplicate filtering.
+- Automatically imports the earlier **360** Interaction-only utterances, using their immutable SHA-256-checked archive, while explicitly leaving Topic unknown. Total candidate corpus before exclusions: **878** rows.
 - Seven languages: en, de, fr, ko, th, zh, hi.
 - Seeds are **assistant-authored, synthetic, unreviewed, and not native-speaker validated**. They are a starter corpus, not a high-quality training dataset.
 - Every sample labels **only the intended supervised axis**. The other axis is `null` (unknown), not guessed as `generic` or `none`.
-- The earlier 360-sentence v3 corpus can remain an Interaction-only source. Its Topic labels cannot be inferred safely.
+- The earlier 360-sentence v3 corpus is imported as an Interaction-only source with the original train/validation semantic-family split. Its Topic labels are deliberately null.
 - Frozen evaluation **154 reference sentences + 374 ASR transcripts** are explicitly excluded by normalized-text comparison, never fitted/tuned.
 - Distinct semantic-family / review counts are tracked; templated surface variants must not be passed off as independent examples.
 
