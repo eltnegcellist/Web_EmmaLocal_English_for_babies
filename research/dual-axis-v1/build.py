@@ -321,6 +321,44 @@ def main():
     (args.output/'starter_corpus.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in kept),encoding='utf-8')
     (args.output/'excluded.json').write_text(json.dumps(skipped,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     (args.output/'coverage.json').write_text(json.dumps(coverage,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    # Track every possible Topic x Interaction pair without treating all 330
+    # theoretical pairs as natural/required. Missing = unassessed, not negative.
+    pair_buckets=collections.defaultdict(list)
+    for r in kept:
+        if r['topic'] is not None and r['interaction'] is not None:
+            pair_buckets[(r['language'],r['topic'],r['interaction'])].append(r)
+    pair_coverage={}
+    for lang in LANGUAGES:
+        pair_coverage[lang]={}
+        for topic in labels['topic']:
+            pair_coverage[lang][topic]={}
+            for intent in labels['interaction']:
+                items=pair_buckets[(lang,topic,intent)]
+                pair_coverage[lang][topic][intent]={
+                    'count':len(items),
+                    'train':sum(x['split']=='train' for x in items),
+                    'validation':sum(x['split']=='validation' for x in items),
+                    'native_reviewed':sum(bool(x['label_reviewed'] and x['native_speaker_reviewed']) for x in items),
+                    'status':'CANDIDATE_UNREVIEWED' if items else 'UNASSESSED_NOT_NEGATIVE',
+                    'natural_pair_validated':False
+                }
+    (args.output/'pair_coverage.json').write_text(
+        json.dumps(pair_coverage,ensure_ascii=False,indent=2)+chr(10),encoding='utf-8')
+    pair_seen={(topic,intent) for lang,topic,intent in pair_buckets}
+    pair_stats={
+        'theoretical_combinations':len(labels['topic'])*len(labels['interaction']),
+        'observed_distinct_topic_interaction_pairs':len(pair_seen),
+        'unassessed_pairs':len(labels['topic'])*len(labels['interaction'])-len(pair_seen),
+        'not_all_combinations_are_natural':True,
+        'independently_native_reviewed_pairs':0,
+        'per_language_observed_pairs':{
+            lang:sum(bool(pair_buckets[(lang,t,i)])
+                     for t in labels['topic'] for i in labels['interaction'])
+            for lang in LANGUAGES
+        }
+    }
+    (args.output/'pair_summary.json').write_text(
+        json.dumps(pair_stats,ensure_ascii=False,indent=2)+chr(10),encoding='utf-8')
     # Research work queue for human-reviewed, independently authored examples.
     # It describes missing high-quality coverage; it is NOT fabricated training data.
     tasks=[]
