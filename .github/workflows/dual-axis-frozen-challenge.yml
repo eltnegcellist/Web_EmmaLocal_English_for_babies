@@ -1,0 +1,76 @@
+name: CooTrio frozen-head fresh challenge
+
+on:
+  push:
+    branches: [research/dual-axis-frozen-challenge-v1]
+    paths:
+      - '.github/workflows/dual-axis-frozen-challenge.yml'
+      - 'research/dual-axis-challenge-v1/**'
+  pull_request:
+    branches: [research/dual-axis-corpus-v1]
+    paths:
+      - '.github/workflows/dual-axis-frozen-challenge.yml'
+      - 'research/dual-axis-challenge-v1/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: dual-axis-frozen-probe-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      TOKENIZERS_PARALLELISM: 'false'
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned native CPU inference dependencies
+        run: python -m pip install -r research/e5-locale-encoders/requirements.txt
+      - name: Build existing training corpus in audit-only mode
+        run: python research/dual-axis-v1/build.py
+      - name: Download ONLY original frozen research heads from earlier successful run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/cootrio-previous-model
+          gh run download 40073281853 --repo "$GITHUB_REPOSITORY" --name cootrio-dual-axis-provisional-training-40073281853 --dir /tmp/cootrio-previous-model
+          test -f /tmp/cootrio-previous-model/provisional_heads/candidate_manifest.json
+      - name: Verify model checksums and run prospective synthetic diagnostic
+        run: |
+          set -o pipefail
+          mkdir -p research/dual-axis-challenge-v1/outputs
+          python research/dual-axis-challenge-v1/evaluate.py --candidates /tmp/cootrio-previous-model/provisional_heads 2>&1 | tee research/dual-axis-challenge-v1/outputs/inference.log
+      - name: Confirm frozen weights, no training, and production unchanged
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          out=Path('research/dual-axis-challenge-v1/outputs/comparison.json')
+          r=json.loads(out.read_text())
+          assert r['status']=='RESEARCH_SYNTHETIC_UNREVIEWED_NOT_DEPLOYABLE'
+          assert r['candidate_actions_run']==40073281853
+          assert r['leakage']['same_normalized_text_collision']==0
+          assert all(v['all']['joint']['n']==154 for v in r['summary'].values())
+          print('Three frozen head strategies compared on all 154 new diagnostic texts.')
+          PY
+          git diff --exit-code -- multilingual-assets/heads/
+      - name: Upload reproducible predictions and logs even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cootrio-frozen-challenge-${{ github.run_id }}
+          path: research/dual-axis-challenge-v1/outputs/
+          retention-days: 30
+          if-no-files-found: warn
