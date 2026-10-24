@@ -63,7 +63,7 @@ def make_rows(heads):
                         'interaction':label if axis=='interaction' else None,
                         'supervision_axis':axis,
                         'semantic_family':f'handseed-{lang}-{axis}-{label}-{index}',
-                        'split':'train' if index==0 else 'validation',
+                        'split':'train',  # near-related author seeds are NOT independent validation material
                         'source':'assistant_authored_seed',
                         'label_reviewed':False,'native_speaker_reviewed':False,
                         'caution':'Other axis intentionally unknown; do not fill it with generic/none.'
