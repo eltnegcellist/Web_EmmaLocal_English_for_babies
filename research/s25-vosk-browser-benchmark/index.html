@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Galaxy S25 Vosk 実機速度テスト | CooTrio Research</title>
+<meta name="description" content="Galaxy S25 Chrome上で Vosk WebAssembly ASR の処理時間を測る実験ページ。音声は端末内で処理されます。">
+<style>
+:root{color-scheme:light;background:#f4f7fb;font:16px system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif}
+*{box-sizing:border-box}body{margin:0;color:#15243d}
+main{max-width:730px;margin:auto;padding:18px 14px 48px}
+h1{font-size:1.35rem;margin:6px 0 5px}h2{font-size:1.05rem;margin:0 0 12px}
+p{margin:8px 0 12px;line-height:1.55}.muted{color:#596c81;font-size:.86rem}
+section{background:white;padding:16px;margin:16px 0;border:1px solid #dce4ee;border-radius:16px;box-shadow:0 2px 10px #182a4d0b}
+label{display:block;font-weight:650;font-size:.92rem;margin:8px 0}
+select,input[type=url],input[type=file]{display:block;width:100%;padding:12px 10px;margin-top:6px;border:1px solid #b4c4d7;border-radius:9px;background:white;font:inherit;color:inherit}
+button{display:block;border:none;border-radius:10px;padding:13px 14px;font:600 .98rem system-ui;min-height:46px;cursor:pointer;background:#0d56cc;color:#fff;width:100%;margin-top:9px}
+button.secondary{background:#e8efff;color:#19385f}
+button.warn{background:#ac3552}
+button:disabled{opacity:.43;cursor:not-allowed}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #76a7ff;outline-offset:2px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.small{font-size:.83rem}
+.notice{border-left:4px solid #0d56cc;padding:9px 12px;background:#edf4ff;font-size:.91rem}
+#status{white-space:pre-wrap;overflow-wrap:anywhere;border-radius:9px;background:#eef3f8;padding:11px 12px;font-size:.9rem}
+#status[data-error=true]{background:#fff0f0;color:#9a1735}
+#result{display:none}
+.metric{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.stat{background:#f3f6fa;border-radius:10px;padding:10px;text-align:center}
+.stat b{display:block;font-size:1.25rem;font-variant-numeric:tabular-nums}
+.stat span{font-size:.74rem;color:#596c81}
+table{width:100%;font-size:.84rem;border-collapse:collapse}td,th{text-align:left;padding:8px 5px;border-bottom:1px solid #e3e9f0}td.num{text-align:right;font-variant-numeric:tabular-nums}
+pre{background:#f3f6fa;border-radius:9px;padding:10px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.84rem}
+details{margin-top:12px}.pill{display:inline-block;font-size:.72rem;background:#ecf1f7;color:#53677d;border-radius:30px;padding:4px 8px}
+footer{font-size:.77rem;color:#637285;margin-top:18px}
+</style>
+</head>
+<body>
+<main>
+<header><span class="pill">CooTrio 研究専用・本番アプリとは無関係</span>
+<h1>Galaxy S25 — Vosk速度ベンチマーク</h1>
+<p class="muted">Chrome上のWebAssemblyで計測します。マイク録音や選択した音声ファイルはサーバーへ送信しません。</p></header>
+<section>
+<h2>1. Voskモデルの読み込み</h2>
+<label for="language">言語・モデル
+<select id="language">
+<option value="en">英語 Vosk Small（動作確認用、約40MB）</option>
+<option value="fr">フランス語 Vosk Small（約42MB・実験URL）</option>
+<option value="custom">カスタム：自分でURLを指定</option>
+</select></label>
+<label for="modelUrl">ブラウザ用 .tar.gz モデルURL
+<input type="url" id="modelUrl" spellcheck="false" autocomplete="off" inputmode="url"></label>
+<p class="muted small">ブラウザ版はVosk公式の .zip 形式を直接読めません。ブラウザ向け .tar.gz のURLが必要です。初回はモデルのダウンロードが発生します。</p>
+<button id="load">モデルを読み込む（初回ダウンロード）</button>
+<p class="small muted">読み込み時間（DL＋展開＋WASM起動）: <strong id="loadTime">未測定</strong></p>
+</section>
+<section>
+<h2>2. 入力音声</h2>
+<div class="row">
+<label for="duration">録音長
+<select id="duration"><option value="5">5秒</option><option value="10">10秒</option></select></label>
+<label for="repeats">繰り返し回数
+<select id="repeats"><option value="3">3回</option><option value="5">5回</option></select></label>
+</div>
+<button class="secondary" id="record" disabled>マイクから録音する</button>
+<label for="audioFile" class="muted">または保存済み音声を使用（WAV/MP3/M4Aなど）
+<input type="file" id="audioFile" accept="audio/*"></label>
+<p class="muted small">読み込んだ音声は16kHz・モノラルに変換します。ファイルは先頭5秒または10秒を使います。測定は同じ音声を繰り返すため、速度のばらつきが分かります。</p>
+<button id="run" disabled>3回測定する</button>
+</section>
+<section>
+<h2>3. 測定結果</h2>
+<div id="status" role="status" aria-live="polite">モデルを読み込んでください。</div>
+<div id="result">
+<div class="metric" style="margin-top:14px">
+<div class="stat"><b id="p50">—</b><span>中央値 p50 (ms)</span></div>
+<div class="stat"><b id="p95">—</b><span>p95 (ms)</span></div>
+<div class="stat"><b id="rtf">—</b><span>RTF（中央値）</span></div>
+</div>
+<table style="margin-top:13px">
+<tr><th>測定項目</th><th class="num">値</th></tr>
+<tr><td>音声長（末尾無音を含む）</td><td class="num" id="inputSec">—</td></tr>
+<tr><td>1回目（ウォームアップ含む）</td><td class="num" id="first">—</td></tr>
+<tr><td>最速 / 最遅</td><td class="num" id="range">—</td></tr>
+<tr><td>モデル読み込み時間</td><td class="num" id="loadStat">—</td></tr>
+<tr><td>ブラウザ／端末</td><td class="num" id="device">—</td></tr>
+</table>
+<p class="small muted">ASRのみの待ち時間です。Moonshineとの厳密な比較には**同じ音声・同じ5秒/10秒窓・同じ計測開始/終了条件**が必要です。録音時間・ネットワークDL・E5分類時間は含みません。末尾に約0.8秒の無音を追加して認識を確定させます。</p>
+<details><summary>各回の記録・認識テキスト</summary><pre id="details">—</pre></details>
+<button id="copy" class="secondary">測定結果をコピーする</button>
+</div>
+</section>
+<footer>研究用。Vosk browser (Apache 2.0) / Vosk Small (Apache 2.0)。HTTPS経由でマイクの利用許可が必要です。AndroidのChatGPT内蔵ブラウザで録音できない場合、Chromeで開いてください。</footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/vosk-browser@0.0.5/dist/vosk.js"></script>
+<script src="./bench.js"></script>
+</body></html>
