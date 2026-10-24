@@ -1,4 +1,6 @@
 import {normalizeThreads,normalizeLanguageDetection} from './performance.js';
+import {hasImportedAcftModel} from './acft-model-store.js';
+import {AdaptiveAcftClient} from './acft-client.js';
 export class MultilingualClient {
   constructor({workerFactory=()=>new Worker(new URL('./worker.js',import.meta.url),{type:'module'}),onStatus=()=>{},
     threads='auto',languageDetection='once'}={}) {
@@ -6,6 +8,7 @@ export class MultilingualClient {
     this.threadPreference=normalizeThreads(threads);
     this.languageDetection=normalizeLanguageDetection(languageDetection);
     this.cachedSpokenLanguage=null;this.languageCacheEpoch=0;this.runtimeInfo=null;
+    this.acft=null;this.asrBackend='legacy';
   }
   request(type,payload={},timeout=900000,transfer=[]) {
     if(!this.worker){const worker=this.worker=this.workerFactory();worker.onmessage=({data})=>{
@@ -22,10 +25,19 @@ export class MultilingualClient {
   }
   prepare(){if(this.ready)return Promise.resolve();if(this.preparing)return this.preparing;
     const token=this.generation;
-    const op=this.request('init',{threads:this.threadPreference}).then(info=>{
+    const op=(async()=>{
+      const supported=self.crossOriginIsolated===true && typeof SharedArrayBuffer==='function';
+      const imported=supported && await hasImportedAcftModel();
+      this.asrBackend=imported?'acft':'legacy';
+      if(imported)this.acft=new AdaptiveAcftClient({onStatus:this.onStatus});
+      const info=await this.request('init',{threads:this.threadPreference,asrBackend:this.asrBackend});
       if(token!==this.generation)throw Error('Language operation cancelled');
-      this.ready=true;this.runtimeInfo=info;this.onStatus({stage:'runtime-ready',...info});
-    }).catch(e=>{if(token===this.generation)this.cancel(e.message);throw e;}).finally(()=>{if(this.preparing===op)this.preparing=null;});
+      if(imported)await this.acft.prepare();
+      if(token!==this.generation)throw Error('Language operation cancelled');
+      this.ready=true;this.runtimeInfo={...info,source:imported?'acft-small-e5':info.source,
+        asrBackend:this.asrBackend};
+      this.onStatus({stage:'runtime-ready',...this.runtimeInfo});
+    })().catch(e=>{if(token===this.generation)this.cancel(e.message);throw e;}).finally(()=>{if(this.preparing===op)this.preparing=null;});
     this.preparing=op;return op;
   }
   async predict(text,options={}){await this.prepare();return this.request('predict',{text,...options},60000);}
@@ -42,7 +54,9 @@ export class MultilingualClient {
       : language==='en' && this.languageDetection==='once' && this.cachedSpokenLanguage
         ? (this.cachedSpokenLanguage==='en'?'en-fixed':this.cachedSpokenLanguage) : language;
     const languageCacheEpoch=this.languageCacheEpoch;
-    const result=await this.request('transcribe',{audio:buffer,language:requested},90000,[buffer]);
+    const result=this.asrBackend==='acft'
+      ? await this.acft.transcribe(new Float32Array(buffer),requested,{threads:this.runtimeInfo?.threads??1})
+      : await this.request('transcribe',{audio:buffer,language:requested},90000,[buffer]);
     if(languageCacheEpoch===this.languageCacheEpoch && language==='en' && this.languageDetection==='once' && !this.cachedSpokenLanguage &&
        result?.text?.trim() && /^[a-z]{2,3}(?:-[a-z]+)?$/i.test(result.detectedLanguage||'')){
       this.cachedSpokenLanguage=result.detectedLanguage;
@@ -62,6 +76,7 @@ export class MultilingualClient {
     this.resetSpeechLanguage();this.runtimeInfo=null;
     this.generation++;
     this.worker?.terminate();this.worker=null;this.ready=false;this.preparing=null;
+    this.acft?.cancel(message);this.acft=null;this.asrBackend='legacy';
     for(const p of this.pending.values()){clearTimeout(p.timer);p.reject(Error(message));}this.pending.clear();
   }
   cancelPending(){if(this.pending.size)this.cancel();}
