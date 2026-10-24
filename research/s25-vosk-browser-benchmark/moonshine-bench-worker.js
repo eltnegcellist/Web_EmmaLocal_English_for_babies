@@ -1,13 +1,25 @@
 // Isolated test worker: same Moonshine Small Streaming implementation as app.
-import {ModelArch,Transcriber,loadEmmaMoonshineModule} from '../../src/moonshine-module.js';
+// Lazy import so any browser module error is reported to UI with its cause.
+let moonshineImports;
+async function getMoonshine(){
+  return moonshineImports ||= import('../../src/moonshine-module.js').catch(e=>{
+    moonshineImports=null;throw Error('Moonshine module import failed: '+(e?.message||String(e)),{cause:e});
+  });
+}
 let instance=null;
 self.onmessage=async ({data})=>{
   const {id,type}=data;
   try{
-    if(type==='init'){
+    if(type==='ping'){
+      self.postMessage({type:'reply',id,ready:true,worker:'moonshine',isolated:self.crossOriginIsolated===true});
+    }else if(type==='init'){
       if(self.crossOriginIsolated!==true || typeof SharedArrayBuffer!=='function')
         throw Error('Moonshine Small requires COOP/COEP cross-origin isolation. Check the benchmark page.');
+      self.postMessage({type:'stage',stage:'Importing Moonshine app runtime'});
+      const {ModelArch,Transcriber,loadEmmaMoonshineModule}=await getMoonshine();
+      self.postMessage({type:'stage',stage:'Loading Moonshine WASM'});
       const module=await loadEmmaMoonshineModule();
+      self.postMessage({type:'stage',stage:'Downloading Moonshine Small streaming model'});
       const language=data.language==='ja'?'ja':'en';
       instance?.close?.();
       instance=await Transcriber.load({
