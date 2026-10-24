@@ -66,7 +66,7 @@ async function loadModel() {
       new Promise((_,reject)=>setTimeout(()=>reject(new Error('モデルの読み込みが180秒を超えました。モデルの形式やURLを確認してください。')),180000))
     ]);
     model=candidate; loadedUrl=url; loadMs=performance.now()-start;
-    model.setLogLevel(-1);
+    if (typeof model.setLogLevel === 'function') model.setLogLevel(-1);
     $('loadTime').textContent=fmt(loadMs)+' ms';
     status('Vosk準備完了（'+fmt(loadMs)+' ms）。5秒または10秒録音するか、音声ファイルを選択してください。');
   } catch(err) {
