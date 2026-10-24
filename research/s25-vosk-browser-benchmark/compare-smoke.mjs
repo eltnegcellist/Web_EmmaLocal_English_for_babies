@@ -5,10 +5,26 @@ const errors=[];
 page.on('pageerror',e=>errors.push(String(e)));
 page.on('console',e=>{if(e.type()==='error')errors.push(e.text())});
 await page.goto('http://127.0.0.1:8765/compare.html',{waitUntil:'domcontentloaded'});
-await page.waitForFunction(()=>{
-  const s=document.querySelector('#isolation')?.textContent||'';
-  return s.includes('有効')||s.includes('無効')||s.includes('できません');
-},{timeout:30000});
+try{
+  await page.waitForFunction(()=>{
+    const s=document.querySelector('#isolation')?.textContent||'';
+    return s.includes('有効')||s.includes('無効')||s.includes('できません');
+  },{timeout:45000});
+}catch(error){
+  console.error('Isolation debug',{
+    url:page.url(),
+    text:await page.locator('#isolation').textContent().catch(()=>null),
+    status:await page.locator('#status').textContent().catch(()=>null),
+    sw:await page.evaluate(()=>({
+      controller:navigator.serviceWorker?.controller?.scriptURL||null,
+      isolated:crossOriginIsolated,
+      attempts:sessionStorage.getItem('coi-benchmark-reloads'),
+      readyState:document.readyState
+    })).catch(e=>String(e)),
+    errors
+  });
+  throw error;
+}
 const isolated=await page.evaluate(()=>crossOriginIsolated);
 console.log('COI state:',isolated,'UI:',await page.locator('#isolation').textContent());
 if(!isolated)throw Error('Compare page cannot turn on isolation in Chromium through service worker.');
