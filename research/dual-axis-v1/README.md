@@ -67,6 +67,24 @@ To merge later reviewed examples, pass `--additional-jsonl PATH`. Rows must have
 
 **Do not mark as reviewed without actual human verification.** Assign train/validation splits by independent semantic families, keep pairs of near-paraphrases in the same split, and reserve independent speech speakers/recordings for final evaluation.
 
+## Native-language quality review and adjudication
+
+The research pipeline now creates **two label-blinded CSV packets per language** (A and B) plus a separate candidate-label key for the adjudicator. Both independent native-language reviewers must explicitly choose the **Topic and Interaction** and confirm (a) naturalness, (b) baby-directed register, and (c) native-speaker qualification. The software cannot verify human identity or native competence; the project owner must check those records outside the script. A/B agreement with differing reviewer IDs is the minimum acceptance gate; disagreement and missing fields are quarantined for separate adjudication.
+
+```bash
+python research/dual-axis-v1/build.py
+python research/dual-axis-v1/prepare_review.py
+# Human reviewers independently fill seven A/B locale packets and return them.
+python research/dual-axis-v1/merge_reviews.py
+# Only independently agreed examples are eligible as additions:
+python research/dual-axis-v1/build.py \\
+  --additional-jsonl research/dual-axis-v1/outputs/review_merge/accepted_reviewed.jsonl
+```
+
+`prepare_review.py` never shows provisional labels to reviewers. `merge_reviews.py` emits `accepted_reviewed.jsonl` and `needs_adjudication.jsonl`; default blank packets yield **zero approved examples**. When a reviewed row is identical to an unreviewed seed, the corpus builder prioritizes the reviewed row while preserving the semantic family and split.
+
+**Critical holdout caveat:** exact string exclusion against the old 154+374 examples does **not** establish semantic independence. The new contrast corpus includes related caregiver meanings; the old frozen samples cannot be assumed to constitute a fresh blind test for training on these additions. Build a **new independent human-reviewed, meaning-family-held-out test**, and check semantic overlap with all training data before any production accuracy claim.
+
 ## Label quality and minimum pairs
 
 Focus on the hard boundaries noted in v3:
