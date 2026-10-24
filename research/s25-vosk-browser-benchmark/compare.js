@@ -104,8 +104,14 @@ function makeWorkerBackend(url){
  const worker=new Worker(new URL(url,import.meta.url),{type:'module'});
  const pending=new Map();
  const rejectAll=e=>{for(const {reject,timer} of pending.values()){clearTimeout(timer);reject(e)}pending.clear()};
- worker.onerror=e=>rejectAll(Error(e?.message||'Benchmark worker failed'));
+ worker.onerror=e=>{
+   const where=e?.filename?(' '+e.filename+':'+(e.lineno||'?')+':'+(e.colno||'?')):'';
+   const cause=e?.error?.stack||e?.error?.message||e?.message||'Worker module failed before initialization';
+   rejectAll(Error('Benchmark Worker startup error: '+cause+where));
+ };
+ worker.onmessageerror=e=>rejectAll(Error('Benchmark Worker message could not be decoded: '+(e?.message||'messageerror')));
  worker.onmessage=({data})=>{
+   if(data.type==='stage'){if(loading)notify('モデル準備：'+String(data.stage||'読み込み中'));return;}
    if(data.type==='progress'){if(loading&&data.total>0)notify('モデル取得中 '+Math.round(100*data.loaded/data.total)+'%');return;}
    const task=pending.get(data.id);if(!task)return;
    clearTimeout(task.timer);pending.delete(data.id);
@@ -181,6 +187,8 @@ async function loadSelected(){
        throw Error('MoonshineにはcrossOriginIsolatedが必要です。分離環境表示を確認してください。');
      const worker=makeWorkerBackend(engine==='moonshine'?'./moonshine-bench-worker.js':'./whisper-bench-worker.js');
      loadedBackend=worker;
+     const probe=await worker.request('ping',{},20000);
+     if(!probe.ready)throw Error('Worker handshake failed');
      await worker.request('init',{language:'en'},900000);
    }
    loadMs=performance.now()-started;loadedEngine=engine;
