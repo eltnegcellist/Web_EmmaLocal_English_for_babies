@@ -1,0 +1,681 @@
+{
+  "schema": 1,
+  "source": "assistant_authored_unreviewed_dual_axis_contrast",
+  "topic_order": [
+    "milk",
+    "bath",
+    "book",
+    "sleep",
+    "diaper",
+    "food",
+    "play",
+    "music",
+    "outside",
+    "tummy"
+  ],
+  "interaction_order": [
+    "inquiry",
+    "invitation",
+    "start",
+    "repeat",
+    "pause",
+    "finish_check",
+    "finish"
+  ],
+  "language_order": [
+    "en",
+    "de",
+    "fr",
+    "ko",
+    "th",
+    "zh",
+    "hi"
+  ],
+  "pair_spec": "10 natural caregiver situations x 7 confusion-prone intentions; each localized utterance has Topic and Interaction labels; cross-language semantic family is same pair",
+  "by_language": {
+    "en": [
+      {
+        "inquiry": "Is your milk warm enough?",
+        "invitation": "Would you like some milk?",
+        "start": "Now it's time for your milk.",
+        "repeat": "Would you like another sip of milk?",
+        "pause": "Let's take a little break from drinking milk.",
+        "finish_check": "Have you finished your milk?",
+        "finish": "You finished your milk."
+      },
+      {
+        "inquiry": "Does the bath water feel nice?",
+        "invitation": "Shall we have a warm bath?",
+        "start": "Bath time is starting now.",
+        "repeat": "Want to splash the bath water again?",
+        "pause": "Let's stop the bath for a moment.",
+        "finish_check": "Are we done with the bath?",
+        "finish": "Bath time is over."
+      },
+      {
+        "inquiry": "Which picture do you see in the book?",
+        "invitation": "Shall we read this picture book?",
+        "start": "Now we're opening the book.",
+        "repeat": "Shall I read that page again?",
+        "pause": "Let's stop at this page for a moment.",
+        "finish_check": "Have we finished reading the book?",
+        "finish": "We've finished our story."
+      },
+      {
+        "inquiry": "Are you feeling sleepy?",
+        "invitation": "Would you like to lie down for a nap?",
+        "start": "Now it's time to settle down for sleep.",
+        "repeat": "Shall we try settling down to sleep again?",
+        "pause": "Let's wait a moment before lying down to sleep.",
+        "finish_check": "Is your nap finished?",
+        "finish": "Your nap is over."
+      },
+      {
+        "inquiry": "Is your diaper uncomfortable?",
+        "invitation": "Shall we change your diaper?",
+        "start": "I'm starting your diaper change now.",
+        "repeat": "Let's fasten this diaper tab again.",
+        "pause": "Let's pause the diaper change for a moment.",
+        "finish_check": "Have we finished changing your diaper?",
+        "finish": "Your clean diaper is on now."
+      },
+      {
+        "inquiry": "Does this puree taste sweet?",
+        "invitation": "Would you like a spoonful of food?",
+        "start": "We're starting your meal now.",
+        "repeat": "Shall we try another bite of food?",
+        "pause": "Let's take a little break from eating.",
+        "finish_check": "Are you finished eating?",
+        "finish": "Mealtime is over."
+      },
+      {
+        "inquiry": "Which toy caught your eye?",
+        "invitation": "Shall we play with the blocks?",
+        "start": "Playtime starts now.",
+        "repeat": "Let's roll that ball again.",
+        "pause": "Let's pause our game for a moment.",
+        "finish_check": "Are we finished playing?",
+        "finish": "Playtime is over."
+      },
+      {
+        "inquiry": "Can you hear that gentle music?",
+        "invitation": "Shall we listen to some music?",
+        "start": "I'm starting the music now.",
+        "repeat": "Would you like to hear that song again?",
+        "pause": "Let's pause the music for a moment.",
+        "finish_check": "Is our music time finished?",
+        "finish": "The song has ended."
+      },
+      {
+        "inquiry": "Does the breeze outside feel cool?",
+        "invitation": "Shall we go outside for a little walk?",
+        "start": "We're heading outside now.",
+        "repeat": "Shall we take another lap outside?",
+        "pause": "Let's wait at the door before going outside.",
+        "finish_check": "Are we finished with our walk outside?",
+        "finish": "Our little walk outside is over."
+      },
+      {
+        "inquiry": "Does tummy time feel comfortable?",
+        "invitation": "Shall we try a little tummy time?",
+        "start": "Tummy time begins now.",
+        "repeat": "Want to try tummy time once more?",
+        "pause": "Let's pause tummy time and rest.",
+        "finish_check": "Are we finished with tummy time?",
+        "finish": "Tummy time is all done."
+      }
+    ],
+    "de": [
+      {
+        "inquiry": "Ist deine Milch angenehm warm?",
+        "invitation": "Möchtest du etwas Milch trinken?",
+        "start": "Jetzt ist es Zeit für deine Milch.",
+        "repeat": "Möchtest du noch einen Schluck Milch?",
+        "pause": "Wir machen eine kleine Pause beim Milchtrinken.",
+        "finish_check": "Hast du deine Milch ausgetrunken?",
+        "finish": "Du hast deine Milch ausgetrunken."
+      },
+      {
+        "inquiry": "Fühlt sich das Badewasser gut an?",
+        "invitation": "Wollen wir ein warmes Bad nehmen?",
+        "start": "Jetzt beginnt die Badezeit.",
+        "repeat": "Willst du noch einmal im Badewasser planschen?",
+        "pause": "Wir unterbrechen das Baden kurz.",
+        "finish_check": "Sind wir mit dem Baden fertig?",
+        "finish": "Die Badezeit ist vorbei."
+      },
+      {
+        "inquiry": "Welches Bild siehst du in dem Buch?",
+        "invitation": "Wollen wir dieses Bilderbuch lesen?",
+        "start": "Jetzt schlagen wir das Buch auf.",
+        "repeat": "Soll ich diese Seite noch einmal vorlesen?",
+        "pause": "Wir bleiben einen Moment auf dieser Seite.",
+        "finish_check": "Sind wir mit dem Buch fertig?",
+        "finish": "Unsere Geschichte ist zu Ende."
+      },
+      {
+        "inquiry": "Bist du schon müde?",
+        "invitation": "Möchtest du dich für ein Schläfchen hinlegen?",
+        "start": "Jetzt machen wir uns zum Schlafen bereit.",
+        "repeat": "Wollen wir noch einmal versuchen einzuschlafen?",
+        "pause": "Wir warten noch einen Moment, bevor du schlafen gehst.",
+        "finish_check": "Ist dein Schläfchen schon vorbei?",
+        "finish": "Dein Schläfchen ist vorbei."
+      },
+      {
+        "inquiry": "Ist deine Windel unbequem?",
+        "invitation": "Sollen wir deine Windel wechseln?",
+        "start": "Jetzt fange ich an, deine Windel zu wechseln.",
+        "repeat": "Wir machen den Klettverschluss noch einmal zu.",
+        "pause": "Wir machen beim Wickeln eine kleine Pause.",
+        "finish_check": "Sind wir mit dem Windelwechsel fertig?",
+        "finish": "Deine frische Windel sitzt jetzt."
+      },
+      {
+        "inquiry": "Schmeckt dir dieser Brei?",
+        "invitation": "Möchtest du einen Löffel Brei?",
+        "start": "Jetzt fangen wir mit dem Essen an.",
+        "repeat": "Möchtest du noch einen Bissen?",
+        "pause": "Wir machen eine kleine Essenspause.",
+        "finish_check": "Bist du mit dem Essen fertig?",
+        "finish": "Die Essenszeit ist vorbei."
+      },
+      {
+        "inquiry": "Welches Spielzeug gefällt dir?",
+        "invitation": "Wollen wir mit den Bauklötzen spielen?",
+        "start": "Jetzt beginnt die Spielzeit.",
+        "repeat": "Rollen wir den Ball noch einmal?",
+        "pause": "Wir machen beim Spielen kurz Pause.",
+        "finish_check": "Sind wir mit dem Spielen fertig?",
+        "finish": "Die Spielzeit ist vorbei."
+      },
+      {
+        "inquiry": "Kannst du die leise Musik hören?",
+        "invitation": "Wollen wir etwas Musik hören?",
+        "start": "Ich mache jetzt die Musik an.",
+        "repeat": "Möchtest du das Lied noch einmal hören?",
+        "pause": "Wir halten die Musik kurz an.",
+        "finish_check": "Ist unsere Musikzeit schon vorbei?",
+        "finish": "Das Lied ist zu Ende."
+      },
+      {
+        "inquiry": "Ist die Luft draußen kühl?",
+        "invitation": "Wollen wir draußen spazieren gehen?",
+        "start": "Jetzt gehen wir nach draußen.",
+        "repeat": "Wollen wir draußen noch eine Runde drehen?",
+        "pause": "Wir warten kurz an der Tür, bevor wir rausgehen.",
+        "finish_check": "Sind wir mit dem Spaziergang fertig?",
+        "finish": "Unser kleiner Spaziergang ist vorbei."
+      },
+      {
+        "inquiry": "Ist die Bauchlage angenehm für dich?",
+        "invitation": "Wollen wir etwas Bauchlage üben?",
+        "start": "Jetzt beginnt die Zeit auf dem Bauch.",
+        "repeat": "Möchtest du die Bauchlage noch einmal versuchen?",
+        "pause": "Wir machen eine Pause von der Bauchlage.",
+        "finish_check": "Sind wir mit der Bauchlage fertig?",
+        "finish": "Die Zeit auf dem Bauch ist vorbei."
+      }
+    ],
+    "fr": [
+      {
+        "inquiry": "Ton lait est-il assez chaud ?",
+        "invitation": "Tu veux boire un peu de lait ?",
+        "start": "C'est l'heure de ton lait maintenant.",
+        "repeat": "Tu veux encore une gorgée de lait ?",
+        "pause": "On fait une petite pause pendant le lait.",
+        "finish_check": "Tu as fini ton lait ?",
+        "finish": "Tu as terminé ton lait."
+      },
+      {
+        "inquiry": "L'eau du bain est agréable ?",
+        "invitation": "On prend un bon bain chaud ?",
+        "start": "Le bain commence maintenant.",
+        "repeat": "Tu veux encore éclabousser l'eau du bain ?",
+        "pause": "On interrompt le bain un petit moment.",
+        "finish_check": "On a fini le bain ?",
+        "finish": "Le bain est terminé."
+      },
+      {
+        "inquiry": "Quelle image vois-tu dans le livre ?",
+        "invitation": "On lit cet album ensemble ?",
+        "start": "On ouvre le livre maintenant.",
+        "repeat": "Je relis cette page encore une fois ?",
+        "pause": "On s'arrête un instant à cette page.",
+        "finish_check": "On a fini de lire le livre ?",
+        "finish": "Notre histoire est terminée."
+      },
+      {
+        "inquiry": "Tu as sommeil ?",
+        "invitation": "Tu veux t'allonger pour une petite sieste ?",
+        "start": "C'est le moment de s'endormir.",
+        "repeat": "On essaie encore une fois de s'endormir ?",
+        "pause": "On attend un petit moment avant la sieste.",
+        "finish_check": "Ta sieste est terminée ?",
+        "finish": "Ta sieste est finie."
+      },
+      {
+        "inquiry": "Ta couche te gêne ?",
+        "invitation": "On change ta couche ?",
+        "start": "Je commence à changer ta couche.",
+        "repeat": "Je referme cette attache de couche encore une fois.",
+        "pause": "On fait une petite pause pendant le change.",
+        "finish_check": "On a fini de changer ta couche ?",
+        "finish": "Ta couche propre est mise."
+      },
+      {
+        "inquiry": "Cette purée est bonne ?",
+        "invitation": "Tu veux une cuillère de purée ?",
+        "start": "On commence le repas maintenant.",
+        "repeat": "Tu veux encore une bouchée ?",
+        "pause": "On fait une petite pause pour manger.",
+        "finish_check": "Tu as fini de manger ?",
+        "finish": "Le repas est terminé."
+      },
+      {
+        "inquiry": "Quel jouet attire ton regard ?",
+        "invitation": "On joue avec les petits cubes ?",
+        "start": "Le moment de jouer commence.",
+        "repeat": "On refait rouler la balle ?",
+        "pause": "On fait une petite pause dans le jeu.",
+        "finish_check": "On a fini de jouer ?",
+        "finish": "Le jeu est terminé."
+      },
+      {
+        "inquiry": "Tu entends cette musique toute douce ?",
+        "invitation": "On écoute un peu de musique ?",
+        "start": "Je lance la musique maintenant.",
+        "repeat": "Tu veux réécouter cette chanson ?",
+        "pause": "On met la musique en pause un instant.",
+        "finish_check": "On a fini notre moment de musique ?",
+        "finish": "La chanson est terminée."
+      },
+      {
+        "inquiry": "L'air dehors est frais ?",
+        "invitation": "On va faire une petite promenade dehors ?",
+        "start": "On sort maintenant.",
+        "repeat": "On fait encore un tour dehors ?",
+        "pause": "On attend un peu près de la porte avant de sortir.",
+        "finish_check": "Notre promenade dehors est terminée ?",
+        "finish": "Notre petite promenade est finie."
+      },
+      {
+        "inquiry": "Tu es bien sur le ventre ?",
+        "invitation": "On essaie un peu de temps sur le ventre ?",
+        "start": "C'est le moment de te mettre sur le ventre.",
+        "repeat": "Tu veux essayer encore une fois sur le ventre ?",
+        "pause": "On fait une pause et on se repose.",
+        "finish_check": "On a fini le temps sur le ventre ?",
+        "finish": "Le temps sur le ventre est terminé."
+      }
+    ],
+    "ko": [
+      {
+        "inquiry": "우유가 너무 뜨겁지는 않니?",
+        "invitation": "우유 좀 마실래?",
+        "start": "이제 우유 마실 시간이야.",
+        "repeat": "우유 한 모금 더 마실래?",
+        "pause": "우유 마시다가 잠깐 쉬자.",
+        "finish_check": "우유 다 마셨니?",
+        "finish": "우유를 다 마셨구나."
+      },
+      {
+        "inquiry": "목욕물이 따뜻하고 좋니?",
+        "invitation": "따뜻하게 목욕할까?",
+        "start": "이제 목욕을 시작하자.",
+        "repeat": "목욕물에서 한 번 더 첨벙거릴까?",
+        "pause": "목욕하다가 잠깐 멈추자.",
+        "finish_check": "목욕은 다 끝났니?",
+        "finish": "목욕 시간이 끝났어."
+      },
+      {
+        "inquiry": "책에서 어떤 그림이 보이니?",
+        "invitation": "우리 이 그림책 읽을까?",
+        "start": "이제 책을 펼칠게.",
+        "repeat": "그 페이지를 다시 읽어 줄까?",
+        "pause": "이 페이지에서 잠깐 멈추자.",
+        "finish_check": "책 다 읽었니?",
+        "finish": "이야기를 다 읽었어."
+      },
+      {
+        "inquiry": "이제 졸리니?",
+        "invitation": "잠깐 낮잠 잘까?",
+        "start": "이제 잠들 준비를 하자.",
+        "repeat": "다시 한번 잠들어 볼까?",
+        "pause": "잠자리에 눕기 전에 잠깐 기다리자.",
+        "finish_check": "낮잠은 다 끝났니?",
+        "finish": "낮잠 시간이 끝났어."
+      },
+      {
+        "inquiry": "기저귀가 불편하니?",
+        "invitation": "우리 기저귀 갈까?",
+        "start": "이제 기저귀를 갈기 시작할게.",
+        "repeat": "기저귀 테이프를 다시 붙여 보자.",
+        "pause": "기저귀 갈다가 잠깐 쉬자.",
+        "finish_check": "기저귀 다 갈았니?",
+        "finish": "깨끗한 기저귀로 갈았어."
+      },
+      {
+        "inquiry": "이 이유식 맛있니?",
+        "invitation": "이유식 한 숟가락 먹을래?",
+        "start": "이제 밥 먹기 시작하자.",
+        "repeat": "한 입 더 먹어 볼까?",
+        "pause": "먹다가 잠깐 쉬자.",
+        "finish_check": "밥 다 먹었니?",
+        "finish": "식사 시간이 끝났어."
+      },
+      {
+        "inquiry": "어떤 장난감이 눈에 들어오니?",
+        "invitation": "우리 블록 가지고 놀까?",
+        "start": "이제 놀이를 시작하자.",
+        "repeat": "공을 한 번 더 굴려 볼까?",
+        "pause": "놀다가 잠깐 쉬자.",
+        "finish_check": "놀이 다 끝났니?",
+        "finish": "놀이 시간이 끝났어."
+      },
+      {
+        "inquiry": "이 잔잔한 음악 들리니?",
+        "invitation": "우리 음악 좀 들을까?",
+        "start": "이제 음악을 틀게.",
+        "repeat": "이 노래 한 번 더 들을까?",
+        "pause": "음악을 잠깐 멈추자.",
+        "finish_check": "음악 듣는 시간 다 끝났니?",
+        "finish": "노래가 끝났어."
+      },
+      {
+        "inquiry": "밖에 바람이 시원하니?",
+        "invitation": "우리 밖에 산책하러 갈까?",
+        "start": "이제 밖으로 나가자.",
+        "repeat": "밖에서 한 바퀴 더 걸어 볼까?",
+        "pause": "밖에 나가기 전에 문 앞에서 잠깐 기다리자.",
+        "finish_check": "밖에서 산책 다 했니?",
+        "finish": "산책이 끝났어."
+      },
+      {
+        "inquiry": "엎드려 있으니 편안하니?",
+        "invitation": "우리 엎드려 놀아 볼까?",
+        "start": "이제 엎드려 놀기 시작하자.",
+        "repeat": "다시 한번 엎드려 볼까?",
+        "pause": "엎드려 놀다가 잠깐 쉬자.",
+        "finish_check": "엎드려 놀기 다 끝났니?",
+        "finish": "엎드려 노는 시간이 끝났어."
+      }
+    ],
+    "th": [
+      {
+        "inquiry": "นมอุ่นพอดีไหมลูก?",
+        "invitation": "อยากดื่มนมสักหน่อยไหม?",
+        "start": "ถึงเวลาดื่มนมแล้วนะ",
+        "repeat": "อยากดื่มนมอีกอึกไหม?",
+        "pause": "พักดื่มนมสักครู่นะ",
+        "finish_check": "ดื่มนมหมดแล้วหรือยัง?",
+        "finish": "หนูดื่มนมหมดแล้วนะ"
+      },
+      {
+        "inquiry": "น้ำอาบสบายตัวไหม?",
+        "invitation": "เราไปอาบน้ำอุ่นกันไหม?",
+        "start": "เริ่มเวลาอาบน้ำกันแล้วนะ",
+        "repeat": "อยากเล่นน้ำในอ่างอีกครั้งไหม?",
+        "pause": "พักอาบน้ำสักครู่นะ",
+        "finish_check": "อาบน้ำเสร็จแล้วหรือยัง?",
+        "finish": "อาบน้ำเสร็จแล้วนะ"
+      },
+      {
+        "inquiry": "เห็นรูปไหนในหนังสือเอ่ย?",
+        "invitation": "มาอ่านหนังสือภาพกันไหม?",
+        "start": "ตอนนี้เราจะเปิดหนังสือแล้วนะ",
+        "repeat": "อ่านหน้านี้อีกครั้งดีไหม?",
+        "pause": "หยุดอยู่ที่หน้านี้สักครู่นะ",
+        "finish_check": "อ่านหนังสือจบแล้วหรือยัง?",
+        "finish": "เราอ่านนิทานจบแล้วนะ"
+      },
+      {
+        "inquiry": "หนูง่วงนอนแล้วหรือยัง?",
+        "invitation": "อยากนอนกลางวันสักหน่อยไหม?",
+        "start": "ถึงเวลาเตรียมตัวนอนแล้วนะ",
+        "repeat": "ลองนอนอีกครั้งดีไหม?",
+        "pause": "รอสักครู่ก่อนเข้านอนนะ",
+        "finish_check": "นอนกลางวันเสร็จแล้วหรือยัง?",
+        "finish": "เวลานอนกลางวันจบแล้วนะ"
+      },
+      {
+        "inquiry": "ผ้าอ้อมทำให้ไม่สบายตัวไหม?",
+        "invitation": "เราเปลี่ยนผ้าอ้อมกันไหม?",
+        "start": "จะเริ่มเปลี่ยนผ้าอ้อมแล้วนะ",
+        "repeat": "ติดแถบผ้าอ้อมอีกครั้งนะ",
+        "pause": "พักเปลี่ยนผ้าอ้อมสักครู่",
+        "finish_check": "เปลี่ยนผ้าอ้อมเสร็จแล้วหรือยัง?",
+        "finish": "ใส่ผ้าอ้อมสะอาดเรียบร้อยแล้วนะ"
+      },
+      {
+        "inquiry": "อาหารบดอร่อยไหม?",
+        "invitation": "อยากกินอาหารบดสักคำไหม?",
+        "start": "มาเริ่มกินข้าวกันนะ",
+        "repeat": "อยากกินอีกคำไหม?",
+        "pause": "พักกินข้าวสักครู่นะ",
+        "finish_check": "กินเสร็จแล้วหรือยัง?",
+        "finish": "หมดเวลากินข้าวแล้วนะ"
+      },
+      {
+        "inquiry": "ชอบของเล่นชิ้นไหนเอ่ย?",
+        "invitation": "มาเล่นบล็อกด้วยกันไหม?",
+        "start": "เริ่มเวลาเล่นแล้วนะ",
+        "repeat": "กลิ้งลูกบอลอีกครั้งไหม?",
+        "pause": "พักเล่นสักครู่นะ",
+        "finish_check": "เล่นเสร็จแล้วหรือยัง?",
+        "finish": "หมดเวลาเล่นแล้วนะ"
+      },
+      {
+        "inquiry": "ได้ยินเสียงดนตรีเบา ๆ ไหม?",
+        "invitation": "มาฟังเพลงกันไหม?",
+        "start": "จะเปิดเพลงแล้วนะ",
+        "repeat": "อยากฟังเพลงนี้อีกครั้งไหม?",
+        "pause": "หยุดเพลงไว้สักครู่นะ",
+        "finish_check": "ฟังเพลงเสร็จแล้วหรือยัง?",
+        "finish": "เพลงจบแล้วนะ"
+      },
+      {
+        "inquiry": "ลมข้างนอกเย็นสบายไหม?",
+        "invitation": "ออกไปเดินเล่นข้างนอกกันไหม?",
+        "start": "ตอนนี้เราจะออกไปข้างนอกกันนะ",
+        "repeat": "อยากเดินเล่นอีกหนึ่งรอบไหม?",
+        "pause": "รอที่ประตูก่อนออกไปข้างนอกสักครู่นะ",
+        "finish_check": "เดินเล่นข้างนอกเสร็จแล้วหรือยัง?",
+        "finish": "เราเดินเล่นเสร็จแล้วนะ"
+      },
+      {
+        "inquiry": "นอนคว่ำสบายตัวไหม?",
+        "invitation": "ลองเล่นตอนนอนคว่ำกันไหม?",
+        "start": "เริ่มเวลาเล่นตอนนอนคว่ำแล้วนะ",
+        "repeat": "ลองนอนคว่ำอีกครั้งไหม?",
+        "pause": "พักจากการนอนคว่ำสักครู่นะ",
+        "finish_check": "เล่นตอนนอนคว่ำเสร็จแล้วหรือยัง?",
+        "finish": "เวลาเล่นตอนนอนคว่ำจบแล้วนะ"
+      }
+    ],
+    "zh": [
+      {
+        "inquiry": "奶的温度合适吗？",
+        "invitation": "想喝一点奶吗？",
+        "start": "现在开始喝奶啦。",
+        "repeat": "还想再喝一口奶吗？",
+        "pause": "喝奶先休息一下吧。",
+        "finish_check": "奶已经喝完了吗？",
+        "finish": "你的奶已经喝完啦。"
+      },
+      {
+        "inquiry": "洗澡水舒服吗？",
+        "invitation": "我们洗个暖暖的澡，好吗？",
+        "start": "现在开始洗澡啦。",
+        "repeat": "还想再拍一下洗澡水吗？",
+        "pause": "洗澡先暂停一下。",
+        "finish_check": "澡已经洗完了吗？",
+        "finish": "洗澡时间结束啦。"
+      },
+      {
+        "inquiry": "你在书里看到了哪张图？",
+        "invitation": "我们一起读这本图画书，好吗？",
+        "start": "现在把书打开啦。",
+        "repeat": "要不要再读一遍这一页？",
+        "pause": "我们在这一页停一会儿吧。",
+        "finish_check": "这本书读完了吗？",
+        "finish": "这个故事读完啦。"
+      },
+      {
+        "inquiry": "你现在困了吗？",
+        "invitation": "想躺下来睡个午觉吗？",
+        "start": "现在开始准备睡觉啦。",
+        "repeat": "要不要再试一次入睡？",
+        "pause": "睡觉前先等一小会儿。",
+        "finish_check": "午觉睡完了吗？",
+        "finish": "午觉时间结束啦。"
+      },
+      {
+        "inquiry": "尿布让你不舒服吗？",
+        "invitation": "我们来换尿布，好吗？",
+        "start": "现在开始换尿布啦。",
+        "repeat": "我们把尿布贴再贴一次吧。",
+        "pause": "换尿布先暂停一下。",
+        "finish_check": "尿布已经换好了吗？",
+        "finish": "干净尿布已经穿好啦。"
+      },
+      {
+        "inquiry": "这个辅食好吃吗？",
+        "invitation": "想吃一勺辅食吗？",
+        "start": "现在开始吃饭啦。",
+        "repeat": "还想再吃一口吗？",
+        "pause": "吃饭先休息一会儿吧。",
+        "finish_check": "已经吃完饭了吗？",
+        "finish": "吃饭时间结束啦。"
+      },
+      {
+        "inquiry": "你看上了哪个玩具？",
+        "invitation": "我们一起玩积木，好吗？",
+        "start": "现在开始玩啦。",
+        "repeat": "要不要再滚一次小球？",
+        "pause": "玩耍先暂停一下。",
+        "finish_check": "已经玩完了吗？",
+        "finish": "玩耍时间结束啦。"
+      },
+      {
+        "inquiry": "你能听到轻轻的音乐吗？",
+        "invitation": "我们来听听音乐，好吗？",
+        "start": "现在开始放音乐啦。",
+        "repeat": "还想再听一遍这首歌吗？",
+        "pause": "音乐先暂停一下。",
+        "finish_check": "听音乐的时间结束了吗？",
+        "finish": "这首歌已经放完啦。"
+      },
+      {
+        "inquiry": "外面的风凉快吗？",
+        "invitation": "我们去外面散散步，好吗？",
+        "start": "现在要出门啦。",
+        "repeat": "还想在外面再走一圈吗？",
+        "pause": "出门前先在门口等一会儿。",
+        "finish_check": "外面的散步结束了吗？",
+        "finish": "我们的小散步结束啦。"
+      },
+      {
+        "inquiry": "趴着玩舒服吗？",
+        "invitation": "我们试试趴着玩，好吗？",
+        "start": "现在开始趴着玩啦。",
+        "repeat": "要不要再试一次趴着玩？",
+        "pause": "趴着玩先暂停一下，休息休息。",
+        "finish_check": "趴着玩的时间结束了吗？",
+        "finish": "趴着玩的时间结束啦。"
+      }
+    ],
+    "hi": [
+      {
+        "inquiry": "क्या दूध का तापमान ठीक है?",
+        "invitation": "थोड़ा दूध पीना चाहोगे?",
+        "start": "अब दूध पीने का समय है।",
+        "repeat": "दूध का एक घूँट और लोगे?",
+        "pause": "दूध पीते हुए थोड़ी देर आराम करें।",
+        "finish_check": "क्या तुमने अपना दूध खत्म कर लिया?",
+        "finish": "तुमने अपना दूध पी लिया।"
+      },
+      {
+        "inquiry": "क्या नहाने का पानी आरामदायक है?",
+        "invitation": "क्या हम गर्म पानी से नहाएँ?",
+        "start": "अब नहाना शुरू करते हैं।",
+        "repeat": "क्या पानी में एक बार फिर छपछप करेंगे?",
+        "pause": "नहाना थोड़ी देर रोकते हैं।",
+        "finish_check": "क्या नहाना पूरा हो गया?",
+        "finish": "नहाने का समय खत्म हो गया।"
+      },
+      {
+        "inquiry": "किताब में कौन-सी तस्वीर दिख रही है?",
+        "invitation": "क्या हम यह तस्वीरों वाली किताब पढ़ें?",
+        "start": "अब हम किताब खोल रहे हैं।",
+        "repeat": "क्या यह पन्ना दोबारा पढ़ूँ?",
+        "pause": "इस पन्ने पर थोड़ी देर रुकते हैं।",
+        "finish_check": "क्या किताब पढ़ना पूरा हो गया?",
+        "finish": "हमारी कहानी खत्म हो गई।"
+      },
+      {
+        "inquiry": "क्या तुम्हें नींद आ रही है?",
+        "invitation": "क्या थोड़ी देर दोपहर की नींद ले लें?",
+        "start": "अब सोने की तैयारी शुरू करते हैं।",
+        "repeat": "क्या फिर से सोने की कोशिश करें?",
+        "pause": "सोने के लिए लेटने से पहले थोड़ा रुकते हैं।",
+        "finish_check": "क्या तुम्हारी नींद पूरी हो गई?",
+        "finish": "दोपहर की नींद का समय खत्म हो गया।"
+      },
+      {
+        "inquiry": "क्या नैपी में असहज लग रहा है?",
+        "invitation": "क्या हम नैपी बदलें?",
+        "start": "अब नैपी बदलना शुरू करते हैं।",
+        "repeat": "नैपी की पट्टी फिर से लगाते हैं।",
+        "pause": "नैपी बदलते हुए थोड़ा रुकते हैं।",
+        "finish_check": "क्या नैपी बदलना पूरा हो गया?",
+        "finish": "साफ नैपी पहना दी है।"
+      },
+      {
+        "inquiry": "क्या यह पिसा हुआ खाना स्वादिष्ट है?",
+        "invitation": "एक चम्मच खाना खाओगे?",
+        "start": "अब खाना शुरू करते हैं।",
+        "repeat": "क्या एक कौर और खाओगे?",
+        "pause": "खाते हुए थोड़ी देर रुकते हैं।",
+        "finish_check": "क्या तुम्हारा खाना पूरा हो गया?",
+        "finish": "खाने का समय खत्म हो गया।"
+      },
+      {
+        "inquiry": "तुम्हें कौन-सा खिलौना पसंद आया?",
+        "invitation": "क्या हम ब्लॉक से खेलें?",
+        "start": "अब खेलने का समय शुरू हुआ।",
+        "repeat": "क्या गेंद फिर से लुढ़काएँ?",
+        "pause": "खेल में थोड़ी देर रुकते हैं।",
+        "finish_check": "क्या खेलना पूरा हो गया?",
+        "finish": "खेलने का समय खत्म हो गया।"
+      },
+      {
+        "inquiry": "क्या तुम्हें धीमा संगीत सुनाई दे रहा है?",
+        "invitation": "क्या हम थोड़ा संगीत सुनें?",
+        "start": "अब संगीत चला रहे हैं।",
+        "repeat": "क्या यह गाना फिर से सुनना है?",
+        "pause": "संगीत थोड़ी देर रोकते हैं।",
+        "finish_check": "क्या संगीत सुनना खत्म हो गया?",
+        "finish": "गाना खत्म हो गया।"
+      },
+      {
+        "inquiry": "क्या बाहर की हवा ठंडी लग रही है?",
+        "invitation": "क्या हम बाहर थोड़ा टहलने जाएँ?",
+        "start": "अब हम बाहर निकल रहे हैं।",
+        "repeat": "क्या बाहर एक चक्कर और लगाएँ?",
+        "pause": "बाहर जाने से पहले दरवाज़े पर थोड़ा रुकते हैं।",
+        "finish_check": "क्या बाहर टहलना पूरा हो गया?",
+        "finish": "हमारी छोटी सैर खत्म हो गई।"
+      },
+      {
+        "inquiry": "क्या पेट के बल लेटना आरामदायक है?",
+        "invitation": "क्या हम थोड़ी देर पेट के बल खेलें?",
+        "start": "अब पेट के बल खेलने का समय शुरू है।",
+        "repeat": "क्या पेट के बल एक बार फिर खेलें?",
+        "pause": "पेट के बल खेलने से थोड़ा आराम करें।",
+        "finish_check": "क्या पेट के बल खेलना खत्म हो गया?",
+        "finish": "पेट के बल खेलने का समय खत्म हो गया।"
+      }
+    ]
+  }
+}
