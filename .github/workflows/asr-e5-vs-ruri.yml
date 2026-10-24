@@ -1,0 +1,116 @@
+name: CooTrio ASR E5 vs Japanese Moonshine Ruri
+
+on:
+  push:
+    branches: [research/asr-e5-vs-ruri-v1]
+    paths:
+      - '.github/workflows/asr-e5-vs-ruri.yml'
+      - 'research/asr-ruri-comparison/**'
+  pull_request:
+    branches: [research/dual-axis-frozen-challenge-v1]
+    paths:
+      - '.github/workflows/asr-e5-vs-ruri.yml'
+      - 'research/asr-ruri-comparison/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: asr-e5-ruri-comparison-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  foreign-asr-e5:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      TOKENIZERS_PARALLELISM: 'false'
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Research dependencies
+        run: python -m pip install -r research/e5-locale-encoders/requirements.txt
+      - name: Obtain frozen, previously trained heads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/cootrio-heads
+          gh run download 40073281853 --repo "$GITHUB_REPOSITORY" --name cootrio-dual-axis-provisional-training-40073281853 --dir /tmp/cootrio-heads
+          test -f /tmp/cootrio-heads/provisional_heads/candidate_manifest.json
+      - name: Score 374 previously frozen ASR transcripts; no new ASR or head fitting
+        run: |
+          set -o pipefail
+          python research/asr-ruri-comparison/score_foreign.py --candidates /tmp/cootrio-heads/provisional_heads 2>&1 | tee research/asr-ruri-comparison/foreign.log
+      - name: Preserve foreign predictions and failure logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foreign-asr-e5-localheads-${{ github.run_id }}
+          path: |
+            research/asr-ruri-comparison/outputs/foreign_asr_*
+            research/asr-ruri-comparison/foreign.log
+          if-no-files-found: warn
+          retention-days: 30
+
+  japanese-moonshine-ruri:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 23
+    env:
+      TOKENIZERS_PARALLELISM: 'false'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned Ruri ONNX and Japanese synthetic TTS & Moonshine audio dependencies
+        run: |
+          python -m pip install numpy==1.26.4 scipy==1.14.1 onnxruntime==1.31.0 tokenizers==0.22.1
+          python -m pip install pyopenjtalk==0.4.1 moonshine-voice
+      - name: Validate locally shipped Japanese Ruri model assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          model=Path('semantic-assets/ruri70-int8-bd500193/model.onnx')
+          print('Ruri ONNX present:',model.is_file(), 'size:',model.stat().st_size if model.is_file() else 'missing')
+          if not model.is_file(): raise FileNotFoundError('Tracked Japanese Ruri ONNX is missing')
+          PY
+      - name: Probe Japanese Ruri from fresh process before ASR
+        run: |
+          set -o pipefail
+          python research/asr-ruri-comparison/score_japanese.py --no-asr 2>&1 | tee research/asr-ruri-comparison/japanese_oracle_probe.log
+          cp research/asr-ruri-comparison/outputs/japanese_predictions.jsonl /tmp/ruri-oracle-probe.jsonl
+      - name: Run 22 Japanese PyOpenJTalk to Moonshine Small Streaming to Ruri
+        run: |
+          set -o pipefail
+          python research/asr-ruri-comparison/score_japanese.py 2>&1 | tee research/asr-ruri-comparison/japanese.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=[json.loads(s) for s in Path('/tmp/ruri-oracle-probe.jsonl').read_text().splitlines()]
+          b=[json.loads(s) for s in Path('research/asr-ruri-comparison/outputs/japanese_predictions.jsonl').read_text().splitlines()]
+          assert len(a)==len(b)==22
+          assert all(x['id']==y['id'] and x['oracle']['topic']['label']==y['oracle']['topic']['label']
+            and x['oracle']['interaction']['label']==y['oracle']['interaction']['label'] for x,y in zip(a,b)), 'Ruri cross-process model predictions are not repeatable; no valid Japanese baseline'
+          print('Ruri oracle predictions identical across fresh processes; report allowed.')
+          PY
+      - name: Preserve Japanese accuracy and ASR failure logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: japanese-moonshine-small-ruri-${{ github.run_id }}
+          path: |
+            research/asr-ruri-comparison/outputs/japanese_*
+            research/asr-ruri-comparison/japanese.log
+            research/asr-ruri-comparison/japanese_oracle_probe.log
+          if-no-files-found: warn
+          retention-days: 30

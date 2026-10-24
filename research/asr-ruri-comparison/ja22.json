@@ -1,0 +1,251 @@
+{
+  "schema": 1,
+  "source": "Japanese re-authoring of 22 foreign-language ASR test meaning templates",
+  "label_human_reviewed": false,
+  "translations_human_reviewed": false,
+  "audio_human_recorded": false,
+  "rows": [
+    {
+      "id": "ja-001",
+      "meaning_family": "multilingual-template-001",
+      "language": "ja",
+      "text": "ミルクを飲みたいかな？",
+      "topic": "milk",
+      "interaction": "inquiry",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-002",
+      "meaning_family": "multilingual-template-002",
+      "language": "ja",
+      "text": "そろそろおねんねしようね。",
+      "topic": "sleep",
+      "interaction": "invitation",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-003",
+      "meaning_family": "multilingual-template-003",
+      "language": "ja",
+      "text": "おむつを替えようか。",
+      "topic": "diaper",
+      "interaction": "invitation",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-004",
+      "meaning_family": "multilingual-template-004",
+      "language": "ja",
+      "text": "さあ、お風呂の時間だよ。",
+      "topic": "bath",
+      "interaction": "start",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-005",
+      "meaning_family": "multilingual-template-005",
+      "language": "ja",
+      "text": "おはよう、目が覚めたね。",
+      "topic": "wake",
+      "interaction": "none",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-006",
+      "meaning_family": "multilingual-template-006",
+      "language": "ja",
+      "text": "ぎゅっと抱っこしようか。",
+      "topic": "hug",
+      "interaction": "invitation",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-007",
+      "meaning_family": "multilingual-template-007",
+      "language": "ja",
+      "text": "とっても素敵な笑顔だね。",
+      "topic": "smile",
+      "interaction": "praise",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-008",
+      "meaning_family": "multilingual-template-008",
+      "language": "ja",
+      "text": "泣いてるんだね、大丈夫だよ、ここにいるよ。",
+      "topic": "cry",
+      "interaction": "reassurance",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-009",
+      "meaning_family": "multilingual-template-009",
+      "language": "ja",
+      "text": "おもちゃで一緒に遊ぼうね。",
+      "topic": "play",
+      "interaction": "invitation",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-010",
+      "meaning_family": "multilingual-template-010",
+      "language": "ja",
+      "text": "おててを見せてくれる？",
+      "topic": "hands",
+      "interaction": "inquiry",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-011",
+      "meaning_family": "multilingual-template-011",
+      "language": "ja",
+      "text": "小さなあんよをもっと動かしてみよう！",
+      "topic": "feet",
+      "interaction": "encouragement",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-012",
+      "meaning_family": "multilingual-template-012",
+      "language": "ja",
+      "text": "一緒にお歌を歌おうか。",
+      "topic": "music",
+      "interaction": "invitation",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-013",
+      "meaning_family": "multilingual-template-013",
+      "language": "ja",
+      "text": "ごはんを食べる準備はできたかな？",
+      "topic": "food",
+      "interaction": "inquiry",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-014",
+      "meaning_family": "multilingual-template-014",
+      "language": "ja",
+      "text": "お外にお散歩に行こうね。",
+      "topic": "outside",
+      "interaction": "invitation",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-015",
+      "meaning_family": "multilingual-template-015",
+      "language": "ja",
+      "text": "一緒に絵本を読もうか。",
+      "topic": "book",
+      "interaction": "inquiry",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-016",
+      "meaning_family": "multilingual-template-016",
+      "language": "ja",
+      "text": "電車は五時に出発します。",
+      "topic": "generic",
+      "interaction": "none",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-017",
+      "meaning_family": "multilingual-template-017",
+      "language": "ja",
+      "text": "お水を飲みたいかな？",
+      "topic": "drink",
+      "interaction": "inquiry",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-018",
+      "meaning_family": "multilingual-template-018",
+      "language": "ja",
+      "text": "お外では雨が降っているよ。",
+      "topic": "rain",
+      "interaction": "none",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-019",
+      "meaning_family": "multilingual-template-019",
+      "language": "ja",
+      "text": "お日さまが明るく照ってるね。",
+      "topic": "sun",
+      "interaction": "none",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-020",
+      "meaning_family": "multilingual-template-020",
+      "language": "ja",
+      "text": "おなかはいっぱいになったかな？",
+      "topic": "tummy",
+      "interaction": "inquiry",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-021",
+      "meaning_family": "multilingual-template-021",
+      "language": "ja",
+      "text": "かわいい声が出たね、上手だね。",
+      "topic": "voice",
+      "interaction": "praise",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    },
+    {
+      "id": "ja-022",
+      "meaning_family": "multilingual-template-022",
+      "language": "ja",
+      "text": "お洋服を着ようね。",
+      "topic": "clothes",
+      "interaction": "invitation",
+      "verified": false,
+      "recording_type": "pyopenjtalk synthetic, not real caregiver",
+      "review": "unreviewed labels"
+    }
+  ]
+}
