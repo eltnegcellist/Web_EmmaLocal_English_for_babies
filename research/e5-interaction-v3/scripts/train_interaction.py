@@ -55,7 +55,16 @@ class FrozenE5:
         self.session=ort.InferenceSession(path,sess_options=opt,providers=['CPUExecutionProvider'])
     def embed(self,text):
         tok=self.tokenizer('query: '+text,return_tensors='np',truncation=True,max_length=512)
-        feed={i.name:tok[i.name].astype(np.int64) for i in self.session.get_inputs()}
+        # Some XLM-R tokenizers omit token_type_ids, although the exported ONNX
+        # graph requires them. XLM-R uses a single segment: all zeros.
+        feed={}
+        for i in self.session.get_inputs():
+            if i.name in tok:
+                feed[i.name]=tok[i.name].astype(np.int64)
+            elif i.name=='token_type_ids':
+                feed[i.name]=np.zeros_like(tok['input_ids'],dtype=np.int64)
+            else:
+                raise KeyError(f'Missing ONNX input {i.name}')
         arr=self.session.run(None,feed)[0]
         if arr.ndim!=3 or arr.shape[-1]!=384:raise ValueError(f'Unexpected E5 output {arr.shape}')
         mask=tok['attention_mask'][...,None].astype(np.float32)
