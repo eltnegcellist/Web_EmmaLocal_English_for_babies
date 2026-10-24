@@ -1,0 +1,75 @@
+name: S25 Vosk browser benchmark sanity
+
+on:
+  push:
+    branches: [research/s25-vosk-browser-benchmark-v1]
+    paths:
+      - "research/s25-vosk-browser-benchmark/**"
+      - ".github/workflows/s25-vosk-browser-benchmark.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "research/s25-vosk-browser-benchmark/**"
+      - ".github/workflows/s25-vosk-browser-benchmark.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-sanity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: JavaScript syntax
+        run: node --check research/s25-vosk-browser-benchmark/bench.js
+      - name: Validate page, privacy and measurement controls
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          root=Path('research/s25-vosk-browser-benchmark')
+          html=(root/'index.html').read_text()
+          js=(root/'bench.js').read_text()
+          assert '<script src="./bench.js"></script>' in html
+          assert 'vosk-browser@0.0.5' in html
+          assert 'input type="file"' in html
+          assert 'value="5"' in html and 'value="10"' in html
+          assert 'Vosk.createModel(url)' in js
+          assert 'new model.KaldiRecognizer(buffer.sampleRate)' in js
+          assert 'rec.acceptWaveform(buffer)' in js
+          assert 'performance.now()' in js
+          assert "getUserMedia" in js and "OfflineAudioContext" in js
+          assert "navigator.clipboard.writeText" in js
+          assert 'fetch(' not in js and 'XMLHttpRequest' not in js
+          print('Static S25 benchmark validation passed. This is not a mobile runtime test.')
+          PY
+      - name: Do not alter shipping app files
+        run: |
+          git diff --quiet HEAD~1 HEAD -- src/ public/ multilingual-assets/ || {
+            echo "Research branch unexpectedly modified app assets"; exit 1;
+          }
+  browser-model-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Prepare browser automation
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Serve the research-only benchmark page
+        run: |
+          nohup python3 -m http.server 8765 --bind 127.0.0.1 --directory research/s25-vosk-browser-benchmark/ > /tmp/s25-http.log 2>&1 &
+          sleep 2
+          curl --fail --silent http://127.0.0.1:8765/index.html >/dev/null
+      - name: Verify actual WebAssembly worker and English model load
+        run: node research/s25-vosk-browser-benchmark/smoke.mjs
