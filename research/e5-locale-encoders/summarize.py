@@ -32,6 +32,18 @@ for lang in ALL:
     for arm in arms:
         scores=block["comparison"].get(arm,{})
         lines.append(f'| {lang} | {arm} | {metric(scores.get("validation"))} | {metric(scores.get("frozen154_oracle"))} | {metric(scores.get("frozen374_asr"))} |')
+lines.extend(["","## Baseline reproduction and platform","",
+"| Language | Mac reference status | Differing oracle | Differing ASR | Comparison scope |",
+"|---|---|---:|---:|---|"])
+for lang in ALL:
+    if lang not in found:
+        lines.append(f"| {lang} | MISSING/FAILED | — | — | No valid scores |")
+    else:
+        obj=found[lang]
+        lines.append(f"| {lang} | {obj.get('baseline_reference_status','UNKNOWN')} | "
+                     f"{obj.get('mac_reference_mismatch_oracle','?')} | "
+                     f"{obj.get('mac_reference_mismatch_asr','?')} | "
+                     f"{obj.get('baseline_comparison_scope','UNKNOWN')} |")
 lines.extend(["","## Dedicated encoder execution status","",
 "| Language | Encoder status | License | Reason (when unavailable) |",
 "|---|---|---|---|"])
@@ -48,6 +60,7 @@ lines.extend(["","## Interpretation safeguards","",
 "- Language models use different encoders, parameters and memory sizes; compare runtime on Galaxy S25 and browser WASM before product selection.",
 "- Only 15 training and 15 validation examples per non-English language, one train per class; these are far too few to certify gains.",
 "- Frozen 154/374 are clustered translations of 22 meaning templates, not independent natural-speech observations.",
+"- If Mac baseline reproduction fails, recorded results represent exploratory paired comparisons strictly WITHIN Linux, never an exact Mac baseline or measured deployment performance.",
 "- Topic head is unchanged across all arms; this evaluates only Interaction specialization.",
 "- Do not tune on the frozen 154/374; only fit with training split and inspect family-separated validation.",
 "",
