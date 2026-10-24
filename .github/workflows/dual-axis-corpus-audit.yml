@@ -43,9 +43,13 @@ jobs:
           queue=(output/'needs_review_queue.jsonl').read_text(encoding='utf-8').splitlines()
           assert len(queue)==7*(22+15),len(queue)
           assert all(json.loads(line)['required_additional_reviewed_families']==50 for line in queue)
-          assert s['starter_rows_kept']==1368, s
-          assert s['by_axis']=={'topic':308,'interaction':570,'both':490},s
-          assert s['paired_dual_axis_contrasts_imported']==490,s
+          assert s['starter_rows_kept']==1364, s
+          assert s['by_axis']=={'topic':308,'interaction':570,'both':486},s
+          assert s['paired_dual_axis_contrasts_imported']==486,s
+          assert s['excluded_overlap_or_duplicate']==4,s
+          excluded=json.loads((output/'excluded.json').read_text())
+          print('Excluded overlapping/duplicated research utterances:',excluded)
+          assert len(excluded)==4
           assert s['ready_for_production'] is False
           for lang,axes in c.items():
               assert len(axes['topic'])==22 and len(axes['interaction'])==15
