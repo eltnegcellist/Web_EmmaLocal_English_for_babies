@@ -16,36 +16,6 @@ function bootStage(stage){
  $('initLog').textContent=bootLog.join('\n');
  if(loading)notify('モデル準備：'+stage);
 }
-async function loadMoonshineWasmDiagnosed(){
- const {ModelArch,Transcriber}=await import('../../src/vendor/moonshine/index.js');
- const {loadMoonshineModule}=await import('../../src/vendor/moonshine/module.js');
- const {default:moonshineFactory}=await import('../../src/vendor/moonshine/moonshine.mjs');
- const wasmUrl=new URL('../../src/vendor/moonshine/moonshine.wasm.gz',import.meta.url);
- const expected='22fca4a5b2dc50fe36dc68e4d25fab73b0250b71f744d9fea511c3a308b2420a';
- if(typeof DecompressionStream!=='function')throw Error('gzip DecompressionStreamに非対応');
- bootStage('圧縮WASM取得を開始');
- const response=await withTimeout(fetch(wasmUrl),30000,'圧縮WASMの取得');
- if(!response.ok || !response.body)throw Error('WASM取得に失敗（HTTP '+response.status+'）');
- bootStage('圧縮WASM受信完了。gzip展開中');
- const bytes=new Uint8Array(await withTimeout(
-   new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer(),
-   45000,'WASMのgzip展開'
- ));
- bootStage('gzip展開完了（'+(bytes.byteLength/1048576).toFixed(2)+'MiB）。SHA-256照合中');
- const digest=new Uint8Array(await withTimeout(crypto.subtle.digest('SHA-256',bytes),30000,'WASM SHA-256照合'));
- const hex=[...digest].map(n=>n.toString(16).padStart(2,'0')).join('');
- if(hex!==expected)throw Error('WASM SHA-256が期待値と一致しません');
- bootStage('WASMハッシュ一致。Emscripten/WASM起動中');
- const module=await withTimeout(loadMoonshineModule({
-   factory:options=>moonshineFactory({
-     ...options,wasmBinary:bytes,
-     monitorRunDependencies:n=>bootStage('Emscripten依存処理 残数='+n),
-     onAbort:reason=>bootStage('WASM abort: '+String(reason).slice(0,160))
-   })
- }),90000,'Emscripten/WASMスレッド起動');
- bootStage('WASM起動完了。音声モデル読込へ');
- return {module,ModelArch,Transcriber};
-}
 async function withTimeout(promise,ms,label){
  let timer;
  try{
@@ -144,8 +114,10 @@ function extractPCM(){
 async function closeBackend(){
  if(loadedBackend?.kind==='vosk'){
    try{loadedBackend.model.terminate()}catch(_){}
- }else if(loadedBackend?.kind==='moonshine-main'){
-   try{loadedBackend.transcriber.close()}catch(_){}
+ }else if(loadedBackend?.kind==='moonshine-product'){
+   loadedBackend.client.close();
+ }else if(loadedBackend?.kind==='whisper-product'){
+   loadedBackend.client.cancel();
  }else if(loadedBackend?.kind==='worker')loadedBackend.worker.terminate();
  loadedBackend=null;loadedEngine=null;loadMs=null;
 }
@@ -233,29 +205,43 @@ async function loadSelected(){
      loadedBackend={kind:'vosk',model};
    }else if(engine==='moonshine'){
      if(!crossOriginIsolated || typeof SharedArrayBuffer!=='function')
-       throw Error('Moonshineにはブラウザ分離が必要です。分離環境表示を確認してください。');
-     // The Moonshine WASM runtime creates its own pthread Workers. Unlike the
-     // failing nested benchmark worker, run its host in the page context.
-     // Only this research page changes; production ASR is untouched.
+       throw Error('Moonshineにはブラウザ分離が必要です。');
      bootLog.length=0;bootStarted=performance.now();
-     bootStage('Moonshineの初期化を開始');
-     const {ModelArch,Transcriber,module}=await loadMoonshineWasmDiagnosed();
-     bootStage('英語Small Streamingモデルを準備中');
-     const transcriber=await withTimeout(Transcriber.load({
-       module,language:'en',modelArch:ModelArch.SmallStreaming,
-       options:{vad_threshold:'0',vad_max_segment_duration:'1000',max_tokens_per_second:'13.0'},
-       onProgress:(loaded,total)=>{
-         if(loading&&total>0)notify('Moonshine: モデル取得 '+Math.round(100*loaded/total)+'%');
-       },
-       onDiagnostic:e=>bootStage('Moonshineモデル初期化 '+String(e.kind||'')+' '+Math.round(e.durationMs||0)+'ms'),
-     }),480000,'Moonshineモデル読み込み');
-     loadedBackend={kind:'moonshine-main',transcriber};
+     bootStage('本番MoonshineAsrClientを読み込み');
+     const {MoonshineAsrClient}=await import('../../src/asr-client.js');
+     const client=new MoonshineAsrClient({
+       workerFactory:()=>new Worker(new URL('./moonshine-product-bridge.js',import.meta.url),{type:'module'}),
+       onEvent:event=>{
+         if(event.type==='manifest'){
+           bootStage('本番Workerのモデル目録取得完了。キャッシュ処理へ');
+           client.resumeInit();
+         }else if(event.type==='stage'){
+           bootStage(event.message||event.stage);
+         }else if(event.type==='diagnostic'){
+           bootStage('本番Worker診断 '+event.kind+': '+Math.round(event.durationMs||0)+'ms');
+         }else if(event.type==='progress'&&event.total>0){
+           if(loading)notify('Moonshineモデル取得 '+Math.round(100*event.loaded/event.total)+'%');
+         }
+       }
+     });
+     loadedBackend={kind:'moonshine-product',client};
+     bootStage('本番ASR Workerを英語Small Streamingで初期化');
+     await withTimeout(client.init({
+       model:'small',language:'en',researchBenchmark:'s25-same-audio'
+     }),180000,'本番Moonshine ASR初期化');
    }else{
-     const worker=makeWorkerBackend('./whisper-bench-worker.js');
-     loadedBackend=worker;
-     const probe=await worker.request('ping',{},20000);
-     if(!probe.ready)throw Error('Worker handshake failed');
-     await worker.request('init',{language:'en'},900000);
+     bootLog.length=0;bootStarted=performance.now();
+     bootStage('本番MultilingualClientとWhisper Workerを初期化');
+     const {MultilingualClient}=await import('../../src/multilingual/client.js');
+     const client=new MultilingualClient({
+       workerFactory:()=>new Worker(new URL('./whisper-product-bridge.js',import.meta.url),{type:'module'}),
+       threads:'auto',languageDetection:'fixed',
+       onStatus:event=>{
+         if(event.stage)bootStage('Whisper '+event.stage);
+       }
+     });
+     loadedBackend={kind:'whisper-product',client};
+     await withTimeout(client.prepare(),900000,'本番Whisper ASR初期化');
    }
    loadMs=performance.now()-started;loadedEngine=engine;
    notify(labels[engine]+' 準備完了：読み込み '+round(loadMs)+' ms。測定を開始できます。');
@@ -268,17 +254,19 @@ async function loadSelected(){
 }
 async function recognizeWorker(pcm){
  const start=performance.now();
- if(loadedBackend?.kind==='moonshine-main'){
-   const result=loadedBackend.transcriber.transcribe(pcm,{sampleRate:16000});
-   const ms=performance.now()-start;
-   const text=Array.isArray(result?.lines)
-     ?result.lines.map(line=>encoderText(line?.text)).filter(Boolean).join(' '):'';
-   return {ms,internalMs:ms,text,kind:'final'};
+ if(loadedBackend?.kind==='moonshine-product'){
+   // Exactly the same transcribe bridge (and PCM copy) as Mitsukotoba.
+   const text=await loadedBackend.client.transcribe(pcm);
+   return {ms:performance.now()-start,internalMs:null,text:encoderText(text),kind:'final'};
  }
- const buffer=pcm.slice().buffer;
- const response=await loadedBackend.request('run',{audio:buffer,language:'en'},900000,[buffer]);
- return {ms:performance.now()-start,internalMs:response.internalMs??null,
-     text:encoderText(response.text),kind:'final'};
+ if(loadedBackend?.kind==='whisper-product'){
+   // Use Mitsukotoba's pinned Whisper Small q8 ONNX WASM runtime.
+   // Fixed English avoids a language detection pass.
+   const result=await loadedBackend.client.transcribe(pcm,'en');
+   return {ms:performance.now()-start,internalMs:result.timings?.transcribeMs??null,
+     text:encoderText(result.text),kind:'final'};
+ }
+ throw Error('An ASR backend has not been initialized');
 }
 async function run(){
  if(running||loading||!samples||loadedEngine!==$('engine').value)return;
@@ -303,7 +291,7 @@ async function run(){
      firstMs:round(times[0]),audioSeconds:round(info.audioSeconds),
      speechSeconds:round(info.speechSeconds),windowSeconds:info.windowSeconds,
      iterations:predictions,threads:navigator.hardwareConcurrency,
-     architecture:engine==='whisper'?'Whisper Small q8 WASM':engine==='moonshine'?'Moonshine Small Streaming MIT':'Vosk Small English WASM'
+     architecture:engine==='whisper'?'Mitsukotoba MultilingualClient Whisper Small q8 WASM fixed English':engine==='moonshine'?'Mitsukotoba MoonshineAsrClient Small Streaming English MIT':'Vosk Small English WASM'
    };
    render();
    notify(labels[engine]+' 完了。p50 '+results[engine].p50Ms+'ms、p95 '+results[engine].p95Ms+
@@ -340,7 +328,7 @@ $('load').addEventListener('click',loadSelected);
 $('run').addEventListener('click',run);
 $('copy').addEventListener('click',async()=>{
  const report={
-   benchmark:'CooTrio S25 same audio Vosk/Moonshine/Whisper v2',
+   benchmark:'CooTrio S25 same audio production ASR client reuse v3',
    capturedAt:new Date().toISOString(),
    device:navigator.userAgent,hardwareConcurrency:navigator.hardwareConcurrency,
    deviceMemoryGiB:navigator.deviceMemory??null,crossOriginIsolated,
