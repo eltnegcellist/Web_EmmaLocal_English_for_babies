@@ -7,10 +7,11 @@ The actual production label configuration has **22 Topic classes** (including `g
 - Topic seeds: 22 labels × 7 languages × 2 authored sentences = **308**.
 - Interaction seeds: 15 labels × 7 languages × 2 authored sentences = **210**.
 - Total newly authored utterances **518** before overlap/duplicate filtering.
-- Automatically imports the earlier **360** Interaction-only utterances, using their immutable SHA-256-checked archive, while explicitly leaving Topic unknown. Total candidate corpus before exclusions: **878** rows.
+- Automatically imports the earlier **360** Interaction-only utterances, using their immutable SHA-256-checked archive, while explicitly leaving Topic unknown. After the 490 new paired contrasts, total candidate corpus before exclusions: **1,368** rows.
+- **490 Topic+Interaction paired contrast utterances**: 10 caregiver settings × 7 often-confused intents × 7 languages, manually authored as provisional translations; 70 aligned meaning families globally grouped across languages.
 - Seven languages: en, de, fr, ko, th, zh, hi.
 - Seeds are **assistant-authored, synthetic, unreviewed, and not native-speaker validated**. They are a starter corpus, not a high-quality training dataset.
-- Every sample labels **only the intended supervised axis**. The other axis is `null` (unknown), not guessed as `generic` or `none`.
+- Single-axis seed and legacy samples label **only the intended supervised axis**; the other axis stays `null`. New paired-contrast samples have **two provisional labels**, both requiring human review. Labels are not silently filled.
 - The earlier 360-sentence v3 corpus is imported as an Interaction-only source with the original train/validation semantic-family split. Its Topic labels are deliberately null.
 - Frozen evaluation **154 reference sentences + 374 ASR transcripts** are explicitly excluded by normalized-text comparison, never fitted/tuned.
 - Distinct semantic-family / review counts are tracked; templated surface variants must not be passed off as independent examples.
@@ -42,6 +43,10 @@ Outputs in `research/dual-axis-v1/outputs/`:
 - `excluded.json` — duplicates and exact overlap with locked 154+374.
 - `summary.json` — source counts, schema and quality status.
 - `needs_review_queue.jsonl` — 259 language × axis × label expansion tasks, with per-class shortages and review safeguards.
+
+### Dual-axis contrast examples
+
+New `data/paired_contrasts.json` contains 490 distinct provisional utterances covering **10 Topics × 7 Interaction intents**, with all seven language versions grouped into 70 cross-language meaning families. This explicitly tests boundaries like `inquiry`, `invitation`, `start`, `repeat`, `pause`, `finish_check`, and `finish` in the *same* scene. The 490 utterances represent only 70 distinct meaning pairs, **not 490 independent concepts**. Train/validation assignment is identical across translated pairs; this helps prevent one language's phrase being used to train and another language's translation being evaluated as unseen. Intent and language naturalness still need human review.
 
 To merge later reviewed examples, pass `--additional-jsonl PATH`. Rows must have:
 
