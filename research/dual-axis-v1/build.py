@@ -70,6 +70,33 @@ def make_rows(heads):
                     })
     return rows
 
+
+def load_legacy_interaction():
+    """Reuse the original 360 single-axis Interaction examples, without inventing Topic."""
+    loc=ROOT/'research/e5-interaction-v3/data'
+    manifest=checked_json(loc/'manifest.json')
+    raw=lzma.decompress(base64.b85decode((loc/'training.b85').read_text().strip()))
+    if hashlib.sha256(raw).hexdigest()!=manifest['training']['sha256']:
+        raise ValueError('Legacy Interaction training SHA256 mismatch')
+    originals=[json.loads(x) for x in raw.decode('utf-8').splitlines() if x.strip()]
+    if len(originals)!=360:raise ValueError('Legacy Interaction count mismatch')
+    rows=[]
+    for r in originals:
+        if r['language'] not in LANGUAGES or r['split'] not in ('train','validation'):
+            raise ValueError('Unexpected original v3 row')
+        rows.append({
+            'id':'legacy-v3-'+str(r['id']),
+            'language':r['language'],'text':r['text'],
+            'topic':None,'interaction':r['interaction'],
+            'supervision_axis':'interaction',
+            'semantic_family':'legacy-v3-'+str(r['family_id']),
+            'split':r['split'],'source':'legacy_v3_synthetic_unreviewed',
+            'label_reviewed':False,'native_speaker_reviewed':False,
+            'caution':'Legacy Interaction-only example. Topic not human labeled and MUST stay null.'
+        })
+    return rows
+
+
 def collect_external(path,heads):
     """Optional future contributions; do not silently invent unspecified labels."""
     if not path:return []
@@ -147,7 +174,7 @@ def main():
     heads=checked_json(CFG)['heads']
     labels={axis:heads[axis]['classes'] for axis in ('topic','interaction')}
     assert len(labels['topic'])==22 and len(labels['interaction'])==15
-    rows=make_rows(heads)+collect_external(args.additional_jsonl,heads)
+    rows=make_rows(heads)+load_legacy_interaction()+collect_external(args.additional_jsonl,heads)
     kept,skipped,coverage=audit(rows,labels,load_frozen_inputs())
     args.output.mkdir(parents=True,exist_ok=True)
     (args.output/'starter_corpus.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in kept),encoding='utf-8')
