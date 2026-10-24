@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>S25 3モデル比較 — Vosk / Moonshine / Whisper</title>
+<style>
+:root {color-scheme:light;font:16px system-ui,-apple-system,"Noto Sans JP",sans-serif;color:#1b2a42;background:#f4f6fb}
+*{box-sizing:border-box} body{margin:0}main{max-width:750px;margin:auto;padding:18px 14px 50px}
+h1{font-size:1.5rem;line-height:1.3}h2{font-size:1.1rem;margin-top:0}
+p{line-height:1.65}small,.muted{color:#586a82}
+section{background:#fff;margin:14px 0;padding:17px;border-radius:15px;border:1px solid #dbe3ee}
+label{font-weight:600;display:block;margin:12px 0 6px}
+select,input[type=file]{display:block;width:100%;border:1px solid #9cacc1;border-radius:10px;background:white;padding:12px;font:inherit}
+button{border:0;color:white;background:#145cca;border-radius:10px;padding:13px 18px;font-size:1rem;font-weight:650;width:100%;margin:9px 0;cursor:pointer}
+button.secondary{background:#e5efff;color:#19427c}
+button:disabled{opacity:.43}
+#status{white-space:pre-wrap;background:#edf3fc;padding:11px;border-radius:10px;overflow-wrap:anywhere}
+#status.error{background:#fff0ee;color:#9f2940}
+table{width:100%;border-collapse:collapse;font-size:.83rem;margin:12px 0}
+th,td{border-bottom:1px solid #e1e7ef;padding:8px 5px;text-align:left}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.success{color:#126341}.warn{color:#a14a2b}
+pre{background:#f1f4f8;border-radius:9px;padding:12px;white-space:pre-wrap;overflow-wrap:anywhere}
+details{margin-top:14px} 
+</style>
+</head>
+<body><main>
+<header>
+<h1>Galaxy S25 — ASR 3モデル同一音声比較</h1>
+<p class="muted">Moonshine Small Streaming、Whisper Small、Vosk Smallを<strong>同じAndroid Chrome・同じ音声</strong>で比較します。音声は端末外へ送信せず、ASRだけを測定します。</p>
+<a href="./index.html">以前のVosk単体テストに戻る</a>
+</header>
+<section>
+<h2>1. ブラウザ環境</h2>
+<p id="isolation">分離環境を確認しています。</p>
+<p class="muted">Moonshine SmallとWhisperのWASMスレッドのため、初回のみページが自動で再読み込みされることがあります。端末側でWebAssemblyを動かします。</p>
+</section>
+<section>
+<h2>2. 比較する音声</h2>
+<label for="audioFile">音声ファイル（先ほどの milk-invite-B-legacy.wav など）</label>
+<input type="file" id="audioFile" accept="audio/*">
+<div class="row">
+<div><label for="duration">音声窓</label><select id="duration"><option value="5">5秒</option><option value="10">10秒</option></select></div>
+<div><label for="repeats">測定回数</label><select id="repeats"><option value="3">3回</option><option value="5">5回</option></select></div>
+</div>
+<p id="audioInfo" class="muted">同じ音声を全モデルで使うため、先にファイルを選択してください。5秒/10秒の末尾に0.8秒の無音を追加します。</p>
+</section>
+<section>
+<h2>3. モデル読み込み・測定</h2>
+<label for="engine">比較モデル</label>
+<select id="engine">
+<option value="vosk">Vosk Small 英語（約40MB）</option>
+<option value="moonshine">Moonshine Small Streaming 英語（MIT）</option>
+<option value="whisper">Whisper Small q8 英語（ONNX/WASM・約250MB）</option>
+</select>
+<button id="load" disabled>選択したモデルを読み込む</button>
+<button id="run" disabled>同じ音声を3回認識</button>
+<p id="status" role="status" aria-live="polite">初期化中です。</p>
+<p class="muted">モデルのロード時間は認識時間と分けて表示します。Whisperの初回ダウンロードは大きいため、空き容量と通信量に注意してください。同時に複数のASRを読み込まない設計です。</p>
+</section>
+<section>
+<h2>4. 比較結果</h2>
+<table aria-label="モデル比較表">
+<thead><tr><th>モデル</th><th class="num">p50</th><th class="num">p95</th><th class="num">RTF</th><th class="num">読込</th></tr></thead>
+<tbody id="rows"><tr><td colspan="5">未測定</td></tr></tbody>
+</table>
+<p class="muted">p50・p95は完了までの時間（ms）、RTFは処理時間÷音声長です。最終結果のVoskイベントのみ採用し、途中結果は完了扱いにしません。3回のp95は推定のばらつきが大きいため、可能なら5回測定してください。</p>
+<details><summary>各回の認識結果を見る</summary><pre id="transcripts">未測定</pre></details>
+<button id="copy" class="secondary" disabled>比較結果JSONをコピー</button>
+</section>
+<footer class="muted"><small>研究用。測定条件はPCM16kHzモノラル、5秒/10秒窓＋無音0.8秒、モデルロード後のASR処理。発話終了検知・E5分類・録音時間は含みません。Voskはイベント経由、Moonshine/Whisperは専用Worker経由です。通信先は外部JS/モデルの取得先のみ。本番「みつことば」のコード・公開ページは変更しません。</small></footer>
+</main>
+<script defer src="https://cdn.jsdelivr.net/npm/vosk-browser@0.0.5/dist/vosk.js" crossorigin="anonymous"></script>
+<script type="module" src="./compare.js"></script>
+</body></html>
