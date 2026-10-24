@@ -7,8 +7,12 @@ The actual production label configuration has **22 Topic classes** (including `g
 - Topic seeds: 22 labels × 7 languages × 2 authored sentences = **308**.
 - Interaction seeds: 15 labels × 7 languages × 2 authored sentences = **210**.
 - Total newly authored utterances **518** before overlap/duplicate filtering.
-- Automatically imports the earlier **360** Interaction-only utterances, using their immutable SHA-256-checked archive, while explicitly leaving Topic unknown. After the 490 new paired contrasts, total candidate corpus before exclusions: **1,368** rows. The first audit kept **1,364** after rejecting four exact duplicate or evaluation-overlap strings (see `outputs/excluded.json`).
+- Automatically imports the earlier **360** Interaction-only utterances, using their immutable SHA-256-checked archive, while explicitly leaving Topic unknown. **1,816 source sentences** were collected; exact-duplicate/evaluation-overlap checks rejected **6** and retained **1,810 research candidates**.
 - **490 Topic+Interaction paired contrast utterances**: 10 caregiver settings × 7 often-confused intents × 7 languages, manually authored as provisional translations; 70 aligned meaning families globally grouped across languages.
+- **336 Topic+Interaction contrast utterances**: the 12 other Topics × 4 semantically compatible Interaction intents × 7 languages; 334 survived overlap checks.
+- **112 additional dual-axis contrast utterances**: `affection`, `effort`, `encouragement`, and `none` across four suitable Topics each × 7 languages.
+- Total **932 two-axis-labeled provisional utterances** after exact-match screening, alongside 308 Topic-only and 570 Interaction-only utterances.
+- **No new model has been trained.** Native-reviewed rows = **0**; these examples are not independent natural caregiver recordings.
 - Seven languages: en, de, fr, ko, th, zh, hi.
 - Seeds are **assistant-authored, synthetic, unreviewed, and not native-speaker validated**. They are a starter corpus, not a high-quality training dataset.
 - Single-axis seed and legacy samples label **only the intended supervised axis**; the other axis stays `null`. New paired-contrast samples have **two provisional labels**, both requiring human review. Labels are not silently filled.
@@ -43,10 +47,12 @@ Outputs in `research/dual-axis-v1/outputs/`:
 - `excluded.json` — duplicates and exact overlap with locked 154+374.
 - `summary.json` — source counts, schema and quality status.
 - `needs_review_queue.jsonl` — 259 language × axis × label expansion tasks, with per-class shortages and review safeguards.
+- `pair_coverage.json` — all theoretical 22×15 Topic/Interaction combinations by language, with observed counts. Unseen pairs are **unassessed**, never automatically negative.
+- `pair_summary.json` — number of distinct Topic×Interaction pairs with examples; only a subset of 330 is meaningful in natural baby-directed speech.
 
 ### Dual-axis contrast examples
 
-New `data/paired_contrasts.json` contains 490 distinct provisional utterances covering **10 Topics × 7 Interaction intents**, with all seven language versions grouped into 70 cross-language meaning families. This explicitly tests boundaries like `inquiry`, `invitation`, `start`, `repeat`, `pause`, `finish_check`, and `finish` in the *same* scene. The 490 utterances represent only 70 distinct meaning pairs, **not 490 independent concepts**. Train/validation assignment is identical across translated pairs; this helps prevent one language's phrase being used to train and another language's translation being evaluated as unseen. Intent and language naturalness still need human review.
+The first batch `data/paired_contrasts.json` contains 490 provisional utterances covering **10 Topics × 7 Interaction intents**, with 70 cross-language meaning families. New `contrast_remaining_western.json`, `contrast_remaining_asian.json`, and `contrast_remaining_intents.json` extend coverage to every Topic and Interaction label. This explicitly tests boundaries like `inquiry`, `invitation`, `start`, `repeat`, `pause`, `finish_check`, and `finish` in the *same* scene. The 490 utterances represent only 70 distinct meaning pairs, **not 490 independent concepts**. Every utterance from the **same Topic scene**, even with a different intent or translated language, is now placed entirely on one side of the train/validation boundary. Near-matches between other authoring sources remain possible, and must be investigated before a blind accuracy claim. Intent and language naturalness still need human review.
 
 To merge later reviewed examples, pass `--additional-jsonl PATH`. Rows must have:
 
