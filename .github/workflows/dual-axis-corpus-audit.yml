@@ -1,0 +1,58 @@
+name: Dual-axis corpus schema and leakage audit
+
+on:
+  push:
+    branches: [research/dual-axis-corpus-v1]
+    paths:
+      - '.github/workflows/dual-axis-corpus-audit.yml'
+      - 'research/dual-axis-v1/**'
+  pull_request:
+    branches: [research/e5-locale-encoders-v1]
+    paths:
+      - '.github/workflows/dual-axis-corpus-audit.yml'
+      - 'research/dual-axis-v1/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate native synthetic seeds and read-only frozen test exclusion
+        run: |
+          python -m py_compile research/dual-axis-v1/build.py
+          python research/dual-axis-v1/build.py
+      - name: Assert both axes and all seven languages are represented
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          output=Path('research/dual-axis-v1/outputs')
+          s=json.loads((output/'summary.json').read_text())
+          c=json.loads((output/'coverage.json').read_text())
+          assert s['classification_axes']=={'topic':22,'interaction':15,'label_total':37,'theoretical_pairs':330}
+          assert set(c)=={'en','de','fr','ko','th','zh','hi'}
+          assert s['human_and_native_reviewed_rows']==0
+          assert s['ready_for_production'] is False
+          for lang,axes in c.items():
+              assert len(axes['topic'])==22 and len(axes['interaction'])==15
+              for axis,labels in axes.items():
+                  assert all(item['utterances']>=1 for item in labels.values()),(lang,axis)
+          print('Seed QA passed; no generated data is marked production-ready.')
+          PY
+      - name: No changes to deployed heads
+        run: git diff --exit-code -- multilingual-assets/heads
+      - name: Upload research starter and quality gaps
+        uses: actions/upload-artifact@v4
+        with:
+          name: cootrio-dual-axis-starter-${{ github.run_id }}
+          path: research/dual-axis-v1/outputs/
+          if-no-files-found: error
+          retention-days: 30
