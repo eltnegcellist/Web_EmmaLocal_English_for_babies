@@ -64,7 +64,7 @@ jobs:
           results=json.loads((out/'comparison.json').read_text())
           mani=json.loads((out/'run_manifest.json').read_text())
           assert len(results['by_language'])==7
-          assert set(results['aggregate'])=={'baseline_v2','retrained_shared','retrained_locale'}
+          assert set(results['aggregate'])=={'baseline_v2','retrained_shared','retrained_locale','hybrid_v2topic_shared_interaction','hybrid_v2topic_locale_interaction'}
           assert mani['native_reviewed_rows']==0
           assert not mani['locked154_374_used_for_training_or_selection']
           assert len(list(out.glob('*.candidate.f32')))==16
