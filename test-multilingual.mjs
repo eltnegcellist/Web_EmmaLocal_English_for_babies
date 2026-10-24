@@ -369,7 +369,8 @@ for(const key of ['audioSeconds','languageMs','transcribeMs','totalMs','realTime
  assert(appSource.includes('multilingual.'+key+'='),'Diagnostic export must include '+key);
 }
 assert(appSource.includes("if(data.stage==='asr-timing')"),'ASR timing progress must not show model download state');
-assert(appSource.includes("if(nonJapanese)return true"),'Unavailable browser isolation must fall back to 1-thread foreign Whisper');
+assert(appSource.includes("if(nonJapanese && !(await hasImportedAcftModel()))return true"),
+  'Legacy foreign Whisper must retain 1-thread fallback only when native ACFT is not imported');
 assert(appSource.includes("multilingual?.resetSpeechLanguage()"),'Conversation start/stop must invalidate language cache');
 assert(appSource.includes("WHISPER_THREAD_KEY"),'Application must persist CPU thread preference');
 assert(workerSource.includes('env.backends.onnx.wasm.numThreads=effectiveThreads'),'Worker must enable ONNX multi-thread runtime');
