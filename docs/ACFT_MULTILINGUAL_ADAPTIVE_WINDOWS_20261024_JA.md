@@ -18,14 +18,14 @@ FUTO公式 `small_acft_q8_0.bin` のダウンロード先はリダイレクト�
 ## 実装
 - `src/multilingual/acft-window-policy.js`: 音声長に応じた窓選択・分割・文字統合
 - `src/multilingual/acft-model-store.js`: モデルの完全性検証とローカル永続化
-- `src/multilingual/acft-native-worker.js`: WASM向けclassic Workerラッパー
-- `src/multilingual/acft-client.js`: 連続認識・言語判定キャッシュ・計測
+- `src/multilingual/acft-client.js`: Galaxy S25で起動実績のあるメインページ上のWASMランタイムに音声を渡す。推論自体はpthreadで動き、Workerを二重に作らない
+- `src/multilingual/acft-client.js`: 連続認識・言語判定キャッシュ・計測・キャッシュ済みモデルの再利用
 - `src/multilingual/client.js`, `worker.js`: 新ASR+E5モデルを選択し、旧ONNX経路の準備を省略
 - `src/multilingual/performance-controls.js`: 開発者向けモデルのインポート画面
 - `experimental/whisper-acft-wasm/emscripten.cpp`: GPU不要のCPU WASMネイティブ推論、言語ID取得
 - `multilingual-assets/runtime/acft-whispercpp.js`: pinned `whisper.cpp` SIMD WASMランタイム
 - `test-acft-multilingual.mjs`: 長文分割境界・末尾/先頭の重複排除・追加経路の静的回帰
-- `scripts/browser-acft-adaptive-smoke.mjs`: クロスオリジン分離下のWASM classic Worker初期化（実モデル不使用）
+- `scripts/browser-acft-adaptive-smoke.mjs`: クロスオリジン分離下でのWASMページ実行とネイティブAPI初期化（実モデル不使用）
 
 ## 確認の優先順
 1. 同一Galaxy S25で5秒以内、6～10秒、11～20秒、21～30秒を測定。特に10秒を少し超える音声の境界欠落・重複を確認。
@@ -35,3 +35,6 @@ FUTO公式 `small_acft_q8_0.bin` のダウンロード先はリダイレクト�
 5. 本番へのマージ前にWeb/Android実機でE5話題分類と英語再生まで通しで確認すること。
 
 今回変更したのは **別実験ブランチ** のみ。
+
+## ブラウザ起動方式について（追記）
+C++ネイティブ実行コードを別のclassic Workerへ入れる試作では、Chromium起動テスト時にWorker本体が初期化できなかったため、独立Worker方式は破棄。Galaxy S25で実際に動いたWhisper.cppベンチマークと同じ、ページでランタイムを初期化して内部pthreadを実行する構成へ変更した。これは非同期デコード可能だが、モデル初回ロードなど一部同期処理はUIスレッドを占有する。停止中に走っているネイティブ計算を直ちに中止できない点も残るので、デバイス実測前の正式公開は不可。
