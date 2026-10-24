@@ -28,6 +28,7 @@ function notify(text,error=false){$('status').textContent=text;$('status').class
 function state(){
  const busy=loading||running;
  $('audioFile').disabled=busy;$('duration').disabled=busy;$('repeats').disabled=busy;$('engine').disabled=busy;
+ $('whisperThreads').disabled=busy;
  $('load').disabled=busy||!samples;
  $('run').disabled=busy||!samples||loadedEngine!==$('engine').value;
  $('copy').disabled=!Object.keys(results).length;
@@ -200,23 +201,35 @@ async function loadSelected(){
      }),180000,'本番Moonshine ASR初期化');
    }else{
      bootLog.length=0;bootStarted=performance.now();
-     bootStage('本番MultilingualClientとWhisper Workerを初期化');
+     bootStage('本番MultilingualClientをASR専用で初期化（E5は読み込まない）');
      const {MultilingualClient}=await import('../../src/multilingual/client.js');
+     let lastWhisperProgressBucket=-1;
      const client=new MultilingualClient({
        workerFactory:()=>new Worker(new URL('./whisper-product-bridge.js',import.meta.url),{type:'module'}),
-       threads:'auto',languageDetection:'fixed',
+       threads:$('whisperThreads').value,languageDetection:'fixed',researchWhisperOnly:true,
        onStatus:event=>{
-         if(event.stage)bootStage('Whisper '+event.stage);
+         if(event.stage==='assets'&&event.total>0){
+           const percent=Math.floor(100*event.loaded/event.total);
+           const bucket=Math.floor(percent/10);
+           if(bucket!==lastWhisperProgressBucket){
+             lastWhisperProgressBucket=bucket;
+             bootStage('Whisperモデル取得/キャッシュ検証 '+percent+'%'+(event.model?'（'+event.model+'）':''));
+           }
+         }else if(event.stage==='assets-start'){
+           bootStage('Whisper専用資産 '+(event.totalBytes/1048576).toFixed(1)+'MiBを準備');
+         }else if(event.stage){
+           bootStage('Whisper '+event.stage+(event.threads?'（'+event.threads+'スレッド）':''));
+         }
        }
      });
      loadedBackend={kind:'whisper-product',client};
-     await withTimeout(client.prepare(),900000,'本番Whisper ASR初期化');
+     await withTimeout(client.prepare(),240000,'Whisper ASR専用モデル初期化');
    }
    loadMs=performance.now()-started;loadedEngine=engine;
    notify(labels[engine]+' 準備完了：読み込み '+round(loadMs)+' ms。測定を開始できます。');
  }catch(e){
    await closeBackend();
-   const last=engine==='moonshine'&&bootLog.length?'（直前：'+bootLog[bootLog.length-1]+'）':'';
+   const last=(engine==='moonshine'||engine==='whisper')&&bootLog.length?'（直前：'+bootLog[bootLog.length-1]+'）':'';
    notify('読み込みエラー：'+(e?.message||e)+last,true);
  }
  finally{loading=false;state();}
@@ -259,7 +272,8 @@ async function run(){
      rtfP50:round(percentile(times,.5)/(1000*info.audioSeconds)),
      firstMs:round(times[0]),audioSeconds:round(info.audioSeconds),
      speechSeconds:round(info.speechSeconds),windowSeconds:info.windowSeconds,
-     iterations:predictions,threads:navigator.hardwareConcurrency,
+     iterations:predictions,
+     threads:engine==='whisper'?loadedBackend.client.runtimeInfo?.threads??null:navigator.hardwareConcurrency,
      architecture:engine==='whisper'?'Mitsukotoba MultilingualClient Whisper Small q8 WASM fixed English':engine==='moonshine'?'Mitsukotoba MoonshineAsrClient Small Streaming English MIT':'Vosk Small English WASM'
    };
    render();
@@ -287,6 +301,10 @@ function render(){
    '#'+s.turn+' '+s.elapsedMs+' ms — '+s.text).join('\n')).join('\n\n');
  state();
 }
+$('whisperThreads').addEventListener('change',()=>{
+ if(results.whisper){delete results.whisper;render();}
+ state();
+});
 $('engine').addEventListener('change',()=>{
  if(loadedEngine!==$('engine').value)notify('モデルを切り替えました。「読み込む」を押してください。既存結果は保持されます。');
  state();
@@ -297,13 +315,13 @@ $('load').addEventListener('click',loadSelected);
 $('run').addEventListener('click',run);
 $('copy').addEventListener('click',async()=>{
  const report={
-   benchmark:'CooTrio S25 same audio production ASR client reuse v3',
+   benchmark:'CooTrio S25 same audio production ASR client reuse v4 Whisper ASR-only',
    capturedAt:new Date().toISOString(),
    device:navigator.userAgent,hardwareConcurrency:navigator.hardwareConcurrency,
    deviceMemoryGiB:navigator.deviceMemory??null,crossOriginIsolated,
    audioSource:$('audioFile').files?.[0]?.name||'',
    comparedAudioMethod:'same 16kHz mono 5/10 second window + 0.8 second silence; file replay',
-   meaningOfMetrics:'p50/p95 ASR elapsed excluding model loading, microphone capture and classification; Vosk final event, Moonshine/Whisper worker result',
+   meaningOfMetrics:'p50/p95 ASR elapsed excluding model loading, microphone capture and classification; Vosk final event, Moonshine/Whisper production worker result. Whisper E5 semantic runtime omitted only for ASR-only benchmark.',
    results
  };
  const value=JSON.stringify(report,null,2);
