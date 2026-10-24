@@ -26,7 +26,7 @@ export class MultilingualClient {
   prepare(){if(this.ready)return Promise.resolve();if(this.preparing)return this.preparing;
     const token=this.generation;
     const op=(async()=>{
-      const supported=self.crossOriginIsolated===true && typeof SharedArrayBuffer==='function';
+      const supported=globalThis.crossOriginIsolated===true && typeof globalThis.SharedArrayBuffer==='function';
       const imported=supported && await hasImportedAcftModel();
       this.asrBackend=imported?'acft':'legacy';
       if(imported)this.acft=new AdaptiveAcftClient({onStatus:this.onStatus});
