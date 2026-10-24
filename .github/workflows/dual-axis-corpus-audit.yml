@@ -50,6 +50,17 @@ jobs:
           assert s['excluded_overlap_or_duplicate']==1816-s['starter_rows_kept'],s
           assert s['remaining_topic_dual_axis_contrasts_imported']>=300,s
           assert s['remaining_interaction_dual_axis_contrasts_imported']>=100,s
+          pair_summary=json.loads((output/'pair_summary.json').read_text())
+          pair_coverage=json.loads((output/'pair_coverage.json').read_text())
+          assert pair_summary['theoretical_combinations']==330
+          assert 100 <= pair_summary['observed_distinct_topic_interaction_pairs'] < 330
+          assert pair_summary['unassessed_pairs']==330-pair_summary['observed_distinct_topic_interaction_pairs']
+          assert set(pair_coverage)==set(c)
+          assert all(len(pair_coverage[lang])==22 for lang in pair_coverage)
+          assert all(len(intents)==15 for topic in pair_coverage.values() for intents in topic.values())
+          assert all(cell['native_reviewed']==0 for topic in pair_coverage.values()
+                     for intents in topic.values() for cell in intents.values())
+
           excluded=json.loads((output/'excluded.json').read_text())
           print('Excluded overlapping/duplicated research utterances:',excluded)
           assert len(excluded)==s['excluded_overlap_or_duplicate']
