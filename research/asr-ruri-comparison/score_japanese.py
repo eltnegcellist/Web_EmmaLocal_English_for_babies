@@ -41,6 +41,9 @@ class ShippedRuri:
             return blob
         self.config=json.loads(checked('heads-config.json'))
         self.tokenizer=Tokenizer.from_str(checked('tokenizer.json').decode('utf8'))
+        for phrase in ('ミルクを飲もうね', '絵本を読もうか', 'おはよう'):
+            encoded=self.tokenizer.encode(phrase,add_special_tokens=True)
+            print('RURI TOKENIZER DIAGNOSTIC',repr(phrase),'ids=',encoded.ids,'tokens=',encoded.tokens,flush=True)
         self.model=ort.InferenceSession(str(ASSET/'model.onnx'),
              providers=['CPUExecutionProvider'])
         checked('model.onnx')
