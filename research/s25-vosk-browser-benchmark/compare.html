@@ -55,6 +55,14 @@ details{margin-top:14px}
 <option value="moonshine">Moonshine Small Streaming 英語（MIT）</option>
 <option value="whisper">Whisper Small q8 英語（ONNX/WASM・約250MB）</option>
 </select>
+<label for="whisperThreads">WhisperのWASMスレッド数（Whisper選択時のみ）</label>
+<select id="whisperThreads">
+<option value="1" selected>1スレッド（初期化を優先・研究用の推奨設定）</option>
+<option value="auto">自動（本番の既定設定：Galaxy S25では通常3）</option>
+<option value="2">2スレッド</option>
+<option value="4">4スレッド</option>
+</select>
+<p class="muted">WhisperのモデルはSmall q8のままです。今回はASR速度比較に不要なE5モデルの事前取得・読み込みを省きます。1スレッドの速度と本番の自動スレッドの速度は区別して記録してください。</p>
 <button id="load" disabled>選択したモデルを読み込む</button>
 <button id="run" disabled>同じ音声を3回認識</button>
 <p id="status" role="status" aria-live="polite">初期化中です。</p>
@@ -73,7 +81,7 @@ details{margin-top:14px}
 <details><summary>各回の認識結果を見る</summary><pre id="transcripts">未測定</pre></details>
 <button id="copy" class="secondary" disabled>比較結果JSONをコピー</button>
 </section>
-<footer class="muted"><small>研究用。測定条件はPCM16kHzモノラル、5秒/10秒窓＋無音0.8秒、モデルロード後のASR処理。発話終了検知・E5分類・録音時間は含みません。Voskはイベント経由、Moonshineは本番のMoonshineAsrClient＋asr-worker.js、Whisperは本番のMultilingualClient＋multilingual/worker.jsを研究用ブリッジから呼び出します。Moonshineのpthreadブリッジと英語指定のみ研究モードで追加します。通信先は外部JS/モデルの取得先のみ。本番「みつことば」のコード・公開ページは変更しません。</small></footer>
+<footer class="muted"><small>研究用。測定条件はPCM16kHzモノラル、5秒/10秒窓＋無音0.8秒、モデルロード後のASR処理。発話終了検知・E5分類・録音時間は含みません。Voskはイベント経由、Moonshineは本番のMoonshineAsrClient＋asr-worker.js、Whisperは本番のMultilingualClient＋multilingual/worker.jsを研究用ブリッジから呼び出します。Moonshineのpthreadブリッジ・英語指定とWhisperのASR専用(E5省略)モードのみ研究用に追加します。Whisperのスレッド数は選択可能で、初期値は1です。通信先は外部JS/モデルの取得先のみ。本番「みつことば」のコード・公開ページは変更しません。</small></footer>
 </main>
 <script defer src="https://cdn.jsdelivr.net/npm/vosk-browser@0.0.8/dist/vosk.js" crossorigin="anonymous"></script>
 <script type="module" src="./compare.js"></script>
