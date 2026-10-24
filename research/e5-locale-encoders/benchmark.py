@@ -81,6 +81,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--lang",choices=sorted(CANDIDATES),required=True)
     parser.add_argument("--allow-unreviewed",action="store_true")
+    parser.add_argument("--allow-linux-baseline-drift",action="store_true",help="Explicitly run Linux-only exploratory comparisons when Mac v2 reference predictions differ; never claim exact baseline reproduction.")
     args=parser.parse_args()
     if not args.allow_unreviewed:raise SystemExit("Synthetic, unreviewed training requires --allow-unreviewed")
     language=args.lang
@@ -117,11 +118,44 @@ def main():
            if p!=r["expected_interaction"] or t!=r["expected_topic"]]
     asr_repro=[(r["id"],r["model"]) for r,p,t in zip(asr,old_asr,topic_asr)
                if p!=r["expected_interaction"] or t!=r["expected_topic"]]
-    (out/"baseline_reproduction.json").write_text(json.dumps({"oracle_mismatched":repro,
-              "asr_mismatched":asr_repro,"runtime":"native ONNX CPU",
-              "expected":"frozen v2 predictions"},indent=2)+"\n")
-    if repro or asr_repro:
-        raise ValueError(f"Baseline reproduction failed: oracle={len(repro)} ASR={len(asr_repro)}")
+    # Reproduce Mac v2 predictions when possible, and NEVER overwrite or
+    # relabel their original results. Linux baseline disagreement is recorded
+    # per example; a separate explicit mode permits only within-Linux A/B/C
+    # comparisons on the exact same E5 embeddings and runtime.
+    import onnxruntime as ort
+    def diff_rows(rows,ips,tps):
+        return [{"id":r["id"],"asr_model":r.get("model"),
+                 "reference_text_sha256":HASH(r["text"].encode("utf-8")),
+                 "expected_topic":r["expected_topic"],"linux_topic":tp,
+                 "expected_interaction":r["expected_interaction"],
+                 "linux_interaction":ip}
+                for r,ip,tp in zip(rows,ips,tps)
+                if ip!=r["expected_interaction"] or tp!=r["expected_topic"]]
+    oracle_diffs=diff_rows(oracle,baseline,topic)
+    asr_diffs=diff_rows(asr,old_asr,topic_asr)
+    exact=not (oracle_diffs or asr_diffs)
+    reference_status="EXACT_MATCH" if exact else "LINUX_PLATFORM_DRIFT"
+    reproduction={"status":reference_status,
+        "oracle_mismatched":repro,"asr_mismatched":asr_repro,
+        "oracle_details":oracle_diffs,"asr_details":asr_diffs,
+        "platform":sys.platform,"onnxruntime_version":ort.__version__,
+        "e5_onnx_sha256":e5.model_sha,
+        "baseline_head_sha256":conf["heads"]["interaction"]["sha256"],
+        "topic_head_sha256":conf["heads"]["topic"]["sha256"],
+        "reference":"Mac ORT 1.31.0 frozen v2",
+        "warning":"Linux inference scores must never be reported as Mac reproduction when status is LINUX_PLATFORM_DRIFT"}
+    (out/"baseline_reproduction.json").write_text(
+        json.dumps(reproduction,ensure_ascii=False,indent=2)+"\n")
+    if not exact:
+        print(f"BASELINE PLATFORM DIFFERENCE {language}: reference={len(oracle_diffs)}/{len(oracle)} ASR={len(asr_diffs)}/{len(asr)}",file=sys.stderr,flush=True)
+        # Fail closed unless separately authorized for Linux-only exploratory
+        # evaluation. Cap drift to prevent a model/config/data mismatch from
+        # being silently treated as a minor floating-point platform difference.
+        if (not args.allow_linux_baseline_drift
+            or len(oracle_diffs)>6 or len(asr_diffs)>int(0.30*len(asr))):
+            raise ValueError(f"Baseline reproduction failed: oracle={len(repro)} ASR={len(asr_repro)}")
+    comparison_scope=("REFERENCE_REPRODUCED" if exact
+                      else "LINUX_ONLY_EXPLORATORY_NOT_MAC_COMPARABLE")
     B_local=train_head(local_train,e5_features,labels)
     # First balance the aggregate weight of all seven languages, then weight
     # the target locale 4x. Otherwise the English-heavy (135 vs 15) corpus
@@ -210,6 +244,10 @@ def main():
               "subset":"frozen374_"+r["model"],"id":r["id"],"text":r["text"],
               "gold":r["interaction"],"predicted":q})
     payload={"status":"RESEARCH_ONLY_NOT_APPROVED","language":language,
+             "baseline_reference_status":reference_status,
+             "baseline_comparison_scope":comparison_scope,
+             "mac_reference_mismatch_oracle":len(oracle_diffs),
+             "mac_reference_mismatch_asr":len(asr_diffs),
              "e5_model_sha256":e5.model_sha,"dedicated_model":model_id,
              "dedicated_model_revision":model_revision,"dedicated_license":license_name,
              "dedicated_status":dedicated_status,"dedicated_error":dedicated_error,
@@ -224,5 +262,5 @@ def main():
         writer=csv.DictWriter(f,fieldnames=list(predictions[0]))
         writer.writeheader();writer.writerows(predictions)
     print(json.dumps({"lang":language,"model":model_id,"scores":comparison},ensure_ascii=False,indent=2))
-    print("RESEARCH ONLY: one training example per class for most languages; not production quality.")
+    print(f"RESEARCH ONLY: baseline {comparison_scope}; Mac reference mismatch oracle={len(oracle_diffs)} ASR={len(asr_diffs)}; one training example/class for most locales. Not deployable.")
 if __name__=="__main__":main()
