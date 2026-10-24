@@ -6,7 +6,7 @@ import {speechLanguage} from './core.js';
 // (the native backend itself launches pthread workers). The extra nested
 // classic-Worker shell did not pass browser initialization CI and is not used.
 const MODEL='small_acft_q8_0.bin';
-let singleton=null;
+let singleton=null,nativeModelLoaded=false,nativeModelPreparing=null;
 async function loadNativeWasm(){
   if(singleton)return singleton;
   const pending=new Promise((resolve,reject)=>{
@@ -38,7 +38,7 @@ async function loadNativeWasm(){
 export class AdaptiveAcftClient {
   constructor({onStatus=()=>{}}={}){
     this.onStatus=onStatus;this.preparing=null;this.ready=false;
-    this.module=null;this.initialized=false;this.generation=0;
+    this.module=null;this.generation=0;
   }
   prepare(){
     if(this.ready)return Promise.resolve();
@@ -48,14 +48,17 @@ export class AdaptiveAcftClient {
       this.onStatus({stage:'loading-acft'});
       const wasm=await loadNativeWasm();
       if(generation!==this.generation)throw Error('ACFT preparation cancelled');
-      const bytes=await readImportedAcftModel();
-      if(generation!==this.generation)throw Error('ACFT preparation cancelled');
-      if(!this.initialized){
-        try{wasm.FS_unlink('/'+MODEL);}catch{}
-        wasm.FS_createDataFile('/',MODEL,new Uint8Array(bytes),true,true);
-        if(!wasm.acft_init(MODEL))throw Error('ACFT Small model initialization failed');
-        this.initialized=true;
+      if(!nativeModelLoaded){
+        nativeModelPreparing ||= (async()=>{
+          const bytes=await readImportedAcftModel();
+          try{wasm.FS_unlink('/'+MODEL);}catch{}
+          wasm.FS_createDataFile('/',MODEL,new Uint8Array(bytes),true,true);
+          if(!wasm.acft_init(MODEL))throw Error('ACFT Small model initialization failed');
+          nativeModelLoaded=true;
+        })().catch(error=>{nativeModelPreparing=null;throw error;});
+        await nativeModelPreparing;
       }
+      if(generation!==this.generation)throw Error('ACFT preparation cancelled');
       this.module=wasm;this.ready=true;
       this.onStatus({stage:'acft-ready'});
     })();
@@ -71,7 +74,6 @@ export class AdaptiveAcftClient {
     if(code!==0)throw Error('ACFT inference rejected: '+code);
     await new Promise((resolve,reject)=>{
       const check=()=>{
-        if(generation!==this.generation){reject(Error('ACFT task cancelled'));return;}
         const state=wasm.acft_status();
         if(state===0){setTimeout(check,80);return;}
         if(state===1)resolve();
@@ -79,6 +81,7 @@ export class AdaptiveAcftClient {
       };
       check();
     });
+    if(generation!==this.generation)throw Error('ACFT task cancelled');
     let nativeTimings={};
     try{nativeTimings=JSON.parse(wasm.acft_timings()||'{}')}catch{}
     return {
