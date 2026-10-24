@@ -31,13 +31,13 @@ export class MoonshineAsrClient {
       this.requests.clear();
     };
   }
-  init({model='small'}={}) {
+  init({model='small',language=null,researchBenchmark=null}={}) {
     if(this.closed)return Promise.reject(Error('Moonshine worker was closed'));
     if(this.initialization)return this.initialization.promise;
     let resolve,reject;
     const promise=new Promise((a,b)=>{resolve=a;reject=b;});
     this.initialization={resolve,reject,promise};
-    this.worker.postMessage({type:'init',model});
+    this.worker.postMessage({type:'init',model,...(language?{language}:{}),...(researchBenchmark?{researchBenchmark}:{})});
     return promise;
   }
   resumeInit() {
