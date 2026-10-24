@@ -12,6 +12,11 @@ self.onmessage=async ({data})=>{
   try{
     if(type==='ping'){
       self.postMessage({type:'reply',id,ready:true,worker:'moonshine',isolated:self.crossOriginIsolated===true});
+    }else if(type==='probe'){
+      const m=await getMoonshine();
+      if(typeof m.Transcriber?.load!=='function'||typeof m.loadEmmaMoonshineModule!=='function')
+        throw Error('Moonshine runtime exports are incomplete');
+      self.postMessage({type:'reply',id,probed:true,engine:'moonshine'});
     }else if(type==='init'){
       if(self.crossOriginIsolated!==true || typeof SharedArrayBuffer!=='function')
         throw Error('Moonshine Small requires COOP/COEP cross-origin isolation. Check the benchmark page.');
