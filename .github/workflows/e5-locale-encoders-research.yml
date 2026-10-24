@@ -6,6 +6,11 @@ on:
     paths:
       - '.github/workflows/e5-locale-encoders-research.yml'
       - 'research/e5-locale-encoders/**'
+  pull_request:
+    branches: [research/e5-interaction-v3-actions]
+    paths:
+      - '.github/workflows/e5-locale-encoders-research.yml'
+      - 'research/e5-locale-encoders/**'
   workflow_dispatch:
 
 permissions:
