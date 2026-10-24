@@ -5,7 +5,7 @@ on:
       - experiment/multilingual-acft-adaptive-20261024
     paths:
       - experimental/whisper-acft-wasm/emscripten.cpp
-      - .github/workflows/acft-whisper-cpp-build.yml
+      - .github/workflows/acft-adaptive-whisper-build.yml
   workflow_dispatch:
 
 permissions:
@@ -92,6 +92,6 @@ jobs:
           git commit -m "Build pinned whisper.cpp ACFT small WASM runtime (experimental)"
           # The research page may receive changes while this slow compiler runs.
           # Rebase only the generated-artifact commit before pushing.
-          git fetch origin experiment/whisper-stage-profile-20261023
-          git rebase origin/experiment/whisper-stage-profile-20261023
-          git push origin HEAD:refs/heads/experiment/whisper-stage-profile-20261023
+          git fetch origin experiment/multilingual-acft-adaptive-20261024
+          git rebase origin/experiment/multilingual-acft-adaptive-20261024
+          git push origin HEAD:refs/heads/experiment/multilingual-acft-adaptive-20261024
