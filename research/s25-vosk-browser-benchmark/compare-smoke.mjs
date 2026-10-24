@@ -4,7 +4,7 @@ const page=await browser.newPage({viewport:{width:412,height:915}});
 const errors=[];
 page.on('pageerror',e=>errors.push(String(e)));
 page.on('console',e=>{if(e.type()==='error')errors.push(e.text())});
-await page.goto('http://127.0.0.1:8765/compare.html',{waitUntil:'domcontentloaded'});
+await page.goto('http://127.0.0.1:8765/research/s25-vosk-browser-benchmark/compare.html',{waitUntil:'domcontentloaded'});
 try{
   await page.waitForFunction(()=>{
     const s=document.querySelector('#isolation')?.textContent||'';
