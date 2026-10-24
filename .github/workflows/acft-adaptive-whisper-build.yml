@@ -1,0 +1,97 @@
+name: Build ACFT Small whisper.cpp WASM (adaptive multilingual)
+on:
+  push:
+    branches:
+      - experiment/multilingual-acft-adaptive-20261024
+    paths:
+      - experimental/whisper-acft-wasm/emscripten.cpp
+      - .github/workflows/acft-whisper-cpp-build.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: adaptive-acft-whispercpp-wasm-builder
+  cancel-in-progress: false
+
+jobs:
+  build-wasm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout experiment branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install Emscripten SDK
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 3.1.74
+      - name: Verify SDK
+        run: |
+          emcc --version
+          node --version
+      - name: Checkout pinned whisper.cpp source
+        run: |
+          git clone --filter=blob:none https://github.com/ggml-org/whisper.cpp.git /tmp/whisper-cpp
+          git -C /tmp/whisper-cpp checkout --detach 231638a0717b7822784297e5980965ffcec05810
+          cp experimental/whisper-acft-wasm/emscripten.cpp /tmp/whisper-cpp/examples/whisper.wasm/emscripten.cpp
+          # Emscripten's toolchain resets CMAKE_SYSTEM_PROCESSOR to x86;
+          # switch upstream's WASM CPU kernel branch by compiler identity.
+          # This patches only /tmp build sources, not the upstream repository.
+          python3 - <<'PY'
+          from pathlib import Path
+          path=Path('/tmp/whisper-cpp/ggml/src/ggml-cpu/CMakeLists.txt')
+          source=path.read_text()
+          expected='elseif (CMAKE_SYSTEM_PROCESSOR MATCHES "wasm")'
+          assert source.count(expected)==1, 'Upstream CPU dispatch changed; verify before patching'
+          path.write_text(source.replace(expected,
+             'elseif (EMSCRIPTEN OR CMAKE_SYSTEM_PROCESSOR MATCHES "wasm")'))
+          PY
+      - name: Build custom browser bindings and WASM
+        run: |
+          # Expect upstream's WASM-specific quant kernels even though CMake
+          # still reports an x86 system processor under this toolchain.
+          emcmake cmake -S /tmp/whisper-cpp -B /tmp/whisper-cpp/build-wasm \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DWHISPER_WASM_SINGLE_FILE=ON \
+            -DWHISPER_BUILD_EXAMPLES=ON \
+            -DGGML_NATIVE=OFF | tee /tmp/acft-cmake-configure.log
+          grep -q 'Wasm detected' /tmp/acft-cmake-configure.log
+          cmake --build /tmp/whisper-cpp/build-wasm --target libmain --parallel 4
+          test -s /tmp/whisper-cpp/build-wasm/bin/libmain.js
+          ls -lh /tmp/whisper-cpp/build-wasm/bin/libmain.js
+      - name: Run compiler-output and API checks
+        run: |
+          mkdir -p multilingual-assets/runtime
+          cp /tmp/whisper-cpp/build-wasm/bin/libmain.js multilingual-assets/runtime/acft-whispercpp.js
+          node --check multilingual-assets/runtime/acft-whispercpp.js
+          test "$(wc -c < multilingual-assets/runtime/acft-whispercpp.js)" -gt 100000
+          # Emscripten embeds wasm as base64; exported C++ strings need not be
+          # visible to grep in the compressed JavaScript bundle.
+          grep -q 'acft_run' experimental/whisper-acft-wasm/emscripten.cpp
+          grep -q 'acft_status' experimental/whisper-acft-wasm/emscripten.cpp
+          grep -q 'acft_timings' experimental/whisper-acft-wasm/emscripten.cpp
+          grep -q 'acft_detected_language' experimental/whisper-acft-wasm/emscripten.cpp
+      - name: Attach experimental compiler output
+        uses: actions/upload-artifact@v4
+        with:
+          name: adaptive-acft-small-whispercpp-wasm
+          path: multilingual-assets/runtime/acft-whispercpp.js
+          retention-days: 7
+      - name: Publish WASM to experiment branch only
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add -f multilingual-assets/runtime/acft-whispercpp.js
+          if git diff --cached --quiet; then
+            echo "Runtime unchanged"
+            exit 0
+          fi
+          git commit -m "Build pinned whisper.cpp ACFT small WASM runtime (experimental)"
+          # The research page may receive changes while this slow compiler runs.
+          # Rebase only the generated-artifact commit before pushing.
+          git fetch origin experiment/whisper-stage-profile-20261023
+          git rebase origin/experiment/whisper-stage-profile-20261023
+          git push origin HEAD:refs/heads/experiment/whisper-stage-profile-20261023
