@@ -2,7 +2,7 @@
 """Research-only, fixed-audio Korean/French Vosk Small -> frozen E5 classifier.
 The same 22 WAV files are reused by previous Whisper comparison, no retraining.
 """
-import argparse,hashlib,io,json,statistics,sys,time,urllib.request,wave,zipfile
+import argparse,hashlib,io,json,platform,resource,statistics,sys,time,urllib.request,wave,zipfile
 from pathlib import Path
 import numpy as np
 import vosk
@@ -58,11 +58,15 @@ def main():
         raise ValueError('Expected a 22-item synthetic research audio corpus')
     model_dir,model_hash,model_bytes=fetch_model(lang,Path('/tmp/cootrio-vosk')/lang)
     vosk.SetLogLevel(-1)
+    load_started=time.perf_counter()
     model=vosk.Model(str(model_dir))
+    asr_model_load_ms=round((time.perf_counter()-load_started)*1000,2)
     c,baseline=fetch_prod_heads(REPO/'multilingual-assets/heads',offline=True)
     labels={axis:c['heads'][axis]['classes'] for axis in ('topic','interaction')}
     candidates=load_models(args.candidate_heads,labels['interaction'])
+    e5_load_started=time.perf_counter()
     e5=FrozenE5(threads=2)
+    e5_model_load_ms=round((time.perf_counter()-e5_load_started)*1000,2)
     result_rows=[]
     for i,r in enumerate(refs,1):
         file=args.audio_dir/r['audio_file']
@@ -71,20 +75,29 @@ def main():
             if (wav.getnchannels(),wav.getsampwidth(),wav.getframerate())!=(1,2,16000):
                 raise ValueError('Unexpected audio format')
             pcm=wav.readframes(wav.getnframes())
-        recognizer=vosk.KaldiRecognizer(model,16000)
         start=time.perf_counter()
+        recognizer=vosk.KaldiRecognizer(model,16000)
         for n in range(0,len(pcm),6400):
             recognizer.AcceptWaveform(pcm[n:n+6400])
         out=json.loads(recognizer.FinalResult())
         elapsed=(time.perf_counter()-start)*1000
         recognized=(out.get('text') or '').strip()
+        embed_started=time.perf_counter()
         embedding=e5.embed(recognized or ' ')
+        embed_ms=(time.perf_counter()-embed_started)*1000
         predictions={}
         for name,weight in [('v2',baseline['interaction']),('shared',candidates['shared']),('local',candidates[lang])]:
             predictions[name]={'topic':pred(baseline['topic'],embedding,labels['topic']),
                                'interaction':pred(weight,embedding,labels['interaction'])}
+        audio_seconds=len(pcm)/(16000*2)
+        total_elapsed_ms=(time.perf_counter()-start)*1000
         result_rows.append({**r,'asr_text':recognized,
-                 'recognition_ms':round(elapsed,2),'predictions':predictions,
+                 'audio_seconds':round(audio_seconds,3),
+                 'recognition_ms':round(elapsed,2),
+                 'asr_realtime_factor':round(elapsed/(audio_seconds*1000),4),
+                 'e5_embedding_ms':round(embed_ms,2),
+                 'asr_to_classification_total_ms':round(total_elapsed_ms,2),
+                 'predictions':predictions,
                  'cer_numerator':edit_distance(norm(r['text']),norm(recognized)),
                  'cer_denominator':len(norm(r['text']))})
         print(f"RESULT {lang} {i}/22 {r['id']} {round(elapsed,1)}ms transcription={recognized}",flush=True)
@@ -96,12 +109,38 @@ def main():
                  r['interaction']==r['predictions'][name]['interaction'] for r in result_rows)
         scores[name]={'n':22,'topic_correct':tp,'interaction_correct':it,'joint_correct':both,
                       'topic_rate':round(tp/22,4),'interaction_rate':round(it/22,4),'joint_rate':round(both/22,4)}
+    def timing_stats(key):
+        values=np.asarray([r[key] for r in result_rows],dtype=np.float64)
+        return {'n':len(values),'median':round(float(np.median(values)),2),
+                'p95':round(float(np.percentile(values,95)),2),
+                'min':round(float(values.min()),2),'max':round(float(values.max()),2)}
+    durations=np.asarray([r['audio_seconds'] for r in result_rows],dtype=np.float64)
+    # Linux ru_maxrss units are KiB; peak is process-level and includes encoder.
+    rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    speed={
+        'asr_model_load_ms':asr_model_load_ms,
+        'e5_encoder_load_ms':e5_model_load_ms,
+        'audio_total_seconds':round(float(durations.sum()),3),
+        'audio_median_seconds':round(float(np.median(durations)),3),
+        'asr_ms':timing_stats('recognition_ms'),
+        'e5_ms':timing_stats('e5_embedding_ms'),
+        'asr_plus_e5_and_heads_ms':timing_stats('asr_to_classification_total_ms'),
+        'realtime_factor':timing_stats('asr_realtime_factor'),
+        'overall_realtime_factor':round(sum(r['recognition_ms'] for r in result_rows)/(1000*float(durations.sum())),4),
+        'peak_process_rss_mib':round(rss_kib/1024,1) if sys.platform.startswith('linux') else None,
+        'cold_first_utterance_asr_ms':result_rows[0]['recognition_ms'],
+        'steady_state_asr_ms':{'median':round(float(np.median([r['recognition_ms'] for r in result_rows[1:]])),2),
+                               'p95':round(float(np.percentile([r['recognition_ms'] for r in result_rows[1:]],95)),2)},
+        'platform':platform.platform(),'python_version':platform.python_version(),
+        'measurement':'wall-clock native Ubuntu CPU; includes KaldiRecognizer construction in per-turn ASR, excludes model download/load, excludes TTS audio generation'
+    }
     report={'status':'RESEARCH_SYNTHETIC_NOT_PRODUCTION','language':lang,
             'asr_model':SOURCES[lang][0],'license':'Apache-2.0','model_zip_sha256':model_hash,
             'model_archive_bytes':model_bytes,'audio':'Moonshine TTS 22 locked synthetic wav clips',
             'language_classification_model':'E5 same native CPU shared encoder; frozen Topic plus previously trained shared/locale Interaction',
             'cer':round(sum(r['cer_numerator'] for r in result_rows)/sum(r['cer_denominator'] for r in result_rows),4),
             'median_asr_ms':round(statistics.median(r['recognition_ms'] for r in result_rows),1),
+            'speed':speed,
             'scores':scores,
             'limitations':['Unreviewed translated 22 caregiver templates',
                            'No human-recorded speech; no native-speaker audit',
