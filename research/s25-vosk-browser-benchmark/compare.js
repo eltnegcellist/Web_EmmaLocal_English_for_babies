@@ -4,7 +4,7 @@ const encoderText=s=>String(s||'').trim();
 const MODEL_URL='https://ccoreilly.github.io/vosk-browser/models/vosk-model-small-en-us-0.15.tar.gz';
 const labels={vosk:'Vosk Small',moonshine:'Moonshine Small Streaming',whisper:'Whisper Small q8'};
 let samples=null,loadedEngine=null,loadedBackend=null,loading=false,running=false;
-let loadMs=null,sequence=0,lastWorker=null;
+let loadMs=null;
 const results={};
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const bootLog=[];
@@ -118,39 +118,8 @@ async function closeBackend(){
    loadedBackend.client.close();
  }else if(loadedBackend?.kind==='whisper-product'){
    loadedBackend.client.cancel();
- }else if(loadedBackend?.kind==='worker')loadedBackend.worker.terminate();
+ }
  loadedBackend=null;loadedEngine=null;loadMs=null;
-}
-function makeWorkerBackend(url){
- const worker=new Worker(new URL(url,import.meta.url),{type:'module'});
- const pending=new Map();
- const rejectAll=e=>{for(const {reject,timer} of pending.values()){clearTimeout(timer);reject(e)}pending.clear()};
- worker.onerror=e=>{
-   const where=e?.filename?(' '+e.filename+':'+(e.lineno||'?')+':'+(e.colno||'?')):'';
-   const cause=e?.error?.stack||e?.error?.message||e?.message||'Worker module failed before initialization';
-   rejectAll(Error('Benchmark Worker startup error: '+cause+where));
- };
- worker.onmessageerror=e=>rejectAll(Error('Benchmark Worker message could not be decoded: '+(e?.message||'messageerror')));
- worker.onmessage=({data})=>{
-   if(data.type==='stage'){if(loading)notify('モデル準備：'+String(data.stage||'読み込み中'));return;}
-   if(data.type==='progress'){if(loading&&data.total>0)notify('モデル取得中 '+Math.round(100*data.loaded/data.total)+'%');return;}
-   const task=pending.get(data.id);if(!task)return;
-   clearTimeout(task.timer);pending.delete(data.id);
-   data.type==='error'?task.reject(Error(data.message||'Worker error')):task.resolve(data);
- };
- let seq=0;
- return {
-   kind:'worker',worker,
-   request(type,fields={},timeout=600000,transfers=[]){
-     const id=++seq;
-     return new Promise((resolve,reject)=>{
-       const timer=setTimeout(()=>{pending.delete(id);reject(Error(type+' のタイムアウト'))},timeout);
-       pending.set(id,{resolve,reject,timer});
-       worker.postMessage({id,type,...fields},transfers);
-     });
-   },
-   terminate(){rejectAll(Error('Model changed'));worker.terminate()}
- };
 }
 function recognizeVosk(buffer){
  return new Promise((resolve,reject)=>{
