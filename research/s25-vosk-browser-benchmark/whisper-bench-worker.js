@@ -1,20 +1,32 @@
 // Whisper Small q8 using the exact pinned CooTrio multilingual model/runtime.
 // E5 is deliberately not downloaded; this compares ASR only.
-import {prepareAssets} from '../../src/multilingual/assets.js';
-import {resolveWhisperThreads} from '../../src/multilingual/performance.js';
+// Lazy imports provide useful diagnostics instead of generic Worker startup failure.
+let whisperUtilities;
+async function getWhisperUtilities(){
+  return whisperUtilities ||= Promise.all([
+    import('../../src/multilingual/assets.js'),
+    import('../../src/multilingual/performance.js')
+  ]).then(([a,p])=>({prepareAssets:a.prepareAssets,resolveWhisperThreads:p.resolveWhisperThreads}))
+    .catch(e=>{whisperUtilities=null;throw Error('Whisper module import failed: '+(e?.message||String(e)),{cause:e});});
+}
 let recognizer=null,initPromise=null,threads=1;
 async function initialize(){
   if(initPromise)return initPromise;
   initPromise=(async()=>{
+    self.postMessage({type:'stage',stage:'Importing Whisper app utilities'});
+    const {prepareAssets,resolveWhisperThreads}=await getWhisperUtilities();
+    self.postMessage({type:'stage',stage:'Fetching Whisper model manifest'});
     const manifestUrl=new URL('../../src/multilingual/assets.json',import.meta.url);
     const res=await fetch(manifestUrl,{cache:'no-cache'});
     if(!res.ok)throw Error('Whisper manifest missing: HTTP '+res.status);
     const entire=await res.json();
     const manifest={...entire,assets:entire.assets.filter(meta=>meta.model==='whisper')};
     if(manifest.assets.length<3)throw Error('No Whisper assets in pinned manifest');
+    self.postMessage({type:'stage',stage:'Caching Whisper model assets'});
     const cache=await prepareAssets(manifest,{progress:({loaded,total})=>{
       self.postMessage({type:'progress',loaded,total});
     }});
+    self.postMessage({type:'stage',stage:'Importing Whisper pinned transformer runtime'});
     const runtime=await import('../../multilingual-assets/runtime/transformers.mjs');
     const {env,pipeline}=runtime;
     env.allowLocalModels=true;env.allowRemoteModels=false;
@@ -35,6 +47,7 @@ async function initialize(){
     env.backends.onnx.wasm.numThreads=threads;
     env.backends.onnx.wasm.proxy=false;
     const m=manifest.models.whisper;
+    self.postMessage({type:'stage',stage:'Creating Whisper ONNX pipeline'});
     recognizer=await pipeline('automatic-speech-recognition',m.id,{
       revision:m.revision,device:'wasm',dtype:'q8',local_files_only:true
     });
@@ -44,7 +57,9 @@ async function initialize(){
 self.onmessage=async({data})=>{
   const{id,type}=data;
   try{
-    if(type==='init'){
+    if(type==='ping'){
+      self.postMessage({type:'reply',id,ready:true,worker:'whisper',isolated:self.crossOriginIsolated===true});
+    }else if(type==='init'){
       await initialize();
       self.postMessage({type:'reply',id,ready:true,threads,engine:'Whisper Small q8'});
     }else if(type==='run'){
