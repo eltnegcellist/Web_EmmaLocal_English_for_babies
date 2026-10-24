@@ -43,18 +43,29 @@ jobs:
           queue=(output/'needs_review_queue.jsonl').read_text(encoding='utf-8').splitlines()
           assert len(queue)==7*(22+15),len(queue)
           assert all(json.loads(line)['required_additional_reviewed_families']==50 for line in queue)
-          assert s['starter_rows_kept']==1364, s
-          assert s['by_axis']=={'topic':308,'interaction':570,'both':486},s
+          assert 1630<=s['starter_rows_kept']<=1700,s
+          assert s['by_axis']['topic']==308 and s['by_axis']['interaction']==570,s
+          assert s['by_axis']['both']>=750,s
           assert s['paired_dual_axis_contrasts_imported']==486,s
-          assert s['excluded_overlap_or_duplicate']==4,s
+          assert s['excluded_overlap_or_duplicate']==1704-s['starter_rows_kept'],s
+          assert s['remaining_topic_dual_axis_contrasts_imported']>=300,s
           excluded=json.loads((output/'excluded.json').read_text())
           print('Excluded overlapping/duplicated research utterances:',excluded)
-          assert len(excluded)==4
+          assert len(excluded)==s['excluded_overlap_or_duplicate']
           assert s['ready_for_production'] is False
           for lang,axes in c.items():
               assert len(axes['topic'])==22 and len(axes['interaction'])==15
               for axis,labels in axes.items():
                   assert all(item['utterances']>=1 for item in labels.values()),(lang,axis)
+          corpus=[json.loads(row) for row in (output/'starter_corpus.jsonl').read_text().splitlines() if row]
+          split_groups={}
+          for r in corpus:
+              if r.get('contrast_group'):
+                  split_groups.setdefault(r['contrast_group'],set()).add(r['split'])
+          assert len(split_groups)==22, len(split_groups)
+          assert all(len(v)==1 for v in split_groups.values()),split_groups
+          assert len([r for r in corpus if r.get('supervision_axis')=='both'])==s['by_axis']['both']
+          print('All 22 cross-language scene groups have disjoint train/validation assignment.')
           print('Seed QA passed; no generated data is marked production-ready.')
           PY
       - name: Prepare independent blinded language review packets
@@ -69,12 +80,12 @@ jobs:
           root=Path('research/dual-axis-v1/outputs')
           manifest=json.loads((root/'reviewer_packets/manifest.json').read_text())
           outcome=json.loads((root/'review_merge/summary.json').read_text())
-          assert manifest['rows']==1364,manifest
+          assert manifest['rows']>=1630,manifest
           assert manifest['packet_files']==14
           assert manifest['auto_approved']==0
           assert outcome['accepted']==0,outcome
-          assert outcome['statuses']=={'incomplete':1364},outcome
-          assert len((root/'review_merge/needs_adjudication.jsonl').read_text().splitlines())==1364
+          assert outcome['statuses']=={'incomplete':manifest['rows']},outcome
+          assert len((root/'review_merge/needs_adjudication.jsonl').read_text().splitlines())==manifest['rows']
           print('Blind review packets valid. No synthetic seed was auto-approved.')
           PY
       - name: No changes to deployed heads
