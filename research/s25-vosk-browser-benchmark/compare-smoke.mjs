@@ -28,6 +28,34 @@ try{
 const isolated=await page.evaluate(()=>crossOriginIsolated);
 console.log('COI state:',isolated,'UI:',await page.locator('#isolation').textContent());
 if(!isolated)throw Error('Compare page cannot turn on isolation in Chromium through service worker.');
+// Diagnose URL/path/MIME and COEP policy separately from model initialization.
+for(const path of [
+ './moonshine-bench-worker.js',
+ './whisper-bench-worker.js',
+ '../../src/moonshine-module.js',
+ '../../src/multilingual/assets.js',
+ '../../multilingual-assets/runtime/transformers.mjs'
+]){
+ const r=await page.evaluate(async path=>{
+   const url=new URL(path,document.baseURI).href;
+   try{
+     const res=await fetch(url);
+     return {url,status:res.status,type:res.headers.get('content-type'),corp:res.headers.get('cross-origin-resource-policy'),
+       coep:res.headers.get('cross-origin-embedder-policy'),start:(await res.text()).slice(0,65)};
+   }catch(e){return{url,error:String(e)}}
+ },path);
+ console.log('MODULE FETCH',path,JSON.stringify(r));
+}
+// Determine if the COEP-enabled origin permits an ordinary module worker.
+const simpleWorker=await page.evaluate(()=>new Promise(resolve=>{
+ const blob=new Blob(['self.postMessage({works:true})'],{type:'text/javascript'});
+ const url=URL.createObjectURL(blob);
+ const w=new Worker(url,{type:'module'});
+ const timeout=setTimeout(()=>{w.terminate();URL.revokeObjectURL(url);resolve({error:'timeout'})},5000);
+ w.onerror=e=>{clearTimeout(timeout);w.terminate();URL.revokeObjectURL(url);resolve({error:e.message||'Worker error'})};
+ w.onmessage=e=>{clearTimeout(timeout);w.terminate();URL.revokeObjectURL(url);resolve(e.data)};
+}));
+console.log('BASIC MODULE WORKER',JSON.stringify(simpleWorker));
 // Critical regression check: every module Worker must actually launch, resolve
 // its nested imports, and return a structured error or success to the caller.
 for(const kind of ['moonshine','whisper']){
