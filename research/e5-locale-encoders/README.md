@@ -6,7 +6,7 @@ This draft branch compares on the exact same family-disjoint validation and froz
 - **B2**: current frozen E5 + logistic head trained across languages with a 4x weight for that language.
 - **C**: frozen language-focused MIT/Apache-2.0 encoder + locale-only logistic head.
 
-Languages: en/de/fr/ko/th/zh/hi. Existing v3 research data from the parent branch remains **unreviewed**: 360 examples total, 225 train, 135 validation. Non-English locales have only 15 training and 15 validation sentences, one example per Interaction class per split; model rankings are exploratory only. A held-out 154 examples are used for final diagnostic evaluation only and **not training or hyperparameter selection**. No ASR rerun. The 374 ASR transcripts are currently available in the separate locally generated evaluation kit, not yet attached to this GitHub job.
+Languages: en/de/fr/ko/th/zh/hi. Existing v3 research data from the parent branch remains **unreviewed**: 360 examples total, 225 train, 135 validation. Non-English locales have only 15 training and 15 validation sentences, one example per Interaction class per split; model rankings are exploratory only. A held-out 154 reference-text examples and frozen 374 ASR transcripts are evaluated after training, never used for fitting or hyperparameter selection. No ASR rerun. The original v2 Topic and Interaction predictions for all 528 texts must match exactly before the experimental comparisons are considered valid.
 
 **Topic remains on the original frozen E5 v2 head across all arms**. This is not a dual-axis language-specific deployment experiment because independent Topic training data is missing. Report Topic+Interaction joint accuracy using the fixed Topic prediction only.
 
