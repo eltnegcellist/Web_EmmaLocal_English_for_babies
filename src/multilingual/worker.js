@@ -4,17 +4,18 @@ import {resolveWhisperThreads} from './performance.js';
 let recognizer,extractor,heads,runtime,preparing,effectiveThreads=1;
 let queue=Promise.resolve();
 const progress=data=>self.postMessage({type:'progress',...data});
-async function initialize({threadPreference='auto'}={}) {
+async function initialize({threadPreference='auto',asrBackend='legacy'}={}) {
   const response=await fetch(new URL('./assets.json',import.meta.url));
   if(!response.ok)throw Error('Multilingual model manifest is missing');
   const manifest=await response.json();
-  const cache=await prepareAssets(manifest,{progress});
+  const modelAssets=asrBackend==='acft'?manifest.assets.filter(item=>item.model==='e5'):manifest.assets;
+  const cache=await prepareAssets({...manifest,assets:modelAssets},{progress});
   runtime=await import(new URL('../../multilingual-assets/runtime/transformers.mjs',import.meta.url));
   const {env,pipeline}=runtime;
   env.allowLocalModels=true;env.allowRemoteModels=false;env.useBrowserCache=false;env.useFSCache=false;
   env.localModelPath=new URL('../../multilingual-assets/unavailable/',import.meta.url).href;
   env.useCustomCache=true;
-  const allowed=new Set(manifest.assets.map(m=>m.url));
+  const allowed=new Set(modelAssets.map(m=>m.url));
   env.customCache={match:async key=>allowed.has(String(key))?(await cache.match(String(key)))||undefined:undefined,
     put:async()=>{throw Error('Unexpected model asset request');}};
   env.backends.onnx.wasm.wasmPaths=new URL('../../multilingual-assets/runtime/',import.meta.url).href;
@@ -30,7 +31,7 @@ async function initialize({threadPreference='auto'}={}) {
     threadPreference,isolated:self.crossOriginIsolated===true});
   const opt=key=>({revision:manifest.models[key].revision,device:'wasm',dtype:'q8',local_files_only:true});
   progress({stage:'loading'});
-  recognizer=await pipeline('automatic-speech-recognition',manifest.models.whisper.id,opt('whisper'));
+  if(asrBackend!=='acft')recognizer=await pipeline('automatic-speech-recognition',manifest.models.whisper.id,opt('whisper'));
   extractor=await pipeline('feature-extraction',manifest.models.e5.id,opt('e5'));
   const base=new URL('../../multilingual-assets/heads/',import.meta.url);
   const config=await (await fetch(new URL('config.json',base))).json(),buffers={};
@@ -61,10 +62,11 @@ async function detectLanguage(audio) {
   }finally{disposeTensors(out);disposeTensors(features);ids?.dispose();}
 }
 async function handle(data) {
-  preparing ||= initialize({threadPreference:data.threads}).catch(error=>{preparing=null;throw error;});await preparing;
-  if(data.type==='init')return {provider:'wasm',source:'whisper-small-e5',ready:true,
+  preparing ||= initialize({threadPreference:data.threads,asrBackend:data.asrBackend}).catch(error=>{preparing=null;throw error;});await preparing;
+  if(data.type==='init')return {provider:'wasm',source:recognizer?'whisper-small-e5':'acft-small-e5',ready:true,
     threads:effectiveThreads,isolated:self.crossOriginIsolated===true};
   if(data.type==='transcribe'){
+    if(!recognizer)throw Error('Legacy Whisper transcription is disabled under the ACFT backend');
     const audio=new Float32Array(data.audio);
     if(!audio.length||audio.some(x=>!Number.isFinite(x)))throw Error('Invalid audio');
     const audioSeconds=audio.length/16000;

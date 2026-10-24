@@ -19,6 +19,7 @@ import { meaningfulSpeech, LANGUAGE_KEY } from './multilingual/core.js';
 import { bindVisualCueSettings } from './visual-cue-settings.js';
 import {WHISPER_THREAD_KEY,WHISPER_LANGUAGE_MODE_KEY,normalizeThreads,normalizeLanguageDetection} from './multilingual/performance.js';
 import {installWhisperPerformanceControls} from './multilingual/performance-controls.js';
+import {importAcftModel,hasImportedAcftModel} from './multilingual/acft-model-store.js';
 import {chooseEnglishResumeGreeting} from './resume-greeting.js';
 
 const $ = (id) => document.getElementById(id);
@@ -316,6 +317,15 @@ function initUi() {
     onForgetLanguage:()=>{
       multilingual.resetSpeechLanguage();
       multilingualAsrDiagnostic.cachedLanguage=null;
+    },
+    hasAcftModel:hasImportedAcftModel,
+    onImportAcftFile:async file=>{
+      await stopEmma();
+      await importAcftModel(file);
+      multilingual.cancel('ACFT Small model added; restart multilingual ASR');
+      asrInfoCache=null;workersReady=false;moonshineTranscriber=null;
+      updateRuntimeBackend();updateWebTimingDiagnostics();
+      if(languageUI.language!=='ja')await ensureMoonshineIsolation({manualStartAfterReload:true});
     }
   });
   whisperPerformanceControls.apply(languageUI.language);
@@ -1278,7 +1288,9 @@ async function initWorkers() {
       await multilingual.prepare();
       if(selectionEpoch!==modelSelectionEpoch)throw Error('Language operation cancelled');
       moonshineTranscriber={transcribe:async audio=>(await multilingual.transcribe(audio,languageUI.language)).text,close:()=>multilingual.cancel()};
-      asrInfoCache={kind:'whisper',engine:'whisper-small',architecture:'whisper-small-multilingual',
+      const usingAcft=multilingual.asrBackend==='acft';
+      asrInfoCache={kind:'whisper',engine:usingAcft?'acft-whisper-small':'whisper-small',
+        architecture:usingAcft?'acft-small-adaptive-5s-10s':'whisper-small-multilingual',
         device:'wasm-cpu',threads:multilingual.runtimeInfo?.threads??1};
       languageUI.setStatus('モデルの準備ができました');
     }
@@ -2376,13 +2388,13 @@ function withTimeout(promise,ms,message){
 async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterReload=false}={}) {
   if(!isCurrent())return false;
   const nonJapanese=typeof languageUI!=='undefined' && languageUI.language!=='ja';
-  if(nonJapanese && whisperPerformanceSettings().threads==='1')return true;
+  if(nonJapanese && whisperPerformanceSettings().threads==='1' && !(await hasImportedAcftModel()))return true;
   if(window.crossOriginIsolated && typeof SharedArrayBuffer === 'function') {
     sessionStorage.removeItem('emma_coi_reload_count');
     return true;
   }
   if(!('serviceWorker' in navigator)) {
-    if(nonJapanese)return true; // WASM CPU single-thread fallback.
+    if(nonJapanese && !(await hasImportedAcftModel()))return true; // ONNX WASM single-thread fallback.
     throw new Error('このブラウザではMoonshineに必要なService Workerを利用できません。');
   }
 
@@ -2417,7 +2429,7 @@ async function ensureMoonshineIsolation({isCurrent=()=>true,manualStartAfterRelo
     return false;
   }
 
-  if(nonJapanese)return true; // Worker uses one CPU thread without isolation.
+  if(nonJapanese && !(await hasImportedAcftModel()))return true; // Legacy ONNX can use single-thread fallback.
   throw new Error('Moonshineに必要なブラウザ分離を有効にできませんでした。通常のブラウザタブで開き直してください。');
 }
 

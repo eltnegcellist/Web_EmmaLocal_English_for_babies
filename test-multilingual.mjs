@@ -270,7 +270,12 @@ const sticky=new MultilingualClient({threads:'4',languageDetection:'once',worker
  cacheWorkers.push(w);return w;
 }});
 const initSticky=sticky.prepare();
+// The adaptive client checks persisted model metadata asynchronously before
+// choosing native ACFT vs legacy ONNX, so wait for Worker creation.
+for(let tick=0;tick<50&&!cacheWorkers.length;tick++)await new Promise(resolve=>setImmediate(resolve));
+assert(cacheWorkers.length,'Multilingual Worker should be created after model selection');
 assert.equal(cacheWorkers[0].last.threads,'4');
+assert.equal(cacheWorkers[0].last.asrBackend,'legacy');
 cacheWorkers[0].onmessage({data:{type:'result',requestId:cacheWorkers[0].last.requestId,
  result:{ready:true,threads:4,isolated:true}}});
 await initSticky;
@@ -364,7 +369,8 @@ for(const key of ['audioSeconds','languageMs','transcribeMs','totalMs','realTime
  assert(appSource.includes('multilingual.'+key+'='),'Diagnostic export must include '+key);
 }
 assert(appSource.includes("if(data.stage==='asr-timing')"),'ASR timing progress must not show model download state');
-assert(appSource.includes("if(nonJapanese)return true"),'Unavailable browser isolation must fall back to 1-thread foreign Whisper');
+assert(appSource.includes("if(nonJapanese && !(await hasImportedAcftModel()))return true"),
+  'Legacy foreign Whisper must retain 1-thread fallback only when native ACFT is not imported');
 assert(appSource.includes("multilingual?.resetSpeechLanguage()"),'Conversation start/stop must invalidate language cache');
 assert(appSource.includes("WHISPER_THREAD_KEY"),'Application must persist CPU thread preference');
 assert(workerSource.includes('env.backends.onnx.wasm.numThreads=effectiveThreads'),'Worker must enable ONNX multi-thread runtime');
