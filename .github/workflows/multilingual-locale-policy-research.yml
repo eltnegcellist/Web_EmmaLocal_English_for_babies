@@ -1,0 +1,28 @@
+name: Research multilingual locale ASR policy
+
+on:
+  push:
+    branches:
+      - research/multilingual-locale-optimization-policy-v1
+    paths:
+      - research/multilingual-locale-optimization/**
+      - .github/workflows/multilingual-locale-policy-research.yml
+  pull_request:
+    paths:
+      - research/multilingual-locale-optimization/**
+      - .github/workflows/multilingual-locale-policy-research.yml
+
+permissions:
+  contents: read
+
+jobs:
+  policy-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify selected ASR languages and nontruncating five-second windows
+        run: node --test research/multilingual-locale-optimization/policy.test.mjs
