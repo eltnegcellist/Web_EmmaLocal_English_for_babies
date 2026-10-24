@@ -77,7 +77,9 @@ export class AdaptiveAcftClient {
     const timings={
       audioSeconds:Number((pcm.length/16000).toFixed(2)),totalMs,
       realTimeFactor:Number((totalMs/(pcm.length/16)).toFixed(2)),
-      languageMs:languagePass?chunks[0]?.asrMs??0:0,
+      // Auto language detection is part of the first native decode; separate
+      // detection-only timing was not instrumented, so do not mislabel it.
+      languageMs:null,
       transcribeMs:totalMs,
       spokenLanguage:spoken||'und',
       languagePass,threads,
