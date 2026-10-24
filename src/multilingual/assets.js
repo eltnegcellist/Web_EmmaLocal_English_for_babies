@@ -62,6 +62,11 @@ export async function openChunkStore(factory=globalThis.indexedDB) {
     await finished;
   }
   return {
+    async has(meta) {
+      const record=await get('assets',meta.url);
+      return Boolean(record&&record.bytes===meta.bytes&&record.sha256===meta.sha256&&
+        Number.isInteger(record.count)&&record.count===Math.ceil(meta.bytes/CHUNK_BYTES));
+    },
     async read(meta) {
       const record=await get('assets',meta.url);
       if(!record||record.bytes!==meta.bytes||record.sha256!==meta.sha256)return null;
