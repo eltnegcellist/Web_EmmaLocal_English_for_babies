@@ -58,9 +58,9 @@ details{margin-top:14px}
 <button id="load" disabled>選択したモデルを読み込む</button>
 <button id="run" disabled>同じ音声を3回認識</button>
 <p id="status" role="status" aria-live="polite">初期化中です。</p>
-<details><summary>Moonshine WASMの初期化診断（エラー時はこちらを開く）</summary>
+<details><summary>Moonshine・Whisperの本番ASR起動ログ（エラー時はこちらを開く）</summary>
 <pre id="initLog">まだ初期化していません。</pre>
-<p class="muted">取得→展開→ハッシュ照合→WASM起動のどの工程で止まったか記録します。診断には音声データや文字起こし内容を含めません。</p></details>
+<p class="muted">本番ASR Workerの起動、モデル目録、モデル取得、診断イベントを表示します。ログには音声本文や文字起こしを含めません。</p></details>
 <p class="muted">モデルのロード時間は認識時間と分けて表示します。Whisperの初回ダウンロードは大きいため、空き容量と通信量に注意してください。同時に複数のASRを読み込まない設計です。</p>
 </section>
 <section>
@@ -73,7 +73,7 @@ details{margin-top:14px}
 <details><summary>各回の認識結果を見る</summary><pre id="transcripts">未測定</pre></details>
 <button id="copy" class="secondary" disabled>比較結果JSONをコピー</button>
 </section>
-<footer class="muted"><small>研究用。測定条件はPCM16kHzモノラル、5秒/10秒窓＋無音0.8秒、モデルロード後のASR処理。発話終了検知・E5分類・録音時間は含みません。Voskはイベント経由、Moonshineはページ上のWASM（ネストしたWorkerを避ける研究用回避策）、Whisperは専用Worker経由です。通信先は外部JS/モデルの取得先のみ。本番「みつことば」のコード・公開ページは変更しません。</small></footer>
+<footer class="muted"><small>研究用。測定条件はPCM16kHzモノラル、5秒/10秒窓＋無音0.8秒、モデルロード後のASR処理。発話終了検知・E5分類・録音時間は含みません。Voskはイベント経由、Moonshineは本番のMoonshineAsrClient＋asr-worker.js、Whisperは本番のMultilingualClient＋multilingual/worker.jsを研究用ブリッジから呼び出します。Moonshineのpthreadブリッジと英語指定のみ研究モードで追加します。通信先は外部JS/モデルの取得先のみ。本番「みつことば」のコード・公開ページは変更しません。</small></footer>
 </main>
 <script defer src="https://cdn.jsdelivr.net/npm/vosk-browser@0.0.8/dist/vosk.js" crossorigin="anonymous"></script>
 <script type="module" src="./compare.js"></script>
