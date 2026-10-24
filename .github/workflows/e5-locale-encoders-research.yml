@@ -59,3 +59,28 @@ jobs:
           path: research/e5-locale-encoders/outputs/${{ matrix.lang }}/
           if-no-files-found: warn
           retention-days: 30
+
+
+  report:
+    name: Aggregate locale research results
+    needs: [compare]
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download successful and partial locale artifacts
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: locale-e5-interaction-*
+          path: research/e5-locale-encoders/artifacts
+      - name: Summarize results, marking missing locales
+        run: python research/e5-locale-encoders/summarize.py research/e5-locale-encoders/artifacts
+      - name: Upload full research summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cootrio-locale-model-summary-${{ github.run_id }}
+          path: research/e5-locale-encoders/summary.md
+          if-no-files-found: warn
+          retention-days: 30
