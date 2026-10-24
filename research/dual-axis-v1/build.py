@@ -344,7 +344,7 @@ def main():
                 }
     (args.output/'pair_coverage.json').write_text(
         json.dumps(pair_coverage,ensure_ascii=False,indent=2)+chr(10),encoding='utf-8')
-    pair_seen={(topic,intent) for lang,topic,intent in pair_buckets}
+    pair_seen={(topic,intent) for (lang,topic,intent),items in pair_buckets.items() if items}
     pair_stats={
         'theoretical_combinations':len(labels['topic'])*len(labels['interaction']),
         'observed_distinct_topic_interaction_pairs':len(pair_seen),
