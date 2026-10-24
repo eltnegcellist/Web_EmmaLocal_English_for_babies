@@ -7,6 +7,10 @@ on:
     paths:
       - .github/workflows/e5-interaction-v3-research.yml
       - research/e5-interaction-v3/**
+  pull_request:
+    paths:
+      - .github/workflows/e5-interaction-v3-research.yml
+      - research/e5-interaction-v3/**
   workflow_dispatch:
 
 permissions:
