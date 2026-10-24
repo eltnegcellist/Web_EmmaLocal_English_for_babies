@@ -1,0 +1,5 @@
+numpy==1.26.4
+scikit-learn==1.5.2
+onnxruntime==1.19.2
+transformers==4.46.3
+huggingface-hub==0.26.5
