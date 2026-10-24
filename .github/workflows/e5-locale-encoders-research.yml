@@ -47,7 +47,8 @@ jobs:
           OMP_NUM_THREADS: '2'
           TOKENIZERS_PARALLELISM: 'false'
         run: |
-          python research/e5-locale-encoders/benchmark.py --lang '${{ matrix.lang }}' --allow-unreviewed
+          set -o pipefail
+          python research/e5-locale-encoders/benchmark.py --lang '${{ matrix.lang }}' --allow-unreviewed 2>&1 | tee research/e5-locale-encoders/outputs/${{ matrix.lang }}/run.log
       - name: Assert production heads were not modified
         if: always()
         run: git diff --exit-code -- multilingual-assets/heads/
