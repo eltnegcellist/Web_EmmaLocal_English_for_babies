@@ -128,6 +128,7 @@ function makeWorkerBackend(url){
 function recognizeVosk(buffer){
  return new Promise((resolve,reject)=>{
    const recognizer=new loadedBackend.model.KaldiRecognizer(16000);
+   console.info('S25 Vosk recognizer methods',{id:recognizer.id,finalizer:typeof recognizer.retrieveFinalResult});
    let settled=false;
    const timeout=setTimeout(()=>finish(Error('Vosk final recognition timeout')),120000);
    let text='';
@@ -141,6 +142,7 @@ function recognizeVosk(buffer){
    }
    recognizer.on('error',e=>finish(Error(encoderText(e?.error||'Vosk recognizer error'))));
    recognizer.on('result',msg=>{
+     console.info('S25 Vosk final result event',{id:msg?.recognizerId,expected:recognizer.id,text:msg?.result?.text});
      // Crucial fix: reject a late callback from a different recognizer;
      // unlike v1, partialresult is NEVER considered the ASR completion.
      if(msg?.recognizerId&&msg.recognizerId!==recognizer.id)return;
@@ -148,13 +150,17 @@ function recognizeVosk(buffer){
      if(part)text=[text,part].filter(Boolean).join(' ');
      finish();
    });
-   recognizer.on('partialresult',()=>{});
+   recognizer.on('partialresult',msg=>{
+     console.info('S25 Vosk partial event ignored',msg?.result?.partial?.slice(0,90));
+   });
    try{
      const ab=new AudioBuffer({length:buffer.length,numberOfChannels:1,sampleRate:16000});
      ab.copyToChannel(buffer,0);
      recognizer.acceptWaveform(ab);
      // Request an explicit final flush; do not score intermediate partials.
-     recognizer.retrieveFinalResult?.();
+     if(typeof recognizer.retrieveFinalResult!=='function')
+       throw Error('The installed vosk-browser lacks retrieveFinalResult(); upgrade required');
+     recognizer.retrieveFinalResult();
    }catch(e){finish(e)}
  });
 }
