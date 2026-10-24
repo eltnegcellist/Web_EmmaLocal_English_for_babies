@@ -40,6 +40,11 @@ jobs:
           assert s['classification_axes']=={'topic':22,'interaction':15,'label_total':37,'theoretical_pairs':330}
           assert set(c)=={'en','de','fr','ko','th','zh','hi'}
           assert s['human_and_native_reviewed_rows']==0
+          queue=(output/'needs_review_queue.jsonl').read_text(encoding='utf-8').splitlines()
+          assert len(queue)==7*(22+15),len(queue)
+          assert all(json.loads(line)['required_additional_reviewed_families']==50 for line in queue)
+          assert s['starter_rows_kept']==878
+          assert s['by_axis']=={'topic':308,'interaction':570}
           assert s['ready_for_production'] is False
           for lang,axes in c.items():
               assert len(axes['topic'])==22 and len(axes['interaction'])==15
