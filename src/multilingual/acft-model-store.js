@@ -27,8 +27,9 @@ export async function importAcftModel(file,{progress=()=>{}}={}){
 export async function hasImportedAcftModel(){
   const store=await openChunkStore().catch(()=>null);
   if(!store)return false;
-  // Integrity is validated on read; this also evicts broken, partial assets.
-  return Boolean(await store.read(ACFT_MODEL).catch(()=>null));
+  // Check cheap manifest metadata here; full SHA256 is validated once before
+  // starting native ASR when the model is loaded.
+  return Boolean(await store.has(ACFT_MODEL).catch(()=>false));
 }
 export async function readImportedAcftModel(){
   const store=await openChunkStore();
