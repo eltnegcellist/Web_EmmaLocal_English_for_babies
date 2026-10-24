@@ -12,14 +12,20 @@ try {
  });
  await page.reload({waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>crossOriginIsolated&&typeof SharedArrayBuffer==='function',null,{timeout:20000});
+ const nativeWorkerUrl=origin+'/src/multilingual/acft-native-worker.js';
+ const response=await page.request.get(nativeWorkerUrl);
+ assert.equal(response.status(),200,'Native classic Worker source must be served');
+ assert((await response.text()).includes('ACFT classic Worker script loaded'));
  const result=await page.evaluate(async()=>{
    return new Promise((resolve,reject)=>{
      const worker=new Worker(new URL('./src/multilingual/acft-native-worker.js',location.href));
-     const timer=setTimeout(()=>{worker.terminate();reject(Error('WASM init worker response timed out'))},60000);
-     worker.onerror=e=>{clearTimeout(timer);worker.terminate();reject(Error('Native worker error: '+e.message))};
+     const messages=[];
+     const timer=setTimeout(()=>{worker.terminate();reject(Error('WASM init worker response timed out: '+JSON.stringify(messages)))},60000);
+     worker.onerror=e=>{clearTimeout(timer);worker.terminate();reject(Error('Native worker error: '+JSON.stringify({message:e.message,filename:e.filename,lineno:e.lineno,bootstrap:messages,coi:crossOriginIsolated})))};
      worker.onmessage=({data})=>{
-       if(data.kind==='native-log')return;
-       clearTimeout(timer);worker.terminate();resolve(data);
+       messages.push(data);
+       if(data.kind==='native-log'||data.kind==='bootstrap')return;
+       clearTimeout(timer);worker.terminate();resolve({...data,bootstrap:messages});
      };
      worker.postMessage({type:'init',id:13,model:new ArrayBuffer(0)});
    });
