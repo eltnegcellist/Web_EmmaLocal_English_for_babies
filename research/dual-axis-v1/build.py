@@ -180,6 +180,27 @@ def main():
     (args.output/'starter_corpus.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in kept),encoding='utf-8')
     (args.output/'excluded.json').write_text(json.dumps(skipped,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     (args.output/'coverage.json').write_text(json.dumps(coverage,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    # Research work queue for human-reviewed, independently authored examples.
+    # It describes missing high-quality coverage; it is NOT fabricated training data.
+    tasks=[]
+    for lang in LANGUAGES:
+        for axis in ('topic','interaction'):
+            for label in labels[axis]:
+                stat=coverage[lang][axis][label]
+                tasks.append({
+                    'language':lang,'axis':axis,'label':label,
+                    'target_distinct_native_reviewed_meaning_families':TARGET_FAMILIES,
+                    'minimum_reviewed_meaning_families':MIN_FAMILIES,
+                    'currently_reviewed_families':stat['native_reviewed_families'],
+                    'required_additional_reviewed_families':stat['remaining_to_target50_reviewed'],
+                    'drafts_available_for_review':stat['utterances'],
+                    'instructions':('Author natural caregiver utterances with diverse situations, speakers, dialects and length. '
+                                    'Keep candidate examples unreviewed until checked by a native speaker and label adjudicator. '
+                                    'Add the second axis label only if independently justified; else null. '
+                                    'Ensure semantic-family grouping, exact and near-duplicate screening, no frozen evaluation leakage.')
+                })
+    (args.output/'needs_review_queue.jsonl').write_text(
+        ''.join(json.dumps(t,ensure_ascii=False)+'\\n' for t in tasks),encoding='utf-8')
     total=collections.Counter(r['supervision_axis'] for r in kept)
     reviewed=sum(bool(r['label_reviewed'] and r['native_speaker_reviewed']) for r in kept)
     report={
