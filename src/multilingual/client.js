@@ -1,8 +1,9 @@
 import {normalizeThreads,normalizeLanguageDetection} from './performance.js';
 export class MultilingualClient {
   constructor({workerFactory=()=>new Worker(new URL('./worker.js',import.meta.url),{type:'module'}),onStatus=()=>{},
-    threads='auto',languageDetection='once'}={}) {
+    threads='auto',languageDetection='once',researchWhisperOnly=false}={}) {
     this.workerFactory=workerFactory;this.onStatus=onStatus;this.worker=null;this.pending=new Map();this.seq=0;this.ready=false;this.preparing=null;this.generation=0;
+    this.researchWhisperOnly=researchWhisperOnly===true;
     this.threadPreference=normalizeThreads(threads);
     this.languageDetection=normalizeLanguageDetection(languageDetection);
     this.cachedSpokenLanguage=null;this.languageCacheEpoch=0;this.runtimeInfo=null;
@@ -22,7 +23,8 @@ export class MultilingualClient {
   }
   prepare(){if(this.ready)return Promise.resolve();if(this.preparing)return this.preparing;
     const token=this.generation;
-    const op=this.request('init',{threads:this.threadPreference}).then(info=>{
+    const op=this.request('init',{threads:this.threadPreference,
+      ...(this.researchWhisperOnly?{researchWhisperOnly:true}:{})}).then(info=>{
       if(token!==this.generation)throw Error('Language operation cancelled');
       this.ready=true;this.runtimeInfo=info;this.onStatus({stage:'runtime-ready',...info});
     }).catch(e=>{if(token===this.generation)this.cancel(e.message);throw e;}).finally(()=>{if(this.preparing===op)this.preparing=null;});
