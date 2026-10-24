@@ -97,12 +97,62 @@ def load_paired_contrasts(heads):
                     'topic':topic,'interaction':interaction,'supervision_axis':'both',
                     'semantic_family':f'contrast-v1-{topic}-{interaction}',
                     'contrast_group':f'contrast-v1-{topic}',
-                    'split':'validation' if (a*len(interactions)+b)%5==0 else 'train',
+                    'split':'validation' if a%5==0 else 'train',
                     'source':'assistant_authored_dual_axis_unreviewed',
                     'label_reviewed':False,'native_speaker_reviewed':False,
                     'caution':'Both axes provisional; review labels and naturalness before fitting.'
                 })
     assert len(rows)==490
+    return rows
+
+
+
+def load_remaining_topic_contrasts(heads):
+    """Native-script candidate strings for 12 topics with curated compatible intents.
+
+    They are *synthetic and unreviewed*. Keep all examples from one caregiver
+    scene together; never validate on a translation or near variant of a train
+    scene. Each language has identical intended Topic × Interaction coverage.
+    """
+    western=checked_json(HERE/'data/contrast_remaining_western.json')
+    asian=checked_json(HERE/'data/contrast_remaining_asian.json')
+    if western.get('schema')!=1 or asian.get('schema')!=1:
+        raise ValueError('Unexpected remaining-contrast schema')
+    specs=western['topic_interaction_order']
+    if len(specs)!=12 or sum(map(len,specs.values()))!=48:
+        raise ValueError('Expected 12 topics × 4 curated intent labels')
+    if not set(specs).issubset(heads['topic']['classes']):
+        raise ValueError('Invalid remaining Topic')
+    if any(not set(v).issubset(heads['interaction']['classes']) or len(set(v))!=len(v)
+           for v in specs.values()):
+        raise ValueError('Invalid remaining Interaction')
+    if set(western['by_language']) | set(asian['by_language']) != set(LANGUAGES):
+        raise ValueError('Incomplete remaining-topic locales')
+    if set(western['by_language']) & set(asian['by_language']):
+        raise ValueError('Locale appears in two input collections')
+    rows=[]
+    for lang in LANGUAGES:
+        batch=(western if lang in western['by_language'] else asian)['by_language'][lang]
+        if set(batch)!=set(specs):raise ValueError(f'Missing remaining topics for {lang}')
+        for topic_index,(topic,intents) in enumerate(specs.items()):
+            texts=batch[topic]
+            if not isinstance(texts,list) or len(texts)!=len(intents):
+                raise ValueError(f'Invalid intent count for {lang}/{topic}')
+            for intent_index,(intent,sentence) in enumerate(zip(intents,texts)):
+                if not isinstance(sentence,str) or len(sentence.strip())<5:
+                    raise ValueError(f'Invalid remaining-contrast text: {lang}/{topic}/{intent}')
+                rows.append({
+                    'id':f'contrast-v2-{lang}-{topic}-{intent}',
+                    'language':lang,'text':sentence.strip(),
+                    'topic':topic,'interaction':intent,'supervision_axis':'both',
+                    'semantic_family':f'contrast-v2-{topic}-{intent}',
+                    'contrast_group':f'contrast-v2-{topic}',
+                    'split':'validation' if (topic_index+10)%5==0 else 'train',
+                    'source':'assistant_authored_remaining_topic_unreviewed',
+                    'label_reviewed':False,'native_speaker_reviewed':False,
+                    'caution':'Unreviewed natural-language dual-axis contrast; do not count as independent human speech.'
+                })
+    if len(rows)!=336:raise ValueError('Expected 336 translated contrast strings')
     return rows
 
 
@@ -184,7 +234,7 @@ def audit(rows,labels,frozen):
                 skipped.append({'id':r['id'],'reason':'TEXT_DUPLICATE','duplicate_of':previous['id']})
             continue
         unique[key]=r
-        family=r['semantic_family']  # cross-language translation family must not cross splits
+        family=r.get('contrast_group') or r['semantic_family']  # group an entire scene, across languages
         split_by_family.setdefault(family,set()).add(r['split'])
         kept.append(r)
     leaky=[k for k,v in split_by_family.items() if len(v)!=1]
@@ -225,7 +275,7 @@ def main():
     heads=checked_json(CFG)['heads']
     labels={axis:heads[axis]['classes'] for axis in ('topic','interaction')}
     assert len(labels['topic'])==22 and len(labels['interaction'])==15
-    rows=make_rows(heads)+load_legacy_interaction()+load_paired_contrasts(heads)+collect_external(args.additional_jsonl,heads)
+    rows=make_rows(heads)+load_legacy_interaction()+load_paired_contrasts(heads)+load_remaining_topic_contrasts(heads)+collect_external(args.additional_jsonl,heads)
     kept,skipped,coverage=audit(rows,labels,load_frozen_inputs())
     args.output.mkdir(parents=True,exist_ok=True)
     (args.output/'starter_corpus.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in kept),encoding='utf-8')
@@ -259,6 +309,7 @@ def main():
         'languages':list(LANGUAGES),'starter_rows_kept':len(kept),
         'by_axis':dict(total),'excluded_overlap_or_duplicate':len(skipped),
         'paired_dual_axis_contrasts_imported':sum(r['source']=='assistant_authored_dual_axis_unreviewed' for r in kept),
+        'remaining_topic_dual_axis_contrasts_imported':sum(r['source']=='assistant_authored_remaining_topic_unreviewed' for r in kept),
         'human_and_native_reviewed_rows':reviewed,
         'ready_for_production':False,
         'meaning_family_target_per_axis_per_language':TARGET_FAMILIES,
