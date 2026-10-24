@@ -123,8 +123,14 @@ def main():
     if repro or asr_repro:
         raise ValueError(f"Baseline reproduction failed: oracle={len(repro)} ASR={len(asr_repro)}")
     B_local=train_head(local_train,e5_features,labels)
-    B_weighted=train_head(train,e5_features,labels, np.asarray(
-        [4.0 if r["language"]==language else 1.0 for r in train]))
+    # First balance the aggregate weight of all seven languages, then weight
+    # the target locale 4x. Otherwise the English-heavy (135 vs 15) corpus
+    # still dominates the "locale-weighted" training for non-English models.
+    counts=Counter(r["language"] for r in train)
+    weights=np.asarray([(4.0 if r["language"]==language else 1.0)
+                        / counts[r["language"]] for r in train],dtype=np.float64)
+    weights*=len(train)/weights.sum()
+    B_weighted=train_head(train,e5_features,labels,weights)
     model_id,allow_license=CANDIDATES[language]
     from huggingface_hub import HfApi
     info=HfApi().model_info(model_id)
