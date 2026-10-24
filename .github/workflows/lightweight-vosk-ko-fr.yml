@@ -1,0 +1,123 @@
+name: Lightweight Korean French Vosk ASR E5 benchmark
+
+on:
+  push:
+    branches: [research/lightweight-vosk-ko-fr-v1]
+    paths:
+      - '.github/workflows/lightweight-vosk-ko-fr.yml'
+      - 'research/lightweight-vosk-ko-fr/**'
+  pull_request:
+    branches: [research/asr-ko-fr-alternatives-v1]
+    paths:
+      - '.github/workflows/lightweight-vosk-ko-fr.yml'
+      - 'research/lightweight-vosk-ko-fr/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lightweight-vosk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    strategy:
+      fail-fast: false
+      matrix:
+        lang: [ko, fr]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      HF_HUB_DISABLE_TELEMETRY: '1'
+      TOKENIZERS_PARALLELISM: 'false'
+      OMP_NUM_THREADS: '2'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned E5 inference and compact Vosk engine
+        run: |
+          python -m pip install -r research/e5-locale-encoders/requirements.txt
+          python -m pip install vosk==0.3.45
+      - name: Reuse the very same 22-language synthetic WAV files from prior Whisper test
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/cootrio-audio
+          gh run download 40079226795 --repo "$GITHUB_REPOSITORY" --name 'audio-${{ matrix.lang }}' --dir /tmp/cootrio-audio
+          test -f '/tmp/cootrio-audio/research/asr-ko-fr-alternatives/outputs/${{ matrix.lang }}/manifest.json'
+      - name: Get frozen previous E5 heads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/cootrio-heads
+          gh run download 40073281853 --repo "$GITHUB_REPOSITORY" --name 'cootrio-dual-axis-provisional-training-40073281853' --dir /tmp/cootrio-heads
+          test -f /tmp/cootrio-heads/provisional_heads/candidate_manifest.json
+      - name: Score offline small Vosk Korean or French against unchanged E5
+        run: |
+          set -o pipefail
+          python research/lightweight-vosk-ko-fr/score_vosk.py \
+            --language '${{ matrix.lang }}' \
+            --audio-dir '/tmp/cootrio-audio/research/asr-ko-fr-alternatives/outputs/${{ matrix.lang }}' \
+            --candidate-heads /tmp/cootrio-heads/provisional_heads \
+            2>&1 | tee 'vosk-${{ matrix.lang }}.log'
+      - name: Validate score schema and leave release assets untouched
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          lang=os.environ['LANGUAGE']
+          result=json.loads(Path(f'research/lightweight-vosk-ko-fr/outputs/{lang}/summary.json').read_text())
+          assert result['scores']['local']['n']==22
+          assert result['status']=='RESEARCH_SYNTHETIC_NOT_PRODUCTION'
+          assert result['license']=='Apache-2.0'
+          assert len(result['model_zip_sha256'])==64
+          speed=result['speed']
+          for key in ('asr_ms','e5_ms','asr_plus_e5_and_heads_ms','realtime_factor'):
+              assert speed[key]['n']==22
+              assert 0<=speed[key]['median']<=speed[key]['p95']
+              assert speed[key]['max']>=speed[key]['p95']
+          assert speed['asr_model_load_ms']>0
+          assert speed['e5_encoder_load_ms']>0
+          assert speed['overall_realtime_factor']>=0
+          print('Speed comparison', lang, 'p50:',speed['asr_ms']['median'],
+                'p95:',speed['asr_ms']['p95'],'RTF:',speed['overall_realtime_factor'],
+                'ASR+E5 p95:',speed['asr_plus_e5_and_heads_ms']['p95'])
+          print(f'Validated 22-item Korean/French lightweight Vosk accuracy AND latency for {lang}')
+          PY
+          git diff --exit-code -- src/ multilingual-assets/heads/
+        env:
+          LANGUAGE: ${{ matrix.lang }}
+      - name: Compare Korean Vosk ASR latency with previous matched-audio Whisper Small
+        if: matrix.lang == 'ko'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/cootrio-whisper-ko
+          gh run download 40079226795 --repo "$GITHUB_REPOSITORY" --name 'ko-fr-asr-baseline-ko-40079226795' --dir /tmp/cootrio-whisper-ko
+          python - <<'PY'
+          from pathlib import Path
+          hits=[p for p in Path('/tmp/cootrio-whisper-ko').rglob('summary.json') if 'baseline-ko' in str(p)]
+          if len(hits)!=1:raise ValueError('Could not identify the archived Korean Whisper Small summary: '+str(hits))
+          Path('/tmp/cootrio-whisper-ko-path.txt').write_text(str(hits[0]))
+          PY
+          python research/lightweight-vosk-ko-fr/compare_whisper.py \
+            --vosk-summary research/lightweight-vosk-ko-fr/outputs/ko/summary.json \
+            --whisper-summary "$(cat /tmp/cootrio-whisper-ko-path.txt)" \
+            --output research/lightweight-vosk-ko-fr/outputs/ko/vosk_vs_whisper_speed.json
+          test -s research/lightweight-vosk-ko-fr/outputs/ko/vosk_vs_whisper_speed.json
+      - name: Save numeric results and diagnostics even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lightweight-vosk-${{ matrix.lang }}-${{ github.run_id }}
+          path: |
+            research/lightweight-vosk-ko-fr/outputs/${{ matrix.lang }}/
+            vosk-${{ matrix.lang }}.log
+          if-no-files-found: warn
+          retention-days: 21
