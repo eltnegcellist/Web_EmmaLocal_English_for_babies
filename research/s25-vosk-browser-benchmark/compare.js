@@ -8,7 +8,7 @@ let loadMs=null,sequence=0,lastWorker=null;
 const results={};
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const bootLog=[];
-const bootStarted=performance.now();
+let bootStarted=performance.now();
 function bootStage(stage){
  const line=(Math.round(performance.now()-bootStarted)/1000).toFixed(1)+'s  '+stage;
  bootLog.push(line);
@@ -237,6 +237,7 @@ async function loadSelected(){
      // The Moonshine WASM runtime creates its own pthread Workers. Unlike the
      // failing nested benchmark worker, run its host in the page context.
      // Only this research page changes; production ASR is untouched.
+     bootLog.length=0;bootStarted=performance.now();
      bootStage('Moonshineの初期化を開始');
      const {ModelArch,Transcriber,module}=await loadMoonshineWasmDiagnosed();
      bootStage('英語Small Streamingモデルを準備中');
@@ -260,7 +261,7 @@ async function loadSelected(){
    notify(labels[engine]+' 準備完了：読み込み '+round(loadMs)+' ms。測定を開始できます。');
  }catch(e){
    await closeBackend();
-   const last=bootLog.length?'（直前：'+bootLog[bootLog.length-1]+'）':'';
+   const last=engine==='moonshine'&&bootLog.length?'（直前：'+bootLog[bootLog.length-1]+'）':'';
    notify('読み込みエラー：'+(e?.message||e)+last,true);
  }
  finally{loading=false;state();}
