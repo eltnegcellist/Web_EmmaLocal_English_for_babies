@@ -2,12 +2,12 @@ name: S25 Vosk browser benchmark sanity
 
 on:
   push:
-    branches: [research/s25-vosk-browser-benchmark-v1]
+    branches: [research/s25-three-asr-same-audio-v1]
     paths:
       - "research/s25-vosk-browser-benchmark/**"
       - ".github/workflows/s25-vosk-browser-benchmark.yml"
   pull_request:
-    branches: [main]
+    branches: [research/s25-vosk-browser-benchmark-v1]
     paths:
       - "research/s25-vosk-browser-benchmark/**"
       - ".github/workflows/s25-vosk-browser-benchmark.yml"
@@ -28,7 +28,12 @@ jobs:
         with:
           node-version: "22"
       - name: JavaScript syntax
-        run: node --check research/s25-vosk-browser-benchmark/bench.js
+        run: |
+          node --check research/s25-vosk-browser-benchmark/bench.js
+          node --check research/s25-vosk-browser-benchmark/compare.js
+          node --check research/s25-vosk-browser-benchmark/moonshine-bench-worker.js
+          node --check research/s25-vosk-browser-benchmark/whisper-bench-worker.js
+          node --check research/s25-vosk-browser-benchmark/coi-service-worker.js
       - name: Validate page, privacy and measurement controls
         run: |
           python - <<'PY'
@@ -47,7 +52,15 @@ jobs:
           assert "getUserMedia" in js and "OfflineAudioContext" in js
           assert "navigator.clipboard.writeText" in js
           assert 'fetch(' not in js and 'XMLHttpRequest' not in js
-          print('Static S25 benchmark validation passed. This is not a mobile runtime test.')
+          compare=(root/'compare.html').read_text()
+          runner=(root/'compare.js').read_text()
+          assert all(x in compare for x in ['Moonshine Small','Whisper Small','Vosk Small'])
+          assert 'retriev' in runner.lower() and 'partialresult' in runner
+          assert 'performance.now()' in runner and 'crossOriginIsolated' in runner
+          assert 'navigator.clipboard.writeText' in runner
+          assert 'speechSynthesis' not in runner
+          assert 'getUserMedia' not in runner
+          print('Static S25 3-ASR same-audio benchmark validated. This is not a mobile runtime test.')
           PY
       - name: Do not alter shipping app files
         run: |
@@ -68,8 +81,10 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Serve the research-only benchmark page
         run: |
-          nohup python3 -m http.server 8765 --bind 127.0.0.1 --directory research/s25-vosk-browser-benchmark/ > /tmp/s25-http.log 2>&1 &
+          nohup python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/s25-http.log 2>&1 &
           sleep 2
-          curl --fail --silent http://127.0.0.1:8765/index.html >/dev/null
+          curl --fail --silent http://127.0.0.1:8765/research/s25-vosk-browser-benchmark/index.html >/dev/null
       - name: Verify actual WebAssembly worker and English model load
         run: node research/s25-vosk-browser-benchmark/smoke.mjs
+      - name: Verify COI header shim and final-only Vosk same-audio flow
+        run: node research/s25-vosk-browser-benchmark/compare-smoke.mjs
