@@ -165,7 +165,23 @@ def audit(rows,labels,frozen):
             skipped.append({'id':r['id'],'reason':'EVALUATION_OVERLAP'})
             continue
         if key in unique:
-            skipped.append({'id':r['id'],'reason':'TEXT_DUPLICATE','duplicate_of':unique[key]['id']})
+            previous=unique[key]
+            # A later, independently reviewed annotation takes precedence over
+            # the original unreviewed seed. Never silently lose verified work.
+            promoted=bool(r.get('label_reviewed') and r.get('native_speaker_reviewed'))
+            was_reviewed=bool(previous.get('label_reviewed') and previous.get('native_speaker_reviewed'))
+            if promoted and not was_reviewed:
+                if (r['semantic_family']!=previous['semantic_family']
+                        or r['split']!=previous['split']):
+                    raise ValueError(f'Review family/split changed for {r["id"]}')
+                if r['topic'] is None or r['interaction'] is None:
+                    raise ValueError(f'Reviewed item lacks a full dual-axis label: {r["id"]}')
+                old_index=kept.index(previous)
+                kept[old_index]=r
+                unique[key]=r
+                skipped.append({'id':previous['id'],'reason':'SUPERSEDED_BY_REVIEW','replacement':r['id']})
+            else:
+                skipped.append({'id':r['id'],'reason':'TEXT_DUPLICATE','duplicate_of':previous['id']})
             continue
         unique[key]=r
         family=r['semantic_family']  # cross-language translation family must not cross splits
