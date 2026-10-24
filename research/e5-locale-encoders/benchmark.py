@@ -2,7 +2,7 @@
 """Research only. Frozen E5 shared head vs per-language heads vs locale encoder.
 Never trains encoder weights and never writes to multilingual-assets/heads/.
 """
-import argparse, csv, hashlib, json, sys, time, unicodedata
+import argparse, base64, csv, hashlib, json, sys, time, unicodedata, zlib
 from collections import Counter
 from pathlib import Path
 import numpy as np
@@ -37,6 +37,25 @@ def load_data():
     return items,held
 def normalize(text):
     return "".join(c for c in unicodedata.normalize("NFKC",text).casefold() if c.isalnum())
+def load_frozen_asr(language,oracles):
+    path=REPO/"research/e5-locale-encoders/data/asr374.b85"
+    expected="b3572ef5f290456c05f96a708117c9977d49ba88c022314bfd8549a7857bf410"
+    if HASH(path.read_bytes())!=expected:raise ValueError("Frozen 374 ASR input SHA256 mismatch")
+    raw=base64.b85decode("".join(path.read_text("ascii").split()))
+    data=json.loads(zlib.decompress(raw))
+    if data.get("schema")!=1 or len(data["oracles"])!=154 or len(data["asr"])!=374:
+        raise ValueError("Unexpected frozen ASR reference dataset")
+    labels={r["id"]:(r["topic"],r["interaction"]) for r in oracles}
+    selected=[]
+    for ident,lang,model,text,expected_topic,expected_interaction in data["asr"]:
+        if lang!=language:continue
+        tp,it=labels[ident]
+        selected.append({"id":ident,"language":lang,"model":model,"text":text,
+          "topic":tp,"interaction":it,"expected_topic":expected_topic,
+          "expected_interaction":expected_interaction})
+    if len(selected) not in (44,66):raise ValueError("Per-locale ASR count invalid")
+    return selected
+
 def train_head(rows,features,classes,weights=None):
     y=[r["interaction"] for r in rows]
     if set(y)!=set(classes):raise ValueError("Missing Interaction class in training")
@@ -77,6 +96,7 @@ def main():
             for r in held if r["language"]==language]
     if len(local_train)!=(135 if language=="en" else 15) or len(local_val)!=(45 if language=="en" else 15) or len(oracle)!=22:
         raise ValueError("Unexpected per-language split")
+    asr=load_frozen_asr(language,oracle)
     training_texts={(r["language"],normalize(r["text"])) for r in train}
     if any((r["language"],normalize(r["text"])) in training_texts for r in oracle):
         raise ValueError("Frozen oracle example leaked into train")
@@ -85,17 +105,23 @@ def main():
     labels=conf["heads"]["interaction"]["classes"]
     topic_labels=conf["heads"]["topic"]["classes"]
     e5=FrozenE5(threads=2)
-    alltexts=list(dict.fromkeys(r["text"] for r in train+local_val+oracle))
+    alltexts=list(dict.fromkeys(r["text"] for r in train+local_val+oracle+asr))
     tic=time.monotonic()
     e5_features={text:e5.embed(text) for text in alltexts}
     e5_elapsed=round(time.monotonic()-tic,2)
     baseline=predict(heads["interaction"],e5_features,oracle,labels)
     topic=predict(heads["topic"],e5_features,oracle,topic_labels)
+    old_asr=predict(heads["interaction"],e5_features,asr,labels)
+    topic_asr=predict(heads["topic"],e5_features,asr,topic_labels)
     repro=[r["id"] for r,p,t in zip(oracle,baseline,topic)
            if p!=r["expected_interaction"] or t!=r["expected_topic"]]
-    (out/"baseline_reproduction.json").write_text(json.dumps({"mismatched":repro,
-              "runtime":"native ONNX CPU","expected":"frozen v2 predictions"},indent=2)+"\n")
-    if repro:raise ValueError(f"Baseline reproduction failed for {len(repro)} of {len(oracle)}")
+    asr_repro=[(r["id"],r["model"]) for r,p,t in zip(asr,old_asr,topic_asr)
+               if p!=r["expected_interaction"] or t!=r["expected_topic"]]
+    (out/"baseline_reproduction.json").write_text(json.dumps({"oracle_mismatched":repro,
+              "asr_mismatched":asr_repro,"runtime":"native ONNX CPU",
+              "expected":"frozen v2 predictions"},indent=2)+"\n")
+    if repro or asr_repro:
+        raise ValueError(f"Baseline reproduction failed: oracle={len(repro)} ASR={len(asr_repro)}")
     B_local=train_head(local_train,e5_features,labels)
     B_weighted=train_head(train,e5_features,labels, np.asarray(
         [4.0 if r["language"]==language else 1.0 for r in train]))
@@ -111,7 +137,7 @@ def main():
     torch.set_num_threads(2)
     tic=time.monotonic()
     encoder=SentenceTransformer(model_id,revision=info.sha,device="cpu",trust_remote_code=False)
-    localtexts=list(dict.fromkeys(r["text"] for r in local_train+local_val+oracle))
+    localtexts=list(dict.fromkeys(r["text"] for r in local_train+local_val+oracle+asr))
     modeltexts=[("query: "+s if language in ("ko","th") else s) for s in localtexts]
     embs=encoder.encode(modeltexts, batch_size=16,convert_to_numpy=True,
                         normalize_embeddings=True,show_progress_bar=False)
@@ -129,20 +155,32 @@ def main():
     for name,(head,features) in methods.items():
         pp_val=predict(head,features,local_val,labels)
         pp_or=predict(head,features,oracle,labels)
+        pp_asr=predict(head,features,asr,labels)
         comparison[name]={"validation":scores(local_val,pp_val),
-                          "frozen154_oracle":scores(oracle,pp_or,topic)}
+                          "frozen154_oracle":scores(oracle,pp_or,topic),
+                          "frozen374_asr":scores(asr,pp_asr,topic_asr),
+                          "by_asr":{}}
+        for model in sorted(set(r["model"] for r in asr)):
+            ids=[i for i,r in enumerate(asr) if r["model"]==model]
+            comparison[name]["by_asr"][model]=scores(
+                [asr[i] for i in ids],[pp_asr[i] for i in ids],[topic_asr[i] for i in ids])
         for r,q in zip(local_val,pp_val):
             predictions.append({"language":language,"method":name,"subset":"validation",
                                 "id":r["id"],"text":r["text"],"gold":r["interaction"],"predicted":q})
         for r,q in zip(oracle,pp_or):
             predictions.append({"language":language,"method":name,"subset":"frozen154",
                                 "id":r["id"],"text":r["text"],"gold":r["interaction"],"predicted":q})
+        for r,q in zip(asr,pp_asr):
+            predictions.append({"language":language,"method":name,
+              "subset":"frozen374_"+r["model"],"id":r["id"],"text":r["text"],
+              "gold":r["interaction"],"predicted":q})
     payload={"status":"RESEARCH_ONLY_NOT_APPROVED","language":language,
              "e5_model_sha256":e5.model_sha,"dedicated_model":model_id,
              "dedicated_model_revision":info.sha,"dedicated_license":license_name,
              "training_examples":len(local_train),"validation_examples":len(local_val),
-             "frozen_oracle_examples":len(oracle),"synthetic_labels_not_reviewed":True,
-             "topic_head_unchanged":True,"asr374_evaluation":"NOT_YET_IN_GITHUB_INPUT",
+             "frozen_oracle_examples":len(oracle),"frozen_asr_examples":len(asr),
+             "synthetic_labels_not_reviewed":True,"topic_head_unchanged":True,
+             "asr374_evaluation":"COMPLETED_IF_JOB_PASSES",
              "e5_embedding_seconds":e5_elapsed,"dedicated_encoder_seconds":encoder_elapsed,
              "comparison":comparison}
     (out/"comparison.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n")
