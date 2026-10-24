@@ -14,7 +14,9 @@ const WASM_URL = new URL('./vendor/moonshine/moonshine.wasm.gz', import.meta.url
 const WASM_SHA256 = '22fca4a5b2dc50fe36dc68e4d25fab73b0250b71f744d9fea511c3a308b2420a';
 let runtimePromise;
 
-export function loadEmmaMoonshineModule() {
+// Optional research-only pthread script bridge. The production caller passes no
+// options and retains its original WASM bootstrap byte for byte.
+export function loadEmmaMoonshineModule({ pthreadMainScript = null } = {}) {
   if (!runtimePromise) {
     runtimePromise = (async () => {
       if (typeof DecompressionStream !== 'function') {
@@ -33,7 +35,11 @@ export function loadEmmaMoonshineModule() {
         throw new Error('Moonshine WASMの整合性を確認できませんでした。');
       }
       return loadMoonshineModule({
-        factory: options => moonshineFactory({ ...options, wasmBinary: bytes }),
+        factory: options => moonshineFactory({
+          ...options,
+          wasmBinary: bytes,
+          ...(pthreadMainScript ? { mainScriptUrlOrBlob: pthreadMainScript } : {}),
+        }),
       });
     })().catch(error => {
       runtimePromise = undefined;
