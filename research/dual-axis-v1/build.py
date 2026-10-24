@@ -71,6 +71,41 @@ def make_rows(heads):
     return rows
 
 
+
+def load_paired_contrasts(heads):
+    """Authored 2-axis minimal contrasts, always unreviewed; split families globally."""
+    data=checked_json(HERE/'data/paired_contrasts.json')
+    topics=data['topic_order']; interactions=data['interaction_order']
+    if len(topics)!=10 or len(interactions)!=7 or len(set(topics))!=10 or len(set(interactions))!=7:
+        raise ValueError('Unexpected contrast taxonomy size')
+    if not set(topics).issubset(heads['topic']['classes']) or not set(interactions).issubset(heads['interaction']['classes']):
+        raise ValueError('Unknown Topic or Interaction in contrast matrix')
+    if set(data['by_language'])!=set(LANGUAGES):raise ValueError('Missing a contrast language')
+    rows=[]
+    for lang in LANGUAGES:
+        mapped=data['by_language'][lang]
+        if len(mapped)!=len(topics):raise ValueError(f'Missing contrast topics in {lang}')
+        for a,topic in enumerate(topics):
+            candidates=mapped[a]
+            if set(candidates)!=set(interactions):raise ValueError(f'Missing contrast intent in {lang}/{topic}')
+            for b,interaction in enumerate(interactions):
+                value=candidates[interaction]
+                if not isinstance(value,str) or len(value.strip())<5:raise ValueError('Invalid contrast utterance')
+                rows.append({
+                    'id':f'contrast-{lang}-{topic}-{interaction}',
+                    'language':lang,'text':value.strip(),
+                    'topic':topic,'interaction':interaction,'supervision_axis':'both',
+                    'semantic_family':f'contrast-v1-{topic}-{interaction}',
+                    'contrast_group':f'contrast-v1-{topic}',
+                    'split':'validation' if (a*len(interactions)+b)%5==0 else 'train',
+                    'source':'assistant_authored_dual_axis_unreviewed',
+                    'label_reviewed':False,'native_speaker_reviewed':False,
+                    'caution':'Both axes provisional; review labels and naturalness before fitting.'
+                })
+    assert len(rows)==490
+    return rows
+
+
 def load_legacy_interaction():
     """Reuse the original 360 single-axis Interaction examples, without inventing Topic."""
     loc=ROOT/'research/e5-interaction-v3/data'
@@ -133,7 +168,7 @@ def audit(rows,labels,frozen):
             skipped.append({'id':r['id'],'reason':'TEXT_DUPLICATE','duplicate_of':unique[key]['id']})
             continue
         unique[key]=r
-        family=(r['language'],r['semantic_family'])
+        family=r['semantic_family']  # cross-language translation family must not cross splits
         split_by_family.setdefault(family,set()).add(r['split'])
         kept.append(r)
     leaky=[k for k,v in split_by_family.items() if len(v)!=1]
@@ -174,7 +209,7 @@ def main():
     heads=checked_json(CFG)['heads']
     labels={axis:heads[axis]['classes'] for axis in ('topic','interaction')}
     assert len(labels['topic'])==22 and len(labels['interaction'])==15
-    rows=make_rows(heads)+load_legacy_interaction()+collect_external(args.additional_jsonl,heads)
+    rows=make_rows(heads)+load_legacy_interaction()+load_paired_contrasts(heads)+collect_external(args.additional_jsonl,heads)
     kept,skipped,coverage=audit(rows,labels,load_frozen_inputs())
     args.output.mkdir(parents=True,exist_ok=True)
     (args.output/'starter_corpus.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in kept),encoding='utf-8')
@@ -207,6 +242,7 @@ def main():
         'classification_axes':{'topic':22,'interaction':15,'label_total':37,'theoretical_pairs':330},
         'languages':list(LANGUAGES),'starter_rows_kept':len(kept),
         'by_axis':dict(total),'excluded_overlap_or_duplicate':len(skipped),
+        'paired_dual_axis_contrasts_imported':sum(r['source']=='assistant_authored_dual_axis_unreviewed' for r in kept),
         'human_and_native_reviewed_rows':reviewed,
         'ready_for_production':False,
         'meaning_family_target_per_axis_per_language':TARGET_FAMILIES,
