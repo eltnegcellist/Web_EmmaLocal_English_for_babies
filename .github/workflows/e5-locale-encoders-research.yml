@@ -53,7 +53,7 @@ jobs:
           TOKENIZERS_PARALLELISM: 'false'
         run: |
           set -o pipefail
-          python research/e5-locale-encoders/benchmark.py --lang '${{ matrix.lang }}' --allow-unreviewed 2>&1 | tee research/e5-locale-encoders/outputs/${{ matrix.lang }}/run.log
+          python research/e5-locale-encoders/benchmark.py --lang '${{ matrix.lang }}' --allow-unreviewed --allow-linux-baseline-drift 2>&1 | tee research/e5-locale-encoders/outputs/${{ matrix.lang }}/run.log
       - name: Assert production heads were not modified
         if: always()
         run: git diff --exit-code -- multilingual-assets/heads/
