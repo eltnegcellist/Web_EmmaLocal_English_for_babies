@@ -70,7 +70,7 @@ details{margin-top:14px}
 <details><summary>各回の認識結果を見る</summary><pre id="transcripts">未測定</pre></details>
 <button id="copy" class="secondary" disabled>比較結果JSONをコピー</button>
 </section>
-<footer class="muted"><small>研究用。測定条件はPCM16kHzモノラル、5秒/10秒窓＋無音0.8秒、モデルロード後のASR処理。発話終了検知・E5分類・録音時間は含みません。Voskはイベント経由、Moonshine/Whisperは専用Worker経由です。通信先は外部JS/モデルの取得先のみ。本番「みつことば」のコード・公開ページは変更しません。</small></footer>
+<footer class="muted"><small>研究用。測定条件はPCM16kHzモノラル、5秒/10秒窓＋無音0.8秒、モデルロード後のASR処理。発話終了検知・E5分類・録音時間は含みません。Voskはイベント経由、Moonshineはページ上のWASM（ネストしたWorkerを避ける研究用回避策）、Whisperは専用Worker経由です。通信先は外部JS/モデルの取得先のみ。本番「みつことば」のコード・公開ページは変更しません。</small></footer>
 </main>
 <script defer src="https://cdn.jsdelivr.net/npm/vosk-browser@0.0.8/dist/vosk.js" crossorigin="anonymous"></script>
 <script type="module" src="./compare.js"></script>
