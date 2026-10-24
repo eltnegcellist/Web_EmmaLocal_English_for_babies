@@ -1,0 +1,20 @@
+name: Verify FUTO ACFT model web distribution (experimental)
+on:
+  push:
+    branches: [experiment/multilingual-acft-adaptive-20261024]
+    paths: ['.github/workflows/acft-model-preflight.yml']
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Probe official model URL and CORS headers
+        run: |
+          set -eux
+          URL='https://voiceinput.futo.org/VoiceInput/small_acft_q8_0.bin'
+          curl -IL --retry 2 --max-time 30 -H 'Origin: https://eltnegcellist.github.io' "$URL" | sed -n '1,80p'
+          curl -Lf --retry 2 --max-time 480 -o /tmp/small_acft_q8_0.bin "$URL"
+          stat -c 'bytes=%s' /tmp/small_acft_q8_0.bin
+          sha256sum /tmp/small_acft_q8_0.bin
