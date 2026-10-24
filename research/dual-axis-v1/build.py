@@ -200,7 +200,7 @@ def main():
                                     'Ensure semantic-family grouping, exact and near-duplicate screening, no frozen evaluation leakage.')
                 })
     (args.output/'needs_review_queue.jsonl').write_text(
-        ''.join(json.dumps(t,ensure_ascii=False)+'\\n' for t in tasks),encoding='utf-8')
+        ''.join(json.dumps(t,ensure_ascii=False)+chr(10) for t in tasks),encoding='utf-8')
     total=collections.Counter(r['supervision_axis'] for r in kept)
     reviewed=sum(bool(r['label_reviewed'] and r['native_speaker_reviewed']) for r in kept)
     report={
