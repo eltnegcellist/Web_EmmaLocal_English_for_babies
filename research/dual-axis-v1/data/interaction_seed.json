@@ -1,0 +1,458 @@
+{
+  "schema": 1,
+  "provenance": "assistant-authored-synthetic-unreviewed",
+  "scope": "Interaction-only seeds with provisional topic=generic where no specific topic mentioned; requires human audit",
+  "labels": [
+    "achievement",
+    "affection",
+    "care",
+    "effort",
+    "encouragement",
+    "finish",
+    "finish_check",
+    "inquiry",
+    "invitation",
+    "none",
+    "pause",
+    "praise",
+    "reassurance",
+    "repeat",
+    "start"
+  ],
+  "by_language": {
+    "en": {
+      "achievement": [
+        "You managed it all by yourself!",
+        "You did something new!"
+      ],
+      "affection": [
+        "I love you so much.",
+        "You're so precious to me."
+      ],
+      "care": [
+        "You've done enough; it's time for a little rest.",
+        "That was tiring, so we'll take it easy."
+      ],
+      "effort": [
+        "You're trying so hard.",
+        "I can see how much effort you're making."
+      ],
+      "encouragement": [
+        "Keep going, you're getting there!",
+        "You can try again; I believe in you."
+      ],
+      "finish": [
+        "That's all for now.",
+        "We're finished for today."
+      ],
+      "finish_check": [
+        "Are we all done now?",
+        "Have you finished already?"
+      ],
+      "inquiry": [
+        "What do you think of that?",
+        "How are you feeling right now?"
+      ],
+      "invitation": [
+        "Would you like to try it together?",
+        "Shall we do it side by side?"
+      ],
+      "none": [
+        "Oh, I see.",
+        "There you are."
+      ],
+      "pause": [
+        "Hold on just a moment.",
+        "Let's wait a little while."
+      ],
+      "praise": [
+        "What a wonderful job!",
+        "That was really well done!"
+      ],
+      "reassurance": [
+        "It's okay; I'm right here.",
+        "You're safe with me."
+      ],
+      "repeat": [
+        "Would you like one more time?",
+        "Shall we do it again?"
+      ],
+      "start": [
+        "Here we go!",
+        "Let's begin now!"
+      ]
+    },
+    "de": {
+      "achievement": [
+        "Das hast du ganz allein geschafft!",
+        "Du hast etwas Neues geschafft!"
+      ],
+      "affection": [
+        "Ich hab dich so lieb.",
+        "Du bist mir unglaublich kostbar."
+      ],
+      "care": [
+        "Du hast genug getan, jetzt ruhen wir uns etwas aus.",
+        "Das war anstrengend, wir machen es ganz ruhig."
+      ],
+      "effort": [
+        "Du gibst dir wirklich Mühe.",
+        "Ich sehe, wie sehr du dich anstrengst."
+      ],
+      "encouragement": [
+        "Mach weiter, du schaffst das!",
+        "Du kannst es noch einmal versuchen."
+      ],
+      "finish": [
+        "Für heute sind wir fertig.",
+        "Das war's erst einmal."
+      ],
+      "finish_check": [
+        "Sind wir schon fertig?",
+        "Hast du es schon beendet?"
+      ],
+      "inquiry": [
+        "Wie findest du das?",
+        "Wie fühlst du dich gerade?"
+      ],
+      "invitation": [
+        "Möchtest du es zusammen ausprobieren?",
+        "Wollen wir das gemeinsam machen?"
+      ],
+      "none": [
+        "Ach so, ich verstehe.",
+        "Da bist du ja."
+      ],
+      "pause": [
+        "Warte bitte einen kleinen Moment.",
+        "Wir warten noch ein bisschen."
+      ],
+      "praise": [
+        "Das hast du wunderbar gemacht!",
+        "Das war wirklich toll!"
+      ],
+      "reassurance": [
+        "Alles ist gut, ich bin hier.",
+        "Bei mir bist du sicher."
+      ],
+      "repeat": [
+        "Möchtest du noch eine Runde?",
+        "Sollen wir das noch einmal machen?"
+      ],
+      "start": [
+        "Jetzt geht's los!",
+        "Wir fangen jetzt an!"
+      ]
+    },
+    "fr": {
+      "achievement": [
+        "Tu y es arrivé tout seul !",
+        "Tu as réussi quelque chose de nouveau !"
+      ],
+      "affection": [
+        "Je t'aime très fort.",
+        "Tu es tellement précieux pour moi."
+      ],
+      "care": [
+        "Tu en as assez fait, on va se reposer un peu.",
+        "C'était fatigant, on va y aller doucement."
+      ],
+      "effort": [
+        "Tu fais tellement d'efforts.",
+        "Je vois comme tu essaies."
+      ],
+      "encouragement": [
+        "Continue, tu y arrives !",
+        "Tu peux réessayer, j'ai confiance en toi."
+      ],
+      "finish": [
+        "C'est tout pour le moment.",
+        "Nous avons terminé pour aujourd'hui."
+      ],
+      "finish_check": [
+        "On a déjà fini ?",
+        "Tu as terminé ?"
+      ],
+      "inquiry": [
+        "Qu'est-ce que tu en penses ?",
+        "Comment te sens-tu en ce moment ?"
+      ],
+      "invitation": [
+        "Tu veux essayer ensemble ?",
+        "On le fait tous les deux ?"
+      ],
+      "none": [
+        "Ah, je vois.",
+        "Te voilà."
+      ],
+      "pause": [
+        "Attends juste un petit instant.",
+        "On va patienter un peu."
+      ],
+      "praise": [
+        "Bravo, c'était magnifique !",
+        "Tu as vraiment bien fait ça !"
+      ],
+      "reassurance": [
+        "Tout va bien, je suis là.",
+        "Tu es en sécurité avec moi."
+      ],
+      "repeat": [
+        "Tu veux encore une fois ?",
+        "On recommence ?"
+      ],
+      "start": [
+        "C'est parti !",
+        "On commence maintenant !"
+      ]
+    },
+    "ko": {
+      "achievement": [
+        "혼자 해냈구나!",
+        "새로운 걸 해냈네!"
+      ],
+      "affection": [
+        "정말 많이 사랑해.",
+        "넌 나에게 정말 소중해."
+      ],
+      "care": [
+        "이제 충분히 했으니까 조금 쉬자.",
+        "힘들었지, 이제 천천히 하자."
+      ],
+      "effort": [
+        "정말 열심히 하고 있구나.",
+        "얼마나 애쓰는지 보여."
+      ],
+      "encouragement": [
+        "계속 해 봐, 잘하고 있어!",
+        "다시 도전해도 돼, 넌 할 수 있어."
+      ],
+      "finish": [
+        "오늘은 여기까지야.",
+        "이제 다 끝났어."
+      ],
+      "finish_check": [
+        "이제 다 끝난 거야?",
+        "벌써 마친 거니?"
+      ],
+      "inquiry": [
+        "어떻게 생각하니?",
+        "지금 기분이 어떠니?"
+      ],
+      "invitation": [
+        "우리 같이 해 볼까?",
+        "함께 한번 해 볼래?"
+      ],
+      "none": [
+        "아, 그렇구나.",
+        "여기 있었네."
+      ],
+      "pause": [
+        "잠깐만 기다려 줘.",
+        "조금만 기다리자."
+      ],
+      "praise": [
+        "정말 멋지게 했어!",
+        "아주 잘했구나!"
+      ],
+      "reassurance": [
+        "괜찮아, 내가 여기 있어.",
+        "내가 옆에 있으니 안전해."
+      ],
+      "repeat": [
+        "한 번 더 해 볼까?",
+        "다시 한번 할래?"
+      ],
+      "start": [
+        "자, 시작하자!",
+        "이제 시작이야!"
+      ]
+    },
+    "th": {
+      "achievement": [
+        "หนูทำได้ด้วยตัวเองแล้วนะ!",
+        "หนูทำสิ่งใหม่สำเร็จแล้ว!"
+      ],
+      "affection": [
+        "รักหนูมากเลยนะ",
+        "หนูเป็นคนสำคัญของฉันมาก"
+      ],
+      "care": [
+        "พอแล้วนะ พักกันสักหน่อย",
+        "เหนื่อยแล้ว เราค่อย ๆ ทำกันนะ"
+      ],
+      "effort": [
+        "หนูพยายามมากเลยนะ",
+        "เห็นเลยว่าหนูตั้งใจแค่ไหน"
+      ],
+      "encouragement": [
+        "ทำต่อไปนะ ใกล้สำเร็จแล้ว!",
+        "ลองใหม่ได้เลยนะ หนูทำได้"
+      ],
+      "finish": [
+        "วันนี้เสร็จแล้วนะ",
+        "พอแค่นี้ก่อนนะ"
+      ],
+      "finish_check": [
+        "เสร็จหมดแล้วหรือยังจ๊ะ?",
+        "หนูทำเสร็จแล้วใช่ไหม?"
+      ],
+      "inquiry": [
+        "หนูคิดว่ายังไงบ้าง?",
+        "ตอนนี้หนูรู้สึกยังไงบ้าง?"
+      ],
+      "invitation": [
+        "อยากลองทำด้วยกันไหม?",
+        "เราลองทำด้วยกันดีไหม?"
+      ],
+      "none": [
+        "อ๋อ เข้าใจแล้วนะ",
+        "อยู่นี่เอง"
+      ],
+      "pause": [
+        "รอสักครู่นะ",
+        "รออีกนิดนะจ๊ะ"
+      ],
+      "praise": [
+        "เก่งมากเลย!",
+        "ทำได้ดีมากจริง ๆ!"
+      ],
+      "reassurance": [
+        "ไม่เป็นไรนะ ฉันอยู่ตรงนี้",
+        "ปลอดภัยแล้วนะ ฉันอยู่ข้าง ๆ"
+      ],
+      "repeat": [
+        "เอาอีกครั้งไหม?",
+        "ลองอีกทีดีไหม?"
+      ],
+      "start": [
+        "เอาละ เริ่มกันเลย!",
+        "มาเริ่มกันตอนนี้เลย!"
+      ]
+    },
+    "zh": {
+      "achievement": [
+        "你自己做到了！",
+        "你学会了一件新事情！"
+      ],
+      "affection": [
+        "我真的很爱你。",
+        "你对我来说特别珍贵。"
+      ],
+      "care": [
+        "已经很努力了，休息一会儿吧。",
+        "刚才挺累的，我们慢慢来。"
+      ],
+      "effort": [
+        "你真的很努力。",
+        "我看到你一直在认真尝试。"
+      ],
+      "encouragement": [
+        "继续加油，你快做到了！",
+        "可以再试一次，我相信你。"
+      ],
+      "finish": [
+        "今天就到这里了。",
+        "现在已经结束啦。"
+      ],
+      "finish_check": [
+        "我们都做完了吗？",
+        "你已经完成了吗？"
+      ],
+      "inquiry": [
+        "你觉得怎么样？",
+        "你现在感觉如何？"
+      ],
+      "invitation": [
+        "想和我一起试试吗？",
+        "我们一起做，好不好？"
+      ],
+      "none": [
+        "哦，我知道了。",
+        "原来你在这里。"
+      ],
+      "pause": [
+        "稍等一下哦。",
+        "我们再等一小会儿。"
+      ],
+      "praise": [
+        "做得真棒！",
+        "刚才做得特别好！"
+      ],
+      "reassurance": [
+        "没关系，我就在这里。",
+        "有我陪着你，很安全。"
+      ],
+      "repeat": [
+        "还想再来一次吗？",
+        "我们再做一遍，好不好？"
+      ],
+      "start": [
+        "好，要开始啦！",
+        "我们现在开始吧！"
+      ]
+    },
+    "hi": {
+      "achievement": [
+        "तुमने अपने आप कर लिया!",
+        "तुमने आज कुछ नया कर दिखाया!"
+      ],
+      "affection": [
+        "मैं तुमसे बहुत प्यार करता हूँ।",
+        "तुम मेरे लिए बहुत अनमोल हो।"
+      ],
+      "care": [
+        "अब बहुत हो गया, थोड़ा आराम कर लेते हैं।",
+        "यह थकाने वाला था, अब धीरे-धीरे करेंगे।"
+      ],
+      "effort": [
+        "तुम बहुत मेहनत कर रहे हो।",
+        "मुझे दिख रहा है कि तुम कितनी कोशिश कर रहे हो।"
+      ],
+      "encouragement": [
+        "कोशिश करते रहो, तुम कर सकते हो!",
+        "फिर से कोशिश कर सकते हो, मुझे तुम पर भरोसा है।"
+      ],
+      "finish": [
+        "आज के लिए बस इतना ही।",
+        "अब हमारा काम खत्म हुआ।"
+      ],
+      "finish_check": [
+        "क्या अब सब हो गया?",
+        "क्या तुमने पूरा कर लिया?"
+      ],
+      "inquiry": [
+        "तुम्हें कैसा लगा?",
+        "अभी तुम्हारा मन कैसा है?"
+      ],
+      "invitation": [
+        "क्या हम साथ में कोशिश करें?",
+        "हम दोनों मिलकर करें क्या?"
+      ],
+      "none": [
+        "अच्छा, समझ गया।",
+        "अरे, तुम यहाँ हो।"
+      ],
+      "pause": [
+        "ज़रा एक पल रुको।",
+        "थोड़ी देर और इंतज़ार करते हैं।"
+      ],
+      "praise": [
+        "बहुत बढ़िया काम किया!",
+        "तुमने सच में बहुत अच्छा किया!"
+      ],
+      "reassurance": [
+        "सब ठीक है, मैं यहीं हूँ।",
+        "मेरे साथ तुम सुरक्षित हो।"
+      ],
+      "repeat": [
+        "एक बार और करें?",
+        "फिर से आज़माएँ क्या?"
+      ],
+      "start": [
+        "चलो, शुरू करते हैं!",
+        "अब शुरू करते हैं!"
+      ]
+    }
+  }
+}
