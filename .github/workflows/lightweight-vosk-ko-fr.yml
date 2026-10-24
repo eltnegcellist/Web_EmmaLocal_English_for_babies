@@ -76,7 +76,18 @@ jobs:
           assert result['status']=='RESEARCH_SYNTHETIC_NOT_PRODUCTION'
           assert result['license']=='Apache-2.0'
           assert len(result['model_zip_sha256'])==64
-          print(f'Validated 22-item Korean/French lightweight Vosk measurements for {lang}')
+          speed=result['speed']
+          for key in ('asr_ms','e5_ms','asr_plus_e5_and_heads_ms','realtime_factor'):
+              assert speed[key]['n']==22
+              assert 0<=speed[key]['median']<=speed[key]['p95']
+              assert speed[key]['max']>=speed[key]['p95']
+          assert speed['asr_model_load_ms']>0
+          assert speed['e5_encoder_load_ms']>0
+          assert speed['overall_realtime_factor']>=0
+          print('Speed comparison', lang, 'p50:',speed['asr_ms']['median'],
+                'p95:',speed['asr_ms']['p95'],'RTF:',speed['overall_realtime_factor'],
+                'ASR+E5 p95:',speed['asr_plus_e5_and_heads_ms']['p95'])
+          print(f'Validated 22-item Korean/French lightweight Vosk accuracy AND latency for {lang}')
           PY
           git diff --exit-code -- src/ multilingual-assets/heads/
         env:
