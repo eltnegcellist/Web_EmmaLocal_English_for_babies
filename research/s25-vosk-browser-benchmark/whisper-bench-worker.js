@@ -59,6 +59,13 @@ self.onmessage=async({data})=>{
   try{
     if(type==='ping'){
       self.postMessage({type:'reply',id,ready:true,worker:'whisper',isolated:self.crossOriginIsolated===true});
+    }else if(type==='probe'){
+      const utils=await getWhisperUtilities();
+      if(typeof utils.prepareAssets!=='function'||typeof utils.resolveWhisperThreads!=='function')
+        throw Error('Whisper app utility exports are incomplete');
+      const runtime=await import('../../multilingual-assets/runtime/transformers.mjs');
+      if(typeof runtime.pipeline!=='function')throw Error('Whisper runtime pipeline export is missing');
+      self.postMessage({type:'reply',id,probed:true,engine:'whisper'});
     }else if(type==='init'){
       await initialize();
       self.postMessage({type:'reply',id,ready:true,threads,engine:'Whisper Small q8'});
