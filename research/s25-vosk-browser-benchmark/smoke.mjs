@@ -6,7 +6,7 @@ const page = await browser.newPage({permissions:['microphone']});
 const errors=[];
 page.on('pageerror', err => errors.push(String(err)));
 page.on('console', msg => { if (msg.type()==='error') errors.push('console: '+msg.text()); });
-const address='http://127.0.0.1:8765/index.html';
+const address='http://127.0.0.1:8765/research/s25-vosk-browser-benchmark/index.html';
 await page.goto(address,{waitUntil:'load',timeout:60000});
 await page.locator('#load').click();
 await page.waitForFunction(()=>{
