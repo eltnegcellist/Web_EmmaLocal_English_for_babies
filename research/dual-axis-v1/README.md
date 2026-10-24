@@ -41,6 +41,7 @@ Outputs in `research/dual-axis-v1/outputs/`:
 - `coverage.json` — per language, per axis, per label counts, reviewed family counts, deficits to 30 and 50.
 - `excluded.json` — duplicates and exact overlap with locked 154+374.
 - `summary.json` — source counts, schema and quality status.
+- `needs_review_queue.jsonl` — 259 language × axis × label expansion tasks, with per-class shortages and review safeguards.
 
 To merge later reviewed examples, pass `--additional-jsonl PATH`. Rows must have:
 
