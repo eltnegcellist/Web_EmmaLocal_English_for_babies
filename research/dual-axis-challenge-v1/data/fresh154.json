@@ -197,7 +197,7 @@
     {
       "id": "fresh154-en-tummy",
       "language": "en",
-      "text": "You're working hard to lift your head during tummy time.",
+      "text": "You're really trying to lift your chin while lying on your belly.",
       "topic": "tummy",
       "interaction": "effort",
       "semantic_family": "frozen-challenge-meaning-19",
@@ -1544,5 +1544,6 @@
       "reviewed": false,
       "source": "newly-authored-synthetic-unreviewed"
     }
-  ]
+  ],
+  "collision_resolution": "One English tummy sentence replaced because its normalized text matched previously authored training source; correction made before any challenge predictions were produced."
 }
