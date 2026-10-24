@@ -1,0 +1,661 @@
+{
+  "schema": 1,
+  "provenance": "assistant-authored-synthetic-unreviewed",
+  "scope": "topic-only neutral declaratives; interaction deliberately labeled none, not confirmed",
+  "labels": [
+    "bath",
+    "book",
+    "clothes",
+    "cry",
+    "diaper",
+    "drink",
+    "feet",
+    "food",
+    "generic",
+    "hands",
+    "hug",
+    "milk",
+    "music",
+    "outside",
+    "play",
+    "rain",
+    "sleep",
+    "smile",
+    "sun",
+    "tummy",
+    "voice",
+    "wake"
+  ],
+  "by_language": {
+    "en": {
+      "bath": [
+        "Your bath water is warm.",
+        "The bath towel is ready."
+      ],
+      "book": [
+        "The picture book is on the bed.",
+        "This book has colorful pages."
+      ],
+      "clothes": [
+        "Your little socks are clean.",
+        "Your shirt feels soft."
+      ],
+      "cry": [
+        "I hear your crying voice.",
+        "There are little tears on your cheeks."
+      ],
+      "diaper": [
+        "Your diaper feels wet.",
+        "The clean diaper is ready."
+      ],
+      "drink": [
+        "There's water in your cup.",
+        "Your drink is on the table."
+      ],
+      "feet": [
+        "Your little toes are moving.",
+        "Your feet are warm."
+      ],
+      "food": [
+        "Your food is in the bowl.",
+        "The spoon has a little puree."
+      ],
+      "generic": [
+        "We're here together.",
+        "Today feels calm and peaceful."
+      ],
+      "hands": [
+        "Your little hands are open.",
+        "Your fingers are moving."
+      ],
+      "hug": [
+        "You're in a warm hug.",
+        "These cuddles feel cozy."
+      ],
+      "milk": [
+        "Your bottle has warm milk.",
+        "The milk is ready."
+      ],
+      "music": [
+        "A gentle song is playing.",
+        "The music sounds soft."
+      ],
+      "outside": [
+        "The stroller is by the door.",
+        "The fresh air feels nice outside."
+      ],
+      "play": [
+        "Your toy is on the mat.",
+        "The little blocks are colorful."
+      ],
+      "rain": [
+        "Raindrops are on the window.",
+        "It's raining softly outside."
+      ],
+      "sleep": [
+        "Your blanket is ready for sleep.",
+        "You look sleepy."
+      ],
+      "smile": [
+        "Your little smile is bright.",
+        "I see a tiny grin."
+      ],
+      "sun": [
+        "The sunlight is shining inside.",
+        "It's sunny outside."
+      ],
+      "tummy": [
+        "You're lying on your tummy.",
+        "Your tummy is touching the mat."
+      ],
+      "voice": [
+        "I can hear your little sounds.",
+        "Your baby voice is so clear."
+      ],
+      "wake": [
+        "Your eyes are opening after sleep.",
+        "You're awake now."
+      ]
+    },
+    "de": {
+      "bath": [
+        "Das Badewasser ist angenehm warm.",
+        "Das Badetuch liegt bereit."
+      ],
+      "book": [
+        "Das Bilderbuch liegt auf dem Bett.",
+        "Dieses Buch hat bunte Seiten."
+      ],
+      "clothes": [
+        "Deine kleinen Socken sind sauber.",
+        "Dein Hemdchen fühlt sich weich an."
+      ],
+      "cry": [
+        "Ich höre dich weinen.",
+        "Auf deinen Wangen sind kleine Tränen."
+      ],
+      "diaper": [
+        "Deine Windel ist nass.",
+        "Die frische Windel liegt bereit."
+      ],
+      "drink": [
+        "In deinem Becher ist Wasser.",
+        "Dein Getränk steht auf dem Tisch."
+      ],
+      "feet": [
+        "Deine kleinen Zehen bewegen sich.",
+        "Deine Füße sind warm."
+      ],
+      "food": [
+        "Dein Essen ist in der Schüssel.",
+        "Auf dem Löffel ist etwas Brei."
+      ],
+      "generic": [
+        "Wir sind hier zusammen.",
+        "Heute ist es ganz ruhig."
+      ],
+      "hands": [
+        "Deine kleinen Hände sind offen.",
+        "Deine Finger bewegen sich."
+      ],
+      "hug": [
+        "Du liegst in einer warmen Umarmung.",
+        "Das Kuscheln fühlt sich gemütlich an."
+      ],
+      "milk": [
+        "In deinem Fläschchen ist warme Milch.",
+        "Die Milch ist fertig."
+      ],
+      "music": [
+        "Ein sanftes Lied läuft.",
+        "Die Musik klingt leise."
+      ],
+      "outside": [
+        "Der Kinderwagen steht an der Tür.",
+        "Draußen ist die Luft frisch."
+      ],
+      "play": [
+        "Dein Spielzeug liegt auf der Matte.",
+        "Die kleinen Bauklötze sind bunt."
+      ],
+      "rain": [
+        "Regentropfen sind am Fenster.",
+        "Draußen regnet es leise."
+      ],
+      "sleep": [
+        "Deine Schlafdecke liegt bereit.",
+        "Du siehst müde aus."
+      ],
+      "smile": [
+        "Dein kleines Lächeln strahlt.",
+        "Ich sehe ein winziges Grinsen."
+      ],
+      "sun": [
+        "Sonnenlicht fällt ins Zimmer.",
+        "Draußen scheint die Sonne."
+      ],
+      "tummy": [
+        "Du liegst auf deinem Bauch.",
+        "Dein Bauch berührt die Matte."
+      ],
+      "voice": [
+        "Ich höre deine kleinen Laute.",
+        "Deine Stimme klingt ganz klar."
+      ],
+      "wake": [
+        "Deine Augen öffnen sich nach dem Schlaf.",
+        "Du bist jetzt wach."
+      ]
+    },
+    "fr": {
+      "bath": [
+        "L'eau du bain est bien chaude.",
+        "La serviette de bain est prête."
+      ],
+      "book": [
+        "Le livre d'images est sur le lit.",
+        "Ce livre a des pages colorées."
+      ],
+      "clothes": [
+        "Tes petites chaussettes sont propres.",
+        "Ton petit haut est tout doux."
+      ],
+      "cry": [
+        "Je t'entends pleurer.",
+        "Il y a des petites larmes sur tes joues."
+      ],
+      "diaper": [
+        "Ta couche est mouillée.",
+        "La couche propre est prête."
+      ],
+      "drink": [
+        "Il y a de l'eau dans ton gobelet.",
+        "Ta boisson est sur la table."
+      ],
+      "feet": [
+        "Tes petits orteils bougent.",
+        "Tes pieds sont bien chauds."
+      ],
+      "food": [
+        "Ton repas est dans le bol.",
+        "Il y a un peu de purée sur la cuillère."
+      ],
+      "generic": [
+        "Nous sommes ensemble ici.",
+        "Aujourd'hui, tout est calme."
+      ],
+      "hands": [
+        "Tes petites mains sont ouvertes.",
+        "Tes doigts bougent."
+      ],
+      "hug": [
+        "Tu es dans une douce étreinte.",
+        "Ces câlins sont tout doux."
+      ],
+      "milk": [
+        "Ton biberon contient du lait chaud.",
+        "Le lait est prêt."
+      ],
+      "music": [
+        "Une chanson douce passe.",
+        "La musique est toute calme."
+      ],
+      "outside": [
+        "La poussette est près de la porte.",
+        "L'air est frais dehors."
+      ],
+      "play": [
+        "Ton jouet est sur le tapis.",
+        "Les petits cubes sont colorés."
+      ],
+      "rain": [
+        "Des gouttes de pluie sont sur la fenêtre.",
+        "Il pleut doucement dehors."
+      ],
+      "sleep": [
+        "Ta couverture est prête pour dormir.",
+        "Tu as l'air d'avoir sommeil."
+      ],
+      "smile": [
+        "Ton petit sourire rayonne.",
+        "Je vois un tout petit sourire."
+      ],
+      "sun": [
+        "Le soleil éclaire la pièce.",
+        "Il fait beau dehors."
+      ],
+      "tummy": [
+        "Tu es allongé sur le ventre.",
+        "Ton ventre touche le tapis."
+      ],
+      "voice": [
+        "J'entends tes petits sons.",
+        "Ta petite voix est bien claire."
+      ],
+      "wake": [
+        "Tes yeux s'ouvrent après le sommeil.",
+        "Tu es réveillé maintenant."
+      ]
+    },
+    "ko": {
+      "bath": [
+        "목욕물이 따뜻하네.",
+        "목욕 수건이 준비됐어."
+      ],
+      "book": [
+        "그림책이 침대 위에 있네.",
+        "이 책에는 알록달록한 그림이 있어."
+      ],
+      "clothes": [
+        "작은 양말이 깨끗하네.",
+        "옷이 정말 부드럽구나."
+      ],
+      "cry": [
+        "우는 소리가 들리네.",
+        "볼에 작은 눈물이 맺혔구나."
+      ],
+      "diaper": [
+        "기저귀가 젖었네.",
+        "새 기저귀가 준비됐어."
+      ],
+      "drink": [
+        "컵에 물이 있네.",
+        "마실 물이 여기 있어."
+      ],
+      "feet": [
+        "작은 발가락이 움직이네.",
+        "발이 따뜻하구나."
+      ],
+      "food": [
+        "음식이 그릇에 담겨 있어.",
+        "숟가락에 이유식이 조금 있네."
+      ],
+      "generic": [
+        "우리 함께 여기 있구나.",
+        "오늘은 참 조용하네."
+      ],
+      "hands": [
+        "작은 손을 폈네.",
+        "손가락이 움직이고 있어."
+      ],
+      "hug": [
+        "따뜻하게 안겨 있구나.",
+        "포근하게 꼭 안고 있어."
+      ],
+      "milk": [
+        "젖병에 따뜻한 우유가 있어.",
+        "우유가 준비됐어."
+      ],
+      "music": [
+        "잔잔한 노래가 나오네.",
+        "음악이 부드럽게 들려."
+      ],
+      "outside": [
+        "유모차가 문 옆에 있네.",
+        "밖에는 신선한 공기가 있어."
+      ],
+      "play": [
+        "장난감이 매트 위에 있어.",
+        "작은 블록들이 알록달록하네."
+      ],
+      "rain": [
+        "창문에 빗방울이 맺혔네.",
+        "밖에 비가 살살 오네."
+      ],
+      "sleep": [
+        "잠잘 때 덮을 이불이 준비됐어.",
+        "졸려 보이는구나."
+      ],
+      "smile": [
+        "작은 미소가 반짝이네.",
+        "살짝 웃는 얼굴이 보이네."
+      ],
+      "sun": [
+        "햇살이 방 안으로 들어와.",
+        "밖에 해가 났네."
+      ],
+      "tummy": [
+        "배를 바닥에 대고 엎드려 있네.",
+        "배가 매트에 닿아 있구나."
+      ],
+      "voice": [
+        "작은 옹알이가 들리네.",
+        "아기 목소리가 또렷하네."
+      ],
+      "wake": [
+        "자고 나서 눈을 뜨고 있네.",
+        "이제 깨어났구나."
+      ]
+    },
+    "th": {
+      "bath": [
+        "น้ำอาบอุ่นกำลังดีเลย",
+        "ผ้าเช็ดตัวเตรียมไว้แล้วนะ"
+      ],
+      "book": [
+        "หนังสือภาพวางอยู่บนเตียง",
+        "หนังสือเล่มนี้มีภาพสีสันสดใส"
+      ],
+      "clothes": [
+        "ถุงเท้าคู่เล็กสะอาดแล้ว",
+        "เสื้อตัวน้อยนุ่มจังเลย"
+      ],
+      "cry": [
+        "ได้ยินเสียงหนูร้องไห้แล้วนะ",
+        "มีน้ำตาหยดเล็ก ๆ บนแก้มหนู"
+      ],
+      "diaper": [
+        "ผ้าอ้อมเปียกแล้วนะ",
+        "ผ้าอ้อมผืนใหม่เตรียมไว้แล้ว"
+      ],
+      "drink": [
+        "ในแก้วมีน้ำอยู่นะ",
+        "เครื่องดื่มของหนูอยู่บนโต๊ะ"
+      ],
+      "feet": [
+        "นิ้วเท้าเล็ก ๆ ขยับอยู่เลย",
+        "เท้าของหนูอุ่นจัง"
+      ],
+      "food": [
+        "อาหารอยู่ในชามแล้วนะ",
+        "มีอาหารบดอยู่บนช้อนนิดหน่อย"
+      ],
+      "generic": [
+        "เราอยู่ด้วยกันตรงนี้นะ",
+        "วันนี้เงียบสงบดีจัง"
+      ],
+      "hands": [
+        "มือเล็ก ๆ ของหนูกางออกแล้ว",
+        "นิ้วมือของหนูกำลังขยับ"
+      ],
+      "hug": [
+        "ตอนนี้หนูอยู่ในอ้อมกอดอุ่น ๆ",
+        "กอดกันแล้วอบอุ่นจัง"
+      ],
+      "milk": [
+        "ขวดนมมีนมอุ่น ๆ แล้วนะ",
+        "นมพร้อมแล้วจ้ะ"
+      ],
+      "music": [
+        "มีเพลงเบา ๆ เปิดอยู่",
+        "เสียงดนตรีนุ่มนวลจัง"
+      ],
+      "outside": [
+        "รถเข็นเด็กอยู่ข้างประตู",
+        "ข้างนอกอากาศสดชื่นดีจัง"
+      ],
+      "play": [
+        "ของเล่นอยู่บนเสื่อแล้วนะ",
+        "บล็อกเล็ก ๆ มีหลายสีเลย"
+      ],
+      "rain": [
+        "มีหยดฝนเกาะหน้าต่าง",
+        "ข้างนอกฝนตกเบา ๆ"
+      ],
+      "sleep": [
+        "ผ้าห่มสำหรับนอนพร้อมแล้วนะ",
+        "หนูดูง่วงนอนแล้ว"
+      ],
+      "smile": [
+        "รอยยิ้มเล็ก ๆ ของหนูสดใสจัง",
+        "เห็นหนูยิ้มมุมปากแล้วนะ"
+      ],
+      "sun": [
+        "แสงแดดส่องเข้ามาในห้อง",
+        "ข้างนอกแดดออกแล้ว"
+      ],
+      "tummy": [
+        "หนูนอนคว่ำอยู่บนเสื่อ",
+        "ท้องของหนูแตะเสื่ออยู่"
+      ],
+      "voice": [
+        "ได้ยินเสียงอ้อแอ้ของหนูแล้ว",
+        "เสียงเล็ก ๆ ของหนูชัดจัง"
+      ],
+      "wake": [
+        "หนูลืมตาหลังจากนอนแล้ว",
+        "ตอนนี้หนูตื่นแล้วนะ"
+      ]
+    },
+    "zh": {
+      "bath": [
+        "洗澡水温温的。",
+        "浴巾已经准备好了。"
+      ],
+      "book": [
+        "图画书放在床上。",
+        "这本书里有好多彩色的图画。"
+      ],
+      "clothes": [
+        "你的小袜子洗干净了。",
+        "你的小衣服摸起来软软的。"
+      ],
+      "cry": [
+        "我听见你在哭了。",
+        "你的脸颊上有小泪珠。"
+      ],
+      "diaper": [
+        "尿布湿了呢。",
+        "干净的尿布已经准备好了。"
+      ],
+      "drink": [
+        "杯子里有水。",
+        "你的饮料放在桌上了。"
+      ],
+      "feet": [
+        "你的小脚趾在动呢。",
+        "你的小脚暖暖的。"
+      ],
+      "food": [
+        "食物已经放进碗里了。",
+        "勺子上有一点辅食。"
+      ],
+      "generic": [
+        "我们在这里陪着彼此。",
+        "今天真安静啊。"
+      ],
+      "hands": [
+        "你的小手张开了。",
+        "你的小手指在动。"
+      ],
+      "hug": [
+        "你正被暖暖地抱着。",
+        "这样抱着真舒服。"
+      ],
+      "milk": [
+        "奶瓶里装着温奶。",
+        "奶已经准备好了。"
+      ],
+      "music": [
+        "正在播放一首轻柔的歌。",
+        "音乐听起来很温柔。"
+      ],
+      "outside": [
+        "婴儿车放在门边。",
+        "外面的空气很清新。"
+      ],
+      "play": [
+        "玩具放在垫子上。",
+        "这些小积木有好多颜色。"
+      ],
+      "rain": [
+        "窗户上有小雨滴。",
+        "外面正下着小雨。"
+      ],
+      "sleep": [
+        "睡觉用的小毯子准备好了。",
+        "你看起来有点困了。"
+      ],
+      "smile": [
+        "你的小笑容真灿烂。",
+        "我看到你微微笑了。"
+      ],
+      "sun": [
+        "阳光照进房间了。",
+        "外面阳光真好。"
+      ],
+      "tummy": [
+        "你正趴在垫子上。",
+        "你的小肚子贴着垫子呢。"
+      ],
+      "voice": [
+        "我听到你发出小声音了。",
+        "你的小嗓音真清楚。"
+      ],
+      "wake": [
+        "睡醒后你睁开了眼睛。",
+        "你现在醒了。"
+      ]
+    },
+    "hi": {
+      "bath": [
+        "नहाने का पानी हल्का गर्म है।",
+        "नहाने का तौलिया तैयार है।"
+      ],
+      "book": [
+        "तस्वीरों वाली किताब बिस्तर पर है।",
+        "इस किताब में रंग-बिरंगे चित्र हैं।"
+      ],
+      "clothes": [
+        "तुम्हारे छोटे मोज़े साफ हैं।",
+        "तुम्हारी छोटी कमीज़ बहुत मुलायम है।"
+      ],
+      "cry": [
+        "मुझे तुम्हारे रोने की आवाज़ आ रही है।",
+        "तुम्हारे गालों पर छोटे आँसू हैं।"
+      ],
+      "diaper": [
+        "तुम्हारी नैपी गीली हो गई है।",
+        "साफ नैपी तैयार है।"
+      ],
+      "drink": [
+        "तुम्हारे कप में पानी है।",
+        "पीने का पानी मेज़ पर रखा है।"
+      ],
+      "feet": [
+        "तुम्हारे छोटे पैर की उँगलियाँ हिल रही हैं।",
+        "तुम्हारे पैर गरम हैं।"
+      ],
+      "food": [
+        "तुम्हारा खाना कटोरी में है।",
+        "चम्मच पर थोड़ा-सा पिसा खाना है।"
+      ],
+      "generic": [
+        "हम यहाँ साथ हैं।",
+        "आज सब कुछ शांत है।"
+      ],
+      "hands": [
+        "तुम्हारे छोटे हाथ खुले हैं।",
+        "तुम्हारी उँगलियाँ हिल रही हैं।"
+      ],
+      "hug": [
+        "तुम प्यार से गोद में हो।",
+        "यह गले लगना कितना सुकून भरा है।"
+      ],
+      "milk": [
+        "बोतल में गुनगुना दूध है।",
+        "दूध तैयार है।"
+      ],
+      "music": [
+        "हल्का-सा गाना बज रहा है।",
+        "संगीत बहुत धीमा है।"
+      ],
+      "outside": [
+        "बच्चे की गाड़ी दरवाज़े के पास है।",
+        "बाहर की हवा ताज़ा है।"
+      ],
+      "play": [
+        "तुम्हारा खिलौना चटाई पर है।",
+        "छोटे ब्लॉक रंग-बिरंगे हैं।"
+      ],
+      "rain": [
+        "खिड़की पर बारिश की बूँदें हैं।",
+        "बाहर हल्की बारिश हो रही है।"
+      ],
+      "sleep": [
+        "सोने का कंबल तैयार है।",
+        "तुम्हें नींद आ रही है।"
+      ],
+      "smile": [
+        "तुम्हारी छोटी-सी मुस्कान चमक रही है।",
+        "मुझे तुम्हारी प्यारी मुस्कान दिख रही है।"
+      ],
+      "sun": [
+        "धूप कमरे में आ रही है।",
+        "बाहर धूप खिली है।"
+      ],
+      "tummy": [
+        "तुम पेट के बल चटाई पर लेटे हो।",
+        "तुम्हारा पेट चटाई को छू रहा है।"
+      ],
+      "voice": [
+        "मुझे तुम्हारी छोटी आवाज़ें सुनाई दे रही हैं।",
+        "तुम्हारी नन्ही आवाज़ साफ सुनाई दे रही है।"
+      ],
+      "wake": [
+        "सोकर उठने के बाद तुम्हारी आँखें खुल रही हैं।",
+        "तुम अब जाग गए हो।"
+      ]
+    }
+  }
+}
