@@ -41,10 +41,19 @@ await page.waitForFunction(()=>{
 const ready=await page.locator('#status').textContent();
 if(!ready.includes('準備完了'))throw Error('Vosk model loading failed: '+ready);
 await page.locator('#run').click();
-await page.waitForFunction(()=>{
-  const s=document.querySelector('#status')?.textContent||'';
-  return s.includes('完了。p50')||s.includes('測定エラー');
-},{timeout:130000});
+try {
+  await page.waitForFunction(()=>{
+    const s=document.querySelector('#status')?.textContent||'';
+    return s.includes('完了。p50')||s.includes('測定エラー');
+  },null,{timeout:75000});
+} catch(err) {
+  console.error('Vosk benchmark timeout diagnostic',{
+    status:await page.locator('#status').textContent().catch(()=>null),
+    rows:await page.locator('#rows').textContent().catch(()=>null),
+    errors
+  });
+  throw err;
+}
 const status=await page.locator('#status').textContent();
 if(!status.includes('完了。p50'))throw Error('Vosk final-result benchmark failed: '+status);
 const obj=await page.evaluate(()=>({
