@@ -144,12 +144,18 @@ def main():
         print(f'Fitted local heads {lang}',flush=True)
 
     by_locale={};all_preds=[]
+    arm_names=('baseline_v2','retrained_shared','retrained_locale',
+               'hybrid_v2topic_shared_interaction','hybrid_v2topic_locale_interaction')
     global_counts={name:collections.defaultdict(lambda:dict(n=0,correct=0))
-                   for name in ('baseline_v2','retrained_shared','retrained_locale')}
+                   for name in arm_names}
     for lang in LANGUAGES:
         val=[r for r in validation if r['language']==lang]
         if not val:raise ValueError(f'No validation samples for {lang}')
-        models={'baseline_v2':base,'retrained_shared':learned,'retrained_locale':locale_heads[lang]}
+        models={'baseline_v2':base,'retrained_shared':learned,'retrained_locale':locale_heads[lang],
+                'hybrid_v2topic_shared_interaction':{
+                    'topic':base['topic'],'interaction':learned['interaction']},
+                'hybrid_v2topic_locale_interaction':{
+                    'topic':base['topic'],'interaction':locale_heads[lang]['interaction']}}
         by_locale[lang]={name:evaluate(val,h,features,labels) for name,h in models.items()}
         for name,metrics in by_locale[lang].items():
             for axis,score in metrics.items():
@@ -198,6 +204,7 @@ def main():
         'evaluation_scope':'synthetic scene holdout; human labels not reviewed; not a deployment test',
         'warning':'Synthetic scene and translated-family holdouts are not an independent blind human test; validation examined after first training run so these comparisons are exploratory and not unbiased estimates.',
         'balancing':'inverse locale/class frequency calculated on TRAIN only (no val/test fitting)',
+        'hybrid_arms_evaluated_after_observing_topic_regression':True,
         'train_rows':len(train),'validation_rows':len(validation)}
     (args.out/'run_manifest.json').write_text(
         json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
