@@ -75,6 +75,26 @@ def evaluate(rows,heads,features,labels):
     ans['joint']={'n':len(joint),'correct':correct,'accuracy':fraction(correct,len(joint))}
     return ans
 
+def weights_per_language_class(rows,axis,classes,within_locale):
+    """Keep class weights equal; global model also balances all 7 locales.
+
+    Applies no heldout-derived hyperparameter fitting.
+    """
+    counts=collections.Counter((r['language'],r[axis]) for r in rows)
+    if within_locale:
+        keys={(r['language'],r[axis]) for r in rows}
+        expected=len(classes)
+    else:
+        keys={(lang,cls) for lang in LANGUAGES for cls in classes}
+        expected=len(classes)*len(LANGUAGES)
+    if len(keys)!=expected or any(counts[key]==0 for key in keys):
+        raise ValueError(f'Not all {axis} language-class pairs present in training')
+    out=np.array([len(rows)/(expected*counts[(r['language'],r[axis])])
+                  for r in rows],dtype=np.float64)
+    if abs(float(out.sum())-len(rows))>0.0001:
+        raise ValueError('Unexpected sample-weight normalization')
+    return out
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--allow-unreviewed',action='store_true')
@@ -108,10 +128,10 @@ def main():
     learned={}
     for axis in AXES:
         subset=[r for r in train if r[axis] is not None]
-        lang_counts=collections.Counter(r['language'] for r in subset)
-        # All 7 locales contribute equal total weight; no validation-based
-        # tuning or frozen-test-based hyperparameter selection.
-        sw=np.asarray([len(subset)/(7*lang_counts[r['language']]) for r in subset],dtype=np.float64)
+        # Balance both language and class. This particularly protects Topic
+        # classes that have only the two original seed examples during the
+        # held-out-scene synthetic test.
+        sw=weights_per_language_class(subset,axis,labels[axis],within_locale=False)
         learned[axis]=fit(subset,features,labels[axis],axis,sw)
         print(f'Fitted globally balanced {axis}: {len(subset)} rows',flush=True)
     locale_heads={}
@@ -119,7 +139,8 @@ def main():
         locale_heads[lang]={}
         for axis in AXES:
             subset=[r for r in train if r['language']==lang and r[axis] is not None]
-            locale_heads[lang][axis]=fit(subset,features,labels[axis],axis)
+            w=weights_per_language_class(subset,axis,labels[axis],within_locale=True)
+            locale_heads[lang][axis]=fit(subset,features,labels[axis],axis,w)
         print(f'Fitted local heads {lang}',flush=True)
 
     by_locale={};all_preds=[]
@@ -175,7 +196,8 @@ def main():
         'new_heads_sha256':head_manifest,
         'same_runtime_all_arms':True,
         'evaluation_scope':'synthetic scene holdout; human labels not reviewed; not a deployment test',
-        'warning':'Synthetic scene and translated-family holdouts are not an independent blind human test.',
+        'warning':'Synthetic scene and translated-family holdouts are not an independent blind human test; validation examined after first training run so these comparisons are exploratory and not unbiased estimates.',
+        'balancing':'inverse locale/class frequency calculated on TRAIN only (no val/test fitting)',
         'train_rows':len(train),'validation_rows':len(validation)}
     (args.out/'run_manifest.json').write_text(
         json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
