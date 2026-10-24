@@ -4,13 +4,31 @@ const encoderText=s=>String(s||'').trim();
 const MODEL_URL='https://ccoreilly.github.io/vosk-browser/models/vosk-model-small-en-us-0.15.tar.gz';
 const labels={vosk:'Vosk Small',moonshine:'Moonshine Small Streaming',whisper:'Whisper Small q8'};
 let samples=null,loadedEngine=null,loadedBackend=null,loading=false,running=false;
-let loadMs=null,sequence=0,lastWorker=null;
+let loadMs=null;
 const results={};
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const bootLog=[];
+let bootStarted=performance.now();
+function bootStage(stage){
+ const line=(Math.round(performance.now()-bootStarted)/1000).toFixed(1)+'s  '+stage;
+ bootLog.push(line);
+ if(bootLog.length>80)bootLog.shift();
+ $('initLog').textContent=bootLog.join('\n');
+ if(loading)notify('モデル準備：'+stage);
+}
+async function withTimeout(promise,ms,label){
+ let timer;
+ try{
+  return await Promise.race([promise,new Promise((_,reject)=>{
+   timer=setTimeout(()=>reject(Error(label+'が'+Math.round(ms/1000)+'秒以内に完了しませんでした。ページを閉じて再試行してください。')),ms);
+  })]);
+ }finally{clearTimeout(timer);}
+}
 function notify(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
 function state(){
  const busy=loading||running;
  $('audioFile').disabled=busy;$('duration').disabled=busy;$('repeats').disabled=busy;$('engine').disabled=busy;
+ $('whisperThreads').disabled=busy;
  $('load').disabled=busy||!samples;
  $('run').disabled=busy||!samples||loadedEngine!==$('engine').value;
  $('copy').disabled=!Object.keys(results).length;
@@ -97,39 +115,12 @@ function extractPCM(){
 async function closeBackend(){
  if(loadedBackend?.kind==='vosk'){
    try{loadedBackend.model.terminate()}catch(_){}
- }else if(loadedBackend?.kind==='worker')loadedBackend.worker.terminate();
+ }else if(loadedBackend?.kind==='moonshine-product'){
+   loadedBackend.client.close();
+ }else if(loadedBackend?.kind==='whisper-product'){
+   loadedBackend.client.cancel();
+ }
  loadedBackend=null;loadedEngine=null;loadMs=null;
-}
-function makeWorkerBackend(url){
- const worker=new Worker(new URL(url,import.meta.url),{type:'module'});
- const pending=new Map();
- const rejectAll=e=>{for(const {reject,timer} of pending.values()){clearTimeout(timer);reject(e)}pending.clear()};
- worker.onerror=e=>{
-   const where=e?.filename?(' '+e.filename+':'+(e.lineno||'?')+':'+(e.colno||'?')):'';
-   const cause=e?.error?.stack||e?.error?.message||e?.message||'Worker module failed before initialization';
-   rejectAll(Error('Benchmark Worker startup error: '+cause+where));
- };
- worker.onmessageerror=e=>rejectAll(Error('Benchmark Worker message could not be decoded: '+(e?.message||'messageerror')));
- worker.onmessage=({data})=>{
-   if(data.type==='stage'){if(loading)notify('モデル準備：'+String(data.stage||'読み込み中'));return;}
-   if(data.type==='progress'){if(loading&&data.total>0)notify('モデル取得中 '+Math.round(100*data.loaded/data.total)+'%');return;}
-   const task=pending.get(data.id);if(!task)return;
-   clearTimeout(task.timer);pending.delete(data.id);
-   data.type==='error'?task.reject(Error(data.message||'Worker error')):task.resolve(data);
- };
- let seq=0;
- return {
-   kind:'worker',worker,
-   request(type,fields={},timeout=600000,transfers=[]){
-     const id=++seq;
-     return new Promise((resolve,reject)=>{
-       const timer=setTimeout(()=>{pending.delete(id);reject(Error(type+' のタイムアウト'))},timeout);
-       pending.set(id,{resolve,reject,timer});
-       worker.postMessage({id,type,...fields},transfers);
-     });
-   },
-   terminate(){rejectAll(Error('Model changed'));worker.terminate()}
- };
 }
 function recognizeVosk(buffer){
  return new Promise((resolve,reject)=>{
@@ -182,26 +173,82 @@ async function loadSelected(){
      if(!globalThis.Vosk?.createModel)throw Error('Voskブラウザライブラリの読み込みに失敗しました');
      const model=await Vosk.createModel(MODEL_URL);
      loadedBackend={kind:'vosk',model};
+   }else if(engine==='moonshine'){
+     if(!crossOriginIsolated || typeof SharedArrayBuffer!=='function')
+       throw Error('Moonshineにはブラウザ分離が必要です。');
+     bootLog.length=0;bootStarted=performance.now();
+     bootStage('本番MoonshineAsrClientを読み込み');
+     const {MoonshineAsrClient}=await import('../../src/asr-client.js');
+     const client=new MoonshineAsrClient({
+       workerFactory:()=>new Worker(new URL('./moonshine-product-bridge.js',import.meta.url),{type:'module'}),
+       onEvent:event=>{
+         if(event.type==='manifest'){
+           bootStage('本番Workerのモデル目録取得完了。キャッシュ処理へ');
+           client.resumeInit();
+         }else if(event.type==='stage'){
+           bootStage(event.message||event.stage);
+         }else if(event.type==='diagnostic'){
+           bootStage('本番Worker診断 '+event.kind+': '+Math.round(event.durationMs||0)+'ms');
+         }else if(event.type==='progress'&&event.total>0){
+           if(loading)notify('Moonshineモデル取得 '+Math.round(100*event.loaded/event.total)+'%');
+         }
+       }
+     });
+     loadedBackend={kind:'moonshine-product',client};
+     bootStage('本番ASR Workerを英語Small Streamingで初期化');
+     await withTimeout(client.init({
+       model:'small',language:'en',researchBenchmark:'s25-same-audio'
+     }),180000,'本番Moonshine ASR初期化');
    }else{
-     if(engine==='moonshine'&&!crossOriginIsolated)
-       throw Error('MoonshineにはcrossOriginIsolatedが必要です。分離環境表示を確認してください。');
-     const worker=makeWorkerBackend(engine==='moonshine'?'./moonshine-bench-worker.js':'./whisper-bench-worker.js');
-     loadedBackend=worker;
-     const probe=await worker.request('ping',{},20000);
-     if(!probe.ready)throw Error('Worker handshake failed');
-     await worker.request('init',{language:'en'},900000);
+     bootLog.length=0;bootStarted=performance.now();
+     bootStage('本番MultilingualClientをASR専用で初期化（E5は読み込まない）');
+     const {MultilingualClient}=await import('../../src/multilingual/client.js');
+     let lastWhisperProgressBucket=-1;
+     const client=new MultilingualClient({
+       workerFactory:()=>new Worker(new URL('./whisper-product-bridge.js',import.meta.url),{type:'module'}),
+       threads:$('whisperThreads').value,languageDetection:'fixed',researchWhisperOnly:true,
+       onStatus:event=>{
+         if(event.stage==='assets'&&event.total>0){
+           const percent=Math.floor(100*event.loaded/event.total);
+           const bucket=Math.floor(percent/10);
+           if(bucket!==lastWhisperProgressBucket){
+             lastWhisperProgressBucket=bucket;
+             bootStage('Whisperモデル取得/キャッシュ検証 '+percent+'%'+(event.model?'（'+event.model+'）':''));
+           }
+         }else if(event.stage==='assets-start'){
+           bootStage('Whisper専用資産 '+(event.totalBytes/1048576).toFixed(1)+'MiBを準備');
+         }else if(event.stage){
+           bootStage('Whisper '+event.stage+(event.threads?'（'+event.threads+'スレッド）':''));
+         }
+       }
+     });
+     loadedBackend={kind:'whisper-product',client};
+     await withTimeout(client.prepare(),240000,'Whisper ASR専用モデル初期化');
    }
    loadMs=performance.now()-started;loadedEngine=engine;
    notify(labels[engine]+' 準備完了：読み込み '+round(loadMs)+' ms。測定を開始できます。');
- }catch(e){await closeBackend();notify('読み込みエラー：'+(e?.message||e),true);}
+ }catch(e){
+   await closeBackend();
+   const last=(engine==='moonshine'||engine==='whisper')&&bootLog.length?'（直前：'+bootLog[bootLog.length-1]+'）':'';
+   notify('読み込みエラー：'+(e?.message||e)+last,true);
+ }
  finally{loading=false;state();}
 }
 async function recognizeWorker(pcm){
- const buffer=pcm.slice().buffer;
  const start=performance.now();
- const response=await loadedBackend.request('run',{audio:buffer,language:'en'},900000,[buffer]);
- return {ms:performance.now()-start,internalMs:response.internalMs??null,
-     text:encoderText(response.text),kind:'final'};
+ if(loadedBackend?.kind==='moonshine-product'){
+   // Exactly the same transcribe bridge (and PCM copy) as Mitsukotoba.
+   const text=await loadedBackend.client.transcribe(pcm);
+   return {ms:performance.now()-start,internalMs:null,text:encoderText(text),kind:'final'};
+ }
+ if(loadedBackend?.kind==='whisper-product'){
+   // Use Mitsukotoba's pinned Whisper Small q8 ONNX WASM runtime.
+   // Fixed English avoids a language detection pass.
+   const result=await loadedBackend.client.transcribe(pcm,'en');
+   return {ms:performance.now()-start,internalMs:result.timings?.transcribeMs??null,
+     text:encoderText(result.text),kind:'final'};
+ }
+ throw Error('An ASR backend has not been initialized');
 }
 async function run(){
  if(running||loading||!samples||loadedEngine!==$('engine').value)return;
@@ -225,8 +272,9 @@ async function run(){
      rtfP50:round(percentile(times,.5)/(1000*info.audioSeconds)),
      firstMs:round(times[0]),audioSeconds:round(info.audioSeconds),
      speechSeconds:round(info.speechSeconds),windowSeconds:info.windowSeconds,
-     iterations:predictions,threads:navigator.hardwareConcurrency,
-     architecture:engine==='whisper'?'Whisper Small q8 WASM':engine==='moonshine'?'Moonshine Small Streaming MIT':'Vosk Small English WASM'
+     iterations:predictions,
+     threads:engine==='whisper'?loadedBackend.client.runtimeInfo?.threads??null:navigator.hardwareConcurrency,
+     architecture:engine==='whisper'?'Mitsukotoba MultilingualClient Whisper Small q8 WASM fixed English':engine==='moonshine'?'Mitsukotoba MoonshineAsrClient Small Streaming English MIT':'Vosk Small English WASM'
    };
    render();
    notify(labels[engine]+' 完了。p50 '+results[engine].p50Ms+'ms、p95 '+results[engine].p95Ms+
@@ -253,6 +301,10 @@ function render(){
    '#'+s.turn+' '+s.elapsedMs+' ms — '+s.text).join('\n')).join('\n\n');
  state();
 }
+$('whisperThreads').addEventListener('change',()=>{
+ if(results.whisper){delete results.whisper;render();}
+ state();
+});
 $('engine').addEventListener('change',()=>{
  if(loadedEngine!==$('engine').value)notify('モデルを切り替えました。「読み込む」を押してください。既存結果は保持されます。');
  state();
@@ -263,13 +315,13 @@ $('load').addEventListener('click',loadSelected);
 $('run').addEventListener('click',run);
 $('copy').addEventListener('click',async()=>{
  const report={
-   benchmark:'CooTrio S25 same audio Vosk/Moonshine/Whisper v2',
+   benchmark:'CooTrio S25 same audio production ASR client reuse v4 Whisper ASR-only',
    capturedAt:new Date().toISOString(),
    device:navigator.userAgent,hardwareConcurrency:navigator.hardwareConcurrency,
    deviceMemoryGiB:navigator.deviceMemory??null,crossOriginIsolated,
    audioSource:$('audioFile').files?.[0]?.name||'',
    comparedAudioMethod:'same 16kHz mono 5/10 second window + 0.8 second silence; file replay',
-   meaningOfMetrics:'p50/p95 ASR elapsed excluding model loading, microphone capture and classification; Vosk final event, Moonshine/Whisper worker result',
+   meaningOfMetrics:'p50/p95 ASR elapsed excluding model loading, microphone capture and classification; Vosk final event, Moonshine/Whisper production worker result. Whisper E5 semantic runtime omitted only for ASR-only benchmark.',
    results
  };
  const value=JSON.stringify(report,null,2);

@@ -4,17 +4,27 @@ import {resolveWhisperThreads} from './performance.js';
 let recognizer,extractor,heads,runtime,preparing,effectiveThreads=1;
 let queue=Promise.resolve();
 const progress=data=>self.postMessage({type:'progress',...data});
-async function initialize({threadPreference='auto'}={}) {
+async function initialize({threadPreference='auto',researchWhisperOnly=false}={}) {
+  // The normal Mitsukotoba app continues loading Whisper + E5 and both heads.
+  // Research-only ASR speed tests can skip the unused semantic model.
+  const whisperOnly=researchWhisperOnly===true;
   const response=await fetch(new URL('./assets.json',import.meta.url));
   if(!response.ok)throw Error('Multilingual model manifest is missing');
   const manifest=await response.json();
-  const cache=await prepareAssets(manifest,{progress});
+  const asrManifest=whisperOnly
+    ? {...manifest,assets:manifest.assets.filter(asset=>asset.model==='whisper')}
+    : manifest;
+  progress({stage:'assets-start',whisperOnly,
+    assetCount:asrManifest.assets.length,
+    totalBytes:asrManifest.assets.reduce((sum,asset)=>sum+asset.bytes,0)});
+  const cache=await prepareAssets(asrManifest,{progress:data=>progress({...data,stage:'assets'})});
+  progress({stage:'assets-ready',whisperOnly});
   runtime=await import(new URL('../../multilingual-assets/runtime/transformers.mjs',import.meta.url));
   const {env,pipeline}=runtime;
   env.allowLocalModels=true;env.allowRemoteModels=false;env.useBrowserCache=false;env.useFSCache=false;
   env.localModelPath=new URL('../../multilingual-assets/unavailable/',import.meta.url).href;
   env.useCustomCache=true;
-  const allowed=new Set(manifest.assets.map(m=>m.url));
+  const allowed=new Set(asrManifest.assets.map(m=>m.url));
   env.customCache={match:async key=>allowed.has(String(key))?(await cache.match(String(key)))||undefined:undefined,
     put:async()=>{throw Error('Unexpected model asset request');}};
   env.backends.onnx.wasm.wasmPaths=new URL('../../multilingual-assets/runtime/',import.meta.url).href;
@@ -29,9 +39,16 @@ async function initialize({threadPreference='auto'}={}) {
   progress({stage:'runtime-policy',threads:effectiveThreads,
     threadPreference,isolated:self.crossOriginIsolated===true});
   const opt=key=>({revision:manifest.models[key].revision,device:'wasm',dtype:'q8',local_files_only:true});
-  progress({stage:'loading'});
+  progress({stage:'whisper-pipeline-start',threads:effectiveThreads});
   recognizer=await pipeline('automatic-speech-recognition',manifest.models.whisper.id,opt('whisper'));
+  progress({stage:'whisper-pipeline-ready',threads:effectiveThreads});
+  if(whisperOnly){
+    progress({stage:'whisper-asr-ready',note:'E5 semantics intentionally skipped for ASR-only benchmark'});
+    return;
+  }
+  progress({stage:'e5-pipeline-start'});
   extractor=await pipeline('feature-extraction',manifest.models.e5.id,opt('e5'));
+  progress({stage:'e5-pipeline-ready'});
   const base=new URL('../../multilingual-assets/heads/',import.meta.url);
   const config=await (await fetch(new URL('config.json',base))).json(),buffers={};
   for(const [name,meta]of Object.entries(config.heads)){
@@ -39,6 +56,7 @@ async function initialize({threadPreference='auto'}={}) {
     const bytes=await r.arrayBuffer();if(await digest(bytes)!==meta.sha256)throw Error('E5 head integrity check failed');buffers[name]=bytes;
   }
   heads=decodeE5Heads(buffers,config);
+  progress({stage:'e5-heads-ready'});
 }
 function disposeTensors(value,seen=new Set()) {
   if(!value||typeof value!=='object'||seen.has(value))return;seen.add(value);
@@ -61,8 +79,8 @@ async function detectLanguage(audio) {
   }finally{disposeTensors(out);disposeTensors(features);ids?.dispose();}
 }
 async function handle(data) {
-  preparing ||= initialize({threadPreference:data.threads}).catch(error=>{preparing=null;throw error;});await preparing;
-  if(data.type==='init')return {provider:'wasm',source:'whisper-small-e5',ready:true,
+  preparing ||= initialize({threadPreference:data.threads,researchWhisperOnly:data.researchWhisperOnly}).catch(error=>{preparing=null;throw error;});await preparing;
+  if(data.type==='init')return {provider:'wasm',source:data.researchWhisperOnly?'whisper-small-asr-only':'whisper-small-e5',ready:true,
     threads:effectiveThreads,isolated:self.crossOriginIsolated===true};
   if(data.type==='transcribe'){
     const audio=new Float32Array(data.audio);
@@ -97,6 +115,7 @@ async function handle(data) {
     return {text:result.text.trim(),detectedLanguage:language,timings};
   }
   if(data.type==='predict'){
+    if(!extractor||!heads)throw Error('E5 semantics were not initialized in ASR-only benchmark');
     const start=performance.now();
     const features=await extractor('query: '+String(data.text),{pooling:'mean',normalize:true,truncation:true,max_length:512});
     try{return {...classifyE5(Array.from(features.data),heads),elapsedMs:performance.now()-start,
