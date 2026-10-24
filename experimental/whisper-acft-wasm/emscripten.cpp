@@ -124,6 +124,14 @@ EMSCRIPTEN_BINDINGS(acft_research) {
         return out;
     }));
 
+    emscripten::function("acft_detected_language", emscripten::optional_override([](){
+        if(running.load() || !finished.load() || run_result.load()!=0 || !context)return std::string("");
+        join_completed();
+        const int id=whisper_full_lang_id(context);
+        const char * code=whisper_lang_str(id);
+        return code?std::string(code):std::string("");
+    }));
+
     emscripten::function("acft_timings", emscripten::optional_override([](){
         if(running.load() || !finished.load() || run_result.load()!=0 || !context)return std::string("");
         join_completed();
