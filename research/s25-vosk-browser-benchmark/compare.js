@@ -7,6 +7,14 @@ let samples=null,loadedEngine=null,loadedBackend=null,loading=false,running=fals
 let loadMs=null,sequence=0,lastWorker=null;
 const results={};
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function withTimeout(promise,ms,label){
+ let timer;
+ try{
+  return await Promise.race([promise,new Promise((_,reject)=>{
+   timer=setTimeout(()=>reject(Error(label+'が'+Math.round(ms/1000)+'秒以内に完了しませんでした。ページを閉じて再試行してください。')),ms);
+  })]);
+ }finally{clearTimeout(timer);}
+}
 function notify(text,error=false){$('status').textContent=text;$('status').classList.toggle('error',error);}
 function state(){
  const busy=loading||running;
@@ -97,6 +105,8 @@ function extractPCM(){
 async function closeBackend(){
  if(loadedBackend?.kind==='vosk'){
    try{loadedBackend.model.terminate()}catch(_){}
+ }else if(loadedBackend?.kind==='moonshine-main'){
+   try{loadedBackend.transcriber.close()}catch(_){}
  }else if(loadedBackend?.kind==='worker')loadedBackend.worker.terminate();
  loadedBackend=null;loadedEngine=null;loadMs=null;
 }
@@ -182,10 +192,28 @@ async function loadSelected(){
      if(!globalThis.Vosk?.createModel)throw Error('Voskブラウザライブラリの読み込みに失敗しました');
      const model=await Vosk.createModel(MODEL_URL);
      loadedBackend={kind:'vosk',model};
+   }else if(engine==='moonshine'){
+     if(!crossOriginIsolated || typeof SharedArrayBuffer!=='function')
+       throw Error('Moonshineにはブラウザ分離が必要です。分離環境表示を確認してください。');
+     // The Moonshine WASM runtime creates its own pthread Workers. Unlike the
+     // failing nested benchmark worker, run its host in the page context.
+     // Only this research page changes; production ASR is untouched.
+     notify('Moonshine: モジュール読み込み');
+     const {ModelArch,Transcriber,loadEmmaMoonshineModule}=
+       await import('../../src/moonshine-module.js');
+     notify('Moonshine: WASM取得・展開・スレッド初期化（90秒以内に完了しなければエラー）');
+     const module=await withTimeout(loadEmmaMoonshineModule(),90000,'Moonshine WASM初期化');
+     notify('Moonshine: Small Streamingモデルを準備中');
+     const transcriber=await withTimeout(Transcriber.load({
+       module,language:'en',modelArch:ModelArch.SmallStreaming,
+       options:{vad_threshold:'0',vad_max_segment_duration:'1000',max_tokens_per_second:'13.0'},
+       onProgress:(loaded,total)=>{
+         if(loading&&total>0)notify('Moonshine: モデル取得 '+Math.round(100*loaded/total)+'%');
+       },
+     }),480000,'Moonshineモデル読み込み');
+     loadedBackend={kind:'moonshine-main',transcriber};
    }else{
-     if(engine==='moonshine'&&!crossOriginIsolated)
-       throw Error('MoonshineにはcrossOriginIsolatedが必要です。分離環境表示を確認してください。');
-     const worker=makeWorkerBackend(engine==='moonshine'?'./moonshine-bench-worker.js':'./whisper-bench-worker.js');
+     const worker=makeWorkerBackend('./whisper-bench-worker.js');
      loadedBackend=worker;
      const probe=await worker.request('ping',{},20000);
      if(!probe.ready)throw Error('Worker handshake failed');
@@ -197,8 +225,15 @@ async function loadSelected(){
  finally{loading=false;state();}
 }
 async function recognizeWorker(pcm){
- const buffer=pcm.slice().buffer;
  const start=performance.now();
+ if(loadedBackend?.kind==='moonshine-main'){
+   const result=loadedBackend.transcriber.transcribe(pcm,{sampleRate:16000});
+   const ms=performance.now()-start;
+   const text=Array.isArray(result?.lines)
+     ?result.lines.map(line=>encoderText(line?.text)).filter(Boolean).join(' '):'';
+   return {ms,internalMs:ms,text,kind:'final'};
+ }
+ const buffer=pcm.slice().buffer;
  const response=await loadedBackend.request('run',{audio:buffer,language:'en'},900000,[buffer]);
  return {ms:performance.now()-start,internalMs:response.internalMs??null,
      text:encoderText(response.text),kind:'final'};
