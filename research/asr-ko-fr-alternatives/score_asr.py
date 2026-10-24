@@ -63,9 +63,15 @@ def main():
   wave16=audio(path)
   feats=proc(wave16,sampling_rate=16000,return_tensors='pt')
   start=time.monotonic()
+  # Finetuned Whisper cards may ship a pre-language-generation config.
+  # Pass fixed language/task prompt as decoder input tokens instead of
+  # generation_config.language; this avoids old-config incompatibility.
+  forced=proc.get_decoder_prompt_ids(
+      language='korean' if lang=='ko' else 'french',task='transcribe')
+  starts=[asr.config.decoder_start_token_id]+[token for _,token in forced]
+  decoder_start=torch.tensor([starts],dtype=torch.long)
   with torch.inference_mode():
-   ids=asr.generate(feats.input_features,
-     language='korean' if lang=='ko' else 'french',task='transcribe',
+   ids=asr.generate(feats.input_features,decoder_input_ids=decoder_start,
      max_new_tokens=100,do_sample=False,num_beams=1)
   decoded=proc.batch_decode(ids,skip_special_tokens=True)[0].strip()
   asr_ms=round((time.monotonic()-start)*1000,2)
