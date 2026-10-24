@@ -57,6 +57,26 @@ jobs:
                   assert all(item['utterances']>=1 for item in labels.values()),(lang,axis)
           print('Seed QA passed; no generated data is marked production-ready.')
           PY
+      - name: Prepare independent blinded language review packets
+        run: |
+          python research/dual-axis-v1/prepare_review.py
+          python research/dual-axis-v1/merge_reviews.py
+      - name: Assert unlabeled drafts cannot be auto-certified
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('research/dual-axis-v1/outputs')
+          manifest=json.loads((root/'reviewer_packets/manifest.json').read_text())
+          outcome=json.loads((root/'review_merge/summary.json').read_text())
+          assert manifest['rows']==1364,manifest
+          assert manifest['packet_files']==14
+          assert manifest['auto_approved']==0
+          assert outcome['accepted']==0,outcome
+          assert outcome['statuses']=={'incomplete':1364},outcome
+          assert len((root/'review_merge/needs_adjudication.jsonl').read_text().splitlines())==1364
+          print('Blind review packets valid. No synthetic seed was auto-approved.')
+          PY
       - name: No changes to deployed heads
         run: git diff --exit-code -- multilingual-assets/heads
       - name: Upload research starter and quality gaps
