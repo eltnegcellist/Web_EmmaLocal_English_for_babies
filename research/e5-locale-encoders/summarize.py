@@ -32,6 +32,18 @@ for lang in ALL:
     for arm in arms:
         scores=block["comparison"].get(arm,{})
         lines.append(f'| {lang} | {arm} | {metric(scores.get("validation"))} | {metric(scores.get("frozen154_oracle"))} | {metric(scores.get("frozen374_asr"))} |')
+lines.extend(["","## Dedicated encoder execution status","",
+"| Language | Encoder status | License | Reason (when unavailable) |",
+"|---|---|---|---|"])
+for lang in ALL:
+    if lang not in found:
+        lines.append(f"| {lang} | MISSING/FAILED | — | Check language job run.log |")
+        continue
+    obj=found[lang]
+    status=obj.get("dedicated_status","UNKNOWN")
+    license_name=obj.get("dedicated_license") or "—"
+    reason=str(obj.get("dedicated_error") or "—").replace("|","/").replace("\\n"," ")[:200]
+    lines.append(f"| {lang} | {status} | {license_name} | {reason} |")
 lines.extend(["","## Interpretation safeguards","",
 "- Language models use different encoders, parameters and memory sizes; compare runtime on Galaxy S25 and browser WASM before product selection.",
 "- Only 15 training and 15 validation examples per non-English language, one train per class; these are far too few to certify gains.",
