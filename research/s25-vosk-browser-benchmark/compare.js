@@ -7,6 +7,45 @@ let samples=null,loadedEngine=null,loadedBackend=null,loading=false,running=fals
 let loadMs=null,sequence=0,lastWorker=null;
 const results={};
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const bootLog=[];
+const bootStarted=performance.now();
+function bootStage(stage){
+ const line=(Math.round(performance.now()-bootStarted)/1000).toFixed(1)+'s  '+stage;
+ bootLog.push(line);
+ if(bootLog.length>80)bootLog.shift();
+ $('initLog').textContent=bootLog.join('\n');
+ if(loading)notify('モデル準備：'+stage);
+}
+async function loadMoonshineWasmDiagnosed(){
+ const {ModelArch,Transcriber}=await import('../../src/vendor/moonshine/index.js');
+ const {loadMoonshineModule}=await import('../../src/vendor/moonshine/module.js');
+ const {default:moonshineFactory}=await import('../../src/vendor/moonshine/moonshine.mjs');
+ const wasmUrl=new URL('../../src/vendor/moonshine/moonshine.wasm.gz',import.meta.url);
+ const expected='22fca4a5b2dc50fe36dc68e4d25fab73b0250b71f744d9fea511c3a308b2420a';
+ if(typeof DecompressionStream!=='function')throw Error('gzip DecompressionStreamに非対応');
+ bootStage('圧縮WASM取得を開始');
+ const response=await withTimeout(fetch(wasmUrl),30000,'圧縮WASMの取得');
+ if(!response.ok || !response.body)throw Error('WASM取得に失敗（HTTP '+response.status+'）');
+ bootStage('圧縮WASM受信完了。gzip展開中');
+ const bytes=new Uint8Array(await withTimeout(
+   new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer(),
+   45000,'WASMのgzip展開'
+ ));
+ bootStage('gzip展開完了（'+(bytes.byteLength/1048576).toFixed(2)+'MiB）。SHA-256照合中');
+ const digest=new Uint8Array(await withTimeout(crypto.subtle.digest('SHA-256',bytes),30000,'WASM SHA-256照合'));
+ const hex=[...digest].map(n=>n.toString(16).padStart(2,'0')).join('');
+ if(hex!==expected)throw Error('WASM SHA-256が期待値と一致しません');
+ bootStage('WASMハッシュ一致。Emscripten/WASM起動中');
+ const module=await withTimeout(loadMoonshineModule({
+   factory:options=>moonshineFactory({
+     ...options,wasmBinary:bytes,
+     monitorRunDependencies:n=>bootStage('Emscripten依存処理 残数='+n),
+     onAbort:reason=>bootStage('WASM abort: '+String(reason).slice(0,160))
+   })
+ }),90000,'Emscripten/WASMスレッド起動');
+ bootStage('WASM起動完了。音声モデル読込へ');
+ return {module,ModelArch,Transcriber};
+}
 async function withTimeout(promise,ms,label){
  let timer;
  try{
@@ -198,18 +237,16 @@ async function loadSelected(){
      // The Moonshine WASM runtime creates its own pthread Workers. Unlike the
      // failing nested benchmark worker, run its host in the page context.
      // Only this research page changes; production ASR is untouched.
-     notify('Moonshine: モジュール読み込み');
-     const {ModelArch,Transcriber,loadEmmaMoonshineModule}=
-       await import('../../src/moonshine-module.js');
-     notify('Moonshine: WASM取得・展開・スレッド初期化（90秒以内に完了しなければエラー）');
-     const module=await withTimeout(loadEmmaMoonshineModule(),90000,'Moonshine WASM初期化');
-     notify('Moonshine: Small Streamingモデルを準備中');
+     bootStage('Moonshineの初期化を開始');
+     const {ModelArch,Transcriber,module}=await loadMoonshineWasmDiagnosed();
+     bootStage('英語Small Streamingモデルを準備中');
      const transcriber=await withTimeout(Transcriber.load({
        module,language:'en',modelArch:ModelArch.SmallStreaming,
        options:{vad_threshold:'0',vad_max_segment_duration:'1000',max_tokens_per_second:'13.0'},
        onProgress:(loaded,total)=>{
          if(loading&&total>0)notify('Moonshine: モデル取得 '+Math.round(100*loaded/total)+'%');
        },
+       onDiagnostic:e=>bootStage('Moonshineモデル初期化 '+String(e.kind||'')+' '+Math.round(e.durationMs||0)+'ms'),
      }),480000,'Moonshineモデル読み込み');
      loadedBackend={kind:'moonshine-main',transcriber};
    }else{
@@ -221,7 +258,11 @@ async function loadSelected(){
    }
    loadMs=performance.now()-started;loadedEngine=engine;
    notify(labels[engine]+' 準備完了：読み込み '+round(loadMs)+' ms。測定を開始できます。');
- }catch(e){await closeBackend();notify('読み込みエラー：'+(e?.message||e),true);}
+ }catch(e){
+   await closeBackend();
+   const last=bootLog.length?'（直前：'+bootLog[bootLog.length-1]+'）':'';
+   notify('読み込みエラー：'+(e?.message||e)+last,true);
+ }
  finally{loading=false;state();}
 }
 async function recognizeWorker(pcm){
