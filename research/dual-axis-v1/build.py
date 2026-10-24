@@ -1,0 +1,403 @@
+#!/usr/bin/env python3
+"""Build and audit CooTrio bilingual-axis research corpus. Python stdlib only.
+Unreviewed synthetic starter seeds are NEVER treated as verified production data.
+Existing Interaction corpus may be included read-only, with missing Topic unlabeled.
+"""
+import argparse, base64, collections, csv, hashlib, json, lzma, re, unicodedata, zlib
+from pathlib import Path
+
+ROOT=Path(__file__).resolve().parents[2]
+HERE=Path(__file__).resolve().parent
+CFG=ROOT/'multilingual-assets/heads/config.json'
+LANGUAGES=('en','de','fr','ko','th','zh','hi')
+EXPECTED_TOPIC=22
+EXPECTED_INTERACTION=15
+MIN_FAMILIES=30
+TARGET_FAMILIES=50
+HOLDOUT_TOPICS=frozenset(('milk','food','outside','cry','sun'))
+def scene_split(topic):
+    return 'validation' if topic in HOLDOUT_TOPICS else 'train'
+NORMALIZE=lambda s: ''.join(c for c in unicodedata.normalize('NFKC',s).casefold() if c.isalnum())
+
+def checked_json(path):
+    return json.loads(path.read_text(encoding='utf-8'))
+
+def load_frozen_inputs():
+    """Use checked-in immutable reference corpus. Evaluation stays read-only."""
+    loc=ROOT/'research/e5-interaction-v3/data'
+    manifest=checked_json(loc/'manifest.json')
+    blob=base64.b85decode((loc/'locked154.b85').read_text().strip())
+    decoded=lzma.decompress(blob)
+    if hashlib.sha256(decoded).hexdigest()!=manifest['locked154']['sha256']:
+        raise ValueError('Locked 154 SHA256 mismatch')
+    gold=list(csv.DictReader(decoded.decode('utf-8-sig').splitlines()))
+    if len(gold)!=154: raise ValueError('Unexpected locked oracle count')
+    frozen={(r['language'],NORMALIZE(r['reference_text'])) for r in gold}
+    # The fixed ASR input is not itself a training set either.
+    f=ROOT/'research/e5-locale-encoders/data/asr374.b85'
+    assert hashlib.sha256(f.read_bytes()).hexdigest()=='b3572ef5f290456c05f96a708117c9977d49ba88c022314bfd8549a7857bf410'
+    data=json.loads(zlib.decompress(base64.b85decode(''.join(f.read_text().split()))))
+    assert len(data['asr'])==374
+    frozen.update((r[1],NORMALIZE(r[3])) for r in data['asr'] if r[3].strip())
+    return frozen
+
+def make_rows(heads):
+    topics=heads['topic']['classes']
+    interactions=heads['interaction']['classes']
+    if len(topics)!=EXPECTED_TOPIC or len(interactions)!=EXPECTED_INTERACTION:raise ValueError('Production labels changed; inspect schema before generating')
+    seeds=[('topic',checked_json(HERE/'data/topic_seed.json'),topics),
+           ('interaction',checked_json(HERE/'data/interaction_seed.json'),interactions)]
+    rows=[]
+    for axis,data,labels in seeds:
+        if data['schema']!=1 or data['labels']!=labels:raise ValueError(f'Incorrect {axis} label order')
+        if set(data['by_language'])!=set(LANGUAGES):raise ValueError(f'Language mismatch for {axis}')
+        for lang in LANGUAGES:
+            langmap=data['by_language'][lang]
+            if set(langmap)!=set(labels):raise ValueError(f'Incomplete {lang} {axis} seed classes')
+            for label in labels:
+                texts=langmap[label]
+                if len(texts)!=2:raise ValueError(f'Expected two independent {lang}/{axis}/{label} initial seeds')
+                for index,utterance in enumerate(texts):
+                    if not isinstance(utterance,str) or len(utterance.strip())<5:raise ValueError(f'Invalid seed {lang}/{axis}/{label}/{index}')
+                    rows.append({
+                        'id':f'v1-{lang}-{axis}-{label}-{index}',
+                        'language':lang,'text':utterance.strip(),
+                        'topic':label if axis=='topic' else None,
+                        'interaction':label if axis=='interaction' else None,
+                        'supervision_axis':axis,
+                        'semantic_family':f'handseed-{lang}-{axis}-{label}-{index}',
+                        'split':'train',  # near-related author seeds are NOT independent validation material
+                        'source':'assistant_authored_seed',
+                        'label_reviewed':False,'native_speaker_reviewed':False,
+                        'caution':'Other axis intentionally unknown; do not fill it with generic/none.'
+                    })
+    return rows
+
+
+
+def load_paired_contrasts(heads):
+    """Authored 2-axis minimal contrasts, always unreviewed; split families globally."""
+    data=checked_json(HERE/'data/paired_contrasts.json')
+    topics=data['topic_order']; interactions=data['interaction_order']
+    if len(topics)!=10 or len(interactions)!=7 or len(set(topics))!=10 or len(set(interactions))!=7:
+        raise ValueError('Unexpected contrast taxonomy size')
+    if not set(topics).issubset(heads['topic']['classes']) or not set(interactions).issubset(heads['interaction']['classes']):
+        raise ValueError('Unknown Topic or Interaction in contrast matrix')
+    if set(data['by_language'])!=set(LANGUAGES):raise ValueError('Missing a contrast language')
+    rows=[]
+    for lang in LANGUAGES:
+        mapped=data['by_language'][lang]
+        if len(mapped)!=len(topics):raise ValueError(f'Missing contrast topics in {lang}')
+        for a,topic in enumerate(topics):
+            candidates=mapped[a]
+            if set(candidates)!=set(interactions):raise ValueError(f'Missing contrast intent in {lang}/{topic}')
+            for b,interaction in enumerate(interactions):
+                value=candidates[interaction]
+                if not isinstance(value,str) or len(value.strip())<5:raise ValueError('Invalid contrast utterance')
+                rows.append({
+                    'id':f'contrast-{lang}-{topic}-{interaction}',
+                    'language':lang,'text':value.strip(),
+                    'topic':topic,'interaction':interaction,'supervision_axis':'both',
+                    'semantic_family':f'contrast-v1-{topic}-{interaction}',
+                    'contrast_group':f'paired-scene-{topic}',
+                    'split':scene_split(topic),
+                    'source':'assistant_authored_dual_axis_unreviewed',
+                    'label_reviewed':False,'native_speaker_reviewed':False,
+                    'caution':'Both axes provisional; review labels and naturalness before fitting.'
+                })
+    assert len(rows)==490
+    return rows
+
+
+
+def load_remaining_topic_contrasts(heads):
+    """Native-script candidate strings for 12 topics with curated compatible intents.
+
+    They are *synthetic and unreviewed*. Keep all examples from one caregiver
+    scene together; never validate on a translation or near variant of a train
+    scene. Each language has identical intended Topic × Interaction coverage.
+    """
+    western=checked_json(HERE/'data/contrast_remaining_western.json')
+    asian=checked_json(HERE/'data/contrast_remaining_asian.json')
+    if western.get('schema')!=1 or asian.get('schema')!=1:
+        raise ValueError('Unexpected remaining-contrast schema')
+    specs=western['topic_interaction_order']
+    if len(specs)!=12 or sum(map(len,specs.values()))!=48:
+        raise ValueError('Expected 12 topics × 4 curated intent labels')
+    if not set(specs).issubset(heads['topic']['classes']):
+        raise ValueError('Invalid remaining Topic')
+    if any(not set(v).issubset(heads['interaction']['classes']) or len(set(v))!=len(v)
+           for v in specs.values()):
+        raise ValueError('Invalid remaining Interaction')
+    if set(western['by_language']) | set(asian['by_language']) != set(LANGUAGES):
+        raise ValueError('Incomplete remaining-topic locales')
+    if set(western['by_language']) & set(asian['by_language']):
+        raise ValueError('Locale appears in two input collections')
+    rows=[]
+    for lang in LANGUAGES:
+        batch=(western if lang in western['by_language'] else asian)['by_language'][lang]
+        if set(batch)!=set(specs):raise ValueError(f'Missing remaining topics for {lang}')
+        for topic_index,(topic,intents) in enumerate(specs.items()):
+            texts=batch[topic]
+            if not isinstance(texts,list) or len(texts)!=len(intents):
+                raise ValueError(f'Invalid intent count for {lang}/{topic}')
+            for intent_index,(intent,sentence) in enumerate(zip(intents,texts)):
+                if not isinstance(sentence,str) or len(sentence.strip())<5:
+                    raise ValueError(f'Invalid remaining-contrast text: {lang}/{topic}/{intent}')
+                rows.append({
+                    'id':f'contrast-v2-{lang}-{topic}-{intent}',
+                    'language':lang,'text':sentence.strip(),
+                    'topic':topic,'interaction':intent,'supervision_axis':'both',
+                    'semantic_family':f'contrast-v2-{topic}-{intent}',
+                    'contrast_group':f'paired-scene-{topic}',
+                    'split':scene_split(topic),
+                    'source':'assistant_authored_remaining_topic_unreviewed',
+                    'label_reviewed':False,'native_speaker_reviewed':False,
+                    'caution':'Unreviewed natural-language dual-axis contrast; do not count as independent human speech.'
+                })
+    if len(rows)!=336:raise ValueError('Expected 336 translated contrast strings')
+    return rows
+
+
+
+def load_remaining_interaction_contrasts(heads):
+    """Four underrepresented intentions across four natural topics each."""
+    data=checked_json(HERE/'data/contrast_remaining_intents.json')
+    if data.get('schema')!=1:raise ValueError('Unexpected additional intent schema')
+    specs=data['interaction_topic_order']
+    if len(specs)!=4 or sum(map(len,specs.values()))!=16:
+        raise ValueError('Expected four intentions with four compatible topics each')
+    if not set(specs).issubset(heads['interaction']['classes']):
+        raise ValueError('Unknown additional Interaction')
+    if any(len(topics)!=4 or not set(topics).issubset(heads['topic']['classes']) for topics in specs.values()):
+        raise ValueError('Unknown additional Topic')
+    if set(data['by_language'])!=set(LANGUAGES):raise ValueError('Missing locale')
+    rows=[]
+    for lang in LANGUAGES:
+        entry=data['by_language'][lang]
+        if set(entry)!=set(specs):raise ValueError(f'Missing intent coverage in {lang}')
+        for intent,topics in specs.items():
+            samples=entry[intent]
+            if len(samples)!=len(topics):raise ValueError(f'Invalid additional intent examples for {lang}/{intent}')
+            for topic,text in zip(topics,samples):
+                if not isinstance(text,str) or len(text.strip())<5:raise ValueError('Empty additional example')
+                rows.append({
+                    'id':f'contrast-v3-{lang}-{topic}-{intent}',
+                    'language':lang,'text':text.strip(),
+                    'topic':topic,'interaction':intent,'supervision_axis':'both',
+                    'semantic_family':f'contrast-v3-{topic}-{intent}',
+                    'contrast_group':f'paired-scene-{topic}',
+                    'split':scene_split(topic),
+                    'source':'assistant_authored_remaining_intent_unreviewed',
+                    'label_reviewed':False,'native_speaker_reviewed':False,
+                    'caution':'One provisional independent meaning pattern, native review required.'
+                })
+    assert len(rows)==112
+    return rows
+
+
+def load_legacy_interaction():
+    """Reuse the original 360 single-axis Interaction examples, without inventing Topic."""
+    loc=ROOT/'research/e5-interaction-v3/data'
+    manifest=checked_json(loc/'manifest.json')
+    raw=lzma.decompress(base64.b85decode((loc/'training.b85').read_text().strip()))
+    if hashlib.sha256(raw).hexdigest()!=manifest['training']['sha256']:
+        raise ValueError('Legacy Interaction training SHA256 mismatch')
+    originals=[json.loads(x) for x in raw.decode('utf-8').splitlines() if x.strip()]
+    if len(originals)!=360:raise ValueError('Legacy Interaction count mismatch')
+    rows=[]
+    for r in originals:
+        if r['language'] not in LANGUAGES or r['split'] not in ('train','validation'):
+            raise ValueError('Unexpected original v3 row')
+        rows.append({
+            'id':'legacy-v3-'+str(r['id']),
+            'language':r['language'],'text':r['text'],
+            'topic':None,'interaction':r['interaction'],
+            'supervision_axis':'interaction',
+            'semantic_family':'legacy-v3-'+str(r['family_id']),
+            'split':r['split'],'source':'legacy_v3_synthetic_unreviewed',
+            'label_reviewed':False,'native_speaker_reviewed':False,
+            'caution':'Legacy Interaction-only example. Topic not human labeled and MUST stay null.'
+        })
+    return rows
+
+
+def collect_external(path,heads):
+    """Optional future contributions; do not silently invent unspecified labels."""
+    if not path:return []
+    out=[]
+    for i,line in enumerate(path.read_text(encoding='utf-8').splitlines(),1):
+        if not line.strip():continue
+        r=json.loads(line)
+        required={'id','language','text','topic','interaction','semantic_family','split','source','label_reviewed','native_speaker_reviewed'}
+        if not required.issubset(r):raise ValueError(f'External row {i} missing {sorted(required-set(r))}')
+        if r['language'] not in LANGUAGES:raise ValueError(f'Unsupported external language at row {i}')
+        if r['topic'] is not None and r['topic'] not in heads['topic']['classes']:raise ValueError(f'Unknown Topic at row {i}')
+        if r['interaction'] is not None and r['interaction'] not in heads['interaction']['classes']:raise ValueError(f'Unknown Interaction at row {i}')
+        if r['topic'] is None and r['interaction'] is None:raise ValueError(f'No supervision labels at row {i}')
+        if r['split'] not in ('train','validation'):raise ValueError('External row split must be train/validation')
+        r['supervision_axis']='both' if (r['topic'] and r['interaction']) else ('topic' if r['topic'] else 'interaction')
+        out.append(r)
+    return out
+
+def audit(rows,labels,frozen):
+    unique={}
+    ids=set()
+    kept=[]
+    skipped=[]
+    split_by_family={}
+    for r in rows:
+        key=(r['language'],NORMALIZE(r['text']))
+        if not key[1]:raise ValueError('Empty normalized utterance')
+        if r['id'] in ids:raise ValueError('Duplicate source ID '+r['id'])
+        ids.add(r['id'])
+        if key in frozen:
+            skipped.append({'id':r['id'],'reason':'EVALUATION_OVERLAP'})
+            continue
+        if key in unique:
+            previous=unique[key]
+            # A later, independently reviewed annotation takes precedence over
+            # the original unreviewed seed. Never silently lose verified work.
+            promoted=bool(r.get('label_reviewed') and r.get('native_speaker_reviewed'))
+            was_reviewed=bool(previous.get('label_reviewed') and previous.get('native_speaker_reviewed'))
+            if promoted and not was_reviewed:
+                if (r['semantic_family']!=previous['semantic_family']
+                        or r['split']!=previous['split']):
+                    raise ValueError(f'Review family/split changed for {r["id"]}')
+                if r['topic'] is None or r['interaction'] is None:
+                    raise ValueError(f'Reviewed item lacks a full dual-axis label: {r["id"]}')
+                old_index=kept.index(previous)
+                kept[old_index]=r
+                unique[key]=r
+                skipped.append({'id':previous['id'],'reason':'SUPERSEDED_BY_REVIEW','replacement':r['id']})
+            else:
+                skipped.append({'id':r['id'],'reason':'TEXT_DUPLICATE','duplicate_of':previous['id']})
+            continue
+        unique[key]=r
+        family=r.get('contrast_group') or r['semantic_family']  # group an entire scene, across languages
+        split_by_family.setdefault(family,set()).add(r['split'])
+        kept.append(r)
+    leaky=[k for k,v in split_by_family.items() if len(v)!=1]
+    if leaky:raise ValueError(f'Family leakage across train/validation: {leaky[:10]}')
+    counter=collections.defaultdict(lambda:collections.defaultdict(collections.Counter))
+    families=collections.defaultdict(lambda:collections.defaultdict(lambda:collections.defaultdict(set)))
+    verified=collections.defaultdict(lambda:collections.defaultdict(lambda:collections.defaultdict(set)))
+    for r in kept:
+        for axis in ('topic','interaction'):
+            label=r[axis]
+            if label is None:continue
+            counter[r['language']][axis][label]+=1
+            families[r['language']][axis][label].add(r['semantic_family'])
+            if r['label_reviewed'] and r['native_speaker_reviewed']:
+                verified[r['language']][axis][label].add(r['semantic_family'])
+    coverage={}
+    for lang in LANGUAGES:
+        coverage[lang]={}
+        for axis in ('topic','interaction'):
+            coverage[lang][axis]={}
+            for label in labels[axis]:
+                n=counter[lang][axis][label]
+                family_n=len(families[lang][axis][label])
+                reviewed_n=len(verified[lang][axis][label])
+                coverage[lang][axis][label]={
+                    'utterances':n,'unique_semantic_families':family_n,
+                    'native_reviewed_families':reviewed_n,
+                    'remaining_to_min30_reviewed':max(0,MIN_FAMILIES-reviewed_n),
+                    'remaining_to_target50_reviewed':max(0,TARGET_FAMILIES-reviewed_n)
+                }
+    return kept,skipped,coverage
+
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument('--additional-jsonl',type=Path,help='Optional audited contribution records with explicit both-axis labels or null for unknown')
+    p.add_argument('--output',type=Path,default=HERE/'outputs')
+    args=p.parse_args()
+    heads=checked_json(CFG)['heads']
+    labels={axis:heads[axis]['classes'] for axis in ('topic','interaction')}
+    assert len(labels['topic'])==22 and len(labels['interaction'])==15
+    rows=make_rows(heads)+load_legacy_interaction()+load_paired_contrasts(heads)+load_remaining_topic_contrasts(heads)+load_remaining_interaction_contrasts(heads)+collect_external(args.additional_jsonl,heads)
+    kept,skipped,coverage=audit(rows,labels,load_frozen_inputs())
+    args.output.mkdir(parents=True,exist_ok=True)
+    (args.output/'starter_corpus.jsonl').write_text(''.join(json.dumps(r,ensure_ascii=False)+'\n' for r in kept),encoding='utf-8')
+    (args.output/'excluded.json').write_text(json.dumps(skipped,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    (args.output/'coverage.json').write_text(json.dumps(coverage,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    # Track every possible Topic x Interaction pair without treating all 330
+    # theoretical pairs as natural/required. Missing = unassessed, not negative.
+    pair_buckets=collections.defaultdict(list)
+    for r in kept:
+        if r['topic'] is not None and r['interaction'] is not None:
+            pair_buckets[(r['language'],r['topic'],r['interaction'])].append(r)
+    pair_coverage={}
+    for lang in LANGUAGES:
+        pair_coverage[lang]={}
+        for topic in labels['topic']:
+            pair_coverage[lang][topic]={}
+            for intent in labels['interaction']:
+                items=pair_buckets[(lang,topic,intent)]
+                pair_coverage[lang][topic][intent]={
+                    'count':len(items),
+                    'train':sum(x['split']=='train' for x in items),
+                    'validation':sum(x['split']=='validation' for x in items),
+                    'native_reviewed':sum(bool(x['label_reviewed'] and x['native_speaker_reviewed']) for x in items),
+                    'status':'CANDIDATE_UNREVIEWED' if items else 'UNASSESSED_NOT_NEGATIVE',
+                    'natural_pair_validated':False
+                }
+    (args.output/'pair_coverage.json').write_text(
+        json.dumps(pair_coverage,ensure_ascii=False,indent=2)+chr(10),encoding='utf-8')
+    pair_seen={(topic,intent) for (lang,topic,intent),items in pair_buckets.items() if items}
+    pair_stats={
+        'theoretical_combinations':len(labels['topic'])*len(labels['interaction']),
+        'observed_distinct_topic_interaction_pairs':len(pair_seen),
+        'unassessed_pairs':len(labels['topic'])*len(labels['interaction'])-len(pair_seen),
+        'not_all_combinations_are_natural':True,
+        'independently_native_reviewed_pairs':0,
+        'per_language_observed_pairs':{
+            lang:sum(bool(pair_buckets[(lang,t,i)])
+                     for t in labels['topic'] for i in labels['interaction'])
+            for lang in LANGUAGES
+        }
+    }
+    (args.output/'pair_summary.json').write_text(
+        json.dumps(pair_stats,ensure_ascii=False,indent=2)+chr(10),encoding='utf-8')
+    # Research work queue for human-reviewed, independently authored examples.
+    # It describes missing high-quality coverage; it is NOT fabricated training data.
+    tasks=[]
+    for lang in LANGUAGES:
+        for axis in ('topic','interaction'):
+            for label in labels[axis]:
+                stat=coverage[lang][axis][label]
+                tasks.append({
+                    'language':lang,'axis':axis,'label':label,
+                    'target_distinct_native_reviewed_meaning_families':TARGET_FAMILIES,
+                    'minimum_reviewed_meaning_families':MIN_FAMILIES,
+                    'currently_reviewed_families':stat['native_reviewed_families'],
+                    'required_additional_reviewed_families':stat['remaining_to_target50_reviewed'],
+                    'drafts_available_for_review':stat['utterances'],
+                    'instructions':('Author natural caregiver utterances with diverse situations, speakers, dialects and length. '
+                                    'Keep candidate examples unreviewed until checked by a native speaker and label adjudicator. '
+                                    'Add the second axis label only if independently justified; else null. '
+                                    'Ensure semantic-family grouping, exact and near-duplicate screening, no frozen evaluation leakage.')
+                })
+    (args.output/'needs_review_queue.jsonl').write_text(
+        ''.join(json.dumps(t,ensure_ascii=False)+chr(10) for t in tasks),encoding='utf-8')
+    total=collections.Counter(r['supervision_axis'] for r in kept)
+    reviewed=sum(bool(r['label_reviewed'] and r['native_speaker_reviewed']) for r in kept)
+    report={
+        'classification_axes':{'topic':22,'interaction':15,'label_total':37,'theoretical_pairs':330},
+        'languages':list(LANGUAGES),'starter_rows_kept':len(kept),
+        'by_axis':dict(total),'excluded_overlap_or_duplicate':len(skipped),
+        'paired_dual_axis_contrasts_imported':sum(r['source']=='assistant_authored_dual_axis_unreviewed' for r in kept),
+        'remaining_topic_dual_axis_contrasts_imported':sum(r['source']=='assistant_authored_remaining_topic_unreviewed' for r in kept),
+        'remaining_interaction_dual_axis_contrasts_imported':sum(r['source']=='assistant_authored_remaining_intent_unreviewed' for r in kept),
+        'human_and_native_reviewed_rows':reviewed,
+        'ready_for_production':False,
+        'meaning_family_target_per_axis_per_language':TARGET_FAMILIES,
+        'minimum_reviewed_families_per_axis_per_language':MIN_FAMILIES,
+        'important':'Count independently reviewed meaning families, not mechanical paraphrase variants.',
+        'frozen_eval_154_374_never_train':True
+    }
+    (args.output/'summary.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    print(json.dumps(report,ensure_ascii=False,indent=2))
+    assert reviewed==0 or args.additional_jsonl, 'Unreviewed seeds must never be marked reviewed'
+
+if __name__=='__main__':main()

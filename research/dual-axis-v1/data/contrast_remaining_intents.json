@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "source": "assistant-authored synthetic unreviewed",
+  "interaction_topic_order": {
+    "affection": [
+      "hug",
+      "smile",
+      "sleep",
+      "voice"
+    ],
+    "effort": [
+      "tummy",
+      "hands",
+      "feet",
+      "play"
+    ],
+    "encouragement": [
+      "tummy",
+      "hands",
+      "feet",
+      "play"
+    ],
+    "none": [
+      "rain",
+      "sun",
+      "clothes",
+      "book"
+    ]
+  },
+  "by_language": {
+    "en": {
+      "affection": [
+        "I love having you so close in my arms.",
+        "Your smile makes my heart happy.",
+        "I love sitting beside you as you drift off.",
+        "I love hearing all your little sounds."
+      ],
+      "effort": [
+        "You're working hard to lift your head during tummy time.",
+        "You're really trying to reach that rattle with your hands.",
+        "I can see how hard you're trying to kick your little feet.",
+        "You're making a big effort to reach that block."
+      ],
+      "encouragement": [
+        "Keep trying to lift your head; you're getting stronger!",
+        "Reach for the rattle; you can do it!",
+        "One more little kick with your feet; you've got this!",
+        "Keep trying to grab the block; you're so close!"
+      ],
+      "none": [
+        "The raindrops are tapping on the window.",
+        "Sunlight is shining across the floor.",
+        "Your blue romper is on the chair.",
+        "There's a red apple in the picture book."
+      ]
+    },
+    "de": {
+      "affection": [
+        "Ich liebe es, dich so nah in meinen Armen zu halten.",
+        "Dein Lächeln macht mein Herz ganz glücklich.",
+        "Ich bin so gern bei dir, wenn du langsam einschläfst.",
+        "Ich höre deine kleinen Laute so gern."
+      ],
+      "effort": [
+        "Du strengst dich in der Bauchlage an, deinen Kopf anzuheben.",
+        "Du versuchst wirklich, mit deinen Händen die Rassel zu erreichen.",
+        "Ich sehe, wie sehr du versuchst, mit deinen Füßen zu strampeln.",
+        "Du gibst dir große Mühe, den Bauklotz zu erreichen."
+      ],
+      "encouragement": [
+        "Versuch weiter, deinen Kopf anzuheben, du wirst stärker!",
+        "Greif nach der Rassel, du schaffst das!",
+        "Noch ein kleiner Tritt mit deinen Füßen, du kannst das!",
+        "Versuch weiter, den Bauklotz zu greifen, du bist fast dran!"
+      ],
+      "none": [
+        "Die Regentropfen klopfen gegen das Fenster.",
+        "Das Sonnenlicht scheint über den Boden.",
+        "Dein blauer Strampler liegt auf dem Stuhl.",
+        "Im Bilderbuch ist ein roter Apfel."
+      ]
+    },
+    "fr": {
+      "affection": [
+        "J'adore te tenir tout contre moi dans mes bras.",
+        "Ton sourire remplit mon cœur de bonheur.",
+        "J'aime être près de toi quand tu t'endors doucement.",
+        "J'adore entendre tous tes petits sons."
+      ],
+      "effort": [
+        "Tu fais de gros efforts pour lever la tête sur le ventre.",
+        "Tu essaies vraiment d'attraper le hochet avec tes mains.",
+        "Je vois comme tu essaies de donner des coups avec tes petits pieds.",
+        "Tu fais beaucoup d'efforts pour atteindre le cube."
+      ],
+      "encouragement": [
+        "Continue à essayer de lever la tête, tu deviens plus fort !",
+        "Attrape le hochet, tu peux le faire !",
+        "Encore un petit coup de pied, tu y arrives !",
+        "Continue à essayer d'attraper le cube, tu y es presque !"
+      ],
+      "none": [
+        "Les gouttes de pluie tapotent sur la fenêtre.",
+        "La lumière du soleil traverse le sol.",
+        "Ton pyjama bleu est sur la chaise.",
+        "Il y a une pomme rouge dans le livre d'images."
+      ]
+    },
+    "ko": {
+      "affection": [
+        "너를 이렇게 꼭 안고 있는 게 정말 좋아.",
+        "네 미소를 보면 내 마음이 행복해져.",
+        "네가 잠들 때 곁에 있어 주는 게 참 좋아.",
+        "네 작은 소리를 듣는 게 정말 좋아."
+      ],
+      "effort": [
+        "엎드려서 고개를 들려고 열심히 애쓰는구나.",
+        "작은 손으로 딸랑이를 잡으려고 정말 노력하고 있네.",
+        "발을 차려고 얼마나 힘쓰는지 보여.",
+        "블록에 손을 뻗으려고 열심히 애쓰는구나."
+      ],
+      "encouragement": [
+        "고개를 더 들어 봐, 점점 힘이 세지고 있어!",
+        "딸랑이에 손을 뻗어 봐, 할 수 있어!",
+        "발을 한 번 더 차 봐, 잘할 수 있어!",
+        "블록을 잡으려고 계속해 봐, 거의 다 왔어!"
+      ],
+      "none": [
+        "빗방울이 창문을 톡톡 두드리고 있어.",
+        "햇살이 바닥을 비추고 있어.",
+        "파란 우주복이 의자 위에 있어.",
+        "그림책에 빨간 사과가 있어."
+      ]
+    },
+    "th": {
+      "affection": [
+        "ฉันชอบกอดหนูไว้ใกล้ ๆ แบบนี้จัง",
+        "เห็นรอยยิ้มหนูแล้วมีความสุขมากเลย",
+        "ชอบอยู่ข้าง ๆ ตอนหนูค่อย ๆ หลับนะ",
+        "ฉันชอบฟังเสียงเล็ก ๆ ของหนูจัง"
+      ],
+      "effort": [
+        "หนูกำลังพยายามยกหัวตอนนอนคว่ำอย่างเต็มที่เลย",
+        "หนูพยายามเอื้อมมือไปจับของเล่นเขย่าอยู่เลย",
+        "เห็นเลยว่าหนูพยายามเตะเท้ามากแค่ไหน",
+        "หนูกำลังตั้งใจเอื้อมมือไปหาบล็อกอยู่นะ"
+      ],
+      "encouragement": [
+        "ลองยกหัวต่ออีกนิดนะ หนูแข็งแรงขึ้นแล้ว!",
+        "เอื้อมมือไปหาของเล่นเขย่านะ หนูทำได้!",
+        "ลองเตะเท้าอีกครั้งนะ ทำได้แน่!",
+        "ลองเอื้อมไปจับบล็อกอีกนิด ใกล้แล้ว!"
+      ],
+      "none": [
+        "หยดฝนกำลังเคาะกระจกหน้าต่าง",
+        "แสงแดดส่องผ่านพื้นห้อง",
+        "ชุดหมีสีฟ้าของหนูอยู่บนเก้าอี้",
+        "ในหนังสือภาพมีแอปเปิลสีแดง"
+      ]
+    },
+    "zh": {
+      "affection": [
+        "我喜欢这样把你紧紧抱在怀里。",
+        "你的笑容让我心里好开心。",
+        "我喜欢在你慢慢睡着时陪在身边。",
+        "我特别喜欢听你发出的小声音。"
+      ],
+      "effort": [
+        "你正努力在趴着的时候抬起头。",
+        "你正努力用小手去够那个摇铃。",
+        "我看到你在努力踢动小脚。",
+        "你正努力伸手去够那块积木。"
+      ],
+      "encouragement": [
+        "再试着抬抬头，你越来越有力气了！",
+        "伸手去拿摇铃吧，你做得到！",
+        "再踢一下小脚，你可以的！",
+        "继续试着抓住积木，就快够到了！"
+      ],
+      "none": [
+        "雨滴正轻轻敲着窗户。",
+        "阳光洒在地板上。",
+        "你的蓝色连体衣放在椅子上。",
+        "图画书里有一个红苹果。"
+      ]
+    },
+    "hi": {
+      "affection": [
+        "तुम्हें अपने इतने पास गोद में रखना मुझे बहुत अच्छा लगता है।",
+        "तुम्हारी मुस्कान देखकर मेरा दिल खुश हो जाता है।",
+        "जब तुम धीरे-धीरे सोते हो, मुझे तुम्हारे पास रहना अच्छा लगता है।",
+        "तुम्हारी सारी छोटी-छोटी आवाज़ें सुनना मुझे अच्छा लगता है।"
+      ],
+      "effort": [
+        "तुम पेट के बल लेटकर सिर उठाने की बहुत कोशिश कर रहे हो।",
+        "तुम अपने हाथों से झुनझुना पकड़ने की पूरी कोशिश कर रहे हो।",
+        "मैं देख सकता हूँ कि तुम पैर हिलाने की कितनी कोशिश कर रहे हो।",
+        "तुम उस ब्लॉक तक पहुँचने के लिए बड़ी मेहनत कर रहे हो।"
+      ],
+      "encouragement": [
+        "सिर थोड़ा और उठाने की कोशिश करो, तुम और मज़बूत हो रहे हो!",
+        "झुनझुने की ओर हाथ बढ़ाओ, तुम कर सकते हो!",
+        "पैर से एक बार और किक मारो, तुम कर लोगे!",
+        "ब्लॉक पकड़ने की कोशिश करते रहो, तुम बस पहुँचने वाले हो!"
+      ],
+      "none": [
+        "बारिश की बूँदें खिड़की पर टप-टप कर रही हैं।",
+        "धूप फर्श पर पड़ रही है।",
+        "तुम्हारे नीले कपड़े कुर्सी पर रखे हैं।",
+        "तस्वीरों वाली किताब में एक लाल सेब है।"
+      ]
+    }
+  },
+  "warning": "Unreviewed; translations and labels are provisional."
+}
